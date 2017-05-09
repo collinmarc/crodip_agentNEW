@@ -4,7 +4,9 @@ Imports Crodip_agent
 
 <TestClass()> Public Class UnitTest1
 
-    <TestMethod()> Public Sub TestASCAR()
+    'Test uniquement pour MAJ base ASCAR
+    <TestMethod(), Ignore()>
+    Public Sub TestASCAR()
         Dim olst As List(Of Pulverisateur)
         Dim oPulve As Pulverisateur
         Dim oAgent As Agent
@@ -18,7 +20,7 @@ Imports Crodip_agent
             If oPulve.numeroNational <> "E001" Then
                 Dim oReturn As Object
                 Dim nRet As Integer
-                nRet = PulverisateurManager.sendWSPulverisateur(oAgent, oPulve, oReturn)
+                'nRet = PulverisateurManager.sendWSPulverisateur(oAgent, oPulve, oReturn)
                 Select Case nRet
                     Case 0
 
