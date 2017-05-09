@@ -1,0 +1,1 @@
+﻿Ce module exexute le fichier ./updates.sql sur la base ./bdd/cropdip_agent.mdb 

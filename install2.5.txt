@@ -1,0 +1,39 @@
+Procedure d'installation de la Version 2.5 20130502170000
+
+Cette Version s'installe par copie de fichiers. Cette installation est à réaliser uniquement sous le controle du CRODIP.
+
+Procédure d'installation :
+==========================
+
+Disposer d'un poste avec une version 2.4 Correcte et synchronisée.
+installer le .NET Framework3.5 SP1
+installer Crystal reports depuis (http://downloads.businessobjects.com/akdlm/cr4vs2010/CRforVS_redist_install_32bit_13_0.zip)
+
+Copier tous les élements (fichier et dossiers) vers le répertoire d'installation (Ecraser les fichier existants et fusionner les dossiers)
+Executer le programme DBUPDATE.exe (Dbl-Click sur l'application DBUpdate.exe)
+
+Vérifications :
+===============
+
+Vérification des propriétés du fichier Logiciel Crodip Agent.exe
+	Version du fichier = 2013.05.06.0800
+
+Vérification du contenu du fichier tmp/debug-update.log
+Il doit se terminer par
+... - UpdateInfo.MajDatabase SQL : INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.5.002",#29/04/2013#, "Emplacement de l'identification")
+... - Mise a jour de la base de données OK
+
+Lancement du Logiciel :
+Avant la connexion, Afficher la boite A propos "? + A propos de ..."
+Numéro de version : 2.5
+Build : 201305020170000
+DB:V2.5.002
+
+
+La Version est correctement installée
+
+
+
+
+
+

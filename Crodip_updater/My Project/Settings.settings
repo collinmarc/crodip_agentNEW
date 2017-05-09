@@ -1,0 +1,42 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="logicielAgent_fileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Logiciel Crodip Agent.exe</Value>
+    </Setting>
+    <Setting Name="logicielAgent_pid" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip_agent.pid</Value>
+    </Setting>
+    <Setting Name="path_target_tmp_path" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\tmp\update\</Value>
+    </Setting>
+    <Setting Name="file_suffixe" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.updated.old</Value>
+    </Setting>
+    <Setting Name="update_sql_filename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">updates.sql</Value>
+    </Setting>
+    <Setting Name="debug_level" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="debug_type" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">file</Value>
+    </Setting>
+    <Setting Name="debug_filename" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\tmp\debug-update.log</Value>
+    </Setting>
+    <Setting Name="chekUpdates" Type="System.String" Scope="User">
+      <Value Profile="(Default)">WS</Value>
+    </Setting>
+    <Setting Name="downloadUpdates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="installUpdates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DatabaseUpdates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

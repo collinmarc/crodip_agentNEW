@@ -1,0 +1,5 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="root" targetNamespace="http://www.w3.org/XML/1998/namespace" xmlns:mstns="http://tempuri.org/Resource1.xsd" xmlns="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified" xmlns:app1="http://www.w3.org/XML/1998/namespace">
+  <xs:import namespace="http://tempuri.org/Resource1.xsd" schemaLocation="Resource1.xsd" />
+  <xs:attribute name="space" type="xs:string" default="preserve" />
+</xs:schema>

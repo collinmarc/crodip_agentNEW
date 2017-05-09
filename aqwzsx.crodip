@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParamReglagePulve>
+  <coluser>
+    <UserReglagePulve>
+      <Code>MARC</Code>
+      <PasswordCrypted>COLLIN</PasswordCrypted>
+      <DateExpCrypted>15/02/1964</DateExpCrypted>
+    </UserReglagePulve>
+    <UserReglagePulve>
+      <Code>VERO</Code>
+      <PasswordCrypted>JUIN</PasswordCrypted>
+      <DateExpCrypted>31/07/2004</DateExpCrypted>
+    </UserReglagePulve>
+  </coluser>
+</ParamReglagePulve>

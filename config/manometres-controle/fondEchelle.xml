@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+  <fondEchelle>
+		<id>1</id>
+		<libelle>6</libelle>
+  </fondEchelle>
+  <fondEchelle>
+		<id>2</id>
+		<libelle>10</libelle>
+  </fondEchelle>
+  <fondEchelle>
+		<id>3</id>
+		<libelle>15</libelle>
+  </fondEchelle>
+  <fondEchelle>
+		<id>4</id>
+		<libelle>20</libelle>
+  </fondEchelle>
+</root>

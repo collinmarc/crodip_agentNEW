@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <EmplacementIdentification>
+      <id>1</id>
+      <libelle>A CÔTE DE LA PLAQUE CONSTRUCTEUR</libelle>
+  </EmplacementIdentification>
+  <EmplacementIdentification>
+    <id>2</id>
+    <libelle>CHÂSSIS (ATTELAGE)</libelle>
+  </EmplacementIdentification>
+  <EmplacementIdentification>
+    <id>3</id>
+    <libelle>CHÂSSIS (ATTELAGE 3ème POINT)</libelle>
+  </EmplacementIdentification>
+  <EmplacementIdentification>
+    <id>4</id>
+    <libelle>CHÂSSIS (A GAUCHE)</libelle>
+  </EmplacementIdentification>
+  <EmplacementIdentification>
+    <id>5</id>
+    <libelle>CHÂSSIS (A DROITE)</libelle>
+  </EmplacementIdentification>
+  <EmplacementIdentification>
+    <id>6</id>
+    <libelle>CUVE (A GAUCHE)</libelle>
+  </EmplacementIdentification>
+  <EmplacementIdentification>
+    <id>7</id>
+    <libelle>CUVE (A DROITE)</libelle>
+  </EmplacementIdentification>
+  <EmplacementIdentification>
+    <id>8</id>
+    <libelle>DANS LA CABINE</libelle>
+  </EmplacementIdentification>
+</root>

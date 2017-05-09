@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+
+  <marque>
+		<id>1</id>
+		<libelle>Autre</libelle>
+  </marque>
+  <marque>
+		<id>2</id>
+		<libelle>AAMS</libelle>
+  </marque>
+  <marque>
+		<id>3</id>
+		<libelle>Auto-construction</libelle>
+  </marque>
+  <marque>
+		<id>4</id>
+		<libelle>BERTHOUD</libelle>
+  </marque>
+  <marque>
+		<id>5</id>
+		<libelle>HERBST-LECHLER</libelle>
+  </marque>
+  <marque>
+		<id>6</id>
+		<libelle>ITEQ</libelle>
+  </marque>
+  <marque>
+		<id>7</id>
+		<libelle>MD2</libelle>
+  </marque>
+  
+</root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+  <modele>
+		<id>1</id>
+		<libelle>Analogique</libelle>
+  </modele>
+  <modele>
+		<id>2</id>
+		<libelle>Numérique</libelle>
+  </modele>
+  <modele>
+		<id>3</id>
+		<libelle>Capteur / Transmetteur de pression</libelle>
+  </modele>
+</root>

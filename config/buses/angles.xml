@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+  <angle>
+		<id>1</id>
+		<libelle>Autre</libelle>
+  </angle>
+  <angle>
+		<id>2</id>
+		<libelle>60</libelle>
+  </angle>
+  <angle>
+		<id>3</id>
+		<libelle>80</libelle>
+  </angle>
+  <angle>
+		<id>4</id>
+		<libelle>110</libelle>
+  </angle>
+  <angle>
+		<id>5</id>
+		<libelle>120</libelle>
+  </angle>
+</root>

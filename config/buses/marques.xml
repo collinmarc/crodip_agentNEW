@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+  <marque>
+		<id>1</id>
+		<libelle>Autre</libelle>
+  </marque>
+  <marque>
+		<id>2</id>
+		<libelle>AGROTOP</libelle>
+  </marque>
+  <marque>
+		<id>3</id>
+		<libelle>AIR BUBBLE JET</libelle>
+  </marque>
+  <marque>
+		<id>4</id>
+		<libelle>ALBUZ</libelle>
+  </marque>
+  <marque>
+		<id>5</id>
+		<libelle>BERTHOUD</libelle>
+  </marque>
+  <marque>
+		<id>6</id>
+		<libelle>HARDI</libelle>
+  </marque>
+  <marque>
+		<id>7</id>
+		<libelle>LECHLER</libelle>
+  </marque>
+  <marque>
+		<id>8</id>
+		<libelle>LURMARK</libelle>
+  </marque>
+  <marque>
+		<id>9</id>
+		<libelle>NOZAL</libelle>
+  </marque>
+  <marque>
+		<id>10</id>
+		<libelle>TEEJET</libelle>
+  </marque>
+</root>

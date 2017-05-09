@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <type>
+		<id>1</id>
+		<libelle>A fente</libelle>
+    <fonctionnement>
+      <item>
+        <id>1</id>
+        <text>Standard</text>
+      </item>
+      <item>
+        <id>2</id>
+        <text>A pastille/chambre</text>
+      </item>
+      <item>
+        <id>3</id>
+        <text>A injection d’air libre</text>
+      </item>
+      <item>
+        <id>4</id>
+        <text>A injection d’air forcée</text>
+      </item>
+    </fonctionnement>
+  </type>
+  <type>
+		<id>2</id>
+		<libelle>A double fente</libelle>
+    <fonctionnement>
+      <item>
+        <id>1</id>
+        <text>Standard</text>
+      </item>
+      <item>
+        <id>2</id>
+        <text>A pastille/chambre</text>
+      </item>
+      <item>
+        <id>3</id>
+        <text>A injection d’air libre</text>
+      </item>
+      <item>
+        <id>4</id>
+        <text>A injection d’air forcée</text>
+      </item>
+    </fonctionnement>
+  </type>
+  <type>
+		<id>3</id>
+		<libelle>A miroir</libelle>
+    <fonctionnement>
+      <item>
+        <id>1</id>
+        <text>Standard</text>
+      </item>
+      <item>
+        <id>3</id>
+        <text>A injection d’air libre</text>
+      </item>
+    </fonctionnement>
+  </type>
+  <type>
+		<id>4</id>
+		<libelle>A turbulence</libelle>
+    <fonctionnement>
+      <item>
+        <id>3</id>
+        <text>A injection d’air libre</text>
+      </item>
+      <item>
+        <id>4</id>
+        <text>A injection d’air forcée</text>
+      </item>
+      <item>
+        <id>1</id>
+        <text>Standard</text>
+      </item>
+    </fonctionnement>
+  </type>
+  <type>
+		<id>5</id>
+		<libelle>Pastilles</libelle>
+    <fonctionnement>
+      <item>
+        <id>1</id>
+        <text>Standard</text>
+      </item>
+    </fonctionnement>
+  </type>
+  <type>
+		<id>6</id>
+		<libelle>Centrifuges</libelle>
+    <fonctionnement>
+      <item>
+        <id>1</id>
+        <text>Standard</text>
+      </item>
+    </fonctionnement>
+  </type>
+</root>

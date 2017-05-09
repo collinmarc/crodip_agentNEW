@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+  <modele>
+		<id>1</id>
+		<libelle>Modele1</libelle>
+  </modele>
+  <modele>
+		<id>2</id>
+		<libelle>Modele2</libelle>
+  </modele>
+  <modele>
+		<id>3</id>
+		<libelle>Modele3</libelle>
+  </modele>
+  <modele>
+		<id>4</id>
+		<libelle>Modele4</libelle>
+  </modele>
+  <modele>
+		<id>5</id>
+		<libelle>Modele5</libelle>
+  </modele>
+  <modele>
+		<id>6</id>
+		<libelle>Modele6</libelle>
+  </modele>
+  <modele>
+		<id>7</id>
+		<libelle>Modele7</libelle>
+  </modele>
+  <modele>
+		<id>8</id>
+		<libelle>Modele8</libelle>
+  </modele>
+  <modele>
+		<id>9</id>
+		<libelle>Modele9</libelle>
+  </modele>
+  <modele>
+		<id>10</id>
+		<libelle>Modele10</libelle>
+  </modele>
+</root>

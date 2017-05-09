@@ -1,0 +1,1351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LstParamCtrlDiag>
+  <ListeParam>
+    <!-- Noeud de test 
+    <ParamCtrlDiag>
+      <Code>2.1.1.1</Code>
+      <Libelle>Déformation mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie> 0 = OK, 1 = Mineure, 2 = Majeur
+      <NiveauCauseMax>-1</NiveauCauseMax> -1ou 0 = Rien, 1 = (1), 2=(1),(2) , 3 = (1),(2),(3)
+    </ParamCtrlDiag>
+    -->
+    <ParamCtrlDiag>
+      <Code>2.1.1.1</Code>
+      <Libelle>Déformation mineure</Libelle>
+      <LibelleLong>Le dispositif d’attelage présente des traces de déformations par rapport à sa conception d’origine sans porter préjudice à l’ensemble</LibelleLong>
+      <Actif>OUI</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>0</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.1.2</Code>
+      <Libelle>Déformation majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2113</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.2.1</Code>
+      <Libelle>Modification mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.2.2</Code>
+      <Libelle>Modification majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2123</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.3.1</Code>
+      <Libelle>Corrosion mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.3.2</Code>
+      <Libelle>Corrosion majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2133</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.1.1</Code>
+      <Libelle>Mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.1.2</Code>
+      <Libelle>Majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.1.3</Code>
+      <Libelle>Majeure: support rampe</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2214</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.2.1</Code>
+      <Libelle>Lésion mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.2.2</Code>
+      <Libelle>Lésion majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2223</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.3.1</Code>
+      <Libelle>Mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.3.2</Code>
+      <Libelle>Majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2233</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.4.1</Code>
+      <Libelle>Mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.4.2</Code>
+      <Libelle>Majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2243</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.5.1</Code>
+      <Libelle>Faible</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.5.2</Code>
+      <Libelle>Important</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2253</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2310</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.1</Code>
+      <Libelle>A la pompe</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.2</Code>
+      <Libelle>A la cuve de bouillie</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.3</Code>
+      <Libelle>Aux circuits de com. et régulation</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.4</Code>
+      <Libelle>Aux conduites véhiculant la bouillie</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.5</Code>
+      <Libelle>Aux buses de pulvérisation</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.6</Code>
+      <Libelle>Aux appareil. de mesure du pulvé</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.7</Code>
+      <Libelle>Au dispositif d’inc. des produits</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.8</Code>
+      <Libelle>Nombre total supérieur à 3</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.9</Code>
+      <Libelle>Aux filtres</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.1</Code>
+      <Libelle>A la pompe</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.2</Code>
+      <Libelle>A la cuve de bouillie</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.3</Code>
+      <Libelle>Aux circuits de com. et régulation</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.4</Code>
+      <Libelle>Aux conduites véhiculant la bouillie</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.5</Code>
+      <Libelle>Aux buses de pulvérisation</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.6</Code>
+      <Libelle>Aux appareil. de mesure du pulvé</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.7</Code>
+      <Libelle>Au dispositif d’inc. des produits</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2328</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.9</Code>
+      <Libelle>Aux filtres</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4.1.1</Code>
+      <Libelle>Dispo. anti-décrochage déf.</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4.1.2</Code>
+      <Libelle>Usure importante</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4.1.3</Code>
+      <Libelle>Pliures excessives</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4.1.4</Code>
+      <Libelle>Fuite de fluide hydraulique</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2415</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.1.1</Code>
+      <Libelle>Dissymétrie gauche/droite</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.1.2</Code>
+      <Libelle>Pression de gonflage inad.</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2513</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.2.1</Code>
+      <Libelle>Endommagés</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.2.2</Code>
+      <Libelle>Usure maximale</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2523</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.1.1.1</Code>
+      <Libelle>Fuite mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.1.1.2</Code>
+      <Libelle>Fuite majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3113</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.1.1</Code>
+      <Libelle>Pulsation mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.1.2</Code>
+      <Libelle>Pulsation majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3213</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.2.1</Code>
+      <Libelle>Pression de gonf. inadaptée</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.2.2</Code>
+      <Libelle>Membrane défectueuse</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.2.3</Code>
+      <Libelle>Absence</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3224</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.3.1</Code>
+      <Libelle>Agitation insuffisante</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3232</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.1.2</Code>
+      <Libelle>Fêlé</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.1.3</Code>
+      <Libelle>Cassé</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.1.4</Code>
+      <Libelle>Percé</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4115</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.2.1</Code>
+      <Libelle>Inadapté</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.2.2</Code>
+      <Libelle>Mauv. maintien</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4123</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.2.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.2.1.2</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.2.1.3</Code>
+      <Libelle>Mauvaise lisibilité</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4214</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.1.2</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4313</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.1.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.1.1.2</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5113</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.1.2</Code>
+      <Libelle>Non foncti.</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5213</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.2.1</Code>
+      <Libelle>Absence</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.2.2</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.2.3</Code>
+      <Libelle>Mauvais équilibre</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5224</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.1.2</Code>
+      <Libelle>Non foncti.</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5313</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.2.1</Code>
+      <Libelle>Faible instab. pression</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.2.2</Code>
+      <Libelle>Forte instab. pression</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5323</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.1.2</Code>
+      <Libelle>Mauvaise lisibilité</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.1.3</Code>
+      <Libelle>Plage mesure inadaptée</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.1.4</Code>
+      <Libelle>Graduation inadaptées</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5415</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.2.1</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.2.2</Code>
+      <Libelle>Imprécision faible</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.2.3</Code>
+      <Libelle>Imprécision importante</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5424</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.1.1</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.1.2</Code>
+      <Libelle>Imprécision</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5513</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.2.1</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.2.2</Code>
+      <Libelle>Imprécision</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5523</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.1.1</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.1.2</Code>
+      <Libelle>Mauvaise lisibilité</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5613</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.2.1</Code>
+      <Libelle>Imprecision vitesse</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.2.2</Code>
+      <Libelle>Imprecision débit</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5623</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6.1.1.1</Code>
+      <Libelle>Pliures importantes</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6.1.1.2</Code>
+      <Libelle>Usure mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6.1.1.3</Code>
+      <Libelle>Usure majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6114</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.1</Code>
+      <Libelle>Absent</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.2</Code>
+      <Libelle>Non isolable</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.3</Code>
+      <Libelle>Non démontable</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.4</Code>
+      <Libelle>Défaut de joint</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.5</Code>
+      <Libelle>Elément défectueux</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7116</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.1</Code>
+      <Libelle>Absent</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.2</Code>
+      <Libelle>Non isolable</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.3</Code>
+      <Libelle>Non démontable</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.4</Code>
+      <Libelle>Défaut de joint</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.5</Code>
+      <Libelle>Elément défectueux</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7216</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1.1</Code>
+      <Libelle>Absent</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1.2</Code>
+      <Libelle>Non démontable</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1.3</Code>
+      <Libelle>Défaut de joint</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1.4</Code>
+      <Libelle>Elément défectueux</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7315</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.1</Code>
+      <Libelle>Absent</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.2</Code>
+      <Libelle>Non démontable</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.3</Code>
+      <Libelle>Défaut de joint</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.4</Code>
+      <Libelle>Elément défectueux</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.5</Code>
+      <Libelle>Montage hétérogène</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7416</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.1.1</Code>
+      <Libelle>Courbure faible</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.1.2</Code>
+      <Libelle>Courbure importante</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.1.3</Code>
+      <Libelle>Défaut de parallelisme faible (&gt;=12m)</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.1.4</Code>
+      <Libelle>Défaut de parallelisme important (&gt;=12m)</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8115</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.2.1</Code>
+      <Libelle>Ecart de position faible</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.2.2</Code>
+      <Libelle>Ecart de position important</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8123</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.3.1</Code>
+      <Libelle>Tronçons escamotables défectueux (&gt;=12m)</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.3.2</Code>
+      <Libelle>Contact avec le sol non protégé (&gt;=12m)</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8133</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.4.1</Code>
+      <Libelle>Déformation faible</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.4.2</Code>
+      <Libelle>Déformation importante</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8143</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.5.1</Code>
+      <Libelle>Lésion mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.5.2</Code>
+      <Libelle>Lésion majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8153</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.6.1</Code>
+      <Libelle>Corrosion mineure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.6.2</Code>
+      <Libelle>Corrosion majeure</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8163</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.1.1</Code>
+      <Libelle>Jeux importants</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8212</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.2.1</Code>
+      <Libelle>Dispositif de stabilisation non fonctionnel</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.2.2</Code>
+      <Libelle>Mauvais fonctionnement</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8223</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.3.1</Code>
+      <Libelle>Impossible</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.3.2</Code>
+      <Libelle>Mauvais état</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.3.3</Code>
+      <Libelle>Mauvais fonctionnement</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.3.4</Code>
+      <Libelle>Inadapté</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8235</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.1.1</Code>
+      <Libelle>Dissymétrie de montage</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.1.2</Code>
+      <Libelle>Irrégularité des espacements (rampe)</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.1.3</Code>
+      <Libelle>Mauvais aplomb (rampe)</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8314</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.2.1</Code>
+      <Libelle>Félure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.2.2</Code>
+      <Libelle>Casse</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.2.3</Code>
+      <Libelle>Usure</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8324</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.3.1</Code>
+      <Libelle>Antigoutte défectueux</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.3.2</Code>
+      <Libelle>Hétérogénéité d'alimentation</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>3</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.3.3</Code>
+      <Libelle>Ecart de pression</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>3</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8334</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.1</Code>
+      <Libelle>Hétérogénéité de marque</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.2</Code>
+      <Libelle>Hétérogénéité de matériau</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.3</Code>
+      <Libelle>Hétérogénéité de type</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.4</Code>
+      <Libelle>Hétérogénéité d'angle</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.5</Code>
+      <Libelle>Hétérogénéité de calibre</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9116</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.2.1</Code>
+      <Libelle>Hétérogénéité</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.2.2</Code>
+      <Libelle>Incorrecte</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9123</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.1.1</Code>
+      <Libelle>Obstacle dans les jets</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.1.2</Code>
+      <Libelle>Panache hétérogène</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9213</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.2.1</Code>
+      <Libelle>Usure partielle</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.2.2</Code>
+      <Libelle>Usure globale</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>2</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9223</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.1</Code>
+      <Libelle>Caisson déformé</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.2</Code>
+      <Libelle>Caisson perforé</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.3</Code>
+      <Libelle>Caisson désaxé</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.4</Code>
+      <Libelle>Redresseur d'air déformé</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.5</Code>
+      <Libelle>Redresseur d'air cassé</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.6</Code>
+      <Libelle>Pâle déformée</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.7</Code>
+      <Libelle>Pâle déteriorée</Libelle>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10118</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.2.1</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <!-- SPECIAL ARBO/VITI-->
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.2.2</Code>
+      <Libelle>Flux d'air insuffisant</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10123</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.1.1</Code>
+      <Libelle>Mal fixée</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.1.2</Code>
+      <Libelle>Non étanche</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.1.3</Code>
+      <Libelle>Obstruée</Libelle>
+      <!-- SPECIAL ARBO/VITI-->
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10214</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.2.1</Code>
+      <Libelle>Mal fixée</Libelle>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.2.2</Code>
+      <Libelle>Déteriorée</Libelle>
+      <!-- SPECIAL ARBO/VITI-->
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.2.3</Code>
+      <Libelle>Obstruée</Libelle>
+      <!-- SPECIAL ARBO/VITI-->
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10224</Code>
+      <Libelle>OK</Libelle>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+    </ParamCtrlDiag>
+  </ListeParam>
+</LstParamCtrlDiag>

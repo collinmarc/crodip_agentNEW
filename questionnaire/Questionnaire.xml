@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Questionnaire xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <lstElements>
+    <Element xsi:type="Groupe">
+      <Libelle>Identification</Libelle>
+      <Code>G1</Code>
+      <lstElements>
+        <Element xsi:type="QIdent">
+          <Libelle>Identification de l'agent</Libelle>
+          <Code>QAGENT</Code>
+          <lstElements />
+          <ListOfChoix />
+          <Reponse />
+        </Element>
+        <Element xsi:type="QIdent">
+          <Libelle>Identification du Client</Libelle>
+          <Code>QCLIENT</Code>
+          <lstElements />
+          <ListOfChoix />
+        </Element>
+        <Element xsi:type="Groupe">
+          <Libelle>Présentation succinte de l'exploitation</Libelle>
+          <Code>GEXPLOIT</Code>
+          <lstElements>
+            <Element xsi:type="Question">
+              <LibelleCourt>Bassin Versant</LibelleCourt>
+              <Libelle>Le siége de l'exploitation est-il sur un bassin versant ?</Libelle>
+              <Code>QEXPLOIT-BV</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix />
+              <Reponse />
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Démarche</LibelleCourt>
+              <Libelle>Démarche spécifique de l'exploitation</Libelle>
+              <Code>QEXPLOIT-DEM</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>DEPHY</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>MAE Phyto Herbicides (en cours ou passée)</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>MAE Tous phytos (en cours ou passée)</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>MAE SFEI (en cours ou passée)</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>AB (certifié ou conversion)</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>Autre</Libelle>
+                </Choix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Décision</LibelleCourt>
+              <Libelle>Prise de décision relative à l'utilisation des produits phytopharmaceutiques</Libelle>
+              <Code>QEXPLOIT-DECISION</Code>
+              <OuiNonQ>false</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Exploitant</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Tehcnicien(distri,indépendant)</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Groupe technique</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>Autre</Libelle>
+                </Choix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Application</LibelleCourt>
+              <Libelle>Qui applique ?</Libelle>
+              <Code>QEXPLOIT-APPLICATION</Code>
+              <OuiNonQ>false</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Exploitant</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Chauffeur CUMA</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>ETA</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Voisin</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>Autre</Libelle>
+                </Choix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Commentaire</LibelleCourt>
+              <Libelle>Remarques/Commentaires éventuels sur le chapitre</Libelle>
+              <Code>QEXPLOIT-COMMENTAIRE</Code>
+              <lstElements />
+              <ListOfChoix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+          </lstElements>
+        </Element>
+      </lstElements>
+    </Element>
+    <Element xsi:type="Groupe">
+      <Libelle>Reconception des systèmes</Libelle>
+      <Code>GRECONCEPTION</Code>
+      <lstElements>
+        <Element xsi:type="Groupe">
+          <Libelle>Rotation</Libelle>
+          <Code>GROTATION</Code>
+          <lstElements>
+            <Element xsi:type="Groupe">
+              <Libelle>Cultures concernées</Libelle>
+              <Code>GCULTURESCONCERNEES</Code>
+              <lstElements>
+                <Element xsi:type="Question">
+              <LibelleCourt>Céréales concernées</LibelleCourt>
+              <Libelle>Quelles céréales sont concernées par la rotation</Libelle>
+              <Code>QROTATION-CEREALES-CONCERNEES</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Prairie</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Blé</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Orge</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Triticale</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Maïs</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>Autres</Libelle>
+                </Choix>
+              </ListOfChoix>
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Oléagineux concernées</LibelleCourt>
+              <Libelle>Quels Oléagineux sont concernées par la rotation</Libelle>
+              <Code>QROTATION-OLEAGINEUX-CONCERNEES</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Colza</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Tournesol</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>Autres</Libelle>
+                </Choix>
+              </ListOfChoix>
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Protéagineux concernées</LibelleCourt>
+              <Libelle>Quels Protéagineux sont concernées par la rotation</Libelle>
+              <Code>QROTATION-PROTEAGINEUX-CONCERNEES</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Pois</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Féveroles</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>Autres</Libelle>
+                </Choix>
+              </ListOfChoix>
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Légumes concernées</LibelleCourt>
+              <Libelle>Quels légumes sont concernées par la rotation</Libelle>
+              <Code>QROTATION-LEGUMES-CONCERNEES</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Pommes de terre</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Carotte</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Chou</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Haricot</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Navet</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Oignon</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Petits Pois</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Poireau</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>Autre</Libelle>
+                </Choix>
+              </ListOfChoix>
+            </Element>
+              </lstElements>
+            </Element>
+            <Element xsi:type="Groupe">
+              <Libelle>Cultures non concernées</Libelle>
+              <Code>GCULTURESNONCONCERNEES</Code>
+              <lstElements>
+
+                <Element xsi:type="Question">
+              <LibelleCourt>Céréales non concernées</LibelleCourt>
+              <Libelle>Quelles céréales ne sont pas concernées par la rotation</Libelle>
+              <Code>QROTATION-CEREALES-NONCONCERNEES</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Prairie</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Blé</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Orge</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Triticale</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Maïs</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle xsi:type="ChoixAutre">Autres</Libelle>
+                </Choix>
+              </ListOfChoix>
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Oléagineux non concernés</LibelleCourt>
+              <Libelle>Quels oléagineux ne sont pas concernés par la rotation</Libelle>
+              <Code>QROTATION-OLEAGINEUX-NONCONCERNES</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Colza</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Tournesol</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle xsi:type="ChoixAutre">Autres</Libelle>
+                </Choix>
+              </ListOfChoix>
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Protéagineux non concernés</LibelleCourt>
+              <Libelle>Quels protéagineux ne sont pas concernés par la rotation ?</Libelle>
+              <Code>QROTATION-PROTEAGINEUX-NONCONCERNES</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Pois</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Féveroles</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>Autres</Libelle>
+                </Choix>
+              </ListOfChoix>
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Légumes non concernés</LibelleCourt>
+              <Libelle>Quels légumes ne sont pas concernés par la rotation ?</Libelle>
+              <Code>QROTATION-LEGUMES-NONCONCERNES</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Pommes de terre</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Carotte</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Chou</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Haricot</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Navet</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Oignon</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Petits Pois</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Poireau</Libelle>
+                </Choix>
+                <Choix  xsi:type="ChoixAutre">
+                  <Libelle>Autres légumes</Libelle>
+                </Choix>
+              </ListOfChoix>
+            </Element>
+              </lstElements>
+            </Element>
+
+          </lstElements>
+
+         </Element>
+        <Element xsi:type="Groupe">
+          <Libelle>Gestion inter cultures</Libelle>
+          <Code>GINTERCULTURE</Code>
+          <lstElements>
+            <Element xsi:type="Question">
+              <LibelleCourt>Avant implantation</LibelleCourt>
+              <Libelle>Avant implantation, traitement chimique ?</Libelle>
+              <Code>QEXPLOIT-APPLICATION</Code>
+              <OuiNonQ>false</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>OUI</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>NON</Libelle>
+                </Choix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Couverts</LibelleCourt>
+              <Libelle>Quels couverts ?</Libelle>
+              <Code>QINTER-COUVERT</Code>
+              <OuiNonQ>false</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>phacélie</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>moutarde</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>seigle</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>avoine</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>RGI</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>RGI et Trèfle</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>radis</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>repousses</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>mélanges faunistiques</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>autres</Libelle>
+                </Choix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Raisonnement</LibelleCourt>
+              <Libelle>Quel raisonnement ?</Libelle>
+              <Code>QINTER-RAISONNMENT</Code>
+              <OuiNonQ>false</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>CIPAN</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>dérobée fourrage</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Couvert faunistique</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>autres</Libelle>
+                </Choix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+
+            <Element xsi:type="Question">
+              <LibelleCourt>Destruction</LibelleCourt>
+              <Libelle>Destruction</Libelle>
+              <Code>QINTER-DESTRUCTION</Code>
+              <OuiNonQ>false</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Chimique (si TCS et couvert non gelif)</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Mécanique (Labour, Outil spécifique)</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Gel</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>autres</Libelle>
+                </Choix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+
+          </lstElements>
+        </Element>
+        <Element xsi:type="Groupe">
+          <Libelle>Gestion des abords de parcelles</Libelle>
+          <Code>GAbordsCulture</Code>
+          <lstElements>
+            <Element xsi:type="Question">
+              <LibelleCourt>Types de gestion</LibelleCourt>
+              <Libelle>Les types de gestion</Libelle>
+              <Code>QABORDS-GESTION</Code>
+              <OuiNonQ>false</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>Traitements chimiques</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Broyage</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Exportation (herbe fauchée et/ou paturée)</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Couverts faunistiques</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Couverts mellifères</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>Haies</Libelle>
+                </Choix>
+                <Choix xsi:type="ChoixAutre">
+                  <Libelle>autres</Libelle>
+                </Choix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+          </lstElements>
+        </Element>
+        <Element xsi:type="Groupe">
+          <Libelle>Diagnostic des parcelles à risque</Libelle>
+          <Code>GDPR</Code>
+          <lstElements>
+            <Element xsi:type="Question">
+              <LibelleCourt>Année de DPR</LibelleCourt>
+              <Libelle>Avez-vous fait un Diagnostic des parcelles à risques</Libelle>
+              <Code>QDRP-ANNEE</Code>
+              <OuiNonQ>true</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>2014</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2013</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2012</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2011</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2010</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2009</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2008</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2007</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2006</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2005</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2004</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2003</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2002</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2001</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>2000</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>1999</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>1998</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>1997</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>1996</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>1995</Libelle>
+                </Choix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+            <Element xsi:type="Question">
+              <LibelleCourt>Conséquence de DPR</LibelleCourt>
+              <Libelle>Conséquences du Diagnostic des Parcelles à Risques</Libelle>
+              <Code>QDRP-Consequences</Code>
+              <OuiNonQ>false</OuiNonQ>
+              <lstElements />
+              <ListOfChoix>
+                <Choix>
+                  <Libelle>aménagements (talus, bandes enherbées, haies, autres)</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>modification du parcellaire (taille et forme des parcelles)</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>choix des produits</Libelle>
+                </Choix>
+                <Choix  xsi:type="ChoixAutre">
+                  <Libelle>autres</Libelle>
+                </Choix>
+                <Choix>
+                  <Libelle>aucune</Libelle>
+                </Choix>
+              </ListOfChoix>
+              <Reponse />
+            </Element>
+          </lstElements>
+        </Element>
+        <Element xsi:type="Question">
+          <LibelleCourt>Commentaire</LibelleCourt>
+          <Libelle>Remarques/Commentaires éventuels sur le chapitre</Libelle>
+          <Code>QCommentaireRotation</Code>
+          <lstElements />
+          <ListOfChoix>
+          </ListOfChoix>
+          <Reponse />
+        </Element>
+      </lstElements>
+    </Element>
+    <Element xsi:type="Groupe">
+      <Libelle>Substitution</Libelle>
+      <Code>GSUBSTITUTION</Code>
+      <lstElements>
+        <Element xsi:type="Groupe">
+          <Libelle>Rotation</Libelle>
+          <Code>GROTATION</Code>
+          <lstElements/>
+        </Element>
+      </lstElements>
+    </Element>
+    <Element xsi:type="Groupe">
+      <Libelle>Efficience: Pratique d'optimisation</Libelle>
+      <Code>GEFFICIENCE</Code>
+      <lstElements>
+        <Element xsi:type="Groupe">
+          <Libelle>Rotation</Libelle>
+          <Code>GROTATION</Code>
+          <lstElements/>
+        </Element>
+      </lstElements>
+    </Element>
+    <Element xsi:type="Groupe">
+      <Libelle>Commentaires</Libelle>
+      <Code>GCOMMENTAIRE</Code>
+      <lstElements>
+        <Element xsi:type="Groupe">
+          <Libelle>Rotation</Libelle>
+          <Code>GROTATION</Code>
+          <lstElements/>
+        </Element>
+      </lstElements>
+    </Element>
+  </lstElements>
+</Questionnaire>

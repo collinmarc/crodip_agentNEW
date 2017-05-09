@@ -1,0 +1,108 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="WSCrodipURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://admin.crodip.fr/server</Value>
+    </Setting>
+    <Setting Name="WSCrodipURLTEST" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://admin-pp.crodip.fr/server</Value>
+    </Setting>
+    <Setting Name="AutoTestDefaultFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">public/Exports/AutoTest.csv</Value>
+    </Setting>
+    <Setting Name="Expect100Continue" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ModuleDocumentaire" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">moduledocumentaire</Value>
+    </Setting>
+    <Setting Name="ParamDiagRampe" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">moduleDocumentaire/_parametres/ParamdiagRampe.xml</Value>
+    </Setting>
+    <Setting Name="ParamDiagArboviti" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">moduleDocumentaire/_parametres/ParamdiagArboViti.xml</Value>
+    </Setting>
+    <Setting Name="DernierControleCodePostal" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DernierControleCommune" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DernierControleSite" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WSCrodipProduction" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoSync" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="NumVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2.5.4</Value>
+    </Setting>
+    <Setting Name="RepertoireParametres" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">moduledocumentaire/_parametres</Value>
+    </Setting>
+    <Setting Name="CVgratuite" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DernierControleNomDuSite" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DernierControleTerritoire" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DernierControleNomRepresentant" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DernierControleSiteSecurise" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DernierControleRecupResidus" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DernierControleInfosChezProp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="nbControlesAvantAlerte" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="nbControlesAvantAlerteMax" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="TxTVADefaut" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="FTPHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ourea.cognix-systems.net</Value>
+    </Setting>
+    <Setting Name="FTPuser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip-pdf</Value>
+    </Setting>
+    <Setting Name="FTPPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">bvdkEn5xnQx</Value>
+    </Setting>
+    <Setting Name="FTPHostTest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ourea.cognix-systems.net</Value>
+    </Setting>
+    <Setting Name="FTPUserTest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip-pp-pdf</Value>
+    </Setting>
+    <Setting Name="FTPPasswordTest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3xnF9fTxWqL</Value>
+    </Setting>
+    <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">V2.5.4.5</Value>
+    </Setting>
+    <Setting Name="NbIdentifiantPulveMini" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="FTPUsePassiveMode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20161102160000</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

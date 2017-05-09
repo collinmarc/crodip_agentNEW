@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfToleranceBuse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ToleranceBuse>
+    <ToleranceMini>0</ToleranceMini>
+    <ToleranceMaxi>0</ToleranceMaxi>
+    <debitMesure>0</debitMesure>
+    <debitMesureAsString>0</debitMesureAsString>
+    <pctTolerance>0.01875</pctTolerance>
+  </ToleranceBuse>
+  <ToleranceBuse>
+    <ToleranceMini>0</ToleranceMini>
+    <ToleranceMaxi>0</ToleranceMaxi>
+    <debitMesure>0</debitMesure>
+    <debitMesureAsString>0</debitMesureAsString>
+    <pctTolerance>0.01875</pctTolerance>
+  </ToleranceBuse>
+  <ToleranceBuse>
+    <ToleranceMini>0</ToleranceMini>
+    <ToleranceMaxi>0</ToleranceMaxi>
+    <debitMesure>0</debitMesure>
+    <debitMesureAsString>0</debitMesureAsString>
+    <pctTolerance>0.01875</pctTolerance>
+  </ToleranceBuse>
+  <ToleranceBuse>
+    <ToleranceMini>0</ToleranceMini>
+    <ToleranceMaxi>0</ToleranceMaxi>
+    <debitMesure>0</debitMesure>
+    <debitMesureAsString>0</debitMesureAsString>
+    <pctTolerance>0.01875</pctTolerance>
+  </ToleranceBuse>
+  <ToleranceBuse>
+    <ToleranceMini>0</ToleranceMini>
+    <ToleranceMaxi>0</ToleranceMaxi>
+    <debitMesure>0</debitMesure>
+    <debitMesureAsString>0</debitMesureAsString>
+    <pctTolerance>0.01875</pctTolerance>
+  </ToleranceBuse>
+</ArrayOfToleranceBuse>
