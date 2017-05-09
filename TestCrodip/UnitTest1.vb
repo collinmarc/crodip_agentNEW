@@ -12,6 +12,8 @@ Imports Crodip_agent
 
         WSCrodip.Init("http://admin.crodip.fr/server")
         oAgent = AgentManager.getAgentById("1048")
+        PulverisateurManager.MAJetatPulverisateurs(oAgent, olst)
+
         For Each oPulve In olst
             If oPulve.numeroNational <> "E001" Then
                 Dim oReturn As Object

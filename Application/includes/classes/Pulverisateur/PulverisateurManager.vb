@@ -823,16 +823,21 @@ Public Class PulverisateurManager
     End Function
 #End Region
     ''' <summary>
-    ''' Mise à jour de l'état des pulvérisateurs
+    ''' Mise à jour de l'état des pulvérisateurs d'une structure
     ''' </summary>
     ''' <param name="pAgent"></param>
+    ''' <param name="pLstPulve"> Liste de spulvé à mettre à jour (Si vide => chargement de tous les pulves de la structure)</param>
     ''' <remarks></remarks>
-    Public Shared Sub MAJetatPulverisateurs(pAgent As Agent)
+    Public Shared Sub MAJetatPulverisateurs(pAgent As Agent, Optional pLstPulve As List(Of Pulverisateur) = Nothing)
         Dim oLstPulve As List(Of Pulverisateur)
         Dim oLstDiag As List(Of Diagnostic)
         Dim odiag As Diagnostic
         Dim oExploit As Exploitation
-        oLstPulve = PulverisateurManager.getPulverisateurList(agentCourant, "")
+        If pLstPulve Is Nothing Then
+            oLstPulve = PulverisateurManager.getPulverisateurList(pAgent, "")
+        Else
+            oLstPulve = pLstPulve
+        End If
         For Each oPulve As Pulverisateur In oLstPulve
             oLstDiag = DiagnosticManager.getlstDiagnosticByPulveId(oPulve.id)
             If oLstDiag.Count > 0 Then
@@ -844,13 +849,13 @@ Public Class PulverisateurManager
                 If ancEtat <> oPulve.controleEtat Then
                     oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
                     CSDebug.dispError("Modification de l'état du pulvé : " & oPulve.id & "/" & oPulve.numeroNational & "Exploitant : " & oExploit.raisonSociale & " ancien etat = " & ancEtat & ", nouvel etat = " & oPulve.controleEtat & " date de dernier controle = " & odiag.controleDateDebut & ", DiagId = " & odiag.id)
-                    PulverisateurManager.save(oPulve, oExploit.id, agentCourant)
+                    PulverisateurManager.save(oPulve, oExploit.id, pAgent)
                 End If
                 If oPulve.dateProchainControle <> odiag.CalculDateProchainControle() Then
                     oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
                     CSDebug.dispError("Modification de la date du prochain CRL : " & oPulve.id & "/" & oPulve.numeroNational & "Exploitant : " & oExploit.raisonSociale & " date de dernier controle = " & odiag.controleDateDebut & ", DiagId = " & odiag.id & " ancienne date Prch ctrl= " & oPulve.dateProchainControle & " nouvelle date =" & odiag.CalculDateProchainControle())
                     oPulve.dateProchainControle = odiag.CalculDateProchainControle()
-                    PulverisateurManager.save(oPulve, oExploit.id, agentCourant)
+                    PulverisateurManager.save(oPulve, oExploit.id, pAgent)
                 End If
             End If
         Next
