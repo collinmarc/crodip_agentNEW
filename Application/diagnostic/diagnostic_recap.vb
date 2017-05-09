@@ -1858,6 +1858,9 @@ Public Class diagnostic_recap
                 Statusbar.display(CONST_STATUTMSG_DIAG_SAVING, True)
                 'Lecture de la fenêtre
                 GetInfos()
+                '
+                'Calcul de la date de prochain controle
+                m_diagnostic.CalculDateProchainControle()
 
                 Statusbar.display("Mise à jour de l'exploitant", True)
                 m_Exploit.numeroSiren = m_diagnostic.proprietaireNumeroSiren
@@ -1879,7 +1882,6 @@ Public Class diagnostic_recap
                 'tmpNewDiagId = InputBox("DiagID", "Entrez le numéro du diag", agentCourant.idStructure & "-" & agentCourant.id & "-")
                 tmpNewDiagId = DiagnosticManager.getNewId(agentCourant)
                 m_diagnostic.id = tmpNewDiagId
-                m_diagnostic.CalculDateProchainControle()
 
                 Statusbar.display("Génération du rapport d'inspection", True)
                 If createRapportInspection_cr() Then

@@ -1,5 +1,11 @@
 TRUNK
 
+Build : 
+Version : 2.5.4 Lot5
+Date :  
+#32377 : MAJ de la date de prochain controle sur la fiche Pulvé
+#32175 : 	MAJ de la date de prochain controle sur la fiche Pulvé
+
 Passage en Mode GIT
 
 Build : 20170328120000
