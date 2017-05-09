@@ -1,5 +1,7 @@
 TRUNK
 
+Passage en Mode GIT
+
 Build : 20170328120000
 Version : 2.5.4 Lot5
 Date :  28/03/2017

@@ -1137,6 +1137,7 @@
       <LastGenOutput>ds_Etat_ReglagePulve.Designer.vb</LastGenOutput>
     </Content>
     <Content Include="toleranceBuses.xml" />
+    <None Include="readme.md" />
     <None Include="Resources\PuceVerteT.png" />
     <None Include="Resources\PuceGriseT.png" />
     <None Include="Resources\PuceRougeT.png" />
