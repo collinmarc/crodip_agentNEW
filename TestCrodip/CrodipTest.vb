@@ -172,7 +172,7 @@ Public Class CRODIPTest
         Return poPulve
     End Function
 
-    Protected Function createDiagnostic(pExploit As Exploitation, pPulve As Pulverisateur) As Diagnostic
+    Protected Function createDiagnostic(pExploit As Exploitation, pPulve As Pulverisateur, Optional pbSave As Boolean = True) As Diagnostic
         Dim oDiag = New Diagnostic(m_oAgent, pPulve, pExploit)
         oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         oDiag.setOrganisme(m_oAgent)
@@ -340,7 +340,9 @@ Public Class CRODIPTest
 
         oDiag.AddDiagItem(oDiagItem)
 
-        DiagnosticManager.save(oDiag)
+        If (pbSave) Then
+            DiagnosticManager.save(oDiag)
+        End If
 
         Return oDiag
     End Function

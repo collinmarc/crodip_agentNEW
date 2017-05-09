@@ -325,7 +325,7 @@ Public Class DiagnosticManagerTest
         ' Act
         '=====
 
-        oDiag = createDiagnostic(pExploit, poPulve)
+        oDiag = createDiagnostic(pExploit, poPulve, False)
         'Inutile, mais je préfére le forcer
         oDiag.controleIsPremierControle = False
         oDiag.controleDateDernierControle = ""
