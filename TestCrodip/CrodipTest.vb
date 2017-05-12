@@ -73,8 +73,11 @@ Public Class CRODIPTest
         'Creation d'un agent
         m_oAgent = AgentManager.createAgent(m_IdAgent, "TEST", "TEST")
         m_oAgent.idStructure = m_idStructure
-        m_oAgent.nom = "Agent de test"
-        m_oAgent.prenom = "Agent de test"
+        m_oAgent.nom = "Agent de test unitaires"
+        m_oAgent.prenom = "Agent de test unitaires"
+        m_oAgent.telephonePortable = "0606060606"
+        m_oAgent.eMail = "a@a.com"
+        m_oAgent.isActif = True
         AgentManager.save(m_oAgent)
         Assert.IsNotNull(m_oAgent, "erreur en création d'un agent")
         '        AgentManager.getWSUpdates(m_oAgent.id,

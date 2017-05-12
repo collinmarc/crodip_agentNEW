@@ -1468,7 +1468,7 @@ Public Class PulverisateurManagerTest
         bTrouve = False
         For Each oDiagItem As DiagnosticItem In oLst
             strCode = oDiagItem.getItemCode()
-            If Trim(strCode) = "4310" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
+            If Trim(strCode) = "4313" Then
                 bTrouve = True
             End If
         Next
@@ -1694,13 +1694,10 @@ Public Class PulverisateurManagerTest
         '========================
         oPulve.isCuveIncorporation = True
         oDiagItem.idItem = "431"
-        oDiagItem.itemValue = "0"
+        oDiagItem.itemValue = "3"
         oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE
         Assert.IsTrue(oPulve.DecodageAutomatiqueDefauts(oLst))
         Assert.IsFalse(oPulve.isCuveIncorporation)
-        oDiagItem.itemCodeEtat = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Assert.IsTrue(oPulve.DecodageAutomatiqueDefauts(oLst))
-        Assert.IsTrue(oPulve.isCuveIncorporation)
 
         'Test isCuveRincage
         '========================
@@ -1818,9 +1815,6 @@ Public Class PulverisateurManagerTest
         oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE
         Assert.IsTrue(oPulve.DecodageAutomatiqueDefauts(oLst))
         Assert.IsFalse(oPulve.isRincagecircuit)
-        oDiagItem.itemCodeEtat = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Assert.IsTrue(oPulve.DecodageAutomatiqueDefauts(oLst))
-        Assert.IsTrue(oPulve.isRincagecircuit)
     End Sub
 
 

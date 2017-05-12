@@ -1,8 +1,8 @@
 TRUNK
 
-Build : 
+Build : 20170512110000
 Version : 2.5.4 Lot5
-Date :  
+Date :  2017/05/12
 #32377 : MAJ de la date de prochain controle sur la fiche Pulvé
 #32175 : 	MAJ de la date de prochain controle sur la fiche Pulvé
 
