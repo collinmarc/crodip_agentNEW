@@ -4,7 +4,9 @@ Build : 20170512110000
 Version : 2.5.4 Lot5
 Date :  2017/05/12
 #32377 : MAJ de la date de prochain controle sur la fiche Pulvé
-#32175 : 	MAJ de la date de prochain controle sur la fiche Pulvé
+#32175 : PBLM CPB : Doublons dans les identifiants de diagostic
+#32446 : Appli reglagePulve ne fonctionne plus
+
 
 Passage en Mode GIT
 
