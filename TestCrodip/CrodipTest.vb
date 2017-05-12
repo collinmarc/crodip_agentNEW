@@ -15,8 +15,8 @@ Public Class CRODIPTest
     'Private m_IdAgent As Integer = 1053
     'Private m_idStructure As Integer = 99
 
-    Private m_IdAgent As Integer = 1118
-    Private m_idStructure As Integer = 2
+    Private m_IdAgent As Integer = 1119
+    Private m_idStructure As Integer = 498
 
     Private testContextInstance As TestContext
     Protected m_oAgent As Agent
@@ -67,7 +67,7 @@ Public Class CRODIPTest
         m_oStructure = New Structuree()
         m_oStructure.id = m_idStructure
         m_oStructure.idCrodip = m_idStructure
-        m_oStructure.nom = "Ma Structure"
+        m_oStructure.nom = "Structure TestsUnitaires"
         StructureManager.save(m_oStructure)
 
         'Creation d'un agent

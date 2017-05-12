@@ -69,7 +69,7 @@ Public Class AgentManagerTest
         agent.dateModificationAgent = "2012-11-01 12:00:02"
         agent.dateModificationCrodip = "2012-09-04 12:00:00"
         agent.eMail = "email"
-        agent.idStructure = 497
+        agent.idStructure = m_oStructure.id
         agent.isActif = True
         agent.motDePasse = "mdp"
         agent.statut = "STATUT"

@@ -220,7 +220,6 @@
     <Compile Include="CrodipTest.vb" />
     <Compile Include="RelevePression833Test.vb" />
     <Compile Include="CSEnvironnementTest.vb" />
-    <Compile Include="ReferentielsTest.vb" />
     <Compile Include="ManometreControleManagerTest.vb" />
     <Compile Include="ManometreEtalonManagerTest.vb" />
     <Compile Include="PopulateComboBoxTest.vb" />

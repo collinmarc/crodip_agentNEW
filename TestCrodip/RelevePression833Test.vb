@@ -12,7 +12,7 @@ Imports Crodip_agent
 '''</summary>
 <TestClass()> _
 Public Class RelevePression833Test
-
+    Inherits CRODIPTest
 
     Private testContextInstance As TestContext
 
@@ -48,18 +48,6 @@ Public Class RelevePression833Test
     'Public Sub MyTestInitialize()
     'End Sub
     '
-    'Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
-    <TestCleanup()> _
-    Public Sub MyTestCleanup()
-        Dim oCSDB As New CSDb(True)
-        oCSDB.getResults("DELETE FROM DiagnosticTroncons833 WHERE IDDiagnostic like '99-%'")
-        oCSDB.getResults("DELETE FROM DiagnosticMano542 WHERE IDDiagnostic like '99-%'")
-        oCSDB.getResults("DELETE FROM DIAGNOSTICBusesDetail WHERE IDDiagnostic like '99-%'")
-        oCSDB.getResults("DELETE FROM DIAGNOSTICBuses WHERE IDDiagnostic like '99-%'")
-        oCSDB.getResults("DELETE FROM DIAGNOSTICItem WHERE ID like '99-%'")
-        oCSDB.getResults("DELETE FROM DIAGNOSTIC WHERE ID like '99-%'")
-        oCSDB.getResults("DELETE FROM Agent WHERE IDStructure = 99")
-    End Sub
 #End Region
 
 

@@ -147,10 +147,10 @@ Public Class DiagnosticHelp551test
         oDiag.controleDateFin = Date.Today
         oDiag.organismeOrigineInspAgrement = "AgrementOrigine"
         oDiag.organismeOrigineInspNom = "NomOrigine"
-        oDiag.organismeOriginePresId = 98
+        oDiag.organismeOriginePresId = m_oAgent.idStructure
         oDiag.organismeOriginePresNom = "PresNomOrigine"
         oDiag.organismeOriginePresNumero = "PresNumeroOrigine"
-        oDiag.inspecteurOrigineId = 1114
+        oDiag.inspecteurOrigineId = m_oAgent.id
         oDiag.inspecteurOrigineNom = "inspecteurNomOrigine"
         oDiag.inspecteurOriginePrenom = "inspecteurNomOrigine"
         oDiag.pulverisateurEmplacementIdentification = "DERRIERE"

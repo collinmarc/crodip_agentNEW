@@ -997,31 +997,29 @@ Public Class DiagnosticManagerTest
         Dim oDiagBuses As DiagnosticBuses
         Dim oDiagBusesDetail As DiagnosticBusesDetail
         Dim idDiag As String
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        Dim UpdateInfo As Object
+
+        oExploit = createExploitation()
+        ExploitationManager.sendWSExploitation(oExploit, UpdateInfo)
+        oPulve = createPulve(oExploit)
+        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve, UpdateInfo)
+        Dim oExploitToPulve As ExploitationTOPulverisateur
+        oExploitToPulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
+        ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(oExploitToPulve, UpdateInfo)
 
         'Creation d'un Diagnostic
         '============================
-        oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent)
-        oDiag.id = idDiag
+        oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
 
-        oDiag.setOrganisme(m_oAgent)
         oDiag.controleNomSite = "MonSite"
         oDiag.controleIsPulveRepare = True
         oDiag.controleIsPreControleProfessionel = True
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
-        oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationCrodip = CDate("06/02/1964")
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
         oDiag.controleDateFin = Date.Today
-        oDiag.organismeOrigineInspAgrement = "AgrementOrigine"
-        oDiag.organismeOrigineInspNom = "NomOrigine"
-        oDiag.organismeOriginePresId = 98
-        oDiag.organismeOriginePresNom = "PresNomOrigine"
-        oDiag.organismeOriginePresNumero = "PresNumeroOrigine"
-        oDiag.inspecteurOrigineId = 99
-        oDiag.inspecteurOrigineNom = "inspecteurNomOrigine"
-        oDiag.inspecteurOriginePrenom = "inspecteurNomOrigine"
         oDiag.pulverisateurEmplacementIdentification = "DERRIERE"
         oDiag.controleManoControleNumNational = "TEST"
         oDiag.controleNbreNiveaux = 2
@@ -1200,8 +1198,9 @@ Public Class DiagnosticManagerTest
 
         'SAuvegarde du Diag
         '====================
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         DiagnosticManager.save(oDiag)
-
+        idDiag = oDiag.id
         'Rechargement du Diag
         '=======================
         oDiag = DiagnosticManager.getDiagnosticById(idDiag)
@@ -1220,18 +1219,25 @@ Public Class DiagnosticManagerTest
         'DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdateInfo)
 
 
-        'on Simule la date de dernière synchro de l'agent à -1 munites
-        '======================================
-        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1)
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
+
+        'on Simule la date de dernière synchro de l'agent à -1 munites
+        '======================================
+        m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS(CDate(oDiag.dateModificationAgent).AddMinutes(-10))
+        Dim obj As Object
+        AgentManager.sendWSAgent(m_oAgent, obj)
+
+
+        'Synchronisation descendate du Diag
+        '==================================
         Dim oLstSynchro As List(Of SynchronisationElmt)
         oLstSynchro = oSynchro.getListeElementsASynchroniserDESC()
         Assert.AreNotEqual(0, oLstSynchro.Count)
 
         For Each oSynchroElmt In oLstSynchro
             Console.WriteLine(oSynchroElmt.type & "(" & oSynchroElmt.identifiantChaine & "," & oSynchroElmt.identifiantEntier & ")")
-            oSynchroElmt.synchroDesc(m_oAgent)
+            oSynchroElmt.SynchroDesc(m_oAgent)
         Next oSynchroElmt
 
         'Vérification des Objets
@@ -4546,31 +4552,26 @@ Public Class DiagnosticManagerTest
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
         Dim idDiag As String
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        oExploit = createExploitation()
+        oPulve = createPulve(oExploit)
 
         'Creation d'un Diagnostic
         '============================
-        oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent)
-        oDiag.id = idDiag
 
+        oDiag = createDiagnostic(oExploit, oPulve)
         oDiag.setOrganisme(m_oAgent)
+
+
         oDiag.controleNomSite = "MonSite"
         oDiag.controleIsPulveRepare = True
         oDiag.controleIsPreControleProfessionel = True
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
-        oDiag.inspecteurId = m_oAgent.id
         oDiag.dateModificationCrodip = CDate("06/02/1964")
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
         oDiag.controleDateFin = Date.Today
-        oDiag.organismeOrigineInspAgrement = "AgrementOrigine"
-        oDiag.organismeOrigineInspNom = "NomOrigine"
-        oDiag.organismeOriginePresId = 98
-        oDiag.organismeOriginePresNom = "PresNomOrigine"
-        oDiag.organismeOriginePresNumero = "PresNumeroOrigine"
-        oDiag.inspecteurOrigineId = 99
-        oDiag.inspecteurOrigineNom = "inspecteurNomOrigine"
-        oDiag.inspecteurOriginePrenom = "inspecteurNomOrigine"
         oDiag.pulverisateurEmplacementIdentification = "DERRIERE"
         oDiag.controleManoControleNumNational = "TEST"
         oDiag.controleNbreNiveaux = 2
@@ -4586,6 +4587,7 @@ Public Class DiagnosticManagerTest
         'SAuvegarde du Diag
         '====================
         DiagnosticManager.save(oDiag)
+        idDiag = oDiag.id
 
         'Rechargement du Diag
         '=======================
@@ -4600,16 +4602,21 @@ Public Class DiagnosticManagerTest
         'Synchronisation descendate du Diag
         '==================================
         'On simule une MAJ sur ler Server
-        'oDiag.dateModificationCrodip = CSDate.GetDateForWS(Now())
-        'Dim UpdateInfo As Object
-        'DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdateInfo)
+        pause(1000)
+        oDiag.dateModificationCrodip = CSDate.GetDateForWS(Now())
+        Dim UpdateInfo As Object
+        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdateInfo)
 
 
-        'on Simule la date de dernière synchro de l'agent à -1 munites
-        '======================================
-        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1)
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
+        '======================================
+        'on Simule la date de dernière synchro de l'agent à -1 munites
+        '======================================
+        m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS(CDate(oDiag.dateModificationAgent).AddMinutes(-1))
+        Dim obj As Object
+        AgentManager.sendWSAgent(m_oAgent, obj)
+
         Dim oLstSynchro As List(Of SynchronisationElmt)
         oLstSynchro = oSynchro.getListeElementsASynchroniserDESC()
         Assert.AreNotEqual(0, oLstSynchro.Count)

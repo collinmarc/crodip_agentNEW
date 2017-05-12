@@ -178,14 +178,6 @@ Public Class DiagnosticHelp5622test
         oDiag.dateModificationCrodip = CDate("06/02/1964")
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
         oDiag.controleDateFin = Date.Today
-        oDiag.organismeOrigineInspAgrement = "AgrementOrigine"
-        oDiag.organismeOrigineInspNom = "NomOrigine"
-        oDiag.organismeOriginePresId = 98
-        oDiag.organismeOriginePresNom = "PresNomOrigine"
-        oDiag.organismeOriginePresNumero = "PresNumeroOrigine"
-        oDiag.inspecteurOrigineId = 99
-        oDiag.inspecteurOrigineNom = "inspecteurNomOrigine"
-        oDiag.inspecteurOriginePrenom = "inspecteurNomOrigine"
         oDiag.pulverisateurEmplacementIdentification = "DERRIERE"
         oDiag.controleManoControleNumNational = "TEST"
         oDiag.controleNbreNiveaux = 2
