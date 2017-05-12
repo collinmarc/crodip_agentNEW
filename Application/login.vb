@@ -675,7 +675,7 @@ Public Class login
             oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
             oDiag = New Diagnostic(agentCourant, oPulve, oExploit)
             Dim oFrm As New frmDiagnostique()
-            oFrm.setContexte(oDiag, DiagMode.CTRL_COMPLET)
+            oFrm.setContexte(oDiag, DiagMode.CTRL_COMPLET, oPulve, oExploit)
 
             oFrm.ShowDialog()
         End If

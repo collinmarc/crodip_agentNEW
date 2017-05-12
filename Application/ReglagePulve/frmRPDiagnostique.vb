@@ -1,4 +1,5 @@
 ﻿Public Class frmRPDiagnostique
+    Inherits frmDiagnostique
     Implements IfrmCRODIP
 
 

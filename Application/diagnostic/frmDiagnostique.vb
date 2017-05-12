@@ -85,13 +85,13 @@ Public Class frmDiagnostique
     End Sub
     Public Sub New(ByVal _modeAffichage As String, pDiag As Diagnostic, pPulverisateur As Pulverisateur, pExploit As Exploitation)
         Me.New()
-        setContexte(pDiag, _modeAffichage)
-        m_Pulverisateur = pPulverisateur
-        m_Exploit = pExploit
+        setContexte(pDiag, _modeAffichage, pPulverisateur, pExploit)
     End Sub
-    Public Sub setContexte(pDiag As Diagnostic, ByVal _modeAffichage As DiagMode)
+    Public Sub setContexte(pDiag As Diagnostic, ByVal _modeAffichage As DiagMode, pPulve As Pulverisateur, pExploit As Exploitation)
         modeAffichage = _modeAffichage
         m_diagnostic = pDiag
+        m_Pulverisateur = pPulve
+        m_Exploit = pExploit
     End Sub
 
 

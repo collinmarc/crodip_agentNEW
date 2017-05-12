@@ -66,6 +66,26 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property _Exit() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("Exit", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property AddTableHH() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("AddTableHH", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property btn_annuler() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("btn_annuler", resourceCulture)
@@ -176,6 +196,16 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property ClosePreviewHH() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("ClosePreviewHH", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property delete() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("delete", resourceCulture)
@@ -206,43 +236,53 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property NavBackHS() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("NavBackHS", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property PuceGriseT() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("PuceGriseT", resourceCulture)
-            Return CType(obj, System.Drawing.Bitmap)
+            Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property
-
+    
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
     Friend Shared ReadOnly Property PuceJauneT() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("PuceJauneT", resourceCulture)
-            Return CType(obj, System.Drawing.Bitmap)
+            Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property
-
+    
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
     Friend Shared ReadOnly Property PuceRougeT() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("PuceRougeT", resourceCulture)
-            Return CType(obj, System.Drawing.Bitmap)
+            Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property
-
+    
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
     Friend Shared ReadOnly Property PuceVerteT() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("PuceVerteT", resourceCulture)
-            Return CType(obj, System.Drawing.Bitmap)
+            Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property
-
+    
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Icon semblable à (Icône).
     '''</summary>

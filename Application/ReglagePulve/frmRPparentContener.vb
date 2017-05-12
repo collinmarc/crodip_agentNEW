@@ -70,6 +70,7 @@ Public Class frmRPparentContener
     Friend WithEvents tsbCalcul As System.Windows.Forms.ToolStripButton
     Friend WithEvents tsbRapport As System.Windows.Forms.ToolStripButton
     Friend WithEvents miVitesseFonctionnement As System.Windows.Forms.MenuItem
+    Friend WithEvents tsbQuitter As System.Windows.Forms.ToolStripButton
     Friend WithEvents MenuItem7 As System.Windows.Forms.MenuItem
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -98,12 +99,11 @@ Public Class frmRPparentContener
         Me.miRecap = New System.Windows.Forms.MenuItem()
         Me.miCalcul = New System.Windows.Forms.MenuItem()
         Me.miRapport = New System.Windows.Forms.MenuItem()
-        Me.parentContener_statusBar = New System.Windows.Forms.StatusBar()
         Me.notify_connexionStatus_nok = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.notify_connexionStatus_ok = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.notify_connexionStatus_wait = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.statusBar_img_loader = New System.Windows.Forms.PictureBox()
         Me.tsbDemarer = New System.Windows.Forms.ToolStrip()
+        Me.tsbQuitter = New System.Windows.Forms.ToolStripButton()
         Me.tsbDemarrer = New System.Windows.Forms.ToolStripButton()
         Me.tsbPrecedant = New System.Windows.Forms.ToolStripButton()
         Me.tsbSuivant = New System.Windows.Forms.ToolStripButton()
@@ -116,8 +116,10 @@ Public Class frmRPparentContener
         Me.tsbrecap = New System.Windows.Forms.ToolStripButton()
         Me.tsbCalcul = New System.Windows.Forms.ToolStripButton()
         Me.tsbRapport = New System.Windows.Forms.ToolStripButton()
-        CType(Me.statusBar_img_loader, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.statusBar_img_loader = New System.Windows.Forms.PictureBox()
+        Me.parentContener_statusBar = New System.Windows.Forms.StatusBar()
         Me.tsbDemarer.SuspendLayout()
+        CType(Me.statusBar_img_loader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MainMenu1
@@ -242,13 +244,6 @@ Public Class frmRPparentContener
         Me.miRapport.Index = 12
         Me.miRapport.Text = "Rapport"
         '
-        'parentContener_statusBar
-        '
-        Me.parentContener_statusBar.Location = New System.Drawing.Point(0, 684)
-        Me.parentContener_statusBar.Name = "parentContener_statusBar"
-        Me.parentContener_statusBar.Size = New System.Drawing.Size(1012, 22)
-        Me.parentContener_statusBar.TabIndex = 1
-        '
         'notify_connexionStatus_nok
         '
         Me.notify_connexionStatus_nok.Icon = CType(resources.GetObject("notify_connexionStatus_nok.Icon"), System.Drawing.Icon)
@@ -265,20 +260,10 @@ Public Class frmRPparentContener
         Me.notify_connexionStatus_wait.Icon = CType(resources.GetObject("notify_connexionStatus_wait.Icon"), System.Drawing.Icon)
         Me.notify_connexionStatus_wait.Text = "Logiciel Agent Crodip: En Ligne !"
         '
-        'statusBar_img_loader
-        '
-        Me.statusBar_img_loader.Image = CType(resources.GetObject("statusBar_img_loader.Image"), System.Drawing.Image)
-        Me.statusBar_img_loader.Location = New System.Drawing.Point(6, 688)
-        Me.statusBar_img_loader.Name = "statusBar_img_loader"
-        Me.statusBar_img_loader.Size = New System.Drawing.Size(16, 16)
-        Me.statusBar_img_loader.TabIndex = 13
-        Me.statusBar_img_loader.TabStop = False
-        Me.statusBar_img_loader.Visible = False
-        '
         'tsbDemarer
         '
         Me.tsbDemarer.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.tsbDemarer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbDemarrer, Me.tsbPrecedant, Me.tsbSuivant, Me.ToolStripSeparator1, Me.tsbExploitant, Me.tsbPulvérisateur, Me.tsbVitesse, Me.tsbDebit, Me.tsbDiag, Me.tsbrecap, Me.tsbCalcul, Me.tsbRapport})
+        Me.tsbDemarer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbQuitter, Me.tsbDemarrer, Me.tsbPrecedant, Me.tsbSuivant, Me.ToolStripSeparator1, Me.tsbExploitant, Me.tsbPulvérisateur, Me.tsbVitesse, Me.tsbDebit, Me.tsbDiag, Me.tsbrecap, Me.tsbCalcul, Me.tsbRapport})
         Me.tsbDemarer.Location = New System.Drawing.Point(0, 0)
         Me.tsbDemarer.Name = "tsbDemarer"
         Me.tsbDemarer.Size = New System.Drawing.Size(1012, 39)
@@ -286,11 +271,20 @@ Public Class frmRPparentContener
         Me.tsbDemarer.TabIndex = 15
         Me.tsbDemarer.Text = "ToolStrip1"
         '
+        'tsbQuitter
+        '
+        Me.tsbQuitter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbQuitter.Image = Global.Crodip_agent.Resources.ClosePreviewHH
+        Me.tsbQuitter.ImageTransparentColor = System.Drawing.Color.Black
+        Me.tsbQuitter.Name = "tsbQuitter"
+        Me.tsbQuitter.Size = New System.Drawing.Size(36, 36)
+        Me.tsbQuitter.Text = "Quitter"
+        '
         'tsbDemarrer
         '
         Me.tsbDemarrer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbDemarrer.Image = Global.Crodip_agent.Resources.Start3
-        Me.tsbDemarrer.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbDemarrer.Image = Global.Crodip_agent.Resources.AddTableHH
+        Me.tsbDemarrer.ImageTransparentColor = System.Drawing.Color.Black
         Me.tsbDemarrer.Name = "tsbDemarrer"
         Me.tsbDemarrer.Size = New System.Drawing.Size(36, 36)
         Me.tsbDemarrer.Text = "Démarrer "
@@ -298,19 +292,21 @@ Public Class frmRPparentContener
         'tsbPrecedant
         '
         Me.tsbPrecedant.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbPrecedant.Image = Global.Crodip_agent.Resources.Button_PREVIous_Icon_256
+        Me.tsbPrecedant.Image = CType(resources.GetObject("tsbPrecedant.Image"), System.Drawing.Image)
+        Me.tsbPrecedant.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.tsbPrecedant.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbPrecedant.Name = "tsbPrecedant"
-        Me.tsbPrecedant.Size = New System.Drawing.Size(36, 36)
+        Me.tsbPrecedant.Size = New System.Drawing.Size(23, 36)
         Me.tsbPrecedant.Text = "Précédant"
         '
         'tsbSuivant
         '
         Me.tsbSuivant.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbSuivant.Image = Global.Crodip_agent.Resources.Button_Play_Icon_256
+        Me.tsbSuivant.Image = CType(resources.GetObject("tsbSuivant.Image"), System.Drawing.Image)
+        Me.tsbSuivant.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.tsbSuivant.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbSuivant.Name = "tsbSuivant"
-        Me.tsbSuivant.Size = New System.Drawing.Size(36, 36)
+        Me.tsbSuivant.Size = New System.Drawing.Size(23, 36)
         Me.tsbSuivant.Text = "Suivant"
         '
         'ToolStripSeparator1
@@ -391,9 +387,26 @@ Public Class frmRPparentContener
         Me.tsbRapport.Size = New System.Drawing.Size(53, 36)
         Me.tsbRapport.Text = "Rapport"
         '
+        'statusBar_img_loader
+        '
+        Me.statusBar_img_loader.Image = CType(resources.GetObject("statusBar_img_loader.Image"), System.Drawing.Image)
+        Me.statusBar_img_loader.Location = New System.Drawing.Point(6, 688)
+        Me.statusBar_img_loader.Name = "statusBar_img_loader"
+        Me.statusBar_img_loader.Size = New System.Drawing.Size(16, 16)
+        Me.statusBar_img_loader.TabIndex = 13
+        Me.statusBar_img_loader.TabStop = False
+        Me.statusBar_img_loader.Visible = False
+        '
+        'parentContener_statusBar
+        '
+        Me.parentContener_statusBar.Location = New System.Drawing.Point(0, 642)
+        Me.parentContener_statusBar.Name = "parentContener_statusBar"
+        Me.parentContener_statusBar.Size = New System.Drawing.Size(1012, 22)
+        Me.parentContener_statusBar.TabIndex = 1
+        '
         'frmRPparentContener
         '
-        Me.ClientSize = New System.Drawing.Size(1012, 706)
+        Me.ClientSize = New System.Drawing.Size(1012, 664)
         Me.ControlBox = False
         Me.Controls.Add(Me.tsbDemarer)
         Me.Controls.Add(Me.statusBar_img_loader)
@@ -404,9 +417,9 @@ Public Class frmRPparentContener
         Me.Name = "frmRPparentContener"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip"
-        CType(Me.statusBar_img_loader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tsbDemarer.ResumeLayout(False)
         Me.tsbDemarer.PerformLayout()
+        CType(Me.statusBar_img_loader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -645,7 +658,7 @@ Public Class frmRPparentContener
 
             ofrmdiag = New frmRPDiagnostique()
             CSDebug.dispInfo("Fin Création de frmRPDiagnostique")
-            ofrmdiag.setContexte(m_RPDiagnostic, DiagMode.CTRL_COMPLET)
+            ofrmdiag.setContexte(m_RPDiagnostic, DiagMode.CTRL_COMPLET, pulverisateurCourant, clientCourant)
             ofrmdiag.WindowState = FormWindowState.Maximized
             ofrmdiag.MdiParent = Me
 
@@ -885,4 +898,7 @@ Public Class frmRPparentContener
 
     End Sub
 
+    Private Sub tsbQuitter_Click(sender As Object, e As EventArgs) Handles tsbQuitter.Click
+        Me.Close()
+    End Sub
 End Class

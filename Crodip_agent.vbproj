@@ -1136,6 +1136,10 @@
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ds_Etat_ReglagePulve.Designer.vb</LastGenOutput>
     </Content>
+    <None Include="img\Exit.jpg" />
+    <None Include="Resources\ClosePreviewHH.bmp" />
+    <None Include="Resources\AddTableHH.bmp" />
+    <None Include="Resources\NavBackHS.bmp" />
     <Content Include="toleranceBuses.xml" />
     <None Include="readme.md" />
     <None Include="Resources\PuceVerteT.png" />
