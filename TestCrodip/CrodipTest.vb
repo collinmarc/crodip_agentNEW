@@ -71,7 +71,7 @@ Public Class CRODIPTest
         StructureManager.save(m_oStructure)
 
         'Creation d'un agent
-        m_oAgent = AgentManager.createAgent(m_IdAgent, "TEST", "TEST")
+        m_oAgent = AgentManager.createAgent(m_IdAgent, "TESTUNIT", "TEST")
         m_oAgent.idStructure = m_idStructure
         m_oAgent.nom = "Agent de test unitaires"
         m_oAgent.prenom = "Agent de test unitaires"
