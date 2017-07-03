@@ -29,10 +29,11 @@ Partial Class diagnostic_dlghelp571
         Me.btnValider = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.pnl_help551 = New System.Windows.Forms.Panel()
+        Me.pnl_Pression = New System.Windows.Forms.Panel()
         Me.laResultPRS = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -52,7 +53,8 @@ Partial Class diagnostic_dlghelp571
         Me.TbNumeric1 = New CRODIP_ControlLibrary.TBNumeric()
         Me.laTitre = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.pnl_Debit = New System.Windows.Forms.Panel()
+        Me.laResultDEB = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TextBox8 = New System.Windows.Forms.TextBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
@@ -61,19 +63,17 @@ Partial Class diagnostic_dlghelp571
         Me.tbErreurVitesseDEB = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.laResultDEB = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        Me.pnl_help551.SuspendLayout()
+        Me.pnl_Pression.SuspendLayout()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
+        Me.pnl_Debit.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -139,7 +139,7 @@ Partial Class diagnostic_dlghelp571
         'TabPage1
         '
         Me.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabPage1.Controls.Add(Me.pnl_help551)
+        Me.TabPage1.Controls.Add(Me.pnl_Pression)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -148,21 +148,21 @@ Partial Class diagnostic_dlghelp571
         Me.TabPage1.Text = "Pression"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'pnl_help551
+        'pnl_Pression
         '
-        Me.pnl_help551.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.pnl_help551.Controls.Add(Me.laResultPRS)
-        Me.pnl_help551.Controls.Add(Me.Label8)
-        Me.pnl_help551.Controls.Add(Me.TextBox7)
-        Me.pnl_help551.Controls.Add(Me.GroupBox3)
-        Me.pnl_help551.Controls.Add(Me.GroupBox2)
-        Me.pnl_help551.Controls.Add(Me.GroupBox1)
-        Me.pnl_help551.Controls.Add(Me.laTitre)
-        Me.pnl_help551.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnl_help551.Location = New System.Drawing.Point(3, 3)
-        Me.pnl_help551.Name = "pnl_help551"
-        Me.pnl_help551.Size = New System.Drawing.Size(613, 254)
-        Me.pnl_help551.TabIndex = 2
+        Me.pnl_Pression.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.pnl_Pression.Controls.Add(Me.laResultPRS)
+        Me.pnl_Pression.Controls.Add(Me.Label8)
+        Me.pnl_Pression.Controls.Add(Me.TextBox7)
+        Me.pnl_Pression.Controls.Add(Me.GroupBox3)
+        Me.pnl_Pression.Controls.Add(Me.GroupBox2)
+        Me.pnl_Pression.Controls.Add(Me.GroupBox1)
+        Me.pnl_Pression.Controls.Add(Me.laTitre)
+        Me.pnl_Pression.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnl_Pression.Location = New System.Drawing.Point(3, 3)
+        Me.pnl_Pression.Name = "pnl_Pression"
+        Me.pnl_Pression.Size = New System.Drawing.Size(613, 254)
+        Me.pnl_Pression.TabIndex = 2
         '
         'laResultPRS
         '
@@ -201,6 +201,10 @@ Partial Class diagnostic_dlghelp571
         Me.TextBox7.ReadOnly = True
         Me.TextBox7.Size = New System.Drawing.Size(100, 13)
         Me.TextBox7.TabIndex = 64
+        '
+        'BindingSource1
+        '
+        Me.BindingSource1.DataSource = GetType(Crodip_agent.DiagnosticHelp571)
         '
         'GroupBox3
         '
@@ -422,7 +426,7 @@ Partial Class diagnostic_dlghelp571
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Panel1)
+        Me.TabPage2.Controls.Add(Me.pnl_Debit)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -431,19 +435,32 @@ Partial Class diagnostic_dlghelp571
         Me.TabPage2.Text = "Débit"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'Panel1
+        'pnl_Debit
         '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Panel1.Controls.Add(Me.laResultDEB)
-        Me.Panel1.Controls.Add(Me.Label11)
-        Me.Panel1.Controls.Add(Me.TextBox8)
-        Me.Panel1.Controls.Add(Me.GroupBox4)
-        Me.Panel1.Controls.Add(Me.Label13)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(3, 3)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(615, 256)
-        Me.Panel1.TabIndex = 3
+        Me.pnl_Debit.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.pnl_Debit.Controls.Add(Me.laResultDEB)
+        Me.pnl_Debit.Controls.Add(Me.Label11)
+        Me.pnl_Debit.Controls.Add(Me.TextBox8)
+        Me.pnl_Debit.Controls.Add(Me.GroupBox4)
+        Me.pnl_Debit.Controls.Add(Me.Label13)
+        Me.pnl_Debit.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnl_Debit.Location = New System.Drawing.Point(3, 3)
+        Me.pnl_Debit.Name = "pnl_Debit"
+        Me.pnl_Debit.Size = New System.Drawing.Size(615, 256)
+        Me.pnl_Debit.TabIndex = 3
+        '
+        'laResultDEB
+        '
+        Me.laResultDEB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.laResultDEB.AutoSize = True
+        Me.laResultDEB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.laResultDEB.ForeColor = System.Drawing.Color.Red
+        Me.laResultDEB.Location = New System.Drawing.Point(531, 226)
+        Me.laResultDEB.Name = "laResultDEB"
+        Me.laResultDEB.Size = New System.Drawing.Size(65, 16)
+        Me.laResultDEB.TabIndex = 69
+        Me.laResultDEB.Text = "Résultat"
+        Me.laResultDEB.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label11
         '
@@ -536,23 +553,6 @@ Partial Class diagnostic_dlghelp571
         Me.Label13.Text = "DPAE avec capteur de débit"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'BindingSource1
-        '
-        Me.BindingSource1.DataSource = GetType(Crodip_agent.DiagnosticHelp571)
-        '
-        'laResultDEB
-        '
-        Me.laResultDEB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.laResultDEB.AutoSize = True
-        Me.laResultDEB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.laResultDEB.ForeColor = System.Drawing.Color.Red
-        Me.laResultDEB.Location = New System.Drawing.Point(531, 226)
-        Me.laResultDEB.Name = "laResultDEB"
-        Me.laResultDEB.Size = New System.Drawing.Size(65, 16)
-        Me.laResultDEB.TabIndex = 69
-        Me.laResultDEB.Text = "Résultat"
-        Me.laResultDEB.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
         'diagnostic_dlghelp571
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -569,8 +569,9 @@ Partial Class diagnostic_dlghelp571
         Me.Panel2.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        Me.pnl_help551.ResumeLayout(False)
-        Me.pnl_help551.PerformLayout()
+        Me.pnl_Pression.ResumeLayout(False)
+        Me.pnl_Pression.PerformLayout()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -578,11 +579,10 @@ Partial Class diagnostic_dlghelp571
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
+        Me.pnl_Debit.ResumeLayout(False)
+        Me.pnl_Debit.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -592,7 +592,7 @@ Partial Class diagnostic_dlghelp571
     Friend WithEvents btnValider As System.Windows.Forms.Button
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents pnl_help551 As System.Windows.Forms.Panel
+    Friend WithEvents pnl_Pression As System.Windows.Forms.Panel
     Friend WithEvents laResultPRS As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents TextBox7 As System.Windows.Forms.TextBox
@@ -615,7 +615,7 @@ Partial Class diagnostic_dlghelp571
     Friend WithEvents TbNumeric1 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents laTitre As System.Windows.Forms.Label
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents pnl_Debit As System.Windows.Forms.Panel
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox

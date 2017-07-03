@@ -1,5 +1,10 @@
 TRUNK
 
+Build :
+Version
+Date :
+#33456 : En visualisation d'un contrôle, on peut modifier les valeurs des clés des débitmètre, vitesse et cumul des erreurs. 
+
 Build : 20170512110000
 Version : 2.5.4 Lot5
 Date :  2017/05/12

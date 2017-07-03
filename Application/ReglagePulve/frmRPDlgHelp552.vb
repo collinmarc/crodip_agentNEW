@@ -33,7 +33,7 @@
     Public Sub Setcontexte(pMode As Help552Mode, pDiag As RPDiagnostic, debitMoyen As String, PressionMesure As String)
         m_oDiag = pDiag
         m_mode = pMode
-        MyBase.setContexte(pMode, pDiag, debitMoyen, PressionMesure)
+        MyBase.setContexte(pMode, pDiag, debitMoyen, PressionMesure, (DiagMode.CTRL_VISU = m_mode))
 
     End Sub
 

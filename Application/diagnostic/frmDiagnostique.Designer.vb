@@ -8140,11 +8140,11 @@ Partial Class frmDiagnostique
         Me.Panel36.BackColor = System.Drawing.Color.FromArgb(CType(CType(234,Byte),Integer), CType(CType(234,Byte),Integer), CType(CType(236,Byte),Integer))
         Me.Panel36.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel36.Controls.Add(Me.popup_help_831)
-        Me.Panel36.Controls.Add(Me.popup_help_811)
         Me.Panel36.Controls.Add(Me.GroupBox_diagnostic_833)
         Me.Panel36.Controls.Add(Me.GroupBox_diagnostic_832)
         Me.Panel36.Controls.Add(Me.GroupBox_diagnostic_831)
         Me.Panel36.Controls.Add(Me.Label_diagnostic_83)
+        Me.Panel36.Controls.Add(Me.popup_help_811)
         Me.Panel36.Location = New System.Drawing.Point(665, 143)
         Me.Panel36.Name = "Panel36"
         Me.Panel36.Size = New System.Drawing.Size(343, 510)

@@ -643,7 +643,7 @@ Public Class frmRPparentContener
             oFRMPulve.MdiParent = Me
 
             odlgHelp551 = New frmRPDlgHelp551()
-            odlgHelp551.Setcontexte(DiagnosticHelp551.Help551Mode.Mode551, m_RPDiagnostic, "Vitesse d'avancement")
+            odlgHelp551.Setcontexte(DiagnosticHelp551.Help551Mode.Mode551, m_RPDiagnostic, "Vitesse d'avancement", False)
             odlgHelp551.WindowState = FormWindowState.Maximized
             odlgHelp551.MdiParent = Me
 

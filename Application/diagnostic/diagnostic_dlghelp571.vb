@@ -3,6 +3,7 @@
 Public Class diagnostic_dlghelp571
     Implements IfrmCRODIP
     Public m_Mode As Calc571Mode
+    Private m_bVisu As Boolean
 
     Public Enum Calc571Mode
         ModePRS = 1
@@ -20,12 +21,17 @@ Public Class diagnostic_dlghelp571
     ''' <param name="pMode"></param>
     ''' <param name="pDiag"></param>
     ''' <remarks></remarks>
-    Public Sub setContexte(p_Mode As Calc571Mode, pDiagH571 As DiagnosticHelp571)
+    Public Sub setContexte(p_Mode As Calc571Mode, pDiagH571 As DiagnosticHelp571, pbVisu As Boolean)
         m_Mode = p_Mode
+        m_bVisu = pbVisu
         BindingSource1.Clear()
         m_DiagHelp571 = pDiagH571.Clone()
         BindingSource1.Add(m_DiagHelp571)
-
+        If pbVisu Then
+            pnl_Pression.Enabled = False
+            pnl_Debit.Enabled = False
+            btnValider.Enabled = False
+        End If
     End Sub
     Public Function getContexte() As DiagnosticHelp571
         Return m_DiagHelp571

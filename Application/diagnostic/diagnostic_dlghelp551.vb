@@ -8,6 +8,7 @@ Public Class diagnostic_dlghelp551
     Private m_oDiag As Diagnostic
     Private m_oHelp As DiagnosticHelp551
     Private m_bDuringLoad551 As Boolean
+    Private m_bVisu As Boolean
     ''' <summary>
     ''' Etablit le contexte d'execution
     ''' le mode d'utilisaation 551 ou 5621
@@ -16,7 +17,7 @@ Public Class diagnostic_dlghelp551
     ''' <param name="pMode"></param>
     ''' <param name="pDiag"></param>
     ''' <remarks></remarks>
-    Public Sub setContexte(pMode As DiagnosticHelp551.Help551Mode, pDiag As Diagnostic, pTitre As String)
+    Public Sub setContexte(pMode As DiagnosticHelp551.Help551Mode, pDiag As Diagnostic, pTitre As String, pVisu As Boolean)
         m_oDiag = pDiag
         m_Mode = pMode
         laTitre.Text = pTitre
@@ -29,6 +30,7 @@ Public Class diagnostic_dlghelp551
                 m_oHelp = m_oDiag.diagnosticHelp12323.Clone()
 
         End Select
+        m_bVisu = pVisu
         popup_help551_init()
     End Sub
 
@@ -132,17 +134,43 @@ Public Class diagnostic_dlghelp551
         help551_m2_vitesseLue.Text = ""
         help551_m2_vitesseReelle.Text = ""
         help551_m2_ecart.Text = ""
+        If m_bVisu Then
+            help551_m1_distance.Enabled = False
+            help551_m1_temps.Enabled = False
+            help551_m1_vitesseLue.Enabled = False
+            help551_m1_vitesseReelle.Enabled = False
+            help551_m1_ecart.Enabled = False
+            help551_m2_distance.Enabled = False
+            help551_m2_temps.Enabled = False
+            help551_m2_vitesseLue.Enabled = False
+            help551_m2_vitesseReelle.Enabled = False
+            help551_m2_ecart.Enabled = False
+            help551_m1_result.Enabled = False
+            help551_m2_result.Enabled = False
+            help551_result.Enabled = False
+            btnValider.Enabled = False
+        End If
         'Récupération des infos de help551
         If m_oHelp.HasValue Then
             help551_m1_distance.Text = m_oHelp.Distance1
             help551_m1_temps.Text = m_oHelp.Temps1
             help551_m1_vitesseLue.Text = m_oHelp.VitesseLue1
+            help551_m1_vitesseReelle.Text = m_oHelp.VitesseReelle1
+            help551_m1_ecart.Text = m_oHelp.Ecart1
+            help551_m1_result.Text = m_oHelp.Resultat1
             help551_m2_distance.Text = m_oHelp.Distance2
             help551_m2_temps.Text = m_oHelp.Temps2
             help551_m2_vitesseLue.Text = m_oHelp.VitesseLue2
+            help551_m2_vitesseReelle.Text = m_oHelp.VitesseReelle2
+            help551_m2_ecart.Text = m_oHelp.Ecart2
+            help551_m2_result.Text = m_oHelp.Resultat2
+            help551_result.Text = m_oHelp.Resultat
+            help551_erreurMoyenne.Text = m_oHelp.ErreurMoyenne
         End If
         m_bDuringLoad551 = False
-        calc_help_551()
+        If Not m_bVisu Then
+            calc_help_551()
+        End If
 
     End Sub
     Private Sub help551_close_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)

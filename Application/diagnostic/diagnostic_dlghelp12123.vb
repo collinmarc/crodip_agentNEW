@@ -3,6 +3,7 @@
 Public Class diagnostic_dlghelp12123
     Implements IfrmCRODIP
     Private m_DiagHelp12123 As DiagnosticHelp12123
+    Private m_bModeVisu As Boolean
 
     ''' <summary>
     ''' </summary>
@@ -10,10 +11,16 @@ Public Class diagnostic_dlghelp12123
     ''' <param name="pDiag"></param>
     ''' <remarks></remarks>
     ''' 
-    Public Sub setContexte(pDiagH12123 As DiagnosticHelp12123)
+    Public Sub setContexte(pDiagH12123 As DiagnosticHelp12123, pbModeVisu As Boolean)
+        m_bModeVisu = pbModeVisu
+        If m_bModeVisu Then
+            pnlPrinc.Enabled = False
+            btnValider.Enabled = False
+        End If
         BindingSource1.Clear()
         m_DiagHelp12123 = pDiagH12123.Clone()
         BindingSource1.Add(m_DiagHelp12123)
+
 
     End Sub
     Public Function getContexte() As DiagnosticHelp12123
@@ -58,12 +65,14 @@ Public Class diagnostic_dlghelp12123
         End If
     End Sub
 
-    Private Sub TbNumeric11_Validated(sender As Object, e As EventArgs) Handles TbNumeric11.Validated
+    Private Sub TbNumeric11_Validated(sender As Object, e As EventArgs)
         BindingSource1.ResetBindings(False)
     End Sub
 
-    Private Sub TbNumeric3_Validated(sender As Object, e As EventArgs) Handles TbNumeric3.Validated
+    Private Sub TbNumeric3_Validated(sender As Object, e As EventArgs)
         BindingSource1.ResetBindings(False)
 
     End Sub
+
+
 End Class

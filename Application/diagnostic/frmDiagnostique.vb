@@ -16,7 +16,7 @@ Public Class frmDiagnostique
     Protected Const CHK_DEFAUT_MINEUR As Integer = 2
     Protected Const CHK_DEFAUT_MAJEUR As Integer = 3
 
-    Protected modeAffichage As DiagMode
+    Protected m_modeAffichage As DiagMode
     Protected typeControle As String = "Rampe"
     Protected typeJet As String = "Jet Porté"
 
@@ -88,7 +88,7 @@ Public Class frmDiagnostique
         setContexte(pDiag, _modeAffichage, pPulverisateur, pExploit)
     End Sub
     Public Sub setContexte(pDiag As Diagnostic, ByVal _modeAffichage As DiagMode, pPulve As Pulverisateur, pExploit As Exploitation)
-        modeAffichage = _modeAffichage
+        m_modeAffichage = _modeAffichage
         m_diagnostic = pDiag
         m_Pulverisateur = pPulve
         m_Exploit = pExploit
@@ -788,7 +788,7 @@ Public Class frmDiagnostique
                 loadExistingDiag()
                 RadioButton_diagnostic_5621.Tag = "OK"
                 RadioButton_diagnostic_5622.Tag = "OK"
-                If modeAffichage = DiagMode.CTRL_VISU Then
+                If m_modeAffichage = DiagMode.CTRL_VISU Then
                     ' Changement des boutons
                     btn_Poursuivre.Visible = False
                     btn_Valider.Visible = True
@@ -1111,7 +1111,7 @@ Public Class frmDiagnostique
             '###############################################
 
 
-            If modeAffichage <> DiagMode.CTRL_CV Then
+            If m_modeAffichage <> DiagMode.CTRL_CV Then
                 CSForm.disableAllCheckBox(Me)
                 CSForm.disableAllRadioButtons(Me)
                 CSForm.disableAllTextBox(Me)
@@ -4443,13 +4443,25 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 #Region " Gestion des popups contenant les différents tableaux "
 
 #Region " Tableau 8.1.1 "
+    ''' <summary>
+    ''' Affichage de la popup811
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub affichePopup811()
+        popup_help_811.Visible = True
+        popup_help_811.Top = (Me.Height / 2) - (popup_help_811.Height / 2)
+        popup_help_811.Left = (Me.Width / 2) - (popup_help_811.Width / 2)
+        If m_modeAffichage = DiagMode.CTRL_VISU Then
+            help811_largeur.Enabled = False
+            help811_fleche.Enabled = False
+        End If
+        popup_help_811.BringToFront()
+
+    End Sub
     ' On cache / affiche la popup
     Private Sub ico_help_811_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_811.Click
         If popup_help_811.Visible = False Then
-            popup_help_811.Visible = True
-            popup_help_811.Top = (Me.Height / 2) - (popup_help_811.Height / 2)
-            popup_help_811.Left = (Me.Width / 2) - (popup_help_811.Width / 2)
-            popup_help_811.BringToFront()
+            affichePopup811()
         Else
             popup_help_811.Visible = False
         End If
@@ -4531,59 +4543,68 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Function
 #End Region
 #Region " Tableau 8.3.1 "
-    ' On cache / affiche la popup
-    Private Sub ico_help_8312_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_8312.Click
-        If popup_help_831.Visible = False Then
-            m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8312
+    Private Sub affichePopup831(pMode831 As DiagnosticHelp831.ModeHelp831)
+        m_PopupHelp831Mode = pMode831
+        If m_modeAffichage = DiagMode.CTRL_VISU Then
+            help831_ecartementReference.Enabled = False
+            help831_ecartementMax.Enabled = False
+            help831_ecartementMin.Enabled = False
+            help831_ecart.Enabled = False
+        End If
+        If pMode831 = DiagnosticHelp831.ModeHelp831.Mode8312 Then
             lblPopup831.Text = "Irrégularité des espacements"
             'Fill the form
             help831_ecartementReference.Text = m_diagnostic.diagnosticHelp8312.Ecart_reference
             help831_ecartementMax.Text = m_diagnostic.diagnosticHelp8312.Ecart_Maxi
             help831_ecartementMin.Text = m_diagnostic.diagnosticHelp8312.Ecart_Mini
             help831_ecart.Text = m_diagnostic.diagnosticHelp8312.Ecart_pct
-            calc_help_831()
-
-            popup_help_831.Visible = True
-            popup_help_831.Top = (Me.Height / 2) - (popup_help_831.Height / 2)
-            popup_help_831.Left = (Me.Width / 2) - (popup_help_831.Width / 2)
-            popup_help_831.BringToFront()
-
         Else
-            popup_help_831.Visible = False
-        End If
-    End Sub
-    Private Sub ico_help_8314_Click(sender As Object, e As EventArgs) Handles ico_help_8314.Click
-        If popup_help_831.Visible = False Then
-            m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8314
             lblPopup831.Text = "Irrégularité des groupes de buses"
             'Fill the form
             help831_ecartementReference.Text = m_diagnostic.diagnosticHelp8314.Ecart_reference
             help831_ecartementMax.Text = m_diagnostic.diagnosticHelp8314.Ecart_Maxi
             help831_ecartementMin.Text = m_diagnostic.diagnosticHelp8314.Ecart_Mini
             help831_ecart.Text = m_diagnostic.diagnosticHelp8314.Ecart_pct
-            calc_help_831()
-            popup_help_831.Visible = True
-            popup_help_831.Top = (Me.Height / 2) - (popup_help_831.Height / 2)
-            popup_help_831.Left = (Me.Width / 2) - (popup_help_831.Width / 2)
-            popup_help_831.BringToFront()
+        End If
 
+        calc_help_831()
+
+        popup_help_831.Visible = True
+        popup_help_831.Top = (Me.Height / 2) - (popup_help_831.Height / 2)
+        popup_help_831.Left = (Me.Width / 2) - (popup_help_831.Width / 2)
+        popup_help_831.BringToFront()
+
+    End Sub
+    ' On cache / affiche la popup
+    Private Sub ico_help_8312_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_8312.Click
+        If popup_help_831.Visible = False Then
+            affichePopup831(DiagnosticHelp831.ModeHelp831.Mode8312)
+        Else
+            popup_help_831.Visible = False
+        End If
+    End Sub
+    Private Sub ico_help_8314_Click(sender As Object, e As EventArgs) Handles ico_help_8314.Click
+        If popup_help_831.Visible = False Then
+            affichePopup831(DiagnosticHelp831.ModeHelp831.Mode8314)
         Else
             popup_help_831.Visible = False
         End If
     End Sub
     Private Sub help831_close_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help831_close.Click
         'Sauvegarde des valeurs dans le diag
-        If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8312 Then
-            m_diagnostic.diagnosticHelp8312.Ecart_reference = help831_ecartementReference.Text
-            m_diagnostic.diagnosticHelp8312.Ecart_Maxi = help831_ecartementMax.Text
-            m_diagnostic.diagnosticHelp8312.Ecart_Mini = help831_ecartementMin.Text
-            m_diagnostic.diagnosticHelp8312.Ecart_pct = help831_ecart.Text
-        End If
-        If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8314 Then
-            m_diagnostic.diagnosticHelp8314.Ecart_reference = help831_ecartementReference.Text
-            m_diagnostic.diagnosticHelp8314.Ecart_Maxi = help831_ecartementMax.Text
-            m_diagnostic.diagnosticHelp8314.Ecart_Mini = help831_ecartementMin.Text
-            m_diagnostic.diagnosticHelp8314.Ecart_pct = help831_ecart.Text
+        If m_modeAffichage <> DiagMode.CTRL_VISU Then
+            If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8312 Then
+                m_diagnostic.diagnosticHelp8312.Ecart_reference = help831_ecartementReference.Text
+                m_diagnostic.diagnosticHelp8312.Ecart_Maxi = help831_ecartementMax.Text
+                m_diagnostic.diagnosticHelp8312.Ecart_Mini = help831_ecartementMin.Text
+                m_diagnostic.diagnosticHelp8312.Ecart_pct = help831_ecart.Text
+            End If
+            If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8314 Then
+                m_diagnostic.diagnosticHelp8314.Ecart_reference = help831_ecartementReference.Text
+                m_diagnostic.diagnosticHelp8314.Ecart_Maxi = help831_ecartementMax.Text
+                m_diagnostic.diagnosticHelp8314.Ecart_Mini = help831_ecartementMin.Text
+                m_diagnostic.diagnosticHelp8314.Ecart_pct = help831_ecart.Text
+            End If
         End If
         popup_help_831.Visible = False
     End Sub
@@ -4636,44 +4657,41 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             If tmpEcartRef <> 0 Then
                 tmpEcart1 = Math.Abs((tmpEcartMin - tmpEcartRef) * 100 / tmpEcartRef)
                 tmpEcart2 = Math.Abs((tmpEcartMax - tmpEcartRef) * 100 / tmpEcartRef)
-                If tmpEcart1 > tmpEcart2 Then
-                    tmpEcart = tmpEcart1
-                Else
-                    tmpEcart = tmpEcart2
-                End If
+                tmpEcart = Math.Max(tmpEcart1, tmpEcart2)
+
                 oldDuringLoad = m_bDuringLoad
                 m_bDuringLoad = True
                 help831_ecart.Text = Math.Round(tmpEcart, 2)
                 m_bDuringLoad = oldDuringLoad
             End If
+            If tmpEcart <= 5 Then
+                ' OK
+                help831_result.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(192, Byte), CType(0, Byte))
+                help831_result.Text = "OK"
+                If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8312 Then
+                    RadioButton_diagnostic_8312.Checked = False
+                    RadioButton_diagnostic_8310.Checked = True
+                End If
+                If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8314 Then
+                    RadioButton_diagnostic_8314.Checked = False
+                    RadioButton_diagnostic_8310.Checked = True
+                End If
+            Else
+                ' IRREGULARITE 
+                help831_result.ForeColor = System.Drawing.Color.Red
+                help831_result.Text = "IRRÉGULARITÉ"
+                If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8312 Then
+                    RadioButton_diagnostic_8312.Checked = True
+                    RadioButton_diagnostic_8310.Checked = False
+                End If
+                If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8314 Then
+                    RadioButton_diagnostic_8314.Checked = True
+                    RadioButton_diagnostic_8310.Checked = False
+                End If
+            End If
         Catch ex As Exception
             ''CSDebug.dispInfo("diagnostique::tableaux(8.3.1) : " & ex.Message.ToString)
         End Try
-        If tmpEcart <= 5 Then
-            ' OK
-            help831_result.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(192, Byte), CType(0, Byte))
-            help831_result.Text = "OK"
-            If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8312 Then
-                RadioButton_diagnostic_8312.Checked = False
-                RadioButton_diagnostic_8310.Checked = True
-            End If
-            If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8314 Then
-                RadioButton_diagnostic_8314.Checked = False
-                RadioButton_diagnostic_8310.Checked = True
-            End If
-        Else
-            ' IRREGULARITE 
-            help831_result.ForeColor = System.Drawing.Color.Red
-            help831_result.Text = "IRRÉGULARITÉ"
-            If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8312 Then
-                RadioButton_diagnostic_8312.Checked = True
-                RadioButton_diagnostic_8310.Checked = False
-            End If
-            If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8314 Then
-                RadioButton_diagnostic_8314.Checked = True
-                RadioButton_diagnostic_8310.Checked = False
-            End If
-        End If
 
     End Function
 #End Region
@@ -4681,7 +4699,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     ' On cache / affiche la popup
     Private Sub ico_help_551_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_551.Click
         Dim odlg As New diagnostic_dlghelp551()
-        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode551, m_diagnostic, "Vitesse d'avancement")
+        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode551, m_diagnostic, "Vitesse d'avancement", m_modeAffichage = DiagMode.CTRL_VISU
+                         )
         odlg.ShowDialog(Me)
         If odlg.DialogResult = Windows.Forms.DialogResult.OK Then
             'objInfos(10) = odlg.help551_m1_distance.Text
@@ -4704,7 +4723,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub ico_help_5621_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_5621.Click
         Dim odlg As New diagnostic_dlghelp551()
-        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode5621, m_diagnostic, "Vitesse de fonctionnement")
+        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode5621, m_diagnostic, "Vitesse de fonctionnement", m_modeAffichage = DiagMode.CTRL_VISU)
         odlg.ShowDialog(Me)
         If odlg.DialogResult = Windows.Forms.DialogResult.OK Then
             'objInfos(10) = odlg.help551_m1_distance.Text
@@ -4731,7 +4750,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub ico_help_552_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_552.Click
         If diagBuses_debitMoyen.Text <> "" And tbPressionMesure.Text <> "" Then
             Dim oDlg552 As New Diagnostic_dlghelp552()
-            oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode552, m_diagnostic, diagBuses_debitMoyen.Text, tbPressionMesure.Text)
+            oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode552, m_diagnostic, diagBuses_debitMoyen.Text, tbPressionMesure.Text, (DiagMode.CTRL_VISU = m_modeAffichage))
             oDlg552.ShowDialog(Me)
             If oDlg552.DialogResult = Windows.Forms.DialogResult.OK Then
                 m_diagnostic.syntheseErreurDebitmetre = m_diagnostic.diagnosticHelp552.ErreurDebitMetre
@@ -4950,7 +4969,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Function
 
     Protected Overridable Sub NextForm()
-        Dim ofrm As New diagnostic_recap(modeAffichage, m_diagnostic, m_Pulverisateur, m_Exploit)
+        Dim ofrm As New diagnostic_recap(m_modeAffichage, m_diagnostic, m_Pulverisateur, m_Exploit)
         TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
         Statusbar.clear()
     End Sub
@@ -9091,7 +9110,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
             If diagBuses_debitMoyen.Text <> "" And tbPressionMesure.Text <> "" Then
                 Dim oDlg552 As New Diagnostic_dlghelp552()
-                oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode5622, m_diagnostic, diagBuses_debitMoyen.Text, tbPressionMesure.Text)
+                oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode5622, m_diagnostic, diagBuses_debitMoyen.Text, tbPressionMesure.Text, (DiagMode.CTRL_VISU = m_modeAffichage))
                 oDlg552.ShowDialog(Me)
                 If oDlg552.DialogResult = Windows.Forms.DialogResult.OK Then
                     m_diagnostic.syntheseErreurDebitmetre = m_diagnostic.diagnosticHelp5622.ErreurDebitMetre
@@ -10302,7 +10321,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Exit Sub
         End If
         ini571()
-        ofrm.setContexte(diagnostic_dlghelp571.Calc571Mode.ModePRS, m_diagnostic.diagnosticHelp571)
+        ofrm.setContexte(diagnostic_dlghelp571.Calc571Mode.ModePRS, m_diagnostic.diagnosticHelp571, DiagMode.CTRL_VISU = m_modeAffichage)
         If (ofrm.ShowDialog() = DialogResult.OK) Then
             m_diagnostic.diagnosticHelp571 = ofrm.getContexte()
             Select Case m_diagnostic.diagnosticHelp571.getResult()
@@ -10335,7 +10354,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End If
         ini571()
         ofrm.setContexte(diagnostic_dlghelp571.Calc571Mode.ModeDEB,
-                         m_diagnostic.diagnosticHelp571)
+                         m_diagnostic.diagnosticHelp571, DiagMode.CTRL_VISU = m_modeAffichage)
 
         If (ofrm.ShowDialog() = DialogResult.OK) Then
             m_diagnostic.diagnosticHelp571 = ofrm.getContexte()
@@ -10419,18 +10438,23 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
                 Exit Function
             End If
-            ini12123()
-            ofrm.setContexte(m_diagnostic.diagnosticHelp12123)
+            If m_modeAffichage <> DiagMode.CTRL_VISU Then
+                ini12123()
+            End If
+            ofrm.setContexte(m_diagnostic.diagnosticHelp12123, m_modeAffichage = DiagMode.CTRL_VISU)
             If (ofrm.ShowDialog() = DialogResult.OK) Then
-                m_diagnostic.diagnosticHelp12123 = ofrm.getContexte()
-                Select Case m_diagnostic.diagnosticHelp12123.Resultat
-                    Case DiagnosticItem.EtatDiagItemOK
-                        RadioButton_diagnostic_12123.Checked = False
-                    Case DiagnosticItem.EtatDiagItemMINEUR
-                        RadioButton_diagnostic_12123.Checked = False
-                    Case DiagnosticItem.EtatDiagItemMAJEUR
-                        RadioButton_diagnostic_12123.Checked = True
-                End Select
+                If m_modeAffichage <> DiagMode.CTRL_VISU Then
+                    'Récupération des valeurs si on est en mode saie de controle
+                    m_diagnostic.diagnosticHelp12123 = ofrm.getContexte()
+                    Select Case m_diagnostic.diagnosticHelp12123.Resultat
+                        Case DiagnosticItem.EtatDiagItemOK
+                            RadioButton_diagnostic_12123.Checked = False
+                        Case DiagnosticItem.EtatDiagItemMINEUR
+                            RadioButton_diagnostic_12123.Checked = False
+                        Case DiagnosticItem.EtatDiagItemMAJEUR
+                            RadioButton_diagnostic_12123.Checked = True
+                    End Select
+                End If
             End If
 
             bReturn = True
@@ -10446,14 +10470,16 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         For Each oBusList As DiagnosticBuses In m_DiagBuses.diagnosticBuses
             nBuses = nBuses + oBusList.diagnosticBusesDetail.Liste.Count
         Next
+        m_diagnostic.diagnosticHelp12123.NbBuses = nBuses
+
         If Not String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Then
             m_diagnostic.diagnosticHelp12123.debitMesure = diagBuses_debitMoyen.Text
             '        m_diagnosticCourant.diagnosticHelp12123.DebitMesureVTS = diagBuses_debitMoyen.Text
         End If
+
         If Not String.IsNullOrEmpty(tbPressionMesure.Text) Then
             m_diagnostic.diagnosticHelp12123.PressionMesure = tbPressionMesure.Text
         End If
-        m_diagnostic.diagnosticHelp12123.NbBuses = nBuses
 
     End Sub
 
@@ -10463,7 +10489,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub ico_help12323_Click(sender As Object, e As EventArgs) Handles ico_help12323.Click
         Dim odlg As New diagnostic_dlghelp551()
-        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode12323, m_diagnostic, "Programmation de la vitesse")
+        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode12323, m_diagnostic, "Programmation de la vitesse", m_modeAffichage = DiagMode.CTRL_VISU)
         odlg.ShowDialog(Me)
         If odlg.DialogResult = Windows.Forms.DialogResult.OK Then
             If m_diagnostic.diagnosticHelp12323.Resultat = "OK" Then

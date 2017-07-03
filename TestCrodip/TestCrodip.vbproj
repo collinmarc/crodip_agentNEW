@@ -209,7 +209,7 @@
     <Compile Include="EtatRapportInspectionTest.vb" />
     <Compile Include="FTPTest.vb" />
     <Compile Include="EtatFactureTest.vb" />
-    <Compile Include="UnitTest1.vb" />
+    <Compile Include="testBDASCAR.vb" />
     <Compile Include="RPParamTest.vb" />
     <Compile Include="IdentifiantPulveristeurTest.vb" />
     <Compile Include="XMLTest.vb" />

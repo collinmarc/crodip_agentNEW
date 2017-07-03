@@ -42,11 +42,11 @@ Partial Class diagnostic_dlghelp551
         Me.help551_m1_ecart = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label61 = New System.Windows.Forms.Label()
         Me.help551_m1_vitesseReelle = New CRODIP_ControlLibrary.TBNumeric()
-        Me.btnAnnuler = New System.Windows.Forms.Button()
-        Me.btnValider = New System.Windows.Forms.Button()
         Me.Label85 = New System.Windows.Forms.Label()
         Me.help551_result = New System.Windows.Forms.Label()
         Me.help551_erreurMoyenne = New CRODIP_ControlLibrary.TBNumeric()
+        Me.btnAnnuler = New System.Windows.Forms.Button()
+        Me.btnValider = New System.Windows.Forms.Button()
         Me.pnl_help551.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -56,6 +56,8 @@ Partial Class diagnostic_dlghelp551
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnl_help551.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.pnl_help551.Controls.Add(Me.btnAnnuler)
+        Me.pnl_help551.Controls.Add(Me.btnValider)
         Me.pnl_help551.Controls.Add(Me.laTitre)
         Me.pnl_help551.Controls.Add(Me.help551_m2_result)
         Me.pnl_help551.Controls.Add(Me.help551_m2_vitesseLue)
@@ -75,8 +77,6 @@ Partial Class diagnostic_dlghelp551
         Me.pnl_help551.Controls.Add(Me.help551_m1_ecart)
         Me.pnl_help551.Controls.Add(Me.Label61)
         Me.pnl_help551.Controls.Add(Me.help551_m1_vitesseReelle)
-        Me.pnl_help551.Controls.Add(Me.btnAnnuler)
-        Me.pnl_help551.Controls.Add(Me.btnValider)
         Me.pnl_help551.Controls.Add(Me.Label85)
         Me.pnl_help551.Controls.Add(Me.help551_result)
         Me.pnl_help551.Controls.Add(Me.help551_erreurMoyenne)
@@ -272,26 +272,6 @@ Partial Class diagnostic_dlghelp551
         Me.help551_m1_vitesseReelle.TabIndex = 40
         Me.help551_m1_vitesseReelle.TabStop = False
         '
-        'btnAnnuler
-        '
-        Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnAnnuler.Location = New System.Drawing.Point(414, 228)
-        Me.btnAnnuler.Name = "btnAnnuler"
-        Me.btnAnnuler.Size = New System.Drawing.Size(67, 23)
-        Me.btnAnnuler.TabIndex = 37
-        Me.btnAnnuler.Text = "Annuler"
-        '
-        'btnValider
-        '
-        Me.btnValider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnValider.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnValider.Location = New System.Drawing.Point(341, 228)
-        Me.btnValider.Name = "btnValider"
-        Me.btnValider.Size = New System.Drawing.Size(67, 23)
-        Me.btnValider.TabIndex = 36
-        Me.btnValider.Text = "OK"
-        '
         'Label85
         '
         Me.Label85.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -324,12 +304,46 @@ Partial Class diagnostic_dlghelp551
         Me.help551_erreurMoyenne.TabIndex = 33
         Me.help551_erreurMoyenne.TabStop = False
         '
+        'btnAnnuler
+        '
+        Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAnnuler.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.btnAnnuler.BackgroundImage = Global.Crodip_agent.Resources.btn_annuler
+        Me.btnAnnuler.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnAnnuler.FlatAppearance.BorderSize = 0
+        Me.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAnnuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAnnuler.ForeColor = System.Drawing.Color.White
+        Me.btnAnnuler.Location = New System.Drawing.Point(350, 222)
+        Me.btnAnnuler.Name = "btnAnnuler"
+        Me.btnAnnuler.Size = New System.Drawing.Size(131, 29)
+        Me.btnAnnuler.TabIndex = 58
+        Me.btnAnnuler.Text = "Annuler"
+        Me.btnAnnuler.UseVisualStyleBackColor = False
+        '
+        'btnValider
+        '
+        Me.btnValider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnValider.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.btnValider.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
+        Me.btnValider.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnValider.DialogResult = System.Windows.Forms.DialogResult.OK
+        Me.btnValider.FlatAppearance.BorderSize = 0
+        Me.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnValider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnValider.ForeColor = System.Drawing.Color.White
+        Me.btnValider.Location = New System.Drawing.Point(207, 222)
+        Me.btnValider.Name = "btnValider"
+        Me.btnValider.Size = New System.Drawing.Size(137, 29)
+        Me.btnValider.TabIndex = 57
+        Me.btnValider.Text = "OK"
+        Me.btnValider.UseVisualStyleBackColor = False
+        '
         'diagnostic_dlghelp551
         '
-        Me.AcceptButton = Me.btnValider
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.CancelButton = Me.btnAnnuler
         Me.ClientSize = New System.Drawing.Size(498, 268)
         Me.Controls.Add(Me.pnl_help551)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -345,8 +359,6 @@ Partial Class diagnostic_dlghelp551
 
     End Sub
     Friend WithEvents pnl_help551 As System.Windows.Forms.Panel
-    Friend WithEvents btnAnnuler As System.Windows.Forms.Button
-    Friend WithEvents btnValider As System.Windows.Forms.Button
     Friend WithEvents Label85 As System.Windows.Forms.Label
     Friend WithEvents help551_result As System.Windows.Forms.Label
     Friend WithEvents help551_erreurMoyenne As CRODIP_ControlLibrary.TBNumeric
@@ -369,5 +381,7 @@ Partial Class diagnostic_dlghelp551
     Friend WithEvents Label61 As System.Windows.Forms.Label
     Friend WithEvents help551_m1_vitesseReelle As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents laTitre As System.Windows.Forms.Label
+    Friend WithEvents btnAnnuler As System.Windows.Forms.Button
+    Friend WithEvents btnValider As System.Windows.Forms.Button
 
 End Class

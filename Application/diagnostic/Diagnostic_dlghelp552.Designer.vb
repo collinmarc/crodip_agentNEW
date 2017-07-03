@@ -22,6 +22,10 @@ Partial Class Diagnostic_dlghelp552
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnValider = New System.Windows.Forms.Button()
+        Me.btnAnnuler = New System.Windows.Forms.Button()
+        Me.pnl552 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tpHelp552 = New System.Windows.Forms.TabPage()
         Me.Panel122 = New System.Windows.Forms.Panel()
@@ -151,13 +155,12 @@ Partial Class Diagnostic_dlghelp552
         Me.help5622_etalon_m2_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel32 = New System.Windows.Forms.Panel()
         Me.help5622_etalon_m3_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.btnValider = New System.Windows.Forms.Button()
-        Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.Label86 = New System.Windows.Forms.Label()
         Me.help552_pressionMesure = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label89 = New System.Windows.Forms.Label()
         Me.help552_debitMoyen0bar = New CRODIP_ControlLibrary.TBNumeric()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.pnl552.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.tpHelp552.SuspendLayout()
         Me.Panel122.SuspendLayout()
@@ -225,18 +228,85 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel30.SuspendLayout()
         Me.Panel31.SuspendLayout()
         Me.Panel32.SuspendLayout()
-        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.btnAnnuler, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnValider, 0, 0)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(121, 338)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(235, 36)
+        Me.TableLayoutPanel1.TabIndex = 39
+        '
+        'btnValider
+        '
+        Me.btnValider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnValider.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.btnValider.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
+        Me.btnValider.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnValider.DialogResult = System.Windows.Forms.DialogResult.OK
+        Me.btnValider.FlatAppearance.BorderSize = 0
+        Me.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnValider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnValider.ForeColor = System.Drawing.Color.White
+        Me.btnValider.Location = New System.Drawing.Point(3, 4)
+        Me.btnValider.Name = "btnValider"
+        Me.btnValider.Size = New System.Drawing.Size(111, 29)
+        Me.btnValider.TabIndex = 60
+        Me.btnValider.Text = "OK"
+        Me.btnValider.UseVisualStyleBackColor = False
+        '
+        'btnAnnuler
+        '
+        Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAnnuler.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.btnAnnuler.BackgroundImage = Global.Crodip_agent.Resources.btn_annuler
+        Me.btnAnnuler.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnAnnuler.FlatAppearance.BorderSize = 0
+        Me.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAnnuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAnnuler.ForeColor = System.Drawing.Color.White
+        Me.btnAnnuler.Location = New System.Drawing.Point(120, 4)
+        Me.btnAnnuler.Name = "btnAnnuler"
+        Me.btnAnnuler.Size = New System.Drawing.Size(112, 29)
+        Me.btnAnnuler.TabIndex = 61
+        Me.btnAnnuler.Text = "Annuler"
+        Me.btnAnnuler.UseVisualStyleBackColor = False
+        '
+        'pnl552
+        '
+        Me.pnl552.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnl552.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.pnl552.Controls.Add(Me.Label86)
+        Me.pnl552.Controls.Add(Me.help552_pressionMesure)
+        Me.pnl552.Controls.Add(Me.Label89)
+        Me.pnl552.Controls.Add(Me.help552_debitMoyen0bar)
+        Me.pnl552.Controls.Add(Me.TabControl1)
+        Me.pnl552.Controls.Add(Me.TableLayoutPanel1)
+        Me.pnl552.Location = New System.Drawing.Point(5, 5)
+        Me.pnl552.Name = "pnl552"
+        Me.pnl552.Size = New System.Drawing.Size(370, 387)
+        Me.pnl552.TabIndex = 44
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.tpHelp552)
         Me.TabControl1.Controls.Add(Me.tpHelp5622)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 55)
+        Me.TabControl1.Location = New System.Drawing.Point(6, 60)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(357, 277)
-        Me.TabControl1.TabIndex = 38
+        Me.TabControl1.TabIndex = 40
         '
         'tpHelp552
         '
@@ -1452,48 +1522,14 @@ Partial Class Diagnostic_dlghelp552
         Me.help5622_etalon_m3_debitAfficheur.Size = New System.Drawing.Size(56, 20)
         Me.help5622_etalon_m3_debitAfficheur.TabIndex = 1
         '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.ColumnCount = 2
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.btnValider, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.btnAnnuler, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(223, 338)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 1
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(146, 29)
-        Me.TableLayoutPanel1.TabIndex = 39
-        '
-        'btnValider
-        '
-        Me.btnValider.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btnValider.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnValider.Location = New System.Drawing.Point(3, 3)
-        Me.btnValider.Name = "btnValider"
-        Me.btnValider.Size = New System.Drawing.Size(67, 23)
-        Me.btnValider.TabIndex = 0
-        Me.btnValider.Text = "OK"
-        '
-        'btnAnnuler
-        '
-        Me.btnAnnuler.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btnAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnAnnuler.Location = New System.Drawing.Point(76, 3)
-        Me.btnAnnuler.Name = "btnAnnuler"
-        Me.btnAnnuler.Size = New System.Drawing.Size(67, 23)
-        Me.btnAnnuler.TabIndex = 1
-        Me.btnAnnuler.Text = "Annuler"
-        '
         'Label86
         '
         Me.Label86.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label86.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label86.Location = New System.Drawing.Point(18, 8)
+        Me.Label86.Location = New System.Drawing.Point(34, 13)
         Me.Label86.Name = "Label86"
         Me.Label86.Size = New System.Drawing.Size(171, 14)
-        Me.Label86.TabIndex = 42
+        Me.Label86.TabIndex = 46
         Me.Label86.Text = "Pression de mesure (bar) :"
         Me.Label86.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
@@ -1501,20 +1537,20 @@ Partial Class Diagnostic_dlghelp552
         '
         Me.help552_pressionMesure.Enabled = False
         Me.help552_pressionMesure.ForceBindingOnTextChanged = False
-        Me.help552_pressionMesure.Location = New System.Drawing.Point(202, 5)
+        Me.help552_pressionMesure.Location = New System.Drawing.Point(218, 10)
         Me.help552_pressionMesure.Name = "help552_pressionMesure"
         Me.help552_pressionMesure.ReadOnly = True
         Me.help552_pressionMesure.Size = New System.Drawing.Size(83, 20)
-        Me.help552_pressionMesure.TabIndex = 40
+        Me.help552_pressionMesure.TabIndex = 44
         '
         'Label89
         '
         Me.Label89.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label89.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label89.Location = New System.Drawing.Point(18, 32)
+        Me.Label89.Location = New System.Drawing.Point(34, 37)
         Me.Label89.Name = "Label89"
         Me.Label89.Size = New System.Drawing.Size(171, 14)
-        Me.Label89.TabIndex = 43
+        Me.Label89.TabIndex = 47
         Me.Label89.Text = "Débit moyen à 3 bar :"
         Me.Label89.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
@@ -1522,31 +1558,28 @@ Partial Class Diagnostic_dlghelp552
         '
         Me.help552_debitMoyen0bar.Enabled = False
         Me.help552_debitMoyen0bar.ForceBindingOnTextChanged = False
-        Me.help552_debitMoyen0bar.Location = New System.Drawing.Point(202, 29)
+        Me.help552_debitMoyen0bar.Location = New System.Drawing.Point(218, 34)
         Me.help552_debitMoyen0bar.Name = "help552_debitMoyen0bar"
         Me.help552_debitMoyen0bar.ReadOnly = True
         Me.help552_debitMoyen0bar.Size = New System.Drawing.Size(83, 20)
-        Me.help552_debitMoyen0bar.TabIndex = 41
+        Me.help552_debitMoyen0bar.TabIndex = 45
         '
         'Diagnostic_dlghelp552
         '
-        Me.AcceptButton = Me.btnValider
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.CancelButton = Me.btnAnnuler
-        Me.ClientSize = New System.Drawing.Size(378, 376)
-        Me.Controls.Add(Me.Label86)
-        Me.Controls.Add(Me.help552_pressionMesure)
-        Me.Controls.Add(Me.Label89)
-        Me.Controls.Add(Me.help552_debitMoyen0bar)
-        Me.Controls.Add(Me.TableLayoutPanel1)
-        Me.Controls.Add(Me.TabControl1)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(380, 397)
+        Me.Controls.Add(Me.pnl552)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Diagnostic_dlghelp552"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Diagnostic_help552"
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.pnl552.ResumeLayout(False)
+        Me.pnl552.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.tpHelp552.ResumeLayout(False)
         Me.Panel122.ResumeLayout(False)
@@ -1646,11 +1679,17 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel31.PerformLayout()
         Me.Panel32.ResumeLayout(False)
         Me.Panel32.PerformLayout()
-        Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
+    Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents btnAnnuler As System.Windows.Forms.Button
+    Friend WithEvents btnValider As System.Windows.Forms.Button
+    Friend WithEvents pnl552 As System.Windows.Forms.Panel
+    Friend WithEvents Label86 As System.Windows.Forms.Label
+    Friend WithEvents help552_pressionMesure As CRODIP_ControlLibrary.TBNumeric
+    Friend WithEvents Label89 As System.Windows.Forms.Label
+    Friend WithEvents help552_debitMoyen0bar As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents tpHelp552 As System.Windows.Forms.TabPage
     Friend WithEvents Panel122 As System.Windows.Forms.Panel
@@ -1717,9 +1756,6 @@ Partial Class Diagnostic_dlghelp552
     Friend WithEvents Panel96 As System.Windows.Forms.Panel
     Friend WithEvents help552_etalon_m3_debitAfficheur As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents tpHelp5622 As System.Windows.Forms.TabPage
-    Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents btnValider As System.Windows.Forms.Button
-    Friend WithEvents btnAnnuler As System.Windows.Forms.Button
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
@@ -1783,9 +1819,5 @@ Partial Class Diagnostic_dlghelp552
     Friend WithEvents help5622_etalon_m2_debitAfficheur As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents Panel32 As System.Windows.Forms.Panel
     Friend WithEvents help5622_etalon_m3_debitAfficheur As CRODIP_ControlLibrary.TBNumeric
-    Friend WithEvents Label86 As System.Windows.Forms.Label
-    Friend WithEvents help552_pressionMesure As CRODIP_ControlLibrary.TBNumeric
-    Friend WithEvents Label89 As System.Windows.Forms.Label
-    Friend WithEvents help552_debitMoyen0bar As CRODIP_ControlLibrary.TBNumeric
 
 End Class

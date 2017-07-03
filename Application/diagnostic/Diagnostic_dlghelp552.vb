@@ -18,6 +18,7 @@ Public Class Diagnostic_dlghelp552
     Private m_oHelp As DiagnosticHelp552
     Private m_oHelpbis As DiagnosticHelp552
     Private m_bDuringLoad552 As Boolean
+    Private m_bVisu As Boolean
 
     Private m_calculs_m1_nbBuses As CRODIP_ControlLibrary.TBNumeric
     Private m_calculs_m1_pression As CRODIP_ControlLibrary.TBNumeric
@@ -42,10 +43,11 @@ Public Class Diagnostic_dlghelp552
 
 
 
-    Public Sub setContexte(pMode As Help552Mode, pDiag As Diagnostic, debitMoyen As String, PressionMesure As String)
+    Public Sub setContexte(pMode As Help552Mode, pDiag As Diagnostic, debitMoyen As String, PressionMesure As String, pbVisu As Boolean)
         m_oDiag = pDiag
         m_Mode = pMode
-        Select m_Mode
+        m_bVisu = pbVisu
+        Select Case m_Mode
             Case Help552Mode.Mode552
                 m_oHelp = m_oDiag.diagnosticHelp552.Clone()
                 SetControls(Help552Mode.Mode552)
@@ -61,41 +63,41 @@ Public Class Diagnostic_dlghelp552
     End Sub
 
 
-    Private Sub m_calculs_m1_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help552_calculs_m1_nbBuses.TextChanged, help5622_calculs_m1_nbBuses.TextChanged
+    Private Sub m_calculs_m1_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_calculs_m1_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help552_calculs_m1_pression.TextChanged, help5622_calculs_m1_pression.TextChanged
+    Private Sub m_calculs_m1_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_calculs_m2_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help552_calculs_m2_nbBuses.TextChanged, help5622_calculs_m2_nbBuses.TextChanged
+    Private Sub m_calculs_m2_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_calculs_m2_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help552_calculs_m2_pression.TextChanged, help5622_calculs_m2_pression.TextChanged
+    Private Sub m_calculs_m2_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_calculs_m3_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help552_calculs_m3_nbBuses.TextChanged, help5622_calculs_m3_nbBuses.TextChanged
+    Private Sub m_calculs_m3_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_calculs_m3_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help552_calculs_m3_pression.TextChanged, help5622_calculs_m3_pression.TextChanged
+    Private Sub m_calculs_m3_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
 
     Private Sub m_etalon_m1_debitEtalon_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_etalon_m1_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help552_etalon_m1_debitAfficheur.TextChanged, help5622_etalon_m1_debitAfficheur.TextChanged
+    Private Sub m_etalon_m1_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
     Private Sub m_etalon_m2_debitEtalon_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_etalon_m2_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help552_etalon_m2_debitAfficheur.TextChanged, help5622_etalon_m2_debitAfficheur.TextChanged
+    Private Sub m_etalon_m2_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
     Private Sub m_etalon_m3_debitEtalon_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_etalon_m3_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help552_etalon_m3_debitAfficheur.TextChanged, help5622_etalon_m3_debitAfficheur.TextChanged
+    Private Sub m_etalon_m3_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
     Private Function tab552_isAllFilled() As Boolean
@@ -210,7 +212,23 @@ Public Class Diagnostic_dlghelp552
                 M_erreurDebimetre.Text = pHelp.ErreurDebitMetre
             End If
             'Calcul des ecarts et de l'erreur DebitMetre
-            AfficheResultat(pHelp)
+            If m_bVisu Then
+                m_calculs_m1_nbBuses.Enabled = False
+                m_calculs_m1_pression.Enabled = False
+                m_etalon_m1_debitEtalon.Enabled = False
+                m_etalon_m1_debitAfficheur.Enabled = False
+                m_calculs_m2_nbBuses.Enabled = False
+                m_calculs_m2_pression.Enabled = False
+                m_etalon_m2_debitEtalon.Enabled = False
+                m_etalon_m2_debitAfficheur.Enabled = False
+                m_calculs_m3_nbBuses.Enabled = False
+                m_calculs_m3_pression.Enabled = False
+                m_etalon_m3_debitEtalon.Enabled = False
+                m_etalon_m3_debitAfficheur.Enabled = False
+                btnValider.Enabled = False
+            Else
+                AfficheResultat(pHelp)
+            End If
             m_bDuringLoad552 = False
         Catch ex As Exception
             CSDebug.dispError("Diagnostic_dlghelp552.PopupHelp552_init ERR : " & ex.Message)
@@ -265,7 +283,7 @@ Public Class Diagnostic_dlghelp552
 
     End Sub
 
-    Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
+    Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs)
         If TabControl1.SelectedTab.Name = tpHelp552.Name Then
             SetControls(Help552Mode.Mode552)
             Popuphelp552_init(m_oHelp)
@@ -323,6 +341,10 @@ Public Class Diagnostic_dlghelp552
 
         End Select
 
+
+    End Sub
+
+    Private Sub TableLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel1.Paint
 
     End Sub
 End Class

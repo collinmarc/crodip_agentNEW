@@ -691,7 +691,7 @@ Public Class login
         oDiag12123.NbBuses = 8
 
         oFRM = New diagnostic_dlghelp12123()
-        oFRM.setContexte(oDiag12123)
+        oFRM.setContexte(oDiag12123, True)
         oFRM.ShowDialog()
 
 

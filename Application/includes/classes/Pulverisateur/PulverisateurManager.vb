@@ -687,39 +687,6 @@ Public Class PulverisateurManager
         Return arrItems
     End Function
 
-    Public Shared Function FTOgetUpdates() As List(Of Pulverisateur)
-        ' déclarations
-        Dim oLst As New List(Of Pulverisateur)
-        Dim oCSdb As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand = oCSdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM Pulverisateur WHERE dateModificationAgent=#2017/05/02 00:00:01#"
-        bddCommande.CommandText = bddCommande.CommandText & " and id = '5-1048-1522'"
-
-        Try
-            ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
-            ' Puis on les parcours
-            While tmpListProfils.Read()
-                ' On rempli notre tableau
-                Dim tmpPulverisateur As New Pulverisateur
-                Dim tmpColId As Integer = 0
-                While tmpColId < tmpListProfils.FieldCount()
-                    If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
-                    End If
-                    tmpColId = tmpColId + 1
-                End While
-                oLst.Add(tmpPulverisateur)
-            End While
-
-        Catch ex As Exception ' On intercepte l'erreur
-            CSDebug.dispError("PulverisateurManager - getUpdates : " & ex.Message)
-        End Try
-
-        oCSdb.free()
-        'on retourne les objet non synchro
-        Return oLst
-    End Function
     Public Shared Function existsPulverisateur(ByVal pulveId As String, ByVal numeroNational As String) As Integer
         Dim bdd As CSDb
         Try
