@@ -3384,31 +3384,9 @@ Public Class accueil
 
             ' Récupération des données client
             clientCourant = ExploitationManager.getClientById(list_clients.SelectedItems().Item(0).Tag)
-            lstPulves_client_raisonSociale.Text = clientCourant.raisonSociale
-            lstPulves_client_proprioSiren.Text = "M. " & clientCourant.nomExploitant & " " & clientCourant.prenomExploitant & " - N° SIREN : " & clientCourant.numeroSiren
-
-            ' Récupération des pulvérisateurs du client 
-            Try
-                Dim bPulveEnAlerte As Boolean
-                'list_ficheClient_puverisateur.Items.Clear()
-                Dim lstPulverisateurs As New List(Of Pulverisateur)
-                lstPulverisateurs.AddRange(PulverisateurManager.getPulverisateurByClientId(clientCourant.id, ""))
-                'JE Recréé la liste sotable des pulvés (je ne sais pas pourquoi je dois la recrer)
-                m_BindingListOfPulve = New SortableBindingList(Of Pulverisateur)(lstPulverisateurs)
-                'Et donc j'affecte cette liste du DataGridView
-                dgvPulveExploit.DataSource = m_BindingListOfPulve
-                dgvPulveExploit.ClearSelection()
-                btn_ficheClient_diagnostic_nouveau.Enabled = False
-                btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
-
-            Catch ex As Exception
-                CSDebug.dispError("Client - loadListPulveExploitation : " & ex.Message.ToString)
-            End Try
-
-
-
-
-
+ 
+            ' Affichage des pulvérisateurs du client 
+            AfficheListePulvesExploitation(clientCourant)
 
             ' Mise à jour de la barre de status
             Statusbar.display("Client n°" & list_clients.SelectedItems().Item(0).SubItems.Item(0).Text)
@@ -3418,6 +3396,28 @@ Public Class accueil
         End If
     End Sub
 
+    Public Sub AfficheListePulvesExploitation(pExploit As Exploitation)
+        Try
+            lstPulves_client_raisonSociale.Text = pExploit.raisonSociale
+            lstPulves_client_proprioSiren.Text = "M. " & pExploit.nomExploitant & " " & pExploit.prenomExploitant & " - N° SIREN : " & pExploit.numeroSiren
+
+            Dim bPulveEnAlerte As Boolean
+            'list_ficheClient_puverisateur.Items.Clear()
+            Dim lstPulverisateurs As New List(Of Pulverisateur)
+            lstPulverisateurs.AddRange(PulverisateurManager.getPulverisateurByClientId(pExploit.id, ""))
+            'JE Recréé la liste sotable des pulvés (je ne sais pas pourquoi je dois la recrer)
+            m_BindingListOfPulve = New SortableBindingList(Of Pulverisateur)(lstPulverisateurs)
+            'Et donc j'affecte cette liste du DataGridView
+            dgvPulveExploit.DataSource = m_BindingListOfPulve
+            dgvPulveExploit.ClearSelection()
+            btn_ficheClient_diagnostic_nouveau.Enabled = False
+            btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
+
+        Catch ex As Exception
+            CSDebug.dispError("Accueil:AfficheListePulvesExploitation ERR: " & ex.Message.ToString)
+        End Try
+
+    End Sub
     Public Function loadListPulve() As Boolean
 
         Dim bReturn As Boolean
