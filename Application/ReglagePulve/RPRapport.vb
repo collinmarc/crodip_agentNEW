@@ -74,4 +74,14 @@
         CSDebug.dispInfo(tbReferences.Text)
         m_oDiag.saveParam()
     End Sub
+
+    Private Sub tbChoisirPath_Click(sender As Object, e As EventArgs) Handles tbChoisirPath.Click
+        Dim oResulat As DialogResult
+        oResulat = m_FolderBrowserDialog.ShowDialog()
+        If oResulat = Windows.Forms.DialogResult.OK Then
+            m_oDiag.FilePath = m_FolderBrowserDialog.SelectedPath
+            tbPath.Text = m_FolderBrowserDialog.SelectedPath
+        End If
+
+    End Sub
 End Class

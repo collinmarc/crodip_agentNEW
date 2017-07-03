@@ -63,41 +63,41 @@ Public Class Diagnostic_dlghelp552
     End Sub
 
 
-    Private Sub m_calculs_m1_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub m_calculs_m1_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help5622_calculs_m1_nbBuses.TextChanged, help552_calculs_m1_nbBuses.TextChanged
         calc_help_552()
     End Sub
-    Private Sub m_calculs_m1_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub m_calculs_m1_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help5622_calculs_m1_pression.TextChanged, help552_calculs_m1_pression.TextChanged
         calc_help_552()
     End Sub
-    Private Sub m_calculs_m2_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub m_calculs_m2_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help5622_calculs_m2_nbBuses.TextChanged, help552_calculs_m2_nbBuses.TextChanged
         calc_help_552()
     End Sub
-    Private Sub m_calculs_m2_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub m_calculs_m2_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help5622_calculs_m2_pression.TextChanged, help552_calculs_m2_pression.TextChanged
         calc_help_552()
     End Sub
-    Private Sub m_calculs_m3_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub m_calculs_m3_nbBuses_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help5622_calculs_m3_nbBuses.TextChanged, help552_calculs_m3_pression.TextChanged, help552_calculs_m3_nbBuses.TextChanged
         calc_help_552()
     End Sub
-    Private Sub m_calculs_m3_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub m_calculs_m3_pression_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help5622_calculs_m3_pression.TextChanged
         calc_help_552()
     End Sub
 
     Private Sub m_etalon_m1_debitEtalon_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_etalon_m1_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub m_etalon_m1_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help5622_etalon_m1_debitAfficheur.TextChanged, help552_etalon_m1_debitAfficheur.TextChanged
         calc_help_552()
     End Sub
     Private Sub m_etalon_m2_debitEtalon_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_etalon_m2_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub m_etalon_m2_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help5622_etalon_m2_debitAfficheur.TextChanged, help552_etalon_m2_debitAfficheur.TextChanged
         calc_help_552()
     End Sub
     Private Sub m_etalon_m3_debitEtalon_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         calc_help_552()
     End Sub
-    Private Sub m_etalon_m3_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub m_etalon_m3_debitAfficheur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help5622_etalon_m3_debitAfficheur.TextChanged, help552_etalon_m3_debitAfficheur.TextChanged
         calc_help_552()
     End Sub
     Private Function tab552_isAllFilled() As Boolean

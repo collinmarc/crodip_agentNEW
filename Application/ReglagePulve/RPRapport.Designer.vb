@@ -39,6 +39,7 @@ Partial Class RPRapport
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.m_dlgImage = New System.Windows.Forms.OpenFileDialog()
+        Me.m_FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
         CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -238,4 +239,6 @@ Partial Class RPRapport
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents m_dlgImage As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents m_dlgPathPDF As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents m_FolderBrowserDialog As System.Windows.Forms.FolderBrowserDialog
 End Class

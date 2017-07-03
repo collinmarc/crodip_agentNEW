@@ -4,7 +4,7 @@
     Public Sub initWindowsProperties()
         'Propriété à mettre obligatoirement par programme dans le Lod (Bug windows ?)
         Me.WindowState = FormWindowState.Maximized
-        Me.ControlBox = False
+        'Me.ControlBox = False
         '--
     End Sub
 

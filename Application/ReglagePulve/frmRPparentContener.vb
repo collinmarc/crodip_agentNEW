@@ -407,7 +407,6 @@ Public Class frmRPparentContener
         'frmRPparentContener
         '
         Me.ClientSize = New System.Drawing.Size(1012, 664)
-        Me.ControlBox = False
         Me.Controls.Add(Me.tsbDemarer)
         Me.Controls.Add(Me.statusBar_img_loader)
         Me.Controls.Add(Me.parentContener_statusBar)

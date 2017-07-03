@@ -119,7 +119,7 @@
         Return bReturn
     End Function
     Protected Overrides Function validerLeNumeroNational(pNumNational As String) As ajout_pulve2.ValiderNumeroNationalResult
-        Return True
+        Return ValiderNumeroNationalResult.OK
     End Function
 
 End Class
