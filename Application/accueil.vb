@@ -4883,7 +4883,7 @@ Public Class accueil
     '#########################################################
     'Manometres
     Private Sub btn_parametrage_verificationManometres_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_parametrage_verificationManometres.Click
-        Dim ofrm As New frmControleManometres
+        Dim ofrm As New frmControleManometres(agentCourant)
         TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
     End Sub
     'Bancs

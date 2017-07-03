@@ -12,9 +12,15 @@ Imports System.Collections.Generic
 Public Class frmControleManometres
     Inherits frmCRODIP
 
+    Private m_oAgent As Agent
+    Public Sub New(pAgent As Agent)
+        Me.New()
+        m_oAgent = pAgent
+    End Sub
+
 #Region " Code généré par le Concepteur Windows Form "
 
-    Public Sub New()
+    Private Sub New()
         MyBase.New()
 
         'Cet appel est requis par le Concepteur Windows Form.
@@ -1370,7 +1376,7 @@ Public Class frmControleManometres
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(frmControleManometres))
 
         ' On récupère les mano étalons de l'agent
-        Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(agentCourant.idStructure)
+        Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(m_oAgent.idStructure)
         For Each tmpManoEtalon As ManometreEtalon In arrManoEtalon
             Dim objComboItem As New objComboItem(tmpManoEtalon.numeroNational, tmpManoEtalon.idCrodip)
             list_manometresEtalon.Items.Add(objComboItem)
@@ -1383,7 +1389,7 @@ Public Class frmControleManometres
         ongletsManos.TabPages.Clear()
 
         ' On récupère la liste des manos de la structure de l'agent
-        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(agentCourant.idStructure, True)
+        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure, True)
         ' Création des contrôles a la volée
         Dim positionTop As Integer = 0
         Dim nTabIndex As Integer
@@ -2265,12 +2271,11 @@ Public Class frmControleManometres
     End Sub
 
 #Region " Récupération des données du controle "
-    Public Function createControleMano(ByVal pMano As ManometreControle, pidManoEtalon As String) As ControleMano
+    Private Function createControleMano(ByVal pMano As ManometreControle, pidManoEtalon As String) As ControleMano
 
-        Dim oCtrlMano As ControleMano = New ControleMano
+        Dim oCtrlMano As ControleMano = New ControleMano(m_oAgent)
         '        newObject.id = ControleManoManager.create(pagent)
         '########################################################
-
         oCtrlMano.idStructure = pMano.idStructure
         oCtrlMano.idMano = pMano.numeroNational
         oCtrlMano.manoEtalon = pidManoEtalon
@@ -2716,7 +2721,7 @@ Public Class frmControleManometres
             oControleMano = Me.createControleMano(curManoControle, list_manometresEtalon.SelectedItem.id)
 
             ' On construit notre nouvelle fiche de vie
-            curManoControle.creerfFicheVieControle(agentCourant, oControleMano)
+            curManoControle.creerfFicheVieControle(m_oAgent, oControleMano)
 
 
 
@@ -2734,7 +2739,7 @@ Public Class frmControleManometres
             ' On récupère le mano
             Dim tmpManometreEtalon As ManometreEtalon = ManometreEtalonManager.getManometreEtalonByNumeroNational(list_manometresEtalon.SelectedItem.Id)
             ' On le flag
-            ManometreEtalonManager.setUtilise(agentCourant, tmpManometreEtalon)
+            ManometreEtalonManager.setUtilise(m_oAgent, tmpManometreEtalon)
 
 
             MsgBox(tmpMessageConfirm)

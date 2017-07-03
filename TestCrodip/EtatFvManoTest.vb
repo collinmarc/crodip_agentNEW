@@ -32,12 +32,12 @@ Imports System.IO
         oManoCtrl.resolution = ""
         ManometreControleManager.save(oManoCtrl)
 
-        oCtrl = New ControleMano()
+        oCtrl = New ControleMano(m_oAgent)
         oCtrl.idStructure = m_oAgent.idStructure
         oCtrl.manoEtalon = oManoRef.numeroNational
         oCtrl.idMano = oManoCtrl.numeroNational
         oCtrl.DateVerif = CSDate.GetDateForWS("2015/10/19 15:57:45")
-        oCtrl.AgentVerif = "Rault Marc-Antoine"
+        '       oCtrl.AgentVerif = "Rault Marc-Antoine"
         oCtrl.Proprietaire = "Crodip_agent"
         oCtrl.tempAir = "18"
         oCtrl.resultat = "Votre manomètre n'est pas fiable : il ne répond pas à sa classe de précision. Faites le remettre en état ou changez le."

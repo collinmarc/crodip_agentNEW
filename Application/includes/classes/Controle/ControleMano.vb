@@ -39,6 +39,11 @@ Public Class ControleMano
         _lst.Add("DOWN4", New ControleManoDetail("DOWN", "4"))
         _lst.Add("DOWN5", New ControleManoDetail("DOWN", "5"))
         _lst.Add("DOWN6", New ControleManoDetail("DOWN", "6"))
+
+    End Sub
+    Sub New(pAgent As Agent)
+        Me.New()
+        AgentVerif = pAgent.nom & " " & pAgent.prenom
     End Sub
 
     Public Property id() As String

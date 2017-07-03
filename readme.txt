@@ -4,6 +4,7 @@ Build :
 Version
 Date :
 #33456 : En visualisation d'un contrôle, on peut modifier les valeurs des clés des débitmètre, vitesse et cumul des erreurs. 
+#33449 : Sur la fiche de vérification du mano, le nom de l'inspecteur n'apparait pas
 
 Build : 20170512110000
 Version : 2.5.4 Lot5

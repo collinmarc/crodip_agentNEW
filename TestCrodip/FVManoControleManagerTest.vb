@@ -171,7 +171,7 @@ Public Class FVManometreControleManagerTest
 
         'Controle du Manoètre
         pause(1000)
-        Dim oCtrl As ControleMano = New ControleMano
+        Dim oCtrl As ControleMano = New ControleMano(m_oAgent)
         Dim oManoE As ManometreEtalon
         oManoE = New ManometreEtalon()
         oManoE.idStructure = m_oAgent.idStructure
