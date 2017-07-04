@@ -864,28 +864,28 @@ Public Class tool_calcVolHa
 
 #Region " - Tests - "
 
-    Private Function isFilled_calcDeb1()
+    Private Function isFilled_calcDeb1() As Boolean
         If infosNbBuses.Text <> "" And infosDebitMoyPressionMesure.Text <> "" And infosLargeur.Text <> "" And infosVitesseReelle1.Text <> "" Then
             Return True
         Else
             Return False
         End If
     End Function
-    Private Function isFilled_calcDeb2()
+    Private Function isFilled_calcDeb2() As Boolean
         If infosNbBuses.Text <> "" And calcDeb2Debit.Text <> "" And infosLargeur.Text <> "" And infosVitesseReelle1.Text <> "" Then
             Return True
         Else
             Return False
         End If
     End Function
-    Private Function isFilled_calc_Deb2Debit()
+    Private Function isFilled_calc_Deb2Debit() As Boolean
         If calcDeb1PressionConnue.Text <> "" And calcDeb1DebitMoyConnu.Text <> "" And calcDeb2Pression.Text <> "" Then
             Return True
         Else
             Return False
         End If
     End Function
-    Private Function isFilled_calcVitesse()
+    Private Function isFilled_calcVitesse() As Boolean
         If calcVitesseDistance.Text <> "" And calcVitesseTemps.Text <> "" Then
             Return True
         Else

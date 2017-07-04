@@ -4,6 +4,7 @@
     Private m_Commentaires As String
     Private m_oRPParam As RPParam
     Private m_FileName As String
+    Private m_Calculs As New CalcVolumeHa()
 
     Public Property bSectionEntete As Boolean
         Get
@@ -169,4 +170,290 @@
         Set(value As RPParam)
         End Set
     End Property
+
+    Public Property LargeurPlantation As Decimal
+        Get
+            Return m_Calculs.LargeurPlantation
+        End Get
+        Set(value As Decimal)
+            m_Calculs.LargeurPlantation = value
+
+        End Set
+    End Property
+    Public Property VitesseRotation As Decimal
+        Get
+            Return m_Calculs.VitesseRotation
+
+        End Get
+        Set(value As Decimal)
+            m_Calculs.VitesseRotation = value
+        End Set
+    End Property
+    Public Property EmplacementPriseAir As Boolean
+        Get
+            Return m_Calculs.EmplacementPriseAir
+
+        End Get
+        Set(value As Boolean)
+            m_Calculs.EmplacementPriseAir = value
+
+        End Set
+    End Property
+    Public Property NbreDescentes As Integer
+        Get
+            Return m_Calculs.NbreDescentes
+        End Get
+        Set(value As Integer)
+            m_Calculs.NbreDescentes = value
+
+        End Set
+    End Property
+    Public Property NbreBusesParDescente As Integer
+        Get
+            Return m_Calculs.NbreBusesParDescente
+        End Get
+        Set(value As Integer)
+            m_Calculs.NbreBusesParDescente = value
+
+        End Set
+    End Property
+    Public Property NbreNiveauParDescente As Integer
+        Get
+            Return m_Calculs.NbreNiveauParDescente
+        End Get
+        Set(value As Integer)
+            m_Calculs.NbreNiveauParDescente = value
+
+        End Set
+    End Property
+    Public Property PressionDeMesure As Decimal
+        Get
+            Return m_Calculs.PressionDeMesure
+
+        End Get
+        Set(value As Decimal)
+            m_Calculs.PressionDeMesure = value
+        End Set
+    End Property
+    Public Property DebitMoyenPM As Decimal
+        Get
+            Return m_Calculs.DebitMoyenPM
+
+        End Get
+        Set(value As Decimal)
+            m_Calculs.DebitMoyenPM = value
+
+        End Set
+    End Property
+    Public Property NombreBuses As Integer
+        Get
+            Return m_Calculs.NombreBuses
+        End Get
+        Set(value As Integer)
+            m_Calculs.NombreBuses = value
+
+        End Set
+    End Property
+    Public Property VolHaPM As Decimal
+        Get
+            Return m_Calculs.VolHaPM
+        End Get
+        Set(value As Decimal)
+            m_Calculs.VolHaPM = value
+
+        End Set
+    End Property
+    Public Property PressionTravail As Decimal
+        Get
+            Return m_Calculs.PressionTravail
+        End Get
+        Set(value As Decimal)
+            m_Calculs.PressionTravail = value
+
+        End Set
+    End Property
+    Public Property PressionTravailMoinsPC As Decimal
+        Get
+            Return m_Calculs.PressionTravailMoinsPC
+        End Get
+        Set(value As Decimal)
+            m_Calculs.PressionTravailMoinsPC = value
+
+        End Set
+    End Property
+    Public Property VolHaPT As Decimal
+        Get
+            Return m_Calculs.VolHaPT
+
+        End Get
+        Set(value As Decimal)
+            m_Calculs.VolHaPT = value
+
+        End Set
+    End Property
+    Public Property NombreNiveauxBuses As Decimal
+        Get
+            Return m_Calculs.NombreNiveauxBuses
+        End Get
+        Set(value As Decimal)
+            m_Calculs.NombreNiveauxBuses = value
+
+        End Set
+    End Property
+    Public Property VitesseReelle1 As Decimal
+        Get
+            Return m_Calculs.VitesseReelle1
+        End Get
+        Set(value As Decimal)
+            m_Calculs.VitesseReelle1 = value
+
+        End Set
+    End Property
+    Public Property VitesseReelle2 As Decimal
+        Get
+            Return m_Calculs.VitesseReelle2
+        End Get
+        Set(value As Decimal)
+            m_Calculs.VitesseReelle2 = value
+
+        End Set
+    End Property
+    Public Property LargeurApp As Decimal
+        Get
+            Return m_Calculs.LargeurApp
+        End Get
+        Set(value As Decimal)
+            m_Calculs.LargeurApp = value
+
+        End Set
+    End Property
+    Public Property lstBuseUsees As String
+        Get
+            Return m_Calculs.lstBuseUsees
+        End Get
+        Set(value As String)
+            m_Calculs.lstBuseUsees = value
+
+        End Set
+    End Property
+    Public Property PressionConnue As Decimal
+        Get
+            Return m_Calculs.PressionConnue
+        End Get
+        Set(value As Decimal)
+            m_Calculs.PressionConnue = value
+
+        End Set
+    End Property
+    Public Property DebitMoyenConnu As Decimal
+        Get
+            Return m_Calculs.DebitMoyenConnu
+        End Get
+        Set(value As Decimal)
+            m_Calculs.DebitMoyenConnu = value
+
+        End Set
+    End Property
+    Public Property Vitesse1 As Decimal
+        Get
+            Return m_Calculs.Vitesse1
+        End Get
+        Set(value As Decimal)
+            m_Calculs.Vitesse1 = value
+
+        End Set
+    End Property
+    Public Property Ecartement1 As Decimal
+        Get
+            Return m_Calculs.Ecartement1
+        End Get
+        Set(value As Decimal)
+            m_Calculs.Ecartement1 = value
+
+        End Set
+    End Property
+    Public Property VolEauHa1 As Decimal
+        Get
+            Return m_Calculs.VolEauHa1
+        End Get
+        Set(value As Decimal)
+
+            m_Calculs.VolEauHa1 = value
+        End Set
+    End Property
+    Public Property Pression2 As Decimal
+        Get
+            Return m_Calculs.Pression2
+
+        End Get
+        Set(value As Decimal)
+
+            m_Calculs.Pression2 = value
+        End Set
+    End Property
+    Public Property DebitMoyen2 As Decimal
+        Get
+            Return m_Calculs.DebitMoyen2
+        End Get
+        Set(value As Decimal)
+
+            m_Calculs.DebitMoyen2 = value
+        End Set
+    End Property
+    Public Property Vitesse2 As Decimal
+        Get
+            Return m_Calculs.Vitesse2
+
+        End Get
+        Set(value As Decimal)
+            m_Calculs.Vitesse2 = value
+
+        End Set
+    End Property
+    Public Property Ecartement2 As Decimal
+        Get
+            Return m_Calculs.Ecartement2
+        End Get
+        Set(value As Decimal)
+            m_Calculs.Ecartement2 = value
+
+        End Set
+    End Property
+    Public Property VolEauHa2 As Decimal
+        Get
+            Return m_Calculs.VolEauHa2
+        End Get
+        Set(value As Decimal)
+            m_Calculs.VolEauHa2 = value
+
+        End Set
+    End Property
+    Public Property Distance As Decimal
+        Get
+            Return m_Calculs.Distance
+        End Get
+        Set(value As Decimal)
+            m_Calculs.Distance = value
+
+        End Set
+    End Property
+    Public Property Temps As Decimal
+        Get
+            Return m_Calculs.Temps
+        End Get
+        Set(value As Decimal)
+            m_Calculs.Temps = value
+
+        End Set
+    End Property
+    Public Property Vitesse As Decimal
+        Get
+            Return m_Calculs.Vitesse
+        End Get
+        Set(value As Decimal)
+            m_Calculs.Vitesse = value
+
+        End Set
+    End Property
+
 End Class

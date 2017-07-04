@@ -1,4 +1,4 @@
-﻿Public Class RPRapport
+﻿Public Class frmRPRapport
     Implements IfrmCRODIP
     Protected m_oDiag As RPDiagnostic
     Protected m_EtatReglagePulve As EtatReglagePulve

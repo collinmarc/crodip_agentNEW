@@ -20,9 +20,15 @@
         chkAncienIdentifiant.Visible = False
         tbAncienIdentifiant.Visible = False
 
+
         btn_fichePulve_annuler.Visible = False
         btn_fichePulve_valider.Visible = False
         btn_fichePulve_supprimer.Visible = False
+        laProchainControle.Visible = False
+        tbDateProchControle.Visible = False
+        pbEtat.Visible = False
+
+        cbxIdentPulve.DropDownStyle = ComboBoxStyle.Simple
     End Sub
     ''' <summary>
     ''' Fonction Valider en mode reglage Pulvé

@@ -465,6 +465,7 @@
     <Compile Include="Application\includes\classes\Referentiel\ReferentielCommunesCSV.vb" />
     <Compile Include="Application\includes\classes\Referentiel\ReferentielBusesCSV.vb" />
     <Compile Include="Application\includes\classes\Referentiel\ReferentielCodesAPE.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\CalcVolumeHa.vb" />
     <Compile Include="Application\includes\classes\ReglagePulve\ParamReglagePulve.vb" />
     <Compile Include="Application\includes\classes\ReglagePulve\UserReglagePulve.vb" />
     <Compile Include="Application\includes\classes\RootManager.vb" />
@@ -762,14 +763,14 @@
     <Compile Include="Application\ReglagePulve\IfrmCRODIP.vb" />
     <Compile Include="Application\ReglagePulve\RPDiagItem.vb" />
     <Compile Include="Application\ReglagePulve\RPDiagnostic.vb" />
-    <Compile Include="Application\ReglagePulve\RPCalculVolumeHa.vb">
+    <Compile Include="Application\ReglagePulve\frmRPCalculVolumeHa.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\ReglagePulve\RPParam.vb" />
-    <Compile Include="Application\ReglagePulve\RPRapport.Designer.vb">
-      <DependentUpon>RPRapport.vb</DependentUpon>
+    <Compile Include="Application\ReglagePulve\frmRPRapport.Designer.vb">
+      <DependentUpon>frmRPRapport.vb</DependentUpon>
     </Compile>
-    <Compile Include="Application\ReglagePulve\RPRapport.vb">
+    <Compile Include="Application\ReglagePulve\frmRPRapport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\splash.vb">
@@ -957,10 +958,17 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="moduleDocumentaire\_parametres\cr_reglagePulveSyntheseMesures.vb">
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveFeuilleCalcul1.vb">
+      <DependentUpon>cr_ReglagePulveFeuilleCalcul.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseMesures1.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>cr_reglagePulveSyntheseMesures.rpt</DependentUpon>
+      <DependentUpon>cr_ReglagePulveSyntheseMesures.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -1946,11 +1954,11 @@
     <EmbeddedResource Include="Application\ReglagePulve\frmRPRecap.resx">
       <DependentUpon>frmRPRecap.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\RPCalculVolumeHa.resx">
-      <DependentUpon>RPCalculVolumeHa.vb</DependentUpon>
+    <EmbeddedResource Include="Application\ReglagePulve\frmRPCalculVolumeHa.resx">
+      <DependentUpon>frmRPCalculVolumeHa.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\RPRapport.resx">
-      <DependentUpon>RPRapport.vb</DependentUpon>
+    <EmbeddedResource Include="Application\ReglagePulve\frmRPRapport.resx">
+      <DependentUpon>frmRPRapport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\splash.resx">
       <DependentUpon>splash.vb</DependentUpon>
@@ -2013,9 +2021,9 @@
       <LastGenOutput>cr_ReglagePulveSyntheseBuses15.vb</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="moduleDocumentaire\_parametres\cr_reglagePulveSyntheseMesures.rpt">
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseMesures.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>cr_reglagePulveSyntheseMesures.vb</LastGenOutput>
+      <LastGenOutput>cr_ReglagePulveSyntheseMesures1.vb</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulvesynthese833.rpt">
@@ -2103,6 +2111,11 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_ContratCommercial.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveFeuilleCalcul.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulveFeuilleCalcul1.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="My Project\Resources.resx">
       <SubType>Designer</SubType>

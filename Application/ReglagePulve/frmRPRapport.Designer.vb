@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class RPRapport
+Partial Class frmRPRapport
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -23,7 +23,7 @@ Partial Class RPRapport
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RPRapport))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmRPRapport))
         Me.Label_diagnostic_21 = New System.Windows.Forms.Label()
         Me.lbSections = New System.Windows.Forms.CheckedListBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -198,10 +198,11 @@ Partial Class RPRapport
         '
         Me.m_dlgImage.Filter = "Fichiers Image|*.jpg;*.jpeg;*.png;*.bmp"
         '
-        'RPRapport
+        'frmRPRapport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(676, 584)
         Me.ControlBox = False
         Me.Controls.Add(Me.TextBox1)
@@ -217,7 +218,7 @@ Partial Class RPRapport
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lbSections)
         Me.Controls.Add(Me.Label_diagnostic_21)
-        Me.Name = "RPRapport"
+        Me.Name = "frmRPRapport"
         Me.Text = "RPRapport"
         CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

@@ -28,6 +28,7 @@ Partial Class frmRPFicheExlpoitant
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(842, 432)
         Me.ControlBox = False
         Me.Name = "frmRPFicheExlpoitant"

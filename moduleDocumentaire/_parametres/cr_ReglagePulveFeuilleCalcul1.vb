@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class cr_reglagePulveSyntheseMesures
+Public Class cr_ReglagePulveFeuilleCalcul
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class cr_reglagePulveSyntheseMesures
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "cr_reglagePulveSyntheseMesures.rpt"
+            Return "cr_ReglagePulveFeuilleCalcul.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class cr_reglagePulveSyntheseMesures
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "Crodip_agent.cr_reglagePulveSyntheseMesures.rpt"
+            Return "Crodip_agent.cr_ReglagePulveFeuilleCalcul.rpt"
         End Get
         Set
             'Do nothing
@@ -94,7 +94,7 @@ Public Class cr_reglagePulveSyntheseMesures
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class Cachedcr_reglagePulveSyntheseMesures
+Public Class Cachedcr_ReglagePulveFeuilleCalcul
     Inherits Component
     Implements ICachedReport
     
@@ -136,7 +136,7 @@ Public Class Cachedcr_reglagePulveSyntheseMesures
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As cr_reglagePulveSyntheseMesures = New cr_reglagePulveSyntheseMesures()
+        Dim rpt As cr_ReglagePulveFeuilleCalcul = New cr_ReglagePulveFeuilleCalcul()
         rpt.Site = Me.Site
         Return rpt
     End Function

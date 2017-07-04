@@ -40,6 +40,7 @@ Partial Class frmRPDiagnostique
         InitializeComponent()
 
         ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
+        Me.AutoScroll = True
 
     End Sub
 End Class

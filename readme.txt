@@ -7,7 +7,11 @@ Date :
 #33449 : Sur la fiche de vérification du mano, le nom de l'inspecteur n'apparait pas
 #33448 : Pbl lors de la création d'un pulvé après controle
 #33451 : [reglage Pulve] : Lieu de sauvegarde des pdfs
-
+#33503 : [reglage Pulve] : Page de rapport
+#33498 : [reglage Pulve] : Page débit : agrandir, reduire, fermer
+#33496 : 	[reglage Pulve] : Identifiant Pulve obligatoire
+#33495 : 	[reglage Pulve] :Page Pulvé : o Pas de bouton pour agrandir la fenêtre
+#33494 : 	[reglage Pulve] : • Pas de bouton pour fermer, réduire la fenêtre
 
 Build : 20170512110000
 Version : 2.5.4 Lot5

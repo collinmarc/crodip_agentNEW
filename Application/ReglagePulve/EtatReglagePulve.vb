@@ -238,9 +238,28 @@ Public Class EtatReglagePulve
             If Not bDiagItemPCPresent Then
                 m_ods.Diagitem.AddDiagitemRow(m_oDiag.id, "", "", "P")
             End If
+            Dim strCumuldesErreurs As String
+            If m_oDiag.diagnosticHelp571.ErreurGlobalePRSRND.HasValue Or m_oDiag.diagnosticHelp571.erreurGlobaleDEB.HasValue Then
+                If m_oDiag.diagnosticHelp571.ErreurGlobalePRSRND.HasValue Then
+                    strCumuldesErreurs = m_oDiag.diagnosticHelp571.ErreurGlobalePRSRND
+                Else
+                    strCumuldesErreurs = m_oDiag.diagnosticHelp571.ErreurGlobaleDEBRND
+                End If
+            Else
+                strCumuldesErreurs = ""
+            End If
 
             'Synthese des mesures
-            m_ods.Synthese.AddSyntheseRow(m_oDiag.id, m_oDiag.syntheseErreurMoyenneMano, m_oDiag.syntheseErreurMaxiMano, m_oDiag.syntheseErreurDebitmetre, m_oDiag.syntheseErreurMoyenneCinemometre, m_oDiag.syntheseUsureMoyenneBuses, m_oDiag.syntheseNbBusesUsees, m_oDiag.synthesePerteChargeMoyenne, m_oDiag.synthesePerteChargeMaxi)
+            m_ods.Synthese.AddSyntheseRow(m_oDiag.id,
+                                          m_oDiag.syntheseErreurMoyenneMano,
+                                          m_oDiag.syntheseErreurMaxiMano,
+                                          m_oDiag.syntheseErreurDebitmetre,
+                                          m_oDiag.syntheseErreurMoyenneCinemometre,
+                                          m_oDiag.syntheseUsureMoyenneBuses,
+                                          m_oDiag.syntheseNbBusesUsees,
+                                          m_oDiag.synthesePerteChargeMoyenne,
+                                          m_oDiag.synthesePerteChargeMaxi,
+                                          strCumuldesErreurs)
 
             'Syntheses des mesures buses
             'Buses
@@ -345,6 +364,41 @@ Public Class EtatReglagePulve
                                                                     conclusion:=m_oDiag.diagnosticHelp5622.Resultat _
                                                                     )
             End If
+
+            'Feuille de Calcul
+            m_ods.CalculVolumeha.AddCalculVolumehaRow(LargeurPlantation:=m_oDiag.LargeurPlantation,
+                                                      Débit2:=m_oDiag.DebitMoyen2,
+                                                      DébitMoyen:=m_oDiag.DebitMoyenPM,
+                                                      DebitMoyen1:=m_oDiag.DebitMoyenConnu,
+                                                      Distance:=m_oDiag.Distance,
+                                                      Ecartement1:=m_oDiag.Ecartement1,
+                                                      Ecartement2:=m_oDiag.Ecartement2,
+                                                      EmplacementPriseAir:=m_oDiag.EmplacementPriseAir,
+                                                      Largeur:=m_oDiag.LargeurApp,
+                                                      NbBuses:=m_oDiag.NombreBuses,
+                                                      nbBusesDescente:=m_oDiag.NbreBusesParDescente,
+                                                      nbdescentes:=m_oDiag.NbreDescentes,
+                                                      nbreNiveauDescente:=m_oDiag.NbreNiveauParDescente,
+                                                      NbreNiveauxBuses:=m_oDiag.NombreNiveauxBuses,
+                                                      NumBusesUsees:=m_oDiag.lstBuseUsees,
+                                                      Pression2:=m_oDiag.Pression2,
+                                                      PressionConnue1:=m_oDiag.PressionConnue,
+                                                      PressionMesure:=m_oDiag.PressionDeMesure,
+                                                      PressionTravail:=m_oDiag.PressionTravail,
+                                                      PressionTravailmoinsPC:=m_oDiag.PressionTravailMoinsPC,
+                                                      Temps:=m_oDiag.Temps,
+                                                      Vitesse:=m_oDiag.Vitesse,
+                                                      Vitesse1:=m_oDiag.Vitesse1,
+                                                      Vitesse2:=m_oDiag.Vitesse2,
+                                                      VitesseReelle1:=m_oDiag.VitesseReelle1,
+                                                      VitesseReelle2:=m_oDiag.VitesseReelle2,
+                                                      VitesseRotation:=m_oDiag.VitesseRotation,
+                                                      VolEauHA1:=m_oDiag.VolEauHa1,
+                                                      VolEauHa2:=m_oDiag.VolEauHa2,
+                                                      VolHaPressionMesure:=m_oDiag.VolHaPM,
+                                                      VolHaPressionTravail:=m_oDiag.VolHaPT
+                                                      )
+
 
             bReturn = True
 

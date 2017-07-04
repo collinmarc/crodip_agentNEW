@@ -28,12 +28,12 @@ Partial Class frmRPDlgHelp552
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(378, 376)
         Me.ControlBox = False
         Me.Name = "frmRPDlgHelp552"
         Me.Text = "Form2"
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 End Class

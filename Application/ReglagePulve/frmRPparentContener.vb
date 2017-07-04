@@ -438,8 +438,8 @@ Public Class frmRPparentContener
     Private odlgHelp552 As frmRPDlgHelp552
     Private ofrmdiag As frmRPDiagnostique
     Private ofrmRecap As frmRPRecap
-    Private ofrmCalculs As RPCalculVolumeHa
-    Private ofrmRapport As RPRapport
+    Private ofrmCalculs As frmRPCalculVolumeHa
+    Private ofrmRapport As frmRPRapport
 
     Private m_nOldStep As Integer
 
@@ -448,7 +448,7 @@ Public Class frmRPparentContener
     End Sub
     Private Sub formLoad()
 
-
+        '        Me.AutoScroll = True
         miDemarer.Enabled = True
         tsbDemarer.Enabled = True
 
@@ -546,6 +546,7 @@ Public Class frmRPparentContener
         Try
             MdiChildren(m_nStep).Activate()
             MdiChildren(m_nStep).WindowState = FormWindowState.Maximized
+            MdiChildren(m_nStep).AutoScroll = True
             MdiChildren(m_nStep).Show()
 
             'Rafraichissement de la Liste des boutons
@@ -668,12 +669,12 @@ Public Class frmRPparentContener
             ofrmRecap.MdiParent = Me
 
 
-            ofrmCalculs = New RPCalculVolumeHa()
+            ofrmCalculs = New frmRPCalculVolumeHa()
             ofrmCalculs.setContexte(m_RPDiagnostic)
             ofrmCalculs.WindowState = FormWindowState.Maximized
             ofrmCalculs.MdiParent = Me
 
-            ofrmRapport = New RPRapport()
+            ofrmRapport = New frmRPRapport()
             ofrmRapport.setContexte(m_RPDiagnostic)
             ofrmRapport.WindowState = FormWindowState.Maximized
             ofrmRapport.MdiParent = Me
