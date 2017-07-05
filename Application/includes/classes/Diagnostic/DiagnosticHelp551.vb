@@ -174,13 +174,17 @@ Public Class DiagnosticHelp551
             m_REsultat2 = Value
         End Set
     End Property
-    Public Property ErreurMoyenne As Decimal
+    Public ReadOnly Property ErreurMoyenne As Decimal
         Get
-            Return m_ErreurMoyenne
+            If ErreurMoyenneSigned.HasValue Then
+                Return Math.Abs(ErreurMoyenneSigned.Value)
+            Else
+                Return 0
+            End If
         End Get
-        Set(ByVal Value As Decimal)
-            m_ErreurMoyenne = Value
-        End Set
+        '        Set(ByVal Value As Decimal)
+        'm_ErreurMoyenne = Value
+        '    End Set
     End Property
     Public Property ErreurMoyenneSigned As Decimal?
         Get
@@ -216,6 +220,18 @@ Public Class DiagnosticHelp551
                     Distance2 = CDec(strValue(3))
                     Temps2 = CDec(strValue(4))
                     VitesseLue2 = CDec(strValue(5))
+                    'Pour compatibilité avec les versions précédents ou la vitesse réelle n'était pas sauvegardée
+                    If strValue.Length > 7 Then 'NB : le dernier element était vide
+                        VitesseReelle1 = CDec(strValue(6))
+                        VitesseReelle2 = CDec(strValue(7))
+                        Ecart1 = CDec(strValue(8))
+                        Ecart2 = CDec(strValue(9))
+                        Resultat1 = strValue(10)
+                        Resultat2 = strValue(11)
+                        Resultat = strValue(12)
+                        ErreurMoyenneSigned = CDec(strValue(13))
+                    End If
+
                 Catch ex As Exception
                     CSDebug.dispError("DiagnosticHelp551.load ERR conversion (" & oDiagItem.itemValue & ") ERR " & ex.Message)
                 End Try
@@ -272,7 +288,7 @@ Public Class DiagnosticHelp551
         oDiagItem.id = id
         oDiagItem.idDiagnostic = idDiag
         oDiagItem.idItem = m_idItem
-        oDiagItem.itemValue = Distance1 & "|" & Temps1 & "|" & VitesseLue1 & "|" & Distance2 & "|" & Temps2 & "|" & VitesseLue2 & "|"
+        oDiagItem.itemValue = Distance1 & "|" & Temps1 & "|" & VitesseLue1 & "|" & Distance2 & "|" & Temps2 & "|" & VitesseLue2 & "|" & VitesseReelle1 & "|" & m_vitesseReelle2 & "|" & Ecart1 & "|" & Ecart2 & "|" & Resultat1 & "|" & Resultat2 & "|" & Resultat & "|" & ErreurMoyenneSigned
         Return oDiagItem
     End Function
     Public Function Delete() As Boolean
@@ -343,7 +359,7 @@ Public Class DiagnosticHelp551
                 VLueMoyenne = Math.Round((VitesseLue1 + VitesseLue2) / 2, 2)
                 VReelleMoyenne = Math.Round((VitesseReelle1 + VitesseReelle2) / 2, 2)
                 ErreurMoyenneSigned = Math.Round(((VLueMoyenne - VReelleMoyenne) / VReelleMoyenne) * 100, 2)
-                ErreurMoyenne = Math.Abs(ErreurMoyenneSigned.Value)
+                'ErreurMoyenne = Math.Abs(ErreurMoyenneSigned.Value)
                 If ErreurMoyenne > pTolerance Then
                     Resultat = "IMPRECISION"
                 Else

@@ -3609,7 +3609,7 @@ Public Class DiagnosticManagerTest
         oDiag.diagnosticHelp551.VitesseLue2 = 20.8
         oDiag.diagnosticHelp551.Ecart2 = 20.9
 
-        oDiag.diagnosticHelp551.ErreurMoyenne = 30.5
+        oDiag.diagnosticHelp551.ErreurMoyenneSigned = 30.5
 
         oDiag.diagnosticHelp5621.Distance1 = 30.5
         oDiag.diagnosticHelp5621.Temps1 = 30.6
@@ -3623,7 +3623,7 @@ Public Class DiagnosticManagerTest
         oDiag.diagnosticHelp5621.VitesseLue2 = 40.8
         oDiag.diagnosticHelp5621.Ecart2 = 40.9
 
-        oDiag.diagnosticHelp5621.ErreurMoyenne = 50.5
+        oDiag.diagnosticHelp5621.ErreurMoyenneSigned = 50.5
 
         'Les DiagItems ne sont pas utilisés dans le rapport de synthese
 

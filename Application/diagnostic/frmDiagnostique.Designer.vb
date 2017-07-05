@@ -430,15 +430,6 @@ Partial Class frmDiagnostique
         Me.help831_close = New System.Windows.Forms.Label()
         Me.help831_ecart = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label211 = New System.Windows.Forms.Label()
-        Me.popup_help_811 = New System.Windows.Forms.Panel()
-        Me.Panel123 = New System.Windows.Forms.Panel()
-        Me.help811_result = New System.Windows.Forms.Label()
-        Me.help811_fleche = New CRODIP_ControlLibrary.TBNumeric()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.help811_largeur = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help811_close = New System.Windows.Forms.Label()
         Me.GroupBox_diagnostic_833 = New System.Windows.Forms.GroupBox()
         Me.RadioButton_diagnostic_8334 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.RadioButton_diagnostic_8333 = New CRODIP_ControlLibrary.CtrlDiag2()
@@ -459,6 +450,15 @@ Partial Class frmDiagnostique
         Me.RadioButton_diagnostic_8311 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.RadioButton_diagnostic_8312 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.Label_diagnostic_83 = New System.Windows.Forms.Label()
+        Me.popup_help_811 = New System.Windows.Forms.Panel()
+        Me.Panel123 = New System.Windows.Forms.Panel()
+        Me.help811_result = New System.Windows.Forms.Label()
+        Me.help811_fleche = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.help811_largeur = New CRODIP_ControlLibrary.TBNumeric()
+        Me.help811_close = New System.Windows.Forms.Label()
         Me.Panel34 = New System.Windows.Forms.Panel()
         Me.GroupBox_diagnostic_817 = New System.Windows.Forms.GroupBox()
         Me.RadioButton_diagnostic_8172 = New CRODIP_ControlLibrary.CtrlDiag2()
@@ -950,13 +950,13 @@ Partial Class frmDiagnostique
         Me.Panel36.SuspendLayout
         Me.popup_help_831.SuspendLayout
         Me.Panel125.SuspendLayout
-        Me.popup_help_811.SuspendLayout
-        Me.Panel123.SuspendLayout
         Me.GroupBox_diagnostic_833.SuspendLayout
         Me.GroupBox_diagnostic_832.SuspendLayout
         Me.GroupBox_diagnostic_831.SuspendLayout
         CType(Me.ico_help_8314,System.ComponentModel.ISupportInitialize).BeginInit
         CType(Me.ico_help_8312,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.popup_help_811.SuspendLayout
+        Me.Panel123.SuspendLayout
         Me.Panel34.SuspendLayout
         Me.GroupBox_diagnostic_817.SuspendLayout
         Me.GroupBox_diagnostic_813.SuspendLayout
@@ -8291,104 +8291,6 @@ Partial Class frmDiagnostique
         Me.Label211.Text = "Ecart (%) ="
         Me.Label211.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
-        'popup_help_811
-        '
-        Me.popup_help_811.BackColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(123,Byte),Integer), CType(CType(191,Byte),Integer))
-        Me.popup_help_811.Controls.Add(Me.Panel123)
-        Me.popup_help_811.Location = New System.Drawing.Point(5, 467)
-        Me.popup_help_811.Name = "popup_help_811"
-        Me.popup_help_811.Size = New System.Drawing.Size(334, 152)
-        Me.popup_help_811.TabIndex = 18
-        Me.popup_help_811.Visible = false
-        '
-        'Panel123
-        '
-        Me.Panel123.BackColor = System.Drawing.Color.FromArgb(CType(CType(224,Byte),Integer), CType(CType(224,Byte),Integer), CType(CType(224,Byte),Integer))
-        Me.Panel123.Controls.Add(Me.help811_result)
-        Me.Panel123.Controls.Add(Me.help811_fleche)
-        Me.Panel123.Controls.Add(Me.Label15)
-        Me.Panel123.Controls.Add(Me.Label13)
-        Me.Panel123.Controls.Add(Me.Label14)
-        Me.Panel123.Controls.Add(Me.help811_largeur)
-        Me.Panel123.Controls.Add(Me.help811_close)
-        Me.Panel123.Location = New System.Drawing.Point(3, 3)
-        Me.Panel123.Name = "Panel123"
-        Me.Panel123.Size = New System.Drawing.Size(328, 146)
-        Me.Panel123.TabIndex = 0
-        '
-        'help811_result
-        '
-        Me.help811_result.Font = New System.Drawing.Font("Microsoft Sans Serif", 10!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.help811_result.ForeColor = System.Drawing.Color.Red
-        Me.help811_result.Location = New System.Drawing.Point(152, 88)
-        Me.help811_result.Name = "help811_result"
-        Me.help811_result.Size = New System.Drawing.Size(168, 16)
-        Me.help811_result.TabIndex = 30
-        Me.help811_result.Text = "IMPORTANTE"
-        Me.help811_result.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        '
-        'help811_fleche
-        '
-        Me.help811_fleche.ForceBindingOnTextChanged = false
-        Me.help811_fleche.Location = New System.Drawing.Point(160, 56)
-        Me.help811_fleche.Name = "help811_fleche"
-        Me.help811_fleche.Size = New System.Drawing.Size(100, 20)
-        Me.help811_fleche.TabIndex = 1
-        '
-        'Label15
-        '
-        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(125,Byte),Integer), CType(CType(192,Byte),Integer))
-        Me.Label15.Location = New System.Drawing.Point(32, 56)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(120, 16)
-        Me.Label15.TabIndex = 8
-        Me.Label15.Text = "Flèche (cm) ="
-        Me.Label15.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'Label13
-        '
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(125,Byte),Integer), CType(CType(192,Byte),Integer))
-        Me.Label13.Location = New System.Drawing.Point(8, 8)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(120, 16)
-        Me.Label13.TabIndex = 8
-        Me.Label13.Text = "Courbure (mesures) :"
-        Me.Label13.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'Label14
-        '
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(125,Byte),Integer), CType(CType(192,Byte),Integer))
-        Me.Label14.Location = New System.Drawing.Point(32, 32)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(120, 16)
-        Me.Label14.TabIndex = 8
-        Me.Label14.Text = "Largeur rampe (m) ="
-        Me.Label14.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'help811_largeur
-        '
-        Me.help811_largeur.ForceBindingOnTextChanged = false
-        Me.help811_largeur.Location = New System.Drawing.Point(160, 32)
-        Me.help811_largeur.Name = "help811_largeur"
-        Me.help811_largeur.Size = New System.Drawing.Size(100, 20)
-        Me.help811_largeur.TabIndex = 0
-        '
-        'help811_close
-        '
-        Me.help811_close.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.help811_close.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.help811_close.ForeColor = System.Drawing.Color.White
-        Me.help811_close.Image = CType(resources.GetObject("help811_close.Image"),System.Drawing.Image)
-        Me.help811_close.Location = New System.Drawing.Point(192, 112)
-        Me.help811_close.Name = "help811_close"
-        Me.help811_close.Size = New System.Drawing.Size(128, 24)
-        Me.help811_close.TabIndex = 2
-        Me.help811_close.Text = "     Valider le tableau"
-        Me.help811_close.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'GroupBox_diagnostic_833
         '
         Me.GroupBox_diagnostic_833.Controls.Add(Me.RadioButton_diagnostic_8334)
@@ -8789,6 +8691,104 @@ Partial Class frmDiagnostique
         Me.Label_diagnostic_83.Size = New System.Drawing.Size(331, 16)
         Me.Label_diagnostic_83.TabIndex = 13
         Me.Label_diagnostic_83.Text = "     Porte-jets / Diffuseurs"
+        '
+        'popup_help_811
+        '
+        Me.popup_help_811.BackColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(123,Byte),Integer), CType(CType(191,Byte),Integer))
+        Me.popup_help_811.Controls.Add(Me.Panel123)
+        Me.popup_help_811.Location = New System.Drawing.Point(5, 467)
+        Me.popup_help_811.Name = "popup_help_811"
+        Me.popup_help_811.Size = New System.Drawing.Size(334, 152)
+        Me.popup_help_811.TabIndex = 18
+        Me.popup_help_811.Visible = false
+        '
+        'Panel123
+        '
+        Me.Panel123.BackColor = System.Drawing.Color.FromArgb(CType(CType(224,Byte),Integer), CType(CType(224,Byte),Integer), CType(CType(224,Byte),Integer))
+        Me.Panel123.Controls.Add(Me.help811_result)
+        Me.Panel123.Controls.Add(Me.help811_fleche)
+        Me.Panel123.Controls.Add(Me.Label15)
+        Me.Panel123.Controls.Add(Me.Label13)
+        Me.Panel123.Controls.Add(Me.Label14)
+        Me.Panel123.Controls.Add(Me.help811_largeur)
+        Me.Panel123.Controls.Add(Me.help811_close)
+        Me.Panel123.Location = New System.Drawing.Point(3, 3)
+        Me.Panel123.Name = "Panel123"
+        Me.Panel123.Size = New System.Drawing.Size(328, 146)
+        Me.Panel123.TabIndex = 0
+        '
+        'help811_result
+        '
+        Me.help811_result.Font = New System.Drawing.Font("Microsoft Sans Serif", 10!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.help811_result.ForeColor = System.Drawing.Color.Red
+        Me.help811_result.Location = New System.Drawing.Point(152, 88)
+        Me.help811_result.Name = "help811_result"
+        Me.help811_result.Size = New System.Drawing.Size(168, 16)
+        Me.help811_result.TabIndex = 30
+        Me.help811_result.Text = "IMPORTANTE"
+        Me.help811_result.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        '
+        'help811_fleche
+        '
+        Me.help811_fleche.ForceBindingOnTextChanged = false
+        Me.help811_fleche.Location = New System.Drawing.Point(160, 56)
+        Me.help811_fleche.Name = "help811_fleche"
+        Me.help811_fleche.Size = New System.Drawing.Size(100, 20)
+        Me.help811_fleche.TabIndex = 1
+        '
+        'Label15
+        '
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(125,Byte),Integer), CType(CType(192,Byte),Integer))
+        Me.Label15.Location = New System.Drawing.Point(32, 56)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(120, 16)
+        Me.Label15.TabIndex = 8
+        Me.Label15.Text = "Flèche (cm) ="
+        Me.Label15.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'Label13
+        '
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(125,Byte),Integer), CType(CType(192,Byte),Integer))
+        Me.Label13.Location = New System.Drawing.Point(8, 8)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(120, 16)
+        Me.Label13.TabIndex = 8
+        Me.Label13.Text = "Courbure (mesures) :"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'Label14
+        '
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(125,Byte),Integer), CType(CType(192,Byte),Integer))
+        Me.Label14.Location = New System.Drawing.Point(32, 32)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(120, 16)
+        Me.Label14.TabIndex = 8
+        Me.Label14.Text = "Largeur rampe (m) ="
+        Me.Label14.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'help811_largeur
+        '
+        Me.help811_largeur.ForceBindingOnTextChanged = false
+        Me.help811_largeur.Location = New System.Drawing.Point(160, 32)
+        Me.help811_largeur.Name = "help811_largeur"
+        Me.help811_largeur.Size = New System.Drawing.Size(100, 20)
+        Me.help811_largeur.TabIndex = 0
+        '
+        'help811_close
+        '
+        Me.help811_close.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.help811_close.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.help811_close.ForeColor = System.Drawing.Color.White
+        Me.help811_close.Image = CType(resources.GetObject("help811_close.Image"),System.Drawing.Image)
+        Me.help811_close.Location = New System.Drawing.Point(192, 112)
+        Me.help811_close.Name = "help811_close"
+        Me.help811_close.Size = New System.Drawing.Size(128, 24)
+        Me.help811_close.TabIndex = 2
+        Me.help811_close.Text = "     Valider le tableau"
+        Me.help811_close.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel34
         '
@@ -14277,14 +14277,14 @@ Partial Class frmDiagnostique
         Me.popup_help_831.ResumeLayout(false)
         Me.Panel125.ResumeLayout(false)
         Me.Panel125.PerformLayout
-        Me.popup_help_811.ResumeLayout(false)
-        Me.Panel123.ResumeLayout(false)
-        Me.Panel123.PerformLayout
         Me.GroupBox_diagnostic_833.ResumeLayout(false)
         Me.GroupBox_diagnostic_832.ResumeLayout(false)
         Me.GroupBox_diagnostic_831.ResumeLayout(false)
         CType(Me.ico_help_8314,System.ComponentModel.ISupportInitialize).EndInit
         CType(Me.ico_help_8312,System.ComponentModel.ISupportInitialize).EndInit
+        Me.popup_help_811.ResumeLayout(false)
+        Me.Panel123.ResumeLayout(false)
+        Me.Panel123.PerformLayout
         Me.Panel34.ResumeLayout(false)
         Me.GroupBox_diagnostic_817.ResumeLayout(false)
         Me.GroupBox_diagnostic_813.ResumeLayout(false)
