@@ -59,6 +59,7 @@ Partial Class frmRPRapport
         '
         Me.lbSections.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbSections.CheckOnClick = True
         Me.lbSections.FormattingEnabled = True
         Me.lbSections.Items.AddRange(New Object() {"Contrôle du capteur de vitesse /DPAE", "Contrôle du capteur de vitesse /Controle de volume hectare", "Contrôle du débitmètre /DPAE", "Contrôle du débitmètre / Contrôle du volume hectare", "Synhtèse de la mesure du débit des buses", "Contrôle des pressions", "Contrôle du manomètre", "Défauts", "Commentaires", "Feuille de calcul"})
         Me.lbSections.Location = New System.Drawing.Point(15, 35)

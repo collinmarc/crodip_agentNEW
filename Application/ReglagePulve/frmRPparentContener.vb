@@ -442,7 +442,7 @@ Public Class frmRPparentContener
     Private ofrmRapport As frmRPRapport
 
     Private m_nOldStep As Integer
-
+  
     Private Sub parentContener_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         formLoad()
     End Sub

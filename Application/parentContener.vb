@@ -199,7 +199,7 @@ Public Class parentContener
         globFormParent = Me
         Load_CRODIPINDIGO()
     End Sub
-    Private Sub Load_CRODIPINDIGO()
+    Protected Overridable Sub Load_CRODIPINDIGO()
         loadSplash()
         Application.CurrentCulture = New System.Globalization.CultureInfo("fr-FR")
         CSEnvironnement.createFolders()
