@@ -238,7 +238,7 @@ Partial Class Diagnostic_dlghelp552
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.btnAnnuler, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.btnValider, 0, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(121, 338)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(130, 343)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -295,7 +295,7 @@ Partial Class Diagnostic_dlghelp552
         Me.pnl552.Controls.Add(Me.TableLayoutPanel1)
         Me.pnl552.Location = New System.Drawing.Point(5, 5)
         Me.pnl552.Name = "pnl552"
-        Me.pnl552.Size = New System.Drawing.Size(370, 387)
+        Me.pnl552.Size = New System.Drawing.Size(379, 392)
         Me.pnl552.TabIndex = 44
         '
         'Label86
@@ -1569,11 +1569,12 @@ Partial Class Diagnostic_dlghelp552
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(380, 397)
+        Me.ClientSize = New System.Drawing.Size(390, 403)
         Me.Controls.Add(Me.pnl552)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Diagnostic_dlghelp552"
-        Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Diagnostic_help552"

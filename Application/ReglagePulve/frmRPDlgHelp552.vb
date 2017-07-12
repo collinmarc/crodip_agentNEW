@@ -25,7 +25,7 @@
 
     End Sub
     Protected Overrides Sub formload() Implements IfrmCRODIP.formLoad
-        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
+        '        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
         Call AjoutLabeltitre()
         btnAnnuler.Visible = False
         btnValider.Visible = False
@@ -63,6 +63,15 @@
 
     End Sub
 
+    Private Sub frmRPDlgHelp552_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        CSDebug.dispInfo("frmRPDlgHelp552_Resize")
+        CSDebug.dispInfo("frmRPDlgHelp552_Resize : BorderStyle=" & Me.FormBorderStyle)
+        CSDebug.dispInfo("frmRPDlgHelp552_Resize : ControleBox=" & Me.ControlBox)
+        CSDebug.dispInfo("frmRPDlgHelp552_Resize : Maxi=" & Me.MaximizeBox)
+
+    End Sub
+
+ 
     Private Sub frmRPDlgHelp552_TextChanged(sender As Object, e As EventArgs) Handles Me.TextChanged
         'If m_Labeltitre IsNot Nothing Then
         '    m_Labeltitre.Text = Me.Text

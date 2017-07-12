@@ -26,11 +26,12 @@ Partial Class frmRPDlgHelp552
         '
         'frmRPDlgHelp552
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(378, 376)
-        Me.ControlBox = False
+        Me.ClientSize = New System.Drawing.Size(388, 403)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = True
+        Me.MinimizeBox = True
         Me.Name = "frmRPDlgHelp552"
         Me.Text = "Form2"
         Me.ResumeLayout(False)

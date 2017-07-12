@@ -749,6 +749,7 @@ Public Class diagnostic_infosInspecteur
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(1008, 679)
+        Me.ControlBox = False
         Me.Controls.Add(Me.btn_finalisationDiag_quitter)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.btn_finalisationDiag_imprimer)
@@ -756,6 +757,7 @@ Public Class diagnostic_infosInspecteur
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox5)
+        Me.MinimizeBox = False
         Me.Name = "diagnostic_infosInspecteur"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "diagnostic_infosInspecteur"
@@ -877,9 +879,6 @@ Public Class diagnostic_infosInspecteur
 
     End Sub
     Private Sub diagnostic_infosInspecteur_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'Propriété a mettre obligatoirement par programme
-        Me.WindowState = FormWindowState.Maximized
-        Me.ControlBox = False
         ' On charge les buses usées
         Try
             listBusesUsed.Items.Clear()

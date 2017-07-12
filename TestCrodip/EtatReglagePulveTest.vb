@@ -784,7 +784,7 @@ Imports System.IO
         oDiag.diagnosticHelp551.Temps2 = 220
         oDiag.diagnosticHelp551.Ecart2 = 230
         oDiag.diagnosticHelp551.VitesseReelle2 = 240
-        oDiag.diagnosticHelp551.ErreurMoyenne = 250
+        'oDiag.diagnosticHelp551.ErreurMoyenne = 250
         oDiag.diagnosticHelp551.Resultat = "IMPRECISION"
 
         'Capteur de vitesse 5621
@@ -799,7 +799,7 @@ Imports System.IO
         oDiag.diagnosticHelp5621.Temps2 = 2200
         oDiag.diagnosticHelp5621.Ecart2 = 2300
         oDiag.diagnosticHelp5621.VitesseReelle2 = 2400
-        oDiag.diagnosticHelp5621.ErreurMoyenne = 2500
+        'oDiag.diagnosticHelp5621.ErreurMoyenne = 2500
         oDiag.diagnosticHelp5621.Resultat = "OK"
 
     End Sub

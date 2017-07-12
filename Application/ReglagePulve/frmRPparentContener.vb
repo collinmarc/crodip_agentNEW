@@ -413,6 +413,7 @@ Public Class frmRPparentContener
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
         Me.Menu = Me.MainMenu1
+        Me.MinimizeBox = False
         Me.Name = "frmRPparentContener"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip"

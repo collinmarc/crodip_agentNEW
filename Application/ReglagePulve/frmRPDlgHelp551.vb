@@ -64,5 +64,12 @@
             m_oDiag.RemoveDiagItem(New DiagnosticItem(m_oDiag.id, "551", "3", "", "B"))
         End If
     End Sub
+    Private Sub frmRPDlgHelp551_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        CSDebug.dispInfo("frmRPDlgHelp551_Resize")
+        CSDebug.dispInfo("frmRPDlgHelp551_Resize : BorderStyle=" & Me.FormBorderStyle)
+        CSDebug.dispInfo("frmRPDlgHelp551_Resize : ControleBox=" & Me.ControlBox)
+        CSDebug.dispInfo("frmRPDlgHelp551_Resize : Maxi=" & Me.MaximizeBox)
+
+    End Sub
 
 End Class

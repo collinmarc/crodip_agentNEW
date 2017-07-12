@@ -1,5 +1,5 @@
 Public Class gestion_agent
-    Inherits System.Windows.Forms.Form
+    Inherits frmCRODIP
 
 #Region " Code généré par le Concepteur Windows Form "
 

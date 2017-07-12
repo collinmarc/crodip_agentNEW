@@ -6,6 +6,7 @@
         Me.WindowState = FormWindowState.Maximized
         'Me.ControlBox = False
         '--
+        Me.MinimizeBox = False
     End Sub
 
     Private Sub frmCRODIP_Load(sender As Object, e As EventArgs) Handles Me.Load

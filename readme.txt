@@ -1,5 +1,10 @@
 TRUNK
 
+Build :20170712120000
+Version: 2.5.4 Lot5
+Date : 2017/07/04
+#33768 : Boutons Minimize, Maximise
+
 Build :20170704120000
 Version: 2.5.4 Lot5
 Date : 2017/07/04
