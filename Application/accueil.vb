@@ -1059,8 +1059,8 @@ Public Class accueil
         'tabControl_clientele
         '
         Me.tabControl_clientele.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.tabControl_clientele.Controls.Add(Me.panel_clientele_ficheClient)
         Me.tabControl_clientele.Controls.Add(Me.panel_ListeDesControles)
+        Me.tabControl_clientele.Controls.Add(Me.panel_clientele_ficheClient)
         Me.tabControl_clientele.ForeColor = System.Drawing.SystemColors.ControlText
         Me.tabControl_clientele.Location = New System.Drawing.Point(4, 22)
         Me.tabControl_clientele.Name = "tabControl_clientele"
