@@ -1957,7 +1957,7 @@
       <LibelleLong>Il n'existe aucun tamis au niveau de l'orifice de remplissage de la cuve de bouillie</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
+      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1991,10 +1991,10 @@
       <LibelleLong>Il n'est pas possible d'assurer le remplissage du pulvé depuis la pompe de celui-ci sans risque de retour vers le milieu ext.</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
+      <NiveauCauseMax>1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
-      <Cause3>false</Cause3>
+      <Cause3>true</Cause3>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>4.4.2.0</Code>
@@ -2497,7 +2497,7 @@
     <ParamCtrlDiag>
       <Code>5.4.2.2</Code>
       <Libelle>Imprécision faible</Libelle>
-      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché est comprise entre 0,1 et 0,2 bar (entre 1et 2 bar) et entre 5 et 10% (si > 2 bar) ou écart constant et etlt; 0,5 bar ou etlt; 1 bar pour une plage de P >= 10 bar</LibelleLong>
+      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché est comprise entre 0,1 et 0,2 bar (entre 1et 2 bar) et entre 5 et 10% (si &gt; 2 bar) ou écart constant et &lt; 0,5 bar ou &lt; 1 bar pour une plage de P &gt;= 10 bar</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>

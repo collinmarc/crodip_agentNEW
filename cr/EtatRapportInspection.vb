@@ -340,6 +340,7 @@ Public Class EtatRapportInspection
     Public Function genereDSDefauts() As Boolean
         Dim pFichierParametrage As String
         Dim bReturn As Boolean
+        Dim dOrdre As Decimal
         Try
             If m_ods Is Nothing Then
                 m_ods = New ds_Etat_RI()
@@ -351,7 +352,7 @@ Public Class EtatRapportInspection
                 'Parours de la liste des params lus
                 For Each oParam As CRODIP_ControlLibrary.ParamCtrlDiag In olst.ListeParam
                     If oParam.DefaultCategorie <> CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oParam.Actif Then
-                        Dim dOrdre As Decimal
+                        dOrdre = 0
                         Dim npos1 As Integer = oParam.Code.IndexOf(".")
                         If npos1 > 0 Then
                             'Il y a au moins un .
@@ -383,6 +384,12 @@ Public Class EtatRapportInspection
                         m_ods.Defauts.AddDefautsRow(oParam.Code, oParam.Libelle, dOrdre, nNiveau)
                     End If
                 Next
+                'Pour pallier à un bug de pagination il faut avoir aumoins 312 Enr !!!
+                While m_ods.Defauts.Rows.Count <= 312
+                    m_ods.Defauts.AddDefautsRow("", "test", dOrdre, 3)
+                    'les défauts marqués test seront imprimés en Blanc/blanc
+                    dOrdre = dOrdre + 1
+                End While
                 bReturn = True
             Else
                 bReturn = False
