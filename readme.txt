@@ -1,5 +1,10 @@
 TRUNK
 
+Build :
+Version: 2.5.4 Lot5
+Date : 2017/07/xx
+#33802 : Recherche Client : plantage
+
 Build :20170712120000
 Version: 2.5.4 Lot5
 Date : 2017/07/04

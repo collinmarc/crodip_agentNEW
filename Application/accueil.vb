@@ -3315,7 +3315,6 @@ Public Class accueil
         Dim intCount As Decimal = 0
         Dim oExploit As Exploitation
 
-        CSDebug.dispInfo("AfficheListeExploitation")
         list_clients.Items.Clear()
         For Each oExploit In pColExploit
             'si l'affichage est en mode alerte
@@ -3408,13 +3407,17 @@ Public Class accueil
             'JE Recréé la liste sotable des pulvés (je ne sais pas pourquoi je dois la recrer)
             m_BindingListOfPulve = New SortableBindingList(Of Pulverisateur)(lstPulverisateurs)
             'Et donc j'affecte cette liste du DataGridView
-            dgvPulveExploit.DataSource = m_BindingListOfPulve
+            'dgvPulveExploit.DataSource = Nothing
+            dgvPulveExploit.Rows.Clear()
             dgvPulveExploit.ClearSelection()
+            dgvPulveExploit.DataSource = m_BindingListOfPulve
+            dgvPulveExploit.Refresh()
+
             btn_ficheClient_diagnostic_nouveau.Enabled = False
             btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
 
         Catch ex As Exception
-            CSDebug.dispError("Accueil:AfficheListePulvesExploitation ERR: " & ex.Message.ToString)
+            CSDebug.dispWarn("Accueil:AfficheListePulvesExploitation ERR: " & ex.Message.ToString)
         End Try
 
     End Sub
@@ -3807,18 +3810,20 @@ Public Class accueil
         Dim arrBusesEtalon As List(Of Buse) = BuseManager.getBusesEtalonByStructureId(agentCourant.idStructure, True)
         For Each tmpBuseEtalon As Buse In arrBusesEtalon
             Try
-                Dim tmpDateAchatBuseEtalon As Date = CSDate.FromCrodipString(tmpBuseEtalon.dateAchat)
-                Dim tmpCompareBuseEtalonAlerte As Integer = tmpDateAchatBuseEtalon.CompareTo(DateAdd(DateInterval.Month, -33, Now))
-                Dim tmpCompareBuseEtalon As Integer = tmpDateAchatBuseEtalon.CompareTo(DateAdd(DateInterval.Month, -36, Now))
-                If tmpCompareBuseEtalon < 1 Then ' Plus valable
-                    nbAlertes_Buse_out = nbAlertes_Buse_out + 1
-                    ' On bloque la buse
-                    If tmpBuseEtalon.etat = True Then
-                        tmpBuseEtalon.etat = False
-                        BuseManager.save(tmpBuseEtalon)
+                If Not String.IsNullOrEmpty(tmpBuseEtalon.dateAchat) Then
+                    Dim tmpDateAchatBuseEtalon As Date = CSDate.FromCrodipString(tmpBuseEtalon.dateAchat)
+                    Dim tmpCompareBuseEtalonAlerte As Integer = tmpDateAchatBuseEtalon.CompareTo(DateAdd(DateInterval.Month, -33, Now))
+                    Dim tmpCompareBuseEtalon As Integer = tmpDateAchatBuseEtalon.CompareTo(DateAdd(DateInterval.Month, -36, Now))
+                    If tmpCompareBuseEtalon < 1 Then ' Plus valable
+                        nbAlertes_Buse_out = nbAlertes_Buse_out + 1
+                        ' On bloque la buse
+                        If tmpBuseEtalon.etat = True Then
+                            tmpBuseEtalon.etat = False
+                            BuseManager.save(tmpBuseEtalon)
+                        End If
+                    ElseIf tmpCompareBuseEtalonAlerte < 1 Then ' Alerte
+                        nbAlertes_Buse_alerte = nbAlertes_Buse_alerte + 1
                     End If
-                ElseIf tmpCompareBuseEtalonAlerte < 1 Then ' Alerte
-                    nbAlertes_Buse_alerte = nbAlertes_Buse_alerte + 1
                 End If
             Catch ex As Exception
                 CSDebug.dispError("Vérification des alertes sur les buses étalons : " & ex.Message.ToString)
