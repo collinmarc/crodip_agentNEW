@@ -449,49 +449,49 @@ Module DiagnosticFactureManager
                 End If
 
                 If Not curObject.factureReference Is Nothing Then
-                    paramsQuery = paramsQuery & " , `factureReference`='" & oCSDB.secureString(curObject.factureReference) & "'"
+                    paramsQuery = paramsQuery & " , `factureReference`='" & CSDb.secureString(curObject.factureReference) & "'"
                 End If
                 If Not curObject.factureDate Is Nothing Then
-                    paramsQuery = paramsQuery & " , `factureDate`='" & oCSDB.secureString(curObject.factureDate) & "'"
+                    paramsQuery = paramsQuery & " , `factureDate`='" & CSDb.secureString(curObject.factureDate) & "'"
                 End If
                 If Not curObject.factureTotal Is Nothing Then
-                    paramsQuery = paramsQuery & " , `factureTotal`='" & oCSDB.secureString(curObject.factureTotal) & "'"
+                    paramsQuery = paramsQuery & " , `factureTotal`='" & CSDb.secureString(curObject.factureTotal) & "'"
                 End If
                 If Not curObject.emetteurOrganisme Is Nothing Then
-                    paramsQuery = paramsQuery & " , `emetteurOrganisme`='" & oCSDB.secureString(curObject.emetteurOrganisme) & "'"
+                    paramsQuery = paramsQuery & " , `emetteurOrganisme`='" & CSDb.secureString(curObject.emetteurOrganisme) & "'"
                 End If
                 If Not curObject.emetteurOrganismeAdresse Is Nothing Then
-                    paramsQuery = paramsQuery & " , `emetteurOrganismeAdresse`='" & oCSDB.secureString(curObject.emetteurOrganismeAdresse) & "'"
+                    paramsQuery = paramsQuery & " , `emetteurOrganismeAdresse`='" & CSDb.secureString(curObject.emetteurOrganismeAdresse) & "'"
                 End If
                 If Not curObject.emetteurOrganismeCpVille Is Nothing Then
-                    paramsQuery = paramsQuery & " , `emetteurOrganismeCpVille`='" & oCSDB.secureString(curObject.emetteurOrganismeCpVille) & "'"
+                    paramsQuery = paramsQuery & " , `emetteurOrganismeCpVille`='" & CSDb.secureString(curObject.emetteurOrganismeCpVille) & "'"
                 End If
                 If Not curObject.emetteurOrganismeTelFax Is Nothing Then
-                    paramsQuery = paramsQuery & " , `emetteurOrganismeTelFax`='" & oCSDB.secureString(curObject.emetteurOrganismeTelFax) & "'"
+                    paramsQuery = paramsQuery & " , `emetteurOrganismeTelFax`='" & CSDb.secureString(curObject.emetteurOrganismeTelFax) & "'"
                 End If
                 If Not curObject.emetteurOrganismeSiren Is Nothing Then
-                    paramsQuery = paramsQuery & " , `emetteurOrganismeSiren`='" & oCSDB.secureString(curObject.emetteurOrganismeSiren) & "'"
+                    paramsQuery = paramsQuery & " , `emetteurOrganismeSiren`='" & CSDb.secureString(curObject.emetteurOrganismeSiren) & "'"
                 End If
                 If Not curObject.emetteurOrganismeTva Is Nothing Then
-                    paramsQuery = paramsQuery & " , `emetteurOrganismeTva`='" & oCSDB.secureString(curObject.emetteurOrganismeTva) & "'"
+                    paramsQuery = paramsQuery & " , `emetteurOrganismeTva`='" & CSDb.secureString(curObject.emetteurOrganismeTva) & "'"
                 End If
                 If Not curObject.emetteurOrganismeRcs Is Nothing Then
-                    paramsQuery = paramsQuery & " , `emetteurOrganismeRcs`='" & oCSDB.secureString(curObject.emetteurOrganismeRcs) & "'"
+                    paramsQuery = paramsQuery & " , `emetteurOrganismeRcs`='" & CSDb.secureString(curObject.emetteurOrganismeRcs) & "'"
                 End If
                 If Not curObject.recepteurRaisonSociale Is Nothing Then
-                    paramsQuery = paramsQuery & " , `recepteurRaisonSociale`='" & oCSDB.secureString(curObject.recepteurRaisonSociale) & "'"
+                    paramsQuery = paramsQuery & " , `recepteurRaisonSociale`='" & CSDb.secureString(curObject.recepteurRaisonSociale) & "'"
                 End If
                 If Not curObject.recepteurProprio Is Nothing Then
-                    paramsQuery = paramsQuery & " , `recepteurProprio`='" & oCSDB.secureString(curObject.recepteurProprio) & "'"
+                    paramsQuery = paramsQuery & " , `recepteurProprio`='" & CSDb.secureString(curObject.recepteurProprio) & "'"
                 End If
                 If Not curObject.recepteurCpVille Is Nothing Then
-                    paramsQuery = paramsQuery & " , `recepteurCpVille`='" & oCSDB.secureString(curObject.recepteurCpVille) & "'"
+                    paramsQuery = paramsQuery & " , `recepteurCpVille`='" & CSDb.secureString(curObject.recepteurCpVille) & "'"
                 End If
                 If Not curObject.dateModificationAgent Is Nothing Then
-                    paramsQuery = paramsQuery & " , `dateModificationAgent`='" & oCSDB.secureString(curObject.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDb.secureString(curObject.dateModificationAgent) & "'"
                 End If
                 If Not curObject.dateModificationCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & oCSDB.secureString(curObject.dateModificationCrodip) & "'"
+                    paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDb.secureString(curObject.dateModificationCrodip) & "'"
                 End If
 
                 ' On finalise la requete et en l'execute

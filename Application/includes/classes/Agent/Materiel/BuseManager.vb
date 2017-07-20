@@ -137,7 +137,7 @@ Public Class BuseManager
                 End If
                 paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`idStructure`=" & objBuseEtalon.idStructure & ""
                 If Not objBuseEtalon.couleur Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`couleur`='" & oCSDb.secureString(objBuseEtalon.couleur) & "'"
+                    paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`couleur`='" & CSDb.secureString(objBuseEtalon.couleur) & "'"
                 End If
                 paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`pressionEtalonnage`='" & objBuseEtalon.pressionEtalonnage & "'"
                 paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`debitEtalonnage`='" & objBuseEtalon.debitEtalonnage & "'"
@@ -351,25 +351,24 @@ Public Class BuseManager
                 oCsdb = New CSDb(True)
                 bddCommande = oCsdb.getConnection().CreateCommand()
                 bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE idStructure=" & pIdStructure & " AND isSupprime=" & True & " ORDER BY dateSuppression DESC"
-            End If
-            oDataReader = bddCommande.ExecuteReader
-            ' Puis on les parcours
-            Dim i As Integer = 0
-            While oDataReader.Read()
+                oDataReader = bddCommande.ExecuteReader
+                ' Puis on les parcours
+                Dim i As Integer = 0
+                While oDataReader.Read()
 
-                ' On remplit notre tableau
-                Dim oBuse As New Buse
-                Dim tmpColId As Integer = 0
-                While tmpColId < oDataReader.FieldCount()
-                    If Not oDataReader.IsDBNull(tmpColId) Then
-                        oBuse.Fill(oDataReader.GetName(tmpColId), oDataReader.GetValue(tmpColId))
-                    End If
-                    tmpColId = tmpColId + 1
+                    ' On remplit notre tableau
+                    Dim oBuse As New Buse
+                    Dim tmpColId As Integer = 0
+                    While tmpColId < oDataReader.FieldCount()
+                        If Not oDataReader.IsDBNull(tmpColId) Then
+                            oBuse.Fill(oDataReader.GetName(tmpColId), oDataReader.GetValue(tmpColId))
+                        End If
+                        tmpColId = tmpColId + 1
+                    End While
+                    colReturn.Add(oBuse)
+
                 End While
-                colReturn.Add(oBuse)
-
-            End While
-
+            End If
         Catch ex As Exception
             CSDebug.dispError("BuseManager.GetMaterielSupprimes Error" & ex.Message)
 

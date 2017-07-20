@@ -311,49 +311,49 @@ Public Class StructureManager
             End If
 
             If Not objStructure.idCrodip Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`idCrodip`='" & oCSDb.secureString(objStructure.idCrodip) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`idCrodip`='" & CSDb.secureString(objStructure.idCrodip) & "'"
             End If
             If Not objStructure.nom Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`nom`='" & oCSDb.secureString(objStructure.nom) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`nom`='" & CSDb.secureString(objStructure.nom) & "'"
             End If
             If Not objStructure.type Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`type`='" & oCSDb.secureString(objStructure.type) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`type`='" & CSDb.secureString(objStructure.type) & "'"
             End If
             If Not objStructure.nomResponsable Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`nomResponsable`='" & oCSDb.secureString(objStructure.nomResponsable) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`nomResponsable`='" & CSDb.secureString(objStructure.nomResponsable) & "'"
             End If
             If Not objStructure.nomContact Is Nothing And objStructure.nomContact <> "" Then
-                paramsQuery = paramsQuery & " , `Structure`.`nomContact`='" & oCSDb.secureString(objStructure.nomContact) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`nomContact`='" & CSDb.secureString(objStructure.nomContact) & "'"
             End If
             If Not objStructure.prenomContact Is Nothing And objStructure.prenomContact <> "" Then
-                paramsQuery = paramsQuery & " , `Structure`.`prenomContact`='" & oCSDb.secureString(objStructure.prenomContact) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`prenomContact`='" & CSDb.secureString(objStructure.prenomContact) & "'"
             End If
             If Not objStructure.adresse Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`adresse`='" & oCSDb.secureString(objStructure.adresse) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`adresse`='" & CSDb.secureString(objStructure.adresse) & "'"
             End If
             If Not objStructure.codePostal Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`codePostal`='" & oCSDb.secureString(objStructure.codePostal) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`codePostal`='" & CSDb.secureString(objStructure.codePostal) & "'"
             End If
             If Not objStructure.commune Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`commune`='" & oCSDb.secureString(objStructure.commune) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`commune`='" & CSDb.secureString(objStructure.commune) & "'"
             End If
             If Not objStructure.codeInsee Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`codeInsee`='" & oCSDb.secureString(objStructure.codeInsee) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`codeInsee`='" & CSDb.secureString(objStructure.codeInsee) & "'"
             End If
             If Not objStructure.telephoneFixe Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`telephoneFixe`='" & oCSDb.secureString(objStructure.telephoneFixe) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`telephoneFixe`='" & CSDb.secureString(objStructure.telephoneFixe) & "'"
             End If
             If Not objStructure.telephonePortable Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`telephonePortable`='" & oCSDb.secureString(objStructure.telephonePortable) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`telephonePortable`='" & CSDb.secureString(objStructure.telephonePortable) & "'"
             End If
             If Not objStructure.telephoneFax Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`telephoneFax`='" & oCSDb.secureString(objStructure.telephoneFax) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`telephoneFax`='" & CSDb.secureString(objStructure.telephoneFax) & "'"
             End If
             If Not objStructure.eMail Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`eMail`='" & oCSDb.secureString(objStructure.eMail) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`eMail`='" & CSDb.secureString(objStructure.eMail) & "'"
             End If
             If Not objStructure.commentaire Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`commentaire`='" & oCSDb.secureString(objStructure.commentaire) & "'"
+                paramsQuery = paramsQuery & " , `Structure`.`commentaire`='" & CSDb.secureString(objStructure.commentaire) & "'"
             End If
             If Not objStructure.dateModificationAgent Is Nothing Then
                 paramsQuery = paramsQuery & " , `Structure`.`dateModificationAgent`='" & CSDate.mysql2access(objStructure.dateModificationAgent) & "'"

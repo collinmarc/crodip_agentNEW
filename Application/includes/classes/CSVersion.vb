@@ -1,18 +1,14 @@
 Module CSVersion
 
-    Public Function getWSVersion()
+    Public Function getWSVersion() As String()
         Dim result(2) As String
 
         Try
             ' déclarations
-            CSDebug.dispInfo("getWSVersion - Declaration")
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            CSDebug.dispInfo("getWSVersion - Apres instanciation")
             Dim objWSCrodip_response As Object
             ' Appel au WS
-            CSDebug.dispInfo("getWSVersion - On envoi la requete")
             Dim codeResponse As Integer = objWSCrodip.GetVersionLogicielAgent(objWSCrodip_response)
-            CSDebug.dispInfo("getWSVersion - On l'a bien reçue (" & codeResponse & ")")
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet

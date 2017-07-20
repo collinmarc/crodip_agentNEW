@@ -118,7 +118,7 @@ Module PrestationCategorieManager
                     Dim paramsQuery As String = ""
 
                     If Not curObject.description Is Nothing Then
-                        paramsQuery = paramsQuery & " `libelle`='" & dbLink.secureString(curObject.description) & "'"
+                        paramsQuery = paramsQuery & " `libelle`='" & CSDb.secureString(curObject.description) & "'"
                     End If
                     If Not curObject.dateModificationAgent Is Nothing Then
                         paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(curObject.dateModificationAgent) & "'"
