@@ -832,6 +832,7 @@ Partial Class frmDiagnostique
         Me.RadioButton_diagnostic_12310 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.RadioButton_diagnostic_12312 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.Label_diagnostic_12 = New System.Windows.Forms.Label()
+        Me.Label_diagnostic_124 = New System.Windows.Forms.Label()
         Me.ContextMenuStrip1.SuspendLayout
         CType(Me.PictureBox2,System.ComponentModel.ISupportInitialize).BeginInit
         CType(Me.Pctb_calc,System.ComponentModel.ISupportInitialize).BeginInit
@@ -13411,6 +13412,7 @@ Partial Class frmDiagnostique
         'Panel16
         '
         Me.Panel16.BackColor = System.Drawing.Color.FromArgb(CType(CType(234,Byte),Integer), CType(CType(234,Byte),Integer), CType(CType(236,Byte),Integer))
+        Me.Panel16.Controls.Add(Me.Label_diagnostic_124)
         Me.Panel16.Controls.Add(Me.GroupBox_diagnostic_1241)
         Me.Panel16.Controls.Add(Me.GroupBox_diagnostic_1222)
         Me.Panel16.Controls.Add(Me.Label_diagnostic_122)
@@ -14141,6 +14143,20 @@ Partial Class frmDiagnostique
         Me.Label_diagnostic_12.Size = New System.Drawing.Size(996, 24)
         Me.Label_diagnostic_12.TabIndex = 20
         Me.Label_diagnostic_12.Text = "     12. Accessoires"
+        '
+        'Label_diagnostic_124
+        '
+        Me.Label_diagnostic_124.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left)  _
+            Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
+        Me.Label_diagnostic_124.Font = New System.Drawing.Font("Microsoft Sans Serif", 10!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label_diagnostic_124.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2,Byte),Integer), CType(CType(129,Byte),Integer), CType(CType(198,Byte),Integer))
+        Me.Label_diagnostic_124.Image = CType(resources.GetObject("Label_diagnostic_124.Image"),System.Drawing.Image)
+        Me.Label_diagnostic_124.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.Label_diagnostic_124.Location = New System.Drawing.Point(4, 228)
+        Me.Label_diagnostic_124.Name = "Label_diagnostic_124"
+        Me.Label_diagnostic_124.Size = New System.Drawing.Size(311, 16)
+        Me.Label_diagnostic_124.TabIndex = 17
+        Me.Label_diagnostic_124.Text = "     Accessoires de sécurité"
         '
         'frmDiagnostique
         '
@@ -15245,4 +15261,5 @@ End Sub
 
     End Sub
     Friend WithEvents ico_help12323 As System.Windows.Forms.PictureBox
+    Friend WithEvents Label_diagnostic_124 As System.Windows.Forms.Label
 End Class

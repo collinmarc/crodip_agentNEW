@@ -616,17 +616,54 @@ Public Class frmRPparentContener
             pulverisateurCourant.anneeAchat = 1974
             pulverisateurCourant.type = "Cultures basses"
             pulverisateurCourant.categorie = "Rampe"
-            pulverisateurCourant.largeur = "1"
+            pulverisateurCourant.largeur = "3.5"
             pulverisateurCourant.attelage = "PORTE"
             pulverisateurCourant.pulverisation = "Pneumatique"
             pulverisateurCourant.capacite = "300"
             pulverisateurCourant.regulation = "DPM"
             pulverisateurCourant.buseType = "BUSES A FENTE"
             pulverisateurCourant.buseFonctionnement = "STANDARD"
+            pulverisateurCourant.largeurPlantation = "25"
+            pulverisateurCourant.buseNbniveaux = "2"
+            pulverisateurCourant.nombreBuses = "5"
+
+
 
             'Création des objets de references
             m_RPDiagnostic.SetProprietaire(clientCourant)
             m_RPDiagnostic.setPulverisateur(pulverisateurCourant)
+
+            m_RPDiagnostic.VitesseRotation = "1000"
+            m_RPDiagnostic.NbreDescentes = "5"
+            m_RPDiagnostic.NbreBusesParDescente = "10"
+            m_RPDiagnostic.NbreNiveauParDescente = "2"
+            m_RPDiagnostic.EmplacementPriseAir = True
+
+            m_RPDiagnostic.diagnosticHelp551.VitesseReelle1 = 5.5
+            m_RPDiagnostic.diagnosticHelp551.VitesseReelle1 = 6.7
+            m_RPDiagnostic.pulverisateurLargeurPlantation = 25
+            m_RPDiagnostic.manometrePressionTravail = 3.5
+            m_RPDiagnostic.buseDebitMoyenPM = 2.8
+            m_RPDiagnostic.diagnosticHelp551.VitesseReelle1 = 5.5
+            m_RPDiagnostic.diagnosticHelp551.VitesseReelle2 = 6.7
+            m_RPDiagnostic.pulverisateurLargeur = 25
+            For nlot As Integer = 1 To 2
+                Dim oDiagbuse As New DiagnosticBuses
+                oDiagbuse.idLot = nlot
+                For nBuse As Integer = 1 To 4
+                    Dim oDiagBuseDet As DiagnosticBusesDetail = New DiagnosticBusesDetail()
+                    oDiagBuseDet.idLot = nlot
+                    oDiagBuseDet.idBuse = nBuse
+                    oDiagBuseDet.debit = 2.8
+                    oDiagbuse.diagnosticBusesDetail.Liste.Add(oDiagBuseDet)
+                Next
+
+                oDiagbuse.nombre = oDiagbuse.diagnosticBusesDetail.Liste.Count
+                m_RPDiagnostic.diagnosticBusesList.Liste.Add(oDiagbuse)
+            Next
+            m_RPDiagnostic.DebitMoyenPM = 2.8
+            m_RPDiagnostic.PressionDeMesure = 3.5
+
 #End If
 
 

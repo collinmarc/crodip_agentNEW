@@ -2607,9 +2607,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     oBuse.CalcEcart(debitNominalValue, ecartTolereValue)
                     If Not oBuse.usee Then
                         usureTextBox.BackColor = System.Drawing.Color.Green
+                        usureTextBox.Tag = "OK"
                         bReturn = False
                     Else
                         usureTextBox.BackColor = System.Drawing.Color.Red
+                        usureTextBox.Tag = "NOK"
                         bReturn = True
                     End If
                 Else
@@ -4152,6 +4154,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     detailBuse.idBuse = buseId
                     detailBuse.idLot = lotId
                     detailBuse.idDiagnostic = ""
+                    detailBuse.usee = (inputBuseUsure.Tag = "NOK") 'Usée si elles sont NOK
 
                     tmpBuse.diagnosticBusesDetail.Liste.Add(detailBuse)
 
@@ -4165,7 +4168,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             '------------------------------------------------------
             'Récupération de la pression de mesure à 3 bars
             m_diagnostic.buseDebit = tbDebitMoyen3bars.Text
-
+            m_diagnostic.buseDebitMoyenPM = StringToDouble(diagBuses_debitMoyen.Text)
         Catch ex As Exception
             CSDebug.dispError("diagnostique::ValiderDiagnostiqueBuses : " & ex.Message)
         End Try
@@ -4912,23 +4915,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Récupération pour l'opération de synthése
             'diagnosticCourant.syntheseErreurMoyenneCinemometre = help551_erreurMoyenne.Text
 
-
-            ' On rempli l'objet d'infos
-            'CSDebug.dispInfo("Diagnostique.btn_diagnostic_valider_Click : ObjetInfos")
-            'objInfos(1) = tbPressionMesure.Text
-            'objInfos(2) = diagBuses_debitMoyen.Text
-            'objInfos(3) = "3"
-            Dim pressionTronc_perteChargeMoyDec As Decimal
-            Try
-                'pressionTronc_perteChargeMoyDec = CType(pressionTronc_perteChargeMoy.Text, Decimal)
-            Catch ex As Exception
-                pressionTronc_perteChargeMoyDec = 0
-            End Try
-            Try
-                'objInfos(4) = (objInfos(3) - Math.Abs(pressionTronc_perteChargeMoyDec)).ToString
-            Catch ex As Exception
-                'objInfos(4) = 0
-            End Try
 
             m_diagnostic.ParamDiag = Me.m_oParamdiag
 

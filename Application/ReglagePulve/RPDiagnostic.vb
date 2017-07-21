@@ -157,6 +157,11 @@
         m_oRPParam = RPParam.readXML()
 
     End Sub
+    Public Sub New(ByVal pPulve As Pulverisateur, ByVal pClient As Exploitation)
+        MyClass.New()
+        setPulverisateur(pPulve)
+        SetProprietaire(pClient)
+    End Sub
     Public Sub saveParam()
 
         m_oRPParam.writeXML()
@@ -254,15 +259,6 @@
 
         End Set
     End Property
-    Public Property VolHaPM As Decimal
-        Get
-            Return m_Calculs.VolHaPM
-        End Get
-        Set(value As Decimal)
-            m_Calculs.VolHaPM = value
-
-        End Set
-    End Property
     Public Property PressionTravail As Decimal
         Get
             Return m_Calculs.PressionTravail
@@ -281,13 +277,52 @@
 
         End Set
     End Property
-    Public Property VolHaPT As Decimal
+    Public Property DebitPTlMoinsPC As Decimal
         Get
-            Return m_Calculs.VolHaPT
+            Return Math.Round(m_Calculs.DebitPressionTravailMoinsPerteCharge, 3)
+        End Get
+        Set(value As Decimal)
+            m_Calculs.DebitPressionTravailMoinsPerteCharge = value
+
+        End Set
+    End Property
+    Public Property VolHaPMV1 As Decimal
+        Get
+            Return Math.Round(m_Calculs.VolHaPMV1, 3)
 
         End Get
         Set(value As Decimal)
-            m_Calculs.VolHaPT = value
+            m_Calculs.VolHaPMV1 = value
+
+        End Set
+    End Property
+    Public Property VolHaPMV2 As Decimal
+        Get
+            Return Math.Round(m_Calculs.VolHaPMV2, 3)
+
+        End Get
+        Set(value As Decimal)
+            m_Calculs.VolHaPMV2 = value
+
+        End Set
+    End Property
+    Public Property VolHaPTV1 As Decimal
+        Get
+            Return Math.Round(m_Calculs.VolHaPTV1, 3)
+
+        End Get
+        Set(value As Decimal)
+            m_Calculs.VolHaPTV1 = value
+
+        End Set
+    End Property
+    Public Property VolHaPTV2 As Decimal
+        Get
+            Return Math.Round(m_Calculs.VolHaPTV2, 3)
+
+        End Get
+        Set(value As Decimal)
+            m_Calculs.VolHaPTV2 = value
 
         End Set
     End Property
@@ -302,7 +337,7 @@
     End Property
     Public Property VitesseReelle1 As Decimal
         Get
-            Return m_Calculs.VitesseReelle1
+            Return Math.Round(m_Calculs.VitesseReelle1, 3)
         End Get
         Set(value As Decimal)
             m_Calculs.VitesseReelle1 = value
@@ -311,7 +346,7 @@
     End Property
     Public Property VitesseReelle2 As Decimal
         Get
-            Return m_Calculs.VitesseReelle2
+            Return Math.Round(m_Calculs.VitesseReelle2, 3)
         End Get
         Set(value As Decimal)
             m_Calculs.VitesseReelle2 = value
@@ -336,27 +371,27 @@
 
         End Set
     End Property
-    Public Property PressionConnue As Decimal
+    Public Property Pression1 As Decimal
         Get
-            Return m_Calculs.PressionConnue
+            Return m_Calculs.Pression1
         End Get
         Set(value As Decimal)
-            m_Calculs.PressionConnue = value
+            m_Calculs.Pression1 = value
 
         End Set
     End Property
-    Public Property DebitMoyenConnu As Decimal
+    Public Property Debit1 As Decimal
         Get
-            Return m_Calculs.DebitMoyenConnu
+            Return Math.Round(m_Calculs.Debit1, 3)
         End Get
         Set(value As Decimal)
-            m_Calculs.DebitMoyenConnu = value
+            m_Calculs.Debit1 = value
 
         End Set
     End Property
     Public Property Vitesse1 As Decimal
         Get
-            Return m_Calculs.Vitesse1
+            Return Math.Round(m_Calculs.Vitesse1, 3)
         End Get
         Set(value As Decimal)
             m_Calculs.Vitesse1 = value
@@ -365,7 +400,7 @@
     End Property
     Public Property Ecartement1 As Decimal
         Get
-            Return m_Calculs.Ecartement1
+            Return Math.Round(m_Calculs.Ecartement1, 3)
         End Get
         Set(value As Decimal)
             m_Calculs.Ecartement1 = value
@@ -374,7 +409,7 @@
     End Property
     Public Property VolEauHa1 As Decimal
         Get
-            Return m_Calculs.VolEauHa1
+            Return Math.Round(m_Calculs.VolEauHa1, 3)
         End Get
         Set(value As Decimal)
 
@@ -383,7 +418,7 @@
     End Property
     Public Property Pression2 As Decimal
         Get
-            Return m_Calculs.Pression2
+            Return Math.Round(m_Calculs.Pression2, 3)
 
         End Get
         Set(value As Decimal)
@@ -391,18 +426,18 @@
             m_Calculs.Pression2 = value
         End Set
     End Property
-    Public Property DebitMoyen2 As Decimal
+    Public Property Debit2 As Decimal
         Get
-            Return m_Calculs.DebitMoyen2
+            Return Math.Round(m_Calculs.Debit2, 3)
         End Get
         Set(value As Decimal)
 
-            m_Calculs.DebitMoyen2 = value
+            m_Calculs.Debit2 = value
         End Set
     End Property
     Public Property Vitesse2 As Decimal
         Get
-            Return m_Calculs.Vitesse2
+            Return Math.Round(m_Calculs.Vitesse2, 3)
 
         End Get
         Set(value As Decimal)
@@ -412,7 +447,7 @@
     End Property
     Public Property Ecartement2 As Decimal
         Get
-            Return m_Calculs.Ecartement2
+            Return Math.Round(m_Calculs.Ecartement2, 3)
         End Get
         Set(value As Decimal)
             m_Calculs.Ecartement2 = value
@@ -421,7 +456,7 @@
     End Property
     Public Property VolEauHa2 As Decimal
         Get
-            Return m_Calculs.VolEauHa2
+            Return Math.Round(m_Calculs.VolEauHa2, 3)
         End Get
         Set(value As Decimal)
             m_Calculs.VolEauHa2 = value
@@ -439,7 +474,7 @@
     End Property
     Public Property Temps As Decimal
         Get
-            Return m_Calculs.Temps
+            Return Math.Round(m_Calculs.Temps, 3)
         End Get
         Set(value As Decimal)
             m_Calculs.Temps = value
@@ -448,12 +483,22 @@
     End Property
     Public Property Vitesse As Decimal
         Get
-            Return m_Calculs.Vitesse
+            Return Math.Round(m_Calculs.Vitesse, 3)
         End Get
         Set(value As Decimal)
             m_Calculs.Vitesse = value
 
         End Set
     End Property
+
+    Public Sub CalcVolumeHa()
+        Try
+
+            m_Calculs.Calcul()
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
 
 End Class

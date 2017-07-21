@@ -183,6 +183,7 @@ Public Class Diagnostic
     Private _isContreVisiteImmediate As Boolean
     Private _typeDiagnostic As String
 
+    Private _buseDebitMoyenPM As Decimal 'utilisé pour le Reglage Pulve
 
     Private _ParamDiag As CRODIP_ControlLibrary.ParamDiag
 
@@ -265,6 +266,8 @@ Public Class Diagnostic
         controleIsPremierControle = True
         controleDateDernierControle = ""
         typeDiagnostic = "pulverisateur"
+
+        _buseDebitMoyenPM = 0
     End Sub
 
     Public Sub New(ByVal pAgent As Agent, ByVal pPulve As Pulverisateur, ByVal pClient As Exploitation)
@@ -1377,6 +1380,7 @@ Public Class Diagnostic
     ''' <summary>
     ''' La Pression de travail est la Pression de controle des Buses
     ''' Elle est initalisée à 3 Lors de la création d'un Diag
+    ''' on l'apelle aussi Pression de Mesure
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
@@ -2221,6 +2225,22 @@ Public Class Diagnostic
         End Get
         Set(ByVal Value As String)
             _codeInsee = Value
+        End Set
+    End Property
+    ''' <summary>
+    ''' DebitMoyen à la pression de Mesure (non sauvegardé)
+    ''' (utilise pour le reglagePulve ?)
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    <XmlIgnoreAttribute()>
+    Public Property buseDebitMoyenPM() As Decimal
+        Get
+            Return _buseDebitMoyenPM
+        End Get
+        Set(ByVal Value As Decimal)
+            _buseDebitMoyenPM = Value
         End Set
     End Property
 #End Region

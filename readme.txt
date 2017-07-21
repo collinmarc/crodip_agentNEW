@@ -4,6 +4,9 @@ Build :
 Version: 2.5.4 Lot5
 Date : 2017/07/xx
 #33802 : Recherche Client : plantage
+#33818 : Liste des défauts en fin de RI
+#33502 : Regles de calculs pou le reglage pulvé
+
 
 Build :20170712120000
 Version: 2.5.4 Lot5
