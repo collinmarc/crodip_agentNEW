@@ -30,6 +30,7 @@ Partial Class frmRPFichePulve
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(817, 728)
+        Me.ControlBox = False
         Me.MaximizeBox = True
         Me.MinimizeBox = True
         Me.Name = "frmRPFichePulve"

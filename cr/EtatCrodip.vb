@@ -1,11 +1,17 @@
-﻿''' <summary>
+﻿Imports CrystalDecisions.CrystalReports.Engine
+
+''' <summary>
 ''' Etat Genérique CRODIP
 ''' </summary>
 ''' <remarks></remarks>
 Public Class EtatCrodip
     Protected m_FileName As String
+    Protected m_oReportDocument As ReportDocument
     Public Overridable Function getFileName() As String
         Return m_FileName
+    End Function
+    Public Overridable Function getReportdocument() As ReportDocument
+        Return m_oReportDocument
     End Function
     ''' <summary>
     ''' Ouvre le fichier avec l'application par défaut

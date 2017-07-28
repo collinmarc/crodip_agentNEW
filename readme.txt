@@ -1,5 +1,15 @@
 TRUNK
 
+build :20170728120000
+Version: Version 2.5.4 Lot5
+Date : 2017/07/28
+
+#33948 : [RP] PageDefaut 
+#33947 : [RP] Débitmètre
+#33946 : [RP] Calculs Volume/ha
+#33945 : [RP] Boutons reduire
+#33945 : [RP] Boutons reduire
+
 Build :
 Version: 2.5.4 Lot5
 Date : 2017/07/xx

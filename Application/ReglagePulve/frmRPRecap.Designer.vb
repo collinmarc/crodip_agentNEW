@@ -27,8 +27,8 @@ Partial Class frmRPRecap
         Me.Label_diagnostic_21 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
-        Me.m_bsDiagnostic = New System.Windows.Forms.BindingSource(Me.components)
         Me.TreeView3state1 = New CRODIP_ControlLibrary.treeView3state()
+        Me.m_bsDiagnostic = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.m_bsDiagnostic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -68,10 +68,6 @@ Partial Class frmRPRecap
         Me.RichTextBox1.TabIndex = 17
         Me.RichTextBox1.Text = ""
         '
-        'm_bsDiagnostic
-        '
-        Me.m_bsDiagnostic.DataSource = GetType(Crodip_agent.RPDiagnostic)
-        '
         'TreeView3state1
         '
         Me.TreeView3state1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -82,6 +78,10 @@ Partial Class frmRPRecap
         Me.TreeView3state1.Name = "TreeView3state1"
         Me.TreeView3state1.Size = New System.Drawing.Size(670, 271)
         Me.TreeView3state1.TabIndex = 19
+        '
+        'm_bsDiagnostic
+        '
+        Me.m_bsDiagnostic.DataSource = GetType(Crodip_agent.RPDiagnostic)
         '
         'frmRPRecap
         '
@@ -94,6 +94,7 @@ Partial Class frmRPRecap
         Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label_diagnostic_21)
+        Me.MinimizeBox = False
         Me.Name = "frmRPRecap"
         Me.Text = "frmRPRecap"
         CType(Me.m_bsDiagnostic, System.ComponentModel.ISupportInitialize).EndInit()

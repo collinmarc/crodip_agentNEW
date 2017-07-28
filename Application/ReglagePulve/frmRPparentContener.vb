@@ -633,20 +633,18 @@ Public Class frmRPparentContener
             m_RPDiagnostic.SetProprietaire(clientCourant)
             m_RPDiagnostic.setPulverisateur(pulverisateurCourant)
 
-            m_RPDiagnostic.VitesseRotation = "1000"
-            m_RPDiagnostic.NbreDescentes = "5"
-            m_RPDiagnostic.NbreBusesParDescente = "10"
-            m_RPDiagnostic.NbreNiveauParDescente = "2"
-            m_RPDiagnostic.EmplacementPriseAir = True
+            m_RPDiagnostic.CalcVitesseRotation = "1000"
+            m_RPDiagnostic.CalcNbreDescentes = "5"
+            m_RPDiagnostic.CalcNbreBusesParDescente = "10"
+            m_RPDiagnostic.CalcNbreNiveauParDescente = "2"
+            m_RPDiagnostic.CalcEmplacementPriseAir = True
 
             m_RPDiagnostic.diagnosticHelp551.VitesseReelle1 = 5.5
             m_RPDiagnostic.diagnosticHelp551.VitesseReelle1 = 6.7
-            m_RPDiagnostic.pulverisateurLargeurPlantation = 25
             m_RPDiagnostic.manometrePressionTravail = 3.5
             m_RPDiagnostic.buseDebitMoyenPM = 2.8
             m_RPDiagnostic.diagnosticHelp551.VitesseReelle1 = 5.5
             m_RPDiagnostic.diagnosticHelp551.VitesseReelle2 = 6.7
-            m_RPDiagnostic.pulverisateurLargeur = 25
             For nlot As Integer = 1 To 2
                 Dim oDiagbuse As New DiagnosticBuses
                 oDiagbuse.idLot = nlot
@@ -661,8 +659,8 @@ Public Class frmRPparentContener
                 oDiagbuse.nombre = oDiagbuse.diagnosticBusesDetail.Liste.Count
                 m_RPDiagnostic.diagnosticBusesList.Liste.Add(oDiagbuse)
             Next
-            m_RPDiagnostic.DebitMoyenPM = 2.8
-            m_RPDiagnostic.PressionDeMesure = 3.5
+            m_RPDiagnostic.CalcDebitMoyenPM = 2.8
+            m_RPDiagnostic.CalcPressionDeMesure = 3.5
 
 #End If
 
@@ -687,7 +685,7 @@ Public Class frmRPparentContener
 
 
             odlgHelp552 = New frmRPDlgHelp552
-            odlgHelp552.Setcontexte(frmRPDlgHelp552.Help552Mode.Mode552, m_RPDiagnostic, 3, 2.5)
+            odlgHelp552.Setcontexte(frmRPDlgHelp552.Help552Mode.Mode552, m_RPDiagnostic, m_RPDiagnostic.buseDebit, m_RPDiagnostic.manometrePressionTravail)
             odlgHelp552.Text = "Débits"
             odlgHelp552.WindowState = FormWindowState.Maximized
             odlgHelp552.MdiParent = Me

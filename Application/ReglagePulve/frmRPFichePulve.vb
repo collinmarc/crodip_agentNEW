@@ -12,6 +12,8 @@
 
     Public Overrides Sub FormLoad()
         MyBase.formLoad()
+        MinimizeBox = False
+        MaximizeBox = False
         'En mode reglage Pulvé certains champs ne sont pas obigatoire => on enlève le soulignement
         lblIdentifiantPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         'Id Non Indifo est active
@@ -128,4 +130,7 @@
         Return ValiderNumeroNationalResult.OK
     End Function
 
+    Private Sub frmRPFichePulve_Leave(sender As Object, e As EventArgs) Handles Me.Leave
+        Valider()
+    End Sub
 End Class

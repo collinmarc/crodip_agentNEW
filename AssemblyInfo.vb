@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("Cognix Systems")> 
 <Assembly: AssemblyProduct("Logiciel Crodip Agent")> 
 <Assembly: AssemblyCopyright("© Cognix Systems 2009")> 
-<Assembly: AssemblyTrademark("20170721120000")> 
+<Assembly: AssemblyTrademark("20170728120000")> 
 <Assembly: CLSCompliant(True)> 
 
 'Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM

@@ -183,6 +183,8 @@
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="itextsharp">
       <Name>itextsharp</Name>
       <HintPath>bin\itextsharp.dll</HintPath>
@@ -202,6 +204,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services">
       <Name>System.Web.Services</Name>
     </Reference>
@@ -286,6 +289,9 @@
     <Compile Include="Application\debug\test.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\controle_preliminaireV6.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\controle_preliminaire.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +302,18 @@
       <DependentUpon>diagnostic_dlghelp12123.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\diagnostic\diagnostic_dlghelp12123.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem.Designer.vb">
+      <DependentUpon>diagnostic_dlghelp12123NewTrtSem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123New.Designer.vb">
+      <DependentUpon>diagnostic_dlghelp12123New.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123New.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\diagnostic_dlghelp571.Designer.vb">
@@ -317,6 +335,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\diagnostic_nouvelle_contrevisite.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmdiagnostic_recap.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\diagnostic_recap.vb">
@@ -343,6 +364,12 @@
     <Compile Include="Application\diagnostic\FrmAddCoProp.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\frmDiagnostiqueV6.Designer.vb">
+      <DependentUpon>frmDiagnostiqueV6.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmDiagnostiqueV6.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\frmDiagnostique.Designer.vb">
       <DependentUpon>frmDiagnostique.vb</DependentUpon>
     </Compile>
@@ -362,6 +389,9 @@
       <DependentUpon>dlgExportAutoTest.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\dlgExportAutoTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\exploitant\pulverisateur\ajout_pulve2V6.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\exploitant\pulverisateur\DlgListPulve.Designer.vb">
@@ -761,12 +791,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\ReglagePulve\IfrmCRODIP.vb" />
-    <Compile Include="Application\ReglagePulve\RPDiagItem.vb" />
-    <Compile Include="Application\ReglagePulve\RPDiagnostic.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPDiagItem.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPDiagnostic.vb" />
     <Compile Include="Application\ReglagePulve\frmRPCalculVolumeHa.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\ReglagePulve\RPParam.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPParam.vb" />
     <Compile Include="Application\ReglagePulve\frmRPRapport.Designer.vb">
       <DependentUpon>frmRPRapport.vb</DependentUpon>
     </Compile>
@@ -984,6 +1014,20 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_Synthese12123TrtSem.vb">
+      <DependentUpon>cr_Synthese12123TrtSem.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_Synthese12123.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_Synthese12123.rpt</DependentUpon>
+      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="moduleDocumentaire\_parametres\cr_syntheseBuses10.vb">
@@ -1852,6 +1896,9 @@
     <EmbeddedResource Include="Application\debug\test.resx">
       <DependentUpon>test.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\controle_preliminaireV6.resx">
+      <DependentUpon>controle_preliminaireV6.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\controle_preliminaire.resx">
       <DependentUpon>controle_preliminaire.vb</DependentUpon>
     </EmbeddedResource>
@@ -1860,6 +1907,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp12123.resx">
       <DependentUpon>diagnostic_dlghelp12123.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem.resx">
+      <DependentUpon>diagnostic_dlghelp12123NewTrtSem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp12123New.resx">
+      <DependentUpon>diagnostic_dlghelp12123New.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp571.resx">
       <DependentUpon>diagnostic_dlghelp571.vb</DependentUpon>
@@ -1879,6 +1932,9 @@
     <EmbeddedResource Include="Application\diagnostic\diagnostic_nouvelle_contrevisite.resx">
       <DependentUpon>diagnostic_nouvelle_contrevisite.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_recap.resx">
+      <DependentUpon>frmdiagnostic_recap.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_recap.resx">
       <DependentUpon>diagnostic_recap.vb</DependentUpon>
     </EmbeddedResource>
@@ -1887,6 +1943,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\FrmAddCoProp.resx">
       <DependentUpon>FrmAddCoProp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmDiagnostiqueV6.resx">
+      <DependentUpon>frmDiagnostiqueV6.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmDiagnostique.resx">
       <DependentUpon>frmDiagnostique.vb</DependentUpon>
@@ -1905,6 +1964,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\dlgToleranceBuses.resx">
       <DependentUpon>dlgToleranceBuses.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\exploitant\pulverisateur\ajout_pulve2V6.resx">
+      <DependentUpon>ajout_pulve2V6.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\exploitant\pulverisateur\DlgListPulve.resx">
       <DependentUpon>DlgListPulve.vb</DependentUpon>
@@ -2117,6 +2179,16 @@
       <LastGenOutput>cr_ReglagePulveFeuilleCalcul1.vb</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="moduleDocumentaire\_parametres\cr_Synthese12123TrtSem.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_Synthese12123TrtSem.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="moduleDocumentaire\_parametres\cr_Synthese12123.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_Synthese12123.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>

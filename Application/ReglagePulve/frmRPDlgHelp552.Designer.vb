@@ -29,11 +29,9 @@ Partial Class frmRPDlgHelp552
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(388, 403)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = True
-        Me.MinimizeBox = True
+        Me.ControlBox = False
         Me.Name = "frmRPDlgHelp552"
-        Me.Text = "Form2"
+        Me.Text = "DebitMetre"
         Me.ResumeLayout(False)
 
     End Sub

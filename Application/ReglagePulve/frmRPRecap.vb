@@ -15,6 +15,10 @@ Public Class frmRPRecap
         m_PulverisateurCourant = pPulve
     End Sub
 
+    Private Sub frmRPRecap_Leave(sender As Object, e As EventArgs) Handles Me.Leave
+        Valider()
+    End Sub
+
     Private Sub frmRPRecap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         formload()
     End Sub
@@ -29,6 +33,8 @@ Public Class frmRPRecap
             End If
 
         End If
+        MinimizeBox = False
+        MaximizeBox = False
 
     End Sub
 
@@ -187,12 +193,13 @@ Public Class frmRPRecap
     Private Sub TreeView3state1_BeforeCheck(sender As Object, e As TreeViewCancelEventArgs) Handles TreeView3state1.BeforeCheck
         'on refuse le check sur les élements qui ne sont pas du dernier niveau (pas de niveau inférieur)
 
-        Dim oParam As ParamCtrlDiag
-        oParam = TryCast(e.Node.Tag, ParamCtrlDiag)
-        If oParam IsNot Nothing Then
-            If oParam.lstSubNodes.Count <> 0 Then
-                e.Cancel = True
-            End If
-        End If
+        'Dim oParam As ParamCtrlDiag
+        'oParam = TryCast(e.Node.Tag, ParamCtrlDiag)
+        'If oParam IsNot Nothing Then
+        '    If oParam.lstSubNodes.Count <> 0 Then
+        '        CSDebug.dispInfo(oParam.Libelle)
+        '        e.Cancel = True
+        '    End If
+        'End If
     End Sub
 End Class

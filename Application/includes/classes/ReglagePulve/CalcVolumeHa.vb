@@ -21,13 +21,13 @@ Public Class CalcVolumeHa
     Public VitesseReelle2 As Decimal
     Public LargeurApp As Decimal
     Public lstBuseUsees As String
-    Public Pression1 As Decimal
-    Public Debit1 As Decimal
+    Private m_Pression1 As Decimal
+    Private m_Debit1 As Decimal
     Public Vitesse1 As Decimal
     Public Ecartement1 As Decimal
     Public VolEauHa1 As Decimal
-    Public Pression2 As Decimal
-    Public Debit2 As Decimal
+    Private m_Pression2 As Decimal
+    Private m_Debit2 As Decimal
     Public Vitesse2 As Decimal
     Public Ecartement2 As Decimal
     Public VolEauHa2 As Decimal
@@ -35,8 +35,45 @@ Public Class CalcVolumeHa
     Public Temps As Decimal
     Public Vitesse As Decimal
 
+    Public Property Debit1 As Decimal
+        Get
+            Return m_Debit1
+        End Get
+        Set(value As Decimal)
+            m_Debit1 = value
+            calcPression1()
+        End Set
+    End Property
+
+    Public Property Debit2 As Decimal
+        Get
+            Return m_Debit2
+        End Get
+        Set(value As Decimal)
+            m_Debit2 = value
+        End Set
+    End Property
+    Public Property Pression1 As Decimal
+        Get
+            Return m_Pression1
+        End Get
+        Set(value As Decimal)
+            m_Pression1 = value
+            calcDebit1()
+        End Set
+    End Property
+
+    Public Property Pression2 As Decimal
+        Get
+            Return m_Pression2
+        End Get
+        Set(value As Decimal)
+            m_Pression2 = value
+            calcDebit2()
+        End Set
+    End Property
     Public Sub calcDebitPressionTravailMoinsPerteCharge()
-        DebitPressionTravailMoinsPerteCharge = Math.Sqrt(DebitMoyenPM * DebitMoyenPM * PressionTravailMoinsPC) / PressionDeMesure
+        DebitPressionTravailMoinsPerteCharge = DebitMoyenPM * Math.Sqrt(PressionTravailMoinsPC / PressionDeMesure)
     End Sub
 
     Public Sub calcVolHaPMV1()
@@ -55,15 +92,21 @@ Public Class CalcVolumeHa
         VolHaPTV2 = (DebitPressionTravailMoinsPerteCharge * NombreBuses) * 600 / (LargeurApp * VitesseReelle2)
     End Sub
 
-    Public Sub calcDebit1()
-        Debit1 = Math.Sqrt(DebitMoyenPM * DebitMoyenPM * Pression1) / PressionDeMesure
+    Public Sub calcPression1()
+        ' m_Pression1 = (Debit1 * PressionDeMesure) * (Debit1 * PressionDeMesure) * DebitMoyenPM
     End Sub
 
+    Public Sub calcPression2()
+        ' m_Pression2 = (Debit1 * PressionDeMesure) * (Debit1 * PressionDeMesure) * DebitMoyenPM
+    End Sub
+    Public Sub calcDebit1()
+        m_Debit1 = DebitMoyenPM * Math.Sqrt(Pression1 / PressionDeMesure)
+    End Sub
     Public Sub calcVolha1()
-        VolEauHa1 = (Debit1 * NombreBuses) * 600 / (Ecartement1 * Vitesse1)
+        VolEauHa1 = (m_Debit1 * NombreBuses) * 600 / (Ecartement1 * Vitesse1)
     End Sub
     Public Sub calcDebit2()
-        Debit2 = Math.Sqrt(DebitMoyenPM * DebitMoyenPM * Pression2) / PressionDeMesure
+        Debit2 = DebitMoyenPM * Math.Sqrt(Pression2 / PressionDeMesure)
     End Sub
     Public Sub calcVolha2()
         VolEauHa2 = (Debit2 * NombreBuses) * 600 / (Ecartement2 * Vitesse2)

@@ -11,13 +11,9 @@
         Try
             Me.ControlBox = False
             Me.WindowState = FormWindowState.Maximized
-            CSDebug.dispInfo("frmRPDiagnostique.FormLoad START")
-            CSDebug.dispInfo("frmRPDiagnostique.FormLoad MyBase.FormLoad START")
             MyBase.Formload()
-            CSDebug.dispInfo("frmRPDiagnostique.FormLoad MyBase.FormLoad END")
-            Me.ControlBox = True
-            Me.MinimizeBox = True
-            Me.MaximizeBox = True
+            MinimizeBox = False
+            MaximizeBox = False
 
             Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
             tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_etatGeneral.Name)
@@ -210,6 +206,10 @@
         iReturn = MyBase.CheckOnglet8()
         Return iReturn
     End Function
+
+    Private Sub frmRPDiagnostique_Leave(sender As Object, e As EventArgs) Handles Me.Leave
+        Valider()
+    End Sub
 
     Private Sub frmRPDiagnostique_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not DesignMode Then

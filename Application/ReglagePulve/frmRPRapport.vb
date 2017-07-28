@@ -12,6 +12,9 @@
     End Sub
 
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
+        MinimizeBox = False
+        MaximizeBox = False
+
         m_bsRPDiagnostic.Add(m_oDiag)
         lbSections.SetItemChecked(0, m_oDiag.bSectionSyntheseCapteurVitesse)
         lbSections.SetItemChecked(2, m_oDiag.bSectionSyntheseCapteurDebit)

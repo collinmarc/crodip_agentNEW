@@ -204,10 +204,16 @@ Public Class treeView3state
         End If
 
         tnBuffer = e.Node
+        'Pas d'action sur les noeuds parent
+        If tnBuffer.Nodes.Count > 0 Then
+            Return
+        End If
         ' buffer clicked node and
         If e.Button = MouseButtons.Left Then
             ' flip its check state.
+            '   If tnBuffer.Nodes.Count = 0 Then
             tnBuffer.Checked = Not tnBuffer.Checked
+            'End If
         End If
 
         ' set state image index
@@ -232,32 +238,46 @@ Public Class treeView3state
             Next
         Loop While stNodes.Count > 0
         ' left.
-        bMixedState = False
         tnBuffer = e.Node
         ' re-buffer clicked node.
         While tnBuffer.Parent IsNot Nothing
+            bMixedState = False
             ' while we get a parent we
             For Each tnChild As TreeNode In tnBuffer.Parent.Nodes
                 ' determine mixed check states
                 ' and convert current check
                 bMixedState = bMixedState Or (tnChild.Checked <> tnBuffer.Checked Or tnChild.StateImageIndex = 2)
             Next
-            ' state to state image index.
-            iIndex = CInt(Convert.ToUInt32(tnBuffer.Checked))
-            ' set parent's check state and
-            tnBuffer.Parent.Checked = bMixedState OrElse (iIndex > 0)
-            ' state image in dependency
-            If bMixedState Then
-                ' of mixed state.
-                tnBuffer.Parent.StateImageIndex = If(CheckBoxesTriState, 2, 1)
-            Else
-                tnBuffer.Parent.StateImageIndex = iIndex
-            End If
-            ' finally buffer parent and
+
+            setParentState(tnBuffer, bMixedState)
+
             tnBuffer = tnBuffer.Parent
         End While
         ' loop here.
         _bPreventCheckEvent = False
+    End Sub
+
+    ''' <summary>
+    ''' Met à jour les parents du noeud
+    ''' </summary>
+    ''' <param name="tnBuffer"></param>
+    ''' <param name="bMixedState"></param>
+    ''' <remarks></remarks>
+    Private Sub setParentState(tnBuffer As TreeNode, bMixedState As Boolean)
+        Dim iIndex As Integer
+        iIndex = CInt(Convert.ToUInt32(tnBuffer.Checked))
+        'iIndex = tnBuffer.StateImageIndex
+        Dim bImagechecked As Boolean = iIndex > 0
+        Dim bParentChecnk As Boolean = bMixedState OrElse bImagechecked
+        tnBuffer.Parent.Checked = bParentChecnk
+        ' state image in dependency
+        If bMixedState Then
+            ' of mixed state.
+            tnBuffer.Parent.StateImageIndex = If(CheckBoxesTriState, 2, 1)
+        Else
+            tnBuffer.Parent.StateImageIndex = iIndex
+        End If
+
     End Sub
 End Class
 

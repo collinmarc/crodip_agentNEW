@@ -86,6 +86,16 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property arrow_refresh_small() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("arrow_refresh_small", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property btn_annuler() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("btn_annuler", resourceCulture)
@@ -139,6 +149,16 @@ Friend Class Resources
     Friend Shared ReadOnly Property btn_login() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("btn_login", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property btn_refresh() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("btn_refresh", resourceCulture)
             Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property

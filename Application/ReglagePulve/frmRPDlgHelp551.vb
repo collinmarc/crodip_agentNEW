@@ -24,10 +24,10 @@
         MyBase.Annuler()
     End Sub
     Protected Overrides Sub formload() Implements IfrmCRODIP.formLoad
-        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
-        Me.ControlBox = True
-        Me.MinimizeBox = True
-        Me.MaximizeBox = True
+        'Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
+        'Me.ControlBox = True
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
 
 
 
@@ -40,6 +40,20 @@
     Private Sub AjoutLabeltitre()
         laTitre.Text = Me.Text
     End Sub
+
+    Private Sub frmRPDlgHelp551_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        MyBase.setContexte(m_mode, m_oDiag, Me.Text, False)
+
+    End Sub
+
+    Private Sub frmRPDlgHelp551_Leave(sender As Object, e As EventArgs) Handles Me.Leave
+        Valider()
+    End Sub
+
+    Private Sub frmRPDlgHelp551_Load(sender As Object, e As EventArgs) Handles Me.Load
+        formload()
+    End Sub
+
 
     Private Sub frmRPDlgHelp551_TextChanged(sender As Object, e As EventArgs) Handles Me.TextChanged
         laTitre.Text = Me.Text

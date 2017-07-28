@@ -176,9 +176,13 @@
     <Compile Include="Application\includes\classes\Acquisition\AcquiringTests.vb" />
     <Compile Include="DiagnosticHelp12123Test.vb" />
     <Compile Include="DiagnosticHelp571Test.vb" />
+    <Compile Include="CalcVolumeHATest.vb" />
     <Compile Include="EtatDocCoPropTest.vb" />
     <Compile Include="EtatContratCommercialTest.vb" />
     <Compile Include="EtatEnqueteTest.vb" />
+    <Compile Include="EtatSyntheseMesuresTest.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="EtatReglagePulveTest.vb" />
     <Compile Include="ParamReglagePulveTests.vb" />
     <Compile Include="BancManagerTest.vb" />

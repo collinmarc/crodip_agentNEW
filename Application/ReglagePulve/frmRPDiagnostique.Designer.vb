@@ -29,7 +29,7 @@ Partial Class frmRPDiagnostique
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
         Me.ClientSize = New System.Drawing.Size(1054, 694)
         Me.Name = "frmRPDiagnostique"
-        Me.Text = "Form2"
+        Me.Text = "Mano/Buses"
         Me.ResumeLayout(False)
 
     End Sub

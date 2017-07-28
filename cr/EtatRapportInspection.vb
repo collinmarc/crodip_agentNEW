@@ -20,27 +20,26 @@ Public Class EtatRapportInspection
         Try
             bReturn = genereDS()
             If (bReturn) Then
-                Dim objReport As ReportDocument
                 Dim r1 As New cr_RapportInspection()
                 Dim strReportName As String = r1.ResourceName
 
-                objReport = New ReportDocument
-                objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
+                m_oReportDocument = New ReportDocument
+                m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
 
-                objReport.SetDataSource(m_ods)
+                m_oReportDocument.SetDataSource(m_ods)
                 Dim CrExportOptions As ExportOptions
                 Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                 Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                 m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
                 CrDiskFileDestinationOptions.DiskFileName = CONST_PATH_EXP & m_FileName
-                CrExportOptions = objReport.ExportOptions
+                CrExportOptions = m_oReportDocument.ExportOptions
                 With CrExportOptions
                     .ExportDestinationType = ExportDestinationType.DiskFile
                     .ExportFormatType = ExportFormatType.PortableDocFormat
                     .DestinationOptions = CrDiskFileDestinationOptions
                     .FormatOptions = CrFormatTypeOptions
                 End With
-                objReport.Export()
+                m_oReportDocument.Export()
 
             End If
         Catch ex As Exception

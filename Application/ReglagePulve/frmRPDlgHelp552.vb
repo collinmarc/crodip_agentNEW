@@ -29,6 +29,9 @@
         Call AjoutLabeltitre()
         btnAnnuler.Visible = False
         btnValider.Visible = False
+        MinimizeBox = False
+        MaximizeBox = False
+
     End Sub
     Public Sub Setcontexte(pMode As Help552Mode, pDiag As RPDiagnostic, debitMoyen As String, PressionMesure As String)
         m_oDiag = pDiag
@@ -63,20 +66,8 @@
 
     End Sub
 
-    Private Sub frmRPDlgHelp552_Resize(sender As Object, e As EventArgs) Handles Me.Resize
-        CSDebug.dispInfo("frmRPDlgHelp552_Resize")
-        CSDebug.dispInfo("frmRPDlgHelp552_Resize : BorderStyle=" & Me.FormBorderStyle)
-        CSDebug.dispInfo("frmRPDlgHelp552_Resize : ControleBox=" & Me.ControlBox)
-        CSDebug.dispInfo("frmRPDlgHelp552_Resize : Maxi=" & Me.MaximizeBox)
-
-    End Sub
 
  
-    Private Sub frmRPDlgHelp552_TextChanged(sender As Object, e As EventArgs) Handles Me.TextChanged
-        'If m_Labeltitre IsNot Nothing Then
-        '    m_Labeltitre.Text = Me.Text
-        'End If
-    End Sub
 
     ''' <summary>
     ''' Creation des diagItem correspondant pour les 2 modes
@@ -94,4 +85,17 @@
         End If
     End Sub
 
+    Private Sub frmRPDlgHelp552_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        help552_debitMoyen0bar.Text = m_oDiag.buseDebit
+        help552_pressionMesure.Text = m_oDiag.manometrePressionTravail
+        calc_help_552()
+    End Sub
+
+    Private Sub frmRPDlgHelp552_Leave(sender As Object, e As EventArgs) Handles MyBase.Leave
+        Valider()
+    End Sub
+
+    Private Sub frmRPDlgHelp552_Load(sender As Object, e As EventArgs) Handles Me.Load
+        formload()
+    End Sub
 End Class

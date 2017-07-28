@@ -14,6 +14,9 @@
         btnAnnuler.Visible = False
         stats_nbControles.Text = ""
         Label_diagnostic_61.Visible = False
+        MinimizeBox = False
+        MaximizeBox = False
+
     End Sub
     Protected Overrides Function Valider() As Boolean Implements IfrmCRODIP.Valider
         ' On crée notre nouveau pulvé
@@ -48,4 +51,7 @@
         '        MyBase.loadStats()
     End Sub
 
+    Private Sub frmRPFicheExlpoitant_Leave(sender As Object, e As EventArgs) Handles Me.Leave
+        Valider()
+    End Sub
 End Class
