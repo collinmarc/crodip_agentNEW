@@ -39,42 +39,45 @@ Public Class ReferentielBusesCSV
                 If Not bPremiereLigne Then
 
                     Dim tab As String() = line.Split(";")
-                    'Traitement des agnles Multipes
-                    If Not String.IsNullOrEmpty(tab(5)) Then
-                        AngleLu = tab(5).ToUpper()
+                    If tab.Length <= 12 Then
+                        'Traitement des agnles Multipes
+                        If Not String.IsNullOrEmpty(tab(5)) Then
+                            AngleLu = tab(5).ToUpper()
+                        End If
+                        Dim tabAngles As String() = AngleLu.Split("-")
+                        For Each sAngle As String In tabAngles
+
+                            If Not String.IsNullOrEmpty(tab(0)) Then
+                                Marque = tab(0).ToUpper()
+                            End If
+                            If Not String.IsNullOrEmpty(tab(1)) Then
+                                Modele = tab(1).ToUpper()
+                            End If
+                            If Not String.IsNullOrEmpty(tab(2)) Then
+                                Type = tab(2).ToUpper()
+                            End If
+                            If Not String.IsNullOrEmpty(tab(3)) Then
+                                Fonctionnement = tab(3).ToUpper()
+                            End If
+                            If Not String.IsNullOrEmpty(tab(4)) Then
+                                ISO = tab(4).ToUpper()
+                            End If
+                            Angle = sAngle
+                            Couleur = tab(6).ToUpper()
+                            Calibre = tab(7).ToUpper()
+                            Debit2bar = tab(8).ToUpper()
+                            debit3bar = tab(9).ToUpper()
+                            debit5bar = tab(10).ToUpper()
+                            tolerance = tab(11).ToUpper()
+
+                            m_ods.ReferentieBuses.AddReferentieBusesRow(Marque, Modele, Type, Fonctionnement, ISO, Angle, Couleur, Calibre, Debit2bar, debit3bar, debit5bar, tolerance)
+                        Next sAngle
+                    Else
+                        CSDebug.dispWarn("ReferentielBusesCSV.load WRN Referentiel incotrect : " & line)
                     End If
-                    Dim tabAngles As String() = AngleLu.Split("-")
-                    For Each sAngle As String In tabAngles
-
-                        If Not String.IsNullOrEmpty(tab(0)) Then
-                            Marque = tab(0).ToUpper()
-                        End If
-                        If Not String.IsNullOrEmpty(tab(1)) Then
-                            Modele = tab(1).ToUpper()
-                        End If
-                        If Not String.IsNullOrEmpty(tab(2)) Then
-                            Type = tab(2).ToUpper()
-                        End If
-                        If Not String.IsNullOrEmpty(tab(3)) Then
-                            Fonctionnement = tab(3).ToUpper()
-                        End If
-                        If Not String.IsNullOrEmpty(tab(4)) Then
-                            ISO = tab(4).ToUpper()
-                        End If
-                        Angle = sAngle
-                        Couleur = tab(6).ToUpper()
-                        Calibre = tab(7).ToUpper()
-                        Debit2bar = tab(8).ToUpper()
-                        debit3bar = tab(9).ToUpper()
-                        debit5bar = tab(10).ToUpper()
-                        tolerance = tab(11).ToUpper()
-
-                        m_ods.ReferentieBuses.AddReferentieBusesRow(Marque, Modele, Type, Fonctionnement, ISO, Angle, Couleur, Calibre, Debit2bar, debit3bar, debit5bar, tolerance)
-                    Next sAngle
                 Else
                     bPremiereLigne = False
                 End If
-
             Next
             bReturn = True
         Catch ex As Exception

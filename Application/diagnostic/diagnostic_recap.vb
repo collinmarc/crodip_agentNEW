@@ -1666,10 +1666,10 @@ Public Class diagnostic_recap
             diagnosticRecap_synthese_perteChargeMax.Text = m_diagnostic.synthesePerteChargeMaxi
             diagnosticRecap_synthese_perteChargeMoy.Text = m_diagnostic.synthesePerteChargeMoyenne
             diagnosticRecap_synthese_usureMoyBuses.Text = m_diagnostic.syntheseUsureMoyenneBuses
-            If (m_diagnostic.diagnosticHelp571.ErreurGlobalePRSRND.HasValue) Then
+            If (m_diagnostic.diagnosticHelp571.ErreurGlobalePRSRND IsNot Nothing) Then
                 diagnosticRecap_synthese_CumulErreurs.Text = m_diagnostic.diagnosticHelp571.ErreurGlobalePRSRND
             Else
-                If (m_diagnostic.diagnosticHelp571.ErreurGlobaleDEBRND.HasValue) Then
+                If (m_diagnostic.diagnosticHelp571.ErreurGlobaleDEBRND IsNot Nothing) Then
                     diagnosticRecap_synthese_CumulErreurs.Text = m_diagnostic.diagnosticHelp571.ErreurGlobaleDEBRND
                 End If
 
