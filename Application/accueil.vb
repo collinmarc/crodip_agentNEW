@@ -3399,6 +3399,8 @@ Public Class accueil
         Try
             lstPulves_client_raisonSociale.Text = pExploit.raisonSociale
             lstPulves_client_proprioSiren.Text = "M. " & pExploit.nomExploitant & " " & pExploit.prenomExploitant & " - N° SIREN : " & pExploit.numeroSiren
+            btn_ficheClient_diagnostic_nouveau.Enabled = False
+            btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
 
             Dim bPulveEnAlerte As Boolean
             'list_ficheClient_puverisateur.Items.Clear()
@@ -3413,8 +3415,6 @@ Public Class accueil
             dgvPulveExploit.DataSource = m_BindingListOfPulve
             dgvPulveExploit.Refresh()
 
-            btn_ficheClient_diagnostic_nouveau.Enabled = False
-            btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
 
         Catch ex As Exception
             CSDebug.dispWarn("Accueil:AfficheListePulvesExploitation ERR: " & ex.Message.ToString)

@@ -1,7 +1,9 @@
 TRUNK
 
 
+build :20170918140000
 #34617 : Enquête de stasisfaction : Faute d'orthographe
+#34620 : Exploitation avec un seul pulve : Pulve non sélectionnable
 
 build :20170728120000
 Version: Version 2.5.4 Lot5
