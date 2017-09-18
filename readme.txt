@@ -1,5 +1,8 @@
 TRUNK
 
+
+#34617 : Enquête de stasisfaction : Faute d'orthographe
+
 build :20170728120000
 Version: Version 2.5.4 Lot5
 Date : 2017/07/28
