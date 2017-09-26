@@ -3413,6 +3413,7 @@ Public Class accueil
             dgvPulveExploit.Rows.Clear()
             dgvPulveExploit.ClearSelection()
             dgvPulveExploit.DataSource = m_BindingListOfPulve
+            dgvPulveExploit.ClearSelection()
             dgvPulveExploit.Refresh()
 
 

@@ -214,11 +214,18 @@ Module PrestationTarifManager
             Dim dbLink As New CSDb(True)
             '####################################################
             '## Execution de la requete
-            dbLink.getResults("INSERT INTO `PrestationTarif` (`id`,`idStructure`,`idCategorie`) VALUES (" & pTarif.id & "," & pTarif.idStructure & "," & pTarif.idCategorie & ")")
+            Dim oCmd As OleDb.OleDbCommand
+            oCmd = dbLink.getConnection().CreateCommand()
+            If exists(pTarif) Then
+                oCmd.CommandText = "UPDATE PrestationTarif SET idStructure = " & pTarif.idStructure & " , idCategorie = " & pTarif.idCategorie & " where id = " & pTarif.id & ""
+            Else
+                oCmd.CommandText = "INSERT INTO PrestationTarif (id,idStructure,idCategorie) VALUES (" & pTarif.id & "," & pTarif.idStructure & "," & pTarif.idCategorie & ")"
+            End If
+            oCmd.ExecuteNonQuery()
             dbLink.free()
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispFatal("PrestationTarifManager::create() : " & ex.Message.ToString)
+            CSDebug.dispError("PrestationTarifManager::create() : " & ex.Message.ToString)
             bReturn = False
         End Try
         Return bReturn

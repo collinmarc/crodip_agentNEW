@@ -1,5 +1,8 @@
 TRUNK
 
+Build:20170926140000
+#34620 : Exploitation avec un seul pulve : Pulve sélectioné par défaut, 
+#34741 : Erreur en Synhcro de Prestation Tarif
 
 build :20170918140000
 #34617 : Enquête de stasisfaction : Faute d'orthographe

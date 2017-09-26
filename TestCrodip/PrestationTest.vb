@@ -139,4 +139,37 @@ Public Class PrestationTest
 
     End Sub
 
+    <TestMethod()>
+    Public Sub testCreateDoublons()
+        Dim oTarif As PrestationTarif
+        Dim ArrTarif As PrestationTarif()
+
+        'Création d'un tarif (Normalement il n'y en a pas dans la base)
+        oTarif = New PrestationTarif()
+        oTarif.idCategorie = 99
+        oTarif.idStructure = m_oAgent.idStructure
+        oTarif.tarifHT = 10
+        oTarif.tva = 20
+        oTarif.tarifTTC = 12
+        PrestationTarifManager.save(oTarif, m_oAgent)
+
+        'Récupération du tarif
+        ArrTarif = PrestationTarifManager.getArrayByStructureId(m_oAgent.idStructure)
+        oTarif = ArrTarif(0)
+        'Modififcation du tarif
+        oTarif.tarifHT = 25
+        PrestationTarifManager.save(oTarif, m_oAgent)
+
+        'Vérification de la sauvegarde
+        ArrTarif = PrestationTarifManager.getArrayByStructureId(m_oAgent.idStructure)
+        oTarif = ArrTarif(0)
+        Assert.AreEqual(25D, oTarif.tarifHT)
+
+        PrestationTarifManager.delete(oTarif)
+        ArrTarif = PrestationTarifManager.getArrayByStructureId(m_oAgent.idStructure)
+        Assert.AreEqual(0, ArrTarif.Length)
+
+    End Sub
+
+
 End Class
