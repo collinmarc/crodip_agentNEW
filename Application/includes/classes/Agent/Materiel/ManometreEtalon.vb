@@ -109,21 +109,21 @@ Public Class ManometreEtalon
         ManometreEtalonManager.save(Me)
     End Function
 
-    Public Function DesactiverMano(ByVal pAgent As Agent) As Boolean
-        Dim bReturn As Boolean
+    'Public Function DesactiverMano(ByVal pAgent As Agent) As Boolean
+    '    Dim bReturn As Boolean
 
-        Try
-            creerFicheVieDesactivation(pAgent)
-            ' On bloque le mano
-            Me.etat = False
-            ManometreEtalonManager.save(Me)
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError("ManometreControle.desactiverMano : " & ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
+    '    Try
+    '        creerFicheVieDesactivation(pAgent)
+    '        ' On bloque le mano
+    '        Me.etat = False
+    '        ManometreEtalonManager.save(Me)
+    '        bReturn = True
+    '    Catch ex As Exception
+    '        CSDebug.dispError("ManometreControle.desactiverMano : " & ex.Message)
+    '        bReturn = False
+    '    End Try
+    '    Return bReturn
+    'End Function
 
     Public Overrides Function creerFicheVieActivation(ByVal pAgent As Agent) As Boolean
         Return creerFicheVie(FVManometreControle.FVTYPE_MISENSERVICE, pAgent)
@@ -135,9 +135,9 @@ Public Class ManometreEtalon
     Public Function creerFicheVieSuppression(ByVal pAgent As Agent) As Boolean
         Return creerFicheVie(FVManometreControle.FVTYPE_SUPPRESSION, pAgent)
     End Function
-    Public Function creerFicheVieDesactivation(ByVal pAgent As Agent) As Boolean
-        Return creerFicheVie(FVManometreControle.FVTYPE_DESACTIVATION, pAgent)
-    End Function
+    'Public Function creerFicheVieDesactivation(ByVal pAgent As Agent) As Boolean
+    '    Return creerFicheVie(FVManometreControle.FVTYPE_DESACTIVATION, pAgent)
+    'End Function
     Public Function creerFicheVie(ByVal pType As String, ByVal pAgent As Agent) As Boolean
         Debug.Assert(pAgent IsNot Nothing)
         Dim bReturn As Boolean
