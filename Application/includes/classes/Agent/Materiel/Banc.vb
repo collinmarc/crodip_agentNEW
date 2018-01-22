@@ -291,7 +291,7 @@ Public Class Banc
         Return creerFicheVie(FVBanc.FVTYPE_DESACTIVATION, pAgent) IsNot Nothing
     End Function
     Public Function creerfFicheVieControle(ByVal pAgent As Agent, pControleBanc As ControleBanc) As FVBanc
-        Dim oReturn As FVBanc
+        Dim oReturn As FVBanc = Nothing
         Try
             Dim oFV As FVBanc
             oFV = creerFicheVie(FVBanc.FVTYPE_CONTROLE, pAgent)

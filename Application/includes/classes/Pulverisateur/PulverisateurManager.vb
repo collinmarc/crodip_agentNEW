@@ -93,7 +93,7 @@ Public Class PulverisateurManager
     Public Shared Function getNewId(ByVal curAgent As Agent) As String
         ' déclarations
         Dim tmpPulveId As String
-        Dim oCSDB As CSDb
+        Dim oCSDb As CSDb = nothing
         If Not curAgent.numeroNational Is Nothing Then
             oCSDB = New CSDb(True)
             Dim bddCommande As OleDb.OleDbCommand
@@ -172,7 +172,7 @@ Public Class PulverisateurManager
 
         Dim bReturn As Boolean
         Dim bdd As New CSDb(True)
-        Dim paramsQuery As String
+        Dim paramsQuery As String = ""
         Try
             bReturn = False
             If objPulverisateur.id <> "" Then
@@ -734,7 +734,7 @@ Public Class PulverisateurManager
         Debug.Assert(Not String.IsNullOrEmpty(Filename))
 
         Dim bReturn As Boolean
-        Dim oCSdb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim oCmd As OleDb.OleDbCommand
         Dim oDR As OleDb.OleDbDataReader
         Dim oFI As IO.FileInfo

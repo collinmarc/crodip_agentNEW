@@ -3749,7 +3749,7 @@ Public Class accueil
                     AlerteIdent = ALERTE.JAUNE
                 End If
             End If
-            Dim stext As String
+            Dim stext As String = ""
             If olst.Count > 1 Then
                 stext = "Attention, il ne vous reste plus que " & olst.Count & " identifiants pulvérisateurs disponibles, contactez le CRODIP."
             End If
@@ -3894,8 +3894,8 @@ Public Class accueil
         Dim bAlerte As Boolean = False
         bAlerte = My.Settings.nbControlesAvantAlerte > My.Settings.nbControlesAvantAlerteMax
         'Affichage des alertes 
-        Dim sName As String
-        Dim sTexte As String
+        Dim sName As String = ""
+        Dim sTexte As String = ""
         If bAlerte Then
             sTexte = "Attention, vous avez effectué " & My.Settings.nbControlesAvantAlerte & " diagnostics sans effectuer de contrôles réguliers des instruments, veuillez vérifier vos instruments de mesures"
             AjouteUneAlerte(ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
@@ -4082,9 +4082,9 @@ Public Class accueil
             While tmpListProfils.Read()
 
                 ' On récupère nos logs de synchro
-                Dim tmpSens As String
-                Dim tmpDate As String
-                Dim tmpLog As String
+                Dim tmpSens As String = ""
+                Dim tmpDate As String = ""
+                Dim tmpLog As String = ""
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     Select Case tmpListProfils.GetName(tmpColId)
@@ -4291,7 +4291,7 @@ Public Class accueil
     Private Sub searchExploitant()
         Dim searchId As Integer
         Dim searchCriteria As String
-        Dim ocol As List(Of Exploitation)
+        Dim ocol As New List(Of Exploitation)
 
         If list_search_fieldSearch.SelectedItem IsNot Nothing Then
             searchId = list_search_fieldSearch.SelectedItem.id
@@ -5353,7 +5353,7 @@ Public Class accueil
     Private Sub MajDateDernSynhcroagent()
         If MsgBox("Mise à jour de la date de dernière synhcro de l'agent à " & CSDate.ToCRODIPString(DateTime.Now()), MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
             agentCourant.dateDerniereSynchro = CSDate.ToCRODIPString(DateTime.Now())
-            Dim oUpdate As Object
+            Dim oUpdate As Object = Nothing
             AgentManager.sendWSAgent(agentCourant, oUpdate)
         End If
 

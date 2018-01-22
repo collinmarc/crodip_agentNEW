@@ -63,7 +63,7 @@ Public Class BancManager
     ''' Cette méthode n'est plus utilisée depuis la 2.5.4.3 , car les matériels sont créés sur le Serveur 
     Public Shared Function FTO_getNewId(ByVal pAgent As Agent) As String
         ' déclarations
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
@@ -104,7 +104,7 @@ Public Class BancManager
 
     Public Shared Function save(ByVal objBanc As Banc, Optional bsynchro As Boolean = False) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(objBanc.id), "L'Id doit être inititialisé")
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Try
@@ -309,7 +309,7 @@ Public Class BancManager
 
     Public Shared Function delete(ByVal pBancId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pBancId), " le paramètre ID doit être initialisé")
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
@@ -346,7 +346,7 @@ Public Class BancManager
     Public Shared Function getMaterielsSupprimes(ByVal pIdStructure As String) As Collection
         Debug.Assert(Not String.IsNullOrEmpty(pIdStructure), "L'Id Structre doit être initialisé")
         Dim colReturn As New Collection()
-        Dim oCsdb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand = Nothing
         Dim oDataReader As System.Data.OleDb.OleDbDataReader
         Try

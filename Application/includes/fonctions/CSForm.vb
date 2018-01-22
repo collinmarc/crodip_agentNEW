@@ -224,7 +224,7 @@ Module CSForm
     ' Remplace le point par une virgule dans les champs numérique
     Public Sub forceDot(ByVal e As System.Windows.Forms.KeyPressEventArgs, ByVal sender As Object)
         'si c'est une virgule et qu'il y en a déja une dans le textbox, ou qu'elle est tapée en premier caractère, on annule la saisie
-        Dim str As String
+        Dim str As String = ""
         If TypeOf (sender) Is TextBox Then
             str = CType(sender, TextBox).Text
         End If

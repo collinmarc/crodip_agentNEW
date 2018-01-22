@@ -86,7 +86,7 @@ Public Class SynchronisationManager
         Dim isComplete As Integer
         logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(pAgent.dateDerniereSynchro) & ")'>")
         objWSCrodip.UpdatesAvailable(pAgent.numeroNational, CSDate.GetDateForWS(pAgent.dateDerniereSynchro), isUpdateAvailable, isComplete, objWSUpdates)
-        Dim oSynchro As SynchronisationElmt
+        Dim oSynchro As SynchronisationElmt = Nothing
         'Parcours de la Liste des Objets à synchroniser
         For Each objWSUpdates_items As Object In objWSUpdates
             'création de l'objet de synhcronisation en fonction du type

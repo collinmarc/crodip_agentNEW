@@ -267,7 +267,7 @@ Public Class ManometreControleManager
     ''' <remarks></remarks>
     Public Shared Function getMaterielsSupprimes(ByVal pIdStructure As String) As Collection
         Dim colReturn As New Collection()
-        Dim oCsdb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand = Nothing
         Dim oDataReader As System.Data.OleDb.OleDbDataReader
         Try
@@ -367,7 +367,7 @@ Public Class ManometreControleManager
 #Region " - Suppression - "
     Public Shared Function delete(ByVal pNumeroNational As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pNumeroNational), " le paramètre pID doit être initialisé")
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean

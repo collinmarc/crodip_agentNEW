@@ -426,7 +426,7 @@ Public Class Agent
     Private Function deleteDiagnostic() As Boolean
         Debug.Assert(id > 0, " le paramètre AgentID doit être initialisé")
         CSDebug.dispError("Suppression des Diagnostiques de l'agent " & id)
-        Dim oCSDb As CSDb = Nothing
+        Dim oCSDb As CSDb = Nothing 
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Dim oDR As OleDb.OleDbDataReader
@@ -462,7 +462,7 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deletePulverisateur() As Boolean
-        Dim oCSDb As CSDb = Nothing
+        Dim oCSDb As CSDb = Nothing 
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Dim oDR As OleDb.OleDbDataReader
@@ -498,7 +498,7 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteExploitation() As Boolean
-        Dim oCSDb As CSDb = Nothing
+        Dim oCSDb As CSDb = Nothing 
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Dim oDR As OleDb.OleDbDataReader
@@ -562,7 +562,7 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteBuse() As Boolean
-        Dim oCSDb As CSDb = Nothing
+        Dim oCSDb As CSDb = Nothing 
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Dim oDR As OleDb.OleDbDataReader
@@ -593,7 +593,7 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteManoControle() As Boolean
-        Dim oCSDb As CSDb = Nothing
+        Dim oCSDb As CSDb = Nothing 
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Dim oDR As OleDb.OleDbDataReader
@@ -633,7 +633,7 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteManoEtalon() As Boolean
-        Dim oCSDb As CSDb = Nothing
+        Dim oCSDb As CSDb = Nothing 
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Dim oDR As OleDb.OleDbDataReader
@@ -674,7 +674,7 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteBancMesure() As Boolean
-        Dim oCSDb As CSDb = Nothing
+        Dim oCSDb As CSDb = Nothing 
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Dim oDR As OleDb.OleDbDataReader
@@ -703,7 +703,7 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteControleRegulier() As Boolean
-        Dim oCSDb As CSDb = Nothing
+        Dim oCSDb As CSDb = Nothing 
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Try

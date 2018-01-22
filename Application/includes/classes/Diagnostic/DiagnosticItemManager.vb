@@ -25,7 +25,7 @@ Public Class DiagnosticItemManager
         Dim objDiagnosticItem As DiagnosticItem
         Dim objWSCrodip As WSCrodip_prod.CrodipServer
         Dim objWSCrodip_response As Object()
-        Dim oDiag As Diagnostic
+        Dim oDiag As Diagnostic = Nothing
         '        Dim oLst As List(Of DiagnosticItem)
         Try
 
@@ -175,7 +175,7 @@ Public Class DiagnosticItemManager
         ' déclarations
         Dim tmpDiagnosticItem As New DiagnosticItem
         If diagnosticitem_id <> "" Then
-            Dim oCsdb As CSDb
+            Dim oCSDb As CSDb = nothing
             oCsdb = New CSDb(True)
             Dim bddCommande As OleDb.OleDbCommand
             bddCommande = oCsdb.getConnection().CreateCommand()
@@ -446,7 +446,7 @@ Public Class DiagnosticItemManager
     Public Shared Function deleteByDiagnosticID(ByVal pDiagnosticId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pDiagnosticId), "Diagnostic.id doit être inialisé")
         Dim bReturn As Boolean
-        Dim oCsDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Try
@@ -469,7 +469,7 @@ Public Class DiagnosticItemManager
     Public Shared Function delete(ByVal pDiagnosticItemId As String, pIdDiagnostic As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pDiagnosticItemId), "DiagnosticItemid doit être inialisé")
         Dim bReturn As Boolean
-        Dim oCsDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Try

@@ -119,8 +119,8 @@ Public Class FVBancManager
 
     Private Shared Function insert(ByVal objFVBanc As FVBanc, bSynchro As Boolean) As Boolean
         '        Dim paramsQueryUpdate As String
-        Dim paramsQuery_col As String
-        Dim paramsQuery As String
+        Dim paramsQuery_col As String = ""
+        Dim paramsQuery As String = ""
         Dim oCSDb As New CSDb(True)
         Dim bddCommande As New OleDb.OleDbCommand
         Dim bReturn As Boolean
@@ -218,7 +218,7 @@ Public Class FVBancManager
 
     End Function
     Private Shared Function update(ByVal objFVBanc As FVBanc, Optional bSyncro As Boolean = False) As Boolean
-        Dim paramsQueryUpdate As String
+        Dim paramsQueryUpdate As String = ""
         '        Dim paramsQuery_col As String
         '        Dim paramsQuery As String
         Dim CSDb As New CSDb(True)
@@ -320,7 +320,7 @@ Public Class FVBancManager
 
     Public Shared Function delete(ByVal pId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pId), " le paramètre ID doit être initialisé")
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
@@ -466,7 +466,7 @@ Public Class FVBancManager
         ' déclarations
         Dim arrItems(0) As FVBanc
         Dim bddCommande As OleDb.OleDbCommand
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = nothing
         oCSDb = New CSDb(True)
         bddCommande = oCSDb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT `FichevieBancMesure`.* FROM `FichevieBancMesure` INNER JOIN `BancMesure` ON `FichevieBancMesure`.`idBancMesure` = `BancMesure`.`id` WHERE `FichevieBancMesure`.`dateModificationAgent`<>`FichevieBancMesure`.`dateModificationCrodip` AND `BancMesure`.`idStructure`=" & pAgent.idStructure
@@ -512,7 +512,7 @@ Public Class FVBancManager
         Debug.Assert(Not String.IsNullOrEmpty(pBancId), "Id doit être renseigné")
 
         Dim lstFVBanc As New System.Collections.Generic.List(Of FVBanc)
-        Dim oCSDB As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
         Try
             oCSDB = New CSDb(True)

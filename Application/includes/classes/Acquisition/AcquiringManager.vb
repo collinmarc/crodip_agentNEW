@@ -17,7 +17,7 @@ Public Class AcquiringManager
     End Sub
     Public Shared Function Save(arrAcquiring As List(Of Acquiring)) As Boolean
         Dim bReturn As Boolean
-        Dim oCSDB As CSDb
+        Dim oCSDb As CSDb = nothing
         Try
             AcquiringManager.clearResults()
 

@@ -873,7 +873,7 @@ Public Class Synchronisation
         Try
             ' Récupération de la date de synchro à partir du serveur
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim synchroDateTime As Object
+            Dim synchroDateTime As Object = Nothing
             objWSCrodip.GetSynchroDateTime(synchroDateTime)
             Dim sDateFromSRV As String = synchroDateTime(0).InnerText().replace("/", "-")
             Dim dtSRV As Date

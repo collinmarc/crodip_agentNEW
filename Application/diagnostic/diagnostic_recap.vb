@@ -1770,7 +1770,7 @@ Public Class diagnostic_recap
     Private Sub btn_finalisationDiag_modifierDiag_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_modifierDiag.Click
         'Récupération des infos de la fenêtre
         GetInfos()
-        Dim ofrmDiag As Form
+        Dim ofrmDiag As Form = Nothing
         If m_diagnostic.controleEtat <> Diagnostic.controleEtatNOKCC Then
             'Activation de la fenêtre
             For Each oForm As Form In MdiParent.MdiChildren

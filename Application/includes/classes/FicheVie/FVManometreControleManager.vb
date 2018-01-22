@@ -72,7 +72,7 @@ Public Class FVManometreControleManager
 
     Public Shared Function save(ByVal objFVManometreControle As FVManometreControle, Optional bSyncro As Boolean = False) As Boolean
         'Dim paramsQueryUpdate As String
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
 
@@ -356,7 +356,7 @@ Public Class FVManometreControleManager
     Public Shared Function getFVManometreControleById(ByVal fvmanometrecontrole_id As String) As FVManometreControle
         Debug.Assert(Not String.IsNullOrEmpty(fvmanometrecontrole_id), "Id doit être initialisé")
         ' déclarations
-        Dim oCSDB As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         Dim tmpFVManometreControle As New FVManometreControle(New Agent)
@@ -393,7 +393,7 @@ Public Class FVManometreControleManager
     ''' Rend les fiches de vie des mano de la structure qui ont été modifiées depuis la dateCrodip
     Public Shared Function getUpdates(ByVal agent As Agent) As FVManometreControle()
         ' déclarations
-        Dim oCSDB As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim arrItems(0) As FVManometreControle
         Dim bddCommande As OleDb.OleDbCommand
 
@@ -433,7 +433,7 @@ Public Class FVManometreControleManager
     Public Shared Function getLstFVManometreControle(ByVal pIdManometre As String) As List(Of FVManometreControle)
         Debug.Assert(Not String.IsNullOrEmpty(pIdManometre), "L'ID doit êtr initialisé")
         Dim lstResponse As New List(Of FVManometreControle)
-        Dim oCSDB As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         If pIdManometre <> "" Then
@@ -472,7 +472,7 @@ Public Class FVManometreControleManager
 #End Region
     Public Shared Function delete(ByVal pId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pId), " le paramètre ID doit être initialisé")
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean

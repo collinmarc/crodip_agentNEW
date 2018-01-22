@@ -1520,8 +1520,8 @@ Public Class frmDiagnostique
         Dim manoAgenttextBox As New CRODIP_ControlLibrary.TBNumeric
         Dim imprecisiontextBox As New CRODIP_ControlLibrary.TBNumeric
         Dim EcartTextBox As New CRODIP_ControlLibrary.TBNumeric()
-        Dim oLstMano542 As DiagnosticMano542List
-        Dim oCalc542 As DiagnosticMano542
+        Dim oLstMano542 As New DiagnosticMano542List()
+        Dim oCalc542 As New DiagnosticMano542()
         '==============================
         'MAJ de l'imprécision des Mano
         '==============================
@@ -2767,8 +2767,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
             Dim bAllFilled As Boolean
             Dim ncol As Integer
-            Dim odgv As DataGridView
-            Dim ochk As RadioButton
+            Dim odgv As DataGridView = Nothing
+            Dim ochk As RadioButton = Nothing
             Dim bUseCalibrateur As Boolean
             'Utilisation du calibrateur
             bUseCalibrateur = manopulveIsUseCalibrateur.Checked
@@ -7923,7 +7923,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub SetPressionControle542ToPressionManoPulve833(ByVal nMesure As Integer, ByVal pUseCalibrateur As Boolean)
         'CSDebug.dispInfo("SetPressionMano (" & nMesure & "," & pPression & ")")
         Try
-            Dim strPression542 As String
+            Dim strPression542 As String = ""
             'Détermination de la pression 542 à recopier
             If pUseCalibrateur Then
                 Select Case nMesure
@@ -8228,7 +8228,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim oldDuringLoad As Boolean
         bReturn = False
         Try
-            Dim TB As CRODIP_ControlLibrary.TBNumeric
+            Dim TB As CRODIP_ControlLibrary.TBNumeric = Nothing
             Select Case pPression
                 Case 1
                     TB = manopulvePressionControle_1
@@ -8848,7 +8848,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         setRelevePressionparDeFaut(3, rbPression3.Checked)
     End Sub
     Private Sub setRelevePressionparDeFaut(ByVal nPression As Integer, ByVal bValue As Boolean)
-        Dim oReleve As RelevePression833
+        Dim oReleve As RelevePression833 = Nothing
         Select Case nPression
             Case 1
                 oReleve = m_RelevePression833_P1

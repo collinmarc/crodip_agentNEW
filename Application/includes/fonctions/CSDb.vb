@@ -162,7 +162,7 @@ Public Class CSDb
     Public Function getValue(ByVal pQuery As String) As Object
         Dim _resultReader As System.Data.OleDb.OleDbDataReader
         Dim oCSdb As New CSDb(True)
-        Dim oReturn As Object
+        Dim oReturn As Object = Nothing
         Try
             _resultReader = oCSdb.getResults(pQuery)
             If _resultReader.HasRows Then

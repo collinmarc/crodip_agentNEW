@@ -9,7 +9,7 @@ Public Class AgentManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As Object = Nothing
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetAgent(agent_id, objWSCrodip_response)
             Select Case codeResponse
@@ -123,7 +123,7 @@ Public Class AgentManager
     Public Shared Function getAgentList() As AgentList
         ' déclarations
         Dim tmpAgent As New Agent
-        Dim oCsDb As CSDb
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim strSQL As String
         Dim oReturn As New AgentList()
@@ -131,9 +131,9 @@ Public Class AgentManager
         Dim tmpColId As Integer
 
         Try
-            oCsDb = New CSDb(True)
+            oCSDb = New CSDb(True)
 
-            bddCommande = oCsDb.getConnection().CreateCommand()
+            bddCommande = oCSDb.getConnection().CreateCommand()
             strSQL = "SELECT Agent.id as id,"
             strSQL = strSQL & "Agent.numeronational as numeroNational, "
             strSQL = strSQL & "Agent.motDePasse as motDePasse, "
@@ -175,8 +175,8 @@ Public Class AgentManager
         Catch ex As Exception ' On intercepte l'erreur
             CSDebug.dispError("AgentManager - getListAgent() Erreur : " & ex.Message)
         End Try
-        If Not oCsDb Is Nothing Then
-            oCsDb.free()
+        If Not oCSDb Is Nothing Then
+            oCSDb.free()
         End If
         'on retourne l'agent ou un objet vide en cas d'erreur
         Return oReturn
@@ -190,12 +190,12 @@ Public Class AgentManager
     Public Shared Function getAgentById(ByVal pAgentID As Integer) As Agent
         ' déclarations
         Dim tmpAgent As New Agent
-        Dim oCsDb As CSDb
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
-        oCsDb = New CSDb(True)
+        oCSDb = New CSDb(True)
 
-        bddCommande = oCsDb.getConnection().CreateCommand()
+        bddCommande = oCSDb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM Agent WHERE Agent.id=" & pAgentID & ""
         Try
             ' On récupère les résultats
@@ -214,8 +214,8 @@ Public Class AgentManager
         Catch ex As Exception ' On intercepte l'erreur
             CSDebug.dispFatal("AgentManager - getAgentById(" & pAgentID & ") Erreur : " & ex.Message)
         End Try
-        If Not oCsDb Is Nothing Then
-            oCsDb.free()
+        If Not oCSDb Is Nothing Then
+            oCSDb.free()
         End If
         'on retourne l'agent ou un objet vide en cas d'erreur
         Return tmpAgent
@@ -230,13 +230,13 @@ Public Class AgentManager
     Public Shared Function getAgentByNumeroNational(ByVal pNumeroNational As String) As Agent
         ' déclarations
         Dim tmpAgent As New Agent
-        Dim oCsDb As CSDb
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         If pNumeroNational <> "" Then
-            oCsDb = New CSDb(True)
+            oCSDb = New CSDb(True)
 
-            bddCommande = oCsDb.getConnection().CreateCommand()
+            bddCommande = oCSDb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM Agent WHERE Agent.numeroNational='" & pNumeroNational & "'"
             Try
                 ' On récupère les résultats
@@ -256,8 +256,8 @@ Public Class AgentManager
                 CSDebug.dispFatal("AgentManager - getAgentByNumeroNational(" & pNumeroNational & ") Erreur : " & ex.Message)
             End Try
         End If
-        If Not oCsDb Is Nothing Then
-            oCsDb.free()
+        If Not oCSDb Is Nothing Then
+            oCSDb.free()
         End If
         'on retourne l'agent ou un objet vide en cas d'erreur
         Return tmpAgent
@@ -266,22 +266,22 @@ Public Class AgentManager
     ' Methode OK
     Public Shared Function createAgent(ByVal id As Integer, ByVal pNumeronational As String, ByVal pNom As String) As Agent
         Debug.Assert(Not String.IsNullOrEmpty(pNumeronational), " le paramètre NumeroNational doit être initialisé")
-        Dim oCsdb As CSDb
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim oAgent As Agent
         Dim AgentID As Integer
         Dim oReader As OleDb.OleDbDataReader
 
         Try
-            oCsdb = New CSDb(True)
+            oCSDb = New CSDb(True)
 
-            bddCommande = oCsdb.getConnection.CreateCommand()
+            bddCommande = oCSDb.getConnection.CreateCommand()
 
 
             ' Création
             bddCommande.CommandText = "INSERT INTO Agent (id,numeroNational, nom) VALUES (" & id & ",'" & pNumeronational & "', '" & pNom & "')"
             bddCommande.ExecuteNonQuery()
-            oCsdb.free()
+            oCSDb.free()
             oAgent = getAgentByNumeroNational(pNumeronational)
             oAgent.nom = pNom
 
@@ -289,8 +289,8 @@ Public Class AgentManager
             CSDebug.dispFatal("AgentManager.createAgent() : " & ex.Message)
             oAgent = Nothing
         End Try
-        If Not oCsdb Is Nothing Then
-            oCsdb.free()
+        If Not oCSDb Is Nothing Then
+            oCSDb.free()
         End If
         Return oAgent
     End Function
@@ -303,7 +303,7 @@ Public Class AgentManager
     Public Shared Function delete(ByVal pAgentID As Integer) As Boolean
         Debug.Assert(pAgentID > 0, " le paramètre AgentID doit être initialisé")
         CSDebug.dispError("Suppression de l'agent " & pAgentID)
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
@@ -344,7 +344,7 @@ Public Class AgentManager
     Public Shared Function save(ByVal agent As Agent, Optional bSynchro As Boolean = False) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(agent.numeroNational), "Agent.Numeronational doit être initialisé")
 
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Dim nResult As Integer
@@ -454,7 +454,7 @@ Public Class AgentManager
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Shared Function getUpdates(ByVal agent As Agent) As Agent()
-        Dim oCSDB As CSDb
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         ' déclarations

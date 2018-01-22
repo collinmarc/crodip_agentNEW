@@ -135,7 +135,7 @@ Public Class DiagnosticManager
         Try
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim tmpCurIncrement As Object
+            Dim tmpCurIncrement As Object = Nothing
             ' Appel au WS
             'curIncrement = objWSCrodip.GetIncrementDiagnostic(agent.id.ToString, objWSCrodip_response)
             objWSCrodip_response = objWSCrodip.GetIncrementDiagnostic(agent.id.ToString, tmpCurIncrement)
@@ -1227,7 +1227,7 @@ Public Class DiagnosticManager
     Public Shared Function delete(ByVal pDiagnosticId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pDiagnosticId), "Diagnostic.id doit être inialisé")
         Dim bReturn As Boolean
-        Dim oCsDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDbCommand
         Dim nResult As Integer
         bReturn = False

@@ -274,7 +274,8 @@ Public Class StructureManager
 
     Private Shared Sub createStructure(ByVal structuree_id As String)
         Try
-            Dim oCSDB As CSDb = New CSDb(True)
+            Dim oCSDb As CSDb = Nothing
+            oCSDb = New CSDb(True)
             Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
 
             ' Création
@@ -457,7 +458,7 @@ Public Class StructureManager
 
     Public Shared Function delete(ByVal pStructureID As Integer) As Boolean
         Debug.Assert(pStructureID > 0, " le paramètre StructureID doit être initialisé")
-        Dim oCSDb As CSDb
+        Dim oCSDb As CSDb = nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
