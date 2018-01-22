@@ -3913,7 +3913,6 @@ Public Class accueil
 
         Statusbar.display(CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
         Dim arrBanc As List(Of Banc) = BancManager.getBancByStructureId(agentCourant.idStructure, True)
-        Dim dateLimite As Date
         Dim njours As Integer
         Dim nbBancAvantDL(15) As Integer 'Nombre de banc devant être controler njours avant la Date Limite
         Dim AlerteBanc As ALERTE

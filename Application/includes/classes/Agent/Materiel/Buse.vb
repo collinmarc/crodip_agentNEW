@@ -62,35 +62,6 @@ Public Class Buse
             _dateAchat = Value
         End Set
     End Property
-
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-
-    Public Property etat() As Boolean
-        Get
-            Return _etat
-        End Get
-        Set(ByVal Value As Boolean)
-            _etat = Value
-        End Set
-    End Property
-
-
     Public Property isUtilise() As Boolean
         Get
             Return _isUtilise
