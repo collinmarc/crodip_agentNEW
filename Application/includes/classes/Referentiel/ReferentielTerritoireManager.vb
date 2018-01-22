@@ -4,7 +4,7 @@ Module ReferentielTerritoireManager
         Try
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As Object = Nothing
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetReferentielTerritoire(agentCourant.id, objWSCrodip_response)
             Select Case codeResponse
@@ -20,6 +20,8 @@ Module ReferentielTerritoireManager
                     Return False
                 Case 9 ' BADREQUEST
                     CSDebug.dispError("Erreur - ReferentielTerritoireManager - Code 9 : Bad Request")
+                    Return False
+                Case Else
                     Return False
             End Select
         Catch ex As Exception

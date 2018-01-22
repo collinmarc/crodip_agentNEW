@@ -2660,8 +2660,9 @@ Public Class Diagnostic
         Return bReturn
     End Function
 
-    Public Function calcNbreMesuresAncienneVersion(ByRef pNbreMesure) As Boolean
+    Public Function calcNbreMesuresAncienneVersion() As Integer
         Dim bReturn As Boolean
+        Dim pNbreMesure As Integer = 0
         Try
             Dim oSortedList As New SortedList()
             Dim nPressionMax As Integer = 0
@@ -2714,7 +2715,7 @@ Public Class Diagnostic
             CSDebug.dispError("Diagnostique.calcNbreMesuresAncienneVersion ERR" + ex.Message.ToString())
             bReturn = False
         End Try
-        Return bReturn
+        Return pNbreMesure
     End Function
 
 

@@ -6,7 +6,7 @@ Module CSVersion
         Try
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As Object = Nothing
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetVersionLogicielAgent(objWSCrodip_response)
             Select Case codeResponse

@@ -2,7 +2,7 @@ Imports System.Text.RegularExpressions
 Module CSMath
 
     ' Retourne un double avec N chiffres après la virgules (tronqués)
-    Public Function truncate(ByVal myDouble As Double, ByVal nbDecimale As Integer)
+    Public Function truncate(ByVal myDouble As Double, ByVal nbDecimale As Integer) As Double
         Dim tmpReturn As Double = myDouble
         Try
             Dim tmpArrMyDouble() As String = {0, 0}

@@ -2510,7 +2510,7 @@ Public Class frmControleManometres
     ' Test si le mano est fiable
     Public Function checkMano(ByVal curMano As ManometreControle) As Boolean
         ' Init
-        Dim nbMesures = 6
+        Dim nbMesures As Integer = 6
         Dim maxEcart As Double = 0
 
         ' 
@@ -2631,7 +2631,7 @@ Public Class frmControleManometres
 
     Public Function isSaisieComplete(ByVal curMano As ManometreControle) As Boolean
         ' Init
-        Dim nbMesures = 6
+        Dim nbMesures As Integer = 6
         Dim bisSaisieComplete As Boolean = True
 
 
@@ -2667,7 +2667,7 @@ Public Class frmControleManometres
     End Function
     Public Function isSaisieCommencee(ByVal curMano As ManometreControle) As Boolean
         ' Init
-        Dim nbMesures = 6
+        Dim nbMesures As Integer = 6
         Dim bisSaisieCommence As Boolean = True
         Dim bbSaisie As Integer = 0
 
@@ -2828,7 +2828,6 @@ Public Class frmControleManometres
             '            Dim valueEmt As Double
             Dim bCalc As Boolean
             Dim bCheck As Boolean
-            Dim btnName
 
 
             If String.IsNullOrEmpty(inputCapteurTeste.Text) Or String.IsNullOrEmpty(inputInstrumentReference.Text) Then
@@ -3014,11 +3013,11 @@ Public Class frmControleManometres
         Panel_loading.Visible = False
     End Sub
 
-    Public Function doAcqiring()
+    Public Sub doAcqiring()
         _thread_doAcqiring = New Thread(AddressOf thr_doAcqiring) 'ThrFunc est la fonction exécutée par le thread.
         _thread_doAcqiring.Name = "thr_doAcqiring" 'Il est parfois pratique de nommer les threads surtout si on en créé plusieurs.
         _thread_doAcqiring.Start() ' Démarrage du thread.
-    End Function
+    End Sub
 
 #End Region
 

@@ -186,7 +186,7 @@ Public MustInherit Class FVMateriel
             End Select
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("FVBanc.Fill Err " & ex.Message)
+            CSDebug.dispError("FVMateriel.Fill(" & pColName & ",...) Err " & ex.Message())
             bReturn = False
         End Try
         Return bReturn

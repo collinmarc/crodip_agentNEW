@@ -1,7 +1,7 @@
 Option Explicit On 
 Module CSCheck
 
-    Public Function numSIREN(ByVal param As Object)
+    Public Function numSIREN(ByVal param As Object) As Boolean
 
         ' On retire les espaces
         param = param.Replace(" ", "")
@@ -37,7 +37,7 @@ Module CSCheck
         Return Siren_IsValid
     End Function
 
-    Public Function numSIRET(ByVal param As Object)
+    Public Function numSIRET(ByVal param As Object) As Boolean
         Dim i As Integer
         Dim v As Integer
         Dim iLuhnKey As Integer

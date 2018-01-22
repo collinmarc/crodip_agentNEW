@@ -3290,7 +3290,7 @@ Public Class accueil
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function LoadListeExploitation()
+    Public Sub LoadListeExploitation()
         Dim statusbarOldMessage As String = Statusbar.getLibelle
 
         Dim pisAlerte As Boolean = Not m_Exploitation_isShowAll
@@ -3308,7 +3308,7 @@ Public Class accueil
         AfficheListeExploitation(pisAlerte, oCol)
 
         Statusbar.display(statusbarOldMessage, False)
-    End Function
+    End Sub
 
     Private Sub AfficheListeExploitation(ByVal pisAlerte As Boolean, ByVal pColExploit As List(Of Exploitation))
         ' On récupère la liste des profils locaux
@@ -3981,7 +3981,7 @@ Public Class accueil
     End Sub
 
     ' Chargement des alertes de la page d'accueil
-    Public Function loadAccueilAlerts()
+    Public Sub loadAccueilAlerts()
 
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
         Dim positionTopAlertes As Integer = 8
@@ -4064,10 +4064,10 @@ Public Class accueil
         Statusbar.display(" ", True)
         Statusbar.hideLoader()
 
-    End Function
+    End Sub
 
     ' Chargement de l'historique des synchro
-    Public Function loadListSynchro()
+    Public Sub loadListSynchro()
         Dim oCSDB As New CSDb(True)
 
         Dim bddCommande As OleDb.OleDbCommand
@@ -4118,14 +4118,14 @@ Public Class accueil
             oCSDB.free()
         End If
 
-    End Function
+    End Sub
 
     ' Chargement de l'historique des synchro
-    Public Function afficheSynchroCourante(pMsg As String)
+    Public Sub afficheSynchroCourante(pMsg As String)
         lbSynhcroCourante.Items.Add(pMsg)
         lbSynhcroCourante.Refresh()
         lbSynhcroCourante.TopIndex = lbSynhcroCourante.Items.Count - 1
-    End Function
+    End Sub
 #End Region
 
 #Region " Accueil "
@@ -4561,7 +4561,7 @@ Public Class accueil
     ' Voir un diagnostic
     Private Sub btn_ficheClient_diagnostic_voir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheClient_diagnostic_voir.Click
         ' On récupère le formulaire contener
-        Dim myFormParentContener = Me.MdiParent
+        Dim myFormParentContener As Form = Me.MdiParent
 
         ' On vérifie qu'il y a bien une ligne de sélectionnée
         If dgvPulveExploit.SelectedRows.Count > 0 Then
@@ -4594,7 +4594,7 @@ Public Class accueil
     ' Affichage liste clients (Retour)
     Private Sub btn_ficheClient_retour_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheClient_retour.Click
         ' On récupère le formulaire contener
-        Dim myFormParentContener = Me.MdiParent
+        Dim myFormParentContener As Form = Me.MdiParent
 
         ' Mise à jour de la barre de status
         Statusbar.display("Liste des clients")
@@ -4696,9 +4696,9 @@ Public Class accueil
     Private Sub listPulverisateurs_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles listPulverisateurs.DoubleClick
         displayPulveEdit()
     End Sub
-    Private Function displayPulveEdit()
+    Private Sub displayPulveEdit()
         ' On récupère le formulaire contener
-        Dim myFormParentContener = Me.MdiParent
+        Dim myFormParentContener As Form = Me.MdiParent
 
         ' On vérifie qu'il y a bien une ligne de sélectionnée
         If listPulverisateurs.SelectedItems().Count > 0 Then
@@ -4723,7 +4723,7 @@ Public Class accueil
             ' Mise à jour de la barre de status
             Statusbar.display("Pulvérisateur n°" & listPulverisateurs.SelectedItems().Item(0).SubItems.Item(0).Text)
         End If
-    End Function
+    End Sub
 
 #End Region
 

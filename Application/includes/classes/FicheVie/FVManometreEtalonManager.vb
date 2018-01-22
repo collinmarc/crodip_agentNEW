@@ -64,7 +64,7 @@ Public Class FVManometreEtalonManager
 
     End Function
 
-    Public Shared Function sendWSFVManometreEtalon(ByVal fvmanometreetalon As FVManometreEtalon, ByRef updatedObject As Object)
+    Public Shared Function sendWSFVManometreEtalon(ByVal fvmanometreetalon As FVManometreEtalon, ByRef updatedObject As Object) As Integer
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
@@ -130,7 +130,7 @@ Public Class FVManometreEtalonManager
             bddCommande = oCSDb.getConnection().CreateCommand()
 
             ' Initialisation de la requete
-            paramsQueryUpdate = "`id`='" & objFVManometreEtalon.id & "',`idManometre`='" & oCSDb.secureString(objFVManometreEtalon.idManometre) & "'"
+            paramsQueryUpdate = "`id`='" & objFVManometreEtalon.id & "',`idManometre`='" & CSDb.secureString(objFVManometreEtalon.idManometre) & "'"
             Dim paramsQuery_col As String = "`id`,`idManometre`"
             Dim paramsQuery As String = "'" & objFVManometreEtalon.id & "','" & objFVManometreEtalon.idManometre & "'"
 
@@ -141,69 +141,69 @@ Public Class FVManometreEtalonManager
 
             If Not objFVManometreEtalon.type Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`type`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVManometreEtalon.type) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`type`='" & oCSDb.secureString(objFVManometreEtalon.type) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.type) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`type`='" & CSDb.secureString(objFVManometreEtalon.type) & "'"
             End If
             If Not objFVManometreEtalon.auteur Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`auteur`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVManometreEtalon.auteur) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`auteur`='" & oCSDb.secureString(objFVManometreEtalon.auteur) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.auteur) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`auteur`='" & CSDb.secureString(objFVManometreEtalon.auteur) & "'"
             End If
             paramsQuery_col = paramsQuery_col & ",`idAgentControleur`"
             paramsQuery = paramsQuery & " , " & objFVManometreEtalon.idAgentControleur & ""
-            paramsQueryUpdate = paramsQueryUpdate & ",`idAgentControleur`=" & oCSDb.secureString(objFVManometreEtalon.idAgentControleur) & ""
+            paramsQueryUpdate = paramsQueryUpdate & ",`idAgentControleur`=" & CSDb.secureString(objFVManometreEtalon.idAgentControleur) & ""
             If Not objFVManometreEtalon.caracteristiques Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`caracteristiques`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVManometreEtalon.caracteristiques) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`caracteristiques`='" & oCSDb.secureString(objFVManometreEtalon.caracteristiques) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.caracteristiques) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`caracteristiques`='" & CSDb.secureString(objFVManometreEtalon.caracteristiques) & "'"
             End If
             paramsQuery_col = paramsQuery_col & ",`blocage`"
             paramsQuery = paramsQuery & " , " & objFVManometreEtalon.blocage & ""
-            paramsQueryUpdate = paramsQueryUpdate & ",`blocage`=" & oCSDb.secureString(objFVManometreEtalon.blocage) & ""
+            paramsQueryUpdate = paramsQueryUpdate & ",`blocage`=" & CSDb.secureString(objFVManometreEtalon.blocage) & ""
             If Not objFVManometreEtalon.idReetalonnage Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`idReetalonnage`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVManometreEtalon.idReetalonnage) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`idReetalonnage`='" & oCSDb.secureString(objFVManometreEtalon.idReetalonnage) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.idReetalonnage) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`idReetalonnage`='" & CSDb.secureString(objFVManometreEtalon.idReetalonnage) & "'"
             End If
             If Not objFVManometreEtalon.nomLaboratoire Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`nomLaboratoire`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVManometreEtalon.nomLaboratoire) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`nomLaboratoire`='" & oCSDb.secureString(objFVManometreEtalon.nomLaboratoire) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.nomLaboratoire) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`nomLaboratoire`='" & CSDb.secureString(objFVManometreEtalon.nomLaboratoire) & "'"
             End If
             If Not objFVManometreEtalon.dateReetalonnage Is Nothing And objFVManometreEtalon.dateReetalonnage <> "" And objFVManometreEtalon.dateReetalonnage <> "0000-00-00 00:00:00" Then
                 paramsQuery_col = paramsQuery_col & ",`dateReetalonnage`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVManometreEtalon.dateReetalonnage) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateReetalonnage`='" & oCSDb.secureString(objFVManometreEtalon.dateReetalonnage) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.dateReetalonnage) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`dateReetalonnage`='" & CSDb.secureString(objFVManometreEtalon.dateReetalonnage) & "'"
             End If
             If Not objFVManometreEtalon.pressionControle Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`pressionControle`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVManometreEtalon.pressionControle) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`pressionControle`='" & oCSDb.secureString(objFVManometreEtalon.pressionControle) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.pressionControle) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`pressionControle`='" & CSDb.secureString(objFVManometreEtalon.pressionControle) & "'"
             End If
             If Not objFVManometreEtalon.valeursMesurees Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`valeursMesurees`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVManometreEtalon.valeursMesurees) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`valeursMesurees`='" & oCSDb.secureString(objFVManometreEtalon.valeursMesurees) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.valeursMesurees) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`valeursMesurees`='" & CSDb.secureString(objFVManometreEtalon.valeursMesurees) & "'"
             End If
             If Not objFVManometreEtalon.idManometreControleur Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`idManometreControleur`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVManometreEtalon.idManometreControleur) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`idManometreControleur`='" & oCSDb.secureString(objFVManometreEtalon.idManometreControleur) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.idManometreControleur) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`idManometreControleur`='" & CSDb.secureString(objFVManometreEtalon.idManometreControleur) & "'"
             End If
             If Not objFVManometreEtalon.dateModif Is Nothing And objFVManometreEtalon.dateModif <> "" Then
                 paramsQuery_col = paramsQuery_col & ",`dateModif`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVManometreEtalon.dateModif) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateModif`='" & oCSDb.secureString(objFVManometreEtalon.dateModif) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.dateModif) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`dateModif`='" & CSDb.secureString(objFVManometreEtalon.dateModif) & "'"
             End If
             If Not objFVManometreEtalon.dateModificationAgent Is Nothing And objFVManometreEtalon.dateModificationAgent <> "" Then
                 paramsQuery_col = paramsQuery_col & ",`dateModificationAgent`"
                 paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(objFVManometreEtalon.dateModificationAgent) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationAgent`='" & oCSDb.secureString(objFVManometreEtalon.dateModificationAgent) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationAgent`='" & CSDb.secureString(objFVManometreEtalon.dateModificationAgent) & "'"
             End If
             If Not objFVManometreEtalon.dateModificationCrodip Is Nothing And objFVManometreEtalon.dateModificationCrodip <> "" Then
                 paramsQuery_col = paramsQuery_col & ",`dateModificationCrodip`"
                 paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(objFVManometreEtalon.dateModificationCrodip) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationCrodip`='" & oCSDb.secureString(objFVManometreEtalon.dateModificationCrodip) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationCrodip`='" & CSDb.secureString(objFVManometreEtalon.dateModificationCrodip) & "'"
             End If
 
             ' On finalise la requete et en l'execute

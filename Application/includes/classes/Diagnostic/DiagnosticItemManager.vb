@@ -65,7 +65,7 @@ Public Class DiagnosticItemManager
 
     End Function
 
-    Public Shared Function sendWSDiagnosticItem(pAgent As Agent, ByVal objDiagnosticItems As DiagnosticItemsList, ByRef updatedObject As Object)
+    Public Shared Function sendWSDiagnosticItem(pAgent As Agent, ByVal objDiagnosticItems As DiagnosticItemsList, ByRef updatedObject As Object) As Integer
         Dim tmpArr(1)() As DiagnosticItem
         tmpArr(0) = objDiagnosticItems.items
         Try
@@ -295,16 +295,16 @@ Public Class DiagnosticItemManager
                     End If
 
                     If Not objDiagnosticItem.idDiagnostic Is Nothing And objDiagnosticItem.idDiagnostic <> "" Then
-                        paramsQuery = paramsQuery & " , `DiagnosticItem`.`idDiagnostic`='" & pCsDb.secureString(objDiagnosticItem.idDiagnostic) & "'"
+                        paramsQuery = paramsQuery & " , `DiagnosticItem`.`idDiagnostic`='" & CSDb.secureString(objDiagnosticItem.idDiagnostic) & "'"
                     End If
                     If Not objDiagnosticItem.idItem Is Nothing And objDiagnosticItem.idItem <> "" Then
-                        paramsQuery = paramsQuery & " , `DiagnosticItem`.`idItem`='" & pCsDb.secureString(objDiagnosticItem.idItem) & "'"
+                        paramsQuery = paramsQuery & " , `DiagnosticItem`.`idItem`='" & CSDb.secureString(objDiagnosticItem.idItem) & "'"
                     End If
                     If Not objDiagnosticItem.itemValue Is Nothing And objDiagnosticItem.itemValue <> "" Then
-                        paramsQuery = paramsQuery & " , `DiagnosticItem`.`itemValue`='" & pCsDb.secureString(objDiagnosticItem.itemValue) & "'"
+                        paramsQuery = paramsQuery & " , `DiagnosticItem`.`itemValue`='" & CSDb.secureString(objDiagnosticItem.itemValue) & "'"
                     End If
                     If Not objDiagnosticItem.itemCodeEtat Is Nothing And objDiagnosticItem.itemCodeEtat <> "" Then
-                        paramsQuery = paramsQuery & " , `DiagnosticItem`.`itemCodeEtat`='" & pCsDb.secureString(objDiagnosticItem.itemCodeEtat) & "'"
+                        paramsQuery = paramsQuery & " , `DiagnosticItem`.`itemCodeEtat`='" & CSDb.secureString(objDiagnosticItem.itemCodeEtat) & "'"
                     End If
                     'paramsQuery = paramsQuery & " , `DiagnosticItem`.`isItemCode1`=" & objDiagnosticItem.isItemCode1 & ""
                     'paramsQuery = paramsQuery & " , `DiagnosticItem`.`isItemCode2`=" & objDiagnosticItem.isItemCode2 & ""
@@ -411,7 +411,7 @@ Public Class DiagnosticItemManager
         End Try
         Return breturn
     End Function
-    Public Shared Function setSynchro(ByVal objDiagnosticItem As DiagnosticItem)
+    Public Shared Sub setSynchro(ByVal objDiagnosticItem As DiagnosticItem)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -421,7 +421,7 @@ Public Class DiagnosticItemManager
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticItemManager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
     Private Shared Sub createDiagnosticItem2(ByVal diagnosticitem_id As String, ByVal pIdDiagnostic As String)
         Try

@@ -161,7 +161,7 @@ Module DiagnosticFactureManager
 #Region "Methodes acces Local"
 
     'OK
-    Public Function getDiagnosticFactureById(ByVal diagnostic_id As String)
+    Public Function getDiagnosticFactureById(ByVal diagnostic_id As String) As DiagnosticFacture
         ' déclarations
         Dim tmpObject As New DiagnosticFacture
         If diagnostic_id <> "" Then
@@ -350,7 +350,7 @@ Module DiagnosticFactureManager
     End Function
 
     ' Recupère toutes les factures non synchronisé (dateModificationAgent / dateModificationCrodip) 
-    Public Function getUpdates(ByVal agent As Agent)
+    Public Function getUpdates(ByVal agent As Agent) As DiagnosticFacture()
 
         ' déclarations
         Dim arrItems(0) As DiagnosticFacture
@@ -402,7 +402,7 @@ Module DiagnosticFactureManager
     End Function
 
     ' OK
-    Private Function createDiagnosticFacture(ByVal diagnostic_id As String)
+    Private Sub createDiagnosticFacture(ByVal diagnostic_id As String)
         Try
             Dim oCSDB As New CSDb(True)
             Dim bddCommande As New OleDb.OleDbCommand
@@ -418,7 +418,7 @@ Module DiagnosticFactureManager
         Catch ex As Exception
             MsgBox("DiagnosticFactureManager error : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
     ' TODO : SAVE DES ITEM EN MEME TEMPS
     Public Sub save(ByVal curObject As DiagnosticFacture, Optional bSyncro As Boolean = False)
@@ -526,7 +526,7 @@ Module DiagnosticFactureManager
     End Sub
 
     ' OK
-    Public Function setSynchro(ByVal objDiagnostic As DiagnosticFacture)
+    Public Sub setSynchro(ByVal objDiagnostic As DiagnosticFacture)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -536,7 +536,7 @@ Module DiagnosticFactureManager
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticFactureManager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
 #End Region
 

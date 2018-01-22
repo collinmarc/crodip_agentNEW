@@ -10,14 +10,14 @@ End Enum
 #End Region
 Public Class CSDb
     Public Const conf_bddUser As String = "Developpeur"
-    Public conf_bddPass = "UmtU8Scb"
-    Public conf_bddDLPath = "crodip_dasylab"
+    Public conf_bddPass As String = "UmtU8Scb"
+    Public conf_bddDLPath As String = "crodip_dasylab"
     ' Public conf_bddDLPass = "tRyQe8se"
-    Public conf_bddPath = "crodip_agent"
-    Public conf_bddPath_dev = "crodip_agent_dev"
+    Public conf_bddPath As String = "crodip_agent"
+    Public conf_bddPath_dev As String = "crodip_agent_dev"
 
-    Public conf_bddEtatPath = "crodip_etats"
-    Public conf_bddEtatPath_dev = "crodip_etats_dev"
+    Public conf_bddEtatPath As String = "crodip_etats"
+    Public conf_bddEtatPath_dev As String = "crodip_etats_dev"
 
     ' Parametres de connexion
     ' Connexion
@@ -87,7 +87,7 @@ Public Class CSDb
 
         'End Try
     End Sub
-    Public Function free()
+    Public Sub free()
         'Me.Finalize()
         Try
             ' Test pour fermeture de connection BDD
@@ -101,7 +101,7 @@ Public Class CSDb
         Catch ex As Exception
             'CSDebug.dispError("CSDB.Free ERR : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
     '############################################################
     '####################### Accesseurs #########################

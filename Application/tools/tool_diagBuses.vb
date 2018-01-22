@@ -2191,7 +2191,7 @@ Public Class tool_diagBuses
 #Region " Calculs "
 
     ' Calcul le % d'usure d'une buse
-    Private Function mutCalcUsure(ByVal lotId As Integer, ByVal buseId As Integer)
+    Private Function mutCalcUsure(ByVal lotId As Integer, ByVal buseId As Integer) As Double
         ' On récupère les contrôles pour cette buse
         Dim debitTextbox As TextBox = CSForm.getControlByName("diagBuses_mesureDebit_" & lotId & "_" & buseId & "_debit", diagBuses_tab_categories)
         If debitTextbox.Text <> "" Then
@@ -2213,7 +2213,7 @@ Public Class tool_diagBuses
     End Function
 
     ' Retourn TRUE si une buse est usée, sinon FALSE
-    Private Function mutCalcIsUsed(ByVal lotId As Integer, ByVal buseId As Integer)
+    Private Function mutCalcIsUsed(ByVal lotId As Integer, ByVal buseId As Integer) As Integer
         Try
             ' On récupère les contrôles pour cette buse
             Dim debitTextbox As TextBox = CSForm.getControlByName("diagBuses_mesureDebit_" & lotId & "_" & buseId & "_debit", diagBuses_tab_categories)
@@ -2242,7 +2242,7 @@ Public Class tool_diagBuses
 
 
     ' Calcul le nombre de buses d'un lot
-    Private Function mutCalcNbBuses(ByVal lotId As Integer)
+    Private Function mutCalcNbBuses(ByVal lotId As Integer) As Double
         ' Récupération des controles
         Dim nbBusesTextbox As TextBox = CSForm.getControlByName("TextBox_nbBuses_" & lotId, diagBuses_tab_categories)
         If nbBusesTextbox.Text <> "" Then
@@ -2252,7 +2252,7 @@ Public Class tool_diagBuses
             Return 0
         End If
     End Function
-    Private Function mutCalcNbBuses()
+    Private Function mutCalcNbBuses() As Integer
         Dim nbLots As Integer = CType(diagBuses_conf_nbCategories.Text, Integer)
         Dim nbBuses As Integer = 0
         For i As Integer = 1 To nbLots
@@ -2266,7 +2266,7 @@ Public Class tool_diagBuses
     End Function
 
     ' Calcul le nombre de buses usées d'un lot
-    Private Function mutCalcNbBusesUsed(ByVal lotId As Integer)
+    Private Function mutCalcNbBusesUsed(ByVal lotId As Integer) As Integer
         ' Récupération des controles
         Dim nbBusesTextbox As TextBox = CSForm.getControlByName("TextBox_nbBuses_" & lotId, diagBuses_tab_categories)
         If nbBusesTextbox.Text <> "" Then
@@ -2291,7 +2291,7 @@ Public Class tool_diagBuses
     End Function
     ' Calcul le nombre de buses usées du jeu de buses
     Dim tabBuses_isOk As Integer = -1
-    Private Function mutCalcNbBusesUsed()
+    Private Function mutCalcNbBusesUsed() As Integer
         Dim nbLots As Integer = CType(diagBuses_conf_nbCategories.Text, Integer)
         Dim nbBusesUsees As Integer = 0
         For i As Integer = 1 To nbLots
@@ -2322,7 +2322,7 @@ Public Class tool_diagBuses
     End Function
 
     ' Calcul l'usure moyenne d'un lot de buses
-    Private Function mutCalcUsureMoyBuses(ByVal lotId As Integer)
+    Private Function mutCalcUsureMoyBuses(ByVal lotId As Integer) As Double
         ' Récupération des controles
         Dim nbBusesTextbox As TextBox = CSForm.getControlByName("TextBox_nbBuses_" & lotId, diagBuses_tab_categories)
         Dim nbBusesValue As Double = CType(nbBusesTextbox.Text, Integer)
@@ -2344,7 +2344,7 @@ Public Class tool_diagBuses
         Return usureMoy
     End Function
     ' Calcul l'usure moyenne du jeu de buses
-    Private Function mutCalcUsureMoyBuses()
+    Private Function mutCalcUsureMoyBuses() As Double
         Dim nbLots As Integer = CType(diagBuses_conf_nbCategories.Text, Integer)
         Dim usureMoyBuses As Double = 0
         For i As Integer = 1 To nbLots
@@ -2362,7 +2362,7 @@ Public Class tool_diagBuses
     End Function
 
     ' Calcul le debit moyen d'un lot de buses
-    Private Function mutCalcDebitMoy(ByVal lotId As Integer)
+    Private Function mutCalcDebitMoy(ByVal lotId As Integer) As Double
         ' Récupération des controles
         Dim nbBusesTextbox As TextBox = CSForm.getControlByName("TextBox_nbBuses_" & lotId, diagBuses_tab_categories)
         Dim nbBusesValue As Double = CType(nbBusesTextbox.Text, Integer)
@@ -2385,7 +2385,7 @@ Public Class tool_diagBuses
         Return debitMoy
     End Function
     ' Calcul le debit moyen du jeu de buses
-    Private Function mutCalcDebitMoy()
+    Private Function mutCalcDebitMoy() As Double
         Dim nbLots As Integer = CType(diagBuses_conf_nbCategories.Text, Integer)
         Dim debitMoyBuses As Double = 0
         For i As Integer = 1 To nbLots
@@ -2401,7 +2401,7 @@ Public Class tool_diagBuses
     End Function
 
     ' rempli le debit nominal pour calcul
-    Private Function fillDebitNom(ByVal lotId As Integer)
+    Private Sub fillDebitNom(ByVal lotId As Integer)
         Dim debitNomConstTextbox As TextBox = CSForm.getControlByName("TextBox_debitNominalConstructeur_" & lotId, diagBuses_tab_categories)
         Dim debitNomCalcTextbox As TextBox = CSForm.getControlByName("TextBox_debitNominal_" & lotId, diagBuses_tab_categories)
         Dim debitMoyBusesTextbox As TextBox = CSForm.getControlByName("TextBox_debitMoyen_" & lotId, diagBuses_tab_categories)
@@ -2410,10 +2410,10 @@ Public Class tool_diagBuses
         Else
             debitNomCalcTextbox.Text = debitNomConstTextbox.Text
         End If
-    End Function
+    End Sub
 
     ' Numéro des buses usées
-    Private Function fillArrBusesUsed()
+    Private Sub fillArrBusesUsed()
 
         '------------------------------------------------------
         '--- On boucle les lots
@@ -2478,7 +2478,7 @@ Public Class tool_diagBuses
         '--- FIN -- On boucle les lots
         '------------------------------------------------------
 
-    End Function
+    End Sub
 
 #End Region
 
@@ -2493,7 +2493,7 @@ Public Class tool_diagBuses
 
 #Region " Chargement référentiel buses "
 
-    Private Function refBuses_loadMarques(ByVal lotId As Integer)
+    Private Sub refBuses_loadMarques(ByVal lotId As Integer)
 
         Dim oRefBuses As New ReferentielBusesCSV()
         oRefBuses.load()
@@ -2508,8 +2508,8 @@ Public Class tool_diagBuses
         inputGenres.Enabled = False
         inputCouleurs.Enabled = False
 
-    End Function
-    Private Function refBuses_loadGenres(ByVal lotId As Integer, ByVal marque As String)
+    End Sub
+    Private Sub refBuses_loadGenres(ByVal lotId As Integer, ByVal marque As String)
 
         ' On récupère tous les contrôles
         Dim controlToPopulate As ComboBox = CSForm.getControlByName("ComboBox_genre_" & lotId, diagBuses_tab_categories)
@@ -2518,8 +2518,8 @@ Public Class tool_diagBuses
 
         controlToPopulate.Enabled = True
 
-    End Function
-    Private Function refBuses_loadCouleurs(ByVal lotId As Integer, ByVal marque As String, pModele As String)
+    End Sub
+    Private Sub refBuses_loadCouleurs(ByVal lotId As Integer, ByVal marque As String, pModele As String)
 
         ' On récupère tous les contrôles
         Dim controlToPopulate As ComboBox = CSForm.getControlByName("ComboBox_couleur_" & lotId, diagBuses_tab_categories)
@@ -2529,10 +2529,10 @@ Public Class tool_diagBuses
 
         controlToPopulate.Enabled = True
 
-    End Function
-    Private Function loadReferentielBuses(ByVal lotId As Integer)
+    End Sub
+    Private Sub loadReferentielBuses(ByVal lotId As Integer)
         refBuses_loadMarques(lotId)
-    End Function
+    End Sub
 
     Private Sub changeMarqueBuseSelected(ByVal sender As System.Object, ByVal e As System.EventArgs)
 

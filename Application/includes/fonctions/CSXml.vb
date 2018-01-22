@@ -80,7 +80,7 @@ Public Class CSXml
     Public Function getXmlNode(ByVal path As String) As System.Xml.XmlNode
 
         'declarations
-        Dim node As System.Xml.XmlNode
+        Dim node As System.Xml.XmlNode = Nothing
         Try
             'on charge le fchier xml
             Dim doc As New XmlDocument()
@@ -100,7 +100,7 @@ Public Class CSXml
     Public Function getXmlNodes(ByVal path As String) As System.Xml.XmlNodeList
 
         'declarations
-        Dim nodes As System.Xml.XmlNodeList
+        Dim nodes As System.Xml.XmlNodeList = Nothing
         Try
             'on charge le fchier xml
             Dim doc As New XmlDocument

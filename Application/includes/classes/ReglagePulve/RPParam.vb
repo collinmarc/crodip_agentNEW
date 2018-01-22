@@ -175,7 +175,7 @@ Public Class RPParam
     ''' <remarks></remarks>
     Public Shared Function readXML() As RPParam
         Dim oReturn As New RPParam()
-        Dim objStreamReader As StreamReader
+        Dim objStreamReader As StreamReader = Nothing
         Try
             If System.IO.File.Exists(RPParam.xmlFileName) Then
 
