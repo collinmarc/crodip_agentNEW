@@ -33,7 +33,7 @@ Public Class ManometreControleManager
 
     End Function
 
-    Public Shared Function sendWSManometreControle(ByVal manometrecontrole As ManometreControle, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSManometreControle(ByVal manometrecontrole As ManometreControle, ByRef updatedObject As Object)
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
@@ -60,7 +60,7 @@ Public Class ManometreControleManager
 
 #Region "Methodes Locales"
 
-    Public Shared Function FTO_getNewNumeroNational(ByVal pAgent As Agent) As String
+    Public Shared Function FTO_getNewNumeroNational(ByVal pAgent As Agent)
         ' déclarations
         Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
         If pAgent.idStructure <> 0 Then
@@ -130,20 +130,20 @@ Public Class ManometreControleManager
                 End If
 
                 If Not objManometreControle.idCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoControle`.`idCrodip`='" & CSDb.secureString(objManometreControle.idCrodip) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoControle`.`idCrodip`='" & oCSDb.secureString(objManometreControle.idCrodip) & "'"
                 End If
                 paramsQuery = paramsQuery & " , `AgentManoControle`.`idStructure`=" & objManometreControle.idStructure & ""
                 If Not objManometreControle.marque Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoControle`.`marque`='" & CSDb.secureString(objManometreControle.marque) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoControle`.`marque`='" & oCSDb.secureString(objManometreControle.marque) & "'"
                 End If
                 If Not objManometreControle.classe Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoControle`.`classe`='" & CSDb.secureString(objManometreControle.classe) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoControle`.`classe`='" & oCSDb.secureString(objManometreControle.classe) & "'"
                 End If
                 If Not objManometreControle.type Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoControle`.`type`='" & CSDb.secureString(objManometreControle.type) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoControle`.`type`='" & oCSDb.secureString(objManometreControle.type) & "'"
                 End If
                 If Not objManometreControle.fondEchelle Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoControle`.`fondEchelle`='" & CSDb.secureString(objManometreControle.fondEchelle) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoControle`.`fondEchelle`='" & oCSDb.secureString(objManometreControle.fondEchelle) & "'"
                 End If
                 paramsQuery = paramsQuery & " , `AgentManoControle`.`etat`=" & objManometreControle.etat & ""
                 paramsQuery = paramsQuery & " , `AgentManoControle`.`isSynchro`=" & objManometreControle.isSynchro & ""
@@ -157,7 +157,7 @@ Public Class ManometreControleManager
                     paramsQuery = paramsQuery & " , `AgentManoControle`.`dateModificationCrodip`='" & CSDate.mysql2access(objManometreControle.dateModificationCrodip) & "'"
                 End If
                 If Not objManometreControle.resolution Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoControle`.`resolution`='" & CSDb.secureString(objManometreControle.resolution) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoControle`.`resolution`='" & oCSDb.secureString(objManometreControle.resolution) & "'"
                 End If
                 paramsQuery = paramsQuery & " , `AgentManoControle`.`isUtilise`=" & objManometreControle.isUtilise & ""
                 paramsQuery = paramsQuery & " , `AgentManoControle`.`isSupprime`=" & objManometreControle.isSupprime & ""
@@ -268,7 +268,7 @@ Public Class ManometreControleManager
     Public Shared Function getMaterielsSupprimes(ByVal pIdStructure As String) As Collection
         Dim colReturn As New Collection()
         Dim oCsdb As CSDb
-        Dim bddCommande As OleDb.OleDbCommand = Nothing
+        Dim bddCommande As OleDb.OleDbCommand
         Dim oDataReader As System.Data.OleDb.OleDbDataReader
         Try
             If pIdStructure <> "" Then

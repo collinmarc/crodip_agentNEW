@@ -8,7 +8,7 @@ Public Class StructureManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object = Nothing
+            Dim objWSCrodip_response As Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetStructure(agentCourant.id, structuree_id, objWSCrodip_response)
             Select Case codeResponse
@@ -103,7 +103,7 @@ Public Class StructureManager
 
     End Function
 
-    Public Shared Function sendWSStructuree(ByVal structuree As Structuree, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSStructuree(ByVal structuree As Structuree, ByRef updatedObject As Object)
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
@@ -272,7 +272,7 @@ Public Class StructureManager
         Return iReturn
     End Function
 
-    Private Shared Sub createStructure(ByVal structuree_id As String)
+    Private Shared Function createStructure(ByVal structuree_id As String)
         Try
             Dim oCSDB As CSDb = New CSDb(True)
             Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
@@ -285,9 +285,9 @@ Public Class StructureManager
         Catch ex As Exception
             MsgBox("StructureManager.createStructure error : " & ex.Message)
         End Try
-    End Sub
+    End Function
 
-    Public Shared Sub save(ByVal objStructure As Structuree, Optional bSyncro As Boolean = False)
+    Public Shared Function save(ByVal objStructure As Structuree, Optional bSyncro As Boolean = False)
         If objStructure.id <> 0 Then
 
 
@@ -366,9 +366,9 @@ Public Class StructureManager
 
             oCSDb.free()
         End If
-    End Sub
+    End Function
 
-    Public Shared Sub setSynchro(ByVal objStructure As Structuree)
+    Public Shared Function setSynchro(ByVal objStructure As Structuree)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -378,7 +378,7 @@ Public Class StructureManager
         Catch ex As Exception
             CSDebug.dispFatal("StructureManager::setSynchro : " & ex.Message)
         End Try
-    End Sub
+    End Function
 
     Public Shared Function getUpdates(ByVal agent As Agent) As Structuree()
         ' déclarations

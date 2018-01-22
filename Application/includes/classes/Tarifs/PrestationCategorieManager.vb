@@ -9,7 +9,7 @@ Module PrestationCategorieManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object = Nothing
+            Dim objWSCrodip_response As Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetPrestationCategorie(pAgent.id, PrestationCategorie_id, pAgent.idStructure, objWSCrodip_response)
             Select Case codeResponse

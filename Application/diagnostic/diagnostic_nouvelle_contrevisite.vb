@@ -172,7 +172,7 @@ Public Class diagnostic_nouvelle_contrevisite
 
 #End Region
 
-    Sub searchDiagnostic(ByVal param As String)
+    Function searchDiagnostic(ByVal param As String)
         Try
             Dim colDiag As List(Of Diagnostic)
             colDiag = DiagnosticManager.getDiagnosticPourContreVisite(pulverisateurCourant.id, agentCourant.idStructure, param)
@@ -200,12 +200,12 @@ Public Class diagnostic_nouvelle_contrevisite
         Catch ex As Exception
             CSDebug.dispError("Liste des CV - searchDiagnostic : " & ex.Message)
         End Try
-    End Sub
+    End Function
 
     Private Sub btn_selectDiagnostic_reprendreDiag_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_selectDiagnostic_reprendreDiag.Click
 
         ' On récupère le formulaire contener
-        Dim myFormParentContener As Form = Me.MdiParent
+        Dim myFormParentContener = Me.MdiParent
 
         If isNonReference.Checked = True Then
             Try

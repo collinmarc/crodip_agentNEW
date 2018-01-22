@@ -116,7 +116,7 @@ Module DiagnosticFactureItemManager
 #Region "Methodes acces Local"
 
     ' OK
-    Public Function getDiagnosticFactureItemById(ByVal diagnosticitem_id As String) As DiagnosticFactureItem
+    Public Function getDiagnosticFactureItemById(ByVal diagnosticitem_id As String)
         ' déclarations
         Dim tmpObject As New DiagnosticFactureItem
         Dim oCSDB As New CSDb(True)
@@ -172,7 +172,7 @@ Module DiagnosticFactureItemManager
     End Function
 
     ' OK
-    Public Sub save(ByVal curObject As DiagnosticFactureItem, Optional bSyncro As Boolean = False)
+    Public Function save(ByVal curObject As DiagnosticFactureItem, Optional bSyncro As Boolean = False)
         Dim oCSDB As New CSDb(True)
         Try
             If curObject.id <> "" Then
@@ -198,28 +198,28 @@ Module DiagnosticFactureItemManager
                 End If
 
                 If Not curObject.idFacture Is Nothing Then
-                    paramsQuery = paramsQuery & " , `idFacture`='" & CSDb.secureString(curObject.idFacture) & "'"
+                    paramsQuery = paramsQuery & " , `idFacture`='" & dbLink.secureString(curObject.idFacture) & "'"
                 End If
                 If Not curObject.libelle Is Nothing Then
-                    paramsQuery = paramsQuery & " , `libelle`='" & CSDb.secureString(curObject.libelle) & "'"
+                    paramsQuery = paramsQuery & " , `libelle`='" & dbLink.secureString(curObject.libelle) & "'"
                 End If
                 If Not curObject.prixUnitaire Is Nothing Then
-                    paramsQuery = paramsQuery & " , `prixUnitaire`='" & CSDb.secureString(curObject.prixUnitaire) & "'"
+                    paramsQuery = paramsQuery & " , `prixUnitaire`='" & dbLink.secureString(curObject.prixUnitaire) & "'"
                 End If
                 If Not curObject.qte Is Nothing Then
-                    paramsQuery = paramsQuery & " , `qte`='" & CSDb.secureString(curObject.qte) & "'"
+                    paramsQuery = paramsQuery & " , `qte`='" & dbLink.secureString(curObject.qte) & "'"
                 End If
                 If Not curObject.tva Is Nothing Then
-                    paramsQuery = paramsQuery & " , `tva`='" & CSDb.secureString(curObject.tva) & "'"
+                    paramsQuery = paramsQuery & " , `tva`='" & dbLink.secureString(curObject.tva) & "'"
                 End If
                 If Not curObject.prixTotal Is Nothing Then
-                    paramsQuery = paramsQuery & " , `prixTotal`='" & CSDb.secureString(curObject.prixTotal) & "'"
+                    paramsQuery = paramsQuery & " , `prixTotal`='" & dbLink.secureString(curObject.prixTotal) & "'"
                 End If
                 If Not curObject.dateModificationAgent Is Nothing Then
-                    paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(CSDb.secureString(curObject.dateModificationAgent)) & "'"
+                    paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(dbLink.secureString(curObject.dateModificationAgent)) & "'"
                 End If
                 If Not curObject.dateModificationCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.mysql2access(CSDb.secureString(curObject.dateModificationCrodip)) & "'"
+                    paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.mysql2access(dbLink.secureString(curObject.dateModificationCrodip)) & "'"
                 End If
 
                 ' On finalise la requete et en l'execute
@@ -236,10 +236,10 @@ Module DiagnosticFactureItemManager
         If Not oCSDB Is Nothing Then
             oCSDB.free()
         End If
-    End Sub
+    End Function
 
     ' OK
-    Public Sub setSynchro(ByVal curObject As DiagnosticFactureItem)
+    Public Function setSynchro(ByVal curObject As DiagnosticFactureItem)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -249,10 +249,10 @@ Module DiagnosticFactureItemManager
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticFactureItemManager::setSynchro : " & ex.Message)
         End Try
-    End Sub
+    End Function
 
     ' OK
-    Private Sub createDiagnosticFactureItem(ByVal diagnosticitem_id As String)
+    Private Function createDiagnosticFactureItem(ByVal diagnosticitem_id As String)
         Dim oCSDB As New CSDb(True)
         Try
             Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection.CreateCommand()
@@ -267,7 +267,7 @@ Module DiagnosticFactureItemManager
         If Not oCSDB Is Nothing Then
             oCSDB.free()
         End If
-    End Sub
+    End Function
 
 #End Region
 

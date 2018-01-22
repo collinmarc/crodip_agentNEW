@@ -14,7 +14,7 @@ Public Class DiagnosticItemsList
 
     Public Property items() As DiagnosticItem()
         Get
-            Dim olst As New List(Of DiagnosticItem)
+            Dim olst = New List(Of DiagnosticItem)
             olst.AddRange(_diagnosticItem.Values)
             Return olst.ToArray()
         End Get
@@ -27,7 +27,7 @@ Public Class DiagnosticItemsList
 
     Public Property Values() As List(Of DiagnosticItem)
         Get
-            Dim olst As New List(Of DiagnosticItem)
+            Dim olst = New List(Of DiagnosticItem)
             olst.AddRange(_diagnosticItem.Values)
             Return olst
         End Get
@@ -308,7 +308,7 @@ Public Class DiagnosticItem
             _dateModificationCrodip = Value
         End Set
     End Property
-    Public Sub Fill(ByVal pColName As String, ByVal pcolValue As Object)
+    Public Function Fill(ByVal pColName As String, ByVal pcolValue As Object)
         Select Case pColName.ToUpper().Trim()
             Case "id".ToUpper()
                 id = pcolValue.ToString
@@ -332,7 +332,7 @@ Public Class DiagnosticItem
                 dateModificationAgent = CSDate.ToCRODIPString(pcolValue.ToString())
         End Select
 
-    End Sub
+    End Function
 
 
 End Class

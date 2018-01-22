@@ -132,7 +132,7 @@
         Return MyBase.CheckIfBusesAreFilled(pNiveau)
     End Function
 
-    Protected Overrides Function Valider() As Boolean Implements IfrmCRODIP.Valider
+    Protected Overridable Function Valider() As Boolean Implements IfrmCRODIP.Valider
         Dim bReturn As Boolean
         Try
             bReturn = validerDiagnostique()
@@ -200,7 +200,7 @@
     ''' si Tous les champs requis sont remplis
     '''     Test sur le label Résultat
     ''' =============================
-    Protected Overrides Function CheckOnglet8() As Integer
+    Protected Overridable Function CheckOnglet8() As Integer
 
         Dim iReturn As Integer = 3 'Etat initial = 3 Gris
         iReturn = MyBase.CheckOnglet8()

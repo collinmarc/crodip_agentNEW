@@ -1,4 +1,5 @@
-﻿Imports System.Collections.Generic
+﻿Imports Math
+Imports System.Collections.Generic
 Imports System.IO
 Public Class frmDiagnostique
     Inherits frmCRODIP
@@ -923,7 +924,7 @@ Public Class frmDiagnostique
     End Sub
 
     ' Chargement des infos d'un diagnostic existant
-    Public Sub loadExistingDiag()
+    Public Function loadExistingDiag()
         Try
             ' On liste les boutons radio du form
 
@@ -1066,13 +1067,13 @@ Public Class frmDiagnostique
             'Calcul de l'usure des buses de tous les lots
             mutCalcDebitMoy()
             mutCalcUsureMoyBuses()
-            mutCalcNbBusesUsee()
+            mutCalcNbBusesUsed()
             '#####################################################################################################
             'Affichage du Nbre de niveaux et nbre Troncons (8.3.3)
             If m_diagnostic.controleNbreNiveaux = 0 Then
                 'Si nbre de niveaux = 0 => Ancienne Version
                 Dim nbreMesures As Integer
-                nbreMesures = m_diagnostic.calcNbreMesuresAncienneVersion()
+                m_diagnostic.calcNbreMesuresAncienneVersion(nbreMesures)
 
                 If typeControle <> Pulverisateur.CATEGORIEPULVE_RAMPE Then
                     'En ArboViti, nNiveaux sur 2 troncons
@@ -1151,7 +1152,7 @@ Public Class frmDiagnostique
             End If
         End Try
 
-    End Sub
+    End Function
     Private Function Affiche542() As Boolean
         Dim bReturn As Boolean
         Try
@@ -1230,7 +1231,7 @@ Public Class frmDiagnostique
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Function Affiche833() As Boolean
+    Private Function Affiche833()
         Dim bReturn As Boolean
         Try
             '########################################################################################################
@@ -1238,8 +1239,8 @@ Public Class frmDiagnostique
             'affichage du tableau des pressions
             Dim tmpDiagnosticTroncons833 As DiagnosticTroncons833
             Dim nPression As Integer
-            Dim nNiveau As Integer = 0
-            Dim nTroncon As Integer = 0
+            Dim nNiveau As Integer
+            Dim nTroncon As Integer
             If Not m_diagnostic.diagnosticTroncons833 Is Nothing And Not m_diagnostic.diagnosticTroncons833.Liste Is Nothing Then
                 For Each tmpDiagnosticTroncons833 In m_diagnostic.diagnosticTroncons833.Liste
                     nPression = tmpDiagnosticTroncons833.idPression
@@ -1348,7 +1349,7 @@ Public Class frmDiagnostique
 
 #Region " OLD - Loaders "
 
-    Public Sub loaderMano()
+    Public Function loaderMano()
 
         Dim positionTop As Integer = 0
         For i As Integer = 1 To 12
@@ -1397,8 +1398,8 @@ Public Class frmDiagnostique
 
         Next
 
-    End Sub
-    Public Sub loaderTroncon()
+    End Function
+    Public Function loaderTroncon()
 
         For x As Integer = 2 To 3
             Dim positionTop As Integer = 0
@@ -1452,7 +1453,7 @@ Public Class frmDiagnostique
 
             Next
         Next
-    End Sub
+    End Function
 
 #End Region
 
@@ -1516,10 +1517,10 @@ Public Class frmDiagnostique
     'End Sub
     Private Sub calcDefaut542()
 
-        Dim manoPulvetextBox As New CRODIP_ControlLibrary.TBNumeric
-        Dim manoAgenttextBox As New CRODIP_ControlLibrary.TBNumeric
-        Dim imprecisiontextBox As New CRODIP_ControlLibrary.TBNumeric
-        Dim EcartTextBox As New CRODIP_ControlLibrary.TBNumeric()
+        Dim manoPulvetextBox As CRODIP_ControlLibrary.TBNumeric
+        Dim manoAgenttextBox As CRODIP_ControlLibrary.TBNumeric
+        Dim imprecisiontextBox As CRODIP_ControlLibrary.TBNumeric
+        Dim EcartTextBox As CRODIP_ControlLibrary.TBNumeric
         Dim oLstMano542 As DiagnosticMano542List
         Dim oCalc542 As DiagnosticMano542
         '==============================
@@ -1663,7 +1664,7 @@ Public Class frmDiagnostique
 
 
     ' RESETS
-    Public Sub manoPulveResetValues_line(ByVal numLine As Integer)
+    Public Function manoPulveResetValues_line(ByVal numLine As Integer)
         Try
             Dim manopulvePressionEcart As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionEcart_" & numLine, Panel48)
             Dim manopulvePressionImprecision As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionImprecision_" & numLine, Panel48)
@@ -1684,12 +1685,12 @@ Public Class frmDiagnostique
         Catch ex As Exception
             CSDebug.dispError("manoPulveResetValues_line ERR : " & ex.Message.ToString)
         End Try
-    End Sub
-    Public Sub manoPulveResetValues_results()
+    End Function
+    Public Function manoPulveResetValues_results()
         manoPulveEcartMoyen.Text = ""
         manoPulveEcartMax.Text = ""
         manopulveResultat.Text = ""
-    End Sub
+    End Function
 
 #End Region
 
@@ -1705,16 +1706,16 @@ Public Class frmDiagnostique
         Try
 
 
-            If manopulvePressionPulve_1.Text = "5" And
-                manopulvePressionPulve_2.Text = "10" And
-                manopulvePressionPulve_3.Text = "15" And
+            If manopulvePressionPulve_1.Text = "5" And _
+                manopulvePressionPulve_2.Text = "10" And _
+                manopulvePressionPulve_3.Text = "15" And _
                 manopulvePressionPulve_4.Text = "20" Then
 
                 manopulveIsFortePression.Checked = True
 
-            ElseIf (manopulvePressionPulve_1.Text = "1,6" Or manopulvePressionPulve_1.Text = "1.6") And
-                   manopulvePressionPulve_2.Text = "2" And
-                   manopulvePressionPulve_3.Text = "3" And
+            ElseIf (manopulvePressionPulve_1.Text = "1,6" Or manopulvePressionPulve_1.Text = "1.6") And _
+                   manopulvePressionPulve_2.Text = "2" And _
+                   manopulvePressionPulve_3.Text = "3" And _
                    manopulvePressionPulve_4.Text = "4" Then
 
                 manopulveIsFaiblePression.Checked = True
@@ -1788,6 +1789,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
 #Region " Calculs "
 
+    Private Function getNbBuses(ByVal pressionId As Integer)
+
+    End Function
 
     Private Sub calcEcartPressionSortie(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
@@ -1903,7 +1907,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     pressionMoyenne = Math.Abs(Math.Round(pressionMoyenne / nbBusesEffect, 2))
 
                     ' On calcul
-                    pressionManoMoyTextBox.Text = pressionMoyenne
+                    pressionManoMoyTextBox.text = pressionMoyenne
 
                     ' Si pas de mano, la moyenne est transmise au tableau du dessus
                     Dim isWithMano As Boolean = False
@@ -1950,9 +1954,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     For i As Integer = 1 To nbBuses
                         Try
                             Dim perteChargeTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("pressionTronc_" & pressionId & "_perteCharge_" & i, tabPage_diagnostique_manoTroncon)
-                            If perteChargeTextBox.Text <> "" Then
+                            If perteChargeTextBox.text <> "" Then
                                 nbBusesEffect += 1
-                                Dim perteChargeValue As Double = CType(perteChargeTextBox.Text, Double)
+                                Dim perteChargeValue As Double = CType(perteChargeTextBox.text, Double)
                                 perteChargeMoyenne += perteChargeValue
                                 If Math.Abs(perteChargeValue) > Math.Abs(perteChargeMax) Then
                                     perteChargeMax = Math.Abs(perteChargeValue)
@@ -1970,8 +1974,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                         ' Affichage résultats
                         Dim perteChargeMoyTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("pressionTronc_" & pressionId & "_perteChargeMoy", tabPage_diagnostique_manoTroncon)
                         Dim perteChargeMaxTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("pressionTronc_" & pressionId & "_perteChargeMax", tabPage_diagnostique_manoTroncon)
-                        perteChargeMoyTextBox.Text = perteChargeMoyenne
-                        perteChargeMaxTextBox.Text = perteChargeMax
+                        perteChargeMoyTextBox.text = perteChargeMoyenne
+                        perteChargeMaxTextBox.text = perteChargeMax
 
                     End If
 
@@ -1981,6 +1985,67 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             CSDebug.dispError("diagnostique::calcPerteChargeMoyMax : " & ex.Message.ToString)
         End Try
     End Sub
+    Private Function calcPerteChargeMoyMaxADEL()
+        Try
+            If pressionTroncons_checkIsAllFilledADEL() Then
+
+                Dim startOnglet As Integer = 1
+                Dim endOnglet As Integer = 4
+                If typeControle = Pulverisateur.CATEGORIEPULVE_RAMPE Then
+                    startOnglet = 1
+                    endOnglet = 4
+                Else
+                    startOnglet = 5
+                    endOnglet = 8
+                End If
+                ' On boucle tous les résultats
+                Dim nbOk As Integer = 0
+                Dim perteChargeMoy As Double = 0
+                Dim perteChargeMax As Double = 0
+                Dim perteChargeMoyPourcent As Double = 0
+                Dim perteChargeMaxPourcent As Double = 0
+                Dim perteChargeMaxValue As Double
+                Dim perteChargeMaxPourcentValue As Double
+                For i As Integer = startOnglet To endOnglet
+                    Try
+                        ' On récupere les controles
+                        Dim perteChargeMoyTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("pressionTronc_" & i & "_perteChargeMoy", tabPage_diagnostique_manoTroncon)
+                        Dim perteChargeMaxTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("pressionTronc_" & i & "_perteChargeMax", tabPage_diagnostique_manoTroncon)
+                        Dim pressionMoyenne As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("pressionTronc_" & i & "_moyPression", tabPage_diagnostique_manoTroncon)
+                        ' On récupère les valeurs
+                        Dim perteChargeMoyValue As Double = CType(perteChargeMoyTextBox.Text, Double)
+                        Dim perteChargeMoyPourcentValue As Double = CType(perteChargeMoyTextBox.Text, Double) / CType(pressionMoyenne.Text, Double) * 100
+                        If Math.Abs(CType(perteChargeMaxTextBox.Text, Double)) > Math.Abs(perteChargeMaxValue) Then
+                            perteChargeMaxValue = CType(perteChargeMaxTextBox.Text, Double)
+                        End If
+                        If Math.Abs(CType(perteChargeMaxTextBox.Text, Double) / CType(pressionMoyenne.Text, Double) * 100) > Math.Abs(perteChargeMaxPourcentValue) Then
+                            perteChargeMaxPourcentValue = CType(perteChargeMaxTextBox.Text, Double) / CType(pressionMoyenne.Text, Double) * 100
+                        End If
+                        ' On calcul
+                        perteChargeMoy += perteChargeMoyValue
+                        perteChargeMoyPourcent += perteChargeMoyPourcentValue
+                        perteChargeMax = perteChargeMaxValue
+                        perteChargeMaxPourcent = perteChargeMaxPourcentValue
+                    Catch ex As Exception
+                        ''CSDebug.dispInfo("diagnostique::calcPerteChargeMoyMax2 : " & ex.Message.ToString)
+                    End Try
+                Next
+                perteChargeMoy = Math.Abs(Math.Round(perteChargeMoy / 4, 2))
+                perteChargeMax = Math.Abs(perteChargeMax)
+                perteChargeMoyPourcent = Math.Abs(Math.Round(perteChargeMoyPourcent / 4, 2))
+                perteChargeMaxPourcent = Math.Abs(Math.Round(perteChargeMaxPourcent, 2))
+
+                ' On affiche les résultats
+                'pressionTronc_perteChargeMoy.Text = perteChargeMoy
+                'pressionTronc_perteChargeMax.Text = perteChargeMax
+                m_diagnostic.synthesePerteChargeMaxi = perteChargeMaxPourcent.ToString
+                m_diagnostic.synthesePerteChargeMoyenne = perteChargeMoyPourcent.ToString
+
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("diagnostique::calcPerteChargeMoyMax : " & ex.Message.ToString)
+        End Try
+    End Function
 
     Dim calcBuseIsOk_isDefault(8) As Boolean
     Dim calcBuseIsOk_isOk(8) As Boolean
@@ -1998,15 +2063,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 Dim calibrEcraseMoyenneTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionLue_" & pressionId, tabPage_diagnostique_manoTroncon)
                 Dim isCalibrCheckbox As CheckBox = CSForm.getControlByName("manopulveIsUseCalibrateur", Me)
                 ' On récupère les données
-                If moyPressionTextBox.Text = "" Then
+                If moyPressionTextBox.text = "" Then
                     Exit Try
                 End If
 
                 Dim moyPressionValue As Double
                 If isCalibrCheckbox.Checked Then
-                    moyPressionValue = CType(calibrEcraseMoyenneTextBox.Text, Double)
+                    moyPressionValue = CType(calibrEcraseMoyenneTextBox.text, Double)
                 Else
-                    moyPressionValue = CType(moyPressionTextBox.Text, Double)
+                    moyPressionValue = CType(moyPressionTextBox.text, Double)
                 End If
 
                 Dim maxPressionValue As Double = 0
@@ -2015,8 +2080,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 Dim pressionManoValue As Double
 
                 Dim pressionManoTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionPulve_" & pressionId, tabPage_diagnostique_manoTroncon)
-                If pressionManoTextBox.Text <> "" Then
-                    pressionManoValue = CType(pressionManoTextBox.Text, Double)
+                If pressionManoTextBox.text <> "" Then
+                    pressionManoValue = CType(pressionManoTextBox.text, Double)
                 Else
                     pressionManoValue = 0
                 End If
@@ -2031,10 +2096,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     ''CSDebug.dispInfo("diagnostique::calcBuseIsOk :" & "Boucle sur les buses" & i)
                     Try
                         Dim pressionTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("pressionTronc_" & pressionId & "_pressionSortie_" & i, tabPage_diagnostique_manoTroncon)
-                        If pressionTextBox.Text <> "" Then
-                            Dim pressionValue As Double = CType(pressionTextBox.Text, Double)
+                        If pressionTextBox.text <> "" Then
+                            Dim pressionValue As Double = CType(pressionTextBox.text, Double)
                             Dim ecartTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("pressionTronc_" & pressionId & "_ecart_" & i, tabPage_diagnostique_manoTroncon)
-                            If ecartTextBox.Text <> "" Then
+                            If ecartTextBox.text <> "" Then
 
                                 'Recalcul de la moyenne sans l'element courant
                                 Dim cptTextBox As Integer = 0
@@ -2142,7 +2207,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 #Region " Tests "
 
     ' On vérifie que toutes les pressions de sorties de l'onglet son saisies
-    Public Function pressionTroncons_checkIsAllFilled(ByVal pressionId As Integer) As Boolean
+    Public Function pressionTroncons_checkIsAllFilled(ByVal pressionId As Integer)
         Return True
         Dim nbBuses As Integer = 12
         If pressionId > 4 Then
@@ -2151,12 +2216,42 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         For i As Integer = 1 To nbBuses
             Try
                 Dim pressionManoTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("pressionTronc_" & pressionId & "_pressionSortie_" & i, tabPage_diagnostique_manoTroncon)
-                If pressionManoTextBox.Text = "" Then
+                If pressionManoTextBox.text = "" Then
                     Return False
                 End If
             Catch ex As Exception
                 CSDebug.dispWarn("diagnostique::checkIsAllFilled : " & ex.Message.ToString)
             End Try
+        Next
+        Return True
+    End Function
+    Public Function pressionTroncons_checkIsAllFilledADEL()
+        'Return True
+        Dim startOnglet As Integer = 1
+        Dim endOnglet As Integer = 4
+        If typeControle = Pulverisateur.CATEGORIEPULVE_RAMPE Then
+            If modePressions = "without_mano" Then
+                startOnglet = 1
+                endOnglet = 4
+            Else
+                startOnglet = 3
+                endOnglet = 3
+            End If
+        Else
+            If modePressions = "without_mano" Then
+                startOnglet = 5
+                endOnglet = 8
+            Else
+                startOnglet = 7
+                endOnglet = 7
+            End If
+        End If
+        ' On boucle tous les résultats
+        For i As Integer = startOnglet To endOnglet
+            Dim labelResult As Label = CSForm.getControlByName("pressionTronc_" & i & "_heteroAlim", tabPage_diagnostique_manoTroncon)
+            If labelResult.Text = "" Then
+                Return False
+            End If
         Next
         Return True
     End Function
@@ -2180,6 +2275,37 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
 #End Region
 
+#Region " Reset table "
+
+    Public Function isAllEmptyADEL()
+
+        If pressionTroncons_checkIsAllFilledADEL() Then
+            Return False
+        Else
+            Return True
+        End If
+
+        'Dim startOnglet As Integer = 1
+        'Dim endOnglet As Integer = 4
+        'If typeControle = "rampe" Then
+        '    startOnglet = 1
+        '    endOnglet = 4
+        'Else
+        '    startOnglet = 5
+        '    endOnglet = 8
+        'End If
+        '' On boucle tous les résultats
+        'Dim isEmpty As Boolean = True
+        'For i As Integer = startOnglet To endOnglet
+        '    Dim labelResult As Label = CSForm.getControlByName("pressionTronc_" & i & "_heteroAlim", tabPage_diagnostique_manoTroncon)
+        '    If labelResult.Text <> "" Then
+        '        isEmpty = False
+        '    End If
+        'Next
+        'Return isEmpty
+    End Function
+
+#End Region
 
 #End Region
 
@@ -2325,7 +2451,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 #End Region
 
 #Region " Sauvegarde tableau 5.4.2 "
-    Public Sub validerDiagnostiqueTab542()
+    Public Function validerDiagnostiqueTab542()
         'CSDebug.dispInfo("Diagnostique.saveTab542")
         Try
             m_diagnostic.syntheseImprecision542 = Me.manopulveResultat.Text
@@ -2392,7 +2518,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             CSDebug.dispError("saveTab542 ERR : " & ex.Message.ToString)
         End Try
 
-    End Sub
+    End Function
 #End Region
 
 #End Region
@@ -2428,11 +2554,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     'Recherche du débit Nominal
                     debitNominalTextBox = CSForm.getControlByName("TextBox_debitNominal_" & lotId, diagBuses_tab_categories)
                     If IsNumeric(tbdebitBuse.Text) And Not String.IsNullOrEmpty(tbdebitBuse.Text) Then
-                        debitNominalValue = StringToDouble(debitNominalTextBox.Text)
+                        debitNominalValue = StringToDouble(debitNominalTextBox.text)
                     Else
                         debitNominalTextBox = CSForm.getControlByName("TextBox_debitNominalConstructeur_" & lotId, diagBuses_tab_categories)
                         If IsNumeric(tbdebitBuse.Text) And Not String.IsNullOrEmpty(tbdebitBuse.Text) Then
-                            debitNominalValue = StringToDouble(debitNominalTextBox.Text)
+                            debitNominalValue = StringToDouble(debitNominalTextBox.text)
                         End If
                     End If
                 End If
@@ -2468,12 +2594,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim usureTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("diagBuses_mesureDebit_" & lotId & "_" & buseId & "_usure", diagBuses_tab_categories)
             Dim debitNominalTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_debitNominal_" & lotId, diagBuses_tab_categories)
 
-            If Not debitTextBox Is Nothing Then
-                If Not String.IsNullOrEmpty(debitTextBox.Text) And Not String.IsNullOrEmpty(debitNominalTextBox.Text) Then
-                    Dim debitValue As Decimal = CType(debitTextBox.Text, Decimal)
-                    Dim debitNominalValue As Decimal = CType(debitNominalTextBox.Text, Decimal)
+            If Not debitTextbox Is Nothing Then
+                If Not String.IsNullOrEmpty(debitTextBox.text) And Not String.IsNullOrEmpty(debitNominalTextBox.text) Then
+                    Dim debitValue As Decimal = CType(debitTextBox.text, Decimal)
+                    Dim debitNominalValue As Decimal = CType(debitNominalTextBox.text, Decimal)
                     Dim ecartTolereTextBox As ComboBox = CSForm.getControlByName("ComboBox_ecartTolere_" & lotId, diagBuses_tab_categories)
-                    Dim ecartTolereValue As Decimal = CType(ecartTolereTextBox.Text, Decimal)
+                    Dim ecartTolereValue As Decimal = CType(ecartTolereTextBox.text, Decimal)
                     ' On Calcul
                     Dim tmpEcartPourcentage As Decimal
                     Dim oBuse As New DiagnosticBusesDetail()
@@ -2503,12 +2629,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
 
     ' Calcul le nombre de buses d'un lot
-    Private Function mutCalcNbBuses(ByVal lotId As Integer) As Double
+    Private Function mutCalcNbBuses(ByVal lotId As Integer)
         Try
 
             Dim nbBusesTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_nbBuses_" & lotId, diagBuses_tab_categories)
-            If nbBusesTextBox.Text <> "" Then
-                Dim nbBusesValue As Double = CType(nbBusesTextBox.Text, Integer)
+            If nbBusesTextBox.text <> "" Then
+                Dim nbBusesValue As Double = CType(nbBusesTextBox.text, Integer)
                 Return nbBusesValue
             Else
                 Return 0
@@ -2519,7 +2645,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End Try
         ' Récupération des controles
     End Function
-    Private Function mutCalcNbBuses() As Integer
+    Private Function mutCalcNbBuses()
         Try
 
             ' Récupération des controles
@@ -2541,13 +2667,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Function
 
     ' Calcul le nombre de buses usées d'un lot
-    Private Function mutCalcNbBusesUsee(ByVal lotId As Integer) As Integer
+    Private Function mutCalcNbBusesUsed(ByVal lotId As Integer)
         Try
 
             ' Récupération des controles
             Dim nbBusesTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_nbBuses_" & lotId, diagBuses_tab_categories)
-            If nbBusesTextBox.Text <> "" Then
-                Dim nbBusesValue As Double = CType(nbBusesTextBox.Text, Integer)
+            If nbBusesTextBox.text <> "" Then
+                Dim nbBusesValue As Double = CType(nbBusesTextBox.text, Integer)
                 Dim nbBusesUseesTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_nbBusesUsees_" & lotId, diagBuses_tab_categories)
                 ' On calcul le nombre de buses usées
                 Dim nbBusesUsees As Integer = 0
@@ -2560,7 +2686,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                         CSDebug.dispWarn("diagnostique::mutCalcNbBusesUsed : " & ex.Message)
                     End Try
                 Next
-                nbBusesUseesTextBox.Text = nbBusesUsees
+                nbBusesUseesTextBox.text = nbBusesUsees
                 Return nbBusesUsees
             Else
                 Return 0
@@ -2595,12 +2721,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     'End Function
     ' Calcul le nombre de buses usées du jeu de buses
     'Dim tabBuses_isOk As Integer = -1
-    Private Function mutCalcNbBusesUsee() As Integer
+    Private Function mutCalcNbBusesUsed()
         Dim nbLots As Integer = CType(diagBuses_conf_nbCategories.Text, Integer)
         Dim nbBusesUsees As Integer = 0
         For i As Integer = 1 To nbLots
             Try
-                nbBusesUsees += mutCalcNbBusesUsee(i)
+                nbBusesUsees += mutCalcNbBusesUsed(i)
             Catch ex As Exception
                 CSDebug.dispWarn("diagnostique::mutCalcNbBusesUsed : " & ex.Message)
             End Try
@@ -2678,7 +2804,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Return usureMoy
     End Function
     ' Calcul l'usure moyenne du jeu de buses
-    Private Function mutCalcUsureMoyBuses() As Double
+    Private Function mutCalcUsureMoyBuses()
         Dim nbLots As Integer = CType(diagBuses_conf_nbCategories.Text, Integer)
         Dim usureMoyBuses As Double = 0
         For i As Integer = 1 To nbLots
@@ -2691,7 +2817,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         usureMoyBuses = Math.Round(usureMoyBuses / nbLots, 2)
         diagBuses_usureMoyBuses.Text = usureMoyBuses
         m_diagnostic.syntheseUsureMoyenneBuses = usureMoyBuses
-        fillArrBusesUsee()
+        fillArrBusesUsed()
         Return usureMoyBuses
     End Function
 
@@ -2750,7 +2876,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Try
             mutCalcDebitMoy(LotId)
             mutCalcUsureMoyBuses(LotId)
-            mutCalcNbBusesUsee(LotId)
+            mutCalcNbBusesUsed(LotId)
             bReturn = True
         Catch ex As Exception
             'CSDebug.dispWarn("diagnostique::mutCalcLot : " & ex.Message)
@@ -2964,7 +3090,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
 
     ' Numéro des buses usées
-    Private Sub fillArrBusesUsee()
+    Private Function fillArrBusesUsed()
         Try
 
             '------------------------------------------------------
@@ -2980,8 +3106,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     '--- On boucle les buses
                     '------------------------------------------------------
                     Dim nbBusesTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_nbBuses_" & lotId, diagBuses_tab_categories)
-                    If nbBusesTextBox.Text <> "" Then
-                        Dim nbBusesValue As Double = CType(nbBusesTextBox.Text, Integer)
+                    If nbBusesTextBox.text <> "" Then
+                        Dim nbBusesValue As Double = CType(nbBusesTextBox.text, Integer)
                         ' On calcul le nombre de buses usées
                         For buseId As Integer = 1 To nbBusesValue
                             Try
@@ -3000,13 +3126,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                                     Dim tmpEcartPourcentage As Decimal
 
                                     Dim debitTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("diagBuses_mesureDebit_" & lotId & "_" & buseId & "_debit", diagBuses_tab_categories)
-                                    If Not debitTextBox Is Nothing Then
-                                        If debitTextBox.Text <> "" Then
-                                            debitValue = StringToDouble(debitTextBox.Text)
+                                    If Not debitTextbox Is Nothing Then
+                                        If debitTextBox.text <> "" Then
+                                            debitValue = StringToDouble(debitTextBox.text)
                                             debitNominalTextBox = CSForm.getControlByName("TextBox_debitNominal_" & lotId, diagBuses_tab_categories)
 
                                             If Not debitNominalTextBox Is Nothing Then
-                                                debitNominalValue = StringToDouble(debitNominalTextBox.Text)
+                                                debitNominalValue = StringToDouble(debitNominalTextBox.text)
                                             End If
 
                                             ecartTolereTextBox = CSForm.getControlByName("ComboBox_ecartTolere_" & lotId, diagBuses_tab_categories)
@@ -3052,7 +3178,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
         End Try
 
-    End Sub
+    End Function
 
 #End Region
 
@@ -3064,11 +3190,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 #Region " Events "
 
     ' Valide le nombre de niveau
-    Private Sub validNbCategories()
+    Private Function validNbCategories()
         'CSDebug.dispInfo("validNbCategories")
         Try
             If diagBuses_conf_nbCategories.Text = "" Or tbPressionMesure.Text = "" Then
-                Exit Sub
+                Return False
             End If
 
             ' Récupération des variables
@@ -3097,7 +3223,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Catch ex As Exception
             CSDebug.dispError("diagnostique::validNbCategories : " & ex.Message)
         End Try
-    End Sub
+    End Function
     Private Function createControl_LabelNbreBuses(ongletCategorie As TabPage, pLot As Integer) As Boolean
         Dim bReturn As Boolean
         Try
@@ -3574,7 +3700,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     ''' <param name="pNbLotAAjouter">Nbre de Lots à ajouter</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Sub ajouterLotBuses(ByVal pNbLotAAjouter As Integer)
+    Private Function ajouterLotBuses(ByVal pNbLotAAjouter As Integer)
         Try
 
 
@@ -3620,7 +3746,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             CSDebug.dispError("Diagnostique.ajouterLotBuses ERR : " & ex.Message.ToString)
 
         End Try
-    End Sub
+    End Function
     Private Sub diagBuses_conf_ajouterNiveau_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles diagBuses_conf_ajouterNiveau.Click
         Try
 
@@ -3652,7 +3778,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
 
     ' Supprime les buses
-    Private Sub deletNbBuses(ByVal lotId As Integer)
+    Private Function deletNbBuses(ByVal lotId As Integer)
         Try
             Dim tmpPanel As Panel = CSForm.getControlByName("Panel_listeSecondaire_" & lotId, diagBuses_tab_categories)
             tmpPanel.Controls.Clear()
@@ -3662,7 +3788,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Catch ex As Exception
             CSDebug.dispError("diagnostique::deletNbBuses : " & ex.Message)
         End Try
-    End Sub
+    End Function
 
     Private Function createControls_Buses(Panel_listeSecondaire As Panel, LotId As Integer, pNBuse As Integer, PositionY As Integer) As Boolean
 
@@ -3831,7 +3957,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     ''' <remarks></remarks>
     Private Sub mutCalcTotal()
         mutCalcUsureMoyBuses()
-        mutCalcNbBusesUsee()
+        mutCalcNbBusesUsed()
         mutCalcDebitMoy()
     End Sub
     ' Changement debit nominal constructeur
@@ -3911,7 +4037,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
 #Region " Sauvegarde des infos buses "
 
-    Private Sub addLvlBuses2(ByVal idDiagnostic As String, ByVal marque As String, ByVal nombre As String, ByVal genre As String, ByVal calibre As String, ByVal couleur As String, ByVal ecartTolere As String, ByVal debitMoyen As String, ByVal busesListDetail As DiagnosticBusesDetailList, ByVal lotId As String, ByVal debitNominal As String)
+    Private Function addLvlBuses2(ByVal idDiagnostic As String, ByVal marque As String, ByVal nombre As String, ByVal genre As String, ByVal calibre As String, ByVal couleur As String, ByVal ecartTolere As String, ByVal debitMoyen As String, ByVal busesListDetail As DiagnosticBusesDetailList, ByVal lotId As String, ByVal debitNominal As String)
 
         Try
 
@@ -3949,7 +4075,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             CSDebug.dispError("diagnostique::addLvlBuses : " & ex.Message)
         End Try
 
-    End Sub
+    End Function
     ''' <summary>
     ''' Validation de l'onglet Buses
     ''' </summary>
@@ -4053,7 +4179,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
 #Region " Chargement référentiel buses "
 
-    Private Sub refBuses_loadMarques(ByVal lotId As Integer)
+    Private Function refBuses_loadMarques(ByVal lotId As Integer)
         Try
 
             ' On récupère tous les contrôles
@@ -4071,8 +4197,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
         End Try
 
-    End Sub
-    Private Sub refBuses_loadModeles(ByVal lotId As Integer, ByVal marque As String)
+    End Function
+    Private Function refBuses_loadModeles(ByVal lotId As Integer, ByVal marque As String)
         Try
 
             ' On récupère tous les contrôles
@@ -4087,8 +4213,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             CSDebug.dispError("diagnostique::refBuses_loadModeles ERR : " & ex.Message)
         End Try
 
-    End Sub
-    Private Sub refBuses_loadCouleurs(ByVal lotId As Integer, ByVal marque As String, modele As String)
+    End Function
+    Private Function refBuses_loadCouleurs(ByVal lotId As Integer, ByVal marque As String, modele As String)
         Try
 
             ' On récupère tous les contrôles
@@ -4104,8 +4230,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
         End Try
 
-    End Sub
-    Private Sub loadReferentielBuses(ByVal lotId As Integer)
+    End Function
+    Private Function loadReferentielBuses(ByVal lotId As Integer)
         Try
 
             refBuses_loadMarques(lotId)
@@ -4113,7 +4239,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             CSDebug.dispError("diagnostique::loadReferentielBuses ERR : " & ex.Message)
 
         End Try
-    End Sub
+    End Function
 
     Private Sub changeMarqueBuseSelected(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
@@ -4184,9 +4310,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub AfficheDebitNominalContructeur(LotId As String)
 
         ' On récupère les controles
-        Dim cbxMarque As ComboBox = CSForm.getControlByName("ComboBox_marque_" & LotId, diagBuses_tab_categories)
-        Dim cbxModele As ComboBox = CSForm.getControlByName("ComboBox_modele_" & LotId, diagBuses_tab_categories)
-        Dim cbxCouleur As ComboBox = CSForm.getControlByName("ComboBox_couleur_" & LotId, diagBuses_tab_categories)
+        Dim cbxMarque As ComboBox = CSForm.getControlByName("ComboBox_marque_" & lotId, diagBuses_tab_categories)
+        Dim cbxModele As ComboBox = CSForm.getControlByName("ComboBox_modele_" & lotId, diagBuses_tab_categories)
+        Dim cbxCouleur As ComboBox = CSForm.getControlByName("ComboBox_couleur_" & lotId, diagBuses_tab_categories)
 
         Dim tbDebit As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_debitNominalConstructeur_" & LotId, diagBuses_tab_categories)
 
@@ -4306,7 +4432,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 mutCalcIs1BuseUsee(tmpResponse.idNiveau, curIdBuse)
             Next
 
-            mutCalcNbBusesUsee()
+            mutCalcNbBusesUsed()
             mutCalcUsureMoyBuses()
         Else
             MsgBox("Le nombre de buses saisi et le nombre de buses acquises est différent. Veuillez vérifiez.")
@@ -4356,7 +4482,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             calc_help_811()
         End If
     End Sub
-    Public Sub calc_help_811()
+    Public Function calc_help_811()
 
         Dim tmpLargeur As Double = 0
         Dim tmpFleche As Double = 0
@@ -4417,7 +4543,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
         End If
 
-    End Sub
+    End Function
 #End Region
 #Region " Tableau 8.3.1 "
     Private Sub affichePopup831(pMode831 As DiagnosticHelp831.ModeHelp831)
@@ -4500,7 +4626,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             calc_help_831()
         End If
     End Sub
-    Public Sub calc_help_831()
+    Public Function calc_help_831()
 
         Dim tmpEcartRef As Double = 0
         Dim tmpEcartMax As Double = 0
@@ -4526,7 +4652,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     RadioButton_diagnostic_8310.Checked = False
                 End If
 
-                Exit Sub
+                Exit Function
             End If
 
             Dim tmpEcart1 As Double = 0
@@ -4570,7 +4696,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             ''CSDebug.dispInfo("diagnostique::tableaux(8.3.1) : " & ex.Message.ToString)
         End Try
 
-    End Sub
+    End Function
 #End Region
 #Region " Tableau 5.5.1  & 5.6.2.1"
     ' On cache / affiche la popup
@@ -4679,7 +4805,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
 #Region " Différences Rampe & ArboViti "
 
-    Public Sub SetDiagnostic833Type()
+    Public Function SetDiagnostic833Type()
 
         tab_833.Visible = True
         If m_oParamdiag.ParamDiagCalc833.Pression1 = 1.6D Then
@@ -4695,7 +4821,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
 
 
-    End Sub
+    End Function
 
 #End Region
 
@@ -6808,8 +6934,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub RadioButton_diagnostic_8332_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_diagnostic_8332.CheckedChanged
         checkAnswer2(sender, 6)
-        If RadioButton_diagnostic_8332.Checked And
-            (RadioButton_diagnostic_8332.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or
+        If RadioButton_diagnostic_8332.Checked And _
+            (RadioButton_diagnostic_8332.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or _
             RadioButton_diagnostic_8332.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX) Then
             disableTab833()
         Else
@@ -6819,8 +6945,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
     Private Sub RadioButton_diagnostic_8333_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_diagnostic_8333.CheckedChanged
         checkAnswer2(sender, 6)
-        If RadioButton_diagnostic_8333.Checked And
-            (RadioButton_diagnostic_8333.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or
+        If RadioButton_diagnostic_8333.Checked And _
+            (RadioButton_diagnostic_8333.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or _
             RadioButton_diagnostic_8333.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX) Then
             disableTab833()
         Else
@@ -7252,8 +7378,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'End If
         End If
         checkAnswer2(sender, 4)
-        If RadioButton_diagnostic_9221.Checked And
-            (RadioButton_diagnostic_9221.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or
+        If RadioButton_diagnostic_9221.Checked And _
+            (RadioButton_diagnostic_9221.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or _
              RadioButton_diagnostic_9221.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX) Then
             disableTab922()
         Else
@@ -7297,8 +7423,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'End If
         End If
         checkAnswer2(sender, 4)
-        If RadioButton_diagnostic_9222.Checked And
-            (RadioButton_diagnostic_9222.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX Or
+        If RadioButton_diagnostic_9222.Checked And _
+            (RadioButton_diagnostic_9222.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX Or _
              RadioButton_diagnostic_9222.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN) Then
             disableTab922()
         Else
@@ -7442,7 +7568,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub btn_diagnostic_acquisitionDonnees_MouseClick(sender As Object, e As MouseEventArgs) Handles btn_diagnostic_acquisitionDonnees.MouseClick
         If e.Button = Windows.Forms.MouseButtons.Right Then
             'Saise des données d'acquisition
-            Dim odlg As Form = New dlgAquisition()
+            Dim odlg = New dlgAquisition()
             odlg.Show()
         Else
             'transfert des données de l'acquisition
@@ -7983,15 +8109,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             setRelevePressionparDeFaut(4, False)
 
             'Il faut que les 4 valeurs soient remplies et corectes
-            If String.IsNullOrEmpty(manopulvePressionPulve_1.Text) Or
-                String.IsNullOrEmpty(manopulvePressionPulve_2.Text) Or
-                String.IsNullOrEmpty(manopulvePressionPulve_3.Text) Or
+            If String.IsNullOrEmpty(manopulvePressionPulve_1.Text) Or _
+                String.IsNullOrEmpty(manopulvePressionPulve_2.Text) Or _
+                String.IsNullOrEmpty(manopulvePressionPulve_3.Text) Or _
                 String.IsNullOrEmpty(manopulvePressionPulve_4.Text) Then
                 Exit Sub
             Else
-                If IsNumeric(manopulvePressionPulve_1.Text) And
-                    IsNumeric(manopulvePressionPulve_2.Text) And
-                    IsNumeric(manopulvePressionPulve_3.Text) And
+                If IsNumeric(manopulvePressionPulve_1.Text) And _
+                    IsNumeric(manopulvePressionPulve_2.Text) And _
+                    IsNumeric(manopulvePressionPulve_3.Text) And _
                     IsNumeric(manopulvePressionPulve_4.Text) Then
                     'Les 4 valeurs sont coorectes
                     If m_oParamdiag.ParamDiagCalc833.PressionParDefaut = "1" Then
@@ -8250,8 +8376,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     calcDefaut542()
                     bReturn = True
                 Else
-                    Dim imprecisionTextBox As New CRODIP_ControlLibrary.TBNumeric
-                    Dim ecartTextBox As New CRODIP_ControlLibrary.TBNumeric()
+                    Dim imprecisionTextBox As CRODIP_ControlLibrary.TBNumeric
+                    Dim ecartTextBox As CRODIP_ControlLibrary.TBNumeric
 
                     Select Case pPression
                         Case 1

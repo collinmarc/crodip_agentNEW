@@ -40,7 +40,7 @@ Public Class ListOfCodeAPE
     End Function
 
 
-    Public Sub readOldFile(ByVal pxmlFile As CSXml)
+    Public Function readOldFile(ByVal pxmlFile As CSXml)
         Dim x As Xml.XmlNode = pxmlFile.getXmlNode("/root")
         Dim oCodeAPE As CodeAPE
 
@@ -51,7 +51,7 @@ Public Class ListOfCodeAPE
             m_lst.Add(oCodeAPE)
         Next
 
-    End Sub
+    End Function
 End Class
 
 Public Class CodeAPE

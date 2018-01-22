@@ -53,7 +53,7 @@ Module CSDiagPdf
     End Function
 
     ' Nettoie une chaine pour etre utilisée comme nom de fichier
-    Public Function cleanString(ByVal chaine As String) As String
+    Public Function cleanString(ByVal chaine As String)
         chaine = chaine.ToUpper.Replace("'", "").Trim
         chaine = chaine.ToUpper.Replace("/", "").Trim
         chaine = chaine.ToUpper.Replace("\", "").Trim

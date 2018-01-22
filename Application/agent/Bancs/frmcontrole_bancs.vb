@@ -80,7 +80,7 @@ Public Class frmcontrole_bancs
     Friend WithEvents TextBox6 As System.Windows.Forms.TextBox
     Friend WithEvents Panel8 As System.Windows.Forms.Panel
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Public CONST_COLOR_CELL_OK As Drawing.Color = System.Drawing.Color.LightGreen
+    Public CONST_COLOR_CELL_OK = System.Drawing.Color.LightGreen
 
 
 #Region " Code généré par le Concepteur Windows Form "

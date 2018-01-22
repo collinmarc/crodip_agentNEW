@@ -30,7 +30,6 @@ Public Class treeView3state
     ''' </summary>
     Public Sub New()
         MyBase.New()
-        InitializeComponent()
         Dim cbsState As CheckBoxState
         Dim gfxCheckBox As Graphics
         Dim bmpCheckBox As Bitmap
@@ -190,6 +189,7 @@ Public Class treeView3state
         Dim tnBuffer As TreeNode
         Dim bMixedState As Boolean
         Dim iSpacing As Integer
+        Dim iIndex As Integer
 
         MyBase.OnNodeMouseClick(e)
 

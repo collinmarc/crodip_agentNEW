@@ -2,7 +2,7 @@ Imports System.IO
 
 Module CSFile
 
-    Public Function exists(ByVal fileName As String) As Boolean
+    Public Function exists(ByVal fileName As String)
         If System.IO.File.Exists(fileName) Then
             Return True
         Else
@@ -10,7 +10,7 @@ Module CSFile
         End If
     End Function
 
-    Public Sub open(ByVal fileName As String)
+    Public Function open(ByVal fileName As String)
         Try
             Dim monProcess As New Process
             monProcess.StartInfo.FileName = fileName
@@ -20,17 +20,17 @@ Module CSFile
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::open : " & ex.Message)
         End Try
-    End Sub
+    End Function
 
-    Public Sub delete(ByVal fileName As String)
+    Public Function delete(ByVal fileName As String)
         Try
             System.IO.File.Delete(fileName)
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::delete : " & ex.Message)
         End Try
-    End Sub
+    End Function
 
-    Public Sub create(ByVal fileName As String, ByVal fileBody As String)
+    Public Function create(ByVal fileName As String, ByVal fileBody As String)
         Try
             Dim curFile As StreamWriter
             If Not File.Exists(fileName) Then
@@ -43,12 +43,12 @@ Module CSFile
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::create : " & ex.Message)
         End Try
-    End Sub
-    Public Sub create(ByVal fileName As String)
+    End Function
+    Public Function create(ByVal fileName As String)
         CSFile.create(fileName, "")
-    End Sub
+    End Function
 
-    Public Sub append(ByVal fileName As String, ByVal fileContent As String)
+    Public Function append(ByVal fileName As String, ByVal fileContent As String)
         Try
             Dim curFile As StreamWriter
             If File.Exists(fileName) Then
@@ -61,9 +61,9 @@ Module CSFile
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::append : " & ex.Message)
         End Try
-    End Sub
+    End Function
 
-    Public Sub write(ByVal fileName As String, ByVal fileContent As String)
+    Public Function write(ByVal fileName As String, ByVal fileContent As String)
         Try
             Dim curFile As StreamWriter
             If File.Exists(fileName) Then
@@ -76,6 +76,6 @@ Module CSFile
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::append : " & ex.Message)
         End Try
-    End Sub
+    End Function
 
 End Module

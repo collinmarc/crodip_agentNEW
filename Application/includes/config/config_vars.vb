@@ -166,7 +166,7 @@ Public Module config_vars
     ''' Symbole decimal utilisé par l'application
     ''' </summary>
     ''' <remarks></remarks>
-    Public CONST_DECIMAL_SYMBOL As String = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator
+    Public CONST_DECIMAL_SYMBOL = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator
 
 #End Region
 
@@ -180,12 +180,12 @@ Public Module config_vars
     '###########################################
     ' Contrôle d'un banc de mesure
     '###########################################
-    Public Const CONST_INFO_CTRLBANC_ERR_NOTEMP As String = "        Vous devez renseigner les températures de l'air et de l'eau."
-    Public Const CONST_INFO_CTRLBANC_ERR_5BUSES As String = "        Vous devez sélectionner 5 buses minimum."
-    Public Const CONST_INFO_CTRLBANC_ERR_NOVERIFNUM As String = "        Vous devez renseigner un numéro de vérification."
-    Public Const CONST_INFO_CTRLBANC_ERR_NOBANCNUM As String = "        Vous devez renseigner un numéro de banc à contrôler."
-    Public Const CONST_INFO_CTRLBANC_MSG_CONTROLOK As String = "        Contrôle OK"
-    Public Const CONST_INFO_CTRLBANC_MSG_CONTROLNOK As String = "        Contrôle NOK"
+    Public Const CONST_INFO_CTRLBANC_ERR_NOTEMP = "        Vous devez renseigner les températures de l'air et de l'eau."
+    Public Const CONST_INFO_CTRLBANC_ERR_5BUSES = "        Vous devez sélectionner 5 buses minimum."
+    Public Const CONST_INFO_CTRLBANC_ERR_NOVERIFNUM = "        Vous devez renseigner un numéro de vérification."
+    Public Const CONST_INFO_CTRLBANC_ERR_NOBANCNUM = "        Vous devez renseigner un numéro de banc à contrôler."
+    Public Const CONST_INFO_CTRLBANC_MSG_CONTROLOK = "        Contrôle OK"
+    Public Const CONST_INFO_CTRLBANC_MSG_CONTROLNOK = "        Contrôle NOK"
 
 #End Region
 
@@ -196,121 +196,121 @@ Public Module config_vars
     '###########################################
     ' Alertes en page d'accueil
     '###########################################
-    Public Const CONST_STATUTMSG_ALERTES_MANOETALON_LOAD As String = "        Vérification des alertes sur les manomètres étalons..."
-    Public Const CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD As String = "        Vérification des alertes sur les manomètres de contrôle..."
-    Public Const CONST_STATUTMSG_ALERTES_BUSESETALON_LOAD As String = "        Vérification des alertes sur les buses étalons..."
-    Public Const CONST_STATUTMSG_ALERTES_BANC_LOAD As String = "        Vérification des alertes sur les bancs de mesure..."
-    Public Const CONST_STATUTMSG_ALERTES_CLIENTS_LOAD As String = "        Vérification des alertes sur les clients..."
-    Public Const CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD As String = "        Vérification des alertes sur la synchronisation..."
+    Public Const CONST_STATUTMSG_ALERTES_MANOETALON_LOAD = "        Vérification des alertes sur les manomètres étalons..."
+    Public Const CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD = "        Vérification des alertes sur les manomètres de contrôle..."
+    Public Const CONST_STATUTMSG_ALERTES_BUSESETALON_LOAD = "        Vérification des alertes sur les buses étalons..."
+    Public Const CONST_STATUTMSG_ALERTES_BANC_LOAD = "        Vérification des alertes sur les bancs de mesure..."
+    Public Const CONST_STATUTMSG_ALERTES_CLIENTS_LOAD = "        Vérification des alertes sur les clients..."
+    Public Const CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD = "        Vérification des alertes sur la synchronisation..."
     '###########################################
 
     '###########################################
     ' Login
     '###########################################
-    Public Const CONST_STATUTMSG_LOGIN_ENCOURS As String = "        Connexion en cours..."
-    Public Const CONST_STATUTMSG_LOGIN_OK As String = "        Connexion réussie."
-    Public Const CONST_STATUTMSG_LOGIN_FAILED As String = "        [Erreur] - Echec de la connexion à votre profil."
+    Public Const CONST_STATUTMSG_LOGIN_ENCOURS = "        Connexion en cours..."
+    Public Const CONST_STATUTMSG_LOGIN_OK = "        Connexion réussie."
+    Public Const CONST_STATUTMSG_LOGIN_FAILED = "        [Erreur] - Echec de la connexion à votre profil."
     '###########################################
 
     '###########################################
     ' Ajout d'un Agent
     '###########################################
-    Public Const CONST_STATUTMSG_ADDAGENT_ENCOURS As String = "        Ajout d'un nouveau profil en cours..."
-    Public Const CONST_STATUTMSG_ADDAGENT_LINK_ENCOURS As String = "        Connexion au serveur en cours..."
-    Public Const CONST_STATUTMSG_ADDAGENT_LOAD_ENCOURS As String = "        Chargement du profil en cours..."
-    Public Const CONST_STATUTMSG_ADDAGENT_VERIF_ENCOURS As String = "        Vérifications en cours..."
-    Public Const CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS As String = "        [Erreur] - Echec de récupération du profil : Cet inspecteur est déjà présent en base."
-    Public Const CONST_STATUTMSG_ADDAGENT_ERROR_PASSNOTMATCH As String = "        [Erreur] - Echec de récupération du profil : Les mots de passe ne correspondent pas."
-    Public Const CONST_STATUTMSG_ADDAGENT_ERROR_NOPROFIL As String = "        [Erreur] - Echec de récupération du profil : Ce profil n'existe pas."
-    Public Const CONST_STATUTMSG_ADDAGENT_ERROR_NOTCONNECT As String = "        [Erreur] - Echec de récupération du profil : Connection introuvable."
-    Public Const CONST_STATUTMSG_ADDAGENT_OK As String = "        Sauvegarde réussie."
+    Public Const CONST_STATUTMSG_ADDAGENT_ENCOURS = "        Ajout d'un nouveau profil en cours..."
+    Public Const CONST_STATUTMSG_ADDAGENT_LINK_ENCOURS = "        Connexion au serveur en cours..."
+    Public Const CONST_STATUTMSG_ADDAGENT_LOAD_ENCOURS = "        Chargement du profil en cours..."
+    Public Const CONST_STATUTMSG_ADDAGENT_VERIF_ENCOURS = "        Vérifications en cours..."
+    Public Const CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS = "        [Erreur] - Echec de récupération du profil : Cet inspecteur est déjà présent en base."
+    Public Const CONST_STATUTMSG_ADDAGENT_ERROR_PASSNOTMATCH = "        [Erreur] - Echec de récupération du profil : Les mots de passe ne correspondent pas."
+    Public Const CONST_STATUTMSG_ADDAGENT_ERROR_NOPROFIL = "        [Erreur] - Echec de récupération du profil : Ce profil n'existe pas."
+    Public Const CONST_STATUTMSG_ADDAGENT_ERROR_NOTCONNECT = "        [Erreur] - Echec de récupération du profil : Connection introuvable."
+    Public Const CONST_STATUTMSG_ADDAGENT_OK = "        Sauvegarde réussie."
     '###########################################
 
     '###########################################
     ' Parametrage Agent
     '###########################################
-    Public Const CONST_STATUTMSG_FICHEAGENT_ENCOURS As String = "        Sauvegarde de vos données en cours..."
-    Public Const CONST_STATUTMSG_FICHEAGENT_OK As String = "        Sauvegarde réussie."
-    Public Const CONST_STATUTMSG_FICHEAGENT_FAILED As String = "        [Erreur] - Echec de la sauvegarde de vos données."
+    Public Const CONST_STATUTMSG_FICHEAGENT_ENCOURS = "        Sauvegarde de vos données en cours..."
+    Public Const CONST_STATUTMSG_FICHEAGENT_OK = "        Sauvegarde réussie."
+    Public Const CONST_STATUTMSG_FICHEAGENT_FAILED = "        [Erreur] - Echec de la sauvegarde de vos données."
     '###########################################
 
     '###########################################
     ' Listing clients
     '###########################################
-    Public Const CONST_STATUTMSG_LISTCLIENT_ENCOURS As String = "        Chargement des clients en cours..."
-    Public Const CONST_STATUTMSG_LISTCLIENT_OK As String = " clients correctement chargés."
+    Public Const CONST_STATUTMSG_LISTCLIENT_ENCOURS = "        Chargement des clients en cours..."
+    Public Const CONST_STATUTMSG_LISTCLIENT_OK = " clients correctement chargés."
     '###########################################
 
     '###########################################
     ' Parametrage Client
     '###########################################
-    Public Const CONST_STATUTMSG_FICHECLIENT_ENCOURS As String = "        Sauvegarde de vos données client en cours..."
-    Public Const CONST_STATUTMSG_FICHECLIENT_OK As String = "        Sauvegarde du client réussie."
-    Public Const CONST_STATUTMSG_FICHECLIENT_FAILED As String = "        [Erreur] - Echec de la sauvegarde de vos données client."
+    Public Const CONST_STATUTMSG_FICHECLIENT_ENCOURS = "        Sauvegarde de vos données client en cours..."
+    Public Const CONST_STATUTMSG_FICHECLIENT_OK = "        Sauvegarde du client réussie."
+    Public Const CONST_STATUTMSG_FICHECLIENT_FAILED = "        [Erreur] - Echec de la sauvegarde de vos données client."
     '###########################################
 
     '###########################################
     ' Supression Client
     '###########################################
-    Public Const CONST_STATUTMSG_DELETECLIENT_ENCOURS As String = "        Suppression du client en cours..."
-    Public Const CONST_STATUTMSG_DELETECLIENT_OK As String = "        Suppression du client réussie."
-    Public Const CONST_STATUTMSG_DELETECLIENT_FAILED As String = "        [Erreur] - Echec de la suppression du client."
-    Public Const CONST_STATUTMSG_DELETECLIENT_CANCEL As String = "        Suppression du client annulée par l'utilisateur."
-    Public Const CONST_STATUTMSG_DELETECLIENT_NOSELECTED As String = "        Vous devez d'abord sélectionner un client dans la liste."
+    Public Const CONST_STATUTMSG_DELETECLIENT_ENCOURS = "        Suppression du client en cours..."
+    Public Const CONST_STATUTMSG_DELETECLIENT_OK = "        Suppression du client réussie."
+    Public Const CONST_STATUTMSG_DELETECLIENT_FAILED = "        [Erreur] - Echec de la suppression du client."
+    Public Const CONST_STATUTMSG_DELETECLIENT_CANCEL = "        Suppression du client annulée par l'utilisateur."
+    Public Const CONST_STATUTMSG_DELETECLIENT_NOSELECTED = "        Vous devez d'abord sélectionner un client dans la liste."
     '###########################################
 
     '###########################################
     ' Listing pulvérisateurs
     '###########################################
-    Public Const CONST_STATUTMSG_LISTPULVE_ENCOURS As String = "        Chargement des pulvérisateurs en cours..."
-    Public Const CONST_STATUTMSG_LISTPULVE_OK As String = " pulvérisateurs correctement chargés."
+    Public Const CONST_STATUTMSG_LISTPULVE_ENCOURS = "        Chargement des pulvérisateurs en cours..."
+    Public Const CONST_STATUTMSG_LISTPULVE_OK = " pulvérisateurs correctement chargés."
     '###########################################
 
     '###########################################
     ' Parametrage pulvérisateur
     '###########################################
-    Public Const CONST_STATUTMSG_EDITPULVE_ENCOURS As String = "        Sauvegarde du pulvérisateur en cours..."
-    Public Const CONST_STATUTMSG_EDITPULVE_OK As String = "        Sauvegarde du pulvérisateur réussie."
-    Public Const CONST_STATUTMSG_EDITPULVE_FAILED As String = "        [Erreur] - Echec de la sauvegarde du pulvérisateur."
+    Public Const CONST_STATUTMSG_EDITPULVE_ENCOURS = "        Sauvegarde du pulvérisateur en cours..."
+    Public Const CONST_STATUTMSG_EDITPULVE_OK = "        Sauvegarde du pulvérisateur réussie."
+    Public Const CONST_STATUTMSG_EDITPULVE_FAILED = "        [Erreur] - Echec de la sauvegarde du pulvérisateur."
     '###########################################
 
     '###########################################
     ' Supression pulvérisateur
     '###########################################
-    Public Const CONST_STATUTMSG_DELETEPULVE_ENCOURS As String = "        Suppression du pulvérisateur en cours..."
-    Public Const CONST_STATUTMSG_DELETEPULVE_OK As String = "        Suppression du pulvérisateur réussie."
-    Public Const CONST_STATUTMSG_DELETEPULVE_FAILED As String = "        [Erreur] - Suppression du pulvérisateur impossible, présence de contrôles."
-    Public Const CONST_STATUTMSG_DELETEPULVE_CANCEL As String = "        Suppression du pulvérisateur annulée par l'utilisateur."
-    Public Const CONST_STATUTMSG_DELETEPULVE_NOSELECTED As String = "        Vous devez d'abord sélectionner un pulvérisateur dans la liste."
+    Public Const CONST_STATUTMSG_DELETEPULVE_ENCOURS = "        Suppression du pulvérisateur en cours..."
+    Public Const CONST_STATUTMSG_DELETEPULVE_OK = "        Suppression du pulvérisateur réussie."
+    Public Const CONST_STATUTMSG_DELETEPULVE_FAILED = "        [Erreur] - Suppression du pulvérisateur impossible, présence de contrôles."
+    Public Const CONST_STATUTMSG_DELETEPULVE_CANCEL = "        Suppression du pulvérisateur annulée par l'utilisateur."
+    Public Const CONST_STATUTMSG_DELETEPULVE_NOSELECTED = "        Vous devez d'abord sélectionner un pulvérisateur dans la liste."
     '###########################################
 
     '###########################################
     ' Parametrage Structure
     '###########################################
-    Public Const CONST_STATUTMSG_FICHESTRUCTURE_ENCOURS As String = "        Sauvegarde de vos données en cours..."
-    Public Const CONST_STATUTMSG_FICHESTRUCTURE_OK As String = "        Sauvegarde réussie."
-    Public Const CONST_STATUTMSG_FICHESTRUCTURE_FAILED As String = "        [Erreur] - Echec de la Sauvegarde de vos données."
+    Public Const CONST_STATUTMSG_FICHESTRUCTURE_ENCOURS = "        Sauvegarde de vos données en cours..."
+    Public Const CONST_STATUTMSG_FICHESTRUCTURE_OK = "        Sauvegarde réussie."
+    Public Const CONST_STATUTMSG_FICHESTRUCTURE_FAILED = "        [Erreur] - Echec de la Sauvegarde de vos données."
     '###########################################
 
     '###########################################
     ' Synchronisation
     '###########################################
-    Public Const CONST_STATUTMSG_SYNCHRO_ENCOURS As String = "        Synchronisation avec le Crodip en cours..."
-    Public Const CONST_STATUTMSG_SYNCHRO_OK As String = " éléments ont été synchronisés."
-    Public Const CONST_STATUTMSG_SYNCHRO_EMPTY As String = "        Aucun élément à synchroniser."
-    Public Const CONST_STATUTMSG_SYNCHRO_FAILED As String = "        [Erreur] - Echec de la synchronisation avec le Crodip."
-    Public Const CONST_STATUTMSG_SYNCHRO_UNAVAILABLE As String = "        Synchronisation impossible, serveur Crodip momentanément indisponible."
+    Public Const CONST_STATUTMSG_SYNCHRO_ENCOURS = "        Synchronisation avec le Crodip en cours..."
+    Public Const CONST_STATUTMSG_SYNCHRO_OK = " éléments ont été synchronisés."
+    Public Const CONST_STATUTMSG_SYNCHRO_EMPTY = "        Aucun élément à synchroniser."
+    Public Const CONST_STATUTMSG_SYNCHRO_FAILED = "        [Erreur] - Echec de la synchronisation avec le Crodip."
+    Public Const CONST_STATUTMSG_SYNCHRO_UNAVAILABLE = "        Synchronisation impossible, serveur Crodip momentanément indisponible."
     '###########################################
 
     '###########################################
     ' Contrôle
     '###########################################
-    Public Const CONST_STATUTMSG_DIAG_VERIFCLI As String = "Vérification des informations du client."
-    Public Const CONST_STATUTMSG_DIAG_TARIFS As String = "Saisie des tarifs."
-    Public Const CONST_STATUTMSG_DIAG_CONTROLEPRE As String = "Contrôle préliminaire."
-    Public Const CONST_STATUTMSG_DIAG_ENCOURS As String = "Contrôle pulvé en cours..."
-    Public Const CONST_STATUTMSG_DIAG_SAVING As String = "Enregistrement en cours..."
-    Public Const CONST_STATUTMSG_DIAG_SAVED As String = "Contrôle correctement enregistré."
+    Public Const CONST_STATUTMSG_DIAG_VERIFCLI = "Vérification des informations du client."
+    Public Const CONST_STATUTMSG_DIAG_TARIFS = "Saisie des tarifs."
+    Public Const CONST_STATUTMSG_DIAG_CONTROLEPRE = "Contrôle préliminaire."
+    Public Const CONST_STATUTMSG_DIAG_ENCOURS = "Contrôle pulvé en cours..."
+    Public Const CONST_STATUTMSG_DIAG_SAVING = "Enregistrement en cours..."
+    Public Const CONST_STATUTMSG_DIAG_SAVED = "Contrôle correctement enregistré."
     '###########################################
 
 #End Region

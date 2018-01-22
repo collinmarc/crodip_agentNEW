@@ -670,13 +670,13 @@ Public Class diagnostic_satisfaction
 
 #Region " Construction de l'enquete de satisfaction et du document de coProp"
 
-    Private Sub genereEnquete()
+    Private Function genereEnquete()
         Dim oEtat As New EtatEnquete(diagnosticCourant)
         If oEtat.GenereEtat() Then
             oEtat.Open()
         End If
 
-    End Sub
+    End Function
     ''' <summary>
     ''' Génération du document de co-propriété
     ''' </summary>

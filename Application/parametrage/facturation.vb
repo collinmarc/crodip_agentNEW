@@ -374,15 +374,15 @@ Public Class facturation
 #Region " Fonctions "
 
     ' Activation / desactivation du formulaire
-    Private Sub toggleForm(ByVal isActivated As Boolean)
+    Private Function toggleForm(ByVal isActivated As Boolean)
         facturation_siren.Enabled = isActivated
         facturation_tva.Enabled = isActivated
         facturation_rcs.Enabled = isActivated
         facturation_footer.Enabled = isActivated
-    End Sub
+    End Function
 
     ' Chargement de la configuration
-    Private Sub loadParams()
+    Private Function loadParams()
 
         Me.loadLogo()
         Dim x As Xml.XmlNode = Me.FACTURATION_XML_CONFIG.getXmlNode("/root")
@@ -403,10 +403,10 @@ Public Class facturation
             End Select
         Next
 
-    End Sub
+    End Function
 
     ' Sauvegarde la configuration
-    Private Function saveParams() As Boolean
+    Private Function saveParams()
 
         ' On test les champs obligatoires
         If facturation_isActivated.Checked And (facturation_siren.Text = "" Or facturation_tva.Text = "" Or facturation_rcs.Text = "" Or facturation_footer.Text = "") Then
@@ -424,10 +424,10 @@ Public Class facturation
     End Function
 
     ' Chargement du logo
-    Private Sub loadLogo()
+    Private Function loadLogo()
         Me.loadLogo(False)
-    End Sub
-    Private Sub loadLogo(ByVal isDefaultLogo As Boolean)
+    End Function
+    Private Function loadLogo(ByVal isDefaultLogo As Boolean)
         Dim logoFilename As String = CONST_PATH_IMG & CR_LOGO_DEFAULT_NAME
         If Not isDefaultLogo Then
             logoFilename = Me.FACTURATION_XML_CONFIG.getElementValue("/root/logo")
@@ -438,7 +438,7 @@ Public Class facturation
         Dim picBox As PictureBox = facturation_logo
         picBox.Image.Dispose()
         picBox.Image = System.Drawing.Image.FromFile(logoFilename)
-    End Sub
+    End Function
 
 #End Region
 

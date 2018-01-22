@@ -16,7 +16,7 @@ Module CSLogin
         End Property
 
         ' On test si password correspond à celui du login
-        Public Function checkPassword(ByVal password As String) As Boolean
+        Public Function checkPassword(ByVal password As String)
             Try
                 If objCurAgent.motDePasse = password Then
                     Return True

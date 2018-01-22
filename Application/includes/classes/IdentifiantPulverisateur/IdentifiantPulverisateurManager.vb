@@ -51,8 +51,8 @@ Public Class IdentifiantPulverisateurManager
     Public Shared Function getNextId() As Integer
         Dim bdd As CSDb
         Dim returnVal As Integer
-        bdd = New CSDb(True)
         Try
+            bdd = New CSDb(True)
             Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT Max(id)+1 AS Id FROM IdentifiantPulverisateur ")
             While dataResults.Read()
                 returnVal = dataResults.GetInt32(0)

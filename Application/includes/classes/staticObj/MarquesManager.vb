@@ -144,11 +144,11 @@ Public Class MarquesManager
 
     End Sub
 
-    Public Shared Sub populateCombobox(ByVal xmlFile As CSXml, ByVal arrMCMarquesControls As Object)
+    Public Shared Function populateCombobox(ByVal xmlFile As CSXml, ByVal arrMCMarquesControls As Object)
         populateCombobox(xmlFile, arrMCMarquesControls, "/root")
-    End Sub
+    End Function
 
-    Public Shared Sub populateCombobox(ByVal xmlFile As CSXml, ByVal arrMCMarquesControls As Object, ByVal rootNode As String, Optional ByVal bAutoComplete As Boolean = False)
+    Public Shared Function populateCombobox(ByVal xmlFile As CSXml, ByVal arrMCMarquesControls As Object, ByVal rootNode As String, Optional ByVal bAutoComplete As Boolean = False)
 
         '#################################################################################
         '########                    Chargement des marques                       ########
@@ -185,6 +185,6 @@ Public Class MarquesManager
             CSDebug.dispError("populateCombobox : " & ex.Message)
         End Try
 
-    End Sub
+    End Function
 
 End Class

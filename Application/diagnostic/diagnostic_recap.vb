@@ -1951,7 +1951,7 @@ Public Class diagnostic_recap
             If m_diagnostic.controleEtat = "" Then
                 m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
             End If
-            Dim szH As String = diagnosticRecap_organisme_heureDebut.Text
+            Dim szH = diagnosticRecap_organisme_heureDebut.Text
             If Not String.IsNullOrEmpty(szH) Then
                 Dim dDiag, dH As Date
                 dH = CDate(szH)
@@ -1982,7 +1982,7 @@ Public Class diagnostic_recap
     ''' <remarks></remarks>
     Private Function createEtatSyntheseDesMesures() As Boolean
         Dim _PathToSynthesePDF As String
-        Dim bReturn As String = False
+        Dim bReturn = False
         Try
             Dim oEtat As New EtatSyntheseMesures(m_diagnostic)
             oEtat.GenereEtat()
@@ -2258,7 +2258,7 @@ Public Class diagnostic_recap
     End Sub
 
     ' Enregistrement de la facture (pour synchronisation)
-    Private Sub createFacture()
+    Private Function createFacture()
         Try
 
             '############################################################
@@ -2290,9 +2290,10 @@ Public Class diagnostic_recap
         Catch ex As Exception
             CSDebug.dispError("DiagnosticRecap.createFacture() : " & ex.Message)
         End Try
-    End Sub
+    End Function
 
     Private Sub btn_finalisationDiag_imprimerSynthese_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_imprimerSynthese.Click
+        Dim strFilePath As String
 
 
         Try
@@ -2379,7 +2380,7 @@ Public Class diagnostic_recap
     Private Sub btn_voirFiche_Pulve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_voirFiche_Pulve.Click
         displayFichePulve()
     End Sub
-    Private Sub displayFichePulve()
+    Private Function displayFichePulve()
         ' Mise à jour de la barre de status
         Statusbar.display("Chargement du pulvérisateur n°" & m_diagnostic.pulverisateurId)
 
@@ -2392,7 +2393,7 @@ Public Class diagnostic_recap
         formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
         m_diagnostic.setPulverisateur(m_Pulverisateur)
         AffichePulverisateur()
-    End Sub
+    End Function
 
 
 

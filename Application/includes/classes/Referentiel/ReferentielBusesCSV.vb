@@ -20,20 +20,20 @@ Public Class ReferentielBusesCSV
         Try
             Dim lines As String() = IO.File.ReadAllLines(pFileName)
 
-            Dim line As String = ""
-            Dim Marque As String = ""
-            Dim Modele As String = ""
-            Dim Type As String = ""
-            Dim Fonctionnement As String = ""
-            Dim ISO As String = ""
-            Dim Angle As String = ""
-            Dim AngleLu As String = ""
-            Dim Couleur As String = ""
-            Dim Calibre As String = ""
-            Dim Debit2bar As String = ""
-            Dim debit3bar As String = ""
-            Dim debit5bar As String = ""
-            Dim tolerance As String = ""
+            Dim line As String
+            Dim Marque As String
+            Dim Modele As String
+            Dim Type As String
+            Dim Fonctionnement As String
+            Dim ISO As String
+            Dim Angle As String
+            Dim AngleLu As String
+            Dim Couleur As String
+            Dim Calibre As String
+            Dim Debit2bar As String
+            Dim debit3bar As String
+            Dim debit5bar As String
+            Dim tolerance As String
             Dim bPremiereLigne As Boolean = True
             For Each line In lines
                 If Not bPremiereLigne Then

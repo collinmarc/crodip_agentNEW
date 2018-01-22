@@ -449,10 +449,10 @@ Public Class login
 
 
 #Region "Fonction de login"
-    Private Sub doLogin()
+    Private Function doLogin()
         pnlLoginControls.Enabled = False
         ' On récupère le formulaire contener
-        Dim myFormParentContener As Form = Me.MdiParent
+        Dim myFormParentContener = Me.MdiParent
         Statusbar.display(CONST_STATUTMSG_LOGIN_ENCOURS, True)
         Try
             ' On récupère l'agent sélèctionné
@@ -574,7 +574,7 @@ Public Class login
         'On réactive la fenêtre , si la procédure de Cnx a fonctionner, cette fenêtre est cachée
         pnlLoginControls.Enabled = True
 
-    End Sub
+    End Function
 #End Region
     Private Sub login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Debug
@@ -591,7 +591,7 @@ Public Class login
         End If
         Lbl_Version.Text = GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
         ' On récupère le formulaire contener
-        Dim myFormParentContener as Form = Me.MdiParent
+        Dim myFormParentContener = Me.MdiParent
         ' Initialisation des variables
         ' FIN --- Initialisation des variables
 

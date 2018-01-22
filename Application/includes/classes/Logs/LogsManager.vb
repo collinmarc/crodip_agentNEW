@@ -2,12 +2,25 @@ Module LogsManager
 
 #Region "Methodes Web Service"
 
+    Public Function sendWSLogs(ByVal logs As Logs)
+        'Try
+        '    ' Appel au Web Service
+        '    Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
+
+        '    logs.dateLog = CSDate.access2mysql(CType(logs.dateLog, String))
+
+        '    Return objWSCrodip.SendLogs(logs)
+        'Catch ex As Exception
+        '    CSDebug.dispFatal("LogsManager - sendWSLogs : " & ex.Message)
+        '    Return -1
+        'End Try
+    End Function
 
 #End Region
 
 #Region "Methodes Locales"
 
-    Public Sub deleteLogs(ByVal log As Logs)
+    Public Function deleteLogs(ByVal log As Logs)
 
         Try
 
@@ -19,9 +32,9 @@ Module LogsManager
             CSDebug.dispFatal("LogsManager - deletLogs : " & ex.Message)
         End Try
 
-    End Sub
+    End Function
 
-    Public Sub getUpdates()
+    Public Function getUpdates()
 
         '' Déclarations
         'Dim arrItems(0) As Logs
@@ -79,7 +92,7 @@ Module LogsManager
 
         'Return arrItems
 
-    End Sub
+    End Function
 
 #End Region
 

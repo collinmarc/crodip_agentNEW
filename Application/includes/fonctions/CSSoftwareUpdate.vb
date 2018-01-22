@@ -4,17 +4,17 @@ Imports System.Threading
 Module CSSoftwareUpdate
 
 
-    Public Sub runUpdater()
+    Public Function runUpdater()
         CSSoftwareUpdate.runUpdater(False)
-    End Sub
-    Public Sub runUpdater(ByVal withThread As Boolean)
+    End Function
+    Public Function runUpdater(ByVal withThread As Boolean)
         If withThread Then
             CSSoftwareUpdate.thr_majSoftware()
         Else
             CSSoftwareUpdate.majSoftware()
         End If
         config_vars.Init()
-    End Sub
+    End Function
 
     Private _thread_majSoftware As Thread
     Private Sub majSoftware()
@@ -27,13 +27,13 @@ Module CSSoftwareUpdate
         'retourne un booléen confirmant le démarage du process
 
     End Sub
-    Sub thr_majSoftware()
+    Function thr_majSoftware()
         _thread_majSoftware = New Thread(AddressOf CSSoftwareUpdate.thr_majSoftware) 'ThrFunc est la fonction exécutée par le thread.
         _thread_majSoftware.Name = "CSSoftwareUpdate_majSoftware" 'Il est parfois pratique de nommer les threads surtout si on en créé plusieurs.
         _thread_majSoftware.Start() ' Démarrage du thread.
-    End Sub
+    End Function
 
-    Public Function checkMAJ() As Boolean
+    Public Function checkMAJ()
 
         Try
 
@@ -55,5 +55,5 @@ Module CSSoftwareUpdate
 
     End Function
 
-
+ 
 End Module

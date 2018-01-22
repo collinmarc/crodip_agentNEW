@@ -17,7 +17,7 @@ Public Class FVManometreControleManager
                     ' construction de l'objet
                     Dim objWSCrodip_responseItem As System.Xml.XmlNode
                     For Each objWSCrodip_responseItem In objWSCrodip_response
-                        objFVManometreControle.Fill(objWSCrodip_responseItem.Name, objWSCrodip_responseItem.InnerText)
+                        objFVManometreControle.Fill(objWSCrodip_responseItem.Name, objWSCrodip_responseItem.Value)
                     Next
                 Case 1 ' NOK
                     CSDebug.dispError("FVManometreControleManager - Code 1 : Non-Trouvée")
@@ -31,7 +31,7 @@ Public Class FVManometreControleManager
 
     End Function
 
-    Public Shared Function sendWSFVManometreControle(ByVal fvmanometrecontrole As FVManometreControle, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSFVManometreControle(ByVal fvmanometrecontrole As FVManometreControle, ByRef updatedObject As Object)
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
@@ -353,7 +353,7 @@ Public Class FVManometreControleManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function getFVManometreControleById(ByVal fvmanometrecontrole_id As String) As FVManometreControle
+    Public Shared Function getFVManometreControleById(ByVal fvmanometrecontrole_id As String)
         Debug.Assert(Not String.IsNullOrEmpty(fvmanometrecontrole_id), "Id doit être initialisé")
         ' déclarations
         Dim oCSDB As CSDb

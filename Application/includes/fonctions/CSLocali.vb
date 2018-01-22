@@ -1,7 +1,19 @@
 Module CSLocali
 
+    Public Function test()
 
-    Public Function getVilleByCp(ByVal codePostal As String) As String(,)
+        Dim query As String = "SELECT label FROM CSL_EntityLabel WHERE id=74"
+
+        Dim bdd As New CSDb(True)
+        Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults(query)
+        While dataResults.Read()
+            Console.Write(dataResults.Item(0).ToString() & vbNewLine)
+        End While
+        bdd = Nothing
+
+    End Function
+
+    Public Function getVilleByCp(ByVal codePostal As String)
         ' Init Vars
         Dim arrResults(1, 0) As String
 

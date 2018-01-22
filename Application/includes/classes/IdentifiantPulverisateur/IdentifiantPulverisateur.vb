@@ -138,7 +138,7 @@ Public Class IdentifiantPulverisateur
         Return bReturn
     End Function
 
-    Public Overrides Function ToString() As String
+    Public Function toString()
         Return "IdentifiantPulverisateur id=" & id & ",idStructure=" & idStructure & ",NuméroNational=" & numeroNational
     End Function
 

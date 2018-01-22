@@ -101,7 +101,7 @@ Public Class ManometreEtalonManager
 
     Public Shared Function save(ByVal objManometreEtalon As ManometreEtalon, Optional bSyncro As Boolean = False) As Boolean
 
-        Dim paramsQuery As String = ""
+        Dim paramsQuery As String
         Dim oCSDb As CSDb
         Dim bReturn As Boolean
         Try
@@ -129,23 +129,23 @@ Public Class ManometreEtalonManager
                 End If
 
                 If Not objManometreEtalon.idCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`idCrodip`='" & CSDb.secureString(objManometreEtalon.idCrodip) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`idCrodip`='" & oCSDb.secureString(objManometreEtalon.idCrodip) & "'"
                 End If
                 paramsQuery = paramsQuery & " , `AgentManoEtalon`.`idStructure`=" & objManometreEtalon.idStructure & ""
                 If Not objManometreEtalon.marque Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`marque`='" & CSDb.secureString(objManometreEtalon.marque) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`marque`='" & oCSDb.secureString(objManometreEtalon.marque) & "'"
                 End If
                 If Not objManometreEtalon.classe Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`classe`='" & CSDb.secureString(objManometreEtalon.classe) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`classe`='" & oCSDb.secureString(objManometreEtalon.classe) & "'"
                 End If
                 If Not objManometreEtalon.incertitudeEtalon Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`incertitudeEtalon`='" & CSDb.secureString(objManometreEtalon.incertitudeEtalon) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`incertitudeEtalon`='" & oCSDb.secureString(objManometreEtalon.incertitudeEtalon) & "'"
                 End If
                 If Not objManometreEtalon.type Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`type`='" & CSDb.secureString(objManometreEtalon.type) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`type`='" & oCSDb.secureString(objManometreEtalon.type) & "'"
                 End If
                 If Not objManometreEtalon.fondEchelle Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`fondEchelle`='" & CSDb.secureString(objManometreEtalon.fondEchelle) & "'"
+                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`fondEchelle`='" & oCSDb.secureString(objManometreEtalon.fondEchelle) & "'"
                 End If
                 paramsQuery = paramsQuery & " , `AgentManoEtalon`.`isSynchro`=" & objManometreEtalon.isSynchro & ""
                 If objManometreEtalon.dateDernierControle <> Nothing Then
@@ -182,7 +182,7 @@ Public Class ManometreEtalonManager
                 bReturn = True
             End If
         Catch ex As Exception
-            CSDebug.dispFatal("ManometreEtalonManager.Save  Error : " & ex.Message.ToString() & paramsQuery)
+            CSDebug.dispFatal("ManometreEtalonManager.Save  Error : " & ex.Message.ToString & paramsQuery)
             bReturn = False
         End Try
         If oCSDb IsNot Nothing Then
@@ -465,7 +465,7 @@ Public Class ManometreEtalonManager
         Return bReturn
     End Function
 
-    Public Shared Function getUpdates(ByVal agent As Agent) As ManometreEtalon()
+    Public Shared Function getUpdates(ByVal agent As Agent)
         ' déclarations
         Dim arrItems(0) As ManometreEtalon
         Dim oCSDB As CSDb

@@ -228,7 +228,27 @@ Public Class diag_debug
 
     End Sub
 
+    Public Function getAllRadio(ByVal contener As Object)
+        For Each test As System.Windows.Forms.Control In contener.Controls
+            Dim foo As Object = test.GetType.ToString
+            If test.GetType.ToString <> "System.Windows.Forms.RadioButton" Then
+                getAllRadio(test)
+            Else
+                Dim bar As Object = test.Name.ToString
+            End If
+        Next
+    End Function
 
+    Public Function getAllCheckbox(ByVal contener As Object)
+        For Each test As System.Windows.Forms.Control In contener.Controls
+            Dim foo As Object = test.GetType.ToString
+            If test.GetType.ToString <> "System.Windows.Forms.CheckBox" Then
+                getAllCheckbox(test)
+            Else
+                Dim bar As Object = test.Name.ToString
+            End If
+        Next
+    End Function
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         globFormDiagnostic.RadioButton_diagnostic_10213.ForeColor = System.Drawing.Color.FromArgb(CType(141, Byte), CType(135, Byte), CType(15, Byte))

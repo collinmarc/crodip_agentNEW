@@ -8,9 +8,9 @@ Public Class AutoTestManager
         Debug.Assert(idControle <> 0)
         Dim oReturn As AutoTest
         Dim dbLink As CSDb
-        dbLink = New CSDb(True)
         Try
             '## Préparation de la connexion
+            dbLink = New CSDb(True)
             '## Execution de la requete
             Dim tmpResults As System.Data.OleDb.OleDbDataReader
             tmpResults = dbLink.getResults("SELECT * FROM `Controle_Regulier` WHERE ctrg_id=" & idControle & "")

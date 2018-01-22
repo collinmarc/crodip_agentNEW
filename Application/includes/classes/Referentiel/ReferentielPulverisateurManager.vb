@@ -38,7 +38,7 @@ Module ReferentielPulverisateurManager
         Try
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object = Nothing
+            Dim objWSCrodip_response As Object
             Dim url As String
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetReferentielPulverisateurTypesCategories(agentCourant.id, objWSCrodip_response)
@@ -70,7 +70,7 @@ Module ReferentielPulverisateurManager
         Try
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object = Nothing
+            Dim objWSCrodip_response As Object
             Dim url As String
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetReferentielPulverisateurMarquesModeles(agentCourant.id, objWSCrodip_response)

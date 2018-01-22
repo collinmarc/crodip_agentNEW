@@ -9,10 +9,10 @@ Public Class CSStatusbar
     End Sub
 
     ' Initialisation de l'objet statusbar
-    Public Sub init(ByVal _statusBarObj As StatusBar, ByVal _loaderObj As PictureBox)
+    Public Function init(ByVal _statusBarObj As Statusbar, ByVal _loaderObj As PictureBox)
         Me.statusBarObj = _statusBarObj
         Me.loaderObj = _loaderObj
-    End Sub
+    End Function
 
     ' Affichage d'un message dans la statusbar
     Public Sub display(ByVal message As String)
@@ -30,41 +30,41 @@ Public Class CSStatusbar
 
     End Sub
     ' Affichage d'un message dans la statusbar + affichage du loader
-    Public Sub display(ByVal message As String, ByVal isLoader As Boolean)
+    Public Function display(ByVal message As String, ByVal isLoader As Boolean)
         If isLoader = True Then
             Me.showLoader()
         Else
             Me.hideLoader()
         End If
         Me.display(message)
-    End Sub
+    End Function
 
     ' Affichage du loader
-    Public Sub toggleLoader()
+    Public Function toggleLoader()
         If Me.loaderObj.Visible = False Then
             Me.showLoader()
         Else
             Me.hideLoader()
         End If
-    End Sub
-    Public Sub hideLoader()
+    End Function
+    Public Function hideLoader()
         Me.loaderObj.Visible = False
         Me.display(Me.statusBarObj.Text)
         CSTime.pause(500) ' Pause de 500ms
-    End Sub
-    Public Sub showLoader()
+    End Function
+    Public Function showLoader()
         Me.loaderObj.Visible = True
         Me.display(Me.statusBarObj.Text)
         CSTime.pause(500) ' Pause de 500ms
-    End Sub
+    End Function
 
     ' Efface la barre de status
-    Public Sub clear()
+    Public Function clear()
         Me.display("", False)
-    End Sub
+    End Function
 
     ' Récupère le libellé courant de la statusbar
-    Public Function getLibelle() As String
+    Public Function getLibelle()
         Return Me.statusBarObj.Text
     End Function
 

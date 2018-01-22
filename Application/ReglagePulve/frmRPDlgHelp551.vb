@@ -4,7 +4,7 @@
     Protected m_oDiag As RPDiagnostic
     Protected m_mode As DiagnosticHelp551.Help551Mode
 
-    Protected Overrides Function Valider() As Boolean Implements IfrmCRODIP.Valider
+    Protected Overridable Function Valider() As Boolean Implements IfrmCRODIP.Valider
         Dim bReturn As Boolean
         Try
             MyBase.Valider()

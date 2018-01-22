@@ -547,7 +547,7 @@ Public Class Synchronisation
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Sub runASCSynchroPresta()
+    Public Function runASCSynchroPresta()
         If (m_SynchroBoolean.m_bSynchAscPrestation) Then
 
             ' Synchro des prestationsCategories
@@ -606,7 +606,7 @@ Public Class Synchronisation
 
         End If
 
-    End Sub
+    End Function
     '''
     ''' Synchronisation des Fiches de vies Banc vers le Serveur
 

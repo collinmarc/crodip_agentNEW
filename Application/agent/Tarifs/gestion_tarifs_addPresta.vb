@@ -283,13 +283,13 @@ Public Class gestion_tarifs_addPresta
 
 #Region "Calcul tarif TTC"
 
-    Sub calctarifTTC()
+    Function calctarifTTC()
 
         If tb_tarifHT.Text <> "" And tb_TVA.Text <> "" Then
             tb_tarifTTC.Text = (CType(tb_tarifHT.Text.Replace(".", ","), Double) + (CType(tb_tarifHT.Text.Replace(".", ","), Double) * (CType(tb_TVA.Text.Replace(".", ","), Double) / 100))).ToString
         End If
 
-    End Sub
+    End Function
     Private Sub addPresta_tarifHT_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tb_tarifHT.TextChanged
         calctarifTTC()
     End Sub
