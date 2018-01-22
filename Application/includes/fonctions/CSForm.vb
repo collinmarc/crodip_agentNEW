@@ -35,7 +35,7 @@ Module CSForm
 
 #Region "List controls"
 
-    Public Function getListRadioButtons(ByVal controlObj As Control, ByRef listRadioButtons() As RadioButton)
+    Public Sub getListRadioButtons(ByVal controlObj As Control, ByRef listRadioButtons() As RadioButton)
         Dim i As Integer
         If listRadioButtons(listRadioButtons.Length - 1) Is Nothing Then
             i = listRadioButtons.Length - 1
@@ -52,10 +52,10 @@ Module CSForm
                 getListRadioButtons(Ctr, listRadioButtons)
             End If
         Next
-    End Function
+    End Sub
 
-    Public Function getControlByName(ByVal controlName As String, ByVal controlObj As Control)
-        Dim tmpReturn As Object
+    Public Function getControlByName(ByVal controlName As String, ByVal controlObj As Control) As Control
+        Dim tmpReturn As Control
         Dim tabControl As Control()
         tabControl = controlObj.Controls.Find(controlName, True) 'la recherche est Recursive
         tmpReturn = Nothing
@@ -82,8 +82,8 @@ Module CSForm
         Return tmpReturn
     End Function
 
-    Public Function getControlByNameFromPanel(ByVal controlName As String, ByVal panel As Panel)
-        Dim tmpReturn As Object
+    Public Function getControlByNameFromPanel(ByVal controlName As String, ByVal panel As Panel) As Control
+        Dim tmpReturn As Control
         For Each Obj As Object In panel.Controls
             If Not Obj Is Nothing Then
                 If TypeOf Obj Is Panel Then
@@ -96,7 +96,7 @@ Module CSForm
         Return tmpReturn
     End Function
 
-    Public Function disableAllRadioButtons(ByVal controlObj As Control)
+    Public Sub disableAllRadioButtons(ByVal controlObj As Control)
         For Each Ctr As Control In controlObj.Controls
             If TypeOf Ctr Is RadioButton Then
                 Ctr.Enabled = False
@@ -104,8 +104,8 @@ Module CSForm
                 disableAllRadioButtons(Ctr)
             End If
         Next
-    End Function
-    Public Function enableAllRadioButtons(ByVal controlObj As Control)
+    End Sub
+    Public Sub enableAllRadioButtons(ByVal controlObj As Control)
         For Each Ctr As Control In controlObj.Controls
             If TypeOf Ctr Is RadioButton Then
                 Ctr.Enabled = True
@@ -113,9 +113,9 @@ Module CSForm
                 disableAllRadioButtons(Ctr)
             End If
         Next
-    End Function
+    End Sub
 
-    Public Function disableAllCheckBox(ByVal controlObj As Control)
+    Public Sub disableAllCheckBox(ByVal controlObj As Control)
         For Each Ctr As Control In controlObj.Controls
             If TypeOf Ctr Is CheckBox Or TypeOf Ctr Is CRODIP_ControlLibrary.CtrlDiag2 Then
                 Ctr.Enabled = False
@@ -123,8 +123,8 @@ Module CSForm
                 disableAllCheckBox(Ctr)
             End If
         Next
-    End Function
-    Public Function disableAllTextBox(ByVal controlObj As Control)
+    End Sub
+    Public Sub disableAllTextBox(ByVal controlObj As Control)
         For Each Ctr As Control In controlObj.Controls
             If TypeOf Ctr Is TextBox Then
                 Ctr.Enabled = False
@@ -132,8 +132,8 @@ Module CSForm
                 disableAllTextBox(Ctr)
             End If
         Next
-    End Function
-    Public Function disableAllComboBox(ByVal controlObj As Control)
+    End Sub
+    Public Sub disableAllComboBox(ByVal controlObj As Control)
         For Each Ctr As Control In controlObj.Controls
             If TypeOf Ctr Is ComboBox Then
                 Ctr.Enabled = False
@@ -141,8 +141,8 @@ Module CSForm
                 disableAllComboBox(Ctr)
             End If
         Next
-    End Function
-    Public Function enableAllCheckBox(ByVal controlObj As Control)
+    End Sub
+    Public Sub enableAllCheckBox(ByVal controlObj As Control)
         For Each Ctr As Control In controlObj.Controls
             If TypeOf Ctr Is CheckBox Or TypeOf Ctr Is CRODIP_ControlLibrary.CtrlDiag2 Then
                 Ctr.Enabled = True
@@ -150,13 +150,13 @@ Module CSForm
                 enableAllCheckBox(Ctr)
             End If
         Next
-    End Function
+    End Sub
 
 #End Region
 
 #Region " Controls de saisie "
 
-    Public Function typeAllowed(ByVal e As System.Windows.Forms.KeyPressEventArgs, ByVal typeAllow As String)
+    Public Sub typeAllowed(ByVal e As System.Windows.Forms.KeyPressEventArgs, ByVal typeAllow As String)
 
         Select Case typeAllow.ToUpper()
 
@@ -205,9 +205,9 @@ Module CSForm
                 End If
         End Select
 
-    End Function
+    End Sub
 
-    Public Function maxSize(ByVal e As System.Windows.Forms.KeyPressEventArgs, ByVal sender As Object, ByVal myMaxSize As Integer)
+    Public Sub maxSize(ByVal e As System.Windows.Forms.KeyPressEventArgs, ByVal sender As Object, ByVal myMaxSize As Integer)
 
         If Asc(e.KeyChar) < 32 Then
             ' On autorise les commandes
@@ -219,10 +219,10 @@ Module CSForm
             End If
         End If
 
-    End Function
+    End Sub
 
     ' Remplace le point par une virgule dans les champs numérique
-    Public Function forceDot(ByVal e As System.Windows.Forms.KeyPressEventArgs, ByVal sender As Object)
+    Public Sub forceDot(ByVal e As System.Windows.Forms.KeyPressEventArgs, ByVal sender As Object)
         'si c'est une virgule et qu'il y en a déja une dans le textbox, ou qu'elle est tapée en premier caractère, on annule la saisie
         Dim str As String
         If TypeOf (sender) Is TextBox Then
@@ -241,9 +241,9 @@ Module CSForm
                 e.Handled = True
             End If
         End If
-    End Function
+    End Sub
     ' Remplace la virgule par un point dans les champs numérique
-    Public Function forceComma(ByVal e As System.Windows.Forms.KeyPressEventArgs, ByVal sender As Object)
+    Public Sub forceComma(ByVal e As System.Windows.Forms.KeyPressEventArgs, ByVal sender As Object)
         'si c'est une virgule et qu'il y en a déja une dans le textbox, ou qu'elle est tappé en premier caractère, on annule la saisie
         If (Asc(e.KeyChar) = 44 Or Asc(e.KeyChar) = 46) And (CType(sender, TextBox).Text.IndexOf(".") > 0 Or CType(sender, TextBox).Text = "") Then
             e.Handled = True
@@ -255,7 +255,7 @@ Module CSForm
                 e.Handled = True
             End If
         End If
-    End Function
+    End Sub
 
 #End Region
 

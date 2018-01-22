@@ -35,7 +35,7 @@ Public Class BancManager
 
     End Function
 
-    Public Shared Function sendWSBanc(ByVal banc As Banc, ByRef updatedObject As Object)
+    Public Shared Function sendWSBanc(ByVal banc As Banc, ByRef updatedObject As Object) As Integer
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
@@ -102,7 +102,7 @@ Public Class BancManager
         Return tmpObjectId
     End Function
 
-    Public Shared Function save(ByVal objBanc As Banc, Optional bsynchro As Boolean = False)
+    Public Shared Function save(ByVal objBanc As Banc, Optional bsynchro As Boolean = False) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(objBanc.id), "L'Id doit être inititialisé")
         Dim oCSDb As CSDb
         Dim bddCommande As OleDb.OleDbCommand
@@ -134,10 +134,10 @@ Public Class BancManager
                     paramsQuery = paramsQuery & " , `BancMesure`.`idStructure`=" & objBanc.idStructure & ""
 
                     If Not objBanc.marque Is Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`marque`='" & oCSDb.secureString(objBanc.marque) & "'"
+                        paramsQuery = paramsQuery & " , `BancMesure`.`marque`='" & CSDb.secureString(objBanc.marque) & "'"
                     End If
                     If Not objBanc.modele Is Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`modele`='" & oCSDb.secureString(objBanc.modele) & "'"
+                        paramsQuery = paramsQuery & " , `BancMesure`.`modele`='" & CSDb.secureString(objBanc.modele) & "'"
                     End If
                     If objBanc.dateDernierControle IsNot Nothing Then
                         paramsQuery = paramsQuery & " , `BancMesure`.`dateDernierControle`='" & CSDate.mysql2access(objBanc.dateDernierControle) & "'"
@@ -190,7 +190,7 @@ Public Class BancManager
         Return bReturn
     End Function
 
-    Public Shared Function setSynchro(ByVal objBanc As Banc)
+    Public Shared Sub setSynchro(ByVal objBanc As Banc)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -200,7 +200,7 @@ Public Class BancManager
         Catch ex As Exception
             CSDebug.dispFatal("BancManager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
 
     Public Shared Function getBancById(ByVal banc_id As String) As Banc
@@ -263,7 +263,7 @@ Public Class BancManager
         Return bReturn
     End Function 'CreateBanc
 
-    Public Shared Function getUpdates(ByVal agent As Agent)
+    Public Shared Function getUpdates(ByVal agent As Agent) As Banc()
         Debug.Assert(agent IsNot Nothing)
         ' déclarations
         Dim arrItems(0) As Banc
@@ -347,7 +347,7 @@ Public Class BancManager
         Debug.Assert(Not String.IsNullOrEmpty(pIdStructure), "L'Id Structre doit être initialisé")
         Dim colReturn As New Collection()
         Dim oCsdb As CSDb
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As OleDb.OleDbCommand = Nothing
         Dim oDataReader As System.Data.OleDb.OleDbDataReader
         Try
             If pIdStructure <> "" Then

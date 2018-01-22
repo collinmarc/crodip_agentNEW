@@ -381,7 +381,7 @@ Public Class BuseManager
         Return colReturn
     End Function
 
-    Public Shared Function getUpdates(ByVal agent As Agent)
+    Public Shared Function getUpdates(ByVal agent As Agent) As Buse()
         ' déclarations
         Dim arrItems(0) As Buse
         Dim oCSDB As CSDb

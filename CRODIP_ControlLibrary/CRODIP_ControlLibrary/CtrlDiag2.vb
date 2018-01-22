@@ -75,7 +75,7 @@ Public Class CtrlDiag2
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Property ForeColor As System.Drawing.Color
+    Public Overrides Property ForeColor As System.Drawing.Color
         Get
             Return CheckBox1.ForeColor
         End Get

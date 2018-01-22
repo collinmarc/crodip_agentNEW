@@ -85,7 +85,7 @@ Public Class DiagnosticBusesManager
 
     End Function
 
-    Public Shared Function sendWSDiagnosticBuses(pAgent As Agent, ByVal objDiagnosticBuses As DiagnosticBusesList, ByRef updatedObject As Object)
+    Public Shared Function sendWSDiagnosticBuses(pAgent As Agent, ByVal objDiagnosticBuses As DiagnosticBusesList, ByRef updatedObject As Object) As Integer
         Dim tmpArr(1)() As DiagnosticBuses
         tmpArr(0) = objDiagnosticBuses.diagnosticBuses
         Try
@@ -181,7 +181,7 @@ Public Class DiagnosticBusesManager
     '    Return tmpDiagnosticId
     'End Function
 
-    Public Shared Function save(ByVal objDiagnosticBuses As DiagnosticBuses, Optional bSyncro As Boolean = False)
+    Public Shared Sub save(ByVal objDiagnosticBuses As DiagnosticBuses, Optional bSyncro As Boolean = False)
 
         Dim oCSDb As New CSDb(True)
         Try
@@ -319,9 +319,9 @@ Public Class DiagnosticBusesManager
         If oCSDb IsNot Nothing Then
             oCSDb.free()
         End If
-    End Function
+    End Sub
 
-    Public Shared Function setSynchro(ByVal objDiagnosticBuses As DiagnosticBuses)
+    Public Shared Sub setSynchro(ByVal objDiagnosticBuses As DiagnosticBuses)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -331,7 +331,7 @@ Public Class DiagnosticBusesManager
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticBusesManager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
     Public Shared Function setDiagnosticNbreLotsBuses(pDiagnostic As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Dim oCSDB As New CSDb(True)
@@ -426,7 +426,7 @@ Public Class DiagnosticBusesManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function getDiagnosticBusesById(ByVal diagnosticbuses_id As String, ByVal pidDiagnostic As String)
+    Public Shared Function getDiagnosticBusesById(ByVal diagnosticbuses_id As String, ByVal pidDiagnostic As String) As DiagnosticBuses
         Debug.Assert(Not String.IsNullOrEmpty(diagnosticbuses_id))
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
@@ -486,7 +486,7 @@ Public Class DiagnosticBusesManager
         Return tmpDiagnosticBuses
     End Function
 
-    Public Shared Function delete(ByVal diagnosticbuses_id As String, ByVal pidDiagnostic As String)
+    Public Shared Function delete(ByVal diagnosticbuses_id As String, ByVal pidDiagnostic As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(diagnosticbuses_id))
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
@@ -512,7 +512,7 @@ Public Class DiagnosticBusesManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function deleteByDiagnosticId(ByVal pidDiagnostic As String)
+    Public Shared Function deleteByDiagnosticId(ByVal pidDiagnostic As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
         Dim bReturn As Boolean
@@ -534,7 +534,7 @@ Public Class DiagnosticBusesManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function getUpdates()
+    Public Shared Function getUpdates() As DiagnosticBuses()
         ' déclarations
         Dim arrItems(0) As DiagnosticBuses
         Dim bddCommande As OleDb.OleDbCommand

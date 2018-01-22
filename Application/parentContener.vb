@@ -182,16 +182,16 @@ Public Class parentContener
     Private splashScreen As New splash
     Private m_bCloseByUpdate As Boolean = False
 
-    Public Function loadSplash()
+    Public Sub loadSplash()
         If GLOB_ENV_SHOWSPLASH Then
             splashScreen.Show()
         End If
-    End Function
-    Public Function unloadSplash()
+    End Sub
+    Public Sub unloadSplash()
         If GLOB_ENV_SHOWSPLASH Then
             splashScreen.Close()
         End If
-    End Function
+    End Sub
 
     Private Sub parentContener_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         config_vars.Init()
@@ -247,7 +247,7 @@ Public Class parentContener
         If Not m_bCloseByUpdate Then
             Dim Title As String = "Logiciel Crodip/Agent"
 
-            Dim Var = MsgBox("Etes-vous sûr de vouloir fermer le logiciel ?", vbInformation + vbYesNo, Title)
+            Dim Var As MsgBoxResult = MsgBox("Etes-vous sûr de vouloir fermer le logiciel ?", vbInformation + vbYesNo, Title)
             If Var = vbNo Then
                 e.Cancel = True
             Else

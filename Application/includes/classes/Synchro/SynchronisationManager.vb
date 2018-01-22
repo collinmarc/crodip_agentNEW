@@ -77,7 +77,7 @@ Public Class SynchronisationManager
     End Function
     Public Shared Function getWSlstElementsASynchroniser(ByVal pAgent As Agent, pSynchroBoolean As SynchroBooleans) As List(Of SynchronisationElmt)
         Dim oLst As New List(Of SynchronisationElmt)()
-        Dim objWSUpdates As Object
+        Dim objWSUpdates As Object = Nothing
         'Récupération des infos depuis le SRV
         ' déclarations
         Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()

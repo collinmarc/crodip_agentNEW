@@ -70,7 +70,7 @@ Public Class DiagnosticTroncons833Manager
     End Function
 
     ' o
-    Public Shared Function sendWSDiagnosticTroncons833(pAgent As Agent, ByVal objDiagnosticTroncons833 As DiagnosticTroncons833List, ByRef updatedObject As Object)
+    Public Shared Function sendWSDiagnosticTroncons833(pAgent As Agent, ByVal objDiagnosticTroncons833 As DiagnosticTroncons833List, ByRef updatedObject As Object) As Integer
         Dim tmpArr(1)() As DiagnosticTroncons833
         tmpArr(0) = objDiagnosticTroncons833.Liste.ToArray()
         Try
@@ -207,7 +207,7 @@ Public Class DiagnosticTroncons833Manager
     End Function
 
     ' o
-    Public Shared Function setSynchro(ByVal objDiagnosticTroncons833 As DiagnosticTroncons833)
+    Public Shared Sub setSynchro(ByVal objDiagnosticTroncons833 As DiagnosticTroncons833)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -217,10 +217,10 @@ Public Class DiagnosticTroncons833Manager
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticTroncons833Manager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
     ' o
-    Public Shared Function getDiagnosticTroncons833ById(ByVal diagnosticTroncons833_id As String, pIdDiagnostic As String)
+    Public Shared Function getDiagnosticTroncons833ById(ByVal diagnosticTroncons833_id As String, pIdDiagnostic As String) As DiagnosticTroncons833
         ' déclarations
         Dim oCSDB As New CSDb(True)
         Dim tmpDiagnosticTroncons833 As New DiagnosticTroncons833
@@ -350,7 +350,7 @@ Public Class DiagnosticTroncons833Manager
         Return arrItems
     End Function
 
-    Public Shared Function delete(ByVal diagnosticTroncons833_id As String, ByVal pidDiagnostic As String)
+    Public Shared Function delete(ByVal diagnosticTroncons833_id As String, ByVal pidDiagnostic As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(diagnosticTroncons833_id))
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
@@ -372,11 +372,10 @@ Public Class DiagnosticTroncons833Manager
         Return bReturn
     End Function
 
-    Public Shared Function deleteByDiagnosticID(ByVal pidDiagnostic As String)
+    Public Shared Function deleteByDiagnosticID(ByVal pidDiagnostic As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
         Dim bReturn As Boolean
-        Dim oDiagBuses As DiagnosticBuses
         Try
 
             Dim oCSDB As New CSDb(True)

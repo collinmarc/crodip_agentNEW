@@ -4,6 +4,7 @@
     Protected _RPDiagnosticCourant As RPDiagnostic
     Public Sub New(pDiag As RPDiagnostic)
         _RPDiagnosticCourant = pDiag
+        InitializeComponent()
     End Sub
     Private Sub FrmRPPreliminaire_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bModeAutonome = True

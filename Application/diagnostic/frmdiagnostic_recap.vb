@@ -765,7 +765,7 @@ Public Class frmdiagnostic_recap
             If m_diagnostic.controleEtat = "" Then
                 m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
             End If
-            Dim szH = diagnosticRecap_organisme_heureDebut.Text
+            Dim szH As String = diagnosticRecap_organisme_heureDebut.Text
             If Not String.IsNullOrEmpty(szH) Then
                 Dim dDiag, dH As Date
                 dH = CDate(szH)
@@ -834,7 +834,7 @@ Public Class frmdiagnostic_recap
     End Sub
 
     ' Enregistrement de la facture (pour synchronisation)
-    Private Function createFacture()
+    Private Sub createFacture()
         Try
 
             '############################################################
@@ -866,7 +866,7 @@ Public Class frmdiagnostic_recap
         Catch ex As Exception
             CSDebug.dispError("DiagnosticRecap.createFacture() : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
     Private Sub btn_finalisationDiag_imprimerSynthese_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_imprimerSynthese.Click
 

@@ -272,10 +272,10 @@ Public Class Banc
         End Try
         Return bReturn
     End Function
-    Public Function incNbControles()
+    Public Sub incNbControles()
         Me.nbControles = nbControles + 1
         Me.nbControlesTotal = nbControlesTotal + 1
-    End Function
+    End Sub
 
     Public Overrides Function creerFicheVieActivation(ByVal pAgent As Agent) As Boolean
         Return creerFicheVie(FVBanc.FVTYPE_MISENSERVICE, pAgent) IsNot Nothing

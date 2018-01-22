@@ -42,7 +42,7 @@ Public Class DiagnosticMano542Manager
     End Function
 
     ' o
-    Public Shared Function sendWSDiagnosticMano542(pAgent As Agent, ByVal objDiagnosticMano542 As DiagnosticMano542List, ByRef updatedObject As Object)
+    Public Shared Function sendWSDiagnosticMano542(pAgent As Agent, ByVal objDiagnosticMano542 As DiagnosticMano542List, ByRef updatedObject As Object) As Integer
         Dim tmpArr(1)() As DiagnosticMano542
         tmpArr(0) = objDiagnosticMano542.Liste.ToArray()
         Try
@@ -171,7 +171,7 @@ Public Class DiagnosticMano542Manager
     End Function
 
     ' o
-    Public Shared Function setSynchro(ByVal objDiagnosticMano542 As DiagnosticMano542)
+    Public Shared Sub setSynchro(ByVal objDiagnosticMano542 As DiagnosticMano542)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -181,7 +181,7 @@ Public Class DiagnosticMano542Manager
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticMano542Manager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
     ' o
     Public Shared Function getDiagnosticMano542ById(ByVal diagnosticMano542_id As String, pIdDiagnostic As String) As DiagnosticMano542
@@ -252,7 +252,7 @@ Public Class DiagnosticMano542Manager
         Return bReturn
     End Function
 
-    Public Shared Function delete(ByVal diagnosticMano542_id As String, ByVal pidDiagnostic As String)
+    Public Shared Function delete(ByVal diagnosticMano542_id As String, ByVal pidDiagnostic As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(diagnosticMano542_id))
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
@@ -274,11 +274,10 @@ Public Class DiagnosticMano542Manager
         Return bReturn
     End Function
 
-    Public Shared Function deleteByDiagnosticID(ByVal pidDiagnostic As String)
+    Public Shared Function deleteByDiagnosticID(ByVal pidDiagnostic As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
         Dim bReturn As Boolean
-        Dim oDiagBuses As DiagnosticBuses
         Try
 
             Dim oCSDB As New CSDb(True)

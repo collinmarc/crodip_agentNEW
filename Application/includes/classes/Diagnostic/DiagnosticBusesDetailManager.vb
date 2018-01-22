@@ -38,7 +38,7 @@ Public Class DiagnosticBusesDetailManager
     End Function
 
     'ok
-    Public Shared Function sendWSDiagnosticBusesDetail(pAgent As Agent, ByVal objDiagnosticBusesDetail As DiagnosticBusesDetailList, ByRef updatedObject As Object)
+    Public Shared Function sendWSDiagnosticBusesDetail(pAgent As Agent, ByVal objDiagnosticBusesDetail As DiagnosticBusesDetailList, ByRef updatedObject As Object) As Integer
         Dim tmpArr(1)() As DiagnosticBusesDetail
         tmpArr(0) = objDiagnosticBusesDetail.Liste.ToArray()
         Try
@@ -84,7 +84,7 @@ Public Class DiagnosticBusesDetailManager
 #Region "Methodes Locales"
 
     ' ok
-    Public Shared Function save(ByVal objDiagnosticBusesDetail As DiagnosticBusesDetail, Optional bSyncro As Boolean = False)
+    Public Shared Sub save(ByVal objDiagnosticBusesDetail As DiagnosticBusesDetail, Optional bSyncro As Boolean = False)
 
         Try
             Dim oCSDb As New CSDb(True)
@@ -176,10 +176,10 @@ Public Class DiagnosticBusesDetailManager
             CSDebug.dispFatal("DiagnosticBusesDetailManager::save() : " & ex.Message.ToString)
         End Try
 
-    End Function
+    End Sub
 
     ' ok
-    Public Shared Function setSynchro(ByVal objDiagnosticBusesDetail As DiagnosticBusesDetail)
+    Public Shared Sub setSynchro(ByVal objDiagnosticBusesDetail As DiagnosticBusesDetail)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -189,10 +189,10 @@ Public Class DiagnosticBusesDetailManager
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticBusesDetailManager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
     ' ok
-    Public Shared Function getDiagnosticBusesDetailById(ByVal diagnosticbusesdetail_id As String, pidDiag As String)
+    Public Shared Function getDiagnosticBusesDetailById(ByVal diagnosticbusesdetail_id As String, pidDiag As String) As DiagnosticBusesDetail
         Debug.Assert(Not String.IsNullOrEmpty(diagnosticbusesdetail_id))
         Debug.Assert(Not String.IsNullOrEmpty(pidDiag))
         ' déclarations
@@ -230,7 +230,7 @@ Public Class DiagnosticBusesDetailManager
         Return tmpDiagnosticBusesDetail
     End Function
 
-    Public Shared Function delete(ByVal diagnosticbuses_id As String, ByVal pidDiagnostic As String)
+    Public Shared Function delete(ByVal diagnosticbuses_id As String, ByVal pidDiagnostic As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(diagnosticbuses_id))
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
@@ -253,10 +253,10 @@ Public Class DiagnosticBusesDetailManager
         Return bReturn
     End Function
     ' ok
-    Public Shared Function getUpdates()
+    Public Shared Function getUpdates() As DiagnosticBusesDetail()
         ' déclarations
         Dim arrItems(0) As DiagnosticBusesDetail
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As OleDb.OleDbCommand = Nothing
         Dim oCSdb As New CSDb(True)
         bddCommande.CommandText = "SELECT * FROM `DiagnosticBusesDetail` WHERE `DiagnosticBusesDetail`.`dateModificationAgent`<>`DiagnosticBusesDetail`.`dateModificationCrodip`"
 

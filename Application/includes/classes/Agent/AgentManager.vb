@@ -42,27 +42,16 @@ Public Class AgentManager
 
     End Function
 
+    'test   
+    'Re test
     ' Methode OK
-    Public Shared Function sendWSAgent(ByVal agent As Agent, ByRef updatedObject As Object)
+    Public Shared Function sendWSAgent(ByVal agent As Agent, ByRef updatedObject As Object) As Integer
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Return objWSCrodip.SendAgent(agent, updatedObject)
         Catch ex As Exception
             CSDebug.dispFatal("AgentManager::sendWSAgent : " & ex.Message)
-            Return -1
-        End Try
-    End Function
-    Public Shared Function sendWSAgent2(ByVal agent As Agent, ByRef updatedObject As Object)
-        Try
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            '            Return objWSCrodip.SendAgent2(agent, updatedObject)
-            '            Return objWSCrodip.SendAgent2(agent.id, agent.numeroNational, agent.motDePasse, agent.nom, agent.prenom, agent.idStructure, agent.telephonePortable, agent.eMail, agent.statut, "", agent.dateCreation, agent.dateDerniereConnexion, agent.dateDerniereSynchro, agent.dateModificationCrodip, agent.dateModificationAgent, agent.versionLogiciel, agent.commentaire, agent.cleActivation, agent.isActif, Nothing)
-
-        Catch ex As Exception
-            CSDebug.dispFatal("AgentManager::sendWSAgent : " & ex.Message)
-            Console.WriteLine(ex.InnerException.Message)
             Return -1
         End Try
     End Function
@@ -198,7 +187,7 @@ Public Class AgentManager
     ''' <param name="pAgentID"> numéro national</param>
     ''' <returns> une instance de Agent, Agent.is = 0 si non trouvé</returns>
     ''' <remarks></remarks>
-    Public Shared Function getAgentById(ByVal pAgentID As Integer)
+    Public Shared Function getAgentById(ByVal pAgentID As Integer) As Agent
         ' déclarations
         Dim tmpAgent As New Agent
         Dim oCsDb As CSDb
@@ -238,7 +227,7 @@ Public Class AgentManager
     ''' <param name="pNumeroNational"> numéro national</param>
     ''' <returns> une instance de Agent, Agent.is = 0 si non trouvé</returns>
     ''' <remarks></remarks>
-    Public Shared Function getAgentByNumeroNational(ByVal pNumeroNational As String)
+    Public Shared Function getAgentByNumeroNational(ByVal pNumeroNational As String) As Agent
         ' déclarations
         Dim tmpAgent As New Agent
         Dim oCsDb As CSDb
@@ -382,26 +371,26 @@ Public Class AgentManager
 
                     paramsQuery = paramsQuery & " `Agent`.`id`=" & agent.id
                     If Not agent.numeroNational Is Nothing Then
-                        paramsQuery = paramsQuery & ", `Agent`.`numeroNational`='" & oCSDb.secureString(agent.numeroNational) & "'"
+                        paramsQuery = paramsQuery & ", `Agent`.`numeroNational`='" & CSDb.secureString(agent.numeroNational) & "'"
                     End If
                     If Not agent.motDePasse Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`motDePasse`='" & oCSDb.secureString(agent.motDePasse) & "'"
+                        paramsQuery = paramsQuery & " , `Agent`.`motDePasse`='" & CSDb.secureString(agent.motDePasse) & "'"
                     End If
                     If Not agent.nom Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`nom`='" & oCSDb.secureString(agent.nom) & "'"
+                        paramsQuery = paramsQuery & " , `Agent`.`nom`='" & CSDb.secureString(agent.nom) & "'"
                     End If
                     If Not agent.prenom Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`prenom`='" & oCSDb.secureString(agent.prenom) & "'"
+                        paramsQuery = paramsQuery & " , `Agent`.`prenom`='" & CSDb.secureString(agent.prenom) & "'"
                     End If
                     paramsQuery = paramsQuery & " , `Agent`.`idStructure`=" & agent.idStructure & ""
                     If Not agent.telephonePortable Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`telephonePortable`='" & oCSDb.secureString(agent.telephonePortable) & "'"
+                        paramsQuery = paramsQuery & " , `Agent`.`telephonePortable`='" & CSDb.secureString(agent.telephonePortable) & "'"
                     End If
                     If Not agent.eMail Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`eMail`='" & oCSDb.secureString(agent.eMail) & "'"
+                        paramsQuery = paramsQuery & " , `Agent`.`eMail`='" & CSDb.secureString(agent.eMail) & "'"
                     End If
                     If Not agent.statut Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`statut`='" & oCSDb.secureString(agent.statut) & "'"
+                        paramsQuery = paramsQuery & " , `Agent`.`statut`='" & CSDb.secureString(agent.statut) & "'"
                     End If
                     If Not agent.dateCreation Is Nothing And agent.dateCreation <> "0000-00-00 00:00:00" Then
                         paramsQuery = paramsQuery & " , `Agent`.`dateCreation`='" & CSDate.mysql2access(agent.dateCreation) & "'"
@@ -419,13 +408,13 @@ Public Class AgentManager
                         paramsQuery = paramsQuery & " , `Agent`.`dateModificationCrodip`='" & CSDate.mysql2access(agent.dateModificationCrodip) & "'"
                     End If
                     If Not agent.versionLogiciel Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`versionLogiciel`='" & oCSDb.secureString(agent.versionLogiciel) & "'"
+                        paramsQuery = paramsQuery & " , `Agent`.`versionLogiciel`='" & CSDb.secureString(agent.versionLogiciel) & "'"
                     End If
                     If Not agent.commentaire Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`commentaire`='" & oCSDb.secureString(agent.commentaire) & "'"
+                        paramsQuery = paramsQuery & " , `Agent`.`commentaire`='" & CSDb.secureString(agent.commentaire) & "'"
                     End If
                     If Not agent.cleActivation Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`cleActivation`='" & oCSDb.secureString(agent.cleActivation) & "'"
+                        paramsQuery = paramsQuery & " , `Agent`.`cleActivation`='" & CSDb.secureString(agent.cleActivation) & "'"
                     End If
                     paramsQuery = paramsQuery & " , `Agent`.`isActif`=" & agent.isActif & ""
                     paramsQuery = paramsQuery & " , `Agent`.`DroitsPulves`='" & agent.DroitsPulves & "'"
@@ -447,7 +436,7 @@ Public Class AgentManager
         Return bReturn
     End Function
 
-    Public Shared Function setSynchro(ByVal agent As Agent)
+    Public Shared Sub setSynchro(ByVal agent As Agent)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -456,7 +445,7 @@ Public Class AgentManager
         Catch ex As Exception
             CSDebug.dispFatal("AgentManager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
     ''' <summary>
     ''' 

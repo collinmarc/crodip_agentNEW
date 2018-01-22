@@ -53,31 +53,32 @@ Public Class CSEnvironnement
 
 #Region " Gestion PID "
 
-    Public Shared Function setPid()
+    Public Shared Sub setPid()
         Try
             CSFile.create(GLOB_PID_FILE, Date.UtcNow.ToLongDateString)
         Catch ex As Exception
             CSDebug.dispFatal("CSEnvironnement::setPid : " & ex.Message)
         End Try
-    End Function
-    Public Shared Function delPid()
+    End Sub
+    Public Shared Sub delPid()
         Try
             CSFile.delete(GLOB_PID_FILE)
         Catch ex As Exception
             CSDebug.dispFatal("CSEnvironnement::delPid : " & ex.Message)
         End Try
-    End Function
-    Public Shared Function existsPid()
+    End Sub
+    Public Shared Function existsPid() As Boolean
         Try
             Return CSFile.exists(GLOB_PID_FILE)
         Catch ex As Exception
             CSDebug.dispFatal("CSEnvironnement::existsPid : " & ex.Message)
+            Return False
         End Try
     End Function
-    Public Shared Function forcePid()
+    Public Shared Sub forcePid()
         CSEnvironnement.delPid()
         CSEnvironnement.setPid()
-    End Function
+    End Sub
 
 #End Region
 

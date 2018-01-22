@@ -31,7 +31,7 @@ Public Class FVBancManager
 
     End Function
 
-    Public Shared Function sendWSFVBanc(ByVal fvbanc As FVBanc, ByRef updatedObject As Object)
+    Public Shared Function sendWSFVBanc(ByVal fvbanc As FVBanc, ByRef updatedObject As Object) As Integer
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
@@ -130,19 +130,19 @@ Public Class FVBancManager
             ' Initialisation de la requete
             '           paramsQueryUpdate = "`id`='" & objFVBanc.id & "',`idBancMesure`='" & CSDb.secureString(objFVBanc.idBancMesure) & "'"
             paramsQuery_col = "`id`,`idBancMesure`"
-            paramsQuery = "'" & objFVBanc.id & "' , '" & oCSDb.secureString(objFVBanc.idBancMesure) & "'"
+            paramsQuery = "'" & objFVBanc.id & "' , '" & CSDb.secureString(objFVBanc.idBancMesure) & "'"
 
             ' Mise a jour de la date de derniere modification
             objFVBanc.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
 
             If Not objFVBanc.type Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`type`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVBanc.type) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVBanc.type) & "'"
                 '              paramsQueryUpdate = paramsQueryUpdate & ",`type`='" & CSDb.secureString(objFVBanc.type) & "'"
             End If
             If Not objFVBanc.auteur Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`auteur`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVBanc.auteur) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVBanc.auteur) & "'"
                 '             paramsQueryUpdate = paramsQueryUpdate & ",`auteur`='" & CSDb.secureString(objFVBanc.auteur) & "'"
             End If
             paramsQuery_col = paramsQuery_col & ",`idAgentControleur`"
@@ -150,7 +150,7 @@ Public Class FVBancManager
             '        paramsQueryUpdate = paramsQueryUpdate & ",`idAgentControleur`=" & CSDb.secureString(objFVBanc.idAgentControleur) & ""
             If Not objFVBanc.caracteristiques Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`caracteristiques`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVBanc.caracteristiques) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVBanc.caracteristiques) & "'"
                 '           paramsQueryUpdate = paramsQueryUpdate & ",`caracteristiques`='" & CSDb.secureString(objFVBanc.caracteristiques) & "'"
             End If
             paramsQuery_col = paramsQuery_col & ",`blocage`"
@@ -163,27 +163,27 @@ Public Class FVBancManager
             End If
             If Not objFVBanc.pressionControle Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`pressionControle`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVBanc.pressionControle) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVBanc.pressionControle) & "'"
                 '        paramsQueryUpdate = paramsQueryUpdate & ",`pressionControle`='" & CSDb.secureString(objFVBanc.pressionControle) & "'"
             End If
             If Not objFVBanc.valeursMesurees Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`valeursMesurees`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVBanc.valeursMesurees) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVBanc.valeursMesurees) & "'"
                 '       paramsQueryUpdate = paramsQueryUpdate & ",`valeursMesurees`='" & CSDb.secureString(objFVBanc.valeursMesurees) & "'"
             End If
             If Not objFVBanc.idManometreControle Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`idManometreControle`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVBanc.idManometreControle) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVBanc.idManometreControle) & "'"
                 '      paramsQueryUpdate = paramsQueryUpdate & ",`idManometreControle`='" & CSDb.secureString(objFVBanc.idManometreControle) & "'"
             End If
             If Not objFVBanc.idBuseEtalon Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`idBuseEtalon`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVBanc.idBuseEtalon) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVBanc.idBuseEtalon) & "'"
                 '     paramsQueryUpdate = paramsQueryUpdate & ",`idBuseEtalon`='" & CSDb.secureString(objFVBanc.idBuseEtalon) & "'"
             End If
             If Not objFVBanc.dateModif Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`dateModif`"
-                paramsQuery = paramsQuery & " , '" & oCSDb.secureString(objFVBanc.dateModif) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVBanc.dateModif) & "'"
                 '    paramsQueryUpdate = paramsQueryUpdate & ",`dateModif`='" & CSDb.secureString(objFVBanc.dateModif) & "'"
             End If
             If Not objFVBanc.dateModificationAgent Is Nothing Then
@@ -388,7 +388,7 @@ Public Class FVBancManager
         Return tmpObjectId
     End Function
 
-    Public Shared Function setSynchro(ByVal objFVBanc As FVBanc)
+    Public Shared Sub setSynchro(ByVal objFVBanc As FVBanc)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -398,9 +398,9 @@ Public Class FVBancManager
         Catch ex As Exception
             CSDebug.dispFatal("FVBancManager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
-    Public Shared Function getFVBancById(ByVal fvbanc_id As String)
+    Public Shared Function getFVBancById(ByVal fvbanc_id As String) As FVBanc
         ' déclarations
         Dim oCsDB As New CSDb(True)
         Dim oagent As New Agent()
@@ -526,7 +526,7 @@ Public Class FVBancManager
                 While tmpListProfils.Read()
 
                     ' On rempli notre tableau
-                    Dim AgentFictif = New Agent()
+                    Dim AgentFictif As New Agent()
                     Dim tmpFVBanc As New FVBanc(AgentFictif)
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()

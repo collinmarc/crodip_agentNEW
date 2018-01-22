@@ -130,7 +130,7 @@ Public Class DiagnosticManager
         Return objDiagnostic
     End Function
 
-    Public Shared Function getWSDiagnosticIncrement(ByVal agent As Agent, ByRef curIncrement As String)
+    Public Shared Function getWSDiagnosticIncrement(ByVal agent As Agent, ByRef curIncrement As String) As Object
         Dim objWSCrodip_response As Object
         Try
             ' déclarations
@@ -153,7 +153,7 @@ Public Class DiagnosticManager
 
 #Region "Methodes acces Local"
 
-    Public Shared Function getDiagnosticById(ByVal diagnostic_id As String)
+    Public Shared Function getDiagnosticById(ByVal diagnostic_id As String) As Diagnostic
         ' déclarations
         Dim tmpDiagnostic As New Diagnostic
         Dim DebugStep As String
@@ -654,7 +654,7 @@ Public Class DiagnosticManager
 
             ' Si la base est vide, on récupère le dernier incrément par WS
             If tmpNbDiag < 1 Then
-                Dim curIncrement As String
+                Dim curIncrement As String = ""
                 Try
                     DiagnosticManager.getWSDiagnosticIncrement(pAgent, curIncrement)
                     tmpDiagnosticId = pAgent.idStructure.ToString() & "-" & pAgent.id.ToString() & "-" & curIncrement
@@ -1210,7 +1210,7 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function setSynchro(ByVal objDiagnostic As Diagnostic)
+    Public Shared Sub setSynchro(ByVal objDiagnostic As Diagnostic)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -1220,7 +1220,7 @@ Public Class DiagnosticManager
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticManager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
 
 #End Region

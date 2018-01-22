@@ -165,7 +165,7 @@ Public Class liste_diagnosticPulve
         Return m_oDiag
     End Function
 
-    Function searchDiagnostic(ByVal param As String)
+    Sub searchDiagnostic(ByVal param As String)
         Try
             Dim query As String
             If param = "" Then
@@ -199,7 +199,7 @@ Public Class liste_diagnosticPulve
         Catch ex As Exception
             CSDebug.dispError("liste_diagnosticPulve::searchDiagnostic : " & ex.Message.ToString)
         End Try
-    End Function
+    End Sub
 
     Private Sub liste_diagnosticPulve_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' On récupère la liste des diagnostic du pulvé par notre agent
@@ -214,7 +214,7 @@ Public Class liste_diagnosticPulve
 
     Private Sub btn_selectDiagnostic_VisuDiag_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_selectDiagnostic_VisuDiag.Click
         ' On récupère le formulaire contener
-        Dim myFormParentContener = Me.MdiParent
+        Dim myFormParentContener As Form = Me.MdiParent
 
         ' Mise à jour de la barre de status
         'Statusbar.display("Nouveau diagnostic (Contre-Visite)")

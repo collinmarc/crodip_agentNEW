@@ -123,7 +123,7 @@ Public Class FVManometreControle
             End Select
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("FVManometre.Fill ERR " & ex.Message)
+            CSDebug.dispError("FVManometreControle.Fill(" & pColName & ",...) Err " & ex.Message())
             bReturn = False
         End Try
         Return bReturn

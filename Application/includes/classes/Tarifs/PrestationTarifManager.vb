@@ -9,7 +9,7 @@ Module PrestationTarifManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As Object = Nothing
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetPrestationTarif(pAgent.id, PrestationTarif_id, pAgent.idStructure, PrestationTarif_idCategorie, objWSCrodip_response)
             Select Case codeResponse
@@ -68,7 +68,7 @@ Module PrestationTarifManager
     End Function
 
     ' OK
-    Public Function sendWSPrestationTarif(ByVal curObject As PrestationTarif, pAgent As Agent, ByRef updatedObject As Object)
+    Public Function sendWSPrestationTarif(ByVal curObject As PrestationTarif, pAgent As Agent, ByRef updatedObject As Object) As Integer
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
@@ -136,15 +136,15 @@ Module PrestationTarifManager
                     End If
 
                     Dim paramsQuery As String = ""
-                    paramsQuery = paramsQuery & "`description`='" & dbLink.secureString(curObject.description) & "'"
+                    paramsQuery = paramsQuery & "`description`='" & CSDb.secureString(curObject.description) & "'"
                     'If curObject.tarifHT <> 0 Then
-                    paramsQuery = paramsQuery & " , `tarifHT`='" & dbLink.secureString(curObject.tarifHT) & "'"
+                    paramsQuery = paramsQuery & " , `tarifHT`='" & CSDb.secureString(curObject.tarifHT) & "'"
                     'End If
                     'If curObject.tarifTTC <> 0 Then
-                    paramsQuery = paramsQuery & " , `tarifTTC`='" & dbLink.secureString(curObject.tarifTTC) & "'"
+                    paramsQuery = paramsQuery & " , `tarifTTC`='" & CSDb.secureString(curObject.tarifTTC) & "'"
                     'End If
                     If curObject.tva <> 0 Then
-                        paramsQuery = paramsQuery & " , `tva`='" & dbLink.secureString(curObject.tva) & "'"
+                        paramsQuery = paramsQuery & " , `tva`='" & CSDb.secureString(curObject.tva) & "'"
                     End If
                     If Not curObject.dateModificationAgent Is Nothing Then
                         paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(curObject.dateModificationAgent) & "'"
@@ -260,7 +260,7 @@ Module PrestationTarifManager
     End Function
 
     ' 
-    Public Function setSynchro(ByVal curObject As PrestationTarif)
+    Public Sub setSynchro(ByVal curObject As PrestationTarif)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -270,17 +270,17 @@ Module PrestationTarifManager
         Catch ex As Exception
             CSDebug.dispFatal("PrestationTarifManager::setSynchro : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
     ' OK
-    Public Function delete(ByVal curObject As PrestationTarif)
+    Public Sub delete(ByVal curObject As PrestationTarif)
         Try
             PrestationTarifManager.delete(curObject.id)
         Catch ex As Exception
             CSDebug.dispFatal("PrestationTarifManager::delete() : " & ex.Message)
         End Try
-    End Function
-    Public Function delete(ByVal curObjectId As Integer)
+    End Sub
+    Public Sub delete(ByVal curObjectId As Integer)
         Try
             Dim bdd As New CSDb(True)
             bdd.getResults("DELETE FROM `PrestationTarif` WHERE `PrestationTarif`.`id`=" & curObjectId & "")
@@ -289,10 +289,10 @@ Module PrestationTarifManager
             CSDebug.dispFatal("PrestationTarifManager::delete() : " & ex.Message)
         End Try
 
-    End Function
+    End Sub
 
     ' 
-    Public Function getById(ByVal idObject As Integer, pIdStructure As Integer)
+    Public Function getById(ByVal idObject As Integer, pIdStructure As Integer) As PrestationTarif
         Debug.Assert(idObject > 0)
         Debug.Assert(pIdStructure > 0)
         Dim curObject As PrestationTarif = New PrestationTarif
@@ -351,7 +351,7 @@ Module PrestationTarifManager
     End Function
 
     ' 
-    Public Function getArrayByStructureId(ByVal idStructure As Integer)
+    Public Function getArrayByStructureId(ByVal idStructure As Integer) As PrestationTarif()
         Dim arrObjects(0) As PrestationTarif
         Try
             If idStructure <> 0 Then
@@ -397,7 +397,7 @@ Module PrestationTarifManager
     End Function
 
     ' 
-    Public Function getArrayByCategorieId(ByVal idCategorie As Integer)
+    Public Function getArrayByCategorieId(ByVal idCategorie As Integer) As PrestationTarif()
         Dim arrObjects(0) As PrestationTarif
         Try
             If idCategorie <> 0 Then
@@ -440,7 +440,7 @@ Module PrestationTarifManager
     End Function
 
     ' 
-    Public Function getUpdates()
+    Public Function getUpdates() As PrestationTarif()
         Dim arrObjects(0) As PrestationTarif
         Try
             '## Préparation de la connexion
