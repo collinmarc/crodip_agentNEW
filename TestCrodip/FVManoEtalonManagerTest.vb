@@ -119,7 +119,8 @@ Public Class FVManoEtalonManagerTest
 
         'Désactivation du banc
         Assert.IsTrue(oMano.etat)
-        oMano.DesactiverMano(m_oAgent)
+        '' TO DO : ??????
+        '        oMano.DesactiverMano(m_oAgent)
         oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
         Assert.IsFalse(oMano.etat)
 
@@ -176,7 +177,8 @@ Public Class FVManoEtalonManagerTest
 
         'Désactivation du Mano
         Assert.IsTrue(oMano.etat)
-        oMano.DesactiverMano(m_oAgent)
+        ''TO DO : ????
+        'oMano.DesactiverMano(m_oAgent)
         oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
         Assert.IsFalse(oMano.etat)
 

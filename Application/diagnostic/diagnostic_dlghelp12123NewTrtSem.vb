@@ -14,7 +14,7 @@ Public Class diagnostic_dlghelp12123newTrtSem
     Public Sub setContexte(pDiagH12123 As DiagnosticHelp12123, pbModeVisu As Boolean)
         m_bModeVisu = pbModeVisu
         If m_bModeVisu Then
-            pnlPrinc.Enabled = False
+            'pnlPrinc.Enabled = False
             btnValider.Enabled = False
         End If
         BindingSource1.Clear()
@@ -45,6 +45,10 @@ Public Class diagnostic_dlghelp12123newTrtSem
         formload()
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
+
+        m_bsrcMesures.Add(New DiagnosticHelp12123MesuresTrtSem(1))
+        m_bsrcMesures.Add(New DiagnosticHelp12123MesuresTrtSem(2))
+        m_bsrcMesures.Add(New DiagnosticHelp12123MesuresTrtSem(3))
     End Sub
 
 
@@ -53,14 +57,14 @@ Public Class diagnostic_dlghelp12123newTrtSem
         If Not String.IsNullOrEmpty(m_DiagHelp12123.Resultat) Then
             Select Case m_DiagHelp12123.Resultat
                 Case DiagnosticItem.EtatDiagItemOK
-                    laResultMesure.Text = "OK"
-                    laResultMesure.ForeColor = CRODIP_ControlLibrary.CtrlDiag2.ITEMCOLOROK
+                    'laResultMesure.Text = "OK"
+                    'laResultMesure.ForeColor = CRODIP_ControlLibrary.CtrlDiag2.ITEMCOLOROK
                 Case DiagnosticItem.EtatDiagItemMINEUR
-                    laResultMesure.Text = "FAIBLE"
-                    laResultMesure.ForeColor = CRODIP_ControlLibrary.CtrlDiag2.ITEMCOLORMINEUR
+                    'laResultMesure.Text = "FAIBLE"
+                    'laResultMesure.ForeColor = CRODIP_ControlLibrary.CtrlDiag2.ITEMCOLORMINEUR
                 Case DiagnosticItem.EtatDiagItemMAJEUR
-                    laResultMesure.ForeColor = CRODIP_ControlLibrary.CtrlDiag2.ITEMCOLORMAJEUR
-                    laResultMesure.Text = "MAJEURE"
+                    'laResultMesure.ForeColor = CRODIP_ControlLibrary.CtrlDiag2.ITEMCOLORMAJEUR
+                    'laResultMesure.Text = "MAJEURE"
             End Select
         End If
     End Sub
@@ -75,7 +79,7 @@ Public Class diagnostic_dlghelp12123newTrtSem
     End Sub
 
 
-    Private Sub Label9_Click(sender As Object, e As EventArgs) Handles Label9.Click
+    Private Sub Label9_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -83,7 +87,15 @@ Public Class diagnostic_dlghelp12123newTrtSem
 
     End Sub
 
-    Private Sub laResultMesure_Click(sender As Object, e As EventArgs) Handles laResultMesure.Click
+    Private Sub TbNumeric11_TextChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Label28_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
     End Sub
 End Class

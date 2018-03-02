@@ -3,8 +3,22 @@
   <type>
     <libelle>Arbres</libelle>
     <categories>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2">Axial</categorie>
-	  <categorie typevaleur="RANG" valeurs="0.5|1|2">Jet dirigé</categorie>
+      <categorie libelle ="AXIAL">
+        <param typevaleur ="RANG" Libelle="nbre Rangs" valeurs="5|10|20"/>
+        <Attelages>
+          <Attelage nom="PORTE"></Attelage>
+          <Attelage nom="TRAINE"></Attelage>
+          <Attelage nom="TRAINE"></Attelage>
+        </Attelages>
+      </categorie>
+      <categorie libelle ="jet dirigé">
+        <param typevaleur ="LARGEUR" Libelle="Largeur"  valeurs="0.5|1|2"/>
+        <Attelages>
+          <Attelage nom="PORTE"></Attelage>
+          <Attelage nom="TRAINE"></Attelage>
+          <Attelage nom="TRAINE"></Attelage>
+        </Attelages>
+      </categorie>
     </categories>
   </type>
   <type>

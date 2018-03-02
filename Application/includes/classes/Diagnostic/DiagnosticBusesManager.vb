@@ -2,7 +2,7 @@ Public Class DiagnosticBusesManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSDiagnosticBusesById(ByVal diagnosticbuses_id As String) As DiagnosticBusesList
+    Public Shared Function getWSDiagnosticBusesById(ByVal diag_id As String) As DiagnosticBusesList
         Dim objDiagnosticBusesList As New DiagnosticBusesList
         Dim objDiagnosticBuses As New DiagnosticBuses
         Try
@@ -11,7 +11,7 @@ Public Class DiagnosticBusesManager
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Dim objWSCrodip_response As Object
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBuses(agentCourant.id, diagnosticbuses_id, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBuses(agentCourant.id, diag_id, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet

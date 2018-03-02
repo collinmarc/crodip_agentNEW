@@ -1556,16 +1556,6 @@ Public Class DiagnosticManagerTest
 
 
     End Sub
-    <TestMethod(), Ignore()> _
-    Public Sub TST_CalcNbreMesuresAncienneVersion()
-        Dim oDiag As Diagnostic
-        Dim nbreMesure As Integer
-
-        'Ce test fonctionne avec la base du groupe LAVAIL
-        oDiag = DiagnosticManager.getDiagnosticById("43-97-269")
-        oDiag.calcNbreMesuresAncienneVersion(nbreMesure)
-        Assert.AreEqual(5, nbreMesure)
-    End Sub
 
     <TestMethod()> _
     Public Sub TST_GetWSIncrement()
@@ -5567,6 +5557,37 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(1, oList.Count)
 
         oDiag = DiagnosticManager.getWSDiagnosticById(1123, "27-1123-580")
+
+    End Sub
+    <TestMethod()>
+    Public Sub TST_Diag499_1121_269Prod()
+        Dim oDiag As Diagnostic
+
+        agentCourant.id = 1121
+        Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
+        objWSCrodip.Url = "http://admin.crodip.fr/server"
+        oDiag = DiagnosticManager.getWSDiagnosticById(1127, "499-1121-269")
+        DiagnosticManager.save(oDiag)
+        DiagnosticItemManager.getWSDiagnosticItemsByDiagnosticId(agentCourant, oDiag.id)
+        DiagnosticManager.save(oDiag)
+        Dim oDiagBusesList As DiagnosticBusesList
+        oDiagBusesList = DiagnosticBusesManager.getWSDiagnosticBusesById(oDiag.id)
+        For Each oDiagBuses As DiagnosticBuses In oDiagBusesList.Liste
+            DiagnosticBusesManager.save(oDiagBuses)
+        Next
+        Dim oDiagBusesDetailList As DiagnosticBusesDetailList
+        oDiagBusesDetailList = DiagnosticBusesDetailManager.getWSDiagnosticBusesDetailById(oDiag.id)
+        For Each oDiagBusesDetail As DiagnosticBusesDetail In oDiagBusesDetailList.Liste
+            DiagnosticBusesDetailManager.save(oDiagBusesDetail)
+        Next
+
+
+        oDiag = DiagnosticManager.getDiagnosticById(oDiag.id)
+
+        Dim oEtat As New EtatSyntheseMesures(oDiag)
+        oEtat.GenereEtat()
+        oEtat.Open()
+
 
     End Sub
 End Class
