@@ -2,6 +2,7 @@ TRUNK
 
 Build:
 #145 : Export CSV des exploitation: Reprise des critères 
+#109 : [RP] : Message d'erreur Persistant sur la fiche pulvé                
 
 
 Build:20170926140000

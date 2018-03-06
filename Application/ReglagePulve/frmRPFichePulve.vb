@@ -68,6 +68,7 @@
         Dim bReturn As Boolean
         Try
             bReturn = True
+            lblError.Text = ""
 
             'Pas de controle du numéro national
             If bReturn = True And cbxMarquePulve.Text = "" Then
