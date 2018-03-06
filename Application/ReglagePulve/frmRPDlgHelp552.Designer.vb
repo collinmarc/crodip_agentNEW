@@ -32,6 +32,7 @@ Partial Class frmRPDlgHelp552
         Me.ControlBox = False
         Me.Name = "frmRPDlgHelp552"
         Me.Text = "DebitMetre"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
 
     End Sub

@@ -24,7 +24,8 @@
         MyBase.Annuler()
     End Sub
     Protected Overrides Sub formload() Implements IfrmCRODIP.formLoad
-        'Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
+        '06/03/2018 : #110
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
         'Me.ControlBox = True
         Me.MinimizeBox = False
         Me.MaximizeBox = False

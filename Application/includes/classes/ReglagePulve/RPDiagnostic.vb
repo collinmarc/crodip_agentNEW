@@ -194,6 +194,15 @@
             m_Calculs.VitesseRotation = value
         End Set
     End Property
+    Public Property CalcRegimeMoteur As Decimal
+        Get
+            Return m_Calculs.RegimeMoteur
+
+        End Get
+        Set(value As Decimal)
+            m_Calculs.RegimeMoteur = value
+        End Set
+    End Property
     Public Property CalcEmplacementPriseAir As Boolean
         Get
             Return m_Calculs.EmplacementPriseAir
@@ -482,6 +491,30 @@
         Catch ex As Exception
 
         End Try
+
+    End Sub
+
+    Private _ListInfosBuses As Generic.List(Of RPInfosBuses)
+    Public Property ListInfosBuses() As Generic.List(Of RPInfosBuses)
+        Get
+            Return _ListInfosBuses
+        End Get
+        Set(ByVal value As Generic.List(Of RPInfosBuses))
+            _ListInfosBuses = value
+        End Set
+    End Property
+
+    Public Sub CreerListeInfosBuses()
+        ListInfosBuses = New Generic.List(Of RPInfosBuses)
+        For n As Integer = 1 To CalcNbreNiveauParDescente
+            ListInfosBuses.Add(New RPInfosBuses(CalcNbreDescentes))
+        Next
+        Dim oRPinfoBuses As RPInfosBuses
+        oRPinfoBuses = New RPInfosBuses(CalcNbreDescentes)
+        For n As Integer = 1 To CalcNbreDescentes
+            oRPinfoBuses.Infos(n) = "0"
+        Next
+        ListInfosBuses.Add(oRPinfoBuses)
 
     End Sub
 

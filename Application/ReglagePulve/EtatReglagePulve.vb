@@ -368,6 +368,7 @@ Public Class EtatReglagePulve
             'Feuille de Calcul
             m_ods.CalculVolumeha.AddCalculVolumehaRow(LargeurPlantation:=m_oDiag.CalcLargeurPlantation,
                                                       VitesseRotation:=m_oDiag.CalcVitesseRotation,
+                                                      RegimeMoteur:=m_oDiag.CalcRegimeMoteur,
                                                       nbBusesDescente:=m_oDiag.CalcNbreBusesParDescente,
                                                       nbdescentes:=m_oDiag.CalcNbreDescentes,
                                                       nbreNiveauDescente:=m_oDiag.CalcNbreNiveauParDescente,
@@ -398,8 +399,22 @@ Public Class EtatReglagePulve
                                                     Ecartement2:=m_oDiag.CalcLargeur2,
                                                     VolEauHa2:=m_oDiag.CalcVolEauHa2
                                                 )
-
-
+            Dim nNiveau As Integer = 0
+            For Each oRPInfosBuses As RPInfosBuses In m_oDiag.ListInfosBuses
+                nNiveau = nNiveau + 1
+                Dim strType As String
+                strType = "infos"
+                If nNiveau = m_oDiag.ListInfosBuses.Count Then
+                    strType = "Prise"
+                End If
+                For ndesc As Integer = 1 To oRPInfosBuses.NbDescentes
+                    Dim strValue As String = oRPInfosBuses.Infos(ndesc)
+                    If strType = "Prise" Then
+                        strValue = IIf(strValue = "0", "NON", "OUI")
+                    End If
+                    m_ods.InfosBuses.AddInfosBusesRow(type:=strType, NumDescente:=ndesc, NumNiveau:=nNiveau, Infos:=strValue)
+                Next
+            Next
             bReturn = True
 
 

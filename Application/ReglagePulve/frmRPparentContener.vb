@@ -579,8 +579,6 @@ Public Class frmRPparentContener
     Public Function doPrecedant() As Boolean
         Dim bReturn As Boolean
         Try
-            Dim oDiaglogResult As Windows.Forms.DialogResult
-            Dim ofrm As Form
             m_nStep = m_nStep - 1
             AfficherFenetre()
         Catch ex As Exception
@@ -634,10 +632,8 @@ Public Class frmRPparentContener
             m_RPDiagnostic.setPulverisateur(pulverisateurCourant)
 
             m_RPDiagnostic.CalcVitesseRotation = "1000"
-            m_RPDiagnostic.CalcNbreDescentes = "5"
-            m_RPDiagnostic.CalcNbreBusesParDescente = "10"
-            m_RPDiagnostic.CalcNbreNiveauParDescente = "2"
-            m_RPDiagnostic.CalcEmplacementPriseAir = True
+            m_RPDiagnostic.CalcNbreDescentes = "20"
+            m_RPDiagnostic.CalcNbreNiveauParDescente = "5"
 
             m_RPDiagnostic.diagnosticHelp551.VitesseReelle1 = 5.5
             m_RPDiagnostic.diagnosticHelp551.VitesseReelle1 = 6.7
@@ -661,6 +657,7 @@ Public Class frmRPparentContener
             Next
             m_RPDiagnostic.CalcDebitMoyenPM = 2.8
             m_RPDiagnostic.CalcPressionDeMesure = 3.5
+            m_RPDiagnostic.CreerListeInfosBuses()
 
 #End If
 

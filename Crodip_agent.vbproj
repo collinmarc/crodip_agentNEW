@@ -514,6 +514,13 @@
     <Compile Include="Application\includes\classes\Referentiel\ReferentielCodesAPE.vb" />
     <Compile Include="Application\includes\classes\ReglagePulve\CalcVolumeHa.vb" />
     <Compile Include="Application\includes\classes\ReglagePulve\ParamReglagePulve.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPInfosBuses.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\MyVerticalLabel.Designer.vb">
+      <DependentUpon>MyVerticalLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\includes\classes\ReglagePulve\MyVerticalLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Application\includes\classes\ReglagePulve\UserReglagePulve.vb" />
     <Compile Include="Application\includes\classes\RootManager.vb" />
     <Compile Include="Application\includes\classes\StatsCRODIP.vb" />
@@ -762,6 +769,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\ReglagePulve\EtatReglagePulve.vb" />
+    <Compile Include="Application\ReglagePulve\frmRPInfosBuses.Designer.vb">
+      <DependentUpon>frmRPInfosBuses.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\frmRPInfosBuses.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\ReglagePulve\frmRPDlgHelp551.Designer.vb">
       <DependentUpon>frmRPDlgHelp551.vb</DependentUpon>
     </Compile>
@@ -1135,6 +1148,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
     </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveInfoBuses.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_ReglagePulveInfoBuses.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
@@ -1210,6 +1230,7 @@
     <None Include="My Project\DataSources\DiagnosticHelp12123Mesures.datasource" />
     <None Include="My Project\DataSources\DiagnosticHelp12123MesuresTrtSem.datasource" />
     <None Include="My Project\DataSources\diagnostic_dlghelp12123newTrtSem.datasource" />
+    <None Include="My Project\DataSources\RPInfosBuses.datasource" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -2016,6 +2037,9 @@
     <EmbeddedResource Include="Application\parentContener.resx">
       <DependentUpon>parentContener.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\frmRPInfosBuses.resx">
+      <DependentUpon>frmRPInfosBuses.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\frmRPDiagnostique.resx">
       <DependentUpon>frmRPDiagnostique.vb</DependentUpon>
     </EmbeddedResource>
@@ -2213,6 +2237,11 @@
     <Content Include="moduleDocumentaire\_parametres\cr_syntheseBuses5.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_syntheseBuses5.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveInfoBuses.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulveInfoBuses.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="My Project\Resources.resx">

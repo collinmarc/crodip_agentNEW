@@ -2,6 +2,7 @@
 Public Class CalcVolumeHa
     Public LargeurPlantation As Decimal
     Public VitesseRotation As Decimal
+    Public RegimeMoteur As Decimal
     Public EmplacementPriseAir As Boolean
     Public NbreDescentes As Integer
     Public NbreBusesParDescente As Integer

@@ -37,9 +37,7 @@ Public Class frmRPCalculVolumeHa
     Friend WithEvents Label36 As System.Windows.Forms.Label
     Friend WithEvents Label38 As System.Windows.Forms.Label
     Friend WithEvents nupNbreNiveaux As System.Windows.Forms.NumericUpDown
-    Friend WithEvents nupNbreBuses As System.Windows.Forms.NumericUpDown
     Friend WithEvents nupNbreDescentes As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label39 As System.Windows.Forms.Label
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents Label28 As System.Windows.Forms.Label
@@ -75,6 +73,10 @@ Public Class frmRPCalculVolumeHa
     Friend WithEvents Label33 As System.Windows.Forms.Label
     Friend WithEvents tbDebitPTMoinsPC As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents tbVolHa2 As CRODIP_ControlLibrary.TBNumeric
+    Friend WithEvents Button2 As Button
+    Friend WithEvents TbNumeric1 As CRODIP_ControlLibrary.TBNumeric
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Button1 As Button
     Friend WithEvents m_bsRPDiagnostic As System.Windows.Forms.BindingSource
 
     Public Sub New()
@@ -106,12 +108,9 @@ Public Class frmRPCalculVolumeHa
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmRPCalculVolumeHa))
         Me.GroupBox_infos = New System.Windows.Forms.GroupBox()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.Label33 = New System.Windows.Forms.Label()
-        Me.tbDebitPTMoinsPC = New CRODIP_ControlLibrary.TBNumeric()
-        Me.m_bsRPDiagnostic = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label32 = New System.Windows.Forms.Label()
-        Me.tbVolhaPTV2 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.TextBox2 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -123,30 +122,17 @@ Public Class frmRPCalculVolumeHa
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.infosDebitMoyPressionMesure = New CRODIP_ControlLibrary.TBNumeric()
-        Me.infosPressionTravailMoinsPerteCharge = New CRODIP_ControlLibrary.TBNumeric()
-        Me.tbPressionTravail = New CRODIP_ControlLibrary.TBNumeric()
-        Me.infosVitesseReelle1 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.infosVitesseReelle2 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.infosLargeur = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.infosNbBuses = New CRODIP_ControlLibrary.TBNumeric()
-        Me.tbVolhaPMV1 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.tbVolHaPTV1 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.tbNbNiveauxBuses = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label30 = New System.Windows.Forms.Label()
-        Me.infosPressionMesure = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.tbLargeurPlantation = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.nupNbreNiveaux = New System.Windows.Forms.NumericUpDown()
-        Me.nupNbreBuses = New System.Windows.Forms.NumericUpDown()
         Me.nupNbreDescentes = New System.Windows.Forms.NumericUpDown()
-        Me.Label39 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label37 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
@@ -166,6 +152,10 @@ Public Class frmRPCalculVolumeHa
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.GroupBox_calcAuto = New System.Windows.Forms.GroupBox()
+        Me.TbNumeric1 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.m_bsRPDiagnostic = New System.Windows.Forms.BindingSource(Me.components)
+        Me.tbLargeurPlantation = New CRODIP_ControlLibrary.TBNumeric()
+        Me.TextBox1 = New CRODIP_ControlLibrary.TBNumeric()
         Me.tbVolHa2 = New CRODIP_ControlLibrary.TBNumeric()
         Me.calcDeb1PressionConnue = New CRODIP_ControlLibrary.TBNumeric()
         Me.calcDeb1DebitMoyConnu = New CRODIP_ControlLibrary.TBNumeric()
@@ -176,19 +166,33 @@ Public Class frmRPCalculVolumeHa
         Me.calcDeb2Pression = New CRODIP_ControlLibrary.TBNumeric()
         Me.calcDeb2Largeur = New CRODIP_ControlLibrary.TBNumeric()
         Me.calcDeb2Debit = New CRODIP_ControlLibrary.TBNumeric()
+        Me.tbDebitPTMoinsPC = New CRODIP_ControlLibrary.TBNumeric()
+        Me.tbVolhaPTV2 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.TextBox2 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.infosDebitMoyPressionMesure = New CRODIP_ControlLibrary.TBNumeric()
+        Me.infosPressionTravailMoinsPerteCharge = New CRODIP_ControlLibrary.TBNumeric()
+        Me.tbPressionTravail = New CRODIP_ControlLibrary.TBNumeric()
+        Me.infosVitesseReelle1 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.infosVitesseReelle2 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.infosLargeur = New CRODIP_ControlLibrary.TBNumeric()
+        Me.infosNbBuses = New CRODIP_ControlLibrary.TBNumeric()
+        Me.tbVolhaPMV1 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.tbVolHaPTV1 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.tbNbNiveauxBuses = New CRODIP_ControlLibrary.TBNumeric()
+        Me.infosPressionMesure = New CRODIP_ControlLibrary.TBNumeric()
         Me.GroupBox_infos.SuspendLayout()
-        CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.nupNbreNiveaux, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.nupNbreBuses, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nupNbreDescentes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox_calcAuto.SuspendLayout()
+        CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox_infos
         '
         Me.GroupBox_infos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox_infos.Controls.Add(Me.Button2)
         Me.GroupBox_infos.Controls.Add(Me.Label33)
         Me.GroupBox_infos.Controls.Add(Me.tbDebitPTMoinsPC)
         Me.GroupBox_infos.Controls.Add(Me.Label32)
@@ -227,6 +231,15 @@ Public Class frmRPCalculVolumeHa
         Me.GroupBox_infos.TabStop = False
         Me.GroupBox_infos.Text = "Informations sur les mesures"
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(809, 208)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 18
+        Me.Button2.Text = "ReCalcul"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Label33
         '
         Me.Label33.Location = New System.Drawing.Point(8, 127)
@@ -237,21 +250,6 @@ Public Class frmRPCalculVolumeHa
         Me.Label33.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         Me.Label33.Visible = False
         '
-        'tbDebitPTMoinsPC
-        '
-        Me.tbDebitPTMoinsPC.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcDebitPTlMoinsPC", True))
-        Me.tbDebitPTMoinsPC.ForceBindingOnTextChanged = False
-        Me.tbDebitPTMoinsPC.Location = New System.Drawing.Point(312, 127)
-        Me.tbDebitPTMoinsPC.Name = "tbDebitPTMoinsPC"
-        Me.tbDebitPTMoinsPC.ReadOnly = True
-        Me.tbDebitPTMoinsPC.Size = New System.Drawing.Size(100, 20)
-        Me.tbDebitPTMoinsPC.TabIndex = 17
-        Me.tbDebitPTMoinsPC.Visible = False
-        '
-        'm_bsRPDiagnostic
-        '
-        Me.m_bsRPDiagnostic.DataSource = GetType(Crodip_agent.RPDiagnostic)
-        '
         'Label32
         '
         Me.Label32.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -261,28 +259,6 @@ Public Class frmRPCalculVolumeHa
         Me.Label32.TabIndex = 15
         Me.Label32.Text = "Volume/ha à la pression de travail (V2): "
         Me.Label32.TextAlign = System.Drawing.ContentAlignment.BottomLeft
-        '
-        'tbVolhaPTV2
-        '
-        Me.tbVolhaPTV2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tbVolhaPTV2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVolHaPTV2", True))
-        Me.tbVolhaPTV2.ForceBindingOnTextChanged = False
-        Me.tbVolhaPTV2.Location = New System.Drawing.Point(809, 100)
-        Me.tbVolhaPTV2.Name = "tbVolhaPTV2"
-        Me.tbVolhaPTV2.ReadOnly = True
-        Me.tbVolhaPTV2.Size = New System.Drawing.Size(100, 20)
-        Me.tbVolhaPTV2.TabIndex = 14
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVolHaPMV2", True))
-        Me.TextBox2.ForceBindingOnTextChanged = False
-        Me.TextBox2.Location = New System.Drawing.Point(809, 44)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox2.TabIndex = 13
         '
         'Label31
         '
@@ -388,63 +364,6 @@ Public Class frmRPCalculVolumeHa
         Me.Label12.Text = "Nombre de niveaux de buses :"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
-        'infosDebitMoyPressionMesure
-        '
-        Me.infosDebitMoyPressionMesure.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcDebitMoyenPM", True))
-        Me.infosDebitMoyPressionMesure.ForceBindingOnTextChanged = False
-        Me.infosDebitMoyPressionMesure.Location = New System.Drawing.Point(312, 44)
-        Me.infosDebitMoyPressionMesure.Name = "infosDebitMoyPressionMesure"
-        Me.infosDebitMoyPressionMesure.ReadOnly = True
-        Me.infosDebitMoyPressionMesure.Size = New System.Drawing.Size(100, 20)
-        Me.infosDebitMoyPressionMesure.TabIndex = 1
-        '
-        'infosPressionTravailMoinsPerteCharge
-        '
-        Me.infosPressionTravailMoinsPerteCharge.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcPressionTravailMoinsPC", True))
-        Me.infosPressionTravailMoinsPerteCharge.ForceBindingOnTextChanged = False
-        Me.infosPressionTravailMoinsPerteCharge.Location = New System.Drawing.Point(312, 104)
-        Me.infosPressionTravailMoinsPerteCharge.Name = "infosPressionTravailMoinsPerteCharge"
-        Me.infosPressionTravailMoinsPerteCharge.Size = New System.Drawing.Size(100, 20)
-        Me.infosPressionTravailMoinsPerteCharge.TabIndex = 3
-        '
-        'tbPressionTravail
-        '
-        Me.tbPressionTravail.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcPressionTravail", True))
-        Me.tbPressionTravail.ForceBindingOnTextChanged = False
-        Me.tbPressionTravail.Location = New System.Drawing.Point(312, 80)
-        Me.tbPressionTravail.Name = "tbPressionTravail"
-        Me.tbPressionTravail.Size = New System.Drawing.Size(100, 20)
-        Me.tbPressionTravail.TabIndex = 2
-        '
-        'infosVitesseReelle1
-        '
-        Me.infosVitesseReelle1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVitesseReelle1", True))
-        Me.infosVitesseReelle1.ForceBindingOnTextChanged = False
-        Me.infosVitesseReelle1.Location = New System.Drawing.Point(312, 156)
-        Me.infosVitesseReelle1.Name = "infosVitesseReelle1"
-        Me.infosVitesseReelle1.ReadOnly = True
-        Me.infosVitesseReelle1.Size = New System.Drawing.Size(100, 20)
-        Me.infosVitesseReelle1.TabIndex = 4
-        '
-        'infosVitesseReelle2
-        '
-        Me.infosVitesseReelle2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVitesseReelle2", True))
-        Me.infosVitesseReelle2.ForceBindingOnTextChanged = False
-        Me.infosVitesseReelle2.Location = New System.Drawing.Point(312, 180)
-        Me.infosVitesseReelle2.Name = "infosVitesseReelle2"
-        Me.infosVitesseReelle2.ReadOnly = True
-        Me.infosVitesseReelle2.Size = New System.Drawing.Size(100, 20)
-        Me.infosVitesseReelle2.TabIndex = 5
-        '
-        'infosLargeur
-        '
-        Me.infosLargeur.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcLargeurApp", True))
-        Me.infosLargeur.ForceBindingOnTextChanged = False
-        Me.infosLargeur.Location = New System.Drawing.Point(312, 212)
-        Me.infosLargeur.Name = "infosLargeur"
-        Me.infosLargeur.Size = New System.Drawing.Size(100, 20)
-        Me.infosLargeur.TabIndex = 6
-        '
         'Label13
         '
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.5!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -452,52 +371,8 @@ Public Class frmRPCalculVolumeHa
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(424, 38)
         Me.Label13.TabIndex = 0
-        Me.Label13.Text = "la largeur correspond correspond à la largeur de pulvérisation (pulvérisateur à r" & _
+        Me.Label13.Text = "la largeur correspond correspond à la largeur de pulvérisation (pulvérisateur à r" &
     "ampe ou arbo-viti)"
-        '
-        'infosNbBuses
-        '
-        Me.infosNbBuses.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.infosNbBuses.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcNombreBuses", True))
-        Me.infosNbBuses.ForceBindingOnTextChanged = False
-        Me.infosNbBuses.Location = New System.Drawing.Point(809, 136)
-        Me.infosNbBuses.Name = "infosNbBuses"
-        Me.infosNbBuses.ReadOnly = True
-        Me.infosNbBuses.Size = New System.Drawing.Size(100, 20)
-        Me.infosNbBuses.TabIndex = 7
-        '
-        'tbVolhaPMV1
-        '
-        Me.tbVolhaPMV1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tbVolhaPMV1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVolHaPMV1", True))
-        Me.tbVolhaPMV1.ForceBindingOnTextChanged = False
-        Me.tbVolhaPMV1.Location = New System.Drawing.Point(809, 19)
-        Me.tbVolhaPMV1.Name = "tbVolhaPMV1"
-        Me.tbVolhaPMV1.ReadOnly = True
-        Me.tbVolhaPMV1.Size = New System.Drawing.Size(100, 20)
-        Me.tbVolhaPMV1.TabIndex = 8
-        '
-        'tbVolHaPTV1
-        '
-        Me.tbVolHaPTV1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tbVolHaPTV1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVolHaPTV1", True))
-        Me.tbVolHaPTV1.ForceBindingOnTextChanged = False
-        Me.tbVolHaPTV1.Location = New System.Drawing.Point(809, 74)
-        Me.tbVolHaPTV1.Name = "tbVolHaPTV1"
-        Me.tbVolHaPTV1.ReadOnly = True
-        Me.tbVolHaPTV1.Size = New System.Drawing.Size(100, 20)
-        Me.tbVolHaPTV1.TabIndex = 9
-        '
-        'tbNbNiveauxBuses
-        '
-        Me.tbNbNiveauxBuses.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tbNbNiveauxBuses.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcNombreNiveauxBuses", True))
-        Me.tbNbNiveauxBuses.ForceBindingOnTextChanged = False
-        Me.tbNbNiveauxBuses.Location = New System.Drawing.Point(809, 156)
-        Me.tbNbNiveauxBuses.Name = "tbNbNiveauxBuses"
-        Me.tbNbNiveauxBuses.ReadOnly = True
-        Me.tbNbNiveauxBuses.Size = New System.Drawing.Size(100, 20)
-        Me.tbNbNiveauxBuses.TabIndex = 10
         '
         'Label30
         '
@@ -507,16 +382,6 @@ Public Class frmRPCalculVolumeHa
         Me.Label30.TabIndex = 0
         Me.Label30.Text = "Pression de mesure :"
         Me.Label30.TextAlign = System.Drawing.ContentAlignment.BottomLeft
-        '
-        'infosPressionMesure
-        '
-        Me.infosPressionMesure.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcPressionDeMesure", True))
-        Me.infosPressionMesure.ForceBindingOnTextChanged = False
-        Me.infosPressionMesure.Location = New System.Drawing.Point(312, 19)
-        Me.infosPressionMesure.Name = "infosPressionMesure"
-        Me.infosPressionMesure.ReadOnly = True
-        Me.infosPressionMesure.Size = New System.Drawing.Size(100, 20)
-        Me.infosPressionMesure.TabIndex = 0
         '
         'Label2
         '
@@ -534,12 +399,13 @@ Public Class frmRPCalculVolumeHa
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.TbNumeric1)
+        Me.GroupBox1.Controls.Add(Me.Label14)
+        Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.tbLargeurPlantation)
         Me.GroupBox1.Controls.Add(Me.CheckBox1)
         Me.GroupBox1.Controls.Add(Me.nupNbreNiveaux)
-        Me.GroupBox1.Controls.Add(Me.nupNbreBuses)
         Me.GroupBox1.Controls.Add(Me.nupNbreDescentes)
-        Me.GroupBox1.Controls.Add(Me.Label39)
         Me.GroupBox1.Controls.Add(Me.Label38)
         Me.GroupBox1.Controls.Add(Me.Label37)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
@@ -553,22 +419,31 @@ Public Class frmRPCalculVolumeHa
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         '
-        'tbLargeurPlantation
+        'Label14
         '
-        Me.tbLargeurPlantation.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcLargeurPlantation", True))
-        Me.tbLargeurPlantation.ForceBindingOnTextChanged = False
-        Me.tbLargeurPlantation.Location = New System.Drawing.Point(166, 20)
-        Me.tbLargeurPlantation.Name = "tbLargeurPlantation"
-        Me.tbLargeurPlantation.ReadOnly = True
-        Me.tbLargeurPlantation.Size = New System.Drawing.Size(35, 20)
-        Me.tbLargeurPlantation.TabIndex = 13
+        Me.Label14.Location = New System.Drawing.Point(235, 17)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(139, 20)
+        Me.Label14.TabIndex = 15
+        Me.Label14.Text = "Régime moteur :"
+        Me.Label14.TextAlign = System.Drawing.ContentAlignment.BottomLeft
+        '
+        'Button1
+        '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(802, 32)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(110, 30)
+        Me.Button1.TabIndex = 14
+        Me.Button1.Text = "Détails"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.CheckBox1.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Me.m_bsRPDiagnostic, "CalcEmplacementPriseAir", True))
-        Me.CheckBox1.Location = New System.Drawing.Point(11, 67)
+        Me.CheckBox1.Location = New System.Drawing.Point(11, 56)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(168, 17)
         Me.CheckBox1.TabIndex = 12
@@ -579,77 +454,43 @@ Public Class frmRPCalculVolumeHa
         '
         Me.nupNbreNiveaux.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nupNbreNiveaux.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.m_bsRPDiagnostic, "CalcNbreNiveauParDescente", True))
-        Me.nupNbreNiveaux.Location = New System.Drawing.Point(685, 68)
+        Me.nupNbreNiveaux.Location = New System.Drawing.Point(685, 55)
         Me.nupNbreNiveaux.Name = "nupNbreNiveaux"
         Me.nupNbreNiveaux.Size = New System.Drawing.Size(43, 20)
-        Me.nupNbreNiveaux.TabIndex = 10
-        Me.nupNbreNiveaux.Visible = False
-        '
-        'nupNbreBuses
-        '
-        Me.nupNbreBuses.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.nupNbreBuses.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.m_bsRPDiagnostic, "CalcNbreBusesParDescente", True))
-        Me.nupNbreBuses.Location = New System.Drawing.Point(685, 42)
-        Me.nupNbreBuses.Name = "nupNbreBuses"
-        Me.nupNbreBuses.Size = New System.Drawing.Size(43, 20)
-        Me.nupNbreBuses.TabIndex = 9
-        Me.nupNbreBuses.Visible = False
+        Me.nupNbreNiveaux.TabIndex = 9
         '
         'nupNbreDescentes
         '
         Me.nupNbreDescentes.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nupNbreDescentes.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.m_bsRPDiagnostic, "CalcNbreDescentes", True))
-        Me.nupNbreDescentes.Location = New System.Drawing.Point(685, 16)
+        Me.nupNbreDescentes.Location = New System.Drawing.Point(685, 20)
         Me.nupNbreDescentes.Name = "nupNbreDescentes"
         Me.nupNbreDescentes.Size = New System.Drawing.Size(43, 20)
         Me.nupNbreDescentes.TabIndex = 8
-        Me.nupNbreDescentes.Visible = False
-        '
-        'Label39
-        '
-        Me.Label39.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label39.Location = New System.Drawing.Point(486, 67)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(193, 17)
-        Me.Label39.TabIndex = 7
-        Me.Label39.Text = "Nbre de niveaux par descente :"
-        Me.Label39.TextAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.Label39.Visible = False
         '
         'Label38
         '
         Me.Label38.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label38.Location = New System.Drawing.Point(486, 41)
+        Me.Label38.Location = New System.Drawing.Point(471, 54)
         Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(193, 17)
+        Me.Label38.Size = New System.Drawing.Size(208, 22)
         Me.Label38.TabIndex = 6
-        Me.Label38.Text = "Nbre de buses par descente :"
+        Me.Label38.Text = "Nbre de niveaux par descente :"
         Me.Label38.TextAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.Label38.Visible = False
         '
         'Label37
         '
         Me.Label37.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label37.Location = New System.Drawing.Point(486, 15)
+        Me.Label37.Location = New System.Drawing.Point(540, 20)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(139, 17)
         Me.Label37.TabIndex = 5
         Me.Label37.Text = "Nbre de descentes :"
         Me.Label37.TextAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.Label37.Visible = False
-        '
-        'TextBox1
-        '
-        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVitesseRotation", True))
-        Me.TextBox1.ForceBindingOnTextChanged = False
-        Me.TextBox1.Location = New System.Drawing.Point(387, 20)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(75, 20)
-        Me.TextBox1.TabIndex = 4
         '
         'Label36
         '
-        Me.Label36.Location = New System.Drawing.Point(241, 16)
+        Me.Label36.Location = New System.Drawing.Point(235, 44)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(139, 32)
         Me.Label36.TabIndex = 3
@@ -683,8 +524,8 @@ Public Class frmRPCalculVolumeHa
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(424, 24)
         Me.Label28.TabIndex = 0
-        Me.Label28.Text = "     p1 : attention il s'agit ici de caculer le volume à la pression de contrôle " & _
-    "(pression lors de la mesure) et non à la pression de travail (au manomètre du pu" & _
+        Me.Label28.Text = "     p1 : attention il s'agit ici de caculer le volume à la pression de contrôle " &
+    "(pression lors de la mesure) et non à la pression de travail (au manomètre du pu" &
     "lvéristeur)"
         '
         'Label27
@@ -727,7 +568,7 @@ Public Class frmRPCalculVolumeHa
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(424, 24)
         Me.Label24.TabIndex = 0
-        Me.Label24.Text = "     * : l'écartement correspond à la largeur de pulvérisation (pulvérisateur à r" & _
+        Me.Label24.Text = "     * : l'écartement correspond à la largeur de pulvérisation (pulvérisateur à r" &
     "ampe ou arbo-viti)"
         '
         'Label23
@@ -757,7 +598,7 @@ Public Class frmRPCalculVolumeHa
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(424, 24)
         Me.Label21.TabIndex = 0
-        Me.Label21.Text = "     * : l'écartement correspond à la largeur de pulvérisation (pulvérisateur à r" & _
+        Me.Label21.Text = "     * : l'écartement correspond à la largeur de pulvérisation (pulvérisateur à r" &
     "ampe ou arbo-viti)"
         '
         'Label20
@@ -767,8 +608,8 @@ Public Class frmRPCalculVolumeHa
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(424, 24)
         Me.Label20.TabIndex = 0
-        Me.Label20.Text = "     p1 : attention il s'agit ici de caculer le volume à la pression de contrôle " & _
-    "(pression lors de la mesure) et non à la pression de travail (au manomètre du pu" & _
+        Me.Label20.Text = "     p1 : attention il s'agit ici de caculer le volume à la pression de contrôle " &
+    "(pression lors de la mesure) et non à la pression de travail (au manomètre du pu" &
     "lvéristeur)"
         '
         'Label19
@@ -833,7 +674,7 @@ Public Class frmRPCalculVolumeHa
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(319, 16)
         Me.Label16.TabIndex = 11
-        Me.Label16.Text = "       Calcul du débit (à la pression de mesure)"
+        Me.Label16.Text = "       Calcul du débit "
         '
         'GroupBox_calcAuto
         '
@@ -873,6 +714,38 @@ Public Class frmRPCalculVolumeHa
         Me.GroupBox_calcAuto.TabIndex = 0
         Me.GroupBox_calcAuto.TabStop = False
         Me.GroupBox_calcAuto.Text = "Calculs automatiques"
+        '
+        'TbNumeric1
+        '
+        Me.TbNumeric1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcRegimeMoteur", True))
+        Me.TbNumeric1.ForceBindingOnTextChanged = False
+        Me.TbNumeric1.Location = New System.Drawing.Point(380, 20)
+        Me.TbNumeric1.Name = "TbNumeric1"
+        Me.TbNumeric1.Size = New System.Drawing.Size(75, 20)
+        Me.TbNumeric1.TabIndex = 16
+        '
+        'm_bsRPDiagnostic
+        '
+        Me.m_bsRPDiagnostic.DataSource = GetType(Crodip_agent.RPDiagnostic)
+        '
+        'tbLargeurPlantation
+        '
+        Me.tbLargeurPlantation.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcLargeurPlantation", True))
+        Me.tbLargeurPlantation.ForceBindingOnTextChanged = False
+        Me.tbLargeurPlantation.Location = New System.Drawing.Point(166, 20)
+        Me.tbLargeurPlantation.Name = "tbLargeurPlantation"
+        Me.tbLargeurPlantation.ReadOnly = True
+        Me.tbLargeurPlantation.Size = New System.Drawing.Size(35, 20)
+        Me.tbLargeurPlantation.TabIndex = 13
+        '
+        'TextBox1
+        '
+        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVitesseRotation", True))
+        Me.TextBox1.ForceBindingOnTextChanged = False
+        Me.TextBox1.Location = New System.Drawing.Point(380, 56)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(75, 20)
+        Me.TextBox1.TabIndex = 4
         '
         'tbVolHa2
         '
@@ -978,6 +851,150 @@ Public Class frmRPCalculVolumeHa
         Me.calcDeb2Debit.Size = New System.Drawing.Size(100, 20)
         Me.calcDeb2Debit.TabIndex = 1
         '
+        'tbDebitPTMoinsPC
+        '
+        Me.tbDebitPTMoinsPC.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcDebitPTlMoinsPC", True))
+        Me.tbDebitPTMoinsPC.ForceBindingOnTextChanged = False
+        Me.tbDebitPTMoinsPC.Location = New System.Drawing.Point(312, 127)
+        Me.tbDebitPTMoinsPC.Name = "tbDebitPTMoinsPC"
+        Me.tbDebitPTMoinsPC.ReadOnly = True
+        Me.tbDebitPTMoinsPC.Size = New System.Drawing.Size(100, 20)
+        Me.tbDebitPTMoinsPC.TabIndex = 17
+        Me.tbDebitPTMoinsPC.Visible = False
+        '
+        'tbVolhaPTV2
+        '
+        Me.tbVolhaPTV2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbVolhaPTV2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVolHaPTV2", True))
+        Me.tbVolhaPTV2.ForceBindingOnTextChanged = False
+        Me.tbVolhaPTV2.Location = New System.Drawing.Point(809, 100)
+        Me.tbVolhaPTV2.Name = "tbVolhaPTV2"
+        Me.tbVolhaPTV2.ReadOnly = True
+        Me.tbVolhaPTV2.Size = New System.Drawing.Size(100, 20)
+        Me.tbVolhaPTV2.TabIndex = 14
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVolHaPMV2", True))
+        Me.TextBox2.ForceBindingOnTextChanged = False
+        Me.TextBox2.Location = New System.Drawing.Point(809, 44)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
+        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.TabIndex = 13
+        '
+        'infosDebitMoyPressionMesure
+        '
+        Me.infosDebitMoyPressionMesure.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcDebitMoyenPM", True))
+        Me.infosDebitMoyPressionMesure.ForceBindingOnTextChanged = False
+        Me.infosDebitMoyPressionMesure.Location = New System.Drawing.Point(312, 44)
+        Me.infosDebitMoyPressionMesure.Name = "infosDebitMoyPressionMesure"
+        Me.infosDebitMoyPressionMesure.ReadOnly = True
+        Me.infosDebitMoyPressionMesure.Size = New System.Drawing.Size(100, 20)
+        Me.infosDebitMoyPressionMesure.TabIndex = 1
+        '
+        'infosPressionTravailMoinsPerteCharge
+        '
+        Me.infosPressionTravailMoinsPerteCharge.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcPressionTravailMoinsPC", True))
+        Me.infosPressionTravailMoinsPerteCharge.ForceBindingOnTextChanged = False
+        Me.infosPressionTravailMoinsPerteCharge.Location = New System.Drawing.Point(312, 104)
+        Me.infosPressionTravailMoinsPerteCharge.Name = "infosPressionTravailMoinsPerteCharge"
+        Me.infosPressionTravailMoinsPerteCharge.Size = New System.Drawing.Size(100, 20)
+        Me.infosPressionTravailMoinsPerteCharge.TabIndex = 3
+        '
+        'tbPressionTravail
+        '
+        Me.tbPressionTravail.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcPressionTravail", True))
+        Me.tbPressionTravail.ForceBindingOnTextChanged = False
+        Me.tbPressionTravail.Location = New System.Drawing.Point(312, 80)
+        Me.tbPressionTravail.Name = "tbPressionTravail"
+        Me.tbPressionTravail.Size = New System.Drawing.Size(100, 20)
+        Me.tbPressionTravail.TabIndex = 2
+        '
+        'infosVitesseReelle1
+        '
+        Me.infosVitesseReelle1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVitesseReelle1", True))
+        Me.infosVitesseReelle1.ForceBindingOnTextChanged = False
+        Me.infosVitesseReelle1.Location = New System.Drawing.Point(312, 156)
+        Me.infosVitesseReelle1.Name = "infosVitesseReelle1"
+        Me.infosVitesseReelle1.ReadOnly = True
+        Me.infosVitesseReelle1.Size = New System.Drawing.Size(100, 20)
+        Me.infosVitesseReelle1.TabIndex = 4
+        '
+        'infosVitesseReelle2
+        '
+        Me.infosVitesseReelle2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVitesseReelle2", True))
+        Me.infosVitesseReelle2.ForceBindingOnTextChanged = False
+        Me.infosVitesseReelle2.Location = New System.Drawing.Point(312, 180)
+        Me.infosVitesseReelle2.Name = "infosVitesseReelle2"
+        Me.infosVitesseReelle2.ReadOnly = True
+        Me.infosVitesseReelle2.Size = New System.Drawing.Size(100, 20)
+        Me.infosVitesseReelle2.TabIndex = 5
+        '
+        'infosLargeur
+        '
+        Me.infosLargeur.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcLargeurApp", True))
+        Me.infosLargeur.ForceBindingOnTextChanged = False
+        Me.infosLargeur.Location = New System.Drawing.Point(312, 212)
+        Me.infosLargeur.Name = "infosLargeur"
+        Me.infosLargeur.Size = New System.Drawing.Size(100, 20)
+        Me.infosLargeur.TabIndex = 6
+        '
+        'infosNbBuses
+        '
+        Me.infosNbBuses.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.infosNbBuses.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcNombreBuses", True))
+        Me.infosNbBuses.ForceBindingOnTextChanged = False
+        Me.infosNbBuses.Location = New System.Drawing.Point(809, 136)
+        Me.infosNbBuses.Name = "infosNbBuses"
+        Me.infosNbBuses.ReadOnly = True
+        Me.infosNbBuses.Size = New System.Drawing.Size(100, 20)
+        Me.infosNbBuses.TabIndex = 7
+        '
+        'tbVolhaPMV1
+        '
+        Me.tbVolhaPMV1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbVolhaPMV1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVolHaPMV1", True))
+        Me.tbVolhaPMV1.ForceBindingOnTextChanged = False
+        Me.tbVolhaPMV1.Location = New System.Drawing.Point(809, 19)
+        Me.tbVolhaPMV1.Name = "tbVolhaPMV1"
+        Me.tbVolhaPMV1.ReadOnly = True
+        Me.tbVolhaPMV1.Size = New System.Drawing.Size(100, 20)
+        Me.tbVolhaPMV1.TabIndex = 8
+        '
+        'tbVolHaPTV1
+        '
+        Me.tbVolHaPTV1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbVolHaPTV1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcVolHaPTV1", True))
+        Me.tbVolHaPTV1.ForceBindingOnTextChanged = False
+        Me.tbVolHaPTV1.Location = New System.Drawing.Point(809, 74)
+        Me.tbVolHaPTV1.Name = "tbVolHaPTV1"
+        Me.tbVolHaPTV1.ReadOnly = True
+        Me.tbVolHaPTV1.Size = New System.Drawing.Size(100, 20)
+        Me.tbVolHaPTV1.TabIndex = 9
+        '
+        'tbNbNiveauxBuses
+        '
+        Me.tbNbNiveauxBuses.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbNbNiveauxBuses.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcNombreNiveauxBuses", True))
+        Me.tbNbNiveauxBuses.ForceBindingOnTextChanged = False
+        Me.tbNbNiveauxBuses.Location = New System.Drawing.Point(809, 156)
+        Me.tbNbNiveauxBuses.Name = "tbNbNiveauxBuses"
+        Me.tbNbNiveauxBuses.ReadOnly = True
+        Me.tbNbNiveauxBuses.Size = New System.Drawing.Size(100, 20)
+        Me.tbNbNiveauxBuses.TabIndex = 10
+        '
+        'infosPressionMesure
+        '
+        Me.infosPressionMesure.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "CalcPressionDeMesure", True))
+        Me.infosPressionMesure.ForceBindingOnTextChanged = False
+        Me.infosPressionMesure.Location = New System.Drawing.Point(312, 19)
+        Me.infosPressionMesure.Name = "infosPressionMesure"
+        Me.infosPressionMesure.ReadOnly = True
+        Me.infosPressionMesure.Size = New System.Drawing.Size(100, 20)
+        Me.infosPressionMesure.TabIndex = 0
+        '
         'frmRPCalculVolumeHa
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -995,14 +1012,13 @@ Public Class frmRPCalculVolumeHa
         Me.Text = "tool_calcVolHa"
         Me.GroupBox_infos.ResumeLayout(False)
         Me.GroupBox_infos.PerformLayout()
-        CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.nupNbreNiveaux, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.nupNbreBuses, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nupNbreDescentes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox_calcAuto.ResumeLayout(False)
         Me.GroupBox_calcAuto.PerformLayout()
+        CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1213,5 +1229,18 @@ Public Class frmRPCalculVolumeHa
 
     Private Sub calcDeb2Largeur_Validated(sender As Object, e As EventArgs) Handles calcDeb2Largeur.Validated
         Calculs()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        m_oDiag.CreerListeInfosBuses()
+
+        Dim oFrm As frmRPInfosBuses
+        oFrm = New frmRPInfosBuses()
+        oFrm.setContexte(m_oDiag)
+        oFrm.StartPosition = FormStartPosition.CenterParent
+        oFrm.ShowDialog(Me)
+
+
+
     End Sub
 End Class

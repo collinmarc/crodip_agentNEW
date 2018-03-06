@@ -299,6 +299,17 @@
               <xs:element name="Ecartement2" msprop:Generator_ColumnVarNameInTable="columnEcartement2" msprop:Generator_ColumnPropNameInRow="Ecartement2" msprop:Generator_ColumnPropNameInTable="Ecartement2Column" msprop:Generator_UserColumnName="Ecartement2" type="xs:string" minOccurs="0" />
               <xs:element name="VolEauHa2" msprop:Generator_ColumnVarNameInTable="columnVolEauHa2" msprop:Generator_ColumnPropNameInRow="VolEauHa2" msprop:Generator_ColumnPropNameInTable="VolEauHa2Column" msprop:Generator_UserColumnName="VolEauHa2" type="xs:string" minOccurs="0" />
               <xs:element name="EmplacementPriseAir" msprop:Generator_ColumnVarNameInTable="columnEmplacementPriseAir" msprop:Generator_ColumnPropNameInRow="EmplacementPriseAir" msprop:Generator_ColumnPropNameInTable="EmplacementPriseAirColumn" msprop:Generator_UserColumnName="EmplacementPriseAir" type="xs:boolean" minOccurs="0" />
+              <xs:element name="RegimeMoteur" msprop:Generator_ColumnVarNameInTable="columnRegimeMoteur" msprop:Generator_ColumnPropNameInRow="RegimeMoteur" msprop:Generator_ColumnPropNameInTable="RegimeMoteurColumn" msprop:Generator_UserColumnName="RegimeMoteur" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="InfosBuses" msprop:Generator_TableClassName="InfosBusesDataTable" msprop:Generator_TableVarName="tableInfosBuses" msprop:Generator_RowChangedName="InfosBusesRowChanged" msprop:Generator_TablePropName="InfosBuses" msprop:Generator_RowDeletingName="InfosBusesRowDeleting" msprop:Generator_RowChangingName="InfosBusesRowChanging" msprop:Generator_RowEvHandlerName="InfosBusesRowChangeEventHandler" msprop:Generator_RowDeletedName="InfosBusesRowDeleted" msprop:Generator_RowClassName="InfosBusesRow" msprop:Generator_UserTableName="InfosBuses" msprop:Generator_RowEvArgName="InfosBusesRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:string" minOccurs="0" />
+              <xs:element name="NumDescente" msprop:Generator_ColumnVarNameInTable="columnNumDescente" msprop:Generator_ColumnPropNameInRow="NumDescente" msprop:Generator_ColumnPropNameInTable="NumDescenteColumn" msprop:Generator_UserColumnName="NumDescente" type="xs:int" minOccurs="0" />
+              <xs:element name="NumNiveau" msprop:Generator_ColumnVarNameInTable="columnNumNiveau" msprop:Generator_ColumnPropNameInRow="NumNiveau" msprop:Generator_ColumnPropNameInTable="NumNiveauColumn" msprop:Generator_UserColumnName="NumNiveau" type="xs:int" minOccurs="0" />
+              <xs:element name="Infos" msprop:Generator_ColumnVarNameInTable="columnInfos" msprop:Generator_ColumnPropNameInRow="Infos" msprop:Generator_ColumnPropNameInTable="InfosColumn" msprop:Generator_UserColumnName="Infos" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

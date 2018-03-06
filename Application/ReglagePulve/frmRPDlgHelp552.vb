@@ -1,5 +1,7 @@
-﻿Public Class frmRPDlgHelp552
+﻿Partial Class frmRPDlgHelp552
+    Inherits Diagnostic_dlghelp552
     Implements IfrmCRODIP
+
     Protected m_oDiag As RPDiagnostic
     Protected m_mode As Help552Mode
 
@@ -25,7 +27,9 @@
 
     End Sub
     Protected Overrides Sub formload() Implements IfrmCRODIP.formLoad
-        '        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
+        '06/03/2018 : #110
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
+
         Call AjoutLabeltitre()
         btnAnnuler.Visible = False
         btnValider.Visible = False
@@ -67,7 +71,7 @@
     End Sub
 
 
- 
+
 
     ''' <summary>
     ''' Creation des diagItem correspondant pour les 2 modes
@@ -86,6 +90,7 @@
     End Sub
 
     Private Sub frmRPDlgHelp552_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        System.Diagnostics.Trace.WriteLine("Load")
         help552_debitMoyen0bar.Text = m_oDiag.buseDebit
         help552_pressionMesure.Text = m_oDiag.manometrePressionTravail
         calc_help_552()
@@ -96,6 +101,8 @@
     End Sub
 
     Private Sub frmRPDlgHelp552_Load(sender As Object, e As EventArgs) Handles Me.Load
+        System.Diagnostics.Trace.WriteLine("Load")
         formload()
     End Sub
+
 End Class
