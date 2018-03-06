@@ -1,5 +1,9 @@
 TRUNK
 
+Build:
+#145 : Export CSV des exploitation: Reprise des critères 
+
+
 Build:20170926140000
 #34620 : Exploitation avec un seul pulve : Pulve sélectioné par défaut, 
 #34741 : Erreur en Synhcro de Prestation Tarif

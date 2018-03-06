@@ -4322,12 +4322,31 @@ Public Class accueil
     End Sub
     Private Sub ExportToCSV()
         Try
-            Dim sMsg As String = CONST_PATH_EXP & "Export_clients_" & Date.Now.ToString("yyyyMMdd") & ".csv"
-            ExploitationManager.exportToCSV(sMsg)
+            Dim SFile As String = CONST_PATH_EXP & "Export_clients_" & Date.Now.ToString("yyyyMMdd") & ".csv"
+            Dim searchId As Integer
+            Dim searchCriteria As String
+            Dim ocol As List(Of Exploitation)
 
-            If MsgBox("Fichier correctement enregistré dans : " & vbNewLine & sMsg & vbNewLine & "Voulez-vous ouvrir ce fichier ?", MsgBoxStyle.YesNo, "Export CSV") = MsgBoxResult.Yes Then
+            If list_search_fieldSearch.SelectedItem IsNot Nothing Then
+                searchId = list_search_fieldSearch.SelectedItem.id
+                searchCriteria = client_search_query.Text
+                If searchId = 5 Then
+                    searchCriteria = dtpSearchCrit1.Value.ToString("d") & "|" & dtpSearchCrit2.Value.ToString("d")
+                End If
+                ocol = ExploitationManager.searchExploitation(agentCourant, searchId, searchCriteria)
+            Else
+                ocol = ExploitationManager.getListeExploitation(agentCourant, DateTime.Now)
+            End If
+
+            Dim bEntete As Boolean = True
+            For Each oExploit As Exploitation In ocol
+                oExploit.ExportCSV(SFile, bEntete)
+                bEntete = False
+            Next
+
+            If MsgBox("Fichier correctement enregistré dans : " & vbNewLine & SFile & vbNewLine & "Voulez-vous ouvrir ce fichier ?", MsgBoxStyle.YesNo, "Export CSV") = MsgBoxResult.Yes Then
                 Dim monProcess As New Process
-                monProcess.StartInfo.FileName = sMsg
+                monProcess.StartInfo.FileName = SFile
                 monProcess.StartInfo.Verb = "Open"
                 monProcess.StartInfo.CreateNoWindow = True
                 monProcess.Start()

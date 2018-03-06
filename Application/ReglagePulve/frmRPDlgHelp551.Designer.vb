@@ -28,7 +28,7 @@ Partial Class frmRPDlgHelp551
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(481, 299)
+        Me.ClientSize = New System.Drawing.Size(499, 296)
         Me.ControlBox = False
         Me.Name = "frmRPDlgHelp551"
         Me.Text = "Form2"
