@@ -413,7 +413,6 @@ Public Class frmRPparentContener
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
         Me.Menu = Me.MainMenu1
-        Me.MinimizeBox = False
         Me.Name = "frmRPparentContener"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip"
@@ -466,6 +465,7 @@ Public Class frmRPparentContener
 
         m_nOldStep = -1
         m_nStep = -1
+        Me.MinimizeBox = True
     End Sub
 
 
@@ -686,10 +686,8 @@ Public Class frmRPparentContener
             odlgHelp552.WindowState = FormWindowState.Maximized
             odlgHelp552.MdiParent = Me
 
-            CSDebug.dispInfo("Création de frmRPDiagnostique")
 
             ofrmdiag = New frmRPDiagnostique()
-            CSDebug.dispInfo("Fin Création de frmRPDiagnostique")
             ofrmdiag.setContexte(m_RPDiagnostic, DiagMode.CTRL_COMPLET, pulverisateurCourant, clientCourant)
             ofrmdiag.WindowState = FormWindowState.Maximized
             ofrmdiag.MdiParent = Me
