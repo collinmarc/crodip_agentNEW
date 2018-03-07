@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ParamReglagePulve>
   <coluser>
-    <UserReglagePulve>
-      <Code>MARC</Code>
-      <PasswordCrypted>COLLIN</PasswordCrypted>
-      <DateExpCrypted>15/02/1964</DateExpCrypted>
-    </UserReglagePulve>
-    <UserReglagePulve>
-      <Code>VERO</Code>
-      <PasswordCrypted>JUIN</PasswordCrypted>
-      <DateExpCrypted>31/07/2004</DateExpCrypted>
-    </UserReglagePulve>
+    <RPUser>
+      <Code>a</Code>
+      <PasswordCrypted>684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1</PasswordCrypted>
+      <DateExpCrypted>636502752000000000</DateExpCrypted>
+    </RPUser>
+    <RPUser>
+      <Code>test</Code>
+      <PasswordCrypted>9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08</PasswordCrypted>
+      <DateExpCrypted>636818112000000000</DateExpCrypted>
+    </RPUser>
   </coluser>
 </ParamReglagePulve>

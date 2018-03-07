@@ -187,7 +187,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="EtatReglagePulveTest.vb" />
-    <Compile Include="ParamReglagePulveTests.vb" />
     <Compile Include="BancManagerTest.vb" />
     <Compile Include="BuseManagerTest.vb" />
     <Compile Include="AutoTestTest.vb" />
