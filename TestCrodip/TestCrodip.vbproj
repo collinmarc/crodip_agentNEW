@@ -198,6 +198,7 @@
     <Compile Include="EtatFvBancTest.vb" />
     <Compile Include="PrestationTest.vb" />
     <Compile Include="ReferentielCommunesCSVTest.vb" />
+    <Compile Include="RPInfosBusesTest.vb" />
     <Compile Include="ToleranceBuseTest.vb" />
     <Compile Include="ParamDiagTest.vb" />
     <Compile Include="SynchronisationTest.vb" />

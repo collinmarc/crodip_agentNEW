@@ -153,7 +153,8 @@
 
 
     Public Sub New()
-
+        ListInfosBuses = New Generic.List(Of RPInfosBuses)
+        ListInfosBuses.Add(New RPInfosBuses(0))
         m_oRPParam = RPParam.readXML()
 
     End Sub
@@ -219,7 +220,7 @@
         End Get
         Set(value As Integer)
             m_Calculs.NbreDescentes = value
-
+            updateListeInfosBuses()
         End Set
     End Property
     Public Property CalcNbreBusesParDescente As Integer
@@ -236,8 +237,10 @@
             Return m_Calculs.NbreNiveauParDescente
         End Get
         Set(value As Integer)
-            m_Calculs.NbreNiveauParDescente = value
-
+            If value <> m_Calculs.NbreNiveauParDescente Then
+                m_Calculs.NbreNiveauParDescente = value
+                updateListeInfosBuses()
+            End If
         End Set
     End Property
     Public Property CalcPressionDeMesure As Decimal
@@ -518,4 +521,27 @@
 
     End Sub
 
+    Public Sub updateListeInfosBuses()
+        ''Vérification du nbre de descentes
+        For Each oRPInfo As RPInfosBuses In ListInfosBuses
+            oRPInfo.NbDescentes = CalcNbreDescentes
+        Next
+        'Ajustement du nombre de niveaux
+        'Attention il y a toujours un element dans la liste c'est le dernier qui représente l'emplacement Prise d'air
+        If CalcNbreNiveauParDescente < ListInfosBuses.Count - 1 Then
+            'IL y a plus de ligne dans la collection  que la valeur indiquée
+            'Suppression des lignes en trop
+            For n As Integer = ListInfosBuses.Count - 1 To CalcNbreNiveauParDescente Step -1
+                ListInfosBuses.RemoveAt(n - 2)
+            Next n
+        End If
+        If CalcNbreNiveauParDescente > ListInfosBuses.Count - 1 Then
+            'IL y a moins de ligne dans la collection  que la valeur indiquée
+            'Ajout des lignes 
+            For n As Integer = ListInfosBuses.Count - 1 To CalcNbreNiveauParDescente - 1
+                ListInfosBuses.Insert(ListInfosBuses.Count - 1, New RPInfosBuses(CalcNbreDescentes))
+            Next n
+        End If
+
+    End Sub
 End Class

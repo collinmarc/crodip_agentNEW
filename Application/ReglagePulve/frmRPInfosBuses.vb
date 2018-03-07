@@ -2,8 +2,13 @@
 
     Private m_oDiag As RPDiagnostic
     Public Sub setContexte(pDiag As RPDiagnostic)
+        Dim oColDescente As DataGridViewTextBoxColumn
+        Dim oColSep As DataGridViewTextBoxColumn
+
         m_oDiag = pDiag
         m_bsrcDiagnostic.Clear()
+
+
 
         m_bsrcDiagnostic.DataSource = m_oDiag.ListInfosBuses
         m_bsrcDiagnostic.DataMember = ""
@@ -14,8 +19,6 @@
         Dim StyleDesc As DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         StyleSep.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         For n As Integer = 1 To m_oDiag.CalcNbreDescentes
-            Dim oColDescente As DataGridViewTextBoxColumn
-            Dim oColSep As DataGridViewTextBoxColumn
             oColDescente = New DataGridViewTextBoxColumn()
             oColDescente.HeaderText = n
             oColDescente.DataPropertyName = "Infos" & n
@@ -27,6 +30,7 @@
             If n < m_oDiag.CalcNbreDescentes Then
                 oColSep = New DataGridViewTextBoxColumn()
                 oColSep.HeaderText = ""
+                oColSep.HeaderCell.Style.BackColor = StyleSep.BackColor
                 oColSep.DefaultCellStyle = StyleSep
                 oColSep.ReadOnly = True
                 oColSep.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -36,7 +40,7 @@
             End If
 
         Next
-
+        Me.Height = 166 + m_oDiag.CalcNbreNiveauParDescente * 20
     End Sub
 
     Private Sub DataGridView1_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEnter
@@ -49,12 +53,13 @@
 
         For n As Integer = 1 To m_oDiag.CalcNbreDescentes
             Dim oCkCell As New DataGridViewCheckBoxCell()
-            oCkCell.FalseValue = "0"
-            oCkCell.TrueValue = "1"
+            oCkCell.FalseValue = ""
+            oCkCell.TrueValue = "OUI"
             oCkCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+            oCkCell.Style.NullValue = False
+            DataGridView1.Rows(DataGridView1.Rows.Count - 1).HeaderCell.Value = "Prise d'air"
             Try
                 DataGridView1.Rows(DataGridView1.Rows.Count - 1).Cells((n - 1) * 2) = oCkCell
-                DataGridView1.Rows(DataGridView1.Rows.Count - 1).HeaderCell.Value = "Prise d'air"
             Catch ex As Exception
 
             End Try

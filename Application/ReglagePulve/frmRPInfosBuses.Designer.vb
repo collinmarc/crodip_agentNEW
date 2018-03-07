@@ -23,7 +23,7 @@ Partial Class frmRPInfosBuses
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Infos1DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Sep1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -52,7 +52,7 @@ Partial Class frmRPInfosBuses
         Me.DataGridView1.Location = New System.Drawing.Point(29, 27)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 100
-        Me.DataGridView1.Size = New System.Drawing.Size(888, 437)
+        Me.DataGridView1.Size = New System.Drawing.Size(888, 53)
         Me.DataGridView1.TabIndex = 0
         '
         'Infos1DataGridViewTextBoxColumn
@@ -63,8 +63,8 @@ Partial Class frmRPInfosBuses
         '
         'Sep1
         '
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Black
-        Me.Sep1.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Black
+        Me.Sep1.DefaultCellStyle = DataGridViewCellStyle2
         Me.Sep1.HeaderText = ""
         Me.Sep1.Name = "Sep1"
         Me.Sep1.ReadOnly = True
@@ -85,7 +85,7 @@ Partial Class frmRPInfosBuses
         Me.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnValider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnValider.ForeColor = System.Drawing.Color.White
-        Me.btnValider.Location = New System.Drawing.Point(780, 470)
+        Me.btnValider.Location = New System.Drawing.Point(780, 86)
         Me.btnValider.Name = "btnValider"
         Me.btnValider.Size = New System.Drawing.Size(137, 29)
         Me.btnValider.TabIndex = 58
@@ -120,7 +120,7 @@ Partial Class frmRPInfosBuses
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(929, 511)
+        Me.ClientSize = New System.Drawing.Size(929, 127)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnValider)
@@ -129,6 +129,9 @@ Partial Class frmRPInfosBuses
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmRPInfosBuses"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Informations Buses"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsrcDiagnostic, System.ComponentModel.ISupportInitialize).EndInit()
