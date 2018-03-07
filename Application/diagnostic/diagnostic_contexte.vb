@@ -918,6 +918,8 @@ Public Class diagnostic_contexte
 
         ' Chargement des comboBox
         Try
+            GLOB_XML_CONFIG = New CSXml("config\config.xml")
+
             MarquesManager.populateCombobox(GLOB_XML_CONFIG, cbxSite, "/root/sites_proprietaire")
             MarquesManager.populateCombobox(GLOB_XML_CONFIG, cbxterritoire, "/root/territoires_proprietaire")
             'ModeUtilisation

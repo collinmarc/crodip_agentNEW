@@ -16,6 +16,7 @@
         Label_diagnostic_61.Visible = False
         MinimizeBox = False
         MaximizeBox = False
+        Me.Text = "Fiche Exploitant"
 
     End Sub
     Protected Overrides Function Valider() As Boolean Implements IfrmCRODIP.Valider

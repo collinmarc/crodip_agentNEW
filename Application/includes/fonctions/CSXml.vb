@@ -10,9 +10,15 @@ Public Class CSXml
         If CSFile.exists(pNomFichier) Then
             m_Nomfichier = pNomFichier
         Else
-            ' on crée le fichier
-            Dim objFichier As New System.IO.FileStream(pNomFichier, IO.FileMode.Create, IO.FileAccess.Write)
-            m_Nomfichier = pNomFichier
+            '' on crée le fichier
+            'Try
+
+            '    Dim objFichier As New System.IO.FileStream(pNomFichier, IO.FileMode.Create, IO.FileAccess.Write)
+            '    m_Nomfichier = pNomFichier
+            '    m_Nomfichier = ""
+            'Catch ex As Exception
+
+            'End Try
         End If
     End Sub
 

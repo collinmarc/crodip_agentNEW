@@ -410,7 +410,7 @@ Public Class EtatReglagePulve
                 For ndesc As Integer = 1 To oRPInfosBuses.NbDescentes
                     Dim strValue As String = oRPInfosBuses.Infos(ndesc)
                     If strType = "Prise" Then
-                        strValue = IIf(strValue = "0", "NON", "OUI")
+                        strValue = IIf(strValue = "", "NON", "OUI")
                     End If
                     m_ods.InfosBuses.AddInfosBusesRow(type:=strType, NumDescente:=ndesc, NumNiveau:=nNiveau, Infos:=strValue)
                 Next

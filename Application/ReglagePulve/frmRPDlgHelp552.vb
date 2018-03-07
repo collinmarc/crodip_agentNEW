@@ -41,7 +41,7 @@
         m_oDiag = pDiag
         m_mode = pMode
         MyBase.setContexte(pMode, pDiag, debitMoyen, PressionMesure, (DiagMode.CTRL_VISU = m_mode))
-
+        Me.Text = "Debits"
     End Sub
 
     Private Sub AjoutLabeltitre()

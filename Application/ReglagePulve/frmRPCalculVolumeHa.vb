@@ -1013,7 +1013,7 @@ Public Class frmRPCalculVolumeHa
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "frmRPCalculVolumeHa"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "tool_calcVolHa"
+        Me.Text = "Calcul volume/ha"
         Me.GroupBox_infos.ResumeLayout(False)
         Me.GroupBox_infos.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)

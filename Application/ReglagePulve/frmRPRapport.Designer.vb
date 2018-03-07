@@ -220,7 +220,7 @@ Partial Class frmRPRapport
         Me.Controls.Add(Me.lbSections)
         Me.Controls.Add(Me.Label_diagnostic_21)
         Me.Name = "frmRPRapport"
-        Me.Text = "RPRapport"
+        Me.Text = "Rapport de réglage"
         CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

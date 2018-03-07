@@ -8,6 +8,7 @@
     Public Overridable Sub setContexte(ByVal bModeAjout As MODE, pAgent As Agent, pPulverisateur As Pulverisateur, pDiagnostic As Diagnostic)
         m_oDiag = pDiagnostic
         MyBase.setContexte(bModeAjout, pAgent, pPulverisateur, pDiagnostic)
+        Me.Text = "Pulvérisateur"
     End Sub
 
     Public Overrides Sub FormLoad()
