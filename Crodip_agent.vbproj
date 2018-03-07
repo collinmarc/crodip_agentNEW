@@ -756,9 +756,6 @@
     </Compile>
     <Compile Include="Application\includes\SortableBindingList.vb" />
     <Compile Include="Application\includes\PropertyComparer.vb" />
-    <Compile Include="Application\loginReglagePulve.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\login.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -768,7 +765,10 @@
     <Compile Include="Application\parentContener.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\ReglagePulve\RPlogin.vb">
+    <Compile Include="Application\ReglagePulve\RPloginAgent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\RPloginStandAlone.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\ReglagePulve\RPapropos.vb">
@@ -837,6 +837,12 @@
       <DependentUpon>frmRPRapport.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\ReglagePulve\frmRPRapport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\RPParamUser.Designer.vb">
+      <DependentUpon>RPParamUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\RPParamUser.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\splash.vb">
@@ -1612,6 +1618,7 @@
     </None>
     <None Include="aqwzsx.crodip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="cr\dsFvmano.xsc">
       <DependentUpon>dsFvmano.xsd</DependentUpon>
@@ -2031,9 +2038,6 @@
     <EmbeddedResource Include="Application\exploitant\pulverisateur\ajout_pulve2.resx">
       <DependentUpon>ajout_pulve2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\loginReglagePulve.resx">
-      <DependentUpon>loginReglagePulve.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Application\login.resx">
       <DependentUpon>login.vb</DependentUpon>
     </EmbeddedResource>
@@ -2043,8 +2047,11 @@
     <EmbeddedResource Include="Application\parentContener.resx">
       <DependentUpon>parentContener.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\RPlogin.resx">
-      <DependentUpon>RPlogin.vb</DependentUpon>
+    <EmbeddedResource Include="Application\ReglagePulve\RPloginAgent.resx">
+      <DependentUpon>RPloginAgent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\RPloginStandAlone.resx">
+      <DependentUpon>RPloginStandAlone.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\RPapropos.resx">
       <DependentUpon>RPapropos.vb</DependentUpon>
@@ -2081,6 +2088,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\frmRPRapport.resx">
       <DependentUpon>frmRPRapport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\RPParamUser.resx">
+      <DependentUpon>RPParamUser.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\splash.resx">
       <DependentUpon>splash.vb</DependentUpon>

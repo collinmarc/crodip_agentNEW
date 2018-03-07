@@ -24,9 +24,9 @@ Public Class ParamReglagePulve
 
     'Fonction de génération du fichier XML 
     'Paramétre = nom du fichier XML
-    Public Shared Function GenerateXML(pObj As ParamReglagePulve) As Boolean
+    Public Shared Function GenerateXML(pFolder As String, pObj As ParamReglagePulve) As Boolean
         Dim bReturn As Boolean
-        Dim oStW As New System.IO.StreamWriter(XMLFileName, False, System.Text.Encoding.UTF8)
+        Dim oStW As New System.IO.StreamWriter(pFolder & "/" & XMLFileName, False, System.Text.Encoding.UTF8)
         Try
             'Création de l'objet d'écriture dans le fichier
             'Création du sérializer
@@ -52,11 +52,11 @@ Public Class ParamReglagePulve
     ''' <param name="pFileName"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function ReadXML() As ParamReglagePulve
+    Public Shared Function ReadXML(pFolder As String) As ParamReglagePulve
         Dim bReturn As Boolean
         Dim oParamReglagePulve As New ParamReglagePulve
         Try
-            If (System.IO.File.Exists(XMLFileName)) Then
+            If (System.IO.File.Exists(pFolder & "/" & XMLFileName)) Then
                 'Création du reader du fichier XML
                 Dim oStR As New System.IO.StreamReader(XMLFileName)
                 Dim oXS As New XmlSerializer(oParamReglagePulve.GetType())

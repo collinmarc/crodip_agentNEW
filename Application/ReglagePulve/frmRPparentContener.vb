@@ -66,6 +66,7 @@ Public Class frmRPparentContener
     Friend WithEvents tsbCalcul As System.Windows.Forms.ToolStripButton
     Friend WithEvents tsbRapport As System.Windows.Forms.ToolStripButton
     Friend WithEvents miVitesseFonctionnement As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuParam As MenuItem
     Friend WithEvents tsbQuitter As System.Windows.Forms.ToolStripButton
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -75,6 +76,7 @@ Public Class frmRPparentContener
         Me.MnuQuitter = New System.Windows.Forms.MenuItem()
         Me.MenuItem3 = New System.Windows.Forms.MenuItem()
         Me.MnuApropos = New System.Windows.Forms.MenuItem()
+        Me.mnuParam = New System.Windows.Forms.MenuItem()
         Me.MenuItem5 = New System.Windows.Forms.MenuItem()
         Me.miDemarer = New System.Windows.Forms.MenuItem()
         Me.miSuivant = New System.Windows.Forms.MenuItem()
@@ -119,7 +121,7 @@ Public Class frmRPparentContener
         'MenuItem1
         '
         Me.MenuItem1.Index = 0
-        Me.MenuItem1.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MnuQuitter, Me.MenuItem3, Me.MnuApropos})
+        Me.MenuItem1.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MnuQuitter, Me.MenuItem3, Me.MnuApropos, Me.mnuParam})
         Me.MenuItem1.Text = "?"
         '
         'MnuQuitter
@@ -136,6 +138,11 @@ Public Class frmRPparentContener
         '
         Me.MnuApropos.Index = 2
         Me.MnuApropos.Text = "A Propos ?"
+        '
+        'mnuParam
+        '
+        Me.mnuParam.Index = 3
+        Me.mnuParam.Text = "Paramétrage"
         '
         'MenuItem5
         '
@@ -407,6 +414,7 @@ Public Class frmRPparentContener
     Private ofrmRapport As frmRPRapport
 
     Private m_nOldStep As Integer
+    Private m_oAgent As Agent
 
     Private Sub parentContener_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         formLoad()
@@ -415,10 +423,23 @@ Public Class frmRPparentContener
 
         'Test pour Vérifier si on est dans une configuation Agent
         If System.IO.File.Exists("bdd/crodip_agent.mdb") Then
-            MsgBox("On est sur une config Agent")
-        Else
-            Dim oFRM As New RPlogin()
+            Dim oFRM As New RPloginAgent()
             oFRM.ShowDialog(Me)
+            m_oAgent = oFRM.AgentCourant
+        Else
+            Dim oFRM As New RPloginStandAlone()
+            oFRM.ShowDialog(Me)
+            m_oAgent = oFRM.RPuser
+        End If
+        If m_oAgent IsNot Nothing Then
+            If m_oAgent.isGestionnaire Then
+                mnuParam.Enabled = True
+                mnuParam.Visible = True
+            Else
+                mnuParam.Visible = False
+                mnuParam.Enabled = False
+
+            End If
         End If
         '        Me.AutoScroll = True
         miDemarer.Enabled = True
@@ -876,5 +897,9 @@ Public Class frmRPparentContener
 
     Private Sub tsbQuitter_Click(sender As Object, e As EventArgs) Handles tsbQuitter.Click
         Me.Close()
+    End Sub
+
+    Private Sub mnuParam_Click(sender As Object, e As EventArgs) Handles mnuParam.Click
+        RPParamUser.ShowDialog(Me)
     End Sub
 End Class

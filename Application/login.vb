@@ -453,7 +453,7 @@ Public Class login
         pnlLoginControls.Enabled = False
         ' On récupère le formulaire contener
         Dim myFormParentContener As Form = Me.MdiParent
-        Statusbar.display(CONST_STATUTMSG_LOGIN_ENCOURS, True)
+        Statusbardisplay(CONST_STATUTMSG_LOGIN_ENCOURS, True)
         Try
             ' On récupère l'agent sélèctionné
             Dim selectedAgent As Agent
@@ -497,7 +497,7 @@ Public Class login
                                             CSTime.pause(500) ' Pause de 500ms
 
                                             ' On vérifie les mises à jour
-                                            Statusbar.display(CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
+                                            Statusbardisplay(CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
                                             Try
                                                 Me.Cursor = Cursors.WaitCursor
                                                 Dim oSynchro As New Synchronisation(agentCourant)
@@ -515,10 +515,10 @@ Public Class login
                                                 Me.Cursor = Cursors.Default
                                             Catch ex As Exception
                                                 CSDebug.dispError("Synchronisation : " & ex.Message.ToString)
-                                                Statusbar.display(CONST_STATUTMSG_SYNCHRO_FAILED, False)
+                                                Statusbardisplay(CONST_STATUTMSG_SYNCHRO_FAILED, False)
                                             End Try
                                         Else
-                                            Statusbar.display(CONST_STATUTMSG_SYNCHRO_UNAVAILABLE, False)
+                                            Statusbardisplay(CONST_STATUTMSG_SYNCHRO_UNAVAILABLE, False)
                                             MsgBox("Synchronisation impossible, serveur Crodip momentanément indisponible.", MsgBoxStyle.Exclamation)
                                         End If
                                     Else
@@ -527,7 +527,7 @@ Public Class login
                                 End If
                                 panel_splashSynchro.Visible = False
                                 ' On met à jour la barre de status
-                                Statusbar.display(CONST_STATUTMSG_LOGIN_OK, False)
+                                Statusbardisplay(CONST_STATUTMSG_LOGIN_OK, False)
                                 CSDebug.dispInfo("Connexion réussie " & agentCourant.nom)
                                 ' On met a jour la date de dernière connexion
                                 agentCourant.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now).ToString
@@ -545,7 +545,7 @@ Public Class login
                             Else
 
                                 ' On met à jour la barre de status
-                                Statusbar.display(CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
+                                Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
                                 MsgBox(CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
                                 'On recharge la Liste des profils 
                                 FillCbxAgent()
@@ -554,21 +554,21 @@ Public Class login
 
                         Else
                             ' On met à jour la barre de status
-                            Statusbar.display(CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
+                            Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
                             MsgBox(CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
                         End If
                     Else
-                        Statusbar.display(CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez renseigner un mot de passe.", False)
+                        Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez renseigner un mot de passe.", False)
                     End If
                 Else
-                    Statusbar.display(CONST_STATUTMSG_LOGIN_FAILED & " : Aucun agent correspondant", False)
+                    Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Aucun agent correspondant", False)
                 End If
             Else
-                Statusbar.display(CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez sélectionner un profil.", False)
+                Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez sélectionner un profil.", False)
             End If
         Catch ex As Exception
             ' On met à jour la barre de status
-            Statusbar.display(CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
+            Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
             CSDebug.dispError("login::doLogin : " & ex.Message)
         End Try
         'On réactive la fenêtre , si la procédure de Cnx a fonctionner, cette fenêtre est cachée
@@ -591,12 +591,12 @@ Public Class login
         End If
         Lbl_Version.Text = GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
         ' On récupère le formulaire contener
-        Dim myFormParentContener as Form = Me.MdiParent
+        Dim myFormParentContener As Form = Me.MdiParent
         ' Initialisation des variables
         ' FIN --- Initialisation des variables
 
         ' Chargement de la statusbar
-        Statusbar.display("Chargement de la liste de profils...", True)
+        Statusbardisplay("Chargement de la liste de profils...", True)
 
         ' On récupère le nombre d'organismes
         Dim nbStructures As Integer = 0
@@ -607,12 +607,26 @@ Public Class login
         End While
         CSDb.free()
         FillCbxAgent()
-        'Statusbar.display("Chargement réussi de " & nbProfils & " profil(s)", False)
-        Statusbar.clear()
+        'Statusbardisplay("Chargement réussi de " & nbProfils & " profil(s)", False)
+        Statusbarclear()
 
     End Sub
 
-
+    Private Sub Statusbardisplay(pMsg As String, pisLoader As Boolean)
+        If Statusbar IsNot Nothing Then
+            Statusbar.display(pMsg, pisLoader)
+        End If
+    End Sub
+    Private Sub Statusbardisplay(pMsg As String)
+        If Statusbar IsNot Nothing Then
+            Statusbar.display(pMsg)
+        End If
+    End Sub
+    Private Sub Statusbarclear()
+        If Statusbar IsNot Nothing Then
+            Statusbar.clear()
+        End If
+    End Sub
     Private Sub FillCbxAgent()
         Dim oAgentList As AgentList
         oAgentList = AgentManager.getAgentList()

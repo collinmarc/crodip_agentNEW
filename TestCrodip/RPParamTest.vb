@@ -91,7 +91,7 @@ Imports Crodip_agent
         oUser.setDateExp(New Date(2018, 12, 31))
         oReglagePulve.coluser.Add(oUser)
 
-        ParamReglagePulve.GenerateXML(oReglagePulve)
+        ParamReglagePulve.GenerateXML(".", oReglagePulve)
         Assert.IsTrue(System.IO.File.Exists("./aqwzsx.crodip"))
 
     End Sub
