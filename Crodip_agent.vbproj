@@ -521,7 +521,7 @@
     <Compile Include="Application\includes\classes\ReglagePulve\MyVerticalLabel.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Application\includes\classes\ReglagePulve\UserReglagePulve.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPUser.vb" />
     <Compile Include="Application\includes\classes\RootManager.vb" />
     <Compile Include="Application\includes\classes\StatsCRODIP.vb" />
     <Compile Include="Application\includes\classes\CSStatusbar.vb">
@@ -766,6 +766,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\parentContener.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\RPlogin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\ReglagePulve\RPapropos.vb">
@@ -2039,6 +2042,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\parentContener.resx">
       <DependentUpon>parentContener.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\RPlogin.resx">
+      <DependentUpon>RPlogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\RPapropos.resx">
       <DependentUpon>RPapropos.vb</DependentUpon>

@@ -413,6 +413,13 @@ Public Class frmRPparentContener
     End Sub
     Private Sub formLoad()
 
+        'Test pour Vérifier si on est dans une configuation Agent
+        If System.IO.File.Exists("bdd/crodip_agent.mdb") Then
+            MsgBox("On est sur une config Agent")
+        Else
+            Dim oFRM As New RPlogin()
+            oFRM.ShowDialog(Me)
+        End If
         '        Me.AutoScroll = True
         miDemarer.Enabled = True
         tsbDemarer.Enabled = True

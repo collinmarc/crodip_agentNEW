@@ -2,18 +2,18 @@
 Imports System.Collections.Generic
 Public Class ParamReglagePulve
     Private Const XMLFileName As String = "aqwzsx.crodip"
-    Private _Coluser As New List(Of UserReglagePulve)
-    Public Property coluser As List(Of UserReglagePulve)
+    Private _Coluser As New List(Of RPUser)
+    Public Property coluser As List(Of RPUser)
         Get
             Return _Coluser
         End Get
-        Set(value As List(Of UserReglagePulve))
+        Set(value As List(Of RPUser))
             _Coluser = value
         End Set
     End Property
-    Public Function getUSer(pCode As String) As UserReglagePulve
-        Dim oReturn As UserReglagePulve
-        Dim oUser As UserReglagePulve
+    Public Function getUSer(pCode As String) As RPUser
+        Dim oReturn As RPUser
+        Dim oUser As RPUser
         For Each oUser In _Coluser
             If oUser.Code = pCode Then
                 oReturn = oUser

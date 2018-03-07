@@ -291,7 +291,7 @@ Public Class loginReglagePulve
             If tbCodeUtilisateur.Text <> "" Then
                 Dim oParam As ParamReglagePulve
                 oParam = ParamReglagePulve.ReadXML()
-                Dim oUser As UserReglagePulve
+                Dim oUser As RPUser
                 oUser = oParam.getUSer(tbCodeUtilisateur.Text)
                 If oUser IsNot Nothing Then
                     bReturn = oUser.TestPassword(tbPassword.Text)

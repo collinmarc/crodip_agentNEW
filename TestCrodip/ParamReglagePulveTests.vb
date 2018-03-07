@@ -9,7 +9,7 @@ Imports Crodip_agent
 
         <TestMethod()> Public Sub GenerateXMLTest()
             Dim oReglagePulve As New ParamReglagePulve
-            Dim oUser As New UserReglagePulve()
+            Dim oUser As New RPUser()
             oUser.Code = "MARC"
             oUser.setPassword("COLLIN")
             oUser.setDateExp(Now)
@@ -19,7 +19,7 @@ Imports Crodip_agent
             Assert.IsTrue(System.IO.File.Exists("./aqwzsx.crodip"))
 
             Dim oReglagePulve2 As ParamReglagePulve
-            Dim ouser2 As UserReglagePulve
+            Dim ouser2 As RPUser
             oReglagePulve2 = ParamReglagePulve.ReadXML()
             ouser2 = oReglagePulve2.getUSer("TEST")
             Assert.IsNull(ouser2)
