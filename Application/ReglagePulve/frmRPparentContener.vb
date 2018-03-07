@@ -32,17 +32,13 @@ Public Class frmRPparentContener
     Friend WithEvents MainMenu1 As System.Windows.Forms.MainMenu
     Friend WithEvents MenuItem1 As System.Windows.Forms.MenuItem
     Public WithEvents parentContener_statusBar As System.Windows.Forms.StatusBar
-    Friend WithEvents MenuItem_aide_apropos As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem2 As System.Windows.Forms.MenuItem
+    Friend WithEvents MnuApropos As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem3 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem4 As System.Windows.Forms.MenuItem
+    Friend WithEvents MnuQuitter As System.Windows.Forms.MenuItem
     Friend WithEvents notify_connexionStatus_nok As System.Windows.Forms.NotifyIcon
     Friend WithEvents notify_connexionStatus_ok As System.Windows.Forms.NotifyIcon
     Friend WithEvents notify_connexionStatus_wait As System.Windows.Forms.NotifyIcon
     Friend WithEvents statusBar_img_loader As System.Windows.Forms.PictureBox
-    Friend WithEvents MenuItem_aide_debug As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem_aide_debug_exportLogs As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuCheckupdates As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem5 As System.Windows.Forms.MenuItem
     Friend WithEvents miSuivant As System.Windows.Forms.MenuItem
     Friend WithEvents miPrecedant As System.Windows.Forms.MenuItem
@@ -71,20 +67,14 @@ Public Class frmRPparentContener
     Friend WithEvents tsbRapport As System.Windows.Forms.ToolStripButton
     Friend WithEvents miVitesseFonctionnement As System.Windows.Forms.MenuItem
     Friend WithEvents tsbQuitter As System.Windows.Forms.ToolStripButton
-    Friend WithEvents MenuItem7 As System.Windows.Forms.MenuItem
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmRPparentContener))
         Me.MainMenu1 = New System.Windows.Forms.MainMenu(Me.components)
         Me.MenuItem1 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem2 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem4 = New System.Windows.Forms.MenuItem()
+        Me.MnuQuitter = New System.Windows.Forms.MenuItem()
         Me.MenuItem3 = New System.Windows.Forms.MenuItem()
-        Me.mnuCheckupdates = New System.Windows.Forms.MenuItem()
-        Me.MenuItem7 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem_aide_apropos = New System.Windows.Forms.MenuItem()
-        Me.MenuItem_aide_debug = New System.Windows.Forms.MenuItem()
-        Me.MenuItem_aide_debug_exportLogs = New System.Windows.Forms.MenuItem()
+        Me.MnuApropos = New System.Windows.Forms.MenuItem()
         Me.MenuItem5 = New System.Windows.Forms.MenuItem()
         Me.miDemarer = New System.Windows.Forms.MenuItem()
         Me.miSuivant = New System.Windows.Forms.MenuItem()
@@ -129,49 +119,23 @@ Public Class frmRPparentContener
         'MenuItem1
         '
         Me.MenuItem1.Index = 0
-        Me.MenuItem1.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem2, Me.MenuItem4, Me.MenuItem3, Me.mnuCheckupdates, Me.MenuItem7, Me.MenuItem_aide_apropos, Me.MenuItem_aide_debug})
+        Me.MenuItem1.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MnuQuitter, Me.MenuItem3, Me.MnuApropos})
         Me.MenuItem1.Text = "?"
         '
-        'MenuItem2
+        'MnuQuitter
         '
-        Me.MenuItem2.Index = 0
-        Me.MenuItem2.Text = "Déconnexion"
-        '
-        'MenuItem4
-        '
-        Me.MenuItem4.Index = 1
-        Me.MenuItem4.Text = "Quitter"
+        Me.MnuQuitter.Index = 0
+        Me.MnuQuitter.Text = "Quitter"
         '
         'MenuItem3
         '
-        Me.MenuItem3.Index = 2
+        Me.MenuItem3.Index = 1
         Me.MenuItem3.Text = "-"
         '
-        'mnuCheckupdates
+        'MnuApropos
         '
-        Me.mnuCheckupdates.Index = 3
-        Me.mnuCheckupdates.Text = "Vérifier les mises à jour"
-        '
-        'MenuItem7
-        '
-        Me.MenuItem7.Index = 4
-        Me.MenuItem7.Text = "-"
-        '
-        'MenuItem_aide_apropos
-        '
-        Me.MenuItem_aide_apropos.Index = 5
-        Me.MenuItem_aide_apropos.Text = "A Propos ?"
-        '
-        'MenuItem_aide_debug
-        '
-        Me.MenuItem_aide_debug.Index = 6
-        Me.MenuItem_aide_debug.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem_aide_debug_exportLogs})
-        Me.MenuItem_aide_debug.Text = "Debug"
-        '
-        'MenuItem_aide_debug_exportLogs
-        '
-        Me.MenuItem_aide_debug_exportLogs.Index = 0
-        Me.MenuItem_aide_debug_exportLogs.Text = "Extraire le fichier de logs"
+        Me.MnuApropos.Index = 2
+        Me.MnuApropos.Text = "A Propos ?"
         '
         'MenuItem5
         '
@@ -413,6 +377,7 @@ Public Class frmRPparentContener
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
         Me.Menu = Me.MainMenu1
+        Me.MinimizeBox = False
         Me.Name = "frmRPparentContener"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip"
@@ -442,7 +407,7 @@ Public Class frmRPparentContener
     Private ofrmRapport As frmRPRapport
 
     Private m_nOldStep As Integer
-  
+
     Private Sub parentContener_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         formLoad()
     End Sub
@@ -471,41 +436,15 @@ Public Class frmRPparentContener
 
 #Region " Menu "
 
-    Private Sub MenuItem_aide_apropos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuItem_aide_apropos.Click
-        Dim formApropos As New apropos
-        formApropos.MdiParent = Me
-        formApropos.Show()
+    Private Sub MenuItem_aide_apropos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuApropos.Click
+        Dim formApropos As New RPapropos
+        formApropos.ShowDialog()
     End Sub
 
-    Private Sub MenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuItem2.Click
-
-        ' On ferme toutes les fenetres ouvertes
-        Dim form As Form
-        For Each form In Me.MdiChildren
-            form.Close()
-        Next
-
-        ' On affiche l'écran de connexion
-        Dim loginMDIChild As New login
-        loginMDIChild.MdiParent = Me
-        loginMDIChild.Show()
-    End Sub
-
-    Private Sub MenuItem4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuItem4.Click
+    Private Sub MenuItem4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuQuitter.Click
         Me.Close()
     End Sub
 
-    ' Vérification des mises à jour
-    Private Sub mnuCheckupdates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuCheckupdates.Click
-        If CSSoftwareUpdate.checkMAJ Then
-            Dim doMAJ As MsgBoxResult = MsgBox("Une mise à jour est disponible. Souhaitez-vous la récupérer maintenant ?", MsgBoxStyle.YesNo, "Mise à jour disponible !")
-            If doMAJ = MsgBoxResult.Yes Then
-                CSSoftwareUpdate.runUpdater(False)
-            End If
-        Else
-            MsgBox("Aucune mise à jour n'est disponible.")
-        End If
-    End Sub
 
 #End Region
 

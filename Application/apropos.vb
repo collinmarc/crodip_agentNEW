@@ -42,7 +42,7 @@ Public Class apropos
     Friend WithEvents btn_RAZBase As System.Windows.Forms.Button
     Friend WithEvents label_dateVersion As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(apropos))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RPapropos))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.label_projetName = New System.Windows.Forms.Label()
         Me.label_numVersion = New System.Windows.Forms.Label()

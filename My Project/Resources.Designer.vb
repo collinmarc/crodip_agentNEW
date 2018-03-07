@@ -21,7 +21,7 @@ Imports System
 '''<summary>
 '''  Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
 '''</summary>
-<Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0"),  _
+<Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0"),  _
  Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
  Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
 Friend Class Resources
@@ -244,12 +244,32 @@ Friend Class Resources
     End Property
     
     '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property logo() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("logo", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Icon semblable à (Icône).
     '''</summary>
     Friend Shared ReadOnly Property logoCRODIP() As System.Drawing.Icon
         Get
             Dim obj As Object = ResourceManager.GetObject("logoCRODIP", resourceCulture)
             Return CType(obj,System.Drawing.Icon)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property LogoMCII() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("LogoMCII", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property
     

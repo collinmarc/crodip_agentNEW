@@ -2,11 +2,12 @@ TRUNK
 
 Build:
 #145 : Export CSV des exploitation: Reprise des critères 
-#109 : [RP] : Message d'erreur Persistant sur la fiche pulvé
+#109 : [RP] Message d'erreur Persistant sur la fiche pulvé
 #110 : [RP] Affichage des pages Devit et vitesse
 #112 : [RP] Page de calcul Volue/ha : Nbre de sectes / niveau
-#117 : [RP]Titre des fenêtres
-#117 : [RP]Bouton de reduction
+#117 : [RP] Titre des fenêtres
+#117 : [RP] Bouton de reduction
+#122 : [RP] Menu ?
 
 Build:20170926140000
 #34620 : Exploitation avec un seul pulve : Pulve sélectioné par défaut, 

@@ -768,6 +768,9 @@
     <Compile Include="Application\parentContener.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\ReglagePulve\RPapropos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\ReglagePulve\EtatReglagePulve.vb" />
     <Compile Include="Application\ReglagePulve\frmRPInfosBuses.Designer.vb">
       <DependentUpon>frmRPInfosBuses.vb</DependentUpon>
@@ -2036,6 +2039,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\parentContener.resx">
       <DependentUpon>parentContener.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\RPapropos.resx">
+      <DependentUpon>RPapropos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\frmRPInfosBuses.resx">
       <DependentUpon>frmRPInfosBuses.vb</DependentUpon>
