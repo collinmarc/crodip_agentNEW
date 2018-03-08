@@ -86,16 +86,40 @@ Imports Crodip_agent
         oReglagePulve.coluser.Add(oUser)
 
         oUser = New RPUser()
-        oUser.Code = "test"
+        oUser.Code = "test2"
         oUser.setPassword("test")
         oUser.setDateExp(New Date(2018, 12, 31))
         oReglagePulve.coluser.Add(oUser)
 
         ParamReglagePulve.GenerateXML(".", oReglagePulve)
-        Assert.IsTrue(System.IO.File.Exists("./aqwzsx.crodip"))
+        Assert.IsFalse(System.IO.File.Exists("./aqwzsx.crodip"))
+        Assert.IsTrue(System.IO.File.Exists("./aqwzsx.crodipz"))
 
     End Sub
 
+    <TestMethod()> Public Sub ReadXMLTest()
+        Dim oReglagePulve As New ParamReglagePulve
+        Dim oUser As New RPUser()
+        oUser.Code = "a"
+        oUser.setPassword("*")
+        oUser.setDateExp(Now)
+        oUser.setDateExp(New Date(2017, 12, 31))
+        oReglagePulve.coluser.Add(oUser)
+
+        oUser = New RPUser()
+        oUser.Code = "test2"
+        oUser.setPassword("test")
+        oUser.setDateExp(New Date(2018, 12, 31))
+        oReglagePulve.coluser.Add(oUser)
+
+        ParamReglagePulve.GenerateXML(".", oReglagePulve)
+        Assert.IsFalse(System.IO.File.Exists("./aqwzsx.crodip"))
+
+        Dim oParamReglagePulve As ParamReglagePulve = ParamReglagePulve.ReadXML(".")
+        Assert.IsNotNull(oParamReglagePulve)
+        Assert.AreEqual(2, oParamReglagePulve.coluser.Count)
+        Assert.AreEqual("a", oParamReglagePulve.coluser(0).Code)
+    End Sub
 
 
 End Class
