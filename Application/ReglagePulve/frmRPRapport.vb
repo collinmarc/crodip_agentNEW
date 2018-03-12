@@ -5,6 +5,8 @@
 
     Public Overridable Sub setContexte(pDiag As RPDiagnostic)
         m_oDiag = pDiag
+        m_bsRPDiagnostic.Clear()
+        m_bsRPDiagnostic.Add(m_oDiag)
     End Sub
 
     Private Sub RPRapport_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -15,7 +17,6 @@
         MinimizeBox = False
         MaximizeBox = False
 
-        m_bsRPDiagnostic.Add(m_oDiag)
         lbSections.SetItemChecked(0, m_oDiag.bSectionSyntheseCapteurVitesse)
         lbSections.SetItemChecked(2, m_oDiag.bSectionSyntheseCapteurDebit)
         lbSections.SetItemChecked(4, m_oDiag.bSectionSyntheseBuses)
@@ -82,7 +83,7 @@
         Dim oResulat As DialogResult
         oResulat = m_FolderBrowserDialog.ShowDialog()
         If oResulat = Windows.Forms.DialogResult.OK Then
-            m_oDiag.FilePath = m_FolderBrowserDialog.SelectedPath
+            m_oDiag.ReportFilePath = m_FolderBrowserDialog.SelectedPath
             tbPath.Text = m_FolderBrowserDialog.SelectedPath
         End If
 

@@ -10,7 +10,7 @@ Public Class DiagnosticBusesDetailList
     Sub New()
         _diagnosticBusesDetail = New List(Of DiagnosticBusesDetail)
     End Sub
-    <XmlIgnore()>
+    '    <XmlIgnore()>
     Public Property Liste() As List(Of DiagnosticBusesDetail)
         Get
             Return _diagnosticBusesDetail

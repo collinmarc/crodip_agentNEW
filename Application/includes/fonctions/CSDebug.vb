@@ -31,9 +31,9 @@ Public Class CSDebug
     End Sub
     Public Shared Sub dispInfo(ByVal infoMsg As String)
         logger.Info(infoMsg)
-        If GLOB_ENV_DEBUGLVL >= 3 Then
-            displayMsg("[Info] - " & infoMsg)
-        End If
+        'If GLOB_ENV_DEBUGLVL >= 3 Then
+        ' displayMsg("[Info] - " & infoMsg)
+        ' End If
     End Sub
 
 

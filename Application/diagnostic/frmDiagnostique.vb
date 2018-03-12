@@ -74,7 +74,6 @@ Public Class frmDiagnostique
         InitializeComponent()
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
-
         OrganizeControls()
 
         m_referentielBuses.load(GLOB_STR_REFERENTIELBUSES_FILENAME)
@@ -10327,7 +10326,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub ini12123()
         'Calcul du nombre de buses
         Dim nBuses As Integer = 0
-        For Each oBusList As DiagnosticBuses In m_DiagBuses.diagnosticBuses
+        For Each oBusList As DiagnosticBuses In m_DiagBuses.Liste
             nBuses = nBuses + oBusList.diagnosticBusesDetail.Liste.Count
         Next
         m_diagnostic.diagnosticHelp12123.NbBuses = nBuses

@@ -24,7 +24,10 @@ Public Class DiagnosticTroncons833List
             Return _diagnosticTroncons833.ToArray()
         End Get
         Set(ByVal Value As DiagnosticTroncons833())
-            Throw New NotSupportedException("Setting the DiagnosticTroncons833 property is not supported, needed for XML Serialize")
+            _diagnosticTroncons833.Clear()
+            For Each oDiagTroncons833 As DiagnosticTroncons833 In Value
+                _diagnosticTroncons833.Add(oDiagTroncons833)
+            Next
         End Set
     End Property
 End Class
@@ -55,6 +58,14 @@ Public Class DiagnosticTroncons833
 
     End Sub
 
+    Sub New(pIdDiag As String, pidPression As String, pIdColumn As String, pPressionSortie As String)
+
+        MyClass.New()
+        idDiagnostic = pIdDiag
+        idPression = pidPression
+        idColumn = pIdColumn
+        pressionSortie = pPressionSortie
+    End Sub
     Public Property id() As Integer
         Get
             Return _id

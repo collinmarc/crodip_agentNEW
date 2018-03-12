@@ -4,6 +4,8 @@
     Protected m_oDiag As RPDiagnostic
     Public Sub setContexte(pIsModediag As Boolean, pClient As Exploitation, pRPdiag As RPDiagnostic)
         MyBase.setContexte(pIsModediag, pClient)
+        m_bsExploitation.Clear()
+        m_bsExploitation.Add(clientCourant)
         m_oDiag = pRPdiag
     End Sub
 
@@ -54,5 +56,9 @@
 
     Private Sub frmRPFicheExlpoitant_Leave(sender As Object, e As EventArgs) Handles Me.Leave
         Valider()
+    End Sub
+
+    Public Sub refresh()
+        m_bsExploitation.ResetBindings(False)
     End Sub
 End Class

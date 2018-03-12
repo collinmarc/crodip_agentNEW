@@ -2524,11 +2524,11 @@ Public Class DiagnosticManagerTest
 
         Dim oSynchro As New Synchronisation(m_oAgent)
 
-        Dim nItems As Integer = oDiag.diagnosticBusesList.diagnosticBuses.Count
+        Dim nItems As Integer = oDiag.diagnosticBusesList.Liste.Count
 
         Assert.IsTrue(oSynchro.runascSynchroDiag(m_oAgent, oDiag))
         'Vérification que le nombre de buses est correct après synchroi car elle sont été supprimées avant la synchro
-        Assert.AreEqual(nItems, oDiag.diagnosticBusesList.diagnosticBuses.Count)
+        Assert.AreEqual(nItems, oDiag.diagnosticBusesList.Liste.Count)
         DiagnosticManager.delete(oDiag.id)
 
     End Sub

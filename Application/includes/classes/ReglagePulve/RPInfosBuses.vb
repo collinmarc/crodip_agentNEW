@@ -1,4 +1,8 @@
-﻿Public Class RPInfosBuses
+﻿
+Imports System.Xml.Serialization
+
+<Serializable()>
+Public Class RPInfosBuses
 
     Protected m_infosDescentes As Generic.List(Of String)
     Private _nbDescentes As Integer = 0
@@ -6,6 +10,9 @@
         m_infosDescentes = New Generic.List(Of String)()
 
         NbDescentes = pnbDescente
+    End Sub
+    Public Sub New()
+        MyClass.New(0)
     End Sub
     Public Property NbDescentes() As Integer
         Get
@@ -25,15 +32,22 @@
             _nbDescentes = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos(pNum As String) As String
         Get
-            Return m_infosDescentes(pNum - 1)
+            If pNum <= NbDescentes Then
+                Return m_infosDescentes(pNum - 1)
+            Else
+                Return ""
+            End If
         End Get
         Set(ByVal value As String)
-            m_infosDescentes(pNum - 1) = value
+            If pNum <= NbDescentes Then
+                m_infosDescentes(pNum - 1) = value
+            End If
         End Set
     End Property
-
+    <XmlIgnoreAttribute()>
     Public Property Infos1 As String
         Get
             Return Infos(1)
@@ -42,6 +56,7 @@
             Infos(1) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos2 As String
         Get
             Return Infos(2)
@@ -50,6 +65,7 @@
             Infos(2) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos3 As String
         Get
             Return Infos(3)
@@ -58,6 +74,7 @@
             Infos(3) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos4 As String
         Get
             Return Infos(4)
@@ -66,6 +83,7 @@
             Infos(4) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos5 As String
         Get
             Return Infos(5)
@@ -74,6 +92,7 @@
             Infos(5) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos6 As String
         Get
             Return Infos(6)
@@ -82,6 +101,7 @@
             Infos(6) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos7 As String
         Get
             Return Infos(7)
@@ -90,6 +110,7 @@
             Infos(7) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos8 As String
         Get
             Return Infos(8)
@@ -98,6 +119,7 @@
             Infos(8) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos9 As String
         Get
             Return Infos(9)
@@ -106,6 +128,7 @@
             Infos(9) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos10 As String
         Get
             Return Infos(10)
@@ -114,6 +137,7 @@
             Infos(10) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos11 As String
         Get
             Return Infos(11)
@@ -122,6 +146,7 @@
             Infos(11) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos12 As String
         Get
             Return Infos(12)
@@ -130,6 +155,7 @@
             Infos(12) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos13 As String
         Get
             Return Infos(13)
@@ -138,6 +164,7 @@
             Infos(13) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos14 As String
         Get
             Return Infos(14)
@@ -146,6 +173,7 @@
             Infos(14) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos15 As String
         Get
             Return Infos(15)
@@ -154,6 +182,7 @@
             Infos(15) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos16 As String
         Get
             Return Infos(16)
@@ -162,6 +191,7 @@
             Infos(16) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos17 As String
         Get
             Return Infos(17)
@@ -170,6 +200,7 @@
             Infos(17) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos18 As String
         Get
             Return Infos(18)
@@ -178,6 +209,7 @@
             Infos(18) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos19 As String
         Get
             Return Infos(19)
@@ -186,6 +218,7 @@
             Infos(19) = value
         End Set
     End Property
+    <XmlIgnoreAttribute()>
     Public Property Infos20 As String
         Get
             Return Infos(20)

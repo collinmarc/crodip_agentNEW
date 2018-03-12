@@ -45,6 +45,15 @@ Public Class DiagnosticItemsList
             _diagnosticItem.Add(key, pDiagItem)
         End If
     End Sub
+    Public Function getItem(sKey As String) As DiagnosticItem
+        Dim oReturn As DiagnosticItem
+        Try
+            oReturn = _diagnosticItem(sKey)
+        Catch ex As Exception
+            oReturn = Nothing
+        End Try
+        Return oReturn
+    End Function
     ''' <summary>
     ''' Renvoie Vrai si la clé est incluse dans le dictionnaire
     ''' </summary>

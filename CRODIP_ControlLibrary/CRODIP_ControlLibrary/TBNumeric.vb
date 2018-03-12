@@ -66,7 +66,7 @@
             Try
                 MyBase.DataBindings("Text").WriteValue()
             Catch ex As Exception
-
+                Trace.WriteLine("TBNumeric.onTextchanged : ERR" & ex.Message)
             End Try
 
         End If

@@ -9,7 +9,7 @@ Public Class EtatReglagePulve
 
     Public Sub New(pDiag As RPDiagnostic)
         m_oDiag = pDiag
-        m_oDiag.FileName = getFileName()
+        m_oDiag.ReportFileName = getFileName()
     End Sub
 
     Public Function getDs() As DataSet
@@ -17,7 +17,7 @@ Public Class EtatReglagePulve
     End Function
     Public Overrides Function getFileName() As String
         If String.IsNullOrEmpty(m_FileName) Then
-            m_FileName = "Rapport" & Format(Date.Now, "yyyyMMddhhmmss") & ".pdf"
+            m_FileName = m_oDiag.createReportFileName()
         End If
         Return m_FileName
     End Function
@@ -85,7 +85,7 @@ Public Class EtatReglagePulve
                 Dim CrExportOptions As ExportOptions
                 Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                 Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                CrDiskFileDestinationOptions.DiskFileName = m_oDiag.FilePath & "/" & getFileName()
+                CrDiskFileDestinationOptions.DiskFileName = m_oDiag.ReportFilePath & "/" & getFileName()
                 CrExportOptions = objReport.ExportOptions
                 With CrExportOptions
                     .ExportDestinationType = ExportDestinationType.DiskFile
@@ -168,9 +168,9 @@ Public Class EtatReglagePulve
                                                           bSectionCommentaires:=m_oDiag.bSectionCommentaires)
 
 
-            oMaterielRow = m_ods.Materiel.AddMaterielRow(Identifiant:=m_oDiag.pulverisateurNumNational, _
-                                                         Marque:=m_oDiag.pulverisateurMarque.ToUpper(), _
-                                                         Modele:=m_oDiag.pulverisateurModele.ToUpper(), _
+            oMaterielRow = m_ods.Materiel.AddMaterielRow(Identifiant:=m_oDiag.pulverisateurNumNational,
+                                                         Marque:=m_oDiag.pulverisateurMarque.ToUpper(),
+                                                         Modele:=m_oDiag.pulverisateurModele.ToUpper(),
                                                          Capacite:=m_oDiag.pulverisateurCapacite.ToUpper(),
                                                          LargeurNbRangs:=Trim(m_oDiag.pulverisateurLargeur + m_oDiag.pulverisateurNbRangs).ToUpper(),
                                                          Annee:=m_oDiag.pulverisateurAnneeAchat,
@@ -190,7 +190,7 @@ Public Class EtatReglagePulve
                                                          Accessoires:=sAcessoires.ToUpper(),
                                                          TypeLargeurNbRangs:=sTypeLargeurNbRang)
 
-            m_ods.Proprietaire.AddProprietaireRow(RaisonSociale:=m_oDiag.proprietaireRaisonSociale, _
+            m_ods.Proprietaire.AddProprietaireRow(RaisonSociale:=m_oDiag.proprietaireRaisonSociale,
                                                   Nom:=m_oDiag.proprietaireNom & " " & m_oDiag.proprietairePrenom,
                                                   Representant:=m_oDiag.proprietaireRepresentant,
                                                   Adresse:=m_oDiag.proprietaireAdresse,
@@ -210,7 +210,7 @@ Public Class EtatReglagePulve
             oDiagRow = m_ods.Diagnostic.AddDiagnosticRow(NumeroControle:=m_oDiag.id, dateControle:=CDate(m_oDiag.controleDateDebut), IdentifiantMateriel:=m_oDiag.pulverisateurNumNational)
             '''DiagnosticItems
             Dim bDiagItemOPresent As Boolean = False
-            Dim bDiagItemPCPresent as Boolean = False
+            Dim bDiagItemPCPresent As Boolean = False
             For Each oDiagItem As DiagnosticItem In m_oDiag.diagnosticItemsLst.items
                 If oDiagItem.itemCodeEtat <> "B" Then
                     sCode = oDiagItem.idItem & oDiagItem.itemValue
@@ -312,56 +312,56 @@ Public Class EtatReglagePulve
 
             'Capteur de vitesse 551
             If m_oDiag.diagnosticHelp551.HasValue() Then
-                m_ods.SyntheseCapteurVitesse.AddSyntheseCapteurVitesseRow(idDiag:=m_oDiag.id, ErreurMoyenne:=m_oDiag.diagnosticHelp551.ErreurMoyenne, type:=m_oDiag.diagnosticHelp551.iditem, _
-                                                                            Distance1:=m_oDiag.diagnosticHelp551.Distance1, VitesseLue1:=m_oDiag.diagnosticHelp551.VitesseLue1, Temps1:=m_oDiag.diagnosticHelp551.Temps1, Ecart1:=m_oDiag.diagnosticHelp551.Ecart1, VitesseReelle1:=m_oDiag.diagnosticHelp551.VitesseReelle1, _
+                m_ods.SyntheseCapteurVitesse.AddSyntheseCapteurVitesseRow(idDiag:=m_oDiag.id, ErreurMoyenne:=m_oDiag.diagnosticHelp551.ErreurMoyenne, type:=m_oDiag.diagnosticHelp551.iditem,
+                                                                            Distance1:=m_oDiag.diagnosticHelp551.Distance1, VitesseLue1:=m_oDiag.diagnosticHelp551.VitesseLue1, Temps1:=m_oDiag.diagnosticHelp551.Temps1, Ecart1:=m_oDiag.diagnosticHelp551.Ecart1, VitesseReelle1:=m_oDiag.diagnosticHelp551.VitesseReelle1,
                                                                             Distance2:=m_oDiag.diagnosticHelp551.Distance2, VitesseLue2:=m_oDiag.diagnosticHelp551.VitesseLue2, Temps2:=m_oDiag.diagnosticHelp551.Temps2, Ecart2:=m_oDiag.diagnosticHelp551.Ecart2, VitesseReelle2:=m_oDiag.diagnosticHelp551.VitesseReelle2, Conclusion:=m_oDiag.diagnosticHelp551.Resultat)
             End If
             'Capteur de vitesse 5621
             If m_oDiag.diagnosticHelp5621.HasValue() Then
-                m_ods.SyntheseCapteurVitesse.AddSyntheseCapteurVitesseRow(idDiag:=m_oDiag.id, ErreurMoyenne:=m_oDiag.diagnosticHelp5621.ErreurMoyenne, type:=m_oDiag.diagnosticHelp5621.iditem, _
-                                                                            Distance1:=m_oDiag.diagnosticHelp5621.Distance1, VitesseLue1:=m_oDiag.diagnosticHelp5621.VitesseLue1, Temps1:=m_oDiag.diagnosticHelp5621.Temps1, Ecart1:=m_oDiag.diagnosticHelp5621.Ecart1, VitesseReelle1:=m_oDiag.diagnosticHelp5621.VitesseReelle1, _
+                m_ods.SyntheseCapteurVitesse.AddSyntheseCapteurVitesseRow(idDiag:=m_oDiag.id, ErreurMoyenne:=m_oDiag.diagnosticHelp5621.ErreurMoyenne, type:=m_oDiag.diagnosticHelp5621.iditem,
+                                                                            Distance1:=m_oDiag.diagnosticHelp5621.Distance1, VitesseLue1:=m_oDiag.diagnosticHelp5621.VitesseLue1, Temps1:=m_oDiag.diagnosticHelp5621.Temps1, Ecart1:=m_oDiag.diagnosticHelp5621.Ecart1, VitesseReelle1:=m_oDiag.diagnosticHelp5621.VitesseReelle1,
                                                                             Distance2:=m_oDiag.diagnosticHelp5621.Distance2, VitesseLue2:=m_oDiag.diagnosticHelp5621.VitesseLue2, Temps2:=m_oDiag.diagnosticHelp5621.Temps2, Ecart2:=m_oDiag.diagnosticHelp5621.Ecart2, VitesseReelle2:=m_oDiag.diagnosticHelp5621.VitesseReelle2, Conclusion:=m_oDiag.diagnosticHelp5621.Resultat)
             End If
 
             'Controle du DébitMetre (552
             If m_oDiag.diagnosticHelp552.hasValue() Then
-                m_ods.SyntheseDebitmetre.AddSyntheseDebitmetreRow(idDiag:=m_oDiag.id, ErreurDebitMetre:=m_oDiag.diagnosticHelp552.ErreurDebitMetre, type:=m_oDiag.diagnosticHelp552.iditem, _
-                                                                    NbreBuses1:=m_oDiag.diagnosticHelp552.NbBuses_m1, _
-                                                                    NbreBuses2:=m_oDiag.diagnosticHelp552.NbBuses_m2, _
-                                                                    NbreBuses3:=m_oDiag.diagnosticHelp552.NbBuses_m3, _
-                                                                    PressionBar1:=m_oDiag.diagnosticHelp552.Pression_m1, _
-                                                                    PressionBar2:=m_oDiag.diagnosticHelp552.Pression_m2, _
-                                                                    PressionBar3:=m_oDiag.diagnosticHelp552.Pression_m3, _
-                                                                    DebitAfficheur1:=m_oDiag.diagnosticHelp552.DebitAfficheur_m1, _
-                                                                    DebitAfficheur2:=m_oDiag.diagnosticHelp552.DebitAfficheur_m2, _
-                                                                    DebitAfficheur3:=m_oDiag.diagnosticHelp552.DebitAfficheur_m3, _
-                                                                    EcartPct1:=m_oDiag.diagnosticHelp552.EcartPct_m1, _
-                                                                    EcartPct2:=m_oDiag.diagnosticHelp552.EcartPct_m2, _
-                                                                    EcartPct3:=m_oDiag.diagnosticHelp552.EcartPct_m3, _
+                m_ods.SyntheseDebitmetre.AddSyntheseDebitmetreRow(idDiag:=m_oDiag.id, ErreurDebitMetre:=m_oDiag.diagnosticHelp552.ErreurDebitMetre, type:=m_oDiag.diagnosticHelp552.iditem,
+                                                                    NbreBuses1:=m_oDiag.diagnosticHelp552.NbBuses_m1,
+                                                                    NbreBuses2:=m_oDiag.diagnosticHelp552.NbBuses_m2,
+                                                                    NbreBuses3:=m_oDiag.diagnosticHelp552.NbBuses_m3,
+                                                                    PressionBar1:=m_oDiag.diagnosticHelp552.Pression_m1,
+                                                                    PressionBar2:=m_oDiag.diagnosticHelp552.Pression_m2,
+                                                                    PressionBar3:=m_oDiag.diagnosticHelp552.Pression_m3,
+                                                                    DebitAfficheur1:=m_oDiag.diagnosticHelp552.DebitAfficheur_m1,
+                                                                    DebitAfficheur2:=m_oDiag.diagnosticHelp552.DebitAfficheur_m2,
+                                                                    DebitAfficheur3:=m_oDiag.diagnosticHelp552.DebitAfficheur_m3,
+                                                                    EcartPct1:=m_oDiag.diagnosticHelp552.EcartPct_m1,
+                                                                    EcartPct2:=m_oDiag.diagnosticHelp552.EcartPct_m2,
+                                                                    EcartPct3:=m_oDiag.diagnosticHelp552.EcartPct_m3,
                                                                     DebitEtalon1:=m_oDiag.diagnosticHelp552.DebitEtalon_m1,
                                                                     DebitEtalon2:=m_oDiag.diagnosticHelp552.DebitEtalon_m2,
                                                                     DebitEtalon3:=m_oDiag.diagnosticHelp552.DebitEtalon_m3,
-                                                                    conclusion:=m_oDiag.diagnosticHelp552.Resultat _
+                                                                    conclusion:=m_oDiag.diagnosticHelp552.Resultat
                                                                     )
             End If
             If m_oDiag.diagnosticHelp5622.hasValue() Then
-                m_ods.SyntheseDebitmetre.AddSyntheseDebitmetreRow(idDiag:=m_oDiag.id, ErreurDebitMetre:=m_oDiag.diagnosticHelp5622.ErreurDebitMetre, type:=m_oDiag.diagnosticHelp5622.iditem, _
-                                                                    NbreBuses1:=m_oDiag.diagnosticHelp5622.NbBuses_m1, _
-                                                                    NbreBuses2:=m_oDiag.diagnosticHelp5622.NbBuses_m2, _
-                                                                    NbreBuses3:=m_oDiag.diagnosticHelp5622.NbBuses_m3, _
-                                                                    PressionBar1:=m_oDiag.diagnosticHelp5622.Pression_m1, _
-                                                                    PressionBar2:=m_oDiag.diagnosticHelp5622.Pression_m2, _
-                                                                    PressionBar3:=m_oDiag.diagnosticHelp5622.Pression_m3, _
-                                                                    DebitAfficheur1:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m1, _
-                                                                    DebitAfficheur2:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m2, _
-                                                                    DebitAfficheur3:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m3, _
-                                                                    EcartPct1:=m_oDiag.diagnosticHelp5622.EcartPct_m1, _
-                                                                    EcartPct2:=m_oDiag.diagnosticHelp5622.EcartPct_m2, _
-                                                                    EcartPct3:=m_oDiag.diagnosticHelp5622.EcartPct_m3, _
+                m_ods.SyntheseDebitmetre.AddSyntheseDebitmetreRow(idDiag:=m_oDiag.id, ErreurDebitMetre:=m_oDiag.diagnosticHelp5622.ErreurDebitMetre, type:=m_oDiag.diagnosticHelp5622.iditem,
+                                                                    NbreBuses1:=m_oDiag.diagnosticHelp5622.NbBuses_m1,
+                                                                    NbreBuses2:=m_oDiag.diagnosticHelp5622.NbBuses_m2,
+                                                                    NbreBuses3:=m_oDiag.diagnosticHelp5622.NbBuses_m3,
+                                                                    PressionBar1:=m_oDiag.diagnosticHelp5622.Pression_m1,
+                                                                    PressionBar2:=m_oDiag.diagnosticHelp5622.Pression_m2,
+                                                                    PressionBar3:=m_oDiag.diagnosticHelp5622.Pression_m3,
+                                                                    DebitAfficheur1:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m1,
+                                                                    DebitAfficheur2:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m2,
+                                                                    DebitAfficheur3:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m3,
+                                                                    EcartPct1:=m_oDiag.diagnosticHelp5622.EcartPct_m1,
+                                                                    EcartPct2:=m_oDiag.diagnosticHelp5622.EcartPct_m2,
+                                                                    EcartPct3:=m_oDiag.diagnosticHelp5622.EcartPct_m3,
                                                                     DebitEtalon1:=m_oDiag.diagnosticHelp5622.DebitEtalon_m1,
                                                                     DebitEtalon2:=m_oDiag.diagnosticHelp5622.DebitEtalon_m2,
                                                                     DebitEtalon3:=m_oDiag.diagnosticHelp5622.DebitEtalon_m3,
-                                                                    conclusion:=m_oDiag.diagnosticHelp5622.Resultat _
+                                                                    conclusion:=m_oDiag.diagnosticHelp5622.Resultat
                                                                     )
             End If
 
@@ -435,7 +435,7 @@ Public Class EtatReglagePulve
         Dim bReturn As Boolean
 
         If Not String.IsNullOrEmpty(getFileName()) Then
-            CSFile.open(m_oDiag.FilePath & "/" & m_oDiag.FileName)
+            CSFile.open(m_oDiag.ReportFilePath & "/" & m_oDiag.ReportFileName)
             bReturn = True
         Else
             bReturn = False

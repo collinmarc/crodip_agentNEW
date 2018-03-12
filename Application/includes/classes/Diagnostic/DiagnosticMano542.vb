@@ -67,7 +67,10 @@ Public Class DiagnosticMano542List
             Return _diagnosticMano542.ToArray()
         End Get
         Set(ByVal Value As DiagnosticMano542())
-            Throw New NotSupportedException("Setting the diagnosticMano542 property is not supported, needed for XML Serialize")
+            _diagnosticMano542.Clear()
+            For Each oDiagMAno542 As DiagnosticMano542 In Value
+                _diagnosticMano542.Add(oDiagMAno542)
+            Next
         End Set
     End Property
     ''' <summary>

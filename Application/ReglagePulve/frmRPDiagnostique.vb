@@ -3,15 +3,22 @@
     Implements IfrmCRODIP
 
 
+    Public Sub refresh()
+        Formload()
+    End Sub
     ''' <summary>
     ''' Formload pour le reglage Pulvé
     ''' </summary>
     ''' <remarks></remarks>
+    '''
     Protected Overrides Sub Formload() Implements IfrmCRODIP.formLoad
         Try
+            CSDebug.dispInfo("frmRPDiagnostique.FormLoad Start")
             Me.ControlBox = False
             Me.WindowState = FormWindowState.Maximized
+            CSDebug.dispInfo("frmRPDiagnostique.FormLoad Mybase")
             MyBase.Formload()
+            CSDebug.dispInfo("frmRPDiagnostique.FormLoad MyBaseEnd")
             MinimizeBox = False
             MaximizeBox = False
 

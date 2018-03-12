@@ -124,14 +124,23 @@
   <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\Exit.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="login_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\login_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ClosePreviewHH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ClosePreviewHH.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_delete.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btn_annuler" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_annuler.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PuceRougeT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PuceRougeT.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_suivant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_suivant.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Button_Play_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Button_Play_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,8 +178,8 @@
   <data name="btn_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\btn\btn_refresh.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_suivant" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_suivant.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Open36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\ico\Open36.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PuceGriseT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PuceGriseT.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,8 +196,11 @@
   <data name="Transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Transparent.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_empty_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_empty_big.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="save36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\ico\save36.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Next36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\ico\Next36.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icon1.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,8 +208,8 @@
   <data name="arrow_refresh_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\arrow_refresh_small.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_delete.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btn_empty_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_empty_big.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PuceJauneT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PuceJauneT.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,7 +217,7 @@
   <data name="LogoMCII" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\LogoMCII.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="login_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\login_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="previous36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\ico\previous36.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

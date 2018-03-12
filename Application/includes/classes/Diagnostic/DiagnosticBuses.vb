@@ -11,7 +11,7 @@ Public Class DiagnosticBusesList
         _diagnosticBuses = New List(Of DiagnosticBuses)
 
     End Sub
-    <XmlIgnoreAttribute()>
+    '    <XmlIgnoreAttribute()>
     Public Property Liste As List(Of DiagnosticBuses)
         Get
             Return _diagnosticBuses
@@ -20,13 +20,13 @@ Public Class DiagnosticBusesList
             _diagnosticBuses = Value
         End Set
     End Property
-    Public Property diagnosticBuses As DiagnosticBuses()
-        Get
-            Return _diagnosticBuses.ToArray()
-        End Get
-        Set(ByVal Value As DiagnosticBuses())
-        End Set
-    End Property
+    'Public Property diagnosticBuses As DiagnosticBuses()
+    '    Get
+    '        Return _diagnosticBuses.ToArray()
+    '    End Get
+    '    Set(ByVal Value As DiagnosticBuses())
+    '    End Set
+    'End Property
 
 End Class
 <Serializable()> _

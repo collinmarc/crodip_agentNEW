@@ -296,6 +296,36 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property Next36() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("Next36", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property Open36() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("Open36", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property previous36() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("previous36", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property PuceGriseT() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("PuceGriseT", resourceCulture)
@@ -340,6 +370,16 @@ Friend Class Resources
         Get
             Dim obj As Object = ResourceManager.GetObject("pulveprinc", resourceCulture)
             Return CType(obj,System.Drawing.Icon)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property save36() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("save36", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property
     

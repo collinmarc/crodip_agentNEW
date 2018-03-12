@@ -45,7 +45,6 @@ Public Class frmRPparentContener
     Friend WithEvents tsbDemarer As System.Windows.Forms.ToolStrip
     Friend WithEvents tsbDemarrer As System.Windows.Forms.ToolStripButton
     Friend WithEvents tsbSuivant As System.Windows.Forms.ToolStripButton
-    Friend WithEvents tsbPrecedant As System.Windows.Forms.ToolStripButton
     Friend WithEvents miDemarer As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem8 As System.Windows.Forms.MenuItem
     Friend WithEvents miExploitant As System.Windows.Forms.MenuItem
@@ -67,6 +66,12 @@ Public Class frmRPparentContener
     Friend WithEvents tsbRapport As System.Windows.Forms.ToolStripButton
     Friend WithEvents miVitesseFonctionnement As System.Windows.Forms.MenuItem
     Friend WithEvents mnuParam As MenuItem
+    Friend WithEvents mnuLoadCtrlCRODIP As MenuItem
+    Friend WithEvents tsbLoad As ToolStripButton
+    Friend WithEvents m_OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents m_SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents tsbSave As ToolStripButton
+    Friend WithEvents tsbPrecedent As ToolStripButton
     Friend WithEvents tsbQuitter As System.Windows.Forms.ToolStripButton
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -91,13 +96,16 @@ Public Class frmRPparentContener
         Me.miRecap = New System.Windows.Forms.MenuItem()
         Me.miCalcul = New System.Windows.Forms.MenuItem()
         Me.miRapport = New System.Windows.Forms.MenuItem()
+        Me.mnuLoadCtrlCRODIP = New System.Windows.Forms.MenuItem()
         Me.notify_connexionStatus_nok = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.notify_connexionStatus_ok = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.notify_connexionStatus_wait = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.tsbDemarer = New System.Windows.Forms.ToolStrip()
         Me.tsbQuitter = New System.Windows.Forms.ToolStripButton()
         Me.tsbDemarrer = New System.Windows.Forms.ToolStripButton()
-        Me.tsbPrecedant = New System.Windows.Forms.ToolStripButton()
+        Me.tsbLoad = New System.Windows.Forms.ToolStripButton()
+        Me.tsbSave = New System.Windows.Forms.ToolStripButton()
+        Me.tsbPrecedent = New System.Windows.Forms.ToolStripButton()
         Me.tsbSuivant = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsbExploitant = New System.Windows.Forms.ToolStripButton()
@@ -110,6 +118,8 @@ Public Class frmRPparentContener
         Me.tsbRapport = New System.Windows.Forms.ToolStripButton()
         Me.statusBar_img_loader = New System.Windows.Forms.PictureBox()
         Me.parentContener_statusBar = New System.Windows.Forms.StatusBar()
+        Me.m_OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.m_SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.tsbDemarer.SuspendLayout()
         CType(Me.statusBar_img_loader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -147,7 +157,7 @@ Public Class frmRPparentContener
         'MenuItem5
         '
         Me.MenuItem5.Index = 1
-        Me.MenuItem5.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.miDemarer, Me.miSuivant, Me.miPrecedant, Me.MenuItem8, Me.miExploitant, Me.miPulve, Me.mivitesse, Me.miVitesseFonctionnement, Me.miDebit, Me.miDiag, Me.miRecap, Me.miCalcul, Me.miRapport})
+        Me.MenuItem5.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.miDemarer, Me.miSuivant, Me.miPrecedant, Me.MenuItem8, Me.miExploitant, Me.miPulve, Me.mivitesse, Me.miVitesseFonctionnement, Me.miDebit, Me.miDiag, Me.miRecap, Me.miCalcul, Me.miRapport, Me.mnuLoadCtrlCRODIP})
         Me.MenuItem5.Text = "ReglagePulvérisateur"
         '
         'miDemarer
@@ -215,6 +225,11 @@ Public Class frmRPparentContener
         Me.miRapport.Index = 12
         Me.miRapport.Text = "Rapport"
         '
+        'mnuLoadCtrlCRODIP
+        '
+        Me.mnuLoadCtrlCRODIP.Index = 13
+        Me.mnuLoadCtrlCRODIP.Text = "Controle Crodip"
+        '
         'notify_connexionStatus_nok
         '
         Me.notify_connexionStatus_nok.Icon = CType(resources.GetObject("notify_connexionStatus_nok.Icon"), System.Drawing.Icon)
@@ -234,7 +249,7 @@ Public Class frmRPparentContener
         'tsbDemarer
         '
         Me.tsbDemarer.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.tsbDemarer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbQuitter, Me.tsbDemarrer, Me.tsbPrecedant, Me.tsbSuivant, Me.ToolStripSeparator1, Me.tsbExploitant, Me.tsbPulvérisateur, Me.tsbVitesse, Me.tsbDebit, Me.tsbDiag, Me.tsbrecap, Me.tsbCalcul, Me.tsbRapport})
+        Me.tsbDemarer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbQuitter, Me.tsbDemarrer, Me.tsbLoad, Me.tsbSave, Me.tsbPrecedent, Me.tsbSuivant, Me.ToolStripSeparator1, Me.tsbExploitant, Me.tsbPulvérisateur, Me.tsbVitesse, Me.tsbDebit, Me.tsbDiag, Me.tsbrecap, Me.tsbCalcul, Me.tsbRapport})
         Me.tsbDemarer.Location = New System.Drawing.Point(0, 0)
         Me.tsbDemarer.Name = "tsbDemarer"
         Me.tsbDemarer.Size = New System.Drawing.Size(1012, 39)
@@ -260,24 +275,40 @@ Public Class frmRPparentContener
         Me.tsbDemarrer.Size = New System.Drawing.Size(36, 36)
         Me.tsbDemarrer.Text = "Démarrer "
         '
-        'tsbPrecedant
+        'tsbLoad
         '
-        Me.tsbPrecedant.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbPrecedant.Image = CType(resources.GetObject("tsbPrecedant.Image"), System.Drawing.Image)
-        Me.tsbPrecedant.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.tsbPrecedant.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbPrecedant.Name = "tsbPrecedant"
-        Me.tsbPrecedant.Size = New System.Drawing.Size(23, 36)
-        Me.tsbPrecedant.Text = "Précédant"
+        Me.tsbLoad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbLoad.Image = Global.Crodip_agent.Resources.Open36
+        Me.tsbLoad.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbLoad.Name = "tsbLoad"
+        Me.tsbLoad.Size = New System.Drawing.Size(36, 36)
+        Me.tsbLoad.Text = "Charger un réglage"
+        '
+        'tsbSave
+        '
+        Me.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbSave.Image = Global.Crodip_agent.Resources.save36
+        Me.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbSave.Name = "tsbSave"
+        Me.tsbSave.Size = New System.Drawing.Size(36, 36)
+        Me.tsbSave.Text = "Sauvegarde"
+        '
+        'tsbPrecedent
+        '
+        Me.tsbPrecedent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbPrecedent.Image = CType(resources.GetObject("tsbPrecedent.Image"), System.Drawing.Image)
+        Me.tsbPrecedent.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbPrecedent.Name = "tsbPrecedent"
+        Me.tsbPrecedent.Size = New System.Drawing.Size(36, 36)
+        Me.tsbPrecedent.Text = "Précédent"
         '
         'tsbSuivant
         '
         Me.tsbSuivant.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbSuivant.Image = CType(resources.GetObject("tsbSuivant.Image"), System.Drawing.Image)
-        Me.tsbSuivant.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.tsbSuivant.Image = Global.Crodip_agent.Resources.Next36
         Me.tsbSuivant.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbSuivant.Name = "tsbSuivant"
-        Me.tsbSuivant.Size = New System.Drawing.Size(23, 36)
+        Me.tsbSuivant.Size = New System.Drawing.Size(36, 36)
         Me.tsbSuivant.Text = "Suivant"
         '
         'ToolStripSeparator1
@@ -375,6 +406,12 @@ Public Class frmRPparentContener
         Me.parentContener_statusBar.Size = New System.Drawing.Size(1012, 22)
         Me.parentContener_statusBar.TabIndex = 1
         '
+        'm_OpenFileDialog1
+        '
+        Me.m_OpenFileDialog1.FileName = "OpenFileDialog1"
+        Me.m_OpenFileDialog1.Filter = "Fichier CRODIP|*.CRODIP"
+        Me.m_OpenFileDialog1.Title = "Chargement d'un fichier de reglage Pulvérisateur"
+        '
         'frmRPparentContener
         '
         Me.ClientSize = New System.Drawing.Size(1012, 664)
@@ -404,7 +441,7 @@ Public Class frmRPparentContener
     Private m_RPParam As RPParam
 
     'Création des fenêtres Filles
-    Private oFRM As frmRPFicheExlpoitant
+    Private oFRMExploit As frmRPFicheExlpoitant
     Private oFRMPulve As frmRPFichePulve
     Private odlgHelp551 As frmRPDlgHelp551
     Private odlgHelp552 As frmRPDlgHelp552
@@ -543,7 +580,7 @@ Public Class frmRPparentContener
 
     End Sub
 
-    Public Function doPrecedant() As Boolean
+    Public Function doPrecedent() As Boolean
         Dim bReturn As Boolean
         Try
             m_nStep = m_nStep - 1
@@ -564,11 +601,13 @@ Public Class frmRPparentContener
             Next
             m_nStep = 0
             m_RPDiagnostic = New RPDiagnostic()
+            m_RPDiagnostic.oClientCourant = clientCourant
+            m_RPDiagnostic.oPulverisateurCourant = pulverisateurCourant
 
 
 
 #If DEBUG Then
-            clientCourant.raisonSociale = "RSexploitantTest"
+            clientCourant.raisonSociale = "ZZZZZZZZZZZZZZZZZZZZZZ"
             clientCourant.nomExploitant = "exploitantTest"
             clientCourant.prenomExploitant = "exploitantTest"
             clientCourant.adresse = "adresseTest"
@@ -630,10 +669,10 @@ Public Class frmRPparentContener
 
 
             'Création des fenêtres Filles
-            oFRM = New frmRPFicheExlpoitant()
-            oFRM.setContexte(False, clientCourant, m_RPDiagnostic)
-            oFRM.WindowState = FormWindowState.Maximized
-            oFRM.MdiParent = Me
+            oFRMExploit = New frmRPFicheExlpoitant()
+            oFRMExploit.setContexte(False, clientCourant, m_RPDiagnostic)
+            oFRMExploit.WindowState = FormWindowState.Maximized
+            oFRMExploit.MdiParent = Me
 
 
             oFRMPulve = New frmRPFichePulve()
@@ -706,8 +745,8 @@ Public Class frmRPparentContener
         Suivant()
     End Sub
 
-    Private Sub tsbPrecedant_Click(sender As Object, e As EventArgs) Handles tsbPrecedant.Click
-        doPrecedant()
+    Private Sub tsbPrecedant_Click(sender As Object, e As EventArgs)
+        doPrecedent()
     End Sub
 
     Private Sub mnuRPSuivant_Click(sender As Object, e As EventArgs) Handles miSuivant.Click
@@ -715,7 +754,7 @@ Public Class frmRPparentContener
     End Sub
 
     Private Sub mnuRPPrec_Click(sender As Object, e As EventArgs) Handles miPrecedant.Click
-        doPrecedant()
+        doPrecedent()
     End Sub
 
     Private Sub MenuItem6_Click(sender As Object, e As EventArgs) Handles miDemarer.Click
@@ -855,7 +894,7 @@ Public Class frmRPparentContener
     End Sub
     Private Sub enablePrecedant(pbEnable As Boolean)
         miPrecedant.Enabled = pbEnable
-        tsbPrecedant.Enabled = pbEnable
+        tsbPrecedent.Enabled = pbEnable
 
     End Sub
     Private Sub enableSuivant(pbEnable As Boolean)
@@ -901,5 +940,134 @@ Public Class frmRPparentContener
 
     Private Sub mnuParam_Click(sender As Object, e As EventArgs) Handles mnuParam.Click
         RPParamUser.ShowDialog(Me)
+    End Sub
+
+    Private Sub mnuLoadCtrlCRODIP_Click(sender As Object, e As EventArgs) Handles mnuLoadCtrlCRODIP.Click
+        Dim oFRM As New frmLoadCtrlCRODIP()
+        If oFRM.ShowDialog(Me) = DialogResult.OK Then
+            m_RPDiagnostic = oFRM.m_oDiag
+        End If
+
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles tsbPrecedent.Click
+        doPrecedent()
+    End Sub
+
+    Private Sub tsbSave_Click(sender As Object, e As EventArgs) Handles tsbSave.Click
+        m_SaveFileDialog1.FileName = m_RPDiagnostic.createXMLFileName()
+        If (m_SaveFileDialog1.ShowDialog = DialogResult.OK) Then
+            m_RPDiagnostic.writeXML(m_SaveFileDialog1.FileName)
+        End If
+    End Sub
+
+    Private Sub setClientCourant(pClient As Exploitation)
+        clientCourant.raisonSociale = pClient.raisonSociale
+        clientCourant.nomExploitant = pClient.nomExploitant
+        clientCourant.prenomExploitant = pClient.prenomExploitant
+        clientCourant.adresse = "adresseTest"
+        clientCourant.codePostal = "35250"
+        clientCourant.commune = "CHASNE SUR ILLET"
+        clientCourant.codeApe = "0112Z"
+
+    End Sub
+    Private Sub tsbLoad_Click(sender As Object, e As EventArgs) Handles tsbLoad.Click
+        loadFile()
+    End Sub
+    Private Sub loadFile()
+        If m_OpenFileDialog1.ShowDialog = DialogResult.OK Then
+            Me.Cursor = Windows.Forms.Cursors.WaitCursor
+            Me.Enabled = False
+            For Each oForm As Form In MdiChildren
+                oForm.Close()
+            Next
+
+            CSDebug.dispInfo("Chargement Fichier")
+            m_RPDiagnostic = RPDiagnostic.readXML(m_OpenFileDialog1.FileName)
+            clientCourant = m_RPDiagnostic.oClientCourant
+            pulverisateurCourant = m_RPDiagnostic.oPulverisateurCourant
+
+            CSDebug.dispInfo("frmExploit")
+            oFRMExploit = New frmRPFicheExlpoitant()
+            oFRMExploit.setContexte(False, clientCourant, m_RPDiagnostic)
+            oFRMExploit.WindowState = FormWindowState.Maximized
+            oFRMExploit.MdiParent = Me
+
+
+            CSDebug.dispInfo("frmPulve")
+            oFRMPulve = New frmRPFichePulve()
+            oFRMPulve.setContexte(2, New Agent(), pulverisateurCourant, m_RPDiagnostic)
+            oFRMPulve.WindowState = FormWindowState.Maximized
+            oFRMPulve.MdiParent = Me
+
+            CSDebug.dispInfo("frm551")
+            odlgHelp551 = New frmRPDlgHelp551()
+            odlgHelp551.Setcontexte(DiagnosticHelp551.Help551Mode.Mode551, m_RPDiagnostic, "Vitesse d'avancement", False)
+            odlgHelp551.WindowState = FormWindowState.Maximized
+            odlgHelp551.MdiParent = Me
+
+
+            CSDebug.dispInfo("frm552")
+            odlgHelp552 = New frmRPDlgHelp552
+            odlgHelp552.Setcontexte(frmRPDlgHelp552.Help552Mode.Mode552, m_RPDiagnostic, m_RPDiagnostic.buseDebit, m_RPDiagnostic.manometrePressionTravail)
+            odlgHelp552.Text = "Débits"
+            odlgHelp552.WindowState = FormWindowState.Maximized
+            odlgHelp552.MdiParent = Me
+
+
+            CSDebug.dispInfo("frmDiagnostique")
+            CSDebug.dispInfo("frmDiagnostique New")
+            ofrmdiag = New frmRPDiagnostique()
+            CSDebug.dispInfo("frmDiagnostique SetContexte")
+            ofrmdiag.setContexte(m_RPDiagnostic, DiagMode.CTRL_COMPLET, pulverisateurCourant, clientCourant)
+            CSDebug.dispInfo("frmDiagnostique WindowsState")
+            ofrmdiag.WindowState = FormWindowState.Maximized
+            CSDebug.dispInfo("frmDiagnostique Parent")
+            ofrmdiag.MdiParent = Me
+            CSDebug.dispInfo("frmDiagnostique End")
+
+
+            CSDebug.dispInfo("frmRecap")
+            ofrmRecap = New frmRPRecap()
+            ofrmRecap.setContexte(m_RPDiagnostic, pulverisateurCourant)
+            ofrmRecap.WindowState = FormWindowState.Maximized
+            ofrmRecap.MdiParent = Me
+
+            CSDebug.dispInfo("frmCalcule")
+
+            ofrmCalculs = New frmRPCalculVolumeHa()
+            ofrmCalculs.setContexte(m_RPDiagnostic)
+            ofrmCalculs.WindowState = FormWindowState.Maximized
+            ofrmCalculs.MdiParent = Me
+
+            CSDebug.dispInfo("frmRapport")
+            ofrmRapport = New frmRPRapport()
+            ofrmRapport.setContexte(m_RPDiagnostic)
+            ofrmRapport.WindowState = FormWindowState.Maximized
+            ofrmRapport.MdiParent = Me
+
+
+            CSDebug.dispInfo("frm Fin")
+
+
+            enableSuivant(True)
+            enablePrecedant(False)
+
+            enableExploitant(True)
+            enablePulve(True)
+            enableVitesse(True)
+            enableDebit(True)
+            enableDiag(True)
+            enableRecap(True)
+            enableCalcul(True)
+            enableRapport(True)
+            Me.Cursor = Windows.Forms.Cursors.Default
+            CSDebug.dispInfo("Afficher Fenêtre")
+
+            m_nStep = 0
+            AfficherFenetre()
+            Me.Enabled = True
+        End If
+
     End Sub
 End Class

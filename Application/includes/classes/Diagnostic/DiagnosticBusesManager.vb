@@ -87,7 +87,7 @@ Public Class DiagnosticBusesManager
 
     Public Shared Function sendWSDiagnosticBuses(pAgent As Agent, ByVal objDiagnosticBuses As DiagnosticBusesList, ByRef updatedObject As Object) As Integer
         Dim tmpArr(1)() As DiagnosticBuses
-        tmpArr(0) = objDiagnosticBuses.diagnosticBuses
+        tmpArr(0) = objDiagnosticBuses.Liste.ToArray()
         Try
             ' Appel au WS
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()

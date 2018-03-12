@@ -12,19 +12,19 @@ Public Class RPParam
 
     Protected Shared m_xmlfileName As String = "RPParam.xml"
 
-    Private m_reference As String
-    Private m_ImagePath As String
-    Private m_ReportPath As String
-    Private m_bSectionEntete As Boolean
-    Private m_bSectionDefauts As Boolean
-    Private m_bSectionCommentaires As Boolean
-    Private m_bSectionSyntheseMesures As Boolean
-    Private m_bSectionSyntheseBuses As Boolean
-    Private m_bSectionSynthese833 As Boolean
-    Private m_bSectionSynthese542 As Boolean
-    Private m_bSectionSyntheseCapteurVitesse As Boolean
-    Private m_bSectionSyntheseCapteurDebitMetre As Boolean
-    Private m_bSectionCalculs As Boolean
+    Private m_reference As String = ""
+    Private m_ImagePath As String = ""
+    Private m_ReportPath As String = ""
+    Private m_bSectionEntete As Boolean = True
+    Private m_bSectionDefauts As Boolean = False
+    Private m_bSectionCommentaires As Boolean = False
+    Private m_bSectionSyntheseMesures As Boolean = False
+    Private m_bSectionSyntheseBuses As Boolean = False
+    Private m_bSectionSynthese833 As Boolean = False
+    Private m_bSectionSynthese542 As Boolean = False
+    Private m_bSectionSyntheseCapteurVitesse As Boolean = False
+    Private m_bSectionSyntheseCapteurDebitMetre As Boolean = False
+    Private m_bSectionCalculs As Boolean = False
 
     Public Property bSectionEntete As Boolean
         Get

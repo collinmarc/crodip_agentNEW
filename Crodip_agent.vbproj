@@ -765,6 +765,12 @@
     <Compile Include="Application\parentContener.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\ReglagePulve\frmLoadCtrlCRODIP.Designer.vb">
+      <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\frmLoadCtrlCRODIP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\ReglagePulve\RPloginAgent.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -1249,6 +1255,16 @@
     <None Include="Resources\ClosePreviewHH.bmp" />
     <None Include="Resources\AddTableHH.bmp" />
     <None Include="Resources\NavBackHS.bmp" />
+    <None Include="Resources\Open.jpg" />
+    <None Include="Resources\Open1.jpg" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\next.jpg" />
+    <None Include="Resources\next1.jpg" />
+    <None Include="Resources\Previous36.jpg" />
+    <None Include="img\ico\Next36.jpg" />
+    <None Include="img\ico\Open36.jpg" />
+    <None Include="img\ico\save36.png" />
+    <None Include="img\ico\previous36.jpg" />
     <Content Include="toleranceBuses.xml" />
     <None Include="readme.md" />
     <None Include="Resources\PuceVerteT.png" />
@@ -2046,6 +2062,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\parentContener.resx">
       <DependentUpon>parentContener.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\frmLoadCtrlCRODIP.resx">
+      <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\RPloginAgent.resx">
       <DependentUpon>RPloginAgent.vb</DependentUpon>

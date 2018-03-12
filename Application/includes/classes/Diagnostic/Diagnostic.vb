@@ -142,16 +142,16 @@ Public Class Diagnostic
     Private _diagnosticItemLst As DiagnosticItemsList
     Private _diagnosticBuses As DiagnosticBusesList
     Private _nbreLotsBuses As Integer
-    Private _diagnosticMano542 As DiagnosticMano542List
-    Private _diagnosticTroncons833 As DiagnosticTroncons833List
+    Protected m_diagnosticMano542List As DiagnosticMano542List
+    Protected m_diagnosticTroncons833 As DiagnosticTroncons833List
     Private _BancControleID As String
-    Private _controleUseCalibrateur As Boolean 'Utilisation du calibrateur Oui/non
-    Private _controleNbreNiveaux As Integer 'Nbre de Niveaux dans Mano/troncons
-    Private _controleNbreTroncons As Integer 'Nbre de tronçons
+    Protected m_controleUseCalibrateur As Boolean 'Utilisation du calibrateur Oui/non
+    Protected m_controleNbreNiveaux As Integer 'Nbre de Niveaux dans Mano/troncons
+    Protected m_controleNbreTroncons As Integer 'Nbre de tronçons
     Private _controleManoControleNumNational As String 'Numéro national du mano de controle
-    Private _diagnostichelp551 As DiagnosticHelp551
+    Protected m_diagnostichelp551 As DiagnosticHelp551
     Private _diagnostichelp5621 As DiagnosticHelp5621
-    Private _diagnostichelp552 As DiagnosticHelp552
+    Protected m_diagnostichelp552 As DiagnosticHelp552
     Private _diagnostichelp5622 As DiagnosticHelp5622
     Private _diagnostichelp811 As DiagnosticHelp811
     Private _diagnostichelp8314 As DiagnosticHelp831
@@ -160,11 +160,11 @@ Public Class Diagnostic
     Private _diagnostichelp12123 As DiagnosticHelp12123
     Private _diagnostichelp12323 As DiagnosticHelp551
     'Attributs pour le rapport de synthese
-    Private _relevePression833_1 As RelevePression833
-    Private _relevePression833_2 As RelevePression833
-    Private _relevePression833_3 As RelevePression833
-    Private _relevePression833_4 As RelevePression833
-    Private _SyntheseImprecision542 As String
+    Protected m_relevePression833_1 As RelevePression833
+    Protected m_relevePression833_2 As RelevePression833
+    Protected m_relevePression833_3 As RelevePression833
+    Protected m_relevePression833_4 As RelevePression833
+    Protected m_SyntheseImprecision542 As String
     Private _ControleInitialId As String
     Private _PulverisateurAncienId As String
 
@@ -183,7 +183,7 @@ Public Class Diagnostic
     Private _isContreVisiteImmediate As Boolean
     Private _typeDiagnostic As String
 
-    Private _buseDebitMoyenPM As Decimal 'utilisé pour le Reglage Pulve
+    Protected m_buseDebitMoyenPM As Decimal 'utilisé pour le Reglage Pulve
 
     Private _ParamDiag As CRODIP_ControlLibrary.ParamDiag
 
@@ -215,13 +215,13 @@ Public Class Diagnostic
 
         _diagnosticItemLst = New DiagnosticItemsList()
         _diagnosticBuses = New DiagnosticBusesList()
-        _diagnosticMano542 = New DiagnosticMano542List()
-        _diagnosticTroncons833 = New DiagnosticTroncons833List()
+        m_diagnosticMano542List = New DiagnosticMano542List()
+        m_diagnosticTroncons833 = New DiagnosticTroncons833List()
 
-        _diagnostichelp551 = New DiagnosticHelp551(Crodip_agent.DiagnosticHelp551.Help551Mode.Mode551)
+        m_diagnostichelp551 = New DiagnosticHelp551(Crodip_agent.DiagnosticHelp551.Help551Mode.Mode551)
         _diagnostichelp12323 = New DiagnosticHelp551(Crodip_agent.DiagnosticHelp551.Help551Mode.Mode12323)
         _diagnostichelp5621 = New DiagnosticHelp5621
-        _diagnostichelp552 = New DiagnosticHelp552
+        m_diagnostichelp552 = New DiagnosticHelp552
         _diagnostichelp5622 = New DiagnosticHelp5622
         _diagnostichelp811 = New DiagnosticHelp811
         _diagnostichelp8312 = New DiagnosticHelp831(DiagnosticHelp831.ModeHelp831.Mode8312)
@@ -267,7 +267,7 @@ Public Class Diagnostic
         controleDateDernierControle = ""
         typeDiagnostic = "pulverisateur"
 
-        _buseDebitMoyenPM = 0
+        m_buseDebitMoyenPM = 0
     End Sub
 
     Public Sub New(ByVal pAgent As Agent, ByVal pPulve As Pulverisateur, ByVal pClient As Exploitation)
@@ -295,7 +295,7 @@ Public Class Diagnostic
 
             ' Create a memory stream and a formatter.
             Dim ms As New System.IO.MemoryStream(1000)
-            Dim bf As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter(Nothing, _
+            Dim bf As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter(Nothing,
                 New System.Runtime.Serialization.StreamingContext(System.Runtime.Serialization.StreamingContextStates.Clone))
             ' Serialize the object into the stream.
             bf.Serialize(ms, Me)
@@ -1756,10 +1756,10 @@ Public Class Diagnostic
     Public Property syntheseImprecision542 As String
         Get
 
-            Return _SyntheseImprecision542
+            Return m_SyntheseImprecision542
         End Get
         Set(ByVal Value As String)
-            _SyntheseImprecision542 = Value
+            m_SyntheseImprecision542 = Value
         End Set
     End Property
     ''' <summary>
@@ -1794,22 +1794,20 @@ Public Class Diagnostic
             _nbreLotsBuses = Value
         End Set
     End Property
-
     Public Property diagnosticMano542List() As DiagnosticMano542List
         Get
-            Return _diagnosticMano542
+            Return m_diagnosticMano542List
         End Get
         Set(ByVal Value As DiagnosticMano542List)
-            _diagnosticMano542 = Value
+            m_diagnosticMano542List = Value
         End Set
     End Property
-
     Public Property diagnosticTroncons833() As DiagnosticTroncons833List
         Get
-            Return _diagnosticTroncons833
+            Return m_diagnosticTroncons833
         End Get
         Set(ByVal Value As DiagnosticTroncons833List)
-            _diagnosticTroncons833 = Value
+            m_diagnosticTroncons833 = Value
         End Set
     End Property
 
@@ -1824,26 +1822,26 @@ Public Class Diagnostic
 
     Public Property controleNbreNiveaux() As Integer
         Get
-            Return _controleNbreNiveaux
+            Return m_controleNbreNiveaux
         End Get
         Set(ByVal Value As Integer)
-            _controleNbreNiveaux = Value
+            m_controleNbreNiveaux = Value
         End Set
     End Property
     Public Property controleNbreTroncons() As Integer
         Get
-            Return _controleNbreTroncons
+            Return m_controleNbreTroncons
         End Get
         Set(ByVal Value As Integer)
-            _controleNbreTroncons = Value
+            m_controleNbreTroncons = Value
         End Set
     End Property
     Public Property controleUseCalibrateur() As Boolean
         Get
-            Return _controleUseCalibrateur
+            Return m_controleUseCalibrateur
         End Get
         Set(ByVal Value As Boolean)
-            _controleUseCalibrateur = Value
+            m_controleUseCalibrateur = Value
         End Set
     End Property
     ''' <summary>
@@ -1864,15 +1862,15 @@ Public Class Diagnostic
     <XmlIgnoreAttribute()>
     Public Property diagnosticHelp551() As DiagnosticHelp551
         Get
-            Return _diagnostichelp551
+            Return m_diagnostichelp551
         End Get
         Set(ByVal Value As DiagnosticHelp551)
-            _diagnostichelp551 = Value
+            m_diagnostichelp551 = Value
         End Set
     End Property
     Public Function diagnosticHelp551AsDiagItem() As DiagnosticItem
         Dim objDiagItem As DiagnosticItem
-        objDiagItem = _diagnostichelp551.ConvertToDiagnosticItem()
+        objDiagItem = m_diagnostichelp551.ConvertToDiagnosticItem()
         objDiagItem.dateModificationAgent = dateModificationAgent
         objDiagItem.dateModificationCrodip = dateModificationCrodip
 
@@ -1916,15 +1914,15 @@ Public Class Diagnostic
     <XmlIgnoreAttribute()>
     Public Property diagnosticHelp552() As DiagnosticHelp552
         Get
-            Return _diagnostichelp552
+            Return m_diagnostichelp552
         End Get
         Set(ByVal Value As DiagnosticHelp552)
-            _diagnostichelp552 = Value
+            m_diagnostichelp552 = Value
         End Set
     End Property
     Public Function diagnosticHelp552AsDiagItem() As DiagnosticItem
         Dim objDiagItem As DiagnosticItem
-        objDiagItem = _diagnostichelp552.ConvertToDiagnosticItem()
+        objDiagItem = m_diagnostichelp552.ConvertToDiagnosticItem()
         objDiagItem.dateModificationAgent = dateModificationAgent
         objDiagItem.dateModificationCrodip = dateModificationCrodip
 
@@ -2040,37 +2038,37 @@ Public Class Diagnostic
     <XmlIgnoreAttribute()>
     Public Property relevePression833_1 As RelevePression833
         Get
-            Return _relevePression833_1
+            Return m_relevePression833_1
         End Get
         Set(ByVal Value As RelevePression833)
-            _relevePression833_1 = Value
+            m_relevePression833_1 = Value
         End Set
     End Property
     <XmlIgnoreAttribute()>
     Public Property relevePression833_2 As RelevePression833
         Get
-            Return _relevePression833_2
+            Return m_relevePression833_2
         End Get
         Set(ByVal Value As RelevePression833)
-            _relevePression833_2 = Value
+            m_relevePression833_2 = Value
         End Set
     End Property
     <XmlIgnoreAttribute()>
     Public Property relevePression833_3 As RelevePression833
         Get
-            Return _relevePression833_3
+            Return m_relevePression833_3
         End Get
         Set(ByVal Value As RelevePression833)
-            _relevePression833_3 = Value
+            m_relevePression833_3 = Value
         End Set
     End Property
     <XmlIgnoreAttribute()>
     Public Property relevePression833_4 As RelevePression833
         Get
-            Return _relevePression833_4
+            Return m_relevePression833_4
         End Get
         Set(ByVal Value As RelevePression833)
-            _relevePression833_4 = Value
+            m_relevePression833_4 = Value
         End Set
     End Property
     Public Property controleInitialId As String
@@ -2179,10 +2177,10 @@ Public Class Diagnostic
     End Property
     Public Property pulverisateurCoupureAutoTroncons As String
         Get
-            Return _PulverisateurCoupureAutoTroncons
+            Return _pulverisateurCoupureAutoTroncons
         End Get
         Set(value As String)
-            _PulverisateurCoupureAutoTroncons = value
+            _pulverisateurCoupureAutoTroncons = value
         End Set
     End Property
     Public Property pulverisateurReglageAutoHauteur As String
@@ -2237,10 +2235,10 @@ Public Class Diagnostic
     <XmlIgnoreAttribute()>
     Public Property buseDebitMoyenPM() As Decimal
         Get
-            Return _buseDebitMoyenPM
+            Return m_buseDebitMoyenPM
         End Get
         Set(ByVal Value As Decimal)
-            _buseDebitMoyenPM = Value
+            m_buseDebitMoyenPM = Value
         End Set
     End Property
 #End Region

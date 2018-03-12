@@ -135,4 +135,8 @@
     Private Sub frmRPFichePulve_Leave(sender As Object, e As EventArgs) Handles Me.Leave
         Valider()
     End Sub
+
+    Public Sub refresh()
+        FillForm()
+    End Sub
 End Class

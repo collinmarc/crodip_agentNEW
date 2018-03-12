@@ -111,6 +111,7 @@ Public Class frmRPCalculVolumeHa
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.tbDebitPTMoinsPC = New CRODIP_ControlLibrary.TBNumeric()
+        Me.m_bsRPDiagnostic = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label32 = New System.Windows.Forms.Label()
         Me.tbVolhaPTV2 = New CRODIP_ControlLibrary.TBNumeric()
         Me.TextBox2 = New CRODIP_ControlLibrary.TBNumeric()
@@ -179,13 +180,12 @@ Public Class frmRPCalculVolumeHa
         Me.calcDeb2Pression = New CRODIP_ControlLibrary.TBNumeric()
         Me.calcDeb2Largeur = New CRODIP_ControlLibrary.TBNumeric()
         Me.calcDeb2Debit = New CRODIP_ControlLibrary.TBNumeric()
-        Me.m_bsRPDiagnostic = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox_infos.SuspendLayout()
+        CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.nupNbreNiveaux, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nupNbreDescentes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox_calcAuto.SuspendLayout()
-        CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox_infos
@@ -260,6 +260,10 @@ Public Class frmRPCalculVolumeHa
         Me.tbDebitPTMoinsPC.Size = New System.Drawing.Size(100, 20)
         Me.tbDebitPTMoinsPC.TabIndex = 17
         Me.tbDebitPTMoinsPC.Visible = False
+        '
+        'm_bsRPDiagnostic
+        '
+        Me.m_bsRPDiagnostic.DataSource = GetType(Crodip_agent.RPDiagnostic)
         '
         'Label32
         '
@@ -616,7 +620,7 @@ Public Class frmRPCalculVolumeHa
         'nupNbreNiveaux
         '
         Me.nupNbreNiveaux.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.nupNbreNiveaux.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.m_bsRPDiagnostic, "CalcNbreNiveauParDescente", True))
+        Me.nupNbreNiveaux.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.m_bsRPDiagnostic, "CalcNbreNiveauParDescente", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.nupNbreNiveaux.Location = New System.Drawing.Point(685, 55)
         Me.nupNbreNiveaux.Name = "nupNbreNiveaux"
         Me.nupNbreNiveaux.Size = New System.Drawing.Size(43, 20)
@@ -625,7 +629,7 @@ Public Class frmRPCalculVolumeHa
         'nupNbreDescentes
         '
         Me.nupNbreDescentes.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.nupNbreDescentes.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.m_bsRPDiagnostic, "CalcNbreDescentes", True))
+        Me.nupNbreDescentes.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.m_bsRPDiagnostic, "CalcNbreDescentes", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.nupNbreDescentes.Location = New System.Drawing.Point(685, 20)
         Me.nupNbreDescentes.Name = "nupNbreDescentes"
         Me.nupNbreDescentes.Size = New System.Drawing.Size(43, 20)
@@ -995,10 +999,6 @@ Public Class frmRPCalculVolumeHa
         Me.calcDeb2Debit.TabIndex = 1
         Me.calcDeb2Debit.TabStop = False
         '
-        'm_bsRPDiagnostic
-        '
-        Me.m_bsRPDiagnostic.DataSource = GetType(Crodip_agent.RPDiagnostic)
-        '
         'frmRPCalculVolumeHa
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -1016,13 +1016,13 @@ Public Class frmRPCalculVolumeHa
         Me.Text = "Calcul volume/ha"
         Me.GroupBox_infos.ResumeLayout(False)
         Me.GroupBox_infos.PerformLayout()
+        CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.nupNbreNiveaux, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nupNbreDescentes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox_calcAuto.ResumeLayout(False)
         Me.GroupBox_calcAuto.PerformLayout()
-        CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1120,6 +1120,7 @@ Public Class frmRPCalculVolumeHa
 
     Public Overridable Sub setContexte(pDiag As RPDiagnostic)
         m_oDiag = pDiag
+        m_bsRPDiagnostic.Clear()
         m_bsRPDiagnostic.Add(m_oDiag)
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad

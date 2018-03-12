@@ -421,41 +421,6 @@ Public Class RPloginAgent
                                 'AgentManager.save(agentCourant)
                             End If
                             If agentCourant.isActif And Not agentCourant.isSupprime Then
-                                If GLOB_ENV_AUTOSYNC = True And Not agentCourant.isGestionnaire Then
-                                    If CSEnvironnement.checkNetwork() = True Then
-                                        If CSEnvironnement.checkWebService() = True Then
-
-                                            CSTime.pause(500) ' Pause de 500ms
-
-                                            ' On vérifie les mises à jour
-                                            Statusbardisplay(CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
-                                            Try
-                                                Me.Cursor = Cursors.WaitCursor
-                                                Dim oSynchro As New Synchronisation(agentCourant)
-                                                oSynchro.ajouteObservateur(TryCast(Me.MdiParent, parentContener))
-                                                '#######################################################################
-                                                '######################### Synchro Montantes ###########################
-                                                '#######################################################################
-                                                oSynchro.runAscSynchro()
-
-                                                '#######################################################################
-                                                '####################### Synchro Descendantes ##########################
-                                                '#######################################################################
-                                                oSynchro.runDescSynchro()
-                                                oSynchro.Notice("")
-                                                Me.Cursor = Cursors.Default
-                                            Catch ex As Exception
-                                                CSDebug.dispError("Synchronisation : " & ex.Message.ToString)
-                                                Statusbardisplay(CONST_STATUTMSG_SYNCHRO_FAILED, False)
-                                            End Try
-                                        Else
-                                            Statusbardisplay(CONST_STATUTMSG_SYNCHRO_UNAVAILABLE, False)
-                                            MsgBox("Synchronisation impossible, serveur Crodip momentanément indisponible.", MsgBoxStyle.Exclamation)
-                                        End If
-                                    Else
-                                        ' Pas de connexion
-                                    End If
-                                End If
                                 ' On met à jour la barre de status
                                 Statusbardisplay(CONST_STATUTMSG_LOGIN_OK, False)
                                 CSDebug.dispInfo("Connexion réussie " & agentCourant.nom)
@@ -568,6 +533,7 @@ Public Class RPloginAgent
     ' Connexion a son profil
     Private Sub login_password_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles login_password.KeyPress
         If Asc(e.KeyChar) = 13 Then
+            e.Handled = True
             doLogin()
         End If
     End Sub

@@ -28,7 +28,6 @@ Partial Class frmRPRapport
         Me.lbSections = New System.Windows.Forms.CheckedListBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tbImg = New System.Windows.Forms.TextBox()
-        Me.m_bsRPDiagnostic = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnChoisirImg = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tbReferences = New System.Windows.Forms.TextBox()
@@ -40,6 +39,7 @@ Partial Class frmRPRapport
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.m_dlgImage = New System.Windows.Forms.OpenFileDialog()
         Me.m_FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
+        Me.m_bsRPDiagnostic = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.m_bsRPDiagnostic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -88,10 +88,6 @@ Partial Class frmRPRapport
         Me.tbImg.Name = "tbImg"
         Me.tbImg.Size = New System.Drawing.Size(549, 20)
         Me.tbImg.TabIndex = 19
-        '
-        'm_bsRPDiagnostic
-        '
-        Me.m_bsRPDiagnostic.DataSource = GetType(Crodip_agent.RPDiagnostic)
         '
         'btnChoisirImg
         '
@@ -144,7 +140,7 @@ Partial Class frmRPRapport
         '
         Me.tbPath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tbPath.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "FilePath", True))
+        Me.tbPath.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "ReportFilePath", True))
         Me.tbPath.Location = New System.Drawing.Point(12, 481)
         Me.tbPath.Name = "tbPath"
         Me.tbPath.Size = New System.Drawing.Size(549, 20)
@@ -189,7 +185,7 @@ Partial Class frmRPRapport
         '
         'TextBox1
         '
-        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "FileName", True))
+        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsRPDiagnostic, "ReportFileName", True))
         Me.TextBox1.Location = New System.Drawing.Point(158, 507)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(206, 20)
@@ -198,6 +194,10 @@ Partial Class frmRPRapport
         'm_dlgImage
         '
         Me.m_dlgImage.Filter = "Fichiers Image|*.jpg;*.jpeg;*.png;*.bmp"
+        '
+        'm_bsRPDiagnostic
+        '
+        Me.m_bsRPDiagnostic.DataSource = GetType(Crodip_agent.RPDiagnostic)
         '
         'frmRPRapport
         '

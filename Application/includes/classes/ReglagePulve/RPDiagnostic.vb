@@ -1,10 +1,133 @@
-﻿Public Class RPDiagnostic
+﻿Imports System.Collections.Generic
+Imports System.IO
+Imports System.Xml.Serialization
+
+'<XmlInclude(GetType(List(Of RPInfosBuses)))>
+'<XmlInclude(GetType(RPInfosBuses))>
+<Serializable()>
+Public Class RPDiagnostic
     Inherits Diagnostic
 
     Private m_Commentaires As String
     Private m_oRPParam As RPParam
     Private m_FileName As String
     Private m_Calculs As New CalcVolumeHa()
+
+    Public oClientCourant As Exploitation
+    Public oPulverisateurCourant As Pulverisateur
+
+
+    Public Property xmldiagnosticHelp551() As DiagnosticHelp551
+        Get
+            Return m_diagnostichelp551
+        End Get
+        Set(ByVal Value As DiagnosticHelp551)
+            m_diagnostichelp551 = Value
+        End Set
+    End Property
+    Public Property xmldiagnosticHelp552() As DiagnosticHelp552
+        Get
+            Return m_diagnostichelp552
+        End Get
+        Set(ByVal Value As DiagnosticHelp552)
+            m_diagnostichelp552 = Value
+        End Set
+    End Property
+    Public Property xmldiagnosticMano542List() As DiagnosticMano542List
+        Get
+            Return m_diagnosticMano542List
+        End Get
+        Set(ByVal Value As DiagnosticMano542List)
+            m_diagnosticMano542List = Value
+        End Set
+    End Property
+    Public Property xmldiagnosticMano833List() As DiagnosticTroncons833List
+        Get
+            Return m_diagnosticTroncons833
+        End Get
+        Set(ByVal Value As DiagnosticTroncons833List)
+            m_diagnosticTroncons833 = Value
+        End Set
+    End Property
+    Public Property xmlcontroleUseCalibrateur() As Boolean
+        Get
+            Return m_controleUseCalibrateur
+        End Get
+        Set(ByVal Value As Boolean)
+            m_controleUseCalibrateur = Value
+        End Set
+    End Property
+    Public Property xmlcontroleNbreNiveaux() As Integer
+        Get
+            Return m_controleNbreNiveaux
+        End Get
+        Set(ByVal Value As Integer)
+            m_controleNbreNiveaux = Value
+        End Set
+    End Property
+    Public Property xmlcontroleNbreTroncons() As Integer
+        Get
+            Return m_controleNbreTroncons
+        End Get
+        Set(ByVal Value As Integer)
+            m_controleNbreTroncons = Value
+        End Set
+    End Property
+
+    Public Property xml_relevePression833_1() As RelevePression833
+        Get
+            Return m_relevePression833_1
+        End Get
+        Set(ByVal Value As RelevePression833)
+            m_relevePression833_1 = Value
+        End Set
+    End Property
+
+    Public Property xml_relevePression833_2() As RelevePression833
+        Get
+            Return m_relevePression833_2
+        End Get
+        Set(ByVal Value As RelevePression833)
+            m_relevePression833_2 = Value
+        End Set
+    End Property
+    Public Property xml_relevePression833_3() As RelevePression833
+        Get
+            Return m_relevePression833_3
+        End Get
+        Set(ByVal Value As RelevePression833)
+            m_relevePression833_3 = Value
+        End Set
+    End Property
+    Public Property xml_relevePression833_4() As RelevePression833
+        Get
+            Return m_relevePression833_4
+        End Get
+        Set(ByVal Value As RelevePression833)
+            m_relevePression833_4 = Value
+        End Set
+    End Property
+    Public Property xml_SyntheseImprecision542() As String
+        Get
+            Return m_SyntheseImprecision542
+        End Get
+        Set(ByVal Value As String)
+            m_SyntheseImprecision542 = Value
+        End Set
+    End Property
+
+
+
+    Public Property XMLbuseDebitMoyenPM() As Decimal
+        Get
+            Return m_buseDebitMoyenPM
+        End Get
+        Set(ByVal Value As Decimal)
+            m_buseDebitMoyenPM = Value
+        End Set
+    End Property
+
+
 
     Public Property bSectionEntete As Boolean
         Get
@@ -120,7 +243,7 @@
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Property FilePath As String
+    Public Property ReportFilePath As String
         Get
             Return m_oRPParam.ReportPath
         End Get
@@ -134,7 +257,7 @@
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Property FileName As String
+    Public Property ReportFileName As String
         Get
             Return m_FileName
         End Get
@@ -142,6 +265,14 @@
             m_FileName = value
         End Set
     End Property
+
+    Public Function createReportFileName() As String
+        Return "Rapport" & Format(Date.Now, "yyyyMMddhhmmss") & ".pdf"
+    End Function
+    Public Function createXMLFileName() As String
+        Return "RP" & Me.proprietaireRaisonSociale & Format(Date.Now, "yyyyMMdd") & ".CRODIP"
+    End Function
+
     Public Property Commentaires As String
         Get
             Return m_Commentaires
@@ -544,4 +675,74 @@
         End If
 
     End Sub
+#Region "Persistance xml"
+
+    Public Function writeXML(pFileName As String) As Boolean
+        Return RPDiagnostic.writeXml(pFileName, Me)
+    End Function
+
+
+    ''' <summary>
+    ''' Lecture du fichier XML et retour d'un Object
+    ''' (Nothing if fails)
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Shared Function readXML(pFileName As String) As RPDiagnostic
+        Dim oReturn As New RPDiagnostic()
+        Dim objStreamReader As StreamReader = Nothing
+        Try
+            If System.IO.File.Exists(RPParam.xmlFileName) Then
+
+                objStreamReader = New StreamReader(pFileName)
+                Dim x As New XmlSerializer(oReturn.GetType)
+                oReturn = x.Deserialize(objStreamReader)
+            End If
+        Catch ex As Exception
+            Debug.Print("RPDiagnostic.readXML: " & ex.Message)
+            If ex.InnerException IsNot Nothing Then
+                Debug.Print("RPDiagnostic.readXML: " & ex.InnerException.Message)
+            End If
+            oReturn = Nothing
+        Finally
+            If objStreamReader IsNot Nothing Then
+                objStreamReader.Close()
+            End If
+        End Try
+        Return oReturn
+    End Function
+    ''' <summary>
+    ''' Ecriture dans le fichier XML
+    ''' </summary>
+    ''' <param name="pObj"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Shared Function writeXml(pFileName As String, pObj As RPDiagnostic) As Boolean
+        Dim bReturn As Boolean
+        Dim objStreamWriter As StreamWriter = Nothing
+
+        Try
+            Dim ns As New XmlSerializerNamespaces()
+            ns.Add("", "")
+            objStreamWriter = New StreamWriter(pFileName)
+            Dim x As New XmlSerializer(pObj.GetType)
+            x.Serialize(objStreamWriter, pObj, ns)
+            objStreamWriter.Close()
+            bReturn = True
+        Catch ex As Exception
+            Debug.Print("RPDiagnostic.WriteXML: " & ex.Message)
+            If ex.InnerException IsNot Nothing Then
+                Debug.Print("RPDiagnostic.WriteXML: " & ex.InnerException.Message)
+            End If
+            bReturn = False
+        Finally
+            If objStreamWriter IsNot Nothing Then
+                objStreamWriter.Close()
+            End If
+
+        End Try
+        Return bReturn
+    End Function
+
+#End Region
 End Class
