@@ -45,7 +45,12 @@
 
         Dim ofrm As Form
 #If REGLAGEPULVE Then
+        Dim args As String()
+        args = Environment.GetCommandLineArgs()
         ofrm = New frmRPparentContener()
+        If args.Length > 1 Then
+            ofrm = New frmRPparentContener(args(1))
+        End If
 #Else
         ofrm = New parentContener()
 #End If

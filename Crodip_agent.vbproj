@@ -56,7 +56,7 @@
     </DocumentationFile>
     <BaseAddress>285212672</BaseAddress>
     <ConfigurationOverrideFile />
-    <DefineConstants />
+    <DefineConstants>REGLAGEPULVE</DefineConstants>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <DebugSymbols>true</DebugSymbols>
@@ -1272,6 +1272,7 @@
     <None Include="img\ico\Open36.jpg" />
     <None Include="img\ico\save36.png" />
     <None Include="img\ico\previous36.jpg" />
+    <None Include="Resources\ico_crodipIndigo36.jpg" />
     <Content Include="toleranceBuses.xml" />
     <None Include="readme.md" />
     <None Include="Resources\PuceVerteT.png" />

@@ -3382,7 +3382,7 @@ Public Class accueil
             Statusbar.display("Chargement des pulvérisateurs du  client n°" & list_clients.SelectedItems().Item(0).SubItems.Item(0).Text)
 
             ' Récupération des données client
-            clientCourant = ExploitationManager.getClientById(list_clients.SelectedItems().Item(0).Tag)
+            clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
  
             ' Affichage des pulvérisateurs du client 
             AfficheListePulvesExploitation(clientCourant)
@@ -4247,7 +4247,7 @@ Public Class accueil
             ' On informe l'utilisateur et on lui demande confirmation
             If MsgBox("Attention, vous allez supprimer un exploitant, toute suppression est définitive. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Suppression d'un exploitant") = MsgBoxResult.Yes Then
                 ' On récupère l'object client
-                clientCourant = ExploitationManager.getClientById(list_clients.SelectedItems().Item(0).Tag)
+                clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
                 ' Si tout est ok, on le supprime
                 If ExploitationManager.SupprimerExploitation(clientCourant) Then
                     Statusbar.display(CONST_STATUTMSG_DELETECLIENT_OK)
@@ -4411,7 +4411,7 @@ Public Class accueil
         Statusbar.display("Chargement du client n°" & list_clients.SelectedItems().Item(0).Tag)
 
         ' On récupère l'objet du client
-        clientCourant = ExploitationManager.getClientById(list_clients.SelectedItems().Item(0).Tag)
+        clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
         ' Ouverture fiche client
         Dim formFiche_exploitant As New fiche_exploitant
         formFiche_exploitant.setContexte(False, clientCourant)

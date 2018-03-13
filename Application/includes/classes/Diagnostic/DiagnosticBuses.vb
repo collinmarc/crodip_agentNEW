@@ -244,7 +244,7 @@ Public Class DiagnosticBuses
             _Resultat = Value
         End Set
     End Property
-    <XmlIgnore()>
+    '<XmlIgnore()>
     Public Property diagnosticBusesDetailList() As DiagnosticBusesDetailList
         Get
             Return _diagnosticBusesDetail

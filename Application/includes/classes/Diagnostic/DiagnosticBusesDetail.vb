@@ -10,7 +10,7 @@ Public Class DiagnosticBusesDetailList
     Sub New()
         _diagnosticBusesDetail = New List(Of DiagnosticBusesDetail)
     End Sub
-    '    <XmlIgnore()>
+    <XmlIgnore>
     Public Property Liste() As List(Of DiagnosticBusesDetail)
         Get
             Return _diagnosticBusesDetail
@@ -19,7 +19,8 @@ Public Class DiagnosticBusesDetailList
             _diagnosticBusesDetail = Value
         End Set
     End Property
-    Public Property DiagnosticBusesDetail() As DiagnosticBusesDetail()
+    <XmlIgnore()>
+    Public Property arrDiagnosticBusesDetail() As DiagnosticBusesDetail()
         Get
             Return _diagnosticBusesDetail.ToArray()
         End Get

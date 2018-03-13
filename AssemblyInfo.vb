@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 ' Vérifiez les valeurs des attributs de l'assembly
 
 <Assembly: AssemblyTitle("Logiciel Crodip Agent")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Cognix Systems")> 
-<Assembly: AssemblyProduct("Logiciel Crodip Agent")> 
-<Assembly: AssemblyCopyright("© Cognix Systems 2009")> 
+<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyCompany("CRODIP")>
+<Assembly: AssemblyProduct("Logiciel Crodip Agent")>
+<Assembly: AssemblyCopyright("")>
 <Assembly: AssemblyTrademark("20170926140000")> 
 <Assembly: CLSCompliant(True)> 
 

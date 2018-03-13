@@ -23,7 +23,7 @@ Partial Class frmLoadCtrlCRODIP
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.tbNumCtrl = New System.Windows.Forms.TextBox()
         Me.btnOK = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -37,12 +37,12 @@ Partial Class frmLoadCtrlCRODIP
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Numéro du contrôle :"
         '
-        'TextBox1
+        'tbNumCtrl
         '
-        Me.TextBox1.Location = New System.Drawing.Point(125, 10)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 1
+        Me.tbNumCtrl.Location = New System.Drawing.Point(125, 10)
+        Me.tbNumCtrl.Name = "tbNumCtrl"
+        Me.tbNumCtrl.Size = New System.Drawing.Size(100, 20)
+        Me.tbNumCtrl.TabIndex = 1
         '
         'btnOK
         '
@@ -55,6 +55,7 @@ Partial Class frmLoadCtrlCRODIP
         '
         'btnCancel
         '
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(228, 62)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
@@ -71,7 +72,7 @@ Partial Class frmLoadCtrlCRODIP
         Me.ClientSize = New System.Drawing.Size(412, 92)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnOK)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.tbNumCtrl)
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmLoadCtrlCRODIP"
         Me.ShowIcon = False
@@ -83,7 +84,7 @@ Partial Class frmLoadCtrlCRODIP
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents tbNumCtrl As TextBox
     Friend WithEvents btnOK As Button
     Friend WithEvents btnCancel As Button
 End Class

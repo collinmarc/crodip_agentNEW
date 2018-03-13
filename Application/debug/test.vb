@@ -573,7 +573,7 @@ Public Class test
     ' Client load local item
     Private Sub Button12_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button12.Click
         Dim tmpExploitation As New Exploitation
-        tmpExploitation = ExploitationManager.getClientById("struc-1-1")
+        tmpExploitation = ExploitationManager.getExploitationById("struc-1-1")
         If tmpExploitation.id <> "0" Then
             MsgBox("Exploitation n°" & tmpExploitation.id & " (" & tmpExploitation.raisonSociale & ") Chargé.")
         Else
@@ -584,7 +584,7 @@ Public Class test
     ' Client sendWSClient (OK)
     Private Sub Button8_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button8.Click
 
-        Dim objClient As Exploitation = ExploitationManager.getClientById("1-1-1")
+        Dim objClient As Exploitation = ExploitationManager.getExploitationById("1-1-1")
 
         Try
             Dim updatedObject As Object

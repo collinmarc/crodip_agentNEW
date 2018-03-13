@@ -229,7 +229,7 @@
     <Compile Include="testBDASCAR.vb" />
     <Compile Include="RPParamTest.vb" />
     <Compile Include="IdentifiantPulveristeurTest.vb" />
-    <Compile Include="UnitTest2.vb" />
+    <Compile Include="RpDiagnosticTest.vb" />
     <Compile Include="UnitTest3.vb" />
     <Compile Include="XMLTest.vb" />
     <Compile Include="DiagnosticTroncons833Test.vb" />

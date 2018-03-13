@@ -688,6 +688,22 @@ Public Class RPDiagnostic
         End If
 
     End Sub
+    ''' <summary>
+    ''' La Propriété est cachée en xml dans le diagnostic
+    ''' Exposition uniquement dans le RPdiagnostic
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property RPDiagnosticBusesList() As List(Of DiagnosticBuses)
+        Get
+            Return MyBase.diagnosticBusesList.Liste
+        End Get
+        Set(ByVal value As List(Of DiagnosticBuses))
+            For Each oDiagBuse As DiagnosticBuses In value
+                MyBase.diagnosticBusesList.Liste.Add(oDiagBuse)
+            Next
+
+        End Set
+    End Property
 #Region "Persistance xml"
 
     Public Function writeXML(pFileName As String) As Boolean
