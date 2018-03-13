@@ -31,7 +31,7 @@ Public Class frmRPparentContener
 
         m_NumCtrlCRODIP = pNumCtrlCRPDIP
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
-        m_ModeLancement = EnumModeLancement.StandAlone
+        m_ModeLancement = EnumModeLancement.CRODIP
 
     End Sub
 
