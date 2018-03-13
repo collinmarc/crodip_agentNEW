@@ -139,29 +139,29 @@ Public Class DiagnosticBusesTest
         oDiagBuseDetail.idLot = 1
         oDiagBuseDetail.debit = "1,6"
         oDiagBuseDetail.ecart = "0.67"
-        oDiagBuse.diagnosticBusesDetail.Liste.Add(oDiagBuseDetail)
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         oDiagBuseDetail = New DiagnosticBusesDetail()
         oDiagBuseDetail.idBuse = 2
         oDiagBuseDetail.idLot = 1
         oDiagBuseDetail.debit = "1,6"
         oDiagBuseDetail.ecart = "0.67"
-        oDiagBuse.diagnosticBusesDetail.Liste.Add(oDiagBuseDetail)
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         DiagnosticBusesManager.save(oDiagBuse)
         'Rechargement par le diagnostic
         DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(odiag)
         'Vérification que les Buses Détail sopnt bien lus
-        Assert.AreEqual(2, odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetail.Liste.Count)
+        Assert.AreEqual(2, odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste.Count)
 
-        oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetail.Liste(0)
+        oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste(0)
         Assert.AreEqual(oDiagBuseDetail.idDiagnostic, oDiagBuse.idDiagnostic)
         Assert.AreEqual(oDiagBuseDetail.idBuse, 1)
         Assert.AreEqual(oDiagBuseDetail.idLot, "1")
         Assert.AreEqual(oDiagBuseDetail.debit, "1,6")
         Assert.AreEqual(oDiagBuseDetail.ecart, "0.67")
 
-        oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetail.Liste(1)
+        oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste(1)
         Assert.AreEqual(oDiagBuseDetail.idDiagnostic, oDiagBuse.idDiagnostic)
         Assert.AreEqual(oDiagBuseDetail.idBuse, 2)
         Assert.AreEqual(oDiagBuseDetail.idLot, "1")
@@ -179,8 +179,8 @@ Public Class DiagnosticBusesTest
 
         Assert.AreEqual(1, odiag.diagnosticBusesList.Liste.Count)
         oDiagBuse = odiag.diagnosticBusesList.Liste(0)
-        Assert.AreEqual(2, oDiagBuse.diagnosticBusesDetail.Liste.Count)
-        oDiagBuseDetail = oDiagBuse.diagnosticBusesDetail.Liste(1)
+        Assert.AreEqual(2, oDiagBuse.diagnosticBusesDetailList.Liste.Count)
+        oDiagBuseDetail = oDiagBuse.diagnosticBusesDetailList.Liste(1)
         Assert.AreEqual(oDiagBuseDetail.debit, "2,5")
         Assert.AreEqual(oDiagBuseDetail.ecart, "0.85")
 
@@ -191,15 +191,15 @@ Public Class DiagnosticBusesTest
     '''<summary>
     '''Test pour D'init de l'objet + properties
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_GetByID()
 
     End Sub
     '''<summary>
     '''Test pour D'init de l'objet + properties
     '''</summary>
-    <TestMethod()> _
-    Public Sub TST_SEND_GET_WS()
+    <TestMethod()>
+    Public Sub TST_SynchrobusesWS()
         'Annullation dela synchro de tous les anciens Diags
         Dim oCSDB As New CSDb(True)
         oCSDB.getResults("UPDATE DIAGNOSTIC SET dateModificationAgent = dateModificationCrodip")
@@ -248,14 +248,14 @@ Public Class DiagnosticBusesTest
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "1.1"
         oDiagBuseDetail.ecart = "1.2"
-        oDiagBuse.diagnosticBusesDetail.Liste.Add(oDiagBuseDetail)
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         oDiagBuseDetail = New DiagnosticBusesDetail()
         oDiagBuseDetail.idBuse = 2
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "1.3"
         oDiagBuseDetail.ecart = "1.4"
-        oDiagBuse.diagnosticBusesDetail.Liste.Add(oDiagBuseDetail)
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         'Ajour du lot1 dans le Diag
         odiag.diagnosticBusesList.Liste.Add(oDiagBuse)
@@ -280,14 +280,14 @@ Public Class DiagnosticBusesTest
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "2.1"
         oDiagBuseDetail.ecart = "2.2"
-        oDiagBuse.diagnosticBusesDetail.Liste.Add(oDiagBuseDetail)
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         oDiagBuseDetail = New DiagnosticBusesDetail()
         oDiagBuseDetail.idBuse = 2
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "2.3"
         oDiagBuseDetail.ecart = "2.4"
-        oDiagBuse.diagnosticBusesDetail.Liste.Add(oDiagBuseDetail)
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         'Ajout du lot2 dans le diag
         odiag.diagnosticBusesList.Liste.Add(oDiagBuse)
@@ -348,9 +348,9 @@ Public Class DiagnosticBusesTest
                 Assert.AreEqual(oDiagBuse.debitMoyen, "10")
                 Assert.AreEqual(oDiagBuse.debitNominal, "11")
                 Assert.AreEqual(oDiagBuse.ecartTolere, "12")
-                Assert.AreEqual(oDiagBuse.diagnosticBusesDetail.Liste.Count, 2)
+                Assert.AreEqual(oDiagBuse.diagnosticBusesDetailList.Liste.Count, 2)
                 'Vérification du détail des buses du lot1
-                For Each oDiagBuseDetail In oDiagBuse.diagnosticBusesDetail.Liste
+                For Each oDiagBuseDetail In oDiagBuse.diagnosticBusesDetailList.Liste
                     Assert.AreEqual(oDiagBuseDetail.idLot, oDiagBuse.idLot)
 
                     If oDiagBuseDetail.idBuse = 1 Then
@@ -382,8 +382,8 @@ Public Class DiagnosticBusesTest
                 Assert.AreEqual(oDiagBuse.debitNominal, "21")
                 Assert.AreEqual(oDiagBuse.ecartTolere, "22")
                 'Vérification du détail des buses du lot2
-                Assert.AreEqual(oDiagBuse.diagnosticBusesDetail.Liste.Count, 2)
-                For Each oDiagBuseDetail In oDiagBuse.diagnosticBusesDetail.Liste
+                Assert.AreEqual(oDiagBuse.diagnosticBusesDetailList.Liste.Count, 2)
+                For Each oDiagBuseDetail In oDiagBuse.diagnosticBusesDetailList.Liste
                     Assert.AreEqual(oDiagBuseDetail.idLot, oDiagBuse.idLot)
                     If oDiagBuseDetail.idBuse = 1 Then
                         'Vérification de la buse 1 du Lot2
@@ -410,7 +410,143 @@ Public Class DiagnosticBusesTest
 
 
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
+    Public Sub TST_SEND_WSDiagnosticBuses()
+
+
+        Dim oDiagBuseList As New DiagnosticBusesList()
+        Dim oDiagBuse As DiagnosticBuses
+        Dim oDiagBuseDetail As DiagnosticBusesDetail
+
+
+        'Lot1
+        oDiagBuse = New DiagnosticBuses
+        oDiagBuse.idDiagnostic = "99-999-99"
+        oDiagBuse.idLot = "1"
+        oDiagBuse.marque = "marque"
+        oDiagBuse.nombre = "2"
+        oDiagBuse.genre = "genre"
+        oDiagBuse.calibre = "cal1"
+        oDiagBuse.debitMoyen = "10"
+        oDiagBuse.debitNominal = "11"
+        oDiagBuse.ecartTolere = "12"
+
+        'Detail du lot1
+        oDiagBuseDetail = New DiagnosticBusesDetail()
+        oDiagBuseDetail.idBuse = 1
+        oDiagBuseDetail.idLot = oDiagBuse.idLot
+        oDiagBuseDetail.debit = "1.1"
+        oDiagBuseDetail.ecart = "1.2"
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
+
+        oDiagBuseDetail = New DiagnosticBusesDetail()
+        oDiagBuseDetail.idBuse = 2
+        oDiagBuseDetail.idLot = oDiagBuse.idLot
+        oDiagBuseDetail.debit = "1.3"
+        oDiagBuseDetail.ecart = "1.4"
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
+
+        'Ajour du lot1 dans le Diag
+        oDiagBuseList.Liste.Add(oDiagBuse)
+
+        'Lot2
+        oDiagBuse = New DiagnosticBuses
+        oDiagBuse.idDiagnostic = "99-999-99"
+        oDiagBuse.idLot = "2"
+        oDiagBuse.marque = "marque2"
+        oDiagBuse.nombre = "2"
+        oDiagBuse.genre = "genre2"
+        oDiagBuse.calibre = "cal2"
+        oDiagBuse.debitMoyen = "20"
+        oDiagBuse.debitNominal = "21"
+        oDiagBuse.ecartTolere = "22"
+
+        oDiagBuseList.Liste.Add(oDiagBuse)
+
+        'Detail du lot2
+        oDiagBuseDetail = New DiagnosticBusesDetail()
+        oDiagBuseDetail.idBuse = 1
+        oDiagBuseDetail.idLot = oDiagBuse.idLot
+        oDiagBuseDetail.debit = "2.1"
+        oDiagBuseDetail.ecart = "2.2"
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
+
+        oDiagBuseDetail = New DiagnosticBusesDetail()
+        oDiagBuseDetail.idBuse = 2
+        oDiagBuseDetail.idLot = oDiagBuse.idLot
+        oDiagBuseDetail.debit = "2.3"
+        oDiagBuseDetail.ecart = "2.4"
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
+
+        'Ajout du lot2 dans le diag
+        oDiagBuseList.Liste.Add(oDiagBuse)
+
+        Dim response() As Object
+
+        Dim nResponse As Integer = DiagnosticBusesManager.sendWSDiagnosticBuses(agentCourant, oDiagBuseList, response)
+
+        Assert.AreNotEqual(-1, nResponse)
+
+        nResponse = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(agentCourant, oDiagBuse.diagnosticBusesDetailList, response)
+
+
+        Assert.AreNotEqual(-1, nResponse)
+
+
+
+    End Sub
+    <TestMethod()>
+    Public Sub TST_SeialiseXMLDiagnosticBuseDetail()
+
+
+        Dim oDiagBuseList As New DiagnosticBusesList()
+        Dim oDiagBuse As DiagnosticBuses
+        Dim oDiagBuseDetail As DiagnosticBusesDetail
+
+
+        'Lot1
+        oDiagBuse = New DiagnosticBuses
+        oDiagBuse.idDiagnostic = "99-999-99"
+        oDiagBuse.idLot = "1"
+        oDiagBuse.marque = "marque"
+        oDiagBuse.nombre = "2"
+        oDiagBuse.genre = "genre"
+        oDiagBuse.calibre = "cal1"
+        oDiagBuse.debitMoyen = "10"
+        oDiagBuse.debitNominal = "11"
+        oDiagBuse.ecartTolere = "12"
+
+        'Detail du lot1
+        oDiagBuseDetail = New DiagnosticBusesDetail()
+        oDiagBuseDetail.idBuse = 1
+        oDiagBuseDetail.idLot = oDiagBuse.idLot
+        oDiagBuseDetail.debit = "1.1"
+        oDiagBuseDetail.ecart = "1.2"
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
+
+        oDiagBuseDetail = New DiagnosticBusesDetail()
+        oDiagBuseDetail.idBuse = 2
+        oDiagBuseDetail.idLot = oDiagBuse.idLot
+        oDiagBuseDetail.debit = "1.3"
+        oDiagBuseDetail.ecart = "1.4"
+        oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
+
+        'Ajour du lot1 dans le Diag
+        oDiagBuseList.Liste.Add(oDiagBuse)
+
+        Dim oSer As New System.Xml.Serialization.XmlSerializer(GetType(DiagnosticBuses))
+
+        Dim osw As New System.IO.StringWriter()
+
+        oSer.Serialize(osw, oDiagBuse)
+
+        System.Console.WriteLine(osw.ToString())
+
+
+
+    End Sub
+
+    <TestMethod()>
     Public Sub TST_Nbdecimales()
         Dim oDiagBuse As DiagnosticBuses
 

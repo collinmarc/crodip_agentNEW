@@ -655,10 +655,10 @@ Public Class frmRPparentContener
                     oDiagBuseDet.idLot = nlot
                     oDiagBuseDet.idBuse = nBuse
                     oDiagBuseDet.debit = 2.8
-                    oDiagbuse.diagnosticBusesDetail.Liste.Add(oDiagBuseDet)
+                    oDiagbuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDet)
                 Next
 
-                oDiagbuse.nombre = oDiagbuse.diagnosticBusesDetail.Liste.Count
+                oDiagbuse.nombre = oDiagbuse.diagnosticBusesDetailList.Liste.Count
                 m_RPDiagnostic.diagnosticBusesList.Liste.Add(oDiagbuse)
             Next
             m_RPDiagnostic.CalcDebitMoyenPM = 2.8

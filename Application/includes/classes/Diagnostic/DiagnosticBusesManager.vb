@@ -93,7 +93,11 @@ Public Class DiagnosticBusesManager
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Return objWSCrodip.SendDiagnosticBuses(pAgent.id, tmpArr, updatedObject)
         Catch ex As Exception
-            CSDebug.dispFatal("DiagnosticBusesManager.SendWSDiagnosticBuses ERR" & ex.Message & ":" & ex.InnerException.Message)
+            Dim strMessExt As String = ""
+            If (ex.InnerException IsNot Nothing) Then
+                strMessExt = ex.InnerException.Message
+            End If
+            CSDebug.dispFatal("DiagnosticBusesManager.SendWSDiagnosticBuses ERR" & ex.Message & ":" & strMessExt)
             Return -1
         End Try
     End Function
@@ -298,10 +302,10 @@ Public Class DiagnosticBusesManager
             oCSDb.free()
 
             ' On enregistre le détail des buses
-            If Not objDiagnosticBuses.diagnosticBusesDetail Is Nothing Then
-                If Not objDiagnosticBuses.diagnosticBusesDetail.Liste Is Nothing Then
+            If Not objDiagnosticBuses.diagnosticBusesDetailList Is Nothing Then
+                If Not objDiagnosticBuses.diagnosticBusesDetailList.Liste Is Nothing Then
                     Dim i As Integer = 0
-                    For Each tmpItemCheck As DiagnosticBusesDetail In objDiagnosticBuses.diagnosticBusesDetail.Liste
+                    For Each tmpItemCheck As DiagnosticBusesDetail In objDiagnosticBuses.diagnosticBusesDetailList.Liste
                         If Not tmpItemCheck Is Nothing Then
                             tmpItemCheck.idDiagnostic = objDiagnosticBuses.idDiagnostic
                             tmpItemCheck.idLot = objDiagnosticBuses.idLot
@@ -347,7 +351,7 @@ Public Class DiagnosticBusesManager
                     pDiagnostic.NbreLotsBuses = 0
                 Else
 
-                    pDiagnostic.NbreLotsBuses = CInt(oDR.item(0))
+                    pDiagnostic.NbreLotsBuses = CInt(oDR.Item(0))
                 End If
             Else
                 pDiagnostic.NbreLotsBuses = 1
@@ -412,7 +416,7 @@ Public Class DiagnosticBusesManager
                         nColId = nColId + 1
                     End While
                     'On l'ajoute à la collection de mesures de la buse
-                    oDiagnosticBuses.diagnosticBusesDetail.Liste.Add(tmpBuseDetail)
+                    oDiagnosticBuses.diagnosticBusesDetailList.Liste.Add(tmpBuseDetail)
                 End While
                 oDRDiagBusesDetail.Close()
 

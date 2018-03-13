@@ -363,6 +363,7 @@ Public Class RPDiagnostic
 
         End Set
     End Property
+    <XmlIgnore>
     Public Property CalcNbreNiveauParDescente As Integer
         Get
             Return m_Calculs.NbreNiveauParDescente
@@ -372,6 +373,18 @@ Public Class RPDiagnostic
                 m_Calculs.NbreNiveauParDescente = value
                 updateListeInfosBuses()
             End If
+        End Set
+    End Property
+    <XmlElement("CalcNbreNiveauParDescente")>
+    Public Property CalcNbreNiveauParDescenteOnlyForXML As Integer
+        Get
+            Return m_Calculs.NbreNiveauParDescente
+        End Get
+        Set(value As Integer)
+            '           If value <> m_Calculs.NbreNiveauParDescente Then
+            m_Calculs.NbreNiveauParDescente = value
+            '                updateListeInfosBuses()
+            '          End If
         End Set
     End Property
     Public Property CalcPressionDeMesure As Decimal

@@ -15,9 +15,9 @@
 
         DataGridView1.Columns.Clear()
         Dim StyleSep As DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        StyleSep.BackColor = System.Drawing.Color.Black
+        StyleSep.BackColor = System.Drawing.Color.FromArgb(2, 129, 198)
         Dim StyleDesc As DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        StyleSep.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        StyleSep.ForeColor = System.Drawing.Color.FromArgb(2, 129, 198)
         For n As Integer = 1 To m_oDiag.CalcNbreDescentes
             oColDescente = New DataGridViewTextBoxColumn()
             oColDescente.HeaderText = n
@@ -52,14 +52,14 @@
     Private Sub frmRPInfosBuses_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         For n As Integer = 1 To m_oDiag.CalcNbreDescentes
-            Dim oCkCell As New DataGridViewCheckBoxCell()
-            oCkCell.FalseValue = ""
-            oCkCell.TrueValue = "OUI"
-            oCkCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
-            oCkCell.Style.NullValue = False
+            'Dim oCkCell As New DataGridViewCheckBoxCell()
+            'oCkCell.FalseValue = ""
+            'oCkCell.TrueValue = "OUI"
+            'oCkCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+            'oCkCell.Style.NullValue = False
             DataGridView1.Rows(DataGridView1.Rows.Count - 1).HeaderCell.Value = "Prise d'air"
             Try
-                DataGridView1.Rows(DataGridView1.Rows.Count - 1).Cells((n - 1) * 2) = oCkCell
+                '   DataGridView1.Rows(DataGridView1.Rows.Count - 1).Cells((n - 1) * 2) = oCkCell
             Catch ex As Exception
 
             End Try

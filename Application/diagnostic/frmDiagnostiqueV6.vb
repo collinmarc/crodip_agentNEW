@@ -1038,9 +1038,9 @@ Public Class frmDiagnostiqueV6
                     '########################################################################################################
                     ' On charge les buses (9.2.2)
                     Dim tmpDiagnosticBusesDetail As DiagnosticBusesDetail
-                    If Not tmpDiagnosticBuses.diagnosticBusesDetail Is Nothing And Not tmpDiagnosticBuses.diagnosticBusesDetail.Liste Is Nothing Then
+                    If Not tmpDiagnosticBuses.diagnosticBusesDetailList Is Nothing And Not tmpDiagnosticBuses.diagnosticBusesDetailList.Liste Is Nothing Then
                         Dim curBuse As Integer = 1
-                        For Each tmpDiagnosticBusesDetail In tmpDiagnosticBuses.diagnosticBusesDetail.Liste
+                        For Each tmpDiagnosticBusesDetail In tmpDiagnosticBuses.diagnosticBusesDetailList.Liste
                             If tmpDiagnosticBusesDetail.idLot = LotId Then
                                 ' Récupération des contrôles
                                 Dim tmpTxtBox_debit As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("diagBuses_mesureDebit_" & LotId & "_" & tmpDiagnosticBusesDetail.idBuse & "_debit", diagBuses_tab_categories)
@@ -3693,7 +3693,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             tmpPanel.Controls.Clear()
             'Suppression des buses dans la collection
             Dim oListbuses As DiagnosticBuses = m_DiagBuses.Liste.Item(lotId - 1)
-            oListbuses.diagnosticBusesDetail.Liste.Clear()
+            oListbuses.diagnosticBusesDetailList.Liste.Clear()
         Catch ex As Exception
             CSDebug.dispError("diagnostique::deletNbBuses : " & ex.Message)
         End Try
@@ -3816,7 +3816,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'création des controls d'une buses
             createControls_Buses(Panel_listeSecondaire, Lotid, x, positionY)
             'Ajout d'une buse dans la Liste
-            oListbuses.diagnosticBusesDetail.Liste.Add(New DiagnosticBusesDetail())
+            oListbuses.diagnosticBusesDetailList.Liste.Add(New DiagnosticBusesDetail())
         Next
         checkIsOk(8)
 
@@ -3962,7 +3962,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             tmpBuse.ecartTolere = ecartTolere
             tmpBuse.debitMoyen = debitMoyen
             tmpBuse.debitNominal = debitNominal
-            tmpBuse.diagnosticBusesDetail = New DiagnosticBusesDetailList
+            tmpBuse.diagnosticBusesDetailList = New DiagnosticBusesDetailList
 
             ' On agrandi notre tableau
             'If diagnosticCourant.diagnosticBusesList Is Nothing Then
@@ -3975,7 +3975,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'End If
 
             ' On ajoute le détail des mesures de buses au lot courant
-            tmpBuse.diagnosticBusesDetail = busesListDetail
+            tmpBuse.diagnosticBusesDetailList = busesListDetail
 
             ' On l'ajoute au diag courant
             m_diagnostic.diagnosticBusesList.Liste.Add(tmpBuse)
@@ -4065,7 +4065,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     detailBuse.idDiagnostic = ""
                     detailBuse.usee = (inputBuseUsure.Tag = "NOK") 'Usée si elles sont NOK
 
-                    tmpBuse.diagnosticBusesDetail.Liste.Add(detailBuse)
+                    tmpBuse.diagnosticBusesDetailList.Liste.Add(detailBuse)
 
                 Next buseId
                 m_diagnostic.diagnosticBusesList.Liste.Add(tmpBuse)
@@ -10382,7 +10382,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         'Calcul du nombre de buses
         Dim nBuses As Integer = 0
         For Each oBusList As DiagnosticBuses In m_DiagBuses.Liste
-            nBuses = nBuses + oBusList.diagnosticBusesDetail.Liste.Count
+            nBuses = nBuses + oBusList.diagnosticBusesDetailList.Liste.Count
         Next
         m_diagnostic.diagnosticHelp12123.NbBuses = nBuses
 

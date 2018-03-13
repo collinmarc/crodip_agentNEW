@@ -1,5 +1,5 @@
 ﻿Public Class frmRPDiagnostique
-    Inherits frmDiagnostique
+    Inherits frmDiagnostiqueSimple
     Implements IfrmCRODIP
 
 
@@ -23,10 +23,6 @@
             MaximizeBox = False
 
             Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
-            tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_etatGeneral.Name)
-            tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_pompeCuve.Name)
-            tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_flexiblesFiltres.Name)
-            tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_jetsSoufflerie.Name)
             tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_rampes.Name)
             tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_accessoires.Name)
             tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_mesureCommandesRegulation.Name)

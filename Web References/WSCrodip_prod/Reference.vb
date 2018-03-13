@@ -236,7 +236,14 @@ Namespace WSCrodip_prod
         End Function
 
         '<remarks/>
-        <XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(DiagnosticBuses)), XmlInclude(GetType(DiagnosticBusesDetail)), XmlInclude(GetType(DiagnosticMano542)), XmlInclude(GetType(DiagnosticTroncons833)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticBuses", RequestElementName:="SendDiagnosticBusesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)> _
+        <XmlInclude(GetType(Diagnostic)),
+            XmlInclude(GetType(DiagnosticItem)),
+            XmlInclude(GetType(DiagnosticBuses)),
+            XmlInclude(GetType(DiagnosticBuses())),
+            XmlInclude(GetType(DiagnosticBusesDetail)),
+            XmlInclude(GetType(DiagnosticMano542)),
+            XmlInclude(GetType(DiagnosticTroncons833)),
+            System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticBuses", RequestElementName:="SendDiagnosticBusesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function SendDiagnosticBuses(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute("arrayBuses", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayBuses() As Object, <System.Xml.Serialization.XmlElementAttribute("DiagnosticBusesList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticBusesList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             SynchronisationManager.LogSynchroElmt(arrayBuses)
             Dim results() As Object = Me.Invoke("SendDiagnosticBuses", New Object() {agentId, arrayBuses})
@@ -244,7 +251,7 @@ Namespace WSCrodip_prod
             Return CType(results(0), Integer)
         End Function
         '<remarks/>
-        <XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(DiagnosticBuses)), XmlInclude(GetType(DiagnosticBusesDetail)), XmlInclude(GetType(DiagnosticMano542)), XmlInclude(GetType(DiagnosticTroncons833)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticBusesDetail", RequestElementName:="GetDiagnosticBusesDetailRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)> _
+        <XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(DiagnosticBuses)), XmlInclude(GetType(DiagnosticBusesDetail)), XmlInclude(GetType(DiagnosticMano542)), XmlInclude(GetType(DiagnosticTroncons833)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticBusesDetail", RequestElementName:="GetDiagnosticBusesDetailRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function GetDiagnosticBusesDetail(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal idDiagnostic As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticBusesDetailList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticBusesDetailList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetDiagnosticBusesDetail", New Object() {agentId, idDiagnostic})
             DiagnosticBusesDetailList = CType(results(1), Object())
@@ -252,7 +259,14 @@ Namespace WSCrodip_prod
             Return CType(results(0), Integer)
         End Function
         '<remarks/>
-        <XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(DiagnosticBuses)), XmlInclude(GetType(DiagnosticBusesDetail)), XmlInclude(GetType(DiagnosticMano542)), XmlInclude(GetType(DiagnosticTroncons833)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticBusesDetail", RequestElementName:="SendDiagnosticBusesDetailRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)> _
+        <XmlInclude(GetType(Diagnostic)),
+            XmlInclude(GetType(DiagnosticItem)),
+            XmlInclude(GetType(DiagnosticBuses)),
+            XmlInclude(GetType(DiagnosticBusesDetail)),
+            XmlInclude(GetType(DiagnosticBusesDetail())),
+            XmlInclude(GetType(DiagnosticMano542)),
+            XmlInclude(GetType(DiagnosticTroncons833)),
+            System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticBusesDetail", RequestElementName:="SendDiagnosticBusesDetailRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function SendDiagnosticBusesDetail(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute("arrayBuses", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayBuses() As Object, <System.Xml.Serialization.XmlElementAttribute("DiagnosticBusesDetailList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticBusesDetailList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             SynchronisationManager.LogSynchroElmt(arrayBuses)
             Dim results() As Object = Me.Invoke("SendDiagnosticBusesDetail", New Object() {agentId, arrayBuses})

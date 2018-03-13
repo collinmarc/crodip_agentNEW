@@ -196,12 +196,12 @@ Public Class CRODIPTest
         Dim oDiagBusesDetail As New DiagnosticBusesDetail()
         oDiagBusesDetail.debit = "1.6"
         oDiagBusesDetail.ecart = "0.6"
-        oDiagBuses.diagnosticBusesDetail.Liste.Add(oDiagBusesDetail)
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         'Détail2
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.debit = "1.7"
         oDiagBusesDetail.ecart = "0.7"
-        oDiagBuses.diagnosticBusesDetail.Liste.Add(oDiagBusesDetail)
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
 
         oDiagBuses = New DiagnosticBuses()
         oDiagBuses.marque = "DBMarque2"
@@ -219,12 +219,12 @@ Public Class CRODIPTest
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.debit = "2.6"
         oDiagBusesDetail.ecart = "0.6"
-        oDiagBuses.diagnosticBusesDetail.Liste.Add(oDiagBusesDetail)
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         'Détail2
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.debit = "2.7"
         oDiagBusesDetail.ecart = "0.7"
-        oDiagBuses.diagnosticBusesDetail.Liste.Add(oDiagBusesDetail)
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
 
 
         Dim oDiagMano542 As DiagnosticMano542

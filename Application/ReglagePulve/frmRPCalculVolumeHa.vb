@@ -1151,7 +1151,7 @@ Public Class frmRPCalculVolumeHa
         m_oDiag.CalclstBuseUsees = ""
         For Each oDiagBuse As DiagnosticBuses In m_oDiag.diagnosticBusesList.Liste
             m_oDiag.CalcNombreBuses = m_oDiag.CalcNombreBuses + oDiagBuse.nombre
-            For Each oDiagBusedetail As DiagnosticBusesDetail In oDiagBuse.diagnosticBusesDetail.Liste
+            For Each oDiagBusedetail As DiagnosticBusesDetail In oDiagBuse.diagnosticBusesDetailList.Liste
                 If oDiagBusedetail.usee Then
                     If Not String.IsNullOrEmpty(m_oDiag.CalclstBuseUsees) Then
                         m_oDiag.CalclstBuseUsees = m_oDiag.CalclstBuseUsees & ";"

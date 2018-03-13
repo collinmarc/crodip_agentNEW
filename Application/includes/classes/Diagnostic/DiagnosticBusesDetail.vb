@@ -30,7 +30,7 @@ Public Class DiagnosticBusesDetailList
 
 End Class
 
-<Serializable()> _
+<Serializable()>
 Public Class DiagnosticBusesDetail
 
     Private _id As Integer

@@ -87,7 +87,7 @@ Public Class EtatSyntheseMesures
                     pctBusesUsees = 100%
                 End If
                 m_ods.debitBuses_infos.AdddebitBuses_infosRow(debitNominal:=oLot.debitNominal, couleur:=oLot.couleur, ecartTolere:=oLot.ecartTolere, debitMoyen:=oLot.debitMoyen, marque:=oLot.marque, nombreBuses:=oLot.nombre, IdLot:=oLot.idLot, DebitMax:=oLot.debitMax, DebitMin:=oLot.debitMin, nombreBusesUsees:=oLot.nombrebusesusees, type:=opulve.buseType, pressionControle:=m_oDiag.manometrePressionTravailD, usuremoyenne:=m_oDiag.syntheseUsureMoyenneBusesD, idDiag:=m_oDiag.id, Fonctionnement:=opulve.buseFonctionnement, modele:=oLot.genre, calibre:=oLot.calibre, PctBusesUsees:=pctBusesUsees, conclusion:=oLot.Resultat)
-                For Each oDetail As DiagnosticBusesDetail In oLot.diagnosticBusesDetail.Liste
+                For Each oDetail As DiagnosticBusesDetail In oLot.diagnosticBusesDetailList.Liste
                     Dim dDebit As Decimal
                     Dim dEcart As Decimal
                     If IsNumeric(oDetail.debit) Then

@@ -379,6 +379,13 @@
     <Compile Include="Application\diagnostic\FrmAddCoProp.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\includes\classes\ReglagePulve\RPDiagnosticManager.vb" />
+    <Compile Include="Application\ReglagePulve\frmDiagnostiqueSimple.Designer.vb">
+      <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\frmDiagnostiqueSimple.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\frmDiagnostiqueV6.Designer.vb">
       <DependentUpon>frmDiagnostiqueV6.vb</DependentUpon>
     </Compile>
@@ -2017,6 +2024,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\FrmAddCoProp.resx">
       <DependentUpon>FrmAddCoProp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\frmDiagnostiqueSimple.resx">
+      <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmDiagnostiqueV6.resx">
       <DependentUpon>frmDiagnostiqueV6.vb</DependentUpon>

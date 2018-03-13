@@ -272,7 +272,7 @@ Public Class EtatReglagePulve
                     pctBusesUsees = 100%
                 End If
                 m_ods.debitBuses_infos.AdddebitBuses_infosRow(debitNominal:=oLot.debitNominal, couleur:=oLot.couleur, ecartTolere:=oLot.ecartTolere, debitMoyen:=oLot.debitMoyen, marque:=oLot.marque, nombreBuses:=oLot.nombre, IdLot:=oLot.idLot, DebitMax:=oLot.debitMax, DebitMin:=oLot.debitMin, nombreBusesUsees:=oLot.nombrebusesusees, type:=m_oDiag.buseType, pressionControle:=m_oDiag.manometrePressionTravailD, usuremoyenne:=m_oDiag.syntheseUsureMoyenneBusesD, idDiag:=m_oDiag.id, Fonctionnement:=m_oDiag.buseFonctionnement, modele:=oLot.genre, calibre:=oLot.calibre, PctBusesUsees:=pctBusesUsees, conclusion:=oLot.Resultat)
-                For Each oDetail As DiagnosticBusesDetail In oLot.diagnosticBusesDetail.Liste
+                For Each oDetail As DiagnosticBusesDetail In oLot.diagnosticBusesDetailList.Liste
                     Dim dDebit As Decimal
                     Dim dEcart As Decimal
                     If IsNumeric(oDetail.debit) Then
@@ -409,9 +409,9 @@ Public Class EtatReglagePulve
                 End If
                 For ndesc As Integer = 1 To oRPInfosBuses.NbDescentes
                     Dim strValue As String = oRPInfosBuses.Infos(ndesc)
-                    If strType = "Prise" Then
-                        strValue = IIf(strValue = "", "NON", "OUI")
-                    End If
+                    'If strType = "Prise" Then
+                    '    strValue = IIf(strValue = "", "NON", "OUI")
+                    'End If
                     m_ods.InfosBuses.AddInfosBusesRow(type:=strType, NumDescente:=ndesc, NumNiveau:=nNiveau, Infos:=strValue)
                 Next
             Next

@@ -11,7 +11,7 @@ Public Class DiagnosticBusesList
         _diagnosticBuses = New List(Of DiagnosticBuses)
 
     End Sub
-    '    <XmlIgnoreAttribute()>
+    <XmlIgnoreAttribute()>
     Public Property Liste As List(Of DiagnosticBuses)
         Get
             Return _diagnosticBuses
@@ -244,7 +244,8 @@ Public Class DiagnosticBuses
             _Resultat = Value
         End Set
     End Property
-    Public Property diagnosticBusesDetail() As DiagnosticBusesDetailList
+    <XmlIgnore()>
+    Public Property diagnosticBusesDetailList() As DiagnosticBusesDetailList
         Get
             Return _diagnosticBusesDetail
         End Get

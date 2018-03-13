@@ -715,11 +715,11 @@ Public Class Synchronisation
 
                     ' Synchro des détails des buses du diag courant
                     For Each tmpUpdateDiagnosticBuses As DiagnosticBuses In pDiag.diagnosticBusesList.Liste
-                        If Not tmpUpdateDiagnosticBuses.diagnosticBusesDetail Is Nothing Then
-                            If tmpUpdateDiagnosticBuses.diagnosticBusesDetail.Liste.Count > 0 Then
+                        If Not tmpUpdateDiagnosticBuses.diagnosticBusesDetailList Is Nothing Then
+                            If tmpUpdateDiagnosticBuses.diagnosticBusesDetailList.Liste.Count > 0 Then
                                 Dim updatedObjectDiagBuseDetail As Object
                                 Notice("diagnostic Buse Detail n°" & pDiag.id)
-                                Dim responseDiagBuseDetail As Object = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(pAgent, tmpUpdateDiagnosticBuses.diagnosticBusesDetail, updatedObjectDiagBuseDetail)
+                                Dim responseDiagBuseDetail As Object = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(pAgent, tmpUpdateDiagnosticBuses.diagnosticBusesDetailList, updatedObjectDiagBuseDetail)
                                 Select Case responseDiagBuseDetail
                                     Case -1 ' ERROR
                                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBusesDetail) - Erreur Locale")

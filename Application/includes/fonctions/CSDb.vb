@@ -87,6 +87,9 @@ Public Class CSDb
 
         'End Try
     End Sub
+    ''' <summary>
+    ''' Déconnextion de la base de donnée si elle est connectée
+    ''' </summary>
     Public Sub free()
         'Me.Finalize()
         Try

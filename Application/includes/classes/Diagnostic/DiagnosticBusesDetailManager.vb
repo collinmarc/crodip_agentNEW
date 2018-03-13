@@ -46,7 +46,7 @@ Public Class DiagnosticBusesDetailManager
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Return objWSCrodip.SendDiagnosticBusesDetail(pAgent.id, tmpArr, updatedObject)
         Catch ex As Exception
-            CSDebug.dispFatal("DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail ERR" & ex.Message & ":" & ex.Message)
+            CSDebug.dispFatal("DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail ERR" & ex.Message & ":" & IIf(ex.InnerException IsNot Nothing, ex.InnerException.Message, ""))
             Return -1
         End Try
     End Function
