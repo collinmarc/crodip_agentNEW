@@ -1,4 +1,6 @@
-﻿Imports System
+﻿'Imports Microsoft.VisualStudio.TestTools.UnitTesting
+
+Imports System
 
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
@@ -3827,6 +3829,7 @@ Public Class DiagnosticManagerTest
         Dim oDiagBuses As DiagnosticBuses
         Dim oDiagBusesDetail As DiagnosticBusesDetail
         Dim idDiag As String
+
         'Creation d'un Diagnostic
         oDiag = New Diagnostic()
         oDiag.setOrganisme(m_oAgent)
@@ -3841,6 +3844,8 @@ Public Class DiagnosticManagerTest
         oPulve.setLargeurNbreRangs("15.5")
         oPulve.emplacementIdentification = "DERRIERE"
         oDiag.setPulverisateur(oPulve)
+        Assert.AreEqual(oDiag.pulverisateurLargeur, "15.5")
+
 
         'SetPropriétaire
         Dim pClient As New Exploitation
@@ -4031,7 +4036,7 @@ Public Class DiagnosticManagerTest
         oDiag.AddDiagItem(oDiagItem)
 
         Dim oDiag2 As Diagnostic
-
+        '===========================================================
         oDiag2 = oDiag.Clone()
         Assert.IsNotNull(oDiag2)
 
@@ -4199,7 +4204,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(oDiag2.pulverisateurModele, "MONMODELE")
         Assert.AreEqual(oDiag2.pulverisateurType, Pulverisateur.TYPEPULVE_ARBRES)
         Assert.AreEqual(Pulverisateur.CATEGORIEPULVE_JETDIRIGE, oDiag2.pulverisateurCategorie)
-        Assert.AreEqual(oDiag2.pulverisateurNbRangs, "15.5")
+        Assert.AreEqual(oDiag2.pulverisateurLargeur, "15.5")
         Assert.AreEqual(oDiag2.pulverisateurEmplacementIdentification, "DERRIERE")
 
     End Sub
