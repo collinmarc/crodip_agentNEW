@@ -898,13 +898,12 @@ Public Class diagnostic_infosInspecteur
 
     Private Sub btnOpenTool_volHa_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpenTool_volHa.Click
 
-        ' On rempli les données
-        'objInfos(12) = arrBusesUsed
+        Dim monProcess As New Process
+        monProcess.StartInfo.FileName = "ReglagePulve.exe " & diagnosticCourant.id & "" & agentCourant.id
+        monProcess.StartInfo.Verb = "Open"
+        monProcess.StartInfo.CreateNoWindow = True
+        monProcess.Start()
 
-        ' On ouvre le form
-        Dim formCalcVolHa As New tool_calcVolHa(Me)
-        formCalcVolHa.MdiParent = Me.MdiParent
-        formCalcVolHa.Show()
 
     End Sub
 
