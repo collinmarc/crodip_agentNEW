@@ -191,6 +191,7 @@ Public Class RPloginAgent
         '
         'btnAnnuler
         '
+        Me.btnAnnuler.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
         Me.btnAnnuler.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.btnAnnuler.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAnnuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
