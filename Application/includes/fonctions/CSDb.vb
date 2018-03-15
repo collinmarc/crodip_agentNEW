@@ -63,7 +63,9 @@ Public Class CSDb
     ''' <param name="pDBName"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-
+    Public Function getbddPathName() As String
+        Return ".\bdd\" & _dbName & ".mdb"
+    End Function
     Public Function getConnectString(pDBName As String) As String
         Dim bReturn As String
         If GLOB_ENV_DEBUG = True Then

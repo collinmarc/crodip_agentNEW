@@ -11,7 +11,7 @@
             'on retourne le dIAGNOSTIC ou un objet vide en cas d'erreur
             Return oRPDiag
         Else
-            Return New Diagnostic()
+            Return New RPDiagnostic()
         End If
     End Function
 

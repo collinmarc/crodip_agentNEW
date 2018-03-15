@@ -56,7 +56,8 @@
     </DocumentationFile>
     <BaseAddress>285212672</BaseAddress>
     <ConfigurationOverrideFile />
-    <DefineConstants>REGLAGEPULVE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <DebugSymbols>true</DebugSymbols>
@@ -381,6 +382,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\includes\classes\ReglagePulve\RPDiagnosticManager.vb" />
+    <Compile Include="Application\includes\CSReglagePulve.vb" />
     <Compile Include="Application\ReglagePulve\frmDiagnostiqueSimple.Designer.vb">
       <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
     </Compile>
@@ -2384,7 +2386,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent />
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetFileName)" ReglagePulve.exe</PostBuildEvent>
   </PropertyGroup>
 </Project>

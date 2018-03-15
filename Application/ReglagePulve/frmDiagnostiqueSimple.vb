@@ -1110,28 +1110,7 @@ Public Class frmDiagnostiqueSimple
 
 
             If m_modeAffichage <> DiagMode.CTRL_CV Then
-                CSForm.disableAllCheckBox(Me)
-                CSForm.disableAllRadioButtons(Me)
-                CSForm.disableAllTextBox(Me)
-                CSForm.disableAllComboBox(Me)
-                Me.btn_diagnostic_acquisitionDonnees.Enabled = False
-                diagBuses_conf_ajouterNiveau.Enabled = False
-                diagBuses_conf_validNbCategories.Enabled = False
-                Dim curLvl As Integer
-                curLvl = 1
-                Dim tmpBtn_nbBusesValider As Label
-                For Each tmpDiagnosticBuses In m_diagnostic.diagnosticBusesList.Liste
-                    ' Récupération des contrôles
-                    tmpBtn_nbBusesValider = CSForm.getControlByName("Button_valider_nbBuses_" & curLvl, diagBuses_tab_categories)
-                    curLvl += 1
-
-                    tmpBtn_nbBusesValider.Enabled = False
-                Next
-
-                gdvPressions1.Enabled = False
-                gdvPressions2.Enabled = False
-                gdvPressions3.Enabled = False
-                gdvPressions4.Enabled = False
+                DisableControls()
             End If
 
             checkIsOk(1)
@@ -10362,4 +10341,34 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End If
 
     End Sub
+
+    Public Overridable Sub DisableControls()
+        Dim tmpDiagnosticBuses As DiagnosticBuses
+
+
+        CSForm.disableAllCheckBox(Me)
+        CSForm.disableAllRadioButtons(Me)
+        CSForm.disableAllTextBox(Me)
+        CSForm.disableAllComboBox(Me)
+        Me.btn_diagnostic_acquisitionDonnees.Enabled = False
+        diagBuses_conf_ajouterNiveau.Enabled = False
+        diagBuses_conf_validNbCategories.Enabled = False
+        Dim curLvl As Integer
+        curLvl = 1
+        Dim tmpBtn_nbBusesValider As Label
+        For Each tmpDiagnosticBuses In m_diagnostic.diagnosticBusesList.Liste
+            ' Récupération des contrôles
+            tmpBtn_nbBusesValider = CSForm.getControlByName("Button_valider_nbBuses_" & curLvl, diagBuses_tab_categories)
+            curLvl += 1
+
+            tmpBtn_nbBusesValider.Enabled = False
+        Next
+
+        gdvPressions1.Enabled = False
+        gdvPressions2.Enabled = False
+        gdvPressions3.Enabled = False
+        gdvPressions4.Enabled = False
+
+    End Sub
+
 End Class

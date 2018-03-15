@@ -10,6 +10,7 @@ Public Class frmRPparentContener
         CRODIP
     End Enum
     Private m_NumCtrlCRODIP As String
+    Private m_idAgent As String
     Private m_ModeLancement As EnumModeLancement
 #Region " Code généré par le Concepteur Windows Form "
 
@@ -23,13 +24,14 @@ Public Class frmRPparentContener
         m_NumCtrlCRODIP = ""
         m_ModeLancement = EnumModeLancement.StandAlone
     End Sub
-    Public Sub New(pNumCtrlCRPDIP As String)
+    Public Sub New(pNumCtrlCRPDIP As String, pidAgent As String)
         MyBase.New()
 
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
-
+        '        System.IO.File.AppendAllText("ReglagePulve.log", "New avec 2 param (" & pNumCtrlCRPDIP & "," & pidAgent & ")")
         m_NumCtrlCRODIP = pNumCtrlCRPDIP
+        m_idAgent = pidAgent
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         m_ModeLancement = EnumModeLancement.CRODIP
 
@@ -523,17 +525,29 @@ Public Class frmRPparentContener
     Private Sub formLoad()
 
         'Test pour Vérifier si on est dans une configuation Agent
-        If System.IO.File.Exists("bdd/crodip_agent.mdb") Then
+        Dim oCSdb As New CSDb(False)
+        If System.IO.File.Exists(oCSdb.getbddPathName()) Then
             mnuLoadCRODIP.Enabled = True
             mnuLoadCRODIP.Visible = True
             tsbLoadCrodip.Enabled = True
             tsbLoadCrodip.Visible = True
-            Dim oFRM As New RPloginAgent()
-            oFRM.ShowDialog(Me)
-            m_oAgent = oFRM.AgentCourant
             m_ModeLancement = EnumModeLancement.CRODIP
+            '            System.IO.File.AppendAllText("ReglagePulve.log", "Formload avec 2 param (" & m_NumCtrlCRODIP & "," & m_idAgent & ")")
+            If String.IsNullOrEmpty(m_idAgent) Then
+                Dim oFRM As New RPloginAgent()
+                oFRM.ShowDialog(Me)
+                m_oAgent = oFRM.AgentCourant
+            Else
+                '               System.IO.File.AppendAllText("ReglagePulve.log", "Formload chargement de l'agent : " & m_idAgent & ")")
+                m_oAgent = AgentManager.getAgentById(m_idAgent)
+                If m_oAgent.id <> m_idAgent Then
+                    MessageBox.Show("Agent Inconnu")
+                    Application.Exit()
+                End If
+            End If
 
         Else
+            '          System.IO.File.AppendAllText("ReglagePulve.log", "Formload la base " & oCSdb.getbddPathName() & " n'existe pas")
             mnuLoadCRODIP.Enabled = False
             mnuLoadCRODIP.Visible = False
             tsbLoadCrodip.Enabled = False

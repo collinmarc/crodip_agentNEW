@@ -898,12 +898,7 @@ Public Class diagnostic_infosInspecteur
 
     Private Sub btnOpenTool_volHa_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpenTool_volHa.Click
 
-        Dim monProcess As New Process
-        monProcess.StartInfo.FileName = "ReglagePulve.exe " & diagnosticCourant.id & "" & agentCourant.id
-        monProcess.StartInfo.Verb = "Open"
-        monProcess.StartInfo.CreateNoWindow = True
-        monProcess.Start()
-
+        CSReglagePulve.Execute(diagnosticCourant.id, agentCourant.id)
 
     End Sub
 

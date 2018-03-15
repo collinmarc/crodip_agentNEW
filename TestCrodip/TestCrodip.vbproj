@@ -230,6 +230,7 @@
     <Compile Include="RPParamTest.vb" />
     <Compile Include="IdentifiantPulveristeurTest.vb" />
     <Compile Include="RpDiagnosticTest.vb" />
+    <Compile Include="CSReglagePulveTest.vb" />
     <Compile Include="UnitTest3.vb" />
     <Compile Include="XMLTest.vb" />
     <Compile Include="DiagnosticTroncons833Test.vb" />
@@ -315,6 +316,9 @@
     <WCFMetadataStorage Include="Service References\WSCrodip2\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetDir)Logiciel Crodip Agent.exe" ReglagePulve.exe</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

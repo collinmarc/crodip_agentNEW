@@ -982,7 +982,7 @@ Imports System.IO
         nBuse = nBuse + 1
         oMesure.idBuse = nBuse
         oMesure.ecart = 10
-        oDiagBuses.diagnosticBusesDetail.Liste.Add(oMesure)
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oMesure)
 
         oMesure = New DiagnosticBusesDetail()
         oMesure.idDiagnostic = odiag.id
@@ -990,7 +990,7 @@ Imports System.IO
         nBuse = nBuse + 1
         oMesure.idBuse = nBuse
         oMesure.ecart = -4
-        oDiagBuses.diagnosticBusesDetail.Liste.Add(oMesure)
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oMesure)
 
         oMesure = New DiagnosticBusesDetail()
         oMesure.idDiagnostic = odiag.id
@@ -998,7 +998,7 @@ Imports System.IO
         nBuse = nBuse + 1
         oMesure.idBuse = nBuse
         oMesure.ecart = 0
-        oDiagBuses.diagnosticBusesDetail.Liste.Add(oMesure)
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oMesure)
 
         oMesure = New DiagnosticBusesDetail()
         oMesure.idDiagnostic = odiag.id
@@ -1006,7 +1006,7 @@ Imports System.IO
         nBuse = nBuse + 1
         oMesure.idBuse = nBuse
         oMesure.ecart = 5
-        oDiagBuses.diagnosticBusesDetail.Liste.Add(oMesure)
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oMesure)
 
         odiag.diagnosticBusesList.Liste.Add(oDiagBuses)
 

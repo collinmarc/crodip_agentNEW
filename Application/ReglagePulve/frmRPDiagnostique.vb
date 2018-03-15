@@ -219,4 +219,8 @@
             Formload()
         End If
     End Sub
+
+    Public Overrides Sub DisableControls()
+        'Do nothing
+    End Sub
 End Class

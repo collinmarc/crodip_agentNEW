@@ -47,9 +47,16 @@
 #If REGLAGEPULVE Then
         Dim args As String()
         args = Environment.GetCommandLineArgs()
-        ofrm = New frmRPparentContener()
-        If args.Length > 1 Then
-            ofrm = New frmRPparentContener(args(1))
+        If args.Length = 3 Then
+            'Arg0 = Nom de l'executable
+            'Arg1 = Numero de controle
+            'Arg3 = Id Agent
+            '            System.IO.File.WriteAllText("ReglagePulve.log", "reglahePulve.exe[" & args(1) & " " & args(2) & "]")
+            CSDebug.dispInfo("Démarage ReglagePulve(" & args(1) & " " & args(2) & ")")
+            ofrm = New frmRPparentContener(args(1), args(2))
+        Else
+            ofrm = New frmRPparentContener()
+
         End If
 #Else
         ofrm = New parentContener()
