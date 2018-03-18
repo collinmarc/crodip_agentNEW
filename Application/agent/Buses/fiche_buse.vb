@@ -343,6 +343,7 @@ Public Class fiche_buse
 
 
     Private Sub fiche_buse_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        CSEnvironnement.checkDateTimePicker(ficheBuse_dateAchat)
 
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########

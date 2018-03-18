@@ -494,6 +494,7 @@ Public Class frmdiagnostic_recapV6
         'Propriété a mettre obligatoirement par programme
         Me.WindowState = FormWindowState.Maximized
         Me.ControlBox = False
+        CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
 
         '###########################################################################
         '########               Chargement Organisme d'inspection           ########

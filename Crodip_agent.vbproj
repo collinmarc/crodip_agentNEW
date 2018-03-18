@@ -28,7 +28,7 @@
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>0.0</OldToolsVersion>
@@ -91,6 +91,7 @@
     <DebugType>none</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -174,6 +175,7 @@
     <DefineConstants>REGLAGEPULVE=True</DefineConstants>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseReglagePulve|x86'">
     <DefineTrace>true</DefineTrace>
@@ -200,7 +202,7 @@
       <HintPath>bin\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+      <HintPath>packages\NLog.4.4.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -772,9 +774,6 @@
     <Compile Include="Application\parametrage\facturation.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\parentContener.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\ReglagePulve\frmLoadCtrlCRODIP.Designer.vb">
       <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
     </Compile>
@@ -927,6 +926,12 @@
       <DependentUpon>dlgAquisition.vb</DependentUpon>
     </Compile>
     <Compile Include="dlgAquisition.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCrodip.vb">
@@ -1199,6 +1204,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Observe.vb" />
+    <Compile Include="Application\ParentContener.Designer.vb">
+      <DependentUpon>ParentContener.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ParentContener.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReglagePulve.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -1254,6 +1265,9 @@
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ds_Etat_ReglagePulve.Designer.vb</LastGenOutput>
     </Content>
+    <EmbeddedResource Include="Application\ParentContener.resx">
+      <DependentUpon>ParentContener.vb</DependentUpon>
+    </EmbeddedResource>
     <None Include="img\Exit.jpg" />
     <None Include="My Project\DataSources\DiagnosticHelp12123Mesures.datasource" />
     <None Include="My Project\DataSources\DiagnosticHelp12123MesuresTrtSem.datasource" />
@@ -1262,6 +1276,7 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
     <None Include="Resources\ClosePreviewHH.bmp" />
     <None Include="Resources\AddTableHH.bmp" />
     <None Include="Resources\NavBackHS.bmp" />
@@ -1325,7 +1340,6 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
     <None Include="Resources\logoCRODIP.ico" />
     <None Include="Resources\calculator.ico" />
     <None Include="Resources\Button_Play_Icon_256.png" />
@@ -2074,9 +2088,6 @@
     <EmbeddedResource Include="Application\parametrage\facturation.resx">
       <DependentUpon>facturation.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\parentContener.resx">
-      <DependentUpon>parentContener.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\frmLoadCtrlCRODIP.resx">
       <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
     </EmbeddedResource>
@@ -2249,6 +2260,9 @@
       <LastGenOutput>cr_Facture.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="moduleDocumentaire\_parametres\crRapportInspectionFin2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crRapportInspectionFin2.vb</LastGenOutput>

@@ -190,4 +190,17 @@ Public Class CSEnvironnement
         End If
     End Function
 #End Region
+    ''' <summary>
+    ''' du a un bug sur W10 , les DataTimePicker doivent être reformaté 
+    ''' </summary>
+    ''' <param name="pDt"></param>
+    Public Shared Sub checkDateTimePicker(pDt As DateTimePicker)
+
+        If Environment.OSVersion.Version.Major = 10 Then
+            If Environment.OSVersion.Version.Build < 16299 Then
+                pDt.ShowUpDown = True
+            End If
+        End If
+    End Sub
+
 End Class

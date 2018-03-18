@@ -218,8 +218,11 @@ Public Class dlgIdentifiantPulverisateur
 
 #End Region
 
-    Private Sub SuppressionMateriel_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+    Private Sub dlgIdentifiantPulverisateur_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
         Debug.Assert(Not m_IdentifiantPulve Is Nothing)
+        CSEnvironnement.checkDateTimePicker(dtDateUtilisation)
+
         m_bsIdentifiantPulveristeur.Add(m_IdentifiantPulve)
     End Sub
 

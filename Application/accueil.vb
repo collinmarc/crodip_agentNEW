@@ -3113,6 +3113,9 @@ Public Class accueil
 
     ' Chargement form
     Private Sub accueil_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        CSEnvironnement.checkDateTimePicker(dtpSearchCrit1)
+        CSEnvironnement.checkDateTimePicker(dtpSearchCrit2)
+        CSEnvironnement.checkDateTimePicker(dtp_ControleRegulier)
         ' Informations sur l'agent courant
         m_bDuringLoad = True
         lbl_infosAgent_IdCrodip.Text = agentCourant.numeroNational

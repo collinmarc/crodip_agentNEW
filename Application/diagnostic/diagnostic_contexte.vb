@@ -912,6 +912,8 @@ Public Class diagnostic_contexte
 
     ' Chargement
     Private Sub diagnostic_contexte_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        CSEnvironnement.checkDateTimePicker(dateDernierControleComplet)
+        CSEnvironnement.checkDateTimePicker(dateDernierControlePartiel)
 
 
 

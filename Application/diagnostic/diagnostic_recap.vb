@@ -1512,6 +1512,8 @@ Public Class diagnostic_recap
 #End Region
 
     Private Sub diagnostic_recap_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
+
         'Propriété a mettre obligatoirement par programme
         Me.WindowState = FormWindowState.Maximized
         Me.ControlBox = False

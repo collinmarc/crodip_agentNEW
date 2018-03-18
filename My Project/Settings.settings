@@ -92,17 +92,17 @@
     <Setting Name="FTPPasswordTest" Type="System.String" Scope="Application">
       <Value Profile="(Default)">3xnF9fTxWqL</Value>
     </Setting>
-    <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">V2.5.4.5</Value>
-    </Setting>
     <Setting Name="NbIdentifiantPulveMini" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="FTPUsePassiveMode" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">V2.5.4.6</Value>
+    </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20161102160000</Value>
+      <Value Profile="(Default)">20170926140000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

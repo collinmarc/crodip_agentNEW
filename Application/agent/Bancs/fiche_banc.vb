@@ -415,4 +415,9 @@ Public Class fiche_banc
         End If
 #End If
     End Sub
+
+    Private Sub fiche_banc_HandleDestroyed(sender As Object, e As EventArgs) Handles Me.HandleDestroyed
+        CSEnvironnement.checkDateTimePicker(ficheBanc_dateAchat)
+
+    End Sub
 End Class
