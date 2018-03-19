@@ -25,6 +25,17 @@ Public Class LstParamCtrlDiag
         Next
         Return bReturn
     End Function
+    Public Function FindDiagItem(ByVal pCode As String) As ParamCtrlDiag
+        Dim bReturn As ParamCtrlDiag = Nothing
+        For Each octrl As ParamCtrlDiag In ListeParam
+            Dim str As String = octrl.Code.Replace(".", "")
+            str = Right(" " & str, 5)
+            If str = pCode Then
+                bReturn = octrl
+            End If
+        Next
+        Return bReturn
+    End Function
     ''' <summary>
     ''' Retourn la liste des paramètre de niveau inférieur au code Spécfié
     ''' </summary>

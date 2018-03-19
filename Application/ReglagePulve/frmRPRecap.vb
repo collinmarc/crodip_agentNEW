@@ -24,10 +24,12 @@ Public Class frmRPRecap
         formload()
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
-        m_paramDiag = m_PulverisateurCourant.getParamDiag()
+        m_paramDiag = m_oDiag.ParamDiag
         If m_paramDiag IsNot Nothing Then
+            'charegement de la liste des Controle du Paramdiag
             m_lstParamStrlDiag = New CRODIP_ControlLibrary.LstParamCtrlDiag()
             If m_lstParamStrlDiag.readXML(My.Settings.RepertoireParametres & "/" & m_paramDiag.fichierConfig) Then
+                ' Maj du TreeView
                 TreeView3state1.Nodes.Clear()
                 Dim oTvNode1 As TreeNode = TreeView3state1.Nodes.Add("Liste des Défauts")
                 FillTreeView(oTvNode1)

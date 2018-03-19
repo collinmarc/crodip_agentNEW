@@ -8,7 +8,26 @@
         If loadDiagnostic(oRPDiag) Then
             oRPDiag.oClientCourant = ExploitationManager.getExploitationById(oRPDiag.proprietaireId)
             oRPDiag.oPulverisateurCourant = PulverisateurManager.getPulverisateurById(oRPDiag.pulverisateurId)
-            'on retourne le dIAGNOSTIC ou un objet vide en cas d'erreur
+            'Chargement du Paramètre de Diag
+            oRPDiag.ParamDiag = oRPDiag.getParamDiag()
+            If oRPDiag.ParamDiag IsNot Nothing Then
+                'chargement des ParamCtrl
+                Dim olstParamStrlDiag As New CRODIP_ControlLibrary.LstParamCtrlDiag()
+                If olstParamStrlDiag.readXML(My.Settings.RepertoireParametres & "/" & oRPDiag.ParamDiag.fichierConfig) Then
+                    'Maj des libellé courts et Libellé Long des DiagItem à partir de la liste des ParamCtrlDiag
+                    For Each oDiagItem As DiagnosticItem In oRPDiag.diagnosticItemsLst.items
+                        'uniquement pour les NON OK
+                        If oDiagItem.itemCodeEtat <> DiagnosticItem.EtatDiagItemOK Then
+                            Dim oParam As CRODIP_ControlLibrary.ParamCtrlDiag
+                            oParam = olstParamStrlDiag.FindDiagItem(oDiagItem.getItemCode())
+                            If oParam IsNot Nothing Then
+                                oDiagItem.LibelleCourt = oParam.Libelle
+                                oDiagItem.LibelleLong = oParam.LibelleLong
+                            End If
+                        End If
+                    Next
+                End If
+            End If
             Return oRPDiag
         Else
             Return New RPDiagnostic()

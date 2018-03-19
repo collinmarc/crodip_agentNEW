@@ -2841,7 +2841,7 @@ Public Class Diagnostic
 
 
         Catch ex As Exception
-            CSDebug.dispError("Pulverisateur.getParamDiag ERROR :" & ex.Message)
+            CSDebug.dispError("Diagnostic.getParamDiag ERROR :" & ex.Message)
         End Try
 
         Return oReturn
