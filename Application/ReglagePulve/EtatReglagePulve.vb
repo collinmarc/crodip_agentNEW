@@ -212,7 +212,7 @@ Public Class EtatReglagePulve
             Dim bDiagItemOPresent As Boolean = False
             Dim bDiagItemPCPresent As Boolean = False
             For Each oDiagItem As DiagnosticItem In m_oDiag.diagnosticItemsLst.items
-                If oDiagItem.itemCodeEtat <> "B" Then
+                If oDiagItem.itemCodeEtat <> DiagnosticItem.EtatDiagItemOK And Not String.IsNullOrEmpty(oDiagItem.itemCodeEtat) Then
                     sCode = oDiagItem.idItem & oDiagItem.itemValue
                     If sCode.Length <= 4 Then
                         sCode = "  " & sCode

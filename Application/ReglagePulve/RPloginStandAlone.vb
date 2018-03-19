@@ -203,7 +203,7 @@ Public Class RPloginStandAlone
         Me.tbUser.Location = New System.Drawing.Point(188, 15)
         Me.tbUser.Name = "tbUser"
         Me.tbUser.Size = New System.Drawing.Size(241, 20)
-        Me.tbUser.TabIndex = 3
+        Me.tbUser.TabIndex = 1
         '
         'btn_login_seConnecter
         '
@@ -214,7 +214,7 @@ Public Class RPloginStandAlone
         Me.btn_login_seConnecter.Location = New System.Drawing.Point(302, 75)
         Me.btn_login_seConnecter.Name = "btn_login_seConnecter"
         Me.btn_login_seConnecter.Size = New System.Drawing.Size(128, 24)
-        Me.btn_login_seConnecter.TabIndex = 2
+        Me.btn_login_seConnecter.TabIndex = 3
         Me.btn_login_seConnecter.Text = "       Se connecter"
         Me.btn_login_seConnecter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -234,7 +234,7 @@ Public Class RPloginStandAlone
         Me.tbPassword.Name = "tbPassword"
         Me.tbPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.tbPassword.Size = New System.Drawing.Size(240, 20)
-        Me.tbPassword.TabIndex = 1
+        Me.tbPassword.TabIndex = 2
         '
         'Label4
         '

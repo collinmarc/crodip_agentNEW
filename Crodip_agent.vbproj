@@ -2400,6 +2400,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent />
-    <PostBuildEvent>copy "$(TargetFileName)" ReglagePulve.exe</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetFileName)" ReglagePulve.exe
+copy "$(TargetFileName).config" ReglagePulve.exe.config</PostBuildEvent>
   </PropertyGroup>
 </Project>

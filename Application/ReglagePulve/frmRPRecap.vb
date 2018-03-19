@@ -149,11 +149,13 @@ Public Class frmRPRecap
     Private Function ExploreTreeViewToCreateDiagItems(pNode As TreeNode) As Boolean
         Dim bReturn As Boolean
         Try
-            If pNode.StateImageIndex = 1 Then
+            If pNode.Level = 4 And pNode.Checked Then
                 Dim oParam As ParamCtrlDiag
                 oParam = TryCast(pNode.Tag, ParamCtrlDiag)
                 If oParam IsNot Nothing Then
                     Dim oDiagItem As New DiagnosticItem(m_oDiag.id, oParam.Code.Replace(".", ""), "")
+
+                    oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR
                     oDiagItem.LibelleCourt = oParam.Libelle
                     oDiagItem.LibelleLong = oParam.LibelleLong
                     m_oDiag.AddDiagItem(oDiagItem)
