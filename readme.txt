@@ -1,4 +1,7 @@
 TRUNK
+Build:20181319120000
+#191 : [RP]Rapport de reglage
+#192 : [RP]Page de login
 
 Build:20181319120000
 #145 : Export CSV des exploitation: Reprise des critères 

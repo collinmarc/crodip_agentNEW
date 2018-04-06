@@ -161,15 +161,6 @@ Partial Friend NotInheritable Class MySettings
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-    Public ReadOnly Property WSCrodipProduction() As Boolean
-        Get
-            Return CType(Me("WSCrodipProduction"),Boolean)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
     Public ReadOnly Property AutoSync() As Boolean
         Get
             Return CType(Me("AutoSync"),Boolean)
@@ -395,6 +386,15 @@ Partial Friend NotInheritable Class MySettings
     Public ReadOnly Property NumBuild() As String
         Get
             Return CType(Me("NumBuild"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+    Public ReadOnly Property WSCrodipProduction() As Boolean
+        Get
+            Return CType(Me("WSCrodipProduction"),Boolean)
         End Get
     End Property
 End Class

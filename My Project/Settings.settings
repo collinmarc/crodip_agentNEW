@@ -32,9 +32,6 @@
     <Setting Name="DernierControleSite" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="WSCrodipProduction" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="AutoSync" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -103,6 +100,9 @@
     </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
       <Value Profile="(Default)">20180319120000</Value>
+    </Setting>
+    <Setting Name="WSCrodipProduction" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
