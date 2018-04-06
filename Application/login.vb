@@ -252,7 +252,7 @@ Public Class login
         Me.Lbl_Version.AutoSize = True
         Me.Lbl_Version.BackColor = System.Drawing.Color.Transparent
         Me.Lbl_Version.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Lbl_Version.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.Lbl_Version.ForeColor = System.Drawing.Color.Silver
         Me.Lbl_Version.Location = New System.Drawing.Point(870, 594)
         Me.Lbl_Version.Name = "Lbl_Version"
         Me.Lbl_Version.Size = New System.Drawing.Size(101, 15)
@@ -374,7 +374,7 @@ Public Class login
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(512, 32)
         Me.Label3.TabIndex = 0
-        Me.Label3.Text = "        Pour accéder au logiciel, veuillez sélectionner votre profil ci-dessous e" & _
+        Me.Label3.Text = "        Pour accéder au logiciel, veuillez sélectionner votre profil ci-dessous e" &
     "t indiquer votre mot de passe :"
         '
         'lbl_environnement_debugType
@@ -406,7 +406,7 @@ Public Class login
         Me.lbl_WS.AutoSize = True
         Me.lbl_WS.BackColor = System.Drawing.Color.Transparent
         Me.lbl_WS.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.lbl_WS.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.lbl_WS.ForeColor = System.Drawing.Color.Silver
         Me.lbl_WS.Location = New System.Drawing.Point(653, 594)
         Me.lbl_WS.Name = "lbl_WS"
         Me.lbl_WS.Size = New System.Drawing.Size(183, 15)
