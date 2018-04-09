@@ -2,6 +2,7 @@ TRUNK
 Build:20181319120000
 #191 : [RP]Rapport de reglage
 #192 : [RP]Page de login
+#194 : plus d'icone du le logiciel Agent
 
 Build:20181319120000
 #145 : Export CSV des exploitation: Reprise des critères 

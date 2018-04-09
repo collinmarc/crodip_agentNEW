@@ -426,7 +426,6 @@ Public Class login
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "login"
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.formLogin.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
@@ -591,21 +590,11 @@ Public Class login
         End If
         Lbl_Version.Text = GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
         ' On récupère le formulaire contener
-        Dim myFormParentContener As Form = Me.MdiParent
-        ' Initialisation des variables
-        ' FIN --- Initialisation des variables
 
         ' Chargement de la statusbar
         Statusbardisplay("Chargement de la liste de profils...", True)
 
-        ' On récupère le nombre d'organismes
-        Dim nbStructures As Integer = 0
-        Dim CSDb As New CSDb(True)
-        Dim dataListStructure As System.Data.OleDb.OleDbDataReader = CSDb.getResults("SELECT count(*) FROM Structure")
-        While dataListStructure.Read()
-            nbStructures = CType(dataListStructure.Item(0), Integer)
-        End While
-        CSDb.free()
+
         FillCbxAgent()
         'Statusbardisplay("Chargement réussi de " & nbProfils & " profil(s)", False)
         Statusbarclear()

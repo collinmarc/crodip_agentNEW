@@ -183,7 +183,7 @@ Public Class frmRPRecap
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("frmRPRecap.Valider Err" & ex.Message)
-            bReturn = False
+            bReturn = True
         End Try
         Return bReturn
     End Function

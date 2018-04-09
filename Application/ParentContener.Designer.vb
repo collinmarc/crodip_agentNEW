@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class ParentContener
+Partial Class parentContener
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -43,6 +43,7 @@ Partial Class ParentContener
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(parentContener))
         Me.MainMenu1 = New System.Windows.Forms.MainMenu(Me.components)
         Me.MenuItem1 = New System.Windows.Forms.MenuItem()
         Me.MenuItem2 = New System.Windows.Forms.MenuItem()
@@ -147,15 +148,16 @@ Partial Class ParentContener
         Me.statusBar_img_loader.TabStop = False
         Me.statusBar_img_loader.Visible = False
         '
-        'ParentContenerTest
+        'parentContener
         '
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1012, 706)
         Me.Controls.Add(Me.statusBar_img_loader)
         Me.Controls.Add(Me.parentContener_statusBar)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
         Me.Menu = Me.MainMenu1
-        Me.Name = "ParentContenerTest"
+        Me.Name = "parentContener"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip"
         CType(Me.statusBar_img_loader, System.ComponentModel.ISupportInitialize).EndInit()
