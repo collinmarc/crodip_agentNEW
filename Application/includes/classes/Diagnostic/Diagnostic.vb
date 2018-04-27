@@ -93,6 +93,8 @@ Public Class Diagnostic
     Private _pulverisateurCoupureAutoTroncons As String = ""
     Private _pulverisateurReglageAutoHauteur As String = ""
     Private _pulverisateurRincagecircuit As String = ""
+    Private _pulverisateur As Pulverisateur 'Reference sur le Pulve (non exportées ni sauvegardée)
+
 
     Private _buseMarque As String = ""
     Private _buseModele As String = ""
@@ -2817,8 +2819,8 @@ Public Class Diagnostic
             Else
                 typeDiagnostic = "pulverisateur"
             End If
-
-
+            'On Stocke la referenc du pulve ou l'encodage Automatique
+            _pulverisateur = poPulve
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Diagnostic.SetPulverisateur ERR:" & ex.Message)
@@ -2860,7 +2862,7 @@ Public Class Diagnostic
 
         Try
             pDiagnosticItem.idDiagnostic = Me.id
-            diagnosticItemsLst.Add(pDiagnosticItem)
+            diagnosticItemsLst.AddOrReplace(pDiagnosticItem)
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Diagnostic.AddDiagItem ERR: " & ex.Message)
@@ -2887,18 +2889,6 @@ Public Class Diagnostic
             bReturn = False
         End Try
         Return bReturn
-    End Function
-
-    Public Function createDiagItem(ByVal pItem As String, ByVal pValue As String, Optional ByVal pCause As String = "", Optional ByVal pCodeEtat As String = "") As DiagnosticItem
-        Dim oReturn As DiagnosticItem
-
-        Try
-            oReturn = New DiagnosticItem(Me.id, pItem, pValue, pCause, pCodeEtat)
-        Catch ex As Exception
-            CSDebug.dispError("Diagnostic.createDiagItem ERR: " & ex.Message)
-            oReturn = Nothing
-        End Try
-        Return oReturn
     End Function
 
     ''' Generation du dataset en vue la la construction du Bon de Livraison
@@ -3052,5 +3042,21 @@ Public Class Diagnostic
         Return bReturn
 
     End Function
+    ''' <summary>
+    ''' Encodage automatique des diagItem
+    ''' </summary>
+    Public Sub EncodageAuto()
+
+        Dim oLst As List(Of DiagnosticItem)
+        oLst = _pulverisateur.EncodageAutomatiqueDefauts()
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Actif Then
+                Me.AddDiagItem(oDiagItem)
+            Else
+                Me.RemoveDiagItem(oDiagItem)
+            End If
+        Next
+
+    End Sub
 
 End Class

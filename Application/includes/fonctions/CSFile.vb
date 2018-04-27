@@ -1,8 +1,8 @@
 Imports System.IO
 
-Module CSFile
+Public Class CSFile
 
-    Public Function exists(ByVal fileName As String) As Boolean
+    Public Shared Function exists(ByVal fileName As String) As Boolean
         If System.IO.File.Exists(fileName) Then
             Return True
         Else
@@ -10,7 +10,7 @@ Module CSFile
         End If
     End Function
 
-    Public Sub open(ByVal fileName As String)
+    Public Shared Sub open(ByVal fileName As String)
         Try
             Dim monProcess As New Process
             monProcess.StartInfo.FileName = fileName
@@ -22,7 +22,7 @@ Module CSFile
         End Try
     End Sub
 
-    Public Sub delete(ByVal fileName As String)
+    Public Shared Sub delete(ByVal fileName As String)
         Try
             System.IO.File.Delete(fileName)
         Catch ex As Exception
@@ -30,7 +30,7 @@ Module CSFile
         End Try
     End Sub
 
-    Public Sub create(ByVal fileName As String, ByVal fileBody As String)
+    Public Shared Sub create(ByVal fileName As String, ByVal fileBody As String)
         Try
             Dim curFile As StreamWriter
             If Not File.Exists(fileName) Then
@@ -44,11 +44,11 @@ Module CSFile
             CSDebug.dispWarn("CSFile::create : " & ex.Message)
         End Try
     End Sub
-    Public Sub create(ByVal fileName As String)
+    Public Shared Sub create(ByVal fileName As String)
         CSFile.create(fileName, "")
     End Sub
 
-    Public Sub append(ByVal fileName As String, ByVal fileContent As String)
+    Public Shared Sub append(ByVal fileName As String, ByVal fileContent As String)
         Try
             Dim curFile As StreamWriter
             If File.Exists(fileName) Then
@@ -63,7 +63,7 @@ Module CSFile
         End Try
     End Sub
 
-    Public Sub write(ByVal fileName As String, ByVal fileContent As String)
+    Public Shared Sub write(ByVal fileName As String, ByVal fileContent As String)
         Try
             Dim curFile As StreamWriter
             If File.Exists(fileName) Then
@@ -78,4 +78,4 @@ Module CSFile
         End Try
     End Sub
 
-End Module
+End Class

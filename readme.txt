@@ -1,8 +1,16 @@
 TRUNK
 Build:20181319120000
+#
 #191 : [RP]Rapport de reglage
 #192 : [RP]Page de login
 #194 : plus d'icone du le logiciel Agent
+#123 : [RP] Rpport final
+#118 : Bouton de reduction
+#116 ; Rapport de reglage pas de logo CRODIP
+#114 : [RP] Débit correspondant D1 et D2 non modifiable
+#113 : [RP] Saisie du regime moteur / Vitesse de la prise de force
+#193 : [RP]: Blocage sur la page defaut
+#126 : [RP] Charegement d'un Controle CRODIP
 
 Build:20181319120000
 #145 : Export CSV des exploitation: Reprise des critères 
@@ -13,7 +21,7 @@ Build:20181319120000
 #117 : [RP] Bouton de reduction
 #122 : [RP] Menu ?
 #124 : [RP] : Page de Login
-
+------------
 Build:20170926140000
 #34620 : Exploitation avec un seul pulve : Pulve sélectioné par défaut, 
 #34741 : Erreur en Synhcro de Prestation Tarif

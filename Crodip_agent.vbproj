@@ -383,6 +383,7 @@
     <Compile Include="Application\diagnostic\FrmAddCoProp.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\includes\classes\Diagnostic\DiagnosticItemAuto.vb" />
     <Compile Include="Application\includes\classes\ReglagePulve\RPDiagnosticManager.vb" />
     <Compile Include="Application\includes\CSReglagePulve.vb" />
     <Compile Include="Application\ReglagePulve\frmDiagnostiqueSimple.Designer.vb">
@@ -1393,6 +1394,7 @@
     </Content>
     <Content Include="moduleDocumentaire\_parametres\Attelage.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="img\LogoMCII.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

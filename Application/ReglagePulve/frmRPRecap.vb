@@ -5,7 +5,7 @@ Public Class frmRPRecap
     Implements IfrmCRODIP
     Private m_paramDiag As CRODIP_ControlLibrary.ParamDiag
     Private m_lstParamStrlDiag As CRODIP_ControlLibrary.LstParamCtrlDiag
-    Private m_oDiag As RPDiagnostic
+    Private WithEvents m_oDiag As RPDiagnostic
     Private m_PulverisateurCourant As Pulverisateur
 
 
@@ -176,10 +176,13 @@ Public Class frmRPRecap
         Try
             m_oDiag.diagnosticItemsLst.Clear()
             Dim oNode As TreeNode
-            oNode = TreeView3state1.Nodes(0)
-            ExploreTreeViewToCreateDiagItems(oNode)
+            If TreeView3state1.Nodes.Count > 0 Then
+                oNode = TreeView3state1.Nodes(0)
+                ExploreTreeViewToCreateDiagItems(oNode)
 
-            m_oDiag.bSectionDefauts = True
+                m_oDiag.bSectionDefauts = True
+            End If
+
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("frmRPRecap.Valider Err" & ex.Message)
@@ -216,5 +219,9 @@ Public Class frmRPRecap
         '        e.Cancel = True
         '    End If
         'End If
+    End Sub
+
+    Private Sub m_oDiag_ParamDiagUpated() Handles m_oDiag.ParamDiagUpated
+        formload()
     End Sub
 End Class

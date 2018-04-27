@@ -1,20 +1,20 @@
-Module CSDiagPdf
+Public Class CSDiagPdf
 
-    Public TYPE_SYNTHESE_MESURES As String = "SM"
-    Public TYPE_CONTRAT_COMMERCIAL As String = "CC"
-    Public TYPE_RAPPORT_INSPECTION As String = "RI"
-    Public TYPE_BON_LIVRAISON As String = "BL"
-    Public TYPE_FEUILLE_PEDAGOGIQUE As String = "FP"
-    Public TYPE_FEUILLE_ENQSAT As String = "ES"
-    Public TYPE_FACTURE As String = "FACTURE"
-    Public TYPE_FV_MANOCTRL As String = "FVMC"
-    Public TYPE_FV_BANCMESURE As String = "FVBM"
-    Public TYPE_FV_RP As String = "RP"
-    Public TYPE_DOC_COPROP As String = "CO"
+    Public Shared TYPE_SYNTHESE_MESURES As String = "SM"
+    Public Shared TYPE_CONTRAT_COMMERCIAL As String = "CC"
+    Public Shared TYPE_RAPPORT_INSPECTION As String = "RI"
+    Public Shared TYPE_BON_LIVRAISON As String = "BL"
+    Public Shared TYPE_FEUILLE_PEDAGOGIQUE As String = "FP"
+    Public Shared TYPE_FEUILLE_ENQSAT As String = "ES"
+    Public Shared TYPE_FACTURE As String = "FACTURE"
+    Public Shared TYPE_FV_MANOCTRL As String = "FVMC"
+    Public Shared TYPE_FV_BANCMESURE As String = "FVBM"
+    Public Shared TYPE_FV_RP As String = "RP"
+    Public Shared TYPE_DOC_COPROP As String = "CO"
 
     ' Retourne le nom du fichier à générer en fonction du pulve et du type de document
     ' FORMAT : [Ymd]_[idPulve]_[nomProprio]_[CC|RI|BL|FP].pdf
-    Public Function makeFilename(ByVal pulveId As String, ByVal typeDoc As String) As String
+    Public Shared Function makeFilename(ByVal pulveId As String, ByVal typeDoc As String) As String
         Dim fileName As String = ""
         '##########################################################
         If typeDoc = TYPE_FV_MANOCTRL Or typeDoc = TYPE_FV_BANCMESURE Or typeDoc = TYPE_FV_RP Then
@@ -53,7 +53,7 @@ Module CSDiagPdf
     End Function
 
     ' Nettoie une chaine pour etre utilisée comme nom de fichier
-    Public Function cleanString(ByVal chaine As String) As String
+    Public Shared Function cleanString(ByVal chaine As String) As String
         chaine = chaine.ToUpper.Replace("'", "").Trim
         chaine = chaine.ToUpper.Replace("/", "").Trim
         chaine = chaine.ToUpper.Replace("\", "").Trim
@@ -63,4 +63,4 @@ Module CSDiagPdf
         Return chaine
     End Function
 
-End Module
+End Class

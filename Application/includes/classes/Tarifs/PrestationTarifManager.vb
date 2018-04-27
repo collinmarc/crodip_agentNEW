@@ -1,9 +1,9 @@
-Module PrestationTarifManager
+Public Class PrestationTarifManager
 
 #Region "Methodes Web Service"
 
     ' OK
-    Public Function getWSPrestationTarifById(ByVal PrestationTarif_id As Integer, ByVal PrestationTarif_idCategorie As Integer, pAgent As Agent) As Object
+    Public Shared Function getWSPrestationTarifById(ByVal PrestationTarif_id As Integer, ByVal PrestationTarif_idCategorie As Integer, pAgent As Agent) As Object
         Dim curObject As New PrestationTarif
         Try
 
@@ -68,7 +68,7 @@ Module PrestationTarifManager
     End Function
 
     ' OK
-    Public Function sendWSPrestationTarif(ByVal curObject As PrestationTarif, pAgent As Agent, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSPrestationTarif(ByVal curObject As PrestationTarif, pAgent As Agent, ByRef updatedObject As Object) As Integer
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
@@ -79,7 +79,7 @@ Module PrestationTarifManager
     End Function
 
     ' OK
-    Public Function xml2object(ByVal arrXml As Object) As PrestationTarif
+    Public Shared Function xml2object(ByVal arrXml As Object) As PrestationTarif
         Dim newObject As New PrestationTarif
         For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
             Select Case tmpSerializeItem.LocalName()
@@ -111,7 +111,7 @@ Module PrestationTarifManager
 #Region "Methodes Locales"
 
     ' OK
-    Public Function save(ByVal curObject As PrestationTarif, pAgent As Agent, Optional bSyncro As Boolean = False) As Boolean
+    Public Shared Function save(ByVal curObject As PrestationTarif, pAgent As Agent, Optional bSyncro As Boolean = False) As Boolean
         Dim bReturn As Boolean
         Try
             If curObject.getEtat <> Tarif.BDEtat.ETATNONE Then
@@ -174,7 +174,7 @@ Module PrestationTarifManager
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Function getNextId() As Integer
+    Private Shared Function getNextId() As Integer
         Dim newId As Integer = 1
         Try
             '## Préparation de la connexion
@@ -206,7 +206,7 @@ Module PrestationTarifManager
         End Try
         Return newId
     End Function
-    Private Function create(pTarif As PrestationTarif) As Boolean
+    Private Shared Function create(pTarif As PrestationTarif) As Boolean
         Dim newId As Integer = 0
         Dim bReturn As Boolean
         Try
@@ -232,7 +232,7 @@ Module PrestationTarifManager
     End Function
 
     ' OK
-    Private Function exists(ByVal curObject As PrestationTarif) As Boolean
+    Private Shared Function exists(ByVal curObject As PrestationTarif) As Boolean
         Dim bReturn As Boolean
         Dim dbLink As New CSDb(True)
         Try
@@ -260,7 +260,7 @@ Module PrestationTarifManager
     End Function
 
     ' 
-    Public Sub setSynchro(ByVal curObject As PrestationTarif)
+    Public Shared Sub setSynchro(ByVal curObject As PrestationTarif)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -273,14 +273,14 @@ Module PrestationTarifManager
     End Sub
 
     ' OK
-    Public Sub delete(ByVal curObject As PrestationTarif)
+    Public Shared Sub delete(ByVal curObject As PrestationTarif)
         Try
             PrestationTarifManager.delete(curObject.id)
         Catch ex As Exception
             CSDebug.dispFatal("PrestationTarifManager::delete() : " & ex.Message)
         End Try
     End Sub
-    Public Sub delete(ByVal curObjectId As Integer)
+    Public Shared Sub delete(ByVal curObjectId As Integer)
         Try
             Dim bdd As New CSDb(True)
             bdd.getResults("DELETE FROM `PrestationTarif` WHERE `PrestationTarif`.`id`=" & curObjectId & "")
@@ -292,7 +292,7 @@ Module PrestationTarifManager
     End Sub
 
     ' 
-    Public Function getById(ByVal idObject As Integer, pIdStructure As Integer) As PrestationTarif
+    Public Shared Function getById(ByVal idObject As Integer, pIdStructure As Integer) As PrestationTarif
         Debug.Assert(idObject > 0)
         Debug.Assert(pIdStructure > 0)
         Dim curObject As PrestationTarif = New PrestationTarif
@@ -351,7 +351,7 @@ Module PrestationTarifManager
     End Function
 
     ' 
-    Public Function getArrayByStructureId(ByVal idStructure As Integer) As PrestationTarif()
+    Public Shared Function getArrayByStructureId(ByVal idStructure As Integer) As PrestationTarif()
         Dim arrObjects(0) As PrestationTarif
         Try
             If idStructure <> 0 Then
@@ -397,7 +397,7 @@ Module PrestationTarifManager
     End Function
 
     ' 
-    Public Function getArrayByCategorieId(ByVal idCategorie As Integer) As PrestationTarif()
+    Public Shared Function getArrayByCategorieId(ByVal idCategorie As Integer) As PrestationTarif()
         Dim arrObjects(0) As PrestationTarif
         Try
             If idCategorie <> 0 Then
@@ -440,7 +440,7 @@ Module PrestationTarifManager
     End Function
 
     ' 
-    Public Function getUpdates() As PrestationTarif()
+    Public Shared Function getUpdates() As PrestationTarif()
         Dim arrObjects(0) As PrestationTarif
         Try
             '## Préparation de la connexion
@@ -500,4 +500,4 @@ Module PrestationTarifManager
 
 #End Region
 
-End Module
+End Class

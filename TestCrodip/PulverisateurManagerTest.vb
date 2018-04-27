@@ -1344,7 +1344,10 @@ Public Class PulverisateurManagerTest
         oLst = oPulve.EncodageAutomatiqueDefauts()
         Dim bTrouve As Boolean
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "2510" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1353,7 +1356,10 @@ Public Class PulverisateurManagerTest
         Assert.IsTrue(bTrouve, "Défaut Attelage 2510 non trouvé")
 
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "2520" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1365,7 +1371,10 @@ Public Class PulverisateurManagerTest
         oPulve.attelage = Pulverisateur.ATTELAGE_AUTOMOTEUR
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "2510" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1373,7 +1382,10 @@ Public Class PulverisateurManagerTest
         Next
         Assert.IsFalse(bTrouve, "Défaut Attelage 2510 trouvé")
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "2520" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1389,7 +1401,10 @@ Public Class PulverisateurManagerTest
         oPulve.isVentilateur = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "10110" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1398,7 +1413,10 @@ Public Class PulverisateurManagerTest
         Assert.IsTrue(bTrouve, "Défaut CultureBasses 10110 non trouvé")
 
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "10120" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1406,7 +1424,10 @@ Public Class PulverisateurManagerTest
         Next
         Assert.IsTrue(bTrouve, "Défaut CultureBasses 10120 non trouvé")
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "10210" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1414,7 +1435,10 @@ Public Class PulverisateurManagerTest
         Next
         Assert.IsTrue(bTrouve, "Défaut CultureBasses 10210 non trouvé")
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "10220" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1426,7 +1450,10 @@ Public Class PulverisateurManagerTest
         oPulve.isVentilateur = True
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "10110" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1435,7 +1462,10 @@ Public Class PulverisateurManagerTest
         Assert.IsFalse(bTrouve, "Défaut CultureBasses 10110 trouvé")
 
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "10120" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1443,7 +1473,10 @@ Public Class PulverisateurManagerTest
         Next
         Assert.IsFalse(bTrouve, "Défaut CultureBasses 10120 trouvé")
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "10210" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1451,7 +1484,10 @@ Public Class PulverisateurManagerTest
         Next
         Assert.IsFalse(bTrouve, "Défaut CultureBasses 10210 trouvé")
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "10220" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1466,7 +1502,10 @@ Public Class PulverisateurManagerTest
         oPulve.isCuveIncorporation = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "4313" Then
                 bTrouve = True
@@ -1478,7 +1517,10 @@ Public Class PulverisateurManagerTest
         oPulve.isCuveIncorporation = True
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "4310" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1490,7 +1532,10 @@ Public Class PulverisateurManagerTest
         oPulve.regulation = "Pression constante"
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "5510" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1498,7 +1543,10 @@ Public Class PulverisateurManagerTest
         Next
         Assert.IsTrue(bTrouve, "Défaut Regulation 5510 non trouvé")
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "5520" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1510,7 +1558,10 @@ Public Class PulverisateurManagerTest
         oPulve.regulation = "DPM"
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "5510" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1518,7 +1569,10 @@ Public Class PulverisateurManagerTest
         Next
         Assert.IsTrue(bTrouve, "Défaut Regulation 5510 non trouvé")
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "5520" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1530,7 +1584,10 @@ Public Class PulverisateurManagerTest
         oPulve.regulation = "DPA"
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "5510" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1538,7 +1595,10 @@ Public Class PulverisateurManagerTest
         Next
         Assert.IsTrue(bTrouve, "Défaut Regulation 5510 non trouvé")
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "5520" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1550,7 +1610,10 @@ Public Class PulverisateurManagerTest
         oPulve.regulation = "DPAE*"
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "5620" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemOK Then
                 bTrouve = True
@@ -1562,7 +1625,10 @@ Public Class PulverisateurManagerTest
         oPulve.isCuveRincage = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "4611" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE Then
                 bTrouve = True
@@ -1573,7 +1639,10 @@ Public Class PulverisateurManagerTest
         oPulve.isRotobuse = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "4621" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE Then
                 bTrouve = True
@@ -1584,7 +1653,10 @@ Public Class PulverisateurManagerTest
         oPulve.isRinceBidon = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "4321" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE Then
                 bTrouve = True
@@ -1595,7 +1667,10 @@ Public Class PulverisateurManagerTest
         oPulve.isLanceLavage = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "4631" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE Then
                 bTrouve = True
@@ -1606,7 +1681,10 @@ Public Class PulverisateurManagerTest
         oPulve.isBidonLaveMain = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "12411" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE Then
                 bTrouve = True
@@ -1617,7 +1695,10 @@ Public Class PulverisateurManagerTest
         oPulve.isFiltrationAspiration = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "7111" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE Then
                 bTrouve = True
@@ -1628,7 +1709,10 @@ Public Class PulverisateurManagerTest
         oPulve.isFiltrationRefoulement = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "7211" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE Then
                 bTrouve = True
@@ -1639,7 +1723,10 @@ Public Class PulverisateurManagerTest
         oPulve.isFiltrationTroncons = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "7311" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE Then
                 bTrouve = True
@@ -1650,7 +1737,10 @@ Public Class PulverisateurManagerTest
         oPulve.isFiltrationBuses = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "7411" And oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE Then
                 bTrouve = True
@@ -1661,13 +1751,45 @@ Public Class PulverisateurManagerTest
         oPulve.isRincagecircuit = False
         oLst = oPulve.EncodageAutomatiqueDefauts()
         bTrouve = False
-        For Each oDiagItem As DiagnosticItem In oLst
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Inactif Then
+                Continue For
+            End If
             strCode = oDiagItem.getItemCode()
             If Trim(strCode) = "4641" Then
                 bTrouve = True
             End If
         Next
         Assert.IsTrue(bTrouve, "Défaut Absence 4641 non trouvé")
+    End Sub
+    <TestMethod()>
+    <DataRow("PORTE", "2510", DiagnosticItem.EtatDiagItemOK, DiagnosticItemAuto.EtatDiagItemAuto.Inactif)>
+    Public Sub testEncodageAutoBis(pAttelage As String, pItemCode As String, pCodeEtat As String, pEtatDiagItem As DiagnosticItemAuto.EtatDiagItemAuto)
+        Dim oExploit As Exploitation
+        Dim oPulve As Pulverisateur
+        Dim oLst As List(Of DiagnosticItem)
+        Dim strCode As String
+
+        oExploit = createExploitation()
+        oPulve = createPulve(oExploit)
+        oPulve.type = Pulverisateur.TYPEPULVE_CULTURESBASSES
+        oPulve.categorie = Pulverisateur.CATEGORIEPULVE_RAMPE
+
+        'Test Defaut Attelage
+        '========================
+        'Regle du vrai
+        oPulve.attelage = pAttelage
+        oLst = oPulve.EncodageAutomatiqueDefauts()
+        Dim bTrouve As Boolean
+        bTrouve = False
+        For Each oDiagItem As DiagnosticItemAuto In oLst
+            strCode = oDiagItem.getItemCode()
+            If Trim(strCode) = pItemCode And oDiagItem.itemCodeEtat = pCodeEtat And oDiagItem.Etat = pEtatDiagItem Then
+                bTrouve = True
+            End If
+        Next
+        Assert.IsTrue(bTrouve, "Défaut " & pItemCode & "Non Trouvé dans l'état" & pEtatDiagItem)
+
     End Sub
 
     ''' <summary>

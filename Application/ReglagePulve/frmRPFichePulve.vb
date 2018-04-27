@@ -3,10 +3,10 @@
     Implements IfrmCRODIP
 
 
-    Private m_oDiag As RPDiagnostic
+    Private m_oRPDiag As RPDiagnostic
 
     Public Overridable Sub setContexte(ByVal bModeAjout As MODE, pAgent As Agent, pPulverisateur As Pulverisateur, pDiagnostic As Diagnostic)
-        m_oDiag = pDiagnostic
+        m_oRPDiag = pDiagnostic
         MyBase.setContexte(bModeAjout, pAgent, pPulverisateur, pDiagnostic)
         Me.Text = "Pulvérisateur"
     End Sub
@@ -47,6 +47,10 @@
                 SubmitForm()
                 If m_oDiagnostic IsNot Nothing Then
                     m_oDiagnostic.setPulverisateur(m_oPulverisateur)
+                    m_oDiagnostic.EncodageAuto()
+                    Dim oParamDiag As CRODIP_ControlLibrary.ParamDiag = m_oDiagnostic.getParamDiag()
+                    m_oDiagnostic.ParamDiag = oParamDiag
+                    m_oRPDiag.RaiseEventParamDiagEvent()
                 End If
                 bReturn = True
             End If

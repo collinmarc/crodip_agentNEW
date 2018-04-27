@@ -1,9 +1,9 @@
-Module PrestationCategorieManager
+Public Class PrestationCategorieManager
 
 #Region "Methodes Web Service"
 
     ' OK
-    Public Function getWSPrestationCategorieById(pAgent As Agent, ByVal PrestationCategorie_id As Integer) As Object
+    Public Shared Function getWSPrestationCategorieById(pAgent As Agent, ByVal PrestationCategorie_id As Integer) As Object
         Dim curObject As New PrestationCategorie
         Try
 
@@ -52,7 +52,7 @@ Module PrestationCategorieManager
     End Function
 
     ' OK
-    Public Function sendWSPrestationCategorie(ByVal curObject As PrestationCategorie, pAgent As Agent, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSPrestationCategorie(ByVal curObject As PrestationCategorie, pAgent As Agent, ByRef updatedObject As Object) As Integer
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
@@ -63,7 +63,7 @@ Module PrestationCategorieManager
     End Function
 
     ' OK
-    Public Function xml2object(ByVal arrXml As Object) As PrestationCategorie
+    Public Shared Function xml2object(ByVal arrXml As Object) As PrestationCategorie
         Dim newObject As New PrestationCategorie
         For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
             Select Case tmpSerializeItem.LocalName()
@@ -87,7 +87,7 @@ Module PrestationCategorieManager
 #Region "Methodes Locales"
 
     ' OK
-    Public Function save(ByVal curObject As PrestationCategorie, pAgent As Agent, Optional bSyncro As Boolean = False) As Boolean
+    Public Shared Function save(ByVal curObject As PrestationCategorie, pAgent As Agent, Optional bSyncro As Boolean = False) As Boolean
         Dim bReturn As Boolean
         Dim dbLink As CSDb = Nothing
         '## Préparation de la connexion
@@ -151,7 +151,7 @@ Module PrestationCategorieManager
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getNextId() As Integer
+    Public Shared Function getNextId() As Integer
         Dim iReturn As Integer = 1
         Dim dbLink As New CSDb(True)
         '## Préparation de la connexion
@@ -193,7 +193,7 @@ Module PrestationCategorieManager
     ''' <param name="pAgent"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Function create(ByVal id As Integer, pAgent As Agent) As Boolean
+    Private Shared Function create(ByVal id As Integer, pAgent As Agent) As Boolean
         Debug.Assert(id <> 0)
         Dim bReturn As Boolean
         Dim dbLink As New CSDb(True)
@@ -220,7 +220,7 @@ Module PrestationCategorieManager
     ''' <param name="curObject"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function exists(ByVal curObject As PrestationCategorie) As Boolean
+    Public Shared Function exists(ByVal curObject As PrestationCategorie) As Boolean
         Dim bReturn As Boolean
         Dim oCSDB As New CSDb(True)
         Dim bddCommande As OleDb.OleDbCommand
@@ -246,7 +246,7 @@ Module PrestationCategorieManager
     End Function
 
     ' OK
-    Public Sub setSynchro(ByVal curObject As PrestationCategorie)
+    Public Shared Sub setSynchro(ByVal curObject As PrestationCategorie)
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -259,7 +259,7 @@ Module PrestationCategorieManager
     End Sub
 
     ' OK
-    Public Sub delete(ByVal curObject As PrestationCategorie)
+    Public Shared Sub delete(ByVal curObject As PrestationCategorie)
         Try
             PrestationCategorieManager.delete(curObject.id)
         Catch ex As Exception
@@ -267,7 +267,7 @@ Module PrestationCategorieManager
         End Try
 
     End Sub
-    Public Sub delete(ByVal curObjectId As Integer)
+    Public Shared Sub delete(ByVal curObjectId As Integer)
         Dim oCSDB As New CSDb(True)
         Dim bddCommande As OleDb.OleDbCommand
         Try
@@ -283,7 +283,7 @@ Module PrestationCategorieManager
     End Sub
 
     ' OK
-    Public Function getArrayByStructureId(ByVal idStructure As Integer) As PrestationCategorie()
+    Public Shared Function getArrayByStructureId(ByVal idStructure As Integer) As PrestationCategorie()
         Dim arrObjects(0) As PrestationCategorie
         Try
             If idStructure <> 0 Then
@@ -334,7 +334,7 @@ Module PrestationCategorieManager
     End Function
 
     ' OK
-    Public Function getCategoryById(ByVal idCategorie As Integer, pidStructure As Integer) As PrestationCategorie
+    Public Shared Function getCategoryById(ByVal idCategorie As Integer, pidStructure As Integer) As PrestationCategorie
         Dim oCategorie As New PrestationCategorie
         Try
             '## Préparation de la connexion
@@ -380,7 +380,7 @@ Module PrestationCategorieManager
         Return oCategorie
     End Function
     ' OK
-    Public Function getUpdates() As PrestationCategorie()
+    Public Shared Function getUpdates() As PrestationCategorie()
         Dim arrObjects(0) As PrestationCategorie
         Try
             '## Préparation de la connexion
@@ -428,4 +428,4 @@ Module PrestationCategorieManager
 
 #End Region
 
-End Module
+End Class

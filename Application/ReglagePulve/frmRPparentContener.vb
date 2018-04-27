@@ -375,7 +375,7 @@ Public Class frmRPparentContener
         Me.tsbLoadCrodip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbLoadCrodip.Name = "tsbLoadCrodip"
         Me.tsbLoadCrodip.Size = New System.Drawing.Size(36, 36)
-        Me.tsbLoadCrodip.Text = "ToolStripButton1"
+        Me.tsbLoadCrodip.Text = "Chargement d'un controle CRODIP"
         '
         'ToolStripSeparator1
         '
@@ -762,21 +762,24 @@ Public Class frmRPparentContener
 
 
             'Création des fenêtres Filles
+            SuspendLayout()
             oFRMExploit = New frmRPFicheExlpoitant()
             oFRMExploit.setContexte(False, clientCourant, m_RPDiagnostic)
             oFRMExploit.WindowState = FormWindowState.Maximized
             oFRMExploit.MdiParent = Me
-
+            '            oFRMExploit.Show()
 
             oFRMPulve = New frmRPFichePulve()
             oFRMPulve.setContexte(2, New Agent(), pulverisateurCourant, m_RPDiagnostic)
             oFRMPulve.WindowState = FormWindowState.Maximized
             oFRMPulve.MdiParent = Me
+            'oFRMPulve.Show()
 
             odlgHelp551 = New frmRPDlgHelp551()
             odlgHelp551.Setcontexte(DiagnosticHelp551.Help551Mode.Mode551, m_RPDiagnostic, "Vitesse d'avancement", False)
             odlgHelp551.WindowState = FormWindowState.Maximized
             odlgHelp551.MdiParent = Me
+            'odlgHelp551.Show()
 
 
             odlgHelp552 = New frmRPDlgHelp552
@@ -784,29 +787,35 @@ Public Class frmRPparentContener
             odlgHelp552.Text = "Débits"
             odlgHelp552.WindowState = FormWindowState.Maximized
             odlgHelp552.MdiParent = Me
+            'odlgHelp552.Show()
 
 
             ofrmdiag = New frmRPDiagnostique()
             ofrmdiag.setContexte(m_RPDiagnostic, DiagMode.CTRL_COMPLET, pulverisateurCourant, clientCourant)
             ofrmdiag.WindowState = FormWindowState.Maximized
             ofrmdiag.MdiParent = Me
+            'ofrmdiag.Show()
 
 
             ofrmRecap = New frmRPRecap()
             ofrmRecap.setContexte(m_RPDiagnostic, pulverisateurCourant)
             ofrmRecap.WindowState = FormWindowState.Maximized
             ofrmRecap.MdiParent = Me
+            'ofrmRecap.Show()
 
 
             ofrmCalculs = New frmRPCalculVolumeHa()
             ofrmCalculs.setContexte(m_RPDiagnostic)
             ofrmCalculs.WindowState = FormWindowState.Maximized
             ofrmCalculs.MdiParent = Me
+            'ofrmCalculs.Show()
 
             ofrmRapport = New frmRPRapport()
             ofrmRapport.setContexte(m_RPDiagnostic)
             ofrmRapport.WindowState = FormWindowState.Maximized
             ofrmRapport.MdiParent = Me
+            ofrmRapport.MdiParent = Me
+            'ofrmRapport.Show()
 
             enableSuivant(True)
             enablePrecedant(False)
@@ -820,6 +829,9 @@ Public Class frmRPparentContener
             enableCalcul(True)
             enableRapport(True)
 
+            Me.ResumeLayout(False)
+            Me.PerformLayout()
+            m_nStep = 0
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("frmRParentcontainer.demarrer ERR" & ex.Message)
@@ -996,25 +1008,6 @@ Public Class frmRPparentContener
 
     End Sub
 
-    Private Sub frmRPparentContener_MdiChildActivate(sender As Object, e As EventArgs) Handles MyBase.MdiChildActivate
-
-        If m_nOldStep <> -1 Then
-            If m_nOldStep <> m_nStep Then
-                Dim ofrm As IfrmCRODIP
-                ofrm = MdiChildren(m_nOldStep)
-                If ValiderFRM(ofrm) Then
-                    m_nOldStep = m_nStep
-                Else
-                    'on reste sur la même page
-                    m_nStep = m_nOldStep
-                    AfficherFenetre()
-                End If
-            End If
-        Else
-            m_nOldStep = m_nStep
-        End If
-    End Sub
-
     Private Function ValiderFRM(pfrm As IfrmCRODIP) As Boolean
         Dim bReturn As Boolean
         bReturn = pfrm.Valider()
@@ -1048,7 +1041,14 @@ Public Class frmRPparentContener
     End Sub
 
     Private Sub tsbSave_Click(sender As Object, e As EventArgs) Handles tsbSave.Click
-        Save()
+        'Validation de la page en cours
+        Dim ofrm As IfrmCRODIP
+        ofrm = ActiveMdiChild
+        If ofrm IsNot Nothing Then
+            If ValiderFRM(ofrm) Then
+                Save()
+            End If
+        End If
     End Sub
     Private Sub Save()
         m_SaveFileDialog1.FileName = m_RPDiagnostic.createXMLFileName()
@@ -1077,6 +1077,7 @@ Public Class frmRPparentContener
 
                 CSDebug.dispInfo("Chargement Fichier")
                 m_RPDiagnostic = RPDiagnostic.readXML(m_OpenFileDialog1.FileName)
+                m_RPDiagnostic.ParamDiag = m_RPDiagnostic.getParamDiag()
             Else
                 Exit Sub
             End If

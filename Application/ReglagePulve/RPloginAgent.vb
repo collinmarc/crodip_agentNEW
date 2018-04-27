@@ -127,9 +127,9 @@ Public Class RPloginAgent
         'PictureBox2
         '
         Me.PictureBox2.Image = Global.Crodip_agent.Resources.logo
-        Me.PictureBox2.Location = New System.Drawing.Point(24, 19)
+        Me.PictureBox2.Location = New System.Drawing.Point(24, 13)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(166, 189)
+        Me.PictureBox2.Size = New System.Drawing.Size(175, 208)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 33
         Me.PictureBox2.TabStop = False

@@ -5119,29 +5119,6 @@ Public Class DiagnosticManagerTest
         Next
 
     End Sub
-    <TestMethod()> _
-    Public Sub TST_AjoutSuppressionDiagItem()
-
-        Dim oDiag As Diagnostic
-        Dim oPulve As Pulverisateur
-        Dim oExploit As Exploitation
-        Dim odiagItem As DiagnosticItem
-
-        oExploit = createExploitation()
-        oPulve = createPulve(oExploit)
-
-        oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
-
-        odiagItem = oDiag.createDiagItem("211", "1")
-
-        oDiag.AddDiagItem(odiagItem)
-
-        Assert.AreEqual(1, oDiag.diagnosticItemsLst.Count)
-        oDiag.RemoveDiagItem(odiagItem)
-        Assert.AreEqual(0, oDiag.diagnosticItemsLst.Count)
-
-
-    End Sub
 
     '''<summary>
     '''Test du de la liste des Diag par Pulve_id

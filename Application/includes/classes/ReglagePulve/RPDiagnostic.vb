@@ -16,7 +16,11 @@ Public Class RPDiagnostic
     Public oClientCourant As Exploitation
     Public oPulverisateurCourant As Pulverisateur
 
+    Public Event ParamDiagUpated()
 
+    Public Sub RaiseEventParamDiagEvent()
+        RaiseEvent ParamDiagUpated()
+    End Sub
     Public Property xmldiagnosticHelp551() As DiagnosticHelp551
         Get
             Return m_diagnostichelp551

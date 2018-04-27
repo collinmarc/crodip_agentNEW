@@ -859,7 +859,7 @@ Public Class frmDiagnostiqueV6
             '============
             ' Defaut activé par défaut F(Pulvé)
             '============
-            CreateDiagnosticItems()
+            m_diagnostic.EncodageAuto()
             AfficheDiagnosticItems()
 
             '================================
@@ -913,15 +913,6 @@ Public Class frmDiagnostiqueV6
         End Try
         Return bReturn
     End Function
-    Public Sub CreateDiagnosticItems()
-
-        Dim oLst As List(Of DiagnosticItem)
-        oLst = m_Pulverisateur.EncodageAutomatiqueDefauts()
-        For Each oDiagItem As DiagnosticItem In oLst
-            m_diagnostic.AddDiagItem(oDiagItem)
-        Next
-
-    End Sub
 
     ' Chargement des infos d'un diagnostic existant
     Public Sub loadExistingDiag()

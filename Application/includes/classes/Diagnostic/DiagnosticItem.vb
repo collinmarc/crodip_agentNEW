@@ -20,7 +20,7 @@ Public Class DiagnosticItemsList
         End Get
         Set(ByVal Value As DiagnosticItem())
             For Each oItem As DiagnosticItem In Value
-                Add(oItem)
+                AddOrReplace(oItem)
             Next
         End Set
     End Property
@@ -33,11 +33,11 @@ Public Class DiagnosticItemsList
         End Get
         Set(ByVal Value As List(Of DiagnosticItem))
             For Each oItem As DiagnosticItem In Value
-                Add(oItem)
+                AddOrReplace(oItem)
             Next
         End Set
     End Property
-    Public Sub Add(ByVal pDiagItem As DiagnosticItem)
+    Public Sub AddOrReplace(ByVal pDiagItem As DiagnosticItem)
         Dim key As String = pDiagItem.getItemCode()
         If _diagnosticItem.ContainsKey(key) Then
             _diagnosticItem(key) = pDiagItem
@@ -234,7 +234,7 @@ Public Class DiagnosticItem
             _itemCodeEtat = Value
         End Set
     End Property
-    Public Sub SetItemCodeEtat(pTypectrl As CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT)
+    Public Overridable Sub SetItemCodeEtat(pTypectrl As CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT)
         Select Case pTypectrl
             Case CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
                 itemCodeEtat = EtatDiagItemOK
