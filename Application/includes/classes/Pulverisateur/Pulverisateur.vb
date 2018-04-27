@@ -1269,7 +1269,7 @@ Public Class Pulverisateur
     ''' <remarks></remarks>
     Public Function EncodageAutomatiqueDefauts() As List(Of DiagnosticItem)
         Dim oReturn As New List(Of DiagnosticItem)
-        Dim oDiagItem As DiagnosticItem
+        Dim oDiagItem As DiagnosticItemAuto
         Dim sfichierConfig As String = getParamDiag().fichierConfig
         Dim olstParam As New CRODIP_ControlLibrary.LstParamCtrlDiag()
 
@@ -1280,12 +1280,12 @@ Public Class Pulverisateur
             '-----------------
             oDiagItem = New DiagnosticItemAuto("", "251", "0", "", DiagnosticItem.EtatDiagItemOK)
             If attelage = Pulverisateur.ATTELAGE_PORTE Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("2.5.1.0").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("2.5.1.0"))
             End If
             oReturn.Add(oDiagItem)
             oDiagItem = New DiagnosticItemAuto("", "252", "0", "", DiagnosticItem.EtatDiagItemOK)
             If attelage = Pulverisateur.ATTELAGE_PORTE Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("2.5.2.0").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("2.5.2.0"))
             End If
             oReturn.Add(oDiagItem)
             'Defaut CultureBasse et Ventilateur => 10.1.1.0
@@ -1293,7 +1293,7 @@ Public Class Pulverisateur
             oDiagItem = New DiagnosticItemAuto("", "1011", "0")
             oReturn.Add(oDiagItem)
             If type = Pulverisateur.TYPEPULVE_CULTURESBASSES And Not isVentilateur Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("10.1.1.0").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("10.1.1.0"))
             End If
 
             'Defaut CultureBasse et Ventilateur => 10.1.2.0
@@ -1301,7 +1301,7 @@ Public Class Pulverisateur
             oDiagItem = New DiagnosticItemAuto("", "1012", "0")
             oReturn.Add(oDiagItem)
             If type = Pulverisateur.TYPEPULVE_CULTURESBASSES And Not isVentilateur Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("10.1.2.0").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("10.1.2.0"))
             End If
 
             'Defaut CultureBasse et Ventilateur => 10.2.1.0
@@ -1309,7 +1309,7 @@ Public Class Pulverisateur
             oDiagItem = New DiagnosticItemAuto("", "1021", "0")
             oReturn.Add(oDiagItem)
             If type = Pulverisateur.TYPEPULVE_CULTURESBASSES And Not isVentilateur Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("10.2.1.0").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("10.2.1.0"))
             End If
 
             'Defaut CultureBasse et Ventilateur => 10.2.2.0
@@ -1317,28 +1317,28 @@ Public Class Pulverisateur
             oDiagItem = New DiagnosticItemAuto("", "1022", "0")
             oReturn.Add(oDiagItem)
             If type = Pulverisateur.TYPEPULVE_CULTURESBASSES And Not isVentilateur Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("10.2.2.0").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("10.2.2.0"))
             End If
             'PressionConstante() / DPM() / DPA() =>5.5.1.0
             '----------------------------------------------
             oDiagItem = New DiagnosticItemAuto("", "551", "0")
             oReturn.Add(oDiagItem)
             If pulverisateurRegulationIsPressionConstante() Or pulverisateurRegulationIsDPM() Or pulverisateurRegulationIsDPA() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("5.5.1.0").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("5.5.1.0"))
             End If
             'PressionConstante() / DPM() / DPA() =>5.5.2.0
             '----------------------------------------------
             oDiagItem = New DiagnosticItemAuto("", "552", "0")
             oReturn.Add(oDiagItem)
             If pulverisateurRegulationIsPressionConstante() Or pulverisateurRegulationIsDPM() Or pulverisateurRegulationIsDPA() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("5.5.2.0").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("5.5.2.0"))
             End If
             'RegulationIsDPAE
             '----------------
             oDiagItem = New DiagnosticItemAuto("", "562", "0")
             oReturn.Add(oDiagItem)
             If pulverisateurRegulationIsDPAE() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("5.6.2.0").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("5.6.2.0"))
             End If
             'Cuve incorporation
             '-------------------
@@ -1346,14 +1346,14 @@ Public Class Pulverisateur
             oReturn.Add(oDiagItem)
 
             If Not isCuveIncorporation Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("4.3.1.3").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("4.3.1.3"))
             End If
             'Cuve Rincage
             '-----------
             oDiagItem = New DiagnosticItemAuto("", "461", "1")
             oReturn.Add(oDiagItem)
             If Not isCuveRincage() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("4.6.1.1").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("4.6.1.1"))
             End If
 
             'RotoBuse
@@ -1361,63 +1361,64 @@ Public Class Pulverisateur
             oDiagItem = New DiagnosticItemAuto("", "462", "1")
             oReturn.Add(oDiagItem)
             If Not isRotobuse() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("4.6.2.1").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("4.6.2.1"))
             End If
             'RinceBidon
             '------------
             oDiagItem = New DiagnosticItemAuto("", "432", "1")
             oReturn.Add(oDiagItem)
             If Not isRinceBidon() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("4.3.2.1").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("4.3.2.1"))
             End If
             'LanceLavage
             '---------------
             oDiagItem = New DiagnosticItemAuto("", "463", "1")
             oReturn.Add(oDiagItem)
             If Not isLanceLavage() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("4.6.3.1").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("4.6.3.1"))
+
             End If
             'Bidon Lave-Main
             '--------------
             oDiagItem = New DiagnosticItemAuto("", "1241", "1")
             oReturn.Add(oDiagItem)
             If Not isBidonLaveMain() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("12.4.1.1").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("12.4.1.1"))
             End If
             'FiltrationAspiration
             '----------------------
             oDiagItem = New DiagnosticItemAuto("", "711", "1")
             oReturn.Add(oDiagItem)
             If Not isFiltrationAspiration() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("7.1.1.1").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("7.1.1.1"))
             End If
             'FiltrationRefoulement
             '---------------------
             oDiagItem = New DiagnosticItemAuto("", "721", "1")
             oReturn.Add(oDiagItem)
             If Not isFiltrationRefoulement() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("7.2.1.1").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("7.2.1.1"))
             End If
             'FiltrationsTroncons
             '-------------------
             oDiagItem = New DiagnosticItemAuto("", "731", "1")
             oReturn.Add(oDiagItem)
             If Not isFiltrationTroncons() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("7.3.1.1").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("7.3.1.1"))
             End If
             'FiltrationBuses
             '--------------
             oDiagItem = New DiagnosticItemAuto("", "741", "1")
             oReturn.Add(oDiagItem)
             If Not isFiltrationBuses() Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("7.4.1.1").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("7.4.1.1"))
             End If
             'RincageCircuit
             '--------------
             oDiagItem = New DiagnosticItemAuto("", "464", "1")
             oReturn.Add(oDiagItem)
             If Not isRincagecircuit Then
-                oDiagItem.SetItemCodeEtat(olstParam.Find("4.6.4.1").DefaultCategorie)
+                oDiagItem.FillWithParam(olstParam.Find("4.6.4.1"))
             End If
 
         Catch ex As Exception

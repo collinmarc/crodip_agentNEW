@@ -27,8 +27,11 @@ Public Class DiagnosticItemAuto
         End Set
     End Property
 
-    Public Overrides Sub SetItemCodeEtat(pTypectrl As CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT)
-        MyBase.SetItemCodeEtat(pTypectrl)
+    Public Sub FillWithParam(pTypectrl As CRODIP_ControlLibrary.ParamCtrlDiag)
+        MyBase.SetItemCodeEtat(pTypectrl.DefaultCategorie)
+        LibelleLong = pTypectrl.LibelleLong
+        LibelleCourt = pTypectrl.Libelle
+
         Etat = EtatDiagItemAuto.Actif
     End Sub
 
