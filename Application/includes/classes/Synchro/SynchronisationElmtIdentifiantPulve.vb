@@ -40,13 +40,13 @@ Public Class SynchronisationElmtIdentifiantPulverisateur
                     bReturn = False
                 End If
             Catch ex As Exception
-                CSDebug.dispFatal("SynchronisationElmtIdentifiantPulverisateur.SynchroDesc ERR : " & ex.Message.ToString)
+                CSDebug.dispError("SynchronisationElmtIdentifiantPulverisateur.SynchroDesc(" & Me.identifiantEntier & ") ERR : " & ex.Message.ToString)
                 bReturn = False
             End Try
 
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("SynchronisationElmtIdentifiantPulverisateur.SynhcroDesc ERR" & ex.Message)
+            CSDebug.dispError("SynchronisationElmtIdentifiantPulverisateur.SynhcroDesc (" & Me.identifiantEntier & ")ERR" & ex.Message)
             bReturn = False
         End Try
         Return bReturn

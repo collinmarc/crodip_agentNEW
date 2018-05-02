@@ -87,21 +87,17 @@ Public Class FVBancManager
 
     Public Shared Function save(ByVal objFVBanc As FVBanc, Optional bSyncro As Boolean = False) As Boolean
 
-        Dim paramsQueryUpdate As String
-        Dim paramsQuery_col As String
-        Dim paramsQuery As String
-        Dim CSDb As New CSDb(True)
-        Dim bddCommande As New OleDb.OleDbCommand
         Dim bReturn As Boolean
         Try
-
+            If objFVBanc.id = "" Then
+                objFVBanc.id = getNewId(objFVBanc.idAgentControleur)
+            End If
 
             ' On test si l'object existe ou non
             Dim existsObject As FVBanc
             existsObject = FVBancManager.getFVBancById(objFVBanc.id)
-            CSDb.free()
             ' L'Id du FV baanc est initialisé , l'idbanc de mesure est laissé à blanc
-            If existsObject.idBancMesure = "" Then
+            If existsObject.id = "" Then
                 ' Si il n'existe pas, on le crée
                 bReturn = insert(objFVBanc, bSyncro)
             Else
@@ -109,7 +105,6 @@ Public Class FVBancManager
             End If
 
         Catch ex As Exception
-            CSDb.free()
             CSDebug.dispError("FVBancManager.Save(" & objFVBanc.id & ")" & ex.Message)
             bReturn = False
 
@@ -342,47 +337,40 @@ Public Class FVBancManager
         Return bReturn
     End Function 'delete
 
-    Public Shared Function getNewId(ByVal pAgent As Agent) As String
+    Private Shared Function getNewId(ByVal pIdAgent As String) As String
         ' déclarations
-        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
-        If pAgent.idStructure <> 0 Then
-
-            'Dim bddCommande As New OleDb.OleDbCommand
-            '' On test si la connexion est déjà ouverte ou non
-            'If bddConnection.State() = 0 Then
-            '    ' Si non, on la configure et on l'ouvre
-            '    bddConnection.ConnectionString = bddConnectString
-            '    bddConnection.Open()
-            'End If
-            'bddCommande.Connection = bddConnection
-            'bddCommande.CommandText = "SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & agentCourant.idStructure & "-" & agentCourant.id & "-%' ORDER BY `id` DESC"
-            Try
-                ' On récupère les résultats
+        Dim oAgent As Agent
+        Dim tmpObjectId As String = ""
+        oAgent = AgentManager.getAgentById(pIdAgent)
+        If oAgent.id = pIdAgent Then
+            If oAgent.idStructure <> 0 Then
                 Dim bdd As New CSDb(True)
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY `id` DESC")
-                ' Puis on les parcours
-                Dim newId As Integer = 0
-                While tmpListProfils.Read()
-                    ' On récupère le dernier ID
-                    Dim tmpId As Integer = 0
-                    tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", ""))
-                    If tmpId > newId Then
-                        newId = tmpId
-                    End If
-                End While
-                tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
+
+                Try
+                    ' On récupère les résultats
+                    Dim oDataReader As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.idStructure & "-" & oAgent.id & "-%' ORDER BY `id` DESC")
+                    ' Puis on les parcours
+                    Dim newId As Integer = 0
+                    While oDataReader.Read()
+                        ' On récupère le dernier ID
+                        Dim tmpId As Integer = 0
+                        tmpObjectId = oDataReader.Item(0).ToString
+                        Dim tab As String() = tmpObjectId.Split("-")
+                        tmpId = CInt(tab(2))
+                        If tmpId > newId Then
+                            newId = tmpId
+                        End If
+                    End While
+                    oDataReader.Close()
+                    newId = newId + 1
+                    tmpObjectId = oAgent.idStructure & "-" & oAgent.id & "-" & (newId + 1)
+                Catch ex As Exception ' On intercepte l'erreur
+                    CSDebug.dispError("FVBancManager.getnewId ERR : " & ex.Message)
+                End Try
+
                 bdd.free()
-            Catch ex As Exception ' On intercepte l'erreur
-                Console.Write("FVBancManager - newId : " & ex.Message & vbNewLine)
-            End Try
 
-            ' Test pour fermeture de connection BDD
-            'If bddConnection.State() <> 0 Then
-            '    ' On ferme la connexion
-            '    bddConnection.Close()
-            'End If
-
+            End If
         End If
         'on retourne le nouvel id
         Return tmpObjectId
@@ -403,8 +391,7 @@ Public Class FVBancManager
     Public Shared Function getFVBancById(ByVal fvbanc_id As String) As FVBanc
         ' déclarations
         Dim oCsDB As New CSDb(True)
-        Dim oagent As New Agent()
-        Dim tmpFVBanc As New FVBanc(oagent)
+        Dim tmpFVBanc As New FVBanc()
         If Not String.IsNullOrEmpty(fvbanc_id) Then
 
             Dim bddCommande As OleDb.OleDbCommand
@@ -451,6 +438,7 @@ Public Class FVBancManager
                         tmpColId = tmpColId + 1
                     End While
                 End While
+                tmpListProfils.Close()
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("FVBancManager::getFVBancById() : " & ex.Message)
             End Try

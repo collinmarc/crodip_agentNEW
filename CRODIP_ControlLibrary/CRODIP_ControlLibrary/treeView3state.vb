@@ -193,19 +193,20 @@ Public Class treeView3state
 
         MyBase.OnNodeMouseClick(e)
 
-        _bPreventCheckEvent = True
 
         iSpacing = If(ImageList Is Nothing, 0, 18)
         ' if user clicked area
         ' *not* used by the state
         ' image we can leave here.
         If (e.X > e.Node.Bounds.Left - iSpacing OrElse e.X < e.Node.Bounds.Left - (iSpacing + 16)) AndAlso e.Button <> MouseButtons.None Then
+            _bPreventCheckEvent = False
             Return
         End If
 
         tnBuffer = e.Node
         'Pas d'action sur les noeuds parent
         If tnBuffer.Nodes.Count > 0 Then
+            _bPreventCheckEvent = False
             Return
         End If
         ' buffer clicked node and

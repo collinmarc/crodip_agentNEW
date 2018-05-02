@@ -31,7 +31,6 @@ Public MustInherit Class FVMateriel
         _FVFileName = ""
     End Sub
     Sub New(ByVal pAgent As Agent)
-        _id = FVBancManager.getNewId(pAgent)
         idAgentControleur = pAgent.id
     End Sub
 

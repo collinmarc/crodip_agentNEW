@@ -15,7 +15,6 @@ Public Class FVBanc
     End Sub
     Sub New(ByVal pAgent As Agent)
 
-        id = FVBancManager.getNewId(pAgent)
         idAgentControleur = pAgent.id
     End Sub
 

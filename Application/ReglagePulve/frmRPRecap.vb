@@ -24,6 +24,7 @@ Public Class frmRPRecap
         formload()
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
+        Me.SuspendLayout()
         m_paramDiag = m_oDiag.ParamDiag
         If m_paramDiag IsNot Nothing Then
             'charegement de la liste des Controle du Paramdiag
@@ -38,6 +39,7 @@ Public Class frmRPRecap
         End If
         MinimizeBox = False
         MaximizeBox = False
+        Me.ResumeLayout()
 
     End Sub
 
@@ -206,19 +208,6 @@ Public Class frmRPRecap
 
         ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
 
-    End Sub
-
-    Private Sub TreeView3state1_BeforeCheck(sender As Object, e As TreeViewCancelEventArgs) Handles TreeView3state1.BeforeCheck
-        'on refuse le check sur les élements qui ne sont pas du dernier niveau (pas de niveau inférieur)
-
-        'Dim oParam As ParamCtrlDiag
-        'oParam = TryCast(e.Node.Tag, ParamCtrlDiag)
-        'If oParam IsNot Nothing Then
-        '    If oParam.lstSubNodes.Count <> 0 Then
-        '        CSDebug.dispInfo(oParam.Libelle)
-        '        e.Cancel = True
-        '    End If
-        'End If
     End Sub
 
     Private Sub m_oDiag_ParamDiagUpated() Handles m_oDiag.ParamDiagUpated

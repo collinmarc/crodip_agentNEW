@@ -717,7 +717,6 @@ Public Class AgentManagerTest
         oDR = cmd.ExecuteReader()
         While oDR.Read()
 
-            id = FVBancManager.getNewId(pAgent)
             Dim oFV As New FVBanc()
             oFV.id = id
             oFV.idBancMesure = oDR.GetString(0)
