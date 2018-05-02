@@ -12,6 +12,7 @@
             m_oDiag.oRPParam.bSectionSyntheseCapteurVitesse = True
             m_oDiag.syntheseErreurMoyenneCinemometre = m_oDiag.diagnosticHelp551.ErreurMoyenne
             createDiagItems() 'Création des diagItem corespondants
+            m_oDiag.RaiseEventLstDiagItemUpdated()
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("frmRPDlgHelp551.Valider Err" & ex.Message)
@@ -48,7 +49,7 @@
     End Sub
 
     Private Sub frmRPDlgHelp551_Leave(sender As Object, e As EventArgs) Handles Me.Leave
-        Valider()
+        'Valider()
     End Sub
 
     Private Sub frmRPDlgHelp551_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -73,9 +74,9 @@
     Protected Sub createDiagItems()
         If m_oDiag.diagnosticHelp551.Resultat = "OK" Then
             m_oDiag.RemoveDiagItem(New DiagnosticItem(m_oDiag.id, "551", "2", "", "P"))
-            m_oDiag.AddDiagItem(New DiagnosticItem(m_oDiag.id, "551", "3", "", "B"))
+            m_oDiag.AdOrReplaceDiagItem(New DiagnosticItem(m_oDiag.id, "551", "3", "", "B"))
         Else
-            m_oDiag.AddDiagItem(New DiagnosticItem(m_oDiag.id, "551", "2", "", "P"))
+            m_oDiag.AdOrReplaceDiagItem(New DiagnosticItem(m_oDiag.id, "551", "2", "", "P"))
             m_oDiag.RemoveDiagItem(New DiagnosticItem(m_oDiag.id, "551", "3", "", "B"))
         End If
     End Sub

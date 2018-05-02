@@ -55,7 +55,7 @@
     End Sub
 
     Private Sub frmRPFicheExlpoitant_Leave(sender As Object, e As EventArgs) Handles Me.Leave
-        Valider()
+        'Valider()
     End Sub
 
     Public Sub refresh()

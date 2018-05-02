@@ -1668,7 +1668,7 @@ Public Class controle_preliminaire
             Dim curDiagnosticItem As New DiagnosticItem(sender)
 
             If sender.checked = True Then
-                m_Diagnostic.AddDiagItem(curDiagnosticItem)
+                m_Diagnostic.AdOrReplaceDiagItem(curDiagnosticItem)
             Else
                 m_Diagnostic.RemoveDiagItem(curDiagnosticItem)
             End If

@@ -24,7 +24,6 @@ Public Class frmRPRecap
         formload()
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
-        Me.SuspendLayout()
         m_paramDiag = m_oDiag.ParamDiag
         If m_paramDiag IsNot Nothing Then
             'charegement de la liste des Controle du Paramdiag
@@ -39,7 +38,6 @@ Public Class frmRPRecap
         End If
         MinimizeBox = False
         MaximizeBox = False
-        Me.ResumeLayout()
 
     End Sub
 
@@ -72,11 +70,6 @@ Public Class frmRPRecap
                             If oParam3.DefaultCategorie <> 0 Then
                                 oNode = oNodeGrp2.Nodes.Add("(" & oParam3.Code & ") " & oParam3.LibelleLong)
                                 oNode.Tag = oParam3
-                                'Si le diag contient un diagitem avec ce code 
-                                '   => check 
-                                If isDiagItem(oParam3) Then
-                                    oNode.Checked = True
-                                End If
                             End If
                         Next
                     Next
@@ -84,6 +77,8 @@ Public Class frmRPRecap
 
             Next
 
+
+            CheckNodes(pNode)
             bReturn = True
 
         Catch ex As Exception
@@ -92,6 +87,28 @@ Public Class frmRPRecap
         End Try
         Return bReturn
     End Function
+
+    Protected Sub CheckNodes(pNode As TreeNode)
+        If pNode.Nodes.Count > 0 Then
+            For Each oNode As TreeNode In pNode.Nodes
+                CheckNodes(oNode)
+            Next
+        Else
+            If isDiagItem(pNode.Tag) Then
+                pNode.Checked = True
+                checkParent(pNode.Parent)
+            End If
+        End If
+
+
+    End Sub
+    Protected Sub checkParent(pNode As TreeNode)
+        pNode.Checked = True
+        If pNode.Parent IsNot Nothing Then
+            checkParent(pNode.Parent)
+        End If
+    End Sub
+
     ''' <summary>
     ''' Rend vrai si le diagnosticCourent contient le DiagItem 
     ''' </summary>
@@ -160,7 +177,7 @@ Public Class frmRPRecap
                     oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR
                     oDiagItem.LibelleCourt = oParam.Libelle
                     oDiagItem.LibelleLong = oParam.LibelleLong
-                    m_oDiag.AddDiagItem(oDiagItem)
+                    m_oDiag.AdOrReplaceDiagItem(oDiagItem)
                 End If
             End If
             For Each oNodeChild As TreeNode In pNode.Nodes
@@ -212,5 +229,16 @@ Public Class frmRPRecap
 
     Private Sub m_oDiag_ParamDiagUpated() Handles m_oDiag.ParamDiagUpated
         formload()
+    End Sub
+
+    Private Sub TreeView3state1_NodeMouseClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles TreeView3state1.NodeMouseClick
+    End Sub
+
+    Private Sub m_oDiag_lstDiagItemUpated() Handles m_oDiag.lstDiagItemUpated
+        Dim oRootNode As TreeNode
+        oRootNode = TreeView3state1.Nodes(0)
+        If oRootNode IsNot Nothing Then
+            CheckNodes(oRootNode)
+        End If
     End Sub
 End Class

@@ -198,10 +198,15 @@ Public Class treeView3state
         ' if user clicked area
         ' *not* used by the state
         ' image we can leave here.
-        If (e.X > e.Node.Bounds.Left - iSpacing OrElse e.X < e.Node.Bounds.Left - (iSpacing + 16)) AndAlso e.Button <> MouseButtons.None Then
-            _bPreventCheckEvent = False
-            Return
-        End If
+        Try
+
+            If (e.X > e.Node.Bounds.Left - iSpacing OrElse e.X < e.Node.Bounds.Left - (iSpacing + 16)) AndAlso e.Button <> MouseButtons.None Then
+                _bPreventCheckEvent = False
+                Return
+            End If
+        Catch ex As Exception
+
+        End Try
 
         tnBuffer = e.Node
         'Pas d'action sur les noeuds parent
@@ -220,7 +225,7 @@ Public Class treeView3state
         ' set state image index
         tnBuffer.StateImageIndex = If(tnBuffer.Checked, 1, tnBuffer.StateImageIndex)
         ' correctly.
-        OnAfterCheck(New TreeViewEventArgs(tnBuffer, TreeViewAction.ByMouse))
+        'OnAfterCheck(New TreeViewEventArgs(tnBuffer, TreeViewAction.ByMouse))
 
         stNodes = New Stack(Of TreeNode)(tnBuffer.Nodes.Count)
         ' create a new stack and

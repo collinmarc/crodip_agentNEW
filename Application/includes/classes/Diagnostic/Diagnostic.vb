@@ -2856,7 +2856,7 @@ Public Class Diagnostic
     ''' <param name="pDiagnosticItem"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function AddDiagItem(ByVal pDiagnosticItem As DiagnosticItem) As Boolean
+    Public Overridable Function AdOrReplaceDiagItem(ByVal pDiagnosticItem As DiagnosticItem) As Boolean
         Debug.Assert(diagnosticItemsLst IsNot Nothing)
         Dim bReturn As Boolean
 
@@ -3051,7 +3051,7 @@ Public Class Diagnostic
         oLst = _pulverisateur.EncodageAutomatiqueDefauts()
         For Each oDiagItem As DiagnosticItemAuto In oLst
             If oDiagItem.Etat = DiagnosticItemAuto.EtatDiagItemAuto.Actif Then
-                Me.AddDiagItem(oDiagItem)
+                Me.AdOrReplaceDiagItem(oDiagItem)
             Else
                 Me.RemoveDiagItem(oDiagItem)
             End If

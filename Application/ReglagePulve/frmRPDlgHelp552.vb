@@ -15,6 +15,7 @@
                 m_oDiag.syntheseErreurDebitmetre = m_oDiag.diagnosticHelp552.ErreurDebitMetre
             End If
             createDiagItems()
+            m_oDiag.RaiseEventLstDiagItemUpdated()
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("frmRPDlgHelp552.Valider Err" & ex.Message)
@@ -80,11 +81,11 @@
     Protected Sub createDiagItems()
         'En mode reglage pulvé, les 2 mode sont activés
         If m_oDiag.diagnosticHelp552.Resultat = "IMPRECISION" Then
-            m_oDiag.AddDiagItem(New DiagnosticItem(m_oDiag.id, "552", "2", "", "P"))
+            m_oDiag.AdOrReplaceDiagItem(New DiagnosticItem(m_oDiag.id, "552", "2", "", "P"))
             m_oDiag.RemoveDiagItem(New DiagnosticItem(m_oDiag.id, "552", "3", "", "B"))
         Else
             m_oDiag.RemoveDiagItem(New DiagnosticItem(m_oDiag.id, "552", "2", "", "P"))
-            m_oDiag.AddDiagItem(New DiagnosticItem(m_oDiag.id, "552", "3", "", "B"))
+            m_oDiag.AdOrReplaceDiagItem(New DiagnosticItem(m_oDiag.id, "552", "3", "", "B"))
 
         End If
     End Sub
@@ -97,7 +98,7 @@
     End Sub
 
     Private Sub frmRPDlgHelp552_Leave(sender As Object, e As EventArgs) Handles MyBase.Leave
-        Valider()
+        'Valider()
     End Sub
 
     Private Sub frmRPDlgHelp552_Load(sender As Object, e As EventArgs) Handles Me.Load

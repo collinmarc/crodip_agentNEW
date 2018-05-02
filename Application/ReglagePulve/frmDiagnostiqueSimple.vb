@@ -4939,7 +4939,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'curDiagnosticItem.cause = pCause
 
             If sender.checked = True Then
-                m_diagnostic.AddDiagItem(curDiagnosticItem)
+                m_diagnostic.AdOrReplaceDiagItem(curDiagnosticItem)
             Else
                 m_diagnostic.RemoveDiagItem(curDiagnosticItem)
             End If

@@ -73,43 +73,43 @@ Imports System.IO
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "3", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "4", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "5", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "6", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "7", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "8", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "9", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "257", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)
@@ -182,46 +182,46 @@ Imports System.IO
             oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
             oDiagItem.LibelleCourt = "LIBCourt2561"
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561"
-            oDiag.AddDiagItem(oDiagItem)
+            oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "3", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "4", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "5", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "6", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "7", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "8", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "9", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oDiagItem = New DiagnosticItem(oDiag.id, "257", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)
@@ -292,14 +292,14 @@ Imports System.IO
             oDiagItem = New DiagnosticItem(oDiag.id, "257", i, "2", "O")
             oDiagItem.LibelleCourt = "LIBCourt257" & i
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 257" & i
-            oDiag.AddDiagItem(oDiagItem)
+            oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
         For i As Integer = 0 To 25
             oDiagItem = New DiagnosticItem(oDiag.id, "256", i, "2", "P")
             oDiagItem.LibelleCourt = "LIBCourt256" & i
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 256" & i
-            oDiag.AddDiagItem(oDiagItem)
+            oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
         oDiag.syntheseErreurMoyenneManoD = 0.35
@@ -381,14 +381,14 @@ Imports System.IO
             oDiagItem = New DiagnosticItem(oDiag.id, "257", i, "2", "O")
             oDiagItem.LibelleCourt = "LIBCourt257" & i
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 257" & i
-            oDiag.AddDiagItem(oDiagItem)
+            oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
         For i As Integer = 0 To 60
             oDiagItem = New DiagnosticItem(oDiag.id, "256", i, "2", "P")
             oDiagItem.LibelleCourt = "LIBCourt256" & i
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 256" & i
-            oDiag.AddDiagItem(oDiagItem)
+            oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
         oDiag.syntheseErreurMoyenneManoD = 0.35
@@ -541,7 +541,7 @@ Imports System.IO
             oDiagItem = New DiagnosticItem(oDiag.id, "256", i, "2", "O")
             oDiagItem.LibelleCourt = "LIBCourt2561"
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561"
-            oDiag.AddDiagItem(oDiagItem)
+            oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
 
@@ -711,11 +711,11 @@ Imports System.IO
         oDiagItem = New DiagnosticItem(oDiag.id, "1012", "1", "", "O")
         oDiagItem.LibelleCourt = "LIBCourt10121"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 10121"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "911", "1", "", "O")
         oDiagItem.LibelleCourt = "LIBCourt9111"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 9111"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)
@@ -793,43 +793,43 @@ Imports System.IO
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "3", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "4", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "5", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "6", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "7", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "8", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "9", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "257", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)
@@ -932,23 +932,23 @@ Imports System.IO
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "3", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "4", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "5", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
 
         oEtat = New EtatRapportInspection(oDiag)
@@ -1024,44 +1024,44 @@ Imports System.IO
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "3", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "4", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "5", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "6", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "7", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "8", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         'Les Diag Item sont de type Absence il ne doivent pas apparaitre sur l'etat
         oDiagItem = New DiagnosticItem(oDiag.id, "811", "9", "1", DiagnosticItem.EtatDiagItemABSENCE)
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est un Defaut d'absence"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "8112", "2", "1", DiagnosticItem.EtatDiagItemABSENCE)
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est un Defaut d'absence"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)
@@ -1150,46 +1150,46 @@ Imports System.IO
             oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
             oDiagItem.LibelleCourt = "LIBCourt2561"
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561"
-            oDiag.AddDiagItem(oDiagItem)
+            oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "3", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "4", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "5", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "6", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "7", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "8", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "9", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oDiagItem = New DiagnosticItem(oDiag.id, "257", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)
@@ -1263,43 +1263,43 @@ Imports System.IO
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "3", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "4", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "5", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "6", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "7", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "8", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "9", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "257", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat())

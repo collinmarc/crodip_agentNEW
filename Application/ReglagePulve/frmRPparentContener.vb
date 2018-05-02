@@ -622,6 +622,7 @@ Public Class frmRPparentContener
 
     Public Function Suivant() As Boolean
         Dim bReturn As Boolean
+        Me.Cursor = Cursors.WaitCursor
         Try
             Dim ofrm As IfrmCRODIP
             ofrm = ActiveMdiChild
@@ -637,6 +638,7 @@ Public Class frmRPparentContener
             CSDebug.dispError("DoReglage ERR" & ex.Message)
             bReturn = False
         End Try
+        Me.Cursor = Cursors.Default
         Return bReturn
     End Function
 

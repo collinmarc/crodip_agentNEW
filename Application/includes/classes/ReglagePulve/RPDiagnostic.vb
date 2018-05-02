@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.Generic
 Imports System.IO
 Imports System.Xml.Serialization
+Imports Crodip_agent
 
 '<XmlInclude(GetType(List(Of RPInfosBuses)))>
 '<XmlInclude(GetType(RPInfosBuses))>
@@ -17,10 +18,15 @@ Public Class RPDiagnostic
     Public oPulverisateurCourant As Pulverisateur
 
     Public Event ParamDiagUpated()
+    Public Event lstDiagItemUpated()
 
     Public Sub RaiseEventParamDiagEvent()
         RaiseEvent ParamDiagUpated()
     End Sub
+    Public Sub RaiseEventLstDiagItemUpdated()
+        RaiseEvent lstDiagItemUpated()
+    End Sub
+
     Public Property xmldiagnosticHelp551() As DiagnosticHelp551
         Get
             Return m_diagnostichelp551

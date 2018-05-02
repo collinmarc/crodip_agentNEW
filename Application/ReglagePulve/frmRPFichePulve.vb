@@ -51,6 +51,8 @@
                     Dim oParamDiag As CRODIP_ControlLibrary.ParamDiag = m_oDiagnostic.getParamDiag()
                     m_oDiagnostic.ParamDiag = oParamDiag
                     m_oRPDiag.RaiseEventParamDiagEvent()
+                    m_oRPDiag.RaiseEventLstDiagItemUpdated()
+
                 End If
                 bReturn = True
             End If
@@ -137,7 +139,7 @@
     End Function
 
     Private Sub frmRPFichePulve_Leave(sender As Object, e As EventArgs) Handles Me.Leave
-        Valider()
+        'Valider()
     End Sub
 
     Public Sub refresh()

@@ -28,7 +28,7 @@ Partial Class frmRPRecap
         Me.Label1 = New System.Windows.Forms.Label()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.m_bsDiagnostic = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TreeView3state1 = New CRODIP_ControlLibrary.treeView3state()
+        Me.TreeView3state1 = New TreeView
         CType(Me.m_bsDiagnostic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -105,5 +105,5 @@ Partial Class frmRPRecap
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
     Friend WithEvents m_bsDiagnostic As System.Windows.Forms.BindingSource
-    Friend WithEvents TreeView3state1 As CRODIP_ControlLibrary.treeView3state
+    Friend WithEvents TreeView3state1 As TreeView
 End Class

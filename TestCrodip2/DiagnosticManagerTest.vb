@@ -779,7 +779,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemValue = 4
         oDiagItem.cause = "2"
         oDiagItem.itemCodeEtat = "B"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         'bReturn = DiagnosticItemManager.save(oDiagItem)
         'Assert.IsTrue(bReturn)
 
@@ -792,7 +792,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "B"
         'bReturn = DiagnosticItemManager.save(oDiagItem)
         'Assert.IsTrue(bReturn)
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
 
         'Creation des DiagnosticBuses
@@ -1168,7 +1168,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemValue = "1"
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item2
         oDiagItem = New DiagnosticItem()
@@ -1177,7 +1177,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item3
         oDiagItem = New DiagnosticItem()
@@ -1186,7 +1186,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "O"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item4
         oDiagItem = New DiagnosticItem()
@@ -1196,7 +1196,7 @@ Public Class DiagnosticManagerTest
 
 
         oDiagItem.cause = "3"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'SAuvegarde du Diag
         '====================
@@ -1866,7 +1866,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item2
         oDiagItem = New DiagnosticItem()
@@ -1875,7 +1875,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item3
         oDiagItem = New DiagnosticItem()
@@ -1884,7 +1884,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "O"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item4
         oDiagItem = New DiagnosticItem()
@@ -1893,7 +1893,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         DiagnosticManager.save(oDiag)
@@ -2099,7 +2099,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item2
         oDiagItem = New DiagnosticItem()
@@ -2108,7 +2108,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item3
         oDiagItem = New DiagnosticItem()
@@ -2117,7 +2117,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "O"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item4
         oDiagItem = New DiagnosticItem()
@@ -2126,7 +2126,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         DiagnosticManager.save(oDiag)
 
@@ -2419,7 +2419,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item2
         oDiagItem = New DiagnosticItem()
@@ -2428,7 +2428,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
         oDiagItem.cause = "1"
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item3
         oDiagItem = New DiagnosticItem()
@@ -2437,7 +2437,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "O"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item4
         oDiagItem = New DiagnosticItem()
@@ -2446,7 +2446,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         DiagnosticManager.save(oDiag)
 
@@ -2682,7 +2682,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item2
         oDiagItem = New DiagnosticItem()
@@ -2691,7 +2691,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
         oDiagItem.cause = "1"
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item3
         oDiagItem = New DiagnosticItem()
@@ -2700,7 +2700,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "O"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item4
         oDiagItem = New DiagnosticItem()
@@ -2709,7 +2709,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         DiagnosticManager.save(oDiag)
         Dim nItems As Integer = oDiag.diagnosticItemsLst.Count
@@ -2748,7 +2748,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
 
         DiagnosticManager.save(oDiag)
@@ -2776,7 +2776,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(0, oDiag.diagnosticItemsLst.Count)
 
         oDiagItem = New DiagnosticItem(oDiag.id, "252", "3", "2", "B")
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         '        Assert.AreEqual(2, oDiag.diagnosticItemsLst.Count)
         Assert.AreEqual(1, oDiag.diagnosticItemsLst.Count)
 
@@ -2788,7 +2788,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("B", oDiagItem.itemCodeEtat)
 
         oDiagItem = New DiagnosticItem(oDiag.id, "252", "4")
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         '        Assert.AreEqual(3, oDiag.diagnosticItemsLst.Count)
         Assert.AreEqual(2, oDiag.diagnosticItemsLst.Count)
 
@@ -2800,7 +2800,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("", oDiagItem.itemCodeEtat)
 
         oDiagItem = New DiagnosticItem(oDiag.id, "252", "4", "2", "P")
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
         '        Assert.AreEqual(4, oDiag.diagnosticItemsLst.Count)
         Assert.AreEqual(2, oDiag.diagnosticItemsLst.Count)
 
@@ -4006,7 +4006,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item2
         oDiagItem = New DiagnosticItem()
@@ -4015,7 +4015,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item3
         oDiagItem = New DiagnosticItem()
@@ -4024,7 +4024,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "O"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item4
         oDiagItem = New DiagnosticItem()
@@ -4033,7 +4033,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Dim oDiag2 As Diagnostic
         '===========================================================
@@ -4392,7 +4392,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item2
         oDiagItem = New DiagnosticItem()
@@ -4401,7 +4401,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item3
         oDiagItem = New DiagnosticItem()
@@ -4410,7 +4410,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "O"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item4
         oDiagItem = New DiagnosticItem()
@@ -4419,7 +4419,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.itemCodeEtat = "P"
 
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Dim oDiag2 As Diagnostic
 

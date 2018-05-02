@@ -314,7 +314,7 @@ Public Class CRODIPTest
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item2
         oDiagItem = New DiagnosticItem()
@@ -323,7 +323,7 @@ Public Class CRODIPTest
         oDiagItem.itemCodeEtat = "P"
         oDiagItem.cause = "1"
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item3
         oDiagItem = New DiagnosticItem()
@@ -332,7 +332,7 @@ Public Class CRODIPTest
         oDiagItem.itemCodeEtat = "O"
 
         oDiagItem.cause = "2"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Item4
         oDiagItem = New DiagnosticItem()
@@ -341,7 +341,7 @@ Public Class CRODIPTest
         oDiagItem.itemCodeEtat = "P"
 
 
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         If (pbSave) Then
             DiagnosticManager.save(oDiag)

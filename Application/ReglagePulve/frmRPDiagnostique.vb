@@ -139,6 +139,7 @@
         Dim bReturn As Boolean
         Try
             bReturn = validerDiagnostique()
+            DirectCast(m_diagnostic, RPDiagnostic).RaiseEventLstDiagItemUpdated()
         Catch ex As Exception
             CSDebug.dispError("frmRPDiagnostique.Valider Err" & ex.Message)
             bReturn = False
@@ -211,7 +212,7 @@
     End Function
 
     Private Sub frmRPDiagnostique_Leave(sender As Object, e As EventArgs) Handles Me.Leave
-        Valider()
+        'Valider()
     End Sub
 
     Private Sub frmRPDiagnostique_Load(sender As Object, e As EventArgs) Handles Me.Load

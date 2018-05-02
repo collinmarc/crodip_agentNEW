@@ -60,17 +60,20 @@ Public Class DiagnosticManager
                 filePath = CONST_PATH_EXP & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
                     bReturn = oCSftp.Upload(filePath)
+                    SynchronisationManager.LogSynchroElmt(filePath)
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
                 filePath = CONST_PATH_EXP & "/" & pDiag.SMFileName
                 If System.IO.File.Exists(filePath) Then
+                    SynchronisationManager.LogSynchroElmt(filePath)
                     bReturn = bReturn And oCSftp.Upload(filePath)
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
                 filePath = CONST_PATH_EXP & "/" & pDiag.CCFileName
                 If System.IO.File.Exists(filePath) Then
+                    SynchronisationManager.LogSynchroElmt(filePath)
                     bReturn = bReturn And oCSftp.Upload(filePath)
                 End If
             End If
@@ -482,7 +485,7 @@ Public Class DiagnosticManager
                 oDiagnostic.diagnosticHelp551 = DiagnosticHelp551Manager.getDiagnosticHelp551ByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticHelp551.HasValue() Then
                     'Ajout de l'help dans la liste des diagItems
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticHelp551AsDiagItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp551AsDiagItem())
                 End If
 
                 '########################################
@@ -491,7 +494,7 @@ Public Class DiagnosticManager
                 oDiagnostic.diagnosticHelp5621 = DiagnosticHelp5621Manager.getDiagnosticHelp5621ByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticHelp5621.HasValue() Then
                     'Ajout de l'help dans la liste des diagItems
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticHelp5621AsDiagItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp5621AsDiagItem())
                 End If
 
                 '########################################
@@ -500,7 +503,7 @@ Public Class DiagnosticManager
                 oDiagnostic.diagnosticHelp552 = DiagnosticHelp552Manager.getDiagnosticHelp552ByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticHelp552.hasValue() Then
                     'Ajout de l'help dans la liste des diagItems
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticHelp552AsDiagItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp552AsDiagItem())
                 End If
                 ' On récupère les buses du diagnostic
                 DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oDiagnostic)
@@ -511,7 +514,7 @@ Public Class DiagnosticManager
                 oDiagnostic.diagnosticHelp5622 = DiagnosticHelp5622Manager.getDiagnosticHelp5622ByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticHelp5622.hasValue() Then
                     'Ajout de l'help dans la liste des diagItems
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticHelp5622AsDiagItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp5622AsDiagItem())
                 End If
 
                 '########################################
@@ -520,37 +523,37 @@ Public Class DiagnosticManager
                 oDiagnostic.diagnosticHelp811 = DiagnosticHelp811Manager.getDiagnosticHelp811ByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticHelp811.hasValue() Then
                     'Ajout de l'help dans la liste des diagItems
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticHelp811AsDiagItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp811AsDiagItem())
                 End If
                 '########################################
                 ' On récupère les mesures help831
                 '########################################
                 oDiagnostic.diagnosticHelp8312 = DiagnosticHelp831Manager.getDiagnosticHelp8312ByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticHelp8312.hasValue() Then
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticHelp8312AsDiagItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp8312AsDiagItem())
                 End If
                 oDiagnostic.diagnosticHelp8314 = DiagnosticHelp831Manager.getDiagnosticHelp8314ByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticHelp8314.hasValue() Then
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticHelp8314AsDiagItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp8314AsDiagItem())
                 End If
                 oDiagnostic.diagnosticHelp571 = DiagnosticHelp571Manager.getDiagnosticHelp571ByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticHelp571.hasValue() Then
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticHelp571.ConvertToDiagnosticItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp571.ConvertToDiagnosticItem())
                 End If
                 oDiagnostic.diagnosticHelp12123 = DiagnosticHelp12123Manager.getDiagnosticHelp12123ByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticHelp12123.hasValue() Then
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticHelp12123.ConvertToDiagnosticItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp12123.ConvertToDiagnosticItem())
                 End If
                 oDiagnostic.diagnosticHelp12323 = DiagnosticHelp551Manager.getDiagnosticHelp12323ByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticHelp12323.HasValue() Then
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticHelp12323.ConvertToDiagnosticItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp12323.ConvertToDiagnosticItem())
                 End If
                 '########################################
                 ' On récupère les infos complémentaire
                 '########################################
                 oDiagnostic.diagnosticInfosComplementaires = DiagnosticInfosComplementaireManager.getDiagnosticInfosComplementairesByDiagnosticId(oDiagnostic)
                 If oDiagnostic.diagnosticInfosComplementaires.hasValue() Then
-                    oDiagnostic.AddDiagItem(oDiagnostic.diagnosticInfosComplementairesAsDiagItem())
+                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticInfosComplementairesAsDiagItem())
                 End If
 
                 '##################################################################################################################

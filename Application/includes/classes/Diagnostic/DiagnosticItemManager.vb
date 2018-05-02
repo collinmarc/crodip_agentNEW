@@ -50,7 +50,7 @@ Public Class DiagnosticItemManager
                                 objDiagnosticItem.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
                             Next
                             'Ajout dans la collection temporaire
-                            oDiag.AddDiagItem(objDiagnosticItem)
+                            oDiag.AdOrReplaceDiagItem(objDiagnosticItem)
                         Next
                      Case 1 ' NOK
                         'CSDebug.dispError("DiagnosticItemManager - Code 1 : Non-Trouvée")
@@ -121,7 +121,7 @@ Public Class DiagnosticItemManager
                 If oDiagnosticItem.idItem = 231 And oDiagnosticItem.itemValue = 9 And oDiagnosticItem.itemCodeEtat = "B" Then
                     oDiagnosticItem.itemValue = 0
                 End If
-                pDiagnostic.AddDiagItem(oDiagnosticItem)
+                pDiagnostic.AdOrReplaceDiagItem(oDiagnosticItem)
             End While
             oDRDiagnosticItem.Close()
             bReturn = True

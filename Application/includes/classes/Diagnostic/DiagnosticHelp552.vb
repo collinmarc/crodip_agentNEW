@@ -402,7 +402,7 @@ Public Class DiagnosticHelp552
         End Try
         Return bReturn
     End Function
-    Friend Sub CalcErreurDebitMetre()
+        Friend Sub CalcErreurDebitMetre()
 
         ' Erreur Débitmètre (%)
         ErreurDebitMetre = Nothing
