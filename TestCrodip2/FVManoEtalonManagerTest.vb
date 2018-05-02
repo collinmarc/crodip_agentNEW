@@ -73,7 +73,7 @@ Public Class FVManoEtalonManagerTest
 
     End Sub
     '''<summary>
-    '''Test des fiches de vies Bancs
+    '''Test des fiches de vies Mano Etalons
     '''</summary>
     <TestMethod()> _
     Public Sub CreationDesFichesDeViesBancTest()
@@ -117,21 +117,6 @@ Public Class FVManoEtalonManagerTest
         Assert.AreEqual("PREMIERE-UTILISATION", oFVManometreEtalon.type)
 
 
-        'Désactivation du banc
-        Assert.IsTrue(oMano.etat)
-        '' TO DO : ??????
-        '        oMano.DesactiverMano(m_oAgent)
-        oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
-        Assert.IsFalse(oMano.etat)
-
-        olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
-        'Test de création d'une fiche de vie
-        Assert.AreEqual(3, olstFV.Count) 'une fiche de vie "DESACTIVATION"
-        oFVManometreEtalon = olstFV(2)
-        Assert.AreEqual(oFVManometreEtalon.idManometre, oMano.idCrodip)
-        Assert.AreEqual(oFVManometreEtalon.idAgentControleur, m_oAgent.id)
-        Assert.AreEqual("DESACTIVATION", oFVManometreEtalon.type)
-
 
 
         'Suppression du Manometre
@@ -142,8 +127,8 @@ Public Class FVManoEtalonManagerTest
 
         olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
         'création d'une Troisième fiche de vie SUPRESSION
-        Assert.AreEqual(4, olstFV.Count) 'une fiche de vie SUPPRESSION
-        oFVManometreEtalon = olstFV(3)
+        Assert.AreEqual(3, olstFV.Count) 'une fiche de vie SUPPRESSION
+        oFVManometreEtalon = olstFV(2)
         Assert.AreEqual(oFVManometreEtalon.idManometre, oMano.idCrodip)
         Assert.AreEqual(oFVManometreEtalon.idAgentControleur, m_oAgent.id)
         Assert.AreEqual("SUPPRESSION", oFVManometreEtalon.type)
@@ -177,10 +162,6 @@ Public Class FVManoEtalonManagerTest
 
         'Désactivation du Mano
         Assert.IsTrue(oMano.etat)
-        ''TO DO : ????
-        'oMano.DesactiverMano(m_oAgent)
-        oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
-        Assert.IsFalse(oMano.etat)
 
         'Suppression du Manometre
         Assert.IsFalse(oMano.isSupprime)
@@ -188,7 +169,7 @@ Public Class FVManoEtalonManagerTest
         Assert.IsTrue(oMano.isSupprime)
 
 
-        Assert.AreEqual(4, FVManometreEtalonManager.getUpdates(m_oAgent).Length)
+        Assert.AreEqual(3, FVManometreEtalonManager.getUpdates(m_oAgent).Length)
         Dim oSynchro As New Synchronisation(m_oAgent)
         oSynchro.runascSynchroFVManoEtalon()
         Assert.AreEqual(0, FVManometreEtalonManager.getUpdates(m_oAgent).Length)

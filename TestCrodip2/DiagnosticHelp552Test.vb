@@ -501,7 +501,7 @@ Public Class DiagnosticHelp552test
         oDiagHelp552.EcartPct_m3 = -6
 
 
-        oDiagHelp552.calc()
+        oDiagHelp552.CalcErreurDebitMetre()
 
         Assert.AreEqual(Math.Round(CDec(16 / 3), 3), oDiagHelp552.ErreurDebitMetre)
         Assert.AreEqual(-2D, oDiagHelp552.ErreurDebitMetreSigned)

@@ -213,11 +213,16 @@ Public Class DiagnosticItem
     End Property
     ''' <summary>
     ''' Renvoie le code complet de l'item avec un blanc devant si besoin
+    ''' Traite le cas des champs de mesures (help*)
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function getItemCode() As String
-        Return Right(" " & idItem & itemValue, 5)
+        If (IsNumeric(idItem)) Then
+            Return Right(" " & idItem & itemValue, 5)
+        Else
+            Return idItem
+        End If
     End Function
     ''' <summary>
     ''' Maj du CodeEtat (Utiliser plutot SetItemCodeEtat)

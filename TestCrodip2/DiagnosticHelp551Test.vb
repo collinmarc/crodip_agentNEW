@@ -222,8 +222,10 @@ Public Class DiagnosticHelp551test
         Assert.AreNotEqual(0, oLstSynchro.Count)
 
         For Each oSynchroElmt As SynchronisationElmt In oLstSynchro
-            Console.WriteLine(oSynchroElmt.type & "(" & oSynchroElmt.identifiantChaine & "," & oSynchroElmt.identifiantEntier & ")")
-            oSynchroElmt.SynchroDesc(m_oAgent)
+            If oSynchroElmt.type.StartsWith("GetDiagnostic") Then
+                Console.WriteLine(oSynchroElmt.type & "(" & oSynchroElmt.identifiantChaine & "," & oSynchroElmt.identifiantEntier & ")")
+                oSynchroElmt.SynchroDesc(m_oAgent)
+            End If
         Next oSynchroElmt
 
         'Vérification des Objets

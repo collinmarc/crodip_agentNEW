@@ -1270,7 +1270,8 @@ Public Class Pulverisateur
     Public Function EncodageAutomatiqueDefauts() As List(Of DiagnosticItem)
         Dim oReturn As New List(Of DiagnosticItem)
         Dim oDiagItem As DiagnosticItemAuto
-        Dim sfichierConfig As String = getParamDiag().fichierConfig
+        Dim oParamdiag As CRODIP_ControlLibrary.ParamDiag = getParamDiag()
+        Dim sfichierConfig As String = oParamdiag.fichierConfig
         Dim olstParam As New CRODIP_ControlLibrary.LstParamCtrlDiag()
 
 

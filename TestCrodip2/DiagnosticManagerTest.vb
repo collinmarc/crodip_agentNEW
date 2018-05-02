@@ -3844,7 +3844,7 @@ Public Class DiagnosticManagerTest
         oPulve.setLargeurNbreRangs("15.5")
         oPulve.emplacementIdentification = "DERRIERE"
         oDiag.setPulverisateur(oPulve)
-        Assert.AreEqual(oDiag.pulverisateurLargeur, "15.5")
+        Assert.AreEqual(oDiag.pulverisateurNbRangs, "15.5")
 
 
         'SetPropriétaire
@@ -4204,7 +4204,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(oDiag2.pulverisateurModele, "MONMODELE")
         Assert.AreEqual(oDiag2.pulverisateurType, Pulverisateur.TYPEPULVE_ARBRES)
         Assert.AreEqual(Pulverisateur.CATEGORIEPULVE_JETDIRIGE, oDiag2.pulverisateurCategorie)
-        Assert.AreEqual(oDiag2.pulverisateurLargeur, "15.5")
+        Assert.AreEqual(oDiag2.pulverisateurNbRangs, "15.5")
         Assert.AreEqual(oDiag2.pulverisateurEmplacementIdentification, "DERRIERE")
 
     End Sub

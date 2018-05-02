@@ -229,7 +229,9 @@ Public Class DiagnosticHelp551
                         Resultat1 = strValue(10)
                         Resultat2 = strValue(11)
                         Resultat = strValue(12)
-                        ErreurMoyenneSigned = CDec(strValue(13))
+                        If Not String.IsNullOrEmpty(strValue(13)) Then
+                            ErreurMoyenneSigned = CDec(strValue(13))
+                        End If
                     End If
 
                 Catch ex As Exception
