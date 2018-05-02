@@ -26,6 +26,7 @@
             tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_rampes.Name)
             tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_accessoires.Name)
             tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_mesureCommandesRegulation.Name)
+            tab_diagnostique.TabPages.RemoveByKey(tabPage_diagnostique_jetsSoufflerie.Name)
 
             Me.btn_Valider.Visible = False
             Me.btn_annuler.Visible = False

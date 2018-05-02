@@ -38,6 +38,7 @@ Public Class frmRPRecap
         End If
         MinimizeBox = False
         MaximizeBox = False
+        Me.WindowState = FormWindowState.Maximized
 
     End Sub
 

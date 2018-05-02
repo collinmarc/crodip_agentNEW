@@ -398,9 +398,9 @@ Public Class frmDiagnostiqueSimple
         'lstGrpBox.Add(RadioButton_diagnostic_9210)
         lstOnglet.Add(lstGrpBox)
         lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
-        'lstGrpBox.Add(RadioButton_diagnostic_9221)
-        'lstGrpBox.Add(RadioButton_diagnostic_9222)
-        'lstGrpBox.Add(RadioButton_diagnostic_9220)
+        lstGrpBox.Add(RadioButton_diagnostic_9221)
+        lstGrpBox.Add(RadioButton_diagnostic_9222)
+        lstGrpBox.Add(RadioButton_diagnostic_9220)
         lstOnglet.Add(lstGrpBox)
         lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
 
@@ -2593,9 +2593,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 '       tabBuses_isOk = 0
                 'arrCheckboxes(8, 3) += 1
                 If Not m_bDuringLoad Then
-                    'RadioButton_diagnostic_9221.Checked = True
-                    'RadioButton_diagnostic_9222.Checked = False
-                    'RadioButton_diagnostic_9220.Checked = False
+                    RadioButton_diagnostic_9221.Checked = True
+                    RadioButton_diagnostic_9222.Checked = False
+                    RadioButton_diagnostic_9220.Checked = False
                 End If
             Else
                 diagBuses_resultat.Text = "USURE GLOBALE"
@@ -2603,9 +2603,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 '      tabBuses_isOk = 0
                 'arrCheckboxes(8, 3) += 1
                 If Not m_bDuringLoad Then
-                    'RadioButton_diagnostic_9221.Checked = False
-                    'RadioButton_diagnostic_9222.Checked = True
-                    'RadioButton_diagnostic_9220.Checked = False
+                    RadioButton_diagnostic_9221.Checked = False
+                    RadioButton_diagnostic_9222.Checked = True
+                    RadioButton_diagnostic_9220.Checked = False
                 End If
             End If
         Else
@@ -2614,9 +2614,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             ' tabBuses_isOk = 1
             'arrCheckboxes(8, 1) += 1
             If Not m_bDuringLoad Then
-                'RadioButton_diagnostic_9221.Checked = False
-                'RadioButton_diagnostic_9222.Checked = False
-                'RadioButton_diagnostic_9220.Checked = True
+                RadioButton_diagnostic_9221.Checked = False
+                RadioButton_diagnostic_9222.Checked = False
+                RadioButton_diagnostic_9220.Checked = True
             End If
         End If
         checkIsOk(8)
@@ -2624,6 +2624,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         m_diagnostic.syntheseNbBusesUsees = nbBusesUsees.ToString
         Return nbBusesUsees
     End Function
+
 
     ' Calcul l'usure moyenne d'un lot de buses
     Private Function mutCalcUsureMoyBuses(ByVal lotId As Integer) As Double
@@ -6260,7 +6261,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
 
 
-    Private Sub RadioButton_diagnostic_9223_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub RadioButton_diagnostic_9223_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_diagnostic_9220.CheckedChanged
         isCodeSpecial = False
         checkAnswer2(sender, 4)
     End Sub
@@ -7213,26 +7214,26 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     '    checkAnswer(sender, CHK_DEFAUT_MINEUR, 3, "2")
     'End Sub
 
-    Private Sub RadioButton_diagnostic_9221_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        'If RadioButton_diagnostic_9221.Checked = False Then
-        '    'Désactivation des checkBox _1 et _2
-        '    'If RadioButton_diagnostic_9221_1.Checked Then
-        '    '    isCodeSpecial = True
-        '    '    RadioButton_diagnostic_9221_1.Checked = False
-        '    'End If
-        '    'If RadioButton_diagnostic_9221_2.Checked Then
-        '    '    isCodeSpecial = True
-        '    '    RadioButton_diagnostic_9221_2.Checked = False
-        '    'End If
-        'End If
-        'checkAnswer2(sender, 4)
-        'If RadioButton_diagnostic_9221.Checked And
-        '    (RadioButton_diagnostic_9221.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or
-        '     RadioButton_diagnostic_9221.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX) Then
-        '    disableTab922()
-        'Else
-        '    enableTab922()
-        'End If
+    Private Sub RadioButton_diagnostic_9221_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_diagnostic_9221.CheckedChanged
+        If RadioButton_diagnostic_9221.Checked = False Then
+            'Désactivation des checkBox _1 et _2
+            'If RadioButton_diagnostic_9221_1.Checked Then
+            '    isCodeSpecial = True
+            '    RadioButton_diagnostic_9221_1.Checked = False
+            'End If
+            'If RadioButton_diagnostic_9221_2.Checked Then
+            '    isCodeSpecial = True
+            '    RadioButton_diagnostic_9221_2.Checked = False
+            'End If
+        End If
+        checkAnswer2(sender, 4)
+        If RadioButton_diagnostic_9221.Checked And
+            (RadioButton_diagnostic_9221.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or
+             RadioButton_diagnostic_9221.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX) Then
+            disableTab922()
+        Else
+            enableTab922()
+        End If
 
     End Sub
     'Private Sub RadioButton_diagnostic_9221_1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_diagnostic_9221_1.CheckedChanged
@@ -7257,27 +7258,27 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     '    RadioButton_diagnostic_9221.Checked = sender.Checked
     '    checkAnswer(sender, CHK_DEFAUT_MAJEUR, 4, "2")
     'End Sub
-    Private Sub RadioButton_diagnostic_9222_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        ''isCodeSpecial = False
-        'If RadioButton_diagnostic_9222.Checked = False Then
-        '    'Désactivation des checkBox _1 et _2
-        '    'If RadioButton_diagnostic_9222_1.Checked Then
-        '    '    isCodeSpecial = True
-        '    '    RadioButton_diagnostic_9222_1.Checked = False
-        '    'End If
-        '    'If RadioButton_diagnostic_9222_2.Checked Then
-        '    '    isCodeSpecial = True
-        '    '    RadioButton_diagnostic_9222_2.Checked = False
-        '    'End If
-        'End If
-        'checkAnswer2(sender, 4)
-        'If RadioButton_diagnostic_9222.Checked And
-        '    (RadioButton_diagnostic_9222.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX Or
-        '     RadioButton_diagnostic_9222.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN) Then
-        '    disableTab922()
-        'Else
-        '    enableTab922()
-        'End If
+    Private Sub RadioButton_diagnostic_9222_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_diagnostic_9222.CheckedChanged
+        'isCodeSpecial = False
+        If RadioButton_diagnostic_9222.Checked = False Then
+            'Désactivation des checkBox _1 et _2
+            'If RadioButton_diagnostic_9222_1.Checked Then
+            '    isCodeSpecial = True
+            '    RadioButton_diagnostic_9222_1.Checked = False
+            'End If
+            'If RadioButton_diagnostic_9222_2.Checked Then
+            '    isCodeSpecial = True
+            '    RadioButton_diagnostic_9222_2.Checked = False
+            'End If
+        End If
+        checkAnswer2(sender, 4)
+        If RadioButton_diagnostic_9222.Checked And
+            (RadioButton_diagnostic_9222.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX Or
+             RadioButton_diagnostic_9222.Cause = Global.CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN) Then
+            disableTab922()
+        Else
+            enableTab922()
+        End If
     End Sub
 
     'Private Sub RadioButton_diagnostic_9222_1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_diagnostic_9222_1.CheckedChanged
