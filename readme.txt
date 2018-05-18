@@ -1,4 +1,7 @@
 TRUNK
+Build:20180518170000
+#205 : menu déroulant sur liste du matériel
+
 Build:20180502170000
 #200 : Erreur en synhcroinisation des Fiches de vies
 #191 : [RP]Rapport de reglage

@@ -6,7 +6,7 @@ Imports Crodip_agent
 
     'Test uniquement pour MAJ base ASCAR
     'Mettre la base crodip_agent_dev(ASCAROK).mdb active avant l'executio du test
-    <TestMethod()>
+    <TestMethod(), Ignore()>
     Public Sub TestASCAR()
         Dim olst As List(Of Pulverisateur)
         Dim oPulve As Pulverisateur
@@ -64,5 +64,23 @@ Imports Crodip_agent
         'on retourne les objet non synchro
         Return oLst
     End Function
+    <TestMethod(), Ignore()>
+    Public Sub TestGetManoControle()
+
+        WSCrodip.Init("http://admin.crodip.fr/server")
+        Dim oagent = New Agent
+        oagent.id = 1144
+        oagent.numeroNational = 128
+        oagent.nom = "CHAPON"
+        oagent.prenom = "KEVIN"
+        oagent.dateDerniereSynchro = "2018-05-17 14:51:00"
+        Dim oSynchro As New Synchronisation(oagent)
+        Dim oLst As List(Of SynchronisationElmt) = oSynchro.getListeElementsASynchroniserDESC()
+        For Each oElem In oLst
+            Console.WriteLine(oElem.identifiantChaine & oElem.type)
+        Next
+
+
+    End Sub
 
 End Class

@@ -1296,6 +1296,11 @@
     <None Include="img\ico\save36.png" />
     <None Include="img\ico\previous36.jpg" />
     <None Include="Resources\ico_crodipIndigo36.jpg" />
+    <None Include="Resources\OeilBleu.png" />
+    <None Include="Resources\Img1.png" />
+    <None Include="Resources\Img2.ico" />
+    <None Include="Resources\oeil16x16.png" />
+    <None Include="Resources\jumelles16x16.bmp" />
     <Content Include="toleranceBuses.xml" />
     <None Include="readme.md" />
     <None Include="Resources\PuceVerteT.png" />

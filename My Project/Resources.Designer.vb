@@ -256,6 +256,16 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property jumelles16x16() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("jumelles16x16", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property login_bg() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("login_bg", resourceCulture)
@@ -309,6 +319,26 @@ Friend Class Resources
     Friend Shared ReadOnly Property Next36() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("Next36", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property oeil16x16() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("oeil16x16", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property OeilBleu() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("OeilBleu", resourceCulture)
             Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property
