@@ -139,8 +139,8 @@ Public Class BancManager
                     If Not objBanc.modele Is Nothing Then
                         paramsQuery = paramsQuery & " , `BancMesure`.`modele`='" & CSDb.secureString(objBanc.modele) & "'"
                     End If
-                    If objBanc.dateDernierControle IsNot Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`dateDernierControle`='" & CSDate.mysql2access(objBanc.dateDernierControle) & "'"
+                    If objBanc.dateDernierControleS IsNot Nothing Then
+                        paramsQuery = paramsQuery & " , `BancMesure`.`dateDernierControle`='" & CSDate.mysql2access(objBanc.dateDernierControleS) & "'"
                     End If
                     If Not objBanc.dateAchat Is Nothing Then
                         paramsQuery = paramsQuery & " , `BancMesure`.`dateAchat`='" & CSDate.mysql2access(objBanc.dateAchat) & "'"

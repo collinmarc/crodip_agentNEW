@@ -60,7 +60,7 @@ Public Class ManometreEtalon
                 Case "isSynchro".Trim().ToUpper()
                     Me.isSynchro = CType(pcolValue, Boolean)
                 Case "dateDernierControle".Trim().ToUpper()
-                    Me.dateDernierControle = CSDate.ToCRODIPString(pcolValue)
+                    Me.dateDernierControleS = CSDate.ToCRODIPString(pcolValue)
                 Case "dateModificationAgent".Trim().ToUpper()
                     Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue)
                 Case "dateModificationCrodip".Trim().ToUpper()
@@ -156,7 +156,7 @@ Public Class ManometreEtalon
             Me.fondEchelle & "|" & _
             Me.idStructure & "|" & _
             Me.isSynchro & "|" & _
-            Me.dateDernierControle & "|" & _
+            Me.dateDernierControleS & "|" & _
             Me.dateModificationAgent & "|" & _
             Me.dateModificationCrodip
             newFicheVieManoEtalon.dateModif = CSDate.ToCRODIPString(Date.Now).ToString

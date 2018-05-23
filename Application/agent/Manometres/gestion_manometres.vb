@@ -48,55 +48,42 @@ Public Class gestion_manometres
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents dgvManoEtalon As DataGridView
     Friend WithEvents ToolTip1 As ToolTip
-    Friend WithEvents Column1 As DataGridViewImageColumn
-    Friend WithEvents NumeroNationalDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents IdCrodipDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents MarqueDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents ClasseDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents TypeDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents FondEchelleDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents EtatMECol As DataGridViewImageColumn
+    Friend WithEvents Label1 As Label
     Friend WithEvents ShowCol As DataGridViewImageColumn
-    Friend WithEvents NumeroNationalDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents idCrodip As DataGridViewTextBoxColumn
     Friend WithEvents MarqueDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents TypeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents FondEchelleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ClasseDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents EtatColumn As DataGridViewImageColumn
-    Friend WithEvents Label1 As Label
+    Friend WithEvents Column1 As DataGridViewImageColumn
+    Friend WithEvents IdCrodipDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents MarqueDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents ClasseDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents TypeDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents FondEchelleDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents dateDernierControle As DataGridViewTextBoxColumn
+    Friend WithEvents EtatMECol As DataGridViewImageColumn
     Friend WithEvents m_bsMAnoEtalon As BindingSource
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gestion_manometres))
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gestion_manometres))
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tpManoControle = New System.Windows.Forms.TabPage()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ShowCol = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.NumeroNationalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.idCrodip = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MarqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FondEchelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ClasseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EtatColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsManoControle = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label13 = New System.Windows.Forms.Label()
         Me.tpManoEtalon = New System.Windows.Forms.TabPage()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.dgvManoEtalon = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.NumeroNationalDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdCrodipDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MarqueDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ClasseDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TypeDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FondEchelleDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EtatMECol = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsMAnoEtalon = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label14 = New System.Windows.Forms.Label()
         Me.ToolTipShowFichevie = New System.Windows.Forms.ToolTip(Me.components)
@@ -104,7 +91,22 @@ Public Class gestion_manometres
         Me.imagesPictos = New System.Windows.Forms.ImageList(Me.components)
         Me.btn_gestionManometresEtalon_valider = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ShowCol = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.idCrodip = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MarqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FondEchelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ClasseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EtatColumn = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.IdCrodipDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MarqueDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ClasseDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TypeDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FondEchelleDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dateDernierControle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EtatMECol = New System.Windows.Forms.DataGridViewImageColumn()
         Me.TabControl1.SuspendLayout()
         Me.tpManoControle.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,7 +135,7 @@ Public Class gestion_manometres
         Me.tpManoControle.Name = "tpManoControle"
         Me.tpManoControle.Size = New System.Drawing.Size(1006, 611)
         Me.tpManoControle.TabIndex = 2
-        Me.tpManoControle.Text = "Manomètres de contrôles"
+        Me.tpManoControle.Text = "Manomètres de contrôle"
         '
         'DataGridView1
         '
@@ -158,30 +160,158 @@ Public Class gestion_manometres
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShowCol, Me.NumeroNationalDataGridViewTextBoxColumn, Me.idCrodip, Me.MarqueDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn, Me.FondEchelleDataGridViewTextBoxColumn, Me.ClasseDataGridViewTextBoxColumn, Me.EtatColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShowCol, Me.idCrodip, Me.MarqueDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn, Me.FondEchelleDataGridViewTextBoxColumn, Me.ClasseDataGridViewTextBoxColumn, Me.DataGridViewTextBoxColumn2, Me.EtatColumn})
         Me.DataGridView1.DataSource = Me.m_bsManoControle
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView1.Location = New System.Drawing.Point(8, 38)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(984, 558)
         Me.DataGridView1.TabIndex = 39
         Me.DataGridView1.VirtualMode = True
+        '
+        'm_bsManoControle
+        '
+        Me.m_bsManoControle.DataSource = GetType(Crodip_agent.ManometreControle)
+        '
+        'Label13
+        '
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label13.Image = CType(resources.GetObject("Label13.Image"), System.Drawing.Image)
+        Me.Label13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label13.Location = New System.Drawing.Point(17, 10)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(480, 25)
+        Me.Label13.TabIndex = 38
+        Me.Label13.Text = "     Gestion des manomètres de contrôle/calibrateur"
+        '
+        'tpManoEtalon
+        '
+        Me.tpManoEtalon.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.tpManoEtalon.Controls.Add(Me.Label1)
+        Me.tpManoEtalon.Controls.Add(Me.dgvManoEtalon)
+        Me.tpManoEtalon.Controls.Add(Me.Label14)
+        Me.tpManoEtalon.Location = New System.Drawing.Point(4, 22)
+        Me.tpManoEtalon.Name = "tpManoEtalon"
+        Me.tpManoEtalon.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpManoEtalon.Size = New System.Drawing.Size(1006, 611)
+        Me.tpManoEtalon.TabIndex = 3
+        Me.tpManoEtalon.Text = "Manomètres référence"
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Red
+        Me.Label1.Location = New System.Drawing.Point(642, 552)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(358, 56)
+        Me.Label1.TabIndex = 43
+        Me.Label1.Text = "Attention! un manomètre de référence ne doit pas être utilisé sur le ""terrain"". I" &
+    "l doir rester dans u endroit sécurisé, afin de garantir sa fiablité"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'dgvManoEtalon
+        '
+        Me.dgvManoEtalon.AllowUserToAddRows = False
+        Me.dgvManoEtalon.AllowUserToDeleteRows = False
+        Me.dgvManoEtalon.AllowUserToOrderColumns = True
+        Me.dgvManoEtalon.AllowUserToResizeRows = False
+        Me.dgvManoEtalon.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvManoEtalon.AutoGenerateColumns = False
+        Me.dgvManoEtalon.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvManoEtalon.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvManoEtalon.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvManoEtalon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvManoEtalon.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.IdCrodipDataGridViewTextBoxColumn, Me.MarqueDataGridViewTextBoxColumn1, Me.ClasseDataGridViewTextBoxColumn1, Me.TypeDataGridViewTextBoxColumn1, Me.FondEchelleDataGridViewTextBoxColumn1, Me.dateDernierControle, Me.EtatMECol})
+        Me.dgvManoEtalon.DataSource = Me.m_bsMAnoEtalon
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvManoEtalon.DefaultCellStyle = DataGridViewCellStyle7
+        Me.dgvManoEtalon.Location = New System.Drawing.Point(8, 38)
+        Me.dgvManoEtalon.MultiSelect = False
+        Me.dgvManoEtalon.Name = "dgvManoEtalon"
+        Me.dgvManoEtalon.ReadOnly = True
+        Me.dgvManoEtalon.RowHeadersVisible = False
+        Me.dgvManoEtalon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvManoEtalon.Size = New System.Drawing.Size(985, 555)
+        Me.dgvManoEtalon.TabIndex = 42
+        Me.dgvManoEtalon.VirtualMode = True
+        '
+        'm_bsMAnoEtalon
+        '
+        Me.m_bsMAnoEtalon.DataSource = GetType(Crodip_agent.ManometreEtalon)
+        '
+        'Label14
+        '
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label14.Image = CType(resources.GetObject("Label14.Image"), System.Drawing.Image)
+        Me.Label14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label14.Location = New System.Drawing.Point(6, 3)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(376, 25)
+        Me.Label14.TabIndex = 41
+        Me.Label14.Text = "     Gestion des manomètres de référence"
+        '
+        'imagesEtatMateriel
+        '
+        Me.imagesEtatMateriel.ImageStream = CType(resources.GetObject("imagesEtatMateriel.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.imagesEtatMateriel.TransparentColor = System.Drawing.Color.Transparent
+        Me.imagesEtatMateriel.Images.SetKeyName(0, "")
+        Me.imagesEtatMateriel.Images.SetKeyName(1, "")
+        Me.imagesEtatMateriel.Images.SetKeyName(2, "g.jpg")
+        '
+        'imagesPictos
+        '
+        Me.imagesPictos.ImageStream = CType(resources.GetObject("imagesPictos.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.imagesPictos.TransparentColor = System.Drawing.Color.Transparent
+        Me.imagesPictos.Images.SetKeyName(0, "")
+        Me.imagesPictos.Images.SetKeyName(1, "")
+        '
+        'btn_gestionManometresEtalon_valider
+        '
+        Me.btn_gestionManometresEtalon_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_gestionManometresEtalon_valider.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_gestionManometresEtalon_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_gestionManometresEtalon_valider.ForeColor = System.Drawing.Color.White
+        Me.btn_gestionManometresEtalon_valider.Image = CType(resources.GetObject("btn_gestionManometresEtalon_valider.Image"), System.Drawing.Image)
+        Me.btn_gestionManometresEtalon_valider.Location = New System.Drawing.Point(868, 646)
+        Me.btn_gestionManometresEtalon_valider.Name = "btn_gestionManometresEtalon_valider"
+        Me.btn_gestionManometresEtalon_valider.Size = New System.Drawing.Size(128, 24)
+        Me.btn_gestionManometresEtalon_valider.TabIndex = 40
+        Me.btn_gestionManometresEtalon_valider.Text = "    Valider / Quitter"
+        Me.btn_gestionManometresEtalon_valider.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'ShowCol
         '
@@ -193,16 +323,6 @@ Public Class gestion_manometres
         Me.ShowCol.ReadOnly = True
         Me.ShowCol.ToolTipText = "Voir la fiche manomètre"
         Me.ShowCol.Width = 30
-        '
-        'NumeroNationalDataGridViewTextBoxColumn
-        '
-        Me.NumeroNationalDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.NumeroNationalDataGridViewTextBoxColumn.DataPropertyName = "numeroNational"
-        Me.NumeroNationalDataGridViewTextBoxColumn.Frozen = True
-        Me.NumeroNationalDataGridViewTextBoxColumn.HeaderText = "Numero national"
-        Me.NumeroNationalDataGridViewTextBoxColumn.Name = "NumeroNationalDataGridViewTextBoxColumn"
-        Me.NumeroNationalDataGridViewTextBoxColumn.ReadOnly = True
-        Me.NumeroNationalDataGridViewTextBoxColumn.Width = 134
         '
         'idCrodip
         '
@@ -239,82 +359,22 @@ Public Class gestion_manometres
         Me.ClasseDataGridViewTextBoxColumn.Name = "ClasseDataGridViewTextBoxColumn"
         Me.ClasseDataGridViewTextBoxColumn.ReadOnly = True
         '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "dateDernierControle"
+        DataGridViewCellStyle2.Format = "dd/MM/yyyy"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Date dernier controle"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        '
         'EtatColumn
         '
         Me.EtatColumn.HeaderText = "Etat"
         Me.EtatColumn.Name = "EtatColumn"
         Me.EtatColumn.ReadOnly = True
         Me.EtatColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'm_bsManoControle
-        '
-        Me.m_bsManoControle.DataSource = GetType(Crodip_agent.ManometreControle)
-        '
-        'Label13
-        '
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label13.Image = CType(resources.GetObject("Label13.Image"), System.Drawing.Image)
-        Me.Label13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label13.Location = New System.Drawing.Point(17, 10)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(480, 25)
-        Me.Label13.TabIndex = 38
-        Me.Label13.Text = "     Gestion des manomètres de contrôle/calibrateur"
-        '
-        'tpManoEtalon
-        '
-        Me.tpManoEtalon.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.tpManoEtalon.Controls.Add(Me.Label1)
-        Me.tpManoEtalon.Controls.Add(Me.dgvManoEtalon)
-        Me.tpManoEtalon.Controls.Add(Me.Label14)
-        Me.tpManoEtalon.Location = New System.Drawing.Point(4, 22)
-        Me.tpManoEtalon.Name = "tpManoEtalon"
-        Me.tpManoEtalon.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpManoEtalon.Size = New System.Drawing.Size(1006, 611)
-        Me.tpManoEtalon.TabIndex = 3
-        Me.tpManoEtalon.Text = "Manomètres étalon"
-        '
-        'dgvManoEtalon
-        '
-        Me.dgvManoEtalon.AllowUserToAddRows = False
-        Me.dgvManoEtalon.AllowUserToDeleteRows = False
-        Me.dgvManoEtalon.AllowUserToOrderColumns = True
-        Me.dgvManoEtalon.AllowUserToResizeRows = False
-        Me.dgvManoEtalon.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvManoEtalon.AutoGenerateColumns = False
-        Me.dgvManoEtalon.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgvManoEtalon.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvManoEtalon.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
-        Me.dgvManoEtalon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvManoEtalon.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.NumeroNationalDataGridViewTextBoxColumn1, Me.IdCrodipDataGridViewTextBoxColumn, Me.MarqueDataGridViewTextBoxColumn1, Me.ClasseDataGridViewTextBoxColumn1, Me.TypeDataGridViewTextBoxColumn1, Me.FondEchelleDataGridViewTextBoxColumn1, Me.EtatMECol})
-        Me.dgvManoEtalon.DataSource = Me.m_bsMAnoEtalon
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvManoEtalon.DefaultCellStyle = DataGridViewCellStyle5
-        Me.dgvManoEtalon.Location = New System.Drawing.Point(8, 38)
-        Me.dgvManoEtalon.MultiSelect = False
-        Me.dgvManoEtalon.Name = "dgvManoEtalon"
-        Me.dgvManoEtalon.ReadOnly = True
-        Me.dgvManoEtalon.RowHeadersVisible = False
-        Me.dgvManoEtalon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvManoEtalon.Size = New System.Drawing.Size(985, 555)
-        Me.dgvManoEtalon.TabIndex = 42
-        Me.dgvManoEtalon.VirtualMode = True
         '
         'Column1
         '
@@ -325,13 +385,6 @@ Public Class gestion_manometres
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
         Me.Column1.Width = 30
-        '
-        'NumeroNationalDataGridViewTextBoxColumn1
-        '
-        Me.NumeroNationalDataGridViewTextBoxColumn1.DataPropertyName = "numeroNational"
-        Me.NumeroNationalDataGridViewTextBoxColumn1.HeaderText = "Identifiant"
-        Me.NumeroNationalDataGridViewTextBoxColumn1.Name = "NumeroNationalDataGridViewTextBoxColumn1"
-        Me.NumeroNationalDataGridViewTextBoxColumn1.ReadOnly = True
         '
         'IdCrodipDataGridViewTextBoxColumn
         '
@@ -368,69 +421,21 @@ Public Class gestion_manometres
         Me.FondEchelleDataGridViewTextBoxColumn1.Name = "FondEchelleDataGridViewTextBoxColumn1"
         Me.FondEchelleDataGridViewTextBoxColumn1.ReadOnly = True
         '
+        'dateDernierControle
+        '
+        Me.dateDernierControle.DataPropertyName = "dateDernierControle"
+        DataGridViewCellStyle6.Format = "dd/MM/yyyy"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.dateDernierControle.DefaultCellStyle = DataGridViewCellStyle6
+        Me.dateDernierControle.HeaderText = "date dernier controle"
+        Me.dateDernierControle.Name = "dateDernierControle"
+        Me.dateDernierControle.ReadOnly = True
+        '
         'EtatMECol
         '
         Me.EtatMECol.HeaderText = "Etat après vérification"
         Me.EtatMECol.Name = "EtatMECol"
         Me.EtatMECol.ReadOnly = True
-        '
-        'm_bsMAnoEtalon
-        '
-        Me.m_bsMAnoEtalon.DataSource = GetType(Crodip_agent.ManometreEtalon)
-        '
-        'Label14
-        '
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label14.Image = CType(resources.GetObject("Label14.Image"), System.Drawing.Image)
-        Me.Label14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label14.Location = New System.Drawing.Point(6, 3)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(376, 25)
-        Me.Label14.TabIndex = 41
-        Me.Label14.Text = "     Gestion des manomètres étalons"
-        '
-        'imagesEtatMateriel
-        '
-        Me.imagesEtatMateriel.ImageStream = CType(resources.GetObject("imagesEtatMateriel.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.imagesEtatMateriel.TransparentColor = System.Drawing.Color.Transparent
-        Me.imagesEtatMateriel.Images.SetKeyName(0, "")
-        Me.imagesEtatMateriel.Images.SetKeyName(1, "")
-        Me.imagesEtatMateriel.Images.SetKeyName(2, "g.jpg")
-        '
-        'imagesPictos
-        '
-        Me.imagesPictos.ImageStream = CType(resources.GetObject("imagesPictos.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.imagesPictos.TransparentColor = System.Drawing.Color.Transparent
-        Me.imagesPictos.Images.SetKeyName(0, "")
-        Me.imagesPictos.Images.SetKeyName(1, "")
-        '
-        'btn_gestionManometresEtalon_valider
-        '
-        Me.btn_gestionManometresEtalon_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_gestionManometresEtalon_valider.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_gestionManometresEtalon_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_gestionManometresEtalon_valider.ForeColor = System.Drawing.Color.White
-        Me.btn_gestionManometresEtalon_valider.Image = CType(resources.GetObject("btn_gestionManometresEtalon_valider.Image"), System.Drawing.Image)
-        Me.btn_gestionManometresEtalon_valider.Location = New System.Drawing.Point(868, 646)
-        Me.btn_gestionManometresEtalon_valider.Name = "btn_gestionManometresEtalon_valider"
-        Me.btn_gestionManometresEtalon_valider.Size = New System.Drawing.Size(128, 24)
-        Me.btn_gestionManometresEtalon_valider.TabIndex = 40
-        Me.btn_gestionManometresEtalon_valider.Text = "    Valider / Quitter"
-        Me.btn_gestionManometresEtalon_valider.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label1
-        '
-        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Red
-        Me.Label1.Location = New System.Drawing.Point(642, 552)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(358, 56)
-        Me.Label1.TabIndex = 43
-        Me.Label1.Text = "Attention! un manomètre étalon ne doit pas être utilisé sur le ""terrain"". Il doir" &
-    " rester dans u endroit sécurisé, afin de garantir sa fiablité"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'gestion_manometres
         '
@@ -569,5 +574,9 @@ Public Class gestion_manometres
 
     Private Sub btn_gestionManometresEtalon_valider_Click(sender As Object, e As EventArgs) Handles btn_gestionManometresEtalon_valider.Click
         TryCast(MdiParent, parentContener).ReturnToAccueil()
+    End Sub
+
+    Private Sub Label14_Click(sender As Object, e As EventArgs) Handles Label14.Click
+
     End Sub
 End Class

@@ -2711,7 +2711,7 @@ Public Class frmControleManometres
 
             'On met a jour le mano
             curManoControle.etat = checkMano(curManoControle)
-            curManoControle.dateDernierControle = CSDate.ToCRODIPString(Date.Now).ToString
+            curManoControle.dateDernierControleS = CSDate.ToCRODIPString(Date.Now).ToString
             curManoControle.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             ManometreControleManager.save(curManoControle)
 

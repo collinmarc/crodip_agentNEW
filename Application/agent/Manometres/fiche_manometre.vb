@@ -496,8 +496,8 @@ Public Class fiche_manometre
         If Not CSDate.isDateNull(manometreCourant.DateActivation) Then
             ficheMano_dateActivation.Text = CSDate.mysql2access(manometreCourant.DateActivation)
         End If
-        If Not CSDate.isDateNull(manometreCourant.dateDernierControle) Then
-            ficheMano_dateControle.Text = CSDate.mysql2access(manometreCourant.dateDernierControle)
+        If Not CSDate.isDateNull(manometreCourant.dateDernierControleS) Then
+            ficheMano_dateControle.Text = CSDate.mysql2access(manometreCourant.dateDernierControleS)
         End If
 
     End Sub

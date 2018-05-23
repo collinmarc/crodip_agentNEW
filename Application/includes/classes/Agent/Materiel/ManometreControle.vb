@@ -79,7 +79,7 @@ Public Class ManometreControle
             Case "isutilise".Trim().ToUpper()
                 Me.isUtilise = CType(pValue, Boolean)
             Case "dateDernierControle".Trim.ToUpper()
-                Me.dateDernierControle = CSDate.ToCRODIPString(pValue).ToString 'Public dateAchat As String
+                Me.dateDernierControleS = CSDate.ToCRODIPString(pValue).ToString 'Public dateAchat As String
             Case "dateModificationAgent".Trim.ToUpper()
                 Me.dateModificationAgent = CSDate.ToCRODIPString(pValue).ToString 'Public dateModificationAgent As String
             Case "dateModificationCrodip".Trim.ToUpper()
@@ -139,7 +139,7 @@ Public Class ManometreControle
         Dim bReturn As ALERTE
         bReturn = ALERTE.NONE
 
-        Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(Me.dateDernierControle)
+        Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
         Dim n As Integer
         Dim DL As Date
         DL = DateAdd(DateInterval.DayOfYear, -7, DateAdd(DateInterval.Month, -1, Now)) '1 mois et 7 jours
@@ -168,7 +168,7 @@ Public Class ManometreControle
     '''
     ''' Calcul du nombre de jours restant avant la date limite de controle
     Public Function getNbJoursAvantDateLimite() As Integer
-        Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(Me.dateDernierControle)
+        Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
         Dim DL As Date
         Dim n As Integer
         DL = DateAdd(DateInterval.Month, -1, Now) '1 mois 
@@ -207,7 +207,7 @@ Public Class ManometreControle
                 Me.fondEchelle & "|" & _
                 Me.idStructure & "|" & _
                 Me.isSynchro & "|" & _
-                Me.dateDernierControle & "|" & _
+                Me.dateDernierControleS & "|" & _
                 Me.dateModificationAgent & "|" & _
                 Me.dateModificationCrodip
 
@@ -256,7 +256,7 @@ Public Class ManometreControle
             Me.fondEchelle & "|" & _
             Me.idStructure & "|" & _
             Me.isSynchro & "|" & _
-            Me.dateDernierControle & "|" & _
+            Me.dateDernierControleS & "|" & _
             Me.dateModificationAgent & "|" & _
             Me.dateModificationCrodip
             oFV.dateModif = CSDate.ToCRODIPString(Date.Now).ToString

@@ -3530,7 +3530,7 @@ Public Class accueil
         Statusbar.display(CONST_STATUTMSG_ALERTES_MANOETALON_LOAD, True)
         Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(agentCourant.idStructure, True)
         For Each tmpManoEtalon As ManometreEtalon In arrManoEtalon
-            Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(tmpManoEtalon.dateDernierControle)
+            Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(tmpManoEtalon.dateDernierControleS)
             Dim tmpCompareManoControleAlerte20jr As Integer = tmpDateLCManoControle.CompareTo(DateAdd(DateInterval.DayOfYear, -20, Now))
             Dim tmpCompareManoControleAlerte1mois As Integer = tmpDateLCManoControle.CompareTo(DateAdd(DateInterval.Month, -1, Now))
             Dim tmpCompareManoControleAlerte1mois7jr As Integer = tmpDateLCManoControle.CompareTo(DateAdd(DateInterval.DayOfYear, -7, DateAdd(DateInterval.Month, -1, Now)))
@@ -3552,7 +3552,7 @@ Public Class accueil
                         tmpManoEtalon.fondEchelle & "|" & _
                         tmpManoEtalon.idStructure & "|" & _
                         tmpManoEtalon.isSynchro & "|" & _
-                        tmpManoEtalon.dateDernierControle & "|" & _
+                        tmpManoEtalon.dateDernierControleS & "|" & _
                         tmpManoEtalon.dateModificationAgent & "|" & _
                         tmpManoEtalon.dateModificationCrodip
                         newFicheVieManoEtalon.dateModif = CSDate.ToCRODIPString(Date.Now).ToString

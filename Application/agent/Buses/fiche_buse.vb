@@ -439,7 +439,7 @@ Public Class fiche_buse
 #If DEBUG Then
         If e.Button = Windows.Forms.MouseButtons.Right Then
             BuseCourant.etat = Not BuseCourant.etat
-            BuseCourant.dateDernierControle = CSDate.ToCRODIPString(Now).ToString()
+            BuseCourant.dateDernierControleS = CSDate.ToCRODIPString(Now).ToString()
             DisplayBuse()
         End If
 #End If

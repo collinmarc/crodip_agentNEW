@@ -147,8 +147,8 @@ Public Class ManometreControleManager
                 End If
                 paramsQuery = paramsQuery & " , `AgentManoControle`.`etat`=" & objManometreControle.etat & ""
                 paramsQuery = paramsQuery & " , `AgentManoControle`.`isSynchro`=" & objManometreControle.isSynchro & ""
-                If objManometreControle.dateDernierControle <> Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoControle`.`dateDernierControle`='" & CSDate.mysql2access(objManometreControle.dateDernierControle) & "'"
+                If objManometreControle.dateDernierControleS <> Nothing Then
+                    paramsQuery = paramsQuery & " , `AgentManoControle`.`dateDernierControle`='" & CSDate.mysql2access(objManometreControle.dateDernierControleS) & "'"
                 End If
                 If Not objManometreControle.dateModificationAgent Is Nothing Then
                     paramsQuery = paramsQuery & " , `AgentManoControle`.`dateModificationAgent`='" & CSDate.mysql2access(objManometreControle.dateModificationAgent) & "'"

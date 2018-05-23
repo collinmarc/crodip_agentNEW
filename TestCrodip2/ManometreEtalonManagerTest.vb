@@ -129,7 +129,7 @@ Public Class ManometreEtalonManagerTest
         oManometreEtalon.classe = "MaClasse"
         oManometreEtalon.type = "MonType"
         oManometreEtalon.fondEchelle = "MonFond"
-        oManometreEtalon.dateDernierControle = CSDate.ToCRODIPString(CDate("07/02/1964"))
+        oManometreEtalon.dateDernierControleS = CSDate.ToCRODIPString(CDate("07/02/1964"))
         oManometreEtalon.AgentSuppression = m_oAgent.nom
         oManometreEtalon.RaisonSuppression = "MaRaison"
         oManometreEtalon.dateSuppression = CSDate.ToCRODIPString(CDate("06/02/1964"))
@@ -150,7 +150,7 @@ Public Class ManometreEtalonManagerTest
         Assert.AreEqual(oManometreEtalon.type, oManometreEtalon2.type)
         Assert.AreEqual(oManometreEtalon.fondEchelle, oManometreEtalon2.fondEchelle)
         Assert.AreEqual(oManometreEtalon.classe, oManometreEtalon2.classe)
-        Assert.AreEqual(oManometreEtalon.dateDernierControle, oManometreEtalon2.dateDernierControle)
+        Assert.AreEqual(oManometreEtalon.dateDernierControleS, oManometreEtalon2.dateDernierControleS)
         Assert.AreEqual(oManometreEtalon2.AgentSuppression, oManometreEtalon2.AgentSuppression)
         Assert.AreEqual(oManometreEtalon2.RaisonSuppression, oManometreEtalon.RaisonSuppression)
         Assert.AreEqual(oManometreEtalon2.dateSuppression, oManometreEtalon.dateSuppression)
@@ -291,7 +291,7 @@ Public Class ManometreEtalonManagerTest
         oManometreEtalon.etat = True
         oManometreEtalon.type = "MonType"
         oManometreEtalon.fondEchelle = "MonFond"
-        oManometreEtalon.dateDernierControle = CSDate.ToCRODIPString(CDate("07/02/1964"))
+        oManometreEtalon.dateDernierControleS = CSDate.ToCRODIPString(CDate("07/02/1964"))
         oManometreEtalon.AgentSuppression = m_oAgent.nom
         oManometreEtalon.RaisonSuppression = "MaRaison"
         oManometreEtalon.DateSuppression = CSDate.ToCRODIPString(CDate("06/02/1964"))
@@ -424,7 +424,7 @@ Public Class ManometreEtalonManagerTest
         Assert.IsTrue(oManoE.etat)
 
         Assert.AreEqual(CDate("01/02/1987"), oManoE.DateActivation)
-        Assert.AreEqual(CDate("01/02/1987"), CDate(oManoE.dateDernierControle))
+        Assert.AreEqual(CDate("01/02/1987"), CDate(oManoE.dateDernierControleS))
 
         lstFV = FVManometreEtalonManager.getArrFVManometreEtalon(idMano)
         Assert.AreEqual(1, lstFV.Count)

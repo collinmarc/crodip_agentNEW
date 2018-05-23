@@ -152,7 +152,7 @@ Public Class Banc
                         Me.dateAchat = CSDate.ToCRODIPString(pcolValue.ToString()) 'Public dateAchat As String
                     End If
                 Case "datederniercontrole".Trim().ToUpper()
-                    Me.dateDernierControle = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateAchat As String
+                    Me.dateDernierControleS = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateAchat As String
                 Case "datemodificationagent".Trim().ToUpper()
                     Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateModificationAgent As String
                 Case "datemodificationcrodip".Trim().ToUpper()
@@ -216,7 +216,7 @@ Public Class Banc
         Dim bReturn As ALERTE
         bReturn = ALERTE.NONE
 
-        Dim dernCtrl As Date = CSDate.FromCrodipString(Me.dateDernierControle)
+        Dim dernCtrl As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
         Dim n As Integer
         Dim DL As Date
         DL = DateAdd(DateInterval.DayOfYear, -7, DateAdd(DateInterval.Month, -1, Now)) '1 mois et 7 jours
@@ -245,7 +245,7 @@ Public Class Banc
     '''
     ''' Calcul du nombre de jours restant avant la date limite de controle
     Public Function getNbJoursAvantDateLimite() As Integer
-        Dim dernCtrl As Date = CSDate.FromCrodipString(Me.dateDernierControle)
+        Dim dernCtrl As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
         Dim DL As Date
         Dim n As Integer
         DL = DateAdd(DateInterval.Month, -1, Now) '1 mois 
@@ -335,7 +335,7 @@ Public Class Banc
             Me.dateAchat & "|" & _
             Me.idStructure & "|" & _
             Me.DateActivation & "|" & _
-            Me.dateDernierControle & "|" & _
+            Me.dateDernierControleS & "|" & _
             Me.dateModificationAgent & "|" & _
             Me.dateModificationCrodip
             newFicheVieBanc.dateModif = CSDate.ToCRODIPString(Date.Now).ToString

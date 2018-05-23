@@ -119,12 +119,22 @@ Public MustInherit Class Materiel
             _DateActivation = Value
         End Set
     End Property
-    Public Property dateDernierControle() As String
+    <XmlElement("DateDernierControle")>
+    Public Property dateDernierControleS() As String
         Get
             Return _dateDernierControle
         End Get
         Set(ByVal Value As String)
             _dateDernierControle = Value
+        End Set
+    End Property
+    <XmlIgnoreAttribute()>
+    Public Property dateDernierControle() As Date
+        Get
+            Return DateTime.Parse(_dateDernierControle)
+        End Get
+        Set(ByVal Value As Date)
+            _dateDernierControle = CSDate.ToCRODIPString(Value)
         End Set
     End Property
     Public Property dateModificationAgent() As String
@@ -171,7 +181,7 @@ Public MustInherit Class Materiel
             JamaisServi = False
             etat = True
             DateActivation = pDateActivation
-            dateDernierControle = pDateActivation
+            dateDernierControleS = pDateActivation
 
             bReturn = creerFichevieActivation(pAgent)
         Catch ex As Exception

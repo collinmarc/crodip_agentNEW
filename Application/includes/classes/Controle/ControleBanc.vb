@@ -1027,7 +1027,7 @@ Public Class ControleBanc
     Public Function buildPDF(ByVal curBanc As Banc, pAgent As Agent) As String
         Dim sReturn As String
 
-        Me.DateVerif = curBanc.dateDernierControle
+        Me.DateVerif = curBanc.dateDernierControleS
         Me.Proprietaire = pAgent.NomStructure
         Me.AgentVerif = pAgent.nom & " " & pAgent.prenom
         Me.idBanc = curBanc.id

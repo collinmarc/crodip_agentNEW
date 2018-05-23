@@ -344,8 +344,8 @@ Public Class fiche_banc
             If Not CSDate.isDateNull(BancCourant.DateActivation) Then
                 ficheBanc_dateActivation.Text = CSDate.mysql2access(BancCourant.DateActivation)
             End If
-            If Not CSDate.isDateNull(BancCourant.dateDernierControle) Then
-                ficheBanc_dateControle.Text = CSDate.mysql2access(BancCourant.dateDernierControle)
+            If Not CSDate.isDateNull(BancCourant.dateDernierControleS) Then
+                ficheBanc_dateControle.Text = CSDate.mysql2access(BancCourant.dateDernierControleS)
             End If
 
         Catch ex As Exception
@@ -410,7 +410,7 @@ Public Class fiche_banc
 #If DEBUG Then
         If e.Button = Windows.Forms.MouseButtons.Right Then
             BancCourant.etat = Not BancCourant.etat
-            BancCourant.dateDernierControle = CSDate.ToCRODIPString(Now).ToString()
+            BancCourant.dateDernierControleS = CSDate.ToCRODIPString(Now).ToString()
             dispBancCourant()
         End If
 #End If

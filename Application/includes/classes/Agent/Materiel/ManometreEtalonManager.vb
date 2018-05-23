@@ -148,8 +148,8 @@ Public Class ManometreEtalonManager
                     paramsQuery = paramsQuery & " , `AgentManoEtalon`.`fondEchelle`='" & CSDb.secureString(objManometreEtalon.fondEchelle) & "'"
                 End If
                 paramsQuery = paramsQuery & " , `AgentManoEtalon`.`isSynchro`=" & objManometreEtalon.isSynchro & ""
-                If objManometreEtalon.dateDernierControle <> Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateDernierControle`='" & CSDate.mysql2access(objManometreEtalon.dateDernierControle) & "'"
+                If objManometreEtalon.dateDernierControleS <> Nothing Then
+                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateDernierControle`='" & CSDate.mysql2access(objManometreEtalon.dateDernierControleS) & "'"
                 End If
                 If Not objManometreEtalon.dateModificationAgent Is Nothing Then
                     paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateModificationAgent`='" & CSDate.mysql2access(objManometreEtalon.dateModificationAgent) & "'"

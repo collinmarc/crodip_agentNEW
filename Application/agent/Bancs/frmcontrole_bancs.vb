@@ -1923,7 +1923,7 @@ Public Class frmcontrole_bancs
         ' Mise a jour de l'objet Banc
         Try
             curBanc.etat = m_oControleBanc.bResultat
-            curBanc.dateDernierControle = CSDate.ToCRODIPString(Date.Now).ToString
+            curBanc.dateDernierControleS = CSDate.ToCRODIPString(Date.Now).ToString
             BancManager.save(curBanc)
         Catch ex As Exception
             CSDebug.dispFatal("controle_banc::btn_controleBanc_valider_Click : " & ex.Message)
