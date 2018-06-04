@@ -369,12 +369,6 @@
     <Compile Include="Application\diagnostic\frmdiagnostic_recapV6.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\frmDiagnostiqueSimple.designer.vb">
-      <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\diagnostic\frmDiagnostiqueSimple.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\diagnostic\frmDiagnostiqueV6.Designer.vb">
       <DependentUpon>frmDiagnostiqueV6.vb</DependentUpon>
     </Compile>
@@ -762,6 +756,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\ReglagePulve\EtatReglagePulve.vb" />
+    <Compile Include="Application\ReglagePulve\frmDiagnostiqueSimple.Designer.vb">
+      <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\frmDiagnostiqueSimple.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\ReglagePulve\frmLoadCtrlCRODIP.Designer.vb">
       <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
     </Compile>
@@ -835,7 +835,6 @@
     <Compile Include="Application\ReglagePulve\RPapropos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\ReglagePulve\RPInfosBuses.vb" />
     <Compile Include="Application\ReglagePulve\RPloginAgent.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -848,7 +847,6 @@
     <Compile Include="Application\ReglagePulve\RPParamUser.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\ReglagePulve\RPUser.vb" />
     <Compile Include="Application\splash.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2012,9 +2010,6 @@
     <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_recapV6.resx">
       <DependentUpon>frmdiagnostic_recapV6.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\frmDiagnostiqueSimple.resx">
-      <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmDiagnostiqueV6.resx">
       <DependentUpon>frmDiagnostiqueV6.vb</DependentUpon>
     </EmbeddedResource>
@@ -2059,6 +2054,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\parentContener.resx">
       <DependentUpon>parentContener.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\frmDiagnostiqueSimple.resx">
+      <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\frmLoadCtrlCRODIP.resx">
       <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
