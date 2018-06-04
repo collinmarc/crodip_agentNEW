@@ -7,7 +7,7 @@ Public Class CSXml
     Private m_Nomfichier As String
 
     Public Sub New(ByVal pNomFichier As String)
-        If CSFile.exists(pNomFichier) Then
+        If System.IO.File.Exists(pNomFichier) Then
             m_Nomfichier = pNomFichier
         Else
             '' on crée le fichier

@@ -30,7 +30,7 @@ Public Class EtatFVMano
                 Dim oMano As ManometreControle
                 oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)
                 m_FileName = CSDiagPdf.makeFilename(oMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
-                CrDiskFileDestinationOptions.DiskFileName = CONST_PATH_EXP & m_FileName
+                CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
                 CrExportOptions = objReport.ExportOptions
                 With CrExportOptions
                     .ExportDestinationType = ExportDestinationType.DiskFile
@@ -208,8 +208,8 @@ Public Class EtatFVMano
     'Public Function buildPDF(ByVal curMano As ManometreControle)
 
     '    ' Init
-    '    Dim pdfTemplate As String = CONST_PATH_DOCS & CONST_DOC_FV_MANOCTRL & ".pdf"
-    '    Dim newFile As String = CONST_PATH_EXP & CSDiagPdf.makeFilename(curMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
+    '    Dim pdfTemplate As String = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_FV_MANOCTRL & ".pdf"
+    '    Dim newFile As String = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(curMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
 
 
     '    ' Récupère le mano étalon

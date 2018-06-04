@@ -90,8 +90,8 @@ Public Class RPapropos
         'PictureBox2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox2.Image = Global.Crodip_agent.Resources.logo
-        Me.PictureBox2.InitialImage = Global.Crodip_agent.Resources.logo
+        Me.PictureBox2.Image = Crodip_Agent.Resources.logo
+        Me.PictureBox2.InitialImage = Crodip_Agent.Resources.logo
         Me.PictureBox2.Location = New System.Drawing.Point(8, 8)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(76, 84)
@@ -129,7 +129,7 @@ Public Class RPapropos
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.Crodip_agent.Resources.LogoMCII
+        Me.PictureBox1.Image = Crodip_Agent.Resources.LogoMCII
         Me.PictureBox1.Location = New System.Drawing.Point(8, 117)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(96, 78)
@@ -206,8 +206,8 @@ Public Class RPapropos
         Try
 
             ' On récupère le numéro de version
-            label_numVersion.Text = "N° de version : " & GLOB_APPLI_VERSION
-            label_dateVersion.Text = "Build: " & GLOB_APPLI_BUILD
+            label_numVersion.Text = "N° de version : " & Globals.GLOB_APPLI_VERSION
+            label_dateVersion.Text = "Build: " & Globals.GLOB_APPLI_BUILD
             ' On récupère le copyright
 
             ' On récupère la description

@@ -14,7 +14,7 @@ Public Class MarquesManager
             oCbx.Items.Clear()
             xpath = XPATH_VALEURS_PULVE.Replace("%type%", pType)
             xpath = xpath.Replace("%categorie%", pCategorie)
-            Dim oNodes As Xml.XmlNodeList = GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
+            Dim oNodes As Xml.XmlNodeList = Globals.GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
             For Each oNode As Xml.XmlNode In oNodes
                 strValeurs = oNode.InnerText().Split("|")
                 For Each Str As String In strValeurs
@@ -46,7 +46,7 @@ Public Class MarquesManager
             Dim xpath As String
             xpath = XPATH_TYPEVALEUR_PULVE.Replace("%type%", pType)
             xpath = xpath.Replace("%categorie%", pCategorie)
-            Dim oNodes As Xml.XmlNodeList = GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
+            Dim oNodes As Xml.XmlNodeList = Globals.GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
             For Each oNode As Xml.XmlNode In oNodes
                 strReturn = oNode.InnerText
             Next
@@ -65,7 +65,7 @@ Public Class MarquesManager
         Try
             Dim xpath As String
             xpath = XPATH_CATEGORIES_PULVE.Replace("%type%", pType)
-            populateCombobox_xpath(GLOB_XML_TYPES_CATEGORIES_PULVE, pControl, xpath, bClear)
+            populateCombobox_xpath(Globals.GLOB_XML_TYPES_CATEGORIES_PULVE, pControl, xpath, bClear)
         Catch ex As Exception
             CSDebug.dispError("populateCombobox_CategoriesPulve : " & ex.Message)
         End Try
@@ -77,7 +77,7 @@ Public Class MarquesManager
         '########                    Chargement des marques                       ########
         '#################################################################################
         Try
-            populateCombobox_xpath(GLOB_XML_TYPES_CATEGORIES_PULVE, pControl, XPATH_TYPES_PULVE, bClear)
+            populateCombobox_xpath(Globals.GLOB_XML_TYPES_CATEGORIES_PULVE, pControl, XPATH_TYPES_PULVE, bClear)
         Catch ex As Exception
             CSDebug.dispError("populateCombobox_TypesPulve : " & ex.Message)
         End Try
@@ -91,7 +91,7 @@ Public Class MarquesManager
         Try
             Dim xpath As String
             xpath = XPATH_MODELES_PULVE.Replace("%marque%", pMarque)
-            populateCombobox_xpath(GLOB_XML_MARQUES_MODELES_PULVE, pControl, xpath, bClear)
+            populateCombobox_xpath(Globals.GLOB_XML_MARQUES_MODELES_PULVE, pControl, xpath, bClear)
         Catch ex As Exception
             CSDebug.dispError("populateCombobox_ModelesPulve : " & ex.Message)
         End Try
@@ -103,7 +103,7 @@ Public Class MarquesManager
         '########                    Chargement des marques                       ########
         '#################################################################################
         Try
-            populateCombobox_xpath(GLOB_XML_MARQUES_MODELES_PULVE, pControl, XPATH_MARQUES_PULVE, bClear)
+            populateCombobox_xpath(Globals.GLOB_XML_MARQUES_MODELES_PULVE, pControl, XPATH_MARQUES_PULVE, bClear)
         Catch ex As Exception
             CSDebug.dispError("populateCombobox_MarquesPulve : " & ex.Message)
         End Try
@@ -120,7 +120,7 @@ Public Class MarquesManager
         ' Selection des noeuds
         Dim xpath As String = "//type[libelle=""%TYPEBUSES%""]/fonctionnement/item/text"
         xpath = xpath.Replace("%TYPEBUSES%", pTypeBuse)
-        populateCombobox_xpath(GLOB_XML_FONCTIONNEMENTBUSES_BUSES, pControl, xpath, True)
+        populateCombobox_xpath(Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES, pControl, xpath, True)
     End Sub
     Public Shared Sub populateCombobox_xpath(ByVal xmlFile As CSXml, ByVal pControl As Object, pXPath As String, Optional bClear As Boolean = True)
 

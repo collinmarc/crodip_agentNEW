@@ -78,7 +78,7 @@ Partial Class frmRPInfosBuses
         '
         Me.btnValider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnValider.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.btnValider.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
+        Me.btnValider.BackgroundImage = Crodip_Agent.Resources.btn_valider
         Me.btnValider.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnValider.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btnValider.FlatAppearance.BorderSize = 0

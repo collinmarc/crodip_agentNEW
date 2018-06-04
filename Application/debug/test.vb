@@ -761,7 +761,7 @@ Public Class test
             ''tmpDiagnostic.pulverisateurIsBidonLaveMaim = False
             ''tmpDiagnostic.pulverisateurIsLanceLavageExterieur = False
             ''tmpDiagnostic.pulverisateurIsRotobuse = False
-            ''tmpDiagnostic.pulverisateurRegulationIsPressionConstante = False
+            ''tmpDiagnostic.pulverisateurRegulationIsPressionconstante = False
             ''tmpDiagnostic.pulverisateurRegulationIsDpm = False
             ''tmpDiagnostic.pulverisateurRegulationIsDpa = False
             ''tmpDiagnostic.pulverisateurRegulationIsDpae = False
@@ -899,7 +899,7 @@ Public Class test
         tmpDiagnostic.pulverisateurIsBidonLE = "testulverisateurIsBidonLE"
         tmpDiagnostic.pulverisateurIsRotobuse = "testulverisateurIsRotobuse"
         tmpDiagnostic.pulverisateurIsCuveIncorporation = "testulverisateurIsCuveIncorporation"
-        tmpDiagnostic.pulverisateurRegulationIsPressionConstante = "testulverisateurRegulationIsPressionConstante"
+        tmpDiagnostic.pulverisateurRegulationIsPressionconstante = "testulverisateurRegulationIsPressionconstante"
         tmpDiagnostic.pulverisateurRegulationIsDpm = "testulverisateurRegulationIsDpm"
         tmpDiagnostic.pulverisateurRegulationIsDpa = "testulverisateurRegulationIsDpa"
         tmpDiagnostic.pulverisateurRegulationIsDpae = "testulverisateurRegulationIsDpae"

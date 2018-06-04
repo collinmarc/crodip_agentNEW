@@ -216,7 +216,7 @@
             <xsd:element name="pulverisateurCategorieIsVoute" type="xsd:boolean" />
             <xsd:element name="pulverisateurCategorieIsFaceParFace" type="xsd:boolean" />
             <xsd:element name="pulverisateurAttelage" type="xsd:string" />
-            <xsd:element name="pulverisateurRegulationIsPressionConstante" type="xsd:boolean" />
+            <xsd:element name="pulverisateurRegulationIsPressionconstante" type="xsd:boolean" />
             <xsd:element name="pulverisateurRegulationIsDpm" type="xsd:boolean" />
             <xsd:element name="pulverisateurRegulationIsDpa" type="xsd:boolean" />
             <xsd:element name="pulverisateurRegulationIsDpae" type="xsd:boolean" />
@@ -714,7 +714,7 @@
             <xsd:element name="isRinceBidon" type="xsd:boolean" />
             <xsd:element name="isBidonLaveMain" type="xsd:boolean" />
             <xsd:element name="isLanceLavage" type="xsd:boolean" />
-            <xsd:element name="isPressionConstante" type="xsd:boolean" />
+            <xsd:element name="isPressionconstante" type="xsd:boolean" />
             <xsd:element name="isDPM" type="xsd:boolean" />
             <xsd:element name="isDPA" type="xsd:boolean" />
             <xsd:element name="isDPAE" type="xsd:boolean" />

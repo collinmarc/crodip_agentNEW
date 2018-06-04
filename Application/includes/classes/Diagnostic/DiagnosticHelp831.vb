@@ -10,7 +10,7 @@ Public Class DiagnosticHelp831
     Private m_Ecart_pct As String
     Private m_Mode As ModeHelp831
 
-    Public Const DIAGITEM_ID As String = "help831"
+    Public const DIAGITEM_ID As String = "help831"
 
     Public Enum ModeHelp831
         Mode8312 = 2

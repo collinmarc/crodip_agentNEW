@@ -8,12 +8,12 @@ Imports System.Globalization
 Public Class frmdiagnostic_recapV6
     Inherits frmCRODIP
 #Region " Variables "
-    Private m_DiagMode As DiagMode
+    Private m_DiagMode As Globals.DiagMode
     Private m_diagnostic As Diagnostic
     Private m_Exploit As Exploitation
     Private m_Pulverisateur As Pulverisateur
     Dim isValider As Boolean = False
-    Dim conclusionDiagnostique As enumConclusionDiag
+    Dim conclusionDiagnostique As Globals.enumConclusionDiag
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
     Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
     Friend WithEvents grpOrganisme As System.Windows.Forms.GroupBox
@@ -51,7 +51,7 @@ Public Class frmdiagnostic_recapV6
 
     End Sub
 
-    Public Sub New(pDiagMode As DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation)
+    Public Sub New(pDiagMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation)
         MyBase.New()
         m_DiagMode = pDiagMode
 
@@ -295,7 +295,7 @@ Public Class frmdiagnostic_recapV6
         Me.Label1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Image = Global.Crodip_agent.Resources.btn_refresh
+        Me.Label1.Image = Crodip_Agent.Resources.btn_refresh
         Me.Label1.Location = New System.Drawing.Point(147, 535)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(200, 24)
@@ -523,19 +523,19 @@ Public Class frmdiagnostic_recapV6
 
         ' Conclusion sur l'etat du controle
         Select Case conclusionDiagnostique
-            Case enumConclusionDiag.OK
+            Case Globals.enumConclusionDiag.OK
                 m_diagnostic.controleEtat = Diagnostic.controleEtatOK
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(1)
                 label_pulveBonEtat.Text = "Pulvérisateur en bon état"
-            Case enumConclusionDiag.OK_AVECMINEEUR
+            Case Globals.enumConclusionDiag.OK_AVECMINEEUR
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(1)
                 m_diagnostic.controleEtat = Diagnostic.controleEtatOK
                 label_pulveBonEtat.Text = "Pulvérisateur en bon état"
-            Case enumConclusionDiag.NOK
+            Case Globals.enumConclusionDiag.NOK
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
                 m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
                 label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
-            Case enumConclusionDiag.NOK_PRELIM
+            Case Globals.enumConclusionDiag.NOK_PRELIM
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
                 m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCC
                 label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
@@ -548,14 +548,14 @@ Public Class frmdiagnostic_recapV6
         'Me.SelectNextControl(diagnosticRecap_organisme_lieuControle, True, True, True, True)
         btn_finalisationDiag_modifierDiag.Focus()
         btn_finalisationDiag_modifierDiag.Select()
-        If m_DiagMode = DiagMode.CTRL_VISU Then
+        If m_DiagMode = Globals.DiagMode.CTRL_VISU Then
             grpOrganisme.Enabled = False
             grpProprio.Enabled = False
             grpMateriel.Enabled = False
             btn_finalisationDiag_modifierDiag.Enabled = False
             btn_finalisationDiag_valider.Text = "Retour"
         End If
-        btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> DiagMode.CTRL_VISU
+        btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> Globals.DiagMode.CTRL_VISU
 
 
         createRapportInspection_cr()
@@ -564,7 +564,7 @@ Public Class frmdiagnostic_recapV6
 
     Private Sub AffichePulverisateur()
         Try
-            MarquesManager.populateCombobox(GLOB_XML_EMPLACEMENTIDENTIFICATION, cbx_diagnosticRecap_materiel_EmplacementIdentification, "/root", True)
+            MarquesManager.populateCombobox(Globals.GLOB_XML_EMPLACEMENTIDENTIFICATION, cbx_diagnosticRecap_materiel_EmplacementIdentification, "/root", True)
             'diagnosticRecap_materiel_identifiant.Text = m_Pulverisateur.numeroNational
             'diagnosticRecap_materiel_marque.Text = m_diagnostic.pulverisateurMarque
             'diagnosticRecap_materiel_modele.Text = m_diagnostic.pulverisateurModele
@@ -613,7 +613,7 @@ Public Class frmdiagnostic_recapV6
     ' Validation
     Private Sub btn_finalisationDiag_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_valider.Click
         sender.Enabled = False
-        If m_DiagMode = DiagMode.CTRL_VISU Then
+        If m_DiagMode = Globals.DiagMode.CTRL_VISU Then
             CloseDiagnostic()
             Exit Sub
         End If
@@ -670,7 +670,7 @@ Public Class frmdiagnostic_recapV6
         Dim bReturn As Boolean
         Try
             Try
-                Statusbar.display(CONST_STATUTMSG_DIAG_SAVING, True)
+                Statusbar.display(Globals.CONST_STATUTMSG_DIAG_SAVING, True)
                 'Lecture de la fenêtre
                 GetInfos()
                 '
@@ -740,6 +740,7 @@ Public Class frmdiagnostic_recapV6
                     'Incrément du nombre de diag réalisé
                     My.Settings.nbControlesAvantAlerte = My.Settings.nbControlesAvantAlerte + 1
                     My.Settings.Save()
+
                     Statusbar.display("", False)
                     bReturn = True
                 Else
@@ -817,7 +818,7 @@ Public Class frmdiagnostic_recapV6
             oEtat.GenereEtat()
             pathRapport = oEtat.getFileName()
             m_diagnostic.RIFileName = pathRapport
-            bReturn = File.Exists(CONST_PATH_EXP & pathRapport)
+            bReturn = File.Exists(Globals.CONST_PATH_EXP & pathRapport)
             CrystalReportViewer1.ReportSource = oEtat.getReportdocument
         Catch ex As Exception
             CSDebug.dispError("createRapportInspection_cr ERR : " & ex.Message.ToString)
@@ -828,7 +829,7 @@ Public Class frmdiagnostic_recapV6
     Private Sub btn_finalisationDiag_imprimerRapport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_imprimerRapport.Click
         Try
             ' On affiche le PDF rempli
-            CSFile.open(CONST_PATH_EXP & m_diagnostic.RIFileName)
+            CSFile.open(Globals.CONST_PATH_EXP & m_diagnostic.RIFileName)
         Catch ex As Exception
             Console.Write("[Erreur] - Génération Rapport d'Inspection : " & ex.Message.ToString & vbNewLine)
         End Try
@@ -875,7 +876,7 @@ Public Class frmdiagnostic_recapV6
         Try
             Statusbar.display("Affichage du rapport de synthèse", True)
             ' On affiche le PDF rempli
-            CSFile.open(CONST_PATH_EXP & m_diagnostic.SMFileName)
+            CSFile.open(Globals.CONST_PATH_EXP & m_diagnostic.SMFileName)
             Statusbar.display("", True)
         Catch ex As Exception
             CSDebug.dispError("Erreur lors de la génération de l'état des Debit de buses : " & ex.Message.ToString)

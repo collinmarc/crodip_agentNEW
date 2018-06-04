@@ -1130,22 +1130,22 @@ Public Class frmRPCalculVolumeHa
     End Sub
     Private Sub initCalculs()
         If Not String.IsNullOrEmpty(m_oDiag.pulverisateurLargeurPlantation) Then
-            m_oDiag.CalcLargeurPlantation = StringToDouble(m_oDiag.pulverisateurLargeurPlantation)
+            m_oDiag.CalcLargeurPlantation = Globals.StringToDouble(m_oDiag.pulverisateurLargeurPlantation)
         End If
         If Not String.IsNullOrEmpty(m_oDiag.manometrePressionTravail) Then
-            m_oDiag.CalcPressionDeMesure = StringToDouble(m_oDiag.manometrePressionTravail)
+            m_oDiag.CalcPressionDeMesure = Globals.StringToDouble(m_oDiag.manometrePressionTravail)
         End If
         If Not String.IsNullOrEmpty(m_oDiag.buseDebit) Then
-            m_oDiag.CalcDebitMoyenPM = StringToDouble(m_oDiag.buseDebitMoyenPM)
+            m_oDiag.CalcDebitMoyenPM = Globals.StringToDouble(m_oDiag.buseDebitMoyenPM)
         End If
         If Not String.IsNullOrEmpty(m_oDiag.diagnosticHelp551.VitesseReelle1) Then
-            m_oDiag.CalcVitesseReelle1 = StringToDouble(m_oDiag.diagnosticHelp551.VitesseReelle1)
+            m_oDiag.CalcVitesseReelle1 = Globals.StringToDouble(m_oDiag.diagnosticHelp551.VitesseReelle1)
         End If
         If Not String.IsNullOrEmpty(m_oDiag.diagnosticHelp551.VitesseReelle2) Then
-            m_oDiag.CalcVitesseReelle2 = StringToDouble(m_oDiag.diagnosticHelp551.VitesseReelle2)
+            m_oDiag.CalcVitesseReelle2 = Globals.StringToDouble(m_oDiag.diagnosticHelp551.VitesseReelle2)
         End If
         If Not String.IsNullOrEmpty(m_oDiag.pulverisateurLargeur) Then
-            m_oDiag.CalcLargeurApp = StringToDouble(m_oDiag.pulverisateurLargeur)
+            m_oDiag.CalcLargeurApp = Globals.StringToDouble(m_oDiag.pulverisateurLargeur)
         End If
         m_oDiag.CalcNombreBuses = 0
         m_oDiag.CalclstBuseUsees = ""
@@ -1162,16 +1162,16 @@ Public Class frmRPCalculVolumeHa
         Next
         m_oDiag.CalcNombreNiveauxBuses = m_oDiag.diagnosticBusesList.Liste.Count
         If String.IsNullOrEmpty(m_oDiag.CalcPression1) Then
-            m_oDiag.CalcPression1 = StringToDouble(m_oDiag.CalcPressionDeMesure)
+            m_oDiag.CalcPression1 = Globals.StringToDouble(m_oDiag.CalcPressionDeMesure)
         End If
         If String.IsNullOrEmpty(m_oDiag.CalcPression2) Then
-            m_oDiag.CalcPression2 = StringToDouble(m_oDiag.CalcPressionDeMesure)
+            m_oDiag.CalcPression2 = Globals.StringToDouble(m_oDiag.CalcPressionDeMesure)
         End If
         If String.IsNullOrEmpty(m_oDiag.CalcLargeur1) Then
-            m_oDiag.CalcLargeur1 = StringToDouble(m_oDiag.pulverisateurLargeur)
+            m_oDiag.CalcLargeur1 = Globals.StringToDouble(m_oDiag.pulverisateurLargeur)
         End If
         If String.IsNullOrEmpty(m_oDiag.CalcLargeur2) Then
-            m_oDiag.CalcLargeur2 = StringToDouble(m_oDiag.pulverisateurLargeur)
+            m_oDiag.CalcLargeur2 = Globals.StringToDouble(m_oDiag.pulverisateurLargeur)
         End If
 
     End Sub

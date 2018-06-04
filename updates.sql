@@ -38,20 +38,20 @@
 --ALTER TABLE [Diagnostic] ADD RIFileName VARCHAR(255)
 --ALTER TABLE [Diagnostic] ADD SMFileName VARCHAR(255)
 --ALTER TABLE [pulverisateur] ADD regulation VARCHAR(255)
---UPDATE Pulverisateur set regulation = "Pression Constante" where isPressionConstante
+--UPDATE Pulverisateur set regulation = "Pression constante" where isPressionconstante
 --UPDATE Pulverisateur set regulation = "DPM" where isDPM
 --UPDATE Pulverisateur set regulation = "DPA" where isDPA
 --UPDATE Pulverisateur set regulation = "DPAE" where isDPAE
 --ALTER TABLE [pulverisateur] DROP COLUMN isDPAE
 --ALTER TABLE [pulverisateur] DROP COLUMN isDPA
 --ALTER TABLE [pulverisateur] DROP COLUMN isDPM
---ALTER TABLE [pulverisateur] DROP COLUMN isPressionConstante
+--ALTER TABLE [pulverisateur] DROP COLUMN isPressionconstante
 --ALTER TABLE [Diagnostic] ADD pulverisateurRegulation VARCHAR(255)
---UPDATE Diagnostic set pulverisateurRegulation = "Pression Constante" where pulverisateurRegulationIsPressionConstante
+--UPDATE Diagnostic set pulverisateurRegulation = "Pression constante" where pulverisateurRegulationIsPressionconstante
 --UPDATE Diagnostic set pulverisateurRegulation = "DPM" where pulverisateurRegulationIsDPM
 --UPDATE Diagnostic set pulverisateurRegulation = "DPA" where pulverisateurRegulationIsDPA
 --UPDATE Diagnostic set pulverisateurRegulation = "DPAE" where pulverisateurRegulationIsDPAE
---ALTER TABLE [Diagnostic] DROP COLUMN pulverisateurRegulationIsPressionConstante
+--ALTER TABLE [Diagnostic] DROP COLUMN pulverisateurRegulationIsPressionconstante
 --ALTER TABLE [Diagnostic] DROP COLUMN pulverisateurRegulationIsDpm
 --ALTER TABLE [Diagnostic] DROP COLUMN pulverisateurRegulationIsDpa
 --ALTER TABLE [Diagnostic] DROP COLUMN pulverisateurRegulationIsDpae

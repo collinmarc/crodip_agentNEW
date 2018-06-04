@@ -1,7 +1,27 @@
-Public Module config_vars
+Public Class Globals
 
-    Public GLOB_DIAG_NUMAGR As String = "E001"
-    Public GLOB_DIAG_NOMAGR As String = "CRODIP/Indigo"
+    Public Enum ALERTE As Integer
+        NOIRE = -1
+        ROUGE = 0
+        ORANGE = 1
+        JAUNE = 2
+        NONE = 3
+    End Enum
+    Public Enum DiagMode As Integer
+        CTRL_COMPLET = 0
+        CTRL_CV = 1
+        CTRL_VISU = 2
+    End Enum
+    Public Enum enumConclusionDiag
+        OK
+        OK_AVECMINEEUR
+        NOK
+        NOK_PRELIM
+    End Enum
+
+
+    Public Const GLOB_DIAG_NUMAGR As String = "E001"
+    Public Const GLOB_DIAG_NOMAGR As String = "CRODIP/Indigo"
 
 
 #Region " Environnement "
@@ -9,101 +29,109 @@ Public Module config_vars
     '############ Mode ############
 #If DEBUG Then
     '## Dev
-    Public GLOB_ENV_DEBUG As Boolean = True
-    Public GLOB_ENV_DIAGDEBUG As Boolean = True
-    Public GLOB_ENV_DEBUGTYPE As String = "file" ' "none" ; "console" ; "msgbox" ; "file"
+    Public Shared GLOB_ENV_DEBUG As Boolean = True
+    Public Const GLOB_ENV_DIAGDEBUG As Boolean = True
+    Public Const GLOB_ENV_DEBUGTYPE As String = "file" ' "none" ; "console" ; "msgbox" ; "file"
     'Public GLOB_ENV_WS As String = "dev" ' dev / preprod / prod
-    Public GLOB_ENV_DEBUGLVL As Integer = 3 ' 0:none  ;  1:error  ;  2:error/warning  ;  3:error/warning/infos
+    Public Const GLOB_ENV_DEBUGLVL As Integer = 3 ' 0:none  ;  1:error  ;  2:error/warning  ;  3:error/warning/infos
 #Else
     '## Prod
-    Public GLOB_ENV_DEBUG As Boolean = False
-    Public GLOB_ENV_DIAGDEBUG As Boolean = False
-    Public GLOB_ENV_DEBUGTYPE As String = "file" ' "none" ; "console" ; "msgbox" ; "file"
-    Public GLOB_ENV_WS As String = "prod" ' dev / preprod / prod
-    Public GLOB_ENV_DEBUGLVL As Integer = 1 ' 0:none  ;  1:error  ;  2:error/warning  ;  3:error/warning/infos
+    Public Shared GLOB_ENV_DEBUG As Boolean = False
+    Public Const GLOB_ENV_DIAGDEBUG As Boolean = False
+    Public Const GLOB_ENV_DEBUGTYPE As String = "file" ' "none" ; "console" ; "msgbox" ; "file"
+    Public Shared GLOB_ENV_WS As String = "prod" ' dev / preprod / prod
+    Public Const GLOB_ENV_DEBUGLVL As Integer = 1 ' 0:none  ;  1:error  ;  2:error/warning  ;  3:error/warning/infos
 #End If
     '############ FIN -- Mode ############
 
     ' Debug
-    Public GLOB_ENV_DEBUGLOGFILE As String = "." & "\tmp\crodipAgent.log" ' Fichier contenant les logs de debug si GLOB_ENV_DEBUGTYPE = "file"
-    Public GLOB_ENV_SYNCHROLOGFILE As String = "." & "\tmp\LogSynchro.xml"  ' Fichier contenant les logs dxml de la synchro
+    Public Const GLOB_ENV_DEBUGLOGFILE As String = "." & "\tmp\crodipAgent.log" ' Fichier contenant les logs de debug si GLOB_ENV_DEBUGTYPE = "file"
+    Public Const GLOB_ENV_SYNCHROLOGFILE As String = "." & "\tmp\LogSynchro.xml"  ' Fichier contenant les logs dxml de la synchro
 
     ' Comportement
-    Public GLOB_ENV_AUTOSYNC As Boolean = My.Settings.AutoSync
-    Public GLOB_ENV_SHOWSPLASH As Boolean = True
+    Public Shared GLOB_ENV_AUTOSYNC As Boolean = My.Settings.AutoSync
+    Public Shared GLOB_ENV_SHOWSPLASH As Boolean = True
 
     ' Conf
-    Public GLOB_XML_CONFIG As CSXml = New CSXml("config\config.xml")
-    Public GLOB_PID_FILE As String = "." & "\crodip_agent.pid"
+    Public Shared GLOB_XML_CONFIG As CSXml
+    Public Shared GLOB_PID_FILE As String = "." & "\crodip_agent.pid"
 
     ' Version
-    Public GLOB_APPLI_VERSION As String = My.Settings.NumVersion
-    Public GLOB_APPLI_BUILD As String = My.Settings.NumBuild
-    Public GLOB_ParamDiagRampe As String = My.Settings.ParamDiagRampe
-    Public GLOB_ParamDiagArboViti As String = My.Settings.ParamDiagArboviti
-    Public GLOB_BLUE_CROPDIP As Color = Color.FromArgb(2, 129, 198)
+    Public Shared GLOB_APPLI_VERSION As String = My.Settings.NumVersion
+    Public Shared GLOB_APPLI_BUILD As String = My.Settings.NumBuild
+    Public Shared GLOB_ParamDiagRampe As String = My.Settings.ParamDiagRampe
+    Public Shared GLOB_ParamDiagArboViti As String = My.Settings.ParamDiagArboviti
+    Public Shared GLOB_BLUE_CROPDIP As Color = Color.FromArgb(2, 129, 198)
 
 #End Region
 
 #Region " Marques / Modèles "
 
     ' Bancs
-    Public GLOB_XML_MARQUES_BANC As CSXml = New CSXml("." & "\config\bancs\marques.xml")
+    Public Shared GLOB_XML_MARQUES_BANC As CSXml
     ' Buses
-    Public GLOB_XML_MARQUES_BUSES As CSXml = New CSXml("." & "\config\buses\marques.xml")
-    Public GLOB_XML_MODELES_BUSES As CSXml = New CSXml("." & "\config\buses\modeles.xml")
-    Public GLOB_XML_GENRES_BUSES As CSXml = New CSXml("." & "\config\buses\genres.xml")
-    Public GLOB_XML_COULEURS_BUSES As CSXml = New CSXml("." & "\config\buses\couleurs.xml")
-    Public GLOB_XML_TYPES_BUSES As CSXml = New CSXml("." & "\config\buses\types.xml")
-    Public GLOB_XML_ANGLES_BUSES As CSXml = New CSXml("." & "\config\buses\angles.xml")
-    Public GLOB_XML_REFER_BUSES As CSXml = New CSXml("." & "\config\buses\buses.xml")
-    Public GLOB_XML_FONCTIONNEMENTBUSES_BUSES As CSXml = New CSXml("." & "\config\buses\fonctionnement.xml")
-    Public GLOB_ARR_MARQUES_BUSES() As String
-    Public GLOB_ARR_MODELES_BUSES() As String
-    Public GLOB_ARR_TYPES_BUSES() As String
+    Private Shared _GLOB_XML_MARQUES_BUSES As CSXml
+    Public Shared Property GLOB_XML_MARQUES_BUSES() As CSXml
+        Get
+            Return _GLOB_XML_MARQUES_BUSES
+        End Get
+        Set(ByVal value As CSXml)
+            _GLOB_XML_MARQUES_BUSES = value
+        End Set
+    End Property
+    Public Shared GLOB_XML_MODELES_BUSES As CSXml
+    Public Shared GLOB_XML_GENRES_BUSES As CSXml
+    Public Shared GLOB_XML_COULEURS_BUSES As CSXml
+    Public Shared GLOB_XML_TYPES_BUSES As CSXml
+    Public Shared GLOB_XML_ANGLES_BUSES As CSXml
+    Public Shared GLOB_XML_REFER_BUSES As CSXml
+    Public Shared GLOB_XML_FONCTIONNEMENTBUSES_BUSES As CSXml
+    Public Shared GLOB_ARR_MARQUES_BUSES() As String
+    Public Shared GLOB_ARR_MODELES_BUSES() As String
+    Public Shared GLOB_ARR_TYPES_BUSES() As String
 
     ' Manometres
-    Public GLOB_XML_MARQUES_MANO As CSXml = New CSXml("." & "\config\manometres\marques.xml")
-    Public GLOB_XML_MODELES_MANO As CSXml = New CSXml("." & "\config\manometres\modeles.xml")
-    Public GLOB_XML_CLASSES_MANO As CSXml = New CSXml("." & "\config\manometres\classes.xml")
-    Public GLOB_XML_FONDECHELLE_MANO As CSXml = New CSXml("." & "\config\manometres\fondEchelle.xml")
-    Public GLOB_ARR_MARQUES_MANO() As String
-    Public GLOB_ARR_MODELES_MANO() As String
+    Public Shared GLOB_XML_MARQUES_MANO As CSXml
+    Public Shared GLOB_XML_MODELES_MANO As CSXml
+    Public Shared GLOB_XML_CLASSES_MANO As CSXml
+    Public Shared GLOB_XML_FONDECHELLE_MANO As CSXml
+    Public Shared GLOB_ARR_MARQUES_MANO() As String
+    Public Shared GLOB_ARR_MODELES_MANO() As String
 
     ' Manometres de contrôle
-    Public GLOB_XML_MARQUES_MANOCONT As CSXml = New CSXml("." & "\config\manometres-controle\marques.xml")
-    Public GLOB_XML_MODELES_MANOCONT As CSXml = New CSXml("." & "\config\manometres-controle\modeles.xml")
-    Public GLOB_XML_CLASSES_MANOCONT As CSXml = New CSXml("." & "\config\manometres-controle\classes.xml")
-    Public GLOB_XML_FONDECHELLE_MANOCONT As CSXml = New CSXml("." & "\config\manometres-controle\fondEchelle.xml")
-    Public GLOB_ARR_MARQUES_MANOCONT() As String
-    Public GLOB_ARR_MODELES_MANOCONT() As String
+    Public Shared GLOB_XML_MARQUES_MANOCONT As CSXml
+    Public Shared GLOB_XML_MODELES_MANOCONT As CSXml
+    Public Shared GLOB_XML_CLASSES_MANOCONT As CSXml
+    Public Shared GLOB_XML_FONDECHELLE_MANOCONT As CSXml
+    Public Shared GLOB_ARR_MARQUES_MANOCONT() As String
+    Public Shared GLOB_ARR_MODELES_MANOCONT() As String
     ' Manometres étalon
-    Public GLOB_XML_MARQUES_MANOETA As CSXml = New CSXml("." & "\config\manometres-etalon\marques.xml")
-    Public GLOB_XML_MODELES_MANOETA As CSXml = New CSXml("." & "\config\manometres-etalon\modeles.xml")
-    Public GLOB_XML_CLASSES_MANOETA As CSXml = New CSXml("." & "\config\manometres-etalon\classes.xml")
-    Public GLOB_XML_FONDECHELLE_MANOETA As CSXml = New CSXml("." & "\config\manometres-etalon\fondEchelle.xml")
-    Public GLOB_ARR_MARQUES_MANOETA() As String
-    Public GLOB_ARR_MODELES_MANOETA() As String
+    Public Shared GLOB_XML_MARQUES_MANOETA As CSXml
+    Public Shared GLOB_XML_MODELES_MANOETA As CSXml
+    Public Shared GLOB_XML_CLASSES_MANOETA As CSXml
+    Public Shared GLOB_XML_FONDECHELLE_MANOETA As CSXml
+    Public Shared GLOB_ARR_MARQUES_MANOETA() As String
+    Public Shared GLOB_ARR_MODELES_MANOETA() As String
 
     ' Pulvérisateurs
-    Public GLOB_XML_MARQUES_MODELES_PULVE As CSXml = New CSXml(My.Settings.RepertoireParametres & "\ReferentielPulverisateurMarquesModeles.xml")
-    Public GLOB_XML_TYPES_CATEGORIES_PULVE As CSXml = New CSXml(My.Settings.RepertoireParametres & "\ReferentielPulverisateurTypesCategories.xml")
-    Public GLOB_XML_ATTELAGE_PULVE As CSXml = New CSXml(My.Settings.RepertoireParametres & "\Attelage.xml")
-    Public GLOB_XML_PULVERISATION_PULVE As CSXml = New CSXml(My.Settings.RepertoireParametres & "\Pulverisation.xml")
-    Public GLOB_XML_REGULATION_PULVE As CSXml = New CSXml("." & "\" & My.Settings.RepertoireParametres & "\PulverisateurRegulation.xml")
-    Public GLOB_XML_EMPLACEMENTIDENTIFICATION As CSXml = New CSXml(My.Settings.RepertoireParametres & "\EmplacementIdentification.xml")
-    Public GLOB_XML_MODEUTILISATION As CSXml = New CSXml(My.Settings.RepertoireParametres & "\PulverisateurModeUtilisation.xml")
+    Public Shared GLOB_XML_MARQUES_MODELES_PULVE As CSXml
+    Public Shared GLOB_XML_TYPES_CATEGORIES_PULVE As CSXml
+    Public Shared GLOB_XML_ATTELAGE_PULVE As CSXml
+    Public Shared GLOB_XML_PULVERISATION_PULVE As CSXml
+    Public Shared GLOB_XML_REGULATION_PULVE As CSXml
+    Public Shared GLOB_XML_EMPLACEMENTIDENTIFICATION As CSXml
+    Public Shared GLOB_XML_MODEUTILISATION As CSXml
 
-    Public GLOB_ARR_MARQUES_PULVE() As String
-    Public GLOB_ARR_MODELES_PULVE() As String
-    Public GLOB_ARR_TYPES_PULVE() As String
-    Public GLOB_ARR_CLASSES_PULVE() As String
-    Public GLOB_STR_REFERENTIELBUSES_FILENAME As String = My.Settings.RepertoireParametres & "\referentiel_buse.csv"
-    Public GLOB_STR_COMMUNES_FILENAME As String = My.Settings.RepertoireParametres & "\base_officielle_codes_postaux.csv"
+    Public Shared GLOB_ARR_MARQUES_PULVE() As String
+    Public Shared GLOB_ARR_MODELES_PULVE() As String
+    Public Shared GLOB_ARR_TYPES_PULVE() As String
+    Public Shared GLOB_ARR_CLASSES_PULVE() As String
+    Public Shared GLOB_STR_REFERENTIELBUSES_FILENAME As String = My.Settings.RepertoireParametres & "\referentiel_buse.csv"
+    Public Shared GLOB_STR_COMMUNES_FILENAME As String = My.Settings.RepertoireParametres & "\base_officielle_codes_postaux.csv"
 
     ' Territoires
-    Public GLOB_XML_TERRITOIRES As CSXml = New CSXml("." & "\config\territoire.xml")
-    Public GLOB_XML_CODESAPE As CSXml = New CSXml(My.Settings.RepertoireParametres & "\ReferentielCodesAPE.xml")
+    Public Shared GLOB_XML_TERRITOIRES As CSXml
+    Public Shared GLOB_XML_CODESAPE As CSXml
 
 #End Region
 
@@ -112,17 +140,17 @@ Public Module config_vars
 #Region " PATHS "
 
     ' Public
-    Public CONST_PATH_PUBLIC As String = "." & "\public\"
+    Public Shared CONST_PATH_PUBLIC As String = "." & "\public\"
     ' Documents
-    Public CONST_PATH_DOCS As String = CONST_PATH_PUBLIC & "docs\"
+    Public Shared CONST_PATH_DOCS As String = CONST_PATH_PUBLIC & "docs\"
     ' Exports
-    Public CONST_PATH_EXP As String = CONST_PATH_PUBLIC & "exports\"
+    Public Shared CONST_PATH_EXP As String = CONST_PATH_PUBLIC & "exports\"
 
     ' Images
-    Public CONST_PATH_IMG As String = "." & "\img\"
+    Public Shared CONST_PATH_IMG As String = "." & "\img\"
 
     ' Temp
-    Public CONST_PATH_TMP As String = "." & "\tmp\"
+    Public Shared CONST_PATH_TMP As String = "." & "\tmp\"
 
 
 #End Region
@@ -130,48 +158,48 @@ Public Module config_vars
 #Region " Nom des documents "
 
     ' Logo module facturation
-    Public CR_LOGO_DEFAULT_NAME As String = "nologo.jpg"
-    Public CR_LOGO_DEFAULT_TN_NAME As String = "nologo_tn.jpg"
-    Public CR_LOGO_NAME As String = "CR_logo.jpg"
-    Public CR_LOGO_TN_NAME As String = "CR_logo_tn.jpg"
-    Public CR_LOGO_TN2_NAME As String = "CR_logo_tn2.jpg"
+    Public Const CR_LOGO_DEFAULT_NAME As String = "nologo.jpg"
+    Public Const CR_LOGO_DEFAULT_TN_NAME As String = "nologo_tn.jpg"
+    Public Const CR_LOGO_NAME As String = "CR_logo.jpg"
+    Public Const CR_LOGO_TN_NAME As String = "CR_logo_tn.jpg"
+    Public Const CR_LOGO_TN2_NAME As String = "CR_logo_tn2.jpg"
 
     ' Template Facture
     Public CONST_DOC_FACTURE As String = "facture"
     ' Template BL
-    Public CONST_DOC_BL As String = "bl"
+    Public Const CONST_DOC_BL As String = "bl"
     ' Template Contrat Commercial
-    Public CONST_DOC_CONTCOM As String = "contrat_commercial"
+    Public Const CONST_DOC_CONTCOM As String = "contrat_commercial"
     ' Rapports d'inspection
-    'Public CONST_DOC_RAPINSP As String = "rapport_inspection"
-    Public CONST_DOC_RAPINSP_COMPLET As String = "rapport_inspection_complet"
-    Public CONST_DOC_RAPINSP_COMPLET_2P As String = "rapport_inspection_complet_2p"
-    Public CONST_DOC_RAPINSP_CONTREVISITE As String = "rapport_inspection_ContreVisite"
-    Public CONST_DOC_RAPINSP_CONTREVISITE_2P As String = "rapport_inspection_ContreVisite_2p"
+    'Public Globals.CONST_DOC_RAPINSP As String = "rapport_inspection"
+    Public Const CONST_DOC_RAPINSP_COMPLET As String = "rapport_inspection_complet"
+    Public Const CONST_DOC_RAPINSP_COMPLET_2P As String = "rapport_inspection_complet_2p"
+    Public Const CONST_DOC_RAPINSP_CONTREVISITE As String = "rapport_inspection_ContreVisite"
+    Public Const CONST_DOC_RAPINSP_CONTREVISITE_2P As String = "rapport_inspection_ContreVisite_2p"
     ' Rapport d'inspection 2 pages
-    'Public CONST_DOC_RAPINSP2 As String = "rapport_inspection_2p"
+    'Public Globals.CONST_DOC_RAPINSP2 As String = "rapport_inspection_2p"
     ' Feuille pédagogique
-    Public CONST_DOC_FPEDA As String = "feuille_pedagogique"
+    Public Const CONST_DOC_FPEDA As String = "feuille_pedagogique"
     ' Enquete satisfaction
-    Public CONST_DOC_ENQSAT As String = "enquete_satisfaction"
+    Public Const CONST_DOC_ENQSAT As String = "enquete_satisfaction"
     ' Template Fiche Terrain Rampe
-    Public CONST_DOC_FICHETERRAIN_RAMPE As String = "fiche_terrain_rampe.pdf"
+    Public Const CONST_DOC_FICHETERRAIN_RAMPE As String = "fiche_terrain_rampe.pdf"
     ' Template Fiche Terrain Arbo/viti
-    Public CONST_DOC_FICHETERRAIN_ARBOVITI As String = "fiche_terrain_arbo-viti.pdf"
+    Public Const CONST_DOC_FICHETERRAIN_ARBOVITI As String = "fiche_terrain_arbo-viti.pdf"
     ' Template Fiche de vie mano controle
-    Public CONST_DOC_FV_MANOCTRL As String = "ficheVie_mano"
+    Public Const CONST_DOC_FV_MANOCTRL As String = "ficheVie_mano"
     ' Template Fiche de vie banc
-    Public CONST_DOC_FV_BANC As String = "ficheVie_banc"
+    Public Const CONST_DOC_FV_BANC As String = "ficheVie_banc"
     ''' <summary>
     ''' Symbole decimal utilisé par l'application
     ''' </summary>
     ''' <remarks></remarks>
-    Public CONST_DECIMAL_SYMBOL As String = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator
+    Public Shared CONST_DECIMAL_SYMBOL As String = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator
 
 #End Region
 
 
-#Region " Constantes (Messages d'info.) "
+#Region " constantes (Messages d'info.) "
 
 #Region " Messages d'information "
 
@@ -317,14 +345,16 @@ Public Module config_vars
 
 #End Region
 
-    Public Sub Init()
+    Public Shared Sub Init()
         My.Settings.Reload()
         GLOB_ENV_AUTOSYNC = My.Settings.AutoSync
         GLOB_APPLI_VERSION = My.Settings.NumVersion
         GLOB_APPLI_BUILD = My.Settings.NumBuild
-
+        CSDebug.dispInfo("Globals.Init user LocalUserAppDataPath :" & Application.LocalUserAppDataPath)
+        CSDebug.dispInfo("Globals.Init App My.Settings.NumVersion:" & My.Settings.NumVersion)
+        CSDebug.dispInfo("Globals.Init App My.Settings.NumVersion:" & My.Settings.NumBuild)
     End Sub
-    Public Function StringToDouble(pInputString As String) As Double
+    Public Shared Function StringToDouble(pInputString As String) As Double
         Dim dReturn As Double
         Dim ciClone As System.Globalization.CultureInfo = CType(System.Globalization.CultureInfo.InvariantCulture.Clone(), System.Globalization.CultureInfo)
         ciClone.NumberFormat.NumberDecimalSeparator = ","
@@ -366,7 +396,7 @@ Public Module config_vars
         sReturn = ""
         Try
 
-            dValue = StringToDouble(pInputString)
+            dValue = Globals.StringToDouble(pInputString)
             strFormat = "#####0."
             For i As Integer = 1 To pndec
                 strFormat = strFormat & "0"
@@ -379,4 +409,4 @@ Public Module config_vars
         End Try
         Return sReturn
     End Function
-End Module
+End Class

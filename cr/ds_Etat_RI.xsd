@@ -135,15 +135,15 @@
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+    <xs:unique name="CONSTraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Diagnostic" />
       <xs:field xpath="mstns:NumeroControle" />
     </xs:unique>
-    <xs:unique name="Organisme_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+    <xs:unique name="Organisme_constraint1" msdata:constraintName="CONSTraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Organisme" />
       <xs:field xpath="mstns:NumeroAgrement" />
     </xs:unique>
-    <xs:unique name="Materiel_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+    <xs:unique name="Materiel_constraint1" msdata:constraintName="CONSTraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Materiel" />
       <xs:field xpath="mstns:Identifiant" />
     </xs:unique>

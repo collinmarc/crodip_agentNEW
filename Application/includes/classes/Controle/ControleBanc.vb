@@ -1017,7 +1017,7 @@ Public Class ControleBanc
         End If
     End Sub
     ''' <summary>
-    ''' Construction du PDF de Fiche de Vie Controle 
+    ''' construction du PDF de Fiche de Vie Controle 
     ''' </summary>
     ''' <param name="curBanc"></param>
     ''' <param name="pTempEau"></param>

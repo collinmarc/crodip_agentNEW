@@ -24,7 +24,7 @@ Public Class ManometreEtalon
     Public ReadOnly Property incertitudeEtalon_d() As Double
         Get
             Try
-                Return StringToDouble(_incertitudeEtalon)
+                Return Globals.StringToDouble(_incertitudeEtalon)
             Catch ex As Exception
                 Return CDbl(0)
             End Try

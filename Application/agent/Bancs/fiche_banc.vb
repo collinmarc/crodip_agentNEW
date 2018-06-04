@@ -315,7 +315,7 @@ Public Class fiche_banc
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
-        MarquesManager.populateCombobox(GLOB_XML_MARQUES_BANC, ficheBanc_marque)
+        MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_BANC, ficheBanc_marque)
         dispBancCourant()
     End Sub
     Private Sub dispBancCourant()

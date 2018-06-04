@@ -184,7 +184,7 @@ Public Class apropos
         '
         'btn_RAZBase
         '
-        Me.btn_RAZBase.BackgroundImage = Global.Crodip_agent.Resources.btn_delete
+        Me.btn_RAZBase.BackgroundImage = Crodip_Agent.Resources.btn_delete
         Me.btn_RAZBase.FlatAppearance.BorderSize = 0
         Me.btn_RAZBase.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_RAZBase.ForeColor = System.Drawing.Color.White
@@ -224,8 +224,8 @@ Public Class apropos
         Try
 
             ' On récupère le numéro de version
-            label_numVersion.Text = "N° de version : " & GLOB_APPLI_VERSION
-            label_dateVersion.Text = "Build: " & GLOB_APPLI_BUILD
+            label_numVersion.Text = "N° de version : " & Globals.GLOB_APPLI_VERSION
+            label_dateVersion.Text = "Build: " & Globals.GLOB_APPLI_BUILD
             lblDBVersion.Text = "DB : " & DBVersionManagerManager.getDBVersion().NUM
             ' On récupère le copyright
             label_copyright.Text = "© Cognix Systems 2009"

@@ -130,7 +130,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
     End Property
     Public m_bCalcule As Boolean = True
 
-    Public Const DIAGITEM_ID As String = "help12123TrtSem"
+    Public const DIAGITEM_ID As String = "help12123TrtSem"
     Public LIMITE_ECART_MAJEUR As Decimal = 5
 
     Public Sub New(pNum As Integer)

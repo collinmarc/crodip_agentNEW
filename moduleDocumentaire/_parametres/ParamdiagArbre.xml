@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LstParamCtrlDiag xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ListeParam>
-    <!-- Preliminaires-->
+    <ListeParam>
     <ParamCtrlDiag>
       <Code>1</Code>
       <Libelle>Examens préliminaires</Libelle>
@@ -15,7 +14,7 @@
       <Code>1.1.1</Code>
       <Libelle>Fonctionnment du pulvérisateur</Libelle>
     </ParamCtrlDiag>
-  
+
     <ParamCtrlDiag>
       <Code>1.1.2</Code>
       <Libelle>Propreté du matériel</Libelle>
@@ -28,11 +27,11 @@
 
     <ParamCtrlDiag>
       <Code>1.2</Code>
-      <Libelle>Elements de sécurité</Libelle>
+      <Libelle>Eléments de sécurité</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>1.2.1</Code>
-      <Libelle>Transmissions hydrauliques entre tracteur  pulvé</Libelle>
+      <Libelle>Transmissions hydrauliques entre tracteur pulvé</Libelle>
     </ParamCtrlDiag>
 
     <ParamCtrlDiag>
@@ -52,345 +51,546 @@
 
     <ParamCtrlDiag>
       <Code>1.2.5</Code>
-      <Libelle>débrayage du/des Ventilateurs</Libelle>
-        </ParamCtrlDiag>
+      <Libelle>débrayage du/des ventilateurs</Libelle>
+    </ParamCtrlDiag>
       <!-- Etat Général -->
-    <ParamCtrlDiag>
-      <Code>2</Code>
-      <Libelle>Etat Général</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.1</Code>
-      <Libelle>Dispositif d'attelage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.1.1</Code>
-      <Libelle>Déformation du dispositif d'attelage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.1.2</Code>
-      <Libelle>Modifications du dispositif d'attelage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.1.3</Code>
-      <Libelle>Corrosion du dispositif d'attelage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2</Code>
-      <Libelle>Chassis et pièces de structures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2.1</Code>
-      <Libelle>Déformations du chassis et Pièces de structures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2.2</Code>
-      <Libelle>Lésions sur pièces métalliques du chassis et Pièces de structures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2.3</Code>
-      <Libelle>Lésions aux soudures du chassis et Pièces de structures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2.4</Code>
-      <Libelle>Corrosion sur pièces métalliques du chassis et Pièces de structures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2.5</Code>
-      <Libelle>Jeux aux articulations</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.4</Code>
-      <Libelle>Transmission au niveau du pulvé</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.4.1</Code>
-      <Libelle>Transmissions hydrauliques</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.5</Code>
-      <Libelle>Pneumatiques</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.5.1</Code>
-      <Libelle>Montage-Maintenance</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.5.2</Code>
-      <Libelle>Usure</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.3</Code>
-      <Libelle>Fuites de bouillie de pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.3.1</Code>
-      <Libelle>Fuites mineures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.3.2</Code>
-      <Libelle>Fuites majeures</Libelle>
-    </ParamCtrlDiag>
-    <!-- Pompe -->
-    <ParamCtrlDiag>
-      <Code>3</Code>
-      <Libelle>Pompe</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.1.1</Code>
-      <Libelle>Fuite d'huile</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.2.1</Code>
-      <Libelle>Pulsations</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.2.1</Code>
-      <Libelle>Cloche à air</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.2.2</Code>
-      <Libelle>Débit</Libelle>
-    </ParamCtrlDiag>
-    <!-- Cuve recevant les bouillies-->
-    <ParamCtrlDiag>
-      <Code>4</Code>
-      <Libelle>Cuve recevant les bouillies</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.1</Code>
-      <Libelle>Bouchons</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.1.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.1.2</Code>
-      <Libelle>Adéquation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.2</Code>
-      <Libelle>Indicateur de niveau</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.2.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.3</Code>
-      <Libelle>Incorporateur de produit</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.3.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-  <!-- 5 Appareillage de mesure, commandes et système de régulation-->
-    <ParamCtrlDiag>
-      <Code>5</Code>
-      <Libelle>Appareillage de mesure, commandes et système de régulation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.1</Code>
-      <Libelle>Commande de fermeture générale de la pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.1.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.2</Code>
-      <Libelle>Commande de fermeture partielle de la pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.2.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.2.2</Code>
-      <Libelle>Retours compensatoires</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.3</Code>
-      <Libelle>Dispositif de régulation de la pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.3.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.3.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.4</Code>
-      <Libelle>Indicateur de pression</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.4.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.4.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.5</Code>
-      <Libelle>Indicateur pour la régulation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.5.1</Code>
-      <Libelle>Vitesse d'avancement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.5.2</Code>
-      <Libelle>Débit</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.6</Code>
-      <Libelle>Autres indicateurs</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.6.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.6.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-<!-- Rampes de pulverisation -->
-    <ParamCtrlDiag>
-      <Code>8</Code>
-      <Libelle>Rampes de pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1</Code>
-      <Libelle>Structure de rampe</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1.1</Code>
-      <Libelle>Déformations sur le plan vertical</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1.2</Code>
-      <Libelle>Déformations sur le plan horizontal</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1.3</Code>
-      <Libelle>Protection des buses extrémités</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1.5</Code>
-      <Libelle>Lésions aux soudures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1.6</Code>
-      <Libelle>Corrosion de la rampe</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.2</Code>
-      <Libelle>Comportement de la rampe</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.2.1</Code>
-      <Libelle>Jeu aux articulations</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.2.2</Code>
-      <Libelle>Stabilité</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.2.3</Code>
-      <Libelle>Réglage en hauteur</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.3</Code>
-      <Libelle>Porte-jets</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.3.1</Code>
-      <Libelle>Disposition</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.3.2</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.3.3</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-<!-- Buses de pulvérisation-->
-    <ParamCtrlDiag>
-      <Code>9</Code>
-      <Libelle>Buses de pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.1</Code>
-      <Libelle>Matériel</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.1</Code>
-      <Libelle>Matériel</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.1.1</Code>
-      <Libelle>Nature du montage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.1.2</Code>
-      <Libelle>Orientation du montage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.2.1</Code>
-      <Libelle>Régularité</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.2.2</Code>
-      <Libelle>Débit</Libelle>
-    </ParamCtrlDiag>
-    <!-- Soufflerie-->
-    <ParamCtrlDiag>
-      <Code>10</Code>
-      <Libelle>Soufflerie</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.1</Code>
-      <Libelle>Ventilateur</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.1.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.1.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.2</Code>
-      <Libelle>Distribution de l'air</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.2.1</Code>
-      <Libelle>Gaines d'adduction de l'air</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.2.2</Code>
-      <Libelle>Sortie d'air</Libelle>
-    </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2</Code>
+        <Libelle>Etat Général</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.1</Code>
+        <Libelle>Dispositif d'attelage</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.1.1</Code>
+        <Libelle>Déformations</Libelle>
+        <LibelleLong>Déformation du dispositif d'attelage</LibelleLong>
+        <Actif>true</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.1.2</Code>
+        <Libelle>Modifications</Libelle>
+        <LibelleLong>Modifications du dispositif d'attelage</LibelleLong>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.1.3</Code>
+        <Libelle>Corrosion</Libelle>
+        <LibelleLong>Corrosion du dispositif d'attelage</LibelleLong>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.2</Code>
+        <Libelle>Chassis et pièces de structures</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.2.1</Code>
+        <Libelle>Déformations</Libelle>
+        <LibelleLong>Déformations du chassis et Pièces de structures</LibelleLong>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.2.2</Code>
+        <Libelle>Lésions sur pièces métalliques</Libelle>
+        <LibelleLong>Lésions sur pièces métalliques du chassis et Pièces de structures</LibelleLong>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.2.3</Code>
+        <Libelle>Lésions soudures</Libelle>
+        <LibelleLong>Lésions aux soudures du chassis et pièces de structures</LibelleLong>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.2.4</Code>
+        <Libelle>Corrosion</Libelle>
+        <LibelleLong>Corrosion sur pièces métalliques du chassis et Pièces de structures</LibelleLong>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.2.5</Code>
+        <Libelle>Jeux aux articulations</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.4</Code>
+        <Libelle>Transmission au niveau du pulvé</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.4.1</Code>
+        <Libelle>Transmissions hydrauliques</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.5</Code>
+        <Libelle>Pneumatiques</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.5.1</Code>
+        <Libelle>Montage-Maintenance</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.5.2</Code>
+        <Libelle>Usure</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.3</Code>
+        <Libelle>Fuites de bouillie</Libelle>
+        <LibelleLong>Fuites de bouillie de pulvérisation</LibelleLong>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.3.1</Code>
+        <Libelle>Fuites mineures</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>2.3.2</Code>
+        <Libelle>Fuites majeures</Libelle>
+      </ParamCtrlDiag>
+      <!-- Pompe -->
+      <ParamCtrlDiag>
+        <Code>3</Code>
+        <Libelle>Pompe</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>3.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>3.1.1</Code>
+        <Libelle>Fuite d'huile</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>3.2</Code>
+        <Libelle>Fonctionnement</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>3.2.1</Code>
+        <Libelle>Pulsations</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>3.2.2</Code>
+        <Libelle>Cloche à air</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>3.2.3</Code>
+        <Libelle>Débit</Libelle>
+      </ParamCtrlDiag>
+      <!-- Cuve recevant les bouillies-->
+      <ParamCtrlDiag>
+        <Code>4</Code>
+        <Libelle>Cuve recevant les bouillies phytosanitaires</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.1</Code>
+        <Libelle>Bouchons</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.1.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.1.2</Code>
+        <Libelle>Adéquation</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.2</Code>
+        <Libelle>Indicateur de niveau</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.2.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.3</Code>
+        <Libelle>Incorporateur de produit</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.3.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.3.2</Code>
+        <Libelle>Nettoyage des emballages</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.4</Code>
+        <Libelle>Remplissage</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.4.1</Code>
+        <Libelle>Tamis de remplissage</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.4.2</Code>
+        <Libelle>Dispositif anti retour</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.5</Code>
+        <Libelle>Vidange</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.5.1</Code>
+        <Libelle>Vannes de vidange</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.5.2</Code>
+        <Libelle>Récupération de la bouillie</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.6</Code>
+        <Libelle>Dispositif de rincage</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.6.1</Code>
+        <Libelle>Cuve de rincage</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.6.2</Code>
+        <Libelle>Nettoyage interne de la bouillie</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.6.3</Code>
+        <Libelle>Nettoyage externe du pulvérisateur</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>4.6.4</Code>
+        <Libelle>Nettoyage des circuits</Libelle>
+      </ParamCtrlDiag>
 
-    <!-- DEFAUTS-->
+      <!-- 5 Appareillage de mesure, commandes et système de régulation-->
+      <ParamCtrlDiag>
+        <Code>5</Code>
+        <Libelle>Appareillage de mesure, commandes et système de régulation</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.1</Code>
+        <Libelle>Fermeture générale de la pulvérisation</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.1.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.2</Code>
+        <Libelle>Fermeture partielle de la pulvérisation au niveau des sections</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.2.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.2.2</Code>
+        <Libelle>Retours compensatoires</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.3</Code>
+        <Libelle>Dispositif(s) de régulation de la pression</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.3.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.3.2</Code>
+        <Libelle>Fonctionnement</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.4</Code>
+        <Libelle>Indicateur de pression</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.4.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.4.2</Code>
+        <Libelle>Fonctionnement</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.5</Code>
+        <Libelle>Indicateurs utilisés pour la régulation</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.5.1</Code>
+        <Libelle>Vitesse d'avancement</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.5.2</Code>
+        <Libelle>Débit</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.6</Code>
+        <Libelle>Autres indicateurs</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.6.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>5.6.2</Code>
+        <Libelle>Fonctionnement</Libelle>
+      </ParamCtrlDiag>
+      <!-- Flexibles canalisation filtres -->
+      <ParamCtrlDiag>
+        <Code>6</Code>
+        <Libelle>Flexibles et canalisations</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>6.1</Code>
+        <Libelle>Flexibles de distribution</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>6.1.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>7</Code>
+        <Libelle>Filtres</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>7.1</Code>
+        <Libelle>Filtres à l'aspiration</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>7.1.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>7.2</Code>
+        <Libelle>Filtres central au refoulement</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>7.2.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>7.3</Code>
+        <Libelle>Filtres au niveau des sections de pulvérisation</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>7.3.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>7.4</Code>
+        <Libelle>Filtres aux buses</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>7.4.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <!-- Rampes de pulverisation -->
+      <ParamCtrlDiag>
+        <Code>8</Code>
+        <Libelle>Rampes de pulvérisation</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.1</Code>
+        <Libelle>Structure de rampe</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.1.1</Code>
+        <Libelle>Déformations sur le plan vertical</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.1.2</Code>
+        <Libelle>Déformations sur le plan horizontal</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.1.3</Code>
+        <Libelle>Protection des buses extrémités</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.1.4</Code>
+        <Libelle>Déformations</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.1.5</Code>
+        <Libelle>Lésions aux soudures</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.1.6</Code>
+        <Libelle>Corrosion de la rampe</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.1.7</Code>
+        <Libelle>Lésion sur pièces métalliques</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.2</Code>
+        <Libelle>Comportement de la rampe</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.2.1</Code>
+        <Libelle>Jeux aux articulations</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.2.2</Code>
+        <Libelle>Stabilité</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.2.3</Code>
+        <Libelle>Réglage position des sorties</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.3</Code>
+        <Libelle>Porte-jets / Diffuseurs</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.3.1</Code>
+        <Libelle>Disposition</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.3.2</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>8.3.3</Code>
+        <Libelle>Fonctionnement</Libelle>
+      </ParamCtrlDiag>
+      <!-- Mano/ Tronçons -->
+      <!-- Jets/Soufflerie-->
+      <ParamCtrlDiag>
+        <Code>9</Code>
+        <Libelle>Buses de pulvérisation</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>9.1</Code>
+        <Libelle>Matériel</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>9.1.1</Code>
+        <Libelle>Nature du montage</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>9.1.2</Code>
+        <Libelle>Orientation du montage</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>9.2</Code>
+        <Libelle>Fonctionnement</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>9.2.1</Code>
+        <Libelle>Régularité</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>9.2.2</Code>
+        <Libelle>Débit</Libelle>
+      </ParamCtrlDiag>
+      <!-- Soufflerie-->
+      <ParamCtrlDiag>
+        <Code>10</Code>
+        <Libelle>Soufflerie</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>10.1</Code>
+        <Libelle>Ventilateur</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>10.1.1</Code>
+        <Libelle>Etat</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>10.1.2</Code>
+        <Libelle>Fonctionnement</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>10.2</Code>
+        <Libelle>Distribution de l'air</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>10.2.1</Code>
+        <Libelle>Gaines d'adduction de l'air</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>10.2.2</Code>
+        <Libelle>Sortie d'air</Libelle>
+      </ParamCtrlDiag>
+      <!-- Accesoires -->
+      <ParamCtrlDiag>
+        <Code>11</Code>
+        <Libelle>Sécurité routière</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>11.1</Code>
+        <Libelle>Eclairage</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>11.1.1</Code>
+        <Libelle>Feux de position arrière</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>11.1.2</Code>
+        <Libelle>Feux de croisement (avant)</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>11.1.3</Code>
+        <Libelle>Indicateurs de direction</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>11.1.4</Code>
+        <Libelle>Dispositif de feux tournants</Libelle>
+      </ParamCtrlDiag>
+
+      <ParamCtrlDiag>
+        <Code>12</Code>
+        <Libelle>Accessoires</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.1</Code>
+        <Libelle>Injection directe</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.1.1</Code>
+        <Libelle>Cuve de produit</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.1.2</Code>
+        <Libelle>Dispositif de dosage</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.1.3</Code>
+        <Libelle>Dispositif de rincage spécifique</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.2</Code>
+        <Libelle>Pistolet ou lance</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.2.1</Code>
+        <Libelle>Etat</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.2.2</Code>
+        <Libelle>Fonctionnement</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.3</Code>
+        <Libelle>Chariot de pulvérisation</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.3.1</Code>
+        <Libelle>Etat</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.3.2</Code>
+        <Libelle>Fonctionnement</Libelle>
+      <Actif>false</Actif>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.4</Code>
+        <Libelle>Accessoires de sécurité</Libelle>
+      </ParamCtrlDiag>
+      <ParamCtrlDiag>
+        <Code>12.4.1</Code>
+        <Libelle>Cuve lave-mains</Libelle>
+      </ParamCtrlDiag>
+
+      <!-- DEFAUTS-->
     <ParamCtrlDiag>
       <Code>1.1.1.1</Code>
       <Libelle>Non fonctionnement</Libelle>
@@ -2308,7 +2508,7 @@
     <ParamCtrlDiag>
       <Code>5.4.2.2</Code>
       <Libelle>Imprécision faible</Libelle>
-      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché est comprise entre 0,1 et 0,2 bar (entre 1et 2 bar) et entre 5 et 10% (si > 2 bar) ou écart constant et &lt; 0,5 bar ou &lt; 1 bar pour une plage de P >= 10 bar</LibelleLong>
+      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché est comprise entre 0,1 et 0,2 bar (entre 1et 2 bar) et entre 5 et 10% (si &gt; 2 bar) ou écart constant et &lt; 0,5 bar ou &lt; 1 bar pour une plage de P &gt;= 10 bar</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -3734,7 +3934,7 @@
       <Code>11.1.1.1</Code>
       <Libelle>Absent</Libelle>
       <LibelleLong>Le matériel automoteur ou traînés ne dispose pas d'éclairage routier. Egalement constaté sur le matériel portés si l'emcombrement masque l'éclairage</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3745,7 +3945,7 @@
       <Code>11.1.1.2</Code>
       <Libelle>Eclairage défectueux</Libelle>
       <LibelleLong>Au moins l'une des ampoules assurant l'éclairage des feux arrières est absente, cassée ou ne fonctionne plus</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3756,7 +3956,7 @@
       <Code>11.1.1.3</Code>
       <Libelle>Endommagés</Libelle>
       <LibelleLong>Au moins l'un des vitrages rouge de feux arrière est absent ou cassé</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3767,7 +3967,7 @@
       <Code>11.1.1.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3779,7 +3979,7 @@
       <Code>11.1.2.1</Code>
       <Libelle>Absent</Libelle>
       <LibelleLong>L'automoteur ne dispose pas d'éclairage routier à l'avant</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3790,7 +3990,7 @@
       <Code>11.1.2.2</Code>
       <Libelle>Eclairage défectueuse</Libelle>
       <LibelleLong>Au moins l'une des ampoules de l'automoteur assurant l'éclairage des feux de croisement est absent, casée ou ne fonctionne plus, également si la lumière émise n'est pas blanche ou jaune</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3801,7 +4001,7 @@
       <Code>11.1.2.3</Code>
       <Libelle>Endommagés</Libelle>
       <LibelleLong>Au moins l'une des vitrage des feux de croisement de l'automoteur est absent ou cassé</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3812,7 +4012,7 @@
       <Code>11.1.2.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3824,7 +4024,7 @@
       <Code>11.1.3.1</Code>
       <Libelle>Absents</Libelle>
       <LibelleLong>L'automoteur ou traîné ne dispose pas de dispositif indiquant le changement de direction. Il sera également constaté sur les autres appareils si l'encombrement masque partiellement ou totalement le dispositif du tracteur</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3835,7 +4035,7 @@
       <Code>11.1.3.2</Code>
       <Libelle>Eclairage Défecteux</Libelle>
       <LibelleLong>Au moins l'une des ampoules assurant l'éclairage des indicateurs de direction est absente, cassé ou ne fonctionne plus </LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3846,7 +4046,7 @@
       <Code>11.1.3.3</Code>
       <Libelle>Endommagés</Libelle>
       <LibelleLong>Au moins l'une des vitrage des indicateurs de direction est absent ou cassé</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3857,7 +4057,7 @@
       <Code>11.1.3.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3869,7 +4069,7 @@
       <Code>11.1.4.1</Code>
       <Libelle>Absents</Libelle>
       <LibelleLong>L'automoteur ne dispose pas de feux tournant. Il sera également constaté sur les autres appareils si l'encombrement masque partiellement ou totalement le dispositif du tracteur (visible à 50 m)</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3880,7 +4080,7 @@
       <Code>11.1.4.2</Code>
       <Libelle>Eclairage Défecteux</Libelle>
       <LibelleLong>Le dispositif de feux tournants de l'automoteur ne fonctionne pas correctement</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3902,7 +4102,7 @@
       <Code>11.1.4.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3914,7 +4114,7 @@
       <Code>12.1.1.1</Code>
       <Libelle>Fuite</Libelle>
       <LibelleLong>La cuve recevant les PP présente au moins une fuite (quelle que soit l'intensité)</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3925,7 +4125,7 @@
       <Code>12.1.1.2</Code>
       <Libelle>Fermeture non étanche</Libelle>
       <LibelleLong>La fermeture de la cuve recevant les PP n'est pas parfaitement étanche</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3936,7 +4136,7 @@
       <Code>12.1.1.3</Code>
       <Libelle>Fixation hasardeuse</Libelle>
       <LibelleLong>La fixation de la cuve recevant les PP n'est pas correctement assurée</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3947,7 +4147,7 @@
       <Code>12.1.1.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3959,7 +4159,7 @@
       <Code>12.1.2.1</Code>
       <Libelle>Fuite</Libelle>
       <LibelleLong>Le dispositif de dosage de PP présente au moins une fuite (quelle que soit l'intensité)</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3970,7 +4170,7 @@
       <Code>12.1.2.2</Code>
       <Libelle>Fixation hasardeuse</Libelle>
       <LibelleLong>La fixation du dispositif de dosage des PP n'est pas correctement assurée</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3981,7 +4181,7 @@
       <Code>12.1.2.3</Code>
       <Libelle>Débit</Libelle>
       <LibelleLong>Le débit du dispositif de dosage de PP s'écarte de plus de 5% de la valeur programmée</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3992,7 +4192,7 @@
       <Code>12.1.2.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4004,7 +4204,7 @@
       <Code>12.1.3.1</Code>
       <Libelle>Absent</Libelle>
       <LibelleLong>Aucun dispositif ne permet le rinçage de l'ensemble injection directe</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4014,8 +4214,8 @@
     <ParamCtrlDiag>
       <Code>12.1.3.2</Code>
       <Libelle>Non fonctionnel</Libelle>
-      <LibelleLong>Le dispositif de rinçage de l'ensemble injection directe ne fonctionne pas correctement</LibelleLong>
-      <Actif>false</Actif>
+      <LibelleLong>Le dispositif de rinçagede l'ensemble injection directe ne fonctionne pas correctement</LibelleLong>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4026,7 +4226,7 @@
       <Code>12.1.3.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4262,7 +4462,7 @@
       <Code>12.4.1.1</Code>
       <Libelle>Absence</Libelle>
       <LibelleLong>Le pulvérisateur n'est équipé aucun réservoir d'eau claire totalement indépendant des circuits de pulvérisation</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4273,7 +4473,7 @@
       <Code>12.4.1.2</Code>
       <Libelle>Capacité insuffisante (inf à 15l)</Libelle>
       <LibelleLong>la capacité du réservoir d'eau claire présente une contenance inférieure à 15 litres</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4284,7 +4484,7 @@
       <Code>12.4.1.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>

@@ -8,12 +8,12 @@ Imports System.Globalization
 Public Class diagnostic_recap
     Inherits frmCRODIP
 #Region " Variables "
-    Private m_DiagMode As DiagMode
+    Private m_DiagMode As Globals.DiagMode
     Private m_diagnostic As Diagnostic
     Private m_Exploit As Exploitation
     Private m_Pulverisateur As Pulverisateur
     Dim isValider As Boolean = False
-    Dim conclusionDiagnostique As enumConclusionDiag
+    Dim conclusionDiagnostique As Globals.enumConclusionDiag
     Friend WithEvents btn_finalisationDiag_imprimerSynthese As System.Windows.Forms.Label
     'Private objInfos(15) As Object
     Friend WithEvents diagnosticRecap_materiel_categorie As System.Windows.Forms.TextBox
@@ -55,7 +55,7 @@ Public Class diagnostic_recap
 
     End Sub
 
-    Public Sub New(pDiagMode As DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation)
+    Public Sub New(pDiagMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation)
         MyBase.New()
         m_DiagMode = pDiagMode
 
@@ -1517,14 +1517,14 @@ Public Class diagnostic_recap
         'Propriété a mettre obligatoirement par programme
         Me.WindowState = FormWindowState.Maximized
         Me.ControlBox = False
-        diagnosticRecap_organisme_agrement.Text = GLOB_DIAG_NUMAGR
+        diagnosticRecap_organisme_agrement.Text = Globals.GLOB_DIAG_NUMAGR
 
         '###########################################################################
         '########               Chargement Organisme d'inspection           ########
         '###########################################################################
         Try
-            diagnosticRecap_organisme_nom.Text = GLOB_DIAG_NOMAGR
-            diagnosticRecap_organisme_agrement.Text = GLOB_DIAG_NUMAGR
+            diagnosticRecap_organisme_nom.Text = Globals.GLOB_DIAG_NOMAGR
+            diagnosticRecap_organisme_agrement.Text = Globals.GLOB_DIAG_NUMAGR
             diagnosticRecap_organisme_inspecteur.Text = m_diagnostic.inspecteurPrenom & " " & m_diagnostic.inspecteurNom
             diagnosticRecap_organisme_inspecteurNum.Text = agentCourant.numeroNational
             diagnosticRecap_organisme_dateControle.Text = CDate(m_diagnostic.controleDateDebut).ToShortDateString()
@@ -1630,17 +1630,17 @@ Public Class diagnostic_recap
 
                             If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMINEUR Then
                                 'Mineur
-                                If conclusionDiagnostique = enumConclusionDiag.OK Then
-                                    conclusionDiagnostique = enumConclusionDiag.OK_AVECMINEEUR
+                                If conclusionDiagnostique = Globals.enumConclusionDiag.OK Then
+                                    conclusionDiagnostique = Globals.enumConclusionDiag.OK_AVECMINEEUR
                                 End If
                             End If
                             If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR Then
                                 'Majeur
-                                conclusionDiagnostique = enumConclusionDiag.NOK
+                                conclusionDiagnostique = Globals.enumConclusionDiag.NOK
                             End If
                             If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJPRELIM Then
                                 'Majeur Prelim
-                                conclusionDiagnostique = enumConclusionDiag.NOK_PRELIM
+                                conclusionDiagnostique = Globals.enumConclusionDiag.NOK_PRELIM
                             End If
                         End If
 
@@ -1683,19 +1683,19 @@ Public Class diagnostic_recap
 
         ' Conclusion sur l'etat du controle
         Select Case conclusionDiagnostique
-            Case enumConclusionDiag.OK
+            Case Globals.enumConclusionDiag.OK
                 m_diagnostic.controleEtat = Diagnostic.controleEtatOK
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(1)
                 label_pulveBonEtat.Text = "Pulvérisateur en bon état"
-            Case enumConclusionDiag.OK_AVECMINEEUR
+            Case Globals.enumConclusionDiag.OK_AVECMINEEUR
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(1)
                 m_diagnostic.controleEtat = Diagnostic.controleEtatOK
                 label_pulveBonEtat.Text = "Pulvérisateur en bon état"
-            Case enumConclusionDiag.NOK
+            Case Globals.enumConclusionDiag.NOK
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
                 m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
                 label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
-            Case enumConclusionDiag.NOK_PRELIM
+            Case Globals.enumConclusionDiag.NOK_PRELIM
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
                 m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCC
                 label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
@@ -1708,7 +1708,7 @@ Public Class diagnostic_recap
         'Me.SelectNextControl(diagnosticRecap_organisme_lieuControle, True, True, True, True)
         btn_finalisationDiag_modifierDiag.Focus()
         btn_finalisationDiag_modifierDiag.Select()
-        If m_DiagMode = DiagMode.CTRL_VISU Then
+        If m_DiagMode = Globals.DiagMode.CTRL_VISU Then
             grpOrganisme.Enabled = False
             grpProprio.Enabled = False
             grpMateriel.Enabled = False
@@ -1717,13 +1717,13 @@ Public Class diagnostic_recap
             btn_finalisationDiag_modifierDiag.Enabled = False
             btn_finalisationDiag_valider.Text = "Retour"
         End If
-        btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> DiagMode.CTRL_VISU
+        btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> Globals.DiagMode.CTRL_VISU
 
     End Sub
 
     Private Sub AffichePulverisateur()
         Try
-            MarquesManager.populateCombobox(GLOB_XML_EMPLACEMENTIDENTIFICATION, cbx_diagnosticRecap_materiel_EmplacementIdentification, "/root", True)
+            MarquesManager.populateCombobox(Globals.GLOB_XML_EMPLACEMENTIDENTIFICATION, cbx_diagnosticRecap_materiel_EmplacementIdentification, "/root", True)
             diagnosticRecap_materiel_identifiant.Text = m_Pulverisateur.numeroNational
             diagnosticRecap_materiel_marque.Text = m_diagnostic.pulverisateurMarque
             diagnosticRecap_materiel_modele.Text = m_diagnostic.pulverisateurModele
@@ -1799,7 +1799,7 @@ Public Class diagnostic_recap
     ' Validation
     Private Sub btn_finalisationDiag_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_valider.Click
         sender.Enabled = False
-        If m_DiagMode = DiagMode.CTRL_VISU Then
+        If m_DiagMode = Globals.DiagMode.CTRL_VISU Then
             CloseDiagnostic()
             Exit Sub
         End If
@@ -1857,7 +1857,7 @@ Public Class diagnostic_recap
         Dim bReturn As Boolean
         Try
             Try
-                Statusbar.display(CONST_STATUTMSG_DIAG_SAVING, True)
+                Statusbar.display(Globals.CONST_STATUTMSG_DIAG_SAVING, True)
                 'Lecture de la fenêtre
                 GetInfos()
                 '
@@ -2006,7 +2006,7 @@ Public Class diagnostic_recap
             oEtat.GenereEtat()
             pathRapport = oEtat.getFileName()
             m_diagnostic.RIFileName = pathRapport
-            bReturn = File.Exists(CONST_PATH_EXP & pathRapport)
+            bReturn = File.Exists(Globals.CONST_PATH_EXP & pathRapport)
         Catch ex As Exception
             CSDebug.dispError("createRapportInspection_cr ERR : " & ex.Message.ToString)
             bReturn = False
@@ -2052,20 +2052,20 @@ Public Class diagnostic_recap
     '        Dim pdfTemplate As String
     '        If tmp_O > 8 Or tmp_PC > 8 Then
     '            If diagnosticCourant.controleIsComplet Then
-    '                pdfTemplate = CONST_PATH_DOCS & CONST_DOC_RAPINSP_COMPLET_2P & ".pdf"
+    '                pdfTemplate = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_RAPINSP_COMPLET_2P & ".pdf"
     '            Else
-    '                pdfTemplate = CONST_PATH_DOCS & CONST_DOC_RAPINSP_CONTREVISITE_2P & ".pdf"
+    '                pdfTemplate = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_RAPINSP_CONTREVISITE_2P & ".pdf"
     '            End If
     '        Else
     '            If diagnosticCourant.controleIsComplet Then
-    '                pdfTemplate = CONST_PATH_DOCS & CONST_DOC_RAPINSP_COMPLET & ".pdf"
+    '                pdfTemplate = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_RAPINSP_COMPLET & ".pdf"
     '            Else
-    '                pdfTemplate = CONST_PATH_DOCS & CONST_DOC_RAPINSP_CONTREVISITE & ".pdf"
+    '                pdfTemplate = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_RAPINSP_CONTREVISITE & ".pdf"
     '            End If
     '        End If
 
-    '        'pathRapport = CONST_PATH_EXP & CONST_DOC_RAPINSP & "_" & CSDate.getDateId(Date.Now) & "_" & diagnosticCourant.id & ".pdf"
-    '        pathRapport = CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & ".pdf"
+    '        'pathRapport = Globals.CONST_PATH_EXP & Globals.CONST_DOC_RAPINSP & "_" & CSDate.getDateId(Date.Now) & "_" & diagnosticCourant.id & ".pdf"
+    '        pathRapport = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & ".pdf"
     '        Dim newFile As String = pathRapport
     '        ' Ouverture des pdf
     '        pdfReader = New PdfReader(pdfTemplate)
@@ -2111,7 +2111,7 @@ Public Class diagnostic_recap
     '            pdfFormFields.SetField("controle_isPartiel_date", "")
     '        Else
     '            pdfFormFields.SetField("controle_isPartiel_date", "Suite à un contrôle du : " & diagnosticCourant.controleDateDernierControle)
-    '            pdfFormFields.SetField("phrase_controle_isPartiel", "Ce document constitue le rapport d'inspection suite à une contre visite; il doit être accompagné du rapport de visite initial")
+    '            pdfFormFields.SetField("phrase_controle_isPartiel", "Ce document Globals.CONSTitue le rapport d'inspection suite à une contre visite; il doit être accompagné du rapport de visite initial")
     '        End If
 
     '        ' C - Information sur le materiel
@@ -2253,7 +2253,7 @@ Public Class diagnostic_recap
     Private Sub btn_finalisationDiag_imprimerRapport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_imprimerRapport.Click
         Try
             ' On affiche le PDF rempli
-            CSFile.open(CONST_PATH_EXP & m_diagnostic.RIFileName)
+            CSFile.open(Globals.CONST_PATH_EXP & m_diagnostic.RIFileName)
         Catch ex As Exception
             Console.Write("[Erreur] - Génération Rapport d'Inspection : " & ex.Message.ToString & vbNewLine)
         End Try
@@ -2300,7 +2300,7 @@ Public Class diagnostic_recap
         Try
             Statusbar.display("Affichage du rapport de synthèse", True)
             ' On affiche le PDF rempli
-            CSFile.open(CONST_PATH_EXP & m_diagnostic.SMFileName)
+            CSFile.open(Globals.CONST_PATH_EXP & m_diagnostic.SMFileName)
             Statusbar.display("", True)
         Catch ex As Exception
             CSDebug.dispError("Erreur lors de la génération de l'état des Debit de buses : " & ex.Message.ToString)

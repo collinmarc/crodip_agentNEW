@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LstParamCtrlDiag xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ListeParam>
-    <!-- Preliminaires-->
     <ParamCtrlDiag>
       <Code>1</Code>
       <Libelle>Examens préliminaires</Libelle>
@@ -28,11 +27,11 @@
 
     <ParamCtrlDiag>
       <Code>1.2</Code>
-      <Libelle>Elements de sécurité</Libelle>
+      <Libelle>Eléments de sécurité</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>1.2.1</Code>
-      <Libelle>Transmissions hydrauliques entre tracteur  pulvé</Libelle>
+      <Libelle>Transmissions hydrauliques entre tracteur pulvé</Libelle>
     </ParamCtrlDiag>
 
     <ParamCtrlDiag>
@@ -52,7 +51,7 @@
 
     <ParamCtrlDiag>
       <Code>1.2.5</Code>
-      <Libelle>débrayage du/des Ventilateurs</Libelle>
+      <Libelle>débrayage du/des ventilateurs</Libelle>
     </ParamCtrlDiag>
     <!-- Etat Général -->
     <ParamCtrlDiag>
@@ -65,15 +64,19 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.1.1</Code>
-      <Libelle>Déformation du dispositif d'attelage</Libelle>
+      <Libelle>Déformations</Libelle>
+      <LibelleLong>Déformation du dispositif d'attelage</LibelleLong>
+      <Actif>true</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.1.2</Code>
-      <Libelle>Modifications du dispositif d'attelage</Libelle>
+      <Libelle>Modifications</Libelle>
+      <LibelleLong>Modifications du dispositif d'attelage</LibelleLong>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.1.3</Code>
-      <Libelle>Corrosion du dispositif d'attelage</Libelle>
+      <Libelle>Corrosion</Libelle>
+      <LibelleLong>Corrosion du dispositif d'attelage</LibelleLong>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.2</Code>
@@ -81,23 +84,28 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.2.1</Code>
-      <Libelle>Déformations du chassis et Pièces de structures</Libelle>
+      <Libelle>Déformations</Libelle>
+      <LibelleLong>Déformations du chassis et Pièces de structures</LibelleLong>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.2.2</Code>
-      <Libelle>Lésions sur pièces métalliques du chassis et Pièces de structures</Libelle>
+      <Libelle>Lésions sur pièces métalliques</Libelle>
+      <LibelleLong>Lésions sur pièces métalliques du chassis et Pièces de structures</LibelleLong>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.2.3</Code>
-      <Libelle>Lésions aux soudures du chassis et Pièces de structures</Libelle>
+      <Libelle>Lésions soudures</Libelle>
+      <LibelleLong>Lésions aux soudures du chassis et pièces de structures</LibelleLong>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.2.4</Code>
-      <Libelle>Corrosion sur pièces métalliques du chassis et Pièces de structures</Libelle>
+      <Libelle>Corrosion</Libelle>
+      <LibelleLong>Corrosion sur pièces métalliques du chassis et Pièces de structures</LibelleLong>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.2.5</Code>
       <Libelle>Jeux aux articulations</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.4</Code>
@@ -121,7 +129,8 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.3</Code>
-      <Libelle>Fuites de bouillie de pulvérisation</Libelle>
+      <Libelle>Fuites de bouillie</Libelle>
+      <LibelleLong>Fuites de bouillie de pulvérisation</LibelleLong>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.3.1</Code>
@@ -153,17 +162,17 @@
       <Libelle>Pulsations</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
-      <Code>3.2.1</Code>
+      <Code>3.2.2</Code>
       <Libelle>Cloche à air</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
-      <Code>3.2.2</Code>
+      <Code>3.2.3</Code>
       <Libelle>Débit</Libelle>
     </ParamCtrlDiag>
     <!-- Cuve recevant les bouillies-->
     <ParamCtrlDiag>
       <Code>4</Code>
-      <Libelle>Cuve recevant les bouillies</Libelle>
+      <Libelle>Cuve recevant les bouillies phytosanitaires</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>4.1</Code>
@@ -193,6 +202,55 @@
       <Code>4.3.1</Code>
       <Libelle>Etat</Libelle>
     </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.2</Code>
+      <Libelle>Nettoyage des emballages</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.4</Code>
+      <Libelle>Remplissage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.4.1</Code>
+      <Libelle>Tamis de remplissage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.4.2</Code>
+      <Libelle>Dispositif anti retour</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.5</Code>
+      <Libelle>Vidange</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.5.1</Code>
+      <Libelle>Vannes de vidange</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.5.2</Code>
+      <Libelle>Récupération de la bouillie</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6</Code>
+      <Libelle>Dispositif de rincage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.1</Code>
+      <Libelle>Cuve de rincage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.2</Code>
+      <Libelle>Nettoyage interne de la bouillie</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.3</Code>
+      <Libelle>Nettoyage externe du pulvérisateur</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.4</Code>
+      <Libelle>Nettoyage des circuits</Libelle>
+    </ParamCtrlDiag>
+
     <!-- 5 Appareillage de mesure, commandes et système de régulation-->
     <ParamCtrlDiag>
       <Code>5</Code>
@@ -200,7 +258,7 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>5.1</Code>
-      <Libelle>Commande de fermeture générale de la pulvérisation</Libelle>
+      <Libelle>Fermeture générale de la pulvérisation</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>5.1.1</Code>
@@ -208,7 +266,7 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>5.2</Code>
-      <Libelle>Commande de fermeture partielle de la pulvérisation</Libelle>
+      <Libelle>Fermeture partielle de la pulvérisation au niveau des sections</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>5.2.1</Code>
@@ -220,7 +278,7 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>5.3</Code>
-      <Libelle>Dispositif de régulation de la pulvérisation</Libelle>
+      <Libelle>Dispositif(s) de régulation de la pression</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>5.3.1</Code>
@@ -244,7 +302,7 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>5.5</Code>
-      <Libelle>Indicateur pour la régulation</Libelle>
+      <Libelle>Indicateurs utilisés pour la régulation</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>5.5.1</Code>
@@ -265,6 +323,55 @@
     <ParamCtrlDiag>
       <Code>5.6.2</Code>
       <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <!-- Flexibles canalisation filtres -->
+    <ParamCtrlDiag>
+      <Code>6</Code>
+      <Libelle>Flexibles et canalisations</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6.1</Code>
+      <Libelle>Flexibles de distribution</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6.1.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7</Code>
+      <Libelle>Filtres</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1</Code>
+      <Libelle>Filtres à l'aspiration</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2</Code>
+      <Libelle>Filtres central au refoulement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3</Code>
+      <Libelle>Filtres au niveau des sections de pulvérisation</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4</Code>
+      <Libelle>Filtres aux buses</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1</Code>
+      <Libelle>Etat</Libelle>
     </ParamCtrlDiag>
     <!-- Rampes de pulverisation -->
     <ParamCtrlDiag>
@@ -288,6 +395,11 @@
       <Libelle>Protection des buses extrémités</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
+      <Code>8.1.4</Code>
+      <Libelle>Déformations</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
       <Code>8.1.5</Code>
       <Libelle>Lésions aux soudures</Libelle>
     </ParamCtrlDiag>
@@ -296,24 +408,30 @@
       <Libelle>Corrosion de la rampe</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
+      <Code>8.1.7</Code>
+      <Libelle>Lésion sur pièces métalliques</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
       <Code>8.2</Code>
       <Libelle>Comportement de la rampe</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.2.1</Code>
-      <Libelle>Jeu aux articulations</Libelle>
+      <Libelle>Jeux aux articulations</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.2.2</Code>
       <Libelle>Stabilité</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.2.3</Code>
       <Libelle>Réglage en hauteur</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.3</Code>
-      <Libelle>Porte-jets</Libelle>
+      <Libelle>Porte-jets / Diffuseurs</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.3.1</Code>
@@ -327,14 +445,11 @@
       <Code>8.3.3</Code>
       <Libelle>Fonctionnement</Libelle>
     </ParamCtrlDiag>
-    <!-- Buses de pulvérisation-->
+    <!-- Mano/ Tronçons -->
+    <!-- Jets/Soufflerie-->
     <ParamCtrlDiag>
       <Code>9</Code>
       <Libelle>Buses de pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.1</Code>
-      <Libelle>Matériel</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>9.1</Code>
@@ -389,35 +504,89 @@
       <Code>10.2.2</Code>
       <Libelle>Sortie d'air</Libelle>
     </ParamCtrlDiag>
+    <!-- Accesoires -->
     <ParamCtrlDiag>
       <Code>11</Code>
-      <Libelle>Sécurité</Libelle>
+      <Libelle>Sécurité routière</Libelle>
       <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>11.1</Code>
-      <Actif>false</Actif>
       <Libelle>Eclairage</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>11.1.1</Code>
-      <Actif>false</Actif>
       <Libelle>Feux de position arrière</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>11.1.2</Code>
-      <Actif>false</Actif>
       <Libelle>Feux de croisement (avant)</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>11.1.3</Code>
-      <Actif>false</Actif>
       <Libelle>Indicateurs de direction</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>11.1.4</Code>
-      <Actif>false</Actif>
       <Libelle>Dispositif de feux tournants</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>12</Code>
+      <Libelle>Accessoires</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1</Code>
+      <Libelle>Injection directe</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.1</Code>
+      <Libelle>Cuve de produit</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.2</Code>
+      <Libelle>Dispositif de dosage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.3</Code>
+      <Libelle>Dispositif de rincage spécifique</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.2</Code>
+      <Libelle>Pistolet ou lance</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.2.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.2.2</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3</Code>
+      <Libelle>Chariot de pulvérisation</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.2</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.4</Code>
+      <Libelle>Cuve lave-mains</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.4.1</Code>
+      <Libelle>Cuve lave-mains</Libelle>
     </ParamCtrlDiag>
 
     <ParamCtrlDiag>
@@ -2338,7 +2507,7 @@
     <ParamCtrlDiag>
       <Code>5.4.2.2</Code>
       <Libelle>Imprécision faible</Libelle>
-      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché est comprise entre 0,1 et 0,2 bar (entre 1et 2 bar) et entre 5 et 10% (si > 2 bar) ou écart constant et etlt; 0,5 bar ou etlt; 1 bar pour une plage de P >= 10 bar</LibelleLong>
+      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché est comprise entre 0,1 et 0,2 bar (entre 1et 2 bar) et entre 5 et 10% (si &gt; 2 bar) ou écart constant et &lt; 0,5 bar ou &lt; 1 bar pour une plage de P &gt;= 10 bar</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -2915,7 +3084,7 @@
       <Libelle>Courbure faible R verticale</Libelle>
       <LibelleLong>La rampe n'est pas rectiligne et la flèche maximale est inf ou égal à 10 cm</LibelleLong>
       <Actif>true</Actif>
-      <DefaultCategorie>1</DefaultCategorie>
+      <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
@@ -3933,7 +4102,7 @@
       <Code>12.1.1.1</Code>
       <Libelle>Fuite</Libelle>
       <LibelleLong>La cuve recevant les PP présente au moins une fuite (quelle que soit l'intensité)</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3944,7 +4113,7 @@
       <Code>12.1.1.2</Code>
       <Libelle>Fermeture non étanche</Libelle>
       <LibelleLong>La fermeture de la cuve recevant les PP n'est pas parfaitement étanche</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3955,7 +4124,7 @@
       <Code>12.1.1.3</Code>
       <Libelle>Fixation hasardeuse</Libelle>
       <LibelleLong>La fixation de la cuve recevant les PP n'est pas correctement assurée</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3966,7 +4135,7 @@
       <Code>12.1.1.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3978,7 +4147,7 @@
       <Code>12.1.2.1</Code>
       <Libelle>Fuite</Libelle>
       <LibelleLong>Le dispositif de dosage de PP présente au moins une fuite (quelle que soit l'intensité)</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -3989,7 +4158,7 @@
       <Code>12.1.2.2</Code>
       <Libelle>Fixation hasardeuse</Libelle>
       <LibelleLong>La fixation du dispositif de dosage des PP n'est pas correctement assurée</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4000,7 +4169,7 @@
       <Code>12.1.2.3</Code>
       <Libelle>Débit</Libelle>
       <LibelleLong>Le débit du dispositif de dosage de PP s'écarte de plus de 5% de la valeur programmée</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4011,7 +4180,7 @@
       <Code>12.1.2.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4023,7 +4192,7 @@
       <Code>12.1.3.1</Code>
       <Libelle>Absent</Libelle>
       <LibelleLong>Aucun dispositif ne permet le rinçage de l'ensemble d'injection directe</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4033,8 +4202,8 @@
     <ParamCtrlDiag>
       <Code>12.1.3.2</Code>
       <Libelle>Non fonctionnel</Libelle>
-      <LibelleLong>Le dispositif de rinçage de l'ensemble injection directe ne fonctionne pas correctement</LibelleLong>
-      <Actif>false</Actif>
+      <LibelleLong>Le dispositif de rinçagede l'ensemble injection directe ne fonctionne pas correctement</LibelleLong>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4045,7 +4214,7 @@
       <Code>12.1.3.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4057,7 +4226,7 @@
       <Code>12.2.1.1</Code>
       <Libelle>Dispositif d'arrêt et ouverture détérioré</Libelle>
       <LibelleLong>Le dispositif d'ouverture et fermeture de la pulvérisation ne fonctionne pas correctemet: Ouverture ou fermeture totale en moins de 3s après actionnement</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4068,7 +4237,7 @@
       <Code>12.2.1.2</Code>
       <Libelle>Gâchette défectueuse</Libelle>
       <LibelleLong>La gâchette est endommagée ou sa manoeuvre présente des points durs</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4079,7 +4248,7 @@
       <Code>12.2.1.3</Code>
       <Libelle>Vérrouillage défectueux</Libelle>
       <LibelleLong>Le verouillage en position fermée de la gâchette est non fonctionnel ou s'il est possible de verrouiller la position d'ouverture</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4090,7 +4259,7 @@
       <Code>12.2.1.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4102,8 +4271,8 @@
       <Code>12.2.2.1</Code>
       <Libelle>Réglage du débit non fonctionnel</Libelle>
       <LibelleLong>Le dispositif de réglage du débit ne foncitonne pas correctement</LibelleLong>
-      <Actif>false</Actif>
-      <DefaultCategorie>2</DefaultCategorie>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
@@ -4113,7 +4282,7 @@
       <Code>12.2.2.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4125,7 +4294,7 @@
       <Code>12.3.1.1</Code>
       <Libelle>Déformation mineure</Libelle>
       <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent des déformations par rapport à leur conception d'origine, mais ne portant pas préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4136,7 +4305,7 @@
       <Code>12.3.1.2</Code>
       <Libelle>Déformation majeure</Libelle>
       <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent des déformations par rapport à leur conception d'origine, portant préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4147,7 +4316,7 @@
       <Code>12.3.1.3</Code>
       <Libelle>Lésion mineure</Libelle>
       <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent une ou plusieurs amorces de rupture, mais ne portant pas préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4158,7 +4327,7 @@
       <Code>12.3.1.4</Code>
       <Libelle>Lésion majeure</Libelle>
       <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent une ou plusieurs amorces de rupture, portant préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4169,7 +4338,7 @@
       <Code>12.3.1.5</Code>
       <Libelle>Lésion aux soudures mineure</Libelle>
       <LibelleLong>Une ou plusieurs soudure de la structure du chariot,présentent une amorces de rupture, mais ne portant pas préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4180,7 +4349,7 @@
       <Code>12.3.1.6</Code>
       <Libelle>Lésion  aux soudures majeure</Libelle>
       <LibelleLong>Une ou plusieurs soudure de la structure du chariot,présentent une amorces de rupture, portant préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4191,7 +4360,7 @@
       <Code>12.3.1.7</Code>
       <Libelle>Corosion mineure</Libelle>
       <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent des traces de corrosion perforante, mais ne portant pas préjudice à la soliditié, rigidité de l'ensemble</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4202,7 +4371,7 @@
       <Code>12.3.1.8</Code>
       <Libelle>Corosion majeure</Libelle>
       <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent des traces de corrosion perforante, portant préjudice à la soliditié, rigidité de l'ensemble</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4213,7 +4382,7 @@
       <Code>12.3.1.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4225,7 +4394,7 @@
       <Code>12.3.2.1</Code>
       <Libelle>Dispositif de déplacement détérioré</Libelle>
       <LibelleLong>Le dispositif de déplacement ne fonctionne pas correctement ou est dans un état d'usure prononcé</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4236,7 +4405,7 @@
       <Code>12.3.2.2</Code>
       <Libelle>Dispositif d'entrainement détérioré</Libelle>
       <LibelleLong>Le dispositif d'entraînement du chariot de pulvérisation ne fonctionne pas correctement</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4247,7 +4416,7 @@
       <Code>12.3.2.3</Code>
       <Libelle>Dispositif de programmation de la vitesse détérioré</Libelle>
       <LibelleLong>Le dispositif de programmation de la vitesse d'avancement ne fonctionne pas correctement ou  si la vitesse réelle de déplacement s'écarte de plus de 5% de la vitesse programmée</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4256,9 +4425,9 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>12.3.2.4</Code>
-      <Libelle>Dispositif d'ouverture/fermeture de la pulvérisation détérioré</Libelle>
+      <Libelle>Dispositif d'ouverture/fermeture de la pulvarisation détérioré</Libelle>
       <LibelleLong>Le dispositif automatique d'ouverture / fermeture de la pulvérisation ne fonctionne pas correctement</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4269,7 +4438,7 @@
       <Code>12.3.2.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4282,7 +4451,7 @@
       <Code>12.4.1.1</Code>
       <Libelle>Absence</Libelle>
       <LibelleLong>Le pulvérisateur n'est pas équipé d'un réservoir d'eau claire totalement indépendant des circuits de pulvérisation</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4293,7 +4462,7 @@
       <Code>12.4.1.2</Code>
       <Libelle>Capacité insuffisante (inf à 15l)</Libelle>
       <LibelleLong>la capacité du réservoir d'eau claire présente une contenance inférieure à 15 litres</LibelleLong>
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -4304,7 +4473,7 @@
       <Code>12.4.1.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>

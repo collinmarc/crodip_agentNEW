@@ -41,7 +41,7 @@
     Public Sub Setcontexte(pMode As Help552Mode, pDiag As RPDiagnostic, debitMoyen As String, PressionMesure As String)
         m_oDiag = pDiag
         m_mode = pMode
-        MyBase.setContexte(pMode, pDiag, debitMoyen, PressionMesure, (DiagMode.CTRL_VISU = m_mode))
+        MyBase.setContexte(pMode, pDiag, debitMoyen, PressionMesure, (Globals.DiagMode.CTRL_VISU = m_mode))
         Me.Text = "Debits"
     End Sub
 

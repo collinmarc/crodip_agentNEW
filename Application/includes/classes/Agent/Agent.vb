@@ -291,11 +291,11 @@ Public Class Agent
         'Parcours du fichier config pour remplir une Liste des types-categories
         Dim olstTypeCat As New List(Of TypeCategoriePulve)
         Dim oNodes As Xml.XmlNodeList
-        oNodes = GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(MarquesManager.XPATH_TYPES_PULVE)
+        oNodes = Globals.GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(MarquesManager.XPATH_TYPES_PULVE)
         For Each oNode As Xml.XmlNode In oNodes
             Dim xpath As String
             xpath = MarquesManager.XPATH_CATEGORIES_PULVE.Replace("%type%", oNode.InnerText)
-            Dim oNodesCategorie As Xml.XmlNodeList = GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
+            Dim oNodesCategorie As Xml.XmlNodeList = Globals.GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
             For Each oNodeCategorie As Xml.XmlNode In oNodesCategorie
                 Dim oItem As New TypeCategoriePulve
                 oItem.type = oNode.InnerText

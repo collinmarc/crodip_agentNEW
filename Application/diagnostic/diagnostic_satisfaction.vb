@@ -668,7 +668,7 @@ Public Class diagnostic_satisfaction
 #End Region
 
 
-#Region " Construction de l'enquete de satisfaction et du document de coProp"
+#Region " construction de l'enquete de satisfaction et du document de coProp"
 
     Private Sub genereEnquete()
         Dim oEtat As New EtatEnquete(diagnosticCourant)
@@ -710,7 +710,7 @@ Public Class diagnostic_satisfaction
 
         Dim ofrmAccueil As accueil = globFormAccueil
         If ofrmAccueil IsNot Nothing Then
-            ofrmAccueil.NouveauDiagnosticPhase2(DiagMode.CTRL_CV)
+            ofrmAccueil.NouveauDiagnosticPhase2(Globals.DiagMode.CTRL_CV)
         End If
 
 

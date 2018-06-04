@@ -57,21 +57,21 @@ Public Class DiagnosticManager
             Dim oCSftp As CSFTP = New CSFTP()
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
-                filePath = CONST_PATH_EXP & "/" & pDiag.RIFileName
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
                     bReturn = oCSftp.Upload(filePath)
                     SynchronisationManager.LogSynchroElmt(filePath)
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
-                filePath = CONST_PATH_EXP & "/" & pDiag.SMFileName
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
                 If System.IO.File.Exists(filePath) Then
                     SynchronisationManager.LogSynchroElmt(filePath)
                     bReturn = bReturn And oCSftp.Upload(filePath)
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
-                filePath = CONST_PATH_EXP & "/" & pDiag.CCFileName
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.CCFileName
                 If System.IO.File.Exists(filePath) Then
                     SynchronisationManager.LogSynchroElmt(filePath)
                     bReturn = bReturn And oCSftp.Upload(filePath)
@@ -97,25 +97,25 @@ Public Class DiagnosticManager
             Dim oCSftp As CSFTP = New CSFTP()
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
-                filePath = CONST_PATH_EXP & "/" & pDiag.RIFileName
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If
-                bReturn = oCSftp.DownLoad(pDiag.RIFileName, CONST_PATH_EXP & "/")
+                bReturn = oCSftp.DownLoad(pDiag.RIFileName, Globals.CONST_PATH_EXP & "/")
             End If
             If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
-                filePath = CONST_PATH_EXP & "/" & pDiag.SMFileName
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If
-                bReturn = bReturn And oCSftp.DownLoad(pDiag.SMFileName, CONST_PATH_EXP & "/")
+                bReturn = bReturn And oCSftp.DownLoad(pDiag.SMFileName, Globals.CONST_PATH_EXP & "/")
             End If
             If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
-                filePath = CONST_PATH_EXP & "/" & pDiag.CCFileName
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.CCFileName
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If
-                bReturn = bReturn And oCSftp.DownLoad(pDiag.CCFileName, CONST_PATH_EXP & "/")
+                bReturn = bReturn And oCSftp.DownLoad(pDiag.CCFileName, Globals.CONST_PATH_EXP & "/")
             End If
         Catch ex As Exception
             CSDebug.dispError("DiagnosticManager.GetFTPEtats ERR : " & ex.Message)

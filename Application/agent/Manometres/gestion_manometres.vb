@@ -318,7 +318,7 @@ Public Class gestion_manometres
         Me.ShowCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.ShowCol.Frozen = True
         Me.ShowCol.HeaderText = ""
-        Me.ShowCol.Image = Global.Crodip_agent.Resources.oeil16x16
+        Me.ShowCol.Image = Crodip_Agent.Resources.oeil16x16
         Me.ShowCol.Name = "ShowCol"
         Me.ShowCol.ReadOnly = True
         Me.ShowCol.ToolTipText = "Voir la fiche manomètre"
@@ -381,7 +381,7 @@ Public Class gestion_manometres
         Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.Column1.Frozen = True
         Me.Column1.HeaderText = ""
-        Me.Column1.Image = Global.Crodip_agent.Resources.oeil16x16
+        Me.Column1.Image = Crodip_Agent.Resources.oeil16x16
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
         Me.Column1.Width = 30
@@ -481,8 +481,8 @@ Public Class gestion_manometres
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
-        'MarquesManager.populateCombobox(GLOB_XML_MARQUES_MANO, arrMarquesControls)
-        'MarquesManager.populateCombobox(GLOB_XML_MODELES_MANO, arrTypesControls)
+        'MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_MANO, arrMarquesControls)
+        'MarquesManager.populateCombobox(Globals.GLOB_XML_MODELES_MANO, arrTypesControls)
     End Sub
     Private Function displayListeManoEtalon() As Boolean
         Dim bReturn As Boolean

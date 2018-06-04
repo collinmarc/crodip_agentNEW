@@ -10,18 +10,18 @@ Public Class parentContener
     Private m_bCloseByUpdate As Boolean = False
 
     Public Sub loadSplash()
-        If GLOB_ENV_SHOWSPLASH Then
+        If Globals.GLOB_ENV_SHOWSPLASH Then
             splashScreen.Show()
         End If
     End Sub
     Public Sub unloadSplash()
-        If GLOB_ENV_SHOWSPLASH Then
+        If Globals.GLOB_ENV_SHOWSPLASH Then
             splashScreen.Close()
         End If
     End Sub
 
     Private Sub parentContener_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        config_vars.Init()
+        Globals.Init()
         ' Dim oPulve As New Pulverisateur()
         globFormParent = Me
         Load_CRODIPINDIGO()
@@ -139,8 +139,8 @@ Public Class parentContener
 
     Private Sub MenuItem_aide_debug_exportLogs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuItem_aide_debug_exportLogs.Click
 
-        If CSFile.exists(GLOB_ENV_DEBUGLOGFILE) Then
-            CSFile.open(GLOB_ENV_DEBUGLOGFILE)
+        If System.IO.File.Exists(Globals.GLOB_ENV_DEBUGLOGFILE) Then
+            CSFile.open(Globals.GLOB_ENV_DEBUGLOGFILE)
         Else
             MsgBox("Aucun log d'erreur n'a été enregistré pour le moment.")
         End If
@@ -183,8 +183,8 @@ Public Class parentContener
     End Sub
 
     Private Sub MenuItem_aide_debug_exportSynchro_Click(sender As Object, e As EventArgs) Handles MenuItem_aide_debug_exportSynchro.Click
-        If CSFile.exists(GLOB_ENV_SYNCHROLOGFILE) Then
-            CSFile.open(GLOB_ENV_SYNCHROLOGFILE)
+        If System.IO.File.Exists(Globals.GLOB_ENV_SYNCHROLOGFILE) Then
+            CSFile.open(Globals.GLOB_ENV_SYNCHROLOGFILE)
         Else
             MsgBox("Aucun trace de Synchronisationn'a été enregistrée pour le moment.")
         End If

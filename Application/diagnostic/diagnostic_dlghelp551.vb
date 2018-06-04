@@ -73,7 +73,7 @@ Public Class diagnostic_dlghelp551
             Case 1
                 If Trim(help551_m1_distance.Text) <> "" And IsNumeric(help551_m1_distance.Text) And _
                    Trim(help551_m1_temps.Text) <> "" And IsNumeric(help551_m1_temps.Text) Then
-                    tmpTemps = StringToDouble(help551_m1_temps.Text)
+                    tmpTemps = Globals.StringToDouble(help551_m1_temps.Text)
                     bReturn = (tmpTemps > 0)
                 Else
                     bReturn = False
@@ -81,7 +81,7 @@ Public Class diagnostic_dlghelp551
             Case 2
                 If Trim(help551_m2_distance.Text) <> "" And IsNumeric(help551_m2_distance.Text) _
                     And Trim(help551_m2_temps.Text) <> "" And IsNumeric(help551_m2_temps.Text) Then
-                    tmpTemps = StringToDouble(help551_m2_temps.Text)
+                    tmpTemps = Globals.StringToDouble(help551_m2_temps.Text)
                     bReturn = (tmpTemps > 0)
                 Else
                     bReturn = False
@@ -98,7 +98,7 @@ Public Class diagnostic_dlghelp551
                 If Trim(help551_m1_distance.Text) <> "" And IsNumeric(help551_m1_distance.Text) And _
                    Trim(help551_m1_temps.Text) <> "" And IsNumeric(help551_m1_temps.Text) And _
                    Trim(help551_m1_vitesseLue.Text) <> "" And IsNumeric(help551_m1_vitesseLue.Text) Then
-                    tmpTemps = StringToDouble(help551_m1_temps.Text)
+                    tmpTemps = Globals.StringToDouble(help551_m1_temps.Text)
                     bReturn = (tmpTemps > 0)
                 Else
                     bReturn = False
@@ -107,7 +107,7 @@ Public Class diagnostic_dlghelp551
                 If Trim(help551_m2_distance.Text) <> "" And IsNumeric(help551_m2_distance.Text) _
                     And Trim(help551_m2_temps.Text) <> "" And IsNumeric(help551_m2_temps.Text) And _
                     Trim(help551_m2_vitesseLue.Text) <> "" And IsNumeric(help551_m2_vitesseLue.Text) Then
-                    tmpTemps = StringToDouble(help551_m2_temps.Text)
+                    tmpTemps = Globals.StringToDouble(help551_m2_temps.Text)
                     bReturn = (tmpTemps > 0)
                 Else
                     bReturn = False

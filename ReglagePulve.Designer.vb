@@ -17,9 +17,9 @@ Option Explicit On
  Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")>  _
 Partial Friend NotInheritable Class ReglagePulve
     Inherits Global.System.Configuration.ApplicationSettingsBase
-    
-    Private Shared defaultInstance As ReglagePulve = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New ReglagePulve()),ReglagePulve)
-    
+
+    Private Shared defaultInstance As ReglagePulve = CType(System.Configuration.ApplicationSettingsBase.Synchronized(New ReglagePulve()), ReglagePulve)
+
     Public Shared ReadOnly Property [Default]() As ReglagePulve
         Get
             Return defaultInstance

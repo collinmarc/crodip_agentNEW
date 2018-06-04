@@ -28,7 +28,7 @@ Public Class DiagnosticHelp12123Mesures
     Private m_Resultat As String
     Private m_bCalcule As Boolean = True
 
-    Public Const DIAGITEM_ID As String = "help12123"
+    Public const DIAGITEM_ID As String = "help12123"
     Public LIMITE_ECART_MAJEUR As Decimal = 5
 
     Public Sub New(pNum As Integer)

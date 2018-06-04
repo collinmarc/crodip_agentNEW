@@ -1,7 +1,7 @@
 
 Public Class cPDF
 
-#Region "CONSTANTES"
+#Region "constanteS"
 
     Private Const wsPDF As String = "1.5"
     Private Const wsPDFVersion As String = "wsPDF 4.0"

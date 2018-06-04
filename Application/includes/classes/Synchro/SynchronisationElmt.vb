@@ -217,7 +217,7 @@ Public Class SynchronisationElmt
                         DiagnosticManager.save(tmpObject, True)
                         'Récupération des etats du diagnostic s'ils n'existent pas
                         If Not String.IsNullOrEmpty(tmpObject.RIFileName) Then
-                            If Not File.Exists(CONST_PATH_EXP & "/" & tmpObject.RIFileName) Then
+                            If Not File.Exists(Globals.CONST_PATH_EXP & "/" & tmpObject.RIFileName) Then
                                 DiagnosticManager.getFTPEtats(tmpObject)
                             End If
                         End If

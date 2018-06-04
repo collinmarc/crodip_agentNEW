@@ -212,9 +212,9 @@ Public Class Banc
         Return bReturn
     End Function
 
-    Public Function getAlerte() As ALERTE
-        Dim bReturn As ALERTE
-        bReturn = ALERTE.NONE
+    Public Function getAlerte() As Globals.ALERTE
+        Dim bReturn As Globals.ALERTE
+        bReturn = Globals.ALERTE.NONE
 
         Dim dernCtrl As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
         Dim n As Integer
@@ -222,21 +222,21 @@ Public Class Banc
         DL = DateAdd(DateInterval.DayOfYear, -7, DateAdd(DateInterval.Month, -1, Now)) '1 mois et 7 jours
         n = dernCtrl.CompareTo(DL)
         If n < 0 Then
-            bReturn = ALERTE.NOIRE
+            bReturn = Globals.ALERTE.NOIRE
         End If
-        If bReturn = ALERTE.NONE Then
+        If bReturn = Globals.ALERTE.NONE Then
             DL = DateAdd(DateInterval.Month, -1, Now) '1 mois 
             n = dernCtrl.CompareTo(DL)
             If n < 0 Then
-                Return ALERTE.ROUGE
+                Return Globals.ALERTE.ROUGE
             End If
         End If
-        If bReturn = ALERTE.NONE Then
+        If bReturn = Globals.ALERTE.NONE Then
             DL = DateAdd(DateInterval.Month, -1, Now) '1 mois 
             DL = DateAdd(DateInterval.DayOfYear, +15, DL) '1 mois 
             n = dernCtrl.CompareTo(DL)
             If n < 0 Then
-                Return ALERTE.ORANGE
+                Return Globals.ALERTE.ORANGE
             End If
         End If
 
@@ -304,7 +304,7 @@ Public Class Banc
                     oFV.blocage = True
                 End If
 
-                ' On construit le PDF de rapport à partir de l'objet m_oControleBanc
+                ' On Globals.CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
                 Dim sFileName As String = pControleBanc.buildPDF(Me, pAgent)
                 oFV.FVFileName = sFileName
 

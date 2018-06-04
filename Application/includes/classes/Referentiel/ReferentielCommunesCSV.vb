@@ -17,7 +17,7 @@ Public Class ReferentielCommunesCSV
         End Set
     End Property
     Public Function load() As Boolean
-        Return load(GLOB_STR_COMMUNES_FILENAME)
+        Return load(Globals.GLOB_STR_COMMUNES_FILENAME)
     End Function
     Public Function load(pFileName As String) As Boolean
         Dim bReturn As Boolean

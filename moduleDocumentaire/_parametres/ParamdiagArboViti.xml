@@ -1,396 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LstParamCtrlDiag xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ListeParam>
-    <!-- Preliminaires-->
-    <ParamCtrlDiag>
-      <Code>1</Code>
-      <Libelle>Examens préliminaires</Libelle>
-    </ParamCtrlDiag>
 
-    <ParamCtrlDiag>
-      <Code>1.1</Code>
-      <Libelle>Etat du matériel</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>1.1.1</Code>
-      <Libelle>Fonctionnment du pulvérisateur</Libelle>
-    </ParamCtrlDiag>
-  
-    <ParamCtrlDiag>
-      <Code>1.1.2</Code>
-      <Libelle>Propreté du matériel</Libelle>
-    </ParamCtrlDiag>
-
-    <ParamCtrlDiag>
-      <Code>1.1.3</Code>
-      <Libelle>Contexte</Libelle>
-    </ParamCtrlDiag>
-
-    <ParamCtrlDiag>
-      <Code>1.2</Code>
-      <Libelle>Elements de sécurité</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>1.2.1</Code>
-      <Libelle>Transmissions hydrauliques entre tracteur  pulvé</Libelle>
-    </ParamCtrlDiag>
-
-    <ParamCtrlDiag>
-      <Code>1.2.2</Code>
-      <Libelle>Transmissions mécaniques entre tracteur et pulvé</Libelle>
-    </ParamCtrlDiag>
-
-    <ParamCtrlDiag>
-      <Code>1.2.3</Code>
-      <Libelle>Transmissions mécaniques au niveau du pulvé</Libelle>
-    </ParamCtrlDiag>
-
-    <ParamCtrlDiag>
-      <Code>1.2.4</Code>
-      <Libelle>Fixation au chassis</Libelle>
-    </ParamCtrlDiag>
-
-    <ParamCtrlDiag>
-      <Code>1.2.5</Code>
-      <Libelle>débrayage du/des Ventilateurs</Libelle>
-        </ParamCtrlDiag>
-      <!-- Etat Général -->
-    <ParamCtrlDiag>
-      <Code>2</Code>
-      <Libelle>Etat Général</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.1</Code>
-      <Libelle>Dispositif d'attelage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.1.1</Code>
-      <Libelle>Déformation du dispositif d'attelage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.1.2</Code>
-      <Libelle>Modifications du dispositif d'attelage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.1.3</Code>
-      <Libelle>Corrosion du dispositif d'attelage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2</Code>
-      <Libelle>Chassis et pièces de structures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2.1</Code>
-      <Libelle>Déformations du chassis et Pièces de structures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2.2</Code>
-      <Libelle>Lésions sur pièces métalliques du chassis et Pièces de structures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2.3</Code>
-      <Libelle>Lésions aux soudures du chassis et Pièces de structures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2.4</Code>
-      <Libelle>Corrosion sur pièces métalliques du chassis et Pièces de structures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.2.5</Code>
-      <Libelle>Jeux aux articulations</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.4</Code>
-      <Libelle>Transmission au niveau du pulvé</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.4.1</Code>
-      <Libelle>Transmissions hydrauliques</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.5</Code>
-      <Libelle>Pneumatiques</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.5.1</Code>
-      <Libelle>Montage-Maintenance</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.5.2</Code>
-      <Libelle>Usure</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.3</Code>
-      <Libelle>Fuites de bouillie de pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.3.1</Code>
-      <Libelle>Fuites mineures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>2.3.2</Code>
-      <Libelle>Fuites majeures</Libelle>
-    </ParamCtrlDiag>
-    <!-- Pompe -->
-    <ParamCtrlDiag>
-      <Code>3</Code>
-      <Libelle>Pompe</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.1.1</Code>
-      <Libelle>Fuite d'huile</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.2.1</Code>
-      <Libelle>Pulsations</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.2.1</Code>
-      <Libelle>Cloche à air</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>3.2.2</Code>
-      <Libelle>Débit</Libelle>
-    </ParamCtrlDiag>
-    <!-- Cuve recevant les bouillies-->
-    <ParamCtrlDiag>
-      <Code>4</Code>
-      <Libelle>Cuve recevant les bouillies</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.1</Code>
-      <Libelle>Bouchons</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.1.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.1.2</Code>
-      <Libelle>Adéquation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.2</Code>
-      <Libelle>Indicateur de niveau</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.2.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.3</Code>
-      <Libelle>Incorporateur de produit</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>4.3.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-  <!-- 5 Appareillage de mesure, commandes et système de régulation-->
-    <ParamCtrlDiag>
-      <Code>5</Code>
-      <Libelle>Appareillage de mesure, commandes et système de régulation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.1</Code>
-      <Libelle>Commande de fermeture générale de la pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.1.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.2</Code>
-      <Libelle>Commande de fermeture partielle de la pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.2.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.2.2</Code>
-      <Libelle>Retours compensatoires</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.3</Code>
-      <Libelle>Dispositif de régulation de la pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.3.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.3.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.4</Code>
-      <Libelle>Indicateur de pression</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.4.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.4.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.5</Code>
-      <Libelle>Indicateur pour la régulation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.5.1</Code>
-      <Libelle>Vitesse d'avancement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.5.2</Code>
-      <Libelle>Débit</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.6</Code>
-      <Libelle>Autres indicateurs</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.6.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>5.6.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-<!-- Rampes de pulverisation -->
-    <ParamCtrlDiag>
-      <Code>8</Code>
-      <Libelle>Rampes de pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1</Code>
-      <Libelle>Structure de rampe</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1.1</Code>
-      <Libelle>Déformations sur le plan vertical</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1.2</Code>
-      <Libelle>Déformations sur le plan horizontal</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1.3</Code>
-      <Libelle>Protection des buses extrémités</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1.5</Code>
-      <Libelle>Lésions aux soudures</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.1.6</Code>
-      <Libelle>Corrosion de la rampe</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.2</Code>
-      <Libelle>Comportement de la rampe</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.2.1</Code>
-      <Libelle>Jeu aux articulations</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.2.2</Code>
-      <Libelle>Stabilité</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.2.3</Code>
-      <Libelle>Réglage en hauteur</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.3</Code>
-      <Libelle>Porte-jets</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.3.1</Code>
-      <Libelle>Disposition</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.3.2</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>8.3.3</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-<!-- Buses de pulvérisation-->
-    <ParamCtrlDiag>
-      <Code>9</Code>
-      <Libelle>Buses de pulvérisation</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.1</Code>
-      <Libelle>Matériel</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.1</Code>
-      <Libelle>Matériel</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.1.1</Code>
-      <Libelle>Nature du montage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.1.2</Code>
-      <Libelle>Orientation du montage</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.2.1</Code>
-      <Libelle>Régularité</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>9.2.2</Code>
-      <Libelle>Débit</Libelle>
-    </ParamCtrlDiag>
-    <!-- Soufflerie-->
-    <ParamCtrlDiag>
-      <Code>10</Code>
-      <Libelle>Soufflerie</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.1</Code>
-      <Libelle>Ventilateur</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.1.1</Code>
-      <Libelle>Etat</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.1.2</Code>
-      <Libelle>Fonctionnement</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.2</Code>
-      <Libelle>Distribution de l'air</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.2.1</Code>
-      <Libelle>Gaines d'adduction de l'air</Libelle>
-    </ParamCtrlDiag>
-    <ParamCtrlDiag>
-      <Code>10.2.2</Code>
-      <Libelle>Sortie d'air</Libelle>
-    </ParamCtrlDiag>
-
-    <!-- DEFAUTS-->
     <ParamCtrlDiag>
       <Code>1.1.1.1</Code>
       <Libelle>Non fonctionnement</Libelle>
@@ -1443,7 +1054,7 @@
     <ParamCtrlDiag>
       <Code>3.2.1.1</Code>
       <Libelle>Pulsation mineure</Libelle>
-      <LibelleLong>La pompe engendre des pulsations comprises entre 0.2 et 0.4 bar pour P etlt; 6 bar; 0.5 et 1 bar pour  6etlt; P etlt;= 16 bar; 2 et 4 bar pour P etgt; 16 bar</LibelleLong>
+      <LibelleLong>La pompe engendre des pulsations comprises entre 0.2 et 0.4 bar pour P &lt; 6 bar; 0.5 et 1 bar pour  6&lt; P &lt;= 16 bar; 2 et 4 bar pour P &gt; 16 bar</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>2</NiveauCauseMax>
@@ -1675,7 +1286,7 @@
     <ParamCtrlDiag>
       <Code>4.3.1.1</Code>
       <Libelle>Absence</Libelle>
-      <LibelleLong>Aucun dispositif d'incorporation des produits n'est installé (appareil postérieur à 1995) et dont la hauteur de l'orifice de remplissage est etgt; 1,5 m</LibelleLong>
+      <LibelleLong>Aucun dispositif d'incorporation des produits n'est installé (appareil postérieur à 1995) et dont la hauteur de l'orifice de remplissage est &gt; 1,5 m</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -2275,7 +1886,7 @@
     <ParamCtrlDiag>
       <Code>5.4.2.2</Code>
       <Libelle>Imprécision faible</Libelle>
-      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché etlt; 0,2 bar (entre 1et 2 bar) et etlt; 10% (si etgt; 2 bar) ou écart constant et etlt; 0,5 bar ou etlt; 1 bar pour une plage de P etgt;= 10 bar</LibelleLong>
+      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché &lt; 0,2 bar (entre 1et 2 bar) et &lt; 10% (si &gt; 2 bar) ou écart constant et &lt; 0,5 bar ou &lt; 1 bar pour une plage de P &gt;= 10 bar</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -2286,7 +1897,7 @@
     <ParamCtrlDiag>
       <Code>5.4.2.3</Code>
       <Libelle>Imprécision importante</Libelle>
-      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché etgt;0,2 bar (entre 1et 2 bar) et etgt;10% (si etgt; 2 bar) ou écart constant et etgt; 0,5 bar ou etgt; 1 bar pour une plage de P etgt; 10bar</LibelleLong>
+      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché &gt;0,2 bar (entre 1et 2 bar) et &gt;10% (si &gt; 2 bar) ou écart constant et &gt; 0,5 bar ou &gt; 1 bar pour une plage de P &gt; 10bar</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -2385,7 +1996,7 @@
     <ParamCtrlDiag>
       <Code>5.6.1.2</Code>
       <Libelle>Mauvaise lisibilité</Libelle>
-      <LibelleLong>Le diamètre de l'afficheur analogique est etlt; 63 mm (si positionné à portée de main), ou etlt; 100 mm (si positionné ailleurs) et/ou lecture rendue hasardeuse</LibelleLong>
+      <LibelleLong>Le diamètre de l'afficheur analogique est &lt; 63 mm (si positionné à portée de main), ou &lt; 100 mm (si positionné ailleurs) et/ou lecture rendue hasardeuse</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -2794,7 +2405,7 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.1.1.3</Code>
-      <Libelle>Défaut de parallelisme faible (etgt;=12m)</Libelle>
+      <Libelle>Défaut de parallelisme faible (&gt;=12m)</Libelle>
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
@@ -2805,7 +2416,7 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.1.1.4</Code>
-      <Libelle>Défaut de parallelisme important (etgt;=12m)</Libelle>
+      <Libelle>Défaut de parallelisme important (&gt;=12m)</Libelle>
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
@@ -2860,7 +2471,7 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.1.3.1</Code>
-      <Libelle>Tronçons escamotables défectueux (etgt;=12m)</Libelle>
+      <Libelle>Tronçons escamotables défectueux (&gt;=12m)</Libelle>
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
@@ -2871,7 +2482,7 @@
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.1.3.2</Code>
-      <Libelle>Contact avec le sol non protégé (etgt;=12m)</Libelle>
+      <Libelle>Contact avec le sol non protégé (&gt;=12m)</Libelle>
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
@@ -3137,7 +2748,7 @@
     <ParamCtrlDiag>
       <Code>8.3.1.1</Code>
       <Libelle>Dissymétrie de montage</Libelle>
-      <LibelleLong>Les porte-jets ne sont pas installés de façon symétrique par rapport à l'axe d'avancement. Différence etgt; 2% par rapport à la position symétrique</LibelleLong>
+      <LibelleLong>Les porte-jets ne sont pas installés de façon symétrique par rapport à l'axe d'avancement. Différence &gt; 2% par rapport à la position symétrique</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -3423,7 +3034,7 @@
     <ParamCtrlDiag>
       <Code>9.2.2.1</Code>
       <Libelle>Usure partielle</Libelle>
-      <LibelleLong>Moins de 33% des buses présentent un débit s'écartant de plus de 10% (15% si Detlt; 1l/min) par rapport à la valeur nominale indiquée par le constructeur</LibelleLong>
+      <LibelleLong>Moins de 33% des buses présentent un débit s'écartant de plus de 10% (15% si D&lt; 1l/min) par rapport à la valeur nominale indiquée par le constructeur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>2</NiveauCauseMax>
@@ -3434,7 +3045,7 @@
     <ParamCtrlDiag>
       <Code>9.2.2.2</Code>
       <Libelle>Usure globale</Libelle>
-      <LibelleLong>Plus de 33% des buses présentent un débit s'écartant de plus de 10% ( 15% si D etlt; 1 l/min) par rapport à la valeur nominale indiquée par le constructeur</LibelleLong>
+      <LibelleLong>Plus de 33% des buses présentent un débit s'écartant de plus de 10% ( 15% si D &lt; 1 l/min) par rapport à la valeur nominale indiquée par le constructeur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>2</NiveauCauseMax>

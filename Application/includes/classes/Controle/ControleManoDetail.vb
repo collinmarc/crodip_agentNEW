@@ -105,7 +105,7 @@
             Case "25"
                 dReturn = 0.25
             Case Else
-                dReturn = CDbl(Math.Round((StringToDouble(pMano.classe) * StringToDouble(pMano.fondEchelle) / 100), 2))
+                dReturn = CDbl(Math.Round((Globals.StringToDouble(pMano.classe) * Globals.StringToDouble(pMano.fondEchelle) / 100), 2))
         End Select
 
         Return dReturn

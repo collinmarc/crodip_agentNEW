@@ -7,7 +7,7 @@ Public Class WSCrodip
     Public Shared ReadOnly Property URL As String
         Get
             Dim strUrl As String
-            If My.Settings.WSCrodipProduction And Not GLOB_ENV_DEBUG Then
+            If My.Settings.WSCrodipProduction And Not Globals.GLOB_ENV_DEBUG Then
                 strUrl = My.Settings.WSCrodipURL
             Else
                 strUrl = My.Settings.WSCrodipURLTEST

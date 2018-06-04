@@ -71,7 +71,7 @@ Public Class EtatFacture
                 Dim CrExportOptions As ExportOptions
                 Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                 Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                m_FileName = CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_FACTURE) & ".pdf"
+                m_FileName = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_FACTURE) & ".pdf"
                 CrDiskFileDestinationOptions.DiskFileName = m_FileName
                 CrExportOptions = objReport.ExportOptions
                 With CrExportOptions
@@ -110,7 +110,7 @@ Public Class EtatFacture
             'Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo_tn")
             Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo")
             If Not File.Exists(logoFilename) Then
-                logoFilename = CONST_PATH_IMG & CR_LOGO_DEFAULT_TN_NAME
+                logoFilename = Globals.CONST_PATH_IMG & Globals.CR_LOGO_DEFAULT_TN_NAME
             End If
             m_ods.Facture(0).LogoFileName = logoFilename
             Dim newImage As System.Drawing.Image = System.Drawing.Image.FromFile(logoFilename)

@@ -1,15 +1,7 @@
-Imports iTextSharp
-Imports iTextSharp.text
-Imports iTextSharp.text.pdf
-Imports iTextSharp.text.xml
-Imports System.IO
 'Imports CrystalDecisions.CrystalReports.Engine
 'Imports CrystalDecisions.Shared
 'Imports System.Drawing
 'Imports System.Drawing.Imaging
-Imports System.Text.RegularExpressions
-Imports CrystalDecisions.Shared
-Imports CrystalDecisions.CrystalReports.Engine
 
 Public Class RPloginAgent
     Inherits Form
@@ -126,7 +118,7 @@ Public Class RPloginAgent
         '
         'PictureBox2
         '
-        Me.PictureBox2.Image = Global.Crodip_agent.Resources.logo
+        Me.PictureBox2.Image = Crodip_agent.Resources.logo
         Me.PictureBox2.Location = New System.Drawing.Point(24, 13)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(175, 208)
@@ -155,7 +147,7 @@ Public Class RPloginAgent
         Me.btnAnnuler.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAnnuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAnnuler.ForeColor = System.Drawing.Color.White
-        Me.btnAnnuler.Image = Global.Crodip_agent.Resources.btn_annuler
+        Me.btnAnnuler.Image = Crodip_agent.Resources.btn_annuler
         Me.btnAnnuler.Location = New System.Drawing.Point(158, 74)
         Me.btnAnnuler.Name = "btnAnnuler"
         Me.btnAnnuler.Size = New System.Drawing.Size(128, 24)
@@ -190,7 +182,7 @@ Public Class RPloginAgent
         '
         Me.login_password.Location = New System.Drawing.Point(190, 41)
         Me.login_password.Name = "login_password"
-        Me.login_password.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.login_password.PasswordChar = Microsoft.VisualBasic.ChrW(42)
         Me.login_password.Size = New System.Drawing.Size(240, 20)
         Me.login_password.TabIndex = 1
         '
@@ -343,7 +335,7 @@ Public Class RPloginAgent
         pnlLoginControls.Enabled = False
         ' On récupère le formulaire contener
         Dim myFormParentContener As Form = Me.MdiParent
-        Statusbardisplay(CONST_STATUTMSG_LOGIN_ENCOURS, True)
+        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_ENCOURS, True)
         Try
             ' On récupère l'agent sélèctionné
             Dim selectedAgent As Agent
@@ -371,19 +363,19 @@ Public Class RPloginAgent
                         End If
                         If CSCrypt.encode(login_password.Text, "sha256") = selectedAgent.motDePasse Then
                             ' On le met en "session"
-                            agentCourant = selectedAgent
+                            AgentCourant = selectedAgent
                             ' On met à jour le numéro de version du logiciel agent
-                            If agentCourant.versionLogiciel <> GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD Then
-                                agentCourant.versionLogiciel = GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+                            If AgentCourant.versionLogiciel <> Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD Then
+                                AgentCourant.versionLogiciel = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
                                 'CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & agentCourant.dateModificationAgent)
                                 'AgentManager.save(agentCourant)
                             End If
-                            If agentCourant.isActif And Not agentCourant.isSupprime Then
+                            If AgentCourant.isActif And Not AgentCourant.isSupprime Then
                                 ' On met à jour la barre de status
-                                Statusbardisplay(CONST_STATUTMSG_LOGIN_OK, False)
-                                CSDebug.dispInfo("Connexion réussie " & agentCourant.nom)
+                                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_OK, False)
+                                CSDebug.dispInfo("Connexion réussie " & AgentCourant.nom)
                                 ' On met a jour la date de dernière connexion
-                                agentCourant.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now).ToString
+                                AgentCourant.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now).ToString
                                 'CSDebug.dispInfo("Login.doLogin():: Save Agent Date Dernière connexion : " & agentCourant.dateDerniereConnexion)
                                 'AgentManager.save(agentCourant)
                                 Me.Close()
@@ -393,8 +385,8 @@ Public Class RPloginAgent
                             Else
 
                                 ' On met à jour la barre de status
-                                Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
-                                MsgBox(CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
+                                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
+                                MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
                                 'On recharge la Liste des profils 
                                 FillCbxAgent()
                                 login_password.Clear()
@@ -402,21 +394,21 @@ Public Class RPloginAgent
 
                         Else
                             ' On met à jour la barre de status
-                            Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
-                            MsgBox(CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
+                            Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
+                            MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
                         End If
                     Else
-                        Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez renseigner un mot de passe.", False)
+                        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez renseigner un mot de passe.", False)
                     End If
                 Else
-                    Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Aucun agent correspondant", False)
+                    Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Aucun agent correspondant", False)
                 End If
             Else
-                Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez sélectionner un profil.", False)
+                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez sélectionner un profil.", False)
             End If
         Catch ex As Exception
             ' On met à jour la barre de status
-            Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
+            Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
             CSDebug.dispError("login::doLogin : " & ex.Message)
         End Try
         'On réactive la fenêtre , si la procédure de Cnx a fonctionner, cette fenêtre est cachée
@@ -426,17 +418,17 @@ Public Class RPloginAgent
 #End Region
     Private Sub login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Debug
-        lbl_environnement_ws.Visible = GLOB_ENV_DEBUG
-        lbl_environnement_debugType.Visible = GLOB_ENV_DEBUG
-        lbl_environnement_debugLvl.Visible = GLOB_ENV_DEBUG
-        lbl_environnement_debugType.Text = "Type de sortie debug..................: " & GLOB_ENV_DEBUGTYPE
-        lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & GLOB_ENV_DEBUGLVL
+        lbl_environnement_ws.Visible = Globals.GLOB_ENV_DEBUG
+        lbl_environnement_debugType.Visible = Globals.GLOB_ENV_DEBUG
+        lbl_environnement_debugLvl.Visible = Globals.GLOB_ENV_DEBUG
+        lbl_environnement_debugType.Text = "Type de sortie debug..................: " & Globals.GLOB_ENV_DEBUGTYPE
+        lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & Globals.GLOB_ENV_DEBUGLVL
         lbl_WS.Text = WSCrodip.getWS().Url
 
         If Not CSEnvironnement.checkWebService() Then
             lbl_WS.ForeColor = Drawing.Color.Red
         End If
-        Lbl_Version.Text = GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        Lbl_Version.Text = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
         ' On récupère le formulaire contener
         Dim myFormParentContener As Form = Me.MdiParent
         ' Initialisation des variables

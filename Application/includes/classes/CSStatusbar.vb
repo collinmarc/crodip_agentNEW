@@ -3,7 +3,7 @@ Public Class CSStatusbar
     Private statusBarObj As StatusBar
     Private loaderObj As PictureBox
 
-    ' Constructeur
+    ' constructeur
     Sub New(ByVal _statusBarObj As Statusbar, ByVal _loaderObj As PictureBox)
         init(_statusBarObj, _loaderObj)
     End Sub

@@ -22,7 +22,7 @@ Public Class EtatCrodip
         Dim bReturn As Boolean
 
         If Not String.IsNullOrEmpty(getFileName()) Then
-            CSFile.open(CONST_PATH_EXP & getFileName())
+            CSFile.open(Globals.CONST_PATH_EXP & getFileName())
             bReturn = True
         Else
             bReturn = False

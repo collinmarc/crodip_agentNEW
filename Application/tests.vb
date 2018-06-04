@@ -137,7 +137,7 @@ Public Class tests
     '        Dim CrExportOptions As ExportOptions
     '        Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
     '        Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-    '        CrDiskFileDestinationOptions.DiskFileName = CONST_PATH_EXP & CSDiagPdf.makeFilename("2-1-1", "CR") & ".pdf"
+    '        CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename("2-1-1", "CR") & ".pdf"
     '        CrExportOptions = MonEtat.ExportOptions
     '        With CrExportOptions
     '            .ExportDestinationType = ExportDestinationType.DiskFile

@@ -25,7 +25,7 @@ Public Class Synchronisation
         m_bTraitee = False
         setAllSynchroTrue()
         m_Agent = pAgent
-        If GLOB_ENV_DEBUG Then
+        If Globals.GLOB_ENV_DEBUG Then
             setAllSynchroToDBG()
         End If
     End Sub

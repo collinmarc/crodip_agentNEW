@@ -83,8 +83,8 @@ Public Class DiagnosticMano542List
         m_EcartMax = 0
         m_EcartMin = Integer.MaxValue
         m_EcartMoy = 0
-        Dim bEcartConstant As Boolean = True
-        Dim ecartConstant As Decimal = Decimal.MinValue
+        Dim bEcartCONSTant As Boolean = True
+        Dim ecartCONSTant As Decimal = Decimal.MinValue
 
         'Dim oCalc542 As New CRODIP_ControlLibrary.ParanDiagCalc542()
 
@@ -92,11 +92,11 @@ Public Class DiagnosticMano542List
         For Each oMano542 As DiagnosticMano542 In _diagnosticMano542
             oMano542.calcEcarts()
             'Vérification de la constance de l'écart
-            If ecartConstant = Decimal.MinValue Then
-                ecartConstant = oMano542.Ecart
+            If ecartCONSTant = Decimal.MinValue Then
+                ecartCONSTant = oMano542.Ecart
             End If
-            If Math.Abs(oMano542.Ecart) <> Math.Abs(ecartConstant) Then
-                bEcartConstant = False
+            If Math.Abs(oMano542.Ecart) <> Math.Abs(ecartCONSTant) Then
+                bEcartCONSTant = False
             End If
             If Math.Abs(oMano542.Ecart) < Math.Abs(EcartMin) Then
                 EcartMin = oMano542.Ecart
@@ -110,7 +110,7 @@ Public Class DiagnosticMano542List
 
         'Détermination du type d'écart
         Dim TypeEcart As CRODIP_ControlLibrary.ParamDiagCalc542TypeEcart
-        If bEcartConstant Then
+        If bEcartCONSTant Then
             'Ecart constant
             TypeEcart = pParamCalc542.EcartConstant
         Else
@@ -270,7 +270,7 @@ Public Class DiagnosticMano542
     Public ReadOnly Property pressionPulved() As Decimal
         Get
             Try
-                Return CDec(StringToDouble(_pressionPulve))
+                Return CDec(Globals.StringToDouble(_pressionPulve))
 
             Catch ex As Exception
                 Return 0
@@ -281,7 +281,7 @@ Public Class DiagnosticMano542
     Public ReadOnly Property pressionControled() As Decimal
         Get
             Try
-                Return CDec(StringToDouble(_pressionControle))
+                Return CDec(Globals.StringToDouble(_pressionControle))
             Catch ex As Exception
                 Return 0
             End Try

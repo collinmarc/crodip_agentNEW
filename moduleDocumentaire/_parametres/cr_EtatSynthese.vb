@@ -160,7 +160,7 @@ Public Class Cachedcr_EtatSynthese
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
     Public Overridable Property CacheTimeOut() As System.TimeSpan Implements CrystalDecisions.ReportSource.ICachedReport.CacheTimeOut
         Get
-            Return CachedReportConstants.DEFAULT_TIMEOUT
+            Return CachedReportCONSTants.DEFAULT_TIMEOUT
         End Get
         Set
             '

@@ -26,14 +26,21 @@ Public Class EtatContratCommercial
                 Dim objReport As ReportDocument
 
                 objReport = New ReportDocument
-                objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
+                CSDebug.dispInfo("EtatCommercial.GenereEtat:" & MySettings.Default.RepertoireParametres & "/" & m_ReportName)
+                If System.IO.File.Exists(MySettings.Default.RepertoireParametres & "/" & m_ReportName) Then
+                    objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
+                Else
+                    CSDebug.dispFatal(MySettings.Default.RepertoireParametres & "/" & m_ReportName & " n'existe pas")
+                End If
+                CSDebug.dispInfo("EtatCommercial.GenereEtat:SetDataSource " & MySettings.Default.RepertoireParametres & "/" & m_ReportName)
 
                 objReport.SetDataSource(m_ods)
+                CSDebug.dispInfo("EtatCommercial.GenereEtat:SetDataSource 1" & MySettings.Default.RepertoireParametres & "/" & m_ReportName)
                 Dim CrExportOptions As ExportOptions
                 Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                 Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                 m_FileName = CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
-                CrDiskFileDestinationOptions.DiskFileName = CONST_PATH_EXP & m_FileName
+                CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
                 CrExportOptions = objReport.ExportOptions
                 With CrExportOptions
                     .ExportDestinationType = ExportDestinationType.DiskFile
@@ -41,11 +48,13 @@ Public Class EtatContratCommercial
                     .DestinationOptions = CrDiskFileDestinationOptions
                     .FormatOptions = CrFormatTypeOptions
                 End With
+                CSDebug.dispInfo("EtatCommercial.GenereEtat:Export 1" & MySettings.Default.RepertoireParametres & "/" & m_ReportName)
                 objReport.Export()
+                CSDebug.dispInfo("EtatCommercial.GenereEtat:Export 2" & MySettings.Default.RepertoireParametres & "/" & m_ReportName)
 
-            End If
+                End If
         Catch ex As Exception
-            CSDebug.dispError("EtatEnquete.GenereEtat ERR" & ex.Message)
+            CSDebug.dispError("EtatContratCommercial.GenereEtat ERR" & ex.Message)
             bReturn = False
         End Try
         Return bReturn
@@ -71,7 +80,7 @@ Public Class EtatContratCommercial
                                                              MontantHT:=m_oDiag.TotalHT,
                                                              RSExploitant:=m_oDiag.proprietaireRaisonSociale,
                                                              villeExploit:=m_oDiag.proprietaireCommune,
-                                                             NomPrenomExploit:=rsProp)
+                                                             NomPrenomExploit:=rsProp, DataColumn1:="")
 
 
             bReturn = True

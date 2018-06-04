@@ -68,7 +68,7 @@ Public Class EtatBL
                 Dim CrExportOptions As ExportOptions
                 Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                 Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                m_FileName = CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_BON_LIVRAISON) & ".pdf"
+                m_FileName = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_BON_LIVRAISON) & ".pdf"
                 CrDiskFileDestinationOptions.DiskFileName = m_FileName
                 CrExportOptions = objReport.ExportOptions
                 With CrExportOptions

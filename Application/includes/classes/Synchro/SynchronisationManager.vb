@@ -62,8 +62,8 @@ Public Class SynchronisationManager
     Public Shared Function ReinitFichierLOGSynchro() As Boolean
         Dim bReturn As Boolean
         Try
-            If System.IO.File.Exists(GLOB_ENV_SYNCHROLOGFILE) Then
-                System.IO.File.Delete(GLOB_ENV_SYNCHROLOGFILE)
+            If System.IO.File.Exists(Globals.GLOB_ENV_SYNCHROLOGFILE) Then
+                System.IO.File.Delete(Globals.GLOB_ENV_SYNCHROLOGFILE)
 
             End If
 

@@ -249,7 +249,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         'PictureBox1
         '
         Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.Image = Global.Crodip_agent.Resources.PuceVerteT
+        Me.PictureBox1.Image = Crodip_Agent.Resources.PuceVerteT
         Me.PictureBox1.Location = New System.Drawing.Point(410, 10)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(18, 20)
@@ -299,7 +299,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         '
         Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAnnuler.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.btnAnnuler.BackgroundImage = Global.Crodip_agent.Resources.btn_annuler
+        Me.btnAnnuler.BackgroundImage = Crodip_Agent.Resources.btn_annuler
         Me.btnAnnuler.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnAnnuler.FlatAppearance.BorderSize = 0
@@ -317,7 +317,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         '
         Me.btnValider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnValider.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.btnValider.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
+        Me.btnValider.BackgroundImage = Crodip_Agent.Resources.btn_valider
         Me.btnValider.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnValider.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btnValider.FlatAppearance.BorderSize = 0

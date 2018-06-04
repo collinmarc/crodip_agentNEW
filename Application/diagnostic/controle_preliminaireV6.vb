@@ -12,7 +12,7 @@ Public Class controle_preliminaireV6
     Private Const CHK_DEFAUT_MAJEURPRELIM As Integer = 4
     Private m_bDuringLoad As Boolean
     Private m_oParamdiag As CRODIP_ControlLibrary.ParamDiag
-    Private m_Mode As DiagMode
+    Private m_Mode As Globals.DiagMode
     Private m_Diagnostic As Diagnostic
     Private m_Pulverisateur As Pulverisateur
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
@@ -33,11 +33,11 @@ Public Class controle_preliminaireV6
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
 
-        m_Mode = DiagMode.CTRL_COMPLET
+        m_Mode = Globals.DiagMode.CTRL_COMPLET
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         m_bDuringLoad = False
     End Sub
-    Public Sub New(ByVal pMode As DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pclient As Exploitation)
+    Public Sub New(ByVal pMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pclient As Exploitation)
         Me.New()
         m_bDuringLoad = True
         m_Mode = pMode
@@ -1681,7 +1681,7 @@ Public Class controle_preliminaireV6
         ' On charge les infos du diagnostic
         'Il faut désactiver le duringLoad , car ce sont les Click qui déclenche le bouton "poursuivre"
         m_bDuringLoad = False
-        If m_Mode <> DiagMode.CTRL_COMPLET Then
+        If m_Mode <> Globals.DiagMode.CTRL_COMPLET Then
             loadExistingDiag()
         End If
 
@@ -1689,11 +1689,11 @@ Public Class controle_preliminaireV6
         btn_toutCocher.Visible = False
 
         Select Case m_Mode
-            Case DiagMode.CTRL_COMPLET
+            Case Globals.DiagMode.CTRL_COMPLET
                 btn_toutCocher.Visible = True
-            Case DiagMode.CTRL_CV
+            Case Globals.DiagMode.CTRL_CV
                 btn_controlePreliminaire_poursuivre.Visible = True
-            Case DiagMode.CTRL_VISU
+            Case Globals.DiagMode.CTRL_VISU
                 btn_controlePreliminaire_poursuivre.Visible = True
                 CSForm.disableAllCheckBox(Me)
         End Select

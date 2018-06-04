@@ -1252,7 +1252,7 @@ Public Class Diagnostic
     '        _buseFonctionnementIsStandard = Value
     '        '' MAJ du libellé du fonctionnement di besoin (pour assurer la compat avec ancienne version"
     '        If (Value) And String.IsNullOrEmpty(_buseFonctionnement) Then
-    '            _buseFonctionnement = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=1]/text")(0).InnerText
+    '            _buseFonctionnement = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=1]/text")(0).InnerText
     '        End If
     '    End Set
     'End Property
@@ -1265,7 +1265,7 @@ Public Class Diagnostic
     '        _buseFonctionnementIsPastilleChambre = Value
     '        '' MAJ du libellé du fonctionnement di besoin (pour assurer la compat avec ancienne version"
     '        If (Value) And String.IsNullOrEmpty(_buseFonctionnement) Then
-    '            _buseFonctionnement = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=2]/text")(0).InnerText
+    '            _buseFonctionnement = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=2]/text")(0).InnerText
     '        End If
     '    End Set
     'End Property
@@ -1278,7 +1278,7 @@ Public Class Diagnostic
     '        _buseFonctionnementIsInjectionAirLibre = Value
     '        '' MAJ du libellé du fonctionnement di besoin (pour assurer la compat avec ancienne version"
     '        If (Value) And String.IsNullOrEmpty(_buseFonctionnement) Then
-    '            _buseFonctionnement = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=3]/text")(0).InnerText
+    '            _buseFonctionnement = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=3]/text")(0).InnerText
     '        End If
     '    End Set
     'End Property
@@ -1291,7 +1291,7 @@ Public Class Diagnostic
     '        _buseFonctionnementIsInjectionAirForce = Value
     '        '' MAJ du libellé du fonctionnement di besoin (pour assurer la compat avec ancienne version"
     '        If (Value) And String.IsNullOrEmpty(_buseFonctionnement) Then
-    '            _buseFonctionnement = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=4]/text")(0).InnerText
+    '            _buseFonctionnement = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=4]/text")(0).InnerText
     '        End If
     '    End Set
     'End Property
@@ -1319,10 +1319,10 @@ Public Class Diagnostic
     '    Me.buseFonctionnementIsInjectionAirLibre = False
     '    Me.buseFonctionnementIsInjectionAirForce = False
 
-    '    Dim sStandard As String = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=1]/text")(0).InnerText
-    '    Dim sPastille As String = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=2]/text")(0).InnerText
-    '    Dim sAirLibre As String = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=3]/text")(0).InnerText
-    '    Dim sAirForce As String = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=4]/text")(0).InnerText
+    '    Dim sStandard As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=1]/text")(0).InnerText
+    '    Dim sPastille As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=2]/text")(0).InnerText
+    '    Dim sAirLibre As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=3]/text")(0).InnerText
+    '    Dim sAirForce As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=4]/text")(0).InnerText
     '    Select Case _buseFonctionnement.ToUpper.Trim()
     '        Case sStandard.ToUpper.Trim()
     '            Me.buseFonctionnementIsStandard = True
@@ -2319,8 +2319,8 @@ Public Class Diagnostic
             End Try
             organismePresNumero = structureCourante.idCrodip
             organismePresNom = structureCourante.nom
-            organismeInspNom = GLOB_DIAG_NOMAGR
-            organismeInspAgrement = GLOB_DIAG_NUMAGR
+            organismeInspNom = Globals.GLOB_DIAG_NOMAGR
+            organismeInspAgrement = Globals.GLOB_DIAG_NUMAGR
             organismePresAdresse = structureCourante.adresse
             organismePresCodePostal = structureCourante.codePostal
             organismePresCommune = structureCourante.commune
@@ -2347,7 +2347,7 @@ Public Class Diagnostic
         Try
             Me.duppliqueInfosOrganisme()
             'Organisme précédant = CRODIP/Indigo
-            Me.organismeOriginePresNom = GLOB_DIAG_NOMAGR
+            Me.organismeOriginePresNom = Globals.GLOB_DIAG_NOMAGR
             Me.inspecteurOrigineNom = Me.inspecteurNom
             Me.inspecteurOriginePrenom = Me.inspecteurPrenom
             Me.setOrganisme(pAgent)
@@ -2755,7 +2755,7 @@ Public Class Diagnostic
             'Me.pulverisateurCategorieIsVoute = poPulve.categorieIsVoute
             'Me.pulverisateurCategorieIsFaceParFace = poPulve.categorieIsFaceParFace
             Me.pulverisateurAttelage = poPulve.attelage
-            'Me.pulverisateurRegulationIsPressionConstante = poPulve.isPressionConstante
+            'Me.pulverisateurRegulationIsPressionCONSTante = poPulve.isPressionconstante
             'Me.pulverisateurRegulationIsDpm = poPulve.isDPM
             'Me.pulverisateurRegulationIsDpa = poPulve.isDPA
             'Me.pulverisateurRegulationIsDpae = poPulve.isDPAE
@@ -2912,7 +2912,7 @@ Public Class Diagnostic
 
     End Function
 
-    Public Function pulverisateurRegulationIsPressionConstante() As Boolean
+    Public Function pulverisateurRegulationIsPressionCONSTante() As Boolean
         Return pulverisateurRegulation.Trim().ToLower() = "Pression constante".Trim().ToLower()
     End Function
     Public Function pulverisateurRegulationIsDPM() As Boolean

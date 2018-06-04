@@ -17,7 +17,7 @@ Public Class SynchronisationElmtIdentifiantPulverisateur
         identifiantChaine = ""
         valeurAuxiliaire = ""
     End Sub
-    'Constructeur Sans paramètre utilisé uniquement pour la sérialisation
+    'constructeur Sans paramètre utilisé uniquement pour la sérialisation
     Public Sub New()
         MyBase.New(getLabelGet(), New SynchroBooleans)
         identifiantEntier = 0

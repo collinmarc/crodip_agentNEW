@@ -2,7 +2,7 @@
 <root>
   <PulverisateurRegulation>
       <id>1</id>
-      <libelle>Pression Constante</libelle>
+      <libelle>PRESSION CONSTANTE</libelle>
   </PulverisateurRegulation>
   <PulverisateurRegulation>
     <id>2</id>
@@ -22,6 +22,6 @@
   </PulverisateurRegulation>
   <PulverisateurRegulation>
     <id>6</id>
-    <libelle>DPM Assisté</libelle>
+    <libelle>DPM ASSISTE</libelle>
   </PulverisateurRegulation>
 </root>

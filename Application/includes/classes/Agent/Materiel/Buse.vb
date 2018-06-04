@@ -90,9 +90,9 @@ Public Class Buse
             Case "couleur".Trim().ToUpper()
                 Me.couleur = pValue.ToString()
             Case "pressionEtalonnage".Trim().ToUpper()
-                Me.pressionEtalonnage = StringToDouble(pValue.ToString())
+                Me.pressionEtalonnage = Globals.StringToDouble(pValue.ToString())
             Case "debitEtalonnage".Trim().ToUpper()
-                Me.debitEtalonnage = StringToDouble(pValue.ToString())
+                Me.debitEtalonnage = Globals.StringToDouble(pValue.ToString())
             Case "isSynchro".Trim().ToUpper()
                 Me.isSynchro = pValue
             Case "dateAchat".Trim().ToUpper()

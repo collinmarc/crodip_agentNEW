@@ -103,7 +103,7 @@ Public Class splash
 
         ' Date de build
         'GLOB_APPLI_NUMBUILD = CSSoftwareUpdate.getCurrentVersion
-        'GLOB_APPLI_DATEBUILD = GLOB_APPLI_BUILD.Substring(0, 8)
+        'GLOB_APPLI_DATEBUILD = Globals.GLOB_APPLI_BUILD.Substring(0, 8)
 
         ' Always on top
         Me.TopMost = True

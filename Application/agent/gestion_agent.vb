@@ -319,7 +319,7 @@ Public Class gestion_agent
 
     ' Validation
     Private Sub btn_ficheInspecteur_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Statusbar.display(CONST_STATUTMSG_FICHEAGENT_ENCOURS, True)
+        Statusbar.display(Globals.CONST_STATUTMSG_FICHEAGENT_ENCOURS, True)
         Try
             ' On enregistre les données de l'agent
             agentCourant.numeroNational = ficheAgent_numeroNational.Text
@@ -337,12 +337,12 @@ Public Class gestion_agent
             'globalConfig.addElement("/root/smtp", "smtpPort", agent_smtp_port.Text)
             'globalConfig.addElement("/root/smtp", "smtpUser", agent_smtp_user.Text)
             'globalConfig.addElement("/root/smtp", "smtpPass", agent_smtp_pass.Text)
-            Statusbar.display(CONST_STATUTMSG_FICHEAGENT_OK, False)
+            Statusbar.display(Globals.CONST_STATUTMSG_FICHEAGENT_OK, False)
 
             ' On ferme le formulaire
             Me.Close()
         Catch ex As Exception
-            Statusbar.display(CONST_STATUTMSG_FICHEAGENT_FAILED, False)
+            Statusbar.display(Globals.CONST_STATUTMSG_FICHEAGENT_FAILED, False)
         End Try
     End Sub
 End Class

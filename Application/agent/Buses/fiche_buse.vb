@@ -348,7 +348,7 @@ Public Class fiche_buse
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
-        MarquesManager.populateCombobox(GLOB_XML_COULEURS_BUSES, ficheBuse_couleur)
+        MarquesManager.populateCombobox(Globals.GLOB_XML_COULEURS_BUSES, ficheBuse_couleur)
 
         DisplayBuse()
     End Sub

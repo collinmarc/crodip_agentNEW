@@ -14,27 +14,27 @@ Public Class Pulverisateur
     Public Shared CATEGORIEPULVE_FACEPARFACE As String = "Face par face"
     Public Shared CATEGORIEPULVE_JETDIRIGE As String = "Jet dirigé"
     Public Shared CATEGORIEPULVE_RAMPE As String = "Rampe"
-    '    Public Shared CATEGORIEPULVE_ARBOVITI As String = GLOB_XML_CATEGORIES_PULVE.getXmlNode("//Categorie[id=6]/libelle").InnerText
+    '    Public Shared CATEGORIEPULVE_ARBOVITI As String = Globals.GLOB_XML_CATEGORIES_PULVE.getXmlNode("//Categorie[id=6]/libelle").InnerText
     Public Shared CATEGORIEPULVE_ARBOVITI2 As String = "ArboViti"
     Public Shared CATEGORIEPULVE_VOUTE As String = "Voute"
 
     Public Const TYPEVALEURPULVE_LARGEUR As String = "LARGEUR"
     Public Const TYPEVALEURPULVE_RANG As String = "RANG"
 
-    Public Shared PULVERISATION_JETPORTE As String = GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=1]/libelle").InnerText
-    Public Shared PULVERISATION_JETPROJETE As String = GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=2]/libelle").InnerText
-    Public Shared PULVERISATION_PNEUMATIQUE As String = GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=3]/libelle").InnerText
+    Public Shared PULVERISATION_JETPORTE As String = Globals.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=1]/libelle").InnerText
+    Public Shared PULVERISATION_JETPROJETE As String = Globals.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=2]/libelle").InnerText
+    Public Shared PULVERISATION_PNEUMATIQUE As String = Globals.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=3]/libelle").InnerText
 
-    Public Shared ATTELAGE_PORTE As String = GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=1]/libelle").InnerText
-    Public Shared ATTELAGE_TRAINE As String = GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=2]/libelle").InnerText
-    Public Shared ATTELAGE_AUTOMOTEUR As String = GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=3]/libelle").InnerText
-    Public Shared ATTELAGE_SEMIPORTE As String = GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=4]/libelle").InnerText
-    Public Shared ATTELAGE_INTEGRE As String = GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=5]/libelle").InnerText
+    Public Shared ATTELAGE_PORTE As String = Globals.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=1]/libelle").InnerText
+    Public Shared ATTELAGE_TRAINE As String = Globals.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=2]/libelle").InnerText
+    Public Shared ATTELAGE_AUTOMOTEUR As String = Globals.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=3]/libelle").InnerText
+    Public Shared ATTELAGE_SEMIPORTE As String = Globals.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=4]/libelle").InnerText
+    Public Shared ATTELAGE_INTEGRE As String = Globals.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=5]/libelle").InnerText
 
-    'Public Shared FONCTIONNEMENT_BUSES_STANDARD As String = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=1]/text").InnerText
-    'Public Shared FONCTIONNEMENT_BUSES_PASTILLE As String = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=2]/text").InnerText
-    'Public Shared FONCTIONNEMENT_BUSES_AIRLIBRE As String = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=3]/text").InnerText
-    'Public Shared FONCTIONNEMENT_BUSES_AIRFORCE As String = GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=4]/text").InnerText
+    'Public Shared FONCTIONNEMENT_BUSES_STANDARD As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=1]/text").InnerText
+    'Public Shared FONCTIONNEMENT_BUSES_PASTILLE As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=2]/text").InnerText
+    'Public Shared FONCTIONNEMENT_BUSES_AIRLIBRE As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=3]/text").InnerText
+    'Public Shared FONCTIONNEMENT_BUSES_AIRFORCE As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=4]/text").InnerText
 
     Private _id As String = ""
     Private _numeroNational As String = ""
@@ -125,7 +125,7 @@ Public Class Pulverisateur
     Private _pulvePrincipalNumNat As String = ""
     Private _isRincagecircuit As Boolean = False
     Sub New()
-        numeroNational = GLOB_DIAG_NUMAGR
+        numeroNational = Globals.GLOB_DIAG_NUMAGR
         _idStructure = -1
     End Sub
     Public Property id() As String
@@ -238,13 +238,13 @@ Public Class Pulverisateur
     ''' <remarks></remarks>
     Public Property largeur() As String
         Get
-            Return _largeur.Replace(CONST_DECIMAL_SYMBOL, ".")
+            Return _largeur.Replace(Globals.CONST_DECIMAL_SYMBOL, ".")
         End Get
         Set(ByVal Value As String)
-            _largeur = Value.Replace(".", CONST_DECIMAL_SYMBOL)
+            _largeur = Value.Replace(".", Globals.CONST_DECIMAL_SYMBOL)
             If IsNumeric(_largeur) Then
                 _largeur = CType(_largeur, Decimal).ToString("##0.##")
-                _largeur = _largeur.Replace(CONST_DECIMAL_SYMBOL, ".")
+                _largeur = _largeur.Replace(Globals.CONST_DECIMAL_SYMBOL, ".")
             Else
                 _largeur = Value
             End If
@@ -257,7 +257,7 @@ Public Class Pulverisateur
         End Get
         Set(ByVal Value As String)
             m_nombreRangs = Value
-            m_nombreRangs = m_nombreRangs.Replace(CONST_DECIMAL_SYMBOL, ".")
+            m_nombreRangs = m_nombreRangs.Replace(Globals.CONST_DECIMAL_SYMBOL, ".")
         End Set
     End Property
     ''' <summary>
@@ -271,21 +271,29 @@ Public Class Pulverisateur
     Public Property LargeurNombreRangs() As String
         Get
             Dim strTypeValeur As String
-            Dim strReturn As String
+            Dim strReturn As String = ""
             strTypeValeur = MarquesManager.GetTypeValeur_Pulve(type, categorie)
-            Select Case strTypeValeur.ToUpper().Trim
-                Case TYPEVALEURPULVE_LARGEUR
-                    Dim strlargeur As String = largeur.Replace(".", ",")
+            If Not String.IsNullOrEmpty(strTypeValeur) Then
+                Select Case strTypeValeur.ToUpper().Trim
+                    Case TYPEVALEURPULVE_LARGEUR
+                        Dim strlargeur As String = ""
+                        If Not String.IsNullOrEmpty(largeur) Then
+                            strlargeur = largeur.Replace(".", ",")
+                            If IsNumeric(strlargeur) Then
+                                Try
 
-                    If IsNumeric(strlargeur) Then
-                        strReturn = CType(strlargeur, Decimal).ToString("##0.##").Replace(",", ".")
-                    End If
-                Case TYPEVALEURPULVE_RANG
-                    strReturn = nombreRangs
-                Case Else
-                    strReturn = ""
-            End Select
-
+                                    strReturn = CType(strlargeur, Decimal).ToString("##0.##").Replace(",", ".")
+                                Catch ex As Exception
+                                    strReturn = strlargeur
+                                End Try
+                            End If
+                        End If
+                    Case TYPEVALEURPULVE_RANG
+                        strReturn = nombreRangs
+                    Case Else
+                        strReturn = ""
+                End Select
+            End If
             Return strReturn
         End Get
         Set(ByVal Value As String)
@@ -1058,7 +1066,7 @@ Public Class Pulverisateur
             End Select
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("Pulverisateur.Fill ERR" + ex.Message)
+            CSDebug.dispError("Pulverisateur.Fill(" & pColName & "," & pColValue & ") ERR" + ex.Message)
             bReturn = False
         End Try
         Return bReturn
@@ -1081,7 +1089,7 @@ Public Class Pulverisateur
                 End If
             Next
         Catch ex As Exception
-            CSDebug.dispError("Pulverisateur.getParamDiag ERROR :" & ex.Message)
+            CSDebug.dispError("Pulverisateur.getParamDiag()  Error :" & ex.Message)
             oReturn = Nothing
         End Try
 
@@ -1221,7 +1229,7 @@ Public Class Pulverisateur
         If bReturn = CheckResult.OK Then
             If olst.Count > 0 And bCheck Then
                 'S'il y a des identifiant Pulvés
-                If strNumNatPart1 = GLOB_DIAG_NUMAGR Then
+                If strNumNatPart1 = Globals.GLOB_DIAG_NUMAGR Then
                     'Si on  test un numero CRODIP
                     If pNumNAtional <> olst(0).numeroNational Then
                         bReturn = CheckResult.NUMEROPASLEPREMIER
@@ -1320,18 +1328,18 @@ Public Class Pulverisateur
             If type = Pulverisateur.TYPEPULVE_CULTURESBASSES And Not isVentilateur Then
                 oDiagItem.FillWithParam(olstParam.Find("10.2.2.0"))
             End If
-            'PressionConstante() / DPM() / DPA() =>5.5.1.0
+            'Pressionconstante() / DPM() / DPA() =>5.5.1.0
             '----------------------------------------------
             oDiagItem = New DiagnosticItemAuto("", "551", "0")
             oReturn.Add(oDiagItem)
-            If pulverisateurRegulationIsPressionConstante() Or pulverisateurRegulationIsDPM() Or pulverisateurRegulationIsDPA() Then
+            If pulverisateurRegulationIsPressionCONSTante() Or pulverisateurRegulationIsDPM() Or pulverisateurRegulationIsDPA() Then
                 oDiagItem.FillWithParam(olstParam.Find("5.5.1.0"))
             End If
-            'PressionConstante() / DPM() / DPA() =>5.5.2.0
+            'Pressionconstante() / DPM() / DPA() =>5.5.2.0
             '----------------------------------------------
             oDiagItem = New DiagnosticItemAuto("", "552", "0")
             oReturn.Add(oDiagItem)
-            If pulverisateurRegulationIsPressionConstante() Or pulverisateurRegulationIsDPM() Or pulverisateurRegulationIsDPA() Then
+            If pulverisateurRegulationIsPressionCONSTante() Or pulverisateurRegulationIsDPM() Or pulverisateurRegulationIsDPA() Then
                 oDiagItem.FillWithParam(olstParam.Find("5.5.2.0"))
             End If
             'RegulationIsDPAE
@@ -1492,8 +1500,8 @@ Public Class Pulverisateur
         End Try
         Return bReturn
     End Function 'DecodageAutomatiqueDefaut
-    Public Function pulverisateurRegulationIsPressionConstante() As Boolean
-        Return regulation.Trim().ToLower() = "Pression constante".Trim().ToLower()
+    Public Function pulverisateurRegulationIsPressionCONSTante() As Boolean
+        Return regulation.Trim().ToLower() = "Pression CONSTante".Trim().ToLower()
     End Function
     Public Function pulverisateurRegulationIsDPM() As Boolean
         Return regulation.Trim().ToLower() = "DPM".Trim().ToLower()

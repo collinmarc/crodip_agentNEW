@@ -162,7 +162,7 @@ Public Class PrestationCategorieManager
             bddCommande.CommandText = "SELECT MAX(Id)+1 as NEWID FROM PrestationCategorie "
             tmpResults = bddCommande.ExecuteReader()
             While tmpResults.Read()
-                '# Construction de l'objet
+                '# construction de l'objet
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpResults.FieldCount()
                     Select Case tmpResults.GetName(tmpColId).ToUpper().Trim
@@ -295,7 +295,7 @@ Public Class PrestationCategorieManager
                 '################################################################
                 Dim i As Integer = 0
                 While tmpResults.Read()
-                    '# Construction de l'objet
+                    '# construction de l'objet
                     Dim tmpObject As New PrestationCategorie
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpResults.FieldCount()
@@ -345,7 +345,7 @@ Public Class PrestationCategorieManager
             '################################################################
             Dim i As Integer = 0
             While tmpResults.Read()
-                '# Construction de l'objet
+                '# construction de l'objet
                 Dim tmpObject As New PrestationCategorie
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpResults.FieldCount()
@@ -391,7 +391,7 @@ Public Class PrestationCategorieManager
             '################################################################
             Dim i As Integer = 0
             While tmpResults.Read()
-                '# Construction de l'objet
+                '# construction de l'objet
                 Dim tmpObject As New PrestationCategorie
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpResults.FieldCount()

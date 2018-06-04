@@ -32,4 +32,9 @@
     <id>8</id>
     <libelle>DANS LA CABINE</libelle>
   </EmplacementIdentification>
+
+  <EmplacementIdentification>
+    <id>9</id>
+    <libelle>SUR ENROULEUR</libelle>
+  </EmplacementIdentification>
 </root>

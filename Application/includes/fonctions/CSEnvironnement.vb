@@ -20,7 +20,7 @@ Public Class CSEnvironnement
     ' Fonction permettant de tester si la version de l'application est en accord avec la version mini. du crodip
     Public Shared Function checkVersion()
         ' Init Vars
-        Dim curVersion() As String = GLOB_APPLI_VERSION.Split(".")
+        Dim curVersion() As String = Globals.GLOB_APPLI_VERSION.Split(".")
         Dim csVersionResult() As String = CSVersion.getWSVersion()
         CSEnvironnement.versionMessage = csVersionResult(1)
         CSEnvironnement.versionUrl = csVersionResult(2)
@@ -55,21 +55,23 @@ Public Class CSEnvironnement
 
     Public Shared Sub setPid()
         Try
-            CSFile.create(GLOB_PID_FILE, Date.UtcNow.ToLongDateString)
+            CSFile.create(Globals.GLOB_PID_FILE, Date.UtcNow.ToLongDateString)
         Catch ex As Exception
             CSDebug.dispFatal("CSEnvironnement::setPid : " & ex.Message)
         End Try
     End Sub
     Public Shared Sub delPid()
         Try
-            CSFile.delete(GLOB_PID_FILE)
+            If System.IO.File.Exists(Globals.GLOB_PID_FILE) Then
+                CSFile.delete(Globals.GLOB_PID_FILE)
+            End If
         Catch ex As Exception
             CSDebug.dispFatal("CSEnvironnement::delPid : " & ex.Message)
         End Try
     End Sub
     Public Shared Function existsPid() As Boolean
         Try
-            Return CSFile.exists(GLOB_PID_FILE)
+            Return System.IO.File.Exists(Globals.GLOB_PID_FILE)
         Catch ex As Exception
             CSDebug.dispFatal("CSEnvironnement::existsPid : " & ex.Message)
             Return False

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <LstParamCtrlDiag xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <ListeParam>
     <ParamCtrlDiag>
@@ -52,6 +51,7 @@
     <ParamCtrlDiag>
       <Code>1.2.5</Code>
       <Libelle>débrayage du/des ventilateurs</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
       <!-- Etat Général -->
       <ParamCtrlDiag>
@@ -384,10 +384,12 @@
       <ParamCtrlDiag>
         <Code>8.1.1</Code>
         <Libelle>Déformations sur le plan vertical</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>8.1.2</Code>
         <Libelle>Déformations sur le plan horizontal</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>8.1.3</Code>
@@ -396,6 +398,7 @@
       <ParamCtrlDiag>
         <Code>8.1.4</Code>
         <Libelle>Déformations</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>8.1.5</Code>
@@ -416,10 +419,12 @@
       <ParamCtrlDiag>
         <Code>8.2.1</Code>
         <Libelle>Jeux aux articulations</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>8.2.2</Code>
         <Libelle>Stabilité</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>8.2.3</Code>
@@ -475,30 +480,37 @@
       <ParamCtrlDiag>
         <Code>10</Code>
         <Libelle>Soufflerie</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>10.1</Code>
         <Libelle>Ventilateur</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>10.1.1</Code>
         <Libelle>Etat</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>10.1.2</Code>
         <Libelle>Fonctionnement</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>10.2</Code>
         <Libelle>Distribution de l'air</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>10.2.1</Code>
         <Libelle>Gaines d'adduction de l'air</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>10.2.2</Code>
         <Libelle>Sortie d'air</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <!-- Accesoires -->
       <ParamCtrlDiag>
@@ -549,30 +561,36 @@
       <ParamCtrlDiag>
         <Code>12.2</Code>
         <Libelle>Pistolet ou lance</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>12.2.1</Code>
         <Libelle>Etat</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>12.2.2</Code>
         <Libelle>Fonctionnement</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>12.3</Code>
         <Libelle>Chariot de pulvérisation</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>12.3.1</Code>
         <Libelle>Etat</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>12.3.2</Code>
         <Libelle>Fonctionnement</Libelle>
+      <Actif>false</Actif>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>12.4</Code>
-        <Libelle>Cuve lave-mains</Libelle>
+        <Libelle>Accessoires de sécurité</Libelle>
       </ParamCtrlDiag>
       <ParamCtrlDiag>
         <Code>12.4.1</Code>
@@ -2092,7 +2110,7 @@
 <!-- 4.6.1-->
     <ParamCtrlDiag>
       <Code>4.6.1.1</Code>
-      <Libelle>Impossible</Libelle>
+      <Libelle>Absence</Libelle>
       <LibelleLong>Aucune cuve de rinçage n'équipe le pulvérisateur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
@@ -2497,7 +2515,7 @@
     <ParamCtrlDiag>
       <Code>5.4.2.2</Code>
       <Libelle>Imprécision faible</Libelle>
-      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché est comprise entre 0,1 et 0,2 bar (entre 1et 2 bar) et entre 5 et 10% (si &gt; 2 bar) ou écart constant et etlt; 0,5 bar ou etlt; 1 bar pour une plage de P &gt;= 10 bar</LibelleLong>
+      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché est comprise entre 0,1 et 0,2 bar (entre 1et 2 bar) et entre 5 et 10% (si &gt; 2 bar) ou écart constant et &lt; 0,5 bar ou &lt; 1 bar pour une plage de P &gt;= 10 bar</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -3403,7 +3421,7 @@
     <ParamCtrlDiag>
       <Code>8.3.1.3</Code>
       <Libelle>Mauvais aplomb (rampe)</Libelle>
-      <LibelleLong>Au moins l'un des porte-jets s'écarte de plus de 10Â° de l'aplomb vertical</LibelleLong>
+      <LibelleLong>Au moins l'un des porte-jets s'écarte de plus de 10° de l'aplomb vertical</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -3458,7 +3476,7 @@
     <ParamCtrlDiag>
       <Code>8.3.2.3</Code>
       <Libelle>Usure</Libelle>
-      <LibelleLong>Au moins l'un des porte-jets présente une fixation du jet usée : arête de baà¯onnette émoussée ou filetage foiré</LibelleLong>
+      <LibelleLong>Au moins l'un des porte-jets présente une fixation du jet usée : arête de bayonnette émoussée ou filetage foiré</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -3480,7 +3498,7 @@
     <ParamCtrlDiag>
       <Code>8.3.3.1</Code>
       <Libelle>Antigoutte défectueux</Libelle>
-      <LibelleLong>A la fermeture du circuit, un écoulement se poursuit sur au moins un des porte-jet après  5 secondes, ou si à  l'ouverture la régularité des jets n'est pas atteinte en 5s</LibelleLong>
+      <LibelleLong>A la fermeture du circuit, un écoulement se poursuit sur au moins un des porte-jet après 5 secondes, ou si à  l'ouverture la régularité des jets n'est pas atteinte en 5s</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -3612,7 +3630,7 @@
     <ParamCtrlDiag>
       <Code>9.1.2.2</Code>
       <Libelle>Incorrecte</Libelle>
-      <LibelleLong>L'axe de la fente de sortie ne forme pas un angle compris entre 3 et 7Â° avec l'axe de la rampe pour au moins une buse (à  jet plat) installée</LibelleLong>
+      <LibelleLong>L'axe de la fente de sortie ne forme pas un angle compris entre 3 et 7° avec l'axe de la rampe pour au moins une buse (à  jet plat) installée</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>

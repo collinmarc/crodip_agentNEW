@@ -1669,27 +1669,27 @@ Public Class tool_diagBuses
                 AddHandler Button_valider_nbBuses.Click, AddressOf validerNbBuses_Click
 
                 'Débit nominal constructeur
-                Dim label_debitNominalConstructeur As New Label
-                Controls.Add(label_debitNominalConstructeur)
-                label_debitNominalConstructeur.Parent = ongletCategorie
-                label_debitNominalConstructeur.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-                label_debitNominalConstructeur.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-                label_debitNominalConstructeur.Location = New System.Drawing.Point(208, 16)
-                label_debitNominalConstructeur.Name = "label_debitNominalConstructeur_" & i
-                label_debitNominalConstructeur.Size = New System.Drawing.Size(152, 16)
-                label_debitNominalConstructeur.Text = "Débit nominal constructeur :"
-                label_debitNominalConstructeur.TextAlign = System.Drawing.ContentAlignment.BottomRight
+                Dim label_DebitNominalCONSTructeur As New Label
+                Controls.Add(label_DebitNominalCONSTructeur)
+                label_DebitNominalCONSTructeur.Parent = ongletCategorie
+                label_DebitNominalCONSTructeur.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+                label_DebitNominalCONSTructeur.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
+                label_DebitNominalCONSTructeur.Location = New System.Drawing.Point(208, 16)
+                label_DebitNominalCONSTructeur.Name = "label_DebitNominalCONSTructeur_" & i
+                label_DebitNominalCONSTructeur.Size = New System.Drawing.Size(152, 16)
+                label_DebitNominalCONSTructeur.Text = "Débit nominal constructeur :"
+                label_DebitNominalCONSTructeur.TextAlign = System.Drawing.ContentAlignment.BottomRight
 
-                Dim TextBox_debitNominalConstructeur As New TextBox
-                Controls.Add(TextBox_debitNominalConstructeur)
-                TextBox_debitNominalConstructeur.Parent = ongletCategorie
-                TextBox_debitNominalConstructeur.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-                TextBox_debitNominalConstructeur.Location = New System.Drawing.Point(368, 16)
-                TextBox_debitNominalConstructeur.Name = "TextBox_debitNominalConstructeur_" & i
-                TextBox_debitNominalConstructeur.Size = New System.Drawing.Size(56, 20)
-                TextBox_debitNominalConstructeur.Text = ""
-                AddHandler TextBox_debitNominalConstructeur.TextChanged, AddressOf debitNominalConstructeur_TextChanged
-                AddHandler TextBox_debitNominalConstructeur.KeyPress, AddressOf diagBuses_KeyPress
+                Dim TextBox_debitNominalCONSTructeur As New TextBox
+                Controls.Add(TextBox_debitNominalCONSTructeur)
+                TextBox_debitNominalCONSTructeur.Parent = ongletCategorie
+                TextBox_debitNominalCONSTructeur.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+                TextBox_debitNominalCONSTructeur.Location = New System.Drawing.Point(368, 16)
+                TextBox_debitNominalCONSTructeur.Name = "TextBox_debitNominalCONSTructeur_" & i
+                TextBox_debitNominalCONSTructeur.Size = New System.Drawing.Size(56, 20)
+                TextBox_debitNominalCONSTructeur.Text = ""
+                AddHandler TextBox_debitNominalCONSTructeur.TextChanged, AddressOf DebitNominalCONSTructeur_TextChanged
+                AddHandler TextBox_debitNominalCONSTructeur.KeyPress, AddressOf diagBuses_KeyPress
 
                 'Débit nominal pour calcul *
                 Dim label_debitNominal As New Label
@@ -2135,8 +2135,8 @@ Public Class tool_diagBuses
     '#####################################################
 
     ' Changement debit nominal constructeur
-    Private Sub debitNominalConstructeur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim lotId As Integer = CType(sender.name.replace("TextBox_debitNominalConstructeur_", ""), Integer)
+    Private Sub DebitNominalCONSTructeur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Dim lotId As Integer = CType(sender.name.replace("TextBox_debitNominalCONSTructeur_", ""), Integer)
         fillDebitNom(lotId)
         mutCalcNbBusesUsed()
         mutCalcUsureMoyBuses()
@@ -2402,13 +2402,13 @@ Public Class tool_diagBuses
 
     ' rempli le debit nominal pour calcul
     Private Sub fillDebitNom(ByVal lotId As Integer)
-        Dim debitNomConstTextbox As TextBox = CSForm.getControlByName("TextBox_debitNominalConstructeur_" & lotId, diagBuses_tab_categories)
+        Dim debitNomCONSTTextbox As TextBox = CSForm.getControlByName("TextBox_debitNominalCONSTructeur_" & lotId, diagBuses_tab_categories)
         Dim debitNomCalcTextbox As TextBox = CSForm.getControlByName("TextBox_debitNominal_" & lotId, diagBuses_tab_categories)
         Dim debitMoyBusesTextbox As TextBox = CSForm.getControlByName("TextBox_debitMoyen_" & lotId, diagBuses_tab_categories)
-        If debitNomConstTextbox.Text = "" Then
+        If debitNomCONSTTextbox.Text = "" Then
             debitNomCalcTextbox.Text = debitMoyBusesTextbox.Text
         Else
-            debitNomCalcTextbox.Text = debitNomConstTextbox.Text
+            debitNomCalcTextbox.Text = debitNomCONSTTextbox.Text
         End If
     End Sub
 

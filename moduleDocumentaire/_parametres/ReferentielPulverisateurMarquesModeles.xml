@@ -25,8 +25,6 @@
     <modeles>
       <modele>INCONNU</modele>
       <modele>CONDOR</modele>
-      <modele>test</modele>
-      <modele>test2</modele>
     </modeles>
   </marque>
   <marque>
@@ -85,12 +83,16 @@
       <modele>SF</modele>
       <modele>PANTERA</modele>
       <modele>UX SPECIAL</modele>
+      <modele>UX MEDIUM</modele>
     </modeles>
   </marque>
   <marque>
     <libelle>AMP SPRAYERS</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>MK</modele>
+      <modele>PULMATIC</modele>
+      <modele>WORKER</modele>
     </modeles>
   </marque>
   <marque>
@@ -98,6 +100,12 @@
     <modeles>
       <modele>INCONNU</modele>
       <modele>ATOM</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>ANFER</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
@@ -125,6 +133,7 @@
       <modele>OPTIMUM</modele>
       <modele>ATLON</modele>
       <modele>EPTIMA</modele>
+      <modele>HELIUM</modele>
       <modele>HYBRIDE</modele>
       <modele>RS20</modele>
       <modele>PREMIUM</modele>
@@ -144,6 +153,12 @@
     <libelle>ATASA</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>ANDALUCIA</modele>
+      <modele>ARES</modele>
+      <modele>BASIC</modele>
+      <modele>COMPAC PLUS</modele>
+      <modele>EURO COMPAC</modele>
+      <modele>EVOLUTION</modele>
     </modeles>
   </marque>
   <marque>
@@ -160,10 +175,21 @@
     </modeles>
   </marque>
   <marque>
+    <libelle>AUTRAN</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>AUTRAN ET MAB</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+    </modeles>
+  </marque>
+  <marque>
     <libelle>AUTRE</libelle>
     <modeles>
       <modele>INCONNU</modele>
-      <modele>AUTOCONSTRUCTION</modele>
     </modeles>
   </marque>
   <marque>
@@ -174,6 +200,13 @@
       <modele>JUNIOR</modele>
       <modele>SINGLE</modele>
       <modele>TURBLOW</modele>
+      <modele>TRIPROP</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>BALLESTE</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
@@ -193,12 +226,18 @@
       <modele>ECO MEC</modele>
       <modele>ELIOS</modele>
       <modele>GIPA</modele>
+      <modele>GRIMAC</modele>
+      <modele>GRIMPEUR</modele>    
       <modele>IRIS</modele>
+      <modele>JET CONTROL</modele>
+      <modele>JET GITA</modele>
       <modele>MEC</modele>
       <modele>SPECIAL</modele>
       <modele>SUPER</modele>
       <modele>TURBO AP</modele>
       <modele>TURBO AT</modele>
+      <modele>PMG</modele>
+      <modele>POLI</modele>
     </modeles>
   </marque>
   <marque>
@@ -305,6 +344,12 @@
     </modeles>
   </marque>
   <marque>
+    <libelle>BERTONI</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+    </modeles>
+  </marque>
+  <marque>
     <libelle>BEYNE</libelle>
     <modeles>
       <modele>INCONNU</modele>
@@ -400,7 +445,7 @@
       <modele>PM</modele>
       <modele>PP</modele>
       <modele>PRIMA</modele>
-      <modele>ROBOT UTRBO</modele>
+      <modele>ROBOT TURBO</modele>
     </modeles>
   </marque>
   <marque>
@@ -420,6 +465,12 @@
     <modeles>
       <modele>INCONNU</modele>
       <modele>SPEED COMPACT</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>BRINKMAN</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
@@ -482,6 +533,10 @@
       <modele>PROJECT</modele>
       <modele>STANDARD</modele>
       <modele>VIGNETTO</modele>
+      <modele>COMPETITION</modele>
+      <modele>EUROTECH</modele>
+      <modele>FRUTTETO</modele>
+      <modele>GEMINY</modele>
     </modeles>
   </marque>
   <marque>
@@ -561,8 +616,14 @@
       <modele>POLYQUAD</modele>
       <modele>NYMPHEOS FC</modele>
       <modele>DEMEOS</modele>
+      <modele>DEMEOS BETA</modele>
+      <modele>DEMEOS KAPPA</modele>
+      <modele>DEMEOS ZETA</modele>
       <modele>INTEGRAL</modele>
       <modele>STARMATIC</modele>
+      <modele>STILLA</modele>
+      <modele>UNIFARM</modele>
+      <modele>VOLUSTAT</modele>
     </modeles>
   </marque>
   <marque>
@@ -579,6 +640,12 @@
       <modele>PATRIOT 3330</modele>
       <modele>PATRIOT 3340</modele>
       <modele>PATRIOT 4430</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>CASTAING</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
@@ -630,6 +697,7 @@
       <modele>RHONE</modele>
       <modele>CHARENTES</modele>
       <modele>ALSAZIA PERFECT</modele>
+      <modele>ALSAZIA</modele>
       <modele>PERFECTION</modele>
       <modele>VITISTAR</modele>
       <modele>POLY</modele>
@@ -639,11 +707,19 @@
     <libelle>CHABAS</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>ATI</modele>
       <modele>B 612</modele>
       <modele>B 412</modele>
       <modele>B 612 COGNAC</modele>
       <modele>B 612 VAR</modele>
       <modele>B 120</modele>
+      <modele>M120 LOIRE</modele>
+      <modele>M120 LUBERON</modele>
+      <modele>M120 MULTI VITI</modele>
+      <modele>M612 COGNAC</modele>
+      <modele>M612 TURBO 3</modele>
+      <modele>M612 VITI AXIS</modele>
+      <modele>STK</modele>
     </modeles>
   </marque>
   <marque>
@@ -684,12 +760,21 @@
       <modele>PLUS 50</modele>
       <modele>PLUS 55</modele>
       <modele>SPIDER 55</modele>
+      <modele>BASSO VOLUME</modele>
+      <modele>P 40</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>CLM</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
     <libelle>CM</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>DTST</modele>
     </modeles>
   </marque>
   <marque>
@@ -729,6 +814,7 @@
       <modele>HYDRO-TRAC</modele>
       <modele>EURO-TRAC</modele>
       <modele>STM</modele>
+      <modele>DEAK</modele>
       <modele>EAK</modele>
       <modele>HD3</modele>
       <modele>HDL</modele>
@@ -760,6 +846,7 @@
       <modele>STF 18 D+</modele>
       <modele>STF 11 D+</modele>
       <modele>TURBINE MIXTE</modele>
+      <modele>STANDAARD Z</modele>
     </modeles>
   </marque>
   <marque>
@@ -774,6 +861,8 @@
       <modele>INCONNU</modele>
       <modele>KOLEOS</modele>
       <modele>PYTHEO</modele>
+      <modele>BIP</modele>
+      <modele>YONISOS</modele>
     </modeles>
   </marque>
   <marque>
@@ -784,12 +873,32 @@
     </modeles>
   </marque>
   <marque>
+    <libelle>DUISSARD</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+    </modeles>
+  </marque>
+  <marque>
     <libelle>DRAGONE</libelle>
     <modeles>
       <modele>INCONNU</modele>
       <modele>GR</modele>
       <modele>ATHOS</modele>
       <modele>K1-K2</modele>
+      <modele>BMA</modele>
+      <modele>GAMMA</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>DUOPRO</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>EMPAS</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
@@ -828,12 +937,15 @@
       <modele>METEOR</modele>
       <modele>ALPHA EVO ECODRIVE</modele>
       <modele>BEARN</modele>
+      <modele>TM</modele>
     </modeles>
   </marque>
   <marque>
     <libelle>FAGETTE</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>COMPACT</modele>
+      <modele>COMPACT AXI</modele>
     </modeles>
   </marque>
   <marque>
@@ -846,6 +958,7 @@
     <libelle>FAVARO</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>BACCO</modele>
       <modele>GO 32</modele>
       <modele>NI</modele>
       <modele>OVS 25</modele>
@@ -877,6 +990,7 @@
       <modele>CENTAURO</modele>
       <modele>SPB</modele>
       <modele>SPT</modele>
+      <modele>ATS</modele>
     </modeles>
   </marque>
   <marque>
@@ -888,7 +1002,10 @@
       <modele>PLN PE</modele>
       <modele>PLN BILATO</modele>
       <modele>PLN TOWER</modele>
+      <modele>P PR</modele>
       <modele>NAZA</modele>
+      <modele>NAZA INFINITY</modele>
+      <modele>NAZA TOWER</modele>
       <modele>SPRAY MASTER</modele>
       <modele>SPRAYMIST</modele>
       <modele>SPD</modele>
@@ -901,7 +1018,9 @@
     <modeles>
       <modele>INCONNU</modele>
       <modele>EF 115</modele>
+      <modele>EF 90</modele>
       <modele>AIGLON</modele>
+      <modele>JUPITER</modele>
     </modeles>
   </marque>
   <marque>
@@ -911,6 +1030,7 @@
       <modele>AIR TANDEM</modele>
       <modele>APS</modele>
       <modele>APS AA</modele>
+      <modele>APX BORA</modele>
       <modele>ATC I</modele>
       <modele>ATI/7</modele>
       <modele>ATV/7</modele>
@@ -956,6 +1076,13 @@
     <modeles>
       <modele>INCONNU</modele>
       <modele>LG</modele>
+      <modele>PMG</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>GARMELET</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
@@ -968,8 +1095,13 @@
     <libelle>GASPARDO</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>CAMPO</modele>
+      <modele>CAMPO C</modele>
+      <modele>CAMPO P</modele>
+      <modele>GIOVE</modele>
       <modele>POMPEO P</modele>
       <modele>POMPEO S</modele>
+      <modele>SATURNO</modele>
       <modele>SIRIO</modele>
       <modele>URGANO</modele>
     </modeles>
@@ -999,6 +1131,9 @@
     <libelle>GIRAUD</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>PULVO</modele>
+      <modele>PULVO T</modele>
+      <modele>PULVO TS</modele>
     </modeles>
   </marque>
   <marque>
@@ -1015,12 +1150,26 @@
       <modele>SPEEDFLOW VARIO +</modele>
       <modele>SPEEDFLOW FIRST</modele>
       <modele>SPEEDFLOW PROGRESS</modele>
+      <modele>SPEEDFLOW XTENS</modele>
       <modele>POWERFLOW VTD</modele>
       <modele>POWERFLOW TTA</modele>
       <modele>POWERFLOW VTE</modele>
+      <modele>POWERFLOW VTI</modele>
       <modele>POWERFLOW TBA</modele>
       <modele>PNC</modele>
       <modele>PNL</modele>
+      <modele>DX PLUS</modele>
+      <modele>ECOPROTECT</modele>
+      <modele>ISO OPTIMA</modele>
+      <modele>ISO ULTIMA</modele>
+      <modele>MULTIFLOW PROGRESS IDEA</modele>
+      <modele>MULTIFLOW PROGRESS QUATTRO</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>GROSJEAN</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
@@ -1042,12 +1191,14 @@
       <modele>INCONNU</modele>
       <modele>C</modele>
       <modele>U</modele>
+      <modele>DUAL FLOW</modele>
       <modele>HIGHFLOW</modele>
       <modele>UNIFLOW</modele>
       <modele>SUPERFLOW</modele>
       <modele>TOPFLOW</modele>
       <modele>PACKFLOW</modele>
       <modele>EXXAFLOW</modele>
+      <modele>CULTURE</modele>
     </modeles>
   </marque>
   <marque>
@@ -1095,10 +1246,31 @@
       <modele>TP EXPORT</modele>
       <modele>ZATURN</modele>
       <modele>ARROW F</modele>
+      <modele>CANON</modele>
+      <modele>JUPITER</modele>
+      <modele>LUNIS</modele>
     </modeles>
   </marque>
   <marque>
     <libelle>HD</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>HERVE MAURICO</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>EVO</modele>
+      <modele>EVO MAX</modele>
+      <modele>EVO PLUS</modele>
+      <modele>HM1</modele>
+      <modele>HM2</modele>
+      <modele>HM3</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>HEYWANG</libelle>
     <modeles>
       <modele>INCONNU</modele>
     </modeles>
@@ -1123,6 +1295,10 @@
       <modele>INCONNU</modele>
       <modele>2000 GD</modele>
       <modele>GS</modele>
+      <modele>LEEB GS</modele>
+      <modele>LEEB LT</modele>
+      <modele>LEEB PT 280</modele>
+      <modele>LEEB PT 330</modele>
     </modeles>
   </marque>
   <marque>
@@ -1148,15 +1324,19 @@
       <modele>CHARENTES</modele>
       <modele>ALSAZIA PERFECT</modele>
       <modele>PERFECTION</modele>
+      <modele>PHANTOM</modele>
       <modele>CELLULE DIVA</modele>
       <modele>CELLULE PRIMA</modele>
       <modele>CELLULE SUPRA</modele>
       <modele>FALCON</modele>
+      <modele>GEORGIA</modele>
       <modele>CELLULE ORION</modele>
       <modele>PAN-S</modele>
       <modele>PAN-T</modele>
       <modele>SPECIAL</modele>
       <modele>VITISTAR</modele>
+      <modele>ALSAZIA</modele>
+      <modele>POLY</modele>
     </modeles>
   </marque>
   <marque>
@@ -1169,6 +1349,7 @@
   <marque>
     <libelle>INCONNUE</libelle>
     <modeles>
+      <modele>AUTOCONSTRUCTION</modele>
       <modele>INCONNU</modele>
     </modeles>
   </marque>
@@ -1182,6 +1363,7 @@
     <libelle>JACOBY</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>ECOTRAIN</modele>
       <modele>EUROLUX TM</modele>
       <modele>EUROLUX TL</modele>
       <modele>EUROLUX TLE</modele>
@@ -1213,7 +1395,11 @@
       <modele>624</modele>
       <modele>5430 I</modele>
       <modele>M700</modele>
+      <modele>M800</modele>
       <modele>M900</modele>
+      <modele>R4040 I</modele>
+      <modele>R4050 I</modele>
+      <modele>R900 I</modele>
     </modeles>
   </marque>
   <marque>
@@ -1222,8 +1408,21 @@
       <modele>INCONNU</modele>
     </modeles>
   </marque>
+   <marque>
+    <libelle>KELLANDS</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>AGRIBUGGY</modele>
+    </modeles>
+  </marque>
   <marque>
     <libelle>KINKELDER</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>KREMER</libelle>
     <modeles>
       <modele>INCONNU</modele>
     </modeles>
@@ -1262,12 +1461,20 @@
       <modele>PORTER PKD</modele>
       <modele>ALULIGHT</modele>
       <modele>METRIS</modele>
+      <modele>LEXIS</modele>
+      <modele>OPTIS</modele>
     </modeles>
   </marque>
   <marque>
     <libelle>KVERNELAND</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>IKARUS S</modele>
+      <modele>IXTER</modele>
+      <modele>IXTRACK A</modele>
+      <modele>IXTRACK B</modele>
+      <modele>IXTRACK B PREMIUM</modele>
+      <modele>IXTRACK C</modele>
     </modeles>
   </marque>
   <marque>
@@ -1302,7 +1509,9 @@
       <modele>EUROLUX TLE</modele>
       <modele>EUROTRAIN</modele>
       <modele>SIRIUS 7</modele>
+      <modele>SIRIUS 8</modele>
       <modele>SIRIUS 9</modele>
+      <modele>SIRIUS 10</modele>
       <modele>ALBATROS</modele>
       <modele>PRIMUS</modele>
     </modeles>
@@ -1313,6 +1522,11 @@
       <modele>INCONNU</modele>
       <modele>AP</modele>
       <modele>APS</modele>
+      <modele>BP</modele>
+      <modele>RA</modele>
+      <modele>RAS</modele>
+      <modele>RP</modele>
+      <modele>RPS</modele>
     </modeles>
   </marque>
   <marque>
@@ -1367,7 +1581,18 @@
       <modele>MAESTRIA 18</modele>
       <modele>M24D HELIOS</modele>
       <modele>XENON</modele>
+      <modele>XENON EXPERT</modele>
+      <modele>XENON PRO</modele>
       <modele>HELLIOS</modele>
+      <modele>HELLIOS II</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>MAZZOTTI</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>IBIS</modele>
+      <modele>MAF</modele>
     </modeles>
   </marque>
   <marque>
@@ -1381,6 +1606,7 @@
     <modeles>
       <modele>INCONNU</modele>
       <modele>EV</modele>
+      <modele>G2</modele>
       <modele>N</modele>
       <modele>VARIANT</modele>
       <modele>VV</modele>
@@ -1418,13 +1644,19 @@
     </modeles>
   </marque>
   <marque>
-    <libelle>MUNSCHKOF</libelle>
+    <libelle>MUNCHKOF</libelle>
     <modeles>
       <modele>INCONNU</modele>
       <modele>BASIC</modele>
       <modele>MAS</modele>
       <modele>TUNNEL</modele>
       <modele>LTR</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>MYERS</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
@@ -1444,6 +1676,10 @@
       <modele>MAGISTRAL ASD</modele>
       <modele>ALIZE AERO</modele>
       <modele>ALIZE VOUTE VIGNE</modele>
+      <modele>AIR ONE</modele>
+      <modele>ALIZE</modele>
+      <modele>IMPERATOR</modele>
+      <modele>SPIRIT</modele>
     </modeles>
   </marque>
   <marque>
@@ -1453,6 +1689,17 @@
       <modele>HRS50</modele>
       <modele>HRS70</modele>
       <modele>HY22/2010</modele>
+      <modele>TS 8</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>NIUBO</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>DEMON</modele>
+      <modele>OCTOPUS</modele>
+      <modele>STAR TOWER</modele>
+      <modele>TOWER</modele>
     </modeles>
   </marque>
   <marque>
@@ -1465,6 +1712,8 @@
       <modele>GEO</modele>
       <modele>GEO 45</modele>
       <modele>OKTOPUSS</modele>
+      <modele>ECO</modele>
+      <modele>VENTIS</modele>
     </modeles>
   </marque>
   <marque>
@@ -1475,11 +1724,12 @@
       <modele>KVX</modele>
       <modele>TOP TRAINER</modele>
       <modele>TOP TRAINER TRIOMPHE</modele>
-      <modele>TOP TRAINER JUNIOR</modele>
+      <modele>TOP TRAINER</modele>
       <modele>PERFORMER</modele>
       <modele>ECLAT</modele>
       <modele>ALULIGHT</modele>
       <modele>PERFORMER ECLAT</modele>
+      <modele>TOUTALU</modele>
     </modeles>
   </marque>
   <marque>
@@ -1496,6 +1746,8 @@
     <libelle>OLITE</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>ISA</modele>
+      <modele>ISA 7F</modele>
     </modeles>
   </marque>
   <marque>
@@ -1520,13 +1772,27 @@
     <libelle>PARIS</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>COLOMBIA</modele>
+      <modele>EP 65</modele>
       <modele>EP 65 (PN RST)</modele>
       <modele>EP 70</modele>
       <modele>EP 60</modele>
+      <modele>EPS 65</modele>
+      <modele>EPS 70</modele>
       <modele>PN C</modele>
       <modele>PN P</modele>
       <modele>TB</modele>
       <modele>VD</modele>
+      <modele>TA</modele>
+      <modele>TBP</modele>
+      <modele>VD</modele>
+      <modele>VTD</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>PAULJET</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
@@ -1534,6 +1800,7 @@
     <modeles>
       <modele>INCONNU</modele>
       <modele>EOLE</modele>
+      <modele>EOLE 2</modele>
     </modeles>
   </marque>
   <marque>
@@ -1561,6 +1828,13 @@
     </modeles>
   </marque>
   <marque>
+    <libelle>POMMIER</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>HYBRIDE</modele>
+    </modeles>
+  </marque>
+  <marque>
     <libelle>PRECICULTURE</libelle>
     <modeles>
       <modele>INCONNU</modele>
@@ -1576,6 +1850,7 @@
       <modele>ECO MAXI</modele>
       <modele>MAXI TURBO</modele>
       <modele>MAXI PNEUS</modele>
+      <modele>MIXER</modele>
     </modeles>
   </marque>
   <marque>
@@ -1584,6 +1859,8 @@
       <modele>INCONNU</modele>
       <modele>UNIFLOW</modele>
       <modele>MECATOL</modele>
+      <modele>C</modele>
+      <modele>CULTURE</modele>
     </modeles>
   </marque>
   <marque>
@@ -1594,6 +1871,13 @@
       <modele>PH</modele>
       <modele>PM</modele>
       <modele>S</modele>
+      <modele>S20</modele>
+      <modele>S25</modele>
+      <modele>S30</modele>
+      <modele>S30S</modele>
+      <modele>S35</modele>
+      <modele>S42</modele>
+      <modele>T30</modele>
     </modeles>
   </marque>
   <marque>
@@ -1602,10 +1886,13 @@
       <modele>INCONNU</modele>
       <modele>EUROP</modele>
       <modele>IMPERIAL</modele>
+      <modele>PA</modele>
+      <modele>PP</modele>
       <modele>TXI</modele>
       <modele>TXII</modele>
       <modele>TA</modele>
       <modele>TP</modele>
+      <modele>TX</modele>
     </modeles>
   </marque>
   <marque>
@@ -1618,7 +1905,11 @@
     <libelle>RAU</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>EXPLORER</modele>
+      <modele>EXPLORER B</modele>
+      <modele>EXPLORER C</modele>
       <modele>SPRIMAT L</modele>
+      <modele>SPRIDOMAT</modele>
       <modele>SPRIDOMAT D2</modele>
       <modele>SPRIDOMAT D3</modele>
       <modele>SPRIDOTRAIN</modele>
@@ -1626,7 +1917,16 @@
       <modele>SPRIDOPORT FT</modele>
       <modele>XYLON TX</modele>
       <modele>JCB FASTRACK TF</modele>
+      <modele>LS</modele>
+      <modele>RANGER</modele>
       <modele>IBIS</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>ROCHA</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>ELEGANCE</modele>
     </modeles>
   </marque>
   <marque>
@@ -1655,11 +1955,22 @@
     </modeles>
   </marque>
   <marque>
+    <libelle>SAM</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+    </modeles>
+  </marque>
+  <marque>
     <libelle>SANZ</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>GE</modele>
       <modele>ISA 7F</modele>
+      <modele>ISA 9F</modele>
+      <modele>MAJOR</modele>
       <modele>OLITE</modele>
+      <modele>SR</modele>
+      <modele>SU</modele>
     </modeles>
   </marque>
   <marque>
@@ -1687,6 +1998,7 @@
       <modele>SPECTRA</modele>
       <modele>SWING</modele>
       <modele>APX FC</modele>
+      <modele>XS 460</modele>
     </modeles>
   </marque>
   <marque>
@@ -1694,6 +2006,7 @@
     <modeles>
       <modele>INCONNU</modele>
       <modele>MAJOR</modele>
+      <modele>MAJOR T</modele>
     </modeles>
   </marque>
   <marque>
@@ -1736,6 +2049,17 @@
     </modeles>
   </marque>
   <marque>
+    <libelle>SPRAY-TECH</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>AMT</modele>
+      <modele>ATV 200</modele>
+      <modele>ATV200-BL30</modele>
+      <modele>ECS 250</modele>
+      <modele>ES 300</modele>
+    </modeles>
+  </marque>
+  <marque>
     <libelle>SPRAYTEC</libelle>
     <modeles>
       <modele>INCONNU</modele>
@@ -1751,7 +2075,17 @@
     <libelle>TALLERES CORBINS</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>AS</modele>
+      <modele>LEXON</modele>
+      <modele>LEXON BP</modele>
+      <modele>LEXON PLUS</modele>
+      <modele>LEXON R</modele>
       <modele>MASTER TOP</modele>
+      <modele>MASTER TORRE</modele>
+      <modele>MEGA TOP</modele>
+      <modele>MEGA TORRE</modele>
+      <modele>MEGA TWIN</modele>
+      <modele>TWISTER</modele>      
     </modeles>
   </marque>
   <marque>
@@ -1760,6 +2094,7 @@
       <modele>INCONNU</modele>
       <modele>PULVQUAD</modele>
       <modele>MULTISPRAY</modele>
+      <modele>AUTOFLO</modele>
       <modele>AZUR</modele>
       <modele>PRIMATEC</modele>
       <modele>PREMIS</modele>
@@ -1809,7 +2144,10 @@
       <modele>CELLULE MAGNUM PNEUMATIQUE</modele>
       <modele>DUO</modele>
       <modele>LASER FC</modele>
+      <modele>MAGNUM</modele>
       <modele>XENIS</modele>
+      <modele>PRECIJET</modele>
+      <modele>VECTIS ARBOJET</modele>
     </modeles>
   </marque>
   <marque>
@@ -1847,14 +2185,26 @@
       <modele>PM 46</modele>
       <modele>TM 46</modele>
       <modele>TM 460</modele>
+      <modele>ALIZE</modele>
     </modeles>
   </marque>
   <marque>
     <libelle>TIFONE</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>BRAVO</modele>
+      <modele>COBRA</modele>
+      <modele>EASY VARIO</modele>
+      <modele>MINI</modele>
       <modele>STORM</modele>
+      <modele>STORM PERSONNAL</modele>
+      <modele>TIFON</modele>
       <modele>UNIX</modele>
+      <modele>VECTOR</modele>
+      <modele>VECTOR BIG</modele>
+      <modele>VENTO</modele>
+      <modele>VENTO ICAT</modele>
+      <modele>VRP</modele>
       <modele>VRT</modele>
     </modeles>
   </marque>
@@ -1867,11 +2217,13 @@
       <modele>TR / SUPER</modele>
       <modele>FUTUR</modele>
       <modele>LEADER</modele>
-      <modele>OLOVAL</modele>
-      <modele>PALMERA</modele>
+      <modele>OLIVAL</modele>
+      <modele>PALMETA</modele>
       <modele>CAMPO</modele>
       <modele>PK</modele>
       <modele>ST</modele>
+      <modele>DTV</modele>
+      <modele>ECO</modele>
     </modeles>
   </marque>
   <marque>
@@ -1886,6 +2238,7 @@
     <libelle>TOSELLA</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>GDP</modele>
     </modeles>
   </marque>
   <marque>
@@ -1918,6 +2271,7 @@
       <modele>TEUTON</modele>
       <modele>VELA</modele>
       <modele>WORK</modele>
+      <modele>FULLSPRAY</modele>
     </modeles>
   </marque>
   <marque>
@@ -1968,17 +2322,37 @@
       <modele>EXPERT</modele>
       <modele>IXTER</modele>
       <modele>EXPLORER</modele>
+      <modele>EXPLORER B</modele>
+      <modele>EXPLORER C</modele>
       <modele>IXTRACK</modele>
       <modele>IXTRACK A</modele>
       <modele>IXTRACK B</modele>
       <modele>IXTRACK C</modele>
       <modele>PREMIUM B</modele>
+      <modele>SPRIDOMAT</modele>
+      <modele>SPRIDOMAT D2</modele>
+      <modele>SPRIDOMAT D3</modele>
+      <modele>SPRIMAT L</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>VOGEL NOOT</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>PHAROS</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>WANJET</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
     </modeles>
   </marque>
   <marque>
     <libelle>WANNER</libelle>
     <modeles>
       <modele>INCONNU</modele>
+      <modele>D</modele>
       <modele>D 36A</modele>
       <modele>D 36 GA</modele>
       <modele>DA 28</modele>
@@ -1986,14 +2360,75 @@
       <modele>DAL 24</modele>
       <modele>DAL 28</modele>
       <modele>DGR 40</modele>
+      <modele>G</modele>
       <modele>G 200</modele>
       <modele>G 300</modele>
+      <modele>K</modele>
+      <modele>N</modele>
       <modele>N 36-A</modele>
       <modele>N 42-A</modele>
       <modele>N 48-A</modele>
       <modele>NA 28</modele>
       <modele>NA 32</modele>
+      <modele>S</modele>
       <modele>SZA 24</modele>
+    </modeles>
+  </marque>
+  <marque>
+    <libelle>WEBER</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>AS</modele>
+    </modeles>
+  </marque>
+<marque>
+    <libelle>SEMOIR</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>ACCORD</modele>
+      <modele>AMAZONE</modele>
+      <modele>BECKER</modele>
+      <modele>GASPARDO</modele>
+      <modele>HERRIAU</modele>
+      <modele>HORSH</modele>
+      <modele>JOHN DEERE</modele>
+      <modele>KLEINE</modele>
+      <modele>KUHN</modele>
+      <modele>KVERNELAND</modele>
+      <modele>LELY</modele>
+      <modele>MASCHIO</modele>
+      <modele>MATERMACC</modele>
+      <modele>NONOSEM</modele>
+      <modele>NODET</modele>
+      <modele>RAU</modele>
+      <modele>RIBOULEAU</modele>
+      <modele>SAMCO</modele>
+      <modele>VADERSTAD</modele>      
+    </modeles>
+  </marque>
+<marque>
+    <libelle>BINEUSE</libelle>
+    <modeles>
+      <modele>INCONNU</modele>
+      <modele>AGRAM</modele>
+      <modele>AGRONOMIC</modele>
+      <modele>CARRE</modele>
+      <modele>EINBOCK</modele>
+      <modele>GASPARDO</modele>
+      <modele>HATZENBICHLER</modele>
+      <modele>KONGSKILDE</modele>
+      <modele>MATERMACC</modele>
+      <modele>MONOSEM</modele>
+      <modele>QUIVOGNE</modele>
+      <modele>RIBOULEAU</modele>
+    </modeles>
+  </marque>
+<marque>
+    <libelle>PLANTEUSE</libelle>
+    <modeles>
+      <modele>AGRONOMIC</modele>
+      <modele>GRIMME</modele>
+      <modele>MIEDEMER</modele>
     </modeles>
   </marque>
 </root>

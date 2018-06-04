@@ -13,7 +13,7 @@ Module CSSoftwareUpdate
         Else
             CSSoftwareUpdate.majSoftware()
         End If
-        config_vars.Init()
+        Globals.Init()
     End Sub
 
     Private _thread_majSoftware As Thread
@@ -34,24 +34,25 @@ Module CSSoftwareUpdate
     End Sub
 
     Public Function checkMAJ() As Boolean
-
+        Dim bReturn As Boolean = False
         Try
 
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
 
             Dim wsResponse As Object
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(GLOB_APPLI_BUILD, wsResponse)
+            Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(Globals.GLOB_APPLI_BUILD, wsResponse)
 
             If codeResponse = 2 Then
-                Return True
+                bReturn = True
             End If
 
         Catch ex As Exception
             CSDebug.dispError("CSSoftwareUpdate.checkMAJ() : " & ex.Message)
+            bReturn = False
         End Try
 
-        Return False
+        Return bReturn
 
     End Function
 

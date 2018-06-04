@@ -19,7 +19,7 @@ Public Class AutoTestManager
             If tmpResults.HasRows Then
                 While tmpResults.Read()
                     oReturn = New AutoTest(pAgent)
-                    '# Construction de l'objet
+                    '# construction de l'objet
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpResults.FieldCount()
                         If Not tmpResults.IsDBNull(tmpColId) Then
@@ -229,7 +229,7 @@ Public Class AutoTestManager
                 '################################################################
                 Dim i As Integer = 0
                 While oDBReader.Read()
-                    '# Construction de l'objet
+                    '# construction de l'objet
                     Dim tmpObject As New ControleMano(pAgent)
                     Dim tmpColId As Integer = 0
                     Dim oDBCtrl As New AutoTest(pAgent)
@@ -346,7 +346,7 @@ Public Class AutoTestManager
                         i = i + 1
                     Next
                     Dim response As Integer = objWSCrodip.SendAutoTest(ArrObject)
-                    If response = 0 Or response = 2 Or (GLOB_ENV_DEBUG And response = 9) Then
+                    If response = 0 Or response = 2 Or (Globals.GLOB_ENV_DEBUG And response = 9) Then
                         'Mise à jour de la date de synchro (date Modification CRODIP)
                         For Each obj As AutoTest In oCol
                             obj.dateModificationCrodip = CSDate.ToCRODIPString(Now())

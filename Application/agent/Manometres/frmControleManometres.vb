@@ -2519,7 +2519,7 @@ Public Class frmControleManometres
 
         ' On récupère la classe de précision du mano courant
         'Dim tmpClassePrecision As Double
-        'tmpClassePrecision = StringToDouble(curMano.classe)
+        'tmpClassePrecision = Globals.StringToDouble(curMano.classe)
 
         ' On récupère l'écart maximum
         For i As Integer = 1 To nbMesures
@@ -2541,12 +2541,12 @@ Public Class frmControleManometres
                 Dim tmpValueIncetitudeDecroissant As Double = 0.0
                 Dim tmpValueEmtCroissant As Double = 0.0
                 Dim tmpValueEmtDecroissant As Double = 0.0
-                tmpValueCroissant = StringToDouble(tmpInputCroissant.Text)
-                tmpValueDecroissant = StringToDouble(tmpInputDecroissant.Text)
-                tmpValueIncetitudeCroissant = StringToDouble(tmpInputIncetitudeCroissant.Text)
-                tmpValueIncetitudeDecroissant = StringToDouble(tmpInputIncetitudeDecroissant.Text)
-                tmpValueEmtCroissant = StringToDouble(tmpInputEmtCroissant.Text)
-                tmpValueEmtDecroissant = StringToDouble(tmpInputEmtDecroissant.Text)
+                tmpValueCroissant = Globals.StringToDouble(tmpInputCroissant.Text)
+                tmpValueDecroissant = Globals.StringToDouble(tmpInputDecroissant.Text)
+                tmpValueIncetitudeCroissant = Globals.StringToDouble(tmpInputIncetitudeCroissant.Text)
+                tmpValueIncetitudeDecroissant = Globals.StringToDouble(tmpInputIncetitudeDecroissant.Text)
+                tmpValueEmtCroissant = Globals.StringToDouble(tmpInputEmtCroissant.Text)
+                tmpValueEmtDecroissant = Globals.StringToDouble(tmpInputEmtDecroissant.Text)
 
                 '##############################################################################################
                 'If tmpValueCroissant > maxEcart Then
@@ -2576,7 +2576,7 @@ Public Class frmControleManometres
                 'on compare l'ecart absolu avec l'EMT (Ecart Maximum toléré) sans prendre en compte l'incertitude
                 ' Croissant
                 If Not String.IsNullOrEmpty(tmpInputErreurAbsolueCroissant.Text) Then
-                    If Math.Abs(StringToDouble(tmpInputErreurAbsolueCroissant.Text)) <= tmpValueEmtCroissant Then
+                    If Math.Abs(Globals.StringToDouble(tmpInputErreurAbsolueCroissant.Text)) <= tmpValueEmtCroissant Then
                         tmpInputCroissant.ForeColor = System.Drawing.Color.Green
                         tmpInputErreurAbsolueCroissant.ForeColor = System.Drawing.Color.Green
                         tmpInputCroissantIntrumentReference.ForeColor = System.Drawing.Color.Green
@@ -2592,7 +2592,7 @@ Public Class frmControleManometres
 
                 ' Decroissant
                 If Not String.IsNullOrEmpty(tmpInputErreurAbsolueDecroissant.Text) Then
-                    If Math.Abs(StringToDouble(tmpInputErreurAbsolueDecroissant.Text)) <= tmpValueEmtDecroissant Then
+                    If Math.Abs(Globals.StringToDouble(tmpInputErreurAbsolueDecroissant.Text)) <= tmpValueEmtDecroissant Then
                         tmpInputDecroissant.ForeColor = System.Drawing.Color.Green
                         tmpInputErreurAbsolueDecroissant.ForeColor = System.Drawing.Color.Green
                         tmpInputDecroissantIntrumentReference.ForeColor = System.Drawing.Color.Green
@@ -2838,10 +2838,10 @@ Public Class frmControleManometres
             If bCalc Then
 
                 ' On récupère les valeurs
-                valueCapteurTeste = StringToDouble(inputCapteurTeste.Text)
-                valueInstrumentReference = StringToDouble(inputInstrumentReference.Text)
-                valueManoEtalon_fondEchelle = StringToDouble(labelInfoEtalon_fondEchelle.Text)
-                valueMano_fondEchelle = StringToDouble(thisMano.fondEchelle)
+                valueCapteurTeste = Globals.StringToDouble(inputCapteurTeste.Text)
+                valueInstrumentReference = Globals.StringToDouble(inputInstrumentReference.Text)
+                valueManoEtalon_fondEchelle = Globals.StringToDouble(labelInfoEtalon_fondEchelle.Text)
+                valueMano_fondEchelle = Globals.StringToDouble(thisMano.fondEchelle)
 
 
                 ' Incertitude
@@ -2906,7 +2906,7 @@ Public Class frmControleManometres
             Case "25"
                 dReturn = 0.25
             Case Else
-                dReturn = CDbl(Math.Round((StringToDouble(pMano.classe) * StringToDouble(pMano.fondEchelle) / 100), 2))
+                dReturn = CDbl(Math.Round((Globals.StringToDouble(pMano.classe) * Globals.StringToDouble(pMano.fondEchelle) / 100), 2))
         End Select
 
         Return dReturn

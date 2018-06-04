@@ -443,7 +443,7 @@ Partial Class frmDiagnostiqueSimple
         Me.LblModele_NombreDeBuses = New System.Windows.Forms.Label()
         Me.tbModele_DebitNominalContructeur = New CRODIP_ControlLibrary.TBNumeric()
         Me.lblModele_EcartTolere = New System.Windows.Forms.Label()
-        Me.lblModele_DebitNominalConstructeur = New System.Windows.Forms.Label()
+        Me.lblModele_DebitNominalCONSTructeur = New System.Windows.Forms.Label()
         Me.btnModele_validerNbBuses = New System.Windows.Forms.Label()
         Me.tbModele_DebitNominalPourCalcul = New CRODIP_ControlLibrary.TBNumeric()
         Me.lblModele_DebitNominalPourCalcul = New System.Windows.Forms.Label()
@@ -808,7 +808,7 @@ Partial Class frmDiagnostiqueSimple
         Me.btn_Valider.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btn_Valider.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_Valider.ForeColor = System.Drawing.Color.White
-        Me.btn_Valider.Image = Global.Crodip_agent.Resources.btn_valider
+        Me.btn_Valider.Image = Crodip_Agent.Resources.btn_valider
         Me.btn_Valider.Location = New System.Drawing.Point(729, 40)
         Me.btn_Valider.Name = "btn_Valider"
         Me.btn_Valider.Size = New System.Drawing.Size(139, 32)
@@ -824,7 +824,7 @@ Partial Class frmDiagnostiqueSimple
         Me.btn_annuler.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btn_annuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_annuler.ForeColor = System.Drawing.Color.White
-        Me.btn_annuler.Image = Global.Crodip_agent.Resources.btn_annuler
+        Me.btn_annuler.Image = Crodip_Agent.Resources.btn_annuler
         Me.btn_annuler.Location = New System.Drawing.Point(729, 74)
         Me.btn_annuler.Name = "btn_annuler"
         Me.btn_annuler.Size = New System.Drawing.Size(139, 32)
@@ -854,7 +854,7 @@ Partial Class frmDiagnostiqueSimple
         Me.btn_Poursuivre.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_Poursuivre.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_Poursuivre.ForeColor = System.Drawing.Color.White
-        Me.btn_Poursuivre.Image = Global.Crodip_agent.Resources.btn_suivant
+        Me.btn_Poursuivre.Image = Crodip_Agent.Resources.btn_suivant
         Me.btn_Poursuivre.Location = New System.Drawing.Point(729, 6)
         Me.btn_Poursuivre.Name = "btn_Poursuivre"
         Me.btn_Poursuivre.Size = New System.Drawing.Size(139, 32)
@@ -5731,7 +5731,7 @@ Partial Class frmDiagnostiqueSimple
         Me.TabPage3.Controls.Add(Me.LblModele_NombreDeBuses)
         Me.TabPage3.Controls.Add(Me.tbModele_DebitNominalContructeur)
         Me.TabPage3.Controls.Add(Me.lblModele_EcartTolere)
-        Me.TabPage3.Controls.Add(Me.lblModele_DebitNominalConstructeur)
+        Me.TabPage3.Controls.Add(Me.lblModele_DebitNominalCONSTructeur)
         Me.TabPage3.Controls.Add(Me.btnModele_validerNbBuses)
         Me.TabPage3.Controls.Add(Me.tbModele_DebitNominalPourCalcul)
         Me.TabPage3.Controls.Add(Me.lblModele_DebitNominalPourCalcul)
@@ -6530,16 +6530,16 @@ Partial Class frmDiagnostiqueSimple
         Me.lblModele_EcartTolere.Text = "Ecart toléré (10 ou 15 %) :"
         Me.lblModele_EcartTolere.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
-        'lblModele_DebitNominalConstructeur
+        'lblModele_DebitNominalCONSTructeur
         '
-        Me.lblModele_DebitNominalConstructeur.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModele_DebitNominalConstructeur.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblModele_DebitNominalConstructeur.Location = New System.Drawing.Point(192, 8)
-        Me.lblModele_DebitNominalConstructeur.Name = "lblModele_DebitNominalConstructeur"
-        Me.lblModele_DebitNominalConstructeur.Size = New System.Drawing.Size(168, 16)
-        Me.lblModele_DebitNominalConstructeur.TabIndex = 17
-        Me.lblModele_DebitNominalConstructeur.Text = "Débit nominal constructeur :"
-        Me.lblModele_DebitNominalConstructeur.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.lblModele_DebitNominalCONSTructeur.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblModele_DebitNominalCONSTructeur.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblModele_DebitNominalCONSTructeur.Location = New System.Drawing.Point(192, 8)
+        Me.lblModele_DebitNominalCONSTructeur.Name = "lblModele_DebitNominalCONSTructeur"
+        Me.lblModele_DebitNominalCONSTructeur.Size = New System.Drawing.Size(168, 16)
+        Me.lblModele_DebitNominalCONSTructeur.TabIndex = 17
+        Me.lblModele_DebitNominalCONSTructeur.Text = "Débit nominal constructeur :"
+        Me.lblModele_DebitNominalCONSTructeur.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'btnModele_validerNbBuses
         '
@@ -9587,7 +9587,7 @@ Partial Class frmDiagnostiqueSimple
     Friend WithEvents LblModele_NombreDeBuses As Label
     Friend WithEvents tbModele_DebitNominalContructeur As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents lblModele_EcartTolere As Label
-    Friend WithEvents lblModele_DebitNominalConstructeur As Label
+    Friend WithEvents lblModele_DebitNominalCONSTructeur As Label
     Friend WithEvents btnModele_validerNbBuses As Label
     Friend WithEvents tbModele_DebitNominalPourCalcul As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents lblModele_DebitNominalPourCalcul As Label

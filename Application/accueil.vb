@@ -1217,7 +1217,7 @@ Public Class accueil
         '
         Me.AnneeAchatDataGridViewTextBoxColumn.DataPropertyName = "anneeAchat"
         Me.AnneeAchatDataGridViewTextBoxColumn.FillWeight = 6.0!
-        Me.AnneeAchatDataGridViewTextBoxColumn.HeaderText = "Année construct."
+        Me.AnneeAchatDataGridViewTextBoxColumn.HeaderText = "Année Construct."
         Me.AnneeAchatDataGridViewTextBoxColumn.Name = "AnneeAchatDataGridViewTextBoxColumn"
         Me.AnneeAchatDataGridViewTextBoxColumn.ReadOnly = True
         '
@@ -1256,7 +1256,7 @@ Public Class accueil
         'btnTransfertPulve
         '
         Me.btnTransfertPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.btnTransfertPulve.BackgroundImage = Global.Crodip_agent.Resources.btn_login
+        Me.btnTransfertPulve.BackgroundImage = Crodip_Agent.Resources.btn_login
         Me.btnTransfertPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnTransfertPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTransfertPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1272,7 +1272,7 @@ Public Class accueil
         'btnAjoutPulve
         '
         Me.btnAjoutPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.btnAjoutPulve.BackgroundImage = Global.Crodip_agent.Resources.btn_divers_add
+        Me.btnAjoutPulve.BackgroundImage = Crodip_Agent.Resources.btn_divers_add
         Me.btnAjoutPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnAjoutPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAjoutPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1288,7 +1288,7 @@ Public Class accueil
         'btnFichePulve
         '
         Me.btnFichePulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.btnFichePulve.BackgroundImage = Global.Crodip_agent.Resources.btn_fiche_voir
+        Me.btnFichePulve.BackgroundImage = Crodip_Agent.Resources.btn_fiche_voir
         Me.btnFichePulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnFichePulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnFichePulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1304,7 +1304,7 @@ Public Class accueil
         'btnSupprPulve
         '
         Me.btnSupprPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.btnSupprPulve.BackgroundImage = Global.Crodip_agent.Resources.btn_delete
+        Me.btnSupprPulve.BackgroundImage = Crodip_Agent.Resources.btn_delete
         Me.btnSupprPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnSupprPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSupprPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1963,7 +1963,7 @@ Public Class accueil
         Me.LaChrgmtSynhcro.Cursor = System.Windows.Forms.Cursors.Hand
         Me.LaChrgmtSynhcro.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LaChrgmtSynhcro.ForeColor = System.Drawing.Color.White
-        Me.LaChrgmtSynhcro.Image = Global.Crodip_agent.Resources.btn_empty_big
+        Me.LaChrgmtSynhcro.Image = Crodip_Agent.Resources.btn_empty_big
         Me.LaChrgmtSynhcro.Location = New System.Drawing.Point(8, 32)
         Me.LaChrgmtSynhcro.Name = "LaChrgmtSynhcro"
         Me.LaChrgmtSynhcro.Size = New System.Drawing.Size(180, 24)
@@ -1976,7 +1976,7 @@ Public Class accueil
         Me.btn_InitLog.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_InitLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_InitLog.ForeColor = System.Drawing.Color.White
-        Me.btn_InitLog.Image = Global.Crodip_agent.Resources.btn_empty_big
+        Me.btn_InitLog.Image = Crodip_Agent.Resources.btn_empty_big
         Me.btn_InitLog.Location = New System.Drawing.Point(713, 60)
         Me.btn_InitLog.Name = "btn_InitLog"
         Me.btn_InitLog.Size = New System.Drawing.Size(184, 24)
@@ -2091,7 +2091,7 @@ Public Class accueil
         '
         'btnMAJPulverisateurs
         '
-        Me.btnMAJPulverisateurs.BackgroundImage = Global.Crodip_agent.Resources.btn_empty_big
+        Me.btnMAJPulverisateurs.BackgroundImage = Crodip_Agent.Resources.btn_empty_big
         Me.btnMAJPulverisateurs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnMAJPulverisateurs.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnMAJPulverisateurs.Location = New System.Drawing.Point(474, 56)
@@ -2271,7 +2271,7 @@ Public Class accueil
         Me.lblIdentifiantPulve.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblIdentifiantPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblIdentifiantPulve.ForeColor = System.Drawing.Color.White
-        Me.lblIdentifiantPulve.Image = Global.Crodip_agent.Resources.btn_empty_big
+        Me.lblIdentifiantPulve.Image = Crodip_Agent.Resources.btn_empty_big
         Me.lblIdentifiantPulve.Location = New System.Drawing.Point(48, 276)
         Me.lblIdentifiantPulve.Name = "lblIdentifiantPulve"
         Me.lblIdentifiantPulve.Size = New System.Drawing.Size(180, 24)
@@ -3229,7 +3229,7 @@ Public Class accueil
 
 
         m_bDuringLoad = False
-        Statusbar.display("Bienvenu(e) sur le logiciel Crodip Agent v" & GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD, False)
+        Statusbar.display("Bienvenu(e) sur le logiciel Crodip Agent v" & Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD, False)
     End Sub
 
     ''' <summary>
@@ -3527,7 +3527,7 @@ Public Class accueil
         Dim nbAlertes_ManometreEtalon_20jr As Integer = 0
         Dim nbAlertes_ManometreEtalon_1mois As Integer = 0
         Dim nbAlertes_ManometreEtalon_1mois7jr As Integer = 0
-        Statusbar.display(CONST_STATUTMSG_ALERTES_MANOETALON_LOAD, True)
+        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_MANOETALON_LOAD, True)
         Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(agentCourant.idStructure, True)
         For Each tmpManoEtalon As ManometreEtalon In arrManoEtalon
             Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(tmpManoEtalon.dateDernierControleS)
@@ -3660,7 +3660,7 @@ Public Class accueil
         Dim nbAlertes_ManometreControle_1mois7jr As Integer = 0
 
 
-        Statusbar.display(CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
+        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
 
         'Chargement de tous les manos
         Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(agentCourant.idStructure, True)
@@ -3668,21 +3668,21 @@ Public Class accueil
         Dim njours As Integer
         Dim nbManoAvantDL(15) As Integer 'Nombre de manomètres devant être controler njours avant la Date Limite
         'Parcours de manos
-        Dim AlerteMano As ALERTE
+        Dim AlerteMano As Globals.ALERTE
         For Each tmpManoControle As ManometreControle In arrManoControle
             AlerteMano = tmpManoControle.getAlerte()
 
-            If AlerteMano = ALERTE.NOIRE Then ' 1mois7jrs
+            If AlerteMano = Globals.ALERTE.NOIRE Then ' 1mois7jrs
                 nbAlertes_ManometreControle_1mois7jr = nbAlertes_ManometreControle_1mois7jr + 1
                 If tmpManoControle.etat = True Then
                     tmpManoControle.DesactiverMano(agentCourant)
                 End If
             End If
 
-            If AlerteMano = ALERTE.ROUGE Then ' 1mois
+            If AlerteMano = Globals.ALERTE.ROUGE Then ' 1mois
                 nbAlertes_ManometreControle_1mois = nbAlertes_ManometreControle_1mois + 1
             End If
-            If AlerteMano = ALERTE.ORANGE Then '15 jours
+            If AlerteMano = Globals.ALERTE.ORANGE Then '15 jours
                 nbAlertes_ManometreControle_15jr = nbAlertes_ManometreControle_15jr + 1
                 njours = tmpManoControle.getNbJoursAvantDateLimite()
                 If njours < nbManoAvantDL.Length Then
@@ -3704,7 +3704,7 @@ Public Class accueil
                     Else
                         sTexte = "Attention, vous avez 1 manomètre de contrôle devant être vérifié dans " & n - 1 & " jours !"
                     End If
-                    AjouteUneAlerte(ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
+                    AjouteUneAlerte(Globals.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
                 End If
             Next n
         End If
@@ -3716,7 +3716,7 @@ Public Class accueil
             Else
                 sTexte = "Attention, vous venez de dépasser la date autorisée pour 1 manomètre de contrôle. Veuillez effectuer votre contrôle immédiatement !"
             End If
-            AjouteUneAlerte(ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(Globals.ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
         End If
 
         If nbAlertes_ManometreControle_1mois7jr > 0 Then
@@ -3726,7 +3726,7 @@ Public Class accueil
             Else
                 sTexte = "Vous avez trop attendu pour vérifier 1 manomètre de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics et vous vous exposez à des sanctions de sa part."
             End If
-            AjouteUneAlerte(ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(Globals.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
         End If
 
     End Sub
@@ -3740,16 +3740,16 @@ Public Class accueil
         'Alerte Rouge
         'Si le nbre est inférieure au nombre mini
         'Alerte Orange
-        Dim AlerteIdent As ALERTE
+        Dim AlerteIdent As Globals.ALERTE
         Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(agentCourant.idStructure)
         If olst.Count < My.Settings.NbIdentifiantPulveMini Then
             If olst.Count < (My.Settings.NbIdentifiantPulveMini / 4) Then
-                AlerteIdent = ALERTE.NOIRE
+                AlerteIdent = Globals.ALERTE.NOIRE
             Else
                 If olst.Count < (My.Settings.NbIdentifiantPulveMini / 2) Then
-                    AlerteIdent = ALERTE.ROUGE
+                    AlerteIdent = Globals.ALERTE.ROUGE
                 Else
-                    AlerteIdent = ALERTE.JAUNE
+                    AlerteIdent = Globals.ALERTE.JAUNE
                 End If
             End If
             Dim stext As String = ""
@@ -3766,7 +3766,7 @@ Public Class accueil
         End If
 
     End Sub
-    Private Sub AjouteUneAlerte(ByVal TypeAlerte As ALERTE, ByVal pName As String, ByVal ptext As String, ByRef positionTopAlertes As Integer)
+    Private Sub AjouteUneAlerte(ByVal TypeAlerte As Globals.ALERTE, ByVal pName As String, ByVal ptext As String, ByRef positionTopAlertes As Integer)
         Dim tmpAlerte As New Label
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
         tmpAlerte.Name = pName
@@ -3783,15 +3783,15 @@ Public Class accueil
         tmpAlerte.Height = 16
         ' Couleur
         Select Case TypeAlerte
-            Case ALERTE.ORANGE
+            Case Globals.ALERTE.ORANGE
                 tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte))
                 tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
                 positionTopAlertes = positionTopAlertes + 24
-            Case ALERTE.ROUGE
+            Case Globals.ALERTE.ROUGE
                 tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte))
                 tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
                 positionTopAlertes = positionTopAlertes + 24
-            Case ALERTE.NOIRE
+            Case Globals.ALERTE.NOIRE
                 tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(203, Byte), CType(19, Byte), CType(31, Byte))
                 tmpAlerte.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
                 tmpAlerte.Height = 32
@@ -3810,7 +3810,7 @@ Public Class accueil
         Dim nbAlertes_Buse_out As Integer = 0
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
 
-        Statusbar.display(CONST_STATUTMSG_ALERTES_BUSESETALON_LOAD, True)
+        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_BUSESETALON_LOAD, True)
         Dim arrBusesEtalon As List(Of Buse) = BuseManager.getBusesEtalonByStructureId(agentCourant.idStructure, True)
         For Each tmpBuseEtalon As Buse In arrBusesEtalon
             Try
@@ -3901,7 +3901,7 @@ Public Class accueil
         Dim sTexte As String = ""
         If bAlerte Then
             sTexte = "Attention, vous avez effectué " & My.Settings.nbControlesAvantAlerte & " diagnostics sans effectuer de contrôles réguliers des instruments, veuillez vérifier vos instruments de mesures"
-            AjouteUneAlerte(ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(Globals.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
         End If
 
 
@@ -3914,26 +3914,26 @@ Public Class accueil
         Dim nbAlertes_Banc_1mois7jr As Integer = 0
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
 
-        Statusbar.display(CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
+        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
         Dim arrBanc As List(Of Banc) = BancManager.getBancByStructureId(agentCourant.idStructure, True)
         Dim njours As Integer
         Dim nbBancAvantDL(15) As Integer 'Nombre de banc devant être controler njours avant la Date Limite
-        Dim AlerteBanc As ALERTE
+        Dim AlerteBanc As Globals.ALERTE
 
         For Each tmpBanc As Banc In arrBanc
             AlerteBanc = tmpBanc.getAlerte()
 
-            If AlerteBanc = ALERTE.NOIRE Then ' 1mois7jrs
+            If AlerteBanc = Globals.ALERTE.NOIRE Then ' 1mois7jrs
                 nbAlertes_Banc_1mois7jr = nbAlertes_Banc_1mois7jr + 1
                 If tmpBanc.etat = True Then
                     tmpBanc.DesactiverBanc(agentCourant)
                 End If
             End If
 
-            If AlerteBanc = ALERTE.ROUGE Then ' 1mois
+            If AlerteBanc = Globals.ALERTE.ROUGE Then ' 1mois
                 nbAlertes_Banc_1mois = nbAlertes_Banc_1mois + 1
             End If
-            If AlerteBanc = ALERTE.ORANGE Then '15 jours
+            If AlerteBanc = Globals.ALERTE.ORANGE Then '15 jours
                 nbAlertes_Banc_15jr = nbAlertes_Banc_15jr + 1
                 njours = tmpBanc.getNbJoursAvantDateLimite()
                 If njours < nbBancAvantDL.Length Then
@@ -3954,7 +3954,7 @@ Public Class accueil
                     Else
                         sTexte = "Attention, vous avez 1 banc de mesure devant être vérifié dans " & n - 1 & " jours !"
                     End If
-                    AjouteUneAlerte(ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
+                    AjouteUneAlerte(Globals.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
                 End If
             Next n
         End If
@@ -3966,7 +3966,7 @@ Public Class accueil
             Else
                 sTexte = "Attention, vous venez de dépasser la date autorisée pour 1 banc de mesure. Veuillez effectuer votre contrôle immédiatement !"
             End If
-            AjouteUneAlerte(ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(Globals.ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
         End If
 
         If nbAlertes_Banc_1mois7jr > 0 Then
@@ -3976,7 +3976,7 @@ Public Class accueil
             Else
                 sTexte = "Vous avez trop attendu pour vérifier 1 banc de mesure. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics et vous vous exposez à des sanctions de sa part."
             End If
-            AjouteUneAlerte(ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(Globals.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
         End If
 
 
@@ -3999,7 +3999,7 @@ Public Class accueil
         LoadAccueilAlertsBancsMesures(positionTopAlertes)
         loadAccueilAlertsIdentifiantsPulvérisateurs(positionTopAlertes)
         ' Vérification de la date de dernière synchro
-        Statusbar.display(CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
+        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
         Try
             Dim tmpDateLastSynchro As Date
             Try
@@ -4191,9 +4191,9 @@ Public Class accueil
     Private Sub btn_proprietaire_derniersControles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_proprietaire_derniersControles.Click
         m_Exploitation_isShowAll = Not m_Exploitation_isShowAll
         btn_proprietaire_derniersControles_setLabel()
-        Statusbar.display(CONST_STATUTMSG_LISTCLIENT_ENCOURS)
+        Statusbar.display(Globals.CONST_STATUTMSG_LISTCLIENT_ENCOURS)
         LoadListeExploitation()
-        Statusbar.display(list_clients.Items.Count & "" & CONST_STATUTMSG_LISTCLIENT_OK)
+        Statusbar.display(list_clients.Items.Count & "" & Globals.CONST_STATUTMSG_LISTCLIENT_OK)
     End Sub
     Private Sub btn_proprietaire_derniersControles_setLabel()
         'Attention : le libellé est inversé !!!
@@ -4235,7 +4235,7 @@ Public Class accueil
 
     ' Suppression client
     Private Sub btn_proprietaire_supprimer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_proprietaire_supprimer.Click
-        Statusbar.display(CONST_STATUTMSG_DELETECLIENT_ENCOURS)
+        Statusbar.display(Globals.CONST_STATUTMSG_DELETECLIENT_ENCOURS)
 
         ' On récupère le client sélectionné
         Dim clientSelected_NumSIREN As String = "0"
@@ -4253,17 +4253,17 @@ Public Class accueil
                 clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
                 ' Si tout est ok, on le supprime
                 If ExploitationManager.SupprimerExploitation(clientCourant) Then
-                    Statusbar.display(CONST_STATUTMSG_DELETECLIENT_OK)
+                    Statusbar.display(Globals.CONST_STATUTMSG_DELETECLIENT_OK)
                     CSTime.pause(1000)
                     LoadListeExploitation()
                 Else
-                    Statusbar.display(CONST_STATUTMSG_DELETECLIENT_FAILED)
+                    Statusbar.display(Globals.CONST_STATUTMSG_DELETECLIENT_FAILED)
                 End If
             Else
-                Statusbar.display(CONST_STATUTMSG_DELETECLIENT_CANCEL)
+                Statusbar.display(Globals.CONST_STATUTMSG_DELETECLIENT_CANCEL)
             End If
         Else
-            Statusbar.display(CONST_STATUTMSG_DELETECLIENT_NOSELECTED)
+            Statusbar.display(Globals.CONST_STATUTMSG_DELETECLIENT_NOSELECTED)
         End If
     End Sub
 
@@ -4325,7 +4325,7 @@ Public Class accueil
     End Sub
     Private Sub ExportToCSV()
         Try
-            Dim SFile As String = CONST_PATH_EXP & "Export_clients_" & Date.Now.ToString("yyyyMMdd") & ".csv"
+            Dim SFile As String = Globals.CONST_PATH_EXP & "Export_clients_" & Date.Now.ToString("yyyyMMdd") & ".csv"
             Dim searchId As Integer
             Dim searchCriteria As String
             Dim ocol As List(Of Exploitation)
@@ -4375,7 +4375,7 @@ Public Class accueil
     ' Impression contrat
     Private Sub btn_ficheClient_imprimerContrat_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim monProcess As New Process
-        monProcess.StartInfo.FileName = CONST_PATH_DOCS & "contratCommercial.doc"
+        monProcess.StartInfo.FileName = Globals.CONST_PATH_DOCS & "contratCommercial.doc"
         'monProcess.StartInfo.Verb = "Print"
         monProcess.StartInfo.Verb = "Open"
         monProcess.StartInfo.CreateNoWindow = False
@@ -4436,11 +4436,11 @@ Public Class accueil
     ' Création d'un nouveau diagnostic
     Private Sub btn_ficheClient_diagnostic_nouveau_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheClient_diagnostic_nouveau.Click
         btn_ficheClient_diagnostic_nouveau.Enabled = False
-        NouveauDiagnostic(DiagMode.CTRL_COMPLET)
+        NouveauDiagnostic(Globals.DiagMode.CTRL_COMPLET)
         btn_ficheClient_diagnostic_nouveau.Enabled = Not agentCourant.isGestionnaire
     End Sub
 
-    Private Sub NouveauDiagnostic(pDiagMode As DiagMode)
+    Private Sub NouveauDiagnostic(pDiagMode As Globals.DiagMode)
 
         ' On récupère le formulaire contener
         ' Dim myFormParentContener As Form = Me.MdiParent
@@ -4454,7 +4454,7 @@ Public Class accueil
                 ' On récupère le pulvé selectionné
                 '                pulverisateurCourant = PulverisateurManager.getPulverisateurById(list_ficheClient_puverisateur.SelectedItems().Item(0).Tag)
                 ' Mise à jour de la barre de status
-                If pDiagMode = DiagMode.CTRL_CV Then
+                If pDiagMode = Globals.DiagMode.CTRL_CV Then
                     Statusbar.display("Nouvelle contre-visite")
                 Else
                     Statusbar.display("Nouveau Controle")
@@ -4469,7 +4469,7 @@ Public Class accueil
                 diagnosticCourant = New Diagnostic(agentCourant, pulverisateurCourant, clientCourant)
 
                 Dim bContinue As Boolean = True
-                If pDiagMode = DiagMode.CTRL_CV Then
+                If pDiagMode = Globals.DiagMode.CTRL_CV Then
                     ' Rechercge du diagnostique initial
                     Dim formDiagnostic_nouvelleContreVisite As New diagnostic_nouvelle_contrevisite
                     formDiagnostic_nouvelleContreVisite.ShowDialog()
@@ -4528,7 +4528,7 @@ Public Class accueil
     ''' </summary>
     ''' <param name="bisContreVisite"></param>
     ''' <remarks></remarks>
-    Public Sub NouveauDiagnosticPhase2(pDiagMode As DiagMode)
+    Public Sub NouveauDiagnosticPhase2(pDiagMode As Globals.DiagMode)
         Statusbar.clear()
         Me.Cursor = Cursors.WaitCursor
         Dim formDiagnostic_Contexte As New diagnostic_contexte(pDiagMode, diagnosticCourant, pulverisateurCourant, clientCourant, False)
@@ -4565,7 +4565,7 @@ Public Class accueil
 
     Private Sub VoirDiagnostique()
         If diagnosticCourant IsNot Nothing Then
-            Dim frmDiagPreliminaires As New controle_preliminaire(DiagMode.CTRL_VISU, diagnosticCourant, pulverisateurCourant, clientCourant)
+            Dim frmDiagPreliminaires As New controle_preliminaire(Globals.DiagMode.CTRL_VISU, diagnosticCourant, pulverisateurCourant, clientCourant)
             globFormControlePreliminaire = frmDiagPreliminaires
             TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagPreliminaires)
         End If
@@ -4575,7 +4575,7 @@ Public Class accueil
     Private Sub btn_ficheClient_diagnostic_nouvelleCV_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheClient_diagnostic_nouvelleCV.Click
 
         btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
-        NouveauDiagnostic(DiagMode.CTRL_CV)
+        NouveauDiagnostic(Globals.DiagMode.CTRL_CV)
         btn_ficheClient_diagnostic_nouvelleCV.Enabled = Not agentCourant.isGestionnaire
 
     End Sub
@@ -4631,16 +4631,16 @@ Public Class accueil
     'Private Sub btn_ficheClient_pulve_voirProchainsControles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     '    If pulverisateurs_isShowAll = True Then
     '        pulverisateurs_isShowAll = False
-    '        Statusbar.display(CONST_STATUTMSG_LISTPULVE_ENCOURS)
+    '        Statusbar.display(Globals.CONST_STATUTMSG_LISTPULVE_ENCOURS)
     '        btn_proprietaire_derniersControles.Text = "       Voir les prochains controles"
     '        loadListPulveExploitation(False)
-    '        Statusbar.display(dgvPulveExploit.Rows.Count & "" & CONST_STATUTMSG_LISTPULVE_OK)
+    '        Statusbar.display(dgvPulveExploit.Rows.Count & "" & Globals.CONST_STATUTMSG_LISTPULVE_OK)
     '    Else
     '        pulverisateurs_isShowAll = True
-    '        Statusbar.display(CONST_STATUTMSG_LISTPULVE_ENCOURS)
+    '        Statusbar.display(Globals.CONST_STATUTMSG_LISTPULVE_ENCOURS)
     '        btn_proprietaire_derniersControles.Text = "       Voir tous les controles"
     '        loadListPulveExploitation(True)
-    '        Statusbar.display(dgvPulveExploit.Rows.Count & "" & CONST_STATUTMSG_LISTPULVE_OK)
+    '        Statusbar.display(dgvPulveExploit.Rows.Count & "" & Globals.CONST_STATUTMSG_LISTPULVE_OK)
     '    End If
     'End Sub
 
@@ -4649,7 +4649,7 @@ Public Class accueil
         supprimerUnPulverisateur()
     End Sub
     Private Sub supprimerUnPulverisateur()
-        Statusbar.display(CONST_STATUTMSG_DELETEPULVE_ENCOURS)
+        Statusbar.display(Globals.CONST_STATUTMSG_DELETEPULVE_ENCOURS)
         ' On vérifie qu'il y a bien une ligne de sélectionnée
         If dgvPulveExploit.SelectedRows.Count > 0 Then
             ' On informe l'utilisateur et on lui demande confirmation
@@ -4659,17 +4659,17 @@ Public Class accueil
                 pulverisateurCourant = m_BindingListOfPulve(oRowIndex)
                 ' Si tout est ok, on le supprime
                 If PulverisateurManager.deletePulverisateur(pulverisateurCourant) Then
-                    Statusbar.display(CONST_STATUTMSG_DELETEPULVE_OK)
+                    Statusbar.display(Globals.CONST_STATUTMSG_DELETEPULVE_OK)
                     CSTime.pause(1000)
                     loadListPulveExploitation(False)
                 Else
-                    Statusbar.display(CONST_STATUTMSG_DELETEPULVE_FAILED)
+                    Statusbar.display(Globals.CONST_STATUTMSG_DELETEPULVE_FAILED)
                 End If
             Else
-                Statusbar.display(CONST_STATUTMSG_DELETEPULVE_CANCEL)
+                Statusbar.display(Globals.CONST_STATUTMSG_DELETEPULVE_CANCEL)
             End If
         Else
-            Statusbar.display(CONST_STATUTMSG_DELETEPULVE_NOSELECTED)
+            Statusbar.display(Globals.CONST_STATUTMSG_DELETEPULVE_NOSELECTED)
         End If
     End Sub
 
@@ -4755,7 +4755,7 @@ Public Class accueil
         If CSEnvironnement.checkNetwork() = True Then
             If CSEnvironnement.checkWebService() = True Then
                 ' On vérifie les mises à jour
-                Statusbar.display(CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
+                Statusbar.display(Globals.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
                 Try
                     Me.Cursor = Cursors.WaitCursor
                     Dim oSynchro As New Synchronisation(agentCourant)
@@ -4775,7 +4775,7 @@ Public Class accueil
 
                 Catch ex As Exception
                     CSDebug.dispError("Accueil.btnsynchri_run Erreur synchroUp : " & ex.Message.ToString)
-                    Statusbar.display(CONST_STATUTMSG_SYNCHRO_FAILED, False)
+                    Statusbar.display(Globals.CONST_STATUTMSG_SYNCHRO_FAILED, False)
                 End Try
                 Statusbar.hideLoader()
 
@@ -4828,9 +4828,9 @@ Public Class accueil
 
     ' Documents à imprimer
     Private Sub btn_print_contratCommercial_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If System.IO.File.Exists(CONST_PATH_DOCS & "contratCommercial.doc") Then
+        If System.IO.File.Exists(Globals.CONST_PATH_DOCS & "contratCommercial.doc") Then
             Dim monProcess As New Process
-            monProcess.StartInfo.FileName = CONST_PATH_DOCS & "contratCommercial.doc"
+            monProcess.StartInfo.FileName = Globals.CONST_PATH_DOCS & "contratCommercial.doc"
             'monProcess.StartInfo.Verb = "Print"
             monProcess.StartInfo.Verb = "Open"
             monProcess.StartInfo.CreateNoWindow = True
@@ -4948,7 +4948,7 @@ Public Class accueil
     ' Lecture d'un fichier de config XML (SMTP)
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         ' Lecture d'un fichier de config XML
-        'MsgBox(globalConfig.getElementValue("/root/smtp/smtpHost"))
+        'MsgBox(Globals.GLOBalConfig.getElementValue("/root/smtp/smtpHost"))
     End Sub
 #End Region
 
@@ -5006,8 +5006,7 @@ Public Class accueil
         For Each obj As AutoTest In bsControleQuotidien
             AutoTestManager.save(obj)
         Next
-        MySettings.Default.nbControlesAvantAlerte = 0
-
+        My.Settings.nbControlesAvantAlerte = 0
     End Sub
 
     Private Sub dtp_ControleRegulier_ValueChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtp_ControleRegulier.ValueChanged
@@ -5294,13 +5293,13 @@ Public Class accueil
             dgvPulveExploit.Rows(index).DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             dgvPulveExploit.Rows(index).DefaultCellStyle.BackColor = System.Drawing.Color.LightBlue
             dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionForeColor = Color.Black
-            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = GLOB_BLUE_CROPDIP
+            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = Globals.GLOB_BLUE_CROPDIP
 
         Else
             dgvPulveExploit.Rows(index).DefaultCellStyle.ForeColor = Color.Black
             dgvPulveExploit.Rows(index).DefaultCellStyle.BackColor = Color.White
             dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionForeColor = Color.White
-            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = GLOB_BLUE_CROPDIP
+            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = Globals.GLOB_BLUE_CROPDIP
         End If
         'If opulve.dateProchainControleAsDate.HasValue And opulve.dateProchainControleAsDate < Date.Now Then
         '    dgvPulveExploit.Rows(index).DefaultCellStyle.ForeColor = Color.Red
@@ -5330,7 +5329,7 @@ Public Class accueil
 
     Private Sub dgvPulveExploit_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles dgvPulveExploit.MouseDoubleClick
 #If DEBUG Then
-        NouveauDiagnostic(DiagMode.CTRL_COMPLET)
+        NouveauDiagnostic(Globals.DiagMode.CTRL_COMPLET)
 #End If
     End Sub
 

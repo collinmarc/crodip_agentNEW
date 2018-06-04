@@ -4720,7 +4720,7 @@ Partial Public Class ds_Etat_ReglagePulve
             MyBase.Columns.Add(Me.columndateControle)
             Me.columnIdentifiantMateriel = New Global.System.Data.DataColumn("IdentifiantMateriel", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnIdentifiantMateriel)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnNumeroControle}, true))
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("CONSTraint1", New Global.System.Data.DataColumn() {Me.columnNumeroControle}, true))
             Me.columnNumeroControle.AllowDBNull = false
             Me.columnNumeroControle.Unique = true
         End Sub
@@ -5262,7 +5262,7 @@ Partial Public Class ds_Etat_ReglagePulve
             MyBase.Columns.Add(Me.columnTypeLargeurNbRangs)
             Me.columnidDiag = New Global.System.Data.DataColumn("idDiag", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnidDiag)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidDiag}, true))
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Materiel_constraint1", New Global.System.Data.DataColumn() {Me.columnidDiag}, true))
             Me.columnIdentifiant.AllowDBNull = false
             Me.columnTypeLargeurNbRangs.AllowDBNull = false
             Me.columnidDiag.AllowDBNull = false
@@ -5629,7 +5629,7 @@ Partial Public Class ds_Etat_ReglagePulve
             MyBase.Columns.Add(Me.columnAPE)
             Me.columnidDiag = New Global.System.Data.DataColumn("idDiag", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnidDiag)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidDiag}, true))
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Proprietaire_constraint1", New Global.System.Data.DataColumn() {Me.columnidDiag}, true))
             Me.columnidDiag.AllowDBNull = false
             Me.columnidDiag.Unique = true
         End Sub
@@ -6350,7 +6350,7 @@ Partial Public Class ds_Etat_ReglagePulve
             MyBase.Columns.Add(Me.columnbSectionCommentaires)
             Me.columnbSectionCalculs = New Global.System.Data.DataColumn("bSectionCalculs", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnbSectionCalculs)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidDiag}, true))
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("EtatReglagePulve_constraint1", New Global.System.Data.DataColumn() {Me.columnidDiag}, true))
             Me.columnidDiag.AllowDBNull = false
             Me.columnidDiag.Unique = true
             Me.columnbSectionEntete.AllowDBNull = false

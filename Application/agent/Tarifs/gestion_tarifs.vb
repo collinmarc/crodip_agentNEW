@@ -99,7 +99,7 @@ Public Class gestion_tarifs
         Me.ckCVGratuite.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ckCVGratuite.AutoSize = True
         Me.ckCVGratuite.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ckCVGratuite.Checked = Global.Crodip_agent.MySettings.Default.CVgratuite
+        Me.ckCVGratuite.Checked = My.Settings.CVgratuite
         Me.ckCVGratuite.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.Crodip_agent.MySettings.Default, "CVgratuite", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.ckCVGratuite.Location = New System.Drawing.Point(518, 410)
         Me.ckCVGratuite.Name = "ckCVGratuite"
@@ -190,7 +190,7 @@ Public Class gestion_tarifs
         'colDelete
         '
         Me.colDelete.HeaderText = ""
-        Me.colDelete.Image = Global.Crodip_agent.Resources.delete
+        Me.colDelete.Image = Crodip_Agent.Resources.delete
         Me.colDelete.Name = "colDelete"
         Me.colDelete.Width = 20
         '

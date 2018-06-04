@@ -12,7 +12,7 @@
   <xs:element name="dsContratCommercial" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsContratCommercial" msprop:Generator_UserDSName="dsContratCommercial">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ContratCommercial" msprop:Generator_TableClassName="ContratCommercialDataTable" msprop:Generator_TableVarName="tableContratCommercial" msprop:Generator_TablePropName="ContratCommercial" msprop:Generator_RowDeletingName="ContratCommercialRowDeleting" msprop:Generator_RowChangingName="ContratCommercialRowChanging" msprop:Generator_RowEvHandlerName="ContratCommercialRowChangeEventHandler" msprop:Generator_RowDeletedName="ContratCommercialRowDeleted" msprop:Generator_UserTableName="ContratCommercial" msprop:Generator_RowChangedName="ContratCommercialRowChanged" msprop:Generator_RowEvArgName="ContratCommercialRowChangeEvent" msprop:Generator_RowClassName="ContratCommercialRow">
+        <xs:element name="ContratCommercial" msprop:Generator_TableClassName="ContratCommercialDataTable" msprop:Generator_TableVarName="tableContratCommercial" msprop:Generator_RowChangedName="ContratCommercialRowChanged" msprop:Generator_TablePropName="ContratCommercial" msprop:Generator_RowDeletingName="ContratCommercialRowDeleting" msprop:Generator_RowChangingName="ContratCommercialRowChanging" msprop:Generator_RowEvHandlerName="ContratCommercialRowChangeEventHandler" msprop:Generator_RowDeletedName="ContratCommercialRowDeleted" msprop:Generator_RowClassName="ContratCommercialRow" msprop:Generator_UserTableName="ContratCommercial" msprop:Generator_RowEvArgName="ContratCommercialRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="dateControle" msprop:Generator_ColumnVarNameInTable="columndateControle" msprop:Generator_ColumnPropNameInRow="dateControle" msprop:Generator_ColumnPropNameInTable="dateControleColumn" msprop:Generator_UserColumnName="dateControle" type="xs:dateTime" minOccurs="0" />
@@ -28,6 +28,7 @@
               <xs:element name="NumnatPulve" msprop:Generator_ColumnVarNameInTable="columnNumnatPulve" msprop:Generator_ColumnPropNameInRow="NumnatPulve" msprop:Generator_ColumnPropNameInTable="NumnatPulveColumn" msprop:Generator_UserColumnName="NumnatPulve" type="xs:string" minOccurs="0" />
               <xs:element name="MontantHT" msprop:Generator_ColumnVarNameInTable="columnMontantHT" msprop:Generator_ColumnPropNameInRow="MontantHT" msprop:Generator_ColumnPropNameInTable="MontantHTColumn" msprop:Generator_UserColumnName="MontantHT" type="xs:decimal" minOccurs="0" />
               <xs:element name="NomPrenomExploit" msprop:Generator_ColumnVarNameInTable="columnNomPrenomExploit" msprop:Generator_ColumnPropNameInRow="NomPrenomExploit" msprop:Generator_ColumnPropNameInTable="NomPrenomExploitColumn" msprop:Generator_UserColumnName="NomPrenomExploit" type="xs:string" minOccurs="0" />
+              <xs:element name="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" msprop:Generator_UserColumnName="DataColumn1" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

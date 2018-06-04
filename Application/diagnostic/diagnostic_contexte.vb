@@ -2,7 +2,7 @@ Public Class diagnostic_contexte
     Inherits System.Windows.Forms.Form
 
 #Region " - Vars - "
-    Private m_DiagMode As DiagMode
+    Private m_DiagMode As Globals.DiagMode
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents tbNomPrenomRepresentant As System.Windows.Forms.TextBox
     Friend WithEvents LabelInspecteurPrecedent As System.Windows.Forms.Label
@@ -62,7 +62,7 @@ Public Class diagnostic_contexte
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
 
     End Sub
-    Public Sub New(ByVal pDiagMode As DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation, ByVal pRetour As Boolean)
+    Public Sub New(ByVal pDiagMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation, ByVal pRetour As Boolean)
         Me.New()
         Me.m_Retour = pRetour
         Me.m_DiagMode = pDiagMode
@@ -920,12 +920,12 @@ Public Class diagnostic_contexte
 
         ' Chargement des comboBox
         Try
-            GLOB_XML_CONFIG = New CSXml("config\config.xml")
+            Globals.GLOB_XML_CONFIG = New CSXml("config\config.xml")
 
-            MarquesManager.populateCombobox(GLOB_XML_CONFIG, cbxSite, "/root/sites_proprietaire")
-            MarquesManager.populateCombobox(GLOB_XML_CONFIG, cbxterritoire, "/root/territoires_proprietaire")
+            MarquesManager.populateCombobox(Globals.GLOB_XML_CONFIG, cbxSite, "/root/sites_proprietaire")
+            MarquesManager.populateCombobox(Globals.GLOB_XML_CONFIG, cbxterritoire, "/root/territoires_proprietaire")
             'ModeUtilisation
-            MarquesManager.populateCombobox(GLOB_XML_MODEUTILISATION, cbxModeUtilisation, "/root", True)
+            MarquesManager.populateCombobox(Globals.GLOB_XML_MODEUTILISATION, cbxModeUtilisation, "/root", True)
         Catch ex As Exception
             CSDebug.dispError("[Diag. Contexte] - Erreur chargement comboBox : " & ex.Message.ToString)
         End Try
@@ -1075,11 +1075,12 @@ Public Class diagnostic_contexte
             My.Settings.DernierControleSiteSecurise = ckisSiteSecurise.Checked
             My.Settings.DernierControleRecupResidus = ckisRecuperationResidus.Checked
             My.Settings.Save()
+
             If m_diagnostic.isContrevisiteImmediate And My.Settings.CVgratuite Then
                 'Mise à jour du tarif du Diagnostique
                 m_diagnostic.controleTarif = CType(0, Double)
                 'Création des fenêtres de Diagnostique
-                m_NextForm = New controle_preliminaire(m_DiagMode, m_diagnostic, m_Pulverisateur, clientCourant)
+                m_NextForm = New controle_preliminaire(m_DiagMode, m_diagnostic, m_Pulverisateur, ClientCourant)
                 m_NextForm.MdiParent = Me.MdiParent
                 Statusbar.clear()
 
@@ -1194,7 +1195,6 @@ Public Class diagnostic_contexte
         cbxterritoire.Text = My.Settings.DernierControleTerritoire
         ckisSiteSecurise.Checked = My.Settings.DernierControleSiteSecurise
         ckisRecuperationResidus.Checked = My.Settings.DernierControleRecupResidus
-
         My.Settings.DernierControleInfosChezProp = False
     End Sub
     Private Sub RappelInfosChezProprietaire()
@@ -1226,11 +1226,11 @@ Public Class diagnostic_contexte
             Dim oLst As System.Xml.XmlNode
             strXPath = "//PulverisateurModeUtilisation[libelle=""%MODE%""]/saisieNbre"
             strXPath = strXPath.Replace("%MODE%", cbxModeUtilisation.Text)
-            oLst = GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
+            oLst = Globals.GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
             If CBool(oLst.InnerText) Then
                 strXPath = "//PulverisateurModeUtilisation[libelle=""%MODE%""]/Valeurs"
                 strXPath = strXPath.Replace("%MODE%", cbxModeUtilisation.Text)
-                oLst = GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
+                oLst = Globals.GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
                 lblNbreExploitants.Visible = True
                 cbxNbreExploitants.Visible = True
                 cbxNbreExploitants.Items.Clear()

@@ -3,7 +3,7 @@
   <ParamDiag>
     <id>1</id>
     <libelle>Cultures basses</libelle>
-    <fichierConfig>paramDiagRampe.xml</fichierConfig>
+    <fichierConfig>paramdiagRampe.xml</fichierConfig>
     <ParamDiagCalc542>
 		<!-- REGLE >=MINI AND <=MAXI -->
       <!-- Ecart Constant >0-->
@@ -51,11 +51,11 @@
       <Pression2>2</Pression2>
       <Pression3>3</Pression3>
       <Pression4>4</Pression4>
-      <PressionParDefaut>3</PressionParDefaut>
+      <PressionParDefaut>4</PressionParDefaut>
     </ParamDiagCalc833>
     <ParamDiagCalc922>
       <limitePctBuseUsees>33</limitePctBuseUsees>
-      <pctToleranceDebitNominal>10</pctToleranceDebitNominal>
+      <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
     </ParamDiagCalc922>
   </ParamDiag>
   <ParamDiag>
@@ -109,11 +109,11 @@
       <Pression2>10</Pression2>
       <Pression3>15</Pression3>
       <Pression4>20</Pression4>
-      <PressionParDefaut>3</PressionParDefaut>
+      <PressionParDefaut>4</PressionParDefaut>
     </ParamDiagCalc833>
     <ParamDiagCalc922>
       <limitePctBuseUsees>33</limitePctBuseUsees>
-      <pctToleranceDebitNominal>15</pctToleranceDebitNominal>
+      <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
     </ParamDiagCalc922>
 
   </ParamDiag>
@@ -168,7 +168,7 @@
         <Pression2>10</Pression2>
         <Pression3>15</Pression3>
         <Pression4>20</Pression4>
-        <PressionParDefaut>3</PressionParDefaut>
+        <PressionParDefaut>4</PressionParDefaut>
       </ParamDiagCalc833>
     <ParamDiagCalc922>
       <limitePctBuseUsees>33</limitePctBuseUsees>
@@ -178,7 +178,7 @@
   <ParamDiag>
     <id>4</id>
     <libelle>Arbustes</libelle>
-    <fichierConfig>paramDiagArbre.xml</fichierConfig>
+    <fichierConfig>paramdiagArbre.xml</fichierConfig>
     <ParamDiagCalc542>
       <!-- REGLE >=MINI AND <=MAXI -->
       <!-- Ecart Constant >0-->
@@ -226,17 +226,17 @@
       <Pression2>2</Pression2>
       <Pression3>3</Pression3>
       <Pression4>4</Pression4>
-      <PressionParDefaut>3</PressionParDefaut>
+      <PressionParDefaut>4</PressionParDefaut>
     </ParamDiagCalc833>
     <ParamDiagCalc922>
       <limitePctBuseUsees>33</limitePctBuseUsees>
-      <pctToleranceDebitNominal>10</pctToleranceDebitNominal>
+      <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
     </ParamDiagCalc922>
   </ParamDiag>
   <ParamDiag>
     <id>5</id>
     <libelle>Pulvérisateurs combinés</libelle>
-    <fichierConfig>paramDiagCombine.xml</fichierConfig>
+    <fichierConfig>paramdiagCombine.xml</fichierConfig>
     <ParamDiagCalc542>
       <!-- REGLE >=MINI AND <=MAXI -->
       <!-- Ecart Constant >0-->
@@ -284,17 +284,17 @@
       <Pression2>2</Pression2>
       <Pression3>3</Pression3>
       <Pression4>4</Pression4>
-      <PressionParDefaut>3</PressionParDefaut>
+      <PressionParDefaut>4</PressionParDefaut>
     </ParamDiagCalc833>
     <ParamDiagCalc922>
       <limitePctBuseUsees>33</limitePctBuseUsees>
-      <pctToleranceDebitNominal>10</pctToleranceDebitNominal>
+      <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
     </ParamDiagCalc922>
   </ParamDiag>
   <ParamDiag>
     <id>6</id>
     <libelle>Pulvérisateurs fixes ou semi mobiles</libelle>
-    <fichierConfig>paramDiagFixeSM.xml</fichierConfig>
+    <fichierConfig>paramdiagFixeSM.xml</fichierConfig>
     <ParamDiagCalc542>
       <!-- REGLE >=MINI AND <=MAXI -->
       <!-- Ecart Constant >0-->
@@ -342,11 +342,11 @@
       <Pression2>2</Pression2>
       <Pression3>3</Pression3>
       <Pression4>4</Pression4>
-      <PressionParDefaut>3</PressionParDefaut>
+      <PressionParDefaut>4</PressionParDefaut>
     </ParamDiagCalc833>
     <ParamDiagCalc922>
       <limitePctBuseUsees>33</limitePctBuseUsees>
-      <pctToleranceDebitNominal>10</pctToleranceDebitNominal>
+      <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
     </ParamDiagCalc922>
   </ParamDiag>
  <ParamDiag>
@@ -400,11 +400,11 @@
         <Pression2>10</Pression2>
         <Pression3>15</Pression3>
         <Pression4>20</Pression4>
-        <PressionParDefaut>3</PressionParDefaut>
+        <PressionParDefaut>4</PressionParDefaut>
       </ParamDiagCalc833>
     <ParamDiagCalc922>
       <limitePctBuseUsees>33</limitePctBuseUsees>
-      <pctToleranceDebitNominal>15</pctToleranceDebitNominal>
+      <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
     </ParamDiagCalc922>
   </ParamDiag>
   <ParamDiag>
@@ -458,11 +458,11 @@
         <Pression2>10</Pression2>
         <Pression3>15</Pression3>
         <Pression4>20</Pression4>
-        <PressionParDefaut>3</PressionParDefaut>
+        <PressionParDefaut>4</PressionParDefaut>
       </ParamDiagCalc833>
     <ParamDiagCalc922>
       <limitePctBuseUsees>33</limitePctBuseUsees>
-      <pctToleranceDebitNominal>15</pctToleranceDebitNominal>
+      <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
     </ParamDiagCalc922>
   </ParamDiag>
  

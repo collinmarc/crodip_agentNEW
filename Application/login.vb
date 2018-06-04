@@ -225,7 +225,7 @@ Public Class login
         '
         Me.login_password.Location = New System.Drawing.Point(190, 41)
         Me.login_password.Name = "login_password"
-        Me.login_password.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.login_password.PasswordChar = Microsoft.VisualBasic.ChrW(42)
         Me.login_password.Size = New System.Drawing.Size(240, 20)
         Me.login_password.TabIndex = 1
         '
@@ -452,7 +452,7 @@ Public Class login
         pnlLoginControls.Enabled = False
         ' On récupère le formulaire contener
         Dim myFormParentContener As Form = Me.MdiParent
-        Statusbardisplay(CONST_STATUTMSG_LOGIN_ENCOURS, True)
+        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_ENCOURS, True)
         Try
             ' On récupère l'agent sélèctionné
             Dim selectedAgent As Agent
@@ -478,17 +478,17 @@ Public Class login
                                 CSDebug.dispError("doLogin():: GetAgent mot de passe : " & ex.Message.ToString)
                             End Try
                         End If
-                        If CSCrypt.encode(login_password.Text, "sha256") = selectedAgent.motDePasse Or GLOB_ENV_DEBUG Then
+                        If CSCrypt.encode(login_password.Text, "sha256") = selectedAgent.motDePasse Or Globals.GLOB_ENV_DEBUG Then
                             ' On le met en "session"
                             agentCourant = selectedAgent
                             ' On met à jour le numéro de version du logiciel agent
-                            If agentCourant.versionLogiciel <> GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD Then
-                                agentCourant.versionLogiciel = GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+                            If agentCourant.versionLogiciel <> Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD Then
+                                agentCourant.versionLogiciel = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
                                 CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & agentCourant.dateModificationAgent)
                                 AgentManager.save(agentCourant)
                             End If
                             If agentCourant.isActif And Not agentCourant.isSupprime Then
-                                If GLOB_ENV_AUTOSYNC = True And Not agentCourant.isGestionnaire Then
+                                If Globals.GLOB_ENV_AUTOSYNC = True And Not agentCourant.isGestionnaire Then
                                     If CSEnvironnement.checkNetwork() = True Then
                                         If CSEnvironnement.checkWebService() = True Then
 
@@ -496,7 +496,7 @@ Public Class login
                                             CSTime.pause(500) ' Pause de 500ms
 
                                             ' On vérifie les mises à jour
-                                            Statusbardisplay(CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
+                                            Statusbardisplay(Globals.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
                                             Try
                                                 Me.Cursor = Cursors.WaitCursor
                                                 Dim oSynchro As New Synchronisation(agentCourant)
@@ -514,10 +514,10 @@ Public Class login
                                                 Me.Cursor = Cursors.Default
                                             Catch ex As Exception
                                                 CSDebug.dispError("Synchronisation : " & ex.Message.ToString)
-                                                Statusbardisplay(CONST_STATUTMSG_SYNCHRO_FAILED, False)
+                                                Statusbardisplay(Globals.CONST_STATUTMSG_SYNCHRO_FAILED, False)
                                             End Try
                                         Else
-                                            Statusbardisplay(CONST_STATUTMSG_SYNCHRO_UNAVAILABLE, False)
+                                            Statusbardisplay(Globals.CONST_STATUTMSG_SYNCHRO_UNAVAILABLE, False)
                                             MsgBox("Synchronisation impossible, serveur Crodip momentanément indisponible.", MsgBoxStyle.Exclamation)
                                         End If
                                     Else
@@ -526,7 +526,7 @@ Public Class login
                                 End If
                                 panel_splashSynchro.Visible = False
                                 ' On met à jour la barre de status
-                                Statusbardisplay(CONST_STATUTMSG_LOGIN_OK, False)
+                                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_OK, False)
                                 CSDebug.dispInfo("Connexion réussie " & agentCourant.nom)
                                 ' On met a jour la date de dernière connexion
                                 agentCourant.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now).ToString
@@ -544,8 +544,8 @@ Public Class login
                             Else
 
                                 ' On met à jour la barre de status
-                                Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
-                                MsgBox(CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
+                                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
+                                MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
                                 'On recharge la Liste des profils 
                                 FillCbxAgent()
                                 login_password.Clear()
@@ -553,21 +553,21 @@ Public Class login
 
                         Else
                             ' On met à jour la barre de status
-                            Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
-                            MsgBox(CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
+                            Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
+                            MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
                         End If
                     Else
-                        Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez renseigner un mot de passe.", False)
+                        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez renseigner un mot de passe.", False)
                     End If
                 Else
-                    Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Aucun agent correspondant", False)
+                    Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Aucun agent correspondant", False)
                 End If
             Else
-                Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez sélectionner un profil.", False)
+                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez sélectionner un profil.", False)
             End If
         Catch ex As Exception
             ' On met à jour la barre de status
-            Statusbardisplay(CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
+            Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
             CSDebug.dispError("login::doLogin : " & ex.Message)
         End Try
         'On réactive la fenêtre , si la procédure de Cnx a fonctionner, cette fenêtre est cachée
@@ -577,18 +577,18 @@ Public Class login
 #End Region
     Private Sub login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Debug
-        GroupBox_test.Visible = GLOB_ENV_DEBUG
-        lbl_environnement_ws.Visible = GLOB_ENV_DEBUG
-        lbl_environnement_debugType.Visible = GLOB_ENV_DEBUG
-        lbl_environnement_debugLvl.Visible = GLOB_ENV_DEBUG
-        lbl_environnement_debugType.Text = "Type de sortie debug..................: " & GLOB_ENV_DEBUGTYPE
-        lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & GLOB_ENV_DEBUGLVL
+        GroupBox_test.Visible = Globals.GLOB_ENV_DEBUG
+        lbl_environnement_ws.Visible = Globals.GLOB_ENV_DEBUG
+        lbl_environnement_debugType.Visible = Globals.GLOB_ENV_DEBUG
+        lbl_environnement_debugLvl.Visible = Globals.GLOB_ENV_DEBUG
+        lbl_environnement_debugType.Text = "Type de sortie debug..................: " & Globals.GLOB_ENV_DEBUGTYPE
+        lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & Globals.GLOB_ENV_DEBUGLVL
         lbl_WS.Text = WSCrodip.getWS().Url
 
         If Not CSEnvironnement.checkWebService() Then
             lbl_WS.ForeColor = Drawing.Color.Red
         End If
-        Lbl_Version.Text = GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        Lbl_Version.Text = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
         ' On récupère le formulaire contener
 
         ' Chargement de la statusbar
@@ -678,7 +678,7 @@ Public Class login
             oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
             oDiag = New Diagnostic(agentCourant, oPulve, oExploit)
             Dim oFrm As New frmDiagnostique()
-            oFrm.setContexte(oDiag, DiagMode.CTRL_COMPLET, oPulve, oExploit)
+            oFrm.setContexte(oDiag, Globals.DiagMode.CTRL_COMPLET, oPulve, oExploit)
 
             oFrm.ShowDialog()
         End If

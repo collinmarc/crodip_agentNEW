@@ -31,7 +31,7 @@ Public Class CSDb
         _queryString = ""
         Select Case pDBType
             Case DBTYPE.AGENT
-                If GLOB_ENV_DEBUG = True Then
+                If Globals.GLOB_ENV_DEBUG = True Then
                     _dbName = conf_bddPath_dev
                 Else
                     _dbName = conf_bddPath
@@ -68,7 +68,7 @@ Public Class CSDb
     End Function
     Public Function getConnectString(pDBName As String) As String
         Dim bReturn As String
-        If GLOB_ENV_DEBUG = True Then
+        If Globals.GLOB_ENV_DEBUG = True Then
             bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & ".mdb;Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password="
         Else
             bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & ".mdb;Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password=" & conf_bddPass & ""

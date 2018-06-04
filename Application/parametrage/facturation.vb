@@ -318,8 +318,8 @@ Public Class facturation
         If filesBrowserDialogReturn = DialogResult.OK Or filesBrowserDialogReturn = DialogResult.Yes Then
             Dim selectedFile As String = filesBrowserDialog.FileName
             Dim selectedFileName As String = System.IO.Path.GetFileName(selectedFile)
-            Dim newFilepath As String = CONST_PATH_PUBLIC & "\" & selectedFileName
-            Dim logoFilepath As String = CONST_PATH_PUBLIC & "\" & CR_LOGO_NAME
+            Dim newFilepath As String = Globals.CONST_PATH_PUBLIC & "\" & selectedFileName
+            Dim logoFilepath As String = Globals.CONST_PATH_PUBLIC & "\" & Globals.CR_LOGO_NAME
             If selectedFile <> Nothing Then
                 Me.loadLogo(True)
                 ' Copie du nouveau fichier
@@ -340,9 +340,9 @@ Public Class facturation
 
                 ' On save
                 Try
-                    newImage.Save(CONST_PATH_PUBLIC & "\" & CR_LOGO_NAME)
-                    'newImage_thumb.Save(CONST_PATH_PUBLIC & "\" & CR_LOGO_TN_NAME)
-                    'newImage_thumbTn.Save(CONST_PATH_PUBLIC & "\" & CR_LOGO_TN2_NAME)
+                    newImage.Save(Globals.CONST_PATH_PUBLIC & "\" & Globals.CR_LOGO_NAME)
+                    'newImage_thumb.Save(Globals.CONST_PATH_PUBLIC & "\" & CR_LOGO_TN_NAME)
+                    'newImage_thumbTn.Save(Globals.CONST_PATH_PUBLIC & "\" & CR_LOGO_TN2_NAME)
                 Catch ex As Exception
                     CSDebug.dispError("Facturation.ajoutLogo.save() : " & ex.Message)
                 End Try
@@ -353,8 +353,8 @@ Public Class facturation
                 'newImage_thumbTn.Dispose()
 
                 ' Enregistrement en conf
-                Me.FACTURATION_XML_CONFIG.setElementValue("/root/logo", CONST_PATH_PUBLIC & CR_LOGO_NAME)
-                'Me.FACTURATION_XML_CONFIG.setElementValue("/root/logo_tn", CONST_PATH_PUBLIC & CR_LOGO_TN_NAME)
+                Me.FACTURATION_XML_CONFIG.setElementValue("/root/logo", Globals.CONST_PATH_PUBLIC & Globals.CR_LOGO_NAME)
+                'Me.FACTURATION_XML_CONFIG.setElementValue("/root/logo_tn", Globals.CONST_PATH_PUBLIC & CR_LOGO_TN_NAME)
 
                 '######################################################################################
 
@@ -428,12 +428,12 @@ Public Class facturation
         Me.loadLogo(False)
     End Sub
     Private Sub loadLogo(ByVal isDefaultLogo As Boolean)
-        Dim logoFilename As String = CONST_PATH_IMG & CR_LOGO_DEFAULT_NAME
+        Dim logoFilename As String = Globals.CONST_PATH_IMG & Globals.CR_LOGO_DEFAULT_NAME
         If Not isDefaultLogo Then
             logoFilename = Me.FACTURATION_XML_CONFIG.getElementValue("/root/logo")
         End If
         If Not File.Exists(logoFilename) Then
-            logoFilename = CONST_PATH_IMG & CR_LOGO_DEFAULT_NAME
+            logoFilename = Globals.CONST_PATH_IMG & Globals.CR_LOGO_DEFAULT_NAME
         End If
         Dim picBox As PictureBox = facturation_logo
         picBox.Image.Dispose()

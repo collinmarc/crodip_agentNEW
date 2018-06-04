@@ -553,7 +553,7 @@ Public Class FVBancManager
             Dim oCSftp As CSFTP = New CSFTP()
             Dim filePath As String
             If Not String.IsNullOrEmpty(pFV.FVFileName) Then
-                filePath = CONST_PATH_EXP & "/" & pFV.FVFileName
+                filePath = Globals.CONST_PATH_EXP & "/" & pFV.FVFileName
                 If System.IO.File.Exists(filePath) Then
                     bReturn = oCSftp.Upload(filePath, "FV/BC")
                 End If

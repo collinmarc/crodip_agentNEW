@@ -2,14 +2,6 @@ Imports System.IO
 
 Public Class CSFile
 
-    Public Shared Function exists(ByVal fileName As String) As Boolean
-        If System.IO.File.Exists(fileName) Then
-            Return True
-        Else
-            Return False
-        End If
-    End Function
-
     Public Shared Sub open(ByVal fileName As String)
         Try
             Dim monProcess As New Process

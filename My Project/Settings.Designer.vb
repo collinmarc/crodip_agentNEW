@@ -71,28 +71,22 @@ Partial Friend NotInheritable Class MySettings
         End Get
     End Property
     
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("public/Exports/AutoTest.csv")>  _
-    Public Property AutoTestDefaultFileName() As String
+    Public ReadOnly Property AutoTestDefaultFileName() As String
         Get
             Return CType(Me("AutoTestDefaultFileName"),String)
         End Get
-        Set
-            Me("AutoTestDefaultFileName") = value
-        End Set
     End Property
     
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-    Public Property Expect100Continue() As Boolean
+    Public ReadOnly Property Expect100Continue() As Boolean
         Get
             Return CType(Me("Expect100Continue"),Boolean)
         End Get
-        Set
-            Me("Expect100Continue") = value
-        End Set
     End Property
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
@@ -185,16 +179,13 @@ Partial Friend NotInheritable Class MySettings
         End Get
     End Property
     
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-    Public Property CVgratuite() As Boolean
+    Public ReadOnly Property CVgratuite() As Boolean
         Get
             Return CType(Me("CVgratuite"),Boolean)
         End Get
-        Set
-            Me("CVgratuite") = value
-        End Set
     End Property
     
     <Global.System.Configuration.UserScopedSettingAttribute(),  _
@@ -382,19 +373,19 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20180319120000")>  _
-    Public ReadOnly Property NumBuild() As String
+     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+    Public ReadOnly Property WSCrodipProduction() As Boolean
         Get
-            Return CType(Me("NumBuild"),String)
+            Return CType(Me("WSCrodipProduction"),Boolean)
         End Get
     End Property
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-    Public ReadOnly Property WSCrodipProduction() As Boolean
+     Global.System.Configuration.DefaultSettingValueAttribute("20180523120000")>  _
+    Public ReadOnly Property NumBuild() As String
         Get
-            Return CType(Me("WSCrodipProduction"),Boolean)
+            Return CType(Me("NumBuild"),String)
         End Get
     End Property
 End Class

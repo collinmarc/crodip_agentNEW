@@ -627,7 +627,7 @@ Public Class diagnostic_facturation
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.listTarif_prestations)
         Me.Controls.Add(Me.Panel72)
-        Me.Icon = Global.Crodip_agent.Resources.logoCRODIP
+        Me.Icon = Crodip_Agent.Resources.logoCRODIP
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "diagnostic_facturation"
@@ -661,7 +661,7 @@ Public Class diagnostic_facturation
 #Region " Chargement "
     ' Chargement de la page
     Private Sub diagnostic_finalisation_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Statusbar.display(CONST_STATUTMSG_DIAG_TARIFS, False)
+        Statusbar.display(Globals.CONST_STATUTMSG_DIAG_TARIFS, False)
         Me.Cursor = Cursors.WaitCursor
         tb_txTVA.Text = My.Settings.TxTVADefaut
         ' Chargement des catégories de prestations
@@ -1024,9 +1024,9 @@ Public Class diagnostic_facturation
     '    Try
 
     '        ' Init
-    '        Dim pdfTemplate As String = CONST_PATH_DOCS & CONST_DOC_CONTCOM & ".pdf"
-    '        'pathContrat = CONST_PATH_EXP & CONST_DOC_CONTCOM & "_" & CSDate.getDateId(Date.Now) & ".pdf"
-    '        pathContrat = CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
+    '        Dim pdfTemplate As String = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_CONTCOM & ".pdf"
+    '        'pathContrat = Globals.CONST_PATH_EXP & Globals.CONST_DOC_CONTCOM & "_" & CSDate.getDateId(Date.Now) & ".pdf"
+    '        pathContrat = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
     '        Dim newFile As String = pathContrat
     '        ' Ouverture des pdf
     '        pdfReader = New PdfReader(pdfTemplate)
@@ -1081,7 +1081,7 @@ Public Class diagnostic_facturation
 
             Dim oEtat As New EtatContratCommercial(diagnosticCourant)
             If oEtat.GenereEtat() Then
-                pathContrat = CONST_PATH_EXP & oEtat.getFileName()
+                pathContrat = Globals.CONST_PATH_EXP & oEtat.getFileName()
                 diagnosticCourant.CCFileName = oEtat.getFileName()
             End If
         Catch ex As Exception
@@ -1215,7 +1215,7 @@ Public Class diagnostic_facturation
     '        'Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo_tn")
     '        Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo")
     '        If Not File.Exists(logoFilename) Then
-    '            logoFilename = CONST_PATH_IMG & CR_LOGO_DEFAULT_TN_NAME
+    '            logoFilename = Globals.CONST_PATH_IMG & CR_LOGO_DEFAULT_TN_NAME
     '        End If
     '        ods.Facture(0).LogoFileName = logoFilename
     '        Dim newImage As System.Drawing.Image = System.Drawing.Image.FromFile(logoFilename)

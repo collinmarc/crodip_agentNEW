@@ -384,14 +384,17 @@
     <ParamCtrlDiag>
       <Code>8.1.1</Code>
       <Libelle>Déformations sur le plan vertical</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.1.2</Code>
       <Libelle>Déformations sur le plan horizontal</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.1.3</Code>
       <Libelle>Protection des buses extrémités</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.1.4</Code>
@@ -420,10 +423,11 @@
     <ParamCtrlDiag>
       <Code>8.2.2</Code>
       <Libelle>Stabilité</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.2.3</Code>
-      <Libelle>Réglage en hauteur</Libelle>
+      <Libelle>Réglage position des sorties</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>8.3</Code>
@@ -458,6 +462,7 @@
     <ParamCtrlDiag>
       <Code>9.1.2</Code>
       <Libelle>Orientation du montage</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>9.2</Code>
@@ -549,30 +554,36 @@
     <ParamCtrlDiag>
       <Code>12.2</Code>
       <Libelle>Pistolet ou lance</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>12.2.1</Code>
       <Libelle>Etat</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>12.2.2</Code>
       <Libelle>Fonctionnement</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>12.3</Code>
       <Libelle>Chariot de pulvérisation</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>12.3.1</Code>
       <Libelle>Etat</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>12.3.2</Code>
       <Libelle>Fonctionnement</Libelle>
+      <Actif>false</Actif>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>12.4</Code>
-      <Libelle>Cuve lave-mains</Libelle>
+      <Libelle>Accessoires de sécurité</Libelle>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>12.4.1</Code>
@@ -1957,7 +1968,7 @@
       <LibelleLong>Il n'existe aucun tamis au niveau de l'orifice de remplissage de la cuve de bouillie</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
+      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1991,10 +2002,10 @@
       <LibelleLong>Il n'est pas possible d'assurer le remplissage du pulvé depuis la pompe de celui-ci sans risque de retour vers le milieu ext.</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>1</NiveauCauseMax>
+      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
-      <Cause3>true</Cause3>
+      <Cause3>false</Cause3>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>4.4.2.0</Code>
@@ -3587,11 +3598,22 @@
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
     </ParamCtrlDiag>
+<ParamCtrlDiag>
+      <Code>9.1.1.6</Code>
+      <Libelle>dissymétrie</Libelle>
+      <LibelleLong>Le montage des buses ou pastilles n'est pas symétrique de chaque côté du pulvérisateur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>9.1.1.0</Code>
       <Libelle>OK</Libelle>
       <LibelleLong />
-      <Actif>false</Actif>
+      <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>

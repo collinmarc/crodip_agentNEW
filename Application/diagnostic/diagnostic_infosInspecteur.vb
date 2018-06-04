@@ -5,10 +5,10 @@ Imports System.Data
 Imports System.Drawing
 Imports System.Text
 Imports System.Windows.Forms
-Imports iTextSharp
-Imports iTextSharp.text
-Imports iTextSharp.text.pdf
-Imports iTextSharp.text.xml
+'Imports iTextSharp
+'Imports iTextSharp.text
+'Imports iTextSharp.text.pdf
+'Imports iTextSharp.text.xml
 Imports System.IO
 
 Public Class diagnostic_infosInspecteur
@@ -789,57 +789,57 @@ Public Class diagnostic_infosInspecteur
 
     Dim pathFichePedago As String
     Private Sub createFichePedago()
-        Dim pdfReader As PdfReader
-        Dim pdfStamper As PdfStamper
-        Dim pdfFormFields As AcroFields
-        ' On génère le PDF
-        Try
+        'Dim pdfReader As PdfReader
+        'Dim pdfStamper As PdfStamper
+        'Dim pdfFormFields As AcroFields
+        '' On génère le PDF
+        'Try
 
-            ' Init
-            'Dim pdfTemplate As String = CONST_PATH_DOCS & CONST_DOC_FPEDA
-            'Dim newFile As String = CONST_PATH_EXP & CONST_DOC_FPEDAv
-            Dim pdfTemplate As String = CONST_PATH_DOCS & CONST_DOC_FPEDA & ".pdf"
-            'pathFichePedago = CONST_PATH_EXP & CONST_DOC_FPEDA & "_" & CSDate.getDateId(Date.Now) & "_" & diagnosticCourant.id & ".pdf"
-            pathFichePedago = CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_FEUILLE_PEDAGOGIQUE) & ".pdf"
-            Dim newFile As String = pathFichePedago
-            ' Ouverture des pdf
-            pdfReader = New PdfReader(pdfTemplate)
-            pdfStamper = New PdfStamper(pdfReader, New FileStream(newFile, FileMode.Create))
-            pdfFormFields = pdfStamper.AcroFields
+        '    ' Init
+        '    'Dim pdfTemplate As String = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_FPEDA
+        '    'Dim newFile As String = Globals.CONST_PATH_EXP & Globals.CONST_DOC_FPEDAv
+        '    Dim pdfTemplate As String = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_FPEDA & ".pdf"
+        '    'pathFichePedago = Globals.CONST_PATH_EXP & Globals.CONST_DOC_FPEDA & "_" & CSDate.getDateId(Date.Now) & "_" & diagnosticCourant.id & ".pdf"
+        '    pathFichePedago = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_FEUILLE_PEDAGOGIQUE) & ".pdf"
+        '    Dim newFile As String = pathFichePedago
+        '    ' Ouverture des pdf
+        '    pdfReader = New PdfReader(pdfTemplate)
+        '    pdfStamper = New PdfStamper(pdfReader, New FileStream(newFile, FileMode.Create))
+        '    pdfFormFields = pdfStamper.AcroFields
 
-            ' Et on rempli les champs
-            ' Organisme Prestataire
-            pdfFormFields.SetField("orgaPNom", diagnosticCourant.organismePresNom)
-            pdfFormFields.SetField("orgaPNum", diagnosticCourant.organismePresNumero)
-            ' Infos Diag
-            pdfFormFields.SetField("conseilsInspecteur", diag_conseils.Text)
-            Dim tmpLstBuses As String = ""
-            For i As Integer = 0 To listBusesUsed.Items.Count - 1
-                tmpLstBuses += listBusesUsed.Items(i).ToString & vbNewLine
-            Next
-            pdfFormFields.SetField("listBusesUsed", tmpLstBuses)
-            ' Infos calcul Vol/Ha
-            pdfFormFields.SetField("pressionManoPulve_1", lblPressionManoPulve_1.Text)
-            pdfFormFields.SetField("pressionBuses_1", lblPressionBuses_1.Text)
-            pdfFormFields.SetField("rapportBoite_1", lblRapportBoite_1.Text)
-            pdfFormFields.SetField("vitesseAvancement_1", lblVitesse_1.Text)
-            pdfFormFields.SetField("dosageBusesAppareil_1", lblDosageBusesAppareil_1.Text)
-            pdfFormFields.SetField("dosageBusesNeuves_1", lblDosageBusesNeuves_1.Text)
-            pdfFormFields.SetField("pressionManoPulve_2", lblPressionManoPulve_2.Text)
-            pdfFormFields.SetField("pressionBuses_2", lblPressionBuses_2.Text)
-            pdfFormFields.SetField("rapportBoite_2", lblRapportBoite_2.Text)
-            pdfFormFields.SetField("vitesseAvancement_2", lblVitesse_2.Text)
-            pdfFormFields.SetField("dosageBusesAppareil_2", lblDosageBusesAppareil_2.Text)
-            pdfFormFields.SetField("dosageBusesNeuves_2", lblDosageBusesNeuves_2.Text)
+        '    ' Et on rempli les champs
+        '    ' Organisme Prestataire
+        '    pdfFormFields.SetField("orgaPNom", diagnosticCourant.organismePresNom)
+        '    pdfFormFields.SetField("orgaPNum", diagnosticCourant.organismePresNumero)
+        '    ' Infos Diag
+        '    pdfFormFields.SetField("conseilsInspecteur", diag_conseils.Text)
+        '    Dim tmpLstBuses As String = ""
+        '    For i As Integer = 0 To listBusesUsed.Items.Count - 1
+        '        tmpLstBuses += listBusesUsed.Items(i).ToString & vbNewLine
+        '    Next
+        '    pdfFormFields.SetField("listBusesUsed", tmpLstBuses)
+        '    ' Infos calcul Vol/Ha
+        '    pdfFormFields.SetField("pressionManoPulve_1", lblPressionManoPulve_1.Text)
+        '    pdfFormFields.SetField("pressionBuses_1", lblPressionBuses_1.Text)
+        '    pdfFormFields.SetField("rapportBoite_1", lblRapportBoite_1.Text)
+        '    pdfFormFields.SetField("vitesseAvancement_1", lblVitesse_1.Text)
+        '    pdfFormFields.SetField("dosageBusesAppareil_1", lblDosageBusesAppareil_1.Text)
+        '    pdfFormFields.SetField("dosageBusesNeuves_1", lblDosageBusesNeuves_1.Text)
+        '    pdfFormFields.SetField("pressionManoPulve_2", lblPressionManoPulve_2.Text)
+        '    pdfFormFields.SetField("pressionBuses_2", lblPressionBuses_2.Text)
+        '    pdfFormFields.SetField("rapportBoite_2", lblRapportBoite_2.Text)
+        '    pdfFormFields.SetField("vitesseAvancement_2", lblVitesse_2.Text)
+        '    pdfFormFields.SetField("dosageBusesAppareil_2", lblDosageBusesAppareil_2.Text)
+        '    pdfFormFields.SetField("dosageBusesNeuves_2", lblDosageBusesNeuves_2.Text)
 
 
-            ' On referme le PDF
-            pdfStamper.FormFlattening = True
-            pdfStamper.Close()
-            pdfReader.Close()
-        Catch ex As Exception
-            CSDebug.dispError("diagnostic_infosInspecteur::createFichePedago(Génération feuille pédagogique) : " & ex.Message)
-        End Try
+        '    ' On referme le PDF
+        '    pdfStamper.FormFlattening = True
+        '    pdfStamper.Close()
+        '    pdfReader.Close()
+        'Catch ex As Exception
+        '    CSDebug.dispError("diagnostic_infosInspecteur::createFichePedago(Génération feuille pédagogique) : " & ex.Message)
+        'End Try
     End Sub
     Private Sub btn_finalisationDiag_imprimer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_imprimer.Click
         sender.Enabled = False

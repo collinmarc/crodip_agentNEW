@@ -867,7 +867,7 @@ Partial Public Class ds_Etat_RI
             MyBase.Columns.Add(Me.columnInspecteurInitial)
             Me.columnNbPageRFinal = New Global.System.Data.DataColumn("NbPageRFinal", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNbPageRFinal)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnNumeroControle}, true))
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("CONSTraint1", New Global.System.Data.DataColumn() {Me.columnNumeroControle}, true))
             Me.columnNumeroControle.AllowDBNull = false
             Me.columnNumeroControle.Unique = true
         End Sub
@@ -1170,7 +1170,7 @@ Partial Public Class ds_Etat_RI
             MyBase.Columns.Add(Me.columnNomInspecteur)
             Me.columnNumeroInspecteur = New Global.System.Data.DataColumn("NumeroInspecteur", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNumeroInspecteur)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnNumeroAgrement}, true))
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Organisme_constraint1", New Global.System.Data.DataColumn() {Me.columnNumeroAgrement}, true))
             Me.columnNumeroAgrement.AllowDBNull = false
             Me.columnNumeroAgrement.Unique = true
         End Sub
@@ -1866,7 +1866,7 @@ Partial Public Class ds_Etat_RI
             MyBase.Columns.Add(Me.columnPrincCategorie)
             Me.columnPrincEmplIdent = New Global.System.Data.DataColumn("PrincEmplIdent", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPrincEmplIdent)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnIdentifiant}, true))
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Materiel_constraint1", New Global.System.Data.DataColumn() {Me.columnIdentifiant}, true))
             Me.columnIdentifiant.AllowDBNull = false
             Me.columnIdentifiant.Unique = true
             Me.columnNumeroControle.AllowDBNull = false
