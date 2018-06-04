@@ -622,12 +622,12 @@ Imports System.IO
         oEtat.GenereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(CONST_PATH_EXP & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
 
         Dim oEtatSM As New EtatSyntheseMesures(oDiag)
         oEtatSM.GenereEtat()
         oDiag.SMFileName = oEtat.getFileName()
-        Assert.IsTrue(File.Exists(CONST_PATH_EXP & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
 
         oDiag.SMFileName = oEtatSM.getFileName()
         DiagnosticManager.save(oDiag)
@@ -636,15 +636,15 @@ Imports System.IO
         Assert.IsTrue(DiagnosticManager.SendFTPEtats(oDiag))
 
         'Suppression des etats générés en local
-        File.delete(CONST_PATH_EXP & "/" & oDiag.RIFileName)
-        File.Delete(CONST_PATH_EXP & "/" & oDiag.SMFileName)
-        Assert.IsFalse(File.Exists(CONST_PATH_EXP & "/" & oDiag.RIFileName))
-        Assert.IsFalse(File.Exists(CONST_PATH_EXP & "/" & oDiag.SMFileName))
+        File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+        File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName)
+        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
+        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
 
         'Récupération des fichiers par FTP
         Assert.IsTrue(DiagnosticManager.getFTPEtats(oDiag))
-        Assert.IsTrue(File.Exists(CONST_PATH_EXP & "/" & oDiag.RIFileName))
-        Assert.IsTrue(File.Exists(CONST_PATH_EXP & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
 
     End Sub
     <TestMethod()> Public Sub TestOrdredesDiagItems()

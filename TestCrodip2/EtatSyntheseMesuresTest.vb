@@ -144,7 +144,7 @@ Imports CrystalDecisions.Shared
         Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
         Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
         m_FileName = CSDiagPdf.makeFilename("test", "SM12123") & "_" & "test" & ".pdf"
-        CrDiskFileDestinationOptions.DiskFileName = CONST_PATH_EXP & m_FileName
+        CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
         CrExportOptions = objReport.ExportOptions
         With CrExportOptions
             .ExportDestinationType = ExportDestinationType.DiskFile
@@ -154,7 +154,7 @@ Imports CrystalDecisions.Shared
         End With
         objReport.Export()
 
-        CSFile.open(CONST_PATH_EXP & m_FileName)
+        CSFile.open(Globals.CONST_PATH_EXP & m_FileName)
     End Sub
 
     <TestMethod()> Public Sub TestMesures12123TrtSem()
@@ -200,7 +200,7 @@ Imports CrystalDecisions.Shared
         Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
         Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
         m_FileName = CSDiagPdf.makeFilename("test", "SM12123TrtSem") & "_" & "test" & ".pdf"
-        CrDiskFileDestinationOptions.DiskFileName = CONST_PATH_EXP & m_FileName
+        CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
         CrExportOptions = objReport.ExportOptions
         With CrExportOptions
             .ExportDestinationType = ExportDestinationType.DiskFile
@@ -210,6 +210,6 @@ Imports CrystalDecisions.Shared
         End With
         objReport.Export()
 
-        CSFile.open(CONST_PATH_EXP & m_FileName)
+        CSFile.open(Globals.CONST_PATH_EXP & m_FileName)
     End Sub
 End Class

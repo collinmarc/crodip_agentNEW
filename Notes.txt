@@ -1,0 +1,7 @@
+Le projet est compilé en x86 a cuse de l'accès OLEDB à MSACCESS
+
+le FrameWork est .NET 4.0 => fonctionne sur XP
+
+le CRRunTime for VS 13.0.2000.0 => Test sur XP
+
+Ne pas générer les DLL de serialization (Option avancées de compilation) : error MSB6006: Arrêt de "sgen.exe" avec le code 1.

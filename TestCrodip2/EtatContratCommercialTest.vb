@@ -103,18 +103,18 @@ Imports System.IO
         oEtat.GenereEtat()
         oDiag.CCFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(CONST_PATH_EXP & "/" & oDiag.CCFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.CCFileName))
 
         ''Synchronisation des etats
         Assert.IsTrue(DiagnosticManager.SendFTPEtats(oDiag))
 
         'Suppression des etats générés en local
-        File.Delete(CONST_PATH_EXP & "/" & oDiag.CCFileName)
-        Assert.IsFalse(File.Exists(CONST_PATH_EXP & "/" & oDiag.CCFileName))
+        File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.CCFileName)
+        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.CCFileName))
 
         'Récupération des fichiers par FTP
         Assert.IsTrue(DiagnosticManager.getFTPEtats(oDiag))
-        Assert.IsTrue(File.Exists(CONST_PATH_EXP & "/" & oDiag.CCFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.CCFileName))
 
     End Sub
 

@@ -356,7 +356,7 @@ Public Class CRODIPTest
         obj = New IdentifiantPulverisateur
         obj.id = IdentifiantPulverisateurManager.getNextId()
         obj.idStructure = m_oAgent.idStructure
-        obj.numeroNational = GLOB_DIAG_NUMAGR & pNumNat
+        obj.numeroNational = Globals.GLOB_DIAG_NUMAGR & pNumNat
         obj.SetEtatINUTILISE()
         obj.dateUtilisation = ""
         obj.libelle = ""

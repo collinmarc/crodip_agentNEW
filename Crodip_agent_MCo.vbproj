@@ -4,7 +4,7 @@
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.30319</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DD7C56AA-4A81-4966-94BC-6B9B62054235}</ProjectGuid>
+    <ProjectGuid>{3D38D8BF-8A2B-45EB-9E95-E97518B1C227}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
@@ -88,6 +88,7 @@
     <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
     <DebugType>none</DebugType>
     <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -512,6 +513,8 @@
     </Compile>
     <Compile Include="Application\includes\classes\ReglagePulve\ParamReglagePulve.vb" />
     <Compile Include="Application\includes\classes\ReglagePulve\RPDiagnosticManager.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPInfosBuses.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPUser.vb" />
     <Compile Include="Application\includes\classes\RootManager.vb" />
     <Compile Include="Application\includes\classes\StatsCRODIP.vb" />
     <Compile Include="Application\includes\classes\CSStatusbar.vb">

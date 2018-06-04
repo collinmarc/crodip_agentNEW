@@ -81,8 +81,8 @@ Module StartApplication
         ' Territoires
         Globals.GLOB_XML_TERRITOIRES = New CSXml("." & "\config\territoire.xml")
         Globals.GLOB_XML_CODESAPE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielCodesAPE.xml")
-
         Globals.Init()
+
         If TestCrystalReport() Then
             Dim ofrm As Form
 #If REGLAGEPULVE Then
@@ -110,11 +110,9 @@ Module StartApplication
     End Sub
 
     Public Function TestCrystalReport() As Boolean
-        Globals.Init()
         Dim ocr As New crTest()
         Dim bReturn As Boolean
         Dim m_reportName As String
-        Dim m_FileName As String
         Dim ods As dsTest
 
 
@@ -132,12 +130,9 @@ Module StartApplication
 
 
                 Using objReport As crTest = New crTest()
-                    CSDebug.dispInfo("StartApplication.TestCrystalReport Load")
                     objReport.Load(m_reportName)
-                    CSDebug.dispInfo("StartApplication.TestCrystalReport SetDataSource")
                     objReport.SetDataSource(ods)
 
-                    CSDebug.dispInfo("StartApplication.TestCrystalReport Params")
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
@@ -149,7 +144,6 @@ Module StartApplication
                         .DestinationOptions = CrDiskFileDestinationOptions
                         .FormatOptions = CrFormatTypeOptions
                     End With
-                    CSDebug.dispInfo("StartApplication.TestCrystalReport Export")
                     objReport.Export()
 
                 End Using

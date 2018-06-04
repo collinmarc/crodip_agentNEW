@@ -1087,19 +1087,19 @@ Public Class PulverisateurManagerTest
         Dim oPulve2 As Pulverisateur
         Dim oResult As Pulverisateur.CheckResult
 
-        oResult = oPulve.CheckNumeroNational(GLOB_DIAG_NUMAGR & "12345", m_oAgent, False)
+        oResult = oPulve.CheckNumeroNational(Globals.GLOB_DIAG_NUMAGR & "12345", m_oAgent, False)
         Assert.AreEqual(Pulverisateur.CheckResult.NUMEROFORMATINCORRECT, oResult)
-        oResult = oPulve.CheckNumeroNational(GLOB_DIAG_NUMAGR & "1234567", m_oAgent, False)
+        oResult = oPulve.CheckNumeroNational(Globals.GLOB_DIAG_NUMAGR & "1234567", m_oAgent, False)
         Assert.AreEqual(Pulverisateur.CheckResult.NUMEROFORMATINCORRECT, oResult)
-        oResult = oPulve.CheckNumeroNational(GLOB_DIAG_NUMAGR & "A23456", m_oAgent, False)
+        oResult = oPulve.CheckNumeroNational(Globals.GLOB_DIAG_NUMAGR & "A23456", m_oAgent, False)
         Assert.AreEqual(Pulverisateur.CheckResult.NUMEROFORMATINCORRECT, oResult)
         m_oExploitation = createExploitation()
         oPulve2 = createPulve(m_oExploitation)
-        oPulve2.numeroNational = GLOB_DIAG_NUMAGR & "112233"
+        oPulve2.numeroNational = Globals.GLOB_DIAG_NUMAGR & "112233"
         PulverisateurManager.save(oPulve2, m_oExploitation.id, m_oAgent)
-        oResult = oPulve.CheckNumeroNational(GLOB_DIAG_NUMAGR & "112233", m_oAgent, True)
+        oResult = oPulve.CheckNumeroNational(Globals.GLOB_DIAG_NUMAGR & "112233", m_oAgent, True)
         Assert.AreEqual(Pulverisateur.CheckResult.NUMEROEXISTANT, oResult)
-        oResult = oPulve.CheckNumeroNational(GLOB_DIAG_NUMAGR & "112233", m_oAgent, False)
+        oResult = oPulve.CheckNumeroNational(Globals.GLOB_DIAG_NUMAGR & "112233", m_oAgent, False)
         Assert.AreEqual(Pulverisateur.CheckResult.OK, oResult)
 
         createIdentPulve("112233")
@@ -1107,11 +1107,11 @@ Public Class PulverisateurManagerTest
         createIdentPulve("654321")
         createIdentPulve("147258")
 
-        oResult = oPulve.CheckNumeroNational(GLOB_DIAG_NUMAGR & "111111", m_oAgent, False)
+        oResult = oPulve.CheckNumeroNational(Globals.GLOB_DIAG_NUMAGR & "111111", m_oAgent, False)
         Assert.AreEqual(Pulverisateur.CheckResult.NUMEROPASDANSLALISTE, oResult)
-        oResult = oPulve.CheckNumeroNational(GLOB_DIAG_NUMAGR & "123456", m_oAgent, False)
+        oResult = oPulve.CheckNumeroNational(Globals.GLOB_DIAG_NUMAGR & "123456", m_oAgent, False)
         Assert.AreEqual(Pulverisateur.CheckResult.NUMEROPASLEPREMIER, oResult)
-        oResult = oPulve.CheckNumeroNational(GLOB_DIAG_NUMAGR & "112233", m_oAgent, False)
+        oResult = oPulve.CheckNumeroNational(Globals.GLOB_DIAG_NUMAGR & "112233", m_oAgent, False)
         Assert.AreEqual(Pulverisateur.CheckResult.OK, oResult)
         oResult = oPulve.CheckNumeroNational("E002" & "123456", m_oAgent, False)
         Assert.AreEqual(Pulverisateur.CheckResult.OK, oResult)

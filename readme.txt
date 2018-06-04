@@ -1,4 +1,7 @@
 TRUNK
+Build:20180604220000
+#230 : Fonctionnement sur XP
+
 Build:20180518170000
 #205 : menu déroulant sur liste du matériel
 
