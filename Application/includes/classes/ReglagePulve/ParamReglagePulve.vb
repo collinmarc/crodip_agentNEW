@@ -102,7 +102,7 @@ Public Class ParamReglagePulve
                 Using compressedFileStream As FileStream = File.Create(pstrFile & "z")
                     Using compressionStream As New GZipStream(compressedFileStream, CompressionMode.Compress)
 
-                        originalFileStream.CopyTo(compressionStream)
+                        'originalFileStream.CopyTo(compressionStream)
                     End Using
                 End Using
             End If
@@ -121,7 +121,7 @@ Public Class ParamReglagePulve
 
             Using decompressedFileStream As FileStream = File.Create(newFileName)
                 Using decompressionStream As GZipStream = New GZipStream(originalFileStream, CompressionMode.Decompress)
-                    decompressionStream.CopyTo(decompressedFileStream)
+                    'decompressionStream.CopyTo(decompressedFileStream)
                 End Using
             End Using
         End Using

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2005
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34DE14A0-A2A5-484B-9809-A82B3B9C3FAE}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestCrodip", "TestCrodip\TestCrodip.vbproj", "{16C8EDEE-16AE-4944-83A9-B3A0604C65A3}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Crodip_agent", "Crodip_agent.vbproj", "{DD7C56AA-4A81-4966-94BC-6B9B62054235}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Crodip_agent_MCo", "Crodip_agent_MCo.vbproj", "{DD7C56AA-4A81-4966-94BC-6B9B62054235}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Crodip_updater", "Crodip_updater\Crodip_updater.vbproj", "{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}"
 EndProject

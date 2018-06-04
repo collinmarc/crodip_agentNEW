@@ -28,7 +28,7 @@
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>0.0</OldToolsVersion>
@@ -189,12 +189,15 @@
       <Name>itextsharp</Name>
       <HintPath>bin\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>packages\NLog.4.3.5\lib\net35\NLog.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.4.5.6\lib\net40-client\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
@@ -202,8 +205,10 @@
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
     </Reference>
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services">
       <Name>System.Web.Services</Name>
@@ -750,10 +755,19 @@
     <Compile Include="Application\parametrage\facturation.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\ParentContener.Designer.vb">
+      <DependentUpon>parentContener.vb</DependentUpon>
+    </Compile>
     <Compile Include="Application\parentContener.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\ReglagePulve\EtatReglagePulve.vb" />
+    <Compile Include="Application\ReglagePulve\frmLoadCtrlCRODIP.Designer.vb">
+      <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\frmLoadCtrlCRODIP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\ReglagePulve\frmRPDlgHelp551.Designer.vb">
       <DependentUpon>frmRPDlgHelp551.vb</DependentUpon>
     </Compile>
@@ -822,6 +836,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\ReglagePulve\RPInfosBuses.vb" />
+    <Compile Include="Application\ReglagePulve\RPloginAgent.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\ReglagePulve\RPloginStandAlone.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -923,7 +940,10 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="moduleDocumentaire\_parametres\crTest.vb">
+    <Compile Include="moduleDocumentaire\_parametres\crTest1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crTest.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="moduleDocumentaire\_parametres\cr_DocCopropiete.vb">
@@ -1237,6 +1257,10 @@
       <DependentUpon>dsTest.xsd</DependentUpon>
     </None>
     <None Include="img\Exit.jpg" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
     <None Include="Resources\ClosePreviewHH.bmp" />
     <None Include="Resources\AddTableHH.bmp" />
     <None Include="Resources\NavBackHS.bmp" />
@@ -1287,12 +1311,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
     <None Include="Resources\logoCRODIP.ico" />
     <None Include="Resources\calculator.ico" />
     <None Include="Resources\Button_Play_Icon_256.png" />
@@ -2040,6 +2060,9 @@
     <EmbeddedResource Include="Application\parentContener.resx">
       <DependentUpon>parentContener.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\frmLoadCtrlCRODIP.resx">
+      <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\frmRPDiagnostique.resx">
       <DependentUpon>frmRPDiagnostique.vb</DependentUpon>
     </EmbeddedResource>
@@ -2075,6 +2098,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\RPapropos.resx">
       <DependentUpon>RPapropos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\RPloginAgent.resx">
+      <DependentUpon>RPloginAgent.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\RPloginStandAlone.resx">
       <DependentUpon>RPloginStandAlone.vb</DependentUpon>
@@ -2214,6 +2240,10 @@
       <LastGenOutput>crRapportInspectionFin2.vb</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="moduleDocumentaire\_parametres\crTest.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crTest1.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="moduleDocumentaire\_parametres\cr_DocCopropiete.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_DocCopropiete.vb</LastGenOutput>
@@ -2262,6 +2292,9 @@
       <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
     </None>
     <None Include="Web References\WSCrodip_prod\crodip.wsdl" />
+    <None Include="Web References\WSCrodip_prod\IdentifiantPulverisateur1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\WSCrodip_prod\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>
