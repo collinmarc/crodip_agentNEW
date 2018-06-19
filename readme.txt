@@ -1,4 +1,7 @@
 TRUNK
+Build:20180619100000
+#235 : Erreurs sur Différents rapports
+
 Build:20180604220000
 #230 : Fonctionnement sur XP
 

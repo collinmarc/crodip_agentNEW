@@ -150,7 +150,7 @@ Public Class DiagnosticInfosComplementairesTest
         oDiagItem.itemValue = "1"
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Ajout des mesures InfosComplementaires
         '=========================
@@ -267,7 +267,7 @@ Public Class DiagnosticInfosComplementairesTest
         oDiagItem.itemValue = "1"
         oDiagItem.itemCodeEtat = "B"
         oDiagItem.cause = "1"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         'Ajout des mesures InfosComplementaires
         '=========================

@@ -246,7 +246,7 @@ Public Class SynchronisationTest
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561"
-        oDiag.AddDiagItem(oDiagItem)
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)

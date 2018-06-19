@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.30319</ProductVersion>
@@ -21,14 +21,14 @@
     <OptionExplicit>On</OptionExplicit>
     <OptionStrict>Off</OptionStrict>
     <RootNamespace>Crodip_agent</RootNamespace>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject>Crodip_agent.StartApplication</StartupObject>
     <WebReference_EnableProperties>true</WebReference_EnableProperties>
     <WebReference_EnableSQLTypes>false</WebReference_EnableSQLTypes>
     <WebReference_EnableLegacyEventingModel>true</WebReference_EnableLegacyEventingModel>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>0.0</OldToolsVersion>
@@ -69,7 +69,6 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -89,7 +88,7 @@
     <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
     <DebugType>none</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -109,7 +108,6 @@
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
@@ -122,7 +120,6 @@
     <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugReglagePulve|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -139,7 +136,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>REGLAGEPULVE=True</DefineConstants>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugReglagePulve|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -156,7 +152,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>REGLAGEPULVE</DefineConstants>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseReglagePulve|AnyCPU'">
     <DefineTrace>true</DefineTrace>
@@ -171,7 +166,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>REGLAGEPULVE=True</DefineConstants>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseReglagePulve|x86'">
     <DefineTrace>true</DefineTrace>
@@ -185,24 +179,31 @@
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>REGLAGEPULVE</DefineConstants>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.TemplateEngine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.VSDesigner, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="itextsharp">
       <Name>itextsharp</Name>
       <HintPath>bin\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>packages\NLog.4.3.5\lib\net35\NLog.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.4.5.6\lib\net40-client\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
@@ -210,8 +211,10 @@
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
     </Reference>
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services">
       <Name>System.Web.Services</Name>
@@ -345,9 +348,6 @@
     <Compile Include="Application\diagnostic\diagnostic_nouvelle_contrevisite.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\frmdiagnostic_recap.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\diagnostic\diagnostic_recap.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -370,6 +370,9 @@
       <DependentUpon>FrmAddCoProp.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\diagnostic\FrmAddCoProp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmdiagnostic_recapV6.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\frmDiagnostiqueV6.Designer.vb">
@@ -410,12 +413,14 @@
     </Compile>
     <Compile Include="Application\includes\classes\Controle\ControleBancBuse.vb" />
     <Compile Include="Application\includes\classes\Controle\ControleManoDetail.vb" />
-    <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123Mesures.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123Mesures.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123MesuresTrtSem.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp552.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp571.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123Manager.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp571Manager.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\DiagnosticItemAuto.vb" />
     <Compile Include="Application\includes\classes\FicheVie\FVMateriel.vb" />
     <Compile Include="Application\includes\classes\IdentifiantPulverisateur\IdentifiantPulverisateur.vb" />
     <Compile Include="Application\includes\classes\IdentifiantPulverisateur\IdentifiantPulverisateurManager.vb" />
@@ -505,14 +510,19 @@
     <Compile Include="Application\includes\classes\Referentiel\ReferentielBusesCSV.vb" />
     <Compile Include="Application\includes\classes\Referentiel\ReferentielCodesAPE.vb" />
     <Compile Include="Application\includes\classes\ReglagePulve\CalcVolumeHa.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\MyVerticalLabel.Designer.vb">
+      <DependentUpon>MyVerticalLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\includes\classes\ReglagePulve\MyVerticalLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Application\includes\classes\ReglagePulve\ParamReglagePulve.vb" />
-    <Compile Include="Application\includes\classes\ReglagePulve\UserReglagePulve.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPDiagnosticManager.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPInfosBuses.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPUser.vb" />
     <Compile Include="Application\includes\classes\RootManager.vb" />
     <Compile Include="Application\includes\classes\StatsCRODIP.vb" />
     <Compile Include="Application\includes\classes\CSStatusbar.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Application\includes\classes\CSVersion.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Application\includes\classes\DBVersion.vb" />
@@ -676,9 +686,8 @@
     <Compile Include="Application\includes\config\variables_globales.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Application\includes\CSBoot.vb">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Application\includes\CSReglagePulve.vb" />
+    <Compile Include="Application\includes\fonctions\CSBoot.vb" />
     <Compile Include="Application\includes\fonctions\CSCheck.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -736,24 +745,37 @@
     <Compile Include="Application\includes\fonctions\CSTime.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Application\includes\fonctions\CSVersion.vb" />
     <Compile Include="Application\includes\fonctions\CSXml.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Application\includes\SortableBindingList.vb" />
     <Compile Include="Application\includes\PropertyComparer.vb" />
-    <Compile Include="Application\loginReglagePulve.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\login.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\parametrage\facturation.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\ParentContener.Designer.vb">
+      <DependentUpon>parentContener.vb</DependentUpon>
+    </Compile>
     <Compile Include="Application\parentContener.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\ReglagePulve\EtatReglagePulve.vb" />
+    <Compile Include="Application\ReglagePulve\frmDiagnostiqueSimple.Designer.vb">
+      <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\frmDiagnostiqueSimple.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\frmLoadCtrlCRODIP.Designer.vb">
+      <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\frmLoadCtrlCRODIP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\ReglagePulve\frmRPDlgHelp551.Designer.vb">
       <DependentUpon>frmRPDlgHelp551.vb</DependentUpon>
     </Compile>
@@ -776,6 +798,12 @@
       <DependentUpon>frmRPFichePulve.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\ReglagePulve\frmRPFichePulve.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\frmRPInfosBuses.Designer.vb">
+      <DependentUpon>frmRPInfosBuses.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\frmRPInfosBuses.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\ReglagePulve\FrmRPPreliminaire.Designer.vb">
@@ -810,6 +838,21 @@
       <DependentUpon>frmRPRapport.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\ReglagePulve\frmRPRapport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\RPapropos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\RPloginAgent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\RPloginStandAlone.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\RPParamUser.Designer.vb">
+      <DependentUpon>RPParamUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ReglagePulve\RPParamUser.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\splash.vb">
@@ -867,6 +910,11 @@
     <Compile Include="Application\ReglagePulve\ds_Etat_ReglagePulve.vb">
       <DependentUpon>ds_Etat_ReglagePulve.xsd</DependentUpon>
     </Compile>
+    <Compile Include="cr\dsTest.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsTest.xsd</DependentUpon>
+    </Compile>
     <Compile Include="cr\EtatCrodip.vb" />
     <Compile Include="cr\EtatContratCommercial.vb" />
     <Compile Include="cr\EtatEnquete.vb" />
@@ -895,6 +943,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>crRapportInspectionFin2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\crTest1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crTest.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -941,6 +996,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_RapportInspection.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_RapportInspection.rpt</DependentUpon>
+    </Compile>
     <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulve.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -980,13 +1041,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>cr_BL.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="moduleDocumentaire\_parametres\cr_RapportInspection.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cr_RapportInspection.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -1197,8 +1251,22 @@
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ds_Etat_ReglagePulve.Designer.vb</LastGenOutput>
     </Content>
+    <None Include="cr\dsTest.xsc">
+      <DependentUpon>dsTest.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsTest.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTest.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cr\dsTest.xss">
+      <DependentUpon>dsTest.xsd</DependentUpon>
+    </None>
     <None Include="img\Exit.jpg" />
-    <None Include="My Project\DataSources\DiagnosticHelp12123Mesures.datasource" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
     <None Include="Resources\ClosePreviewHH.bmp" />
     <None Include="Resources\AddTableHH.bmp" />
     <None Include="Resources\NavBackHS.bmp" />
@@ -1249,12 +1317,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
     <None Include="Resources\logoCRODIP.ico" />
     <None Include="Resources\calculator.ico" />
     <None Include="Resources\Button_Play_Icon_256.png" />
@@ -1942,9 +2006,6 @@
     <EmbeddedResource Include="Application\diagnostic\diagnostic_nouvelle_contrevisite.resx">
       <DependentUpon>diagnostic_nouvelle_contrevisite.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_recap.resx">
-      <DependentUpon>frmdiagnostic_recap.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_recap.resx">
       <DependentUpon>diagnostic_recap.vb</DependentUpon>
     </EmbeddedResource>
@@ -1953,6 +2014,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\FrmAddCoProp.resx">
       <DependentUpon>FrmAddCoProp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_recapV6.resx">
+      <DependentUpon>frmdiagnostic_recapV6.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmDiagnostiqueV6.resx">
       <DependentUpon>frmDiagnostiqueV6.vb</DependentUpon>
@@ -1990,9 +2054,6 @@
     <EmbeddedResource Include="Application\exploitant\pulverisateur\ajout_pulve2.resx">
       <DependentUpon>ajout_pulve2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\loginReglagePulve.resx">
-      <DependentUpon>loginReglagePulve.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Application\login.resx">
       <DependentUpon>login.vb</DependentUpon>
     </EmbeddedResource>
@@ -2001,6 +2062,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\parentContener.resx">
       <DependentUpon>parentContener.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\frmDiagnostiqueSimple.resx">
+      <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\frmLoadCtrlCRODIP.resx">
+      <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\frmRPDiagnostique.resx">
       <DependentUpon>frmRPDiagnostique.vb</DependentUpon>
@@ -2017,6 +2084,9 @@
     <EmbeddedResource Include="Application\ReglagePulve\frmRPFichePulve.resx">
       <DependentUpon>frmRPFichePulve.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\frmRPInfosBuses.resx">
+      <DependentUpon>frmRPInfosBuses.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\FrmRPPreliminaire.resx">
       <DependentUpon>FrmRPPreliminaire.vb</DependentUpon>
     </EmbeddedResource>
@@ -2031,6 +2101,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\ReglagePulve\frmRPRapport.resx">
       <DependentUpon>frmRPRapport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\RPapropos.resx">
+      <DependentUpon>RPapropos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\RPloginAgent.resx">
+      <DependentUpon>RPloginAgent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\RPloginStandAlone.resx">
+      <DependentUpon>RPloginStandAlone.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\ReglagePulve\RPParamUser.resx">
+      <DependentUpon>RPParamUser.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\splash.resx">
       <DependentUpon>splash.vb</DependentUpon>
@@ -2164,6 +2246,11 @@
       <LastGenOutput>crRapportInspectionFin2.vb</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="moduleDocumentaire\_parametres\crTest.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crTest1.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="moduleDocumentaire\_parametres\cr_DocCopropiete.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_DocCopropiete.vb</LastGenOutput>
@@ -2212,6 +2299,9 @@
       <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
     </None>
     <None Include="Web References\WSCrodip_prod\crodip.wsdl" />
+    <None Include="Web References\WSCrodip_prod\IdentifiantPulverisateur1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\WSCrodip_prod\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>

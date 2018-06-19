@@ -13,7 +13,7 @@ Public Class PopulateComboTest
     <TestMethod(), Ignore()>
     Public Sub XMLFileTest()
         Dim ocsXML As CSXml
-        ocsXML = GLOB_XML_MARQUES_MODELES_PULVE
+        ocsXML = Globals.GLOB_XML_MARQUES_MODELES_PULVE
         Dim oNodes As Xml.XmlNodeList
         oNodes = ocsXML.getXmlNodes("/root/marque/libelle")
         Assert.AreEqual(142, oNodes.Count)

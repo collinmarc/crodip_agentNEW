@@ -237,13 +237,13 @@ Public Class BuseManagerTest
         Assert.AreEqual(objBuse2.pressionEtalonnage, 16.5)
 
         'Modification de la buse en utilisant Stringtodouble
-        Assert.AreEqual(objBuse.debitEtalonnage, StringToDouble("15.5"))
-        Assert.AreEqual(objBuse.pressionEtalonnage, StringToDouble("16.5"))
+        Assert.AreEqual(objBuse.debitEtalonnage, Globals.StringToDouble("15.5"))
+        Assert.AreEqual(objBuse.pressionEtalonnage, Globals.StringToDouble("16.5"))
         Assert.AreEqual(objBuse.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse.pressionEtalonnage, 16.5)
 
-        Assert.AreEqual(objBuse.debitEtalonnage, StringToDouble("15,5"))
-        Assert.AreEqual(objBuse.pressionEtalonnage, StringToDouble("16,5"))
+        Assert.AreEqual(objBuse.debitEtalonnage, Globals.StringToDouble("15,5"))
+        Assert.AreEqual(objBuse.pressionEtalonnage, Globals.StringToDouble("16,5"))
         Assert.AreEqual(objBuse.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse.pressionEtalonnage, 16.5)
 
@@ -416,7 +416,7 @@ Public Class BuseManagerTest
         Assert.IsTrue(oBuse.etat)
 
         Assert.AreEqual(CDate("01/02/1987"), oBuse.DateActivation)
-        Assert.AreEqual(CDate("01/02/1987"), CDate(oBuse.dateDernierControle))
+        Assert.AreEqual(CDate("01/02/1987"), CDate(oBuse.dateDernierControleS))
 
 
         BuseManager.delete(idBuse)

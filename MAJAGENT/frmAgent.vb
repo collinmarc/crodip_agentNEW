@@ -45,7 +45,7 @@ Public Class frmAgent
     End Sub
 
     Private Sub frmAgent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Init()
+        Globals.Init()
         grpAgent.Visible = False
         objWSCrodip = WSCrodip.getWS()
         lblURLServeur.Text = objWSCrodip.Url

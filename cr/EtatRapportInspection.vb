@@ -381,8 +381,30 @@ Public Class EtatRapportInspection
                             End If
                         Next i
                         m_ods.Defauts.AddDefautsRow(oParam.Code, oParam.Libelle, dOrdre, nNiveau)
+                        Console.WriteLine("Ajout du defaut : " + oParam.Code + ":" + oParam.Libelle + "|" + dOrdre.ToString() + "|" + nNiveau.ToString())
                     End If
                 Next
+                'le 194 correspond au dernier elément de la Première page
+                Dim orow As DataRow = m_ods.Defauts.Select("", "Ordre")(194)
+                'BUG CRYSTAL REPORT
+                'On ajoute des défauts fictifs coorespondant à la taille de l'entete de page
+                Dim dRupture As Decimal = orow.Field(Of Decimal)("Ordre")
+                dRupture = dRupture + 0.00001
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+                m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
+
                 'Pour pallier à un bug de pagination il faut avoir aumoins 312 Enr !!!
                 While m_ods.Defauts.Rows.Count <= 312
                     m_ods.Defauts.AddDefautsRow("", "test", dOrdre, 3)

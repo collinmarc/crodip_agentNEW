@@ -70,6 +70,7 @@ Public Class login
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents btnTestDiagHelp12123 As System.Windows.Forms.Button
     Friend WithEvents pnlLoginControls As System.Windows.Forms.Panel
+    Friend WithEvents cbTestRIFin As Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -99,6 +100,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
+        Me.cbTestRIFin = New System.Windows.Forms.Button()
         Me.formLogin.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
@@ -225,7 +227,7 @@ Public Class login
         '
         Me.login_password.Location = New System.Drawing.Point(190, 41)
         Me.login_password.Name = "login_password"
-        Me.login_password.PasswordChar = Microsoft.VisualBasic.ChrW(42)
+        Me.login_password.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.login_password.Size = New System.Drawing.Size(240, 20)
         Me.login_password.TabIndex = 1
         '
@@ -275,6 +277,7 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.cbTestRIFin)
         Me.GroupBox_test.Controls.Add(Me.btnTestDiagHelp12123)
         Me.GroupBox_test.Controls.Add(Me.btnTest)
         Me.GroupBox_test.Location = New System.Drawing.Point(192, 471)
@@ -413,6 +416,17 @@ Public Class login
         Me.lbl_WS.TabIndex = 31
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'cbTestRIFin
+        '
+        Me.cbTestRIFin.BackColor = System.Drawing.SystemColors.Control
+        Me.cbTestRIFin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbTestRIFin.Location = New System.Drawing.Point(24, 48)
+        Me.cbTestRIFin.Name = "cbTestRIFin"
+        Me.cbTestRIFin.Size = New System.Drawing.Size(104, 23)
+        Me.cbTestRIFin.TabIndex = 28
+        Me.cbTestRIFin.Text = "RI (Fin)"
+        Me.cbTestRIFin.UseVisualStyleBackColor = False
         '
         'login
         '
@@ -697,6 +711,49 @@ Public Class login
         oFRM.setContexte(oDiag12123, True)
         oFRM.ShowDialog()
 
+
+    End Sub
+
+    Private Sub cbTestRIFin_Click(sender As Object, e As EventArgs) Handles cbTestRIFin.Click
+        Dim oEtat As EtatRapportInspection
+        Dim oDiag As Diagnostic
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        Dim oDiagItem As DiagnosticItem
+        Dim oAgent As Agent
+
+        oPulve = New Pulverisateur()
+        oExploit = New Exploitation()
+        oExploit = ExploitationManager.getExploitationById("2-81-32")
+        '        oPulve = PulverisateurManager.getPulverisateurById("2-1-51") 'Culture maraîchères palissées
+        'oPulve = PulverisateurManager.getPulverisateurById("2-81-63") 'Pulvérisateurs combinés
+        '        oPulve = PulverisateurManager.getPulverisateurById("2-81-50") 'Cultures basses
+        oPulve = PulverisateurManager.getPulverisateurById("2-1083-7") 'Vigne
+        oAgent = AgentManager.getAgentById("1110")
+        oDiag = New Diagnostic(oAgent, oPulve, oExploit)
+        oDiag.controleLieu = "DANS LA COUR"
+        oDiag.controleIsPreControleProfessionel = True
+        oDiag.proprietaireRepresentant = "Repésentant"
+        oDiag.controleIsComplet = False
+        oDiag.buseDebitD = 2.5
+        oDiag.controleInitialId = "010101"
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.inspecteurOrigineNom = "RAULT"
+        oDiag.inspecteurOriginePrenom = "MA"
+        oDiag.organismeOriginePresNom = "CRODIP"
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
+        oDiagItem.LibelleCourt = "LIBCourt2561"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+
+        oEtat = New EtatRapportInspection(oDiag)
+        oEtat.GenereEtat()
+        oEtat.Open()
 
     End Sub
 
