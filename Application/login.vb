@@ -590,6 +590,7 @@ Public Class login
     End Sub
 #End Region
     Private Sub login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        CSDebug.dispInfo("login.Load: Start")
         ' Debug
         GroupBox_test.Visible = Globals.GLOB_ENV_DEBUG
         lbl_environnement_ws.Visible = Globals.GLOB_ENV_DEBUG
@@ -599,11 +600,13 @@ Public Class login
         lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & Globals.GLOB_ENV_DEBUGLVL
         lbl_WS.Text = WSCrodip.getWS().Url
 
+        CSDebug.dispInfo("Login.Load: CheckWS()")
         If Not CSEnvironnement.checkWebService() Then
             lbl_WS.ForeColor = Drawing.Color.Red
         End If
         Lbl_Version.Text = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
         ' On récupère le formulaire contener
+        CSDebug.dispInfo("Login.Load: GO")
 
         ' Chargement de la statusbar
         Statusbardisplay("Chargement de la liste de profils...", True)

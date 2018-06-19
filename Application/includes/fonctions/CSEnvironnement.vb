@@ -95,25 +95,25 @@ Public Class CSEnvironnement
 
         '--- Suivi des erreurs rencontrées
         Try
-            requete = CType(WebRequest.Create("http://www.google.com"), HttpWebRequest)
+            requete = CType(WebRequest.Create("http://www.crodip.fr"), HttpWebRequest)
             reponse = CType(requete.GetResponse, HttpWebResponse)
             requete.Abort() '--- Déconnexion
             If reponse.StatusCode = HttpStatusCode.OK Then
-                globConnectFlagNok.Visible = False
-                globConnectFlagOk.Visible = True
+                '                globConnectFlagNok.Visible = False
+                '                globConnectFlagOk.Visible = True
                 Return True
             Else
-                globConnectFlagNok.Visible = True
-                globConnectFlagOk.Visible = False
+                '               globConnectFlagNok.Visible = True
+                '              globConnectFlagOk.Visible = False
                 Return False
             End If
         Catch generatedExceptionVariable0 As WebException
-            globConnectFlagNok.Visible = True
-            globConnectFlagOk.Visible = False
+            '         globConnectFlagNok.Visible = True
+            '        globConnectFlagOk.Visible = False
             Return False
         Catch generatedExceptionVariable1 As Exception
-            globConnectFlagNok.Visible = True
-            globConnectFlagOk.Visible = False
+            '       globConnectFlagNok.Visible = True
+            '      globConnectFlagOk.Visible = False
             Return False
         End Try
 
@@ -126,26 +126,32 @@ Public Class CSEnvironnement
         Dim requete As HttpWebRequest = Nothing
         Dim reponse As HttpWebResponse = Nothing
         Dim webserviceUrl As String
-        Dim webservice As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-        webserviceUrl = webservice.Url
-        '--- Suivi des erreurs rencontrées
-        Try
-            requete = CType(WebRequest.Create(webserviceUrl), HttpWebRequest)
-            reponse = CType(requete.GetResponse, HttpWebResponse)
-            requete.Abort() '--- Déconnexion
-            If reponse.StatusCode = HttpStatusCode.OK Then
-                Return True
-            Else
-                Return False
-            End If
-        Catch generatedExceptionVariable0 As WebException
-            'CSDebug.dispError(generatedExceptionVariable0.Message.ToString)
-            Return False
-        Catch generatedExceptionVariable1 As Exception
-            'CSDebug.dispError(generatedExceptionVariable1.Message.ToString)
-            Return False
-        End Try
+        Dim bReturn As Boolean = False
+        Dim webservice As WSCrodip_prod.CrodipServer
 
+        If Globals.GLOB_NETWORKAVAILABLE Then
+            webservice = WSCrodip.getWS()
+            webserviceUrl = webservice.Url
+            '--- Suivi des erreurs rencontrées
+            Try
+                requete = CType(WebRequest.Create(webserviceUrl), HttpWebRequest)
+                reponse = CType(requete.GetResponse, HttpWebResponse)
+                requete.Abort() '--- Déconnexion
+                If reponse.StatusCode = HttpStatusCode.OK Then
+                    bReturn = True
+                Else
+                    bReturn = False
+                End If
+            Catch generatedExceptionVariable0 As WebException
+                'CSDebug.dispError(generatedExceptionVariable0.Message.ToString)
+                bReturn = False
+            Catch generatedExceptionVariable1 As Exception
+                'CSDebug.dispError(generatedExceptionVariable1.Message.ToString)
+                bReturn = False
+            End Try
+        End If
+
+        Return bReturn
     End Function
 
 #End Region

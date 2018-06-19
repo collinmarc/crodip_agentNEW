@@ -9,7 +9,8 @@ Module CSBoot
 #Else
             If checkVersion() Then
                 If checkPid() Then
-                    checkNetwork()
+                    globFormParent.notify_connexionStatus_nok.Visible = False
+                    globFormParent.notify_connexionStatus_ok.Visible = True
                 End If
             End If
 #End If
@@ -28,14 +29,16 @@ Module CSBoot
         Dim bReturn As Boolean
         Try
             bReturn = True
-
-            If CSEnvironnement.checkWebService Then
-                If CSEnvironnement.checkVersion = False Then
-                    MsgBox(CSEnvironnement.versionMessage & vbNewLine & CSEnvironnement.versionUrl)
-                    bReturn = False
+            If Globals.GLOB_NETWORKAVAILABLE Then
+                If CSEnvironnement.checkWebService Then
+                    If CSEnvironnement.checkVersion = False Then
+                        MsgBox(CSEnvironnement.versionMessage & vbNewLine & CSEnvironnement.versionUrl)
+                        bReturn = False
+                    End If
                 End If
+            Else
+                bReturn = True
             End If
-
         Catch ex As Exception
             CSDebug.dispError("CSBoot.CheckVersion Err :" & ex.Message)
             bReturn = False

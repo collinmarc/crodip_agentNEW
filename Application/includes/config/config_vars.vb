@@ -26,6 +26,8 @@ Public Class Globals
 
 #Region " Environnement "
 
+    Public Shared GLOB_NETWORKAVAILABLE As Boolean = False
+
     '############ Mode ############
 #If DEBUG Then
     '## Dev
@@ -350,9 +352,11 @@ Public Class Globals
         GLOB_ENV_AUTOSYNC = My.Settings.AutoSync
         GLOB_APPLI_VERSION = My.Settings.NumVersion
         GLOB_APPLI_BUILD = My.Settings.NumBuild
+        GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
         CSDebug.dispInfo("Globals.Init user LocalUserAppDataPath :" & Application.LocalUserAppDataPath)
         CSDebug.dispInfo("Globals.Init App My.Settings.NumVersion:" & My.Settings.NumVersion)
         CSDebug.dispInfo("Globals.Init App My.Settings.NumVersion:" & My.Settings.NumBuild)
+        CSDebug.dispInfo("Globals.Init App NETWORK:" & GLOB_NETWORKAVAILABLE)
     End Sub
     Public Shared Function StringToDouble(pInputString As String) As Double
         Dim dReturn As Double

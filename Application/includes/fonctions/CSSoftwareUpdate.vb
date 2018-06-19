@@ -36,17 +36,17 @@ Module CSSoftwareUpdate
     Public Function checkMAJ() As Boolean
         Dim bReturn As Boolean = False
         Try
+            If Globals.GLOB_NETWORKAVAILABLE Then
+                Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
 
-            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
+                Dim wsResponse As Object
+                ' Appel au WS
+                Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(Globals.GLOB_APPLI_BUILD, wsResponse)
 
-            Dim wsResponse As Object
-            ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(Globals.GLOB_APPLI_BUILD, wsResponse)
-
-            If codeResponse = 2 Then
-                bReturn = True
+                If codeResponse = 2 Then
+                    bReturn = True
+                End If
             End If
-
         Catch ex As Exception
             CSDebug.dispError("CSSoftwareUpdate.checkMAJ() : " & ex.Message)
             bReturn = False

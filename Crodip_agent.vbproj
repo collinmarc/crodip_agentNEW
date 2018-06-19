@@ -2261,11 +2261,11 @@
       <LastGenOutput>crRapportInspectionFin2.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="moduleDocumentaire\_parametres\crTest.rpt">
+    <EmbeddedResource Include="moduleDocumentaire\_parametres\crTest.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crTest1.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
     <Content Include="moduleDocumentaire\_parametres\cr_DocCopropiete.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_DocCopropiete.vb</LastGenOutput>

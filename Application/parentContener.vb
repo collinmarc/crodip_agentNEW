@@ -21,13 +21,15 @@ Public Class parentContener
     End Sub
 
     Private Sub parentContener_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Globals.Init()
         ' Dim oPulve As New Pulverisateur()
         globFormParent = Me
         Load_CRODIPINDIGO()
     End Sub
     Protected Overridable Sub Load_CRODIPINDIGO()
+        Me.Cursor = Cursors.WaitCursor
         loadSplash()
+        Globals.Init()
+
         Application.CurrentCulture = New System.Globalization.CultureInfo("fr-FR")
         CSEnvironnement.createFolders()
         CSEnvironnement.Renamefiles()
@@ -50,12 +52,16 @@ Public Class parentContener
         End If
 
         ' Initialisation du boot
+        CSDebug.dispInfo("ParentContainer.CheckVersion")
+
         Try
             CSBoot.init()
             Statusbar.display("Démarrage en cours...", True)
         Catch ex As Exception
             CSDebug.dispError("parentContener::CSBoot.init()" & ex.Message)
         End Try
+
+        CSDebug.dispInfo("ParentContainer.LoadLogin")
 
         ' Chargement du formulaire de login
         Try
@@ -67,7 +73,9 @@ Public Class parentContener
             ' CSDebug.dispError("parentContener::load" & ex.Message)
         End Try
 
+        CSDebug.dispInfo("ParentContainer.unloadSplash")
         unloadSplash()
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub parentContener_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing

@@ -39,6 +39,7 @@ Module StartApplication
 #End Region
 
     Public Sub Main()
+        CSDebug.dispInfo("StartApplication.Main")
         ' Bancs
         Globals.GLOB_XML_MARQUES_BANC = New CSXml("." & "\config\bancs\marques.xml")
         ' Buses
@@ -81,28 +82,29 @@ Module StartApplication
         ' Territoires
         Globals.GLOB_XML_TERRITOIRES = New CSXml("." & "\config\territoire.xml")
         Globals.GLOB_XML_CODESAPE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielCodesAPE.xml")
-        Globals.Init()
+        CSDebug.dispInfo("StartApplication.TestCrystalReport")
 
         If TestCrystalReport() Then
             Dim ofrm As Form
 #If REGLAGEPULVE Then
-        Dim args As String()
-        args = Environment.GetCommandLineArgs()
-        If args.Length = 3 Then
-            'Arg0 = Nom de l'executable
-            'Arg1 = Numero de controle
-            'Arg3 = Id Agent
-            '            System.IO.File.WriteAllText("ReglagePulve.log", "reglahePulve.exe[" & args(1) & " " & args(2) & "]")
-            CSDebug.dispInfo("Démarage ReglagePulve(" & args(1) & " " & args(2) & ")")
-            ofrm = New frmRPparentContener(args(1), args(2))
-        Else
-            ofrm = New frmRPparentContener()
+            Dim args As String()
+            args = Environment.GetCommandLineArgs()
+            If args.Length = 3 Then
+                'Arg0 = Nom de l'executable
+                'Arg1 = Numero de controle
+                'Arg3 = Id Agent
+                '            System.IO.File.WriteAllText("ReglagePulve.log", "reglahePulve.exe[" & args(1) & " " & args(2) & "]")
+                CSDebug.dispInfo("Démarage ReglagePulve(" & args(1) & " " & args(2) & ")")
+                ofrm = New frmRPparentContener(args(1), args(2))
+            Else
+                ofrm = New frmRPparentContener()
 
-        End If
+            End If
 #Else
 
             ofrm = New parentContener()
 #End If
+            CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
             ofrm.ShowDialog()
         Else
             CSDebug.dispFatal("Erreur en Génération de PDF, Vérifier Crystal Report")
@@ -110,7 +112,7 @@ Module StartApplication
     End Sub
 
     Public Function TestCrystalReport() As Boolean
-        Dim ocr As New crTest()
+        Dim ocr As New crTest
         Dim bReturn As Boolean
         Dim m_reportName As String
         Dim ods As dsTest
