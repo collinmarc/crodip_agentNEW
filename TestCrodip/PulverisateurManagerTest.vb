@@ -1762,36 +1762,35 @@ Public Class PulverisateurManagerTest
         Next
         Assert.IsTrue(bTrouve, "Défaut Absence 4641 non trouvé")
     End Sub
-    <TestMethod()>
-    <DataRow("PORTE", "2510", DiagnosticItem.EtatDiagItemOK, DiagnosticItemAuto.EtatDiagItemAuto.Actif)>
-    <DataRow("TRAINE", "2510", DiagnosticItem.EtatDiagItemOK, DiagnosticItemAuto.EtatDiagItemAuto.Inactif)>
-    Public Sub testEncodageAutoBis(pAttelage As String, pItemCode As String, pCodeEtat As String, pEtatDiagItem As DiagnosticItemAuto.EtatDiagItemAuto)
-        Dim oExploit As Exploitation
-        Dim oPulve As Pulverisateur
-        Dim oLst As List(Of DiagnosticItem)
-        Dim strCode As String
+    '<TestMethod()>
+    'Public Sub testEncodageAutoBis(pAttelage As String, pItemCode As String, pCodeEtat As String, pEtatDiagItem As DiagnosticItemAuto.EtatDiagItemAuto)
+    '    Dim oExploit As Exploitation
+    '    Dim oPulve As Pulverisateur
+    '    Dim oLst As List(Of DiagnosticItem)
+    '    Dim strCode As String
 
-        oExploit = createExploitation()
-        oPulve = createPulve(oExploit)
-        oPulve.type = Pulverisateur.TYPEPULVE_CULTURESBASSES
-        oPulve.categorie = Pulverisateur.CATEGORIEPULVE_RAMPE
+    '    oExploit = createExploitation()
+    '    oPulve = createPulve(oExploit)
+    '    oPulve.type = Pulverisateur.TYPEPULVE_CULTURESBASSES
+    '    oPulve.categorie = Pulverisateur.CATEGORIEPULVE_RAMPE
 
-        'Test Defaut Attelage
-        '========================
-        'Regle du vrai
-        oPulve.attelage = pAttelage
-        oLst = oPulve.EncodageAutomatiqueDefauts()
-        Dim bTrouve As Boolean
-        bTrouve = False
-        For Each oDiagItem As DiagnosticItemAuto In oLst
-            strCode = oDiagItem.getItemCode()
-            If Trim(strCode) = pItemCode And oDiagItem.itemCodeEtat = pCodeEtat And oDiagItem.Etat = pEtatDiagItem Then
-                bTrouve = True
-            End If
-        Next
-        Assert.IsTrue(bTrouve, "Défaut " & pItemCode & "Non Trouvé dans l'état" & pEtatDiagItem)
+    '    'Test Defaut Attelage
+    '    '========================
+    '    'Regle du vrai
+    '    oPulve.attelage = pAttelage
+    '    oLst = oPulve.EncodageAutomatiqueDefauts()
+    '    Dim bTrouve As Boolean
+    '    bTrouve = False
+    '    For Each oDiagItem As DiagnosticItemAuto In oLst
+    '        strCode = oDiagItem.getItemCode()
+    '        If Trim(strCode) = pItemCode And oDiagItem.itemCodeEtat = pCodeEtat And oDiagItem.Etat = pEtatDiagItem Then
+    '            bTrouve = True
+    '        End If
+    '    Next
+    '    Assert.IsTrue(bTrouve, "Défaut " & pItemCode & "Non Trouvé dans l'état" & pEtatDiagItem)
 
-    End Sub
+    'End Sub
+
 
     ''' <summary>
     ''' Vérificatio du décodage des defauts

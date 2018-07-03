@@ -75,125 +75,124 @@ Imports Crodip_agent
         Assert.AreEqual(obj.libelle, "PasLibre")
 
     End Sub
-    <TestMethod()>
-    <DataRow(135, "E001000001")>
-    Public Sub TestWS(pIdIdent As Int64, pNumeroNational As String)
-        Dim obj As IdentifiantPulverisateur
+    '<TestMethod()>
+    'Public Sub TestWS(pIdIdent As Int64, pNumeroNational As String)
+    '    Dim obj As IdentifiantPulverisateur
 
-        obj = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, pIdIdent)
-        IdentifiantPulverisateurManager.Save(obj) 'C'est la synchro descendate qui fera le save
-        Assert.IsTrue(IdentifiantPulverisateurManager.exists(pIdIdent))
-
-
-        obj = IdentifiantPulverisateurManager.Load(pIdIdent)
-        Assert.AreEqual(obj.id, pIdIdent)
-        Assert.IsTrue(obj.idStructure = m_oAgent.idStructure)
-        Assert.AreEqual(obj.numeroNational, pNumeroNational)
-        '        Assert.IsTrue(obj.isEtatUTILISE)
-        'Assert.AreEqual(obj.dateUtilisation, CSDate.ToCRODIPString("2016/05/02"))
-        'Assert.AreEqual(obj.libelle, "")
+    '    obj = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, pIdIdent)
+    '    IdentifiantPulverisateurManager.Save(obj) 'C'est la synchro descendate qui fera le save
+    '    Assert.IsTrue(IdentifiantPulverisateurManager.exists(pIdIdent))
 
 
-        'Mise à jour par l'agent
-        pause(2000)
-        obj.SetEtatINUTILISABLE()
-        obj.libelle = "MAJ par l'agent"
-        Assert.IsTrue(IdentifiantPulverisateurManager.Save(obj))
-        obj = IdentifiantPulverisateurManager.Load(pIdIdent)
-        Assert.IsTrue(obj.isEtatINUTILISABLE)
-        Assert.AreEqual(obj.libelle, "MAJ par l'agent")
+    '    obj = IdentifiantPulverisateurManager.Load(pIdIdent)
+    '    Assert.AreEqual(obj.id, pIdIdent)
+    '    Assert.IsTrue(obj.idStructure = m_oAgent.idStructure)
+    '    Assert.AreEqual(obj.numeroNational, pNumeroNational)
+    '    '        Assert.IsTrue(obj.isEtatUTILISE)
+    '    'Assert.AreEqual(obj.dateUtilisation, CSDate.ToCRODIPString("2016/05/02"))
+    '    'Assert.AreEqual(obj.libelle, "")
 
-        'Récupération du nombre d'identifiant Pulvé mise à jour
-        Dim tabIdentPulve As IdentifiantPulverisateur()
-        tabIdentPulve = IdentifiantPulverisateurManager.getUpdates(m_oAgent)
-        Assert.AreEqual(1, tabIdentPulve.Length)
-        obj = tabIdentPulve(0)
-        Assert.AreEqual(obj.id, pIdIdent)
-        Assert.IsTrue(obj.idStructure = m_oAgent.idStructure)
-        Assert.AreEqual(obj.numeroNational, pNumeroNational)
-        Assert.IsTrue(obj.isEtatINUTILISABLE)
-        Assert.AreEqual(obj.libelle, "MAJ par l'agent")
 
-        'Envoi par WS
-        IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, obj)
-        IdentifiantPulverisateurManager.setSynchro(obj)
+    '    'Mise à jour par l'agent
+    '    pause(2000)
+    '    obj.SetEtatINUTILISABLE()
+    '    obj.libelle = "MAJ par l'agent"
+    '    Assert.IsTrue(IdentifiantPulverisateurManager.Save(obj))
+    '    obj = IdentifiantPulverisateurManager.Load(pIdIdent)
+    '    Assert.IsTrue(obj.isEtatINUTILISABLE)
+    '    Assert.AreEqual(obj.libelle, "MAJ par l'agent")
 
-        'Vérification que par lr GetUpdates on ne récupére plus rien
-        tabIdentPulve = IdentifiantPulverisateurManager.getUpdates(m_oAgent)
-        Assert.AreEqual(0, tabIdentPulve.Length)
+    '    'Récupération du nombre d'identifiant Pulvé mise à jour
+    '    Dim tabIdentPulve As IdentifiantPulverisateur()
+    '    tabIdentPulve = IdentifiantPulverisateurManager.getUpdates(m_oAgent)
+    '    Assert.AreEqual(1, tabIdentPulve.Length)
+    '    obj = tabIdentPulve(0)
+    '    Assert.AreEqual(obj.id, pIdIdent)
+    '    Assert.IsTrue(obj.idStructure = m_oAgent.idStructure)
+    '    Assert.AreEqual(obj.numeroNational, pNumeroNational)
+    '    Assert.IsTrue(obj.isEtatINUTILISABLE)
+    '    Assert.AreEqual(obj.libelle, "MAJ par l'agent")
 
-        'Récupération de l'élément pas le WS (Synchro descendante)
-        obj.isEtatINUTILISE()
-        IdentifiantPulverisateurManager.Save(obj)
-        obj = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, pIdIdent)
-        IdentifiantPulverisateurManager.Save(obj, True)
+    '    'Envoi par WS
+    '    IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, obj)
+    '    IdentifiantPulverisateurManager.setSynchro(obj)
 
-        'Vérification de l'objet récupéré
-        obj = IdentifiantPulverisateurManager.Load(pIdIdent)
-        Assert.AreEqual(obj.id, pIdIdent)
-        Assert.IsTrue(obj.idStructure = m_oAgent.idStructure)
-        Assert.AreEqual(obj.numeroNational, pNumeroNational)
-        Assert.IsTrue(obj.isEtatINUTILISABLE)
-        Assert.AreEqual(obj.libelle, "MAJ par l'agent")
+    '    'Vérification que par lr GetUpdates on ne récupére plus rien
+    '    tabIdentPulve = IdentifiantPulverisateurManager.getUpdates(m_oAgent)
+    '    Assert.AreEqual(0, tabIdentPulve.Length)
 
-        'Vérification que par lr GetUpdates on ne récupére plus rien
-        tabIdentPulve = IdentifiantPulverisateurManager.getUpdates(m_oAgent)
-        Assert.AreEqual(0, tabIdentPulve.Length)
+    '    'Récupération de l'élément pas le WS (Synchro descendante)
+    '    obj.isEtatINUTILISE()
+    '    IdentifiantPulverisateurManager.Save(obj)
+    '    obj = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, pIdIdent)
+    '    IdentifiantPulverisateurManager.Save(obj, True)
 
-    End Sub
-    <TestMethod()> Public Sub TestUtilisationIdentifiant()
+    '    'Vérification de l'objet récupéré
+    '    obj = IdentifiantPulverisateurManager.Load(pIdIdent)
+    '    Assert.AreEqual(obj.id, pIdIdent)
+    '    Assert.IsTrue(obj.idStructure = m_oAgent.idStructure)
+    '    Assert.AreEqual(obj.numeroNational, pNumeroNational)
+    '    Assert.IsTrue(obj.isEtatINUTILISABLE)
+    '    Assert.AreEqual(obj.libelle, "MAJ par l'agent")
 
-        Dim obj As IdentifiantPulverisateur
-        'Création de 3 Identifiant Pulvé
-        obj = New IdentifiantPulverisateur
-        obj.id = 1
-        obj.idStructure = m_oAgent.idStructure
-        obj.numeroNational = "E001000001"
-        obj.SetEtatINUTILISE()
-        obj.dateUtilisation = ""
-        obj.libelle = ""
-        IdentifiantPulverisateurManager.Save(obj, True)
+    '    'Vérification que par lr GetUpdates on ne récupére plus rien
+    '    tabIdentPulve = IdentifiantPulverisateurManager.getUpdates(m_oAgent)
+    '    Assert.AreEqual(0, tabIdentPulve.Length)
 
-        obj = New IdentifiantPulverisateur
-        obj.id = 2
-        obj.idStructure = m_oAgent.idStructure
-        obj.numeroNational = "E001000002"
-        obj.SetEtatINUTILISE()
-        obj.dateUtilisation = ""
-        obj.libelle = ""
-        IdentifiantPulverisateurManager.Save(obj, True)
+    'End Sub
+    '<TestMethod()> Public Sub TestUtilisationIdentifiant()
 
-        obj = New IdentifiantPulverisateur
-        obj.id = 3
-        obj.idStructure = m_oAgent.idStructure
-        obj.numeroNational = "E001000003"
-        obj.SetEtatINUTILISE()
-        obj.dateUtilisation = ""
-        obj.libelle = ""
-        IdentifiantPulverisateurManager.Save(obj, True)
+    '    Dim obj As IdentifiantPulverisateur
+    '    'Création de 3 Identifiant Pulvé
+    '    obj = New IdentifiantPulverisateur
+    '    obj.id = 1
+    '    obj.idStructure = m_oAgent.idStructure
+    '    obj.numeroNational = "E001000001"
+    '    obj.SetEtatINUTILISE()
+    '    obj.dateUtilisation = ""
+    '    obj.libelle = ""
+    '    IdentifiantPulverisateurManager.Save(obj, True)
 
-        'Chargement des Identiiants inutilisé
-        Dim olst As List(Of IdentifiantPulverisateur)
-        olst = IdentifiantPulverisateurManager.getListeInutilise(m_oAgent.idStructure)
-        Assert.AreEqual(3, olst.Count)
+    '    obj = New IdentifiantPulverisateur
+    '    obj.id = 2
+    '    obj.idStructure = m_oAgent.idStructure
+    '    obj.numeroNational = "E001000002"
+    '    obj.SetEtatINUTILISE()
+    '    obj.dateUtilisation = ""
+    '    obj.libelle = ""
+    '    IdentifiantPulverisateurManager.Save(obj, True)
 
-        'Utilisation du numéro national E001002
-        IdentifiantPulverisateurManager.setIdentifiantPulveUtilise(m_oAgent, "E001000002")
+    '    obj = New IdentifiantPulverisateur
+    '    obj.id = 3
+    '    obj.idStructure = m_oAgent.idStructure
+    '    obj.numeroNational = "E001000003"
+    '    obj.SetEtatINUTILISE()
+    '    obj.dateUtilisation = ""
+    '    obj.libelle = ""
+    '    IdentifiantPulverisateurManager.Save(obj, True)
 
-        'Vérification du Status
-        obj = IdentifiantPulverisateurManager.Load(2)
-        Assert.IsTrue(obj.isEtatUTILISE)
-        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now, "yyyy-MM-dd"), obj.dateUtilisation)
+    '    'Chargement des Identiiants inutilisé
+    '    Dim olst As List(Of IdentifiantPulverisateur)
+    '    olst = IdentifiantPulverisateurManager.getListeInutilise(m_oAgent.idStructure)
+    '    Assert.AreEqual(3, olst.Count)
 
-        'Vérification de la liste des numéros inutilisé
-        olst = IdentifiantPulverisateurManager.getListeInutilise(m_oAgent.idStructure)
-        Assert.AreEqual(2, olst.Count)
+    '    'Utilisation du numéro national E001002
+    '    IdentifiantPulverisateurManager.setIdentifiantPulveUtilise(m_oAgent, "E001000002")
 
-        For Each obj In olst
-            Assert.AreNotEqual("E001000002", obj.numeroNational)
-        Next
+    '    'Vérification du Status
+    '    obj = IdentifiantPulverisateurManager.Load(2)
+    '    Assert.IsTrue(obj.isEtatUTILISE)
+    '    Assert.AreEqual(CSDate.ToCRODIPString(Date.Now, "yyyy-MM-dd"), obj.dateUtilisation)
 
-    End Sub
+    '    'Vérification de la liste des numéros inutilisé
+    '    olst = IdentifiantPulverisateurManager.getListeInutilise(m_oAgent.idStructure)
+    '    Assert.AreEqual(2, olst.Count)
+
+    '    For Each obj In olst
+    '        Assert.AreNotEqual("E001000002", obj.numeroNational)
+    '    Next
+
+    'End Sub
 
     <TestMethod()> Public Sub TestSynchro()
 

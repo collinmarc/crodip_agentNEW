@@ -1,6 +1,8 @@
 TRUNK
+------------------
 Build:20180619100000
-#235 : Erreurs sur Différents rapports
+#235 : Erreurs sur différents rapports
+       Présentation de l'écran gestion des manos de reférences
 
 Build:20180604220000
 #230 : Fonctionnement sur XP
