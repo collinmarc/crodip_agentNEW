@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2005
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34DE14A0-A2A5-484B-9809-A82B3B9C3FAE}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,8 +18,6 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CRODIP_ControlLibrary", "CRODIP_ControlLibrary\CRODIP_ControlLibrary\CRODIP_ControlLibrary.vbproj", "{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MAJAGENT", "MAJAGENT\MAJAGENT.vbproj", "{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestCrodip2", "TestCrodip2\TestCrodip2.vbproj", "{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PreRequisCRODIPW", "..\PreRequisCRODIPW\PreRequisCRODIPW.vbproj", "{A864E81A-4FCB-4E9A-90CB-31934C41D84B}"
 EndProject
@@ -150,30 +148,6 @@ Global
 		{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}.ReleaseReglagePulve|Mixed Platforms.Build.0 = Release|Any CPU
 		{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
 		{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Debug|x86.Build.0 = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.DebugReglagePulve|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.DebugReglagePulve|Any CPU.Build.0 = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.DebugReglagePulve|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.DebugReglagePulve|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.DebugReglagePulve|x86.ActiveCfg = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.DebugReglagePulve|x86.Build.0 = Debug|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Release|x86.ActiveCfg = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.Release|x86.Build.0 = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.ReleaseReglagePulve|Any CPU.ActiveCfg = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.ReleaseReglagePulve|Any CPU.Build.0 = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.ReleaseReglagePulve|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.ReleaseReglagePulve|Mixed Platforms.Build.0 = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
-		{0EA0B91B-AE0E-4C6E-A2FC-A93B8E8154D8}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
 		{A864E81A-4FCB-4E9A-90CB-31934C41D84B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A864E81A-4FCB-4E9A-90CB-31934C41D84B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A864E81A-4FCB-4E9A-90CB-31934C41D84B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

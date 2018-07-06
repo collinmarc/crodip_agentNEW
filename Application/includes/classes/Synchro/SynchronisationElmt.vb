@@ -434,7 +434,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New ManometreControle
                     Try
                         setStatus("Réception MAJ Manomètre de Controle n°" & pElement.identifiantChaine & "...")
-                        tmpObject = ManometreControleManager.getWSManometreControleById(pElement.identifiantChaine)
+                        tmpObject = ManometreControleManager.getWSManometreControleById(pAgent, pElement.identifiantChaine)
                         ManometreControleManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception
@@ -493,7 +493,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New ManometreEtalon
                     Try
                         setStatus("Réception MAJ Manomètre Etalon n°" & pElement.identifiantChaine & "...")
-                        tmpObject = ManometreEtalonManager.getWSManometreEtalonById(pElement.identifiantChaine)
+                        tmpObject = ManometreEtalonManager.getWSManometreEtalonById(pAgent, pElement.identifiantChaine)
                         ManometreEtalonManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception
@@ -520,7 +520,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New Banc
                     Try
                         setStatus("Réception MAJ Banc n°" & pElement.identifiantChaine & "...")
-                        tmpObject = BancManager.getWSBancById(pElement.identifiantChaine)
+                        tmpObject = BancManager.getWSBancById(pAgent, pElement.identifiantChaine)
                         BancManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception

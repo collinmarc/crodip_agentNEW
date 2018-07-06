@@ -331,7 +331,7 @@ Public Class fiche_banc
                 ficheBanc_dateAchat.Enabled = False
                 ficheBanc_dateAchat.Visible = False
             End If
-            If BancCourant.JamaisServi Then
+            If BancCourant.jamaisServi Then
                 pbEtat.Image = imagesEtatMateriel.Images(2) 'Gris
             Else
                 If BancCourant.etat Then
@@ -340,7 +340,7 @@ Public Class fiche_banc
                     pbEtat.Image = imagesEtatMateriel.Images(0) 'Rouge
                 End If
             End If
-            btnActiver.Visible = BancCourant.JamaisServi
+            btnActiver.Visible = BancCourant.jamaisServi
             If Not CSDate.isDateNull(BancCourant.DateActivation) Then
                 ficheBanc_dateActivation.Text = CSDate.mysql2access(BancCourant.DateActivation)
             End If

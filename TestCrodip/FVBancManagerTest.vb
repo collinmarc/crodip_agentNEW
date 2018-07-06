@@ -80,9 +80,7 @@ Public Class FVBancManagerTest
         Dim obanc As Banc
         Dim oFVBanc As FVBanc
         Dim olstFV As New List(Of FVBanc)
-        obanc = New Banc()
-        obanc.idStructure = m_oAgent.idStructure
-        obanc.id = BancManager.FTO_getNewId(m_oAgent)
+        obanc = m_oBanc
         obanc.JamaisServi = True
         obanc.isUtilise = False
         BancManager.save(obanc)
@@ -180,9 +178,7 @@ Public Class FVBancManagerTest
         Dim obanc As Banc
         Dim oFVBanc As FVBanc
         Dim olstFV As New List(Of FVBanc)
-        obanc = New Banc()
-        obanc.idStructure = m_oAgent.idStructure
-        obanc.id = BancManager.FTO_getNewId(m_oAgent)
+        obanc = m_oBanc
         obanc.JamaisServi = True
         obanc.isUtilise = False
         BancManager.save(obanc)
@@ -321,9 +317,7 @@ Public Class FVBancManagerTest
         Dim olstFV As New List(Of FVBanc)
 
         'Création du banc Fictif (normalement créé par le CRODIP)
-        obanc = New Banc()
-        obanc.idStructure = m_oAgent.idStructure
-        obanc.id = BancManager.FTO_getNewId(m_oAgent)
+        obanc = m_oBanc
         obanc.JamaisServi = True
         obanc.isUtilise = False
         BancManager.save(obanc)

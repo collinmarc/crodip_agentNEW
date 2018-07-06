@@ -35,6 +35,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>http://localhost/Logiciel Crodip Agent/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -49,7 +50,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\x86\Debug\</OutputPath>
@@ -2389,6 +2389,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent />
-    <PostBuildEvent>copy "$(TargetFileName)" ReglagePulve.exe</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetFileName)" ReglagePulve.exe
+copy "$(TargetFileName)".config ReglagePulve.exe.config</PostBuildEvent>
   </PropertyGroup>
 </Project>

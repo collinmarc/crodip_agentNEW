@@ -26,6 +26,8 @@ Public Class CRODIPTest
     Protected m_oPulve As Pulverisateur
     Protected m_oDiag As Diagnostic
 
+    Protected m_oBanc As Banc
+
     '''<summary>
     '''Obtient ou définit le contexte de test qui fournit
     '''des informations sur la série de tests active ainsi que ses fonctionnalités.
@@ -38,10 +40,11 @@ Public Class CRODIPTest
             testContextInstance = value
         End Set
     End Property
-        <AssemblyInitialize()> _
-    Public Shared Sub AssemblyInit(ByVal context As TestContext)
-        'System.Environment.CurrentDirectory = "C:\Newco\CRODIP\Crodip-Agent\TestCrodip\bin\x86\Debug"
-    End Sub 'AssemblyInit
+    '<AssemblyInitialize()> _
+    'Public Shared Sub AssemblyInit(ByVal context As TestContext)
+    '    Globals.Init()
+    '    'System.Environment.CurrentDirectory = "C:\Newco\CRODIP\Crodip-Agent\TestCrodip\bin\x86\Debug"
+    'End Sub 'AssemblyInit
 #Region "Attributs de tests supplémentaires"
     '
     'Vous pouvez utiliser les attributs supplémentaires suivants lorsque vous écrivez vos tests :
@@ -59,6 +62,7 @@ Public Class CRODIPTest
     'Utilisez TestInitialize pour exécuter du code avant d'exécuter chaque test
     <TestInitialize()> _
     Public Sub MyTestInitialize()
+        Globals.Init()
         Dim oCSDB As New CSDb(True)
         oCSDB.RAZ_BASE_DONNEES()
         oCSDB.free()
@@ -82,6 +86,21 @@ Public Class CRODIPTest
         Assert.IsNotNull(m_oAgent, "erreur en création d'un agent")
         '        AgentManager.getWSUpdates(m_oAgent.id,
 
+        'Récupération du banc de la structure
+        m_oBanc = BancManager.getBancById(m_idStructure & "-" & m_IdAgent & "-1")
+        If m_oBanc.id = "" Then
+            'Si il n'existe pas on le récupère du WS
+            m_oBanc = BancManager.getWSBancById(m_oAgent, m_idStructure & "-" & m_IdAgent & "-1")
+            'Si il n'existe pas sur le WS , je je créé en base (Normalement impossible)
+            If m_oBanc.id = "" Then
+                CSDebug.dispError("Le banc n'existe pas je le recree, (Normalement impossible)")
+                m_oBanc = New Banc()
+                m_oBanc.id = BancManager.FTO_getNewId(m_oAgent)
+                m_oBanc.idStructure = m_oAgent.idStructure
+            End If
+            m_oBanc.idStructure = m_idStructure
+            BancManager.save(m_oBanc)
+        End If
     End Sub
     '
     'Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté

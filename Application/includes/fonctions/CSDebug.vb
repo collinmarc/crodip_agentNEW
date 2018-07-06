@@ -50,22 +50,6 @@ Public Class CSDebug
         msg = timeString & "" & msg
 
         Console.Write(msg & vbNewLine)
-        Select Case Globals.GLOB_ENV_DEBUGTYPE
-
-            Case "none"
-            Case "console"
-                Console.Write(msg & vbNewLine)
-            Case "msgbox"
-                MsgBox(msg)
-            Case "file"
-                Console.Write(msg & vbNewLine)
-                If Not System.IO.File.Exists(Globals.GLOB_ENV_DEBUGLOGFILE) Then
-                    CSFile.create(Globals.GLOB_ENV_DEBUGLOGFILE, msg)
-                Else
-                    CSFile.append(Globals.GLOB_ENV_DEBUGLOGFILE, msg)
-                End If
-
-        End Select
 
     End Sub
 

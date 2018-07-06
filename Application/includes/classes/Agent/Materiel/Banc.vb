@@ -15,7 +15,7 @@ Public Class Banc
 
 
     Sub New()
-        JamaisServi = True
+        jamaisServi = True
 
     End Sub
 
@@ -100,9 +100,9 @@ Public Class Banc
                     'Le banc est marqué comme supprimé
 
                     bReturn = True
-                    Me.AgentSuppression = pAgentSuppression.nom
-                    Me.RaisonSuppression = pRaison
-                    Me.DateSuppression = Now()
+                    Me.agentSuppression = pAgentSuppression.nom
+                    Me.raisonSuppression = pRaison
+                    Me.dateSuppression = Now()
                     Me.isSupprime = True
                     bReturn = BancManager.save(Me)
                 End If
@@ -136,7 +136,7 @@ Public Class Banc
     Public Function Fill(pColName As String, pcolValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
-
+            ' Console.WriteLine(pColName & " . " & pcolValue.ToString())
             Select Case pColName.Trim().ToUpper()
                 Case "id".Trim().ToUpper()
                     Me.id = pcolValue.ToString() 'Public id As String
@@ -170,15 +170,26 @@ Public Class Banc
                 Case "issupprime".Trim().ToUpper()
                     Me.isSupprime = CType(pcolValue, Boolean) 'Public isSupprime As Boolean
                 Case "agentsuppression".Trim().ToUpper()
-                    Me.AgentSuppression = pcolValue.ToString()
+                    Me.agentSuppression = pcolValue.ToString()
                 Case "raisonsuppression".Trim().ToUpper()
-                    Me.RaisonSuppression = pcolValue.ToString()
+                    Me.raisonSuppression = pcolValue.ToString()
                 Case "datesuppression".Trim().ToUpper()
-                    Me.DateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
+                    Dim strDateMin As String = CSDate.ToCRODIPString("")
+                    Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)
+                    If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
+                        Me.DateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
+                    Else
+                        Me.DateSuppression = ""
+                    End If
+
                 Case "jamaisServi".Trim().ToUpper()
                     Me.JamaisServi = pcolValue
                 Case "dateActivation".Trim().ToUpper()
                     Me.DateActivation = pcolValue
+                Case Else
+                    CSDebug.dispError("Banc.Fill  (" + pColName + "," + pcolValue.ToString + ") ERR : Champs inconnu")
+
+
             End Select
 
             bReturn = True

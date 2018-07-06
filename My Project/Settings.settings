@@ -98,11 +98,11 @@
     <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
       <Value Profile="(Default)">V2.5.4.6</Value>
     </Setting>
-    <Setting Name="WSCrodipProduction" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20180523120000</Value>
+      <Value Profile="(Default)">20180619100000</Value>
+    </Setting>
+    <Setting Name="WSCrodipProduction" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

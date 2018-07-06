@@ -489,7 +489,7 @@ Public Class gestion_bancs
                 Dim tmpState As New PictureBox
                 tmpState.Name = "banc_" & tmpBanc.id & "_etat"
                 'tmpState.Image = imagesEtatMateriel.Images(1)
-                If tmpBanc.JamaisServi Then
+                If tmpBanc.jamaisServi Then
                     tmpState.Image = imagesEtatMateriel.Images(2) 'Gris
                 Else
                     If tmpBanc.etat Then

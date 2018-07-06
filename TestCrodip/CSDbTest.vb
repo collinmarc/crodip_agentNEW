@@ -31,9 +31,10 @@ Public Class CSDbTest
     'Vous pouvez utiliser les attributs supplémentaires suivants lorsque vous écrivez vos tests :
     '
     'Utilisez ClassInitialize pour exécuter du code avant d'exécuter le premier test dans la classe
-    '<ClassInitialize()>  _
-    'Public Shared Sub MyClassInitialize(ByVal testContext As TestContext)
-    'End Sub
+    <ClassInitialize()> _
+    Public Shared Sub MyClassInitialize(ByVal testContext As TestContext)
+        Globals.Init()
+    End Sub
     '
     'Utilisez ClassCleanup pour exécuter du code après que tous les tests ont été exécutés dans une classe
     '<ClassCleanup()>  _

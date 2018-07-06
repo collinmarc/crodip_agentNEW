@@ -21,6 +21,18 @@ Public MustInherit Class Materiel
 
 
     Sub New()
+        _numeroNational = ""
+        _idCrodip = ""
+        _idStructure = 0
+        _isSupprime = False
+        _AgentSuppression = ""
+        _RaisonSuppression = ""
+        _DateSuppression = CSDate.ToCRODIPString(Date.MinValue)
+        _JamaisServi = False
+        _DateActivation = Date.MinValue
+        _dateDernierControle = ""
+        _dateModificationAgent = ""
+        _dateModificationCrodip = ""
         _JamaisServi = False
 
     End Sub
@@ -110,7 +122,7 @@ Public MustInherit Class Materiel
             _DateActivation = Value
         End Set
     End Property
-    <XmlElement("DateActivation")>
+    <XmlElement("dateActivation")>
     Public Property DateActivationS() As String
         Get
             Return CSDate.GetDateForWS(_DateActivation.GetValueOrDefault())
@@ -119,7 +131,7 @@ Public MustInherit Class Materiel
             _DateActivation = Value
         End Set
     End Property
-    <XmlElement("DateDernierControle")>
+    <XmlElement("dateDernierControle")>
     Public Property dateDernierControleS() As String
         Get
             Return _dateDernierControle

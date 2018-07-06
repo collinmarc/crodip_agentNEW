@@ -97,11 +97,17 @@ Public Class ManometreControle
             Case "resolution".Trim.ToUpper()
                 Me.resolution = pValue.ToString()
             Case "agentsuppression".Trim().ToUpper()
-                Me.AgentSuppression = pValue.ToString()
+                Me.agentSuppression = pValue.ToString()
             Case "raisonsuppression".Trim().ToUpper()
-                Me.RaisonSuppression = pValue.ToString()
+                Me.raisonSuppression = pValue.ToString()
             Case "datesuppression".Trim().ToUpper()
-                Me.DateSuppression = CSDate.ToCRODIPString(pValue).ToString()
+                Dim strDateMin As String = CSDate.ToCRODIPString("")
+                Dim strDateValue As String = CSDate.ToCRODIPString(pValue)
+                If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
+                    Me.DateSuppression = CSDate.ToCRODIPString(pValue).ToString()
+                Else
+                    Me.DateSuppression = ""
+                End If
             Case "jamaisServi".Trim().ToUpper()
                 Me.JamaisServi = pValue
             Case "dateActivation".Trim().ToUpper()
@@ -111,9 +117,9 @@ Public Class ManometreControle
     End Function
     Public Overrides Function DeleteMateriel(ByVal pAgentSuppression As Agent, ByVal pRaison As String) As Boolean
         Me.creerFicheVieSuppression(pAgentSuppression)
-        Me.AgentSuppression = pAgentSuppression.nom
-        Me.RaisonSuppression = pRaison
-        Me.DateSuppression = Now.ToString()
+        Me.agentSuppression = pAgentSuppression.nom
+        Me.raisonSuppression = pRaison
+        Me.dateSuppression = Now.ToString()
         Me.dateModificationAgent = Now()
         Me.isSupprime = True
         ManometreControleManager.save(Me)

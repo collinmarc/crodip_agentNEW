@@ -1,5 +1,8 @@
 TRUNK
 ------------------
+Build:20180706120000
+#238 : Les bancs se désactivent après synhcro
+
 Build:20180619100000
 #235 : Erreurs sur différents rapports
        Présentation de l'écran gestion des manos de reférences

@@ -373,19 +373,19 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-    Public ReadOnly Property WSCrodipProduction() As Boolean
+     Global.System.Configuration.DefaultSettingValueAttribute("20180619100000")>  _
+    Public ReadOnly Property NumBuild() As String
         Get
-            Return CType(Me("WSCrodipProduction"),Boolean)
+            Return CType(Me("NumBuild"),String)
         End Get
     End Property
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20180523120000")>  _
-    Public ReadOnly Property NumBuild() As String
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+    Public ReadOnly Property WSCrodipProduction() As Boolean
         Get
-            Return CType(Me("NumBuild"),String)
+            Return CType(Me("WSCrodipProduction"),Boolean)
         End Get
     End Property
 End Class

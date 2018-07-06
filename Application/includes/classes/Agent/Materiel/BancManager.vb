@@ -3,7 +3,7 @@ Public Class BancManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSBancById(ByVal banc_id As String) As Object
+    Public Shared Function getWSBancById(poAgent As Agent, ByVal banc_id As String) As Object
         Dim objBanc As New Banc
         Try
 
@@ -12,7 +12,7 @@ Public Class BancManager
             Dim objWSCrodip_response As Object
             Dim bReturn As Boolean
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetBanc(agentCourant.id, banc_id, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetBanc(poAgent.id, banc_id, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet
@@ -35,13 +35,16 @@ Public Class BancManager
 
     End Function
 
-    Public Shared Function sendWSBanc(ByVal banc As Banc, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSBanc(pAgent As Agent, ByVal banc As Banc, ByRef updatedObject As Object) As Integer
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Return objWSCrodip.SendBanc(agentCourant.id, banc, updatedObject)
+            Return objWSCrodip.SendBanc(pAgent.id, banc, updatedObject)
         Catch ex As Exception
-            CSDebug.dispError("BancManager.sendWSBanc Error " & ex.InnerException.Message)
+            CSDebug.dispError("BancManager.sendWSBanc Error " & ex.Message)
+            If ex.InnerException IsNot Nothing Then
+                CSDebug.dispError("BancManager.sendWSBanc Error " & ex.InnerException.Message)
+            End If
         End Try
     End Function
 
@@ -63,7 +66,7 @@ Public Class BancManager
     ''' Cette méthode n'est plus utilisée depuis la 2.5.4.3 , car les matériels sont créés sur le Serveur 
     Public Shared Function FTO_getNewId(ByVal pAgent As Agent) As String
         ' déclarations
-        Dim oCSDb As CSDb = nothing
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
@@ -156,17 +159,23 @@ Public Class BancManager
                     paramsQuery = paramsQuery & " , `BancMesure`.`isSupprime`=" & objBanc.isSupprime & ""
                     paramsQuery = paramsQuery & " , `BancMesure`.`nbControles`=" & objBanc.nbControles & ""
                     paramsQuery = paramsQuery & " , `BancMesure`.`nbControlesTotal`=" & objBanc.nbControlesTotal & ""
-                    If Not objBanc.AgentSuppression Is Nothing Then
+                    If Not objBanc.agentSuppression Is Nothing Then
                         paramsQuery = paramsQuery & " , `BancMesure`.`agentSuppression`='" & objBanc.AgentSuppression & "'"
+                    Else
+                        paramsQuery = paramsQuery & " , `BancMesure`.`agentSuppression`=''"
                     End If
-                    If Not objBanc.RaisonSuppression Is Nothing Then
+                    If Not objBanc.raisonSuppression Is Nothing Then
                         paramsQuery = paramsQuery & " , `BancMesure`.`raisonSuppression`='" & objBanc.RaisonSuppression & "'"
+                    Else
+                        paramsQuery = paramsQuery & " , `BancMesure`.`raisonSuppression`=''"
                     End If
-                    If Not objBanc.DateSuppression Is Nothing Then
+                    If objBanc.DateSuppression <> "" Then
                         paramsQuery = paramsQuery & " , `BancMesure`.`dateSuppression`='" & CSDate.mysql2access(objBanc.DateSuppression) & "'"
+                    Else
+                        paramsQuery = paramsQuery & " , `BancMesure`.`dateSuppression`='" & Date.MinValue & "'"
                     End If
 
-                    paramsQuery = paramsQuery & " , `BancMesure`.`jamaisServi`=" & objBanc.JamaisServi & ""
+                    paramsQuery = paramsQuery & " , `BancMesure`.`jamaisServi`=" & objBanc.jamaisServi & ""
                     If objBanc.DateActivation <> Nothing Then
                         paramsQuery = paramsQuery & " , `BancMesure`.`dateActivation`='" & CSDate.mysql2access(objBanc.DateActivation) & "'"
                     End If

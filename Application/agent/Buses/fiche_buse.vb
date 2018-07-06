@@ -361,7 +361,7 @@ Public Class fiche_buse
 
         ficheBuse_dateAchat.Text = CSDate.mysql2access(BuseCourant.dateAchat)
         ficheBuse_dateModification.Text = CSDate.mysql2access(BuseCourant.dateModificationAgent)
-        If BuseCourant.JamaisServi Then
+        If BuseCourant.jamaisServi Then
             pbEtat.Image = imagesEtatMateriel.Images(2) 'Gris
         Else
             If BuseCourant.etat Then
@@ -370,7 +370,7 @@ Public Class fiche_buse
                 pbEtat.Image = imagesEtatMateriel.Images(0) 'Rouge
             End If
         End If
-        btnActiver.Visible = BuseCourant.JamaisServi
+        btnActiver.Visible = BuseCourant.jamaisServi
         If Not CSDate.isDateNull(BuseCourant.DateActivation) Then
             ficheBuse_dateActivation.Text = CSDate.mysql2access(BuseCourant.DateActivation)
         Else

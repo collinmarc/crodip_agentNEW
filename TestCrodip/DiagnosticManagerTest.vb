@@ -5242,9 +5242,7 @@ Public Class DiagnosticManagerTest
         ' Arrange
         '======
         'Creation d'un banc de mesures
-        oBanc = New Banc()
-        oBanc.id = BancManager.FTO_getNewId(m_oAgent)
-        oBanc.numeroNational = oBanc.id
+        oBanc = m_oBanc
         oBanc.marque = "Banc de test"
         BancManager.save(oBanc)
 

@@ -482,7 +482,7 @@ Public Class fiche_manometre
             ficheMano_resolution.Text = oMano.resolution
         End If
 
-        If manometreCourant.JamaisServi Then
+        If manometreCourant.jamaisServi Then
             pbEtat.Image = imagesEtatMateriel.Images(2)
         Else
             If manometreCourant.etat Then
@@ -492,7 +492,7 @@ Public Class fiche_manometre
             End If
         End If
 
-        btnActiver.Visible = manometreCourant.JamaisServi
+        btnActiver.Visible = manometreCourant.jamaisServi
         If Not CSDate.isDateNull(manometreCourant.DateActivation) Then
             ficheMano_dateActivation.Text = CSDate.mysql2access(manometreCourant.DateActivation)
         End If

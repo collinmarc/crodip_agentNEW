@@ -61,14 +61,22 @@ Public Class CSDate
     Public Shared Function FromCrodipString(ByVal accessDate As String) As Date
         Dim vbDate As Date
         Try
-            'La Date est au format yyyy-MM-dd HH:mm:ss
-            Dim dy As String = accessDate.Substring(8, 2)
-            Dim mo As String = accessDate.Substring(5, 2)
-            Dim yr As String = accessDate.Substring(0, 4)
-            Dim hr As String = accessDate.Substring(11, 2)
-            Dim mi As String = accessDate.Substring(14, 2)
-            Dim se As String = accessDate.Substring(17, 2)
-            vbDate = New Date(CType(yr, Double), CType(mo, Double), CType(dy, Double), CType(hr, Double), CType(mi, Double), CType(se, Double))
+            If accessDate IsNot Nothing Then
+                If accessDate <> "" Then
+                    'La Date est au format yyyy-MM-dd HH:mm:ss
+                    Dim dy As String = accessDate.Substring(8, 2)
+                    Dim mo As String = accessDate.Substring(5, 2)
+                    Dim yr As String = accessDate.Substring(0, 4)
+                    Dim hr As String = accessDate.Substring(11, 2)
+                    Dim mi As String = accessDate.Substring(14, 2)
+                    Dim se As String = accessDate.Substring(17, 2)
+                    vbDate = New Date(CType(yr, Double), CType(mo, Double), CType(dy, Double), CType(hr, Double), CType(mi, Double), CType(se, Double))
+                Else
+                    vbDate = Date.MinValue
+                End If
+            Else
+                vbDate = Date.MinValue
+            End If
         Catch Ex As Exception
             vbDate = mysql2vb(accessDate)
         End Try

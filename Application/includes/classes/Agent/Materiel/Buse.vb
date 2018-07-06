@@ -108,13 +108,13 @@ Public Class Buse
             Case "isUtilise".Trim().ToUpper()
                 Me.isUtilise = CType(pValue, Boolean)
             Case "agentsuppression".Trim().ToUpper()
-                Me.AgentSuppression = pValue.ToString()
+                Me.agentSuppression = pValue.ToString()
             Case "raisonsuppression".Trim().ToUpper()
-                Me.RaisonSuppression = pValue.ToString()
+                Me.raisonSuppression = pValue.ToString()
             Case "datesuppression".Trim().ToUpper()
-                Me.DateSuppression = CSDate.ToCRODIPString(pValue).ToString()
+                Me.dateSuppression = CSDate.ToCRODIPString(pValue).ToString()
             Case "jamaisServi".Trim().ToUpper()
-                Me.JamaisServi = pValue
+                Me.jamaisServi = pValue
             Case "dateActivation".Trim().ToUpper()
                 Me.DateActivation = pValue
         End Select
@@ -122,9 +122,9 @@ Public Class Buse
     End Function
 
     Public Overrides Function DeleteMateriel(ByVal pAgentSuppression As Agent, ByVal pRaison As String) As Boolean
-        Me.AgentSuppression = pAgentSuppression.nom
-        Me.RaisonSuppression = pRaison
-        Me.DateSuppression = Now.ToString()
+        Me.agentSuppression = pAgentSuppression.nom
+        Me.raisonSuppression = pRaison
+        Me.dateSuppression = Now.ToString()
         Me.dateModificationAgent = Now()
         Me.isSupprime = True
         BuseManager.save(Me)

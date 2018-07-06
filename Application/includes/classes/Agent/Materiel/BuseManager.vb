@@ -154,16 +154,16 @@ Public Class BuseManager
                 paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`etat`=" & objBuseEtalon.etat & ""
                 paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`isSupprime`=" & objBuseEtalon.isSupprime & ""
                 paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`isUtilise`=" & objBuseEtalon.isUtilise & ""
-                If Not objBuseEtalon.AgentSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `agentSuppression`='" & objBuseEtalon.AgentSuppression & "'"
+                If Not objBuseEtalon.agentSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , `agentSuppression`='" & objBuseEtalon.agentSuppression & "'"
                 End If
-                If Not objBuseEtalon.RaisonSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `raisonSuppression`='" & objBuseEtalon.RaisonSuppression & "'"
+                If Not objBuseEtalon.raisonSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , `raisonSuppression`='" & objBuseEtalon.raisonSuppression & "'"
                 End If
-                If Not objBuseEtalon.DateSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `dateSuppression`='" & CSDate.mysql2access(objBuseEtalon.DateSuppression) & "'"
+                If Not objBuseEtalon.dateSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , `dateSuppression`='" & CSDate.mysql2access(objBuseEtalon.dateSuppression) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `jamaisServi`=" & objBuseEtalon.JamaisServi & ""
+                paramsQuery = paramsQuery & " , `jamaisServi`=" & objBuseEtalon.jamaisServi & ""
                 If objBuseEtalon.DateActivation <> Nothing Then
                     paramsQuery = paramsQuery & " , `dateActivation`='" & CSDate.mysql2access(objBuseEtalon.DateActivation) & "'"
                 End If

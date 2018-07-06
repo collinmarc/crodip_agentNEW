@@ -3,7 +3,7 @@ Public Class ManometreControleManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSManometreControleById(ByVal manometrecontrole_id As String) As Object
+    Public Shared Function getWSManometreControleById(pAgent As Agent, ByVal manometrecontrole_id As String) As Object
         Dim objManometreControle As New ManometreControle
         Try
 
@@ -11,7 +11,7 @@ Public Class ManometreControleManager
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Dim objWSCrodip_response As Object
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetManometreControle(agentCourant.id, manometrecontrole_id, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetManometreControle(pAgent.id, manometrecontrole_id, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet
@@ -33,11 +33,11 @@ Public Class ManometreControleManager
 
     End Function
 
-    Public Shared Function sendWSManometreControle(ByVal manometrecontrole As ManometreControle, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSManometreControle(pAgent As Agent, ByVal manometrecontrole As ManometreControle, ByRef updatedObject As Object) As Integer
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Return objWSCrodip.SendManometreControle(agentCourant.id, manometrecontrole, updatedObject)
+            Return objWSCrodip.SendManometreControle(pAgent.id, manometrecontrole, updatedObject)
         Catch ex As Exception
             CSDebug.dispFatal("sendWSManometreControle : " & ex.Message)
             Return -1
@@ -164,16 +164,16 @@ Public Class ManometreControleManager
                 paramsQuery = paramsQuery & " , `AgentManoControle`.`nbControles`=" & objManometreControle.nbControles & ""
                 paramsQuery = paramsQuery & " , `AgentManoControle`.`nbControlesTotal`=" & objManometreControle.nbControlesTotal & ""
 
-                If Not objManometreControle.AgentSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoControle`.`agentSuppression`='" & objManometreControle.AgentSuppression & "'"
+                If Not objManometreControle.agentSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , `AgentManoControle`.`agentSuppression`='" & objManometreControle.agentSuppression & "'"
                 End If
-                If Not objManometreControle.RaisonSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoControle`.`raisonSuppression`='" & objManometreControle.RaisonSuppression & "'"
+                If Not objManometreControle.raisonSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , `AgentManoControle`.`raisonSuppression`='" & objManometreControle.raisonSuppression & "'"
                 End If
-                If Not objManometreControle.DateSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoControle`.`dateSuppression`='" & CSDate.mysql2access(objManometreControle.DateSuppression) & "'"
+                If Not objManometreControle.dateSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , `AgentManoControle`.`dateSuppression`='" & CSDate.mysql2access(objManometreControle.dateSuppression) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `AgentManoControle`.`jamaisServi`=" & objManometreControle.JamaisServi & ""
+                paramsQuery = paramsQuery & " , `AgentManoControle`.`jamaisServi`=" & objManometreControle.jamaisServi & ""
                 If objManometreControle.DateActivation <> Nothing Then
                     paramsQuery = paramsQuery & " , `AgentManoControle`.`dateActivation`='" & CSDate.mysql2access(objManometreControle.DateActivation) & "'"
                 End If

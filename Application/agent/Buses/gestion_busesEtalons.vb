@@ -473,7 +473,7 @@ Public Class gestion_busesEtalons
                 Dim tmpState As New PictureBox
                 tmpState.Name = "buseEtalon_" & tmpBuseEtalon.numeroNational & "_etat"
                 'tmpState.Image = imagesEtatMateriel.Images(1)
-                If tmpBuseEtalon.JamaisServi Then
+                If tmpBuseEtalon.jamaisServi Then
                     tmpState.Image = imagesEtatMateriel.Images(2) 'Gris
                 Else
                     If tmpBuseEtalon.etat Then

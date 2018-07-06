@@ -239,8 +239,6 @@ Public Class CSDb
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM AgentManoEtalon"
             bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM BancMesure"
-            bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Controle_Regulier"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM ControleBancMesure"

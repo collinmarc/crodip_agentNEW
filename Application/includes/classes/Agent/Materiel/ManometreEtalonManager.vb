@@ -3,7 +3,7 @@ Public Class ManometreEtalonManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSManometreEtalonById(ByVal manometreetalon_id As String) As ManometreEtalon
+    Public Shared Function getWSManometreEtalonById(pAgent As Agent, ByVal manometreetalon_id As String) As ManometreEtalon
         Dim objManometreEtalon As New ManometreEtalon
         Try
 
@@ -11,7 +11,7 @@ Public Class ManometreEtalonManager
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Dim objWSCrodip_response As Object
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetManometreEtalon(agentCourant.id, manometreetalon_id, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetManometreEtalon(pAgent.id, manometreetalon_id, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet
@@ -34,11 +34,11 @@ Public Class ManometreEtalonManager
 
     End Function
 
-    Public Shared Function sendWSManometreEtalon(ByVal manometreetalon As ManometreEtalon, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSManometreEtalon(pAgent As Agent, ByVal manometreetalon As ManometreEtalon, ByRef updatedObject As Object) As Integer
         Try
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Return objWSCrodip.SendManometreEtalon(agentCourant.id, manometreetalon, updatedObject)
+            Return objWSCrodip.SendManometreEtalon(pAgent.id, manometreetalon, updatedObject)
         Catch ex As Exception
             Return -1
         End Try
@@ -163,16 +163,16 @@ Public Class ManometreEtalonManager
                 paramsQuery = paramsQuery & " , `AgentManoEtalon`.`nbControles`=" & objManometreEtalon.nbControles & ""
                 paramsQuery = paramsQuery & " , `AgentManoEtalon`.`nbControlesTotal`=" & objManometreEtalon.nbControlesTotal & ""
 
-                If Not objManometreEtalon.AgentSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`agentSuppression`='" & objManometreEtalon.AgentSuppression & "'"
+                If Not objManometreEtalon.agentSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`agentSuppression`='" & objManometreEtalon.agentSuppression & "'"
                 End If
-                If Not objManometreEtalon.RaisonSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`raisonSuppression`='" & objManometreEtalon.RaisonSuppression & "'"
+                If Not objManometreEtalon.raisonSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`raisonSuppression`='" & objManometreEtalon.raisonSuppression & "'"
                 End If
-                If Not objManometreEtalon.DateSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateSuppression`='" & CSDate.mysql2access(objManometreEtalon.DateSuppression) & "'"
+                If Not objManometreEtalon.dateSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateSuppression`='" & CSDate.mysql2access(objManometreEtalon.dateSuppression) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `AgentManoEtalon`.`jamaisServi`=" & objManometreEtalon.JamaisServi & ""
+                paramsQuery = paramsQuery & " , `AgentManoEtalon`.`jamaisServi`=" & objManometreEtalon.jamaisServi & ""
                 If objManometreEtalon.DateActivation <> Nothing Then
                     paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateActivation`='" & CSDate.mysql2access(objManometreEtalon.DateActivation) & "'"
                 End If

@@ -381,7 +381,7 @@ Public Class Synchronisation
                     Try
                         Dim updatedObject As Object
                         Notice("Manometre de Controle n°" & tmpUpdateManometreControle.numeroNational)
-                        Dim response As Object = ManometreControleManager.sendWSManometreControle(tmpUpdateManometreControle, updatedObject)
+                        Dim response As Object = ManometreControleManager.sendWSManometreControle(m_Agent, tmpUpdateManometreControle, updatedObject)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreControle) - Erreur Locale")
@@ -408,7 +408,7 @@ Public Class Synchronisation
                     Try
                         Dim updatedObject As Object
                         Notice("Manometre Etalon n°" & tmpUpdateManometreEtalon.numeroNational)
-                        Dim response As Object = ManometreEtalonManager.sendWSManometreEtalon(tmpUpdateManometreEtalon, updatedObject)
+                        Dim response As Object = ManometreEtalonManager.sendWSManometreEtalon(m_Agent, tmpUpdateManometreEtalon, updatedObject)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Erreur Locale")
@@ -434,7 +434,7 @@ Public Class Synchronisation
                     Try
                         Dim updatedObject As Object
                         Notice("Banc de mesure n°" & tmpUpdateBanc.id)
-                        Dim response As Object = BancManager.sendWSBanc(tmpUpdateBanc, updatedObject)
+                        Dim response As Object = BancManager.sendWSBanc(m_Agent, tmpUpdateBanc, updatedObject)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBanc) - Erreur Locale")

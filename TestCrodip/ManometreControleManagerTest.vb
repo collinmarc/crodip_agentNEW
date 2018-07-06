@@ -125,10 +125,10 @@ Public Class ManometreControleManagerTest
         oManometreControle.nbControlesTotal = 15
         Assert.IsTrue(ManometreControleManager.save(oManometreControle))
 
-        Dim response As Integer = ManometreControleManager.sendWSManometreControle(oManometreControle, UpdatedObject)
+        Dim response As Integer = ManometreControleManager.sendWSManometreControle(m_oAgent, oManometreControle, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManometreControle2 = ManometreControleManager.getWSManometreControleById(oManometreControle.numeroNational)
+        oManometreControle2 = ManometreControleManager.getWSManometreControleById(m_oAgent, oManometreControle.numeroNational)
         Assert.AreEqual(oManometreControle.numeroNational, oManometreControle2.numeroNational)
         Assert.AreEqual(oManometreControle.idCrodip, oManometreControle2.idCrodip)
         Assert.AreEqual(oManometreControle2.isSupprime, False)
@@ -204,15 +204,14 @@ Public Class ManometreControleManagerTest
         Assert.IsTrue(ManometreControleManager.save(oManoControle))
 
         oManoControle = ManometreControleManager.getManometreControleByNumeroNational(oManoControle.numeroNational)
-        Assert.IsNull(oManoControle.DateSuppression)
+        Assert.IsTrue(String.IsNullOrEmpty(oManoControle.DateSuppression))
 
-        Dim response As Integer = ManometreControleManager.sendWSManometreControle(oManoControle, UpdatedObject)
+        Dim response As Integer = ManometreControleManager.sendWSManometreControle(m_oAgent, oManoControle, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManoControle2 = ManometreControleManager.getWSManometreControleById(oManoControle.numeroNational)
-        Assert.AreEqual(oManoControle.numeroNational, oManoControle2.numeroNational)
+        oManoControle2 = ManometreControleManager.getWSManometreControleById(m_oAgent, oManoControle.numeroNational)
         Assert.AreEqual(oManoControle2.isSupprime, False)
-        Assert.AreEqual(oManoControle2.DateSuppression, oManoControle.DateSuppression)
+        Assert.IsTrue(String.IsNullOrEmpty(oManoControle2.DateSuppression))
 
         bReturn = ManometreControleManager.delete(idManoControle)
         Assert.IsTrue(bReturn)
@@ -363,7 +362,7 @@ Public Class ManometreControleManagerTest
         ManometreControleManager.save(pMano)
 
         'Vérification que le banc n'est pas dans les liste des jamais servi
-        Assert.AreEqual(0, BancManager.getBancByStructureIdJamaisServi(m_oAgent.idStructure).Count)
+        Assert.AreEqual(0, ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure).Count)
 
         pMano.JamaisServi = True
         ManometreControleManager.save(pMano)
