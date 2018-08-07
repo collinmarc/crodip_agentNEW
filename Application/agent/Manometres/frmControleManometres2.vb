@@ -19,6 +19,7 @@ Public Class frmControleManometres2
     Private arrPressions_25bar() As String = {0, 5, 10, 15, 20, 25}
     Private arrPressions_default() As String = {0, 2, 4, 6, 8, 10}
     Friend WithEvents btn_controleManos_acquiring As System.Windows.Forms.PictureBox
+    Friend WithEvents m_bsControle As System.Windows.Forms.BindingSource
     Private arrPressions() As String
 
 
@@ -178,7 +179,6 @@ Public Class frmControleManometres2
     Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents Label28 As System.Windows.Forms.Label
     Friend WithEvents Label27 As System.Windows.Forms.Label
-    Friend WithEvents m_bsCtrlMano As System.Windows.Forms.BindingSource
     Friend WithEvents m_bsManoEtalon As System.Windows.Forms.BindingSource
     Friend WithEvents labelInfo_reference As System.Windows.Forms.Label
     Friend WithEvents labelInfo_marque As System.Windows.Forms.Label
@@ -205,13 +205,13 @@ Public Class frmControleManometres2
         Me.btn_controleManos_valider = New System.Windows.Forms.Label()
         Me.btn_controleManos_suivant = New System.Windows.Forms.Label()
         Me.lblResultat = New System.Windows.Forms.Label()
-        Me.m_bsCtrlMano = New System.Windows.Forms.BindingSource(Me.components)
+        Me.m_bsControle = New System.Windows.Forms.BindingSource(Me.components)
+        Me.m_bsManoControle = New System.Windows.Forms.BindingSource(Me.components)
         Me.labelInfoEtalon_classe = New System.Windows.Forms.Label()
         Me.labelInfoEtalon_fondEchelle = New System.Windows.Forms.Label()
         Me.labelInfoEtalon_marque = New System.Windows.Forms.Label()
         Me.labelInfoEtalon_reference = New System.Windows.Forms.Label()
         Me.labelInfo_reference = New System.Windows.Forms.Label()
-        Me.m_bsManoControle = New System.Windows.Forms.BindingSource(Me.components)
         Me.labelInfo_marque = New System.Windows.Forms.Label()
         Me.labelInfo_classe = New System.Windows.Forms.Label()
         Me.labelInfo_fondEchelle = New System.Windows.Forms.Label()
@@ -335,7 +335,7 @@ Public Class frmControleManometres2
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
         CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel64.SuspendLayout()
-        CType(Me.m_bsCtrlMano, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsControle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -482,7 +482,7 @@ Public Class frmControleManometres2
         'lblResultat
         '
         Me.lblResultat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblResultat.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "resultat", True))
+        Me.lblResultat.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "resultat", True))
         Me.lblResultat.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblResultat.ForeColor = System.Drawing.Color.Green
         Me.lblResultat.Location = New System.Drawing.Point(761, 263)
@@ -492,9 +492,14 @@ Public Class frmControleManometres2
         Me.lblResultat.Text = "Votre manomètre est fiable : il répond à sa classe de précision."
         Me.lblResultat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'm_bsCtrlMano
+        'm_bsControle
         '
-        Me.m_bsCtrlMano.DataSource = GetType(Crodip_agent.ControleMano)
+        Me.m_bsControle.DataMember = "controle"
+        Me.m_bsControle.DataSource = Me.m_bsManoControle
+        '
+        'm_bsManoControle
+        '
+        Me.m_bsManoControle.DataSource = GetType(Crodip_agent.ManometreControle)
         '
         'labelInfoEtalon_classe
         '
@@ -555,10 +560,6 @@ Public Class frmControleManometres2
         Me.labelInfo_reference.Size = New System.Drawing.Size(104, 16)
         Me.labelInfo_reference.TabIndex = 44
         Me.labelInfo_reference.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'm_bsManoControle
-        '
-        Me.m_bsManoControle.DataSource = GetType(Crodip_agent.ManometreControle)
         '
         'labelInfo_marque
         '
@@ -784,7 +785,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox1, 7, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox2, 6, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox3, 7, 4)
@@ -843,19 +844,19 @@ Public Class frmControleManometres2
         '
         'TextBox1
         '
-        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_err_fondEchelle", True))
+        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt1_err_fondEchelle", True))
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox1.Location = New System.Drawing.Point(486, 184)
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(81, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(86, 20)
         Me.TextBox1.TabIndex = 60
         Me.TextBox1.TabStop = False
         '
         'TextBox2
         '
-        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_err_abs", True))
+        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt1_err_abs", True))
         Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox2.Location = New System.Drawing.Point(425, 184)
         Me.TextBox2.Name = "TextBox2"
@@ -866,19 +867,19 @@ Public Class frmControleManometres2
         '
         'TextBox3
         '
-        Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_err_fondEchelle", True))
+        Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt2_err_fondEchelle", True))
         Me.TextBox3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox3.Location = New System.Drawing.Point(486, 148)
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(81, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(86, 20)
         Me.TextBox3.TabIndex = 58
         Me.TextBox3.TabStop = False
         '
         'TextBox4
         '
-        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_err_abs", True))
+        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt2_err_abs", True))
         Me.TextBox4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox4.Location = New System.Drawing.Point(425, 148)
         Me.TextBox4.Name = "TextBox4"
@@ -889,19 +890,19 @@ Public Class frmControleManometres2
         '
         'TextBox5
         '
-        Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_err_fondEchelle", True))
+        Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt3_err_fondEchelle", True))
         Me.TextBox5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox5.Location = New System.Drawing.Point(486, 112)
         Me.TextBox5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(81, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(86, 20)
         Me.TextBox5.TabIndex = 56
         Me.TextBox5.TabStop = False
         '
         'TextBox6
         '
-        Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_err_abs", True))
+        Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt3_err_abs", True))
         Me.TextBox6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox6.Location = New System.Drawing.Point(425, 112)
         Me.TextBox6.Name = "TextBox6"
@@ -912,19 +913,19 @@ Public Class frmControleManometres2
         '
         'TextBox7
         '
-        Me.TextBox7.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_err_fondEchelle", True))
+        Me.TextBox7.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt4_err_fondEchelle", True))
         Me.TextBox7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox7.Location = New System.Drawing.Point(486, 76)
         Me.TextBox7.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(81, 20)
+        Me.TextBox7.Size = New System.Drawing.Size(86, 20)
         Me.TextBox7.TabIndex = 54
         Me.TextBox7.TabStop = False
         '
         'TextBox8
         '
-        Me.TextBox8.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_err_abs", True))
+        Me.TextBox8.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt4_err_abs", True))
         Me.TextBox8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox8.Location = New System.Drawing.Point(425, 76)
         Me.TextBox8.Name = "TextBox8"
@@ -935,19 +936,19 @@ Public Class frmControleManometres2
         '
         'TextBox9
         '
-        Me.TextBox9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_err_fondEchelle", True))
+        Me.TextBox9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt5_err_fondEchelle", True))
         Me.TextBox9.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox9.Location = New System.Drawing.Point(486, 40)
         Me.TextBox9.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(81, 20)
+        Me.TextBox9.Size = New System.Drawing.Size(86, 20)
         Me.TextBox9.TabIndex = 52
         Me.TextBox9.TabStop = False
         '
         'TextBox10
         '
-        Me.TextBox10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_err_abs", True))
+        Me.TextBox10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt5_err_abs", True))
         Me.TextBox10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox10.Location = New System.Drawing.Point(425, 40)
         Me.TextBox10.Name = "TextBox10"
@@ -958,19 +959,19 @@ Public Class frmControleManometres2
         '
         'TextBox11
         '
-        Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_err_fondEchelle", True))
+        Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt6_err_fondEchelle", True))
         Me.TextBox11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox11.Location = New System.Drawing.Point(486, 4)
         Me.TextBox11.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.ReadOnly = True
-        Me.TextBox11.Size = New System.Drawing.Size(81, 20)
+        Me.TextBox11.Size = New System.Drawing.Size(86, 20)
         Me.TextBox11.TabIndex = 50
         Me.TextBox11.TabStop = False
         '
         'TextBox12
         '
-        Me.TextBox12.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_err_abs", True))
+        Me.TextBox12.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt6_err_abs", True))
         Me.TextBox12.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox12.Location = New System.Drawing.Point(425, 4)
         Me.TextBox12.Name = "TextBox12"
@@ -981,7 +982,7 @@ Public Class frmControleManometres2
         '
         'tbDownMR5
         '
-        Me.tbDownMR5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_pres_manoEtalon", True))
+        Me.tbDownMR5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt5_pres_manoEtalon", True))
         Me.tbDownMR5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbDownMR5.Location = New System.Drawing.Point(229, 40)
         Me.tbDownMR5.Name = "tbDownMR5"
@@ -990,7 +991,7 @@ Public Class frmControleManometres2
         '
         'tbDownMR6
         '
-        Me.tbDownMR6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_pres_manoEtalon", True))
+        Me.tbDownMR6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt6_pres_manoEtalon", True))
         Me.tbDownMR6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbDownMR6.Location = New System.Drawing.Point(229, 4)
         Me.tbDownMR6.Name = "tbDownMR6"
@@ -1079,7 +1080,7 @@ Public Class frmControleManometres2
         '
         'TextBox15
         '
-        Me.TextBox15.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_pres_manoCtrl", True))
+        Me.TextBox15.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt6_pres_manoCtrl", True))
         Me.TextBox15.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox15.Location = New System.Drawing.Point(148, 4)
         Me.TextBox15.Name = "TextBox15"
@@ -1090,7 +1091,7 @@ Public Class frmControleManometres2
         '
         'TextBox16
         '
-        Me.TextBox16.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_pres_manoCtrl", True))
+        Me.TextBox16.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt5_pres_manoCtrl", True))
         Me.TextBox16.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox16.Location = New System.Drawing.Point(148, 40)
         Me.TextBox16.Name = "TextBox16"
@@ -1101,7 +1102,7 @@ Public Class frmControleManometres2
         '
         'TextBox17
         '
-        Me.TextBox17.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_pres_manoCtrl", True))
+        Me.TextBox17.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt4_pres_manoCtrl", True))
         Me.TextBox17.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox17.Location = New System.Drawing.Point(148, 76)
         Me.TextBox17.Name = "TextBox17"
@@ -1112,7 +1113,7 @@ Public Class frmControleManometres2
         '
         'TextBox18
         '
-        Me.TextBox18.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_pres_manoCtrl", True))
+        Me.TextBox18.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt3_pres_manoCtrl", True))
         Me.TextBox18.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox18.Location = New System.Drawing.Point(148, 112)
         Me.TextBox18.Name = "TextBox18"
@@ -1123,7 +1124,7 @@ Public Class frmControleManometres2
         '
         'TextBox19
         '
-        Me.TextBox19.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_pres_manoCtrl", True))
+        Me.TextBox19.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt2_pres_manoCtrl", True))
         Me.TextBox19.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox19.Location = New System.Drawing.Point(148, 148)
         Me.TextBox19.Name = "TextBox19"
@@ -1134,7 +1135,7 @@ Public Class frmControleManometres2
         '
         'TextBox20
         '
-        Me.TextBox20.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_pres_manoCtrl", True))
+        Me.TextBox20.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt1_pres_manoCtrl", True))
         Me.TextBox20.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox20.Location = New System.Drawing.Point(148, 184)
         Me.TextBox20.Name = "TextBox20"
@@ -1145,7 +1146,7 @@ Public Class frmControleManometres2
         '
         'tbDownMR4
         '
-        Me.tbDownMR4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_pres_manoEtalon", True))
+        Me.tbDownMR4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt4_pres_manoEtalon", True))
         Me.tbDownMR4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbDownMR4.Location = New System.Drawing.Point(229, 76)
         Me.tbDownMR4.Name = "tbDownMR4"
@@ -1154,7 +1155,7 @@ Public Class frmControleManometres2
         '
         'tbDownMR3
         '
-        Me.tbDownMR3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_pres_manoEtalon", True))
+        Me.tbDownMR3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt3_pres_manoEtalon", True))
         Me.tbDownMR3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbDownMR3.Location = New System.Drawing.Point(229, 112)
         Me.tbDownMR3.Name = "tbDownMR3"
@@ -1163,7 +1164,7 @@ Public Class frmControleManometres2
         '
         'tbDownMR2
         '
-        Me.tbDownMR2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_pres_manoEtalon", True))
+        Me.tbDownMR2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt2_pres_manoEtalon", True))
         Me.tbDownMR2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbDownMR2.Location = New System.Drawing.Point(229, 148)
         Me.tbDownMR2.Name = "tbDownMR2"
@@ -1172,7 +1173,7 @@ Public Class frmControleManometres2
         '
         'tbDownMR1
         '
-        Me.tbDownMR1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_pres_manoEtalon", True))
+        Me.tbDownMR1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt1_pres_manoEtalon", True))
         Me.tbDownMR1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbDownMR1.Location = New System.Drawing.Point(229, 184)
         Me.tbDownMR1.Name = "tbDownMR1"
@@ -1181,7 +1182,7 @@ Public Class frmControleManometres2
         '
         'TextBox25
         '
-        Me.TextBox25.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_incertitude", True))
+        Me.TextBox25.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt6_incertitude", True))
         Me.TextBox25.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox25.Location = New System.Drawing.Point(305, 4)
         Me.TextBox25.Name = "TextBox25"
@@ -1192,7 +1193,7 @@ Public Class frmControleManometres2
         '
         'TextBox26
         '
-        Me.TextBox26.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_incertitude", True))
+        Me.TextBox26.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt5_incertitude", True))
         Me.TextBox26.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox26.Location = New System.Drawing.Point(305, 40)
         Me.TextBox26.Name = "TextBox26"
@@ -1203,7 +1204,7 @@ Public Class frmControleManometres2
         '
         'TextBox27
         '
-        Me.TextBox27.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_incertitude", True))
+        Me.TextBox27.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt4_incertitude", True))
         Me.TextBox27.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox27.Location = New System.Drawing.Point(305, 76)
         Me.TextBox27.Name = "TextBox27"
@@ -1214,7 +1215,7 @@ Public Class frmControleManometres2
         '
         'TextBox28
         '
-        Me.TextBox28.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_incertitude", True))
+        Me.TextBox28.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt3_incertitude", True))
         Me.TextBox28.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox28.Location = New System.Drawing.Point(305, 112)
         Me.TextBox28.Name = "TextBox28"
@@ -1225,7 +1226,7 @@ Public Class frmControleManometres2
         '
         'TextBox29
         '
-        Me.TextBox29.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_incertitude", True))
+        Me.TextBox29.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt2_incertitude", True))
         Me.TextBox29.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox29.Location = New System.Drawing.Point(305, 148)
         Me.TextBox29.Name = "TextBox29"
@@ -1236,7 +1237,7 @@ Public Class frmControleManometres2
         '
         'TextBox30
         '
-        Me.TextBox30.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_incertitude", True))
+        Me.TextBox30.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt1_incertitude", True))
         Me.TextBox30.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox30.Location = New System.Drawing.Point(305, 184)
         Me.TextBox30.Name = "TextBox30"
@@ -1247,7 +1248,7 @@ Public Class frmControleManometres2
         '
         'TextBox31
         '
-        Me.TextBox31.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_EMT", True))
+        Me.TextBox31.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt6_EMT", True))
         Me.TextBox31.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox31.Location = New System.Drawing.Point(382, 4)
         Me.TextBox31.Name = "TextBox31"
@@ -1258,7 +1259,7 @@ Public Class frmControleManometres2
         '
         'TextBox32
         '
-        Me.TextBox32.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_EMT", True))
+        Me.TextBox32.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt5_EMT", True))
         Me.TextBox32.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox32.Location = New System.Drawing.Point(382, 40)
         Me.TextBox32.Name = "TextBox32"
@@ -1269,7 +1270,7 @@ Public Class frmControleManometres2
         '
         'TextBox33
         '
-        Me.TextBox33.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_EMT", True))
+        Me.TextBox33.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt4_EMT", True))
         Me.TextBox33.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox33.Location = New System.Drawing.Point(382, 76)
         Me.TextBox33.Name = "TextBox33"
@@ -1280,7 +1281,7 @@ Public Class frmControleManometres2
         '
         'TextBox34
         '
-        Me.TextBox34.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_EMT", True))
+        Me.TextBox34.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt3_EMT", True))
         Me.TextBox34.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox34.Location = New System.Drawing.Point(382, 112)
         Me.TextBox34.Name = "TextBox34"
@@ -1291,7 +1292,7 @@ Public Class frmControleManometres2
         '
         'TextBox35
         '
-        Me.TextBox35.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_EMT", True))
+        Me.TextBox35.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt2_EMT", True))
         Me.TextBox35.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox35.Location = New System.Drawing.Point(382, 148)
         Me.TextBox35.Name = "TextBox35"
@@ -1302,7 +1303,7 @@ Public Class frmControleManometres2
         '
         'TextBox36
         '
-        Me.TextBox36.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_EMT", True))
+        Me.TextBox36.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "down_pt1_EMT", True))
         Me.TextBox36.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox36.Location = New System.Drawing.Point(382, 184)
         Me.TextBox36.Name = "TextBox36"
@@ -1325,7 +1326,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC6, 7, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbErrAbsPC6, 6, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC5, 7, 4)
@@ -1384,19 +1385,19 @@ Public Class frmControleManometres2
         '
         'tbFondPC6
         '
-        Me.tbFondPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_err_fondEchelle", True))
+        Me.tbFondPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt6_err_fondEchelle", True))
         Me.tbFondPC6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbFondPC6.Location = New System.Drawing.Point(486, 185)
         Me.tbFondPC6.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC6.Name = "tbFondPC6"
         Me.tbFondPC6.ReadOnly = True
-        Me.tbFondPC6.Size = New System.Drawing.Size(81, 20)
+        Me.tbFondPC6.Size = New System.Drawing.Size(86, 20)
         Me.tbFondPC6.TabIndex = 60
         Me.tbFondPC6.TabStop = False
         '
         'tbErrAbsPC6
         '
-        Me.tbErrAbsPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_err_abs", True))
+        Me.tbErrAbsPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt6_err_abs", True))
         Me.tbErrAbsPC6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbErrAbsPC6.Location = New System.Drawing.Point(425, 185)
         Me.tbErrAbsPC6.Name = "tbErrAbsPC6"
@@ -1407,19 +1408,19 @@ Public Class frmControleManometres2
         '
         'tbFondPC5
         '
-        Me.tbFondPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_err_fondEchelle", True))
+        Me.tbFondPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt5_err_fondEchelle", True))
         Me.tbFondPC5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbFondPC5.Location = New System.Drawing.Point(486, 148)
         Me.tbFondPC5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC5.Name = "tbFondPC5"
         Me.tbFondPC5.ReadOnly = True
-        Me.tbFondPC5.Size = New System.Drawing.Size(81, 20)
+        Me.tbFondPC5.Size = New System.Drawing.Size(86, 20)
         Me.tbFondPC5.TabIndex = 58
         Me.tbFondPC5.TabStop = False
         '
         'tbErrAbsPC5
         '
-        Me.tbErrAbsPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_err_abs", True))
+        Me.tbErrAbsPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt5_err_abs", True))
         Me.tbErrAbsPC5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbErrAbsPC5.Location = New System.Drawing.Point(425, 148)
         Me.tbErrAbsPC5.Name = "tbErrAbsPC5"
@@ -1430,19 +1431,19 @@ Public Class frmControleManometres2
         '
         'tbFondPC4
         '
-        Me.tbFondPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_err_fondEchelle", True))
+        Me.tbFondPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt4_err_fondEchelle", True))
         Me.tbFondPC4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbFondPC4.Location = New System.Drawing.Point(486, 112)
         Me.tbFondPC4.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC4.Name = "tbFondPC4"
         Me.tbFondPC4.ReadOnly = True
-        Me.tbFondPC4.Size = New System.Drawing.Size(81, 20)
+        Me.tbFondPC4.Size = New System.Drawing.Size(86, 20)
         Me.tbFondPC4.TabIndex = 56
         Me.tbFondPC4.TabStop = False
         '
         'tbErrAbsPC4
         '
-        Me.tbErrAbsPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_err_abs", True))
+        Me.tbErrAbsPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt4_err_abs", True))
         Me.tbErrAbsPC4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbErrAbsPC4.Location = New System.Drawing.Point(425, 112)
         Me.tbErrAbsPC4.Name = "tbErrAbsPC4"
@@ -1453,19 +1454,19 @@ Public Class frmControleManometres2
         '
         'tbFondPC3
         '
-        Me.tbFondPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_err_fondEchelle", True))
+        Me.tbFondPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt3_err_fondEchelle", True))
         Me.tbFondPC3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbFondPC3.Location = New System.Drawing.Point(486, 76)
         Me.tbFondPC3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC3.Name = "tbFondPC3"
         Me.tbFondPC3.ReadOnly = True
-        Me.tbFondPC3.Size = New System.Drawing.Size(81, 20)
+        Me.tbFondPC3.Size = New System.Drawing.Size(86, 20)
         Me.tbFondPC3.TabIndex = 54
         Me.tbFondPC3.TabStop = False
         '
         'tbErrAbsPC3
         '
-        Me.tbErrAbsPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_err_abs", True))
+        Me.tbErrAbsPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt3_err_abs", True))
         Me.tbErrAbsPC3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbErrAbsPC3.Location = New System.Drawing.Point(425, 76)
         Me.tbErrAbsPC3.Name = "tbErrAbsPC3"
@@ -1476,19 +1477,19 @@ Public Class frmControleManometres2
         '
         'tbFondPC2
         '
-        Me.tbFondPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_err_fondEchelle", True))
+        Me.tbFondPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt2_err_fondEchelle", True))
         Me.tbFondPC2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbFondPC2.Location = New System.Drawing.Point(486, 40)
         Me.tbFondPC2.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC2.Name = "tbFondPC2"
         Me.tbFondPC2.ReadOnly = True
-        Me.tbFondPC2.Size = New System.Drawing.Size(81, 20)
+        Me.tbFondPC2.Size = New System.Drawing.Size(86, 20)
         Me.tbFondPC2.TabIndex = 52
         Me.tbFondPC2.TabStop = False
         '
         'tbErrAbsPC2
         '
-        Me.tbErrAbsPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_err_abs", True))
+        Me.tbErrAbsPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt2_err_abs", True))
         Me.tbErrAbsPC2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbErrAbsPC2.Location = New System.Drawing.Point(425, 40)
         Me.tbErrAbsPC2.Name = "tbErrAbsPC2"
@@ -1499,19 +1500,19 @@ Public Class frmControleManometres2
         '
         'tbFondPC1
         '
-        Me.tbFondPC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt1_err_fondEchelle", True))
+        Me.tbFondPC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt1_err_fondEchelle", True))
         Me.tbFondPC1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbFondPC1.Location = New System.Drawing.Point(486, 4)
         Me.tbFondPC1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC1.Name = "tbFondPC1"
         Me.tbFondPC1.ReadOnly = True
-        Me.tbFondPC1.Size = New System.Drawing.Size(81, 20)
+        Me.tbFondPC1.Size = New System.Drawing.Size(86, 20)
         Me.tbFondPC1.TabIndex = 50
         Me.tbFondPC1.TabStop = False
         '
         'tbErrAbsPC1
         '
-        Me.tbErrAbsPC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt1_err_abs", True))
+        Me.tbErrAbsPC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt1_err_abs", True))
         Me.tbErrAbsPC1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbErrAbsPC1.Location = New System.Drawing.Point(425, 4)
         Me.tbErrAbsPC1.Name = "tbErrAbsPC1"
@@ -1522,7 +1523,7 @@ Public Class frmControleManometres2
         '
         'tbUpMR2
         '
-        Me.tbUpMR2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_pres_manoEtalon", True))
+        Me.tbUpMR2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt2_pres_manoEtalon", True))
         Me.tbUpMR2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbUpMR2.Location = New System.Drawing.Point(229, 40)
         Me.tbUpMR2.Name = "tbUpMR2"
@@ -1531,7 +1532,7 @@ Public Class frmControleManometres2
         '
         'tbUpMR1
         '
-        Me.tbUpMR1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt1_pres_manoEtalon", True))
+        Me.tbUpMR1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt1_pres_manoEtalon", True))
         Me.tbUpMR1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbUpMR1.Location = New System.Drawing.Point(229, 4)
         Me.tbUpMR1.Name = "tbUpMR1"
@@ -1620,7 +1621,7 @@ Public Class frmControleManometres2
         '
         'tbPCMC1
         '
-        Me.tbPCMC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt1_pres_manoCtrl", True))
+        Me.tbPCMC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt1_pres_manoCtrl", True))
         Me.tbPCMC1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbPCMC1.Location = New System.Drawing.Point(148, 4)
         Me.tbPCMC1.Name = "tbPCMC1"
@@ -1631,7 +1632,7 @@ Public Class frmControleManometres2
         '
         'tbPCMC2
         '
-        Me.tbPCMC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_pres_manoCtrl", True))
+        Me.tbPCMC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt2_pres_manoCtrl", True))
         Me.tbPCMC2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbPCMC2.Location = New System.Drawing.Point(148, 40)
         Me.tbPCMC2.Name = "tbPCMC2"
@@ -1642,7 +1643,7 @@ Public Class frmControleManometres2
         '
         'tbPCMC3
         '
-        Me.tbPCMC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_pres_manoCtrl", True))
+        Me.tbPCMC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt3_pres_manoCtrl", True))
         Me.tbPCMC3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbPCMC3.Location = New System.Drawing.Point(148, 76)
         Me.tbPCMC3.Name = "tbPCMC3"
@@ -1653,7 +1654,7 @@ Public Class frmControleManometres2
         '
         'tbPCMC4
         '
-        Me.tbPCMC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_pres_manoCtrl", True))
+        Me.tbPCMC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt4_pres_manoCtrl", True))
         Me.tbPCMC4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbPCMC4.Location = New System.Drawing.Point(148, 112)
         Me.tbPCMC4.Name = "tbPCMC4"
@@ -1664,7 +1665,7 @@ Public Class frmControleManometres2
         '
         'tbPCMC5
         '
-        Me.tbPCMC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_pres_manoCtrl", True))
+        Me.tbPCMC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt5_pres_manoCtrl", True))
         Me.tbPCMC5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbPCMC5.Location = New System.Drawing.Point(148, 148)
         Me.tbPCMC5.Name = "tbPCMC5"
@@ -1675,7 +1676,7 @@ Public Class frmControleManometres2
         '
         'tbPCMC6
         '
-        Me.tbPCMC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_pres_manoCtrl", True))
+        Me.tbPCMC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt6_pres_manoCtrl", True))
         Me.tbPCMC6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbPCMC6.Location = New System.Drawing.Point(148, 185)
         Me.tbPCMC6.Name = "tbPCMC6"
@@ -1686,7 +1687,7 @@ Public Class frmControleManometres2
         '
         'tbUpMR3
         '
-        Me.tbUpMR3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_pres_manoEtalon", True))
+        Me.tbUpMR3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt3_pres_manoEtalon", True))
         Me.tbUpMR3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbUpMR3.Location = New System.Drawing.Point(229, 76)
         Me.tbUpMR3.Name = "tbUpMR3"
@@ -1695,7 +1696,7 @@ Public Class frmControleManometres2
         '
         'tbUpMR4
         '
-        Me.tbUpMR4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_pres_manoEtalon", True))
+        Me.tbUpMR4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt4_pres_manoEtalon", True))
         Me.tbUpMR4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbUpMR4.Location = New System.Drawing.Point(229, 112)
         Me.tbUpMR4.Name = "tbUpMR4"
@@ -1704,7 +1705,7 @@ Public Class frmControleManometres2
         '
         'tbUpMR5
         '
-        Me.tbUpMR5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_pres_manoEtalon", True))
+        Me.tbUpMR5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt5_pres_manoEtalon", True))
         Me.tbUpMR5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbUpMR5.Location = New System.Drawing.Point(229, 148)
         Me.tbUpMR5.Name = "tbUpMR5"
@@ -1713,7 +1714,7 @@ Public Class frmControleManometres2
         '
         'tbUpMR6
         '
-        Me.tbUpMR6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_pres_manoEtalon", True))
+        Me.tbUpMR6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt6_pres_manoEtalon", True))
         Me.tbUpMR6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbUpMR6.Location = New System.Drawing.Point(229, 185)
         Me.tbUpMR6.Name = "tbUpMR6"
@@ -1722,7 +1723,7 @@ Public Class frmControleManometres2
         '
         'tbIncertPC1
         '
-        Me.tbIncertPC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt1_incertitude", True))
+        Me.tbIncertPC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt1_incertitude", True))
         Me.tbIncertPC1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbIncertPC1.Location = New System.Drawing.Point(305, 4)
         Me.tbIncertPC1.Name = "tbIncertPC1"
@@ -1733,7 +1734,7 @@ Public Class frmControleManometres2
         '
         'tbIncertPC2
         '
-        Me.tbIncertPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_incertitude", True))
+        Me.tbIncertPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt2_incertitude", True))
         Me.tbIncertPC2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbIncertPC2.Location = New System.Drawing.Point(305, 40)
         Me.tbIncertPC2.Name = "tbIncertPC2"
@@ -1744,7 +1745,7 @@ Public Class frmControleManometres2
         '
         'tbIncertPC3
         '
-        Me.tbIncertPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_incertitude", True))
+        Me.tbIncertPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt3_incertitude", True))
         Me.tbIncertPC3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbIncertPC3.Location = New System.Drawing.Point(305, 76)
         Me.tbIncertPC3.Name = "tbIncertPC3"
@@ -1755,7 +1756,7 @@ Public Class frmControleManometres2
         '
         'tbIncertPC4
         '
-        Me.tbIncertPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_incertitude", True))
+        Me.tbIncertPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt4_incertitude", True))
         Me.tbIncertPC4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbIncertPC4.Location = New System.Drawing.Point(305, 112)
         Me.tbIncertPC4.Name = "tbIncertPC4"
@@ -1766,7 +1767,7 @@ Public Class frmControleManometres2
         '
         'tbIncertPC5
         '
-        Me.tbIncertPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_incertitude", True))
+        Me.tbIncertPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt5_incertitude", True))
         Me.tbIncertPC5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbIncertPC5.Location = New System.Drawing.Point(305, 148)
         Me.tbIncertPC5.Name = "tbIncertPC5"
@@ -1777,7 +1778,7 @@ Public Class frmControleManometres2
         '
         'tbIncertPC6
         '
-        Me.tbIncertPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_incertitude", True))
+        Me.tbIncertPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt6_incertitude", True))
         Me.tbIncertPC6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbIncertPC6.Location = New System.Drawing.Point(305, 185)
         Me.tbIncertPC6.Name = "tbIncertPC6"
@@ -1788,7 +1789,7 @@ Public Class frmControleManometres2
         '
         'tbEMTPC1
         '
-        Me.tbEMTPC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt1_EMT", True))
+        Me.tbEMTPC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt1_EMT", True))
         Me.tbEMTPC1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbEMTPC1.Location = New System.Drawing.Point(382, 4)
         Me.tbEMTPC1.Name = "tbEMTPC1"
@@ -1799,7 +1800,7 @@ Public Class frmControleManometres2
         '
         'tbEMTPC2
         '
-        Me.tbEMTPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_EMT", True))
+        Me.tbEMTPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt2_EMT", True))
         Me.tbEMTPC2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbEMTPC2.Location = New System.Drawing.Point(382, 40)
         Me.tbEMTPC2.Name = "tbEMTPC2"
@@ -1810,7 +1811,7 @@ Public Class frmControleManometres2
         '
         'tbEMTPC3
         '
-        Me.tbEMTPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_EMT", True))
+        Me.tbEMTPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt3_EMT", True))
         Me.tbEMTPC3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbEMTPC3.Location = New System.Drawing.Point(382, 76)
         Me.tbEMTPC3.Name = "tbEMTPC3"
@@ -1821,7 +1822,7 @@ Public Class frmControleManometres2
         '
         'tbEMTPC4
         '
-        Me.tbEMTPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_EMT", True))
+        Me.tbEMTPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt4_EMT", True))
         Me.tbEMTPC4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbEMTPC4.Location = New System.Drawing.Point(382, 112)
         Me.tbEMTPC4.Name = "tbEMTPC4"
@@ -1832,7 +1833,7 @@ Public Class frmControleManometres2
         '
         'tbEMTPC5
         '
-        Me.tbEMTPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_EMT", True))
+        Me.tbEMTPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt5_EMT", True))
         Me.tbEMTPC5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbEMTPC5.Location = New System.Drawing.Point(382, 148)
         Me.tbEMTPC5.Name = "tbEMTPC5"
@@ -1843,7 +1844,7 @@ Public Class frmControleManometres2
         '
         'tbEMTPC6
         '
-        Me.tbEMTPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_EMT", True))
+        Me.tbEMTPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt6_EMT", True))
         Me.tbEMTPC6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbEMTPC6.Location = New System.Drawing.Point(382, 185)
         Me.tbEMTPC6.Name = "tbEMTPC6"
@@ -1866,7 +1867,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label5, 4, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label6, 5, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label7, 6, 0)
@@ -1922,7 +1923,7 @@ Public Class frmControleManometres2
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(425, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(144, 48)
+        Me.Label7.Size = New System.Drawing.Size(149, 48)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1934,7 +1935,7 @@ Public Class frmControleManometres2
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(486, 50)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(83, 49)
+        Me.Label11.Size = New System.Drawing.Size(88, 49)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2095,7 +2096,7 @@ Public Class frmControleManometres2
         CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel64.ResumeLayout(False)
         Me.Panel64.PerformLayout()
-        CType(Me.m_bsCtrlMano, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsControle, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
@@ -2197,7 +2198,7 @@ Public Class frmControleManometres2
         ' Init
         Dim bisSaisieComplete As Boolean = True
         Dim oControle As ControleMano
-        oControle = m_bsCtrlMano.Current
+        oControle = m_bsControle.Current
 
         If oControle.up_pt1_conformite = "" Or _
             oControle.up_pt2_conformite = "" Or _
@@ -2224,60 +2225,63 @@ Public Class frmControleManometres2
 
 #Region " Boutons "
 
-    ' Fonction de validation du contrôle
-    Private Function validControl() As Boolean
+    ' Fonction de validation des contrôles
+    Private Function EnregistrerLesControles() As Boolean
         Dim bReturn As Boolean
         Try
-            Dim oControle As ControleMano
-            oControle = m_bsManoControle.Current
-            'On met a jour le manometreControle
-            curManoControle.etat = checkMano(oControle)
-            curManoControle.dateDernierControleS = CSDate.ToCRODIPString(Date.Now).ToString
-            curManoControle.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-            ManometreControleManager.save(curManoControle)
+            Dim curManoControle As ManometreControle
+            Dim oCtrlMano As ControleMano
+            For Each curManoControle In m_bsManoControle
+                oCtrlMano = curManoControle.controle
+                If oCtrlMano IsNot Nothing Then
+                    'On met a jour le manometreControle
+                    curManoControle.etat = checkMano(oCtrlMano)
+                    curManoControle.dateDernierControleS = CSDate.ToCRODIPString(Date.Now).ToString
+                    curManoControle.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                    ManometreControleManager.save(curManoControle)
 
 
-            ' On enregistre les mesures
-            Dim oCtrlMano As ControleMano = m_bsCtrlMano.Current
+                    ' On enregistre les mesures
 
-            '########################################################
-            ' On récupère les controles
-            oCtrlMano.PressionControle = oCtrlMano.up_pt1_pres_manoCtrl & "|" & _
-                                            oCtrlMano.up_pt2_pres_manoCtrl & "|" & _
-                                            oCtrlMano.up_pt3_pres_manoCtrl & "|" & _
-                                            oCtrlMano.up_pt4_pres_manoCtrl & "|" & _
-                                            oCtrlMano.up_pt5_pres_manoCtrl & "|" & _
-                                            oCtrlMano.up_pt6_pres_manoCtrl & "|" & _
-                                            oCtrlMano.down_pt1_pres_manoCtrl & "|" & _
-                                            oCtrlMano.down_pt2_pres_manoCtrl & "|" & _
-                                            oCtrlMano.down_pt3_pres_manoCtrl & "|" & _
-                                            oCtrlMano.down_pt4_pres_manoCtrl & "|" & _
-                                            oCtrlMano.down_pt5_pres_manoCtrl & "|" & _
-                                            oCtrlMano.down_pt6_pres_manoCtrl
+                    '########################################################
+                    ' On récupère les controles
+                    oCtrlMano.PressionControle = oCtrlMano.up_pt1_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.up_pt2_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.up_pt3_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.up_pt4_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.up_pt5_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.up_pt6_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.down_pt1_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.down_pt2_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.down_pt3_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.down_pt4_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.down_pt5_pres_manoCtrl & "|" & _
+                                                    oCtrlMano.down_pt6_pres_manoCtrl
 
-            oCtrlMano.ValeursMesurees = oCtrlMano.up_pt1_pres_manoEtalon & "|" & _
-                                            oCtrlMano.up_pt2_pres_manoEtalon & "|" & _
-                                            oCtrlMano.up_pt3_pres_manoEtalon & "|" & _
-                                            oCtrlMano.up_pt4_pres_manoEtalon & "|" & _
-                                            oCtrlMano.up_pt5_pres_manoEtalon & "|" & _
-                                            oCtrlMano.up_pt6_pres_manoEtalon & "|" & _
-                                            oCtrlMano.down_pt1_pres_manoEtalon & "|" & _
-                                            oCtrlMano.down_pt2_pres_manoEtalon & "|" & _
-                                            oCtrlMano.down_pt3_pres_manoEtalon & "|" & _
-                                            oCtrlMano.down_pt4_pres_manoEtalon & "|" & _
-                                            oCtrlMano.down_pt5_pres_manoEtalon & "|" & _
-                                            oCtrlMano.down_pt6_pres_manoEtalon
+                    oCtrlMano.ValeursMesurees = oCtrlMano.up_pt1_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.up_pt2_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.up_pt3_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.up_pt4_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.up_pt5_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.up_pt6_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.down_pt1_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.down_pt2_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.down_pt3_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.down_pt4_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.down_pt5_pres_manoEtalon & "|" & _
+                                                    oCtrlMano.down_pt6_pres_manoEtalon
 
 
-            ' On construit notre nouvelle fiche de vie
-            curManoControle.creerfFicheVieControle(m_oAgent, oCtrlMano)
+                    ' On construit notre nouvelle fiche de vie
+                    curManoControle.creerfFicheVieControle(m_oAgent, oCtrlMano)
 
-            ' On flag le mano etalon comme etant utilise
-            ' On récupère le mano
-            Dim tmpManometreEtalon As ManometreEtalon = ManometreEtalonManager.getManometreEtalonByNumeroNational(cbx_manometresEtalon.SelectedItem.Id)
-            ' On le flag
-            ManometreEtalonManager.setUtilise(m_oAgent, tmpManometreEtalon)
-
+                    ' On flag le mano etalon comme etant utilise
+                    ' On récupère le mano
+                    Dim tmpManometreEtalon As ManometreEtalon = ManometreEtalonManager.getManometreEtalonByNumeroNational(cbx_manometresEtalon.SelectedItem.Id)
+                    ' On le flag
+                    ManometreEtalonManager.setUtilise(m_oAgent, tmpManometreEtalon)
+                End If
+            Next
 
             MsgBox(oCtrlMano.resultat)
             bReturn = True
@@ -2292,7 +2296,6 @@ Public Class frmControleManometres2
     Private Sub btn_controleManos_suivant_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_suivant.Click
         If tbTemperature.Text <> "" Then
             If isSaisieComplete() Then
-                validControl()
                 lbMano.SelectedIndex = lbMano.SelectedIndex + 1
             End If
         Else
@@ -2304,7 +2307,7 @@ Public Class frmControleManometres2
     Private Sub btn_controleManos_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_valider.Click
         If tbTemperature.Text <> "" Then
             If isSaisieComplete() Then
-                validControl()
+                EnregistrerLesControles()
                 TryCast(MdiParent, parentContener).ReturnToAccueil()
             End If
         Else
@@ -2325,18 +2328,20 @@ Public Class frmControleManometres2
     Private Sub list_manometresEtalon_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbx_manometresEtalon.SelectedIndexChanged
         If cbx_manometresEtalon.SelectedIndex <> m_bsManoEtalon.Count And tbTemperature.Text <> "" Then
             SplitContainer1.Enabled = True
+            m_bsManoControle.MoveFirst()
         Else
             SplitContainer1.Enabled = False
-            m_bsManoControle.MoveFirst()
+            m_bsManoControle.MoveLast()
         End If
     End Sub
 
     Private Sub tbTemperature_TextChanged(sender As Object, e As EventArgs) Handles tbTemperature.TextChanged
         If cbx_manometresEtalon.SelectedIndex <> m_bsManoEtalon.Count And tbTemperature.Text <> "" Then
             SplitContainer1.Enabled = True
+            m_bsManoControle.MoveFirst()
         Else
             SplitContainer1.Enabled = False
-            m_bsManoControle.MoveFirst()
+            m_bsManoControle.MoveLast()
         End If
 
     End Sub
@@ -2379,7 +2384,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2394,9 +2399,9 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferenceup1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+            CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferenceup1 : " & ex.Message.ToString)
         End Try
     End Sub
     ' Calcul au chagement de contenu
@@ -2410,7 +2415,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2425,7 +2430,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetBindings(False)
+            m_bsControle.ResetBindings(False)
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferenceup1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2439,7 +2444,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2454,7 +2459,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup3(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2468,7 +2473,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2483,7 +2488,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup4(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2497,7 +2502,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2512,7 +2517,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup5(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2526,7 +2531,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2541,7 +2546,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup6(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2557,7 +2562,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2572,7 +2577,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferencedown1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2587,7 +2592,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2602,7 +2607,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferencedown1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2616,7 +2621,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2631,7 +2636,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown3(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2645,7 +2650,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2660,7 +2665,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown4(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2674,7 +2679,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2689,7 +2694,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown5(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2703,7 +2708,7 @@ Public Class frmControleManometres2
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
-            oControle = m_bsCtrlMano.Current
+            oControle = m_bsControle.Current
 
 
             ' Calcul err absolue
@@ -2718,7 +2723,7 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsCtrlMano.ResetCurrentItem()
+            m_bsControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown6(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2795,7 +2800,7 @@ Public Class frmControleManometres2
     Private Sub thr_doAcqiring()
 
         Dim oControle As ControleMano
-        oControle = m_bsCtrlMano.Current
+        oControle = m_bsControle.Current
         Dim nbBusesAcquis As Integer = AcquiringManager.getNbBuses(2)
         Dim isok As Boolean = (Me.nbMesures = nbBusesAcquis)
         If isok Then
@@ -2852,7 +2857,7 @@ Public Class frmControleManometres2
                 End Try
             Next
             ' On vide la table d'échange
-            m_bsCtrlMano.ResetBindings(False)
+            m_bsControle.ResetBindings(False)
             'AcquiringManager.clearResults()
         Else
             MsgBox("Le nombre de buses acquises est différent du nombre de mesures nécéssaires. Veuillez vérifiez.")
@@ -2865,7 +2870,10 @@ Public Class frmControleManometres2
         _thread_doAcqiring.Name = "thr_doAcqiring" 'Il est parfois pratique de nommer les threads surtout si on en créé plusieurs.
         _thread_doAcqiring.Start() ' Démarrage du thread.
         _thread_doAcqiring.Join() ' Démarrage du thread.
-        m_bsCtrlMano.ResetCurrentItem()
+        m_bsControle.ResetCurrentItem()
+        refreshLines()
+    End Sub
+    Private Sub refreshLines()
         saisiePressionManoReferenceup1(tbUpMR1, New EventArgs())
         saisiePressionManoReferenceup2(tbUpMR2, New EventArgs())
         saisiePressionManoReferenceup3(tbUpMR3, New EventArgs())
@@ -2878,6 +2886,7 @@ Public Class frmControleManometres2
         saisiePressionManoReferencedown4(tbDownMR4, New EventArgs())
         saisiePressionManoReferencedown5(tbDownMR5, New EventArgs())
         saisiePressionManoReferencedown6(tbDownMR6, New EventArgs())
+
     End Sub
 
 #End Region
@@ -2892,92 +2901,159 @@ Public Class frmControleManometres2
 
         Dim oManoEtalon As ManometreEtalon
         oManoEtalon = m_bsManoEtalon.Current
-
         Dim oControle As ControleMano
-        oControle = New ControleMano(m_oAgent)
-        oControle.idStructure = oMano.idStructure
-        oControle.idMano = oMano.numeroNational
-        oControle.manoEtalon = oMano.idCrodip
-        oControle.tempAir = tbTemperature.Text
-        oControle.resultat = oMano.etat
-        oControle.DateVerif = CSDate.ToCRODIPString(Date.Now).ToString
 
-        oControle.up_pt1_pres_manoCtrl = oMano.Pression1Ctrl
-        oControle.up_pt2_pres_manoCtrl = oMano.Pression2Ctrl
-        oControle.up_pt3_pres_manoCtrl = oMano.Pression3Ctrl
-        oControle.up_pt4_pres_manoCtrl = oMano.Pression4Ctrl
-        oControle.up_pt5_pres_manoCtrl = oMano.Pression5Ctrl
-        oControle.up_pt6_pres_manoCtrl = oMano.Pression6Ctrl
+        If oMano.controle Is Nothing Then
+            oControle = New ControleMano(m_oAgent)
+            oControle.idStructure = oMano.idStructure
+            oControle.idMano = oMano.numeroNational
+            oControle.manoEtalon = oMano.idCrodip
+            oControle.tempAir = tbTemperature.Text
+            oControle.resultat = oMano.etat
+            oControle.DateVerif = CSDate.ToCRODIPString(Date.Now).ToString
 
-        oControle.down_pt1_pres_manoCtrl = oMano.Pression1Ctrl
-        oControle.down_pt2_pres_manoCtrl = oMano.Pression2Ctrl
-        oControle.down_pt3_pres_manoCtrl = oMano.Pression3Ctrl
-        oControle.down_pt4_pres_manoCtrl = oMano.Pression4Ctrl
-        oControle.down_pt5_pres_manoCtrl = oMano.Pression5Ctrl
-        oControle.down_pt6_pres_manoCtrl = oMano.Pression6Ctrl
+            oControle.up_pt1_pres_manoCtrl = oMano.Pression1Ctrl
+            oControle.up_pt2_pres_manoCtrl = oMano.Pression2Ctrl
+            oControle.up_pt3_pres_manoCtrl = oMano.Pression3Ctrl
+            oControle.up_pt4_pres_manoCtrl = oMano.Pression4Ctrl
+            oControle.up_pt5_pres_manoCtrl = oMano.Pression5Ctrl
+            oControle.up_pt6_pres_manoCtrl = oMano.Pression6Ctrl
 
-        Dim valueIncertitude As Double
-        valueIncertitude = calcIncertitude(oMano.resolution_d, oManoEtalon.incertitudeEtalon_d)
+            oControle.down_pt1_pres_manoCtrl = oMano.Pression1Ctrl
+            oControle.down_pt2_pres_manoCtrl = oMano.Pression2Ctrl
+            oControle.down_pt3_pres_manoCtrl = oMano.Pression3Ctrl
+            oControle.down_pt4_pres_manoCtrl = oMano.Pression4Ctrl
+            oControle.down_pt5_pres_manoCtrl = oMano.Pression5Ctrl
+            oControle.down_pt6_pres_manoCtrl = oMano.Pression6Ctrl
 
-        oControle.up_pt1_incertitude = valueIncertitude
-        oControle.up_pt2_incertitude = valueIncertitude
-        oControle.up_pt3_incertitude = valueIncertitude
-        oControle.up_pt4_incertitude = valueIncertitude
-        oControle.up_pt5_incertitude = valueIncertitude
-        oControle.up_pt6_incertitude = valueIncertitude
+            Dim valueIncertitude As Double
+            valueIncertitude = calcIncertitude(oMano.resolution_d, oManoEtalon.incertitudeEtalon_d)
 
-        oControle.down_pt1_incertitude = valueIncertitude
-        oControle.down_pt2_incertitude = valueIncertitude
-        oControle.down_pt3_incertitude = valueIncertitude
-        oControle.down_pt4_incertitude = valueIncertitude
-        oControle.down_pt5_incertitude = valueIncertitude
-        oControle.down_pt6_incertitude = valueIncertitude
+            oControle.up_pt1_incertitude = valueIncertitude
+            oControle.up_pt2_incertitude = valueIncertitude
+            oControle.up_pt3_incertitude = valueIncertitude
+            oControle.up_pt4_incertitude = valueIncertitude
+            oControle.up_pt5_incertitude = valueIncertitude
+            oControle.up_pt6_incertitude = valueIncertitude
 
-        oControle.up_pt1_EMT = oMano.calcEMT()
-        oControle.up_pt2_EMT = oMano.calcEMT()
-        oControle.up_pt3_EMT = oMano.calcEMT()
-        oControle.up_pt4_EMT = oMano.calcEMT()
-        oControle.up_pt5_EMT = oMano.calcEMT()
-        oControle.up_pt6_EMT = oMano.calcEMT()
+            oControle.down_pt1_incertitude = valueIncertitude
+            oControle.down_pt2_incertitude = valueIncertitude
+            oControle.down_pt3_incertitude = valueIncertitude
+            oControle.down_pt4_incertitude = valueIncertitude
+            oControle.down_pt5_incertitude = valueIncertitude
+            oControle.down_pt6_incertitude = valueIncertitude
 
-        oControle.down_pt1_EMT = oMano.calcEMT()
-        oControle.down_pt2_EMT = oMano.calcEMT()
-        oControle.down_pt3_EMT = oMano.calcEMT()
-        oControle.down_pt4_EMT = oMano.calcEMT()
-        oControle.down_pt5_EMT = oMano.calcEMT()
-        oControle.down_pt6_EMT = oMano.calcEMT()
+            oControle.up_pt1_EMT = oMano.calcEMT()
+            oControle.up_pt2_EMT = oMano.calcEMT()
+            oControle.up_pt3_EMT = oMano.calcEMT()
+            oControle.up_pt4_EMT = oMano.calcEMT()
+            oControle.up_pt5_EMT = oMano.calcEMT()
+            oControle.up_pt6_EMT = oMano.calcEMT()
 
-        oControle.up_pt1_err_abs = ""
-        oControle.up_pt2_err_abs = ""
-        oControle.up_pt3_err_abs = ""
-        oControle.up_pt4_err_abs = ""
-        oControle.up_pt5_err_abs = ""
-        oControle.up_pt6_err_abs = ""
+            oControle.down_pt1_EMT = oMano.calcEMT()
+            oControle.down_pt2_EMT = oMano.calcEMT()
+            oControle.down_pt3_EMT = oMano.calcEMT()
+            oControle.down_pt4_EMT = oMano.calcEMT()
+            oControle.down_pt5_EMT = oMano.calcEMT()
+            oControle.down_pt6_EMT = oMano.calcEMT()
 
-        oControle.down_pt1_err_abs = ""
-        oControle.down_pt2_err_abs = ""
-        oControle.down_pt3_err_abs = ""
-        oControle.down_pt4_err_abs = ""
-        oControle.down_pt5_err_abs = ""
-        oControle.down_pt6_err_abs = ""
+            oControle.up_pt1_err_abs = ""
+            oControle.up_pt2_err_abs = ""
+            oControle.up_pt3_err_abs = ""
+            oControle.up_pt4_err_abs = ""
+            oControle.up_pt5_err_abs = ""
+            oControle.up_pt6_err_abs = ""
 
-        oControle.up_pt1_err_fondEchelle = ""
-        oControle.up_pt2_err_fondEchelle = ""
-        oControle.up_pt3_err_fondEchelle = ""
-        oControle.up_pt4_err_fondEchelle = ""
-        oControle.up_pt5_err_fondEchelle = ""
-        oControle.up_pt6_err_fondEchelle = ""
+            oControle.down_pt1_err_abs = ""
+            oControle.down_pt2_err_abs = ""
+            oControle.down_pt3_err_abs = ""
+            oControle.down_pt4_err_abs = ""
+            oControle.down_pt5_err_abs = ""
+            oControle.down_pt6_err_abs = ""
 
-        oControle.down_pt1_err_fondEchelle = ""
-        oControle.down_pt2_err_fondEchelle = ""
-        oControle.down_pt3_err_fondEchelle = ""
-        oControle.down_pt4_err_fondEchelle = ""
-        oControle.down_pt5_err_fondEchelle = ""
-        oControle.down_pt6_err_fondEchelle = ""
+            oControle.up_pt1_err_fondEchelle = ""
+            oControle.up_pt2_err_fondEchelle = ""
+            oControle.up_pt3_err_fondEchelle = ""
+            oControle.up_pt4_err_fondEchelle = ""
+            oControle.up_pt5_err_fondEchelle = ""
+            oControle.up_pt6_err_fondEchelle = ""
 
-        m_bsCtrlMano.Clear()
-        m_bsCtrlMano.Add(oControle)
-        m_bsCtrlMano.MoveLast()
+            oControle.down_pt1_err_fondEchelle = ""
+            oControle.down_pt2_err_fondEchelle = ""
+            oControle.down_pt3_err_fondEchelle = ""
+            oControle.down_pt4_err_fondEchelle = ""
+            oControle.down_pt5_err_fondEchelle = ""
+            oControle.down_pt6_err_fondEchelle = ""
+
+            oMano.controle = oControle
+        Else
+            oControle = oMano.controle
+            If oControle.up_pt1_conformite = "1" Then
+                tbUpMR1.ForeColor = System.Drawing.Color.Green
+            Else
+                tbUpMR1.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.up_pt2_conformite = "1" Then
+                tbUpMR2.ForeColor = System.Drawing.Color.Green
+            Else
+                tbUpMR2.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.up_pt3_conformite = "1" Then
+                tbUpMR3.ForeColor = System.Drawing.Color.Green
+            Else
+                tbUpMR3.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.up_pt4_conformite = "1" Then
+                tbUpMR4.ForeColor = System.Drawing.Color.Green
+            Else
+                tbUpMR4.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.up_pt5_conformite = "1" Then
+                tbUpMR5.ForeColor = System.Drawing.Color.Green
+            Else
+                tbUpMR5.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.up_pt6_conformite = "1" Then
+                tbUpMR6.ForeColor = System.Drawing.Color.Green
+            Else
+                tbUpMR6.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.down_pt1_conformite = "1" Then
+                tbDownMR1.ForeColor = System.Drawing.Color.Green
+            Else
+                tbDownMR1.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.down_pt2_conformite = "1" Then
+                tbDownMR2.ForeColor = System.Drawing.Color.Green
+            Else
+                tbDownMR2.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.down_pt3_conformite = "1" Then
+                tbDownMR3.ForeColor = System.Drawing.Color.Green
+            Else
+                tbDownMR3.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.down_pt4_conformite = "1" Then
+                tbDownMR4.ForeColor = System.Drawing.Color.Green
+            Else
+                tbDownMR4.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.down_pt5_conformite = "1" Then
+                tbDownMR5.ForeColor = System.Drawing.Color.Green
+            Else
+                tbDownMR5.ForeColor = System.Drawing.Color.Red
+            End If
+            If oControle.down_pt6_conformite = "1" Then
+                tbDownMR6.ForeColor = System.Drawing.Color.Green
+            Else
+                tbDownMR6.ForeColor = System.Drawing.Color.Red
+            End If
+
+            ValiderSaisie(oControle)
+
+
+
+        End If
     End Sub
 
 

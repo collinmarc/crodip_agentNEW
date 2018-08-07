@@ -17,6 +17,16 @@ Public Class ManometreControle
     Sub New()
 
     End Sub
+    Private _controle As ControleMano
+    <XmlIgnore>
+    Public Property controle() As ControleMano
+        Get
+            Return _controle
+        End Get
+        Set(ByVal value As ControleMano)
+            _controle = value
+        End Set
+    End Property
 
 
     Public Property resolution() As String
