@@ -13,6 +13,15 @@ Public Class frmControleManometres2
     Inherits frmCRODIP
 
     Private m_oAgent As Agent
+    Private arrPressions_6bar() As String = {0, 1.2, 2.4, 3.6, 4.8, 6}
+    Private arrPressions_10bar() As String = {0, 2, 4, 6, 8, 10}
+    Private arrPressions_20bar() As String = {0, 4, 8, 12, 16, 20}
+    Private arrPressions_25bar() As String = {0, 5, 10, 15, 20, 25}
+    Private arrPressions_default() As String = {0, 2, 4, 6, 8, 10}
+    Friend WithEvents btn_controleManos_acquiring As System.Windows.Forms.PictureBox
+    Private arrPressions() As String
+
+
     Public Sub New(pAgent As Agent)
         Me.New()
         m_oAgent = pAgent
@@ -46,13 +55,12 @@ Public Class frmControleManometres2
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée en utilisant le Concepteur Windows Form.  
     'Ne la modifiez pas en utilisant l'éditeur de code.
-    Friend WithEvents TextBox41 As System.Windows.Forms.TextBox
+    Friend WithEvents tbTemperature As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label82 As System.Windows.Forms.Label
     Friend WithEvents Panel64 As System.Windows.Forms.Panel
-    Friend WithEvents btn_controleManos_suivant As System.Windows.Forms.Label
-    Friend WithEvents list_manometresEtalon As System.Windows.Forms.ComboBox
+    Friend WithEvents cbx_manometresEtalon As System.Windows.Forms.ComboBox
     Friend WithEvents Label36 As System.Windows.Forms.Label
     Friend WithEvents ImageList_onglets As System.Windows.Forms.ImageList
     Friend WithEvents btn_controleBanc_annuler As System.Windows.Forms.Label
@@ -72,8 +80,8 @@ Public Class frmControleManometres2
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents tbPCMR2 As System.Windows.Forms.TextBox
-    Friend WithEvents tbPCMR1 As System.Windows.Forms.TextBox
+    Friend WithEvents tbUpMR2 As System.Windows.Forms.TextBox
+    Friend WithEvents tbUpMR1 As System.Windows.Forms.TextBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
@@ -87,10 +95,10 @@ Public Class frmControleManometres2
     Friend WithEvents tbPCMC4 As System.Windows.Forms.TextBox
     Friend WithEvents tbPCMC5 As System.Windows.Forms.TextBox
     Friend WithEvents tbPCMC6 As System.Windows.Forms.TextBox
-    Friend WithEvents tbPCMR3 As System.Windows.Forms.TextBox
-    Friend WithEvents tbPCMR4 As System.Windows.Forms.TextBox
-    Friend WithEvents tbPCMR5 As System.Windows.Forms.TextBox
-    Friend WithEvents tbPCMR6 As System.Windows.Forms.TextBox
+    Friend WithEvents tbUpMR3 As System.Windows.Forms.TextBox
+    Friend WithEvents tbUpMR4 As System.Windows.Forms.TextBox
+    Friend WithEvents tbUpMR5 As System.Windows.Forms.TextBox
+    Friend WithEvents tbUpMR6 As System.Windows.Forms.TextBox
     Friend WithEvents tbIncertPC1 As System.Windows.Forms.TextBox
     Friend WithEvents tbIncertPC2 As System.Windows.Forms.TextBox
     Friend WithEvents tbIncertPC3 As System.Windows.Forms.TextBox
@@ -128,8 +136,8 @@ Public Class frmControleManometres2
     Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox11 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox12 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox13 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox14 As System.Windows.Forms.TextBox
+    Friend WithEvents tbDownMR5 As System.Windows.Forms.TextBox
+    Friend WithEvents tbDownMR6 As System.Windows.Forms.TextBox
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents Label21 As System.Windows.Forms.Label
     Friend WithEvents Label22 As System.Windows.Forms.Label
@@ -143,10 +151,10 @@ Public Class frmControleManometres2
     Friend WithEvents TextBox18 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox19 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox20 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox21 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox22 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox23 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox24 As System.Windows.Forms.TextBox
+    Friend WithEvents tbDownMR4 As System.Windows.Forms.TextBox
+    Friend WithEvents tbDownMR3 As System.Windows.Forms.TextBox
+    Friend WithEvents tbDownMR2 As System.Windows.Forms.TextBox
+    Friend WithEvents tbDownMR1 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox25 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox26 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox27 As System.Windows.Forms.TextBox
@@ -171,16 +179,42 @@ Public Class frmControleManometres2
     Friend WithEvents Label28 As System.Windows.Forms.Label
     Friend WithEvents Label27 As System.Windows.Forms.Label
     Friend WithEvents m_bsCtrlMano As System.Windows.Forms.BindingSource
+    Friend WithEvents m_bsManoEtalon As System.Windows.Forms.BindingSource
+    Friend WithEvents labelInfo_reference As System.Windows.Forms.Label
+    Friend WithEvents labelInfo_marque As System.Windows.Forms.Label
+    Friend WithEvents labelInfo_classe As System.Windows.Forms.Label
+    Friend WithEvents labelInfo_fondEchelle As System.Windows.Forms.Label
+    Friend WithEvents labelInfoEtalon_classe As System.Windows.Forms.Label
+    Friend WithEvents labelInfoEtalon_fondEchelle As System.Windows.Forms.Label
+    Friend WithEvents labelInfoEtalon_marque As System.Windows.Forms.Label
+    Friend WithEvents labelInfoEtalon_reference As System.Windows.Forms.Label
+    Friend WithEvents lblResultat As System.Windows.Forms.Label
+    Friend WithEvents btn_controleManos_valider As System.Windows.Forms.Label
+    Friend WithEvents btn_controleManos_suivant As System.Windows.Forms.Label
     Friend WithEvents m_bsManoControle As System.Windows.Forms.BindingSource
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmControleManometres2))
-        Me.TextBox41 = New System.Windows.Forms.TextBox()
+        Me.tbTemperature = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.list_manometresEtalon = New System.Windows.Forms.ComboBox()
+        Me.cbx_manometresEtalon = New System.Windows.Forms.ComboBox()
+        Me.m_bsManoEtalon = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label82 = New System.Windows.Forms.Label()
         Me.Panel64 = New System.Windows.Forms.Panel()
+        Me.btn_controleManos_valider = New System.Windows.Forms.Label()
+        Me.btn_controleManos_suivant = New System.Windows.Forms.Label()
+        Me.lblResultat = New System.Windows.Forms.Label()
+        Me.m_bsCtrlMano = New System.Windows.Forms.BindingSource(Me.components)
+        Me.labelInfoEtalon_classe = New System.Windows.Forms.Label()
+        Me.labelInfoEtalon_fondEchelle = New System.Windows.Forms.Label()
+        Me.labelInfoEtalon_marque = New System.Windows.Forms.Label()
+        Me.labelInfoEtalon_reference = New System.Windows.Forms.Label()
+        Me.labelInfo_reference = New System.Windows.Forms.Label()
+        Me.m_bsManoControle = New System.Windows.Forms.BindingSource(Me.components)
+        Me.labelInfo_marque = New System.Windows.Forms.Label()
+        Me.labelInfo_classe = New System.Windows.Forms.Label()
+        Me.labelInfo_fondEchelle = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
@@ -194,7 +228,6 @@ Public Class frmControleManometres2
         Me.Label27 = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.lbMano = New System.Windows.Forms.ListBox()
-        Me.m_bsManoControle = New System.Windows.Forms.BindingSource(Me.components)
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
@@ -208,8 +241,8 @@ Public Class frmControleManometres2
         Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.TextBox11 = New System.Windows.Forms.TextBox()
         Me.TextBox12 = New System.Windows.Forms.TextBox()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
-        Me.TextBox14 = New System.Windows.Forms.TextBox()
+        Me.tbDownMR5 = New System.Windows.Forms.TextBox()
+        Me.tbDownMR6 = New System.Windows.Forms.TextBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -223,10 +256,10 @@ Public Class frmControleManometres2
         Me.TextBox18 = New System.Windows.Forms.TextBox()
         Me.TextBox19 = New System.Windows.Forms.TextBox()
         Me.TextBox20 = New System.Windows.Forms.TextBox()
-        Me.TextBox21 = New System.Windows.Forms.TextBox()
-        Me.TextBox22 = New System.Windows.Forms.TextBox()
-        Me.TextBox23 = New System.Windows.Forms.TextBox()
-        Me.TextBox24 = New System.Windows.Forms.TextBox()
+        Me.tbDownMR4 = New System.Windows.Forms.TextBox()
+        Me.tbDownMR3 = New System.Windows.Forms.TextBox()
+        Me.tbDownMR2 = New System.Windows.Forms.TextBox()
+        Me.tbDownMR1 = New System.Windows.Forms.TextBox()
         Me.TextBox25 = New System.Windows.Forms.TextBox()
         Me.TextBox26 = New System.Windows.Forms.TextBox()
         Me.TextBox27 = New System.Windows.Forms.TextBox()
@@ -252,8 +285,8 @@ Public Class frmControleManometres2
         Me.tbErrAbsPC2 = New System.Windows.Forms.TextBox()
         Me.tbFondPC1 = New System.Windows.Forms.TextBox()
         Me.tbErrAbsPC1 = New System.Windows.Forms.TextBox()
-        Me.tbPCMR2 = New System.Windows.Forms.TextBox()
-        Me.tbPCMR1 = New System.Windows.Forms.TextBox()
+        Me.tbUpMR2 = New System.Windows.Forms.TextBox()
+        Me.tbUpMR1 = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -267,10 +300,10 @@ Public Class frmControleManometres2
         Me.tbPCMC4 = New System.Windows.Forms.TextBox()
         Me.tbPCMC5 = New System.Windows.Forms.TextBox()
         Me.tbPCMC6 = New System.Windows.Forms.TextBox()
-        Me.tbPCMR3 = New System.Windows.Forms.TextBox()
-        Me.tbPCMR4 = New System.Windows.Forms.TextBox()
-        Me.tbPCMR5 = New System.Windows.Forms.TextBox()
-        Me.tbPCMR6 = New System.Windows.Forms.TextBox()
+        Me.tbUpMR3 = New System.Windows.Forms.TextBox()
+        Me.tbUpMR4 = New System.Windows.Forms.TextBox()
+        Me.tbUpMR5 = New System.Windows.Forms.TextBox()
+        Me.tbUpMR6 = New System.Windows.Forms.TextBox()
         Me.tbIncertPC1 = New System.Windows.Forms.TextBox()
         Me.tbIncertPC2 = New System.Windows.Forms.TextBox()
         Me.tbIncertPC3 = New System.Windows.Forms.TextBox()
@@ -293,37 +326,40 @@ Public Class frmControleManometres2
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.btn_controleManos_acquiring = New System.Windows.Forms.PictureBox()
         Me.Panel_loading = New System.Windows.Forms.Panel()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.btn_controleBanc_annuler = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
-        Me.btn_controleManos_suivant = New System.Windows.Forms.Label()
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
-        Me.m_bsCtrlMano = New System.Windows.Forms.BindingSource(Me.components)
+        CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel64.SuspendLayout()
+        CType(Me.m_bsCtrlMano, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
-        CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
+        CType(Me.btn_controleManos_acquiring, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel_loading.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsCtrlMano, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'TextBox41
+        'tbTemperature
         '
-        Me.TextBox41.Location = New System.Drawing.Point(926, 14)
-        Me.TextBox41.Name = "TextBox41"
-        Me.TextBox41.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox41.TabIndex = 2
+        Me.tbTemperature.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbTemperature.Location = New System.Drawing.Point(926, 14)
+        Me.tbTemperature.Name = "tbTemperature"
+        Me.tbTemperature.Size = New System.Drawing.Size(74, 20)
+        Me.tbTemperature.TabIndex = 1
         '
         'Label9
         '
+        Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label9.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -346,14 +382,21 @@ Public Class frmControleManometres2
         Me.Label8.Text = "Manomètre de référence"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
-        'list_manometresEtalon
+        'cbx_manometresEtalon
         '
-        Me.list_manometresEtalon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.list_manometresEtalon.ItemHeight = 13
-        Me.list_manometresEtalon.Location = New System.Drawing.Point(621, 14)
-        Me.list_manometresEtalon.Name = "list_manometresEtalon"
-        Me.list_manometresEtalon.Size = New System.Drawing.Size(144, 21)
-        Me.list_manometresEtalon.TabIndex = 1
+        Me.cbx_manometresEtalon.DataSource = Me.m_bsManoEtalon
+        Me.cbx_manometresEtalon.DisplayMember = "idCrodip"
+        Me.cbx_manometresEtalon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_manometresEtalon.ItemHeight = 13
+        Me.cbx_manometresEtalon.Location = New System.Drawing.Point(621, 14)
+        Me.cbx_manometresEtalon.Name = "cbx_manometresEtalon"
+        Me.cbx_manometresEtalon.Size = New System.Drawing.Size(144, 21)
+        Me.cbx_manometresEtalon.TabIndex = 0
+        Me.cbx_manometresEtalon.ValueMember = "idCrodip"
+        '
+        'm_bsManoEtalon
+        '
+        Me.m_bsManoEtalon.DataSource = GetType(Crodip_agent.ManometreEtalon)
         '
         'Label82
         '
@@ -371,6 +414,17 @@ Public Class frmControleManometres2
         'Panel64
         '
         Me.Panel64.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel64.Controls.Add(Me.btn_controleManos_valider)
+        Me.Panel64.Controls.Add(Me.btn_controleManos_suivant)
+        Me.Panel64.Controls.Add(Me.lblResultat)
+        Me.Panel64.Controls.Add(Me.labelInfoEtalon_classe)
+        Me.Panel64.Controls.Add(Me.labelInfoEtalon_fondEchelle)
+        Me.Panel64.Controls.Add(Me.labelInfoEtalon_marque)
+        Me.Panel64.Controls.Add(Me.labelInfoEtalon_reference)
+        Me.Panel64.Controls.Add(Me.labelInfo_reference)
+        Me.Panel64.Controls.Add(Me.labelInfo_marque)
+        Me.Panel64.Controls.Add(Me.labelInfo_classe)
+        Me.Panel64.Controls.Add(Me.labelInfo_fondEchelle)
         Me.Panel64.Controls.Add(Me.Label38)
         Me.Panel64.Controls.Add(Me.Label32)
         Me.Panel64.Controls.Add(Me.Label33)
@@ -386,33 +440,183 @@ Public Class frmControleManometres2
         Me.Panel64.Controls.Add(Me.Panel_loading)
         Me.Panel64.Controls.Add(Me.btn_controleBanc_annuler)
         Me.Panel64.Controls.Add(Me.Label36)
-        Me.Panel64.Controls.Add(Me.btn_controleManos_suivant)
-        Me.Panel64.Controls.Add(Me.TextBox41)
+        Me.Panel64.Controls.Add(Me.tbTemperature)
         Me.Panel64.Controls.Add(Me.Label9)
         Me.Panel64.Controls.Add(Me.Label8)
-        Me.Panel64.Controls.Add(Me.list_manometresEtalon)
+        Me.Panel64.Controls.Add(Me.cbx_manometresEtalon)
         Me.Panel64.Controls.Add(Me.Label82)
+        Me.Panel64.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel64.Location = New System.Drawing.Point(0, 0)
         Me.Panel64.Name = "Panel64"
         Me.Panel64.Size = New System.Drawing.Size(1008, 679)
         Me.Panel64.TabIndex = 20
         '
+        'btn_controleManos_valider
+        '
+        Me.btn_controleManos_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_controleManos_valider.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_controleManos_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_controleManos_valider.ForeColor = System.Drawing.Color.White
+        Me.btn_controleManos_valider.Image = CType(resources.GetObject("btn_controleManos_valider.Image"), System.Drawing.Image)
+        Me.btn_controleManos_valider.Location = New System.Drawing.Point(864, 643)
+        Me.btn_controleManos_valider.Name = "btn_controleManos_valider"
+        Me.btn_controleManos_valider.Size = New System.Drawing.Size(128, 24)
+        Me.btn_controleManos_valider.TabIndex = 53
+        Me.btn_controleManos_valider.Text = "    Valider / Quitter"
+        Me.btn_controleManos_valider.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btn_controleManos_suivant
+        '
+        Me.btn_controleManos_suivant.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_controleManos_suivant.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_controleManos_suivant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_controleManos_suivant.ForeColor = System.Drawing.Color.White
+        Me.btn_controleManos_suivant.Image = CType(resources.GetObject("btn_controleManos_suivant.Image"), System.Drawing.Image)
+        Me.btn_controleManos_suivant.Location = New System.Drawing.Point(864, 609)
+        Me.btn_controleManos_suivant.Name = "btn_controleManos_suivant"
+        Me.btn_controleManos_suivant.Size = New System.Drawing.Size(128, 24)
+        Me.btn_controleManos_suivant.TabIndex = 54
+        Me.btn_controleManos_suivant.Text = "    Mano suivant"
+        Me.btn_controleManos_suivant.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblResultat
+        '
+        Me.lblResultat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblResultat.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "resultat", True))
+        Me.lblResultat.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblResultat.ForeColor = System.Drawing.Color.Green
+        Me.lblResultat.Location = New System.Drawing.Point(761, 263)
+        Me.lblResultat.Name = "lblResultat"
+        Me.lblResultat.Size = New System.Drawing.Size(224, 111)
+        Me.lblResultat.TabIndex = 52
+        Me.lblResultat.Text = "Votre manomètre est fiable : il répond à sa classe de précision."
+        Me.lblResultat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'm_bsCtrlMano
+        '
+        Me.m_bsCtrlMano.DataSource = GetType(Crodip_agent.ControleMano)
+        '
+        'labelInfoEtalon_classe
+        '
+        Me.labelInfoEtalon_classe.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelInfoEtalon_classe.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsManoEtalon, "classe", True))
+        Me.labelInfoEtalon_classe.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelInfoEtalon_classe.ForeColor = System.Drawing.Color.Black
+        Me.labelInfoEtalon_classe.Location = New System.Drawing.Point(864, 202)
+        Me.labelInfoEtalon_classe.Name = "labelInfoEtalon_classe"
+        Me.labelInfoEtalon_classe.Size = New System.Drawing.Size(96, 16)
+        Me.labelInfoEtalon_classe.TabIndex = 48
+        Me.labelInfoEtalon_classe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'labelInfoEtalon_fondEchelle
+        '
+        Me.labelInfoEtalon_fondEchelle.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelInfoEtalon_fondEchelle.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsManoEtalon, "fondEchelle", True))
+        Me.labelInfoEtalon_fondEchelle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelInfoEtalon_fondEchelle.ForeColor = System.Drawing.Color.Black
+        Me.labelInfoEtalon_fondEchelle.Location = New System.Drawing.Point(864, 215)
+        Me.labelInfoEtalon_fondEchelle.Name = "labelInfoEtalon_fondEchelle"
+        Me.labelInfoEtalon_fondEchelle.Size = New System.Drawing.Size(96, 16)
+        Me.labelInfoEtalon_fondEchelle.TabIndex = 49
+        Me.labelInfoEtalon_fondEchelle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'labelInfoEtalon_marque
+        '
+        Me.labelInfoEtalon_marque.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelInfoEtalon_marque.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsManoEtalon, "marque", True))
+        Me.labelInfoEtalon_marque.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelInfoEtalon_marque.ForeColor = System.Drawing.Color.Black
+        Me.labelInfoEtalon_marque.Location = New System.Drawing.Point(864, 182)
+        Me.labelInfoEtalon_marque.Name = "labelInfoEtalon_marque"
+        Me.labelInfoEtalon_marque.Size = New System.Drawing.Size(96, 16)
+        Me.labelInfoEtalon_marque.TabIndex = 50
+        Me.labelInfoEtalon_marque.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'labelInfoEtalon_reference
+        '
+        Me.labelInfoEtalon_reference.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelInfoEtalon_reference.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsManoEtalon, "idCrodip", True))
+        Me.labelInfoEtalon_reference.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelInfoEtalon_reference.ForeColor = System.Drawing.Color.Black
+        Me.labelInfoEtalon_reference.Location = New System.Drawing.Point(864, 166)
+        Me.labelInfoEtalon_reference.Name = "labelInfoEtalon_reference"
+        Me.labelInfoEtalon_reference.Size = New System.Drawing.Size(96, 16)
+        Me.labelInfoEtalon_reference.TabIndex = 51
+        Me.labelInfoEtalon_reference.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'labelInfo_reference
+        '
+        Me.labelInfo_reference.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelInfo_reference.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsManoControle, "idCrodip", True))
+        Me.labelInfo_reference.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelInfo_reference.ForeColor = System.Drawing.Color.Black
+        Me.labelInfo_reference.Location = New System.Drawing.Point(870, 58)
+        Me.labelInfo_reference.Name = "labelInfo_reference"
+        Me.labelInfo_reference.Size = New System.Drawing.Size(104, 16)
+        Me.labelInfo_reference.TabIndex = 44
+        Me.labelInfo_reference.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'm_bsManoControle
+        '
+        Me.m_bsManoControle.DataSource = GetType(Crodip_agent.ManometreControle)
+        '
+        'labelInfo_marque
+        '
+        Me.labelInfo_marque.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelInfo_marque.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsManoControle, "marque", True))
+        Me.labelInfo_marque.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelInfo_marque.ForeColor = System.Drawing.Color.Black
+        Me.labelInfo_marque.Location = New System.Drawing.Point(870, 78)
+        Me.labelInfo_marque.Name = "labelInfo_marque"
+        Me.labelInfo_marque.Size = New System.Drawing.Size(104, 16)
+        Me.labelInfo_marque.TabIndex = 45
+        Me.labelInfo_marque.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'labelInfo_classe
+        '
+        Me.labelInfo_classe.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelInfo_classe.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsManoControle, "classe", True))
+        Me.labelInfo_classe.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelInfo_classe.ForeColor = System.Drawing.Color.Black
+        Me.labelInfo_classe.Location = New System.Drawing.Point(870, 97)
+        Me.labelInfo_classe.Name = "labelInfo_classe"
+        Me.labelInfo_classe.Size = New System.Drawing.Size(104, 16)
+        Me.labelInfo_classe.TabIndex = 46
+        Me.labelInfo_classe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'labelInfo_fondEchelle
+        '
+        Me.labelInfo_fondEchelle.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelInfo_fondEchelle.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsManoControle, "fondEchelle", True))
+        Me.labelInfo_fondEchelle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelInfo_fondEchelle.ForeColor = System.Drawing.Color.Black
+        Me.labelInfo_fondEchelle.Location = New System.Drawing.Point(870, 116)
+        Me.labelInfo_fondEchelle.Name = "labelInfo_fondEchelle"
+        Me.labelInfo_fondEchelle.Size = New System.Drawing.Size(104, 16)
+        Me.labelInfo_fondEchelle.TabIndex = 47
+        Me.labelInfo_fondEchelle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'Label38
         '
+        Me.Label38.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label38.AutoSize = True
         Me.Label38.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label38.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label38.Location = New System.Drawing.Point(744, 218)
+        Me.Label38.Image = CType(resources.GetObject("Label38.Image"), System.Drawing.Image)
+        Me.Label38.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label38.Location = New System.Drawing.Point(761, 250)
         Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(111, 13)
+        Me.Label38.Size = New System.Drawing.Size(135, 13)
         Me.Label38.TabIndex = 43
-        Me.Label38.Text = "Résultat de l'essai"
+        Me.Label38.Text = "      Résultat de l'essai"
+        Me.Label38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label32
         '
+        Me.Label32.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label32.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label32.Location = New System.Drawing.Point(761, 192)
+        Me.Label32.Location = New System.Drawing.Point(761, 217)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(103, 13)
         Me.Label32.TabIndex = 42
@@ -421,9 +625,10 @@ Public Class frmControleManometres2
         '
         'Label33
         '
+        Me.Label33.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label33.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label33.Location = New System.Drawing.Point(761, 179)
+        Me.Label33.Location = New System.Drawing.Point(761, 201)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(103, 13)
         Me.Label33.TabIndex = 41
@@ -432,9 +637,10 @@ Public Class frmControleManometres2
         '
         'Label34
         '
+        Me.Label34.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label34.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label34.Location = New System.Drawing.Point(761, 166)
+        Me.Label34.Location = New System.Drawing.Point(761, 184)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(103, 13)
         Me.Label34.TabIndex = 40
@@ -443,9 +649,10 @@ Public Class frmControleManometres2
         '
         'Label35
         '
+        Me.Label35.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label35.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label35.Location = New System.Drawing.Point(761, 149)
+        Me.Label35.Location = New System.Drawing.Point(761, 167)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(103, 13)
         Me.Label35.TabIndex = 39
@@ -454,20 +661,25 @@ Public Class frmControleManometres2
         '
         'Label37
         '
+        Me.Label37.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label37.AutoSize = True
         Me.Label37.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label37.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label37.Location = New System.Drawing.Point(761, 131)
+        Me.Label37.Image = CType(resources.GetObject("Label37.Image"), System.Drawing.Image)
+        Me.Label37.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label37.Location = New System.Drawing.Point(761, 149)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(122, 13)
+        Me.Label37.Size = New System.Drawing.Size(150, 13)
         Me.Label37.TabIndex = 38
-        Me.Label37.Text = "Mano de référence :"
+        Me.Label37.Text = "       Mano de référence :"
+        Me.Label37.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label31
         '
+        Me.Label31.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label31.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label31.Location = New System.Drawing.Point(761, 106)
+        Me.Label31.Location = New System.Drawing.Point(761, 118)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(103, 13)
         Me.Label31.TabIndex = 37
@@ -476,9 +688,10 @@ Public Class frmControleManometres2
         '
         'Label30
         '
+        Me.Label30.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label30.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label30.Location = New System.Drawing.Point(761, 93)
+        Me.Label30.Location = New System.Drawing.Point(761, 99)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(103, 13)
         Me.Label30.TabIndex = 36
@@ -487,6 +700,7 @@ Public Class frmControleManometres2
         '
         'Label29
         '
+        Me.Label29.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label29.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label29.Location = New System.Drawing.Point(761, 80)
@@ -498,6 +712,7 @@ Public Class frmControleManometres2
         '
         'Label28
         '
+        Me.Label28.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label28.Location = New System.Drawing.Point(761, 63)
@@ -509,17 +724,24 @@ Public Class frmControleManometres2
         '
         'Label27
         '
+        Me.Label27.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label27.Image = CType(resources.GetObject("Label27.Image"), System.Drawing.Image)
+        Me.Label27.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Label27.Location = New System.Drawing.Point(761, 45)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(103, 13)
+        Me.Label27.Size = New System.Drawing.Size(127, 13)
         Me.Label27.TabIndex = 33
-        Me.Label27.Text = "Mano à contrôler"
+        Me.Label27.Text = "      Mano à contrôler"
+        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'SplitContainer1
         '
+        Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SplitContainer1.Location = New System.Drawing.Point(12, 41)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
@@ -529,30 +751,29 @@ Public Class frmControleManometres2
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.BackColor = System.Drawing.Color.Blue
+        Me.SplitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.SplitContainer1.Panel2.Controls.Add(Me.TableLayoutPanel3)
         Me.SplitContainer1.Panel2.Controls.Add(Me.TableLayoutPanel1)
         Me.SplitContainer1.Panel2.Controls.Add(Me.TableLayoutPanel2)
-        Me.SplitContainer1.Size = New System.Drawing.Size(726, 626)
-        Me.SplitContainer1.SplitterDistance = 164
+        Me.SplitContainer1.Size = New System.Drawing.Size(726, 562)
+        Me.SplitContainer1.SplitterDistance = 151
         Me.SplitContainer1.TabIndex = 32
         '
         'lbMano
         '
         Me.lbMano.DataSource = Me.m_bsManoControle
         Me.lbMano.DisplayMember = "idCrodip"
+        Me.lbMano.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbMano.FormattingEnabled = True
-        Me.lbMano.Location = New System.Drawing.Point(3, 60)
+        Me.lbMano.Location = New System.Drawing.Point(0, 0)
         Me.lbMano.Name = "lbMano"
-        Me.lbMano.Size = New System.Drawing.Size(158, 563)
-        Me.lbMano.TabIndex = 31
-        '
-        'm_bsManoControle
-        '
-        Me.m_bsManoControle.DataSource = GetType(Crodip_agent.ManometreControle)
+        Me.lbMano.Size = New System.Drawing.Size(151, 562)
+        Me.lbMano.TabIndex = 0
         '
         'TableLayoutPanel3
         '
+        Me.TableLayoutPanel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel3.BackColor = System.Drawing.SystemColors.Control
         Me.TableLayoutPanel3.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
         Me.TableLayoutPanel3.ColumnCount = 8
@@ -563,7 +784,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox1, 7, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox2, 6, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox3, 7, 4)
@@ -576,8 +797,8 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox10, 6, 1)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox11, 7, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox12, 6, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.TextBox13, 3, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.TextBox14, 3, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.tbDownMR5, 3, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.tbDownMR6, 3, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.Label20, 0, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.Label21, 1, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.Label22, 1, 1)
@@ -591,10 +812,10 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox18, 2, 3)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox19, 2, 4)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox20, 2, 5)
-        Me.TableLayoutPanel3.Controls.Add(Me.TextBox21, 3, 2)
-        Me.TableLayoutPanel3.Controls.Add(Me.TextBox22, 3, 3)
-        Me.TableLayoutPanel3.Controls.Add(Me.TextBox23, 3, 4)
-        Me.TableLayoutPanel3.Controls.Add(Me.TextBox24, 3, 5)
+        Me.TableLayoutPanel3.Controls.Add(Me.tbDownMR4, 3, 2)
+        Me.TableLayoutPanel3.Controls.Add(Me.tbDownMR3, 3, 3)
+        Me.TableLayoutPanel3.Controls.Add(Me.tbDownMR2, 3, 4)
+        Me.TableLayoutPanel3.Controls.Add(Me.tbDownMR1, 3, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox25, 4, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox26, 4, 1)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox27, 4, 2)
@@ -607,157 +828,174 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox34, 5, 3)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox35, 5, 4)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox36, 5, 5)
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 305)
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 333)
         Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 6
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(552, 201)
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(565, 223)
         Me.TableLayoutPanel3.TabIndex = 15
         '
         'TextBox1
         '
-        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_err_fondEchelle", True))
+        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_err_fondEchelle", True))
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox1.Location = New System.Drawing.Point(486, 179)
+        Me.TextBox1.Location = New System.Drawing.Point(486, 184)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(63, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(81, 20)
         Me.TextBox1.TabIndex = 60
+        Me.TextBox1.TabStop = False
         '
         'TextBox2
         '
-        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_err_abs", True))
+        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_err_abs", True))
         Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox2.Location = New System.Drawing.Point(425, 179)
+        Me.TextBox2.Location = New System.Drawing.Point(425, 184)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
         Me.TextBox2.Size = New System.Drawing.Size(54, 20)
         Me.TextBox2.TabIndex = 59
+        Me.TextBox2.TabStop = False
         '
         'TextBox3
         '
-        Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_err_fondEchelle", True))
+        Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_err_fondEchelle", True))
         Me.TextBox3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox3.Location = New System.Drawing.Point(486, 144)
+        Me.TextBox3.Location = New System.Drawing.Point(486, 148)
+        Me.TextBox3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(63, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(81, 20)
         Me.TextBox3.TabIndex = 58
+        Me.TextBox3.TabStop = False
         '
         'TextBox4
         '
-        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_err_abs", True))
+        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_err_abs", True))
         Me.TextBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox4.Location = New System.Drawing.Point(425, 144)
+        Me.TextBox4.Location = New System.Drawing.Point(425, 148)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.ReadOnly = True
         Me.TextBox4.Size = New System.Drawing.Size(54, 20)
         Me.TextBox4.TabIndex = 57
+        Me.TextBox4.TabStop = False
         '
         'TextBox5
         '
-        Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_err_fondEchelle", True))
+        Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_err_fondEchelle", True))
         Me.TextBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox5.Location = New System.Drawing.Point(486, 109)
+        Me.TextBox5.Location = New System.Drawing.Point(486, 112)
+        Me.TextBox5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(63, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(81, 20)
         Me.TextBox5.TabIndex = 56
+        Me.TextBox5.TabStop = False
         '
         'TextBox6
         '
-        Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_err_abs", True))
+        Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_err_abs", True))
         Me.TextBox6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox6.Location = New System.Drawing.Point(425, 109)
+        Me.TextBox6.Location = New System.Drawing.Point(425, 112)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.ReadOnly = True
         Me.TextBox6.Size = New System.Drawing.Size(54, 20)
         Me.TextBox6.TabIndex = 55
+        Me.TextBox6.TabStop = False
         '
         'TextBox7
         '
-        Me.TextBox7.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_err_fondEchelle", True))
+        Me.TextBox7.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_err_fondEchelle", True))
         Me.TextBox7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox7.Location = New System.Drawing.Point(486, 74)
+        Me.TextBox7.Location = New System.Drawing.Point(486, 76)
+        Me.TextBox7.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(63, 20)
+        Me.TextBox7.Size = New System.Drawing.Size(81, 20)
         Me.TextBox7.TabIndex = 54
+        Me.TextBox7.TabStop = False
         '
         'TextBox8
         '
-        Me.TextBox8.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_err_abs", True))
+        Me.TextBox8.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_err_abs", True))
         Me.TextBox8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox8.Location = New System.Drawing.Point(425, 74)
+        Me.TextBox8.Location = New System.Drawing.Point(425, 76)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.ReadOnly = True
         Me.TextBox8.Size = New System.Drawing.Size(54, 20)
         Me.TextBox8.TabIndex = 53
+        Me.TextBox8.TabStop = False
         '
         'TextBox9
         '
-        Me.TextBox9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_err_fondEchelle", True))
+        Me.TextBox9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_err_fondEchelle", True))
         Me.TextBox9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox9.Location = New System.Drawing.Point(486, 39)
+        Me.TextBox9.Location = New System.Drawing.Point(486, 40)
+        Me.TextBox9.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(63, 20)
+        Me.TextBox9.Size = New System.Drawing.Size(81, 20)
         Me.TextBox9.TabIndex = 52
+        Me.TextBox9.TabStop = False
         '
         'TextBox10
         '
-        Me.TextBox10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_err_abs", True))
+        Me.TextBox10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_err_abs", True))
         Me.TextBox10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox10.Location = New System.Drawing.Point(425, 39)
+        Me.TextBox10.Location = New System.Drawing.Point(425, 40)
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.ReadOnly = True
         Me.TextBox10.Size = New System.Drawing.Size(54, 20)
         Me.TextBox10.TabIndex = 51
+        Me.TextBox10.TabStop = False
         '
         'TextBox11
         '
-        Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_err_fondEchelle", True))
+        Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_err_fondEchelle", True))
         Me.TextBox11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox11.Location = New System.Drawing.Point(486, 4)
+        Me.TextBox11.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.ReadOnly = True
-        Me.TextBox11.Size = New System.Drawing.Size(63, 20)
+        Me.TextBox11.Size = New System.Drawing.Size(81, 20)
         Me.TextBox11.TabIndex = 50
+        Me.TextBox11.TabStop = False
         '
         'TextBox12
         '
-        Me.TextBox12.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_err_abs", True))
+        Me.TextBox12.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_err_abs", True))
         Me.TextBox12.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox12.Location = New System.Drawing.Point(425, 4)
         Me.TextBox12.Name = "TextBox12"
         Me.TextBox12.ReadOnly = True
         Me.TextBox12.Size = New System.Drawing.Size(54, 20)
         Me.TextBox12.TabIndex = 49
+        Me.TextBox12.TabStop = False
         '
-        'TextBox13
+        'tbDownMR5
         '
-        Me.TextBox13.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_pres_manoEtalon", True))
-        Me.TextBox13.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox13.Location = New System.Drawing.Point(229, 39)
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(69, 20)
-        Me.TextBox13.TabIndex = 32
+        Me.tbDownMR5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_pres_manoEtalon", True))
+        Me.tbDownMR5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbDownMR5.Location = New System.Drawing.Point(229, 40)
+        Me.tbDownMR5.Name = "tbDownMR5"
+        Me.tbDownMR5.Size = New System.Drawing.Size(69, 20)
+        Me.tbDownMR5.TabIndex = 32
         '
-        'TextBox14
+        'tbDownMR6
         '
-        Me.TextBox14.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_pres_manoEtalon", True))
-        Me.TextBox14.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox14.Location = New System.Drawing.Point(229, 4)
-        Me.TextBox14.Name = "TextBox14"
-        Me.TextBox14.Size = New System.Drawing.Size(69, 20)
-        Me.TextBox14.TabIndex = 31
+        Me.tbDownMR6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_pres_manoEtalon", True))
+        Me.tbDownMR6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbDownMR6.Location = New System.Drawing.Point(229, 4)
+        Me.tbDownMR6.Name = "tbDownMR6"
+        Me.tbDownMR6.Size = New System.Drawing.Size(69, 20)
+        Me.tbDownMR6.TabIndex = 31
         '
         'Label20
         '
@@ -768,7 +1006,7 @@ Public Class frmControleManometres2
         Me.Label20.Margin = New System.Windows.Forms.Padding(0)
         Me.Label20.Name = "Label20"
         Me.TableLayoutPanel3.SetRowSpan(Me.Label20, 6)
-        Me.Label20.Size = New System.Drawing.Size(83, 199)
+        Me.Label20.Size = New System.Drawing.Size(83, 221)
         Me.Label20.TabIndex = 24
         Me.Label20.Text = "Pression décroissante"
         Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -781,282 +1019,302 @@ Public Class frmControleManometres2
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(53, 27)
         Me.Label21.TabIndex = 0
-        Me.Label21.Text = "1"
+        Me.Label21.Text = "6"
         Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label22
         '
         Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label22.Location = New System.Drawing.Point(88, 36)
+        Me.Label22.Location = New System.Drawing.Point(88, 37)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(53, 27)
         Me.Label22.TabIndex = 1
-        Me.Label22.Text = "2"
+        Me.Label22.Text = "5"
         Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label23
         '
         Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label23.Location = New System.Drawing.Point(88, 71)
+        Me.Label23.Location = New System.Drawing.Point(88, 73)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(53, 27)
         Me.Label23.TabIndex = 2
-        Me.Label23.Text = "3"
+        Me.Label23.Text = "4"
         Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label24
         '
         Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label24.Location = New System.Drawing.Point(88, 106)
+        Me.Label24.Location = New System.Drawing.Point(88, 109)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(53, 27)
         Me.Label24.TabIndex = 3
-        Me.Label24.Text = "4"
+        Me.Label24.Text = "3"
         Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label25
         '
         Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label25.Location = New System.Drawing.Point(88, 141)
+        Me.Label25.Location = New System.Drawing.Point(88, 145)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(53, 27)
         Me.Label25.TabIndex = 4
-        Me.Label25.Text = "5"
+        Me.Label25.Text = "2"
         Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label26
         '
         Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label26.Location = New System.Drawing.Point(88, 176)
+        Me.Label26.Location = New System.Drawing.Point(88, 181)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(53, 24)
         Me.Label26.TabIndex = 5
-        Me.Label26.Text = "6"
+        Me.Label26.Text = "1"
         Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TextBox15
         '
-        Me.TextBox15.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_pres_manoCtrl", True))
+        Me.TextBox15.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_pres_manoCtrl", True))
         Me.TextBox15.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox15.Location = New System.Drawing.Point(148, 4)
         Me.TextBox15.Name = "TextBox15"
         Me.TextBox15.ReadOnly = True
         Me.TextBox15.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox15.TabIndex = 25
+        Me.TextBox15.TabIndex = 0
+        Me.TextBox15.TabStop = False
         '
         'TextBox16
         '
-        Me.TextBox16.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_pres_manoCtrl", True))
+        Me.TextBox16.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_pres_manoCtrl", True))
         Me.TextBox16.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox16.Location = New System.Drawing.Point(148, 39)
+        Me.TextBox16.Location = New System.Drawing.Point(148, 40)
         Me.TextBox16.Name = "TextBox16"
         Me.TextBox16.ReadOnly = True
         Me.TextBox16.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox16.TabIndex = 26
+        Me.TextBox16.TabIndex = 1
+        Me.TextBox16.TabStop = False
         '
         'TextBox17
         '
-        Me.TextBox17.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_pres_manoCtrl", True))
+        Me.TextBox17.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_pres_manoCtrl", True))
         Me.TextBox17.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox17.Location = New System.Drawing.Point(148, 74)
+        Me.TextBox17.Location = New System.Drawing.Point(148, 76)
         Me.TextBox17.Name = "TextBox17"
         Me.TextBox17.ReadOnly = True
         Me.TextBox17.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox17.TabIndex = 27
+        Me.TextBox17.TabIndex = 2
+        Me.TextBox17.TabStop = False
         '
         'TextBox18
         '
-        Me.TextBox18.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_pres_manoCtrl", True))
+        Me.TextBox18.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_pres_manoCtrl", True))
         Me.TextBox18.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox18.Location = New System.Drawing.Point(148, 109)
+        Me.TextBox18.Location = New System.Drawing.Point(148, 112)
         Me.TextBox18.Name = "TextBox18"
         Me.TextBox18.ReadOnly = True
         Me.TextBox18.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox18.TabIndex = 28
+        Me.TextBox18.TabIndex = 3
+        Me.TextBox18.TabStop = False
         '
         'TextBox19
         '
-        Me.TextBox19.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_pres_manoCtrl", True))
+        Me.TextBox19.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_pres_manoCtrl", True))
         Me.TextBox19.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox19.Location = New System.Drawing.Point(148, 144)
+        Me.TextBox19.Location = New System.Drawing.Point(148, 148)
         Me.TextBox19.Name = "TextBox19"
         Me.TextBox19.ReadOnly = True
         Me.TextBox19.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox19.TabIndex = 29
+        Me.TextBox19.TabIndex = 4
+        Me.TextBox19.TabStop = False
         '
         'TextBox20
         '
-        Me.TextBox20.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_pres_manoCtrl", True))
+        Me.TextBox20.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_pres_manoCtrl", True))
         Me.TextBox20.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox20.Location = New System.Drawing.Point(148, 179)
+        Me.TextBox20.Location = New System.Drawing.Point(148, 184)
         Me.TextBox20.Name = "TextBox20"
         Me.TextBox20.ReadOnly = True
         Me.TextBox20.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox20.TabIndex = 30
+        Me.TextBox20.TabIndex = 5
+        Me.TextBox20.TabStop = False
         '
-        'TextBox21
+        'tbDownMR4
         '
-        Me.TextBox21.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_pres_manoEtalon", True))
-        Me.TextBox21.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox21.Location = New System.Drawing.Point(229, 74)
-        Me.TextBox21.Name = "TextBox21"
-        Me.TextBox21.Size = New System.Drawing.Size(69, 20)
-        Me.TextBox21.TabIndex = 33
+        Me.tbDownMR4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_pres_manoEtalon", True))
+        Me.tbDownMR4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbDownMR4.Location = New System.Drawing.Point(229, 76)
+        Me.tbDownMR4.Name = "tbDownMR4"
+        Me.tbDownMR4.Size = New System.Drawing.Size(69, 20)
+        Me.tbDownMR4.TabIndex = 33
         '
-        'TextBox22
+        'tbDownMR3
         '
-        Me.TextBox22.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_pres_manoEtalon", True))
-        Me.TextBox22.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox22.Location = New System.Drawing.Point(229, 109)
-        Me.TextBox22.Name = "TextBox22"
-        Me.TextBox22.Size = New System.Drawing.Size(69, 20)
-        Me.TextBox22.TabIndex = 34
+        Me.tbDownMR3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_pres_manoEtalon", True))
+        Me.tbDownMR3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbDownMR3.Location = New System.Drawing.Point(229, 112)
+        Me.tbDownMR3.Name = "tbDownMR3"
+        Me.tbDownMR3.Size = New System.Drawing.Size(69, 20)
+        Me.tbDownMR3.TabIndex = 34
         '
-        'TextBox23
+        'tbDownMR2
         '
-        Me.TextBox23.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_pres_manoEtalon", True))
-        Me.TextBox23.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox23.Location = New System.Drawing.Point(229, 144)
-        Me.TextBox23.Name = "TextBox23"
-        Me.TextBox23.Size = New System.Drawing.Size(69, 20)
-        Me.TextBox23.TabIndex = 35
+        Me.tbDownMR2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_pres_manoEtalon", True))
+        Me.tbDownMR2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbDownMR2.Location = New System.Drawing.Point(229, 148)
+        Me.tbDownMR2.Name = "tbDownMR2"
+        Me.tbDownMR2.Size = New System.Drawing.Size(69, 20)
+        Me.tbDownMR2.TabIndex = 35
         '
-        'TextBox24
+        'tbDownMR1
         '
-        Me.TextBox24.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_pres_manoEtalon", True))
-        Me.TextBox24.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox24.Location = New System.Drawing.Point(229, 179)
-        Me.TextBox24.Name = "TextBox24"
-        Me.TextBox24.Size = New System.Drawing.Size(69, 20)
-        Me.TextBox24.TabIndex = 36
+        Me.tbDownMR1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_pres_manoEtalon", True))
+        Me.tbDownMR1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbDownMR1.Location = New System.Drawing.Point(229, 184)
+        Me.tbDownMR1.Name = "tbDownMR1"
+        Me.tbDownMR1.Size = New System.Drawing.Size(69, 20)
+        Me.tbDownMR1.TabIndex = 36
         '
         'TextBox25
         '
-        Me.TextBox25.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_incertitude", True))
+        Me.TextBox25.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_incertitude", True))
         Me.TextBox25.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox25.Location = New System.Drawing.Point(305, 4)
         Me.TextBox25.Name = "TextBox25"
         Me.TextBox25.ReadOnly = True
         Me.TextBox25.Size = New System.Drawing.Size(70, 20)
         Me.TextBox25.TabIndex = 37
+        Me.TextBox25.TabStop = False
         '
         'TextBox26
         '
-        Me.TextBox26.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_incertitude", True))
+        Me.TextBox26.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_incertitude", True))
         Me.TextBox26.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox26.Location = New System.Drawing.Point(305, 39)
+        Me.TextBox26.Location = New System.Drawing.Point(305, 40)
         Me.TextBox26.Name = "TextBox26"
         Me.TextBox26.ReadOnly = True
         Me.TextBox26.Size = New System.Drawing.Size(70, 20)
         Me.TextBox26.TabIndex = 38
+        Me.TextBox26.TabStop = False
         '
         'TextBox27
         '
-        Me.TextBox27.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_incertitude", True))
+        Me.TextBox27.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_incertitude", True))
         Me.TextBox27.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox27.Location = New System.Drawing.Point(305, 74)
+        Me.TextBox27.Location = New System.Drawing.Point(305, 76)
         Me.TextBox27.Name = "TextBox27"
         Me.TextBox27.ReadOnly = True
         Me.TextBox27.Size = New System.Drawing.Size(70, 20)
         Me.TextBox27.TabIndex = 39
+        Me.TextBox27.TabStop = False
         '
         'TextBox28
         '
-        Me.TextBox28.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_incertitude", True))
+        Me.TextBox28.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_incertitude", True))
         Me.TextBox28.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox28.Location = New System.Drawing.Point(305, 109)
+        Me.TextBox28.Location = New System.Drawing.Point(305, 112)
         Me.TextBox28.Name = "TextBox28"
         Me.TextBox28.ReadOnly = True
         Me.TextBox28.Size = New System.Drawing.Size(70, 20)
         Me.TextBox28.TabIndex = 40
+        Me.TextBox28.TabStop = False
         '
         'TextBox29
         '
-        Me.TextBox29.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_incertitude", True))
+        Me.TextBox29.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_incertitude", True))
         Me.TextBox29.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox29.Location = New System.Drawing.Point(305, 144)
+        Me.TextBox29.Location = New System.Drawing.Point(305, 148)
         Me.TextBox29.Name = "TextBox29"
         Me.TextBox29.ReadOnly = True
         Me.TextBox29.Size = New System.Drawing.Size(70, 20)
         Me.TextBox29.TabIndex = 41
+        Me.TextBox29.TabStop = False
         '
         'TextBox30
         '
-        Me.TextBox30.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_incertitude", True))
+        Me.TextBox30.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_incertitude", True))
         Me.TextBox30.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox30.Location = New System.Drawing.Point(305, 179)
+        Me.TextBox30.Location = New System.Drawing.Point(305, 184)
         Me.TextBox30.Name = "TextBox30"
         Me.TextBox30.ReadOnly = True
         Me.TextBox30.Size = New System.Drawing.Size(70, 20)
         Me.TextBox30.TabIndex = 42
+        Me.TextBox30.TabStop = False
         '
         'TextBox31
         '
-        Me.TextBox31.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_EMT", True))
+        Me.TextBox31.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_EMT", True))
         Me.TextBox31.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox31.Location = New System.Drawing.Point(382, 4)
         Me.TextBox31.Name = "TextBox31"
         Me.TextBox31.ReadOnly = True
         Me.TextBox31.Size = New System.Drawing.Size(36, 20)
         Me.TextBox31.TabIndex = 43
+        Me.TextBox31.TabStop = False
         '
         'TextBox32
         '
-        Me.TextBox32.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_EMT", True))
+        Me.TextBox32.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_EMT", True))
         Me.TextBox32.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox32.Location = New System.Drawing.Point(382, 39)
+        Me.TextBox32.Location = New System.Drawing.Point(382, 40)
         Me.TextBox32.Name = "TextBox32"
         Me.TextBox32.ReadOnly = True
         Me.TextBox32.Size = New System.Drawing.Size(36, 20)
         Me.TextBox32.TabIndex = 44
+        Me.TextBox32.TabStop = False
         '
         'TextBox33
         '
-        Me.TextBox33.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_EMT", True))
+        Me.TextBox33.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_EMT", True))
         Me.TextBox33.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox33.Location = New System.Drawing.Point(382, 74)
+        Me.TextBox33.Location = New System.Drawing.Point(382, 76)
         Me.TextBox33.Name = "TextBox33"
         Me.TextBox33.ReadOnly = True
         Me.TextBox33.Size = New System.Drawing.Size(36, 20)
         Me.TextBox33.TabIndex = 45
+        Me.TextBox33.TabStop = False
         '
         'TextBox34
         '
-        Me.TextBox34.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt4_EMT", True))
+        Me.TextBox34.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt3_EMT", True))
         Me.TextBox34.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox34.Location = New System.Drawing.Point(382, 109)
+        Me.TextBox34.Location = New System.Drawing.Point(382, 112)
         Me.TextBox34.Name = "TextBox34"
         Me.TextBox34.ReadOnly = True
         Me.TextBox34.Size = New System.Drawing.Size(36, 20)
         Me.TextBox34.TabIndex = 46
+        Me.TextBox34.TabStop = False
         '
         'TextBox35
         '
-        Me.TextBox35.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt5_EMT", True))
+        Me.TextBox35.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt2_EMT", True))
         Me.TextBox35.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox35.Location = New System.Drawing.Point(382, 144)
+        Me.TextBox35.Location = New System.Drawing.Point(382, 148)
         Me.TextBox35.Name = "TextBox35"
         Me.TextBox35.ReadOnly = True
         Me.TextBox35.Size = New System.Drawing.Size(36, 20)
         Me.TextBox35.TabIndex = 47
+        Me.TextBox35.TabStop = False
         '
         'TextBox36
         '
-        Me.TextBox36.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt6_EMT", True))
+        Me.TextBox36.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "down_pt1_EMT", True))
         Me.TextBox36.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox36.Location = New System.Drawing.Point(382, 179)
+        Me.TextBox36.Location = New System.Drawing.Point(382, 184)
         Me.TextBox36.Name = "TextBox36"
         Me.TextBox36.ReadOnly = True
         Me.TextBox36.Size = New System.Drawing.Size(36, 20)
         Me.TextBox36.TabIndex = 48
+        Me.TextBox36.TabStop = False
         '
         'TableLayoutPanel1
         '
+        Me.TableLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel1.BackColor = System.Drawing.SystemColors.Control
         Me.TableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
         Me.TableLayoutPanel1.ColumnCount = 8
@@ -1067,7 +1325,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC6, 7, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbErrAbsPC6, 6, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC5, 7, 4)
@@ -1080,8 +1338,8 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel1.Controls.Add(Me.tbErrAbsPC2, 6, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC1, 7, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.tbErrAbsPC1, 6, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.tbPCMR2, 3, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.tbPCMR1, 3, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.tbUpMR2, 3, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.tbUpMR1, 3, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label19, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label12, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label13, 1, 1)
@@ -1095,10 +1353,10 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel1.Controls.Add(Me.tbPCMC4, 2, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.tbPCMC5, 2, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.tbPCMC6, 2, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.tbPCMR3, 3, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.tbPCMR4, 3, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.tbPCMR5, 3, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.tbPCMR6, 3, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.tbUpMR3, 3, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.tbUpMR4, 3, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.tbUpMR5, 3, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.tbUpMR6, 3, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbIncertPC1, 4, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.tbIncertPC2, 4, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.tbIncertPC3, 4, 2)
@@ -1111,129 +1369,145 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel1.Controls.Add(Me.tbEMTPC4, 5, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.tbEMTPC5, 5, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.tbEMTPC6, 5, 5)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 103)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 107)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 6
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(552, 201)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66917!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(564, 223)
         Me.TableLayoutPanel1.TabIndex = 14
         '
         'tbFondPC6
         '
         Me.tbFondPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_err_fondEchelle", True))
         Me.tbFondPC6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC6.Location = New System.Drawing.Point(486, 179)
+        Me.tbFondPC6.Location = New System.Drawing.Point(486, 185)
+        Me.tbFondPC6.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC6.Name = "tbFondPC6"
         Me.tbFondPC6.ReadOnly = True
-        Me.tbFondPC6.Size = New System.Drawing.Size(63, 20)
+        Me.tbFondPC6.Size = New System.Drawing.Size(81, 20)
         Me.tbFondPC6.TabIndex = 60
+        Me.tbFondPC6.TabStop = False
         '
         'tbErrAbsPC6
         '
         Me.tbErrAbsPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_err_abs", True))
         Me.tbErrAbsPC6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC6.Location = New System.Drawing.Point(425, 179)
+        Me.tbErrAbsPC6.Location = New System.Drawing.Point(425, 185)
         Me.tbErrAbsPC6.Name = "tbErrAbsPC6"
         Me.tbErrAbsPC6.ReadOnly = True
         Me.tbErrAbsPC6.Size = New System.Drawing.Size(54, 20)
         Me.tbErrAbsPC6.TabIndex = 59
+        Me.tbErrAbsPC6.TabStop = False
         '
         'tbFondPC5
         '
         Me.tbFondPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_err_fondEchelle", True))
         Me.tbFondPC5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC5.Location = New System.Drawing.Point(486, 144)
+        Me.tbFondPC5.Location = New System.Drawing.Point(486, 148)
+        Me.tbFondPC5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC5.Name = "tbFondPC5"
         Me.tbFondPC5.ReadOnly = True
-        Me.tbFondPC5.Size = New System.Drawing.Size(63, 20)
+        Me.tbFondPC5.Size = New System.Drawing.Size(81, 20)
         Me.tbFondPC5.TabIndex = 58
+        Me.tbFondPC5.TabStop = False
         '
         'tbErrAbsPC5
         '
         Me.tbErrAbsPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_err_abs", True))
         Me.tbErrAbsPC5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC5.Location = New System.Drawing.Point(425, 144)
+        Me.tbErrAbsPC5.Location = New System.Drawing.Point(425, 148)
         Me.tbErrAbsPC5.Name = "tbErrAbsPC5"
         Me.tbErrAbsPC5.ReadOnly = True
         Me.tbErrAbsPC5.Size = New System.Drawing.Size(54, 20)
         Me.tbErrAbsPC5.TabIndex = 57
+        Me.tbErrAbsPC5.TabStop = False
         '
         'tbFondPC4
         '
         Me.tbFondPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_err_fondEchelle", True))
         Me.tbFondPC4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC4.Location = New System.Drawing.Point(486, 109)
+        Me.tbFondPC4.Location = New System.Drawing.Point(486, 112)
+        Me.tbFondPC4.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC4.Name = "tbFondPC4"
         Me.tbFondPC4.ReadOnly = True
-        Me.tbFondPC4.Size = New System.Drawing.Size(63, 20)
+        Me.tbFondPC4.Size = New System.Drawing.Size(81, 20)
         Me.tbFondPC4.TabIndex = 56
+        Me.tbFondPC4.TabStop = False
         '
         'tbErrAbsPC4
         '
         Me.tbErrAbsPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_err_abs", True))
         Me.tbErrAbsPC4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC4.Location = New System.Drawing.Point(425, 109)
+        Me.tbErrAbsPC4.Location = New System.Drawing.Point(425, 112)
         Me.tbErrAbsPC4.Name = "tbErrAbsPC4"
         Me.tbErrAbsPC4.ReadOnly = True
         Me.tbErrAbsPC4.Size = New System.Drawing.Size(54, 20)
         Me.tbErrAbsPC4.TabIndex = 55
+        Me.tbErrAbsPC4.TabStop = False
         '
         'tbFondPC3
         '
         Me.tbFondPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_err_fondEchelle", True))
         Me.tbFondPC3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC3.Location = New System.Drawing.Point(486, 74)
+        Me.tbFondPC3.Location = New System.Drawing.Point(486, 76)
+        Me.tbFondPC3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC3.Name = "tbFondPC3"
         Me.tbFondPC3.ReadOnly = True
-        Me.tbFondPC3.Size = New System.Drawing.Size(63, 20)
+        Me.tbFondPC3.Size = New System.Drawing.Size(81, 20)
         Me.tbFondPC3.TabIndex = 54
+        Me.tbFondPC3.TabStop = False
         '
         'tbErrAbsPC3
         '
         Me.tbErrAbsPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_err_abs", True))
         Me.tbErrAbsPC3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC3.Location = New System.Drawing.Point(425, 74)
+        Me.tbErrAbsPC3.Location = New System.Drawing.Point(425, 76)
         Me.tbErrAbsPC3.Name = "tbErrAbsPC3"
         Me.tbErrAbsPC3.ReadOnly = True
         Me.tbErrAbsPC3.Size = New System.Drawing.Size(54, 20)
         Me.tbErrAbsPC3.TabIndex = 53
+        Me.tbErrAbsPC3.TabStop = False
         '
         'tbFondPC2
         '
         Me.tbFondPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_err_fondEchelle", True))
         Me.tbFondPC2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC2.Location = New System.Drawing.Point(486, 39)
+        Me.tbFondPC2.Location = New System.Drawing.Point(486, 40)
+        Me.tbFondPC2.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC2.Name = "tbFondPC2"
         Me.tbFondPC2.ReadOnly = True
-        Me.tbFondPC2.Size = New System.Drawing.Size(63, 20)
+        Me.tbFondPC2.Size = New System.Drawing.Size(81, 20)
         Me.tbFondPC2.TabIndex = 52
+        Me.tbFondPC2.TabStop = False
         '
         'tbErrAbsPC2
         '
         Me.tbErrAbsPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_err_abs", True))
         Me.tbErrAbsPC2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC2.Location = New System.Drawing.Point(425, 39)
+        Me.tbErrAbsPC2.Location = New System.Drawing.Point(425, 40)
         Me.tbErrAbsPC2.Name = "tbErrAbsPC2"
         Me.tbErrAbsPC2.ReadOnly = True
         Me.tbErrAbsPC2.Size = New System.Drawing.Size(54, 20)
         Me.tbErrAbsPC2.TabIndex = 51
+        Me.tbErrAbsPC2.TabStop = False
         '
         'tbFondPC1
         '
         Me.tbFondPC1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt1_err_fondEchelle", True))
         Me.tbFondPC1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbFondPC1.Location = New System.Drawing.Point(486, 4)
+        Me.tbFondPC1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC1.Name = "tbFondPC1"
         Me.tbFondPC1.ReadOnly = True
-        Me.tbFondPC1.Size = New System.Drawing.Size(63, 20)
+        Me.tbFondPC1.Size = New System.Drawing.Size(81, 20)
         Me.tbFondPC1.TabIndex = 50
+        Me.tbFondPC1.TabStop = False
         '
         'tbErrAbsPC1
         '
@@ -1244,24 +1518,25 @@ Public Class frmControleManometres2
         Me.tbErrAbsPC1.ReadOnly = True
         Me.tbErrAbsPC1.Size = New System.Drawing.Size(54, 20)
         Me.tbErrAbsPC1.TabIndex = 49
+        Me.tbErrAbsPC1.TabStop = False
         '
-        'tbPCMR2
+        'tbUpMR2
         '
-        Me.tbPCMR2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_pres_manoEtalon", True))
-        Me.tbPCMR2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMR2.Location = New System.Drawing.Point(229, 39)
-        Me.tbPCMR2.Name = "tbPCMR2"
-        Me.tbPCMR2.Size = New System.Drawing.Size(69, 20)
-        Me.tbPCMR2.TabIndex = 32
+        Me.tbUpMR2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_pres_manoEtalon", True))
+        Me.tbUpMR2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbUpMR2.Location = New System.Drawing.Point(229, 40)
+        Me.tbUpMR2.Name = "tbUpMR2"
+        Me.tbUpMR2.Size = New System.Drawing.Size(69, 20)
+        Me.tbUpMR2.TabIndex = 32
         '
-        'tbPCMR1
+        'tbUpMR1
         '
-        Me.tbPCMR1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt1_pres_manoEtalon", True))
-        Me.tbPCMR1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMR1.Location = New System.Drawing.Point(229, 4)
-        Me.tbPCMR1.Name = "tbPCMR1"
-        Me.tbPCMR1.Size = New System.Drawing.Size(69, 20)
-        Me.tbPCMR1.TabIndex = 31
+        Me.tbUpMR1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt1_pres_manoEtalon", True))
+        Me.tbUpMR1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbUpMR1.Location = New System.Drawing.Point(229, 4)
+        Me.tbUpMR1.Name = "tbUpMR1"
+        Me.tbUpMR1.Size = New System.Drawing.Size(69, 20)
+        Me.tbUpMR1.TabIndex = 31
         '
         'Label19
         '
@@ -1272,7 +1547,7 @@ Public Class frmControleManometres2
         Me.Label19.Margin = New System.Windows.Forms.Padding(0)
         Me.Label19.Name = "Label19"
         Me.TableLayoutPanel1.SetRowSpan(Me.Label19, 6)
-        Me.Label19.Size = New System.Drawing.Size(83, 199)
+        Me.Label19.Size = New System.Drawing.Size(83, 221)
         Me.Label19.TabIndex = 24
         Me.Label19.Text = "Pression croissante"
         Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1292,7 +1567,7 @@ Public Class frmControleManometres2
         '
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label13.Location = New System.Drawing.Point(88, 36)
+        Me.Label13.Location = New System.Drawing.Point(88, 37)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(53, 27)
         Me.Label13.TabIndex = 1
@@ -1303,7 +1578,7 @@ Public Class frmControleManometres2
         '
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label14.Location = New System.Drawing.Point(88, 71)
+        Me.Label14.Location = New System.Drawing.Point(88, 73)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(53, 27)
         Me.Label14.TabIndex = 2
@@ -1314,7 +1589,7 @@ Public Class frmControleManometres2
         '
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label16.Location = New System.Drawing.Point(88, 106)
+        Me.Label16.Location = New System.Drawing.Point(88, 109)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(53, 27)
         Me.Label16.TabIndex = 3
@@ -1325,7 +1600,7 @@ Public Class frmControleManometres2
         '
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label17.Location = New System.Drawing.Point(88, 141)
+        Me.Label17.Location = New System.Drawing.Point(88, 145)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(53, 27)
         Me.Label17.TabIndex = 4
@@ -1336,7 +1611,7 @@ Public Class frmControleManometres2
         '
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label18.Location = New System.Drawing.Point(88, 176)
+        Me.Label18.Location = New System.Drawing.Point(88, 182)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(53, 24)
         Me.Label18.TabIndex = 5
@@ -1351,93 +1626,99 @@ Public Class frmControleManometres2
         Me.tbPCMC1.Name = "tbPCMC1"
         Me.tbPCMC1.ReadOnly = True
         Me.tbPCMC1.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC1.TabIndex = 25
+        Me.tbPCMC1.TabIndex = 0
+        Me.tbPCMC1.TabStop = False
         '
         'tbPCMC2
         '
         Me.tbPCMC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_pres_manoCtrl", True))
         Me.tbPCMC2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMC2.Location = New System.Drawing.Point(148, 39)
+        Me.tbPCMC2.Location = New System.Drawing.Point(148, 40)
         Me.tbPCMC2.Name = "tbPCMC2"
         Me.tbPCMC2.ReadOnly = True
         Me.tbPCMC2.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC2.TabIndex = 26
+        Me.tbPCMC2.TabIndex = 1
+        Me.tbPCMC2.TabStop = False
         '
         'tbPCMC3
         '
         Me.tbPCMC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_pres_manoCtrl", True))
         Me.tbPCMC3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMC3.Location = New System.Drawing.Point(148, 74)
+        Me.tbPCMC3.Location = New System.Drawing.Point(148, 76)
         Me.tbPCMC3.Name = "tbPCMC3"
         Me.tbPCMC3.ReadOnly = True
         Me.tbPCMC3.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC3.TabIndex = 27
+        Me.tbPCMC3.TabIndex = 2
+        Me.tbPCMC3.TabStop = False
         '
         'tbPCMC4
         '
         Me.tbPCMC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_pres_manoCtrl", True))
         Me.tbPCMC4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMC4.Location = New System.Drawing.Point(148, 109)
+        Me.tbPCMC4.Location = New System.Drawing.Point(148, 112)
         Me.tbPCMC4.Name = "tbPCMC4"
         Me.tbPCMC4.ReadOnly = True
         Me.tbPCMC4.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC4.TabIndex = 28
+        Me.tbPCMC4.TabIndex = 3
+        Me.tbPCMC4.TabStop = False
         '
         'tbPCMC5
         '
         Me.tbPCMC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_pres_manoCtrl", True))
         Me.tbPCMC5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMC5.Location = New System.Drawing.Point(148, 144)
+        Me.tbPCMC5.Location = New System.Drawing.Point(148, 148)
         Me.tbPCMC5.Name = "tbPCMC5"
         Me.tbPCMC5.ReadOnly = True
         Me.tbPCMC5.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC5.TabIndex = 29
+        Me.tbPCMC5.TabIndex = 4
+        Me.tbPCMC5.TabStop = False
         '
         'tbPCMC6
         '
         Me.tbPCMC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_pres_manoCtrl", True))
         Me.tbPCMC6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMC6.Location = New System.Drawing.Point(148, 179)
+        Me.tbPCMC6.Location = New System.Drawing.Point(148, 185)
         Me.tbPCMC6.Name = "tbPCMC6"
         Me.tbPCMC6.ReadOnly = True
         Me.tbPCMC6.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC6.TabIndex = 30
+        Me.tbPCMC6.TabIndex = 5
+        Me.tbPCMC6.TabStop = False
         '
-        'tbPCMR3
+        'tbUpMR3
         '
-        Me.tbPCMR3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_pres_manoEtalon", True))
-        Me.tbPCMR3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMR3.Location = New System.Drawing.Point(229, 74)
-        Me.tbPCMR3.Name = "tbPCMR3"
-        Me.tbPCMR3.Size = New System.Drawing.Size(69, 20)
-        Me.tbPCMR3.TabIndex = 33
+        Me.tbUpMR3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_pres_manoEtalon", True))
+        Me.tbUpMR3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbUpMR3.Location = New System.Drawing.Point(229, 76)
+        Me.tbUpMR3.Name = "tbUpMR3"
+        Me.tbUpMR3.Size = New System.Drawing.Size(69, 20)
+        Me.tbUpMR3.TabIndex = 33
         '
-        'tbPCMR4
+        'tbUpMR4
         '
-        Me.tbPCMR4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_pres_manoEtalon", True))
-        Me.tbPCMR4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMR4.Location = New System.Drawing.Point(229, 109)
-        Me.tbPCMR4.Name = "tbPCMR4"
-        Me.tbPCMR4.Size = New System.Drawing.Size(69, 20)
-        Me.tbPCMR4.TabIndex = 34
+        Me.tbUpMR4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_pres_manoEtalon", True))
+        Me.tbUpMR4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbUpMR4.Location = New System.Drawing.Point(229, 112)
+        Me.tbUpMR4.Name = "tbUpMR4"
+        Me.tbUpMR4.Size = New System.Drawing.Size(69, 20)
+        Me.tbUpMR4.TabIndex = 34
         '
-        'tbPCMR5
+        'tbUpMR5
         '
-        Me.tbPCMR5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_pres_manoEtalon", True))
-        Me.tbPCMR5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMR5.Location = New System.Drawing.Point(229, 144)
-        Me.tbPCMR5.Name = "tbPCMR5"
-        Me.tbPCMR5.Size = New System.Drawing.Size(69, 20)
-        Me.tbPCMR5.TabIndex = 35
+        Me.tbUpMR5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_pres_manoEtalon", True))
+        Me.tbUpMR5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbUpMR5.Location = New System.Drawing.Point(229, 148)
+        Me.tbUpMR5.Name = "tbUpMR5"
+        Me.tbUpMR5.Size = New System.Drawing.Size(69, 20)
+        Me.tbUpMR5.TabIndex = 35
         '
-        'tbPCMR6
+        'tbUpMR6
         '
-        Me.tbPCMR6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_pres_manoEtalon", True))
-        Me.tbPCMR6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMR6.Location = New System.Drawing.Point(229, 179)
-        Me.tbPCMR6.Name = "tbPCMR6"
-        Me.tbPCMR6.Size = New System.Drawing.Size(69, 20)
-        Me.tbPCMR6.TabIndex = 36
+        Me.tbUpMR6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_pres_manoEtalon", True))
+        Me.tbUpMR6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbUpMR6.Location = New System.Drawing.Point(229, 185)
+        Me.tbUpMR6.Name = "tbUpMR6"
+        Me.tbUpMR6.Size = New System.Drawing.Size(69, 20)
+        Me.tbUpMR6.TabIndex = 36
         '
         'tbIncertPC1
         '
@@ -1448,56 +1729,62 @@ Public Class frmControleManometres2
         Me.tbIncertPC1.ReadOnly = True
         Me.tbIncertPC1.Size = New System.Drawing.Size(70, 20)
         Me.tbIncertPC1.TabIndex = 37
+        Me.tbIncertPC1.TabStop = False
         '
         'tbIncertPC2
         '
         Me.tbIncertPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_incertitude", True))
         Me.tbIncertPC2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC2.Location = New System.Drawing.Point(305, 39)
+        Me.tbIncertPC2.Location = New System.Drawing.Point(305, 40)
         Me.tbIncertPC2.Name = "tbIncertPC2"
         Me.tbIncertPC2.ReadOnly = True
         Me.tbIncertPC2.Size = New System.Drawing.Size(70, 20)
         Me.tbIncertPC2.TabIndex = 38
+        Me.tbIncertPC2.TabStop = False
         '
         'tbIncertPC3
         '
         Me.tbIncertPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_incertitude", True))
         Me.tbIncertPC3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC3.Location = New System.Drawing.Point(305, 74)
+        Me.tbIncertPC3.Location = New System.Drawing.Point(305, 76)
         Me.tbIncertPC3.Name = "tbIncertPC3"
         Me.tbIncertPC3.ReadOnly = True
         Me.tbIncertPC3.Size = New System.Drawing.Size(70, 20)
         Me.tbIncertPC3.TabIndex = 39
+        Me.tbIncertPC3.TabStop = False
         '
         'tbIncertPC4
         '
         Me.tbIncertPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_incertitude", True))
         Me.tbIncertPC4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC4.Location = New System.Drawing.Point(305, 109)
+        Me.tbIncertPC4.Location = New System.Drawing.Point(305, 112)
         Me.tbIncertPC4.Name = "tbIncertPC4"
         Me.tbIncertPC4.ReadOnly = True
         Me.tbIncertPC4.Size = New System.Drawing.Size(70, 20)
         Me.tbIncertPC4.TabIndex = 40
+        Me.tbIncertPC4.TabStop = False
         '
         'tbIncertPC5
         '
         Me.tbIncertPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_incertitude", True))
         Me.tbIncertPC5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC5.Location = New System.Drawing.Point(305, 144)
+        Me.tbIncertPC5.Location = New System.Drawing.Point(305, 148)
         Me.tbIncertPC5.Name = "tbIncertPC5"
         Me.tbIncertPC5.ReadOnly = True
         Me.tbIncertPC5.Size = New System.Drawing.Size(70, 20)
         Me.tbIncertPC5.TabIndex = 41
+        Me.tbIncertPC5.TabStop = False
         '
         'tbIncertPC6
         '
         Me.tbIncertPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_incertitude", True))
         Me.tbIncertPC6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC6.Location = New System.Drawing.Point(305, 179)
+        Me.tbIncertPC6.Location = New System.Drawing.Point(305, 185)
         Me.tbIncertPC6.Name = "tbIncertPC6"
         Me.tbIncertPC6.ReadOnly = True
         Me.tbIncertPC6.Size = New System.Drawing.Size(70, 20)
         Me.tbIncertPC6.TabIndex = 42
+        Me.tbIncertPC6.TabStop = False
         '
         'tbEMTPC1
         '
@@ -1508,56 +1795,62 @@ Public Class frmControleManometres2
         Me.tbEMTPC1.ReadOnly = True
         Me.tbEMTPC1.Size = New System.Drawing.Size(36, 20)
         Me.tbEMTPC1.TabIndex = 43
+        Me.tbEMTPC1.TabStop = False
         '
         'tbEMTPC2
         '
         Me.tbEMTPC2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt2_EMT", True))
         Me.tbEMTPC2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC2.Location = New System.Drawing.Point(382, 39)
+        Me.tbEMTPC2.Location = New System.Drawing.Point(382, 40)
         Me.tbEMTPC2.Name = "tbEMTPC2"
         Me.tbEMTPC2.ReadOnly = True
         Me.tbEMTPC2.Size = New System.Drawing.Size(36, 20)
         Me.tbEMTPC2.TabIndex = 44
+        Me.tbEMTPC2.TabStop = False
         '
         'tbEMTPC3
         '
         Me.tbEMTPC3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt3_EMT", True))
         Me.tbEMTPC3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC3.Location = New System.Drawing.Point(382, 74)
+        Me.tbEMTPC3.Location = New System.Drawing.Point(382, 76)
         Me.tbEMTPC3.Name = "tbEMTPC3"
         Me.tbEMTPC3.ReadOnly = True
         Me.tbEMTPC3.Size = New System.Drawing.Size(36, 20)
         Me.tbEMTPC3.TabIndex = 45
+        Me.tbEMTPC3.TabStop = False
         '
         'tbEMTPC4
         '
         Me.tbEMTPC4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt4_EMT", True))
         Me.tbEMTPC4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC4.Location = New System.Drawing.Point(382, 109)
+        Me.tbEMTPC4.Location = New System.Drawing.Point(382, 112)
         Me.tbEMTPC4.Name = "tbEMTPC4"
         Me.tbEMTPC4.ReadOnly = True
         Me.tbEMTPC4.Size = New System.Drawing.Size(36, 20)
         Me.tbEMTPC4.TabIndex = 46
+        Me.tbEMTPC4.TabStop = False
         '
         'tbEMTPC5
         '
         Me.tbEMTPC5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt5_EMT", True))
         Me.tbEMTPC5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC5.Location = New System.Drawing.Point(382, 144)
+        Me.tbEMTPC5.Location = New System.Drawing.Point(382, 148)
         Me.tbEMTPC5.Name = "tbEMTPC5"
         Me.tbEMTPC5.ReadOnly = True
         Me.tbEMTPC5.Size = New System.Drawing.Size(36, 20)
         Me.tbEMTPC5.TabIndex = 47
+        Me.tbEMTPC5.TabStop = False
         '
         'tbEMTPC6
         '
         Me.tbEMTPC6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsCtrlMano, "up_pt6_EMT", True))
         Me.tbEMTPC6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC6.Location = New System.Drawing.Point(382, 179)
+        Me.tbEMTPC6.Location = New System.Drawing.Point(382, 185)
         Me.tbEMTPC6.Name = "tbEMTPC6"
         Me.tbEMTPC6.ReadOnly = True
         Me.tbEMTPC6.Size = New System.Drawing.Size(36, 20)
         Me.tbEMTPC6.TabIndex = 48
+        Me.tbEMTPC6.TabStop = False
         '
         'TableLayoutPanel2
         '
@@ -1573,7 +1866,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label5, 4, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label6, 5, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label7, 6, 0)
@@ -1583,14 +1876,15 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel2.Controls.Add(Me.Label3, 2, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.Label2, 2, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label1, 1, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.btn_controleManos_acquiring, 0, 0)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(552, 100)
-        Me.TableLayoutPanel2.TabIndex = 13
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(565, 100)
+        Me.TableLayoutPanel2.TabIndex = 0
         '
         'Label5
         '
@@ -1628,7 +1922,7 @@ Public Class frmControleManometres2
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(425, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(124, 48)
+        Me.Label7.Size = New System.Drawing.Size(144, 48)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1640,7 +1934,7 @@ Public Class frmControleManometres2
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(486, 50)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(63, 49)
+        Me.Label11.Size = New System.Drawing.Size(83, 49)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1709,6 +2003,19 @@ Public Class frmControleManometres2
         Me.Label1.Text = "Points d'essai"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'btn_controleManos_acquiring
+        '
+        Me.btn_controleManos_acquiring.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_controleManos_acquiring.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btn_controleManos_acquiring.Image = CType(resources.GetObject("btn_controleManos_acquiring.Image"), System.Drawing.Image)
+        Me.btn_controleManos_acquiring.Location = New System.Drawing.Point(4, 4)
+        Me.btn_controleManos_acquiring.Name = "btn_controleManos_acquiring"
+        Me.TableLayoutPanel2.SetRowSpan(Me.btn_controleManos_acquiring, 2)
+        Me.btn_controleManos_acquiring.Size = New System.Drawing.Size(77, 92)
+        Me.btn_controleManos_acquiring.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.btn_controleManos_acquiring.TabIndex = 26
+        Me.btn_controleManos_acquiring.TabStop = False
+        '
         'Panel_loading
         '
         Me.Panel_loading.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
@@ -1758,6 +2065,7 @@ Public Class frmControleManometres2
         '
         'Label36
         '
+        Me.Label36.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label36.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label36.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label36.ForeColor = System.Drawing.Color.Red
@@ -1768,28 +2076,11 @@ Public Class frmControleManometres2
         Me.Label36.Text = resources.GetString("Label36.Text")
         Me.Label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'btn_controleManos_suivant
-        '
-        Me.btn_controleManos_suivant.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_controleManos_suivant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_controleManos_suivant.ForeColor = System.Drawing.Color.White
-        Me.btn_controleManos_suivant.Image = CType(resources.GetObject("btn_controleManos_suivant.Image"), System.Drawing.Image)
-        Me.btn_controleManos_suivant.Location = New System.Drawing.Point(864, 600)
-        Me.btn_controleManos_suivant.Name = "btn_controleManos_suivant"
-        Me.btn_controleManos_suivant.Size = New System.Drawing.Size(128, 24)
-        Me.btn_controleManos_suivant.TabIndex = 27
-        Me.btn_controleManos_suivant.Text = "    Mano suivant"
-        Me.btn_controleManos_suivant.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'ImageList_onglets
         '
         Me.ImageList_onglets.ImageStream = CType(resources.GetObject("ImageList_onglets.ImageStream"), System.Windows.Forms.ImageListStreamer)
         Me.ImageList_onglets.TransparentColor = System.Drawing.Color.White
         Me.ImageList_onglets.Images.SetKeyName(0, "")
-        '
-        'm_bsCtrlMano
-        '
-        Me.m_bsCtrlMano.DataSource = GetType(Crodip_agent.ControleMano)
         '
         'frmControleManometres2
         '
@@ -1801,21 +2092,23 @@ Public Class frmControleManometres2
         Me.Name = "frmControleManometres2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Contrôle des manomètres de l'agent"
+        CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel64.ResumeLayout(False)
         Me.Panel64.PerformLayout()
+        CType(Me.m_bsCtrlMano, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
-        CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel3.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         Me.TableLayoutPanel2.ResumeLayout(False)
+        CType(Me.btn_controleManos_acquiring, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel_loading.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsCtrlMano, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1833,1336 +2126,97 @@ Public Class frmControleManometres2
 
     ' Chargement des mano / construction des onglets & forms
     Private Sub controle_manometres_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        '''TODO : Réduire cette fonction 
 
         '####################################################
         '######### Chargement des manomètres étalon #########
         '####################################################
-        Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(frmControleManometres))
 
         ' On récupère les mano étalons de l'agent
         Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(m_oAgent.idStructure)
-        For Each tmpManoEtalon As ManometreEtalon In arrManoEtalon
-            Dim objComboItem As New objComboItem(tmpManoEtalon.numeroNational, tmpManoEtalon.idCrodip)
-            list_manometresEtalon.Items.Add(objComboItem)
+        m_bsManoEtalon.Clear()
+        For Each oManoE As ManometreEtalon In arrManoEtalon
+            m_bsManoEtalon.Add(oManoE)
         Next
-
+        m_bsManoEtalon.AddNew()
+        m_bsManoEtalon.MoveLast()
         '####################################################
         '###### Chargement des manomètres de controle #######
         '####################################################
         ' On clear les onglets
-        'ongletsManos.TabPages.Clear()
+        m_bsManoControle.Clear()
 
         ' On récupère la liste des manos de la structure de l'agent
         Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure, True)
-        ' Création des contrôles a la volée
-        Dim positionTop As Integer = 0
-        Dim nTabIndex As Integer
-        For Each tmpManoControle As ManometreControle In arrManoControle
-
-            nTabIndex = 1
-
-            ' Création d'une nouvelle page dans le controltab
-            Dim tmpTab As New TabPage
-            tmpTab.Name = "tabPage_mano_" & tmpManoControle.numeroNational
-            tmpTab.Text = "Mano " & tmpManoControle.idCrodip
-            'ongletsManos.TabPages.Add(tmpTab)
-            tmpTab.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-
-
-            '##########################
-            '   Array global
-            '##########################
-            '
-            'panelArrayglob
-            '
-            Dim tmpPanelArrayglob As New Panel
-            tmpPanelArrayglob.Name = "panelArrayglob_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob)
-            tmpPanelArrayglob.AutoScroll = True
-            tmpPanelArrayglob.BackColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(123, Byte), CType(191, Byte))
-            tmpPanelArrayglob.Location = New System.Drawing.Point(8, 8)
-            tmpPanelArrayglob.Size = New System.Drawing.Size(720, 584)
-            tmpPanelArrayglob.Parent = tmpTab
-
-            '
-            'panelArrayglob_blocEmpty
-            '
-            Dim tmpPanelArrayglob_blocEmpty As New Panel
-            tmpPanelArrayglob_blocEmpty.Name = "panelArrayglob_blocEmpty_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_blocEmpty)
-            tmpPanelArrayglob_blocEmpty.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_blocEmpty.Location = New System.Drawing.Point(0, 0)
-            tmpPanelArrayglob_blocEmpty.Size = New System.Drawing.Size(87, 79)
-            tmpPanelArrayglob_blocEmpty.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_titlePressionCroissante
-            '
-            Dim tmpPanelArrayglob_titlePressionCroissante As New Panel
-            tmpPanelArrayglob_titlePressionCroissante.Name = "panelArrayglob_titlePressionCroissante_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titlePressionCroissante)
-            tmpPanelArrayglob_titlePressionCroissante.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titlePressionCroissante.Location = New System.Drawing.Point(0, 80)
-            tmpPanelArrayglob_titlePressionCroissante.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_titlePressionCroissante.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_titlePressionDecroissante
-            '
-            Dim tmpPanelArrayglob_titlePressionDecroissante As New Panel
-            tmpPanelArrayglob_titlePressionDecroissante.Name = "panelArrayglob_titlePressionDecroissante_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titlePressionDecroissante)
-            tmpPanelArrayglob_titlePressionDecroissante.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titlePressionDecroissante.Parent = tmpPanelArrayglob
-            tmpPanelArrayglob_titlePressionDecroissante.Location = New System.Drawing.Point(0, 336)
-            tmpPanelArrayglob_titlePressionDecroissante.Size = New System.Drawing.Size(87, 255)
-
-            '
-            'panelArrayglob_titlePointEssai
-            '
-            Dim tmpPanelArrayglob_titlePointEssai As New Panel
-            tmpPanelArrayglob_titlePointEssai.Name = "panelArrayglob_titlePointEssai_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titlePointEssai)
-            tmpPanelArrayglob_titlePointEssai.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titlePointEssai.Location = New System.Drawing.Point(88, 0)
-            tmpPanelArrayglob_titlePointEssai.Size = New System.Drawing.Size(87, 79)
-            tmpPanelArrayglob_titlePointEssai.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_titlePression
-            '
-            Dim tmpPanelArrayglob_titlePression As New Panel
-            tmpPanelArrayglob_titlePression.Name = "panelArrayglob_titlePression_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titlePression)
-            tmpPanelArrayglob_titlePression.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titlePression.Location = New System.Drawing.Point(176, 0)
-            tmpPanelArrayglob_titlePression.Size = New System.Drawing.Size(175, 39)
-            tmpPanelArrayglob_titlePression.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_titlePressionCapteurTeste
-            '
-            Dim tmpPanelArrayglob_titlePressionCapteurTeste As New Panel
-            tmpPanelArrayglob_titlePressionCapteurTeste.Name = "panelArrayglob_titlePressionCapteurTeste_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titlePressionCapteurTeste)
-            tmpPanelArrayglob_titlePressionCapteurTeste.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titlePressionCapteurTeste.Location = New System.Drawing.Point(176, 40)
-            tmpPanelArrayglob_titlePressionCapteurTeste.Size = New System.Drawing.Size(87, 39)
-            tmpPanelArrayglob_titlePressionCapteurTeste.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_titlePressionInstrument
-            '
-            Dim tmpPanelArrayglob_titlePressionInstrument As New Panel
-            tmpPanelArrayglob_titlePressionInstrument.Name = "panelArrayglob_titlePressionInstrument_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titlePressionInstrument)
-            tmpPanelArrayglob_titlePressionInstrument.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titlePressionInstrument.Location = New System.Drawing.Point(264, 40)
-            tmpPanelArrayglob_titlePressionInstrument.Size = New System.Drawing.Size(87, 39)
-            tmpPanelArrayglob_titlePressionInstrument.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_titleIncertitude
-            '
-            Dim tmpPanelArrayglob_titleIncertitude As New Panel
-            tmpPanelArrayglob_titleIncertitude.Name = "panelArrayglob_titleIncertitude_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titleIncertitude)
-            tmpPanelArrayglob_titleIncertitude.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titleIncertitude.Location = New System.Drawing.Point(352, 0)
-            tmpPanelArrayglob_titleIncertitude.Size = New System.Drawing.Size(87, 79)
-            tmpPanelArrayglob_titleIncertitude.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_titleEMT
-            '
-            Dim tmpPanelArrayglob_titleEMT As New Panel
-            tmpPanelArrayglob_titleEMT.Name = "panelArrayglob_titleEMT_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titleEMT)
-            tmpPanelArrayglob_titleEMT.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titleEMT.Location = New System.Drawing.Point(440, 0)
-            tmpPanelArrayglob_titleEMT.Size = New System.Drawing.Size(87, 79)
-            tmpPanelArrayglob_titleEMT.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_titleErreur
-            '
-            Dim tmpPanelArrayglob_titleErreur As New Panel
-            tmpPanelArrayglob_titleErreur.Name = "panelArrayglob_titleErreur_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titleErreur)
-            tmpPanelArrayglob_titleErreur.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titleErreur.Location = New System.Drawing.Point(528, 0)
-            tmpPanelArrayglob_titleErreur.Size = New System.Drawing.Size(175, 39)
-            tmpPanelArrayglob_titleErreur.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_titleErreurAbsolue
-            '
-            Dim tmpPanelArrayglob_titleErreurAbsolue As New Panel
-            tmpPanelArrayglob_titleErreurAbsolue.Name = "panelArrayglob_titleErreurAbsolue_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titleErreurAbsolue)
-            tmpPanelArrayglob_titleErreurAbsolue.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titleErreurAbsolue.Location = New System.Drawing.Point(528, 40)
-            tmpPanelArrayglob_titleErreurAbsolue.Size = New System.Drawing.Size(87, 39)
-            tmpPanelArrayglob_titleErreurAbsolue.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_titleErreurFondEchelle
-            '
-            Dim tmpPanelArrayglob_titleErreurFondEchelle As New Panel
-            tmpPanelArrayglob_titleErreurFondEchelle.Name = "panelArrayglob_titleErreurFondEchelle_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_titleErreurFondEchelle)
-            tmpPanelArrayglob_titleErreurFondEchelle.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_titleErreurFondEchelle.Location = New System.Drawing.Point(616, 40)
-            tmpPanelArrayglob_titleErreurFondEchelle.Size = New System.Drawing.Size(87, 39)
-            tmpPanelArrayglob_titleErreurFondEchelle.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_croissant_pointEssai
-            '
-            Dim tmpPanelArrayglob_croissant_pointEssai As New Panel
-            tmpPanelArrayglob_croissant_pointEssai.Name = "panelArrayglob_croissant_pointEssai_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_croissant_pointEssai)
-            tmpPanelArrayglob_croissant_pointEssai.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_croissant_pointEssai.Location = New System.Drawing.Point(88, 80)
-            tmpPanelArrayglob_croissant_pointEssai.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_croissant_pointEssai.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_croissant_capteurTeste
-            '
-            Dim tmpPanelArrayglob_croissant_capteurTeste As New Panel
-            tmpPanelArrayglob_croissant_capteurTeste.Name = "panelArrayglob_croissant_capteurTeste_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_croissant_capteurTeste)
-            tmpPanelArrayglob_croissant_capteurTeste.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_croissant_capteurTeste.Location = New System.Drawing.Point(176, 80)
-            tmpPanelArrayglob_croissant_capteurTeste.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_croissant_capteurTeste.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_croissant_instrumentReference
-            '
-            Dim tmpPanelArrayglob_croissant_instrumentReference As New Panel
-            tmpPanelArrayglob_croissant_instrumentReference.Name = "panelArrayglob_croissant_instrumentReference_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_croissant_instrumentReference)
-            tmpPanelArrayglob_croissant_instrumentReference.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_croissant_instrumentReference.Location = New System.Drawing.Point(264, 80)
-            tmpPanelArrayglob_croissant_instrumentReference.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_croissant_instrumentReference.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_croissant_incertitude
-            '
-            Dim tmpPanelArrayglob_croissant_incertitude As New Panel
-            tmpPanelArrayglob_croissant_incertitude.Name = "panelArrayglob_croissant_incertitude_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_croissant_incertitude)
-            tmpPanelArrayglob_croissant_incertitude.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_croissant_incertitude.Location = New System.Drawing.Point(352, 80)
-            tmpPanelArrayglob_croissant_incertitude.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_croissant_incertitude.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_croissant_EMT
-            '
-            Dim tmpPanelArrayglob_croissant_EMT As New Panel
-            tmpPanelArrayglob_croissant_EMT.Name = "panelArrayglob_croissant_EMT_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_croissant_EMT)
-            tmpPanelArrayglob_croissant_EMT.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_croissant_EMT.Location = New System.Drawing.Point(440, 80)
-            tmpPanelArrayglob_croissant_EMT.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_croissant_EMT.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_croissant_erreurAbsolue
-            '
-            Dim tmpPanelArrayglob_croissant_erreurAbsolue As New Panel
-            tmpPanelArrayglob_croissant_erreurAbsolue.Name = "panelArrayglob_croissant_erreurAbsolue_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_croissant_erreurAbsolue)
-            tmpPanelArrayglob_croissant_erreurAbsolue.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_croissant_erreurAbsolue.Location = New System.Drawing.Point(528, 80)
-            tmpPanelArrayglob_croissant_erreurAbsolue.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_croissant_erreurAbsolue.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_croissant_erreurFondEchelle
-            '
-            Dim tmpPanelArrayglob_croissant_erreurFondEchelle As New Panel
-            tmpPanelArrayglob_croissant_erreurFondEchelle.Name = "panelArrayglob_croissant_erreurFondEchelle_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_croissant_erreurFondEchelle)
-            tmpPanelArrayglob_croissant_erreurFondEchelle.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_croissant_erreurFondEchelle.Location = New System.Drawing.Point(616, 80)
-            tmpPanelArrayglob_croissant_erreurFondEchelle.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_croissant_erreurFondEchelle.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_decroissant_pointEssai
-            '
-            Dim tmpPanelArrayglob_decroissant_pointEssai As New Panel
-            tmpPanelArrayglob_decroissant_pointEssai.Name = "panelArrayglob_decroissant_pointEssai_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_decroissant_pointEssai)
-            tmpPanelArrayglob_decroissant_pointEssai.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_decroissant_pointEssai.Location = New System.Drawing.Point(88, 336)
-            tmpPanelArrayglob_decroissant_pointEssai.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_decroissant_pointEssai.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_decroissant_capteurTeste
-            '
-            Dim tmpPanelArrayglob_decroissant_capteurTeste As New Panel
-            tmpPanelArrayglob_decroissant_capteurTeste.Name = "panelArrayglob_decroissant_capteurTeste_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_decroissant_capteurTeste)
-            tmpPanelArrayglob_decroissant_capteurTeste.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_decroissant_capteurTeste.Location = New System.Drawing.Point(176, 336)
-            tmpPanelArrayglob_decroissant_capteurTeste.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_decroissant_capteurTeste.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_decroissant_instrumentReference
-            '
-            Dim tmpPanelArrayglob_decroissant_instrumentReference As New Panel
-            tmpPanelArrayglob_decroissant_instrumentReference.Name = "panelArrayglob_decroissant_instrumentReference_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_decroissant_instrumentReference)
-            tmpPanelArrayglob_decroissant_instrumentReference.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_decroissant_instrumentReference.Location = New System.Drawing.Point(264, 336)
-            tmpPanelArrayglob_decroissant_instrumentReference.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_decroissant_instrumentReference.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_decroissant_incertitude
-            '
-            Dim tmpPanelArrayglob_decroissant_incertitude As New Panel
-            tmpPanelArrayglob_decroissant_incertitude.Name = "panelArrayglob_decroissant_incertitude_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_decroissant_incertitude)
-            tmpPanelArrayglob_decroissant_incertitude.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_decroissant_incertitude.Location = New System.Drawing.Point(352, 336)
-            tmpPanelArrayglob_decroissant_incertitude.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_decroissant_incertitude.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_decroissant_EMT
-            '
-            Dim tmpPanelArrayglob_decroissant_EMT As New Panel
-            tmpPanelArrayglob_decroissant_EMT.Name = "panelArrayglob_decroissant_instrumentEMT_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_decroissant_EMT)
-            tmpPanelArrayglob_decroissant_EMT.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_decroissant_EMT.Location = New System.Drawing.Point(440, 336)
-            tmpPanelArrayglob_decroissant_EMT.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_decroissant_EMT.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_decroissant_erreurAbsolue
-            '
-            Dim tmpPanelArrayglob_decroissant_erreurAbsolue As New Panel
-            tmpPanelArrayglob_decroissant_erreurAbsolue.Name = "panelArrayglob_decroissant_erreurAbsolue_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_decroissant_erreurAbsolue)
-            tmpPanelArrayglob_decroissant_erreurAbsolue.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_decroissant_erreurAbsolue.Location = New System.Drawing.Point(528, 336)
-            tmpPanelArrayglob_decroissant_erreurAbsolue.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_decroissant_erreurAbsolue.Parent = tmpPanelArrayglob
-
-            '
-            'panelArrayglob_decroissant_erreurFondEchelle
-            '
-            Dim tmpPanelArrayglob_decroissant_erreurFondEchelle As New Panel
-            tmpPanelArrayglob_decroissant_erreurFondEchelle.Name = "panelArrayglob_decroissant_erreurFondEchelle_" & tmpManoControle.numeroNational
-            Controls.Add(tmpPanelArrayglob_decroissant_erreurFondEchelle)
-            tmpPanelArrayglob_decroissant_erreurFondEchelle.BackColor = System.Drawing.Color.FromArgb(CType(234, Byte), CType(234, Byte), CType(236, Byte))
-            tmpPanelArrayglob_decroissant_erreurFondEchelle.Location = New System.Drawing.Point(616, 336)
-            tmpPanelArrayglob_decroissant_erreurFondEchelle.Size = New System.Drawing.Size(87, 255)
-            tmpPanelArrayglob_decroissant_erreurFondEchelle.Parent = tmpPanelArrayglob
-
-            '##########################
-            '   Libellés
-            '##########################
-            '
-            'Title pression
-            '
-            Dim tmpLib_pressionCroissant As New Label
-            tmpLib_pressionCroissant.Name = "tmpLib_pressionDecroissant_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_pressionCroissant)
-            tmpLib_pressionCroissant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_pressionCroissant.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_pressionCroissant.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            'tmpLib_pressionCroissant.Location = New System.Drawing.Point(8, 16)
-            'tmpLib_pressionCroissant.Size = New System.Drawing.Size(104, 232)
-            tmpLib_pressionCroissant.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_pressionCroissant.Text = "Pression croissante"
-            tmpLib_pressionCroissant.Parent = tmpPanelArrayglob_titlePressionCroissante
-            Dim tmpLib_pressionDecroissant As New Label
-            tmpLib_pressionDecroissant.Name = "tmpLib_pressionDecroissant_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_pressionDecroissant)
-            tmpLib_pressionDecroissant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_pressionDecroissant.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_pressionDecroissant.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            'tmpLib_pressionDecroissant.Location = New System.Drawing.Point(8, 16)
-            'tmpLib_pressionDecroissant.Size = New System.Drawing.Size(104, 232)
-            tmpLib_pressionDecroissant.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_pressionDecroissant.Text = "Pression décroissante"
-            tmpLib_pressionDecroissant.Parent = tmpPanelArrayglob_titlePressionDecroissante
-            '
-            'Title point essaie
-            '
-            Dim tmpLib_pointsEssaie As New Label
-            tmpLib_pointsEssaie.Name = "tmpLib_pointsEssaie_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_pointsEssaie)
-            tmpLib_pointsEssaie.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_pointsEssaie.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_pointsEssaie.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            'tmpLib_pointsEssaie.Location = New System.Drawing.Point(7, 8)
-            'tmpLib_pointsEssaie.Size = New System.Drawing.Size(104, 56)
-            tmpLib_pointsEssaie.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_pointsEssaie.Text = "Points d'essai"
-            tmpLib_pointsEssaie.Parent = tmpPanelArrayglob_titlePointEssai
-            '
-            'Title pression
-            '
-            Dim tmpLib_pression As New Label
-            tmpLib_pression.Name = "tmpLib_pression_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_pression)
-            tmpLib_pression.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_pression.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_pression.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            'tmpLib_pression.Location = New System.Drawing.Point(8, 8)
-            'tmpLib_pression.Size = New System.Drawing.Size(224, 16)
-            tmpLib_pression.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_pression.Text = "Pression (bar)"
-            tmpLib_pression.Parent = tmpPanelArrayglob_titlePression
-            '
-            'Title pression capteur
-            '
-            Dim tmpLib_pressionCapteur As New Label
-            tmpLib_pressionCapteur.Name = "tmpLib_pressionCapteur_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_pressionCapteur)
-            tmpLib_pressionCapteur.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_pressionCapteur.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_pressionCapteur.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            'tmpLib_pressionCapteur.Location = New System.Drawing.Point(7, 8)
-            'tmpLib_pressionCapteur.Size = New System.Drawing.Size(104, 24)
-            tmpLib_pressionCapteur.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_pressionCapteur.Text = "Manomètre à contrôler"
-            tmpLib_pressionCapteur.Parent = tmpPanelArrayglob_titlePressionCapteurTeste
-            '
-            'Title pression instrument
-            '
-            Dim tmpLib_pressionInstrument As New Label
-            tmpLib_pressionInstrument.Name = "tmpLib_pressionInstrument_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_pressionInstrument)
-            tmpLib_pressionInstrument.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_pressionInstrument.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_pressionInstrument.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            tmpLib_pressionInstrument.Parent = tmpPanelArrayglob_titlePressionInstrument
-            'tmpLib_pressionInstrument.Location = New System.Drawing.Point(7, 8)
-            'tmpLib_pressionInstrument.Size = New System.Drawing.Size(104, 24)
-            tmpLib_pressionInstrument.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_pressionInstrument.Text = "Manomètre Référence"
-            '
-            'Title point incertitude
-            '
-            Dim tmpLib_incertitude As New Label
-            tmpLib_incertitude.Name = "tmpLib_incertitude_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_incertitude)
-            tmpLib_incertitude.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_incertitude.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_incertitude.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            'tmpLib_incertitude.Location = New System.Drawing.Point(7, 8)
-            'tmpLib_incertitude.Size = New System.Drawing.Size(104, 56)
-            tmpLib_incertitude.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_incertitude.Text = "Incertitude"
-            tmpLib_incertitude.Parent = tmpPanelArrayglob_titleIncertitude
-            '
-            'Title point EMT
-            '
-            Dim tmpLib_EMT As New Label
-            tmpLib_EMT.Name = "tmpLib_EMT_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_EMT)
-            tmpLib_EMT.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_EMT.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_EMT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            'tmpLib_EMT.Location = New System.Drawing.Point(7, 8)
-            'tmpLib_EMT.Size = New System.Drawing.Size(104, 56)
-            tmpLib_EMT.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_EMT.Text = "EMT"
-            tmpLib_EMT.Parent = tmpPanelArrayglob_titleEMT
-            '
-            'Title Erreur
-            '
-            Dim tmpLib_erreur As New Label
-            tmpLib_erreur.Name = "tmpLib_erreur_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_erreur)
-            tmpLib_erreur.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_erreur.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_erreur.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            tmpLib_erreur.Parent = tmpPanelArrayglob_titleErreur
-            'tmpLib_erreur.Location = New System.Drawing.Point(8, 8)
-            'tmpLib_erreur.Size = New System.Drawing.Size(224, 16)
-            tmpLib_erreur.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_erreur.Text = "Erreur"
-            '
-            'Title Erreur Absolue
-            '
-            Dim tmpLib_erreurAbsolue As New Label
-            tmpLib_erreurAbsolue.Name = "tmpLib_erreurAbsolue_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_erreurAbsolue)
-            tmpLib_erreurAbsolue.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_erreurAbsolue.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_erreurAbsolue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            tmpLib_erreurAbsolue.Parent = tmpPanelArrayglob_titleErreurAbsolue
-            'tmpLib_erreurAbsolue.Location = New System.Drawing.Point(7, 8)
-            'tmpLib_erreurAbsolue.Size = New System.Drawing.Size(104, 24)
-            tmpLib_erreurAbsolue.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_erreurAbsolue.Text = "Absolue (bar)"
-            '
-            'Title Erreur Fond D'Echelle
-            '
-            Dim tmpLib_erreurFondEchelle As New Label
-            tmpLib_erreurFondEchelle.Name = "tmpLib_erreurFondEchelle_" & tmpManoControle.numeroNational
-            Controls.Add(tmpLib_erreurFondEchelle)
-            tmpLib_erreurFondEchelle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpLib_erreurFondEchelle.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmpLib_erreurFondEchelle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            tmpLib_erreurFondEchelle.Parent = tmpPanelArrayglob_titleErreurFondEchelle
-            'tmpLib_erreurFondEchelle.Location = New System.Drawing.Point(7, 8)
-            'tmpLib_erreurFondEchelle.Size = New System.Drawing.Size(104, 24)
-            tmpLib_erreurFondEchelle.Dock = System.Windows.Forms.DockStyle.Fill
-            tmpLib_erreurFondEchelle.Text = "Fond d'echelle (%)"
-
-            '##########################
-            '   Datas
-            '##########################
-            '
-            'Labels points essais croissants / décroissants
-            '
-
-            Dim arrPressions_6bar() As String = {0, 1.2, 2.4, 3.6, 4.8, 6}
-            Dim arrPressions_10bar() As String = {0, 2, 4, 6, 8, 10}
-            Dim arrPressions_20bar() As String = {0, 4, 8, 12, 16, 20}
-            Dim arrPressions_25bar() As String = {0, 5, 10, 15, 20, 25}
-            Dim arrPressions_default() As String = {0, 2, 4, 6, 8, 10}
-
-            Dim vPos As Integer = 8
-            nTabIndex = 0
-            For i As Integer = 1 To nbMesures
-                nTabIndex = nTabIndex + 1
-                Try
-
-                    Dim tmpPressionsTest() As String
-                    Select Case tmpManoControle.fondEchelle
-                        Case "6"
-                            tmpPressionsTest = arrPressions_6bar
-                        Case "10"
-                            tmpPressionsTest = arrPressions_10bar
-                        Case "20"
-                            tmpPressionsTest = arrPressions_20bar
-                        Case "25"
-                            tmpPressionsTest = arrPressions_25bar
-                        Case Else
-                            tmpPressionsTest = arrPressions_default
-                    End Select
-
-                    ' CROISSANT
-                    Dim tmp_croissant_label_pointsEssai As New Label
-                    tmp_croissant_label_pointsEssai.Name = "croissant_pointsEssai_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_croissant_label_pointsEssai)
-                    tmp_croissant_label_pointsEssai.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-                    tmp_croissant_label_pointsEssai.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-                    tmp_croissant_label_pointsEssai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-                    tmp_croissant_label_pointsEssai.Location = New System.Drawing.Point(0, vPos)
-                    tmp_croissant_label_pointsEssai.Size = New System.Drawing.Size(89, 16)
-                    tmp_croissant_label_pointsEssai.Text = i
-                    tmp_croissant_label_pointsEssai.Tag = "croissant|" & i & "|" & tmpManoControle.numeroNational
-                    tmp_croissant_label_pointsEssai.Parent = tmpPanelArrayglob_croissant_pointEssai
-                    '
-                    'Pression : capteur testé
-                    '
-                    Dim tmp_croissant_pression_capteurTeste As New TextBox
-                    tmp_croissant_pression_capteurTeste.Name = "croissant_pression_capteurTeste_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_croissant_pression_capteurTeste)
-                    tmp_croissant_pression_capteurTeste.Parent = tmpPanelArrayglob_croissant_capteurTeste
-                    tmp_croissant_pression_capteurTeste.Location = New System.Drawing.Point(8, vPos)
-                    tmp_croissant_pression_capteurTeste.Size = New System.Drawing.Size(73, 20)
-                    tmp_croissant_pression_capteurTeste.Tag = "croissant|" & i & "|" & tmpManoControle.numeroNational
-                    'tmp_croissant_pression_capteurTeste.TabStop = True
-                    'tmp_croissant_pression_capteurTeste.TabIndex = nTabIndex + nbMesures
-                    'tmp_croissant_pression_capteurTeste.Text = tmpPressionsTest((i - 1))
-                    'AddHandler tmp_croissant_pression_capteurTeste.Validated, AddressOf updateResults
-                    'AddHandler tmp_croissant_pression_capteurTeste.KeyPress, AddressOf checkKeyPress
-                    tmp_croissant_pression_capteurTeste.TabStop = False
-                    tmp_croissant_pression_capteurTeste.ReadOnly = True
-                    tmp_croissant_pression_capteurTeste.Text = tmpPressionsTest((i - 1))
-                    '
-                    'Pression : capteur instrument de référence
-                    '
-                    Dim tmp_croissant_pression_instrumentReference As New TextBox
-                    tmp_croissant_pression_instrumentReference.Name = "croissant_pression_instrumentReference_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_croissant_pression_instrumentReference)
-                    tmp_croissant_pression_instrumentReference.Parent = tmpPanelArrayglob_croissant_instrumentReference
-                    tmp_croissant_pression_instrumentReference.Location = New System.Drawing.Point(8, vPos)
-                    tmp_croissant_pression_instrumentReference.Size = New System.Drawing.Size(73, 20)
-                    tmp_croissant_pression_instrumentReference.Tag = "croissant|" & i & "|" & tmpManoControle.numeroNational
-                    tmp_croissant_pression_instrumentReference.TabStop = True
-                    tmp_croissant_pression_instrumentReference.TabIndex = nTabIndex
-                    AddHandler tmp_croissant_pression_instrumentReference.Validated, AddressOf updateResults
-                    AddHandler tmp_croissant_pression_instrumentReference.KeyPress, AddressOf checkKeyPress
-                    '
-                    'Incertitude
-                    '
-                    Dim tmp_croissant_incertitude As New TextBox
-                    tmp_croissant_incertitude.Name = "croissant_incertitude_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_croissant_incertitude)
-                    tmp_croissant_incertitude.Parent = tmpPanelArrayglob_croissant_incertitude
-                    tmp_croissant_incertitude.Location = New System.Drawing.Point(8, vPos)
-                    tmp_croissant_incertitude.Size = New System.Drawing.Size(73, 20)
-                    tmp_croissant_incertitude.ReadOnly = True
-                    tmp_croissant_incertitude.Tag = "croissant|" & i & "|" & tmpManoControle.numeroNational
-                    tmp_croissant_incertitude.TabStop = False
-                    '                    AddHandler tmp_croissant_incertitude.Validated, AddressOf updateResults
-                    '                   AddHandler tmp_croissant_incertitude.KeyPress, AddressOf checkKeyPress
-                    '
-                    'EMT
-                    '
-                    Dim tmp_croissant_EMT As New TextBox
-                    tmp_croissant_EMT.Name = "croissant_EMT_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_croissant_EMT)
-                    tmp_croissant_EMT.Parent = tmpPanelArrayglob_croissant_EMT
-                    tmp_croissant_EMT.Location = New System.Drawing.Point(8, vPos)
-                    tmp_croissant_EMT.Size = New System.Drawing.Size(73, 20)
-                    tmp_croissant_EMT.ReadOnly = True
-                    tmp_croissant_EMT.Tag = "croissant|" & i & "|" & tmpManoControle.numeroNational
-                    tmp_croissant_EMT.TabStop = False
-                    '                  AddHandler tmp_croissant_EMT.TextChanged, AddressOf updateResults
-                    '                 AddHandler tmp_croissant_EMT.KeyPress, AddressOf checkKeyPress
-                    '
-                    'Erreur : Absolue
-                    '
-                    Dim tmp_croissant_erreur_absolue As New TextBox
-                    tmp_croissant_erreur_absolue.Name = "croissant_erreur_absolue_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_croissant_erreur_absolue)
-                    tmp_croissant_erreur_absolue.Parent = tmpPanelArrayglob_croissant_erreurAbsolue
-                    tmp_croissant_erreur_absolue.Location = New System.Drawing.Point(8, vPos)
-                    tmp_croissant_erreur_absolue.Size = New System.Drawing.Size(73, 20)
-                    tmp_croissant_erreur_absolue.ReadOnly = True
-                    tmp_croissant_erreur_absolue.Tag = "croissant|" & i & "|" & tmpManoControle.numeroNational
-                    tmp_croissant_erreur_absolue.TabStop = False
-                    '
-                    'Erreur : Fond Echelle
-                    '
-                    Dim tmp_croissant_erreur_fondEchelle As New TextBox
-                    tmp_croissant_erreur_fondEchelle.Name = "croissant_erreur_fondEchelle_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_croissant_erreur_fondEchelle)
-                    tmp_croissant_erreur_fondEchelle.Parent = tmpPanelArrayglob_croissant_erreurFondEchelle
-                    tmp_croissant_erreur_fondEchelle.Location = New System.Drawing.Point(8, vPos)
-                    tmp_croissant_erreur_fondEchelle.Size = New System.Drawing.Size(73, 20)
-                    tmp_croissant_erreur_fondEchelle.ReadOnly = True
-                    tmp_croissant_erreur_fondEchelle.Tag = "croissant|" & i & "|" & tmpManoControle.numeroNational
-                    tmp_croissant_erreur_fondEchelle.TabStop = False
-
-                    ' DECROISSANT
-                    Dim tmp_decroissant_label_pointsEssai As New Label
-                    tmp_decroissant_label_pointsEssai.Name = "decroissant_pointsEssai_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_decroissant_label_pointsEssai)
-                    tmp_decroissant_label_pointsEssai.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-                    tmp_decroissant_label_pointsEssai.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-                    tmp_decroissant_label_pointsEssai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-                    tmp_decroissant_label_pointsEssai.Location = New System.Drawing.Point(0, vPos)
-                    tmp_decroissant_label_pointsEssai.Size = New System.Drawing.Size(89, 16)
-                    tmp_decroissant_label_pointsEssai.Text = i
-                    tmp_decroissant_label_pointsEssai.Parent = tmpPanelArrayglob_decroissant_pointEssai
-                    tmp_decroissant_label_pointsEssai.Tag = "decroissant|" & i & "|" & tmpManoControle.numeroNational
-                    '
-                    'Pression : capteur testé
-                    '
-                    Dim tmp_decroissant_pression_capteurTeste As New TextBox
-                    tmp_decroissant_pression_capteurTeste.Name = "decroissant_pression_capteurTeste_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_decroissant_pression_capteurTeste)
-                    tmp_decroissant_pression_capteurTeste.Parent = tmpPanelArrayglob_decroissant_capteurTeste
-                    tmp_decroissant_pression_capteurTeste.Location = New System.Drawing.Point(8, vPos)
-                    tmp_decroissant_pression_capteurTeste.Size = New System.Drawing.Size(73, 20)
-                    tmp_decroissant_pression_capteurTeste.Tag = "decroissant|" & i & "|" & tmpManoControle.numeroNational
-                    'tmp_decroissant_pression_capteurTeste.Text = (nbMesures - i) * 2
-                    tmp_decroissant_pression_capteurTeste.Text = tmpPressionsTest((nbMesures - i))
-                    tmp_decroissant_pression_capteurTeste.TabStop = False
-                    tmp_decroissant_pression_capteurTeste.ReadOnly = True
-                    '
-                    'Pression : capteur instrument de référence
-                    '
-                    Dim tmp_decroissant_pression_instrumentReference As New TextBox
-                    tmp_decroissant_pression_instrumentReference.Name = "decroissant_pression_instrumentReference_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_decroissant_pression_instrumentReference)
-                    tmp_decroissant_pression_instrumentReference.Parent = tmpPanelArrayglob_decroissant_instrumentReference
-                    tmp_decroissant_pression_instrumentReference.Location = New System.Drawing.Point(8, vPos)
-                    tmp_decroissant_pression_instrumentReference.Size = New System.Drawing.Size(73, 20)
-                    tmp_decroissant_pression_instrumentReference.Tag = "decroissant|" & i & "|" & tmpManoControle.numeroNational
-                    AddHandler tmp_decroissant_pression_instrumentReference.Validated, AddressOf updateResults
-                    AddHandler tmp_decroissant_pression_instrumentReference.KeyPress, AddressOf checkKeyPress
-                    '
-                    'Incertitude
-                    '
-                    Dim tmp_decroissant_incertitude As New TextBox
-                    tmp_decroissant_incertitude.Name = "decroissant_incertitude_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_decroissant_incertitude)
-                    tmp_decroissant_incertitude.Parent = tmpPanelArrayglob_decroissant_incertitude
-                    tmp_decroissant_incertitude.Location = New System.Drawing.Point(8, vPos)
-                    tmp_decroissant_incertitude.Size = New System.Drawing.Size(73, 20)
-                    tmp_decroissant_incertitude.ReadOnly = True
-                    tmp_decroissant_incertitude.Tag = "decroissant|" & i & "|" & tmpManoControle.numeroNational
-                    tmp_decroissant_incertitude.TabStop = False
-
-                    '                    AddHandler tmp_decroissant_incertitude.TextChanged, AddressOf updateResults
-                    '                   AddHandler tmp_decroissant_incertitude.KeyPress, AddressOf checkKeyPress
-                    '
-                    'EMT
-                    '
-                    Dim tmp_decroissant_EMT As New TextBox
-                    tmp_decroissant_EMT.Name = "decroissant_EMT_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_decroissant_EMT)
-                    tmp_decroissant_EMT.Parent = tmpPanelArrayglob_decroissant_EMT
-                    tmp_decroissant_EMT.Location = New System.Drawing.Point(8, vPos)
-                    tmp_decroissant_EMT.Size = New System.Drawing.Size(73, 20)
-                    tmp_decroissant_EMT.ReadOnly = True
-                    tmp_decroissant_EMT.TabStop = False
-                    tmp_decroissant_EMT.Tag = "croissant|" & i & "|" & tmpManoControle.numeroNational
-                    '                  AddHandler tmp_decroissant_EMT.TextChanged, AddressOf updateResults
-                    '                 AddHandler tmp_decroissant_EMT.KeyPress, AddressOf checkKeyPress
-                    '
-                    'Erreur : Absolue
-                    '
-                    Dim tmp_decroissant_erreur_absolue As New TextBox
-                    tmp_decroissant_erreur_absolue.Name = "decroissant_erreur_absolue_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_decroissant_erreur_absolue)
-                    tmp_decroissant_erreur_absolue.Parent = tmpPanelArrayglob_decroissant_erreurAbsolue
-                    tmp_decroissant_erreur_absolue.Location = New System.Drawing.Point(8, vPos)
-                    tmp_decroissant_erreur_absolue.Size = New System.Drawing.Size(73, 20)
-                    tmp_decroissant_erreur_absolue.ReadOnly = True
-                    tmp_decroissant_erreur_absolue.TabStop = False
-                    tmp_decroissant_erreur_absolue.Tag = "decroissant|" & i & "|" & tmpManoControle.numeroNational
-                    '
-                    'Erreur : Absolue
-                    '
-                    Dim tmp_decroissant_erreur_fondEchelle As New TextBox
-                    tmp_decroissant_erreur_fondEchelle.Name = "decroissant_erreur_fondEchelle_" & i & "_" & tmpManoControle.numeroNational
-                    Controls.Add(tmp_decroissant_erreur_fondEchelle)
-                    tmp_decroissant_erreur_fondEchelle.Parent = tmpPanelArrayglob_decroissant_erreurFondEchelle
-                    tmp_decroissant_erreur_fondEchelle.Location = New System.Drawing.Point(8, vPos)
-                    tmp_decroissant_erreur_fondEchelle.Size = New System.Drawing.Size(73, 20)
-                    tmp_decroissant_erreur_fondEchelle.ReadOnly = True
-                    tmp_decroissant_erreur_fondEchelle.TabStop = False
-                    tmp_decroissant_erreur_fondEchelle.Tag = "decroissant|" & i & "|" & tmpManoControle.numeroNational
-                Catch ex As Exception
-                    CSDebug.dispError("Controle Mano - Chargement onglets : " & ex.Message.ToString)
-                End Try
-
-                vPos = vPos + 24
-            Next i
-            '
-            'Titre Infos Mano
-            '
-            Dim tmp_titleInfosMano As New Label
-            tmp_titleInfosMano.Name = "label_titleResultat_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_titleInfosMano)
-            tmp_titleInfosMano.BackColor = System.Drawing.Color.Transparent
-            tmp_titleInfosMano.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_titleInfosMano.ForeColor = System.Drawing.Color.FromArgb(CType(2, Byte), CType(129, Byte), CType(198, Byte))
-            tmp_titleInfosMano.Image = CType(resources.GetObject("Label37.Image"), System.Drawing.Image)
-            tmp_titleInfosMano.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-            tmp_titleInfosMano.Location = New System.Drawing.Point(744, 8)
-            tmp_titleInfosMano.Size = New System.Drawing.Size(230, 16)
-            tmp_titleInfosMano.Text = "      Mano à contrôler"
-            tmp_titleInfosMano.Parent = tmpTab
-            '
-            'Info mano marque
-            '
-            Dim tmp_libelleInfosMano_marque As New Label
-            tmp_libelleInfosMano_marque.Name = "label_libelleInfosMano_marque_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_libelleInfosMano_marque)
-            tmp_libelleInfosMano_marque.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_libelleInfosMano_marque.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmp_libelleInfosMano_marque.Location = New System.Drawing.Point(736, 48)
-            tmp_libelleInfosMano_marque.Size = New System.Drawing.Size(120, 16)
-            tmp_libelleInfosMano_marque.TabIndex = 10
-            tmp_libelleInfosMano_marque.Text = "Marque :"
-            tmp_libelleInfosMano_marque.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-            tmp_libelleInfosMano_marque.Parent = tmpTab
-            '
-            'Info mano classe
-            '
-            Dim tmp_libelleInfosMano_classe As New Label
-            tmp_libelleInfosMano_classe.Name = "label_libelleInfosMano_classe_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_libelleInfosMano_classe)
-            tmp_libelleInfosMano_classe.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_libelleInfosMano_classe.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmp_libelleInfosMano_classe.Location = New System.Drawing.Point(736, 64)
-            tmp_libelleInfosMano_classe.Size = New System.Drawing.Size(120, 16)
-            tmp_libelleInfosMano_classe.TabIndex = 10
-            tmp_libelleInfosMano_classe.Text = "Classe :"
-            tmp_libelleInfosMano_classe.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-            tmp_libelleInfosMano_classe.Parent = tmpTab
-            '
-            'Info mano fond echelle
-            '
-            Dim tmp_libelleInfosMano_fondEchelle As New Label
-            tmp_libelleInfosMano_fondEchelle.Name = "label_libelleInfosMano_fondEchelle_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_libelleInfosMano_fondEchelle)
-            tmp_libelleInfosMano_fondEchelle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_libelleInfosMano_fondEchelle.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmp_libelleInfosMano_fondEchelle.Location = New System.Drawing.Point(736, 80)
-            tmp_libelleInfosMano_fondEchelle.Size = New System.Drawing.Size(120, 16)
-            tmp_libelleInfosMano_fondEchelle.TabIndex = 10
-            tmp_libelleInfosMano_fondEchelle.Text = "Fond d'échelle :"
-            tmp_libelleInfosMano_fondEchelle.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-            tmp_libelleInfosMano_fondEchelle.Parent = tmpTab
-            '
-            'Info mano reference
-            '
-            Dim tmp_libelleInfosMano_reference As New Label
-            tmp_libelleInfosMano_reference.Name = "label_libelleInfosMano_reference_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_libelleInfosMano_reference)
-            tmp_libelleInfosMano_reference.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_libelleInfosMano_reference.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
-            tmp_libelleInfosMano_reference.Location = New System.Drawing.Point(736, 32)
-            tmp_libelleInfosMano_reference.Size = New System.Drawing.Size(120, 16)
-            tmp_libelleInfosMano_reference.TabIndex = 10
-            tmp_libelleInfosMano_reference.Text = "N° identifiant :"
-            tmp_libelleInfosMano_reference.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-            tmp_libelleInfosMano_reference.Parent = tmpTab
-            '
-            'labelInfo_reference
-            '
-            Dim tmp_valueInfosMano_reference As New Label
-            tmp_valueInfosMano_reference.Name = "label_valueInfosMano_reference_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_valueInfosMano_reference)
-            tmp_valueInfosMano_reference.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_valueInfosMano_reference.ForeColor = System.Drawing.Color.Black
-            tmp_valueInfosMano_reference.Location = New System.Drawing.Point(856, 32)
-            tmp_valueInfosMano_reference.Name = "labelInfo_reference"
-            tmp_valueInfosMano_reference.Size = New System.Drawing.Size(104, 16)
-            tmp_valueInfosMano_reference.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-            tmp_valueInfosMano_reference.Parent = tmpTab
-            tmp_valueInfosMano_reference.Text = tmpManoControle.idCrodip
-            '
-            'labelInfo_marque
-            '
-            Dim tmp_valueInfosMano_marque As New Label
-            tmp_valueInfosMano_marque.Name = "label_valueInfosMano_marque_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_valueInfosMano_marque)
-            tmp_valueInfosMano_marque.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_valueInfosMano_marque.ForeColor = System.Drawing.Color.Black
-            tmp_valueInfosMano_marque.Location = New System.Drawing.Point(856, 48)
-            tmp_valueInfosMano_marque.Name = "labelInfo_marque"
-            tmp_valueInfosMano_marque.Size = New System.Drawing.Size(104, 16)
-            tmp_valueInfosMano_marque.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-            tmp_valueInfosMano_marque.Parent = tmpTab
-            tmp_valueInfosMano_marque.Text = tmpManoControle.marque
-            '
-            'labelInfo_classe
-            '
-            Dim tmp_valueInfosMano_classe As New Label
-            tmp_valueInfosMano_classe.Name = "label_valueInfosMano_classe_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_valueInfosMano_classe)
-            tmp_valueInfosMano_classe.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_valueInfosMano_classe.ForeColor = System.Drawing.Color.Black
-            tmp_valueInfosMano_classe.Location = New System.Drawing.Point(856, 64)
-            tmp_valueInfosMano_classe.Name = "labelInfo_classe"
-            tmp_valueInfosMano_classe.Size = New System.Drawing.Size(104, 16)
-            tmp_valueInfosMano_classe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-            tmp_valueInfosMano_classe.Parent = tmpTab
-            tmp_valueInfosMano_classe.Text = tmpManoControle.classe
-            '
-            'labelInfo_fondEchelle
-            '
-            Dim tmp_valueInfosMano_fondEchelle As New Label
-            tmp_valueInfosMano_fondEchelle.Name = "label_valueInfosMano_fondEchelle_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_valueInfosMano_fondEchelle)
-            tmp_valueInfosMano_fondEchelle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_valueInfosMano_fondEchelle.ForeColor = System.Drawing.Color.Black
-            tmp_valueInfosMano_fondEchelle.Location = New System.Drawing.Point(856, 80)
-            tmp_valueInfosMano_fondEchelle.Name = "labelInfo_fondEchelle"
-            tmp_valueInfosMano_fondEchelle.Size = New System.Drawing.Size(104, 16)
-            tmp_valueInfosMano_fondEchelle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-            tmp_valueInfosMano_fondEchelle.Parent = tmpTab
-            tmp_valueInfosMano_fondEchelle.Text = tmpManoControle.fondEchelle
-            '
-            'Titre Résultat
-            '
-            Dim tmp_titleResultat As New Label
-            tmp_titleResultat.Name = "label_titleResultat_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_titleResultat)
-            tmp_titleResultat.BackColor = System.Drawing.Color.Transparent
-            tmp_titleResultat.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_titleResultat.ForeColor = System.Drawing.Color.FromArgb(CType(2, Byte), CType(129, Byte), CType(198, Byte))
-            tmp_titleResultat.Image = CType(resources.GetObject("Label34.Image"), System.Drawing.Image)
-            tmp_titleResultat.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-            tmp_titleResultat.Location = New System.Drawing.Point(744, 208)
-            tmp_titleResultat.Size = New System.Drawing.Size(160, 16)
-            tmp_titleResultat.Text = "     Résultat de l'essai"
-            tmp_titleResultat.Parent = tmpTab
-            '
-            'Résultat
-            '
-            Dim tmp_resultat As New Label
-            tmp_resultat.Name = "label_resultat_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_resultat)
-            tmp_resultat.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_resultat.ForeColor = System.Drawing.Color.Green
-            tmp_resultat.Location = New System.Drawing.Point(736, 224)
-            tmp_resultat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            tmp_resultat.Size = New System.Drawing.Size(224, 87)
-            tmp_resultat.Text = ""
-            tmp_resultat.Parent = tmpTab
-            '
-            'btn_controleManos_valider
-            '
-            Dim tmp_btnValider As New Label
-            tmp_btnValider.Name = "btn_valider_" & tmpManoControle.numeroNational
-            Controls.Add(tmp_btnValider)
-            tmp_btnValider.Parent = tmpTab
-            tmp_btnValider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmp_btnValider.ForeColor = System.Drawing.Color.White
-            tmp_btnValider.Image = CType(resources.GetObject("btn_controleManos_valider.Image"), System.Drawing.Image)
-            tmp_btnValider.Location = New System.Drawing.Point(852, 568)
-            tmp_btnValider.Size = New System.Drawing.Size(128, 24)
-            tmp_btnValider.Text = "    Valider / Quitter"
-            tmp_btnValider.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            tmp_btnValider.Enabled = True
-
-            AddHandler tmp_btnValider.Click, AddressOf btn_controleManos_valider_Click
-            tmp_btnValider.Enabled = False
-            btn_controleManos_suivant.Enabled = False
+        For Each oManoC As ManometreControle In arrManoControle
+            m_bsManoControle.Add(oManoC)
         Next
+        m_bsManoControle.AddNew()
+        m_bsManoControle.MoveLast()
 
-        ' Placer la puce sur onglet courant
-        'prevSelectedManoOnglet = ongletsManos.SelectedTab.TabIndex
-        SelectMano()
+
 
     End Sub
 
-#Region " Récupération des données du controle "
-    Private Function createControleMano(ByVal pMano As ManometreControle, pidManoEtalon As String) As ControleMano
-
-        Dim oCtrlMano As ControleMano = New ControleMano(m_oAgent)
-        '        newObject.id = ControleManoManager.create(pagent)
-        '########################################################
-        oCtrlMano.idStructure = pMano.idStructure
-        oCtrlMano.idMano = pMano.numeroNational
-        oCtrlMano.manoEtalon = pidManoEtalon
-        oCtrlMano.tempAir = TextBox41.Text
-        oCtrlMano.resultat = pMano.etat
-        oCtrlMano.DateVerif = CSDate.ToCRODIPString(Date.Now).ToString
-        '# Mesures Croissantes
-        ' Mesure n°1
-        Dim input_up_pt1_pres_manoCtrl As TextBox = CSForm.getControlByName("croissant_pression_capteurTeste_1_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt1_pres_manoCtrl = input_up_pt1_pres_manoCtrl.Text
-        Dim input_up_pt1_pres_manoEtalon As TextBox = CSForm.getControlByName("croissant_pression_instrumentReference_1_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt1_pres_manoEtalon = input_up_pt1_pres_manoEtalon.Text
-        Dim input_up_pt1_incertitude As TextBox = CSForm.getControlByName("croissant_incertitude_1_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt1_incertitude = input_up_pt1_incertitude.Text
-        Dim input_up_pt1_EMT As TextBox = CSForm.getControlByName("croissant_EMT_1_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt1_EMT = input_up_pt1_EMT.Text
-        Dim input_up_pt1_err_abs As TextBox = CSForm.getControlByName("croissant_erreur_absolue_1_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt1_err_abs = input_up_pt1_err_abs.Text
-        Dim input_up_pt1_err_fondEchelle As TextBox = CSForm.getControlByName("croissant_erreur_fondEchelle_1_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt1_err_fondEchelle = input_up_pt1_err_fondEchelle.Text
-        oCtrlMano.up_pt1_conformite = "1"
-        If input_up_pt1_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.up_pt1_conformite = "0"
-        End If
-        ' Mesure n°2
-        Dim input_up_pt2_pres_manoCtrl As TextBox = CSForm.getControlByName("croissant_pression_capteurTeste_2_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt2_pres_manoCtrl = input_up_pt2_pres_manoCtrl.Text
-        Dim input_up_pt2_pres_manoEtalon As TextBox = CSForm.getControlByName("croissant_pression_instrumentReference_2_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt2_pres_manoEtalon = input_up_pt2_pres_manoEtalon.Text
-        Dim input_up_pt2_incertitude As TextBox = CSForm.getControlByName("croissant_incertitude_2_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt2_incertitude = input_up_pt2_incertitude.Text
-        Dim input_up_pt2_EMT As TextBox = CSForm.getControlByName("croissant_EMT_2_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt2_EMT = input_up_pt2_EMT.Text
-        Dim input_up_pt2_err_abs As TextBox = CSForm.getControlByName("croissant_erreur_absolue_2_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt2_err_abs = input_up_pt2_err_abs.Text
-        Dim input_up_pt2_err_fondEchelle As TextBox = CSForm.getControlByName("croissant_erreur_fondEchelle_2_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt2_err_fondEchelle = input_up_pt2_err_fondEchelle.Text
-        oCtrlMano.up_pt2_conformite = "1"
-        If input_up_pt2_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.up_pt2_conformite = "0"
-        End If
-        ' Mesure n°3
-        Dim input_up_pt3_pres_manoCtrl As TextBox = CSForm.getControlByName("croissant_pression_capteurTeste_3_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt3_pres_manoCtrl = input_up_pt3_pres_manoCtrl.Text
-        Dim input_up_pt3_pres_manoEtalon As TextBox = CSForm.getControlByName("croissant_pression_instrumentReference_3_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt3_pres_manoEtalon = input_up_pt3_pres_manoEtalon.Text
-        Dim input_up_pt3_incertitude As TextBox = CSForm.getControlByName("croissant_incertitude_3_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt3_incertitude = input_up_pt3_incertitude.Text
-        Dim input_up_pt3_EMT As TextBox = CSForm.getControlByName("croissant_EMT_3_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt3_EMT = input_up_pt3_EMT.Text
-        Dim input_up_pt3_err_abs As TextBox = CSForm.getControlByName("croissant_erreur_absolue_3_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt3_err_abs = input_up_pt3_err_abs.Text
-        Dim input_up_pt3_err_fondEchelle As TextBox = CSForm.getControlByName("croissant_erreur_fondEchelle_3_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt3_err_fondEchelle = input_up_pt3_err_fondEchelle.Text
-        oCtrlMano.up_pt3_conformite = "1"
-        If input_up_pt3_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.up_pt3_conformite = "0"
-        End If
-        ' Mesure n°4
-        Dim input_up_pt4_pres_manoCtrl As TextBox = CSForm.getControlByName("croissant_pression_capteurTeste_4_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt4_pres_manoCtrl = input_up_pt4_pres_manoCtrl.Text
-        Dim input_up_pt4_pres_manoEtalon As TextBox = CSForm.getControlByName("croissant_pression_instrumentReference_4_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt4_pres_manoEtalon = input_up_pt4_pres_manoEtalon.Text
-        Dim input_up_pt4_incertitude As TextBox = CSForm.getControlByName("croissant_incertitude_4_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt4_incertitude = input_up_pt4_incertitude.Text
-        Dim input_up_pt4_EMT As TextBox = CSForm.getControlByName("croissant_EMT_4_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt4_EMT = input_up_pt4_EMT.Text
-        Dim input_up_pt4_err_abs As TextBox = CSForm.getControlByName("croissant_erreur_absolue_4_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt4_err_abs = input_up_pt4_err_abs.Text
-        Dim input_up_pt4_err_fondEchelle As TextBox = CSForm.getControlByName("croissant_erreur_fondEchelle_4_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt4_err_fondEchelle = input_up_pt4_err_fondEchelle.Text
-        oCtrlMano.up_pt4_conformite = "1"
-        If input_up_pt4_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.up_pt4_conformite = "0"
-        End If
-        ' Mesure n°5
-        Dim input_up_pt5_pres_manoCtrl As TextBox = CSForm.getControlByName("croissant_pression_capteurTeste_5_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt5_pres_manoCtrl = input_up_pt5_pres_manoCtrl.Text
-        Dim input_up_pt5_pres_manoEtalon As TextBox = CSForm.getControlByName("croissant_pression_instrumentReference_5_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt5_pres_manoEtalon = input_up_pt5_pres_manoEtalon.Text
-        Dim input_up_pt5_incertitude As TextBox = CSForm.getControlByName("croissant_incertitude_5_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt5_incertitude = input_up_pt5_incertitude.Text
-        Dim input_up_pt5_EMT As TextBox = CSForm.getControlByName("croissant_EMT_5_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt5_EMT = input_up_pt5_EMT.Text
-        Dim input_up_pt5_err_abs As TextBox = CSForm.getControlByName("croissant_erreur_absolue_5_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt5_err_abs = input_up_pt5_err_abs.Text
-        Dim input_up_pt5_err_fondEchelle As TextBox = CSForm.getControlByName("croissant_erreur_fondEchelle_5_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt5_err_fondEchelle = input_up_pt5_err_fondEchelle.Text
-        oCtrlMano.up_pt5_conformite = "1"
-        If input_up_pt5_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.up_pt5_conformite = "0"
-        End If
-        ' Mesure n°6
-        Dim input_up_pt6_pres_manoCtrl As TextBox = CSForm.getControlByName("croissant_pression_capteurTeste_6_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt6_pres_manoCtrl = input_up_pt6_pres_manoCtrl.Text
-        Dim input_up_pt6_pres_manoEtalon As TextBox = CSForm.getControlByName("croissant_pression_instrumentReference_6_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt6_pres_manoEtalon = input_up_pt6_pres_manoEtalon.Text
-        Dim input_up_pt6_incertitude As TextBox = CSForm.getControlByName("croissant_incertitude_6_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt6_incertitude = input_up_pt6_incertitude.Text
-        Dim input_up_pt6_EMT As TextBox = CSForm.getControlByName("croissant_EMT_6_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt6_EMT = input_up_pt6_EMT.Text
-        Dim input_up_pt6_err_abs As TextBox = CSForm.getControlByName("croissant_erreur_absolue_6_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt6_err_abs = input_up_pt6_err_abs.Text
-        Dim input_up_pt6_err_fondEchelle As TextBox = CSForm.getControlByName("croissant_erreur_fondEchelle_6_" & pMano.numeroNational, Me)
-        oCtrlMano.up_pt6_err_fondEchelle = input_up_pt6_err_fondEchelle.Text
-        oCtrlMano.up_pt6_conformite = "1"
-        If input_up_pt6_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.up_pt6_conformite = "0"
-        End If
-
-        '# Mesures Décroissantes
-        ' Mesure n°1
-        Dim input_down_pt1_pres_manoCtrl As TextBox = CSForm.getControlByName("decroissant_pression_capteurTeste_1_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt1_pres_manoCtrl = input_down_pt1_pres_manoCtrl.Text
-        Dim input_down_pt1_pres_manoEtalon As TextBox = CSForm.getControlByName("decroissant_pression_instrumentReference_1_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt1_pres_manoEtalon = input_down_pt1_pres_manoEtalon.Text
-        Dim input_down_pt1_incertitude As TextBox = CSForm.getControlByName("decroissant_incertitude_1_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt1_incertitude = input_down_pt1_incertitude.Text
-        Dim input_down_pt1_EMT As TextBox = CSForm.getControlByName("decroissant_EMT_1_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt1_EMT = input_down_pt1_EMT.Text
-        Dim input_down_pt1_err_abs As TextBox = CSForm.getControlByName("decroissant_erreur_absolue_1_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt1_err_abs = input_down_pt1_err_abs.Text
-        Dim input_down_pt1_err_fondEchelle As TextBox = CSForm.getControlByName("decroissant_erreur_fondEchelle_1_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt1_err_fondEchelle = input_down_pt1_err_fondEchelle.Text
-        oCtrlMano.down_pt1_conformite = "1"
-        If input_down_pt1_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.down_pt1_conformite = "0"
-        End If
-        ' Mesure n°2
-        Dim input_down_pt2_pres_manoCtrl As TextBox = CSForm.getControlByName("decroissant_pression_capteurTeste_2_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt2_pres_manoCtrl = input_down_pt2_pres_manoCtrl.Text
-        Dim input_down_pt2_pres_manoEtalon As TextBox = CSForm.getControlByName("decroissant_pression_instrumentReference_2_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt2_pres_manoEtalon = input_down_pt2_pres_manoEtalon.Text
-        Dim input_down_pt2_incertitude As TextBox = CSForm.getControlByName("decroissant_incertitude_2_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt2_incertitude = input_down_pt2_incertitude.Text
-        Dim input_down_pt2_EMT As TextBox = CSForm.getControlByName("decroissant_EMT_2_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt2_EMT = input_down_pt2_EMT.Text
-        Dim input_down_pt2_err_abs As TextBox = CSForm.getControlByName("decroissant_erreur_absolue_2_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt2_err_abs = input_down_pt2_err_abs.Text
-        Dim input_down_pt2_err_fondEchelle As TextBox = CSForm.getControlByName("decroissant_erreur_fondEchelle_2_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt2_err_fondEchelle = input_down_pt2_err_fondEchelle.Text
-        oCtrlMano.down_pt2_conformite = "1"
-        If input_down_pt2_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.down_pt2_conformite = "0"
-        End If
-        ' Mesure n°3
-        Dim input_down_pt3_pres_manoCtrl As TextBox = CSForm.getControlByName("decroissant_pression_capteurTeste_3_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt3_pres_manoCtrl = input_down_pt3_pres_manoCtrl.Text
-        Dim input_down_pt3_pres_manoEtalon As TextBox = CSForm.getControlByName("decroissant_pression_instrumentReference_3_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt3_pres_manoEtalon = input_down_pt3_pres_manoEtalon.Text
-        Dim input_down_pt3_incertitude As TextBox = CSForm.getControlByName("decroissant_incertitude_3_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt3_incertitude = input_down_pt3_incertitude.Text
-        Dim input_down_pt3_EMT As TextBox = CSForm.getControlByName("decroissant_EMT_3_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt3_EMT = input_down_pt3_EMT.Text
-        Dim input_down_pt3_err_abs As TextBox = CSForm.getControlByName("decroissant_erreur_absolue_3_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt3_err_abs = input_down_pt3_err_abs.Text
-        Dim input_down_pt3_err_fondEchelle As TextBox = CSForm.getControlByName("decroissant_erreur_fondEchelle_3_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt3_err_fondEchelle = input_down_pt3_err_fondEchelle.Text
-        oCtrlMano.down_pt3_conformite = "1"
-        If input_down_pt3_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.down_pt3_conformite = "0"
-        End If
-        ' Mesure n°4
-        Dim input_down_pt4_pres_manoCtrl As TextBox = CSForm.getControlByName("decroissant_pression_capteurTeste_4_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt4_pres_manoCtrl = input_down_pt4_pres_manoCtrl.Text
-        Dim input_down_pt4_pres_manoEtalon As TextBox = CSForm.getControlByName("decroissant_pression_instrumentReference_4_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt4_pres_manoEtalon = input_down_pt4_pres_manoEtalon.Text
-        Dim input_down_pt4_incertitude As TextBox = CSForm.getControlByName("decroissant_incertitude_4_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt4_incertitude = input_down_pt4_incertitude.Text
-        Dim input_down_pt4_EMT As TextBox = CSForm.getControlByName("decroissant_EMT_4_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt4_EMT = input_down_pt4_EMT.Text
-        Dim input_down_pt4_err_abs As TextBox = CSForm.getControlByName("decroissant_erreur_absolue_4_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt4_err_abs = input_down_pt4_err_abs.Text
-        Dim input_down_pt4_err_fondEchelle As TextBox = CSForm.getControlByName("decroissant_erreur_fondEchelle_4_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt4_err_fondEchelle = input_down_pt4_err_fondEchelle.Text
-        oCtrlMano.down_pt4_conformite = "1"
-        If input_down_pt4_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.down_pt4_conformite = "0"
-        End If
-        ' Mesure n°5
-        Dim input_down_pt5_pres_manoCtrl As TextBox = CSForm.getControlByName("decroissant_pression_capteurTeste_5_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt5_pres_manoCtrl = input_down_pt5_pres_manoCtrl.Text
-        Dim input_down_pt5_pres_manoEtalon As TextBox = CSForm.getControlByName("decroissant_pression_instrumentReference_5_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt5_pres_manoEtalon = input_down_pt5_pres_manoEtalon.Text
-        Dim input_down_pt5_incertitude As TextBox = CSForm.getControlByName("decroissant_incertitude_5_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt5_incertitude = input_down_pt5_incertitude.Text
-        Dim input_down_pt5_EMT As TextBox = CSForm.getControlByName("decroissant_EMT_5_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt5_EMT = input_down_pt5_EMT.Text
-        Dim input_down_pt5_err_abs As TextBox = CSForm.getControlByName("decroissant_erreur_absolue_5_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt5_err_abs = input_down_pt5_err_abs.Text
-        Dim input_down_pt5_err_fondEchelle As TextBox = CSForm.getControlByName("decroissant_erreur_fondEchelle_5_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt5_err_fondEchelle = input_down_pt5_err_fondEchelle.Text
-        oCtrlMano.down_pt5_conformite = "1"
-        If input_down_pt5_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.down_pt5_conformite = "0"
-        End If
-        ' Mesure n°6
-        Dim input_down_pt6_pres_manoCtrl As TextBox = CSForm.getControlByName("decroissant_pression_capteurTeste_6_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt6_pres_manoCtrl = input_down_pt6_pres_manoCtrl.Text
-        Dim input_down_pt6_pres_manoEtalon As TextBox = CSForm.getControlByName("decroissant_pression_instrumentReference_6_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt6_pres_manoEtalon = input_down_pt6_pres_manoEtalon.Text
-        Dim input_down_pt6_incertitude As TextBox = CSForm.getControlByName("decroissant_incertitude_6_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt6_incertitude = input_down_pt6_incertitude.Text
-        Dim input_down_pt6_EMT As TextBox = CSForm.getControlByName("decroissant_EMT_6_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt6_EMT = input_down_pt6_EMT.Text
-        Dim input_down_pt6_err_abs As TextBox = CSForm.getControlByName("decroissant_erreur_absolue_6_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt6_err_abs = input_down_pt6_err_abs.Text
-        Dim input_down_pt6_err_fondEchelle As TextBox = CSForm.getControlByName("decroissant_erreur_fondEchelle_6_" & pMano.numeroNational, Me)
-        oCtrlMano.down_pt6_err_fondEchelle = input_down_pt6_err_fondEchelle.Text
-        oCtrlMano.down_pt6_conformite = "1"
-        If input_down_pt6_err_fondEchelle.ForeColor.Equals(System.Drawing.Color.Red) Then
-            oCtrlMano.down_pt6_conformite = "0"
-        End If
-
-        '########################################################
-        Dim tmpTab As TabPage
-        'tmpTab = CSForm.getControlByName("tabPage_mano_" & curManoControle.numeroNational, ongletsManos)
-        For i As Integer = 1 To nbMesures
-            ' On récupère les controles
-            Dim tmp_pression_capteurTeste As TextBox = CSForm.getControlByName("croissant_pression_capteurTeste_" & i & "_" & curManoControle.numeroNational, tmpTab)
-            Dim tmp_pression_instrumentReference As TextBox = CSForm.getControlByName("croissant_pression_instrumentReference_" & i & "_" & curManoControle.numeroNational, tmpTab)
-            oCtrlMano.PressionControle = oCtrlMano.PressionControle & "|" & tmp_pression_instrumentReference.Text
-            oCtrlMano.ValeursMesurees = oCtrlMano.ValeursMesurees & "|" & tmp_pression_capteurTeste.Text
-        Next
-
-        Return oCtrlMano
-
-    End Function
-#End Region
 
 #Region " Calculs "
 
     ' Test si le mano est fiable
-    Public Function checkMano(ByVal curMano As ManometreControle) As Boolean
-        ' Init
-        Dim nbMesures As Integer = 6
-        Dim maxEcart As Double = 0
+    Public Function checkMano(oControle As ControleMano) As Boolean
 
-        ' 
-        Dim isFiable As Boolean = True
-        Dim isSaisieComplete As Boolean = True
+        Dim isFiable As Boolean = False
 
-        ' On récupère la classe de précision du mano courant
-        'Dim tmpClassePrecision As Double
-        'tmpClassePrecision = Globals.StringToDouble(curMano.classe)
+        If isSaisieComplete() Then
+            If oControle.up_pt1_conformite = "1" And _
+                oControle.up_pt2_conformite = "1" And _
+                oControle.up_pt3_conformite = "1" And _
+                oControle.up_pt4_conformite = "1" And _
+                oControle.up_pt5_conformite = "1" And _
+                oControle.up_pt6_conformite = "1" And _
+                oControle.down_pt1_conformite = "1" And _
+                oControle.down_pt2_conformite = "1" And _
+                oControle.down_pt3_conformite = "1" And _
+                oControle.down_pt4_conformite = "1" And _
+                oControle.down_pt5_conformite = "1" And _
+                oControle.down_pt6_conformite = "1" Then
 
-        ' On récupère l'écart maximum
-        For i As Integer = 1 To nbMesures
-            Try
-                Dim tmpInputCroissantIntrumentReference As TextBox = CSForm.getControlByName("croissant_pression_instrumentReference_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputDecroissantIntrumentReference As TextBox = CSForm.getControlByName("decroissant_pression_instrumentReference_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputCroissant As TextBox = CSForm.getControlByName("croissant_erreur_fondEchelle_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputDecroissant As TextBox = CSForm.getControlByName("decroissant_erreur_fondEchelle_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputErreurAbsolueCroissant As TextBox = CSForm.getControlByName("croissant_erreur_absolue_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputErreurAbsolueDecroissant As TextBox = CSForm.getControlByName("decroissant_erreur_absolue_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputIncetitudeCroissant As TextBox = CSForm.getControlByName("croissant_incertitude_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputIncetitudeDecroissant As TextBox = CSForm.getControlByName("decroissant_incertitude_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputEmtCroissant As TextBox = CSForm.getControlByName("croissant_EMT_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputEmtDecroissant As TextBox = CSForm.getControlByName("decroissant_EMT_" & i & "_" & curMano.numeroNational, Me)
+                isFiable = True
+            End If
 
-                Dim tmpValueCroissant As Double = 0.0
-                Dim tmpValueDecroissant As Double = 0.0
-                Dim tmpValueIncetitudeCroissant As Double = 0.0
-                Dim tmpValueIncetitudeDecroissant As Double = 0.0
-                Dim tmpValueEmtCroissant As Double = 0.0
-                Dim tmpValueEmtDecroissant As Double = 0.0
-                tmpValueCroissant = Globals.StringToDouble(tmpInputCroissant.Text)
-                tmpValueDecroissant = Globals.StringToDouble(tmpInputDecroissant.Text)
-                tmpValueIncetitudeCroissant = Globals.StringToDouble(tmpInputIncetitudeCroissant.Text)
-                tmpValueIncetitudeDecroissant = Globals.StringToDouble(tmpInputIncetitudeDecroissant.Text)
-                tmpValueEmtCroissant = Globals.StringToDouble(tmpInputEmtCroissant.Text)
-                tmpValueEmtDecroissant = Globals.StringToDouble(tmpInputEmtDecroissant.Text)
+        End If
 
-                '##############################################################################################
-                'If tmpValueCroissant > maxEcart Then
-                '    maxEcart = tmpValueCroissant
-                '    If tmpValueCroissant <= tmpClassePrecision Then
-                '        tmpInputCroissant.ForeColor = System.Drawing.Color.Green
-                '        tmpInputErreurAbsolueCroissant.ForeColor = System.Drawing.Color.Green
-                '    Else
-                '        tmpInputCroissant.ForeColor = System.Drawing.Color.Red
-                '        tmpInputErreurAbsolueCroissant.ForeColor = System.Drawing.Color.Red
-                '    End If
-                'End If
-
-                'If tmpValueDecroissant > maxEcart Then
-                '    maxEcart = tmpValueDecroissant
-                '    If tmpValueDecroissant <= tmpClassePrecision Then
-                '        tmpInputDecroissant.ForeColor = System.Drawing.Color.Green
-                '        tmpInputErreurAbsolueDecroissant.ForeColor = System.Drawing.Color.Green
-                '    Else
-                '        tmpInputDecroissant.ForeColor = System.Drawing.Color.Red
-                '        tmpInputErreurAbsolueDecroissant.ForeColor = System.Drawing.Color.Red
-                '    End If
-                'End If
-                '##############################################################################################
-
-                '28/08/12 MCO Changement de mode de cacul
-                'on compare l'ecart absolu avec l'EMT (Ecart Maximum toléré) sans prendre en compte l'incertitude
-                ' Croissant
-                If Not String.IsNullOrEmpty(tmpInputErreurAbsolueCroissant.Text) Then
-                    If Math.Abs(Globals.StringToDouble(tmpInputErreurAbsolueCroissant.Text)) <= tmpValueEmtCroissant Then
-                        tmpInputCroissant.ForeColor = System.Drawing.Color.Green
-                        tmpInputErreurAbsolueCroissant.ForeColor = System.Drawing.Color.Green
-                        tmpInputCroissantIntrumentReference.ForeColor = System.Drawing.Color.Green
-                    Else
-                        isFiable = False
-                        tmpInputCroissant.ForeColor = System.Drawing.Color.Red
-                        tmpInputErreurAbsolueCroissant.ForeColor = System.Drawing.Color.Red
-                        tmpInputCroissantIntrumentReference.ForeColor = System.Drawing.Color.Red
-                    End If
-                Else
-                    isSaisieComplete = False
-                End If
-
-                ' Decroissant
-                If Not String.IsNullOrEmpty(tmpInputErreurAbsolueDecroissant.Text) Then
-                    If Math.Abs(Globals.StringToDouble(tmpInputErreurAbsolueDecroissant.Text)) <= tmpValueEmtDecroissant Then
-                        tmpInputDecroissant.ForeColor = System.Drawing.Color.Green
-                        tmpInputErreurAbsolueDecroissant.ForeColor = System.Drawing.Color.Green
-                        tmpInputDecroissantIntrumentReference.ForeColor = System.Drawing.Color.Green
-                    Else
-                        isFiable = False
-                        tmpInputDecroissant.ForeColor = System.Drawing.Color.Red
-                        tmpInputErreurAbsolueDecroissant.ForeColor = System.Drawing.Color.Red
-                        tmpInputDecroissantIntrumentReference.ForeColor = System.Drawing.Color.Red
-                    End If
-                Else
-                    isSaisieComplete = False
-
-                End If
-
-                '##############################################################################################
-
-            Catch ex As Exception
-                CSDebug.dispError("controle_manomtres::checkMano(" & curMano.numeroNational & ") : " & ex.Message.ToString)
-                Return False
-            End Try
-        Next
 
         '
 
         ' NEW
         Return isFiable
 
-        ' On vérifie la fiabilité
-        'If maxEcart <= tmpClassePrecision Then
-        ' Return True
-        ' Else
-        'Return False
-        'End If
 
     End Function
 
-    Public Function isSaisieComplete(ByVal curMano As ManometreControle) As Boolean
+    Public Function isSaisieComplete() As Boolean
         ' Init
-        Dim nbMesures As Integer = 6
         Dim bisSaisieComplete As Boolean = True
+        Dim oControle As ControleMano
+        oControle = m_bsCtrlMano.Current
+
+        If oControle.up_pt1_conformite = "" Or _
+            oControle.up_pt2_conformite = "" Or _
+            oControle.up_pt3_conformite = "" Or _
+            oControle.up_pt4_conformite = "" Or _
+            oControle.up_pt5_conformite = "" Or _
+            oControle.up_pt6_conformite = "" Or _
+             oControle.down_pt1_conformite = "" Or _
+            oControle.down_pt2_conformite = "" Or _
+            oControle.down_pt3_conformite = "" Or _
+            oControle.down_pt4_conformite = "" Or _
+            oControle.down_pt5_conformite = "" Or _
+            oControle.down_pt6_conformite = "" Then
+
+            bisSaisieComplete = False
+        End If
 
 
-        ' On récupère l'écart maximum
-        For i As Integer = 1 To nbMesures
-            Try
-                Dim tmpInputCroissant As TextBox = CSForm.getControlByName("croissant_pression_instrumentReference_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputDecroissant As TextBox = CSForm.getControlByName("decroissant_pression_instrumentReference_" & i & "_" & curMano.numeroNational, Me)
-
-                ' Croissant
-                If String.IsNullOrEmpty(tmpInputCroissant.Text) Then
-                    bisSaisieComplete = False
-                End If
-
-                ' Decroissant
-                If String.IsNullOrEmpty(tmpInputDecroissant.Text) Then
-                    bisSaisieComplete = False
-                End If
-
-                '##############################################################################################
-
-            Catch ex As Exception
-                CSDebug.dispError("controle_manomtres::isSaisieComplete() : " & ex.Message.ToString)
-                Return False
-            End Try
-        Next
-
-        '
-
-        ' NEW
         Return bisSaisieComplete
-
-    End Function
-    Public Function isSaisieCommencee(ByVal curMano As ManometreControle) As Boolean
-        ' Init
-        Dim nbMesures As Integer = 6
-        Dim bisSaisieCommence As Boolean = True
-        Dim bbSaisie As Integer = 0
-
-        ' On récupère l'écart maximum
-        For i As Integer = 1 To nbMesures
-            Try
-                Dim tmpInputCroissant As TextBox = CSForm.getControlByName("croissant_pression_instrumentReference_" & i & "_" & curMano.numeroNational, Me)
-                Dim tmpInputDecroissant As TextBox = CSForm.getControlByName("decroissant_pression_instrumentReference_" & i & "_" & curMano.numeroNational, Me)
-
-                ' Croissant
-                If Not String.IsNullOrEmpty(tmpInputCroissant.Text) Then
-                    bbSaisie = bbSaisie + 1
-                End If
-
-                ' Decroissant
-                If Not String.IsNullOrEmpty(tmpInputDecroissant.Text) Then
-                    bbSaisie = bbSaisie + 1
-                End If
-
-                bisSaisieCommence = bbSaisie > 0
-                '##############################################################################################
-
-            Catch ex As Exception
-                CSDebug.dispError("controle_manomtres::isSaisieCommence() : " & ex.Message.ToString)
-                bisSaisieCommence = True
-            End Try
-        Next
-
-        Return bisSaisieCommence
 
     End Function
 #End Region
@@ -3174,41 +2228,58 @@ Public Class frmControleManometres2
     Private Function validControl() As Boolean
         Dim bReturn As Boolean
         Try
-
-            'On met a jour le mano
-            curManoControle.etat = checkMano(curManoControle)
+            Dim oControle As ControleMano
+            oControle = m_bsManoControle.Current
+            'On met a jour le manometreControle
+            curManoControle.etat = checkMano(oControle)
             curManoControle.dateDernierControleS = CSDate.ToCRODIPString(Date.Now).ToString
             curManoControle.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             ManometreControleManager.save(curManoControle)
 
 
             ' On enregistre les mesures
-            Dim oControleMano As ControleMano
-            oControleMano = Me.createControleMano(curManoControle, list_manometresEtalon.SelectedItem.id)
+            Dim oCtrlMano As ControleMano = m_bsCtrlMano.Current
+
+            '########################################################
+            ' On récupère les controles
+            oCtrlMano.PressionControle = oCtrlMano.up_pt1_pres_manoCtrl & "|" & _
+                                            oCtrlMano.up_pt2_pres_manoCtrl & "|" & _
+                                            oCtrlMano.up_pt3_pres_manoCtrl & "|" & _
+                                            oCtrlMano.up_pt4_pres_manoCtrl & "|" & _
+                                            oCtrlMano.up_pt5_pres_manoCtrl & "|" & _
+                                            oCtrlMano.up_pt6_pres_manoCtrl & "|" & _
+                                            oCtrlMano.down_pt1_pres_manoCtrl & "|" & _
+                                            oCtrlMano.down_pt2_pres_manoCtrl & "|" & _
+                                            oCtrlMano.down_pt3_pres_manoCtrl & "|" & _
+                                            oCtrlMano.down_pt4_pres_manoCtrl & "|" & _
+                                            oCtrlMano.down_pt5_pres_manoCtrl & "|" & _
+                                            oCtrlMano.down_pt6_pres_manoCtrl
+
+            oCtrlMano.ValeursMesurees = oCtrlMano.up_pt1_pres_manoEtalon & "|" & _
+                                            oCtrlMano.up_pt2_pres_manoEtalon & "|" & _
+                                            oCtrlMano.up_pt3_pres_manoEtalon & "|" & _
+                                            oCtrlMano.up_pt4_pres_manoEtalon & "|" & _
+                                            oCtrlMano.up_pt5_pres_manoEtalon & "|" & _
+                                            oCtrlMano.up_pt6_pres_manoEtalon & "|" & _
+                                            oCtrlMano.down_pt1_pres_manoEtalon & "|" & _
+                                            oCtrlMano.down_pt2_pres_manoEtalon & "|" & _
+                                            oCtrlMano.down_pt3_pres_manoEtalon & "|" & _
+                                            oCtrlMano.down_pt4_pres_manoEtalon & "|" & _
+                                            oCtrlMano.down_pt5_pres_manoEtalon & "|" & _
+                                            oCtrlMano.down_pt6_pres_manoEtalon
+
 
             ' On construit notre nouvelle fiche de vie
-            curManoControle.creerfFicheVieControle(m_oAgent, oControleMano)
-
-
-
-
-
-            ' Message de confirmation
-            Dim tmpMessageConfirm As String
-            If curManoControle.etat Then
-                tmpMessageConfirm = "Votre manomètre est fiable : il répond à sa classe de précision."
-            Else
-                tmpMessageConfirm = "Votre manomètre n'est pas fiable : il ne répond pas à sa classe de précision. Faites le remettre en état ou changez le."
-            End If
+            curManoControle.creerfFicheVieControle(m_oAgent, oCtrlMano)
 
             ' On flag le mano etalon comme etant utilise
             ' On récupère le mano
-            Dim tmpManometreEtalon As ManometreEtalon = ManometreEtalonManager.getManometreEtalonByNumeroNational(list_manometresEtalon.SelectedItem.Id)
+            Dim tmpManometreEtalon As ManometreEtalon = ManometreEtalonManager.getManometreEtalonByNumeroNational(cbx_manometresEtalon.SelectedItem.Id)
             ' On le flag
             ManometreEtalonManager.setUtilise(m_oAgent, tmpManometreEtalon)
 
 
-            MsgBox(tmpMessageConfirm)
+            MsgBox(oCtrlMano.resultat)
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("controle_manometres::validControl : " & ex.Message.ToString)
@@ -3219,19 +2290,23 @@ Public Class frmControleManometres2
 
     ' Bouton "Suivant"
     Private Sub btn_controleManos_suivant_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_suivant.Click
-        If TextBox41.Text <> "" Then
-            validControl()
-            '            ongletsManos.SelectedIndex = ongletsManos.SelectedIndex() + 1
+        If tbTemperature.Text <> "" Then
+            If isSaisieComplete() Then
+                validControl()
+                lbMano.SelectedIndex = lbMano.SelectedIndex + 1
+            End If
         Else
             MsgBox("Veuillez remplir le champ température pour continuer", MsgBoxStyle.OkOnly, "Crodip .::. Attention !")
         End If
     End Sub
 
     ' Bouton "Valider"
-    Private Sub btn_controleManos_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If TextBox41.Text <> "" Then
-            validControl()
-            TryCast(MdiParent, parentContener).ReturnToAccueil()
+    Private Sub btn_controleManos_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_valider.Click
+        If tbTemperature.Text <> "" Then
+            If isSaisieComplete() Then
+                validControl()
+                TryCast(MdiParent, parentContener).ReturnToAccueil()
+            End If
         Else
             MsgBox("Veuillez remplir le champ température pour continuer", MsgBoxStyle.OkOnly, "Crodip .::. Attention !")
         End If
@@ -3247,106 +2322,429 @@ Public Class frmControleManometres2
 #Region " Events "
 
     ' Selection du manometre étalon
-    Private Sub list_manometresEtalon_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles list_manometresEtalon.SelectedIndexChanged
-        Try
-            ' On commence par récupérer le mano sélectionné
-            Dim manoEtalon As New ManometreEtalon
-            manoEtalon = ManometreEtalonManager.getManometreEtalonByNumeroNational(sender.SelectedItem.Id)
-            Me.curManoEtalon = manoEtalon
+    Private Sub list_manometresEtalon_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbx_manometresEtalon.SelectedIndexChanged
+        If cbx_manometresEtalon.SelectedIndex <> m_bsManoEtalon.Count And tbTemperature.Text <> "" Then
+            SplitContainer1.Enabled = True
+        Else
+            SplitContainer1.Enabled = False
+            m_bsManoControle.MoveFirst()
+        End If
+    End Sub
 
-            'labelInfoEtalon_reference.Text = manoEtalon.idCrodip
-            'labelInfoEtalon_marque.Text = manoEtalon.marque
-            'labelInfoEtalon_classe.Text = manoEtalon.classe
-            'labelInfoEtalon_fondEchelle.Text = manoEtalon.fondEchelle
-            'ongletsManos.Enabled = True
+    Private Sub tbTemperature_TextChanged(sender As Object, e As EventArgs) Handles tbTemperature.TextChanged
+        If cbx_manometresEtalon.SelectedIndex <> m_bsManoEtalon.Count And tbTemperature.Text <> "" Then
+            SplitContainer1.Enabled = True
+        Else
+            SplitContainer1.Enabled = False
+            m_bsManoControle.MoveFirst()
+        End If
+
+    End Sub
+    Private Function calcErrAbs(pPressManoctrl As String, pPressManoEtalon As String) As String
+        Dim dErr As Double
+        If Not String.IsNullOrEmpty(pPressManoctrl) And Not String.IsNullOrEmpty(pPressManoEtalon) Then
+            dErr = Math.Round(Math.Abs(Globals.StringToDouble(pPressManoctrl) - Globals.StringToDouble(pPressManoEtalon)), 3)
+            Return dErr.ToString("####0.000")
+        Else
+            Return ""
+        End If
+    End Function
+    Private Function calcErrFond(pPressManoctrl As String, pPressManoEtalon As String, pFond As String) As String
+        Dim dErr As Double
+        If Not String.IsNullOrEmpty(pPressManoctrl) And Not String.IsNullOrEmpty(pPressManoEtalon) And Not String.IsNullOrEmpty(pFond) Then
+            dErr = Math.Round(Math.Abs(Globals.StringToDouble(pPressManoctrl) - Globals.StringToDouble(pPressManoEtalon)) * 100 / Globals.StringToDouble(pFond), 3)
+            Return dErr.ToString("####0.000")
+        Else
+            Return ""
+        End If
+    End Function
+    Private Function calcConformite(pErrAbs As String, pEMT As String)
+        If Not String.IsNullOrEmpty(pErrAbs) And Not String.IsNullOrEmpty(pEMT) Then
+            If Globals.StringToDouble(pErrAbs) > Globals.StringToDouble(pEMT) Then
+                Return "0" ' NOK
+            Else
+                Return "1" 'OK
+            End If
+        Else
+            Return ""
+        End If
+    End Function
+    ' Calcul au chagement de contenu
+    Private Sub saisiePressionManoReferenceup1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbUpMR1.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.up_pt1_err_abs = calcErrAbs(oControle.up_pt1_pres_manoCtrl, oControle.up_pt1_pres_manoEtalon)
+            oControle.up_pt1_err_fondEchelle = calcErrFond(oControle.up_pt1_pres_manoCtrl, oControle.up_pt1_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.up_pt1_conformite = calcConformite(oControle.up_pt1_err_abs, oControle.up_pt1_EMT)
+            If oControle.up_pt1_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
         Catch ex As Exception
-            CSDebug.dispError("Select Mano Etalon : " & ex.Message.ToString)
+            CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferenceup1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+        End Try
+    End Sub
+    ' Calcul au chagement de contenu
+    Private Sub saisiePressionManoReferenceup2(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbUpMR2.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+            Console.WriteLine("saisiePressionManoReferenceup2")
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.up_pt2_err_abs = calcErrAbs(oControle.up_pt2_pres_manoCtrl, oControle.up_pt2_pres_manoEtalon)
+            oControle.up_pt2_err_fondEchelle = calcErrFond(oControle.up_pt2_pres_manoCtrl, oControle.up_pt2_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.up_pt2_conformite = calcConformite(oControle.up_pt2_err_abs, oControle.up_pt2_EMT)
+            If oControle.up_pt2_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetBindings(False)
+        Catch ex As Exception
+            CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferenceup1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+        End Try
+    End Sub
+    Private Sub saisiePressionManoReferenceup3(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbUpMR3.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.up_pt3_err_abs = calcErrAbs(oControle.up_pt3_pres_manoCtrl, oControle.up_pt3_pres_manoEtalon)
+            oControle.up_pt3_err_fondEchelle = calcErrFond(oControle.up_pt3_pres_manoCtrl, oControle.up_pt3_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.up_pt3_conformite = calcConformite(oControle.up_pt3_err_abs, oControle.up_pt3_EMT)
+            If oControle.up_pt3_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
+        Catch ex As Exception
+            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup3(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+        End Try
+    End Sub
+    Private Sub saisiePressionManoReferenceup4(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbUpMR4.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.up_pt4_err_abs = calcErrAbs(oControle.up_pt4_pres_manoCtrl, oControle.up_pt4_pres_manoEtalon)
+            oControle.up_pt4_err_fondEchelle = calcErrFond(oControle.up_pt4_pres_manoCtrl, oControle.up_pt4_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.up_pt4_conformite = calcConformite(oControle.up_pt4_err_abs, oControle.up_pt4_EMT)
+            If oControle.up_pt4_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
+        Catch ex As Exception
+            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup4(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+        End Try
+    End Sub
+    Private Sub saisiePressionManoReferenceup5(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbUpMR5.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.up_pt5_err_abs = calcErrAbs(oControle.up_pt5_pres_manoCtrl, oControle.up_pt5_pres_manoEtalon)
+            oControle.up_pt5_err_fondEchelle = calcErrFond(oControle.up_pt5_pres_manoCtrl, oControle.up_pt5_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.up_pt5_conformite = calcConformite(oControle.up_pt5_err_abs, oControle.up_pt5_EMT)
+            If oControle.up_pt5_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
+        Catch ex As Exception
+            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup5(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+        End Try
+    End Sub
+    Private Sub saisiePressionManoReferenceup6(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbUpMR6.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.up_pt6_err_abs = calcErrAbs(oControle.up_pt6_pres_manoCtrl, oControle.up_pt6_pres_manoEtalon)
+            oControle.up_pt6_err_fondEchelle = calcErrFond(oControle.up_pt6_pres_manoCtrl, oControle.up_pt6_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.up_pt6_conformite = calcConformite(oControle.up_pt6_err_abs, oControle.up_pt6_EMT)
+            If oControle.up_pt6_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
+        Catch ex As Exception
+            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup6(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
     End Sub
 
     ' Calcul au chagement de contenu
-    Private Sub updateResults(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim thisMano As ManometreControle
+    Private Sub saisiePressionManoReferencedown1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbDownMR1.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
         Try
             ' Init
-            Dim thisInput As TextBox = sender
-            Dim tmpTagsValues As String() = thisInput.Tag.ToString.Split("|")
-            Dim thisType As String = CType(tmpTagsValues(0), String)
-            Dim thisNum As Integer = CType(tmpTagsValues(1), Integer)
-            Dim thisManoNum As String = CType(tmpTagsValues(2), String)
 
-            thisMano = ManometreControleManager.getManometreControleByNumeroNational(thisManoNum)
-
-            ' On récupère les inputs
-            Dim inputCapteurTeste As TextBox = CSForm.getControlByName(thisType & "_pression_capteurTeste_" & thisNum & "_" & thisManoNum, Me)
-            Dim inputInstrumentReference As TextBox = CSForm.getControlByName(thisType & "_pression_instrumentReference_" & thisNum & "_" & thisManoNum, Me)
-            Dim inputIncertitude As TextBox = CSForm.getControlByName(thisType & "_incertitude_" & thisNum & "_" & thisManoNum, Me)
-            Dim inputEMT As TextBox = CSForm.getControlByName(thisType & "_EMT_" & thisNum & "_" & thisManoNum, Me)
-            Dim inputErrAbsolue As TextBox = CSForm.getControlByName(thisType & "_erreur_absolue_" & thisNum & "_" & thisManoNum, Me)
-            Dim inputErrFondEchelle As TextBox = CSForm.getControlByName(thisType & "_erreur_fondEchelle_" & thisNum & "_" & thisManoNum, Me)
-            Dim BtnValider As Label = CSForm.getControlByName("btn_valider_" & thisMano.numeroNational, Me)
-
-            Dim valueCapteurTeste As Double
-            Dim valueInstrumentReference As Double
-            Dim valueManoEtalon_fondEchelle As Double
-            Dim valueMano_fondEchelle As Double
-            Dim valueIncertitude As Double
-            '            Dim valueEmt As Double
-            Dim bCalc As Boolean
-            Dim bCheck As Boolean
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
 
 
-            If String.IsNullOrEmpty(inputCapteurTeste.Text) Or String.IsNullOrEmpty(inputInstrumentReference.Text) Then
-                bCalc = False
+            ' Calcul err absolue
+            oControle.down_pt1_err_abs = calcErrAbs(oControle.down_pt1_pres_manoCtrl, oControle.down_pt1_pres_manoEtalon)
+            oControle.down_pt1_err_fondEchelle = calcErrFond(oControle.down_pt1_pres_manoCtrl, oControle.down_pt1_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.down_pt1_conformite = calcConformite(oControle.down_pt1_err_abs, oControle.down_pt1_EMT)
+            If oControle.down_pt1_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
             Else
-                bCalc = True
-            End If
-            If bCalc Then
-
-                ' On récupère les valeurs
-                valueCapteurTeste = Globals.StringToDouble(inputCapteurTeste.Text)
-                valueInstrumentReference = Globals.StringToDouble(inputInstrumentReference.Text)
-                '               valueManoEtalon_fondEchelle = Globals.StringToDouble(labelInfoEtalon_fondEchelle.Text)
-                valueMano_fondEchelle = Globals.StringToDouble(thisMano.fondEchelle)
-
-
-                ' Incertitude
-                valueIncertitude = 0
-                If thisMano.resolution <> "" And curManoEtalon.incertitudeEtalon <> "" Then
-                    valueIncertitude = calcIncertitude(thisMano.resolution_d, curManoEtalon.incertitudeEtalon_d)
-                End If
-                inputIncertitude.Text = valueIncertitude.ToString()
-
-                ' EMT
-                inputEMT.Text = calcEMT(thisMano)
-
-                ' Calcul err absolue
-                inputErrAbsolue.Text = Math.Round(Math.Abs(valueCapteurTeste - valueInstrumentReference), 3)
-                inputErrFondEchelle.Text = Math.Round(Math.Abs(Math.Abs(valueCapteurTeste - valueInstrumentReference)) * 100 / valueMano_fondEchelle, 3)
+                sender.ForeColor = System.Drawing.Color.Red
             End If
 
 
-            Dim tmpLabelResult As Label = CSForm.getControlByName("label_resultat_" & thisMano.numeroNational, Me)
-
-            bCheck = checkMano(thisMano)
-            If (isSaisieComplete(thisMano)) Then
-                If bCheck Then
-                    tmpLabelResult.Text = "Votre manomètre est fiable : il répond à sa classe de précision."
-                    tmpLabelResult.ForeColor = System.Drawing.Color.Green
-                Else
-                    tmpLabelResult.Text = "Votre manomètre n'est pas fiable : il ne répond pas à sa classe de précision. Faites le remettre en état ou changez le."
-                    tmpLabelResult.ForeColor = System.Drawing.Color.Red
-                End If
-                btn_controleManos_suivant.Enabled = True
-                BtnValider.Enabled = True
-            Else
-                tmpLabelResult.Text = ""
-                btn_controleManos_suivant.Enabled = False
-                BtnValider.Enabled = False
-            End If
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
         Catch ex As Exception
-            CSDebug.dispError("Controle Manomètre :: updateResults(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+            CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferencedown1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
+    End Sub
+    ' Calcul au chagement de contenu
+    Private Sub saisiePressionManoReferencedown2(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbDownMR2.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.down_pt2_err_abs = calcErrAbs(oControle.down_pt2_pres_manoCtrl, oControle.down_pt2_pres_manoEtalon)
+            oControle.down_pt2_err_fondEchelle = calcErrFond(oControle.down_pt2_pres_manoCtrl, oControle.down_pt2_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.down_pt2_conformite = calcConformite(oControle.down_pt2_err_abs, oControle.down_pt2_EMT)
+            If oControle.down_pt2_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
+        Catch ex As Exception
+            CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferencedown1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+        End Try
+    End Sub
+    Private Sub saisiePressionManoReferencedown3(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbDownMR3.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.down_pt3_err_abs = calcErrAbs(oControle.down_pt3_pres_manoCtrl, oControle.down_pt3_pres_manoEtalon)
+            oControle.down_pt3_err_fondEchelle = calcErrFond(oControle.down_pt3_pres_manoCtrl, oControle.down_pt3_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.down_pt3_conformite = calcConformite(oControle.down_pt3_err_abs, oControle.down_pt3_EMT)
+            If oControle.down_pt3_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
+        Catch ex As Exception
+            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown3(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+        End Try
+    End Sub
+    Private Sub saisiePressionManoReferencedown4(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbDownMR4.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.down_pt4_err_abs = calcErrAbs(oControle.down_pt4_pres_manoCtrl, oControle.down_pt4_pres_manoEtalon)
+            oControle.down_pt4_err_fondEchelle = calcErrFond(oControle.down_pt4_pres_manoCtrl, oControle.down_pt4_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.down_pt4_conformite = calcConformite(oControle.down_pt4_err_abs, oControle.down_pt4_EMT)
+            If oControle.down_pt4_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
+        Catch ex As Exception
+            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown4(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+        End Try
+    End Sub
+    Private Sub saisiePressionManoReferencedown5(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbDownMR5.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.down_pt5_err_abs = calcErrAbs(oControle.down_pt5_pres_manoCtrl, oControle.down_pt5_pres_manoEtalon)
+            oControle.down_pt5_err_fondEchelle = calcErrFond(oControle.down_pt5_pres_manoCtrl, oControle.down_pt5_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.down_pt5_conformite = calcConformite(oControle.down_pt5_err_abs, oControle.down_pt5_EMT)
+            If oControle.down_pt5_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
+        Catch ex As Exception
+            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown5(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+        End Try
+    End Sub
+    Private Sub saisiePressionManoReferencedown6(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbDownMR6.Validated
+        Dim oManoC As ManometreControle
+        Dim oManoE As ManometreEtalon
+        Dim oControle As ControleMano
+        Try
+            ' Init
+
+            oManoC = m_bsManoControle.Current
+            oManoE = m_bsManoEtalon.Current
+            oControle = m_bsCtrlMano.Current
+
+
+            ' Calcul err absolue
+            oControle.down_pt6_err_abs = calcErrAbs(oControle.down_pt6_pres_manoCtrl, oControle.down_pt6_pres_manoEtalon)
+            oControle.down_pt6_err_fondEchelle = calcErrFond(oControle.down_pt6_pres_manoCtrl, oControle.down_pt6_pres_manoEtalon, oManoC.fondEchelle)
+            oControle.down_pt6_conformite = calcConformite(oControle.down_pt6_err_abs, oControle.down_pt6_EMT)
+            If oControle.down_pt6_conformite = "1" Then
+                sender.ForeColor = System.Drawing.Color.Green
+            Else
+                sender.ForeColor = System.Drawing.Color.Red
+            End If
+
+
+            ValiderSaisie(oControle)
+            m_bsCtrlMano.ResetCurrentItem()
+        Catch ex As Exception
+            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown6(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
+        End Try
+    End Sub
+
+    Private Sub ValiderSaisie(pControle As ControleMano)
+        If (isSaisieComplete()) Then
+            'Calcul du resutat du contole
+            pControle.resultat = ""
+            If checkMano(pControle) Then
+                pControle.resultat = "Votre manomètre est fiable : il répond à sa classe de précision."
+                lblResultat.ForeColor = System.Drawing.Color.Green
+            Else
+                pControle.resultat = "Votre manomètre n'est pas fiable : il ne répond pas à sa classe de précision. Faites le remettre en état ou changez le."
+                lblResultat.ForeColor = System.Drawing.Color.Red
+
+            End If
+            btn_controleManos_suivant.Enabled = True
+            btn_controleManos_valider.Enabled = True
+        Else
+            pControle.resultat = ""
+            btn_controleManos_suivant.Enabled = False
+            btn_controleManos_valider.Enabled = False
+        End If
+        lblResultat.Refresh()
+
     End Sub
     Private Function calcIncertitude(pResolution As Double, pIncertitudeEtalon As Double) As Double
         Dim dReturn As Double
@@ -3378,57 +2776,17 @@ Public Class frmControleManometres2
         Return dReturn
 
     End Function
-    Private Sub checkKeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+    Private Sub checkKeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles tbUpMR1.KeyPress
         CSForm.typeAllowed(e, "numerique")
         CSForm.forceDot(e, sender)
     End Sub
 
-    ' Changement d'onglet
-    Private Sub ongletsManos_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        ' Placer la puce sur onglet courant
-        Dim sMano As String
-        Dim oMano As ManometreControle
-        Try
-            'Si on avait pas de précédent
-            If prevSelectedManoOnglet <> -1 Then
-                '                If ongletsManos.SelectedIndex = prevSelectedManoOnglet Then
-                'L'actuel est égal au précédent (Surement un refus de chabgement car pas complet)
-                'on ne fait rien
-                '            Else
-                'on teste si le mano précédent était complet
-                'If isSaisieComplete(curManoControle) Or Not isSaisieCommencee(curManoControle) Then
-                'On change d'onglet
-                '               ongletsManos.TabPages(prevSelectedManoOnglet).ImageIndex = -1
-                '              prevSelectedManoOnglet = ongletsManos.SelectedTab.TabIndex
-                '             btn_controleManos_suivant.Enabled = False
-                'Else
-                'on revient sur le précédent
-                'ongletsManos.SelectedIndex = prevSelectedManoOnglet
-
-                'End If
-                '        End If
-
-                SelectMano()
-            End If
-
-
-        Catch ex As Exception
-            CSDebug.dispError("Puce onglet : " & ex.Message.ToString & " prevSelectedManoOnglet: " & prevSelectedManoOnglet)
-        End Try
-    End Sub
-    Private Sub SelectMano()
-        'On Positionne la puce
-        'ongletsManos.SelectedTab.ImageIndex = 0
-        'On Met en mano come courant
-        'curManoControle = ManometreControleManager.getManometreControleByNumeroNational(ongletsManos.SelectedTab.Name.Replace("tabPage_mano_", ""))
-
-    End Sub
 
 #End Region
 
 #Region " Acquisition des données "
     ' Bouton acquisitin des données
-    Private Sub btn_controleManos_acquiring_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub btn_controleManos_acquiring_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_acquiring.Click
         Panel_loading.Visible = True
         doAcqiring()
     End Sub
@@ -3436,8 +2794,8 @@ Public Class frmControleManometres2
     Private _thread_doAcqiring As Thread
     Private Sub thr_doAcqiring()
 
-        Dim curMano As ManometreControle
-        ' curMano = ManometreControleManager.getManometreControleByNumeroNational(ongletsManos.SelectedTab.Name.Replace("tabPage_mano_", ""))
+        Dim oControle As ControleMano
+        oControle = m_bsCtrlMano.Current
         Dim nbBusesAcquis As Integer = AcquiringManager.getNbBuses(2)
         Dim isok As Boolean = (Me.nbMesures = nbBusesAcquis)
         If isok Then
@@ -3451,16 +2809,39 @@ Public Class frmControleManometres2
                         ' On injecte les valeurs
                         Try
 
-                            Dim x As Control
 
                             If tmpResponse.idNiveau = 1 Then ' Croissante
-                                'x = CSForm.getControlByName("croissant_pression_instrumentReference_" & tmpResponse.idBuse & "_" & curMano.numeroNational, ongletsManos)
+                                Select Case tmpResponse.idBuse
+                                    Case 1
+                                        oControle.up_pt1_pres_manoEtalon = tmpResponse.debit
+                                    Case 2
+                                        oControle.up_pt2_pres_manoEtalon = tmpResponse.debit
+                                    Case 3
+                                        oControle.up_pt3_pres_manoEtalon = tmpResponse.debit
+                                    Case 4
+                                        oControle.up_pt4_pres_manoEtalon = tmpResponse.debit
+                                    Case 5
+                                        oControle.up_pt5_pres_manoEtalon = tmpResponse.debit
+                                    Case 6
+                                        oControle.up_pt6_pres_manoEtalon = tmpResponse.debit
+                                End Select
                             Else ' Decroissante
                                 Dim tmpId As Integer = tmpResponse.idBuse - Me.nbMesures
-                                'x = CSForm.getControlByName("decroissant_pression_instrumentReference_" & tmpId & "_" & curMano.numeroNational, ongletsManos)
+                                Select Case tmpId
+                                    Case 1
+                                        oControle.down_pt1_pres_manoEtalon = tmpResponse.debit
+                                    Case 2
+                                        oControle.down_pt2_pres_manoEtalon = tmpResponse.debit
+                                    Case 3
+                                        oControle.down_pt3_pres_manoEtalon = tmpResponse.debit
+                                    Case 4
+                                        oControle.down_pt4_pres_manoEtalon = tmpResponse.debit
+                                    Case 5
+                                        oControle.down_pt5_pres_manoEtalon = tmpResponse.debit
+                                    Case 6
+                                        oControle.down_pt6_pres_manoEtalon = tmpResponse.debit
+                                End Select
                             End If
-
-                            x.Text = tmpResponse.debit.ToString
 
                         Catch ex As Exception
                             CSDebug.dispError("[x0C0004] : " & ex.Message)
@@ -3471,31 +2852,135 @@ Public Class frmControleManometres2
                 End Try
             Next
             ' On vide la table d'échange
+            m_bsCtrlMano.ResetBindings(False)
             'AcquiringManager.clearResults()
         Else
             MsgBox("Le nombre de buses acquises est différent du nombre de mesures nécéssaires. Veuillez vérifiez.")
         End If
 
-        Panel_loading.Visible = False
     End Sub
 
     Public Sub doAcqiring()
         _thread_doAcqiring = New Thread(AddressOf thr_doAcqiring) 'ThrFunc est la fonction exécutée par le thread.
         _thread_doAcqiring.Name = "thr_doAcqiring" 'Il est parfois pratique de nommer les threads surtout si on en créé plusieurs.
         _thread_doAcqiring.Start() ' Démarrage du thread.
+        _thread_doAcqiring.Join() ' Démarrage du thread.
+        m_bsCtrlMano.ResetCurrentItem()
+        saisiePressionManoReferenceup1(tbUpMR1, New EventArgs())
+        saisiePressionManoReferenceup2(tbUpMR2, New EventArgs())
+        saisiePressionManoReferenceup3(tbUpMR3, New EventArgs())
+        saisiePressionManoReferenceup4(tbUpMR4, New EventArgs())
+        saisiePressionManoReferenceup5(tbUpMR5, New EventArgs())
+        saisiePressionManoReferenceup6(tbUpMR6, New EventArgs())
+        saisiePressionManoReferencedown1(tbDownMR1, New EventArgs())
+        saisiePressionManoReferencedown2(tbDownMR2, New EventArgs())
+        saisiePressionManoReferencedown3(tbDownMR3, New EventArgs())
+        saisiePressionManoReferencedown4(tbDownMR4, New EventArgs())
+        saisiePressionManoReferencedown5(tbDownMR5, New EventArgs())
+        saisiePressionManoReferencedown6(tbDownMR6, New EventArgs())
     End Sub
 
 #End Region
 
-    Private Sub ongletsManos_Click(sender As System.Object, e As System.EventArgs)
-        Console.WriteLine("OngletMano.click")
+    Private Sub m_bsManoControle_CurrentChanged(sender As Object, e As EventArgs) Handles m_bsManoControle.CurrentChanged
+        SelectionManoControle()
     End Sub
 
-    Private Sub Label5_Click(sender As Object, e As EventArgs)
+    Private Sub SelectionManoControle()
+        Dim oMano As ManometreControle
+        oMano = m_bsManoControle.Current
 
+        Dim oManoEtalon As ManometreEtalon
+        oManoEtalon = m_bsManoEtalon.Current
+
+        Dim oControle As ControleMano
+        oControle = New ControleMano(m_oAgent)
+        oControle.idStructure = oMano.idStructure
+        oControle.idMano = oMano.numeroNational
+        oControle.manoEtalon = oMano.idCrodip
+        oControle.tempAir = tbTemperature.Text
+        oControle.resultat = oMano.etat
+        oControle.DateVerif = CSDate.ToCRODIPString(Date.Now).ToString
+
+        oControle.up_pt1_pres_manoCtrl = oMano.Pression1Ctrl
+        oControle.up_pt2_pres_manoCtrl = oMano.Pression2Ctrl
+        oControle.up_pt3_pres_manoCtrl = oMano.Pression3Ctrl
+        oControle.up_pt4_pres_manoCtrl = oMano.Pression4Ctrl
+        oControle.up_pt5_pres_manoCtrl = oMano.Pression5Ctrl
+        oControle.up_pt6_pres_manoCtrl = oMano.Pression6Ctrl
+
+        oControle.down_pt1_pres_manoCtrl = oMano.Pression1Ctrl
+        oControle.down_pt2_pres_manoCtrl = oMano.Pression2Ctrl
+        oControle.down_pt3_pres_manoCtrl = oMano.Pression3Ctrl
+        oControle.down_pt4_pres_manoCtrl = oMano.Pression4Ctrl
+        oControle.down_pt5_pres_manoCtrl = oMano.Pression5Ctrl
+        oControle.down_pt6_pres_manoCtrl = oMano.Pression6Ctrl
+
+        Dim valueIncertitude As Double
+        valueIncertitude = calcIncertitude(oMano.resolution_d, oManoEtalon.incertitudeEtalon_d)
+
+        oControle.up_pt1_incertitude = valueIncertitude
+        oControle.up_pt2_incertitude = valueIncertitude
+        oControle.up_pt3_incertitude = valueIncertitude
+        oControle.up_pt4_incertitude = valueIncertitude
+        oControle.up_pt5_incertitude = valueIncertitude
+        oControle.up_pt6_incertitude = valueIncertitude
+
+        oControle.down_pt1_incertitude = valueIncertitude
+        oControle.down_pt2_incertitude = valueIncertitude
+        oControle.down_pt3_incertitude = valueIncertitude
+        oControle.down_pt4_incertitude = valueIncertitude
+        oControle.down_pt5_incertitude = valueIncertitude
+        oControle.down_pt6_incertitude = valueIncertitude
+
+        oControle.up_pt1_EMT = oMano.calcEMT()
+        oControle.up_pt2_EMT = oMano.calcEMT()
+        oControle.up_pt3_EMT = oMano.calcEMT()
+        oControle.up_pt4_EMT = oMano.calcEMT()
+        oControle.up_pt5_EMT = oMano.calcEMT()
+        oControle.up_pt6_EMT = oMano.calcEMT()
+
+        oControle.down_pt1_EMT = oMano.calcEMT()
+        oControle.down_pt2_EMT = oMano.calcEMT()
+        oControle.down_pt3_EMT = oMano.calcEMT()
+        oControle.down_pt4_EMT = oMano.calcEMT()
+        oControle.down_pt5_EMT = oMano.calcEMT()
+        oControle.down_pt6_EMT = oMano.calcEMT()
+
+        oControle.up_pt1_err_abs = ""
+        oControle.up_pt2_err_abs = ""
+        oControle.up_pt3_err_abs = ""
+        oControle.up_pt4_err_abs = ""
+        oControle.up_pt5_err_abs = ""
+        oControle.up_pt6_err_abs = ""
+
+        oControle.down_pt1_err_abs = ""
+        oControle.down_pt2_err_abs = ""
+        oControle.down_pt3_err_abs = ""
+        oControle.down_pt4_err_abs = ""
+        oControle.down_pt5_err_abs = ""
+        oControle.down_pt6_err_abs = ""
+
+        oControle.up_pt1_err_fondEchelle = ""
+        oControle.up_pt2_err_fondEchelle = ""
+        oControle.up_pt3_err_fondEchelle = ""
+        oControle.up_pt4_err_fondEchelle = ""
+        oControle.up_pt5_err_fondEchelle = ""
+        oControle.up_pt6_err_fondEchelle = ""
+
+        oControle.down_pt1_err_fondEchelle = ""
+        oControle.down_pt2_err_fondEchelle = ""
+        oControle.down_pt3_err_fondEchelle = ""
+        oControle.down_pt4_err_fondEchelle = ""
+        oControle.down_pt5_err_fondEchelle = ""
+        oControle.down_pt6_err_fondEchelle = ""
+
+        m_bsCtrlMano.Clear()
+        m_bsCtrlMano.Add(oControle)
+        m_bsCtrlMano.MoveLast()
     End Sub
 
-    Private Sub Label5_Click_1(sender As Object, e As EventArgs) Handles Label5.Click
 
-    End Sub
+
+
 End Class

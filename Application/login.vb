@@ -71,6 +71,8 @@ Public Class login
     Friend WithEvents btnTestDiagHelp12123 As System.Windows.Forms.Button
     Friend WithEvents pnlLoginControls As System.Windows.Forms.Panel
     Friend WithEvents cbTestRIFin As Button
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -89,6 +91,8 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.cbTestRIFin = New System.Windows.Forms.Button()
         Me.btnTestDiagHelp12123 = New System.Windows.Forms.Button()
         Me.btnTest = New System.Windows.Forms.Button()
         Me.panel_splashSynchro = New System.Windows.Forms.Panel()
@@ -100,7 +104,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.cbTestRIFin = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.formLogin.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
@@ -277,6 +281,8 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.Button2)
+        Me.GroupBox_test.Controls.Add(Me.Button1)
         Me.GroupBox_test.Controls.Add(Me.cbTestRIFin)
         Me.GroupBox_test.Controls.Add(Me.btnTestDiagHelp12123)
         Me.GroupBox_test.Controls.Add(Me.btnTest)
@@ -286,6 +292,28 @@ Public Class login
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.SystemColors.Control
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(134, 48)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(104, 23)
+        Me.Button1.TabIndex = 29
+        Me.Button1.Text = "CtrlMano2"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'cbTestRIFin
+        '
+        Me.cbTestRIFin.BackColor = System.Drawing.SystemColors.Control
+        Me.cbTestRIFin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbTestRIFin.Location = New System.Drawing.Point(24, 48)
+        Me.cbTestRIFin.Name = "cbTestRIFin"
+        Me.cbTestRIFin.Size = New System.Drawing.Size(104, 23)
+        Me.cbTestRIFin.TabIndex = 28
+        Me.cbTestRIFin.Text = "RI (Fin)"
+        Me.cbTestRIFin.UseVisualStyleBackColor = False
         '
         'btnTestDiagHelp12123
         '
@@ -377,7 +405,7 @@ Public Class login
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(512, 32)
         Me.Label3.TabIndex = 0
-        Me.Label3.Text = "        Pour accéder au logiciel, veuillez sélectionner votre profil ci-dessous e" &
+        Me.Label3.Text = "        Pour accéder au logiciel, veuillez sélectionner votre profil ci-dessous e" & _
     "t indiquer votre mot de passe :"
         '
         'lbl_environnement_debugType
@@ -417,16 +445,16 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'cbTestRIFin
+        'Button2
         '
-        Me.cbTestRIFin.BackColor = System.Drawing.SystemColors.Control
-        Me.cbTestRIFin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbTestRIFin.Location = New System.Drawing.Point(24, 48)
-        Me.cbTestRIFin.Name = "cbTestRIFin"
-        Me.cbTestRIFin.Size = New System.Drawing.Size(104, 23)
-        Me.cbTestRIFin.TabIndex = 28
-        Me.cbTestRIFin.Text = "RI (Fin)"
-        Me.cbTestRIFin.UseVisualStyleBackColor = False
+        Me.Button2.BackColor = System.Drawing.SystemColors.Control
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(344, 49)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(104, 23)
+        Me.Button2.TabIndex = 30
+        Me.Button2.Text = "CtrlMano"
+        Me.Button2.UseVisualStyleBackColor = False
         '
         'login
         '
@@ -766,4 +794,22 @@ Public Class login
 #End Region
 
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim oAgent As Agent
+
+        oAgent = AgentManager.getAgentById("1110")
+
+        Dim ofrm As New frmControleManometres2(oAgent)
+        TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim oAgent As Agent
+
+        oAgent = AgentManager.getAgentById("1110")
+
+        Dim ofrm As New frmControleManometres(oAgent)
+        TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
+
+    End Sub
 End Class

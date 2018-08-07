@@ -103,17 +103,34 @@ Public Class ControleMano
     Public Property resultat() As String
         Get
             Dim sReturn As String
+            Dim bComplet As Boolean = True
             sReturn = "Votre manomètre est fiable : il répond à sa classe de précision."
             For Each oDetail As ControleManoDetail In _lst.Values
                 If oDetail.conformite = "0" Then
                     sReturn = "Votre manomètre n'est pas fiable : il ne répond pas à sa classe de précision. Faites le remettre en état ou changez le."
                 End If
+                If oDetail.conformite = "" Then
+                    bComplet = False
+                End If
             Next
+            If Not bComplet Then
+                sReturn = ""
+            End If
             Return sReturn
         End Get
         Set(ByVal Value As String)
             _resultat = Value
         End Set
+    End Property
+    <XmlIgnore()>
+    Public ReadOnly Property resultatColor() As System.Drawing.Color
+        Get
+            If resultat = "Votre manomètre est fiable : il répond à sa classe de précision." Then
+                Return System.Drawing.Color.Green
+            Else
+                Return System.Drawing.Color.Green
+            End If
+        End Get
     End Property
     <XmlIgnore()>
     Public Property lstControleManoDetail As Dictionary(Of String, ControleManoDetail)

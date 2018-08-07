@@ -64,6 +64,7 @@ Public Class accueil
     Friend WithEvents lbSynhcroCourante As System.Windows.Forms.ListBox
     Friend WithEvents pnl_ListSynhcros As System.Windows.Forms.Panel
     Friend WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
+    Friend WithEvents Label5 As System.Windows.Forms.Label
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -283,10 +284,10 @@ Public Class accueil
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(accueil))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImageList_synchro = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_Docs = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
@@ -343,35 +344,6 @@ Public Class accueil
         Me.lbl_infosAgent_Prenom = New System.Windows.Forms.Label()
         Me.lbl_infosAgent_dateLastConnexion = New System.Windows.Forms.Label()
         Me.tabControl_clientele = New System.Windows.Forms.TabPage()
-        Me.panel_clientele_ficheClient = New System.Windows.Forms.Panel()
-        Me.grp_ficheClient_ListePulve = New System.Windows.Forms.GroupBox()
-        Me.dgvPulveExploit = New System.Windows.Forms.DataGridView()
-        Me.IconPulveCol = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.NumeroNationalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TypeDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MarqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ModeleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NombreBusesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CapaciteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AttelageDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AnneeAchatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateProchainControleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IconPulveColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsrcPulverisateurTMP = New System.Windows.Forms.BindingSource(Me.components)
-        Me.btnTransfertPulve = New System.Windows.Forms.Button()
-        Me.btnAjoutPulve = New System.Windows.Forms.Button()
-        Me.btnFichePulve = New System.Windows.Forms.Button()
-        Me.btnSupprPulve = New System.Windows.Forms.Button()
-        Me.btn_ficheClient_diagnostic_nouveau = New System.Windows.Forms.Label()
-        Me.btn_ficheClient_diagnostic_nouvelleCV = New System.Windows.Forms.Label()
-        Me.btn_ficheClient_diagnostic_voir = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.lstPulves_client_proprioSiren = New System.Windows.Forms.Label()
-        Me.lstPulves_client_raisonSociale = New System.Windows.Forms.Label()
-        Me.btn_ficheClient_voirFiche = New System.Windows.Forms.Label()
-        Me.btn_ficheClient_retour = New System.Windows.Forms.Label()
         Me.panel_ListeDesControles = New System.Windows.Forms.Panel()
         Me.list_clients = New System.Windows.Forms.ListView()
         Me.listClients_col_siren = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -402,6 +374,35 @@ Public Class accueil
         Me.btn_proprietaire_pulveListe = New System.Windows.Forms.Label()
         Me.btn_proprietaire_ajouter = New System.Windows.Forms.Label()
         Me.btn_proprietaire_derniersControles = New System.Windows.Forms.Label()
+        Me.panel_clientele_ficheClient = New System.Windows.Forms.Panel()
+        Me.grp_ficheClient_ListePulve = New System.Windows.Forms.GroupBox()
+        Me.dgvPulveExploit = New System.Windows.Forms.DataGridView()
+        Me.IconPulveCol = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.NumeroNationalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TypeDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MarqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ModeleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreBusesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CapaciteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AttelageDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AnneeAchatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateProchainControleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IconPulveColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.m_bsrcPulverisateurTMP = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btnTransfertPulve = New System.Windows.Forms.Button()
+        Me.btnAjoutPulve = New System.Windows.Forms.Button()
+        Me.btnFichePulve = New System.Windows.Forms.Button()
+        Me.btnSupprPulve = New System.Windows.Forms.Button()
+        Me.btn_ficheClient_diagnostic_nouveau = New System.Windows.Forms.Label()
+        Me.btn_ficheClient_diagnostic_nouvelleCV = New System.Windows.Forms.Label()
+        Me.btn_ficheClient_diagnostic_voir = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.lstPulves_client_proprioSiren = New System.Windows.Forms.Label()
+        Me.lstPulves_client_raisonSociale = New System.Windows.Forms.Label()
+        Me.btn_ficheClient_voirFiche = New System.Windows.Forms.Label()
+        Me.btn_ficheClient_retour = New System.Windows.Forms.Label()
         Me.tabControl_pulverisateurs = New System.Windows.Forms.TabPage()
         Me.btn_lstPulve_voirFiche = New System.Windows.Forms.Label()
         Me.listPulve_btn_exportCsv = New System.Windows.Forms.Label()
@@ -513,6 +514,7 @@ Public Class accueil
         Me.laNomAgent2 = New System.Windows.Forms.Label()
         Me.PictureBox8 = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
         Me.tabControl_accueil.SuspendLayout()
@@ -524,22 +526,23 @@ Public Class accueil
         Me.tabAccueil_mesinfos.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_clientele.SuspendLayout()
-        Me.panel_clientele_ficheClient.SuspendLayout()
-        Me.grp_ficheClient_ListePulve.SuspendLayout()
-        CType(Me.dgvPulveExploit, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcPulverisateurTMP, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox2.SuspendLayout()
         Me.panel_ListeDesControles.SuspendLayout()
         Me.panel_clientele_LstCtrlCtriteres.SuspendLayout()
         Me.pnl_SearchDates.SuspendLayout()
         CType(Me.btn_refresh_lst_clients, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btn_rechercher_exploitant, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panel_clientele_ficheClient.SuspendLayout()
+        Me.grp_ficheClient_ListePulve.SuspendLayout()
+        CType(Me.dgvPulveExploit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcPulverisateurTMP, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
         Me.tabControl_pulverisateurs.SuspendLayout()
         CType(Me.listPulve_btn_refreshList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_synchro.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.pnl_ListSynhcros.SuspendLayout()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer2.Panel1.SuspendLayout()
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
@@ -549,6 +552,7 @@ Public Class accueil
         Me.tabControl_outilscomp.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.pctbx_Docs_refresh, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -786,14 +790,14 @@ Public Class accueil
         Me.dgv_ControleRegulier.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgv_ControleRegulier.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.dgv_ControleRegulier.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgv_ControleRegulier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TypeDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.isOK, Me.isNOK, Me.isNonEffectue})
         Me.dgv_ControleRegulier.DataSource = Me.bsControleQuotidien
@@ -1067,359 +1071,6 @@ Public Class accueil
         Me.tabControl_clientele.Size = New System.Drawing.Size(1000, 653)
         Me.tabControl_clientele.TabIndex = 1
         Me.tabControl_clientele.Text = "Contrôle"
-        '
-        'panel_clientele_ficheClient
-        '
-        Me.panel_clientele_ficheClient.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panel_clientele_ficheClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.panel_clientele_ficheClient.Controls.Add(Me.grp_ficheClient_ListePulve)
-        Me.panel_clientele_ficheClient.Controls.Add(Me.Label1)
-        Me.panel_clientele_ficheClient.Controls.Add(Me.GroupBox2)
-        Me.panel_clientele_ficheClient.Controls.Add(Me.btn_ficheClient_retour)
-        Me.panel_clientele_ficheClient.Location = New System.Drawing.Point(-4, 0)
-        Me.panel_clientele_ficheClient.Name = "panel_clientele_ficheClient"
-        Me.panel_clientele_ficheClient.Size = New System.Drawing.Size(1004, 656)
-        Me.panel_clientele_ficheClient.TabIndex = 8
-        Me.panel_clientele_ficheClient.Visible = False
-        '
-        'grp_ficheClient_ListePulve
-        '
-        Me.grp_ficheClient_ListePulve.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grp_ficheClient_ListePulve.Controls.Add(Me.dgvPulveExploit)
-        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnTransfertPulve)
-        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnAjoutPulve)
-        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnFichePulve)
-        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnSupprPulve)
-        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btn_ficheClient_diagnostic_nouveau)
-        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btn_ficheClient_diagnostic_nouvelleCV)
-        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btn_ficheClient_diagnostic_voir)
-        Me.grp_ficheClient_ListePulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grp_ficheClient_ListePulve.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.grp_ficheClient_ListePulve.Location = New System.Drawing.Point(8, 147)
-        Me.grp_ficheClient_ListePulve.Name = "grp_ficheClient_ListePulve"
-        Me.grp_ficheClient_ListePulve.Size = New System.Drawing.Size(984, 488)
-        Me.grp_ficheClient_ListePulve.TabIndex = 10
-        Me.grp_ficheClient_ListePulve.TabStop = False
-        Me.grp_ficheClient_ListePulve.Text = "Liste des pulvérisateurs"
-        '
-        'dgvPulveExploit
-        '
-        Me.dgvPulveExploit.AllowUserToAddRows = False
-        Me.dgvPulveExploit.AllowUserToDeleteRows = False
-        Me.dgvPulveExploit.AllowUserToResizeRows = False
-        Me.dgvPulveExploit.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvPulveExploit.AutoGenerateColumns = False
-        Me.dgvPulveExploit.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgvPulveExploit.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.dgvPulveExploit.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlLight
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.dgvPulveExploit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPulveExploit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IconPulveCol, Me.NumeroNationalDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn1, Me.MarqueDataGridViewTextBoxColumn, Me.ModeleDataGridViewTextBoxColumn, Me.NombreBusesDataGridViewTextBoxColumn, Me.CapaciteDataGridViewTextBoxColumn, Me.AttelageDataGridViewTextBoxColumn, Me.AnneeAchatDataGridViewTextBoxColumn, Me.DateProchainControleDataGridViewTextBoxColumn, Me.IconPulveColumn, Me.PulvePrincipalNumNatDataGridViewTextBoxColumn})
-        Me.dgvPulveExploit.DataSource = Me.m_bsrcPulverisateurTMP
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvPulveExploit.DefaultCellStyle = DataGridViewCellStyle4
-        Me.dgvPulveExploit.GridColor = System.Drawing.Color.Black
-        Me.dgvPulveExploit.Location = New System.Drawing.Point(11, 62)
-        Me.dgvPulveExploit.MultiSelect = False
-        Me.dgvPulveExploit.Name = "dgvPulveExploit"
-        Me.dgvPulveExploit.ReadOnly = True
-        Me.dgvPulveExploit.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        Me.dgvPulveExploit.RowHeadersWidth = 20
-        Me.dgvPulveExploit.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvPulveExploit.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvPulveExploit.Size = New System.Drawing.Size(965, 420)
-        Me.dgvPulveExploit.TabIndex = 32
-        Me.dgvPulveExploit.VirtualMode = True
-        '
-        'IconPulveCol
-        '
-        Me.IconPulveCol.FillWeight = 3.0!
-        Me.IconPulveCol.HeaderText = "Etat"
-        Me.IconPulveCol.Name = "IconPulveCol"
-        Me.IconPulveCol.ReadOnly = True
-        '
-        'NumeroNationalDataGridViewTextBoxColumn
-        '
-        Me.NumeroNationalDataGridViewTextBoxColumn.DataPropertyName = "numeroNational"
-        Me.NumeroNationalDataGridViewTextBoxColumn.FillWeight = 10.0!
-        Me.NumeroNationalDataGridViewTextBoxColumn.HeaderText = "Identifiant pulvé"
-        Me.NumeroNationalDataGridViewTextBoxColumn.Name = "NumeroNationalDataGridViewTextBoxColumn"
-        Me.NumeroNationalDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TypeDataGridViewTextBoxColumn1
-        '
-        Me.TypeDataGridViewTextBoxColumn1.DataPropertyName = "type"
-        Me.TypeDataGridViewTextBoxColumn1.FillWeight = 16.0!
-        Me.TypeDataGridViewTextBoxColumn1.HeaderText = "Type"
-        Me.TypeDataGridViewTextBoxColumn1.Name = "TypeDataGridViewTextBoxColumn1"
-        Me.TypeDataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'MarqueDataGridViewTextBoxColumn
-        '
-        Me.MarqueDataGridViewTextBoxColumn.DataPropertyName = "marque"
-        Me.MarqueDataGridViewTextBoxColumn.FillWeight = 9.0!
-        Me.MarqueDataGridViewTextBoxColumn.HeaderText = "Marque"
-        Me.MarqueDataGridViewTextBoxColumn.Name = "MarqueDataGridViewTextBoxColumn"
-        Me.MarqueDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ModeleDataGridViewTextBoxColumn
-        '
-        Me.ModeleDataGridViewTextBoxColumn.DataPropertyName = "modele"
-        Me.ModeleDataGridViewTextBoxColumn.FillWeight = 12.0!
-        Me.ModeleDataGridViewTextBoxColumn.HeaderText = "Modèle"
-        Me.ModeleDataGridViewTextBoxColumn.Name = "ModeleDataGridViewTextBoxColumn"
-        Me.ModeleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'NombreBusesDataGridViewTextBoxColumn
-        '
-        Me.NombreBusesDataGridViewTextBoxColumn.DataPropertyName = "LargeurNombreRangs"
-        Me.NombreBusesDataGridViewTextBoxColumn.FillWeight = 5.0!
-        Me.NombreBusesDataGridViewTextBoxColumn.HeaderText = "Largeur"
-        Me.NombreBusesDataGridViewTextBoxColumn.Name = "NombreBusesDataGridViewTextBoxColumn"
-        Me.NombreBusesDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CapaciteDataGridViewTextBoxColumn
-        '
-        Me.CapaciteDataGridViewTextBoxColumn.DataPropertyName = "capacite"
-        Me.CapaciteDataGridViewTextBoxColumn.FillWeight = 7.0!
-        Me.CapaciteDataGridViewTextBoxColumn.HeaderText = "Capacité"
-        Me.CapaciteDataGridViewTextBoxColumn.Name = "CapaciteDataGridViewTextBoxColumn"
-        Me.CapaciteDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AttelageDataGridViewTextBoxColumn
-        '
-        Me.AttelageDataGridViewTextBoxColumn.DataPropertyName = "attelage"
-        Me.AttelageDataGridViewTextBoxColumn.FillWeight = 11.0!
-        Me.AttelageDataGridViewTextBoxColumn.HeaderText = "Attelage"
-        Me.AttelageDataGridViewTextBoxColumn.Name = "AttelageDataGridViewTextBoxColumn"
-        Me.AttelageDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AnneeAchatDataGridViewTextBoxColumn
-        '
-        Me.AnneeAchatDataGridViewTextBoxColumn.DataPropertyName = "anneeAchat"
-        Me.AnneeAchatDataGridViewTextBoxColumn.FillWeight = 6.0!
-        Me.AnneeAchatDataGridViewTextBoxColumn.HeaderText = "Année Construct."
-        Me.AnneeAchatDataGridViewTextBoxColumn.Name = "AnneeAchatDataGridViewTextBoxColumn"
-        Me.AnneeAchatDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DateProchainControleDataGridViewTextBoxColumn
-        '
-        Me.DateProchainControleDataGridViewTextBoxColumn.DataPropertyName = "dateProchainControleAsDate"
-        DataGridViewCellStyle3.Format = "d"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DateProchainControleDataGridViewTextBoxColumn.FillWeight = 9.0!
-        Me.DateProchainControleDataGridViewTextBoxColumn.HeaderText = "Prochain contrôle"
-        Me.DateProchainControleDataGridViewTextBoxColumn.Name = "DateProchainControleDataGridViewTextBoxColumn"
-        Me.DateProchainControleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'IconPulveColumn
-        '
-        Me.IconPulveColumn.DataPropertyName = "PulvePrincipalAdditionel"
-        Me.IconPulveColumn.FillWeight = 5.0!
-        Me.IconPulveColumn.HeaderText = "Statut"
-        Me.IconPulveColumn.Name = "IconPulveColumn"
-        Me.IconPulveColumn.ReadOnly = True
-        Me.IconPulveColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'PulvePrincipalNumNatDataGridViewTextBoxColumn
-        '
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.DataPropertyName = "pulvePrincipalNumNat"
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.FillWeight = 8.0!
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.HeaderText = "ID Principal"
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.Name = "PulvePrincipalNumNatDataGridViewTextBoxColumn"
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'm_bsrcPulverisateurTMP
-        '
-        Me.m_bsrcPulverisateurTMP.DataSource = GetType(Crodip_agent.Pulverisateur)
-        '
-        'btnTransfertPulve
-        '
-        Me.btnTransfertPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.btnTransfertPulve.BackgroundImage = Crodip_Agent.Resources.btn_login
-        Me.btnTransfertPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnTransfertPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnTransfertPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnTransfertPulve.ForeColor = System.Drawing.Color.White
-        Me.btnTransfertPulve.Location = New System.Drawing.Point(541, 24)
-        Me.btnTransfertPulve.Name = "btnTransfertPulve"
-        Me.btnTransfertPulve.Size = New System.Drawing.Size(112, 24)
-        Me.btnTransfertPulve.TabIndex = 31
-        Me.btnTransfertPulve.Text = "Transfert pulve"
-        Me.btnTransfertPulve.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnTransfertPulve.UseVisualStyleBackColor = False
-        '
-        'btnAjoutPulve
-        '
-        Me.btnAjoutPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.btnAjoutPulve.BackgroundImage = Crodip_Agent.Resources.btn_divers_add
-        Me.btnAjoutPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnAjoutPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAjoutPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAjoutPulve.ForeColor = System.Drawing.Color.White
-        Me.btnAjoutPulve.Location = New System.Drawing.Point(659, 24)
-        Me.btnAjoutPulve.Name = "btnAjoutPulve"
-        Me.btnAjoutPulve.Size = New System.Drawing.Size(115, 24)
-        Me.btnAjoutPulve.TabIndex = 30
-        Me.btnAjoutPulve.Text = "Ajouter un pulve"
-        Me.btnAjoutPulve.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnAjoutPulve.UseVisualStyleBackColor = False
-        '
-        'btnFichePulve
-        '
-        Me.btnFichePulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.btnFichePulve.BackgroundImage = Crodip_Agent.Resources.btn_fiche_voir
-        Me.btnFichePulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnFichePulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnFichePulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnFichePulve.ForeColor = System.Drawing.Color.White
-        Me.btnFichePulve.Location = New System.Drawing.Point(780, 24)
-        Me.btnFichePulve.Name = "btnFichePulve"
-        Me.btnFichePulve.Size = New System.Drawing.Size(101, 24)
-        Me.btnFichePulve.TabIndex = 29
-        Me.btnFichePulve.Text = "Voir la fiche"
-        Me.btnFichePulve.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnFichePulve.UseVisualStyleBackColor = False
-        '
-        'btnSupprPulve
-        '
-        Me.btnSupprPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.btnSupprPulve.BackgroundImage = Crodip_Agent.Resources.btn_delete
-        Me.btnSupprPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnSupprPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSupprPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSupprPulve.ForeColor = System.Drawing.Color.White
-        Me.btnSupprPulve.Location = New System.Drawing.Point(887, 24)
-        Me.btnSupprPulve.Name = "btnSupprPulve"
-        Me.btnSupprPulve.Size = New System.Drawing.Size(89, 24)
-        Me.btnSupprPulve.TabIndex = 28
-        Me.btnSupprPulve.Text = "Supprimer"
-        Me.btnSupprPulve.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnSupprPulve.UseVisualStyleBackColor = False
-        '
-        'btn_ficheClient_diagnostic_nouveau
-        '
-        Me.btn_ficheClient_diagnostic_nouveau.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_ficheClient_diagnostic_nouveau.ForeColor = System.Drawing.Color.White
-        Me.btn_ficheClient_diagnostic_nouveau.Image = CType(resources.GetObject("btn_ficheClient_diagnostic_nouveau.Image"), System.Drawing.Image)
-        Me.btn_ficheClient_diagnostic_nouveau.Location = New System.Drawing.Point(8, 24)
-        Me.btn_ficheClient_diagnostic_nouveau.Name = "btn_ficheClient_diagnostic_nouveau"
-        Me.btn_ficheClient_diagnostic_nouveau.Size = New System.Drawing.Size(176, 24)
-        Me.btn_ficheClient_diagnostic_nouveau.TabIndex = 26
-        Me.btn_ficheClient_diagnostic_nouveau.Text = "       Réaliser un contrôle"
-        Me.btn_ficheClient_diagnostic_nouveau.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btn_ficheClient_diagnostic_nouvelleCV
-        '
-        Me.btn_ficheClient_diagnostic_nouvelleCV.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_ficheClient_diagnostic_nouvelleCV.ForeColor = System.Drawing.Color.White
-        Me.btn_ficheClient_diagnostic_nouvelleCV.Image = CType(resources.GetObject("btn_ficheClient_diagnostic_nouvelleCV.Image"), System.Drawing.Image)
-        Me.btn_ficheClient_diagnostic_nouvelleCV.Location = New System.Drawing.Point(190, 24)
-        Me.btn_ficheClient_diagnostic_nouvelleCV.Name = "btn_ficheClient_diagnostic_nouvelleCV"
-        Me.btn_ficheClient_diagnostic_nouvelleCV.Size = New System.Drawing.Size(180, 24)
-        Me.btn_ficheClient_diagnostic_nouvelleCV.TabIndex = 26
-        Me.btn_ficheClient_diagnostic_nouvelleCV.Text = "       Réaliser une contre visite"
-        Me.btn_ficheClient_diagnostic_nouvelleCV.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btn_ficheClient_diagnostic_voir
-        '
-        Me.btn_ficheClient_diagnostic_voir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_ficheClient_diagnostic_voir.ForeColor = System.Drawing.Color.White
-        Me.btn_ficheClient_diagnostic_voir.Image = CType(resources.GetObject("btn_ficheClient_diagnostic_voir.Image"), System.Drawing.Image)
-        Me.btn_ficheClient_diagnostic_voir.Location = New System.Drawing.Point(372, 24)
-        Me.btn_ficheClient_diagnostic_voir.Name = "btn_ficheClient_diagnostic_voir"
-        Me.btn_ficheClient_diagnostic_voir.Size = New System.Drawing.Size(128, 24)
-        Me.btn_ficheClient_diagnostic_voir.TabIndex = 26
-        Me.btn_ficheClient_diagnostic_voir.Text = "       Voir un contrôle"
-        Me.btn_ficheClient_diagnostic_voir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label1
-        '
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
-        Me.Label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label1.Location = New System.Drawing.Point(8, 8)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(144, 24)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "     Fiche client"
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.lstPulves_client_proprioSiren)
-        Me.GroupBox2.Controls.Add(Me.lstPulves_client_raisonSociale)
-        Me.GroupBox2.Controls.Add(Me.btn_ficheClient_voirFiche)
-        Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.GroupBox2.Location = New System.Drawing.Point(8, 40)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(560, 104)
-        Me.GroupBox2.TabIndex = 10
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Client"
-        '
-        'lstPulves_client_proprioSiren
-        '
-        Me.lstPulves_client_proprioSiren.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lstPulves_client_proprioSiren.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.lstPulves_client_proprioSiren.Location = New System.Drawing.Point(8, 40)
-        Me.lstPulves_client_proprioSiren.Name = "lstPulves_client_proprioSiren"
-        Me.lstPulves_client_proprioSiren.Size = New System.Drawing.Size(544, 16)
-        Me.lstPulves_client_proprioSiren.TabIndex = 3
-        '
-        'lstPulves_client_raisonSociale
-        '
-        Me.lstPulves_client_raisonSociale.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lstPulves_client_raisonSociale.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.lstPulves_client_raisonSociale.Location = New System.Drawing.Point(8, 16)
-        Me.lstPulves_client_raisonSociale.Name = "lstPulves_client_raisonSociale"
-        Me.lstPulves_client_raisonSociale.Size = New System.Drawing.Size(544, 24)
-        Me.lstPulves_client_raisonSociale.TabIndex = 2
-        '
-        'btn_ficheClient_voirFiche
-        '
-        Me.btn_ficheClient_voirFiche.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_ficheClient_voirFiche.ForeColor = System.Drawing.Color.White
-        Me.btn_ficheClient_voirFiche.Image = CType(resources.GetObject("btn_ficheClient_voirFiche.Image"), System.Drawing.Image)
-        Me.btn_ficheClient_voirFiche.Location = New System.Drawing.Point(8, 72)
-        Me.btn_ficheClient_voirFiche.Name = "btn_ficheClient_voirFiche"
-        Me.btn_ficheClient_voirFiche.Size = New System.Drawing.Size(128, 24)
-        Me.btn_ficheClient_voirFiche.TabIndex = 25
-        Me.btn_ficheClient_voirFiche.Text = "    Voir la fiche"
-        Me.btn_ficheClient_voirFiche.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btn_ficheClient_retour
-        '
-        Me.btn_ficheClient_retour.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_ficheClient_retour.ForeColor = System.Drawing.Color.White
-        Me.btn_ficheClient_retour.Image = CType(resources.GetObject("btn_ficheClient_retour.Image"), System.Drawing.Image)
-        Me.btn_ficheClient_retour.Location = New System.Drawing.Point(864, 120)
-        Me.btn_ficheClient_retour.Name = "btn_ficheClient_retour"
-        Me.btn_ficheClient_retour.Size = New System.Drawing.Size(128, 24)
-        Me.btn_ficheClient_retour.TabIndex = 25
-        Me.btn_ficheClient_retour.Text = "    Retour"
-        Me.btn_ficheClient_retour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'panel_ListeDesControles
         '
@@ -1717,6 +1368,359 @@ Public Class accueil
         Me.btn_proprietaire_derniersControles.Text = "       Voir les prochains contrôles"
         Me.btn_proprietaire_derniersControles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'panel_clientele_ficheClient
+        '
+        Me.panel_clientele_ficheClient.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panel_clientele_ficheClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.panel_clientele_ficheClient.Controls.Add(Me.grp_ficheClient_ListePulve)
+        Me.panel_clientele_ficheClient.Controls.Add(Me.Label1)
+        Me.panel_clientele_ficheClient.Controls.Add(Me.GroupBox2)
+        Me.panel_clientele_ficheClient.Controls.Add(Me.btn_ficheClient_retour)
+        Me.panel_clientele_ficheClient.Location = New System.Drawing.Point(-4, 0)
+        Me.panel_clientele_ficheClient.Name = "panel_clientele_ficheClient"
+        Me.panel_clientele_ficheClient.Size = New System.Drawing.Size(1004, 656)
+        Me.panel_clientele_ficheClient.TabIndex = 8
+        Me.panel_clientele_ficheClient.Visible = False
+        '
+        'grp_ficheClient_ListePulve
+        '
+        Me.grp_ficheClient_ListePulve.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grp_ficheClient_ListePulve.Controls.Add(Me.dgvPulveExploit)
+        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnTransfertPulve)
+        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnAjoutPulve)
+        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnFichePulve)
+        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnSupprPulve)
+        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btn_ficheClient_diagnostic_nouveau)
+        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btn_ficheClient_diagnostic_nouvelleCV)
+        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btn_ficheClient_diagnostic_voir)
+        Me.grp_ficheClient_ListePulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grp_ficheClient_ListePulve.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.grp_ficheClient_ListePulve.Location = New System.Drawing.Point(8, 147)
+        Me.grp_ficheClient_ListePulve.Name = "grp_ficheClient_ListePulve"
+        Me.grp_ficheClient_ListePulve.Size = New System.Drawing.Size(984, 488)
+        Me.grp_ficheClient_ListePulve.TabIndex = 10
+        Me.grp_ficheClient_ListePulve.TabStop = False
+        Me.grp_ficheClient_ListePulve.Text = "Liste des pulvérisateurs"
+        '
+        'dgvPulveExploit
+        '
+        Me.dgvPulveExploit.AllowUserToAddRows = False
+        Me.dgvPulveExploit.AllowUserToDeleteRows = False
+        Me.dgvPulveExploit.AllowUserToResizeRows = False
+        Me.dgvPulveExploit.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvPulveExploit.AutoGenerateColumns = False
+        Me.dgvPulveExploit.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvPulveExploit.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgvPulveExploit.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.ControlLight
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        Me.dgvPulveExploit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvPulveExploit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IconPulveCol, Me.NumeroNationalDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn1, Me.MarqueDataGridViewTextBoxColumn, Me.ModeleDataGridViewTextBoxColumn, Me.NombreBusesDataGridViewTextBoxColumn, Me.CapaciteDataGridViewTextBoxColumn, Me.AttelageDataGridViewTextBoxColumn, Me.AnneeAchatDataGridViewTextBoxColumn, Me.DateProchainControleDataGridViewTextBoxColumn, Me.IconPulveColumn, Me.PulvePrincipalNumNatDataGridViewTextBoxColumn})
+        Me.dgvPulveExploit.DataSource = Me.m_bsrcPulverisateurTMP
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvPulveExploit.DefaultCellStyle = DataGridViewCellStyle8
+        Me.dgvPulveExploit.GridColor = System.Drawing.Color.Black
+        Me.dgvPulveExploit.Location = New System.Drawing.Point(11, 62)
+        Me.dgvPulveExploit.MultiSelect = False
+        Me.dgvPulveExploit.Name = "dgvPulveExploit"
+        Me.dgvPulveExploit.ReadOnly = True
+        Me.dgvPulveExploit.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        Me.dgvPulveExploit.RowHeadersWidth = 20
+        Me.dgvPulveExploit.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvPulveExploit.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvPulveExploit.Size = New System.Drawing.Size(965, 420)
+        Me.dgvPulveExploit.TabIndex = 32
+        Me.dgvPulveExploit.VirtualMode = True
+        '
+        'IconPulveCol
+        '
+        Me.IconPulveCol.FillWeight = 3.0!
+        Me.IconPulveCol.HeaderText = "Etat"
+        Me.IconPulveCol.Name = "IconPulveCol"
+        Me.IconPulveCol.ReadOnly = True
+        '
+        'NumeroNationalDataGridViewTextBoxColumn
+        '
+        Me.NumeroNationalDataGridViewTextBoxColumn.DataPropertyName = "numeroNational"
+        Me.NumeroNationalDataGridViewTextBoxColumn.FillWeight = 10.0!
+        Me.NumeroNationalDataGridViewTextBoxColumn.HeaderText = "Identifiant pulvé"
+        Me.NumeroNationalDataGridViewTextBoxColumn.Name = "NumeroNationalDataGridViewTextBoxColumn"
+        Me.NumeroNationalDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TypeDataGridViewTextBoxColumn1
+        '
+        Me.TypeDataGridViewTextBoxColumn1.DataPropertyName = "type"
+        Me.TypeDataGridViewTextBoxColumn1.FillWeight = 16.0!
+        Me.TypeDataGridViewTextBoxColumn1.HeaderText = "Type"
+        Me.TypeDataGridViewTextBoxColumn1.Name = "TypeDataGridViewTextBoxColumn1"
+        Me.TypeDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'MarqueDataGridViewTextBoxColumn
+        '
+        Me.MarqueDataGridViewTextBoxColumn.DataPropertyName = "marque"
+        Me.MarqueDataGridViewTextBoxColumn.FillWeight = 9.0!
+        Me.MarqueDataGridViewTextBoxColumn.HeaderText = "Marque"
+        Me.MarqueDataGridViewTextBoxColumn.Name = "MarqueDataGridViewTextBoxColumn"
+        Me.MarqueDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ModeleDataGridViewTextBoxColumn
+        '
+        Me.ModeleDataGridViewTextBoxColumn.DataPropertyName = "modele"
+        Me.ModeleDataGridViewTextBoxColumn.FillWeight = 12.0!
+        Me.ModeleDataGridViewTextBoxColumn.HeaderText = "Modèle"
+        Me.ModeleDataGridViewTextBoxColumn.Name = "ModeleDataGridViewTextBoxColumn"
+        Me.ModeleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NombreBusesDataGridViewTextBoxColumn
+        '
+        Me.NombreBusesDataGridViewTextBoxColumn.DataPropertyName = "LargeurNombreRangs"
+        Me.NombreBusesDataGridViewTextBoxColumn.FillWeight = 5.0!
+        Me.NombreBusesDataGridViewTextBoxColumn.HeaderText = "Largeur"
+        Me.NombreBusesDataGridViewTextBoxColumn.Name = "NombreBusesDataGridViewTextBoxColumn"
+        Me.NombreBusesDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CapaciteDataGridViewTextBoxColumn
+        '
+        Me.CapaciteDataGridViewTextBoxColumn.DataPropertyName = "capacite"
+        Me.CapaciteDataGridViewTextBoxColumn.FillWeight = 7.0!
+        Me.CapaciteDataGridViewTextBoxColumn.HeaderText = "Capacité"
+        Me.CapaciteDataGridViewTextBoxColumn.Name = "CapaciteDataGridViewTextBoxColumn"
+        Me.CapaciteDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AttelageDataGridViewTextBoxColumn
+        '
+        Me.AttelageDataGridViewTextBoxColumn.DataPropertyName = "attelage"
+        Me.AttelageDataGridViewTextBoxColumn.FillWeight = 11.0!
+        Me.AttelageDataGridViewTextBoxColumn.HeaderText = "Attelage"
+        Me.AttelageDataGridViewTextBoxColumn.Name = "AttelageDataGridViewTextBoxColumn"
+        Me.AttelageDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AnneeAchatDataGridViewTextBoxColumn
+        '
+        Me.AnneeAchatDataGridViewTextBoxColumn.DataPropertyName = "anneeAchat"
+        Me.AnneeAchatDataGridViewTextBoxColumn.FillWeight = 6.0!
+        Me.AnneeAchatDataGridViewTextBoxColumn.HeaderText = "Année Construct."
+        Me.AnneeAchatDataGridViewTextBoxColumn.Name = "AnneeAchatDataGridViewTextBoxColumn"
+        Me.AnneeAchatDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DateProchainControleDataGridViewTextBoxColumn
+        '
+        Me.DateProchainControleDataGridViewTextBoxColumn.DataPropertyName = "dateProchainControleAsDate"
+        DataGridViewCellStyle7.Format = "d"
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
+        Me.DateProchainControleDataGridViewTextBoxColumn.FillWeight = 9.0!
+        Me.DateProchainControleDataGridViewTextBoxColumn.HeaderText = "Prochain contrôle"
+        Me.DateProchainControleDataGridViewTextBoxColumn.Name = "DateProchainControleDataGridViewTextBoxColumn"
+        Me.DateProchainControleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'IconPulveColumn
+        '
+        Me.IconPulveColumn.DataPropertyName = "PulvePrincipalAdditionel"
+        Me.IconPulveColumn.FillWeight = 5.0!
+        Me.IconPulveColumn.HeaderText = "Statut"
+        Me.IconPulveColumn.Name = "IconPulveColumn"
+        Me.IconPulveColumn.ReadOnly = True
+        Me.IconPulveColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'PulvePrincipalNumNatDataGridViewTextBoxColumn
+        '
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.DataPropertyName = "pulvePrincipalNumNat"
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.FillWeight = 8.0!
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.HeaderText = "ID Principal"
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.Name = "PulvePrincipalNumNatDataGridViewTextBoxColumn"
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'm_bsrcPulverisateurTMP
+        '
+        Me.m_bsrcPulverisateurTMP.DataSource = GetType(Crodip_agent.Pulverisateur)
+        '
+        'btnTransfertPulve
+        '
+        Me.btnTransfertPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.btnTransfertPulve.BackgroundImage = Global.Crodip_agent.Resources.btn_login
+        Me.btnTransfertPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnTransfertPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTransfertPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnTransfertPulve.ForeColor = System.Drawing.Color.White
+        Me.btnTransfertPulve.Location = New System.Drawing.Point(541, 24)
+        Me.btnTransfertPulve.Name = "btnTransfertPulve"
+        Me.btnTransfertPulve.Size = New System.Drawing.Size(112, 24)
+        Me.btnTransfertPulve.TabIndex = 31
+        Me.btnTransfertPulve.Text = "Transfert pulve"
+        Me.btnTransfertPulve.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnTransfertPulve.UseVisualStyleBackColor = False
+        '
+        'btnAjoutPulve
+        '
+        Me.btnAjoutPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.btnAjoutPulve.BackgroundImage = Global.Crodip_agent.Resources.btn_divers_add
+        Me.btnAjoutPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnAjoutPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAjoutPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAjoutPulve.ForeColor = System.Drawing.Color.White
+        Me.btnAjoutPulve.Location = New System.Drawing.Point(659, 24)
+        Me.btnAjoutPulve.Name = "btnAjoutPulve"
+        Me.btnAjoutPulve.Size = New System.Drawing.Size(115, 24)
+        Me.btnAjoutPulve.TabIndex = 30
+        Me.btnAjoutPulve.Text = "Ajouter un pulve"
+        Me.btnAjoutPulve.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnAjoutPulve.UseVisualStyleBackColor = False
+        '
+        'btnFichePulve
+        '
+        Me.btnFichePulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.btnFichePulve.BackgroundImage = Global.Crodip_agent.Resources.btn_fiche_voir
+        Me.btnFichePulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnFichePulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnFichePulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnFichePulve.ForeColor = System.Drawing.Color.White
+        Me.btnFichePulve.Location = New System.Drawing.Point(780, 24)
+        Me.btnFichePulve.Name = "btnFichePulve"
+        Me.btnFichePulve.Size = New System.Drawing.Size(101, 24)
+        Me.btnFichePulve.TabIndex = 29
+        Me.btnFichePulve.Text = "Voir la fiche"
+        Me.btnFichePulve.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnFichePulve.UseVisualStyleBackColor = False
+        '
+        'btnSupprPulve
+        '
+        Me.btnSupprPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.btnSupprPulve.BackgroundImage = Global.Crodip_agent.Resources.btn_delete
+        Me.btnSupprPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSupprPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSupprPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSupprPulve.ForeColor = System.Drawing.Color.White
+        Me.btnSupprPulve.Location = New System.Drawing.Point(887, 24)
+        Me.btnSupprPulve.Name = "btnSupprPulve"
+        Me.btnSupprPulve.Size = New System.Drawing.Size(89, 24)
+        Me.btnSupprPulve.TabIndex = 28
+        Me.btnSupprPulve.Text = "Supprimer"
+        Me.btnSupprPulve.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnSupprPulve.UseVisualStyleBackColor = False
+        '
+        'btn_ficheClient_diagnostic_nouveau
+        '
+        Me.btn_ficheClient_diagnostic_nouveau.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_ficheClient_diagnostic_nouveau.ForeColor = System.Drawing.Color.White
+        Me.btn_ficheClient_diagnostic_nouveau.Image = CType(resources.GetObject("btn_ficheClient_diagnostic_nouveau.Image"), System.Drawing.Image)
+        Me.btn_ficheClient_diagnostic_nouveau.Location = New System.Drawing.Point(8, 24)
+        Me.btn_ficheClient_diagnostic_nouveau.Name = "btn_ficheClient_diagnostic_nouveau"
+        Me.btn_ficheClient_diagnostic_nouveau.Size = New System.Drawing.Size(176, 24)
+        Me.btn_ficheClient_diagnostic_nouveau.TabIndex = 26
+        Me.btn_ficheClient_diagnostic_nouveau.Text = "       Réaliser un contrôle"
+        Me.btn_ficheClient_diagnostic_nouveau.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btn_ficheClient_diagnostic_nouvelleCV
+        '
+        Me.btn_ficheClient_diagnostic_nouvelleCV.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_ficheClient_diagnostic_nouvelleCV.ForeColor = System.Drawing.Color.White
+        Me.btn_ficheClient_diagnostic_nouvelleCV.Image = CType(resources.GetObject("btn_ficheClient_diagnostic_nouvelleCV.Image"), System.Drawing.Image)
+        Me.btn_ficheClient_diagnostic_nouvelleCV.Location = New System.Drawing.Point(190, 24)
+        Me.btn_ficheClient_diagnostic_nouvelleCV.Name = "btn_ficheClient_diagnostic_nouvelleCV"
+        Me.btn_ficheClient_diagnostic_nouvelleCV.Size = New System.Drawing.Size(180, 24)
+        Me.btn_ficheClient_diagnostic_nouvelleCV.TabIndex = 26
+        Me.btn_ficheClient_diagnostic_nouvelleCV.Text = "       Réaliser une contre visite"
+        Me.btn_ficheClient_diagnostic_nouvelleCV.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btn_ficheClient_diagnostic_voir
+        '
+        Me.btn_ficheClient_diagnostic_voir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_ficheClient_diagnostic_voir.ForeColor = System.Drawing.Color.White
+        Me.btn_ficheClient_diagnostic_voir.Image = CType(resources.GetObject("btn_ficheClient_diagnostic_voir.Image"), System.Drawing.Image)
+        Me.btn_ficheClient_diagnostic_voir.Location = New System.Drawing.Point(372, 24)
+        Me.btn_ficheClient_diagnostic_voir.Name = "btn_ficheClient_diagnostic_voir"
+        Me.btn_ficheClient_diagnostic_voir.Size = New System.Drawing.Size(128, 24)
+        Me.btn_ficheClient_diagnostic_voir.TabIndex = 26
+        Me.btn_ficheClient_diagnostic_voir.Text = "       Voir un contrôle"
+        Me.btn_ficheClient_diagnostic_voir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label1
+        '
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
+        Me.Label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label1.Location = New System.Drawing.Point(8, 8)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(144, 24)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "     Fiche client"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.lstPulves_client_proprioSiren)
+        Me.GroupBox2.Controls.Add(Me.lstPulves_client_raisonSociale)
+        Me.GroupBox2.Controls.Add(Me.btn_ficheClient_voirFiche)
+        Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.GroupBox2.Location = New System.Drawing.Point(8, 40)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(560, 104)
+        Me.GroupBox2.TabIndex = 10
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Client"
+        '
+        'lstPulves_client_proprioSiren
+        '
+        Me.lstPulves_client_proprioSiren.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lstPulves_client_proprioSiren.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.lstPulves_client_proprioSiren.Location = New System.Drawing.Point(8, 40)
+        Me.lstPulves_client_proprioSiren.Name = "lstPulves_client_proprioSiren"
+        Me.lstPulves_client_proprioSiren.Size = New System.Drawing.Size(544, 16)
+        Me.lstPulves_client_proprioSiren.TabIndex = 3
+        '
+        'lstPulves_client_raisonSociale
+        '
+        Me.lstPulves_client_raisonSociale.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lstPulves_client_raisonSociale.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.lstPulves_client_raisonSociale.Location = New System.Drawing.Point(8, 16)
+        Me.lstPulves_client_raisonSociale.Name = "lstPulves_client_raisonSociale"
+        Me.lstPulves_client_raisonSociale.Size = New System.Drawing.Size(544, 24)
+        Me.lstPulves_client_raisonSociale.TabIndex = 2
+        '
+        'btn_ficheClient_voirFiche
+        '
+        Me.btn_ficheClient_voirFiche.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_ficheClient_voirFiche.ForeColor = System.Drawing.Color.White
+        Me.btn_ficheClient_voirFiche.Image = CType(resources.GetObject("btn_ficheClient_voirFiche.Image"), System.Drawing.Image)
+        Me.btn_ficheClient_voirFiche.Location = New System.Drawing.Point(8, 72)
+        Me.btn_ficheClient_voirFiche.Name = "btn_ficheClient_voirFiche"
+        Me.btn_ficheClient_voirFiche.Size = New System.Drawing.Size(128, 24)
+        Me.btn_ficheClient_voirFiche.TabIndex = 25
+        Me.btn_ficheClient_voirFiche.Text = "    Voir la fiche"
+        Me.btn_ficheClient_voirFiche.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btn_ficheClient_retour
+        '
+        Me.btn_ficheClient_retour.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_ficheClient_retour.ForeColor = System.Drawing.Color.White
+        Me.btn_ficheClient_retour.Image = CType(resources.GetObject("btn_ficheClient_retour.Image"), System.Drawing.Image)
+        Me.btn_ficheClient_retour.Location = New System.Drawing.Point(864, 120)
+        Me.btn_ficheClient_retour.Name = "btn_ficheClient_retour"
+        Me.btn_ficheClient_retour.Size = New System.Drawing.Size(128, 24)
+        Me.btn_ficheClient_retour.TabIndex = 25
+        Me.btn_ficheClient_retour.Text = "    Retour"
+        Me.btn_ficheClient_retour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'tabControl_pulverisateurs
         '
         Me.tabControl_pulverisateurs.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
@@ -1963,7 +1967,7 @@ Public Class accueil
         Me.LaChrgmtSynhcro.Cursor = System.Windows.Forms.Cursors.Hand
         Me.LaChrgmtSynhcro.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LaChrgmtSynhcro.ForeColor = System.Drawing.Color.White
-        Me.LaChrgmtSynhcro.Image = Crodip_Agent.Resources.btn_empty_big
+        Me.LaChrgmtSynhcro.Image = Global.Crodip_agent.Resources.btn_empty_big
         Me.LaChrgmtSynhcro.Location = New System.Drawing.Point(8, 32)
         Me.LaChrgmtSynhcro.Name = "LaChrgmtSynhcro"
         Me.LaChrgmtSynhcro.Size = New System.Drawing.Size(180, 24)
@@ -1976,7 +1980,7 @@ Public Class accueil
         Me.btn_InitLog.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_InitLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_InitLog.ForeColor = System.Drawing.Color.White
-        Me.btn_InitLog.Image = Crodip_Agent.Resources.btn_empty_big
+        Me.btn_InitLog.Image = Global.Crodip_agent.Resources.btn_empty_big
         Me.btn_InitLog.Location = New System.Drawing.Point(713, 60)
         Me.btn_InitLog.Name = "btn_InitLog"
         Me.btn_InitLog.Size = New System.Drawing.Size(184, 24)
@@ -2091,7 +2095,7 @@ Public Class accueil
         '
         'btnMAJPulverisateurs
         '
-        Me.btnMAJPulverisateurs.BackgroundImage = Crodip_Agent.Resources.btn_empty_big
+        Me.btnMAJPulverisateurs.BackgroundImage = Global.Crodip_agent.Resources.btn_empty_big
         Me.btnMAJPulverisateurs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnMAJPulverisateurs.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnMAJPulverisateurs.Location = New System.Drawing.Point(474, 56)
@@ -2245,6 +2249,7 @@ Public Class accueil
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel5.Controls.Add(Me.Label5)
         Me.Panel5.Controls.Add(Me.lblIdentifiantPulve)
         Me.Panel5.Controls.Add(Me.lblMaterielsSupprimes)
         Me.Panel5.Controls.Add(Me.btn_parametrage_facturation)
@@ -2271,7 +2276,7 @@ Public Class accueil
         Me.lblIdentifiantPulve.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblIdentifiantPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblIdentifiantPulve.ForeColor = System.Drawing.Color.White
-        Me.lblIdentifiantPulve.Image = Crodip_Agent.Resources.btn_empty_big
+        Me.lblIdentifiantPulve.Image = Global.Crodip_agent.Resources.btn_empty_big
         Me.lblIdentifiantPulve.Location = New System.Drawing.Point(48, 276)
         Me.lblIdentifiantPulve.Name = "lblIdentifiantPulve"
         Me.lblIdentifiantPulve.Size = New System.Drawing.Size(180, 24)
@@ -3034,6 +3039,19 @@ Public Class accueil
         Me.Label7.TabIndex = 0
         Me.Label7.Text = "     Statistiques"
         '
+        'Label5
+        '
+        Me.Label5.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.White
+        Me.Label5.Image = CType(resources.GetObject("Label5.Image"), System.Drawing.Image)
+        Me.Label5.Location = New System.Drawing.Point(640, 160)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(128, 24)
+        Me.Label5.TabIndex = 27
+        Me.Label5.Text = "    Manomètres2"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'accueil
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -3060,11 +3078,6 @@ Public Class accueil
         Me.tabAccueil_mesinfos.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_clientele.ResumeLayout(False)
-        Me.panel_clientele_ficheClient.ResumeLayout(False)
-        Me.grp_ficheClient_ListePulve.ResumeLayout(False)
-        CType(Me.dgvPulveExploit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcPulverisateurTMP, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox2.ResumeLayout(False)
         Me.panel_ListeDesControles.ResumeLayout(False)
         Me.panel_clientele_LstCtrlCtriteres.ResumeLayout(False)
         Me.panel_clientele_LstCtrlCtriteres.PerformLayout()
@@ -3073,6 +3086,11 @@ Public Class accueil
         CType(Me.btn_refresh_lst_clients, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btn_rechercher_exploitant, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panel_clientele_ficheClient.ResumeLayout(False)
+        Me.grp_ficheClient_ListePulve.ResumeLayout(False)
+        CType(Me.dgvPulveExploit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcPulverisateurTMP, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
         Me.tabControl_pulverisateurs.ResumeLayout(False)
         CType(Me.listPulve_btn_refreshList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_synchro.ResumeLayout(False)
@@ -3080,6 +3098,7 @@ Public Class accueil
         Me.pnl_ListSynhcros.ResumeLayout(False)
         Me.SplitContainer2.Panel1.ResumeLayout(False)
         Me.SplitContainer2.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3089,6 +3108,7 @@ Public Class accueil
         CType(Me.pctbx_Docs_refresh, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_parametrage.ResumeLayout(False)
@@ -5384,5 +5404,11 @@ Public Class accueil
 
     Private Sub PictureBox4_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox4.MouseClick
         MajDateDernSynhcroagent()
+    End Sub
+
+    Private Sub Label5_Click_1(sender As Object, e As EventArgs) Handles Label5.Click
+        Dim ofrm As New frmControleManometres2(agentCourant)
+        TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
+
     End Sub
 End Class
