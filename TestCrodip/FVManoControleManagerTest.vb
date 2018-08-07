@@ -112,7 +112,7 @@ Public Class FVManometreControleManagerTest
 
         'Désactivation du Mano
         Assert.IsTrue(oMano.etat)
-        oMano.DesactiverMano(m_oAgent)
+        oMano.Desactiver(m_oAgent)
         oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
         Assert.IsFalse(oMano.etat)
 
@@ -165,7 +165,7 @@ Public Class FVManometreControleManagerTest
 
         'Désactivation du Mano
         Assert.IsTrue(oMano.etat)
-        oMano.DesactiverMano(m_oAgent)
+        oMano.Desactiver(m_oAgent)
         oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
         Assert.IsFalse(oMano.etat)
 

@@ -241,7 +241,7 @@
     <Compile Include="IdentifiantPulveristeurTest.vb" />
     <Compile Include="RpDiagnosticTest.vb" />
     <Compile Include="CSReglagePulveTest.vb" />
-    <Compile Include="UnitTest3.vb" />
+    <Compile Include="NiveauAlerteTest.vb" />
     <Compile Include="UnitTest4.vb" />
     <Compile Include="XMLTest.vb" />
     <Compile Include="DiagnosticTroncons833Test.vb" />

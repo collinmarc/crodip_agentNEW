@@ -33,20 +33,41 @@ Public Class ManometreControleTest
 
     <TestMethod()> _
     Public Sub TST_ALertes()
+        'Generation du fichier de paramétrage
+        Dim oLst As New List(Of NiveauAlerte)
+        Dim oNiveau As NiveauAlerte
+        oNiveau = New NiveauAlerte
+        oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Banc
+        oNiveau.Noire = 47
+        oNiveau.Rouge = 20
+        oNiveau.Orange = 10
+        oNiveau.Jaune = 5
+        oNiveau.EcartTolere = 7.5
+        oLst.Add(oNiveau)
+        oNiveau = New NiveauAlerte
+        oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.ManometreControle
+        oNiveau.Noire = 147
+        oNiveau.Rouge = 120
+        oNiveau.Orange = 110
+        oNiveau.Jaune = 15
+        oNiveau.EcartTolere = 17.5
+        oLst.Add(oNiveau)
+
+        Assert.IsTrue(NiveauAlerte.FTO_writeXml(oLst))
+
+
+
         Dim oMano As ManometreControle = New ManometreControle()
-        oMano.dateDernierControleS = CSDate.GetDateForWS(DateAdd(DateInterval.DayOfYear, -8, DateAdd(DateInterval.Month, -1, Now())))
+        oMano.dateDernierControle = DateAdd(DateInterval.DayOfYear, -148, Now())
         Assert.AreEqual(Globals.ALERTE.NOIRE, oMano.getAlerte)
-        oMano.dateDernierControleS = CSDate.GetDateForWS(DateAdd(DateInterval.DayOfYear, -5, DateAdd(DateInterval.Month, -1, Now())))
+        oMano.dateDernierControle = DateAdd(DateInterval.DayOfYear, -121, Now())
         Assert.AreEqual(Globals.ALERTE.ROUGE, oMano.getAlerte)
-        oMano.dateDernierControleS = CSDate.GetDateForWS(DateAdd(DateInterval.DayOfYear, -1, DateAdd(DateInterval.Month, -1, Now())))
-        Assert.AreEqual(Globals.ALERTE.ROUGE, oMano.getAlerte)
-        oMano.dateDernierControleS = CSDate.GetDateForWS(DateAdd(DateInterval.DayOfYear, +1, DateAdd(DateInterval.Month, -1, Now())))
+        oMano.dateDernierControle = DateAdd(DateInterval.DayOfYear, -111, Now())
         Assert.AreEqual(Globals.ALERTE.ORANGE, oMano.getAlerte)
-        oMano.dateDernierControleS = CSDate.GetDateForWS(DateAdd(DateInterval.DayOfYear, -16, Now()))
-        Assert.AreEqual(Globals.ALERTE.ORANGE, oMano.getAlerte)
-        oMano.dateDernierControleS = CSDate.GetDateForWS(DateAdd(DateInterval.DayOfYear, -14, Now()))
-        'Assert.AreEqual(ALERTE.ORANGE, oMano.getAlerte)
-        Assert.AreEqual(Globals.ALERTE.NONE, oMano.getAlerte) 'Passé à NONE le 03/05/2016 , je ne sais pas pourquoi
+        oMano.dateDernierControle = DateAdd(DateInterval.DayOfYear, -16, Now())
+        Assert.AreEqual(Globals.ALERTE.JAUNE, oMano.getAlerte)
+        oMano.dateDernierControle = DateAdd(DateInterval.DayOfYear, -14, Now())
+        Assert.AreEqual(Globals.ALERTE.NONE, oMano.getAlerte)
 
         Dim DL As Date = DateAdd(DateInterval.Month, -1, Now())
         oMano.dateDernierControleS = CSDate.GetDateForWS(DateAdd(DateInterval.DayOfYear, 5, DL))

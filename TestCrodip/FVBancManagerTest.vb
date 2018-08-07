@@ -129,7 +129,7 @@ Public Class FVBancManagerTest
 
         'Désactivation du banc
         Assert.IsTrue(obanc.etat)
-        obanc.DesactiverBanc(m_oAgent)
+        obanc.Desactiver(m_oAgent)
         obanc = BancManager.getBancById(obanc.id)
         Assert.IsFalse(obanc.etat)
         pause(1000)
@@ -193,7 +193,7 @@ Public Class FVBancManagerTest
 
         'Désactivation du banc
         Assert.IsTrue(obanc.etat)
-        obanc.DesactiverBanc(m_oAgent)
+        obanc.Desactiver(m_oAgent)
 
         'controle du banc
         Dim oCtrl As New ControleBanc()
@@ -349,7 +349,7 @@ Public Class FVBancManagerTest
         pause(1000)
 
         'Désactivation du banc
-        obanc.DesactiverBanc(m_oAgent)
+        obanc.Desactiver(m_oAgent)
         olstFV = FVBancManager.getlstFVBancByBancId(obanc.id)
         Assert.AreEqual(3, olstFV.Count)
         oFVBanc = olstFV(2)

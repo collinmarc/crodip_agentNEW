@@ -435,7 +435,53 @@ Public Class BancManagerTest
         '       Assert.AreEqual(oBanc2.nbControlesTotal, oBanc.nbControlesTotal)
         'Assert.AreEqual(oBanc2.DateActivation, oBanc.DateActivation)
 
-
-
     End Sub
+    ''' <summary>
+    ''' Test du niveau d'alerte
+    ''' </summary>
+    ''' <remarks></remarks>
+    <TestMethod()>
+    Public Sub getAlerte_banc()
+        'Generation du fichier de paramétrage
+        Dim oLst As New List(Of NiveauAlerte)
+        Dim oNiveau As NiveauAlerte
+        oNiveau = New NiveauAlerte
+        oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Banc
+        oNiveau.Noire = 47
+        oNiveau.Rouge = 20
+        oNiveau.Orange = 10
+        oNiveau.Jaune = 5
+        oNiveau.EcartTolere = 7.5
+        oLst.Add(oNiveau)
+        oNiveau = New NiveauAlerte
+        oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.ManometreControle
+        oNiveau.Noire = 147
+        oNiveau.Rouge = 120
+        oNiveau.Orange = 110
+        oNiveau.Jaune = 15
+        oNiveau.EcartTolere = 17.5
+        oLst.Add(oNiveau)
+
+        Assert.IsTrue(NiveauAlerte.FTO_writeXml(oLst))
+
+
+        Dim obanc As Banc
+        obanc = m_oBanc
+        obanc.dateDernierControle = Now
+        Assert.AreEqual(Globals.ALERTE.NONE, obanc.getAlerte())
+
+        obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -50, Now)
+        Assert.AreEqual(Globals.ALERTE.NOIRE, obanc.getAlerte())
+
+        obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -21, Now)
+        Assert.AreEqual(Globals.ALERTE.ROUGE, obanc.getAlerte())
+
+        obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -11, Now)
+        Assert.AreEqual(Globals.ALERTE.ORANGE, obanc.getAlerte())
+
+        obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -6, Now)
+        Assert.AreEqual(Globals.ALERTE.JAUNE, obanc.getAlerte())
+    End Sub
+
+
 End Class

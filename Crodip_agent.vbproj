@@ -254,6 +254,9 @@
     <Compile Include="Application\agent\frmGestIdentifiantsPulve.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\agent\Manometres\frmControleManometres2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\agent\materiels_supprimes.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -413,6 +416,7 @@
     <Compile Include="Application\exploitant\pulverisateur\DlgListPulve.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\includes\classes\Agent\Materiel\NiveauAlerte.vb" />
     <Compile Include="Application\includes\classes\Controle\ControleBancBuse.vb" />
     <Compile Include="Application\includes\classes\Controle\ControleManoDetail.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123.vb" />
@@ -1272,6 +1276,7 @@
       <DependentUpon>dsTest.xsd</DependentUpon>
     </None>
     <None Include="img\Exit.jpg" />
+    <None Include="My Project\DataSources\ControleMano.datasource" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -1279,6 +1284,9 @@
     <None Include="Resources\ClosePreviewHH.bmp" />
     <None Include="Resources\AddTableHH.bmp" />
     <None Include="Resources\NavBackHS.bmp" />
+    <Content Include="moduleDocumentaire\_parametres\Alertes.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="toleranceBuses.xml" />
     <None Include="readme.md" />
     <None Include="Resources\PuceVerteT.png" />
@@ -1930,6 +1938,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\agent\frmGestIdentifiantsPulve.resx">
       <DependentUpon>frmGestIdentifiantsPulve.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Manometres\frmControleManometres2.resx">
+      <DependentUpon>frmControleManometres2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\agent\materiels_supprimes.resx">
       <DependentUpon>materiels_supprimes.vb</DependentUpon>

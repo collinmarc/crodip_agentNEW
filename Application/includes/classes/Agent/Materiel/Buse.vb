@@ -139,4 +139,39 @@ Public Class Buse
         dateAchat = DateActivation
         Return bReturn
     End Function
+
+    ''' <summary>
+    ''' Renvoie le niveau d'alter concernant le materiel
+    ''' ALERTE.NONE par defaut
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function getAlerte() As Globals.ALERTE
+        Dim bReturn As Globals.ALERTE
+        bReturn = Globals.ALERTE.NONE
+
+        Dim oNiveau As NiveauAlerte
+
+        oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.Buse)
+        bReturn = MyBase.getAlerte(dateAchat, oNiveau)
+        Return bReturn
+    End Function
+
+    Public Function Desactiver()
+        Dim bReturn As Boolean
+
+        Try
+            ' On bloque la buse
+            Me.etat = False
+            BuseManager.save(Me)
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("Buse.desactiver : " & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+
+
+    End Function
+
 End Class

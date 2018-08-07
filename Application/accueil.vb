@@ -3675,7 +3675,9 @@ Public Class accueil
             If AlerteMano = Globals.ALERTE.NOIRE Then ' 1mois7jrs
                 nbAlertes_ManometreControle_1mois7jr = nbAlertes_ManometreControle_1mois7jr + 1
                 If tmpManoControle.etat = True Then
-                    tmpManoControle.DesactiverMano(agentCourant)
+                    If My.Settings.DesacMat Then
+                        tmpManoControle.Desactiver(agentCourant)
+                    End If
                 End If
             End If
 
@@ -3784,15 +3786,15 @@ Public Class accueil
         ' Couleur
         Select Case TypeAlerte
             Case Globals.ALERTE.ORANGE
-                tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte))
+                tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte)) '=> Orange
                 tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
                 positionTopAlertes = positionTopAlertes + 24
             Case Globals.ALERTE.ROUGE
-                tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte))
+                tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte)) '=> Orange
                 tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
                 positionTopAlertes = positionTopAlertes + 24
             Case Globals.ALERTE.NOIRE
-                tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(203, Byte), CType(19, Byte), CType(31, Byte))
+                tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(203, Byte), CType(19, Byte), CType(31, Byte)) ' => Rouge
                 tmpAlerte.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
                 tmpAlerte.Height = 32
                 positionTopAlertes = positionTopAlertes + 40
@@ -3809,29 +3811,25 @@ Public Class accueil
         Dim nbAlertes_Buse_alerte As Integer = 0
         Dim nbAlertes_Buse_out As Integer = 0
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
+        Dim alerte As Globals.ALERTE = Globals.ALERTE.NONE
 
         Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_BUSESETALON_LOAD, True)
         Dim arrBusesEtalon As List(Of Buse) = BuseManager.getBusesEtalonByStructureId(agentCourant.idStructure, True)
         For Each tmpBuseEtalon As Buse In arrBusesEtalon
-            Try
-                If Not String.IsNullOrEmpty(tmpBuseEtalon.dateAchat) Then
-                    Dim tmpDateAchatBuseEtalon As Date = CSDate.FromCrodipString(tmpBuseEtalon.dateAchat)
-                    Dim tmpCompareBuseEtalonAlerte As Integer = tmpDateAchatBuseEtalon.CompareTo(DateAdd(DateInterval.Month, -33, Now))
-                    Dim tmpCompareBuseEtalon As Integer = tmpDateAchatBuseEtalon.CompareTo(DateAdd(DateInterval.Month, -36, Now))
-                    If tmpCompareBuseEtalon < 1 Then ' Plus valable
-                        nbAlertes_Buse_out = nbAlertes_Buse_out + 1
-                        ' On bloque la buse
-                        If tmpBuseEtalon.etat = True Then
-                            tmpBuseEtalon.etat = False
-                            BuseManager.save(tmpBuseEtalon)
+            If Not String.IsNullOrEmpty(tmpBuseEtalon.dateAchat) Then
+                alerte = tmpBuseEtalon.getAlerte()
+                If alerte = Globals.ALERTE.NOIRE Then ' Plus valable
+                    nbAlertes_Buse_out = nbAlertes_Buse_out + 1
+                    ' On bloque la buse
+                    If tmpBuseEtalon.etat = True Then
+                        If My.Settings.DesacMat Then
+                            tmpBuseEtalon.Desactiver()
                         End If
-                    ElseIf tmpCompareBuseEtalonAlerte < 1 Then ' Alerte
-                        nbAlertes_Buse_alerte = nbAlertes_Buse_alerte + 1
                     End If
+                ElseIf alerte = Globals.ALERTE.ROUGE Then ' Alerte
+                    nbAlertes_Buse_alerte = nbAlertes_Buse_alerte + 1
                 End If
-            Catch ex As Exception
-                CSDebug.dispError("Vérification des alertes sur les buses étalons : " & ex.Message.ToString)
-            End Try
+            End If
         Next
         If nbAlertes_Buse_alerte > 0 Then
             Dim tmpAlerte As New Label
@@ -3926,7 +3924,9 @@ Public Class accueil
             If AlerteBanc = Globals.ALERTE.NOIRE Then ' 1mois7jrs
                 nbAlertes_Banc_1mois7jr = nbAlertes_Banc_1mois7jr + 1
                 If tmpBanc.etat = True Then
-                    tmpBanc.DesactiverBanc(agentCourant)
+                    If My.Settings.DesacMat Then
+                        tmpBanc.Desactiver(agentCourant)
+                    End If
                 End If
             End If
 

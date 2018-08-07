@@ -421,5 +421,54 @@ Public Class BuseManagerTest
 
         BuseManager.delete(idBuse)
     End Sub
+    <TestMethod()> _
+    Public Sub getAlertesBuses_Test()
+        'Generation du fichier de paramétrage
+        Dim oLst As New List(Of NiveauAlerte)
+        Dim oNiveau As NiveauAlerte
+        oNiveau = New NiveauAlerte
+        oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Banc
+        oNiveau.Noire = 47
+        oNiveau.Rouge = 20
+        oNiveau.Orange = 10
+        oNiveau.Jaune = 5
+        oNiveau.EcartTolere = 0
+        oLst.Add(oNiveau)
+        oNiveau = New NiveauAlerte
+        oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.ManometreControle
+        oNiveau.Noire = 147
+        oNiveau.Rouge = 120
+        oNiveau.Orange = 110
+        oNiveau.Jaune = 15
+        oNiveau.EcartTolere = 17.5
+        oLst.Add(oNiveau)
+        oNiveau = New NiveauAlerte
+        oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Buse
+        oNiveau.Noire = 36
+        oNiveau.Rouge = 30
+        oNiveau.Orange = 0
+        oNiveau.Jaune = 0
+        oNiveau.EcartTolere = 0
+        oLst.Add(oNiveau)
+
+        Assert.IsTrue(NiveauAlerte.FTO_writeXml(oLst))
+
+
+        Dim oBuse As Buse
+        oBuse = New Buse
+        oBuse.dateAchat = Now
+        Assert.AreEqual(Globals.ALERTE.NONE, oBuse.getAlerte())
+
+        oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -37, Now)
+        Assert.AreEqual(Globals.ALERTE.NOIRE, oBuse.getAlerte())
+
+        oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -31, Now)
+        Assert.AreEqual(Globals.ALERTE.ROUGE, oBuse.getAlerte())
+
+
+        oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -29, Now)
+        Assert.AreEqual(Globals.ALERTE.NONE, oBuse.getAlerte())
+
+    End Sub
 
 End Class

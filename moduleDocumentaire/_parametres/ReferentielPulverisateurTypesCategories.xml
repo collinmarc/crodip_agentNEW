@@ -1,96 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <root>
-  <type>
-    <libelle>Arbres</libelle>
-    <categories>
-      <categorie libelle ="AXIAL">
-        <param typevaleur ="RANG" Libelle="nbre Rangs" valeurs="5|10|20"/>
-        <Attelages>
-          <Attelage nom="PORTE"></Attelage>
-          <Attelage nom="TRAINE"></Attelage>
-          <Attelage nom="TRAINE"></Attelage>
-        </Attelages>
-      </categorie>
-      <categorie libelle ="jet dirigé">
-        <param typevaleur ="LARGEUR" Libelle="Largeur"  valeurs="0.5|1|2"/>
-        <Attelages>
-          <Attelage nom="PORTE"></Attelage>
-          <Attelage nom="TRAINE"></Attelage>
-          <Attelage nom="TRAINE"></Attelage>
-        </Attelages>
-      </categorie>
-    </categories>
-  </type>
-  <type>
-    <libelle>Cultures basses</libelle>
-    <categories>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54">Rampe</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54">Rampe localisatrice</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54">Désherbeuse vignobles</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54">Désherbeuse pour vergers</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54">Désherbeuse pour cultures spécialisées</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54">Désherbeuse espaces verts</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54">Autre pulvérisateur</categorie>
-    </categories>
-  </type>
-  <type>
-    <libelle>Vigne</libelle>
-    <categories>
-     <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22|24">Canon</categorie>
-     <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22|24">Voute</categorie>
-	<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22|24">Face par face</categorie>
-	<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22|24">Axial</categorie>
-    </categories>
-  </type>
-  <type>
-    <libelle>Arbustes</libelle>
-    <categories>
-      <categorie 	typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6">Axial</categorie>
-      <categorie 	typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6">Jet dirigé</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6">Canon</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6">Voute</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6">Face par face</categorie>
-    </categories>
-  </type>
-  <type>
-    <libelle>Autres arbres ou arbustes</libelle>
-    <categories>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4">Axial</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4">Jet dirigé</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4">Canon</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4">Voute</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4">Face par face</categorie>
-    </categories>
-  </type>
-  <type>
-    <libelle>Culture maraîchères palissées</libelle>
-    <categories>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4">Axial</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4">Jet dirigé</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4">Canon</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4">Voute</categorie>
-      <categorie typevaleur="RANG" valeurs="0.5|1|2|3|4">Face par face</categorie>
-    </categories>
-  </type>
-<type>
-    <libelle>Pulvérisateurs fixes ou semi mobiles</libelle>
-    <categories>
-      <categorie typevaleur="LARGEUR" valeurs="0">Lances ou pistolets</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6.5|7|7.5|8|8.5|9|9.5|10">Chariot et rampe horizontale</categorie>
-      <categorie typevaleur="RANG" valeurs="0|0.5|1|1.5|2">Chariot et rampe verticale</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0">Traitement des semences</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0">Traitement post-récolte</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0|0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6.5|7|7.5|8|8.5|9|9.5|10">Autre pulvérisateur fixe</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0|0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6.5|7|7.5|8|8.5|9|9.5|10">Autre pulvérisateur semi mobile</categorie>
-    </categories>
-  </type>
-<type>
-    <libelle>Pulvérisateurs combinés</libelle>
-    <categories>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10">Sur bineuse</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10">Sur semoir</categorie>
-      <categorie ypevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10">Sur planteuse</categorie>
-      <categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10">Sur autre matériel</categorie>
-    </categories>
-  </type> 
+	<type>
+		<libelle label_gip="ARBRES">Arbres</libelle>
+		<categories>
+			<categorie typevaleur="RANG" unite="RG" valeurs="0.5|1|2" tdpc="20.5" tdpp="0" tdec="11" tdep="0" label_gip="AXIAL">Axial</categorie>
+			<categorie typevaleur="RANG" unite="RG" valeurs="0.5|1|2" tdpc="20.5" label_gip="JET DIRIGE">Jet dirigé</categorie>
+		</categories>
+	</type>
+	<type>
+		<libelle label_gip="CULTURES BASSES">Cultures basses</libelle>
+		<categories>
+			<categorie typevaleur="LARGEUR" unite="M" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54" tdpc="20.5" tdpp="0" tdec="11" tdep="0" label_gip="RAMPES">Rampe</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54" label_gip="RAMPES LOCALISATRICES">Rampe localisatrice</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54" tdpc="11" label_gip="DESHERBEUSES VIGNES">Désherbeuse vignobles</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54" tdpc="11" label_gip="DESHERBEUSES VERGERS">Désherbeuse pour vergers</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54" tdpc="11" label_gip="DESHERBEUSES CULTURES SPECIALISEES">Désherbeuse pour cultures spécialisées</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54" tdpc="11" label_gip="DESHERBEUSES ZONES NON AGRICOLES">Désherbeuse espaces verts</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10|10.5|11|11.5|12|12.5|13|13.5|14|14.5|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|32|34|36|38|40|42|44|46|48|50|54" tdpc="20.5" label_gip="AUTRES">Autre pulvérisateur</categorie>
+		</categories>
+	</type>
+	<type>
+		<libelle label_gip="VIGNES">Vigne</libelle>
+		<categories>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22|24" tdpc="20.5" label_gip="CANON">Canon</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22|24" tdpc="20.5" label_gip="VOUTES">Voute</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22|24" tdpc="20.5" label_gip="FACE PAR FACE">Face par face</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22|24" tdpc="20.5" label_gip="AXIAL">Axial</categorie>
+		</categories>
+	</type>
+	<type>
+		<libelle label_gip="ARBUSTES">Arbustes</libelle>
+		<categories>
+			<categorie 	typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6" tdpc="20.5" label_gip="AXIAL">Axial</categorie>
+			<categorie 	typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6" tdpc="20.5" label_gip="JET DIRIGE">Jet dirigé</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6" tdpc="20.5" label_gip="CANON">Canon</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6" tdpc="20.5" label_gip="VOUTE">Voute</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4|5|6" tdpc="20.5" label_gip="FACE PAR FACE">Face par face</categorie>
+		</categories>
+	</type>
+	<type>
+		<libelle label_gip="AUTRES ARBRES OU ARBUSTES">Autres arbres ou arbustes</libelle>
+		<categories>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4" tdpc="20.5" label_gip="AXIAL">Axial</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4" tdpc="20.5" label_gip="JET DIRIGE">Jet dirigé</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4" tdpc="20.5" label_gip="CANON">Canon</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4" tdpc="20.5" label_gip="VOUTE">Voute</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4" tdpc="20.5" label_gip="FACE PAR FACE">Face par face</categorie>
+		</categories>
+	</type>
+	<type>
+		<libelle label_gip="CULTURES MARAICHERES PALISSEES">Culture maraîchères palissées</libelle>
+		<categories>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4" tdpc="20.5" label_gip="AXIAL">Axial</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4" tdpc="20.5" label_gip="JET DIRIGE">Jet dirigé</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4" tdpc="20.5" label_gip="CANON">Canon</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4" tdpc="20.5" label_gip="VOUTE">Voute</categorie>
+			<categorie typevaleur="RANG" valeurs="0.5|1|2|3|4" tdpc="20.5" label_gip="FACE PAR FACE">Face par face</categorie>
+		</categories>
+	</type>
+	<type>
+		<libelle label_gip="PULVERISATEURS FIXES OU SEMI MOBILES">Pulvérisateurs fixes ou semi mobiles</libelle>
+		<categories>
+			<categorie typevaleur="LARGEUR" valeurs="0" tdpc="11" label_gip="LANCES OU PISTOLETS">Lances ou pistolets</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6.5|7|7.5|8|8.5|9|9.5|10" tdpc="11" label_gip="CHARIOT ET RAMPE HORIZONTALE">Chariot et rampe horizontale</categorie>
+			<categorie typevaleur="RANG" valeurs="0|0.5|1|1.5|2" tdpc="20.5" label_gip="CHARIOT ET RAMPE VERTICALE">Chariot et rampe verticale</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0" tdpc="20.5" label_gip="TRAITEMENT DES SEMENCES">Traitement des semences</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0" tdpc="20.5" label_gip="TRAITEMENT POST RECOLTE">Traitement post-récolte</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0|0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6.5|7|7.5|8|8.5|9|9.5|10" tdpc="20.5" label_gip="AUTRES PULVERISATEURS FIXES">Autre pulvérisateur fixe</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0|0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6.5|7|7.5|8|8.5|9|9.5|10" tdpc="20.5" label_gip="AUTRES PULVERISATEURS SEMI MOBILES">Autre pulvérisateur semi mobile</categorie>
+		</categories>
+	</type>
+	<type>
+		<libelle label_gip="PULVERISATEURS COMBINES">Pulvérisateurs combinés</libelle>
+		<categories>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10" tdpc="20.5" label_gip="LSUR BINEUSE">Sur bineuse</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10" tdpc="20.5" label_gip="SUR SEMOIR">Sur semoir</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10" tdpc="20.5" label_gip="SUR PLANTEUSE">Sur planteuse</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6|6.5|7|7.5|8|8.5|9|9.5|10" tdpc="20.5" label_gip="SUR AUTRE MATERIEL">Sur autre matériel</categorie>
+		</categories>
+	</type> 
 </root>

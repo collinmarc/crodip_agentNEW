@@ -1,6 +1,6 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
-
+Imports System.Collections.Generic
 <Serializable(), XmlInclude(GetType(Materiel))> _
 Public MustInherit Class Materiel
 
@@ -206,5 +206,69 @@ Public MustInherit Class Materiel
 
     Public MustOverride Function creerFichevieActivation(ByVal pAgent As Agent) As Boolean
 
+    Public Function getNiveauAlerte(pType As NiveauAlerte.Enum_typeMateriel) As NiveauAlerte
+        Dim bReturn As Globals.ALERTE
+        bReturn = Globals.ALERTE.NONE
+        Dim lstNiveauAlerte As List(Of NiveauAlerte)
+        lstNiveauAlerte = NiveauAlerte.readXML()
+        Dim oNiveau As NiveauAlerte
+        For Each oNiv As NiveauAlerte In lstNiveauAlerte
+            If oNiv.Materiel = pType Then
+                oNiveau = oNiv
+            End If
+        Next
+        Dim AlerteNoire As Integer = 7
+        Dim AlerteRouge As Integer = 30
+        Dim AlerteOrange As Integer = 15
+        Dim AlerteJaune As Integer = 1
+
+        If oNiveau Is Nothing Then
+            oNiveau = New NiveauAlerte()
+            oNiveau.Noire = AlerteNoire
+            oNiveau.Rouge = AlerteRouge
+            oNiveau.Orange = AlerteOrange
+            oNiveau.Jaune = AlerteJaune
+        End If
+        Return oNiveau
+    End Function
+    Public Function getAlerte(pDate As Date, oNiveau As NiveauAlerte) As Globals.ALERTE
+        Dim bReturn As Globals.ALERTE
+        bReturn = Globals.ALERTE.NONE
+
+        Dim dernCtrl As Date = pDate
+        Dim n As Integer
+        Dim DL As Date
+        'Alerte Noire ( 1 mois et 7 jours)
+        If (oNiveau.Noire <> 0) Then
+            DL = DateAdd(DateInterval.DayOfYear, oNiveau.Noire * -1, Now) '1 mois et 7 jours
+            n = dernCtrl.CompareTo(DL)
+            If n < 0 Then
+                bReturn = Globals.ALERTE.NOIRE
+            End If
+        End If
+        If bReturn = Globals.ALERTE.NONE And oNiveau.Rouge <> 0 Then
+            DL = DateAdd(DateInterval.DayOfYear, oNiveau.Rouge * -1, Now) '1 mois 
+            n = dernCtrl.CompareTo(DL)
+            If n < 0 Then
+                Return Globals.ALERTE.ROUGE
+            End If
+        End If
+        If bReturn = Globals.ALERTE.NONE And oNiveau.Orange <> 0 Then
+            DL = DateAdd(DateInterval.DayOfYear, oNiveau.Orange * -1, Now) '2 semaines
+            n = dernCtrl.CompareTo(DL)
+            If n < 0 Then
+                Return Globals.ALERTE.ORANGE
+            End If
+        End If
+        If bReturn = Globals.ALERTE.NONE And oNiveau.Jaune <> 0 Then
+            DL = DateAdd(DateInterval.DayOfYear, oNiveau.Jaune * -1, Now) '1 semaine
+            n = dernCtrl.CompareTo(DL)
+            If n < 0 Then
+                Return Globals.ALERTE.JAUNE
+            End If
+        End If
+
+        Return bReturn
+    End Function
 
 End Class

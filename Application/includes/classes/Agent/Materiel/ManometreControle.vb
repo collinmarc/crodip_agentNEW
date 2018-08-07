@@ -125,7 +125,7 @@ Public Class ManometreControle
         ManometreControleManager.save(Me)
     End Function
 
-    Public Function DesactiverMano(ByVal pAgent As Agent) As Boolean
+    Public Function Desactiver(ByVal pAgent As Agent) As Boolean
         Dim bReturn As Boolean
 
         Try
@@ -135,40 +135,25 @@ Public Class ManometreControle
             ManometreControleManager.save(Me)
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("ManometreControle.desactiverMano : " & ex.Message)
+            CSDebug.dispError("ManometreControle.desactiver : " & ex.Message)
             bReturn = False
         End Try
         Return bReturn
     End Function
-
+    ''' <summary>
+    ''' Renvoie le niveau d'alter concernant le materiel
+    ''' ALERTE.NONE par defaut
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function getAlerte() As Globals.ALERTE
         Dim bReturn As Globals.ALERTE
         bReturn = Globals.ALERTE.NONE
 
-        Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
-        Dim n As Integer
-        Dim DL As Date
-        DL = DateAdd(DateInterval.DayOfYear, -7, DateAdd(DateInterval.Month, -1, Now)) '1 mois et 7 jours
-        n = tmpDateLCManoControle.CompareTo(DL)
-        If n < 0 Then
-            bReturn = Globals.ALERTE.NOIRE
-        End If
-        If bReturn = Globals.ALERTE.NONE Then
-            DL = DateAdd(DateInterval.Month, -1, Now) '1 mois 
-            n = tmpDateLCManoControle.CompareTo(DL)
-            If n < 0 Then
-                Return Globals.ALERTE.ROUGE
-            End If
-        End If
-        If bReturn = Globals.ALERTE.NONE Then
-            DL = DateAdd(DateInterval.Month, -1, Now) '1 mois 
-            DL = DateAdd(DateInterval.DayOfYear, +15, DL) '1 mois 
-            n = tmpDateLCManoControle.CompareTo(DL)
-            If n < 0 Then
-                Return Globals.ALERTE.ORANGE
-            End If
-        End If
+        Dim oNiveau As NiveauAlerte
 
+        oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.ManometreControle)
+        bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
         Return bReturn
     End Function
     '''

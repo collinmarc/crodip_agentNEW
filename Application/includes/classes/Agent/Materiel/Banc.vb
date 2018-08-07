@@ -1,5 +1,6 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
+Imports System.Collections.Generic
 
 <Serializable(), XmlInclude(GetType(Banc))> _
 Public Class Banc
@@ -205,7 +206,7 @@ Public Class Banc
     ''' <param name="pAgent"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function DesactiverBanc(ByVal pAgent As Agent) As Boolean
+    Public Function Desactiver(ByVal pAgent As Agent) As Boolean
         Dim bReturn As Boolean
 
         Try
@@ -222,35 +223,20 @@ Public Class Banc
         End Try
         Return bReturn
     End Function
-
+    ''' <summary>
+    ''' Renvoie le niveau d'alter concernant le materiel
+    ''' ALERTE.NONE par defaut
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function getAlerte() As Globals.ALERTE
         Dim bReturn As Globals.ALERTE
         bReturn = Globals.ALERTE.NONE
 
-        Dim dernCtrl As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
-        Dim n As Integer
-        Dim DL As Date
-        DL = DateAdd(DateInterval.DayOfYear, -7, DateAdd(DateInterval.Month, -1, Now)) '1 mois et 7 jours
-        n = dernCtrl.CompareTo(DL)
-        If n < 0 Then
-            bReturn = Globals.ALERTE.NOIRE
-        End If
-        If bReturn = Globals.ALERTE.NONE Then
-            DL = DateAdd(DateInterval.Month, -1, Now) '1 mois 
-            n = dernCtrl.CompareTo(DL)
-            If n < 0 Then
-                Return Globals.ALERTE.ROUGE
-            End If
-        End If
-        If bReturn = Globals.ALERTE.NONE Then
-            DL = DateAdd(DateInterval.Month, -1, Now) '1 mois 
-            DL = DateAdd(DateInterval.DayOfYear, +15, DL) '1 mois 
-            n = dernCtrl.CompareTo(DL)
-            If n < 0 Then
-                Return Globals.ALERTE.ORANGE
-            End If
-        End If
+        Dim oNiveau As NiveauAlerte
 
+        oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.Banc)
+        bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
         Return bReturn
     End Function
     '''

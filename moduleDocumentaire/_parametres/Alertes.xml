@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NiveauxAlertes>
+  <NiveauAlerte Materiel="Banc" Noire="47" Rouge="20" Orange="10" Jaune="5" EcartTolere="7.5" />
+  <NiveauAlerte Materiel="ManometreControle" Noire="147" Rouge="120" Orange="110" Jaune="15" EcartTolere="17.5" />
+</NiveauxAlertes>
