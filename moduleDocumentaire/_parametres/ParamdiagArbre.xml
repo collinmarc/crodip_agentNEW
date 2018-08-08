@@ -1008,7 +1008,6 @@
       <LibelleLong>Le dispositif d'attelage présente des traces de déformations par rapport à sa conception d'origine sans porter préjudice à l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1019,10 +1018,10 @@
       <LibelleLong>Le dispositif d'attelage présente des traces de déformations portant préjudice à l'ensemble sur la rigidité, solidité ou position de travail</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
-      <Cause1>false</Cause1>
+      <Cause1>true</Cause1>
       <Cause2>false</Cause2>
-      <Cause3>false</Cause3>
+      <Cause3>true</Cause3>
+      <NiveauCauseMax>0</NiveauCauseMax>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.1.1.0</Code>
@@ -1030,7 +1029,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>

@@ -75,14 +75,14 @@ Partial Class CtrlDiag2
         Me.CtrlDiag2_RB1.bCause1 = False
         Me.CtrlDiag2_RB1.bCause2 = False
         Me.CtrlDiag2_RB1.bCause3 = False
-        Me.CtrlDiag2_RB1.Defaut_niveauCause = "0"
+        Me.CtrlDiag2_RB1.NombreCauses = "0"
         Me.CtrlDiag2_RB1.Dock = System.Windows.Forms.DockStyle.Right
         Me.CtrlDiag2_RB1.Location = New System.Drawing.Point(51, 0)
         Me.CtrlDiag2_RB1.Margin = New System.Windows.Forms.Padding(0)
         Me.CtrlDiag2_RB1.Name = "CtrlDiag2_RB1"
         Me.CtrlDiag2_RB1.Size = New System.Drawing.Size(115, 19)
         Me.CtrlDiag2_RB1.TabIndex = 3
-        Me.CtrlDiag2_RB1.value = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.CtrlDiag2_RB1.value = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.CtrlDiag2_RB1.Visible = False
         '
         'CtrlDiag2

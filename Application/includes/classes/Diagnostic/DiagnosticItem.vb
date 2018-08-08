@@ -149,7 +149,7 @@ Public Class DiagnosticItem
 
         LibelleCourt = pCtrl.Libelle
         LibelleLong = pCtrl.LibelleLong
-        If pCtrl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or pCtrl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX Or pCtrl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.TROIS Then
+        If pCtrl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN Or pCtrl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX Or pCtrl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.TROIS Then
             cause = pCtrl.Cause
         Else
             cause = ""

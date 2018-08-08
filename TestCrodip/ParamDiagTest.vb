@@ -50,14 +50,14 @@ Public Class ParamDiagTest
             If oCtrl.Code = "8.3.1.3" Then
                 oCtrl.Actif = True
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSEMAX.UN Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.UN Then
                 oCtrl.Cause1 = True
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSEMAX.DEUX Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.DEUX Then
                 oCtrl.Cause1 = True
                 oCtrl.Cause2 = True
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSEMAX.TROIS Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.TROIS Then
                 oCtrl.Cause1 = True
                 oCtrl.Cause2 = True
                 oCtrl.Cause3 = True
@@ -117,14 +117,14 @@ Public Class ParamDiagTest
             If oCtrl.Code = "8.3.1.3" Then
                 oCtrl.Actif = False
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSEMAX.UN Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.UN Then
                 oCtrl.Cause1 = True
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSEMAX.DEUX Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.DEUX Then
                 oCtrl.Cause1 = True
                 oCtrl.Cause2 = True
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSEMAX.TROIS Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.TROIS Then
                 oCtrl.Cause1 = True
                 oCtrl.Cause2 = True
                 oCtrl.Cause3 = True

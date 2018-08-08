@@ -1309,11 +1309,11 @@ Public Class frmDiagnostiqueV6
                             tmpControl.Checked = True
                             Select Case tmpDiagnosticItem.cause
                                 Case "1"
-                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN
+                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN
                                 Case "2"
-                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX
+                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX
                                 Case "3"
-                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.TROIS
+                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.TROIS
                             End Select
 
                         End If
@@ -6836,8 +6836,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub RadioButton_diagnostic_8332_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_diagnostic_8332.CheckedChanged
         checkAnswer2(sender, 6)
         If RadioButton_diagnostic_8332.Checked And _
-            (RadioButton_diagnostic_8332.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or _
-            RadioButton_diagnostic_8332.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX) Then
+            (RadioButton_diagnostic_8332.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN Or _
+            RadioButton_diagnostic_8332.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX) Then
             disableTab833()
         Else
             enableTab833()
@@ -6847,8 +6847,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub RadioButton_diagnostic_8333_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_diagnostic_8333.CheckedChanged
         checkAnswer2(sender, 6)
         If RadioButton_diagnostic_8333.Checked And _
-            (RadioButton_diagnostic_8333.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or _
-            RadioButton_diagnostic_8333.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX) Then
+            (RadioButton_diagnostic_8333.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN Or _
+            RadioButton_diagnostic_8333.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX) Then
             disableTab833()
         Else
             enableTab833()
@@ -7280,8 +7280,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End If
         checkAnswer2(sender, 4)
         If RadioButton_diagnostic_9221.Checked And _
-            (RadioButton_diagnostic_9221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN Or _
-             RadioButton_diagnostic_9221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX) Then
+            (RadioButton_diagnostic_9221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN Or _
+             RadioButton_diagnostic_9221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX) Then
             disableTab922()
         Else
             enableTab922()
@@ -7325,8 +7325,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End If
         checkAnswer2(sender, 4)
         If RadioButton_diagnostic_9222.Checked And _
-            (RadioButton_diagnostic_9222.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.DEUX Or _
-             RadioButton_diagnostic_9222.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.UN) Then
+            (RadioButton_diagnostic_9222.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX Or _
+             RadioButton_diagnostic_9222.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN) Then
             disableTab922()
         Else
             enableTab922()

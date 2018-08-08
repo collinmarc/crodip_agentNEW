@@ -259,8 +259,8 @@ Public Class ParamCtrlDiag
         Try
             '            pCtrlDiag.Checked = False
             pCtrlDiag.Categorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_NONE
-            pCtrlDiag.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
-            pCtrlDiag.NiveauCause_max = NiveauCauseMax
+            pCtrlDiag.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+
             pCtrlDiag.DefaultCategorie = DefaultCategorie
             pCtrlDiag.Code = Code
             pCtrlDiag.Libelle = Libelle

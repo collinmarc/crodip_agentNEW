@@ -7,7 +7,7 @@
     DEFAUT_OK = 0
     DEFAUT_NONE = -1
 End Enum
-Public Enum CRODIP_NIVEAUCAUSEMAX
+Public Enum CRODIP_NIVEAUCAUSE
     NONE = -1
     ZERO = 0
     UN = 1
@@ -28,7 +28,7 @@ Public Class CtrlDiag2
     Private m_Libelle As String
     Private m_LibelleLong As String
     Private m_Code As String
-    Private m_NiveauCauseMax As CRODIP_NIVEAUCAUSEMAX
+    Private m_NombreCauses As Integer
     Private m_bCause1 As Boolean
     Private m_bCause2 As Boolean
     Private m_bCause3 As Boolean
@@ -41,7 +41,7 @@ Public Class CtrlDiag2
         InitializeComponent()
 
         ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
-        m_NiveauCauseMax = CRODIP_NIVEAUCAUSEMAX.ZERO
+        m_NombreCauses = CRODIP_NIVEAUCAUSE.ZERO
         Categorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_NONE
         DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_NONE
     End Sub
@@ -221,57 +221,57 @@ Public Class CtrlDiag2
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Property Cause As CRODIP_NIVEAUCAUSEMAX
+    Public Property Cause As CRODIP_NIVEAUCAUSE
         Get
-            Dim value As CRODIP_NIVEAUCAUSEMAX
-            value = CRODIP_NIVEAUCAUSEMAX.NONE
+            Dim value As CRODIP_NIVEAUCAUSE
+            value = CRODIP_NIVEAUCAUSE.NONE
             Select Case PictureBox1.Tag
                 Case ""
-                    value = CRODIP_NIVEAUCAUSEMAX.NONE
+                    value = CRODIP_NIVEAUCAUSE.NONE
                 Case "0"
-                    value = CRODIP_NIVEAUCAUSEMAX.ZERO
+                    value = CRODIP_NIVEAUCAUSE.ZERO
                 Case "1"
-                    value = CRODIP_NIVEAUCAUSEMAX.UN
+                    value = CRODIP_NIVEAUCAUSE.UN
                 Case "2"
-                    value = CRODIP_NIVEAUCAUSEMAX.DEUX
+                    value = CRODIP_NIVEAUCAUSE.DEUX
                 Case "3"
-                    value = CRODIP_NIVEAUCAUSEMAX.TROIS
+                    value = CRODIP_NIVEAUCAUSE.TROIS
 
             End Select
             Return value
 
         End Get
-        Set(ByVal value As CRODIP_NIVEAUCAUSEMAX)
-            If value = CRODIP_NIVEAUCAUSEMAX.NONE Then
+        Set(ByVal value As CRODIP_NIVEAUCAUSE)
+            If value = CRODIP_NIVEAUCAUSE.NONE Then
                 PictureBox1.Image = Nothing
                 PictureBox1.Tag = ""
                 'CtrlDiag2_RB1.value = value
             End If
-            If value = CRODIP_NIVEAUCAUSEMAX.ZERO And NiveauCause_max <> CRODIP_NIVEAUCAUSEMAX.ZERO Then
+            If value = CRODIP_NIVEAUCAUSE.ZERO And NombreCauses <> CRODIP_NIVEAUCAUSE.ZERO Then
                 PictureBox1.Image = ImageList1.Images(0)
                 PictureBox1.Tag = "0"
                 ToolTip1.SetToolTip(PictureBox1, CtrlDiag2_RB1.ToolTip1.GetToolTip(CtrlDiag2_RB1.rb0))
                 'CtrlDiag2_RB1.value = value
             End If
-            If value = CRODIP_NIVEAUCAUSEMAX.ZERO And NiveauCause_max = CRODIP_NIVEAUCAUSEMAX.ZERO Then
+            If value = CRODIP_NIVEAUCAUSE.ZERO And NombreCauses = CRODIP_NIVEAUCAUSE.ZERO Then
                 PictureBox1.Image = Nothing
                 PictureBox1.Tag = "0"
                 ToolTip1.SetToolTip(PictureBox1, CtrlDiag2_RB1.ToolTip1.GetToolTip(CtrlDiag2_RB1.rb0))
                 'CtrlDiag2_RB1.value = value
             End If
-            If value = CRODIP_NIVEAUCAUSEMAX.UN Then
+            If value = CRODIP_NIVEAUCAUSE.UN Then
                 PictureBox1.Image = ImageList1.Images(1)
                 PictureBox1.Tag = "1"
                 ToolTip1.SetToolTip(PictureBox1, CtrlDiag2_RB1.ToolTip1.GetToolTip(CtrlDiag2_RB1.rb1))
                 'CtrlDiag2_RB1.value = value
             End If
-            If value = CRODIP_NIVEAUCAUSEMAX.DEUX Then
+            If value = CRODIP_NIVEAUCAUSE.DEUX Then
                 PictureBox1.Image = ImageList1.Images(2)
                 PictureBox1.Tag = "2"
                 'CtrlDiag2_RB1.value = value
                 ToolTip1.SetToolTip(PictureBox1, CtrlDiag2_RB1.ToolTip1.GetToolTip(CtrlDiag2_RB1.rb2))
             End If
-            If value = CRODIP_NIVEAUCAUSEMAX.TROIS Then
+            If value = CRODIP_NIVEAUCAUSE.TROIS Then
                 PictureBox1.Image = ImageList1.Images(3)
                 CheckBox1.CheckState = CheckState.Checked
                 PictureBox1.Tag = "3"
@@ -282,45 +282,20 @@ Public Class CtrlDiag2
         End Set
     End Property
     ''' <summary>
-    ''' Niveau maximum de Cause du défaut
+    ''' Nombre de causes affichées (En ReadOnly)
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Property NiveauCause_max As CRODIP_NIVEAUCAUSEMAX
+    Public Property NombreCauses As Integer
         Get
-            Return m_NiveauCauseMax
+            Return m_NombreCauses
 
         End Get
-        Set(ByVal value As CRODIP_NIVEAUCAUSEMAX)
-            m_NiveauCauseMax = value
-            m_bCause1 = False
-            m_bCause2 = False
-            m_bCause3 = False
-            If m_NiveauCauseMax = CRODIP_NIVEAUCAUSEMAX.TROIS Then
-                m_bCause1 = True
-                m_bCause2 = True
-                m_bCause3 = True
-            End If
-            If m_NiveauCauseMax = CRODIP_NIVEAUCAUSEMAX.DEUX Then
-                m_bCause1 = True
-                m_bCause2 = True
-            End If
-            If m_NiveauCauseMax = CRODIP_NIVEAUCAUSEMAX.UN Then
-                m_bCause1 = True
-            End If
-            CtrlDiag2_RB1.Defaut_niveauCause = value
-            If value = CRODIP_NIVEAUCAUSEMAX.ZERO Or value = CRODIP_NIVEAUCAUSEMAX.NONE Then
-                Cause = CRODIP_NIVEAUCAUSEMAX.NONE
-                PictureBox1.Enabled = False
-                PictureBox1.Visible = False
-                PictureBox1.SendToBack()
-            Else
-                PictureBox1.Enabled = True
-                PictureBox1.Visible = True
-                PictureBox1.BringToFront()
+        Set(value As Integer)
+            'On garde le Set car il y a trop de déprendances .....
 
-            End If
+
         End Set
     End Property
     ''' <summary>
@@ -336,9 +311,7 @@ Public Class CtrlDiag2
         End Get
         Set(ByVal value As Boolean)
             m_bCause1 = value
-            'If m_bCause1 = False And m_bCause2 = False And m_bCause3 = False Then
-            'NiveauCause_max = CRODIP_NIVEAUCAUSEMAX.NONE
-            'End If
+            calcNombreCauses()
         End Set
     End Property
     ''' <summary>
@@ -354,6 +327,7 @@ Public Class CtrlDiag2
         End Get
         Set(ByVal value As Boolean)
             m_bCause2 = value
+            calcNombreCauses()
             'If m_bCause1 = False And m_bCause2 = False And m_bCause3 = False Then
             'NiveauCause_max = CRODIP_NIVEAUCAUSEMAX.NONE
             'End If
@@ -372,11 +346,47 @@ Public Class CtrlDiag2
         End Get
         Set(ByVal value As Boolean)
             m_bCause3 = value
+            calcNombreCauses()
             'If m_bCause3 = False And m_bCause2 = False And m_bCause3 = False Then
             'NiveauCause_max = CRODIP_NIVEAUCAUSEMAX.NONE
             'End If
         End Set
     End Property
+    ''' <summary>
+    ''' Calcul du nombre de causes à afficher
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub calcNombreCauses()
+        m_NombreCauses = 0
+
+        If m_bCause1 = True Then
+            m_NombreCauses = m_NombreCauses + 1
+        End If
+        If m_bCause2 = True Then
+            m_NombreCauses = m_NombreCauses + 1
+        End If
+        If m_bCause3 = True Then
+            m_NombreCauses = m_NombreCauses + 1
+        End If
+
+        CtrlDiag2_RB1.bCause1 = m_bCause1
+        CtrlDiag2_RB1.bCause2 = m_bCause2
+        CtrlDiag2_RB1.bCause3 = m_bCause3
+        CtrlDiag2_RB1.NombreCauses = m_NombreCauses
+
+        If m_NombreCauses = 0 Then
+            Cause = CRODIP_NIVEAUCAUSE.NONE
+            PictureBox1.Enabled = False
+            PictureBox1.Visible = False
+            PictureBox1.SendToBack()
+        Else
+            PictureBox1.Enabled = True
+            PictureBox1.Visible = True
+            PictureBox1.BringToFront()
+
+        End If
+
+    End Sub
     ''' <summary>
     ''' Rend vrai si le defaut déclenche un diag en Erreur
     ''' </summary>
@@ -394,13 +404,13 @@ Public Class CtrlDiag2
 
     Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
         If CheckBox1.Checked Then
-            If m_NiveauCauseMax <> CRODIP_CATEGORIEDEFAUT.DEFAUT_OK Then
-                Cause = CRODIP_NIVEAUCAUSEMAX.ZERO
+            If m_NombreCauses <> CRODIP_CATEGORIEDEFAUT.DEFAUT_OK Then
+                Cause = CRODIP_NIVEAUCAUSE.ZERO
             End If
         Else
             CtrlDiag2_RB1.Visible = False
             CtrlDiag2_RB1.SendToBack()
-            Cause = CRODIP_NIVEAUCAUSEMAX.NONE
+            Cause = CRODIP_NIVEAUCAUSE.NONE
             'Réinitialisation de la catégorie avec la catégorie par défaut
             Categorie = DefaultCategorie
         End If
@@ -417,10 +427,10 @@ Public Class CtrlDiag2
         '   (2)	Garde la même couleur que le défaut d’origine ( avoir dans un second temps lorsque l’on pourra agir dessus avec le logiciel CRODIP)
         '   (3)	Fait passer le défaut en vert
 
-        If CtrlDiag2_RB1.value = CRODIP_NIVEAUCAUSEMAX.UN Or CtrlDiag2_RB1.value = CRODIP_NIVEAUCAUSEMAX.TROIS Then
+        If CtrlDiag2_RB1.value = CRODIP_NIVEAUCAUSE.UN Or CtrlDiag2_RB1.value = CRODIP_NIVEAUCAUSE.TROIS Then
             Categorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
         End If
-        If CtrlDiag2_RB1.value = CRODIP_NIVEAUCAUSEMAX.DEUX Then
+        If CtrlDiag2_RB1.value = CRODIP_NIVEAUCAUSE.DEUX Then
             Categorie = DefaultCategorie
         End If
         Me.Cause = CtrlDiag2_RB1.value
@@ -430,10 +440,10 @@ Public Class CtrlDiag2
 
     Private Sub PictureBox1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PictureBox1.Click
         If CheckBox1.Checked Then
-            If NiveauCause_max <> CRODIP_NIVEAUCAUSEMAX.ZERO And NiveauCause_max <> CRODIP_NIVEAUCAUSEMAX.NONE Then
-                CtrlDiag2_RB1.Visible = True
-                CtrlDiag2_RB1.BringToFront()
-            End If
+            'If NiveauCause_max <> CRODIP_NIVEAUCAUSE.ZERO And NiveauCause_max <> CRODIP_NIVEAUCAUSE.NONE Then
+            CtrlDiag2_RB1.Visible = True
+            CtrlDiag2_RB1.BringToFront()
+            'End If
         End If
     End Sub
 

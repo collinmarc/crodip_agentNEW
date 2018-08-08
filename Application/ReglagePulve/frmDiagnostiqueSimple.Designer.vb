@@ -1118,7 +1118,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5712.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5712.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5712.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5712.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5712.cause1 = False
         Me.RadioButton_diagnostic_5712.cause2 = False
         Me.RadioButton_diagnostic_5712.cause3 = False
@@ -1133,7 +1133,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5712.Location = New System.Drawing.Point(11, 50)
         Me.RadioButton_diagnostic_5712.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5712.Name = "RadioButton_diagnostic_5712"
-        Me.RadioButton_diagnostic_5712.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5712.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5712.Size = New System.Drawing.Size(272, 16)
         Me.RadioButton_diagnostic_5712.TabIndex = 8
         '
@@ -1142,7 +1142,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5710.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5710.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5710.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5710.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5710.cause1 = False
         Me.RadioButton_diagnostic_5710.cause2 = False
         Me.RadioButton_diagnostic_5710.cause3 = False
@@ -1157,7 +1157,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5710.Location = New System.Drawing.Point(13, 66)
         Me.RadioButton_diagnostic_5710.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5710.Name = "RadioButton_diagnostic_5710"
-        Me.RadioButton_diagnostic_5710.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5710.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5710.Size = New System.Drawing.Size(270, 16)
         Me.RadioButton_diagnostic_5710.TabIndex = 7
         '
@@ -1166,7 +1166,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5711.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5711.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5711.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5711.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5711.cause1 = False
         Me.RadioButton_diagnostic_5711.cause2 = False
         Me.RadioButton_diagnostic_5711.cause3 = False
@@ -1181,7 +1181,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5711.Location = New System.Drawing.Point(11, 34)
         Me.RadioButton_diagnostic_5711.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5711.Name = "RadioButton_diagnostic_5711"
-        Me.RadioButton_diagnostic_5711.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5711.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5711.Size = New System.Drawing.Size(272, 16)
         Me.RadioButton_diagnostic_5711.TabIndex = 5
         '
@@ -1229,7 +1229,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5622.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5622.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5622.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5622.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5622.cause1 = False
         Me.RadioButton_diagnostic_5622.cause2 = False
         Me.RadioButton_diagnostic_5622.cause3 = False
@@ -1244,14 +1244,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5622.Location = New System.Drawing.Point(29, 64)
         Me.RadioButton_diagnostic_5622.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5622.Name = "RadioButton_diagnostic_5622"
-        Me.RadioButton_diagnostic_5622.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5622.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5622.Size = New System.Drawing.Size(250, 16)
         Me.RadioButton_diagnostic_5622.TabIndex = 8
         '
         'RadioButton_diagnostic_5620
         '
         Me.RadioButton_diagnostic_5620.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5620.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5620.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5620.cause1 = False
         Me.RadioButton_diagnostic_5620.cause2 = False
         Me.RadioButton_diagnostic_5620.cause3 = False
@@ -1266,7 +1266,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5620.Location = New System.Drawing.Point(32, 87)
         Me.RadioButton_diagnostic_5620.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5620.Name = "RadioButton_diagnostic_5620"
-        Me.RadioButton_diagnostic_5620.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5620.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5620.Size = New System.Drawing.Size(247, 19)
         Me.RadioButton_diagnostic_5620.TabIndex = 7
         '
@@ -1275,7 +1275,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5621.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5621.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5621.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5621.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5621.cause1 = False
         Me.RadioButton_diagnostic_5621.cause2 = False
         Me.RadioButton_diagnostic_5621.cause3 = False
@@ -1290,7 +1290,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5621.Location = New System.Drawing.Point(29, 42)
         Me.RadioButton_diagnostic_5621.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5621.Name = "RadioButton_diagnostic_5621"
-        Me.RadioButton_diagnostic_5621.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5621.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5621.Size = New System.Drawing.Size(250, 16)
         Me.RadioButton_diagnostic_5621.TabIndex = 5
         '
@@ -1313,7 +1313,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5612.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5612.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5612.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5612.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5612.cause1 = False
         Me.RadioButton_diagnostic_5612.cause2 = False
         Me.RadioButton_diagnostic_5612.cause3 = False
@@ -1328,7 +1328,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5612.Location = New System.Drawing.Point(8, 31)
         Me.RadioButton_diagnostic_5612.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5612.Name = "RadioButton_diagnostic_5612"
-        Me.RadioButton_diagnostic_5612.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5612.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5612.Size = New System.Drawing.Size(275, 16)
         Me.RadioButton_diagnostic_5612.TabIndex = 8
         '
@@ -1337,7 +1337,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5610.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5610.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5610.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5610.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5610.cause1 = False
         Me.RadioButton_diagnostic_5610.cause2 = False
         Me.RadioButton_diagnostic_5610.cause3 = False
@@ -1352,7 +1352,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5610.Location = New System.Drawing.Point(8, 47)
         Me.RadioButton_diagnostic_5610.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5610.Name = "RadioButton_diagnostic_5610"
-        Me.RadioButton_diagnostic_5610.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5610.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5610.Size = New System.Drawing.Size(275, 16)
         Me.RadioButton_diagnostic_5610.TabIndex = 7
         '
@@ -1361,7 +1361,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5611.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5611.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5611.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5611.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5611.cause1 = False
         Me.RadioButton_diagnostic_5611.cause2 = False
         Me.RadioButton_diagnostic_5611.cause3 = False
@@ -1376,7 +1376,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5611.Location = New System.Drawing.Point(8, 15)
         Me.RadioButton_diagnostic_5611.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5611.Name = "RadioButton_diagnostic_5611"
-        Me.RadioButton_diagnostic_5611.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5611.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5611.Size = New System.Drawing.Size(275, 16)
         Me.RadioButton_diagnostic_5611.TabIndex = 5
         '
@@ -1425,7 +1425,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_5423
         '
         Me.RadioButton_diagnostic_5423.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5423.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5423.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5423.cause1 = False
         Me.RadioButton_diagnostic_5423.cause2 = False
         Me.RadioButton_diagnostic_5423.cause3 = False
@@ -1440,14 +1440,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5423.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_5423.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5423.Name = "RadioButton_diagnostic_5423"
-        Me.RadioButton_diagnostic_5423.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5423.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5423.Size = New System.Drawing.Size(344, 16)
         Me.RadioButton_diagnostic_5423.TabIndex = 8
         '
         'RadioButton_diagnostic_5420
         '
         Me.RadioButton_diagnostic_5420.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5420.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5420.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5420.cause1 = False
         Me.RadioButton_diagnostic_5420.cause2 = False
         Me.RadioButton_diagnostic_5420.cause3 = False
@@ -1462,14 +1462,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5420.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_5420.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5420.Name = "RadioButton_diagnostic_5420"
-        Me.RadioButton_diagnostic_5420.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5420.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5420.Size = New System.Drawing.Size(344, 16)
         Me.RadioButton_diagnostic_5420.TabIndex = 7
         '
         'RadioButton_diagnostic_5421
         '
         Me.RadioButton_diagnostic_5421.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5421.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5421.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5421.cause1 = False
         Me.RadioButton_diagnostic_5421.cause2 = False
         Me.RadioButton_diagnostic_5421.cause3 = False
@@ -1484,14 +1484,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5421.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_5421.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5421.Name = "RadioButton_diagnostic_5421"
-        Me.RadioButton_diagnostic_5421.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5421.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5421.Size = New System.Drawing.Size(344, 16)
         Me.RadioButton_diagnostic_5421.TabIndex = 5
         '
         'RadioButton_diagnostic_5422
         '
         Me.RadioButton_diagnostic_5422.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5422.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5422.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5422.cause1 = False
         Me.RadioButton_diagnostic_5422.cause2 = False
         Me.RadioButton_diagnostic_5422.cause3 = False
@@ -1506,7 +1506,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5422.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_5422.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5422.Name = "RadioButton_diagnostic_5422"
-        Me.RadioButton_diagnostic_5422.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5422.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5422.Size = New System.Drawing.Size(344, 16)
         Me.RadioButton_diagnostic_5422.TabIndex = 4
         '
@@ -1529,7 +1529,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_5414
         '
         Me.RadioButton_diagnostic_5414.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5414.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5414.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5414.cause1 = False
         Me.RadioButton_diagnostic_5414.cause2 = False
         Me.RadioButton_diagnostic_5414.cause3 = False
@@ -1544,14 +1544,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5414.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_5414.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5414.Name = "RadioButton_diagnostic_5414"
-        Me.RadioButton_diagnostic_5414.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5414.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5414.Size = New System.Drawing.Size(344, 16)
         Me.RadioButton_diagnostic_5414.TabIndex = 9
         '
         'RadioButton_diagnostic_5413
         '
         Me.RadioButton_diagnostic_5413.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5413.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5413.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5413.cause1 = False
         Me.RadioButton_diagnostic_5413.cause2 = False
         Me.RadioButton_diagnostic_5413.cause3 = False
@@ -1566,14 +1566,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5413.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_5413.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5413.Name = "RadioButton_diagnostic_5413"
-        Me.RadioButton_diagnostic_5413.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5413.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5413.Size = New System.Drawing.Size(344, 16)
         Me.RadioButton_diagnostic_5413.TabIndex = 8
         '
         'RadioButton_diagnostic_5410
         '
         Me.RadioButton_diagnostic_5410.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5410.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5410.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5410.cause1 = False
         Me.RadioButton_diagnostic_5410.cause2 = False
         Me.RadioButton_diagnostic_5410.cause3 = False
@@ -1588,14 +1588,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5410.Location = New System.Drawing.Point(8, 88)
         Me.RadioButton_diagnostic_5410.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5410.Name = "RadioButton_diagnostic_5410"
-        Me.RadioButton_diagnostic_5410.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5410.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5410.Size = New System.Drawing.Size(344, 16)
         Me.RadioButton_diagnostic_5410.TabIndex = 7
         '
         'RadioButton_diagnostic_5412
         '
         Me.RadioButton_diagnostic_5412.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5412.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5412.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5412.cause1 = False
         Me.RadioButton_diagnostic_5412.cause2 = False
         Me.RadioButton_diagnostic_5412.cause3 = False
@@ -1610,14 +1610,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5412.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_5412.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5412.Name = "RadioButton_diagnostic_5412"
-        Me.RadioButton_diagnostic_5412.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5412.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5412.Size = New System.Drawing.Size(344, 16)
         Me.RadioButton_diagnostic_5412.TabIndex = 5
         '
         'RadioButton_diagnostic_5411
         '
         Me.RadioButton_diagnostic_5411.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5411.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5411.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5411.cause1 = False
         Me.RadioButton_diagnostic_5411.cause2 = False
         Me.RadioButton_diagnostic_5411.cause3 = False
@@ -1632,7 +1632,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5411.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_5411.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5411.Name = "RadioButton_diagnostic_5411"
-        Me.RadioButton_diagnostic_5411.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5411.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5411.Size = New System.Drawing.Size(344, 16)
         Me.RadioButton_diagnostic_5411.TabIndex = 4
         '
@@ -1679,7 +1679,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5110.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5110.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5110.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5110.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5110.cause1 = False
         Me.RadioButton_diagnostic_5110.cause2 = False
         Me.RadioButton_diagnostic_5110.cause3 = False
@@ -1694,14 +1694,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5110.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_5110.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5110.Name = "RadioButton_diagnostic_5110"
-        Me.RadioButton_diagnostic_5110.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5110.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5110.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_5110.TabIndex = 7
         '
         'RadioButton_diagnostic_5112
         '
         Me.RadioButton_diagnostic_5112.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5112.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5112.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5112.cause1 = False
         Me.RadioButton_diagnostic_5112.cause2 = False
         Me.RadioButton_diagnostic_5112.cause3 = False
@@ -1716,14 +1716,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5112.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_5112.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5112.Name = "RadioButton_diagnostic_5112"
-        Me.RadioButton_diagnostic_5112.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5112.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5112.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_5112.TabIndex = 5
         '
         'RadioButton_diagnostic_5111
         '
         Me.RadioButton_diagnostic_5111.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5111.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5111.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5111.cause1 = False
         Me.RadioButton_diagnostic_5111.cause2 = False
         Me.RadioButton_diagnostic_5111.cause3 = False
@@ -1738,7 +1738,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5111.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_5111.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5111.Name = "RadioButton_diagnostic_5111"
-        Me.RadioButton_diagnostic_5111.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5111.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5111.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_5111.TabIndex = 4
         '
@@ -1785,7 +1785,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_5323
         '
         Me.RadioButton_diagnostic_5323.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5323.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5323.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5323.cause1 = False
         Me.RadioButton_diagnostic_5323.cause2 = False
         Me.RadioButton_diagnostic_5323.cause3 = False
@@ -1800,7 +1800,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5323.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_5323.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5323.Name = "RadioButton_diagnostic_5323"
-        Me.RadioButton_diagnostic_5323.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5323.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5323.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_5323.TabIndex = 8
         '
@@ -1809,7 +1809,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5320.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5320.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5320.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5320.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5320.cause1 = False
         Me.RadioButton_diagnostic_5320.cause2 = False
         Me.RadioButton_diagnostic_5320.cause3 = False
@@ -1824,14 +1824,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5320.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_5320.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5320.Name = "RadioButton_diagnostic_5320"
-        Me.RadioButton_diagnostic_5320.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5320.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5320.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_5320.TabIndex = 7
         '
         'RadioButton_diagnostic_5322
         '
         Me.RadioButton_diagnostic_5322.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5322.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5322.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5322.cause1 = False
         Me.RadioButton_diagnostic_5322.cause2 = False
         Me.RadioButton_diagnostic_5322.cause3 = False
@@ -1846,14 +1846,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5322.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_5322.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5322.Name = "RadioButton_diagnostic_5322"
-        Me.RadioButton_diagnostic_5322.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5322.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5322.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_5322.TabIndex = 5
         '
         'RadioButton_diagnostic_5321
         '
         Me.RadioButton_diagnostic_5321.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5321.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5321.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5321.cause1 = False
         Me.RadioButton_diagnostic_5321.cause2 = False
         Me.RadioButton_diagnostic_5321.cause3 = False
@@ -1868,7 +1868,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5321.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_5321.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5321.Name = "RadioButton_diagnostic_5321"
-        Me.RadioButton_diagnostic_5321.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5321.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5321.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_5321.TabIndex = 4
         '
@@ -1891,7 +1891,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5310.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5310.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5310.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5310.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5310.cause1 = False
         Me.RadioButton_diagnostic_5310.cause2 = False
         Me.RadioButton_diagnostic_5310.cause3 = False
@@ -1906,14 +1906,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5310.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_5310.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5310.Name = "RadioButton_diagnostic_5310"
-        Me.RadioButton_diagnostic_5310.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5310.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5310.Size = New System.Drawing.Size(128, 16)
         Me.RadioButton_diagnostic_5310.TabIndex = 7
         '
         'RadioButton_diagnostic_5312
         '
         Me.RadioButton_diagnostic_5312.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5312.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5312.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5312.cause1 = False
         Me.RadioButton_diagnostic_5312.cause2 = False
         Me.RadioButton_diagnostic_5312.cause3 = False
@@ -1928,14 +1928,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5312.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_5312.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5312.Name = "RadioButton_diagnostic_5312"
-        Me.RadioButton_diagnostic_5312.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5312.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5312.Size = New System.Drawing.Size(128, 16)
         Me.RadioButton_diagnostic_5312.TabIndex = 5
         '
         'RadioButton_diagnostic_5311
         '
         Me.RadioButton_diagnostic_5311.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5311.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5311.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5311.cause1 = False
         Me.RadioButton_diagnostic_5311.cause2 = False
         Me.RadioButton_diagnostic_5311.cause3 = False
@@ -1950,7 +1950,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5311.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_5311.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5311.Name = "RadioButton_diagnostic_5311"
-        Me.RadioButton_diagnostic_5311.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5311.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5311.Size = New System.Drawing.Size(128, 16)
         Me.RadioButton_diagnostic_5311.TabIndex = 4
         '
@@ -1995,7 +1995,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_5223
         '
         Me.RadioButton_diagnostic_5223.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5223.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5223.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5223.cause1 = False
         Me.RadioButton_diagnostic_5223.cause2 = False
         Me.RadioButton_diagnostic_5223.cause3 = False
@@ -2010,7 +2010,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5223.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_5223.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5223.Name = "RadioButton_diagnostic_5223"
-        Me.RadioButton_diagnostic_5223.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5223.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5223.Size = New System.Drawing.Size(184, 16)
         Me.RadioButton_diagnostic_5223.TabIndex = 8
         '
@@ -2019,7 +2019,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5220.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5220.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5220.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5220.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5220.cause1 = False
         Me.RadioButton_diagnostic_5220.cause2 = False
         Me.RadioButton_diagnostic_5220.cause3 = False
@@ -2034,14 +2034,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5220.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_5220.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5220.Name = "RadioButton_diagnostic_5220"
-        Me.RadioButton_diagnostic_5220.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5220.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5220.Size = New System.Drawing.Size(184, 16)
         Me.RadioButton_diagnostic_5220.TabIndex = 7
         '
         'RadioButton_diagnostic_5222
         '
         Me.RadioButton_diagnostic_5222.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5222.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5222.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5222.cause1 = False
         Me.RadioButton_diagnostic_5222.cause2 = False
         Me.RadioButton_diagnostic_5222.cause3 = False
@@ -2056,14 +2056,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5222.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_5222.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5222.Name = "RadioButton_diagnostic_5222"
-        Me.RadioButton_diagnostic_5222.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5222.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5222.Size = New System.Drawing.Size(184, 16)
         Me.RadioButton_diagnostic_5222.TabIndex = 5
         '
         'RadioButton_diagnostic_5221
         '
         Me.RadioButton_diagnostic_5221.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_5221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5221.cause1 = False
         Me.RadioButton_diagnostic_5221.cause2 = False
         Me.RadioButton_diagnostic_5221.cause3 = False
@@ -2078,7 +2078,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5221.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_5221.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5221.Name = "RadioButton_diagnostic_5221"
-        Me.RadioButton_diagnostic_5221.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5221.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5221.Size = New System.Drawing.Size(184, 16)
         Me.RadioButton_diagnostic_5221.TabIndex = 4
         '
@@ -2101,7 +2101,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5210.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5210.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5210.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5210.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5210.cause1 = False
         Me.RadioButton_diagnostic_5210.cause2 = False
         Me.RadioButton_diagnostic_5210.cause3 = False
@@ -2116,14 +2116,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5210.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_5210.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5210.Name = "RadioButton_diagnostic_5210"
-        Me.RadioButton_diagnostic_5210.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5210.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5210.Size = New System.Drawing.Size(144, 16)
         Me.RadioButton_diagnostic_5210.TabIndex = 7
         '
         'RadioButton_diagnostic_5212
         '
         Me.RadioButton_diagnostic_5212.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5212.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5212.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5212.cause1 = False
         Me.RadioButton_diagnostic_5212.cause2 = False
         Me.RadioButton_diagnostic_5212.cause3 = False
@@ -2138,14 +2138,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5212.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_5212.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5212.Name = "RadioButton_diagnostic_5212"
-        Me.RadioButton_diagnostic_5212.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5212.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5212.Size = New System.Drawing.Size(144, 16)
         Me.RadioButton_diagnostic_5212.TabIndex = 5
         '
         'RadioButton_diagnostic_5211
         '
         Me.RadioButton_diagnostic_5211.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5211.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5211.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5211.cause1 = False
         Me.RadioButton_diagnostic_5211.cause2 = False
         Me.RadioButton_diagnostic_5211.cause3 = False
@@ -2160,7 +2160,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5211.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_5211.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5211.Name = "RadioButton_diagnostic_5211"
-        Me.RadioButton_diagnostic_5211.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5211.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5211.Size = New System.Drawing.Size(144, 16)
         Me.RadioButton_diagnostic_5211.TabIndex = 4
         '
@@ -2221,7 +2221,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5522.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5522.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5522.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5522.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5522.cause1 = False
         Me.RadioButton_diagnostic_5522.cause2 = False
         Me.RadioButton_diagnostic_5522.cause3 = False
@@ -2236,7 +2236,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5522.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_5522.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5522.Name = "RadioButton_diagnostic_5522"
-        Me.RadioButton_diagnostic_5522.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5522.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5522.Size = New System.Drawing.Size(295, 16)
         Me.RadioButton_diagnostic_5522.TabIndex = 8
         '
@@ -2245,7 +2245,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5520.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5520.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5520.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5520.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5520.cause1 = False
         Me.RadioButton_diagnostic_5520.cause2 = False
         Me.RadioButton_diagnostic_5520.cause3 = False
@@ -2260,7 +2260,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5520.Location = New System.Drawing.Point(8, 88)
         Me.RadioButton_diagnostic_5520.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5520.Name = "RadioButton_diagnostic_5520"
-        Me.RadioButton_diagnostic_5520.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5520.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5520.Size = New System.Drawing.Size(295, 16)
         Me.RadioButton_diagnostic_5520.TabIndex = 7
         '
@@ -2269,7 +2269,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5521.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5521.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5521.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5521.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5521.cause1 = False
         Me.RadioButton_diagnostic_5521.cause2 = False
         Me.RadioButton_diagnostic_5521.cause3 = False
@@ -2284,7 +2284,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5521.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_5521.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5521.Name = "RadioButton_diagnostic_5521"
-        Me.RadioButton_diagnostic_5521.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5521.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5521.Size = New System.Drawing.Size(295, 16)
         Me.RadioButton_diagnostic_5521.TabIndex = 5
         '
@@ -2308,7 +2308,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5512.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5512.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5512.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5512.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5512.cause1 = False
         Me.RadioButton_diagnostic_5512.cause2 = False
         Me.RadioButton_diagnostic_5512.cause3 = False
@@ -2323,7 +2323,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5512.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_5512.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5512.Name = "RadioButton_diagnostic_5512"
-        Me.RadioButton_diagnostic_5512.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5512.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5512.Size = New System.Drawing.Size(295, 16)
         Me.RadioButton_diagnostic_5512.TabIndex = 8
         '
@@ -2332,7 +2332,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5510.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5510.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_5510.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5510.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5510.cause1 = False
         Me.RadioButton_diagnostic_5510.cause2 = False
         Me.RadioButton_diagnostic_5510.cause3 = False
@@ -2347,7 +2347,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5510.Location = New System.Drawing.Point(8, 88)
         Me.RadioButton_diagnostic_5510.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5510.Name = "RadioButton_diagnostic_5510"
-        Me.RadioButton_diagnostic_5510.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5510.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5510.Size = New System.Drawing.Size(295, 16)
         Me.RadioButton_diagnostic_5510.TabIndex = 7
         '
@@ -2356,7 +2356,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5511.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_5511.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_5511.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_5511.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_5511.cause1 = False
         Me.RadioButton_diagnostic_5511.cause2 = False
         Me.RadioButton_diagnostic_5511.cause3 = False
@@ -2371,7 +2371,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_5511.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_5511.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_5511.Name = "RadioButton_diagnostic_5511"
-        Me.RadioButton_diagnostic_5511.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_5511.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_5511.Size = New System.Drawing.Size(295, 16)
         Me.RadioButton_diagnostic_5511.TabIndex = 5
         '
@@ -2617,7 +2617,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8334
         '
         Me.RadioButton_diagnostic_8334.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8334.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8334.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8334.cause1 = False
         Me.RadioButton_diagnostic_8334.cause2 = False
         Me.RadioButton_diagnostic_8334.cause3 = False
@@ -2632,14 +2632,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8334.Location = New System.Drawing.Point(10, 73)
         Me.RadioButton_diagnostic_8334.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8334.Name = "RadioButton_diagnostic_8334"
-        Me.RadioButton_diagnostic_8334.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8334.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8334.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8334.TabIndex = 20
         '
         'RadioButton_diagnostic_8333
         '
         Me.RadioButton_diagnostic_8333.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8333.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8333.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8333.cause1 = False
         Me.RadioButton_diagnostic_8333.cause2 = False
         Me.RadioButton_diagnostic_8333.cause3 = False
@@ -2654,14 +2654,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8333.Location = New System.Drawing.Point(10, 57)
         Me.RadioButton_diagnostic_8333.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8333.Name = "RadioButton_diagnostic_8333"
-        Me.RadioButton_diagnostic_8333.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8333.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8333.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8333.TabIndex = 19
         '
         'RadioButton_diagnostic_8332
         '
         Me.RadioButton_diagnostic_8332.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8332.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8332.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8332.cause1 = False
         Me.RadioButton_diagnostic_8332.cause2 = False
         Me.RadioButton_diagnostic_8332.cause3 = False
@@ -2676,14 +2676,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8332.Location = New System.Drawing.Point(10, 41)
         Me.RadioButton_diagnostic_8332.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8332.Name = "RadioButton_diagnostic_8332"
-        Me.RadioButton_diagnostic_8332.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8332.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8332.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8332.TabIndex = 8
         '
         'RadioButton_diagnostic_8330
         '
         Me.RadioButton_diagnostic_8330.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8330.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8330.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8330.cause1 = False
         Me.RadioButton_diagnostic_8330.cause2 = False
         Me.RadioButton_diagnostic_8330.cause3 = False
@@ -2698,14 +2698,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8330.Location = New System.Drawing.Point(10, 90)
         Me.RadioButton_diagnostic_8330.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8330.Name = "RadioButton_diagnostic_8330"
-        Me.RadioButton_diagnostic_8330.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8330.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8330.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8330.TabIndex = 7
         '
         'RadioButton_diagnostic_8331
         '
         Me.RadioButton_diagnostic_8331.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8331.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8331.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8331.cause1 = False
         Me.RadioButton_diagnostic_8331.cause2 = False
         Me.RadioButton_diagnostic_8331.cause3 = False
@@ -2720,7 +2720,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8331.Location = New System.Drawing.Point(10, 25)
         Me.RadioButton_diagnostic_8331.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8331.Name = "RadioButton_diagnostic_8331"
-        Me.RadioButton_diagnostic_8331.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8331.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8331.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8331.TabIndex = 4
         '
@@ -2742,7 +2742,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8323
         '
         Me.RadioButton_diagnostic_8323.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8323.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8323.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8323.cause1 = False
         Me.RadioButton_diagnostic_8323.cause2 = False
         Me.RadioButton_diagnostic_8323.cause3 = False
@@ -2757,14 +2757,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8323.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_8323.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8323.Name = "RadioButton_diagnostic_8323"
-        Me.RadioButton_diagnostic_8323.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8323.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8323.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8323.TabIndex = 9
         '
         'RadioButton_diagnostic_8322
         '
         Me.RadioButton_diagnostic_8322.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8322.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8322.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8322.cause1 = False
         Me.RadioButton_diagnostic_8322.cause2 = False
         Me.RadioButton_diagnostic_8322.cause3 = False
@@ -2779,14 +2779,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8322.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_8322.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8322.Name = "RadioButton_diagnostic_8322"
-        Me.RadioButton_diagnostic_8322.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8322.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8322.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8322.TabIndex = 8
         '
         'RadioButton_diagnostic_8320
         '
         Me.RadioButton_diagnostic_8320.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8320.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8320.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8320.cause1 = False
         Me.RadioButton_diagnostic_8320.cause2 = False
         Me.RadioButton_diagnostic_8320.cause3 = False
@@ -2801,14 +2801,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8320.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_8320.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8320.Name = "RadioButton_diagnostic_8320"
-        Me.RadioButton_diagnostic_8320.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8320.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8320.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8320.TabIndex = 7
         '
         'RadioButton_diagnostic_8321
         '
         Me.RadioButton_diagnostic_8321.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8321.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8321.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8321.cause1 = False
         Me.RadioButton_diagnostic_8321.cause2 = False
         Me.RadioButton_diagnostic_8321.cause3 = False
@@ -2823,7 +2823,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8321.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_8321.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8321.Name = "RadioButton_diagnostic_8321"
-        Me.RadioButton_diagnostic_8321.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8321.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8321.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8321.TabIndex = 4
         '
@@ -2861,7 +2861,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8314.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_8314.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8314.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8314.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8314.cause1 = False
         Me.RadioButton_diagnostic_8314.cause2 = False
         Me.RadioButton_diagnostic_8314.cause3 = False
@@ -2876,7 +2876,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8314.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_8314.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8314.Name = "RadioButton_diagnostic_8314"
-        Me.RadioButton_diagnostic_8314.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8314.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8314.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8314.TabIndex = 21
         '
@@ -2896,7 +2896,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8313.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_8313.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8313.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8313.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8313.cause1 = False
         Me.RadioButton_diagnostic_8313.cause2 = False
         Me.RadioButton_diagnostic_8313.cause3 = False
@@ -2911,7 +2911,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8313.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_8313.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8313.Name = "RadioButton_diagnostic_8313"
-        Me.RadioButton_diagnostic_8313.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8313.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8313.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8313.TabIndex = 8
         '
@@ -2920,7 +2920,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8310.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_8310.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8310.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8310.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8310.cause1 = False
         Me.RadioButton_diagnostic_8310.cause2 = False
         Me.RadioButton_diagnostic_8310.cause3 = False
@@ -2935,7 +2935,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8310.Location = New System.Drawing.Point(8, 93)
         Me.RadioButton_diagnostic_8310.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8310.Name = "RadioButton_diagnostic_8310"
-        Me.RadioButton_diagnostic_8310.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8310.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8310.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8310.TabIndex = 7
         '
@@ -2944,7 +2944,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8311.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_8311.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8311.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8311.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8311.cause1 = False
         Me.RadioButton_diagnostic_8311.cause2 = False
         Me.RadioButton_diagnostic_8311.cause3 = False
@@ -2959,7 +2959,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8311.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_8311.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8311.Name = "RadioButton_diagnostic_8311"
-        Me.RadioButton_diagnostic_8311.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8311.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8311.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8311.TabIndex = 5
         '
@@ -2968,7 +2968,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8312.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_8312.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8312.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8312.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8312.cause1 = False
         Me.RadioButton_diagnostic_8312.cause2 = False
         Me.RadioButton_diagnostic_8312.cause3 = False
@@ -2983,7 +2983,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8312.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_8312.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8312.Name = "RadioButton_diagnostic_8312"
-        Me.RadioButton_diagnostic_8312.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8312.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8312.Size = New System.Drawing.Size(312, 16)
         Me.RadioButton_diagnostic_8312.TabIndex = 4
         '
@@ -3134,7 +3134,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8172
         '
         Me.RadioButton_diagnostic_8172.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8172.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8172.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8172.cause1 = False
         Me.RadioButton_diagnostic_8172.cause2 = False
         Me.RadioButton_diagnostic_8172.cause3 = False
@@ -3149,14 +3149,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8172.Location = New System.Drawing.Point(8, 32)
         Me.RadioButton_diagnostic_8172.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8172.Name = "RadioButton_diagnostic_8172"
-        Me.RadioButton_diagnostic_8172.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8172.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8172.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8172.TabIndex = 8
         '
         'RadioButton_diagnostic_8170
         '
         Me.RadioButton_diagnostic_8170.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8170.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8170.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8170.cause1 = False
         Me.RadioButton_diagnostic_8170.cause2 = False
         Me.RadioButton_diagnostic_8170.cause3 = False
@@ -3171,14 +3171,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8170.Location = New System.Drawing.Point(8, 48)
         Me.RadioButton_diagnostic_8170.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8170.Name = "RadioButton_diagnostic_8170"
-        Me.RadioButton_diagnostic_8170.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8170.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8170.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8170.TabIndex = 7
         '
         'RadioButton_diagnostic_8171
         '
         Me.RadioButton_diagnostic_8171.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8171.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8171.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8171.cause1 = False
         Me.RadioButton_diagnostic_8171.cause2 = False
         Me.RadioButton_diagnostic_8171.cause3 = False
@@ -3193,7 +3193,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8171.Location = New System.Drawing.Point(8, 16)
         Me.RadioButton_diagnostic_8171.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8171.Name = "RadioButton_diagnostic_8171"
-        Me.RadioButton_diagnostic_8171.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8171.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8171.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8171.TabIndex = 4
         '
@@ -3214,7 +3214,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8130
         '
         Me.RadioButton_diagnostic_8130.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8130.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8130.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8130.cause1 = False
         Me.RadioButton_diagnostic_8130.cause2 = False
         Me.RadioButton_diagnostic_8130.cause3 = False
@@ -3229,14 +3229,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8130.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_8130.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8130.Name = "RadioButton_diagnostic_8130"
-        Me.RadioButton_diagnostic_8130.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8130.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8130.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8130.TabIndex = 7
         '
         'RadioButton_diagnostic_8132
         '
         Me.RadioButton_diagnostic_8132.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8132.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8132.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8132.cause1 = False
         Me.RadioButton_diagnostic_8132.cause2 = False
         Me.RadioButton_diagnostic_8132.cause3 = False
@@ -3251,14 +3251,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8132.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_8132.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8132.Name = "RadioButton_diagnostic_8132"
-        Me.RadioButton_diagnostic_8132.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8132.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8132.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8132.TabIndex = 8
         '
         'RadioButton_diagnostic_8131
         '
         Me.RadioButton_diagnostic_8131.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8131.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8131.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8131.cause1 = False
         Me.RadioButton_diagnostic_8131.cause2 = False
         Me.RadioButton_diagnostic_8131.cause3 = False
@@ -3273,7 +3273,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8131.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_8131.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8131.Name = "RadioButton_diagnostic_8131"
-        Me.RadioButton_diagnostic_8131.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8131.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8131.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8131.TabIndex = 4
         '
@@ -3294,7 +3294,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8162
         '
         Me.RadioButton_diagnostic_8162.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8162.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8162.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8162.cause1 = False
         Me.RadioButton_diagnostic_8162.cause2 = False
         Me.RadioButton_diagnostic_8162.cause3 = False
@@ -3309,14 +3309,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8162.Location = New System.Drawing.Point(8, 32)
         Me.RadioButton_diagnostic_8162.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8162.Name = "RadioButton_diagnostic_8162"
-        Me.RadioButton_diagnostic_8162.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8162.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8162.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8162.TabIndex = 8
         '
         'RadioButton_diagnostic_8160
         '
         Me.RadioButton_diagnostic_8160.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8160.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8160.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8160.cause1 = False
         Me.RadioButton_diagnostic_8160.cause2 = False
         Me.RadioButton_diagnostic_8160.cause3 = False
@@ -3331,14 +3331,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8160.Location = New System.Drawing.Point(8, 48)
         Me.RadioButton_diagnostic_8160.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8160.Name = "RadioButton_diagnostic_8160"
-        Me.RadioButton_diagnostic_8160.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8160.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8160.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8160.TabIndex = 7
         '
         'RadioButton_diagnostic_8161
         '
         Me.RadioButton_diagnostic_8161.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8161.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8161.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8161.cause1 = False
         Me.RadioButton_diagnostic_8161.cause2 = False
         Me.RadioButton_diagnostic_8161.cause3 = False
@@ -3353,7 +3353,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8161.Location = New System.Drawing.Point(8, 16)
         Me.RadioButton_diagnostic_8161.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8161.Name = "RadioButton_diagnostic_8161"
-        Me.RadioButton_diagnostic_8161.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8161.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8161.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8161.TabIndex = 4
         '
@@ -3389,7 +3389,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8234
         '
         Me.RadioButton_diagnostic_8234.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8234.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8234.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8234.cause1 = False
         Me.RadioButton_diagnostic_8234.cause2 = False
         Me.RadioButton_diagnostic_8234.cause3 = False
@@ -3404,14 +3404,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8234.Location = New System.Drawing.Point(8, 66)
         Me.RadioButton_diagnostic_8234.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8234.Name = "RadioButton_diagnostic_8234"
-        Me.RadioButton_diagnostic_8234.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8234.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8234.Size = New System.Drawing.Size(304, 16)
         Me.RadioButton_diagnostic_8234.TabIndex = 10
         '
         'RadioButton_diagnostic_8233
         '
         Me.RadioButton_diagnostic_8233.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8233.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8233.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8233.cause1 = False
         Me.RadioButton_diagnostic_8233.cause2 = False
         Me.RadioButton_diagnostic_8233.cause3 = False
@@ -3426,14 +3426,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8233.Location = New System.Drawing.Point(8, 50)
         Me.RadioButton_diagnostic_8233.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8233.Name = "RadioButton_diagnostic_8233"
-        Me.RadioButton_diagnostic_8233.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8233.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8233.Size = New System.Drawing.Size(304, 16)
         Me.RadioButton_diagnostic_8233.TabIndex = 9
         '
         'RadioButton_diagnostic_8232
         '
         Me.RadioButton_diagnostic_8232.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8232.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8232.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8232.cause1 = False
         Me.RadioButton_diagnostic_8232.cause2 = False
         Me.RadioButton_diagnostic_8232.cause3 = False
@@ -3448,14 +3448,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8232.Location = New System.Drawing.Point(8, 34)
         Me.RadioButton_diagnostic_8232.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8232.Name = "RadioButton_diagnostic_8232"
-        Me.RadioButton_diagnostic_8232.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8232.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8232.Size = New System.Drawing.Size(304, 16)
         Me.RadioButton_diagnostic_8232.TabIndex = 8
         '
         'RadioButton_diagnostic_8230
         '
         Me.RadioButton_diagnostic_8230.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8230.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8230.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8230.cause1 = False
         Me.RadioButton_diagnostic_8230.cause2 = False
         Me.RadioButton_diagnostic_8230.cause3 = False
@@ -3470,14 +3470,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8230.Location = New System.Drawing.Point(8, 82)
         Me.RadioButton_diagnostic_8230.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8230.Name = "RadioButton_diagnostic_8230"
-        Me.RadioButton_diagnostic_8230.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8230.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8230.Size = New System.Drawing.Size(304, 16)
         Me.RadioButton_diagnostic_8230.TabIndex = 7
         '
         'RadioButton_diagnostic_8231
         '
         Me.RadioButton_diagnostic_8231.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8231.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8231.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8231.cause1 = False
         Me.RadioButton_diagnostic_8231.cause2 = False
         Me.RadioButton_diagnostic_8231.cause3 = False
@@ -3492,7 +3492,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8231.Location = New System.Drawing.Point(8, 18)
         Me.RadioButton_diagnostic_8231.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8231.Name = "RadioButton_diagnostic_8231"
-        Me.RadioButton_diagnostic_8231.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8231.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8231.Size = New System.Drawing.Size(304, 16)
         Me.RadioButton_diagnostic_8231.TabIndex = 4
         '
@@ -3513,7 +3513,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8222
         '
         Me.RadioButton_diagnostic_8222.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8222.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8222.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8222.cause1 = False
         Me.RadioButton_diagnostic_8222.cause2 = False
         Me.RadioButton_diagnostic_8222.cause3 = False
@@ -3528,14 +3528,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8222.Location = New System.Drawing.Point(8, 34)
         Me.RadioButton_diagnostic_8222.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8222.Name = "RadioButton_diagnostic_8222"
-        Me.RadioButton_diagnostic_8222.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8222.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8222.Size = New System.Drawing.Size(304, 16)
         Me.RadioButton_diagnostic_8222.TabIndex = 8
         '
         'RadioButton_diagnostic_8220
         '
         Me.RadioButton_diagnostic_8220.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8220.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8220.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8220.cause1 = False
         Me.RadioButton_diagnostic_8220.cause2 = False
         Me.RadioButton_diagnostic_8220.cause3 = False
@@ -3550,14 +3550,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8220.Location = New System.Drawing.Point(8, 50)
         Me.RadioButton_diagnostic_8220.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8220.Name = "RadioButton_diagnostic_8220"
-        Me.RadioButton_diagnostic_8220.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8220.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8220.Size = New System.Drawing.Size(304, 16)
         Me.RadioButton_diagnostic_8220.TabIndex = 7
         '
         'RadioButton_diagnostic_8221
         '
         Me.RadioButton_diagnostic_8221.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8221.cause1 = False
         Me.RadioButton_diagnostic_8221.cause2 = False
         Me.RadioButton_diagnostic_8221.cause3 = False
@@ -3572,7 +3572,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8221.Location = New System.Drawing.Point(8, 18)
         Me.RadioButton_diagnostic_8221.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8221.Name = "RadioButton_diagnostic_8221"
-        Me.RadioButton_diagnostic_8221.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8221.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8221.Size = New System.Drawing.Size(304, 16)
         Me.RadioButton_diagnostic_8221.TabIndex = 4
         '
@@ -3592,7 +3592,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8210
         '
         Me.RadioButton_diagnostic_8210.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8210.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8210.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8210.cause1 = False
         Me.RadioButton_diagnostic_8210.cause2 = False
         Me.RadioButton_diagnostic_8210.cause3 = False
@@ -3607,14 +3607,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8210.Location = New System.Drawing.Point(10, 34)
         Me.RadioButton_diagnostic_8210.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8210.Name = "RadioButton_diagnostic_8210"
-        Me.RadioButton_diagnostic_8210.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8210.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8210.Size = New System.Drawing.Size(304, 16)
         Me.RadioButton_diagnostic_8210.TabIndex = 7
         '
         'RadioButton_diagnostic_8211
         '
         Me.RadioButton_diagnostic_8211.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8211.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8211.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8211.cause1 = False
         Me.RadioButton_diagnostic_8211.cause2 = False
         Me.RadioButton_diagnostic_8211.cause3 = False
@@ -3629,7 +3629,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8211.Location = New System.Drawing.Point(10, 18)
         Me.RadioButton_diagnostic_8211.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8211.Name = "RadioButton_diagnostic_8211"
-        Me.RadioButton_diagnostic_8211.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8211.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8211.Size = New System.Drawing.Size(304, 16)
         Me.RadioButton_diagnostic_8211.TabIndex = 5
         '
@@ -3664,7 +3664,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8124
         '
         Me.RadioButton_diagnostic_8124.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8124.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8124.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8124.cause1 = False
         Me.RadioButton_diagnostic_8124.cause2 = False
         Me.RadioButton_diagnostic_8124.cause3 = False
@@ -3679,14 +3679,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8124.Location = New System.Drawing.Point(8, 62)
         Me.RadioButton_diagnostic_8124.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8124.Name = "RadioButton_diagnostic_8124"
-        Me.RadioButton_diagnostic_8124.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8124.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8124.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8124.TabIndex = 10
         '
         'RadioButton_diagnostic_8123
         '
         Me.RadioButton_diagnostic_8123.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8123.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8123.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8123.cause1 = False
         Me.RadioButton_diagnostic_8123.cause2 = False
         Me.RadioButton_diagnostic_8123.cause3 = False
@@ -3701,14 +3701,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8123.Location = New System.Drawing.Point(8, 46)
         Me.RadioButton_diagnostic_8123.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8123.Name = "RadioButton_diagnostic_8123"
-        Me.RadioButton_diagnostic_8123.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8123.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8123.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8123.TabIndex = 9
         '
         'RadioButton_diagnostic_8122
         '
         Me.RadioButton_diagnostic_8122.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8122.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8122.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8122.cause1 = False
         Me.RadioButton_diagnostic_8122.cause2 = False
         Me.RadioButton_diagnostic_8122.cause3 = False
@@ -3723,14 +3723,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8122.Location = New System.Drawing.Point(8, 32)
         Me.RadioButton_diagnostic_8122.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8122.Name = "RadioButton_diagnostic_8122"
-        Me.RadioButton_diagnostic_8122.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8122.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8122.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8122.TabIndex = 8
         '
         'RadioButton_diagnostic_8120
         '
         Me.RadioButton_diagnostic_8120.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8120.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8120.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8120.cause1 = False
         Me.RadioButton_diagnostic_8120.cause2 = False
         Me.RadioButton_diagnostic_8120.cause3 = False
@@ -3745,14 +3745,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8120.Location = New System.Drawing.Point(8, 85)
         Me.RadioButton_diagnostic_8120.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8120.Name = "RadioButton_diagnostic_8120"
-        Me.RadioButton_diagnostic_8120.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8120.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8120.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8120.TabIndex = 7
         '
         'RadioButton_diagnostic_8121
         '
         Me.RadioButton_diagnostic_8121.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8121.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8121.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8121.cause1 = False
         Me.RadioButton_diagnostic_8121.cause2 = False
         Me.RadioButton_diagnostic_8121.cause3 = False
@@ -3767,7 +3767,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8121.Location = New System.Drawing.Point(8, 16)
         Me.RadioButton_diagnostic_8121.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8121.Name = "RadioButton_diagnostic_8121"
-        Me.RadioButton_diagnostic_8121.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8121.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8121.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8121.TabIndex = 4
         '
@@ -3802,7 +3802,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8114
         '
         Me.RadioButton_diagnostic_8114.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8114.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8114.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8114.cause1 = False
         Me.RadioButton_diagnostic_8114.cause2 = False
         Me.RadioButton_diagnostic_8114.cause3 = False
@@ -3817,14 +3817,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8114.Location = New System.Drawing.Point(10, 64)
         Me.RadioButton_diagnostic_8114.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8114.Name = "RadioButton_diagnostic_8114"
-        Me.RadioButton_diagnostic_8114.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8114.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8114.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8114.TabIndex = 9
         '
         'RadioButton_diagnostic_8113
         '
         Me.RadioButton_diagnostic_8113.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8113.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8113.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8113.cause1 = False
         Me.RadioButton_diagnostic_8113.cause2 = False
         Me.RadioButton_diagnostic_8113.cause3 = False
@@ -3839,14 +3839,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8113.Location = New System.Drawing.Point(10, 48)
         Me.RadioButton_diagnostic_8113.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8113.Name = "RadioButton_diagnostic_8113"
-        Me.RadioButton_diagnostic_8113.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8113.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8113.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8113.TabIndex = 8
         '
         'RadioButton_diagnostic_8110
         '
         Me.RadioButton_diagnostic_8110.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8110.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8110.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8110.cause1 = False
         Me.RadioButton_diagnostic_8110.cause2 = False
         Me.RadioButton_diagnostic_8110.cause3 = False
@@ -3861,14 +3861,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8110.Location = New System.Drawing.Point(10, 80)
         Me.RadioButton_diagnostic_8110.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8110.Name = "RadioButton_diagnostic_8110"
-        Me.RadioButton_diagnostic_8110.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8110.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8110.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8110.TabIndex = 7
         '
         'RadioButton_diagnostic_8111
         '
         Me.RadioButton_diagnostic_8111.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8111.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8111.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8111.cause1 = False
         Me.RadioButton_diagnostic_8111.cause2 = False
         Me.RadioButton_diagnostic_8111.cause3 = False
@@ -3883,14 +3883,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8111.Location = New System.Drawing.Point(10, 16)
         Me.RadioButton_diagnostic_8111.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8111.Name = "RadioButton_diagnostic_8111"
-        Me.RadioButton_diagnostic_8111.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8111.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8111.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8111.TabIndex = 5
         '
         'RadioButton_diagnostic_8112
         '
         Me.RadioButton_diagnostic_8112.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8112.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8112.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8112.cause1 = False
         Me.RadioButton_diagnostic_8112.cause2 = False
         Me.RadioButton_diagnostic_8112.cause3 = False
@@ -3905,7 +3905,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8112.Location = New System.Drawing.Point(10, 32)
         Me.RadioButton_diagnostic_8112.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8112.Name = "RadioButton_diagnostic_8112"
-        Me.RadioButton_diagnostic_8112.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8112.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8112.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8112.TabIndex = 4
         '
@@ -3926,7 +3926,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8142
         '
         Me.RadioButton_diagnostic_8142.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8142.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8142.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8142.cause1 = False
         Me.RadioButton_diagnostic_8142.cause2 = False
         Me.RadioButton_diagnostic_8142.cause3 = False
@@ -3941,14 +3941,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8142.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_8142.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8142.Name = "RadioButton_diagnostic_8142"
-        Me.RadioButton_diagnostic_8142.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8142.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8142.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8142.TabIndex = 8
         '
         'RadioButton_diagnostic_8140
         '
         Me.RadioButton_diagnostic_8140.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8140.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8140.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8140.cause1 = False
         Me.RadioButton_diagnostic_8140.cause2 = False
         Me.RadioButton_diagnostic_8140.cause3 = False
@@ -3963,14 +3963,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8140.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_8140.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8140.Name = "RadioButton_diagnostic_8140"
-        Me.RadioButton_diagnostic_8140.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8140.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8140.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8140.TabIndex = 7
         '
         'RadioButton_diagnostic_8141
         '
         Me.RadioButton_diagnostic_8141.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8141.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8141.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8141.cause1 = False
         Me.RadioButton_diagnostic_8141.cause2 = False
         Me.RadioButton_diagnostic_8141.cause3 = False
@@ -3985,7 +3985,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8141.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_8141.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8141.Name = "RadioButton_diagnostic_8141"
-        Me.RadioButton_diagnostic_8141.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8141.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8141.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8141.TabIndex = 4
         '
@@ -4006,7 +4006,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_8152
         '
         Me.RadioButton_diagnostic_8152.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_8152.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8152.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8152.cause1 = False
         Me.RadioButton_diagnostic_8152.cause2 = False
         Me.RadioButton_diagnostic_8152.cause3 = False
@@ -4021,14 +4021,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8152.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_8152.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8152.Name = "RadioButton_diagnostic_8152"
-        Me.RadioButton_diagnostic_8152.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8152.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8152.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8152.TabIndex = 8
         '
         'RadioButton_diagnostic_8150
         '
         Me.RadioButton_diagnostic_8150.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_8150.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8150.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8150.cause1 = False
         Me.RadioButton_diagnostic_8150.cause2 = False
         Me.RadioButton_diagnostic_8150.cause3 = False
@@ -4043,14 +4043,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8150.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_8150.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8150.Name = "RadioButton_diagnostic_8150"
-        Me.RadioButton_diagnostic_8150.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8150.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8150.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8150.TabIndex = 7
         '
         'RadioButton_diagnostic_8151
         '
         Me.RadioButton_diagnostic_8151.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_8151.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_8151.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_8151.cause1 = False
         Me.RadioButton_diagnostic_8151.cause2 = False
         Me.RadioButton_diagnostic_8151.cause3 = False
@@ -4065,7 +4065,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_8151.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_8151.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8151.Name = "RadioButton_diagnostic_8151"
-        Me.RadioButton_diagnostic_8151.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_8151.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_8151.Size = New System.Drawing.Size(296, 16)
         Me.RadioButton_diagnostic_8151.TabIndex = 4
         '
@@ -6947,7 +6947,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12132.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12132.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12132.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12132.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12132.cause1 = False
         Me.RadioButton_diagnostic_12132.cause2 = False
         Me.RadioButton_diagnostic_12132.cause3 = False
@@ -6962,7 +6962,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12132.Location = New System.Drawing.Point(10, 47)
         Me.RadioButton_diagnostic_12132.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12132.Name = "RadioButton_diagnostic_12132"
-        Me.RadioButton_diagnostic_12132.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12132.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12132.Size = New System.Drawing.Size(269, 16)
         Me.RadioButton_diagnostic_12132.TabIndex = 1
         '
@@ -6971,7 +6971,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12130.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12130.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_12130.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12130.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12130.cause1 = False
         Me.RadioButton_diagnostic_12130.cause2 = False
         Me.RadioButton_diagnostic_12130.cause3 = False
@@ -6986,7 +6986,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12130.Location = New System.Drawing.Point(10, 63)
         Me.RadioButton_diagnostic_12130.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12130.Name = "RadioButton_diagnostic_12130"
-        Me.RadioButton_diagnostic_12130.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12130.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12130.Size = New System.Drawing.Size(269, 16)
         Me.RadioButton_diagnostic_12130.TabIndex = 7
         '
@@ -6995,7 +6995,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12131.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12131.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12131.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12131.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12131.cause1 = False
         Me.RadioButton_diagnostic_12131.cause2 = False
         Me.RadioButton_diagnostic_12131.cause3 = False
@@ -7010,7 +7010,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12131.Location = New System.Drawing.Point(10, 28)
         Me.RadioButton_diagnostic_12131.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12131.Name = "RadioButton_diagnostic_12131"
-        Me.RadioButton_diagnostic_12131.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12131.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12131.Size = New System.Drawing.Size(269, 16)
         Me.RadioButton_diagnostic_12131.TabIndex = 0
         '
@@ -7048,7 +7048,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12122.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12122.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12122.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12122.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12122.cause1 = False
         Me.RadioButton_diagnostic_12122.cause2 = False
         Me.RadioButton_diagnostic_12122.cause3 = False
@@ -7063,7 +7063,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12122.Location = New System.Drawing.Point(10, 30)
         Me.RadioButton_diagnostic_12122.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12122.Name = "RadioButton_diagnostic_12122"
-        Me.RadioButton_diagnostic_12122.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12122.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12122.Size = New System.Drawing.Size(270, 16)
         Me.RadioButton_diagnostic_12122.TabIndex = 1
         '
@@ -7072,7 +7072,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12123.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12123.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12123.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12123.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12123.cause1 = False
         Me.RadioButton_diagnostic_12123.cause2 = False
         Me.RadioButton_diagnostic_12123.cause3 = False
@@ -7087,7 +7087,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12123.Location = New System.Drawing.Point(10, 46)
         Me.RadioButton_diagnostic_12123.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12123.Name = "RadioButton_diagnostic_12123"
-        Me.RadioButton_diagnostic_12123.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12123.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12123.Size = New System.Drawing.Size(270, 16)
         Me.RadioButton_diagnostic_12123.TabIndex = 2
         '
@@ -7096,7 +7096,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12120.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12120.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_12120.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12120.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12120.cause1 = False
         Me.RadioButton_diagnostic_12120.cause2 = False
         Me.RadioButton_diagnostic_12120.cause3 = False
@@ -7111,7 +7111,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12120.Location = New System.Drawing.Point(10, 66)
         Me.RadioButton_diagnostic_12120.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12120.Name = "RadioButton_diagnostic_12120"
-        Me.RadioButton_diagnostic_12120.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12120.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12120.Size = New System.Drawing.Size(270, 16)
         Me.RadioButton_diagnostic_12120.TabIndex = 3
         '
@@ -7120,7 +7120,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12121.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12121.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12121.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12121.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12121.cause1 = False
         Me.RadioButton_diagnostic_12121.cause2 = False
         Me.RadioButton_diagnostic_12121.cause3 = False
@@ -7135,7 +7135,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12121.Location = New System.Drawing.Point(10, 14)
         Me.RadioButton_diagnostic_12121.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12121.Name = "RadioButton_diagnostic_12121"
-        Me.RadioButton_diagnostic_12121.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12121.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12121.Size = New System.Drawing.Size(270, 16)
         Me.RadioButton_diagnostic_12121.TabIndex = 0
         '
@@ -7175,7 +7175,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12112.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12112.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12112.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12112.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12112.cause1 = False
         Me.RadioButton_diagnostic_12112.cause2 = False
         Me.RadioButton_diagnostic_12112.cause3 = False
@@ -7190,7 +7190,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12112.Location = New System.Drawing.Point(10, 30)
         Me.RadioButton_diagnostic_12112.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12112.Name = "RadioButton_diagnostic_12112"
-        Me.RadioButton_diagnostic_12112.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12112.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12112.Size = New System.Drawing.Size(272, 16)
         Me.RadioButton_diagnostic_12112.TabIndex = 1
         '
@@ -7199,7 +7199,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12113.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12113.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12113.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12113.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12113.cause1 = False
         Me.RadioButton_diagnostic_12113.cause2 = False
         Me.RadioButton_diagnostic_12113.cause3 = False
@@ -7214,7 +7214,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12113.Location = New System.Drawing.Point(10, 46)
         Me.RadioButton_diagnostic_12113.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12113.Name = "RadioButton_diagnostic_12113"
-        Me.RadioButton_diagnostic_12113.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12113.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12113.Size = New System.Drawing.Size(272, 16)
         Me.RadioButton_diagnostic_12113.TabIndex = 2
         '
@@ -7223,7 +7223,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12110.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12110.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_12110.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12110.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12110.cause1 = False
         Me.RadioButton_diagnostic_12110.cause2 = False
         Me.RadioButton_diagnostic_12110.cause3 = False
@@ -7238,7 +7238,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12110.Location = New System.Drawing.Point(10, 66)
         Me.RadioButton_diagnostic_12110.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12110.Name = "RadioButton_diagnostic_12110"
-        Me.RadioButton_diagnostic_12110.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12110.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12110.Size = New System.Drawing.Size(272, 16)
         Me.RadioButton_diagnostic_12110.TabIndex = 3
         '
@@ -7247,7 +7247,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12111.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12111.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12111.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12111.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12111.cause1 = False
         Me.RadioButton_diagnostic_12111.cause2 = False
         Me.RadioButton_diagnostic_12111.cause3 = False
@@ -7262,7 +7262,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12111.Location = New System.Drawing.Point(10, 14)
         Me.RadioButton_diagnostic_12111.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12111.Name = "RadioButton_diagnostic_12111"
-        Me.RadioButton_diagnostic_12111.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12111.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12111.Size = New System.Drawing.Size(272, 16)
         Me.RadioButton_diagnostic_12111.TabIndex = 0
         '
@@ -7300,7 +7300,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11142.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11142.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11142.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11142.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11142.cause1 = False
         Me.RadioButton_diagnostic_11142.cause2 = False
         Me.RadioButton_diagnostic_11142.cause3 = False
@@ -7315,7 +7315,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11142.Location = New System.Drawing.Point(10, 30)
         Me.RadioButton_diagnostic_11142.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11142.Name = "RadioButton_diagnostic_11142"
-        Me.RadioButton_diagnostic_11142.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11142.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11142.Size = New System.Drawing.Size(215, 16)
         Me.RadioButton_diagnostic_11142.TabIndex = 1
         '
@@ -7324,7 +7324,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11140.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11140.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_11140.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11140.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11140.cause1 = False
         Me.RadioButton_diagnostic_11140.cause2 = False
         Me.RadioButton_diagnostic_11140.cause3 = False
@@ -7339,7 +7339,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11140.Location = New System.Drawing.Point(10, 66)
         Me.RadioButton_diagnostic_11140.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11140.Name = "RadioButton_diagnostic_11140"
-        Me.RadioButton_diagnostic_11140.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11140.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11140.Size = New System.Drawing.Size(215, 16)
         Me.RadioButton_diagnostic_11140.TabIndex = 2
         '
@@ -7348,7 +7348,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11141.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11141.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11141.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11141.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11141.cause1 = False
         Me.RadioButton_diagnostic_11141.cause2 = False
         Me.RadioButton_diagnostic_11141.cause3 = False
@@ -7363,7 +7363,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11141.Location = New System.Drawing.Point(10, 14)
         Me.RadioButton_diagnostic_11141.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11141.Name = "RadioButton_diagnostic_11141"
-        Me.RadioButton_diagnostic_11141.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11141.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11141.Size = New System.Drawing.Size(215, 16)
         Me.RadioButton_diagnostic_11141.TabIndex = 0
         '
@@ -7387,7 +7387,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11132.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11132.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11132.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11132.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11132.cause1 = False
         Me.RadioButton_diagnostic_11132.cause2 = False
         Me.RadioButton_diagnostic_11132.cause3 = False
@@ -7402,7 +7402,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11132.Location = New System.Drawing.Point(10, 30)
         Me.RadioButton_diagnostic_11132.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11132.Name = "RadioButton_diagnostic_11132"
-        Me.RadioButton_diagnostic_11132.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11132.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11132.Size = New System.Drawing.Size(215, 16)
         Me.RadioButton_diagnostic_11132.TabIndex = 1
         '
@@ -7411,7 +7411,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11133.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11133.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11133.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11133.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11133.cause1 = False
         Me.RadioButton_diagnostic_11133.cause2 = False
         Me.RadioButton_diagnostic_11133.cause3 = False
@@ -7427,7 +7427,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11133.Location = New System.Drawing.Point(10, 46)
         Me.RadioButton_diagnostic_11133.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11133.Name = "RadioButton_diagnostic_11133"
-        Me.RadioButton_diagnostic_11133.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11133.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11133.Size = New System.Drawing.Size(215, 16)
         Me.RadioButton_diagnostic_11133.TabIndex = 2
         '
@@ -7436,7 +7436,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11130.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11130.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_11130.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11130.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11130.cause1 = False
         Me.RadioButton_diagnostic_11130.cause2 = False
         Me.RadioButton_diagnostic_11130.cause3 = False
@@ -7451,7 +7451,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11130.Location = New System.Drawing.Point(10, 66)
         Me.RadioButton_diagnostic_11130.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11130.Name = "RadioButton_diagnostic_11130"
-        Me.RadioButton_diagnostic_11130.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11130.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11130.Size = New System.Drawing.Size(215, 16)
         Me.RadioButton_diagnostic_11130.TabIndex = 3
         '
@@ -7460,7 +7460,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11131.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11131.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11131.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11131.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11131.cause1 = False
         Me.RadioButton_diagnostic_11131.cause2 = False
         Me.RadioButton_diagnostic_11131.cause3 = False
@@ -7475,7 +7475,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11131.Location = New System.Drawing.Point(10, 14)
         Me.RadioButton_diagnostic_11131.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11131.Name = "RadioButton_diagnostic_11131"
-        Me.RadioButton_diagnostic_11131.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11131.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11131.Size = New System.Drawing.Size(215, 16)
         Me.RadioButton_diagnostic_11131.TabIndex = 0
         '
@@ -7499,7 +7499,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11122.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11122.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11122.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11122.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11122.cause1 = False
         Me.RadioButton_diagnostic_11122.cause2 = False
         Me.RadioButton_diagnostic_11122.cause3 = False
@@ -7514,7 +7514,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11122.Location = New System.Drawing.Point(10, 30)
         Me.RadioButton_diagnostic_11122.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11122.Name = "RadioButton_diagnostic_11122"
-        Me.RadioButton_diagnostic_11122.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11122.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11122.Size = New System.Drawing.Size(248, 16)
         Me.RadioButton_diagnostic_11122.TabIndex = 1
         '
@@ -7523,7 +7523,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11123.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11123.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11123.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11123.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11123.cause1 = False
         Me.RadioButton_diagnostic_11123.cause2 = False
         Me.RadioButton_diagnostic_11123.cause3 = False
@@ -7538,7 +7538,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11123.Location = New System.Drawing.Point(10, 46)
         Me.RadioButton_diagnostic_11123.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11123.Name = "RadioButton_diagnostic_11123"
-        Me.RadioButton_diagnostic_11123.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11123.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11123.Size = New System.Drawing.Size(248, 16)
         Me.RadioButton_diagnostic_11123.TabIndex = 2
         '
@@ -7547,7 +7547,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11120.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11120.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_11120.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11120.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11120.cause1 = False
         Me.RadioButton_diagnostic_11120.cause2 = False
         Me.RadioButton_diagnostic_11120.cause3 = False
@@ -7562,7 +7562,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11120.Location = New System.Drawing.Point(10, 66)
         Me.RadioButton_diagnostic_11120.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11120.Name = "RadioButton_diagnostic_11120"
-        Me.RadioButton_diagnostic_11120.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11120.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11120.Size = New System.Drawing.Size(248, 16)
         Me.RadioButton_diagnostic_11120.TabIndex = 3
         '
@@ -7571,7 +7571,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11121.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11121.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11121.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11121.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11121.cause1 = False
         Me.RadioButton_diagnostic_11121.cause2 = False
         Me.RadioButton_diagnostic_11121.cause3 = False
@@ -7586,7 +7586,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11121.Location = New System.Drawing.Point(10, 14)
         Me.RadioButton_diagnostic_11121.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11121.Name = "RadioButton_diagnostic_11121"
-        Me.RadioButton_diagnostic_11121.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11121.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11121.Size = New System.Drawing.Size(248, 16)
         Me.RadioButton_diagnostic_11121.TabIndex = 0
         '
@@ -7624,7 +7624,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11112.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11112.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11112.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11112.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11112.cause1 = False
         Me.RadioButton_diagnostic_11112.cause2 = False
         Me.RadioButton_diagnostic_11112.cause3 = False
@@ -7639,7 +7639,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11112.Location = New System.Drawing.Point(10, 30)
         Me.RadioButton_diagnostic_11112.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11112.Name = "RadioButton_diagnostic_11112"
-        Me.RadioButton_diagnostic_11112.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11112.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11112.Size = New System.Drawing.Size(204, 16)
         Me.RadioButton_diagnostic_11112.TabIndex = 1
         '
@@ -7648,7 +7648,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11113.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11113.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11113.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11113.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11113.cause1 = False
         Me.RadioButton_diagnostic_11113.cause2 = False
         Me.RadioButton_diagnostic_11113.cause3 = False
@@ -7663,7 +7663,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11113.Location = New System.Drawing.Point(10, 46)
         Me.RadioButton_diagnostic_11113.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11113.Name = "RadioButton_diagnostic_11113"
-        Me.RadioButton_diagnostic_11113.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11113.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11113.Size = New System.Drawing.Size(204, 16)
         Me.RadioButton_diagnostic_11113.TabIndex = 2
         '
@@ -7672,7 +7672,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11110.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11110.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_11110.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11110.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11110.cause1 = False
         Me.RadioButton_diagnostic_11110.cause2 = False
         Me.RadioButton_diagnostic_11110.cause3 = False
@@ -7687,7 +7687,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11110.Location = New System.Drawing.Point(10, 66)
         Me.RadioButton_diagnostic_11110.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11110.Name = "RadioButton_diagnostic_11110"
-        Me.RadioButton_diagnostic_11110.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11110.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11110.Size = New System.Drawing.Size(204, 16)
         Me.RadioButton_diagnostic_11110.TabIndex = 3
         '
@@ -7696,7 +7696,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11111.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_11111.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_11111.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_11111.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_11111.cause1 = False
         Me.RadioButton_diagnostic_11111.cause2 = False
         Me.RadioButton_diagnostic_11111.cause3 = False
@@ -7711,7 +7711,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_11111.Location = New System.Drawing.Point(10, 14)
         Me.RadioButton_diagnostic_11111.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_11111.Name = "RadioButton_diagnostic_11111"
-        Me.RadioButton_diagnostic_11111.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_11111.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_11111.Size = New System.Drawing.Size(204, 16)
         Me.RadioButton_diagnostic_11111.TabIndex = 0
         '
@@ -7763,7 +7763,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12412.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12412.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12412.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12412.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12412.cause1 = False
         Me.RadioButton_diagnostic_12412.cause2 = False
         Me.RadioButton_diagnostic_12412.cause3 = False
@@ -7778,7 +7778,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12412.Location = New System.Drawing.Point(9, 32)
         Me.RadioButton_diagnostic_12412.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12412.Name = "RadioButton_diagnostic_12412"
-        Me.RadioButton_diagnostic_12412.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12412.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12412.Size = New System.Drawing.Size(293, 22)
         Me.RadioButton_diagnostic_12412.TabIndex = 2
         '
@@ -7787,7 +7787,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12410.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12410.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_12410.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12410.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12410.cause1 = False
         Me.RadioButton_diagnostic_12410.cause2 = False
         Me.RadioButton_diagnostic_12410.cause3 = False
@@ -7802,7 +7802,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12410.Location = New System.Drawing.Point(10, 67)
         Me.RadioButton_diagnostic_12410.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12410.Name = "RadioButton_diagnostic_12410"
-        Me.RadioButton_diagnostic_12410.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12410.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12410.Size = New System.Drawing.Size(293, 16)
         Me.RadioButton_diagnostic_12410.TabIndex = 1
         '
@@ -7811,7 +7811,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12411.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12411.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12411.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12411.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12411.cause1 = False
         Me.RadioButton_diagnostic_12411.cause2 = False
         Me.RadioButton_diagnostic_12411.cause3 = False
@@ -7826,7 +7826,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12411.Location = New System.Drawing.Point(10, 14)
         Me.RadioButton_diagnostic_12411.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12411.Name = "RadioButton_diagnostic_12411"
-        Me.RadioButton_diagnostic_12411.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12411.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12411.Size = New System.Drawing.Size(293, 22)
         Me.RadioButton_diagnostic_12411.TabIndex = 0
         '
@@ -7850,7 +7850,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12220.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12220.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_12220.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12220.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12220.cause1 = False
         Me.RadioButton_diagnostic_12220.cause2 = False
         Me.RadioButton_diagnostic_12220.cause3 = False
@@ -7865,7 +7865,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12220.Location = New System.Drawing.Point(10, 38)
         Me.RadioButton_diagnostic_12220.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12220.Name = "RadioButton_diagnostic_12220"
-        Me.RadioButton_diagnostic_12220.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12220.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12220.Size = New System.Drawing.Size(293, 16)
         Me.RadioButton_diagnostic_12220.TabIndex = 1
         '
@@ -7874,7 +7874,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12221.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12221.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12221.cause1 = False
         Me.RadioButton_diagnostic_12221.cause2 = False
         Me.RadioButton_diagnostic_12221.cause3 = False
@@ -7889,7 +7889,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12221.Location = New System.Drawing.Point(10, 14)
         Me.RadioButton_diagnostic_12221.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12221.Name = "RadioButton_diagnostic_12221"
-        Me.RadioButton_diagnostic_12221.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12221.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12221.Size = New System.Drawing.Size(293, 22)
         Me.RadioButton_diagnostic_12221.TabIndex = 0
         '
@@ -7929,7 +7929,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12212.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12212.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12212.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12212.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12212.cause1 = False
         Me.RadioButton_diagnostic_12212.cause2 = False
         Me.RadioButton_diagnostic_12212.cause3 = False
@@ -7944,7 +7944,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12212.Location = New System.Drawing.Point(10, 30)
         Me.RadioButton_diagnostic_12212.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12212.Name = "RadioButton_diagnostic_12212"
-        Me.RadioButton_diagnostic_12212.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12212.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12212.Size = New System.Drawing.Size(293, 16)
         Me.RadioButton_diagnostic_12212.TabIndex = 1
         '
@@ -7953,7 +7953,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12213.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12213.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12213.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12213.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12213.cause1 = False
         Me.RadioButton_diagnostic_12213.cause2 = False
         Me.RadioButton_diagnostic_12213.cause3 = False
@@ -7968,7 +7968,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12213.Location = New System.Drawing.Point(10, 46)
         Me.RadioButton_diagnostic_12213.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12213.Name = "RadioButton_diagnostic_12213"
-        Me.RadioButton_diagnostic_12213.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12213.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12213.Size = New System.Drawing.Size(293, 16)
         Me.RadioButton_diagnostic_12213.TabIndex = 2
         '
@@ -7977,7 +7977,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12210.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12210.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_12210.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12210.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12210.cause1 = False
         Me.RadioButton_diagnostic_12210.cause2 = False
         Me.RadioButton_diagnostic_12210.cause3 = False
@@ -7992,7 +7992,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12210.Location = New System.Drawing.Point(10, 66)
         Me.RadioButton_diagnostic_12210.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12210.Name = "RadioButton_diagnostic_12210"
-        Me.RadioButton_diagnostic_12210.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12210.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12210.Size = New System.Drawing.Size(293, 16)
         Me.RadioButton_diagnostic_12210.TabIndex = 3
         '
@@ -8001,7 +8001,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12211.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12211.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12211.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12211.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12211.cause1 = False
         Me.RadioButton_diagnostic_12211.cause2 = False
         Me.RadioButton_diagnostic_12211.cause3 = False
@@ -8016,7 +8016,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12211.Location = New System.Drawing.Point(10, 14)
         Me.RadioButton_diagnostic_12211.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12211.Name = "RadioButton_diagnostic_12211"
-        Me.RadioButton_diagnostic_12211.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12211.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12211.Size = New System.Drawing.Size(293, 16)
         Me.RadioButton_diagnostic_12211.TabIndex = 0
         '
@@ -8083,7 +8083,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12323.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12323.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12323.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12323.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12323.cause1 = False
         Me.RadioButton_diagnostic_12323.cause2 = False
         Me.RadioButton_diagnostic_12323.cause3 = False
@@ -8098,7 +8098,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12323.Location = New System.Drawing.Point(10, 51)
         Me.RadioButton_diagnostic_12323.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12323.Name = "RadioButton_diagnostic_12323"
-        Me.RadioButton_diagnostic_12323.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12323.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12323.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12323.TabIndex = 2
         '
@@ -8107,7 +8107,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12324.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12324.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12324.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12324.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12324.cause1 = False
         Me.RadioButton_diagnostic_12324.cause2 = False
         Me.RadioButton_diagnostic_12324.cause3 = False
@@ -8122,7 +8122,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12324.Location = New System.Drawing.Point(10, 70)
         Me.RadioButton_diagnostic_12324.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12324.Name = "RadioButton_diagnostic_12324"
-        Me.RadioButton_diagnostic_12324.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12324.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12324.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12324.TabIndex = 3
         '
@@ -8131,7 +8131,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12321.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12321.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12321.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12321.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12321.cause1 = False
         Me.RadioButton_diagnostic_12321.cause2 = False
         Me.RadioButton_diagnostic_12321.cause3 = False
@@ -8146,7 +8146,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12321.Location = New System.Drawing.Point(10, 16)
         Me.RadioButton_diagnostic_12321.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12321.Name = "RadioButton_diagnostic_12321"
-        Me.RadioButton_diagnostic_12321.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12321.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12321.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12321.TabIndex = 0
         '
@@ -8155,7 +8155,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12320.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12320.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_12320.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12320.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12320.cause1 = False
         Me.RadioButton_diagnostic_12320.cause2 = False
         Me.RadioButton_diagnostic_12320.cause3 = False
@@ -8170,7 +8170,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12320.Location = New System.Drawing.Point(10, 96)
         Me.RadioButton_diagnostic_12320.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12320.Name = "RadioButton_diagnostic_12320"
-        Me.RadioButton_diagnostic_12320.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12320.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12320.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12320.TabIndex = 4
         '
@@ -8179,7 +8179,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12322.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12322.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12322.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12322.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12322.cause1 = False
         Me.RadioButton_diagnostic_12322.cause2 = False
         Me.RadioButton_diagnostic_12322.cause3 = False
@@ -8194,7 +8194,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12322.Location = New System.Drawing.Point(10, 32)
         Me.RadioButton_diagnostic_12322.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12322.Name = "RadioButton_diagnostic_12322"
-        Me.RadioButton_diagnostic_12322.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12322.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12322.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12322.TabIndex = 1
         '
@@ -8239,7 +8239,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12317.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12317.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12317.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12317.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12317.cause1 = False
         Me.RadioButton_diagnostic_12317.cause2 = False
         Me.RadioButton_diagnostic_12317.cause3 = False
@@ -8254,7 +8254,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12317.Location = New System.Drawing.Point(10, 108)
         Me.RadioButton_diagnostic_12317.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12317.Name = "RadioButton_diagnostic_12317"
-        Me.RadioButton_diagnostic_12317.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12317.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12317.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12317.TabIndex = 6
         '
@@ -8263,7 +8263,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12318.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12318.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12318.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12318.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12318.cause1 = False
         Me.RadioButton_diagnostic_12318.cause2 = False
         Me.RadioButton_diagnostic_12318.cause3 = False
@@ -8278,7 +8278,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12318.Location = New System.Drawing.Point(10, 124)
         Me.RadioButton_diagnostic_12318.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12318.Name = "RadioButton_diagnostic_12318"
-        Me.RadioButton_diagnostic_12318.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12318.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12318.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12318.TabIndex = 7
         '
@@ -8287,7 +8287,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12315.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12315.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12315.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12315.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12315.cause1 = False
         Me.RadioButton_diagnostic_12315.cause2 = False
         Me.RadioButton_diagnostic_12315.cause3 = False
@@ -8302,7 +8302,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12315.Location = New System.Drawing.Point(10, 76)
         Me.RadioButton_diagnostic_12315.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12315.Name = "RadioButton_diagnostic_12315"
-        Me.RadioButton_diagnostic_12315.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12315.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12315.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12315.TabIndex = 4
         '
@@ -8311,7 +8311,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12316.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12316.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12316.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12316.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12316.cause1 = False
         Me.RadioButton_diagnostic_12316.cause2 = False
         Me.RadioButton_diagnostic_12316.cause3 = False
@@ -8326,7 +8326,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12316.Location = New System.Drawing.Point(10, 92)
         Me.RadioButton_diagnostic_12316.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12316.Name = "RadioButton_diagnostic_12316"
-        Me.RadioButton_diagnostic_12316.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12316.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12316.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12316.TabIndex = 5
         '
@@ -8335,7 +8335,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12313.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12313.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12313.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12313.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12313.cause1 = False
         Me.RadioButton_diagnostic_12313.cause2 = False
         Me.RadioButton_diagnostic_12313.cause3 = False
@@ -8350,7 +8350,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12313.Location = New System.Drawing.Point(10, 44)
         Me.RadioButton_diagnostic_12313.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12313.Name = "RadioButton_diagnostic_12313"
-        Me.RadioButton_diagnostic_12313.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12313.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12313.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12313.TabIndex = 2
         '
@@ -8359,7 +8359,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12314.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12314.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12314.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12314.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12314.cause1 = False
         Me.RadioButton_diagnostic_12314.cause2 = False
         Me.RadioButton_diagnostic_12314.cause3 = False
@@ -8374,7 +8374,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12314.Location = New System.Drawing.Point(10, 60)
         Me.RadioButton_diagnostic_12314.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12314.Name = "RadioButton_diagnostic_12314"
-        Me.RadioButton_diagnostic_12314.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12314.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12314.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12314.TabIndex = 3
         '
@@ -8383,7 +8383,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12311.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12311.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_12311.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12311.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12311.cause1 = False
         Me.RadioButton_diagnostic_12311.cause2 = False
         Me.RadioButton_diagnostic_12311.cause3 = False
@@ -8398,7 +8398,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12311.Location = New System.Drawing.Point(10, 12)
         Me.RadioButton_diagnostic_12311.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12311.Name = "RadioButton_diagnostic_12311"
-        Me.RadioButton_diagnostic_12311.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12311.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12311.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12311.TabIndex = 0
         '
@@ -8407,7 +8407,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12310.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12310.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_12310.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12310.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12310.cause1 = False
         Me.RadioButton_diagnostic_12310.cause2 = False
         Me.RadioButton_diagnostic_12310.cause3 = False
@@ -8422,7 +8422,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12310.Location = New System.Drawing.Point(10, 167)
         Me.RadioButton_diagnostic_12310.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12310.Name = "RadioButton_diagnostic_12310"
-        Me.RadioButton_diagnostic_12310.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12310.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12310.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12310.TabIndex = 8
         '
@@ -8431,7 +8431,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12312.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioButton_diagnostic_12312.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_12312.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_12312.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_12312.cause1 = False
         Me.RadioButton_diagnostic_12312.cause2 = False
         Me.RadioButton_diagnostic_12312.cause3 = False
@@ -8446,7 +8446,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_12312.Location = New System.Drawing.Point(10, 28)
         Me.RadioButton_diagnostic_12312.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12312.Name = "RadioButton_diagnostic_12312"
-        Me.RadioButton_diagnostic_12312.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_12312.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_12312.Size = New System.Drawing.Size(326, 16)
         Me.RadioButton_diagnostic_12312.TabIndex = 1
         '
@@ -8527,7 +8527,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_9211
         '
         Me.RadioButton_diagnostic_9211.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_9211.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9211.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9211.cause1 = False
         Me.RadioButton_diagnostic_9211.cause2 = False
         Me.RadioButton_diagnostic_9211.cause3 = False
@@ -8542,14 +8542,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9211.Location = New System.Drawing.Point(8, 32)
         Me.RadioButton_diagnostic_9211.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9211.Name = "RadioButton_diagnostic_9211"
-        Me.RadioButton_diagnostic_9211.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9211.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9211.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_9211.TabIndex = 8
         '
         'RadioButton_diagnostic_9210
         '
         Me.RadioButton_diagnostic_9210.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_9210.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9210.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9210.cause1 = False
         Me.RadioButton_diagnostic_9210.cause2 = False
         Me.RadioButton_diagnostic_9210.cause3 = False
@@ -8564,14 +8564,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9210.Location = New System.Drawing.Point(8, 64)
         Me.RadioButton_diagnostic_9210.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9210.Name = "RadioButton_diagnostic_9210"
-        Me.RadioButton_diagnostic_9210.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9210.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9210.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_9210.TabIndex = 7
         '
         'RadioButton_diagnostic_9212
         '
         Me.RadioButton_diagnostic_9212.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_9212.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9212.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9212.cause1 = False
         Me.RadioButton_diagnostic_9212.cause2 = False
         Me.RadioButton_diagnostic_9212.cause3 = False
@@ -8586,7 +8586,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9212.Location = New System.Drawing.Point(8, 48)
         Me.RadioButton_diagnostic_9212.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9212.Name = "RadioButton_diagnostic_9212"
-        Me.RadioButton_diagnostic_9212.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9212.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9212.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_9212.TabIndex = 4
         '
@@ -8607,7 +8607,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_9221
         '
         Me.RadioButton_diagnostic_9221.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_9221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9221.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9221.cause1 = False
         Me.RadioButton_diagnostic_9221.cause2 = False
         Me.RadioButton_diagnostic_9221.cause3 = False
@@ -8622,14 +8622,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9221.Location = New System.Drawing.Point(8, 32)
         Me.RadioButton_diagnostic_9221.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9221.Name = "RadioButton_diagnostic_9221"
-        Me.RadioButton_diagnostic_9221.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9221.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9221.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_9221.TabIndex = 8
         '
         'RadioButton_diagnostic_9220
         '
         Me.RadioButton_diagnostic_9220.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_9220.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9220.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9220.cause1 = False
         Me.RadioButton_diagnostic_9220.cause2 = False
         Me.RadioButton_diagnostic_9220.cause3 = False
@@ -8644,14 +8644,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9220.Location = New System.Drawing.Point(8, 64)
         Me.RadioButton_diagnostic_9220.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9220.Name = "RadioButton_diagnostic_9220"
-        Me.RadioButton_diagnostic_9220.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9220.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9220.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_9220.TabIndex = 7
         '
         'RadioButton_diagnostic_9222
         '
         Me.RadioButton_diagnostic_9222.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_9222.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9222.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9222.cause1 = False
         Me.RadioButton_diagnostic_9222.cause2 = False
         Me.RadioButton_diagnostic_9222.cause3 = False
@@ -8666,7 +8666,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9222.Location = New System.Drawing.Point(8, 48)
         Me.RadioButton_diagnostic_9222.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9222.Name = "RadioButton_diagnostic_9222"
-        Me.RadioButton_diagnostic_9222.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9222.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9222.Size = New System.Drawing.Size(192, 16)
         Me.RadioButton_diagnostic_9222.TabIndex = 4
         '
@@ -8716,7 +8716,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_9116
         '
         Me.RadioButton_diagnostic_9116.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_9116.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9116.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9116.cause1 = False
         Me.RadioButton_diagnostic_9116.cause2 = False
         Me.RadioButton_diagnostic_9116.cause3 = False
@@ -8732,14 +8732,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9116.Location = New System.Drawing.Point(8, 104)
         Me.RadioButton_diagnostic_9116.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9116.Name = "RadioButton_diagnostic_9116"
-        Me.RadioButton_diagnostic_9116.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9116.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9116.Size = New System.Drawing.Size(408, 16)
         Me.RadioButton_diagnostic_9116.TabIndex = 10
         '
         'RadioButton_diagnostic_9112
         '
         Me.RadioButton_diagnostic_9112.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_9112.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9112.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9112.cause1 = False
         Me.RadioButton_diagnostic_9112.cause2 = False
         Me.RadioButton_diagnostic_9112.cause3 = False
@@ -8754,14 +8754,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9112.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_9112.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9112.Name = "RadioButton_diagnostic_9112"
-        Me.RadioButton_diagnostic_9112.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9112.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9112.Size = New System.Drawing.Size(408, 16)
         Me.RadioButton_diagnostic_9112.TabIndex = 9
         '
         'RadioButton_diagnostic_9113
         '
         Me.RadioButton_diagnostic_9113.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_9113.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9113.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9113.cause1 = False
         Me.RadioButton_diagnostic_9113.cause2 = False
         Me.RadioButton_diagnostic_9113.cause3 = False
@@ -8776,14 +8776,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9113.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_9113.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9113.Name = "RadioButton_diagnostic_9113"
-        Me.RadioButton_diagnostic_9113.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9113.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9113.Size = New System.Drawing.Size(408, 16)
         Me.RadioButton_diagnostic_9113.TabIndex = 8
         '
         'RadioButton_diagnostic_9115
         '
         Me.RadioButton_diagnostic_9115.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_9115.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9115.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9115.cause1 = False
         Me.RadioButton_diagnostic_9115.cause2 = False
         Me.RadioButton_diagnostic_9115.cause3 = False
@@ -8798,14 +8798,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9115.Location = New System.Drawing.Point(8, 88)
         Me.RadioButton_diagnostic_9115.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9115.Name = "RadioButton_diagnostic_9115"
-        Me.RadioButton_diagnostic_9115.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9115.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9115.Size = New System.Drawing.Size(408, 16)
         Me.RadioButton_diagnostic_9115.TabIndex = 6
         '
         'RadioButton_diagnostic_9110
         '
         Me.RadioButton_diagnostic_9110.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_9110.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9110.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9110.cause1 = False
         Me.RadioButton_diagnostic_9110.cause2 = False
         Me.RadioButton_diagnostic_9110.cause3 = False
@@ -8820,14 +8820,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9110.Location = New System.Drawing.Point(8, 120)
         Me.RadioButton_diagnostic_9110.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9110.Name = "RadioButton_diagnostic_9110"
-        Me.RadioButton_diagnostic_9110.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9110.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9110.Size = New System.Drawing.Size(408, 16)
         Me.RadioButton_diagnostic_9110.TabIndex = 7
         '
         'RadioButton_diagnostic_9114
         '
         Me.RadioButton_diagnostic_9114.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-        Me.RadioButton_diagnostic_9114.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9114.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9114.cause1 = False
         Me.RadioButton_diagnostic_9114.cause2 = False
         Me.RadioButton_diagnostic_9114.cause3 = False
@@ -8842,14 +8842,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9114.Location = New System.Drawing.Point(8, 72)
         Me.RadioButton_diagnostic_9114.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9114.Name = "RadioButton_diagnostic_9114"
-        Me.RadioButton_diagnostic_9114.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9114.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9114.Size = New System.Drawing.Size(408, 16)
         Me.RadioButton_diagnostic_9114.TabIndex = 5
         '
         'RadioButton_diagnostic_9111
         '
         Me.RadioButton_diagnostic_9111.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_9111.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9111.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9111.cause1 = False
         Me.RadioButton_diagnostic_9111.cause2 = False
         Me.RadioButton_diagnostic_9111.cause3 = False
@@ -8864,7 +8864,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9111.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_9111.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9111.Name = "RadioButton_diagnostic_9111"
-        Me.RadioButton_diagnostic_9111.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9111.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9111.Size = New System.Drawing.Size(408, 16)
         Me.RadioButton_diagnostic_9111.TabIndex = 4
         '
@@ -8885,7 +8885,7 @@ Partial Class frmDiagnostiqueSimple
         'RadioButton_diagnostic_9120
         '
         Me.RadioButton_diagnostic_9120.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-        Me.RadioButton_diagnostic_9120.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9120.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9120.cause1 = False
         Me.RadioButton_diagnostic_9120.cause2 = False
         Me.RadioButton_diagnostic_9120.cause3 = False
@@ -8900,14 +8900,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9120.Location = New System.Drawing.Point(8, 56)
         Me.RadioButton_diagnostic_9120.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9120.Name = "RadioButton_diagnostic_9120"
-        Me.RadioButton_diagnostic_9120.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9120.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9120.Size = New System.Drawing.Size(408, 16)
         Me.RadioButton_diagnostic_9120.TabIndex = 6
         '
         'RadioButton_diagnostic_9122
         '
         Me.RadioButton_diagnostic_9122.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_9122.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9122.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9122.cause1 = False
         Me.RadioButton_diagnostic_9122.cause2 = False
         Me.RadioButton_diagnostic_9122.cause3 = False
@@ -8922,14 +8922,14 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9122.Location = New System.Drawing.Point(8, 40)
         Me.RadioButton_diagnostic_9122.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9122.Name = "RadioButton_diagnostic_9122"
-        Me.RadioButton_diagnostic_9122.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9122.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9122.Size = New System.Drawing.Size(408, 16)
         Me.RadioButton_diagnostic_9122.TabIndex = 5
         '
         'RadioButton_diagnostic_9121
         '
         Me.RadioButton_diagnostic_9121.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-        Me.RadioButton_diagnostic_9121.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.NONE
+        Me.RadioButton_diagnostic_9121.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
         Me.RadioButton_diagnostic_9121.cause1 = False
         Me.RadioButton_diagnostic_9121.cause2 = False
         Me.RadioButton_diagnostic_9121.cause3 = False
@@ -8944,7 +8944,7 @@ Partial Class frmDiagnostiqueSimple
         Me.RadioButton_diagnostic_9121.Location = New System.Drawing.Point(8, 24)
         Me.RadioButton_diagnostic_9121.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9121.Name = "RadioButton_diagnostic_9121"
-        Me.RadioButton_diagnostic_9121.NiveauCause_max = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSEMAX.ZERO
+        Me.RadioButton_diagnostic_9121.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
         Me.RadioButton_diagnostic_9121.Size = New System.Drawing.Size(408, 16)
         Me.RadioButton_diagnostic_9121.TabIndex = 4
         '
