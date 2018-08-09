@@ -772,7 +772,7 @@ Public Class frmRPparentContener
             '            oFRMExploit.Show()
 
             oFRMPulve = New frmRPFichePulve()
-            oFRMPulve.setContexte(2, New Agent(), pulverisateurCourant, m_RPDiagnostic)
+            oFRMPulve.setContexte(2, New Agent(), pulverisateurCourant, clientCourant, m_RPDiagnostic)
             oFRMPulve.WindowState = FormWindowState.Maximized
             oFRMPulve.MdiParent = Me
             'oFRMPulve.Show()
@@ -1113,7 +1113,7 @@ Public Class frmRPparentContener
 
         CSDebug.dispInfo("frmPulve")
         oFRMPulve = New frmRPFichePulve()
-        oFRMPulve.setContexte(2, New Agent(), pulverisateurCourant, m_RPDiagnostic)
+        oFRMPulve.setContexte(2, New Agent(), pulverisateurCourant, clientCourant, m_RPDiagnostic)
         oFRMPulve.WindowState = FormWindowState.Maximized
         oFRMPulve.MdiParent = Me
 

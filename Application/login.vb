@@ -91,6 +91,7 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.cbTestRIFin = New System.Windows.Forms.Button()
         Me.btnTestDiagHelp12123 = New System.Windows.Forms.Button()
@@ -104,7 +105,6 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.formLogin.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
@@ -293,6 +293,17 @@ Public Class login
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
         '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.SystemColors.Control
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(344, 49)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(104, 23)
+        Me.Button2.TabIndex = 30
+        Me.Button2.Text = "AjoutPulve"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.SystemColors.Control
@@ -444,17 +455,6 @@ Public Class login
         Me.lbl_WS.TabIndex = 31
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.SystemColors.Control
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(344, 49)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(104, 23)
-        Me.Button2.TabIndex = 30
-        Me.Button2.Text = "CtrlMano"
-        Me.Button2.UseVisualStyleBackColor = False
         '
         'login
         '
@@ -808,7 +808,10 @@ Public Class login
 
         oAgent = AgentManager.getAgentById("1110")
 
-        Dim ofrm As New frmControleManometres(oAgent)
+        Dim oPulve As New Pulverisateur()
+        Dim oExploit As New Exploitation()
+        Dim ofrm As New ajout_pulve2()
+        ofrm.setContexte(ajout_pulve2.MODE.AJOUT, oAgent, oPulve, oExploit, Nothing)
         TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
 
     End Sub

@@ -57,13 +57,6 @@ Public Class PulverisateurManagerTest
     '
 #End Region
 
-
-
-    <TestMethod()>
-    Public Sub Get_Send_WS_TestPRD()
-        PulverisateurManager.getWSPulverisateurById(m_oAgent, "4-23-15")
-    End Sub
-
     <TestMethod()>
     Public Sub Get_Send_WS_Test()
 
@@ -74,9 +67,8 @@ Public Class PulverisateurManagerTest
         Dim UpdatedObject As Object
         Dim response As Integer
 
-        oPulve.idStructure = m_oAgent.idStructure
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
-        Assert.AreNotEqual("", oPulve.id)
+        m_oExploitation = createExploitation()
+        oPulve = createPulve(m_oExploitation)
 
         oPulve.marque = "MAMARQUE"
         oPulve.modele = "MONMODELE"
@@ -113,12 +105,18 @@ Public Class PulverisateurManagerTest
         oPulve.setLargeurNbreRangs("15.50")
         Assert.AreEqual(oPulve.largeur, "15.5")
         oPulve.emplacementIdentification = "TESTIDENT"
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        oPulve.isPompesDoseuses = True
+        oPulve.nbPompesDoseuses = 10
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         Assert.IsTrue(bReturn)
 
+
+
+        'Envoi par WebService
         response = PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2)
 
+        'Récupération par WebService
         oPulve2 = PulverisateurManager.getWSPulverisateurById(m_oAgent, oPulve.id)
 
 
@@ -131,18 +129,42 @@ Public Class PulverisateurManagerTest
         '       Assert.AreEqual(oPulve.largeur, oPulve2.largeur)
         Assert.AreEqual(oPulve.dateModificationAgent, oPulve2.dateModificationAgent)
         Assert.AreEqual(oPulve.emplacementIdentification, oPulve2.emplacementIdentification)
-        Assert.AreEqual(2, oPulve.buseNbniveaux)
-        Assert.AreEqual(10, oPulve.nombreBuses)
-        Assert.AreEqual(1, oPulve.manometreNbniveaux)
-        Assert.AreEqual(5, oPulve.manometreNbtroncons)
+        Assert.AreEqual(2, oPulve2.buseNbniveaux)
+        Assert.AreEqual(10, oPulve2.nombreBuses)
+        Assert.AreEqual(1, oPulve2.manometreNbniveaux)
+        Assert.AreEqual(5, oPulve2.manometreNbtroncons)
 
-        'Assert.AreEqual(oPulve.nombreRangs, oPulve2.nombreRangs)
+        Assert.AreEqual(True, oPulve2.isPompesDoseuses)
+        Assert.AreEqual(10, oPulve2.nbPompesDoseuses)
 
 
-        'Suppression du pulverisateur 
-        If Not oPulve Is Nothing Then
-            PulverisateurManager.deletePulverisateur(oPulve)
-        End If
+        'Modification du pulverisateur
+        oPulve.isPompesDoseuses = False
+        oPulve.nbPompesDoseuses = 0
+        Assert.IsTrue(PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent))
+
+        'Envoi du pulve par WS
+        response = PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve, UpdatedObject)
+        Assert.IsTrue(response = 0 Or response = 2)
+
+        'Récupération par WebService
+        oPulve2 = PulverisateurManager.getWSPulverisateurById(m_oAgent, oPulve.id)
+        Assert.AreEqual(oPulve.id, oPulve2.id)
+        Assert.AreEqual(oPulve.marque, oPulve2.marque)
+        Assert.AreEqual(oPulve.modele, oPulve2.modele)
+        Assert.AreEqual(oPulve.type, oPulve2.type)
+        Assert.AreEqual(oPulve.categorie, oPulve2.categorie)
+        '        Assert.AreEqual(oPulve.LargeurNombreRangs, oPulve2.LargeurNombreRangs)
+        '       Assert.AreEqual(oPulve.largeur, oPulve2.largeur)
+        Assert.AreEqual(oPulve.dateModificationAgent, oPulve2.dateModificationAgent)
+        Assert.AreEqual(oPulve.emplacementIdentification, oPulve2.emplacementIdentification)
+        Assert.AreEqual(2, oPulve2.buseNbniveaux)
+        Assert.AreEqual(10, oPulve2.nombreBuses)
+        Assert.AreEqual(1, oPulve2.manometreNbniveaux)
+        Assert.AreEqual(5, oPulve2.manometreNbtroncons)
+
+        'Assert.AreEqual(False, oPulve2.isPompesDoseuses)
+        'Assert.AreEqual(0, oPulve2.nbPompesDoseuses)
 
     End Sub
 
@@ -154,54 +176,56 @@ Public Class PulverisateurManagerTest
         Dim oPulve2 As Pulverisateur
         Dim bReturn As Boolean
 
-        oPulve.idStructure = m_oAgent.idStructure
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
+        m_oExploitation = createExploitation()
+
+        oPulve = createPulve(m_oExploitation)
+
 
         oPulve.type = Pulverisateur.TYPEPULVE_ARBRES
         oPulve.categorie = (Pulverisateur.CATEGORIEPULVE_JETDIRIGE)
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         oPulve2 = PulverisateurManager.getPulverisateurById(oPulve.id)
         Assert.AreEqual(oPulve.type, oPulve2.type)
         Assert.AreEqual(oPulve.categorie, oPulve2.categorie)
 
         oPulve.type = Pulverisateur.TYPEPULVE_ARBRES
         oPulve.categorie = (Pulverisateur.CATEGORIEPULVE_AXIAL)
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         oPulve2 = PulverisateurManager.getPulverisateurById(oPulve.id)
         Assert.AreEqual(oPulve.type, oPulve2.type)
         Assert.AreEqual(oPulve.categorie, oPulve2.categorie)
 
         oPulve.type = Pulverisateur.TYPEPULVE_CULTURESBASSES
         oPulve.categorie = Pulverisateur.CATEGORIEPULVE_RAMPE
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         oPulve2 = PulverisateurManager.getPulverisateurById(oPulve.id)
         Assert.AreEqual(oPulve.type, oPulve2.type)
         Assert.AreEqual(oPulve.categorie, oPulve2.categorie)
 
         oPulve.type = Pulverisateur.TYPEPULVE_VIGNE
         oPulve.categorie = (Pulverisateur.CATEGORIEPULVE_CANON)
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         oPulve2 = PulverisateurManager.getPulverisateurById(oPulve.id)
         Assert.AreEqual(oPulve.type, oPulve2.type)
         Assert.AreEqual(oPulve.categorie, oPulve2.categorie)
 
         oPulve.type = Pulverisateur.TYPEPULVE_VIGNE
         oPulve.categorie = (Pulverisateur.CATEGORIEPULVE_VOUTE)
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         oPulve2 = PulverisateurManager.getPulverisateurById(oPulve.id)
         Assert.AreEqual(oPulve.type, oPulve2.type)
         Assert.AreEqual(oPulve.categorie, oPulve2.categorie)
         oPulve.type = Pulverisateur.TYPEPULVE_VIGNE
         oPulve.categorie = Pulverisateur.CATEGORIEPULVE_FACEPARFACE
 
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         oPulve2 = PulverisateurManager.getPulverisateurById(oPulve.id)
         Assert.AreEqual(oPulve.type, oPulve2.type)
         Assert.AreEqual(oPulve.categorie, oPulve2.categorie)
 
         oPulve.type = Pulverisateur.TYPEPULVE_VIGNE
         oPulve.categorie = Pulverisateur.CATEGORIEPULVE_AXIAL
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         oPulve2 = PulverisateurManager.getPulverisateurById(oPulve.id)
         Assert.AreEqual(oPulve.type, oPulve2.type)
         Assert.AreEqual(oPulve.categorie, oPulve2.categorie)
@@ -221,6 +245,8 @@ Public Class PulverisateurManagerTest
         Dim oPulve2 As Pulverisateur
         Dim bReturn As Boolean
 
+        m_oExploitation = createExploitation()
+
         oPulve.idStructure = m_oAgent.idStructure
         oPulve.id = PulverisateurManager.getNewId(m_oAgent)
 
@@ -228,7 +254,7 @@ Public Class PulverisateurManagerTest
         oPulve.categorie = Pulverisateur.CATEGORIEPULVE_JETDIRIGE
         oPulve.setLargeurNbreRangs("1")
         Assert.AreEqual("1", oPulve.nombreRangs)
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
 
         oPulve2 = PulverisateurManager.getPulverisateurById(oPulve.id)
         Assert.AreEqual(oPulve.type, oPulve2.type)
@@ -241,7 +267,7 @@ Public Class PulverisateurManagerTest
         oPulve.categorie = Pulverisateur.CATEGORIEPULVE_RAMPE
         oPulve.setLargeurNbreRangs("12.5")
         Assert.AreEqual("12.5", oPulve.largeur.ToString())
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         oPulve2 = PulverisateurManager.getPulverisateurById(oPulve.id)
         Assert.AreEqual(oPulve.type, oPulve2.type)
         Assert.AreEqual(oPulve.categorie, oPulve2.categorie)
@@ -274,17 +300,20 @@ Public Class PulverisateurManagerTest
         End If
 
     End Sub
+    ''' <summary>
+    ''' Test la sauvegarde et le rechargement d'un pulvérisateur
+    ''' </summary>
+    ''' <remarks></remarks>
     <TestMethod()>
-    Public Sub TestPulverisateur()
+    Public Sub TestPulverisateurBD()
 
 
-        Dim oPulve As New Pulverisateur()
+        Dim oPulve As Pulverisateur
         Dim oPulve2 As Pulverisateur
         Dim bReturn As Boolean
 
-        oPulve.idStructure = m_oAgent.idStructure
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
-        Assert.AreNotEqual("", oPulve.id)
+        m_oExploitation = createExploitation()
+        oPulve = createPulve(m_oExploitation)
 
         oPulve.marque = "MAMARQUE"
         oPulve.modele = "MONMODELE"
@@ -293,8 +322,10 @@ Public Class PulverisateurManagerTest
         oPulve.setLargeurNbreRangs("15.5")
         oPulve.emplacementIdentification = "DERRIERE"
         Assert.AreEqual("15.5", oPulve.LargeurNombreRangs)
+        oPulve.isPompesDoseuses = True
+        oPulve.nbPompesDoseuses = 5
 
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
 
         Assert.IsTrue(bReturn)
 
@@ -309,6 +340,28 @@ Public Class PulverisateurManagerTest
         Assert.AreEqual(oPulve.largeur, oPulve2.largeur)
         Assert.AreEqual(oPulve.nombreRangs, oPulve2.nombreRangs)
         Assert.AreEqual(oPulve.emplacementIdentification, oPulve2.emplacementIdentification)
+        Assert.AreEqual(True, oPulve2.isPompesDoseuses)
+        Assert.AreEqual(5, oPulve2.nbPompesDoseuses)
+
+        'Mise à jour du Pulvé
+        oPulve2.isPompesDoseuses = False
+        oPulve2.nbPompesDoseuses = 0
+
+        bReturn = PulverisateurManager.save(oPulve2, m_oExploitation.id, m_oAgent)
+        Assert.IsTrue(bReturn)
+
+        oPulve2 = PulverisateurManager.getPulverisateurById(oPulve.id)
+        Assert.AreEqual(oPulve.id, oPulve2.id)
+        Assert.AreEqual(oPulve.marque, oPulve2.marque)
+        Assert.AreEqual(oPulve.modele, oPulve2.modele)
+        Assert.AreEqual(oPulve.type, oPulve2.type)
+        Assert.AreEqual(oPulve.categorie, oPulve2.categorie)
+        Assert.AreEqual("15.5", oPulve2.LargeurNombreRangs)
+        Assert.AreEqual(oPulve.largeur, oPulve2.largeur)
+        Assert.AreEqual(oPulve.nombreRangs, oPulve2.nombreRangs)
+        Assert.AreEqual(oPulve.emplacementIdentification, oPulve2.emplacementIdentification)
+        Assert.AreEqual(False, oPulve2.isPompesDoseuses)
+        Assert.AreEqual(0, oPulve2.nbPompesDoseuses)
 
         'Suppression du pulverisateur 
         If Not oPulve Is Nothing Then
@@ -326,6 +379,8 @@ Public Class PulverisateurManagerTest
         Dim UpdatedObject As Object
         Dim response As Integer
 
+        m_oExploitation = createExploitation()
+
         oPulve.idStructure = m_oAgent.idStructure
         oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         Assert.AreNotEqual("", oPulve.id)
@@ -334,7 +389,7 @@ Public Class PulverisateurManagerTest
         oPulve.modele = "MONMODELE"
         oPulve.ancienIdentifiant = "ANCID"
         pause(1000)
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         Assert.IsTrue(bReturn)
 
         oPulve = PulverisateurManager.getPulverisateurById(oPulve.id)
@@ -358,7 +413,7 @@ Public Class PulverisateurManagerTest
         Assert.AreEqual(oPulve.largeur, "15.5")
         oPulve.emplacementIdentification = "TESTIDENT"
         pause(1000)
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         Assert.IsTrue(bReturn)
 
         response = PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve, UpdatedObject)
@@ -393,6 +448,9 @@ Public Class PulverisateurManagerTest
         Dim UpdatedObject As Object
         Dim response As Integer
 
+
+        m_oExploitation = createExploitation()
+
         oPulve.idStructure = m_oAgent.idStructure
         oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         Assert.AreNotEqual("", oPulve.id)
@@ -404,7 +462,7 @@ Public Class PulverisateurManagerTest
         Assert.AreEqual("2015-02-23 00:00:00", oPulve.dateProchainControle)
 
 
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         Assert.IsTrue(bReturn)
 
         oPulve = PulverisateurManager.getPulverisateurById(oPulve.id)
@@ -426,7 +484,7 @@ Public Class PulverisateurManagerTest
         'Modification de la date de prochain controle
         oPulve.dateProchainControle = CSDate.GetDateForWS(CDate("2020-02-23"))
         Assert.AreEqual("2020-02-23 00:00:00", oPulve.dateProchainControle)
-        bReturn = PulverisateurManager.save(oPulve, 88, m_oAgent)
+        bReturn = PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent)
         Assert.IsTrue(bReturn)
 
         response = PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve, UpdatedObject)
@@ -472,6 +530,7 @@ Public Class PulverisateurManagerTest
 
         Dim oPulve As Pulverisateur
 
+        m_oExploitation = createExploitation()
         oPulve = New Pulverisateur()
 
         'Test des propriétés
@@ -496,7 +555,7 @@ Public Class PulverisateurManagerTest
         oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         Assert.AreNotEqual("", oPulve.id)
 
-        Assert.IsTrue(PulverisateurManager.save(oPulve, "2-81-4", m_oAgent))
+        Assert.IsTrue(PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent))
 
         oPulve = PulverisateurManager.getPulverisateurById(oPulve.id)
 
@@ -514,7 +573,7 @@ Public Class PulverisateurManagerTest
         oPulve.isCoupureAutoTroncons = False
         oPulve.isRincageAutoAssiste = False
         'Sauvegarde
-        Assert.IsTrue(PulverisateurManager.save(oPulve, "clientId", m_oAgent))
+        Assert.IsTrue(PulverisateurManager.save(oPulve, m_oExploitation.id, m_oAgent))
         'Lecture
         oPulve = PulverisateurManager.getPulverisateurById(oPulve.id)
         Assert.IsNotNull(oPulve)
@@ -956,7 +1015,6 @@ Public Class PulverisateurManagerTest
 
 
         Dim oExploit As Exploitation = createExploitation()
-        ExploitationManager.save(oExploit, m_oAgent)
 
         Dim oPulve As New Pulverisateur()
         Dim oPulve2 As Pulverisateur

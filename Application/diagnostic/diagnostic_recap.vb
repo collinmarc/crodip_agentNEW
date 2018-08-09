@@ -2390,7 +2390,7 @@ Public Class diagnostic_recap
         ' Affichage de la fiche du pulvérisateur
 
         Dim formEdition_fiche_pulve As New ajout_pulve2()
-        formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.VERIF, agentCourant, m_Pulverisateur, m_diagnostic)
+        formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.VERIF, agentCourant, m_Pulverisateur, m_Exploit, m_diagnostic)
         formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
         m_diagnostic.setPulverisateur(m_Pulverisateur)
         AffichePulverisateur()

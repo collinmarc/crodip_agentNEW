@@ -5,9 +5,9 @@
 
     Private m_oRPDiag As RPDiagnostic
 
-    Public Overridable Sub setContexte(ByVal bModeAjout As MODE, pAgent As Agent, pPulverisateur As Pulverisateur, pDiagnostic As Diagnostic)
+    Public Overridable Sub setContexte(ByVal bModeAjout As MODE, pAgent As Agent, pPulverisateur As Pulverisateur, pExploitation As Exploitation, pDiagnostic As Diagnostic)
         m_oRPDiag = pDiagnostic
-        MyBase.setContexte(bModeAjout, pAgent, pPulverisateur, pDiagnostic)
+        MyBase.setContexte(bModeAjout, pAgent, pPulverisateur, pExploitation, pDiagnostic)
         Me.Text = "Pulvérisateur"
     End Sub
 

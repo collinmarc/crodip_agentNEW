@@ -124,6 +124,9 @@ Public Class Pulverisateur
     Private _pulveAdditionnel As Boolean = False
     Private _pulvePrincipalNumNat As String = ""
     Private _isRincagecircuit As Boolean = False
+    Private _isPompesDoseuses As Boolean = False
+    Private _nbPompesDoseuses As Integer
+
     Sub New()
         numeroNational = Globals.GLOB_DIAG_NUMAGR
         _idStructure = -1
@@ -877,6 +880,23 @@ Public Class Pulverisateur
             _isRincagecircuit = Value
         End Set
     End Property
+    Public Property nbPompesDoseuses() As Integer
+        Get
+            Return _nbPompesDoseuses
+        End Get
+        Set(ByVal value As Integer)
+            _nbPompesDoseuses = value
+        End Set
+    End Property
+
+    Public Property isPompesDoseuses() As Boolean
+        Get
+            Return _isPompesDoseuses
+        End Get
+        Set(ByVal value As Boolean)
+            _isPompesDoseuses = value
+        End Set
+    End Property
 
     Public Function setLargeurNbreRangs(pstr As String) As Boolean
         Dim bReturn As Boolean
@@ -1063,6 +1083,10 @@ Public Class Pulverisateur
                     Me.pulvePrincipalNumNat = pColValue
                 Case "isrincagecircuit".ToUpper().Trim()
                     Me.isRincagecircuit = pColValue
+                Case "isPompesDoseuses".ToUpper().Trim()
+                    Me.isPompesDoseuses = pColValue
+                Case "nbPompesDoseuses".ToUpper().Trim()
+                    Me.nbPompesDoseuses = pColValue
             End Select
             bReturn = True
         Catch ex As Exception

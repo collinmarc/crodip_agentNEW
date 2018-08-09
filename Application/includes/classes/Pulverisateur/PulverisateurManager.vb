@@ -317,6 +317,8 @@ Public Class PulverisateurManager
                 paramsQuery = paramsQuery & " , `Pulverisateur`.`isPulveAdditionnel`=" & objPulverisateur.isPulveAdditionnel & ""
                 paramsQuery = paramsQuery & " , `Pulverisateur`.`pulvePrincipalNumNat`='" & CSDb.secureString(objPulverisateur.pulvePrincipalNumNat) & "'"
                 paramsQuery = paramsQuery & " , `Pulverisateur`.`isRincagecircuit`=" & objPulverisateur.isRincagecircuit & ""
+                paramsQuery = paramsQuery & " , `Pulverisateur`.`isPompesDoseuses`=" & objPulverisateur.isPompesDoseuses & ""
+                paramsQuery = paramsQuery & " , `Pulverisateur`.`nbPompesDoseuses`=" & objPulverisateur.nbPompesDoseuses & ""
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE `Pulverisateur` SET " & paramsQuery & " WHERE `Pulverisateur`.`id`='" & objPulverisateur.id & "'"

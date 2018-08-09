@@ -174,8 +174,14 @@
 --UPDATE Diagnostic SET pulverisateurRincagecircuit = "NON"
 --INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.5.4.5",#09/21/2016#, "Version 20160921150000") 
 --ALTER TABLE Diagnostic ADD typeDiagnostic VARCHAR(20)
-ALTER TABLE Diagnostic ADD codeInsee VARCHAR(20)
+--ALTER TABLE Diagnostic ADD codeInsee VARCHAR(20)
 --UPDATE Diagnostic SET typeDiagnostic = "pulverisateur"
 --UPDATE Diagnostic SET typeDiagnostic = "equipement" where pulverisateurId in ( select id from pulverisateur where isPulveAdditionnel)
 --INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.5.4.6",#12/06/2016#, "Version 20161216170000") 
+--Version 2.5.6
+ALTER TABLE [pulverisateur] ADD isPompesDoseuses YESNO
+UPDATE pulverisateur SET isPompesDoseuses = 0 
+ALTER TABLE [pulverisateur] ADD nbPompesDoseuses LONG
+UPDATE pulverisateur SET nbPompesDoseuses = 0 
+INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6",#09/01/2018#, "Pompes Doseuses") 
 

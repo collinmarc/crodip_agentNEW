@@ -4400,7 +4400,7 @@ Public Class accueil
 
                 ' Affichage de la fiche du pulvérisateur
                 Dim formEdition_fiche_pulve As New ajout_pulve2()
-                formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.MODIF, agentCourant, pulverisateurCourant, diagnosticCourant)
+                formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.MODIF, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
                 'formEdition_fiche_pulve.MdiParent = Me.MdiParent
                 formEdition_fiche_pulve.ShowDialog()
                 'Rafraichissement de la liste
@@ -4431,8 +4431,10 @@ Public Class accueil
     End Sub
     Private Sub AjouterUnPulve()
         Dim formAddPulve As New ajout_pulve2()
+        ' On récupère l'objet du client
+        clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
         pulverisateurCourant = New Pulverisateur()
-        formAddPulve.setContexte(ajout_pulve2.MODE.AJOUT, agentCourant, pulverisateurCourant, diagnosticCourant)
+        formAddPulve.setContexte(ajout_pulve2.MODE.AJOUT, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
         '        formAddPulve.MdiParent = Me.MdiParent
         formAddPulve.ShowDialog()
     End Sub
@@ -4507,7 +4509,7 @@ Public Class accueil
                         '    End If
                         '    pulverisateurCourant = oPulveAdditionnel
                         'End If
-                        ofrmEditPulve.setContexte(ajout_pulve2.MODE.VERIF, agentCourant, pulverisateurCourant, diagnosticCourant)
+                        ofrmEditPulve.setContexte(ajout_pulve2.MODE.VERIF, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
                         ofrmEditPulve.ShowDialog()
                         If ofrmEditPulve.DialogResult = Windows.Forms.DialogResult.OK Then
                             diagnosticCourant.setPulverisateur(pulverisateurCourant)
@@ -4737,7 +4739,7 @@ Public Class accueil
 
             ' Affichage de la fiche du pulvérisateur
             Dim formEdition_fiche_pulve As New ajout_pulve2()
-            formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.MODIF, agentCourant, pulverisateurCourant, diagnosticCourant)
+            formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.MODIF, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
             '            formEdition_fiche_pulve.MdiParent = Me.MdiParent
             formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
             If formEdition_fiche_pulve.DialogResult = Windows.Forms.DialogResult.OK Then
