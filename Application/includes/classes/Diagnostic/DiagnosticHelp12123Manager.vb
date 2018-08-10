@@ -27,6 +27,7 @@ Public Class DiagnosticHelp12123Manager
             While oDRDiagnosticItem.Read()
                 oHelp12123.id = oDRDiagnosticItem.GetString(0)
             End While
+            oDRDiagnosticItem.Close()
             If Not oHelp12123.Load() Then
                 oHelp12123 = Nothing
             End If

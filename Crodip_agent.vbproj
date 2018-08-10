@@ -420,7 +420,8 @@
     <Compile Include="Application\includes\classes\Controle\ControleBancBuse.vb" />
     <Compile Include="Application\includes\classes\Controle\ControleManoDetail.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123.vb" />
-    <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123Mesures.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123Pompe.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123Mesure.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123MesuresTrtSem.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp552.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp571.vb" />

@@ -731,14 +731,10 @@ Public Class login
 
     Private Sub btnTestDiagHelp12123_Click(sender As Object, e As EventArgs) Handles btnTestDiagHelp12123.Click
 
-        Dim oFRM As diagnostic_dlghelp12123
+        Dim oFRM As diagnostic_dlghelp12123new
         Dim oDiag12123 As New DiagnosticHelp12123()
-        oDiag12123.debitMesure = 1.006
-        oDiag12123.PressionMesure = 2
-        oDiag12123.PressionMoyenne = 2.2
-        oDiag12123.NbBuses = 8
 
-        oFRM = New diagnostic_dlghelp12123()
+        oFRM = New diagnostic_dlghelp12123new()
         oFRM.setContexte(oDiag12123, True)
         oFRM.ShowDialog()
 

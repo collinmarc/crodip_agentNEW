@@ -102,7 +102,7 @@ Public Class DiagnosticItemManager
         Try
 
 
-            bddCommande2.CommandText = "SELECT * FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' AND  DiagnosticItem.idItem <> '" & DiagnosticInfosComplementaires.DIAGITEM_ID & "' AND DiagnosticItem.idItem not Like 'help%' ORDER BY IdItem, ItemValue"
+            bddCommande2.CommandText = "SELECT * FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' AND  DiagnosticItem.idItem <> '" & DiagnosticInfosComplementaires.DIAGITEM_ID & "' AND DiagnosticItem.idItem not Like 'h%' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats
             Dim oDRDiagnosticItem As System.Data.OleDb.OleDbDataReader = bddCommande2.ExecuteReader
             ' Puis on les parcours
@@ -238,7 +238,7 @@ Public Class DiagnosticItemManager
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
-                ' Puis on ne parcours que le premier car on a trié dans l'odre descendant
+                'On est obligé de les parcourir car c'est une clé alpha num !!!!!
                 While tmpListProfils.Read()
                     strDiagItemId = tmpListProfils.GetString(0)
                     strDiagItemId = strDiagItemId.Replace(tmpDiagnosticId, "")

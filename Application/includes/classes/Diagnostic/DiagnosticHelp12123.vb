@@ -9,22 +9,32 @@ Public Class DiagnosticHelp12123
     Implements ICloneable
     Private m_id As String
     Private m_idDiag As String
-    'Capteur de vitesse
-    Private m_debitMesure? As Decimal = Nothing
-    Private m_PressionMesure? As Decimal = Nothing
-    Private m_PressionMoyenne? As Decimal = Nothing
-    Private m_NbBuses? As Decimal = Nothing
-    Private m_DebitReel? As Decimal = Nothing
-    Private m_DebitTotal? As Decimal = Nothing
-    Private m_ReglageDispositif? As Decimal = Nothing
-    Private m_DebitTheorique? As Decimal = Nothing
-    Private m_TempsMesure? As Decimal = Nothing
-    Private m_QteEauPulverisee? As Decimal = Nothing
-    Private m_MasseapresAspi? As Decimal = Nothing
-    Private m_MasseApresComplement? As Decimal = Nothing
-    Private m_QteProduitConso? As Decimal = Nothing
-    Private m_DosageReel? As Decimal = Nothing
-    Private m_EcartReglage? As Decimal = Nothing
+    Private m_lstPompes As New List(Of DiagnosticHelp12123Pompe)
+    Public Property lstPompes() As List(Of DiagnosticHelp12123Pompe)
+        Get
+            Return m_lstPompes
+        End Get
+        Set(ByVal value As List(Of DiagnosticHelp12123Pompe))
+            m_lstPompes = value
+        End Set
+    End Property
+
+    'Private m_nbPompesDoseuses As Integer
+    'Private m_debitMesure? As Decimal = Nothing
+    'Private m_PressionMesure? As Decimal = Nothing
+    'Private m_PressionMoyenne? As Decimal = Nothing
+    'Private m_NbBuses? As Decimal = Nothing
+    'Private m_DebitReel? As Decimal = Nothing
+    'Private m_DebitTotal? As Decimal = Nothing
+    'Private m_ReglageDispositif? As Decimal = Nothing
+    'Private m_DebitTheorique? As Decimal = Nothing
+    'Private m_TempsMesure? As Decimal = Nothing
+    'Private m_QteEauPulverisee? As Decimal = Nothing
+    'Private m_MasseapresAspi? As Decimal = Nothing
+    'Private m_MasseApresComplement? As Decimal = Nothing
+    'Private m_QteProduitConso? As Decimal = Nothing
+    'Private m_DosageReel? As Decimal = Nothing
+    'Private m_EcartReglage? As Decimal = Nothing
     Private m_Resultat As String
     Private m_bCalcule As Boolean = True
 
@@ -64,207 +74,207 @@ Public Class DiagnosticHelp12123
             m_bCalcule = Value
         End Set
     End Property
-    Public Property debitMesure As Decimal?
-        Get
-            Return m_debitMesure
-        End Get
-        Set(value As Decimal?)
-            m_debitMesure = value
-            calcule()
-        End Set
-    End Property
-    Public Property PressionMesure As Decimal?
-        Get
-            Return m_PressionMesure
-        End Get
-        Set(value As Decimal?)
-            m_PressionMesure = value
-            calcule()
-        End Set
-    End Property
-    Public Property PressionMoyenne As Decimal?
-        Get
-            Return m_PressionMoyenne
-        End Get
-        Set(value As Decimal?)
-            m_PressionMoyenne = value
-            calcule()
-        End Set
-    End Property
-    Public Property NbBuses As Decimal?
-        Get
-            Return m_NbBuses
-        End Get
-        Set(value As Decimal?)
-            m_NbBuses = value
-            calcule()
+    'Public Property debitMesure As Decimal?
+    '    Get
+    '        Return m_debitMesure
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_debitMesure = value
+    '        calcule()
+    '    End Set
+    'End Property
+    'Public Property PressionMesure As Decimal?
+    '    Get
+    '        Return m_PressionMesure
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_PressionMesure = value
+    '        calcule()
+    '    End Set
+    'End Property
+    'Public Property PressionMoyenne As Decimal?
+    '    Get
+    '        Return m_PressionMoyenne
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_PressionMoyenne = value
+    '        calcule()
+    '    End Set
+    'End Property
+    'Public Property NbBuses As Decimal?
+    '    Get
+    '        Return m_NbBuses
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_NbBuses = value
+    '        calcule()
 
-        End Set
-    End Property
-    Public Property DebitReel As Decimal?
-        Get
-            Return m_DebitReel
-        End Get
-        Set(value As Decimal?)
-            m_DebitReel = value
-        End Set
-    End Property
-    Public Property DebitReelRND As Decimal?
-        Get
-            If m_DebitReel.HasValue Then
-                Return Math.Round(DebitReel.Value, 2)
-            Else
-                Return Nothing
-            End If
-        End Get
-        Set(value As Decimal?)
-            m_DebitReel = value
-        End Set
-    End Property
-    Public Property DebitTotal As Decimal?
-        Get
-            Return m_DebitTotal
-        End Get
-        Set(value As Decimal?)
-            m_DebitTotal = value
-        End Set
-    End Property
-    Public Property DebitTotalRND As Decimal?
-        Get
-            If m_DebitTotal.HasValue Then
-                Return Math.Round(m_DebitTotal.Value, 2)
-            Else
-                Return Nothing
-            End If
-        End Get
-        Set(value As Decimal?)
-            m_DebitTotal = value
-        End Set
-    End Property
-    Public Property ReglageDispositif As Decimal?
-        Get
-            Return m_ReglageDispositif
-        End Get
-        Set(value As Decimal?)
-            m_ReglageDispositif = value
-            calcule()
-        End Set
-    End Property
-    Public Property DebitTheorique As Decimal?
-        Get
-            Return m_DebitTheorique
-        End Get
-        Set(value As Decimal?)
-            m_DebitTheorique = value
-        End Set
-    End Property
-    Public Property DebitTheoriqueRND As Decimal?
-        Get
-            If m_DebitTheorique.HasValue Then
-                Return Math.Round(m_DebitTheorique.Value, 3)
-            Else
-                Return Nothing
-            End If
-        End Get
-        Set(value As Decimal?)
-            m_DebitTheorique = value
-        End Set
-    End Property
-    Public Property TempsMesure As Decimal?
-        Get
-            Return m_TempsMesure
-        End Get
-        Set(value As Decimal?)
-            m_TempsMesure = value
-            calcule()
-        End Set
-    End Property
-    Public Property QteEauPulverisee As Decimal?
-        Get
-            Return m_QteEauPulverisee
-        End Get
-        Set(value As Decimal?)
-            m_QteEauPulverisee = value
-        End Set
-    End Property
-    Public Property QteEauPulveriseeRND As Decimal?
-        Get
-            If m_QteEauPulverisee.HasValue Then
-                Return Math.Round(m_QteEauPulverisee.Value, 5)
-            Else
-                Return Nothing
-            End If
-        End Get
-        Set(value As Decimal?)
-            m_QteEauPulverisee = value
-        End Set
-    End Property
-    Public Property MasseApresAspi As Integer?
-        Get
-            Return m_MasseapresAspi
-        End Get
-        Set(value As Integer?)
-            m_MasseapresAspi = value
-            calcule()
-        End Set
-    End Property
-    Public Property MasseApresComplement As Integer?
-        Get
-            Return m_MasseApresComplement
-        End Get
-        Set(value As Integer?)
-            m_MasseApresComplement = value
-            calcule()
-        End Set
-    End Property
-    Public Property QteProduitConso As Integer?
-        Get
-            Return m_QteProduitConso
-        End Get
-        Set(value As Integer?)
-            m_QteProduitConso = value
-        End Set
-    End Property
-    Public Property DosageReel As Decimal?
-        Get
-            Return m_DosageReel
-        End Get
-        Set(value As Decimal?)
-            m_DosageReel = value
-        End Set
-    End Property
-    Public Property DosageReelRND As Decimal?
-        Get
-            If m_DosageReel.HasValue Then
-                Return Math.Round(m_DosageReel.Value, 7)
-            Else
-                Return Nothing
-            End If
-        End Get
-        Set(value As Decimal?)
-            m_DosageReel = value
-        End Set
-    End Property
-    Public Property EcartReglage As Decimal?
-        Get
-            Return m_EcartReglage
-        End Get
-        Set(value As Decimal?)
-            m_EcartReglage = value
-        End Set
-    End Property
-    Public Property EcartReglageRND As Decimal?
-        Get
-            If m_EcartReglage.HasValue Then
-                Return Math.Round(m_EcartReglage.Value, 7)
-            Else
-                Return Nothing
-            End If
-        End Get
-        Set(value As Decimal?)
-            m_EcartReglage = value
-        End Set
-    End Property
+    '    End Set
+    'End Property
+    'Public Property DebitReel As Decimal?
+    '    Get
+    '        Return m_DebitReel
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_DebitReel = value
+    '    End Set
+    'End Property
+    'Public Property DebitReelRND As Decimal?
+    '    Get
+    '        If m_DebitReel.HasValue Then
+    '            Return Math.Round(DebitReel.Value, 2)
+    '        Else
+    '            Return Nothing
+    '        End If
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_DebitReel = value
+    '    End Set
+    'End Property
+    'Public Property DebitTotal As Decimal?
+    '    Get
+    '        Return m_DebitTotal
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_DebitTotal = value
+    '    End Set
+    'End Property
+    'Public Property DebitTotalRND As Decimal?
+    '    Get
+    '        If m_DebitTotal.HasValue Then
+    '            Return Math.Round(m_DebitTotal.Value, 2)
+    '        Else
+    '            Return Nothing
+    '        End If
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_DebitTotal = value
+    '    End Set
+    'End Property
+    'Public Property ReglageDispositif As Decimal?
+    '    Get
+    '        Return m_ReglageDispositif
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_ReglageDispositif = value
+    '        calcule()
+    '    End Set
+    'End Property
+    'Public Property DebitTheorique As Decimal?
+    '    Get
+    '        Return m_DebitTheorique
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_DebitTheorique = value
+    '    End Set
+    'End Property
+    'Public Property DebitTheoriqueRND As Decimal?
+    '    Get
+    '        If m_DebitTheorique.HasValue Then
+    '            Return Math.Round(m_DebitTheorique.Value, 3)
+    '        Else
+    '            Return Nothing
+    '        End If
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_DebitTheorique = value
+    '    End Set
+    'End Property
+    'Public Property TempsMesure As Decimal?
+    '    Get
+    '        Return m_TempsMesure
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_TempsMesure = value
+    '        calcule()
+    '    End Set
+    'End Property
+    'Public Property QteEauPulverisee As Decimal?
+    '    Get
+    '        Return m_QteEauPulverisee
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_QteEauPulverisee = value
+    '    End Set
+    'End Property
+    'Public Property QteEauPulveriseeRND As Decimal?
+    '    Get
+    '        If m_QteEauPulverisee.HasValue Then
+    '            Return Math.Round(m_QteEauPulverisee.Value, 5)
+    '        Else
+    '            Return Nothing
+    '        End If
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_QteEauPulverisee = value
+    '    End Set
+    'End Property
+    'Public Property MasseApresAspi As Integer?
+    '    Get
+    '        Return m_MasseapresAspi
+    '    End Get
+    '    Set(value As Integer?)
+    '        m_MasseapresAspi = value
+    '        calcule()
+    '    End Set
+    'End Property
+    'Public Property MasseApresComplement As Integer?
+    '    Get
+    '        Return m_MasseApresComplement
+    '    End Get
+    '    Set(value As Integer?)
+    '        m_MasseApresComplement = value
+    '        calcule()
+    '    End Set
+    'End Property
+    'Public Property QteProduitConso As Integer?
+    '    Get
+    '        Return m_QteProduitConso
+    '    End Get
+    '    Set(value As Integer?)
+    '        m_QteProduitConso = value
+    '    End Set
+    'End Property
+    'Public Property DosageReel As Decimal?
+    '    Get
+    '        Return m_DosageReel
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_DosageReel = value
+    '    End Set
+    'End Property
+    'Public Property DosageReelRND As Decimal?
+    '    Get
+    '        If m_DosageReel.HasValue Then
+    '            Return Math.Round(m_DosageReel.Value, 7)
+    '        Else
+    '            Return Nothing
+    '        End If
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_DosageReel = value
+    '    End Set
+    'End Property
+    'Public Property EcartReglage As Decimal?
+    '    Get
+    '        Return m_EcartReglage
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_EcartReglage = value
+    '    End Set
+    'End Property
+    'Public Property EcartReglageRND As Decimal?
+    '    Get
+    '        If m_EcartReglage.HasValue Then
+    '            Return Math.Round(m_EcartReglage.Value, 7)
+    '        Else
+    '            Return Nothing
+    '        End If
+    '    End Get
+    '    Set(value As Decimal?)
+    '        m_EcartReglage = value
+    '    End Set
+    'End Property
     Public Property Resultat As String
 
         Get
@@ -274,6 +284,8 @@ Public Class DiagnosticHelp12123
             m_Resultat = value
         End Set
     End Property
+
+
     Public Function Load() As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(id), "Id must be set")
         Debug.Assert(Not String.IsNullOrEmpty(idDiag), "IdDiag must be set")
@@ -282,27 +294,20 @@ Public Class DiagnosticHelp12123
 
             Dim oDiagItem As DiagnosticItem
             oDiagItem = DiagnosticItemManager.getDiagnosticItemById(id, idDiag)
-            If oDiagItem.idItem = "help12123" Then
+            If oDiagItem.idItem = DIAGITEM_ID Then
                 Try
                     bCalcule = False 'Au rechargement on désactive le calcul
                     Dim tabValues As String()
                     tabValues = oDiagItem.itemValue.Split("|")
-                    debitMesure = ConvertStringToAtt(tabValues(0))  '0
-                    PressionMesure = ConvertStringToAtt(tabValues(1))  '1
-                    PressionMoyenne = ConvertStringToAtt(tabValues(2))  '2
-                    NbBuses = ConvertStringToAtt(tabValues(3))  '3
-                    DebitReel = ConvertStringToAtt(tabValues(4))  '4
-                    DebitTotal = ConvertStringToAtt(tabValues(5))  '5
-                    ReglageDispositif = ConvertStringToAtt(tabValues(6))  '6
-                    DebitTheorique = ConvertStringToAtt(tabValues(7))  '7
-                    TempsMesure = ConvertStringToAtt(tabValues(8))  '8
-                    QteEauPulverisee = ConvertStringToAtt(tabValues(9))  '9
-                    MasseApresAspi = ConvertStringToAtt(tabValues(10))  '10
-                    MasseApresComplement = ConvertStringToAtt(tabValues(11))  '11
-                    QteProduitConso = ConvertStringToAtt(tabValues(12))  '12
-                    DosageReel = ConvertStringToAtt(tabValues(13))  '13
-                    EcartReglage = ConvertStringToAtt(tabValues(14))  '14
-                    Me.Resultat = Trim(tabValues(15))  '15
+                    Me.Resultat = Trim(tabValues(0))
+                    Dim nbPompe As Integer
+                    nbPompe = Trim(tabValues(1))
+                    For nPompe As Integer = 1 To nbPompe
+                        Dim oPompe As DiagnosticHelp12123Pompe
+                        oPompe = New DiagnosticHelp12123Pompe(nPompe)
+                        oPompe.Load(idDiag, nPompe)
+                        lstPompes.Add(oPompe)
+                    Next
                     bCalcule = True
                 Catch ex As Exception
                     CSDebug.dispError("DiagnosticHelp12123.load ERR conversion (" & oDiagItem.itemValue & ") ERR " & ex.Message)
@@ -347,6 +352,11 @@ Public Class DiagnosticHelp12123
             Dim oCSDB As New CSDb(True)
             bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
             oCSDB.free()
+            'Sauvegarde des pompes
+            For Each oPompe As DiagnosticHelp12123Pompe In lstPompes
+                oPompe.idDiag = idDiag
+                oPompe.Save(pStructureId, pAgentId)
+            Next
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp12123.Save ERR :" & ex.Message)
             bReturn = False
@@ -359,24 +369,10 @@ Public Class DiagnosticHelp12123
         oDiagItem = New DiagnosticItem
         oDiagItem.id = id
         oDiagItem.idDiagnostic = idDiag
-        oDiagItem.idItem = "help12123"
+        oDiagItem.idItem = DIAGITEM_ID
 
-        oDiagItem.itemValue = ConvertAttToString(debitMesure) & "|" '0
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(PressionMesure) & "|" '1
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(PressionMoyenne) & "|" '2
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(NbBuses) & "|" '3
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(DebitReel) & "|" '4
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(DebitTotal) & "|" '5
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(ReglageDispositif) & "|" '6
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(DebitTheorique) & "|" '7
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(TempsMesure) & "|" '8
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(QteEauPulverisee) & "|" '9
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(MasseApresAspi) & "|" '10
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(MasseApresComplement) & "|" '11
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(QteProduitConso) & "|" '12
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(DosageReel) & "|" '13
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(EcartReglage) & "|" '14
-        oDiagItem.itemValue = oDiagItem.itemValue & Trim(Me.Resultat) & "|" '15
+        oDiagItem.itemValue = Trim(Me.Resultat) & "|" '0
+        oDiagItem.itemValue = oDiagItem.itemValue & lstPompes.Count & "|" '1
 
         Return oDiagItem
     End Function
@@ -422,62 +418,62 @@ Public Class DiagnosticHelp12123
     Public Function calcule() As Boolean
         Dim bReturn As Boolean
         Try
-            If bCalcule Then
-                If m_debitMesure.HasValue And m_PressionMesure.HasValue And m_PressionMoyenne.HasValue And NbBuses.HasValue Then
-                    'debitReel = DebitMesure*(Racine(PressionMoyenne/PressionMesure))
-                    DebitReel = debitMesure * (Math.Sqrt(PressionMoyenne / PressionMesure))
-                    'Debittotal = DebitReel*NbBuses
-                    DebitTotal = DebitReel * NbBuses
-                Else
-                    DebitReel = Nothing
-                    'Debittotal = DebitReel*NbBuses
-                    DebitTotal = Nothing
+            'If bCalcule Then
+            '    If m_debitMesure.HasValue And m_PressionMesure.HasValue And m_PressionMoyenne.HasValue And NbBuses.HasValue Then
+            '        'debitReel = DebitMesure*(Racine(PressionMoyenne/PressionMesure))
+            '        DebitReel = debitMesure * (Math.Sqrt(PressionMoyenne / PressionMesure))
+            '        'Debittotal = DebitReel*NbBuses
+            '        DebitTotal = DebitReel * NbBuses
+            '    Else
+            '        DebitReel = Nothing
+            '        'Debittotal = DebitReel*NbBuses
+            '        DebitTotal = Nothing
 
-                End If
-                If m_ReglageDispositif.HasValue And m_debitMesure.HasValue And NbBuses.HasValue Then
-                    ' DebitTheorique = (ReglageDisistif/100)*(DebitMesure*NbBuses)
-                    DebitTheorique = (ReglageDispositif / 100) * (debitMesure * NbBuses)
-                Else
-                    DebitTheorique = Nothing
-                End If
-                If m_TempsMesure.HasValue And m_DebitTotal.HasValue Then
-                    'QteEauPulverisee = TempMesure*(DebitTotal/60)
-                    QteEauPulverisee = TempsMesure * (DebitTotal / 60)
-                Else
-                    QteEauPulverisee = Nothing
-                End If
-                If m_MasseapresAspi.HasValue And m_MasseApresComplement.HasValue Then
-                    'QteProduitConso = MasseInitiale-MasseFinal
-                    '                    QteProduitConso = MasseInitiale - MasseFinale
-                    QteProduitConso = MasseApresComplement - MasseApresAspi
-                Else
-                    QteProduitConso = Nothing
+            '    End If
+            '    If m_ReglageDispositif.HasValue And m_debitMesure.HasValue And NbBuses.HasValue Then
+            '        ' DebitTheorique = (ReglageDisistif/100)*(DebitMesure*NbBuses)
+            '        DebitTheorique = (ReglageDispositif / 100) * (debitMesure * NbBuses)
+            '    Else
+            '        DebitTheorique = Nothing
+            '    End If
+            '    If m_TempsMesure.HasValue And m_DebitTotal.HasValue Then
+            '        'QteEauPulverisee = TempMesure*(DebitTotal/60)
+            '        QteEauPulverisee = TempsMesure * (DebitTotal / 60)
+            '    Else
+            '        QteEauPulverisee = Nothing
+            '    End If
+            '    If m_MasseapresAspi.HasValue And m_MasseApresComplement.HasValue Then
+            '        'QteProduitConso = MasseInitiale-MasseFinal
+            '        '                    QteProduitConso = MasseInitiale - MasseFinale
+            '        QteProduitConso = MasseApresComplement - MasseApresAspi
+            '    Else
+            '        QteProduitConso = Nothing
 
-                End If
-                If m_QteProduitConso.HasValue And m_QteEauPulverisee.HasValue Then
-                    'DosageReel = QteProduitConso en kg / qteEauPulverisee
-                    DosageReel = ((QteProduitConso / 1000) / QteEauPulverisee) * 100
-                Else
-                    DosageReel = Nothing
-                End If
-                If m_ReglageDispositif.HasValue And m_DosageReel.HasValue Then
-                    'EcartDeReglage = (ReglageDispositif-DosageReel)/DosageReel)*100
-                    EcartReglage = ((ReglageDispositif - DosageReel) / DosageReel) * 100
-                Else
-                    EcartReglage = Nothing
+            '    End If
+            '    If m_QteProduitConso.HasValue And m_QteEauPulverisee.HasValue Then
+            '        'DosageReel = QteProduitConso en kg / qteEauPulverisee
+            '        DosageReel = ((QteProduitConso / 1000) / QteEauPulverisee) * 100
+            '    Else
+            '        DosageReel = Nothing
+            '    End If
+            '    If m_ReglageDispositif.HasValue And m_DosageReel.HasValue Then
+            '        'EcartDeReglage = (ReglageDispositif-DosageReel)/DosageReel)*100
+            '        EcartReglage = ((ReglageDispositif - DosageReel) / DosageReel) * 100
+            '    Else
+            '        EcartReglage = Nothing
 
-                End If
-                If m_EcartReglage.HasValue Then
-                    'EcartReglage > 5% => Majeur, sinon OK
-                    Resultat = DiagnosticItem.EtatDiagItemOK
-                    If Math.Abs(EcartReglage.Value) > LIMITE_ECART_MAJEUR Then
-                        Resultat = DiagnosticItem.EtatDiagItemMAJEUR
-                    End If
-                Else
-                    Resultat = String.Empty
+            '    End If
+            '    If m_EcartReglage.HasValue Then
+            '        'EcartReglage > 5% => Majeur, sinon OK
+            '        Resultat = DiagnosticItem.EtatDiagItemOK
+            '        If Math.Abs(EcartReglage.Value) > LIMITE_ECART_MAJEUR Then
+            '            Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+            '        End If
+            '    Else
+            '        Resultat = String.Empty
 
-                End If
-            End If
+            '    End If
+            'End If
             bReturn = True
         Catch ex As Exception
             bReturn = False

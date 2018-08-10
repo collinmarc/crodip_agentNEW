@@ -197,6 +197,8 @@
   <ItemGroup>
     <Compile Include="AgentManagerTest.vb" />
     <Compile Include="Application\includes\classes\Acquisition\AcquiringTests.vb" />
+    <Compile Include="DiagnosticHelp12123MesureTest.vb" />
+    <Compile Include="DiagnosticHelp12123PompeTest.vb" />
     <Compile Include="DiagnosticHelp12123Test.vb" />
     <Compile Include="DiagnosticHelp571Test.vb" />
     <Compile Include="CalcVolumeHATest.vb" />
