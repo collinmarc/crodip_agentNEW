@@ -597,7 +597,6 @@
       <LibelleLong>Le pulvérisateur n'est pas en état de fonctionnement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -609,7 +608,6 @@
       <LibelleLong>Le pulvérisateur présente des fuites excessives</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -621,7 +619,6 @@
       <LibelleLong>Le pulvérisateur ne possède pas un volume d'eau suffisant pour le contrôle</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -633,7 +630,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -645,7 +641,6 @@
       <LibelleLong>Le matériel présente des traces de produits sur l'extérieur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -657,7 +652,6 @@
       <LibelleLong>Le matériel présente des traces de produits à l'intérieur de la cuve</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -669,7 +663,6 @@
       <LibelleLong>Les filtres n'ont pas été nettoyés avant le contrôle</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -680,7 +673,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -692,7 +684,6 @@
       <LibelleLong>L'utilisateur principal du pulvérisateur n'est pas présent lors de la remise du matériel à l'inspecteur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -704,7 +695,6 @@
       <LibelleLong>L'agriculteur ou son représentant ne suit pas l'intégralité de l'inspection</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -716,7 +706,6 @@
       <LibelleLong>Le tracteur habituellement utilisé pour les traitements n'est pas présent (DPA)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -728,7 +717,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -740,7 +728,6 @@
       <LibelleLong>Le verrouillage des raccords hydrauliques est défectueux lors de la mise sous pression</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -752,7 +739,6 @@
       <LibelleLong>Les flexibles hydrauliques présentent des traces d'usures importantes</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -764,7 +750,6 @@
       <LibelleLong>Les flexibles hydrauliques forment des pliures anormales</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -776,7 +761,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -789,7 +773,6 @@
       <LibelleLong>La protection de l'arbre tournant est absente ou défectueuse </LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -801,7 +784,6 @@
       <LibelleLong>L'arbre tournant n'est pas correctement immobilisé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -813,7 +795,6 @@
       <LibelleLong>Le bol de protection côté tracteur est absent ou endommagé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -825,7 +806,6 @@
       <LibelleLong>Le bol de protection côté pulvérisateur est absent ou endommagé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -837,7 +817,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -850,7 +829,6 @@
       <LibelleLong>Possibilité d'entrer en contact avec un arbre en mouvement sur le pulvérisateur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -862,7 +840,6 @@
       <LibelleLong>Possibilité d'entrer en contact avec des pièces en mouvement sur le pulvérisateur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -874,7 +851,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -887,7 +863,6 @@
       <LibelleLong>La fixation de la cuve au châssis n'est pas correctement assurée</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -899,7 +874,6 @@
       <LibelleLong>La fixation de la pompe au châssis n'est pas correctement assurée</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -911,7 +885,6 @@
       <LibelleLong>La fixation des différents éléments de structure n'est pas correctement assurée</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -923,7 +896,6 @@
       <LibelleLong>La fixation du ventilateur au châssis n'est pas correctement assurée</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -935,7 +907,6 @@
       <LibelleLong>Le châssis ou la structure a subis de lourdes modifications portant atteinte à la solidité ou rigidité de l'ensemble"</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -947,7 +918,6 @@
       <LibelleLong>Les supports de rampes ne sont pas suffisamment solidaires au châssis ou à la structure</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -959,7 +929,6 @@
       <LibelleLong>Le maintien de la rampe ne peut être suffisamment maintenu durant la phase de transport</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -971,7 +940,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -984,7 +952,6 @@
       <LibelleLong>Le ventilateur ne peut être débrayé sur les pulvérisateurs postérieurs à 1995</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>3</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -996,7 +963,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1008,7 +974,6 @@
       <LibelleLong>Le dispositif d'attelage présente des traces de déformations par rapport à sa conception d'origine sans porter préjudice à l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1019,7 +984,6 @@
       <LibelleLong>Le dispositif d'attelage présente des traces de déformations portant préjudice à l'ensemble sur la rigidité, solidité ou position de travail</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1030,7 +994,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1041,7 +1004,6 @@
       <LibelleLong>Le dispositif d'attelage a été modifié par rapport à sa conception d'origine sans porter préjudice à l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1052,7 +1014,6 @@
       <LibelleLong>Le dispositif d'attelage présente des modifications portant préjudice à l'ensemble sur la rigidité, solidité ou position de travail</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1063,7 +1024,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1074,7 +1034,6 @@
       <LibelleLong>L'attelage présente des traces de corrosion perforante sans porter préjudice à la solidité ou rigidité de l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1085,7 +1044,6 @@
       <LibelleLong>L'attelage présente des traces de corrosion perforante portant préjudice à la solidité, rigidité de l'ensemble ou à la position de travail</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1096,7 +1054,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1107,7 +1064,6 @@
       <LibelleLong>Le châssis ou des éléments de structure présente des traces de déformations sans porter préjudice à l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1118,7 +1074,6 @@
       <LibelleLong>Le châssis ou des éléments de structure présente des traces de déformations portant atteinte à l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1129,7 +1084,6 @@
       <LibelleLong>Les  supports de rampe présentent des traces de déformation portant atteinte à l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1140,7 +1094,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1151,7 +1104,6 @@
       <LibelleLong>La structure présente des amorces de rupture sans porter préjudice à l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1162,7 +1114,6 @@
       <LibelleLong>La structure présente des amorces de rupture portant préjudice à l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1173,7 +1124,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1184,7 +1134,6 @@
       <LibelleLong>Une ou plusieurs soudure présente(nt) une amorce de rupture, sans porter préjudice au matériel</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1195,7 +1144,6 @@
       <LibelleLong>Une ou plusieurs soudure présente(nt) une amorce de rupture, portant préjudice au matériel</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1206,7 +1154,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1217,7 +1164,6 @@
       <LibelleLong>La structure présente des traces de corrosion perforante, ne portant pas préjudice au pulvérisateur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1228,7 +1174,6 @@
       <LibelleLong>La structure présente des traces de corrosion perforante, portant préjudice au pulvérisateur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1239,7 +1184,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1250,7 +1194,6 @@
       <LibelleLong>Une ou plusieurs articulations présente(nt) un jeu anormal n'affectant pas le comportement du pulvérisateur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1261,7 +1204,6 @@
       <LibelleLong>Une ou plusieurs articulations présente(nt) un jeu anormal modifiant le comportement du pulvérisateur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1272,7 +1214,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1283,7 +1224,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1294,7 +1234,6 @@
       <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau de la pompe (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1305,7 +1244,6 @@
       <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau de la cuve (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1316,7 +1254,6 @@
       <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau des commandes de distribution (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1327,7 +1264,6 @@
       <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau des conduites véhiculant la bouillie, ou des conduites constamment en charge (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1338,7 +1274,6 @@
       <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau des buses, diffuseurs, porte-buse (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1349,7 +1284,6 @@
       <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau des appareillages de mesures (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1360,7 +1294,6 @@
       <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau du dispositif d'incorporation (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1371,7 +1304,6 @@
       <LibelleLong>Plus de trois fuites mineures ont été relevées sur l'appareil</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1382,7 +1314,6 @@
       <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau des filtres (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1393,7 +1324,6 @@
       <LibelleLong>La pompe présente au moins une fuite majeure (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1404,7 +1334,6 @@
       <LibelleLong>La cuve de bouillie présente au moins une fuite majeure (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1415,7 +1344,6 @@
       <LibelleLong>Les commandes de distribution présentent au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1426,7 +1354,6 @@
       <LibelleLong>Les conduites véhiculant la bouillie, ou des conduites constamment en charge présentent au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1437,7 +1364,6 @@
       <LibelleLong>Les buses, les diffuseurs, porte-buse, présentent au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1448,7 +1374,6 @@
       <LibelleLong>L'appareillage de mesure, présente au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1459,7 +1384,6 @@
       <LibelleLong>Les filtres, présentent au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1470,7 +1394,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1481,7 +1404,6 @@
       <LibelleLong>Les filtres, présentent au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1492,7 +1414,6 @@
       <LibelleLong>Le verrouillage des raccords hydrauliques ne présente pas une tenue suffisante lors de la mise sous pression</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1503,7 +1424,6 @@
       <LibelleLong>Les conduites hydrauliques présentent une usure très marquée (toile apparente…)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1514,7 +1434,6 @@
       <LibelleLong>Les conduites hydrauliques présentent des pliures </LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1525,7 +1444,6 @@
       <LibelleLong>Le circuit hydraulique interne du pulvérisateur présente des traces de fuites ou suintement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1536,7 +1454,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1547,7 +1464,6 @@
       <LibelleLong>Le montage des pneumatiques sur un même essieu du pulvérisateur présente des caractéristiques différentes</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1558,7 +1474,6 @@
       <LibelleLong>La pression des pneumatiques du pulvérisateur est inadaptée</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1569,7 +1484,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1580,7 +1494,6 @@
       <LibelleLong>Les pneumatiques présentent de profondes entailles ou cicatrices</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1591,7 +1504,6 @@
       <LibelleLong>Les pneumatiques ont atteint un degré d'usure maximale. Visibilité de la trame intérieure du pneumatique</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1602,7 +1514,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1613,7 +1524,6 @@
       <LibelleLong>La pompe présente des traces de suintement d'huile</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1624,7 +1534,6 @@
       <LibelleLong>La pompe présente au moins une fuite d'huile provoquant un égouttement régulier.</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1635,7 +1544,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1646,7 +1554,6 @@
       <LibelleLong>La pompe engendre des pulsations supérieur à 5% et inférieur à 10% de la pression de travail moyenne</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -1657,7 +1564,6 @@
       <LibelleLong>La pompe engendre des pulsations supérieures ou égal à 10% de la pression de travail moyenne</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -1668,7 +1574,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1679,7 +1584,6 @@
       <LibelleLong>Si pulsation majeure (3212) et si la pression de gonflage de la cloche à air n'est pas comprise entre 30 et 70% de la pression de travail</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1690,7 +1594,6 @@
       <LibelleLong>Un liquide s'échappe de la cloche à air lorsque l'on appuie sur la valve de gonflage</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1701,7 +1604,6 @@
       <LibelleLong>Si pulsation majeure (3212) et si aucun dispositif d'amortissement équipe l'appareil</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -1712,7 +1614,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1723,7 +1624,6 @@
       <LibelleLong>Aucun remous n'est visible à la surface de l'eau en cuve au régime nominal de la pompe</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1734,7 +1634,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1745,7 +1644,6 @@
       <LibelleLong>Les orifices de remplissages de la cuve de bouillie ne sont pas équipé de bouchons</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1756,7 +1654,6 @@
       <LibelleLong>Un des bouchons de la cuve de bouillie est fêlé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1767,7 +1664,6 @@
       <LibelleLong>Un des bouchons de la cuve de bouillie est cassé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1778,7 +1674,6 @@
       <LibelleLong>Un des bouchons de la cuve de bouillie  a été percé postérieurement et qu'il ne peut être obstrué</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1789,7 +1684,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1800,7 +1694,6 @@
       <LibelleLong>Un des bouchons de la cuve de bouille n'est pas adapté à une fermeture étanche de la cuve</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1811,7 +1704,6 @@
       <LibelleLong>Un des bouchons de la cuve de bouillie ne peut être maintenue en position fermé par quelconque solution technique (filetage, friction,…)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1822,7 +1714,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1833,7 +1724,6 @@
       <LibelleLong>Aucun dispositif n'équipe l'appareil pour assurer la connaissance de niveau en cuve depuis l'extérieur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1844,7 +1734,6 @@
       <LibelleLong>L'indicateur de niveau ne peut fournir une indication fiable quel que soit le niveau en cuve</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1855,7 +1744,6 @@
       <LibelleLong>La lecture sur l'indicateur de niveau n'est pas clairement visible (valeurs effacées, salissure,…)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1866,7 +1754,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1878,7 +1765,6 @@
       <LibelleLong>Aucun dispositif d'incorporation des produits n'est installé (appareil postérieur à 1995) et dont la hauteur de l'orifice de remplissage est > 1,5 m</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1889,7 +1775,6 @@
       <LibelleLong>Le dispositif d'incorporation installé ne peut être mis en fonctionnement: vannes cassées, circuit obstrué,… </LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1900,7 +1785,6 @@
       <LibelleLong>Aucun dispositif d'incorporation des produits n'est installé sur un appareil pour lequel il n'est pas obligatoire</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1911,7 +1795,6 @@
       <LibelleLong>Le dispositif d'incorporation installé ne peut être mis en fonctionnement: vannes cassées, circuit obstrué,… ce défaut concerne les appareils pour lesquels cet accessoire n'est pas obligatoire</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1922,7 +1805,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1934,7 +1816,6 @@
       <LibelleLong>absence</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1945,7 +1826,6 @@
       <LibelleLong>Le dispositif de nettoyage des emballages de PP ne fonctionne pas correctement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1956,7 +1836,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1968,7 +1847,6 @@
       <LibelleLong>Il n'existe aucun tamis au niveau de l'orifice de remplissage de la cuve de bouillie</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1979,7 +1857,6 @@
       <LibelleLong>le tamis au niveau de l'orifice de remplissage est déchiré ou perforé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -1990,7 +1867,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2002,7 +1878,6 @@
       <LibelleLong>Il n'est pas possible d'assurer le remplissage du pulvé depuis la pompe de celui-ci sans risque de retour vers le milieu ext.</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2013,7 +1888,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2026,7 +1900,6 @@
       <LibelleLong>Il n'existe aucun dispositif permettant la vidange de la cuve</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2037,7 +1910,6 @@
       <LibelleLong>Le dispositif de vidange ne fonctionne pas correctement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2048,7 +1920,6 @@
       <LibelleLong>La vanne de vidange n'est pas protégée et une ouverture intempestive peut survenir en cours de travail</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2060,7 +1931,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2072,7 +1942,6 @@
       <LibelleLong>Aucun dispositif ne permet la récupération de la bouillie contenue dans la cuve</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2083,7 +1952,6 @@
       <LibelleLong>La récupération de la bouillie  ne peut s'effectuer sans contamination extérieure (pulvé, environnement...)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2095,7 +1963,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2107,7 +1974,6 @@
       <LibelleLong>Absente</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2118,7 +1984,6 @@
       <LibelleLong>La capacité de la cuve de rinçage n'atteint pas 10% de la capacité de la cuve principale</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2129,7 +1994,6 @@
       <LibelleLong>Le transfert de l'eau de la cuve de rinçage vers les autres parties du pulvé n'est pas possible</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2141,7 +2005,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2153,7 +2016,6 @@
       <LibelleLong>Absence rinçage interne</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2164,7 +2026,6 @@
       <LibelleLong>Le dispositif de nettoyage interne ne fonctionne pas correctement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2176,7 +2037,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2188,7 +2048,6 @@
       <LibelleLong>Absence lance de lavage</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2199,7 +2058,6 @@
       <LibelleLong>Le dispositif de nettoyage externe du pulvé ne fonctionne pas correctement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2211,7 +2069,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2223,7 +2080,6 @@
       <LibelleLong>Aucun dispositif de nettoyage direct des circuits de pulvérisation (sans transfert dans la cuve) n'est présent</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2234,7 +2090,6 @@
       <LibelleLong>Le dispositif de nettoyage direct des circuits ne fonctionne pas correctement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2246,7 +2101,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2258,7 +2112,6 @@
       <LibelleLong>Aucun dispositif spécifique équipe l'appareil (plus de 3 sections) pour la fermeture générale de la pulvérisation: la coupure doit être possible dans un délai inférieur à 5 s</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2269,7 +2122,6 @@
       <LibelleLong>L'écoulement aux sorties ne s'interrompt 5 s après avoir mis en œuvre la commande ou si le circuit ne s'établit pas de façon régulière 5 s après la manœuvre d'ouverture</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2280,7 +2132,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2291,7 +2142,6 @@
       <LibelleLong>Il n'existe pas de fermeture sectorielle; il doit être possible de fermer la pulvérisation au moins en 2 secteurs</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2302,7 +2152,6 @@
       <LibelleLong>L'écoulement aux sorties ne s'interrompt 5 s après avoir mis en œuvre commande ou si le circuit ne s'établit pas de façon régulière 5 s après la manœuvre d'ouverture</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2313,7 +2162,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2324,7 +2172,6 @@
       <LibelleLong>Aucun dispositif sur l'appareil permet de corriger l'augmentation de pression liée à la fermeture d'une section de pulvérisation </LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2335,7 +2182,6 @@
       <LibelleLong>Un des dipositifs permettant de corriger l'augmentation de pression liée à la fermeture d'une autre section n'est pas fonctionnel</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2346,7 +2192,6 @@
       <LibelleLong>La fermeture d'une autre section de pulvérisation entraine une augmentation supérieur à 10% de la pression initiale</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2357,7 +2202,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2368,7 +2212,6 @@
       <LibelleLong>Aucun dispositif de réglage de la pression n'équipe l'appareil</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2379,7 +2222,6 @@
       <LibelleLong>Le dispositif de réglage de la pression ne peut être manœuvré, ou sa mise en œuvre ne permet pas de faire varier la pression sur sa plage usuelle de travail</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2390,7 +2232,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2401,7 +2242,6 @@
       <LibelleLong>Après réglage de la pression de travail et sans modification des paramètres de fonctionnement, la pression moyenne de travail a évolué en moins de 5 min entre 5 et 10%</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2412,7 +2252,6 @@
       <LibelleLong>Après réglage de la pression de travail et sans modification des paramètres de fonctionnement, la pression moyenne de travail a évolué de plus de 10% en moins de 5 min</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2423,7 +2262,6 @@
       <LibelleLong>Après fermeture puis réouverture de la pulvérisation, la P ne revient pas à la P initiale avec une tolérance de 10%</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2434,7 +2272,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2445,7 +2282,6 @@
       <LibelleLong>Aucun dispositif de mesure de la pression de travail équipe l'appareil </LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2456,7 +2292,6 @@
       <LibelleLong>Le diamètre de l'afficheur analogique est inf à 63 mm (si positionné à portée de main ou entre 3pts et tracteur), ou inf à 100 mm (si positionné ailleurs)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2467,7 +2302,6 @@
       <LibelleLong>La plage de mesure de la pression excède plus de 50% la valeur de la pression maximale admissible</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2478,7 +2312,6 @@
       <LibelleLong>La plage de pression entre deux graduations excède: 0,2 bar jusqu'à 5 bar, 1 bar entre 5 et 20 bar et/ou 2 bar au-delà de 20 bar</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2489,7 +2322,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2500,7 +2332,6 @@
       <LibelleLong>Aucune valeur de pression ne peu être lue sur l'afficheur et/ou la lecture est rendue hasardeuse par la dégradation du matériel (verre opaque,…)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2511,7 +2342,6 @@
       <LibelleLong>Ecart variable entre la P. réelle et la P. affiché est comprise entre 0,1 et 0,2 bar (entre 1et 2 bar) et entre 5 et 10% (si &gt; 2 bar) ou écart constant et &lt; 0,5 bar ou &lt; 1 bar pour une plage de P &gt;= 10 bar</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2522,7 +2352,6 @@
       <LibelleLong>Ecart variable entre la P. réelle et la P. affiché >0,2 bar (entre 1et 2 bar) et >10% (si > 2 bar) ou écart constant > 0,5 bar pour  P etlt; 10 bar ou > 1 bar pour une plage de P > 10bar</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2533,7 +2362,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2544,7 +2372,6 @@
       <LibelleLong>Aucune valeur de vitesse d'avancement ne peut être lue sur l'afficheur ou par le boitier de régulation et/ou le capteur présente des traces de dégradation sérieuse</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2555,7 +2382,6 @@
       <LibelleLong>L'écart entre la valeur lue par l'indicateur s'écarte de plus de 5 % de la valeur réelle de la vitesse d'avancement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2566,7 +2392,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2577,7 +2402,6 @@
       <LibelleLong>Aucune valeur de débit ne peut être lue sur l'afficheur ou par le boitier de régulation et/ou le capteur présent des traces de dégradation sérieuse</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2588,7 +2412,6 @@
       <LibelleLong>L'écart entre la valeur lue par l'indicateur s'écarte de plus de 5 % de la valeur réelle du débit</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2599,7 +2422,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2610,7 +2432,6 @@
       <LibelleLong>Aucune valeur liée au capteur ne peut être lue sur l'afficheur ou le capteur présente des traces manifestes de dégradation sérieuse</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2621,7 +2442,6 @@
       <LibelleLong>Le diamètre de l'afficheur analogique est etlt; 63 mm (si positionné à portée de main), ou etlt; 100 mm (si positionné ailleurs) et/ou lecture rendue hasardeuse</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2632,7 +2452,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2643,7 +2462,6 @@
       <LibelleLong>L'écart entre la valeur lue par l'indicateur s'écarte de plus de 5 % de la valeur réelle de la vitesse d'avancement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2654,7 +2472,6 @@
       <LibelleLong>L'écart entre la valeur lue par l'indicateur s'écarte de plus de 5 % de la valeur réelle du débit</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2665,7 +2482,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2677,7 +2493,6 @@
       <LibelleLong>Le cumul des erreurs liées aux différents capteur provoque une imprécision du réglage du vol/ha  sup ou égal à 5 % et inférieur à 10%</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2688,7 +2503,6 @@
       <LibelleLong>Le cumul des erreurs liées aux différents capteurs provoque une imprécision du réglage du vol/ha  sup ou égal à 10%</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2699,7 +2513,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2712,7 +2525,6 @@
       <LibelleLong>Au moins une courbure provoque une pliure du flexible</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2723,7 +2535,6 @@
       <LibelleLong>Au moins une trace d'abrasion de la gaine extérieure est nettement visible</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2734,7 +2545,6 @@
       <LibelleLong>Au moins une trace d'abrasion de la gaine extérieure rend la trame intérieure de la conduite nettement visible</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2745,7 +2555,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2756,7 +2565,6 @@
       <LibelleLong>Il n'existe aucun filtre au niveau du circuit d'aspiration, entre cuve et pompe</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2767,7 +2575,6 @@
       <LibelleLong>Le démontage du filtre provoque un écoulement de liquide qui perdure dans le temps: l'égouttement se poursuit au-delà de 15s après la fin du démontage</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2778,7 +2585,6 @@
       <LibelleLong>Le démontage risque la casse du matériel (filtre à l'aspiration)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2789,7 +2595,6 @@
       <LibelleLong>Aucun joint n'est présent pour assurer l'étanchéité et/ou le passage de l'intégralité du liquide au travers du filtre d'aspiration ou si la position ou le modèle est indapaté</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2800,7 +2605,6 @@
       <LibelleLong>L'élément assurant la filtration est absent, perforé ou déformé (cette déformation ne lui permettant plus d'assurer correctement son rôle)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2811,7 +2615,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2822,7 +2625,6 @@
       <LibelleLong>Il n'existe aucun filtre au niveau du circuit central de refoulement, entre pompe et dispositif de régulation le défaut est noté si présence à l'origine</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2833,7 +2635,6 @@
       <LibelleLong>Le démontage du filtre provoque un écoulement de liquide qui perdure dans le temps: l'égouttement se poursuit au-delà de 15s après la fin du démontage</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2844,7 +2645,6 @@
       <LibelleLong>Le démontage risque la casse du matériel (filtre central au refoulement)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2855,7 +2655,6 @@
       <LibelleLong>Aucun joint n'est présent pour assurer l'étanchéité et/ou le passage de l'intégralité du liquide au travers du filtre au refoulement ou si la position ou le modèle est indapaté</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2866,7 +2665,6 @@
       <LibelleLong>L'élément assurant la filtration est absent, perforé ou déformé (cette déformation ne lui permettant plus d'assurer correctement son rôle)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2877,7 +2675,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2888,7 +2685,6 @@
       <LibelleLong>Il n'existe aucun filtre au niveau des différents circuits de distribution, le défaut est noté si présence à l'origine</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2899,7 +2695,6 @@
       <LibelleLong>Le démontage risque la casse du matériel (filtre aux sections de pulvérisation)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2910,7 +2705,6 @@
       <LibelleLong>Aucun joint n'est présent pour assurer l'étanchéité et/ou le passage de l'intégralité du liquide au travers l'élément filtrant</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2921,7 +2715,6 @@
       <LibelleLong>L'élément assurant la filtration est absent, perforé ou déformé (cette déformation ne lui permettant plus d'assurer correctement son rôle)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2932,7 +2725,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2943,7 +2735,6 @@
       <LibelleLong>Il n'existe aucun filtre au niveau des porte-jets, le défaut est noté si présence à l'origine</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>0</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -2954,7 +2745,6 @@
       <LibelleLong>Le démontage risque la casse du matériel (filtre aux buses)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2965,7 +2755,6 @@
       <LibelleLong>Aucun joint n'est présent pour assurer l'étanchéité et/ou le passage de l'intégralité du liquide au travers les filtres aux buses ou si la position ou le modèle est indapaté</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2976,7 +2765,6 @@
       <LibelleLong>L'élément assurant la filtration est absent, perforé ou déformé (cette déformation ne lui permettant plus d'assurer correctement son rôle)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2987,7 +2775,6 @@
       <LibelleLong>Les filtres installés ne sont pas tous identiques</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -2998,7 +2785,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3009,7 +2795,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3020,7 +2805,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3031,7 +2815,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3042,7 +2825,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3053,7 +2835,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3064,7 +2845,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3075,7 +2855,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3086,7 +2865,6 @@
       <LibelleLong>Courbure faible </LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3097,7 +2875,6 @@
       <LibelleLong>Courbure importante</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3108,7 +2885,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3119,7 +2895,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3130,7 +2905,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3141,7 +2915,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3152,7 +2925,6 @@
       <LibelleLong>La rampe ou l'équipement de distribution présente des traces de déformation, mais qui ne modifient pas la disposition des sorties de pulvérisation</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3163,7 +2935,6 @@
       <LibelleLong>La rampe ou l'équipement de distribution présente des déformations modifiant la position des sorties de pulvérisation par rapport à l'origine</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3174,7 +2945,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3185,7 +2955,6 @@
       <LibelleLong>Une ou plusieurs soudures présente(nt) une amorce de rupture, mais ne portant pas préjudice à la solidité ou à la rigidité du matériel</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3196,7 +2965,6 @@
       <LibelleLong>Une ou plusieurs soudures présente(nt) une amorce de rupture portant préjudice à la solidité ou à la rigidité du matériel</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3207,7 +2975,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3218,7 +2985,6 @@
       <LibelleLong>La structure de rampe ou l'équipement de distribution présente des traces de corrosion perforante sans porter préjudice à la solidité ou rigidité de l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3229,7 +2995,6 @@
       <LibelleLong>La structure de rampe ou l'équipement de distribution présente des traces de corrosion perforante portant préjudice à la solidité ou rigidité de l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3240,7 +3005,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3251,7 +3015,6 @@
       <LibelleLong>La structure de rampe ou l'équipement de distribution présente des lésions sur pièces métalliques sans porter préjudice à la solidité ou rigidité de l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3262,7 +3025,6 @@
       <LibelleLong>La structure de rampe ou l'équipement de distribution présente des lésions sur pièces métalliques portant préjudice à la solidité ou rigidité de l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3273,7 +3035,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3285,7 +3046,6 @@
       <LibelleLong>Les jeux permettent un débattement libre de la rampe ou équipement de distribution de plus de 50cm</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3296,7 +3056,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3307,7 +3066,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3318,7 +3076,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3329,7 +3086,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3340,7 +3096,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3351,7 +3106,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3362,7 +3116,6 @@
       <LibelleLong>Le dispositif permettant de régler la position des sorties de pulvérisation n'est pas fonctionnel</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3373,7 +3126,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3384,7 +3136,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3395,7 +3146,6 @@
       <LibelleLong>Les groupe de porte-jets ou diffuseurs ne sont pas installés de façon symétrique</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3406,7 +3156,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3417,7 +3166,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3428,7 +3176,6 @@
       <LibelleLong>Irrégularité groupe de buses</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3439,7 +3186,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3450,7 +3196,6 @@
       <LibelleLong>Au moins l'un des porte-jets ou diffuseur présente une fêlure</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3461,7 +3206,6 @@
       <LibelleLong>Au moins l'un des porte-jets ou diffuseur est cassé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3472,7 +3216,6 @@
       <LibelleLong>Au moins l'un des porte-jets ou diffuseur présente une fixation du jet usée : arête de baïonnette émoussée ou filetage foiré</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3483,7 +3226,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3494,7 +3236,6 @@
       <LibelleLong>A la fermeture du circuit, un écoulement se poursuit sur au moins un des porte-jet après  5 secondes, ou si à l'ouverture la régularité des jets n'est pas atteinte en 5s</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3505,7 +3246,6 @@
       <LibelleLong>La P mesurée à la sortie d'au moins un porte-jet s'écarte de plus de 10% de la valeur mesurée à l'emplacement de l'indicateur de P de l'appareil</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>3</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>true</Cause3>
@@ -3516,7 +3256,6 @@
       <LibelleLong>La P mesurée à la sortie d'au moins un porte-jet s'écarte de plus de 10% de la valeur mesurée à l'emplacement de l'indicateur de P de l'appareil</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>3</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>true</Cause3>
@@ -3527,7 +3266,6 @@
       <LibelleLong>Sur les pulvérisateur postérieurs à 1995, aucun dispositif d'arrêt de l'écoulement n'existe lorsque la pulvérisation est coupé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>3</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3538,7 +3276,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3549,7 +3286,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3560,7 +3296,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3571,7 +3306,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3582,7 +3316,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3593,7 +3326,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3604,7 +3336,6 @@
       <LibelleLong>Le montage des buses ou pastilles n'est pas symétrique de chaque côté du pulvérisateur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3615,7 +3346,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3626,7 +3356,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3637,7 +3366,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3648,7 +3376,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3659,7 +3386,6 @@
       <LibelleLong>Une partie de la pulvérisation est interceptée par des composantes du pulvérisateur (châssis, conduites,…) provoquant un égouttement de plus D'1 goutte toutes les 5s</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3670,7 +3396,6 @@
       <LibelleLong>La pulvérisation présente une hétérogénéité visuelle dans sa distribution spatiale ou quantitative</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3681,7 +3406,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3692,7 +3416,6 @@
       <LibelleLong>Moins de 33% des buses présentent un débit s'écartant de plus de 15% par rapport à la valeur nominale indiquée par le constructeur. Si le débit constructeur n'est pas disponible un seuil de 5% sera retenu. Pour les appareils pneumatique la tolérance est de 15%</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -3703,7 +3426,6 @@
       <LibelleLong>Plus de 33% des buses présentent un débit s'écartant de plus de 15% par rapport à la valeur nominale indiquée par le constructeur. Si le débit constructeur n'est pas disponible un seuil de 5% sera retenu. Pour les appareils pneumatique la tolérance est de 15%</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>2</NiveauCauseMax>
       <Cause1>true</Cause1>
       <Cause2>true</Cause2>
       <Cause3>false</Cause3>
@@ -3714,7 +3436,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3725,7 +3446,6 @@
       <LibelleLong>Le caisson du ventilateur présente une déformation anormale par rapport à sa conception d'origine</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3736,7 +3456,6 @@
       <LibelleLong>Le caisson du ventilateur présente au moins une perforation non fonctionnelle</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3747,7 +3466,6 @@
       <LibelleLong>L'axe du caisson du ventilateur n'est pas dans celui de la transmission mécanique de mouvement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3758,7 +3476,6 @@
       <LibelleLong>Au moins l'un des dispositifs de redressement d'air présente une déformation anormale par rapport à sa conception d'origine</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3769,7 +3486,6 @@
       <LibelleLong>Au moins l'un des dispositifs de redressement d'air est cassé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3780,7 +3496,6 @@
       <LibelleLong>Au moins l'une des pales du ventilateur présente une déformation anormale par rapport à sa conception d'origine</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3791,7 +3506,6 @@
       <LibelleLong>Au moins l'une des pales du ventilateur présente une fêlure ou une cassure</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3802,7 +3516,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3813,7 +3526,6 @@
       <LibelleLong>Le ventilateur ne peut être mis en fonctionnement (rotation)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3824,7 +3536,6 @@
       <LibelleLong>Le ventilateur génère un flux d'air de faible intensité par rapport à une machine similaire</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3835,7 +3546,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3846,7 +3556,6 @@
       <LibelleLong>Au moins l'une des gaines d'adduction d'air n'est pas correctement fixée; usure accélérée ou celle d'autre(s) organe(s) du pulvérisateur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3857,7 +3566,6 @@
       <LibelleLong>Des fuites d'air sont ressenties soit sur le cheminement de la gaine, soit au niveau des raccordements au ventilateur ou aux sorties</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3868,7 +3576,6 @@
       <LibelleLong>Des obstacles ou pliures excessives limitent la circulation de l'air dans les gaines</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3879,7 +3586,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3891,7 +3597,6 @@
       <LibelleLong>Au moins l'une des sorties d'air n'est pas correctement fixée; cela pouvant engendrer une modification de son positionnement au cours du travail</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3902,7 +3607,6 @@
       <LibelleLong>Au moins l'une des sorties d'air présente une fêlure ou une cassure</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3913,7 +3617,6 @@
       <LibelleLong>Des obstacles limitent la sortie d'air</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3924,7 +3627,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3936,7 +3638,6 @@
       <LibelleLong>Le matériel automoteur ou traînés ne dispose pas d'éclairage routier. Egalement constaté sur le matériel portés si l'emcombrement masque l'éclairage</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3947,7 +3648,6 @@
       <LibelleLong>Au moins l'une des ampoules assurant l'éclairage des feux arrières est absente, cassée ou ne fonctionne plus</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3958,7 +3658,6 @@
       <LibelleLong>Au moins l'un des vitrages rouge de feux arrière est absent ou cassé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3969,7 +3668,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3981,7 +3679,6 @@
       <LibelleLong>L'automoteur ne dispose pas d'éclairage routier à l'avant</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -3992,7 +3689,6 @@
       <LibelleLong>Au moins l'une des ampoules de l'automoteur assurant l'éclairage des feux de croisement est absent, casée ou ne fonctionne plus, également si la lumière émise n'est pas blanche ou jaune</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4003,7 +3699,6 @@
       <LibelleLong>Au moins l'une des vitrage des feux de croisement de l'automoteur est absent ou cassé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4014,7 +3709,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4026,7 +3720,6 @@
       <LibelleLong>L'automoteur ou traîné ne dispose pas de dispositif indiquant le changement de direction. Il sera également constaté sur les autres appareils si l'encombrement masque partiellement ou totalement le dispositif du tracteur</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4037,7 +3730,6 @@
       <LibelleLong>Au moins l'une des ampoules assurant l'éclairage des indicateurs de direction est absente, cassé ou ne fonctionne plus </LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4048,7 +3740,6 @@
       <LibelleLong>Au moins l'une des vitrage des indicateurs de direction est absent ou cassé</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4059,7 +3750,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4071,7 +3761,6 @@
       <LibelleLong>L'automoteur ne dispose pas de feux tournant. Il sera également constaté sur les autres appareils si l'encombrement masque partiellement ou totalement le dispositif du tracteur (visible à 50 m)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4082,7 +3771,6 @@
       <LibelleLong>Le dispositif de feux tournants de l'automoteur ne fonctionne pas correctement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4093,7 +3781,6 @@
       <LibelleLong>Endommagés</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4104,7 +3791,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4116,7 +3802,6 @@
       <LibelleLong>La cuve recevant les PP présente au moins une fuite (quelle que soit l'intensité)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4127,7 +3812,6 @@
       <LibelleLong>La fermeture de la cuve recevant les PP n'est pas parfaitement étanche</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4138,7 +3822,6 @@
       <LibelleLong>La fixation de la cuve recevant les PP n'est pas correctement assurée</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4149,7 +3832,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4161,7 +3843,6 @@
       <LibelleLong>Le dispositif de dosage de PP présente au moins une fuite (quelle que soit l'intensité)</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4172,7 +3853,6 @@
       <LibelleLong>La fixation du dispositif de dosage des PP n'est pas correctement assurée</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4183,7 +3863,6 @@
       <LibelleLong>Le débit du dispositif de dosage de PP s'écarte de plus de 5% de la valeur programmée</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4194,7 +3873,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4206,7 +3884,6 @@
       <LibelleLong>Aucun dispositif ne permet le rinçage de l'ensemble injection directe</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4217,7 +3894,6 @@
       <LibelleLong>Le dispositif de rinçagede l'ensemble injection directe ne fonctionne pas correctement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4228,7 +3904,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4240,7 +3915,6 @@
       <LibelleLong>Dispositif d'arrêt et ouverture détérioré</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4251,7 +3925,6 @@
       <LibelleLong>Gâchette défectueuse</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4262,7 +3935,6 @@
       <LibelleLong>Vérrouillage défectueux</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4273,7 +3945,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4285,7 +3956,6 @@
       <LibelleLong>Réglage du débit non fonctionnel</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4296,7 +3966,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4308,7 +3977,6 @@
       <LibelleLong>Déformation mineure</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4319,7 +3987,6 @@
       <LibelleLong>Déformation majeure</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4330,7 +3997,6 @@
       <LibelleLong>Lésion mineure</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4341,7 +4007,6 @@
       <LibelleLong>Lésion majeure</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4352,7 +4017,6 @@
       <LibelleLong>Lésion  aux soudures mineure</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4363,7 +4027,6 @@
       <LibelleLong>Lésion  aux soudures majeure</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4374,7 +4037,6 @@
       <LibelleLong>Corosion mineure</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4385,7 +4047,6 @@
       <LibelleLong>Corosion majeure</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4396,7 +4057,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4408,7 +4068,6 @@
       <LibelleLong>Dispositif de remplacement détérioré</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4419,7 +4078,6 @@
       <LibelleLong>Dispositif d'entrainement détérioré</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4430,7 +4088,6 @@
       <LibelleLong>Dispositif de programmation de la vitesse détérioré</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4441,7 +4098,6 @@
       <LibelleLong>Dispositif d'ouverture/fermeture de la pulvarisation détérioré</LibelleLong>
       <Actif>false</Actif>
       <DefaultCategorie>2</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4452,7 +4108,6 @@
       <LibelleLong />
       <Actif>false</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4464,7 +4119,6 @@
       <LibelleLong>Le pulvérisateur n'est équipé aucun réservoir d'eau claire totalement indépendant des circuits de pulvérisation</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>4</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4475,7 +4129,6 @@
       <LibelleLong>la capacité du réservoir d'eau claire présente une contenance inférieure à 15 litres</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
@@ -4486,7 +4139,6 @@
       <LibelleLong />
       <Actif>true</Actif>
       <DefaultCategorie>0</DefaultCategorie>
-      <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
