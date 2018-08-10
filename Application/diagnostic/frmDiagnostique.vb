@@ -1305,7 +1305,6 @@ Public Class frmDiagnostique
         Try
             ' Chargement des informations du diag
             Dim tmpDiagnosticItem As DiagnosticItem
-            Dim isLoaded As Boolean = False
             If Not m_diagnostic.diagnosticItemsLst Is Nothing And Not m_diagnostic.diagnosticItemsLst.Values Is Nothing Then
                 For Each tmpDiagnosticItem In m_diagnostic.diagnosticItemsLst.Values
                     If tmpDiagnosticItem IsNot Nothing Then
@@ -1325,11 +1324,23 @@ Public Class frmDiagnostique
                     End If
                 Next
             End If
-
+            'Désactivation du controle "Pompe doseuses"
+            If m_Pulverisateur.isPompesDoseuses = False Then
+                Dim tmpControl As CRODIP_ControlLibrary.CtrlDiag2 = getControlFromDiagItem(New DiagnosticItem("", "1212", "3"))
+                If tmpControl IsNot Nothing Then
+                    tmpControl.Enabled = False
+                    ico_help_12123.Enabled = False
+                    ico_help_12123.Visible = False
+                Else
+                    tmpControl.Enabled = True
+                    ico_help_12123.Enabled = True
+                    ico_help_12123.Visible = True
+                End If
+            End If
             bReturn = True
         Catch ex As Exception
 
-            CSDebug.dispError("Diagnostique.LoadDiagnosticItems ERROR : " & ex.Message)
+            CSDebug.dispError("Diagnostique.AfficheDiagnosticItems ERROR : " & ex.Message)
 
             bReturn = False
         End Try
