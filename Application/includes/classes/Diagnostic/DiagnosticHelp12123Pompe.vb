@@ -57,21 +57,31 @@ Public Class DiagnosticHelp12123Pompe
         m_id = pId
         m_idDiag = pIdDiag
     End Sub
-    Public Property Image() As Bitmap
+    Public ReadOnly Property Image() As Bitmap
         Get
-            If Resultat = "1" Then
+            If Resultat = DiagnosticItem.EtatDiagItemOK Then
                 Return Resources.PuceVerteT
             Else
-                If Resultat = "0" Then
+                If Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
                     Return Resources.PuceRougeT
                 Else
                     Return Resources.PuceGriseT
                 End If
             End If
         End Get
-        Set(ByVal value As Bitmap)
-            '            _image = value
-        End Set
+    End Property
+    Public ReadOnly Property LabelResultat() As String
+        Get
+            If Resultat = DiagnosticItem.EtatDiagItemOK Then
+                Return "OK"
+            Else
+                If Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                    Return "ERREUR"
+                Else
+                    Return ""
+                End If
+            End If
+        End Get
     End Property
 
 
@@ -156,12 +166,19 @@ Public Class DiagnosticHelp12123Pompe
             Return m_DebitReel
         End Get
         Set(value As Decimal?)
-            m_DebitReel = value
+            setDebitReel(value)
         End Set
     End Property
+    Private Sub setDebitReel(pValue As Decimal?)
+        m_DebitReel = pValue
+        For Each oMesure As DiagnosticHelp12123Mesure In lstMesures
+            oMesure.calcule()
+        Next
+    End Sub
+
     Public Property DebitReelRND As Decimal?
         Get
-            If m_DebitReel.HasValue Then
+            If DebitReel.HasValue Then
                 Return Math.Round(DebitReel.Value, 2)
             Else
                 Return Nothing
@@ -176,13 +193,19 @@ Public Class DiagnosticHelp12123Pompe
             Return m_DebitTotal
         End Get
         Set(value As Decimal?)
-            m_DebitTotal = value
+            setDebitTotal(value)
         End Set
     End Property
+    Private Sub setDebitTotal(pValue As Decimal?)
+        m_DebitTotal = pValue
+        For Each oMesure As DiagnosticHelp12123Mesure In lstMesures
+            oMesure.calcule()
+        Next
+    End Sub
     Public Property DebitTotalRND As Decimal?
         Get
-            If m_DebitTotal.HasValue Then
-                Return Math.Round(m_DebitTotal.Value, 2)
+            If DebitTotal.HasValue Then
+                Return Math.Round(DebitTotal.Value, 2)
             Else
                 Return Nothing
             End If
@@ -395,28 +418,33 @@ Public Class DiagnosticHelp12123Pompe
         Try
             Dim nEcartReglage As Decimal
             If bCalcule Then
-                DebitReel = Nothing
                 If Me.debitMesure.HasValue And Me.PressionMoyenne.HasValue And Me.PressionMesure.HasValue Then
                     'Debit Reel
                     DebitReel = Me.debitMesure * Math.Sqrt(Me.PressionMoyenne / Me.PressionMesure)
+                Else
+                    DebitReel = Nothing
                 End If
                 'Debit Total
-                DebitTotal = Nothing
                 If DebitReel.HasValue And Me.NbBuses.HasValue Then
                     DebitTotal = DebitReel * Me.NbBuses
+                Else
+                    DebitTotal = Nothing
                 End If
-                For Each oMesure As DiagnosticHelp12123Mesure In lstMesures
-                    'Le Calcul de la pompe est déclenché par le calcul des Mesures
-                    'Donc ne pas redemander le calcul des mesures ...
-                    nEcartReglage = nEcartReglage + oMesure.EcartReglageRND
-                Next
-                EcartReglageMoyen = Math.Round(nEcartReglage / lstMesures.Count, 2)
-                Resultat = DiagnosticItem.EtatDiagItemOK
-                If Math.Abs(EcartReglageMoyen.Value) > LIMITE_ECART_MAJEUR Then
-                    Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                If lstMesures.Count > 0 Then
+                    For Each oMesure As DiagnosticHelp12123Mesure In lstMesures
+                        'Le Calcul de la pompe est déclenché par le calcul des Mesures
+                        'Donc ne pas redemander le calcul des mesures ...
+                        If oMesure.EcartReglageRND.HasValue Then
+                            nEcartReglage = nEcartReglage + oMesure.EcartReglageRND
+                        End If
+                    Next
+                    EcartReglageMoyen = Math.Round(nEcartReglage / lstMesures.Count, 2)
+                    Resultat = DiagnosticItem.EtatDiagItemOK
+                    If Math.Abs(EcartReglageMoyen.Value) > LIMITE_ECART_MAJEUR Then
+                        Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                    End If
+                    m_help12123.calcule()
                 End If
-
-                m_help12123.calcule()
 
             End If
             bReturn = True

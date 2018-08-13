@@ -139,21 +139,21 @@ Public Class DiagnosticHelp12123Pompetest
         oPompe.debitMesure = 1.2D
         oPompe.PressionMesure = 1.21D
         oPompe.PressionMoyenne = 1.3D
-        oPompe.NbBuses = 1.4D
-        oPompe.DebitTotal = 1.5D
-        oPompe.DebitReel = 1.6D
+        oPompe.NbBuses = 5
+        'oPompe.DebitTotal = 1.5D
+        'oPompe.DebitReel = 1.6D
         oPompe.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
         Dim oMesure As DiagnosticHelp12123Mesure
         oMesure = oPompe.AjouteMesure()
         oMesure.idDiag = oPompe.idDiag
-        oMesure.DebitReel = 1.1
+        oMesure.ReglageDispositif = 1.1
         oMesure = oPompe.AjouteMesure()
         oMesure.idDiag = oPompe.idDiag
-        oMesure.DebitReel = 1.2
+        oMesure.ReglageDispositif = 1.2
         oMesure = oPompe.AjouteMesure()
         oMesure.idDiag = oPompe.idDiag
-        oMesure.DebitReel = 1.3
+        oMesure.ReglageDispositif = 1.3
 
         Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id))
         iD = oPompe.id
@@ -168,30 +168,30 @@ Public Class DiagnosticHelp12123Pompetest
         Assert.AreEqual(oPompe.idDiag, idDiag)
         Assert.AreEqual(oPompe.numero, oMesure.numeroPompe)
         Assert.AreEqual(1, oMesure.numeroMesure)
-        Assert.AreEqual(1.1D, oMesure.DebitReel)
+        Assert.AreEqual(1.1D, oMesure.ReglageDispositif)
 
         oMesure = oPompe.getMesure(1)
         Assert.AreEqual(oPompe.idDiag, idDiag)
         Assert.AreEqual(oPompe.numero, oMesure.numeroPompe)
         Assert.AreEqual(2, oMesure.numeroMesure)
-        Assert.AreEqual(1.2D, oMesure.DebitReel)
+        Assert.AreEqual(1.2D, oMesure.ReglageDispositif)
 
         oMesure = oPompe.getMesure(2)
         Assert.AreEqual(oPompe.idDiag, idDiag)
         Assert.AreEqual(oPompe.numero, oMesure.numeroPompe)
         Assert.AreEqual(3, oMesure.numeroMesure)
-        Assert.AreEqual(1.3D, oMesure.DebitReel)
+        Assert.AreEqual(1.3D, oMesure.ReglageDispositif)
 
 
         'Maj des mesures
         oMesure = oPompe.getMesure(0)
-        oMesure.DebitReel = 2.1
+        oMesure.ReglageDispositif = 2.1
 
         oMesure = oPompe.getMesure(1)
-        oMesure.DebitReel = 2.2
+        oMesure.ReglageDispositif = 2.2
 
         oMesure = oPompe.getMesure(2)
-        oMesure.DebitReel = 2.3
+        oMesure.ReglageDispositif = 2.3
 
         Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id))
         Debug.WriteLine("Lecture")
@@ -200,13 +200,13 @@ Public Class DiagnosticHelp12123Pompetest
 
         Assert.AreEqual(3, oPompe.getNbMesures())
         oMesure = oPompe.getMesure(0)
-        Assert.AreEqual(2.1D, oMesure.DebitReel)
+        Assert.AreEqual(2.1D, oMesure.ReglageDispositif)
 
         oMesure = oPompe.getMesure(1)
-        Assert.AreEqual(2.2D, oMesure.DebitReel)
+        Assert.AreEqual(2.2D, oMesure.ReglageDispositif)
 
         oMesure = oPompe.getMesure(2)
-        Assert.AreEqual(2.3D, oMesure.DebitReel)
+        Assert.AreEqual(2.3D, oMesure.ReglageDispositif)
 
 
 
@@ -290,11 +290,11 @@ Public Class DiagnosticHelp12123Pompetest
         'Ajout de 3 Mesures
         Dim oMesure As DiagnosticHelp12123Mesure
         oMesure = oPompe.AjouteMesure()
-        oMesure.DebitReel = 1.1
+        oMesure.ReglageDispositif = 1.1
         oMesure = oPompe.AjouteMesure()
-        oMesure.DebitReel = 1.2
+        oMesure.ReglageDispositif = 1.2
         oMesure = oPompe.AjouteMesure()
-        oMesure.DebitReel = 1.3
+        oMesure.ReglageDispositif = 1.3
 
         oDiag.diagnosticHelp12123.lstPompes.Add(oPompe)
 
@@ -302,11 +302,11 @@ Public Class DiagnosticHelp12123Pompetest
         oPompe.debitMesure = 20.1
         'Ajout de 3 Mesures
         oMesure = oPompe.AjouteMesure()
-        oMesure.DebitReel = 2.1
+        oMesure.ReglageDispositif = 2.1
         oMesure = oPompe.AjouteMesure()
-        oMesure.DebitReel = 2.2
+        oMesure.ReglageDispositif = 2.2
         oMesure = oPompe.AjouteMesure()
-        oMesure.DebitReel = 2.3
+        oMesure.ReglageDispositif = 2.3
         oDiag.diagnosticHelp12123.lstPompes.Add(oPompe)
 
         'SAuvegarde du Diag
@@ -327,30 +327,29 @@ Public Class DiagnosticHelp12123Pompetest
         Assert.AreEqual(1, oPompe.numero)
         Assert.AreEqual(10.1D, oPompe.debitMesure)
         Assert.AreEqual(3, oPompe.getNbMesures())
-        Assert.AreEqual(1.1D, oPompe.getMesure(0).DebitReel)
-        Assert.AreEqual(1.2D, oPompe.getMesure(1).DebitReel)
-        Assert.AreEqual(1.3D, oPompe.getMesure(2).DebitReel)
+        Assert.AreEqual(1.1D, oPompe.getMesure(0).ReglageDispositif)
+        Assert.AreEqual(1.2D, oPompe.getMesure(1).ReglageDispositif)
+        Assert.AreEqual(1.3D, oPompe.getMesure(2).ReglageDispositif)
 
         'Verif Pompe2
         oPompe = oDiag2.diagnosticHelp12123.lstPompes(1)
         Assert.AreEqual(2, oPompe.numero)
         Assert.AreEqual(20.1D, oPompe.debitMesure)
         Assert.AreEqual(3, oPompe.getNbMesures())
-        Assert.AreEqual(2.1D, oPompe.getMesure(0).DebitReel)
-        Assert.AreEqual(2.2D, oPompe.getMesure(1).DebitReel)
-        Assert.AreEqual(2.3D, oPompe.getMesure(2).DebitReel)
+        Assert.AreEqual(2.1D, oPompe.getMesure(0).ReglageDispositif)
+        Assert.AreEqual(2.2D, oPompe.getMesure(1).ReglageDispositif)
+        Assert.AreEqual(2.3D, oPompe.getMesure(2).ReglageDispositif)
 
         'Ajout pompe3
-        oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 3)
+        oPompe = oDiag2.diagnosticHelp12123.AjoutePompe()
         oPompe.debitMesure = 30.1
         'Ajout de 3 Mesures
         oMesure = oPompe.AjouteMesure()
-        oMesure.DebitReel = 3.1
+        oMesure.ReglageDispositif = 3.1
         oMesure = oPompe.AjouteMesure
-        oMesure.DebitReel = 3.2
+        oMesure.ReglageDispositif = 3.2
         oMesure = oPompe.AjouteMesure
-        oMesure.DebitReel = 3.3
-        oDiag2.diagnosticHelp12123.lstPompes.Add(oPompe)
+        oMesure.ReglageDispositif = 3.3
 
         'SAuvegarde du Diag
         '====================
@@ -368,9 +367,9 @@ Public Class DiagnosticHelp12123Pompetest
         Assert.AreEqual(3, oPompe.numero)
         Assert.AreEqual(30.1D, oPompe.debitMesure)
         Assert.AreEqual(3, oPompe.getNbMesures())
-        Assert.AreEqual(3.1D, oPompe.getMesure(0).DebitReel)
-        Assert.AreEqual(3.2D, oPompe.getMesure(1).DebitReel)
-        Assert.AreEqual(3.3D, oPompe.getMesure(2).DebitReel)
+        Assert.AreEqual(3.1D, oPompe.getMesure(0).ReglageDispositif)
+        Assert.AreEqual(3.2D, oPompe.getMesure(1).ReglageDispositif)
+        Assert.AreEqual(3.3D, oPompe.getMesure(2).ReglageDispositif)
         Dim bReturn As Boolean
         bReturn = DiagnosticManager.delete(idDiag)
         Assert.IsTrue(bReturn)
@@ -383,6 +382,7 @@ Public Class DiagnosticHelp12123Pompetest
 
         Dim oMesure As DiagnosticHelp12123Mesure
         Dim oPompe As New DiagnosticHelp12123Pompe(oHelp12123, 1)
+
         oPompe.debitMesure = 10
         oPompe.PressionMesure = 10
         oPompe.PressionMoyenne = 15

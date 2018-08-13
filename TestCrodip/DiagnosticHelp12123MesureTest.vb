@@ -63,8 +63,8 @@ Public Class DiagnosticHelp12123Mesuretest
         oDiagHelp12123M = New DiagnosticHelp12123Mesure(oPompe, 1)
         oDiagHelp12123M.idDiag = idDiag
         oDiagHelp12123M.bCalcule = False 'On desactive le calcule Auto
-        oDiagHelp12123M.DebitReel = 1.2D
-        oDiagHelp12123M.DebitTotal = 1.3D
+        oPompe.DebitReel = 1.2D
+        oPompe.DebitTotal = 1.3D
         oDiagHelp12123M.ReglageDispositif = 1.4D
         oDiagHelp12123M.DebitTheorique = 1.5D
         oDiagHelp12123M.TempsMesure = 1.6D
@@ -89,8 +89,8 @@ Public Class DiagnosticHelp12123Mesuretest
         Assert.AreEqual(1, oDiagHelp12123M.numeroPompe, 2)
         Assert.AreEqual(1, oDiagHelp12123M.numeroMesure, 1)
 
-        Assert.AreEqual(oDiagHelp12123M.DebitReel, 1.2D)
-        Assert.AreEqual(oDiagHelp12123M.DebitTotal, 1.3D)
+        '        Assert.AreEqual(oDiagHelp12123M.DebitReel, 1.2D)
+        '       Assert.AreEqual(oDiagHelp12123M.DebitTotal, 1.3D)
         Assert.AreEqual(oDiagHelp12123M.ReglageDispositif, 1.4D)
         Assert.AreEqual(oDiagHelp12123M.DebitTheorique, 1.5D)
         Assert.AreEqual(oDiagHelp12123M.TempsMesure, 1.6D)
@@ -106,8 +106,8 @@ Public Class DiagnosticHelp12123Mesuretest
 
         'Maj de l'objet
         oDiagHelp12123M.bCalcule = False
-        oDiagHelp12123M.DebitReel = 11.2D
-        oDiagHelp12123M.DebitTotal = 11.3D
+        oPompe.DebitReel = 11.2D
+        oPompe.DebitTotal = 11.3D
         oDiagHelp12123M.ReglageDispositif = 11.4D
         oDiagHelp12123M.DebitTheorique = 11.5D
         oDiagHelp12123M.TempsMesure = 11.6D
@@ -131,8 +131,8 @@ Public Class DiagnosticHelp12123Mesuretest
         Assert.AreEqual(1, oDiagHelp12123M.numeroPompe, 2)
         Assert.AreEqual(1, oDiagHelp12123M.numeroMesure, 1)
 
-        Assert.AreEqual(oDiagHelp12123M.DebitReel, 11.2D)
-        Assert.AreEqual(oDiagHelp12123M.DebitTotal, 11.3D)
+        '        Assert.AreEqual(oDiagHelp12123M.DebitReel, 11.2D)
+        '        Assert.AreEqual(oDiagHelp12123M.DebitTotal, 11.3D)
         Assert.AreEqual(oDiagHelp12123M.ReglageDispositif, 11.4D)
         Assert.AreEqual(oDiagHelp12123M.DebitTheorique, 11.5D)
         Assert.AreEqual(oDiagHelp12123M.TempsMesure, 11.6D)
@@ -212,12 +212,12 @@ Public Class DiagnosticHelp12123Mesuretest
 
         Dim oMesure As New DiagnosticHelp12123Mesure()
         Dim oPompe As New DiagnosticHelp12123Pompe(oHelp12123, 1)
+        oMesure = New DiagnosticHelp12123Mesure(oPompe, 1)
         oPompe.debitMesure = 10
         oPompe.PressionMesure = 10
         oPompe.PressionMoyenne = 15
         oPompe.NbBuses = 5
 
-        oMesure = New DiagnosticHelp12123Mesure(oPompe, 1)
         oMesure.calcule()
         Assert.AreEqual(12.25D, oMesure.DebitReelRND)
         Assert.AreEqual(61.24D, oMesure.DebitTotalRND)
@@ -295,8 +295,9 @@ Public Class DiagnosticHelp12123Mesuretest
         oMesure.TempsMesure = 30
         oMesure.MasseInitiale = 3.756
         oMesure.MasseAspire = 3.492
+        Assert.AreEqual(0.264D, oMesure.QteProduitConso)
 
-        Assert.AreEqual(-0.862D, oMesure.DosageReelRND)
+        Assert.AreEqual(0.862D, oMesure.DosageReelRND)
 
 
     End Sub
@@ -317,7 +318,7 @@ Public Class DiagnosticHelp12123Mesuretest
         oMesure.MasseInitiale = 3.756
         oMesure.MasseAspire = 3.492
 
-        Assert.AreEqual(-0.862D, oMesure.DosageReelRND)
+        Assert.AreEqual(0.862D, oMesure.DosageReelRND)
 
     End Sub
     <TestMethod()>

@@ -147,14 +147,12 @@ Public Class diagnostic_dlghelp12123new
         Dim oPompe As DiagnosticHelp12123Pompe
         oPompe = m_bsrcPompes.Current
         If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
-            pctResultat.Image = listImg_flags.Images(1)
-            laResultat.Text = "OK"
             laResultat.ForeColor = System.Drawing.Color.OliveDrab
         Else
-            pctResultat.Image = listImg_flags.Images(0)
-            laResultat.Text = "Erreur"
             laResultat.ForeColor = System.Drawing.Color.Red
         End If
+
+        nupMesures.Value = oPompe.lstMesures.Count
     End Sub
 
     Private Sub btnValiderNbMesures_Click(sender As Object, e As EventArgs) Handles btnValiderNbMesures.Click
@@ -172,5 +170,39 @@ Public Class diagnostic_dlghelp12123new
             End While
         End If
         m_bsrcMesures.ResetBindings(False)
+    End Sub
+
+    Private Sub TbNumeric2_Validated(sender As Object, e As EventArgs) Handles TbNumeric2.Validated
+        m_bsrcMesures.ResetBindings(False)
+    End Sub
+
+    Private Sub TbNumeric1_Validated(sender As Object, e As EventArgs) Handles TbNumeric1.Validated
+        m_bsrcMesures.ResetBindings(False)
+    End Sub
+
+    Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
+        Dim strValue = DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
+        strValue = strValue.replace(".", ",")
+        If IsNumeric(strValue) Then
+            DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = strValue
+        End If
+    End Sub
+
+    Private Sub m_bsrcMesures_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcMesures.CurrentItemChanged
+        Console.WriteLine("Current Item Mesure Changed")
+        Dim oPompe As DiagnosticHelp12123Pompe
+        oPompe = m_bsrcPompes.Current
+        If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
+            laResultat.ForeColor = System.Drawing.Color.OliveDrab
+        Else
+            laResultat.ForeColor = System.Drawing.Color.Red
+        End If
+        laResultat.Text = oPompe.LabelResultat
+        pctResultat.Image = oPompe.Image
+    End Sub
+
+    Private Sub m_bsrcPompes_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentItemChanged
+        Console.WriteLine("Current Item Pompe Changed")
+
     End Sub
 End Class

@@ -736,11 +736,29 @@ Public Class login
         Dim oP1 As DiagnosticHelp12123Pompe = oDiag12123.AjoutePompe()
         oP1.debitMesure = 10
         oP1.PressionMesure = 5
-        oP1.Resultat = DiagnosticItem.EtatDiagItemOK
+        oP1.PressionMoyenne = 15
+        oP1.NbBuses = 5
+        Dim oMesure As DiagnosticHelp12123Mesure = oP1.AjouteMesure()
+        oMesure.ReglageDispositif = 23
+        oMesure.TempsMesure = 30
+        oMesure.MasseInitiale = 13
+        oMesure.MasseAspire = 3.492
+        oMesure = oP1.AjouteMesure()
+        oMesure.ReglageDispositif = 23
+        oMesure.TempsMesure = 30
+        oMesure.MasseInitiale = 3.756
+        oMesure.MasseAspire = 3.492
+        oMesure = oP1.AjouteMesure()
+        oMesure.ReglageDispositif = 23
+        oMesure.TempsMesure = 30
+        oMesure.MasseInitiale = 13
+        oMesure.MasseAspire = 3.492
         Dim oP2 As DiagnosticHelp12123Pompe = oDiag12123.AjoutePompe()
         oP2.debitMesure = 12
         oP2.PressionMesure = 7
-        oP2.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+        oP2.AjouteMesure()
+        oP2.AjouteMesure()
+
 
         oFRM = New diagnostic_dlghelp12123new()
         oFRM.setContexte(oDiag12123, True)
