@@ -19,8 +19,18 @@ Public Class DiagnosticHelp12123Pompe
     Private m_Resultat As String
     Private m_bCalcule As Boolean = False
 
+    Private m_help12123 As DiagnosticHelp12123
+    Public Property help12123() As DiagnosticHelp12123
+        Get
+            Return m_help12123
+        End Get
+        Set(ByVal value As DiagnosticHelp12123)
+            m_help12123 = value
+        End Set
+    End Property
+
     Private m_lstHelp12123Mesures As List(Of DiagnosticHelp12123Mesure)
-    Private Property lstMesures() As List(Of DiagnosticHelp12123Mesure)
+    Public Property lstMesures() As List(Of DiagnosticHelp12123Mesure)
         Get
             Return m_lstHelp12123Mesures
         End Get
@@ -37,8 +47,9 @@ Public Class DiagnosticHelp12123Pompe
         m_lstHelp12123Mesures = New List(Of DiagnosticHelp12123Mesure)
     End Sub
 
-    Public Sub New(pNum As Integer)
+    Public Sub New(pHelp12123 As DiagnosticHelp12123, pNum As Integer)
         Me.New()
+        m_help12123 = pHelp12123
         m__Numero = pNum
     End Sub
     Public Sub New(ByVal pId As String, pIdDiag As String)
@@ -384,6 +395,16 @@ Public Class DiagnosticHelp12123Pompe
         Try
             Dim nEcartReglage As Decimal
             If bCalcule Then
+                DebitReel = Nothing
+                If Me.debitMesure.HasValue And Me.PressionMoyenne.HasValue And Me.PressionMesure.HasValue Then
+                    'Debit Reel
+                    DebitReel = Me.debitMesure * Math.Sqrt(Me.PressionMoyenne / Me.PressionMesure)
+                End If
+                'Debit Total
+                DebitTotal = Nothing
+                If DebitReel.HasValue And Me.NbBuses.HasValue Then
+                    DebitTotal = DebitReel * Me.NbBuses
+                End If
                 For Each oMesure As DiagnosticHelp12123Mesure In lstMesures
                     'Le Calcul de la pompe est déclenché par le calcul des Mesures
                     'Donc ne pas redemander le calcul des mesures ...
@@ -395,6 +416,7 @@ Public Class DiagnosticHelp12123Pompe
                     Resultat = DiagnosticItem.EtatDiagItemMAJEUR
                 End If
 
+                m_help12123.calcule()
 
             End If
             bReturn = True

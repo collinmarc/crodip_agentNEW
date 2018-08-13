@@ -17,9 +17,9 @@ Public Class diagnostic_dlghelp12123new
             'pnlPrinc.Enabled = False
             btnValider.Enabled = False
         End If
-        BindingSource1.Clear()
+        m_bsrcH12123.Clear()
         m_DiagHelp12123 = pDiagH12123.Clone()
-        BindingSource1.Add(m_DiagHelp12123)
+        m_bsrcH12123.Add(m_DiagHelp12123)
 
 
     End Sub
@@ -45,15 +45,30 @@ Public Class diagnostic_dlghelp12123new
         formload()
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
+        nupNbPompes.Value = m_DiagHelp12123.lstPompes.Count
+        displayPompes()
+    End Sub
 
-        'm_bsrcMesures.Add(New DiagnosticHelp12123Mesure(1, 1))
-        'm_bsrcMesures.Add(New DiagnosticHelp12123Mesure(1, 2))
-        'm_bsrcMesures.Add(New DiagnosticHelp12123Mesure(1, 3))
+    Private Sub DisplayPompes()
+        Dim ImageIndex As Integer = 1
+        TreeView1.Nodes.Clear()
+
+        For Each oPompe As DiagnosticHelp12123Pompe In m_DiagHelp12123.lstPompes
+            If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
+                ImageIndex = 1
+            Else
+                ImageIndex = 0
+            End If
+            Dim oNode As TreeNode
+            oNode = TreeView1.Nodes.Add(oPompe.Nom, ImageIndex)
+            oNode.Text = oPompe.Nom
+            oNode.SelectedImageIndex = ImageIndex
+            oNode.ImageIndex = ImageIndex
+        Next
     End Sub
 
 
-
-    Private Sub BindingSource1_CurrentItemChanged(sender As Object, e As EventArgs) Handles BindingSource1.CurrentItemChanged
+    Private Sub BindingSource1_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcH12123.CurrentItemChanged
         If Not String.IsNullOrEmpty(m_DiagHelp12123.Resultat) Then
             Select Case m_DiagHelp12123.Resultat
                 Case DiagnosticItem.EtatDiagItemOK
@@ -70,11 +85,11 @@ Public Class diagnostic_dlghelp12123new
     End Sub
 
     Private Sub TbNumeric11_Validated(sender As Object, e As EventArgs)
-        BindingSource1.ResetBindings(False)
+        m_bsrcH12123.ResetBindings(False)
     End Sub
 
     Private Sub TbNumeric3_Validated(sender As Object, e As EventArgs)
-        BindingSource1.ResetBindings(False)
+        m_bsrcH12123.ResetBindings(False)
 
     End Sub
 
@@ -97,5 +112,65 @@ Public Class diagnostic_dlghelp12123new
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
+    End Sub
+
+    Private Sub nupNbPompes_ValueChanged(sender As Object, e As EventArgs) Handles nupNbPompes.ValueChanged
+    End Sub
+
+    Private Sub btnModele_validerNbBuses_Click(sender As Object, e As EventArgs) Handles btnvaliderNbPompes.Click
+        If nupNbPompes.Value > m_DiagHelp12123.lstPompes.Count Then
+            While m_DiagHelp12123.lstPompes.Count < nupNbPompes.Value
+                m_DiagHelp12123.AjoutePompe()
+            End While
+        End If
+        If nupNbPompes.Value < m_DiagHelp12123.lstPompes.Count Then
+            While m_DiagHelp12123.lstPompes.Count > nupNbPompes.Value
+                m_DiagHelp12123.lstPompes.RemoveAt(m_DiagHelp12123.lstPompes.Count - 1)
+            End While
+        End If
+        DisplayPompes()
+    End Sub
+
+    Private Sub TreeView1_NodeMouseClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles TreeView1.NodeMouseClick
+        Dim oNode As TreeNode
+        oNode = e.Node
+        If oNode IsNot Nothing Then
+            DisplayPompe(oNode.Index)
+        End If
+    End Sub
+
+    Private Sub DisplayPompe(pIndex As Integer)
+        m_bsrcPompes.Position = pIndex
+    End Sub
+
+    Private Sub m_bsrcPompes_CurrentChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentChanged
+        Dim oPompe As DiagnosticHelp12123Pompe
+        oPompe = m_bsrcPompes.Current
+        If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
+            pctResultat.Image = listImg_flags.Images(1)
+            laResultat.Text = "OK"
+            laResultat.ForeColor = System.Drawing.Color.OliveDrab
+        Else
+            pctResultat.Image = listImg_flags.Images(0)
+            laResultat.Text = "Erreur"
+            laResultat.ForeColor = System.Drawing.Color.Red
+        End If
+    End Sub
+
+    Private Sub btnValiderNbMesures_Click(sender As Object, e As EventArgs) Handles btnValiderNbMesures.Click
+        Dim oPompe As DiagnosticHelp12123Pompe
+        oPompe = m_bsrcPompes.Current
+
+        If nupMesures.Value > oPompe.lstMesures.Count Then
+            While oPompe.lstMesures.Count < nupMesures.Value
+                oPompe.AjouteMesure()
+            End While
+        End If
+        If nupMesures.Value < oPompe.lstMesures.Count Then
+            While oPompe.lstMesures.Count > nupMesures.Value
+                oPompe.lstMesures.RemoveAt(oPompe.lstMesures.Count - 1)
+            End While
+        End If
+        m_bsrcMesures.ResetBindings(False)
     End Sub
 End Class

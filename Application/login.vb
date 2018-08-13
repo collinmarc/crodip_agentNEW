@@ -733,6 +733,14 @@ Public Class login
 
         Dim oFRM As diagnostic_dlghelp12123new
         Dim oDiag12123 As New DiagnosticHelp12123()
+        Dim oP1 As DiagnosticHelp12123Pompe = oDiag12123.AjoutePompe()
+        oP1.debitMesure = 10
+        oP1.PressionMesure = 5
+        oP1.Resultat = DiagnosticItem.EtatDiagItemOK
+        Dim oP2 As DiagnosticHelp12123Pompe = oDiag12123.AjoutePompe()
+        oP2.debitMesure = 12
+        oP2.PressionMesure = 7
+        oP2.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
         oFRM = New diagnostic_dlghelp12123new()
         oFRM.setContexte(oDiag12123, True)

@@ -74,207 +74,6 @@ Public Class DiagnosticHelp12123
             m_bCalcule = Value
         End Set
     End Property
-    'Public Property debitMesure As Decimal?
-    '    Get
-    '        Return m_debitMesure
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_debitMesure = value
-    '        calcule()
-    '    End Set
-    'End Property
-    'Public Property PressionMesure As Decimal?
-    '    Get
-    '        Return m_PressionMesure
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_PressionMesure = value
-    '        calcule()
-    '    End Set
-    'End Property
-    'Public Property PressionMoyenne As Decimal?
-    '    Get
-    '        Return m_PressionMoyenne
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_PressionMoyenne = value
-    '        calcule()
-    '    End Set
-    'End Property
-    'Public Property NbBuses As Decimal?
-    '    Get
-    '        Return m_NbBuses
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_NbBuses = value
-    '        calcule()
-
-    '    End Set
-    'End Property
-    'Public Property DebitReel As Decimal?
-    '    Get
-    '        Return m_DebitReel
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_DebitReel = value
-    '    End Set
-    'End Property
-    'Public Property DebitReelRND As Decimal?
-    '    Get
-    '        If m_DebitReel.HasValue Then
-    '            Return Math.Round(DebitReel.Value, 2)
-    '        Else
-    '            Return Nothing
-    '        End If
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_DebitReel = value
-    '    End Set
-    'End Property
-    'Public Property DebitTotal As Decimal?
-    '    Get
-    '        Return m_DebitTotal
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_DebitTotal = value
-    '    End Set
-    'End Property
-    'Public Property DebitTotalRND As Decimal?
-    '    Get
-    '        If m_DebitTotal.HasValue Then
-    '            Return Math.Round(m_DebitTotal.Value, 2)
-    '        Else
-    '            Return Nothing
-    '        End If
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_DebitTotal = value
-    '    End Set
-    'End Property
-    'Public Property ReglageDispositif As Decimal?
-    '    Get
-    '        Return m_ReglageDispositif
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_ReglageDispositif = value
-    '        calcule()
-    '    End Set
-    'End Property
-    'Public Property DebitTheorique As Decimal?
-    '    Get
-    '        Return m_DebitTheorique
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_DebitTheorique = value
-    '    End Set
-    'End Property
-    'Public Property DebitTheoriqueRND As Decimal?
-    '    Get
-    '        If m_DebitTheorique.HasValue Then
-    '            Return Math.Round(m_DebitTheorique.Value, 3)
-    '        Else
-    '            Return Nothing
-    '        End If
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_DebitTheorique = value
-    '    End Set
-    'End Property
-    'Public Property TempsMesure As Decimal?
-    '    Get
-    '        Return m_TempsMesure
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_TempsMesure = value
-    '        calcule()
-    '    End Set
-    'End Property
-    'Public Property QteEauPulverisee As Decimal?
-    '    Get
-    '        Return m_QteEauPulverisee
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_QteEauPulverisee = value
-    '    End Set
-    'End Property
-    'Public Property QteEauPulveriseeRND As Decimal?
-    '    Get
-    '        If m_QteEauPulverisee.HasValue Then
-    '            Return Math.Round(m_QteEauPulverisee.Value, 5)
-    '        Else
-    '            Return Nothing
-    '        End If
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_QteEauPulverisee = value
-    '    End Set
-    'End Property
-    'Public Property MasseApresAspi As Integer?
-    '    Get
-    '        Return m_MasseapresAspi
-    '    End Get
-    '    Set(value As Integer?)
-    '        m_MasseapresAspi = value
-    '        calcule()
-    '    End Set
-    'End Property
-    'Public Property MasseApresComplement As Integer?
-    '    Get
-    '        Return m_MasseApresComplement
-    '    End Get
-    '    Set(value As Integer?)
-    '        m_MasseApresComplement = value
-    '        calcule()
-    '    End Set
-    'End Property
-    'Public Property QteProduitConso As Integer?
-    '    Get
-    '        Return m_QteProduitConso
-    '    End Get
-    '    Set(value As Integer?)
-    '        m_QteProduitConso = value
-    '    End Set
-    'End Property
-    'Public Property DosageReel As Decimal?
-    '    Get
-    '        Return m_DosageReel
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_DosageReel = value
-    '    End Set
-    'End Property
-    'Public Property DosageReelRND As Decimal?
-    '    Get
-    '        If m_DosageReel.HasValue Then
-    '            Return Math.Round(m_DosageReel.Value, 7)
-    '        Else
-    '            Return Nothing
-    '        End If
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_DosageReel = value
-    '    End Set
-    'End Property
-    'Public Property EcartReglage As Decimal?
-    '    Get
-    '        Return m_EcartReglage
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_EcartReglage = value
-    '    End Set
-    'End Property
-    'Public Property EcartReglageRND As Decimal?
-    '    Get
-    '        If m_EcartReglage.HasValue Then
-    '            Return Math.Round(m_EcartReglage.Value, 7)
-    '        Else
-    '            Return Nothing
-    '        End If
-    '    End Get
-    '    Set(value As Decimal?)
-    '        m_EcartReglage = value
-    '    End Set
-    'End Property
     Public Property Resultat As String
 
         Get
@@ -304,7 +103,7 @@ Public Class DiagnosticHelp12123
                     nbPompe = Trim(tabValues(1))
                     For nPompe As Integer = 1 To nbPompe
                         Dim oPompe As DiagnosticHelp12123Pompe
-                        oPompe = New DiagnosticHelp12123Pompe(nPompe)
+                        oPompe = New DiagnosticHelp12123Pompe(Me, nPompe)
                         oPompe.Load(idDiag, nPompe)
                         lstPompes.Add(oPompe)
                     Next
@@ -511,5 +310,11 @@ Public Class DiagnosticHelp12123
         Return oReturn
     End Function
 
+    Public Function AjoutePompe() As DiagnosticHelp12123Pompe
+        Dim oReturn As DiagnosticHelp12123Pompe
 
+        oReturn = New DiagnosticHelp12123Pompe(Me, lstPompes.Count + 1)
+        lstPompes.Add(oReturn)
+        Return oReturn
+    End Function
 End Class

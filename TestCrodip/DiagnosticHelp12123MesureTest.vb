@@ -53,12 +53,13 @@ Public Class DiagnosticHelp12123Mesuretest
     '''</summary>
     <TestMethod()> _
     Public Sub TST_Create_Save_Update()
+        Dim oHelp12123 As New DiagnosticHelp12123()
         Dim oDiagHelp12123M As DiagnosticHelp12123Mesure
         Dim idDiag As String = "99-99"
         Dim iD As String
 
         Dim oPompe As DiagnosticHelp12123Pompe
-        oPompe = New DiagnosticHelp12123Pompe(2)
+        oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 2)
         oDiagHelp12123M = New DiagnosticHelp12123Mesure(oPompe, 1)
         oDiagHelp12123M.idDiag = idDiag
         oDiagHelp12123M.bCalcule = False 'On desactive le calcule Auto
@@ -207,9 +208,10 @@ Public Class DiagnosticHelp12123Mesuretest
 
     <TestMethod()>
     Public Sub testCalcDebitReelTotal()
+        Dim oHelp12123 As New DiagnosticHelp12123()
 
         Dim oMesure As New DiagnosticHelp12123Mesure()
-        Dim oPompe As New DiagnosticHelp12123Pompe(1)
+        Dim oPompe As New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.debitMesure = 10
         oPompe.PressionMesure = 10
         oPompe.PressionMoyenne = 15
@@ -223,9 +225,10 @@ Public Class DiagnosticHelp12123Mesuretest
     End Sub
     <TestMethod()>
     Public Sub testCalcDebitTheorique()
+        Dim oHelp12123 As New DiagnosticHelp12123()
 
         Dim oMesure As New DiagnosticHelp12123Mesure()
-        Dim oPompe As New DiagnosticHelp12123Pompe(1)
+        Dim oPompe As New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.debitMesure = 10
         oPompe.PressionMesure = 10
         oPompe.PressionMoyenne = 15
@@ -239,9 +242,10 @@ Public Class DiagnosticHelp12123Mesuretest
     End Sub
     <TestMethod()>
     Public Sub testCalcQuantiteEau()
+        Dim oHelp12123 As New DiagnosticHelp12123()
 
         Dim oMesure As New DiagnosticHelp12123Mesure()
-        Dim oPompe As New DiagnosticHelp12123Pompe(1)
+        Dim oPompe As New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.debitMesure = 10
         oPompe.PressionMesure = 10
         oPompe.PressionMoyenne = 15
@@ -256,9 +260,10 @@ Public Class DiagnosticHelp12123Mesuretest
     End Sub
     <TestMethod()>
     Public Sub testCalcQteProduitConsomme()
+        Dim oHelp12123 As New DiagnosticHelp12123()
 
         Dim oMesure As New DiagnosticHelp12123Mesure()
-        Dim oPompe As New DiagnosticHelp12123Pompe(1)
+        Dim oPompe As New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.debitMesure = 10
         oPompe.PressionMesure = 10
         oPompe.PressionMoyenne = 15
@@ -276,9 +281,10 @@ Public Class DiagnosticHelp12123Mesuretest
     End Sub
     <TestMethod()>
     Public Sub testCalcDosageReel()
+        Dim oHelp12123 As New DiagnosticHelp12123()
 
         Dim oMesure As New DiagnosticHelp12123Mesure()
-        Dim oPompe As New DiagnosticHelp12123Pompe(1)
+        Dim oPompe As New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.debitMesure = 10
         oPompe.PressionMesure = 10
         oPompe.PressionMoyenne = 15
@@ -296,9 +302,10 @@ Public Class DiagnosticHelp12123Mesuretest
     End Sub
     <TestMethod()>
     Public Sub testCalcEcartReglage()
+        Dim oHelp12123 As New DiagnosticHelp12123()
 
         Dim oMesure As New DiagnosticHelp12123Mesure()
-        Dim oPompe As New DiagnosticHelp12123Pompe(1)
+        Dim oPompe As New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.debitMesure = 10
         oPompe.PressionMesure = 10
         oPompe.PressionMoyenne = 15
@@ -315,9 +322,10 @@ Public Class DiagnosticHelp12123Mesuretest
     End Sub
     <TestMethod()>
     Public Sub testCalcResultat()
+        Dim oHelp12123 As New DiagnosticHelp12123()
 
-        Dim oMesure As New DiagnosticHelp12123Mesure()
-        Dim oPompe As New DiagnosticHelp12123Pompe(1)
+        Dim oMesure As DiagnosticHelp12123Mesure
+        Dim oPompe As New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.debitMesure = 10
         oPompe.PressionMesure = 10
         oPompe.PressionMoyenne = 15

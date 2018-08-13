@@ -53,12 +53,14 @@ Public Class DiagnosticHelp12123Pompetest
     '''</summary>
     <TestMethod()> _
     Public Sub TST_Create_Save_Update()
+        Dim oHelp12123 As New DiagnosticHelp12123()
+
         Dim oDiagHelp12123P As DiagnosticHelp12123Pompe
         Dim idDiag As String = m_oStructure.id & "-" & m_oAgent.id & "-99"
         Dim iD As String
 
 
-        oDiagHelp12123P = New DiagnosticHelp12123Pompe(1)
+        oDiagHelp12123P = New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oDiagHelp12123P.idDiag = idDiag
 
         oDiagHelp12123P.debitMesure = 1.2D
@@ -125,12 +127,13 @@ Public Class DiagnosticHelp12123Pompetest
     '''</summary>
     <TestMethod()> _
     Public Sub TST_SaveColMesures()
+        Dim oHelp12123 As New DiagnosticHelp12123()
         Dim oPompe As DiagnosticHelp12123Pompe
         Dim idDiag As String = m_oStructure.id & "-" & m_oAgent.id & "-99"
         Dim iD As String
 
 
-        oPompe = New DiagnosticHelp12123Pompe(1)
+        oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.idDiag = idDiag
 
         oPompe.debitMesure = 1.2D
@@ -210,12 +213,13 @@ Public Class DiagnosticHelp12123Pompetest
     End Sub
     <TestMethod()>
     Public Sub testLoadByNumPompe()
+        Dim oHelp12123 As New DiagnosticHelp12123()
         Dim oDiagHelp12123P As DiagnosticHelp12123Pompe
         Dim idDiag As String = m_oStructure.id & "-" & m_oAgent.id & "-99"
         Dim iD As String
 
         'Arrange
-        oDiagHelp12123P = New DiagnosticHelp12123Pompe(1)
+        oDiagHelp12123P = New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oDiagHelp12123P.idDiag = idDiag
 
         oDiagHelp12123P.debitMesure = 1.2D
@@ -253,6 +257,8 @@ Public Class DiagnosticHelp12123Pompetest
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
         Dim idDiag As String
+        Dim oHelp12123 As New DiagnosticHelp12123()
+
 
 
         'Creation d'un Diagnostic
@@ -279,7 +285,7 @@ Public Class DiagnosticHelp12123Pompetest
 
         'Ajout de 2 pompes
         Dim oPompe As DiagnosticHelp12123Pompe
-        oPompe = New DiagnosticHelp12123Pompe(1)
+        oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.debitMesure = 10.1
         'Ajout de 3 Mesures
         Dim oMesure As DiagnosticHelp12123Mesure
@@ -292,7 +298,7 @@ Public Class DiagnosticHelp12123Pompetest
 
         oDiag.diagnosticHelp12123.lstPompes.Add(oPompe)
 
-        oPompe = New DiagnosticHelp12123Pompe(2)
+        oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 2)
         oPompe.debitMesure = 20.1
         'Ajout de 3 Mesures
         oMesure = oPompe.AjouteMesure()
@@ -335,7 +341,7 @@ Public Class DiagnosticHelp12123Pompetest
         Assert.AreEqual(2.3D, oPompe.getMesure(2).DebitReel)
 
         'Ajout pompe3
-        oPompe = New DiagnosticHelp12123Pompe(3)
+        oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 3)
         oPompe.debitMesure = 30.1
         'Ajout de 3 Mesures
         oMesure = oPompe.AjouteMesure()
@@ -373,9 +379,10 @@ Public Class DiagnosticHelp12123Pompetest
 
     <TestMethod()>
     Public Sub testCalcResultat()
+        Dim oHelp12123 As New DiagnosticHelp12123()
 
-        Dim oMesure As New DiagnosticHelp12123Mesure()
-        Dim oPompe As New DiagnosticHelp12123Pompe(1)
+        Dim oMesure As DiagnosticHelp12123Mesure
+        Dim oPompe As New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.debitMesure = 10
         oPompe.PressionMesure = 10
         oPompe.PressionMoyenne = 15
