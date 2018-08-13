@@ -46,9 +46,9 @@ Public Class diagnostic_dlghelp12123new
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
 
-        m_bsrcMesures.Add(New DiagnosticHelp12123Mesure(1, 1))
-        m_bsrcMesures.Add(New DiagnosticHelp12123Mesure(1, 2))
-        m_bsrcMesures.Add(New DiagnosticHelp12123Mesure(1, 3))
+        'm_bsrcMesures.Add(New DiagnosticHelp12123Mesure(1, 1))
+        'm_bsrcMesures.Add(New DiagnosticHelp12123Mesure(1, 2))
+        'm_bsrcMesures.Add(New DiagnosticHelp12123Mesure(1, 3))
     End Sub
 
 
