@@ -1,5 +1,10 @@
 TRUNK
 ------------------
+Build:
+#133 : Modification des délais de vérification des maériels Agents
+#149 : Dissociation des causes
+#153 : Nombre de pompes doseuses
+
 Build:20180706120000
 #238 : Les bancs se désactivent après synhcro
 
