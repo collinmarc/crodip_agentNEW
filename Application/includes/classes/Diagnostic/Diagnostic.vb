@@ -2819,6 +2819,19 @@ Public Class Diagnostic
             Else
                 typeDiagnostic = "pulverisateur"
             End If
+            'Mise à jour du DiahHelp12123
+            If poPulve.isPompesDoseuses Then
+                Dim nbPompes As Integer
+                nbPompes = poPulve.nbPompesDoseuses
+                For i As Integer = 1 To nbPompes
+                    _diagnostichelp12123.AjoutePompe()
+                Next
+            Else
+                'Pas de pompes doseuses
+                _diagnostichelp12123.lstPompes.Clear()
+            End If
+            _diagnostichelp12123.calcule()
+
             'On Stocke la referenc du pulve ou l'encodage Automatique
             _pulverisateur = poPulve
             bReturn = True

@@ -10297,7 +10297,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Function calc12123() As Boolean
         Dim bReturn As Boolean
         Try
-            Dim ofrm As New diagnostic_dlghelp12123()
+            Dim ofrm As New diagnostic_dlghelp12123new()
             If String.IsNullOrEmpty(tbDebitMoyen3bars.Text) Or
                 String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Or
                 String.IsNullOrEmpty(tbPressionMesure.Text) Then
@@ -10338,16 +10338,26 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         For Each oBusList As DiagnosticBuses In m_DiagBuses.Liste
             nBuses = nBuses + oBusList.diagnosticBusesDetailList.Liste.Count
         Next
-        'm_diagnostic.diagnosticHelp12123.NbBuses = nBuses
+        For Each oPompe As DiagnosticHelp12123Pompe In m_diagnostic.diagnosticHelp12123.lstPompes
+            oPompe.NbBuses = nBuses
+            oPompe.debitMesure = diagBuses_debitMoyen.Text
+            oPompe.PressionMesure = tbPressionMesure.Text
+            For Each oMesure As DiagnosticHelp12123Mesure In oPompe.lstMesures
+                oMesure.calcule()
+            Next
+            oPompe.calcule()
+        Next
+        m_diagnostic.diagnosticHelp12123.calcule()
+            'm_diagnostic.diagnosticHelp12123.NbBuses = nBuses
 
-        'If Not String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Then
-        '    m_diagnostic.diagnosticHelp12123.debitMesure = diagBuses_debitMoyen.Text
-        '    '        m_diagnosticCourant.diagnosticHelp12123.DebitMesureVTS = diagBuses_debitMoyen.Text
-        'End If
+            'If Not String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Then
+            '    m_diagnostic.diagnosticHelp12123.debitMesure = diagBuses_debitMoyen.Text
+            '    '        m_diagnosticCourant.diagnosticHelp12123.DebitMesureVTS = diagBuses_debitMoyen.Text
+            'End If
 
-        'If Not String.IsNullOrEmpty(tbPressionMesure.Text) Then
-        '    m_diagnostic.diagnosticHelp12123.PressionMesure = tbPressionMesure.Text
-        'End If
+            'If Not String.IsNullOrEmpty(tbPressionMesure.Text) Then
+            '    m_diagnostic.diagnosticHelp12123.PressionMesure = tbPressionMesure.Text
+            'End If
 
     End Sub
 

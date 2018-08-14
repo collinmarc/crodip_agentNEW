@@ -211,6 +211,11 @@ Public Class diagnostic_dlghelp12123new
                         laResultatGlobal.ForeColor = System.Drawing.Color.Red
                     End If
                     laResultatGlobal.Text = oh12123.LabelResultat
+                    If oh12123.Resultat = "" Then
+                        btnValider.Enabled = False
+                    Else
+                        btnValider.Enabled = True
+                    End If
                 End If
             End If
         Catch ex As Exception

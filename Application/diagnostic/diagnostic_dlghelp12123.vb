@@ -19,6 +19,7 @@ Public Class diagnostic_dlghelp12123
         End If
         BindingSource1.Clear()
         m_DiagHelp12123 = pDiagH12123.Clone()
+        m_DiagHelp12123.calcule()
         BindingSource1.Add(m_DiagHelp12123)
 
 

@@ -10300,21 +10300,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Return bReturn
     End Function
     Private Sub ini12123()
-        'Calcul du nombre de buses
         Dim nBuses As Integer = 0
         For Each oBusList As DiagnosticBuses In m_DiagBuses.Liste
             nBuses = nBuses + oBusList.diagnosticBusesDetailList.Liste.Count
         Next
-        'm_diagnostic.diagnosticHelp12123.NbBuses = nBuses
-
-        'If Not String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Then
-        '    m_diagnostic.diagnosticHelp12123.debitMesure = diagBuses_debitMoyen.Text
-        '    '        m_diagnosticCourant.diagnosticHelp12123.DebitMesureVTS = diagBuses_debitMoyen.Text
-        'End If
-
-        'If Not String.IsNullOrEmpty(tbPressionMesure.Text) Then
-        '    m_diagnostic.diagnosticHelp12123.PressionMesure = tbPressionMesure.Text
-        'End If
+        For Each oPompe As DiagnosticHelp12123Pompe In m_diagnostic.diagnosticHelp12123.lstPompes
+            oPompe.NbBuses = nBuses
+            oPompe.debitMesure = diagBuses_debitMoyen.Text
+            oPompe.PressionMesure = tbPressionMesure.Text
+        Next
 
     End Sub
 

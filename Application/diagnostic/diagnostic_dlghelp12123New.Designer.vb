@@ -422,9 +422,11 @@ Partial Class diagnostic_dlghelp12123new
         '
         Me.nupMesures.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nupMesures.Location = New System.Drawing.Point(393, 148)
+        Me.nupMesures.Minimum = New Decimal(New Integer() {3, 0, 0, 0})
         Me.nupMesures.Name = "nupMesures"
         Me.nupMesures.Size = New System.Drawing.Size(40, 20)
         Me.nupMesures.TabIndex = 77
+        Me.nupMesures.Value = New Decimal(New Integer() {3, 0, 0, 0})
         '
         'Label3
         '
@@ -513,9 +515,11 @@ Partial Class diagnostic_dlghelp12123new
         'nupNbPompes
         '
         Me.nupNbPompes.Location = New System.Drawing.Point(148, 42)
+        Me.nupNbPompes.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.nupNbPompes.Name = "nupNbPompes"
         Me.nupNbPompes.Size = New System.Drawing.Size(40, 20)
         Me.nupNbPompes.TabIndex = 75
+        Me.nupNbPompes.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
         'laResultatGlobal
         '
@@ -696,7 +700,7 @@ Partial Class diagnostic_dlghelp12123new
         'Image
         '
         Me.Image.DataPropertyName = "Image"
-        Me.Image.HeaderText = ""
+        Me.Image.HeaderText = "Résultat"
         Me.Image.Name = "Image"
         Me.Image.ReadOnly = True
         '
@@ -706,6 +710,7 @@ Partial Class diagnostic_dlghelp12123new
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(726, 526)
         Me.Controls.Add(Me.pnl12123)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "diagnostic_dlghelp12123new"
