@@ -80,8 +80,10 @@ Public Class diagnostic_dlghelp12123new
             Else
                 TreeView1.SelectedNode = TreeView1.Nodes(0)
             End If
+            m_bsrcPompes.Position = TreeView1.SelectedNode.Index
         Catch ex As Exception
             TreeView1.SelectedNode = TreeView1.Nodes(0)
+            m_bsrcPompes.Position = 0
         End Try
     End Sub
 
@@ -173,7 +175,7 @@ Public Class diagnostic_dlghelp12123new
 
     Private Sub m_bsrcMesures_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcMesures.CurrentItemChanged
         Console.WriteLine("Current Item Mesure Changed")
-
+        Refresh()
     End Sub
 
     Private Sub Refresh()

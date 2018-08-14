@@ -2823,6 +2823,7 @@ Public Class Diagnostic
             If poPulve.isPompesDoseuses Then
                 Dim nbPompes As Integer
                 nbPompes = poPulve.nbPompesDoseuses
+                _diagnostichelp12123.lstPompes.Clear()
                 For i As Integer = 1 To nbPompes
                     _diagnostichelp12123.AjoutePompe()
                 Next

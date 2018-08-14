@@ -4828,6 +4828,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 End If
             End If
             m_Pulverisateur.buseNbniveaux = diagBuses_conf_nbCategories.Text
+
+            'Pompes Doseuses
+            If m_Pulverisateur.isPompesDoseuses Then
+                m_Pulverisateur.nbPompesDoseuses = m_diagnostic.diagnosticHelp12123.lstPompes.Count
+            End If
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("diagnostique.valider ERR " & ex.Message)
@@ -10340,8 +10345,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Next
         For Each oPompe As DiagnosticHelp12123Pompe In m_diagnostic.diagnosticHelp12123.lstPompes
             oPompe.NbBuses = nBuses
-            oPompe.debitMesure = diagBuses_debitMoyen.Text
-            oPompe.PressionMesure = tbPressionMesure.Text
+            If IsNumeric(diagBuses_debitMoyen.Text) Then
+                oPompe.debitMesure = diagBuses_debitMoyen.Text
+            End If
+            If IsNumeric(tbPressionMesure.Text) Then
+                oPompe.PressionMesure = tbPressionMesure.Text
+            End If
             For Each oMesure As DiagnosticHelp12123Mesure In oPompe.lstMesures
                 oMesure.calcule()
             Next

@@ -24,20 +24,20 @@ Partial Class diagnostic_dlghelp12123new
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure1", 2, 2)
-        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure2", 0, 0)
-        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure3", 3, 3)
-        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Pompe1", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode9, TreeNode10, TreeNode11})
-        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure1", 0, 0)
-        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure2", 3, 2)
-        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure3", 2, 2)
-        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Pompe2", New System.Windows.Forms.TreeNode() {TreeNode13, TreeNode14, TreeNode15})
+        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure1", 2, 2)
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure2", 0, 0)
+        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure3", 3, 3)
+        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Pompe1", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2, TreeNode3})
+        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure1", 0, 0)
+        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure2", 3, 2)
+        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure3", 2, 2)
+        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Pompe2", New System.Windows.Forms.TreeNode() {TreeNode5, TreeNode6, TreeNode7})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_dlghelp12123new))
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnl12123 = New System.Windows.Forms.Panel()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
@@ -75,6 +75,7 @@ Partial Class diagnostic_dlghelp12123new
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
+        Me.numeroPompe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ReglageDispositif = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DebitTheoriqueRND = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -149,37 +150,37 @@ Partial Class diagnostic_dlghelp12123new
         Me.TreeView1.ImageList = Me.listImg_flags
         Me.TreeView1.Location = New System.Drawing.Point(0, 3)
         Me.TreeView1.Name = "TreeView1"
-        TreeNode9.ImageIndex = 2
-        TreeNode9.Name = "Nœud1"
-        TreeNode9.SelectedImageIndex = 2
-        TreeNode9.Text = "Mesure1"
-        TreeNode10.ImageIndex = 0
-        TreeNode10.Name = "Nœud2"
-        TreeNode10.SelectedImageIndex = 0
-        TreeNode10.Text = "Mesure2"
-        TreeNode11.ImageIndex = 3
-        TreeNode11.Name = "Nœud3"
-        TreeNode11.SelectedImageIndex = 3
-        TreeNode11.Text = "Mesure3"
-        TreeNode12.ImageIndex = 2
-        TreeNode12.Name = "Nœud0"
-        TreeNode12.SelectedImageIndex = 2
-        TreeNode12.Text = "Pompe1"
-        TreeNode13.ImageIndex = 0
-        TreeNode13.Name = "Nœud5"
-        TreeNode13.SelectedImageIndex = 0
-        TreeNode13.Text = "Mesure1"
-        TreeNode14.ImageIndex = 3
-        TreeNode14.Name = "Nœud6"
-        TreeNode14.SelectedImageIndex = 2
-        TreeNode14.Text = "Mesure2"
-        TreeNode15.ImageIndex = 2
-        TreeNode15.Name = "Nœud7"
-        TreeNode15.SelectedImageIndex = 2
-        TreeNode15.Text = "Mesure3"
-        TreeNode16.Name = "Nœud4"
-        TreeNode16.Text = "Pompe2"
-        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode12, TreeNode16})
+        TreeNode1.ImageIndex = 2
+        TreeNode1.Name = "Nœud1"
+        TreeNode1.SelectedImageIndex = 2
+        TreeNode1.Text = "Mesure1"
+        TreeNode2.ImageIndex = 0
+        TreeNode2.Name = "Nœud2"
+        TreeNode2.SelectedImageIndex = 0
+        TreeNode2.Text = "Mesure2"
+        TreeNode3.ImageIndex = 3
+        TreeNode3.Name = "Nœud3"
+        TreeNode3.SelectedImageIndex = 3
+        TreeNode3.Text = "Mesure3"
+        TreeNode4.ImageIndex = 2
+        TreeNode4.Name = "Nœud0"
+        TreeNode4.SelectedImageIndex = 2
+        TreeNode4.Text = "Pompe1"
+        TreeNode5.ImageIndex = 0
+        TreeNode5.Name = "Nœud5"
+        TreeNode5.SelectedImageIndex = 0
+        TreeNode5.Text = "Mesure1"
+        TreeNode6.ImageIndex = 3
+        TreeNode6.Name = "Nœud6"
+        TreeNode6.SelectedImageIndex = 2
+        TreeNode6.Text = "Mesure2"
+        TreeNode7.ImageIndex = 2
+        TreeNode7.Name = "Nœud7"
+        TreeNode7.SelectedImageIndex = 2
+        TreeNode7.Text = "Mesure3"
+        TreeNode8.Name = "Nœud4"
+        TreeNode8.Text = "Pompe2"
+        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode4, TreeNode8})
         Me.TreeView1.SelectedImageIndex = 0
         Me.TreeView1.ShowPlusMinus = False
         Me.TreeView1.ShowRootLines = False
@@ -297,7 +298,7 @@ Partial Class diagnostic_dlghelp12123new
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.ReglageDispositif, Me.DebitTheoriqueRND, Me.TempsMesure, Me.QteEauPulveriseeRND, Me.MasseInitiale, Me.MasseAspire, Me.QteProduitConso, Me.DosageReelRND, Me.EcartReglageRND, Me.Image, Me.ImageDataGridViewImageColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.numeroPompe, Me.Column2, Me.ReglageDispositif, Me.DebitTheoriqueRND, Me.TempsMesure, Me.QteEauPulveriseeRND, Me.MasseInitiale, Me.MasseAspire, Me.QteProduitConso, Me.DosageReelRND, Me.EcartReglageRND, Me.Image, Me.ImageDataGridViewImageColumn})
         Me.DataGridView1.DataSource = Me.m_bsrcMesures
         Me.DataGridView1.Location = New System.Drawing.Point(3, 174)
         Me.DataGridView1.MultiSelect = False
@@ -609,11 +610,16 @@ Partial Class diagnostic_dlghelp12123new
         Me.btnValider.Text = "OK"
         Me.btnValider.UseVisualStyleBackColor = False
         '
+        'numeroPompe
+        '
+        Me.numeroPompe.DataPropertyName = "numeroPompe"
+        Me.numeroPompe.HeaderText = "PMP"
+        Me.numeroPompe.Name = "numeroPompe"
+        '
         'Column2
         '
         Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.Column2.DataPropertyName = "numeroMesure"
-        Me.Column2.Frozen = True
         Me.Column2.HeaderText = "N°"
         Me.Column2.Name = "Column2"
         Me.Column2.ReadOnly = True
@@ -629,10 +635,10 @@ Partial Class diagnostic_dlghelp12123new
         'DebitTheoriqueRND
         '
         Me.DebitTheoriqueRND.DataPropertyName = "DebitTheoriqueRND"
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
-        Me.DebitTheoriqueRND.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
+        Me.DebitTheoriqueRND.DefaultCellStyle = DataGridViewCellStyle1
         Me.DebitTheoriqueRND.HeaderText = "Debit théo. (L)"
         Me.DebitTheoriqueRND.Name = "DebitTheoriqueRND"
         Me.DebitTheoriqueRND.ReadOnly = True
@@ -646,10 +652,10 @@ Partial Class diagnostic_dlghelp12123new
         'QteEauPulveriseeRND
         '
         Me.QteEauPulveriseeRND.DataPropertyName = "QteEauPulveriseeRND"
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
-        Me.QteEauPulveriseeRND.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
+        Me.QteEauPulveriseeRND.DefaultCellStyle = DataGridViewCellStyle2
         Me.QteEauPulveriseeRND.HeaderText = "Qte eau pulvé."
         Me.QteEauPulveriseeRND.Name = "QteEauPulveriseeRND"
         Me.QteEauPulveriseeRND.ReadOnly = True
@@ -669,10 +675,10 @@ Partial Class diagnostic_dlghelp12123new
         'QteProduitConso
         '
         Me.QteProduitConso.DataPropertyName = "QteProduitConso"
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black
-        Me.QteProduitConso.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
+        Me.QteProduitConso.DefaultCellStyle = DataGridViewCellStyle3
         Me.QteProduitConso.HeaderText = "Produit conso."
         Me.QteProduitConso.Name = "QteProduitConso"
         Me.QteProduitConso.ReadOnly = True
@@ -680,10 +686,10 @@ Partial Class diagnostic_dlghelp12123new
         'DosageReelRND
         '
         Me.DosageReelRND.DataPropertyName = "DosageReelRND"
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black
-        Me.DosageReelRND.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
+        Me.DosageReelRND.DefaultCellStyle = DataGridViewCellStyle4
         Me.DosageReelRND.HeaderText = "Dos. réel (%)"
         Me.DosageReelRND.Name = "DosageReelRND"
         Me.DosageReelRND.ReadOnly = True
@@ -691,10 +697,10 @@ Partial Class diagnostic_dlghelp12123new
         'EcartReglageRND
         '
         Me.EcartReglageRND.DataPropertyName = "EcartReglageRND"
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black
-        Me.EcartReglageRND.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
+        Me.EcartReglageRND.DefaultCellStyle = DataGridViewCellStyle5
         Me.EcartReglageRND.HeaderText = "Ecart (%)"
         Me.EcartReglageRND.Name = "EcartReglageRND"
         '
@@ -781,6 +787,7 @@ Partial Class diagnostic_dlghelp12123new
     Friend WithEvents btnValiderNbMesures As System.Windows.Forms.Label
     Friend WithEvents tbEcartMoyen As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents numeroPompe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ReglageDispositif As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DebitTheoriqueRND As System.Windows.Forms.DataGridViewTextBoxColumn
