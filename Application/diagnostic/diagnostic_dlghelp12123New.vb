@@ -167,49 +167,59 @@ Public Class diagnostic_dlghelp12123new
 
     Private Sub m_bsrcMesures_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcMesures.CurrentItemChanged
         Console.WriteLine("Current Item Mesure Changed")
-        Dim oPompe As DiagnosticHelp12123Pompe
-        oPompe = m_bsrcPompes.Current
-        If oPompe IsNot Nothing Then
-            If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
-                laResultat.ForeColor = System.Drawing.Color.OliveDrab
-            Else
-                laResultat.ForeColor = System.Drawing.Color.Red
-            End If
-            laResultat.Text = oPompe.LabelResultat
-            pctResultat.Image = oPompe.Image
-            TbEcartMoyen.Text = oPompe.EcartReglageMoyen
-            Dim ImageIndex As Integer
-            Select Case oPompe.Resultat
-                Case ""
-                    ImageIndex = 2
-                Case DiagnosticItem.EtatDiagItemOK
-                    ImageIndex = 1
-                Case DiagnosticItem.EtatDiagItemMAJEUR
-                    ImageIndex = 0
-            End Select
-            'Récupération du noeud correspondant à la pompe (on ne peut pas faire confiance au selectedNode)
-            Dim oNode As TreeNode
-            For Each oNode In TreeView1.Nodes
-                If oNode.Text = oPompe.Nom Then
-                    oNode.ImageIndex = ImageIndex
-                    oNode.SelectedImageIndex = ImageIndex
-                End If
-            Next
-            Dim oh12123 As DiagnosticHelp12123
-            oh12123 = m_bsrcH12123.Current
-            If oh12123 IsNot Nothing Then
-                If oh12123.Resultat = DiagnosticItem.EtatDiagItemOK Then
-                    laResultatGlobal.ForeColor = System.Drawing.Color.OliveDrab
+        Try
+
+            Dim oPompe As DiagnosticHelp12123Pompe
+            oPompe = m_bsrcPompes.Current
+            If oPompe IsNot Nothing Then
+                If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
+                    laResultat.ForeColor = System.Drawing.Color.OliveDrab
                 Else
-                    laResultatGlobal.ForeColor = System.Drawing.Color.Red
+                    laResultat.ForeColor = System.Drawing.Color.Red
                 End If
-                laResultatGlobal.Text = oh12123.LabelResultat
+                laResultat.Text = oPompe.LabelResultat
+                pctResultat.Image = oPompe.Image
+                If oPompe.EcartReglageMoyen.HasValue Then
+                    tbEcartMoyen.Text = oPompe.EcartReglageMoyen.Value
+                Else
+                    tbEcartMoyen.Text = ""
+                End If
+
+                Dim ImageIndex As Integer
+                Select Case oPompe.Resultat
+                    Case ""
+                        ImageIndex = 2
+                    Case DiagnosticItem.EtatDiagItemOK
+                        ImageIndex = 1
+                    Case DiagnosticItem.EtatDiagItemMAJEUR
+                        ImageIndex = 0
+                End Select
+                'Récupération du noeud correspondant à la pompe (on ne peut pas faire confiance au selectedNode)
+                Dim oNode As TreeNode
+                For Each oNode In TreeView1.Nodes
+                    If oNode.Text = oPompe.Nom Then
+                        oNode.ImageIndex = ImageIndex
+                        oNode.SelectedImageIndex = ImageIndex
+                    End If
+                Next
+                Dim oh12123 As DiagnosticHelp12123
+                oh12123 = m_bsrcH12123.Current
+                If oh12123 IsNot Nothing Then
+                    If oh12123.Resultat = DiagnosticItem.EtatDiagItemOK Then
+                        laResultatGlobal.ForeColor = System.Drawing.Color.OliveDrab
+                    Else
+                        laResultatGlobal.ForeColor = System.Drawing.Color.Red
+                    End If
+                    laResultatGlobal.Text = oh12123.LabelResultat
+                End If
             End If
-        End If
+        Catch ex As Exception
+            CSDebug.dispError("dlgHelp12123.m_bsrcMesures_CurrentItemChanged ERR " & ex.Message)
+        End Try
+
     End Sub
 
     Private Sub m_bsrcPompes_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentItemChanged
-        Console.WriteLine("Current Item Pompe Changed")
 
     End Sub
 End Class
