@@ -51,37 +51,38 @@ Public Class diagnostic_dlghelp12123new
 
     Private Sub DisplayPompes()
         Dim ImageIndex As Integer = 1
+        Dim oOldNode As Integer = -1
+        If TreeView1.SelectedNode IsNot Nothing Then
+            oOldNode = TreeView1.SelectedNode.Index
+        End If
+
         TreeView1.Nodes.Clear()
 
         For Each oPompe As DiagnosticHelp12123Pompe In m_DiagHelp12123.lstPompes
-            If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
-                ImageIndex = 1
-            Else
-                ImageIndex = 0
-            End If
+            Select Case oPompe.Resultat
+                Case ""
+                    ImageIndex = 2
+                Case DiagnosticItem.EtatDiagItemOK
+                    ImageIndex = 1
+                Case DiagnosticItem.EtatDiagItemMAJEUR
+                    ImageIndex = 0
+            End Select
             Dim oNode As TreeNode
             oNode = TreeView1.Nodes.Add(oPompe.Nom, ImageIndex)
             oNode.Text = oPompe.Nom
             oNode.SelectedImageIndex = ImageIndex
             oNode.ImageIndex = ImageIndex
         Next
+
+        If oOldNode <> -1 Then
+            TreeView1.SelectedNode = TreeView1.Nodes(oOldNode)
+        Else
+            TreeView1.SelectedNode = TreeView1.Nodes(0)
+        End If
     End Sub
 
 
     Private Sub BindingSource1_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcH12123.CurrentItemChanged
-        If Not String.IsNullOrEmpty(m_DiagHelp12123.Resultat) Then
-            Select Case m_DiagHelp12123.Resultat
-                Case DiagnosticItem.EtatDiagItemOK
-                    'laResultMesure.Text = "OK"
-                    'laResultMesure.ForeColor = CRODIP_ControlLibrary.CtrlDiag2.ITEMCOLOROK
-                Case DiagnosticItem.EtatDiagItemMINEUR
-                    'laResultMesure.Text = "FAIBLE"
-                    'laResultMesure.ForeColor = CRODIP_ControlLibrary.CtrlDiag2.ITEMCOLORMINEUR
-                Case DiagnosticItem.EtatDiagItemMAJEUR
-                    'laResultMesure.ForeColor = CRODIP_ControlLibrary.CtrlDiag2.ITEMCOLORMAJEUR
-                    'laResultMesure.Text = "MAJEURE"
-            End Select
-        End If
     End Sub
 
     Private Sub TbNumeric11_Validated(sender As Object, e As EventArgs)
@@ -90,33 +91,7 @@ Public Class diagnostic_dlghelp12123new
 
     Private Sub TbNumeric3_Validated(sender As Object, e As EventArgs)
         m_bsrcH12123.ResetBindings(False)
-
     End Sub
-
-
-    Private Sub Label9_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub TbNumeric11_TextChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Label28_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-
-    End Sub
-
-    Private Sub nupNbPompes_ValueChanged(sender As Object, e As EventArgs) Handles nupNbPompes.ValueChanged
-    End Sub
-
     Private Sub btnModele_validerNbBuses_Click(sender As Object, e As EventArgs) Handles btnvaliderNbPompes.Click
         If nupNbPompes.Value > m_DiagHelp12123.lstPompes.Count Then
             While m_DiagHelp12123.lstPompes.Count < nupNbPompes.Value
@@ -135,22 +110,19 @@ Public Class diagnostic_dlghelp12123new
         Dim oNode As TreeNode
         oNode = e.Node
         If oNode IsNot Nothing Then
-            DisplayPompe(oNode.Index)
+            m_bsrcPompes.Position = oNode.Index
         End If
     End Sub
 
-    Private Sub DisplayPompe(pIndex As Integer)
-        m_bsrcPompes.Position = pIndex
-    End Sub
 
     Private Sub m_bsrcPompes_CurrentChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentChanged
         Dim oPompe As DiagnosticHelp12123Pompe
         oPompe = m_bsrcPompes.Current
-        If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
-            laResultat.ForeColor = System.Drawing.Color.OliveDrab
-        Else
-            laResultat.ForeColor = System.Drawing.Color.Red
-        End If
+        'If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
+        '    laResultat.ForeColor = System.Drawing.Color.OliveDrab
+        'Else
+        '    laResultat.ForeColor = System.Drawing.Color.Red
+        'End If
 
         nupMesures.Value = oPompe.lstMesures.Count
     End Sub
@@ -181,24 +153,59 @@ Public Class diagnostic_dlghelp12123new
     End Sub
 
     Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
-        Dim strValue = DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
-        strValue = strValue.replace(".", ",")
-        If IsNumeric(strValue) Then
-            DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = strValue
+        If TypeOf (e.Exception) Is FormatException Then
+
+            Dim strValue = DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
+            strValue = strValue.replace(".", ",")
+            If IsNumeric(strValue) Then
+                DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = strValue
+                '            e.Cancel = True
+            End If
         End If
+
     End Sub
 
     Private Sub m_bsrcMesures_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcMesures.CurrentItemChanged
         Console.WriteLine("Current Item Mesure Changed")
         Dim oPompe As DiagnosticHelp12123Pompe
         oPompe = m_bsrcPompes.Current
-        If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
-            laResultat.ForeColor = System.Drawing.Color.OliveDrab
-        Else
-            laResultat.ForeColor = System.Drawing.Color.Red
+        If oPompe IsNot Nothing Then
+            If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
+                laResultat.ForeColor = System.Drawing.Color.OliveDrab
+            Else
+                laResultat.ForeColor = System.Drawing.Color.Red
+            End If
+            laResultat.Text = oPompe.LabelResultat
+            pctResultat.Image = oPompe.Image
+            TbEcartMoyen.Text = oPompe.EcartReglageMoyen
+            Dim ImageIndex As Integer
+            Select Case oPompe.Resultat
+                Case ""
+                    ImageIndex = 2
+                Case DiagnosticItem.EtatDiagItemOK
+                    ImageIndex = 1
+                Case DiagnosticItem.EtatDiagItemMAJEUR
+                    ImageIndex = 0
+            End Select
+            'Récupération du noeud correspondant à la pompe (on ne peut pas faire confiance au selectedNode)
+            Dim oNode As TreeNode
+            For Each oNode In TreeView1.Nodes
+                If oNode.Text = oPompe.Nom Then
+                    oNode.ImageIndex = ImageIndex
+                    oNode.SelectedImageIndex = ImageIndex
+                End If
+            Next
+            Dim oh12123 As DiagnosticHelp12123
+            oh12123 = m_bsrcH12123.Current
+            If oh12123 IsNot Nothing Then
+                If oh12123.Resultat = DiagnosticItem.EtatDiagItemOK Then
+                    laResultatGlobal.ForeColor = System.Drawing.Color.OliveDrab
+                Else
+                    laResultatGlobal.ForeColor = System.Drawing.Color.Red
+                End If
+                laResultatGlobal.Text = oh12123.LabelResultat
+            End If
         End If
-        laResultat.Text = oPompe.LabelResultat
-        pctResultat.Image = oPompe.Image
     End Sub
 
     Private Sub m_bsrcPompes_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentItemChanged
