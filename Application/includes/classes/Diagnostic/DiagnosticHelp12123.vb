@@ -83,6 +83,32 @@ Public Class DiagnosticHelp12123
             m_Resultat = value
         End Set
     End Property
+    Public ReadOnly Property Image() As Bitmap
+        Get
+            If Resultat = DiagnosticItem.EtatDiagItemOK Then
+                Return Resources.PuceVerteT
+            Else
+                If Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                    Return Resources.PuceRougeT
+                Else
+                    Return Resources.PuceGriseT
+                End If
+            End If
+        End Get
+    End Property
+    Public ReadOnly Property LabelResultat() As String
+        Get
+            If Resultat = DiagnosticItem.EtatDiagItemOK Then
+                Return "OK"
+            Else
+                If Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                    Return "ERREUR"
+                Else
+                    Return ""
+                End If
+            End If
+        End Get
+    End Property
 
 
     Public Function Load() As Boolean
@@ -217,62 +243,27 @@ Public Class DiagnosticHelp12123
     Public Function calcule() As Boolean
         Dim bReturn As Boolean
         Try
-            'If bCalcule Then
-            '    If m_debitMesure.HasValue And m_PressionMesure.HasValue And m_PressionMoyenne.HasValue And NbBuses.HasValue Then
-            '        'debitReel = DebitMesure*(Racine(PressionMoyenne/PressionMesure))
-            '        DebitReel = debitMesure * (Math.Sqrt(PressionMoyenne / PressionMesure))
-            '        'Debittotal = DebitReel*NbBuses
-            '        DebitTotal = DebitReel * NbBuses
-            '    Else
-            '        DebitReel = Nothing
-            '        'Debittotal = DebitReel*NbBuses
-            '        DebitTotal = Nothing
+            If m_bCalcule Then
+                m_bCalcule = False
+                Dim nbIncomplet As Integer = 0
+                For Each oPompe As DiagnosticHelp12123Pompe In lstPompes
+                    If oPompe.Resultat <> DiagnosticItem.EtatDiagItemOK And oPompe.Resultat <> DiagnosticItem.EtatDiagItemMAJEUR Then
+                        nbIncomplet = nbIncomplet + 1
+                    End If
+                Next
+                If nbIncomplet > 0 Then
+                    Resultat = ""
+                Else
+                    Resultat = DiagnosticItem.EtatDiagItemOK
+                    For Each oPompe As DiagnosticHelp12123Pompe In lstPompes
+                        If oPompe.Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                            Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                        End If
+                    Next
 
-            '    End If
-            '    If m_ReglageDispositif.HasValue And m_debitMesure.HasValue And NbBuses.HasValue Then
-            '        ' DebitTheorique = (ReglageDisistif/100)*(DebitMesure*NbBuses)
-            '        DebitTheorique = (ReglageDispositif / 100) * (debitMesure * NbBuses)
-            '    Else
-            '        DebitTheorique = Nothing
-            '    End If
-            '    If m_TempsMesure.HasValue And m_DebitTotal.HasValue Then
-            '        'QteEauPulverisee = TempMesure*(DebitTotal/60)
-            '        QteEauPulverisee = TempsMesure * (DebitTotal / 60)
-            '    Else
-            '        QteEauPulverisee = Nothing
-            '    End If
-            '    If m_MasseapresAspi.HasValue And m_MasseApresComplement.HasValue Then
-            '        'QteProduitConso = MasseInitiale-MasseFinal
-            '        '                    QteProduitConso = MasseInitiale - MasseFinale
-            '        QteProduitConso = MasseApresComplement - MasseApresAspi
-            '    Else
-            '        QteProduitConso = Nothing
-
-            '    End If
-            '    If m_QteProduitConso.HasValue And m_QteEauPulverisee.HasValue Then
-            '        'DosageReel = QteProduitConso en kg / qteEauPulverisee
-            '        DosageReel = ((QteProduitConso / 1000) / QteEauPulverisee) * 100
-            '    Else
-            '        DosageReel = Nothing
-            '    End If
-            '    If m_ReglageDispositif.HasValue And m_DosageReel.HasValue Then
-            '        'EcartDeReglage = (ReglageDispositif-DosageReel)/DosageReel)*100
-            '        EcartReglage = ((ReglageDispositif - DosageReel) / DosageReel) * 100
-            '    Else
-            '        EcartReglage = Nothing
-
-            '    End If
-            '    If m_EcartReglage.HasValue Then
-            '        'EcartReglage > 5% => Majeur, sinon OK
-            '        Resultat = DiagnosticItem.EtatDiagItemOK
-            '        If Math.Abs(EcartReglage.Value) > LIMITE_ECART_MAJEUR Then
-            '            Resultat = DiagnosticItem.EtatDiagItemMAJEUR
-            '        End If
-            '    Else
-            '        Resultat = String.Empty
-
-            '    End If
-            'End If
+                End If
+                m_bCalcule = True
+            End If
             bReturn = True
         Catch ex As Exception
             bReturn = False

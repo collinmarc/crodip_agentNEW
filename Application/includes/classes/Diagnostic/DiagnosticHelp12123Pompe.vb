@@ -41,19 +41,26 @@ Public Class DiagnosticHelp12123Pompe
 
     Public Const DIAGITEM_ID As String = "H12123P"
     Public LIMITE_ECART_MAJEUR As Decimal = 5
+    'Constructeur obligatoire pour la serialiszaion XML (Clone de dighelp12123)
     Private Sub New()
+    End Sub
+    Private Sub New(pNum As Integer)
+        m__Numero = pNum
         m_Resultat = ""
         m_bCalcule = True
         m_lstHelp12123Mesures = New List(Of DiagnosticHelp12123Mesure)
+        'Minimum 3 mesures
+        AjouteMesure()
+        AjouteMesure()
+        AjouteMesure()
     End Sub
 
     Public Sub New(pHelp12123 As DiagnosticHelp12123, pNum As Integer)
-        Me.New()
+        Me.New(pNum)
         m_help12123 = pHelp12123
-        m__Numero = pNum
     End Sub
     Public Sub New(ByVal pId As String, pIdDiag As String)
-        Me.New()
+        Me.New(0)
         m_id = pId
         m_idDiag = pIdDiag
     End Sub
@@ -171,9 +178,11 @@ Public Class DiagnosticHelp12123Pompe
     End Property
     Private Sub setDebitReel(pValue As Decimal?)
         m_DebitReel = pValue
-        For Each oMesure As DiagnosticHelp12123Mesure In lstMesures
-            oMesure.calcule()
-        Next
+        If m_DebitReel.HasValue Then
+            For Each oMesure As DiagnosticHelp12123Mesure In lstMesures
+                oMesure.calcule()
+            Next
+        End If
     End Sub
 
     Public Property DebitReelRND As Decimal?
@@ -300,6 +309,7 @@ Public Class DiagnosticHelp12123Pompe
                 Dim nbMesure As Integer
                 nbMesure = ConvertStringToAtt(tabValues(8))
                 EcartReglageMoyen = ConvertStringToAtt(tabValues(9))
+                m_lstHelp12123Mesures.Clear()
                 For nMesure As Integer = 1 To nbMesure
                     Dim oMesure As DiagnosticHelp12123Mesure = New DiagnosticHelp12123Mesure(Me, nMesure)
                     oMesure.idDiag = idDiag
@@ -417,7 +427,8 @@ Public Class DiagnosticHelp12123Pompe
         Dim bReturn As Boolean
         Try
             Dim nEcartReglage As Decimal
-            If bCalcule Then
+            If m_bCalcule Then
+                m_bCalcule = False
                 If Me.debitMesure.HasValue And Me.PressionMoyenne.HasValue And Me.PressionMesure.HasValue Then
                     'Debit Reel
                     DebitReel = Me.debitMesure * Math.Sqrt(Me.PressionMoyenne / Me.PressionMesure)
@@ -431,21 +442,33 @@ Public Class DiagnosticHelp12123Pompe
                     DebitTotal = Nothing
                 End If
                 If lstMesures.Count > 0 Then
+                    Dim nMesures As Integer = 0
                     For Each oMesure As DiagnosticHelp12123Mesure In lstMesures
                         'Le Calcul de la pompe est déclenché par le calcul des Mesures
                         'Donc ne pas redemander le calcul des mesures ...
                         If oMesure.EcartReglageRND.HasValue Then
-                            nEcartReglage = nEcartReglage + oMesure.EcartReglageRND
+                            nEcartReglage = nEcartReglage + Math.Abs(oMesure.EcartReglageRND.Value)
+                            nMesures = nMesures + 1
                         End If
                     Next
-                    EcartReglageMoyen = Math.Round(nEcartReglage / lstMesures.Count, 2)
-                    Resultat = DiagnosticItem.EtatDiagItemOK
-                    If Math.Abs(EcartReglageMoyen.Value) > LIMITE_ECART_MAJEUR Then
-                        Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                    If nMesures <> lstMesures.Count Then
+                        'On a donc des mesures qui n'ont pas d'ecart Calculé
+                        EcartReglageMoyen = Nothing
+                        Resultat = ""
+                    Else
+                        EcartReglageMoyen = Math.Round(nEcartReglage / lstMesures.Count, 2)
+                        Resultat = DiagnosticItem.EtatDiagItemOK
+                        If Math.Abs(EcartReglageMoyen.Value) > LIMITE_ECART_MAJEUR Then
+                            Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                        End If
                     End If
-                    m_help12123.calcule()
-                End If
 
+                    If Resultat <> "" Then
+                        m_help12123.calcule()
+                    End If
+
+                End If
+                m_bCalcule = True
             End If
             bReturn = True
         Catch ex As Exception

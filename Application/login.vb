@@ -718,6 +718,8 @@ Public Class login
         Dim oDiag As Diagnostic
         oPulve = PulverisateurManager.getPulverisateurById("2-81-22")
         oPulve.type = "Arbres"
+        oPulve.isPompesDoseuses = True
+        oPulve.nbPompesDoseuses = 4
         agentCourant = AgentManager.getAgentByNumeroNational("MCII")
         If oPulve IsNot Nothing Then
             oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
@@ -725,7 +727,9 @@ Public Class login
             Dim oFrm As New frmDiagnostique()
             oFrm.setContexte(oDiag, Globals.DiagMode.CTRL_COMPLET, oPulve, oExploit)
 
+            Dim oDiag12123 As New DiagnosticHelp12123()
             oFrm.ShowDialog()
+
         End If
     End Sub
 
@@ -738,17 +742,17 @@ Public Class login
         oP1.PressionMesure = 5
         oP1.PressionMoyenne = 15
         oP1.NbBuses = 5
-        Dim oMesure As DiagnosticHelp12123Mesure = oP1.AjouteMesure()
+        Dim oMesure As DiagnosticHelp12123Mesure = oP1.lstMesures(0)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
         oMesure.MasseInitiale = 13
         oMesure.MasseAspire = 3.492
-        oMesure = oP1.AjouteMesure()
+        oMesure = oP1.lstMesures(1)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
         oMesure.MasseInitiale = 3.756
         oMesure.MasseAspire = 3.492
-        oMesure = oP1.AjouteMesure()
+        oMesure = oP1.lstMesures(2)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
         oMesure.MasseInitiale = 13
@@ -756,12 +760,13 @@ Public Class login
         Dim oP2 As DiagnosticHelp12123Pompe = oDiag12123.AjoutePompe()
         oP2.debitMesure = 12
         oP2.PressionMesure = 7
-        oP2.AjouteMesure()
-        oP2.AjouteMesure()
+        oP2.PressionMoyenne = 15
+        oP2.NbBuses = 5
+        oDiag12123.calcule()
 
 
         oFRM = New diagnostic_dlghelp12123new()
-        oFRM.setContexte(oDiag12123, True)
+        oFRM.setContexte(oDiag12123, False)
         oFRM.ShowDialog()
 
 
