@@ -29,9 +29,12 @@ Public Class frmdiagnostic_recapV6
     Friend WithEvents cbx_diagnosticRecap_materiel_EmplacementIdentification As System.Windows.Forms.ComboBox
     Friend WithEvents btn_voirFiche_Pulve As System.Windows.Forms.Label
     Friend WithEvents Label38 As System.Windows.Forms.Label
-    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
+    Friend WithEvents rtbCommentaire As System.Windows.Forms.RichTextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents btnAppercu As System.Windows.Forms.Label
+    Friend WithEvents rbEtatSM As System.Windows.Forms.RadioButton
+    Friend WithEvents rbEtatRI As System.Windows.Forms.RadioButton
+    Friend WithEvents m_bsDiag As System.Windows.Forms.BindingSource
     Friend WithEvents btn_finalisationDiag_imprimerSynthese As System.Windows.Forms.Label
     'Private objInfos(15) As Object
 
@@ -101,10 +104,12 @@ Public Class frmdiagnostic_recapV6
         Me.btn_finalisationDiag_modifierDiag = New System.Windows.Forms.Label()
         Me.btn_finalisationDiag_imprimerSynthese = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.rbEtatSM = New System.Windows.Forms.RadioButton()
+        Me.rbEtatRI = New System.Windows.Forms.RadioButton()
+        Me.btnAppercu = New System.Windows.Forms.Label()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.rtbCommentaire = New System.Windows.Forms.RichTextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.grpMateriel = New System.Windows.Forms.GroupBox()
         Me.cbx_diagnosticRecap_materiel_EmplacementIdentification = New System.Windows.Forms.ComboBox()
         Me.btn_voirFiche_Pulve = New System.Windows.Forms.Label()
@@ -118,13 +123,16 @@ Public Class frmdiagnostic_recapV6
         Me.diagnosticRecap_organisme_heureDebut = New System.Windows.Forms.TextBox()
         Me.diagnosticRecap_organisme_heureFin = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
+        Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.conclusion_pictoEtat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.grpMateriel.SuspendLayout()
         Me.grpProprio.SuspendLayout()
         Me.grpOrganisme.SuspendLayout()
+        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -141,6 +149,7 @@ Public Class frmdiagnostic_recapV6
         '
         'conclusion_pictoEtat
         '
+        Me.conclusion_pictoEtat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.conclusion_pictoEtat.Image = CType(resources.GetObject("conclusion_pictoEtat.Image"), System.Drawing.Image)
         Me.conclusion_pictoEtat.Location = New System.Drawing.Point(571, 632)
         Me.conclusion_pictoEtat.Name = "conclusion_pictoEtat"
@@ -150,6 +159,7 @@ Public Class frmdiagnostic_recapV6
         '
         'label_pulveBonEtat
         '
+        Me.label_pulveBonEtat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.label_pulveBonEtat.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label_pulveBonEtat.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.label_pulveBonEtat.Location = New System.Drawing.Point(587, 629)
@@ -168,6 +178,7 @@ Public Class frmdiagnostic_recapV6
         '
         'btn_finalisationDiag_valider
         '
+        Me.btn_finalisationDiag_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_finalisationDiag_valider.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_finalisationDiag_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_finalisationDiag_valider.ForeColor = System.Drawing.Color.White
@@ -182,6 +193,7 @@ Public Class frmdiagnostic_recapV6
         '
         'btn_finalisationDiag_imprimerRapport
         '
+        Me.btn_finalisationDiag_imprimerRapport.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btn_finalisationDiag_imprimerRapport.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_finalisationDiag_imprimerRapport.Enabled = False
         Me.btn_finalisationDiag_imprimerRapport.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -196,6 +208,7 @@ Public Class frmdiagnostic_recapV6
         '
         'btn_finalisationDiag_modifierDiag
         '
+        Me.btn_finalisationDiag_modifierDiag.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btn_finalisationDiag_modifierDiag.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_finalisationDiag_modifierDiag.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_finalisationDiag_modifierDiag.ForeColor = System.Drawing.Color.White
@@ -209,6 +222,7 @@ Public Class frmdiagnostic_recapV6
         '
         'btn_finalisationDiag_imprimerSynthese
         '
+        Me.btn_finalisationDiag_imprimerSynthese.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btn_finalisationDiag_imprimerSynthese.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_finalisationDiag_imprimerSynthese.Enabled = False
         Me.btn_finalisationDiag_imprimerSynthese.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -231,13 +245,15 @@ Public Class frmdiagnostic_recapV6
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.rbEtatSM)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.rbEtatRI)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.btnAppercu)
         Me.SplitContainer1.Panel1.Controls.Add(Me.CrystalReportViewer1)
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.RichTextBox1)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.rtbCommentaire)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label4)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label1)
         Me.SplitContainer1.Panel2.Controls.Add(Me.grpMateriel)
         Me.SplitContainer1.Panel2.Controls.Add(Me.grpProprio)
         Me.SplitContainer1.Panel2.Controls.Add(Me.grpOrganisme)
@@ -246,13 +262,51 @@ Public Class frmdiagnostic_recapV6
         Me.SplitContainer1.SplitterDistance = 626
         Me.SplitContainer1.TabIndex = 14
         '
+        'rbEtatSM
+        '
+        Me.rbEtatSM.AutoSize = True
+        Me.rbEtatSM.Location = New System.Drawing.Point(175, 12)
+        Me.rbEtatSM.Name = "rbEtatSM"
+        Me.rbEtatSM.Size = New System.Drawing.Size(131, 17)
+        Me.rbEtatSM.TabIndex = 2
+        Me.rbEtatSM.Text = "Synthèse des mesures"
+        Me.rbEtatSM.UseVisualStyleBackColor = True
+        '
+        'rbEtatRI
+        '
+        Me.rbEtatRI.AutoSize = True
+        Me.rbEtatRI.Checked = True
+        Me.rbEtatRI.Location = New System.Drawing.Point(24, 12)
+        Me.rbEtatRI.Name = "rbEtatRI"
+        Me.rbEtatRI.Size = New System.Drawing.Size(122, 17)
+        Me.rbEtatRI.TabIndex = 1
+        Me.rbEtatRI.TabStop = True
+        Me.rbEtatRI.Text = "Rapport d'inspection"
+        Me.rbEtatRI.UseVisualStyleBackColor = True
+        '
+        'btnAppercu
+        '
+        Me.btnAppercu.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAppercu.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAppercu.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAppercu.ForeColor = System.Drawing.Color.White
+        Me.btnAppercu.Image = Global.Crodip_agent.Resources.btn_refresh
+        Me.btnAppercu.Location = New System.Drawing.Point(423, 8)
+        Me.btnAppercu.Name = "btnAppercu"
+        Me.btnAppercu.Size = New System.Drawing.Size(200, 24)
+        Me.btnAppercu.TabIndex = 5
+        Me.btnAppercu.Text = "    Aperçu"
+        Me.btnAppercu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'CrystalReportViewer1
         '
         Me.CrystalReportViewer1.ActiveViewIndex = -1
+        Me.CrystalReportViewer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CrystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.CrystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.CrystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CrystalReportViewer1.Location = New System.Drawing.Point(0, 0)
+        Me.CrystalReportViewer1.Location = New System.Drawing.Point(0, 42)
         Me.CrystalReportViewer1.Name = "CrystalReportViewer1"
         Me.CrystalReportViewer1.ShowCloseButton = False
         Me.CrystalReportViewer1.ShowCopyButton = False
@@ -264,20 +318,21 @@ Public Class frmdiagnostic_recapV6
         Me.CrystalReportViewer1.ShowPrintButton = False
         Me.CrystalReportViewer1.ShowRefreshButton = False
         Me.CrystalReportViewer1.ShowTextSearchButton = False
-        Me.CrystalReportViewer1.Size = New System.Drawing.Size(626, 571)
+        Me.CrystalReportViewer1.Size = New System.Drawing.Size(626, 529)
         Me.CrystalReportViewer1.TabIndex = 0
         Me.CrystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         '
-        'RichTextBox1
+        'rtbCommentaire
         '
-        Me.RichTextBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.rtbCommentaire.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RichTextBox1.Location = New System.Drawing.Point(6, 307)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(341, 189)
-        Me.RichTextBox1.TabIndex = 63
-        Me.RichTextBox1.Text = ""
+        Me.rtbCommentaire.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsDiag, "Commentaire", True))
+        Me.rtbCommentaire.Location = New System.Drawing.Point(6, 307)
+        Me.rtbCommentaire.Name = "rtbCommentaire"
+        Me.rtbCommentaire.Size = New System.Drawing.Size(341, 226)
+        Me.rtbCommentaire.TabIndex = 63
+        Me.rtbCommentaire.Text = ""
         '
         'Label4
         '
@@ -289,23 +344,9 @@ Public Class frmdiagnostic_recapV6
         Me.Label4.TabIndex = 62
         Me.Label4.Text = "Commentaire :"
         '
-        'Label1
-        '
-        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Image = Crodip_Agent.Resources.btn_refresh
-        Me.Label1.Location = New System.Drawing.Point(147, 535)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(200, 24)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "    Aperçu"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'grpMateriel
         '
-        Me.grpMateriel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.grpMateriel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpMateriel.Controls.Add(Me.cbx_diagnosticRecap_materiel_EmplacementIdentification)
         Me.grpMateriel.Controls.Add(Me.btn_voirFiche_Pulve)
@@ -401,6 +442,7 @@ Public Class frmdiagnostic_recapV6
         '
         'diagnosticRecap_organisme_dateControle
         '
+        Me.diagnosticRecap_organisme_dateControle.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.m_bsDiag, "controleDateDebut", True))
         Me.diagnosticRecap_organisme_dateControle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.diagnosticRecap_organisme_dateControle.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.diagnosticRecap_organisme_dateControle.Location = New System.Drawing.Point(139, 23)
@@ -455,7 +497,11 @@ Public Class frmdiagnostic_recapV6
         Me.Label19.Text = "/"
         Me.Label19.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
-        'frmdiagnostic_recap
+        'm_bsDiag
+        '
+        Me.m_bsDiag.DataSource = GetType(Crodip_agent.Diagnostic)
+        '
+        'frmdiagnostic_recapV6
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(1008, 679)
@@ -470,20 +516,23 @@ Public Class frmdiagnostic_recapV6
         Me.Controls.Add(Me.conclusion_pictoEtat)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmdiagnostic_recap"
+        Me.Name = "frmdiagnostic_recapV6"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "diagnostic_recap"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.conclusion_pictoEtat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.Panel2.PerformLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.grpMateriel.ResumeLayout(False)
         Me.grpMateriel.PerformLayout()
         Me.grpProprio.ResumeLayout(False)
         Me.grpOrganisme.ResumeLayout(False)
         Me.grpOrganisme.PerformLayout()
+        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -521,6 +570,8 @@ Public Class frmdiagnostic_recapV6
         '###########################################################################
         AffichePulverisateur()
 
+        rtbCommentaire.Text = m_diagnostic.Commentaire
+
         ' Conclusion sur l'etat du controle
         Select Case conclusionDiagnostique
             Case Globals.enumConclusionDiag.OK
@@ -556,9 +607,6 @@ Public Class frmdiagnostic_recapV6
             btn_finalisationDiag_valider.Text = "Retour"
         End If
         btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> Globals.DiagMode.CTRL_VISU
-
-
-        createRapportInspection_cr()
 
     End Sub
 
@@ -699,9 +747,9 @@ Public Class frmdiagnostic_recapV6
                 m_diagnostic.id = tmpNewDiagId
 
                 Statusbar.display("Génération du rapport d'inspection", True)
-                If createRapportInspection_cr() Then
+                If createRapportInspection_cr(True) Then
                     Statusbar.display("Génération du rapport de synthèse des mesures", True)
-                    If Not createEtatSyntheseDesMesures() Then
+                    If Not createEtatSyntheseDesMesures(True) Then
                         CSDebug.dispError("Erreur en génération de l'état de synthèse des mesures")
                     End If
 
@@ -794,14 +842,18 @@ Public Class frmdiagnostic_recapV6
     ''' génération du rapport de synthèses des mesures
     ''' </summary>
     ''' <remarks></remarks>
-    Private Function createEtatSyntheseDesMesures() As Boolean
+    Private Function createEtatSyntheseDesMesures(pExportPDF As Boolean) As Boolean
         Dim _PathToSynthesePDF As String
         Dim bReturn As Boolean = False
         Try
             Dim oEtat As New EtatSyntheseMesures(m_diagnostic)
-            oEtat.GenereEtat()
-            _PathToSynthesePDF = oEtat.getFileName()
-            m_diagnostic.SMFileName = _PathToSynthesePDF
+            oEtat.GenereEtat(pExportPDF)
+            If pExportPDF Then
+                _PathToSynthesePDF = oEtat.getFileName()
+                m_diagnostic.SMFileName = _PathToSynthesePDF
+            Else
+                CrystalReportViewer1.ReportSource = oEtat.getReportdocument
+            End If
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("createEtatSyntheseDesMesures ERR : " & ex.Message.ToString)
@@ -810,16 +862,19 @@ Public Class frmdiagnostic_recapV6
         Return bReturn
     End Function
     ' rapport D'inspection
-    Private Function createRapportInspection_cr() As Boolean
+    Private Function createRapportInspection_cr(pExportDPF As Boolean) As Boolean
         Dim bReturn As Boolean
         Dim pathRapport As String
         Try
             Dim oEtat As New EtatRapportInspection(m_diagnostic)
-            oEtat.GenereEtat()
-            pathRapport = oEtat.getFileName()
-            m_diagnostic.RIFileName = pathRapport
-            bReturn = File.Exists(Globals.CONST_PATH_EXP & pathRapport)
-            CrystalReportViewer1.ReportSource = oEtat.getReportdocument
+            oEtat.GenereEtat(pExportDPF)
+            If pExportDPF Then
+                pathRapport = oEtat.getFileName()
+                m_diagnostic.RIFileName = pathRapport
+                bReturn = File.Exists(Globals.CONST_PATH_EXP & pathRapport)
+            Else
+                CrystalReportViewer1.ReportSource = oEtat.getReportDocument
+            End If
         Catch ex As Exception
             CSDebug.dispError("createRapportInspection_cr ERR : " & ex.Message.ToString)
             bReturn = False
@@ -969,7 +1024,7 @@ Public Class frmdiagnostic_recapV6
         formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.VERIF, agentCourant, m_Pulverisateur, m_Exploit, m_diagnostic)
         formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
         m_diagnostic.setPulverisateur(m_Pulverisateur)
-        AffichePulverisateur()
+        'AffichePulverisateur()
     End Sub
 
 
@@ -987,7 +1042,7 @@ Public Class frmdiagnostic_recapV6
         '        formEdition_fiche_pulve.SetFormRecapDiag(True)
         formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
         m_diagnostic.SetProprietaire(m_Exploit)
-        AfficheProprietaire()
+        'AfficheProprietaire()
 
     End Sub
 
@@ -1031,5 +1086,28 @@ Public Class frmdiagnostic_recapV6
 
     Protected Overrides Sub Finalize()
         MyBase.Finalize()
+    End Sub
+
+    Private Sub btnAppercu_Click(sender As Object, e As EventArgs) Handles btnAppercu.Click
+        If rbEtatRI.Checked Then
+            createRapportInspection_cr(False)
+        Else
+            createEtatSyntheseDesMesures(False)
+        End If
+    End Sub
+
+    Private Sub btn_voirFicheExploitant_Click_1(sender As Object, e As EventArgs) Handles btn_voirFicheExploitant.Click
+        Dim formEdition_fiche_pulve As New fiche_exploitant()
+        formEdition_fiche_pulve.setContexte(True, m_Exploit)
+        formEdition_fiche_pulve.DisplayNomEtPrenomduRepresentant(True)
+        '        formEdition_fiche_pulve.SetFormRecapDiag(True)
+        formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
+        m_diagnostic.SetProprietaire(m_Exploit)
+
+    End Sub
+
+    Private Sub btn_voirFiche_Pulve_Click_1(sender As Object, e As EventArgs) Handles btn_voirFiche_Pulve.Click
+        displayFichePulve()
+
     End Sub
 End Class

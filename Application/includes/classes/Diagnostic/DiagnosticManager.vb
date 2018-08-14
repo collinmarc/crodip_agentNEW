@@ -1072,6 +1072,7 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`pulverisateurRincagecircuit`='" & CSDb.secureString(objDiagnostic.pulverisateurRincagecircuit) & "'"
                 paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`typeDiagnostic`='" & CSDb.secureString(objDiagnostic.typeDiagnostic) & "'"
                 paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`codeInsee`='" & CSDb.secureString(objDiagnostic.codeInsee) & "'"
+                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`commentaire`='" & CSDb.secureString(objDiagnostic.Commentaire) & "'"
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE `Diagnostic` SET " & paramsQuery & " WHERE `Diagnostic`.`id`='" & objDiagnostic.id & "'"

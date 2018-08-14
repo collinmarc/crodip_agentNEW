@@ -15,33 +15,36 @@ Public Class EtatSyntheseMesures
     End Function
 
 
-    Public Function GenereEtat() As Boolean
+    Public Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()
             If (bReturn) Then
-                Dim objReport As ReportDocument
                 Dim r1 As New cr_EtatSynthese()
                 Dim strReportName As String = r1.ResourceName
+                r1.Close()
 
-                objReport = New ReportDocument
-                objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
+                m_oReportDocument = New ReportDocument
+                m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
 
-                objReport.SetDataSource(m_ods)
-                Dim CrExportOptions As ExportOptions
-                Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
-                Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_SYNTHESE_MESURES) & "_" & m_oDiag.id & ".pdf"
-                CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                CrExportOptions = objReport.ExportOptions
-                With CrExportOptions
-                    .ExportDestinationType = ExportDestinationType.DiskFile
-                    .ExportFormatType = ExportFormatType.PortableDocFormat
-                    .DestinationOptions = CrDiskFileDestinationOptions
-                    .FormatOptions = CrFormatTypeOptions
-                End With
-                objReport.Export()
+                m_oReportDocument.SetDataSource(m_ods)
 
+                If pExportPDF Then
+                    Dim CrExportOptions As ExportOptions
+                    Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
+                    Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
+                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_SYNTHESE_MESURES) & "_" & m_oDiag.id & ".pdf"
+                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrExportOptions = m_oReportDocument.ExportOptions
+                    With CrExportOptions
+                        .ExportDestinationType = ExportDestinationType.DiskFile
+                        .ExportFormatType = ExportFormatType.PortableDocFormat
+                        .DestinationOptions = CrDiskFileDestinationOptions
+                        .FormatOptions = CrFormatTypeOptions
+                    End With
+                    m_oReportDocument.Export()
+                    m_oReportDocument.Close()
+                End If
             End If
         Catch ex As Exception
             CSDebug.dispError("EtatRapportInspection.GenereEtat ERR" & ex.Message)

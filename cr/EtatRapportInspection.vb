@@ -15,7 +15,7 @@ Public Class EtatRapportInspection
 
 
 
-    Public Function GenereEtat() As Boolean
+    Public Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()
@@ -25,22 +25,22 @@ Public Class EtatRapportInspection
 
                 m_oReportDocument = New ReportDocument
                 m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
-
                 m_oReportDocument.SetDataSource(m_ods)
-                Dim CrExportOptions As ExportOptions
-                Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
-                Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
-                CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                CrExportOptions = m_oReportDocument.ExportOptions
-                With CrExportOptions
-                    .ExportDestinationType = ExportDestinationType.DiskFile
-                    .ExportFormatType = ExportFormatType.PortableDocFormat
-                    .DestinationOptions = CrDiskFileDestinationOptions
-                    .FormatOptions = CrFormatTypeOptions
-                End With
-                m_oReportDocument.Export()
-
+                If pExportPDF Then
+                    Dim CrExportOptions As ExportOptions
+                    Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
+                    Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
+                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
+                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrExportOptions = m_oReportDocument.ExportOptions
+                    With CrExportOptions
+                        .ExportDestinationType = ExportDestinationType.DiskFile
+                        .ExportFormatType = ExportFormatType.PortableDocFormat
+                        .DestinationOptions = CrDiskFileDestinationOptions
+                        .FormatOptions = CrFormatTypeOptions
+                    End With
+                    m_oReportDocument.Export()
+                End If
             End If
         Catch ex As Exception
             CSDebug.dispError("EtatRapportInspection.GenereEtat ERR" & ex.Message)
@@ -271,7 +271,7 @@ Public Class EtatRapportInspection
                 dateLimiteControle = CDate(m_oDiag.pulverisateurDateProchainControle)
             End If
             oDiagRow = m_ods.Diagnostic.AddDiagnosticRow(m_oDiag.id, m_oDiag.organismeInspAgrement, CDate(m_oDiag.controleDateDebut), m_oDiag.controleLieu, CDate(m_oDiag.controleDateDebut).ToShortTimeString(), CDate(m_oDiag.controleDateFin).ToShortTimeString(), m_oDiag.controleIsPreControleProfessionel, m_oDiag.controleIsComplet, m_oDiag.controleInitialId, oMaterielRow, Conclusion:=m_oDiag.controleEtat, dateLimiteControle:=dateLimiteControle, DateEmission:=Date.Now, _
-                                                         DateControleInitial:=m_oDiag.getDateDernierControleDate(), OrganismeInitial:=m_oDiag.organismeOriginePresNom, InspecteurInitial:=m_oDiag.inspecteurOrigineNom & " " & m_oDiag.inspecteurOriginePrenom, NbPageRFinal:=nbPagefinal)
+                                                         DateControleInitial:=m_oDiag.getDateDernierControleDate(), OrganismeInitial:=m_oDiag.organismeOriginePresNom, InspecteurInitial:=m_oDiag.inspecteurOrigineNom & " " & m_oDiag.inspecteurOriginePrenom, NbPageRFinal:=nbPagefinal, Commentaire:=m_oDiag.Commentaire)
             m_ods.Organisme.AddOrganismeRow(oDiagRow, m_oDiag.organismePresNom, m_oDiag.inspecteurNom & " " & m_oDiag.inspecteurPrenom, m_oDiag.inspecteurNumeroNational)
             Dim strCumuldesErreurs As String
             If m_oDiag.diagnosticHelp571.ErreurGlobalePRSRND.HasValue Or m_oDiag.diagnosticHelp571.erreurGlobaleDEB.HasValue Then

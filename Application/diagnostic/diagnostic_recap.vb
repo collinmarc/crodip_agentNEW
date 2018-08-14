@@ -1987,7 +1987,7 @@ Public Class diagnostic_recap
         Dim bReturn As String = False
         Try
             Dim oEtat As New EtatSyntheseMesures(m_diagnostic)
-            oEtat.GenereEtat()
+            oEtat.GenereEtat(True)
             _PathToSynthesePDF = oEtat.getFileName()
             m_diagnostic.SMFileName = _PathToSynthesePDF
             bReturn = True

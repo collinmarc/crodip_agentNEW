@@ -181,6 +181,7 @@ Public Class Diagnostic
     Private _PulverisateurRegulationOptions As String = ""
     Private _PulverisateurModeUtilisation As String = ""
     Private _PulverisateurNbreExploitants As String = ""
+    Private _Commentaire As String
 
     Private _isContreVisiteImmediate As Boolean
     Private _typeDiagnostic As String
@@ -2243,6 +2244,21 @@ Public Class Diagnostic
             m_buseDebitMoyenPM = Value
         End Set
     End Property
+    ''' <summary>
+    ''' Commentaire associé au diagnostic
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property Commentaire() As String
+        Get
+            Return _Commentaire
+        End Get
+        Set(ByVal value As String)
+            _Commentaire = value
+        End Set
+    End Property
+
 #End Region
 
     Public Function SetProprietaire(ByVal pClient As Exploitation) As Boolean
@@ -2651,6 +2667,8 @@ Public Class Diagnostic
                     Me.typeDiagnostic = pcolValue.ToString
                 Case "codeInsee".ToUpper().Trim()
                     Me.codeInsee = pcolValue.ToString
+                Case "commentaire".ToUpper().Trim()
+                    Me.Commentaire = pcolValue.ToString
             End Select
             bReturn = True
         Catch ex As Exception

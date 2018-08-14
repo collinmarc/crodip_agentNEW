@@ -183,5 +183,8 @@ ALTER TABLE [pulverisateur] ADD isPompesDoseuses YESNO
 UPDATE pulverisateur SET isPompesDoseuses = 0 
 ALTER TABLE [pulverisateur] ADD nbPompesDoseuses LONG
 UPDATE pulverisateur SET nbPompesDoseuses = 0 
+UPDATE pulverisateur SET nbPompesDoseuses = 0 
+ALTER TABLE [diagnostic] ADD commentaire varchar(255)
+UPDATE Diagnostic SET commentaire = '' 
 INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6",#09/01/2018#, "Pompes Doseuses") 
 
