@@ -43,20 +43,28 @@ Partial Class diagnostic_dlghelp12123new
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.listImg_flags = New System.Windows.Forms.ImageList(Me.components)
         Me.pnlDetailPompe = New System.Windows.Forms.Panel()
+        Me.tbEcartMoyen = New CRODIP_ControlLibrary.TBNumeric()
         Me.m_bsrcPompes = New System.Windows.Forms.BindingSource(Me.components)
+        Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btnValiderNbMesures = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.m_bsrcMesures = New System.Windows.Forms.BindingSource(Me.components)
         Me.laResultat = New System.Windows.Forms.Label()
+        Me.TbNumeric10 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label14 = New System.Windows.Forms.Label()
+        Me.TbNumeric9 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label13 = New System.Windows.Forms.Label()
+        Me.TbNumeric1 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.TbNumeric2 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.nupMesures = New System.Windows.Forms.NumericUpDown()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
+        Me.TbNumeric8 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.TbNumeric7 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.pctResultat = New System.Windows.Forms.PictureBox()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -67,14 +75,6 @@ Partial Class diagnostic_dlghelp12123new
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
-        Me.tbEcartMoyen = New CRODIP_ControlLibrary.TBNumeric()
-        Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TbNumeric10 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.TbNumeric9 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.TbNumeric1 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.TbNumeric2 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.TbNumeric8 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.TbNumeric7 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ReglageDispositif = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DebitTheoriqueRND = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -93,12 +93,12 @@ Partial Class diagnostic_dlghelp12123new
         Me.SplitContainer1.SuspendLayout()
         Me.pnlDetailPompe.SuspendLayout()
         CType(Me.m_bsrcPompes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsrcMesures, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nupMesures, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pctResultat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nupNbPompes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnl12123
@@ -226,10 +226,28 @@ Partial Class diagnostic_dlghelp12123new
         Me.pnlDetailPompe.Size = New System.Drawing.Size(585, 405)
         Me.pnlDetailPompe.TabIndex = 78
         '
+        'tbEcartMoyen
+        '
+        Me.tbEcartMoyen.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.tbEcartMoyen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.tbEcartMoyen.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "EcartReglageMoyen", True))
+        Me.tbEcartMoyen.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbEcartMoyen.ForceBindingOnTextChanged = False
+        Me.tbEcartMoyen.Location = New System.Drawing.Point(223, 3)
+        Me.tbEcartMoyen.Name = "tbEcartMoyen"
+        Me.tbEcartMoyen.ReadOnly = True
+        Me.tbEcartMoyen.Size = New System.Drawing.Size(100, 20)
+        Me.tbEcartMoyen.TabIndex = 113
+        Me.tbEcartMoyen.TabStop = False
+        '
         'm_bsrcPompes
         '
         Me.m_bsrcPompes.DataMember = "lstPompes"
         Me.m_bsrcPompes.DataSource = Me.m_bsrcH12123
+        '
+        'm_bsrcH12123
+        '
+        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
         '
         'Label4
         '
@@ -308,6 +326,20 @@ Partial Class diagnostic_dlghelp12123new
         Me.laResultat.Text = "Resultat Pompe"
         Me.laResultat.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
+        'TbNumeric10
+        '
+        Me.TbNumeric10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TbNumeric10.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.TbNumeric10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TbNumeric10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "DebitTotalRND", True))
+        Me.TbNumeric10.ForceBindingOnTextChanged = False
+        Me.TbNumeric10.Location = New System.Drawing.Point(464, 95)
+        Me.TbNumeric10.Name = "TbNumeric10"
+        Me.TbNumeric10.ReadOnly = True
+        Me.TbNumeric10.Size = New System.Drawing.Size(98, 20)
+        Me.TbNumeric10.TabIndex = 90
+        Me.TbNumeric10.TabStop = False
+        '
         'Label14
         '
         Me.Label14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -319,6 +351,19 @@ Partial Class diagnostic_dlghelp12123new
         Me.Label14.TabIndex = 89
         Me.Label14.Text = "Débit total : "
         '
+        'TbNumeric9
+        '
+        Me.TbNumeric9.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.TbNumeric9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TbNumeric9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "DebitReelRND", True))
+        Me.TbNumeric9.ForceBindingOnTextChanged = False
+        Me.TbNumeric9.Location = New System.Drawing.Point(223, 95)
+        Me.TbNumeric9.Name = "TbNumeric9"
+        Me.TbNumeric9.ReadOnly = True
+        Me.TbNumeric9.Size = New System.Drawing.Size(100, 20)
+        Me.TbNumeric9.TabIndex = 88
+        Me.TbNumeric9.TabStop = False
+        '
         'Label13
         '
         Me.Label13.AutoSize = True
@@ -328,6 +373,18 @@ Partial Class diagnostic_dlghelp12123new
         Me.Label13.Size = New System.Drawing.Size(58, 13)
         Me.Label13.TabIndex = 87
         Me.Label13.Text = "Débit réel :"
+        '
+        'TbNumeric1
+        '
+        Me.TbNumeric1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TbNumeric1.BackColor = System.Drawing.Color.White
+        Me.TbNumeric1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TbNumeric1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "NbBuses", True))
+        Me.TbNumeric1.ForceBindingOnTextChanged = False
+        Me.TbNumeric1.Location = New System.Drawing.Point(464, 69)
+        Me.TbNumeric1.Name = "TbNumeric1"
+        Me.TbNumeric1.Size = New System.Drawing.Size(98, 20)
+        Me.TbNumeric1.TabIndex = 86
         '
         'Label8
         '
@@ -339,6 +396,17 @@ Partial Class diagnostic_dlghelp12123new
         Me.Label8.Size = New System.Drawing.Size(73, 13)
         Me.Label8.TabIndex = 85
         Me.Label8.Text = "Nb de buses :"
+        '
+        'TbNumeric2
+        '
+        Me.TbNumeric2.BackColor = System.Drawing.Color.White
+        Me.TbNumeric2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TbNumeric2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "PressionMoyenne", True))
+        Me.TbNumeric2.ForceBindingOnTextChanged = False
+        Me.TbNumeric2.Location = New System.Drawing.Point(223, 69)
+        Me.TbNumeric2.Name = "TbNumeric2"
+        Me.TbNumeric2.Size = New System.Drawing.Size(100, 20)
+        Me.TbNumeric2.TabIndex = 84
         '
         'Label9
         '
@@ -379,6 +447,33 @@ Partial Class diagnostic_dlghelp12123new
         Me.Label12.Size = New System.Drawing.Size(75, 13)
         Me.Label12.TabIndex = 7
         Me.Label12.Text = "Débit mesuré :"
+        '
+        'TbNumeric8
+        '
+        Me.TbNumeric8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TbNumeric8.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TbNumeric8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TbNumeric8.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "PressionMesure", True))
+        Me.TbNumeric8.ForceBindingOnTextChanged = False
+        Me.TbNumeric8.Location = New System.Drawing.Point(464, 43)
+        Me.TbNumeric8.Name = "TbNumeric8"
+        Me.TbNumeric8.ReadOnly = True
+        Me.TbNumeric8.Size = New System.Drawing.Size(98, 20)
+        Me.TbNumeric8.TabIndex = 6
+        Me.TbNumeric8.TabStop = False
+        '
+        'TbNumeric7
+        '
+        Me.TbNumeric7.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TbNumeric7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TbNumeric7.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "debitMesure", True))
+        Me.TbNumeric7.ForceBindingOnTextChanged = False
+        Me.TbNumeric7.Location = New System.Drawing.Point(223, 43)
+        Me.TbNumeric7.Name = "TbNumeric7"
+        Me.TbNumeric7.ReadOnly = True
+        Me.TbNumeric7.Size = New System.Drawing.Size(100, 20)
+        Me.TbNumeric7.TabIndex = 5
+        Me.TbNumeric7.TabStop = False
         '
         'Label11
         '
@@ -509,100 +604,6 @@ Partial Class diagnostic_dlghelp12123new
         Me.btnValider.Text = "OK"
         Me.btnValider.UseVisualStyleBackColor = False
         '
-        'tbEcartMoyen
-        '
-        Me.tbEcartMoyen.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.tbEcartMoyen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.tbEcartMoyen.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "EcartReglageMoyen", True))
-        Me.tbEcartMoyen.ForceBindingOnTextChanged = False
-        Me.tbEcartMoyen.Location = New System.Drawing.Point(223, 3)
-        Me.tbEcartMoyen.Name = "tbEcartMoyen"
-        Me.tbEcartMoyen.ReadOnly = True
-        Me.tbEcartMoyen.Size = New System.Drawing.Size(100, 20)
-        Me.tbEcartMoyen.TabIndex = 113
-        Me.tbEcartMoyen.TabStop = False
-        '
-        'm_bsrcH12123
-        '
-        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
-        '
-        'TbNumeric10
-        '
-        Me.TbNumeric10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TbNumeric10.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.TbNumeric10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TbNumeric10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "DebitTotalRND", True))
-        Me.TbNumeric10.ForceBindingOnTextChanged = False
-        Me.TbNumeric10.Location = New System.Drawing.Point(464, 95)
-        Me.TbNumeric10.Name = "TbNumeric10"
-        Me.TbNumeric10.ReadOnly = True
-        Me.TbNumeric10.Size = New System.Drawing.Size(98, 20)
-        Me.TbNumeric10.TabIndex = 90
-        Me.TbNumeric10.TabStop = False
-        '
-        'TbNumeric9
-        '
-        Me.TbNumeric9.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.TbNumeric9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TbNumeric9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "DebitReelRND", True))
-        Me.TbNumeric9.ForceBindingOnTextChanged = False
-        Me.TbNumeric9.Location = New System.Drawing.Point(223, 95)
-        Me.TbNumeric9.Name = "TbNumeric9"
-        Me.TbNumeric9.ReadOnly = True
-        Me.TbNumeric9.Size = New System.Drawing.Size(100, 20)
-        Me.TbNumeric9.TabIndex = 88
-        Me.TbNumeric9.TabStop = False
-        '
-        'TbNumeric1
-        '
-        Me.TbNumeric1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TbNumeric1.BackColor = System.Drawing.Color.White
-        Me.TbNumeric1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TbNumeric1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "NbBuses", True))
-        Me.TbNumeric1.ForceBindingOnTextChanged = False
-        Me.TbNumeric1.Location = New System.Drawing.Point(464, 69)
-        Me.TbNumeric1.Name = "TbNumeric1"
-        Me.TbNumeric1.Size = New System.Drawing.Size(98, 20)
-        Me.TbNumeric1.TabIndex = 86
-        '
-        'TbNumeric2
-        '
-        Me.TbNumeric2.BackColor = System.Drawing.Color.White
-        Me.TbNumeric2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TbNumeric2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "PressionMoyenne", True))
-        Me.TbNumeric2.ForceBindingOnTextChanged = False
-        Me.TbNumeric2.Location = New System.Drawing.Point(223, 69)
-        Me.TbNumeric2.Name = "TbNumeric2"
-        Me.TbNumeric2.Size = New System.Drawing.Size(100, 20)
-        Me.TbNumeric2.TabIndex = 84
-        '
-        'TbNumeric8
-        '
-        Me.TbNumeric8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TbNumeric8.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TbNumeric8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TbNumeric8.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "PressionMesure", True))
-        Me.TbNumeric8.ForceBindingOnTextChanged = False
-        Me.TbNumeric8.Location = New System.Drawing.Point(464, 43)
-        Me.TbNumeric8.Name = "TbNumeric8"
-        Me.TbNumeric8.ReadOnly = True
-        Me.TbNumeric8.Size = New System.Drawing.Size(98, 20)
-        Me.TbNumeric8.TabIndex = 6
-        Me.TbNumeric8.TabStop = False
-        '
-        'TbNumeric7
-        '
-        Me.TbNumeric7.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TbNumeric7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TbNumeric7.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "debitMesure", True))
-        Me.TbNumeric7.ForceBindingOnTextChanged = False
-        Me.TbNumeric7.Location = New System.Drawing.Point(223, 43)
-        Me.TbNumeric7.Name = "TbNumeric7"
-        Me.TbNumeric7.ReadOnly = True
-        Me.TbNumeric7.Size = New System.Drawing.Size(100, 20)
-        Me.TbNumeric7.TabIndex = 5
-        Me.TbNumeric7.TabStop = False
-        '
         'Column2
         '
         Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
@@ -720,12 +721,12 @@ Partial Class diagnostic_dlghelp12123new
         Me.pnlDetailPompe.ResumeLayout(False)
         Me.pnlDetailPompe.PerformLayout()
         CType(Me.m_bsrcPompes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsrcMesures, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nupMesures, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pctResultat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nupNbPompes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
