@@ -73,12 +73,16 @@ Public Class diagnostic_dlghelp12123new
             oNode.SelectedImageIndex = ImageIndex
             oNode.ImageIndex = ImageIndex
         Next
+        Try
 
-        If oOldNode <> -1 Then
-            TreeView1.SelectedNode = TreeView1.Nodes(oOldNode)
-        Else
+            If oOldNode <> -1 Then
+                TreeView1.SelectedNode = TreeView1.Nodes(oOldNode)
+            Else
+                TreeView1.SelectedNode = TreeView1.Nodes(0)
+            End If
+        Catch ex As Exception
             TreeView1.SelectedNode = TreeView1.Nodes(0)
-        End If
+        End Try
     End Sub
 
 
@@ -92,7 +96,7 @@ Public Class diagnostic_dlghelp12123new
     Private Sub TbNumeric3_Validated(sender As Object, e As EventArgs)
         m_bsrcH12123.ResetBindings(False)
     End Sub
-    Private Sub btnModele_validerNbBuses_Click(sender As Object, e As EventArgs) Handles btnvaliderNbPompes.Click
+    Private Sub btnvaliderNbPompes_Click(sender As Object, e As EventArgs) Handles btnvaliderNbPompes.Click
         If nupNbPompes.Value > m_DiagHelp12123.lstPompes.Count Then
             While m_DiagHelp12123.lstPompes.Count < nupNbPompes.Value
                 m_DiagHelp12123.AjoutePompe()
@@ -103,7 +107,9 @@ Public Class diagnostic_dlghelp12123new
                 m_DiagHelp12123.lstPompes.RemoveAt(m_DiagHelp12123.lstPompes.Count - 1)
             End While
         End If
+        m_DiagHelp12123.calcule()
         DisplayPompes()
+        Refresh()
     End Sub
 
     Private Sub TreeView1_NodeMouseClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles TreeView1.NodeMouseClick
@@ -167,6 +173,10 @@ Public Class diagnostic_dlghelp12123new
 
     Private Sub m_bsrcMesures_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcMesures.CurrentItemChanged
         Console.WriteLine("Current Item Mesure Changed")
+
+    End Sub
+
+    Private Sub Refresh()
         Try
 
             Dim oPompe As DiagnosticHelp12123Pompe
@@ -219,11 +229,10 @@ Public Class diagnostic_dlghelp12123new
                 End If
             End If
         Catch ex As Exception
-            CSDebug.dispError("dlgHelp12123.m_bsrcMesures_CurrentItemChanged ERR " & ex.Message)
+            CSDebug.dispError("dlgHelp12123.Refresh ERR " & ex.Message)
         End Try
 
     End Sub
-
     Private Sub m_bsrcPompes_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentItemChanged
 
     End Sub
