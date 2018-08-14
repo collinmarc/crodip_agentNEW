@@ -177,6 +177,7 @@
               <xs:element name="NomPropriétaire" msprop:Generator_ColumnVarNameInTable="columnNomPropriétaire" msprop:Generator_ColumnPropNameInRow="NomPropriétaire" msprop:Generator_ColumnPropNameInTable="NomPropriétaireColumn" msprop:Generator_UserColumnName="NomPropriétaire" type="xs:string" minOccurs="0" />
               <xs:element name="NomOrganisme" msprop:Generator_ColumnVarNameInTable="columnNomOrganisme" msprop:Generator_ColumnPropNameInRow="NomOrganisme" msprop:Generator_ColumnPropNameInTable="NomOrganismeColumn" msprop:Generator_UserColumnName="NomOrganisme" type="xs:string" minOccurs="0" />
               <xs:element name="EcartTolereBuses" msprop:Generator_ColumnVarNameInTable="columnEcartTolereBuses" msprop:Generator_ColumnPropNameInRow="EcartTolereBuses" msprop:Generator_ColumnPropNameInTable="EcartTolereBusesColumn" msprop:Generator_UserColumnName="EcartTolereBuses" type="xs:int" minOccurs="0" />
+              <xs:element name="PulveisPompeDoseuses" msprop:Generator_ColumnVarNameInTable="columnPulveisPompeDoseuses" msprop:Generator_ColumnPropNameInRow="PulveisPompeDoseuses" msprop:Generator_ColumnPropNameInTable="PulveisPompeDoseusesColumn" msprop:Generator_UserColumnName="PulveisPompeDoseuses" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -198,9 +199,9 @@
               <xs:element name="QteEau" msprop:Generator_ColumnVarNameInTable="columnQteEau" msprop:Generator_ColumnPropNameInRow="QteEau" msprop:Generator_ColumnPropNameInTable="QteEauColumn" msprop:Generator_UserColumnName="QteEau" type="xs:string" minOccurs="0" />
               <xs:element name="MassePlus" msprop:Generator_ColumnVarNameInTable="columnMassePlus" msprop:Generator_ColumnPropNameInRow="MassePlus" msprop:Generator_ColumnPropNameInTable="MassePlusColumn" msprop:Generator_UserColumnName="MassePlus" type="xs:string" minOccurs="0" />
               <xs:element name="MasseMoins" msprop:Generator_ColumnVarNameInTable="columnMasseMoins" msprop:Generator_ColumnPropNameInRow="MasseMoins" msprop:Generator_ColumnPropNameInTable="MasseMoinsColumn" msprop:Generator_UserColumnName="MasseMoins" type="xs:string" minOccurs="0" />
-              <xs:element name="QteProduit" msprop:Generator_ColumnVarNameInTable="columnQteProduit" msprop:Generator_ColumnPropNameInRow="QteProduit" msprop:Generator_ColumnPropNameInTable="QteProduitColumn" msprop:Generator_UserColumnName="QteProduit" type="xs:string" minOccurs="0" />
+              <xs:element name="QteProduit" msprop:Generator_ColumnVarNameInTable="columnQteProduit" msprop:Generator_ColumnPropNameInRow="QteProduit" msprop:Generator_ColumnPropNameInTable="QteProduitColumn" msprop:Generator_UserColumnName="QteProduit" type="xs:decimal" minOccurs="0" />
               <xs:element name="DosageReel" msprop:Generator_ColumnVarNameInTable="columnDosageReel" msprop:Generator_ColumnPropNameInRow="DosageReel" msprop:Generator_ColumnPropNameInTable="DosageReelColumn" msprop:Generator_UserColumnName="DosageReel" type="xs:string" minOccurs="0" />
-              <xs:element name="Ecart" msprop:Generator_ColumnVarNameInTable="columnEcart" msprop:Generator_ColumnPropNameInRow="Ecart" msprop:Generator_ColumnPropNameInTable="EcartColumn" msprop:Generator_UserColumnName="Ecart" type="xs:string" minOccurs="0" />
+              <xs:element name="Ecart" msprop:Generator_ColumnVarNameInTable="columnEcart" msprop:Generator_ColumnPropNameInRow="Ecart" msprop:Generator_ColumnPropNameInTable="EcartColumn" msprop:Generator_UserColumnName="Ecart" type="xs:decimal" minOccurs="0" />
               <xs:element name="ResultatMesure" msprop:Generator_ColumnVarNameInTable="columnResultatMesure" msprop:Generator_ColumnPropNameInRow="ResultatMesure" msprop:Generator_ColumnPropNameInTable="ResultatMesureColumn" msprop:Generator_UserColumnName="ResultatMesure" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

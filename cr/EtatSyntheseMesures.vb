@@ -75,7 +75,7 @@ Public Class EtatSyntheseMesures
                 EcartTolere = 10
             End If
             'Diagnostic
-            m_ods.Diag.AddDiagRow(idDiag:=m_oDiag.id, DateControle:=m_oDiag.controleDateDebut, NumPulve:=m_oDiag.pulverisateurNumNational, NomPropriétaire:=m_oDiag.proprietaireNom & " " & m_oDiag.proprietairePrenom, NomOrganisme:=m_oDiag.organismePresNom, EcartTolereBuses:=EcartTolere)
+            m_ods.Diag.AddDiagRow(idDiag:=m_oDiag.id, DateControle:=m_oDiag.controleDateDebut, NumPulve:=m_oDiag.pulverisateurNumNational, NomPropriétaire:=m_oDiag.proprietaireNom & " " & m_oDiag.proprietairePrenom, NomOrganisme:=m_oDiag.organismePresNom, EcartTolereBuses:=EcartTolere, PulveisPompeDoseuses:=opulve.isPompesDoseuses)
 
             'Buses
             Dim pctBusesUsees As Decimal
@@ -183,6 +183,46 @@ Public Class EtatSyntheseMesures
                 'm_ods.SyntheseDebitmetreDetail.AddSyntheseDebitmetreDetailRow(idDiag:=m_odiag.id, nMesure:=1, NbreBuses:=diagnosticHelp5622.NbBuses_m1, Pressionbar:=diagnosticHelp5622.Pression_m1, DebitAfficheur:=diagnosticHelp5622.DebitAfficheur_m1, debitEtalon:=diagnosticHelp5622.DebitEtalon_m1, Ecartpct:=diagnosticHelp5622.EcartPct_m1, type:=diagnosticHelp5622.iditem)
                 'm_ods.SyntheseDebitmetreDetail.AddSyntheseDebitmetreDetailRow(idDiag:=m_odiag.id, nMesure:=2, NbreBuses:=diagnosticHelp5622.NbBuses_m2, Pressionbar:=diagnosticHelp5622.Pression_m2, DebitAfficheur:=diagnosticHelp5622.DebitAfficheur_m2, debitEtalon:=diagnosticHelp5622.DebitEtalon_m2, Ecartpct:=diagnosticHelp5622.EcartPct_m2, type:=diagnosticHelp5622.iditem)
                 'm_ods.SyntheseDebitmetreDetail.AddSyntheseDebitmetreDetailRow(idDiag:=m_odiag.id, nMesure:=3, NbreBuses:=diagnosticHelp5622.NbBuses_m3, Pressionbar:=diagnosticHelp5622.Pression_m3, DebitAfficheur:=diagnosticHelp5622.DebitAfficheur_m3, debitEtalon:=diagnosticHelp5622.DebitEtalon_m3, Ecartpct:=diagnosticHelp5622.EcartPct_m3, type:=diagnosticHelp5622.iditem)
+            End If
+            If opulve.isPompesDoseuses Then
+                Dim ResultatPompe As String
+                Dim ResultatMesure As String
+                For Each oPompe As DiagnosticHelp12123Pompe In m_oDiag.diagnosticHelp12123.lstPompes
+                    If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
+                        ResultatPompe = "OK"
+                    Else
+                        ResultatPompe = "IMPRECISION"
+
+                    End If
+                    For Each oMesure As DiagnosticHelp12123Mesure In oPompe.lstMesures
+                        If oMesure.Resultat = DiagnosticItem.EtatDiagItemOK Then
+                            ResultatMesure = "OK"
+                        Else
+                            ResultatMesure = "IMPRECISION"
+
+                        End If
+                        m_ods.Synth12123.AddSynth12123Row(NumPompe:=oPompe.numero,
+                                                          PressionMesurePompe:=oPompe.PressionMesure,
+                                                          DebitPompe:=oPompe.debitMesure,
+                                                          ResultatPompe:=ResultatPompe,
+                                                          NumMesure:=oMesure.numeroMesure,
+                                                          PressionMoyenne:=oPompe.PressionMoyenne,
+                                                          NbBuses:=oPompe.NbBuses,
+                                                          DebitReel:=oPompe.DebitReelRND,
+                                                          DebitTotal:=oPompe.DebitTotalRND,
+                                                          Reglage:=oMesure.ReglageDispositif,
+                                                          DebitTheo:=oMesure.DebitTheoriqueRND,
+                                                          TempMesure:=oMesure.TempsMesure,
+                                                          QteEau:=oMesure.QteEauPulverisee,
+                                                          MasseMoins:=oMesure.MasseInitiale,
+                                                          MassePlus:=oMesure.MasseAspire,
+                                                          QteProduit:=oMesure.QteProduitConso,
+                                                          DosageReel:=oMesure.DosageReelRND,
+                                                          Ecart:=oMesure.EcartReglageRND,
+                                                          ResultatMesure:=ResultatMesure)
+                    Next
+
+                Next
             End If
 
 

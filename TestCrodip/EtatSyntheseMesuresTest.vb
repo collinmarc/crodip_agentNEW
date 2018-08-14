@@ -137,7 +137,7 @@ Imports CrystalDecisions.Shared
         Dim strReportName As String = r1.ResourceName
 
         objReport = New ReportDocument
-        objReport.Load("ModuleDocumentaire" & "/" & strReportName)
+        objReport.Load("ModuleDocumentaire//_parametres" & "/" & strReportName)
 
         objReport.SetDataSource(oDs)
         Dim CrExportOptions As ExportOptions
@@ -212,4 +212,74 @@ Imports CrystalDecisions.Shared
 
         CSFile.open(Globals.CONST_PATH_EXP & m_FileName)
     End Sub
+
+
+    <TestMethod()>
+    Public Sub TestGenereSM_12123()
+        Dim oEtat As EtatSyntheseMesures
+        Dim oDiag As Diagnostic
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+
+        oExploit = createExploitation()
+        oPulve = createPulve(oExploit)
+        oPulve.isPompesDoseuses = True
+        oPulve.nbPompesDoseuses = 2
+        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+
+        oDiag = createDiagnostic(oExploit, oPulve)
+        Dim oPompe As DiagnosticHelp12123Pompe
+        Dim oMesure As DiagnosticHelp12123Mesure
+        oPompe = oDiag.diagnosticHelp12123.lstPompes(0)
+        oPompe.debitMesure = 10.1
+        oPompe.PressionMesure = 3.7
+        oPompe.PressionMoyenne = 2.6
+        oPompe.NbBuses = 3
+
+        oMesure = oPompe.lstMesures(0)
+        oMesure.ReglageDispositif = 10
+        oMesure.TempsMesure = 11
+        oMesure.MasseInitiale = 12
+        oMesure.MasseAspire = 13
+
+        oMesure = oPompe.lstMesures(1)
+        oMesure.ReglageDispositif = 20
+        oMesure.TempsMesure = 21
+        oMesure.MasseInitiale = 22
+        oMesure.MasseAspire = 23
+        oMesure = oPompe.lstMesures(2)
+        oMesure.ReglageDispositif = 30
+        oMesure.TempsMesure = 31
+        oMesure.MasseInitiale = 32
+        oMesure.MasseAspire = 33
+
+        oPompe = oDiag.diagnosticHelp12123.lstPompes(1)
+        oPompe.debitMesure = 110.1
+        oPompe.PressionMesure = 13.7
+        oPompe.PressionMoyenne = 12.6
+        oPompe.NbBuses = 13
+
+        oMesure = oPompe.lstMesures(0)
+        oMesure.ReglageDispositif = 110
+        oMesure.TempsMesure = 111
+        oMesure.MasseInitiale = 112
+        oMesure.MasseAspire = 113
+        oMesure = oPompe.lstMesures(1)
+        oMesure.ReglageDispositif = 120
+        oMesure.TempsMesure = 121
+        oMesure.MasseInitiale = 122
+        oMesure.MasseAspire = 123
+        oMesure = oPompe.lstMesures(2)
+        oMesure.ReglageDispositif = 130
+        oMesure.TempsMesure = 131
+        oMesure.MasseInitiale = 132
+        oMesure.MasseAspire = 133
+
+
+        oEtat = New EtatSyntheseMesures(oDiag)
+        Assert.IsTrue(oEtat.GenereEtat())
+        Assert.IsNotNull(oEtat.getFileName())
+        Assert.IsTrue(oEtat.Open())
+    End Sub
+
 End Class

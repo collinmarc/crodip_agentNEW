@@ -200,14 +200,14 @@ Public Class CRODIPTest
         oDiag.setOrganisme(m_oAgent)
         Dim oDiagBuses As New DiagnosticBuses()
         oDiagBuses.marque = "DBMarque1"
-        oDiagBuses.nombre = "DBNombre1"
+        oDiagBuses.nombre = 5
         oDiagBuses.genre = "DBGenre1"
         oDiagBuses.calibre = "DBCalibre1"
         oDiagBuses.couleur = "DBCouleur1"
-        oDiagBuses.debitMoyen = "DBDebitMoyen1"
-        oDiagBuses.debitNominal = "DBdebitNominal1"
+        oDiagBuses.debitMoyen = 3.1
+        oDiagBuses.debitNominal = 3.1
         oDiagBuses.idLot = "1"
-        oDiagBuses.ecartTolere = "DBEcartTolere1"
+        oDiagBuses.ecartTolere = 7
         oDiagBuses.dateModificationAgent = CSDate.ToCRODIPString(Date.Now())
         oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
         'Ajout des Détails des buses 
@@ -224,25 +224,25 @@ Public Class CRODIPTest
 
         oDiagBuses = New DiagnosticBuses()
         oDiagBuses.marque = "DBMarque2"
-        oDiagBuses.nombre = "DBNombre2"
+        oDiagBuses.nombre = 5
         oDiagBuses.genre = "DBGenre2"
         oDiagBuses.calibre = "DBCalibre2"
         oDiagBuses.couleur = "DBCouleur2"
-        oDiagBuses.debitMoyen = "DBDebitMoyen2"
-        oDiagBuses.debitNominal = "DBdebitNominal2"
+        oDiagBuses.debitMoyen = 3.2
+        oDiagBuses.debitNominal = 3.3
         oDiagBuses.idLot = "2"
-        oDiagBuses.ecartTolere = "DBEcartTolere2"
+        oDiagBuses.ecartTolere = 3.4
         oDiagBuses.dateModificationAgent = CSDate.ToCRODIPString(Date.Now())
         oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
         'Detail 1
         oDiagBusesDetail = New DiagnosticBusesDetail()
-        oDiagBusesDetail.debit = "2.6"
-        oDiagBusesDetail.ecart = "0.6"
+        oDiagBusesDetail.debit = 2.6
+        oDiagBusesDetail.ecart = 0.6
         oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         'Détail2
         oDiagBusesDetail = New DiagnosticBusesDetail()
-        oDiagBusesDetail.debit = "2.7"
-        oDiagBusesDetail.ecart = "0.7"
+        oDiagBusesDetail.debit = 2.7
+        oDiagBusesDetail.ecart = 0.7
         oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
 
 
@@ -250,23 +250,23 @@ Public Class CRODIPTest
 
         'Mano1
         oDiagMano542 = New DiagnosticMano542()
-        oDiagMano542.pressionControle = "1.6"
-        oDiagMano542.pressionPulve = "1.7"
+        oDiagMano542.pressionControle = 1.6
+        oDiagMano542.pressionPulve = 1.7
         oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
         'Mano2
         oDiagMano542 = New DiagnosticMano542()
-        oDiagMano542.pressionControle = "2"
-        oDiagMano542.pressionPulve = "2.1"
+        oDiagMano542.pressionControle = 2
+        oDiagMano542.pressionPulve = 2.1
         oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
         'Mano3
         oDiagMano542 = New DiagnosticMano542()
-        oDiagMano542.pressionControle = "3"
-        oDiagMano542.pressionPulve = "3.1"
+        oDiagMano542.pressionControle = 3
+        oDiagMano542.pressionPulve = 3.1
         oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
         'Mano4
         oDiagMano542 = New DiagnosticMano542()
-        oDiagMano542.pressionControle = "4"
-        oDiagMano542.pressionPulve = "4.1"
+        oDiagMano542.pressionControle = 4
+        oDiagMano542.pressionPulve = 4.1
         oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
 
 
@@ -276,51 +276,51 @@ Public Class CRODIPTest
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = 1
         oDiagTroncons833.idColumn = 1
-        oDiagTroncons833.pressionSortie = "1.6"
+        oDiagTroncons833.pressionSortie = 1.6
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = 1
         oDiagTroncons833.idColumn = 2
-        oDiagTroncons833.pressionSortie = "1.7"
+        oDiagTroncons833.pressionSortie = 1.7
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = 2
         oDiagTroncons833.idColumn = 1
-        oDiagTroncons833.pressionSortie = "2.6"
+        oDiagTroncons833.pressionSortie = 2.6
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = 2
         oDiagTroncons833.idColumn = 2
-        oDiagTroncons833.pressionSortie = "2.7"
+        oDiagTroncons833.pressionSortie = 2.7
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = 3
         oDiagTroncons833.idColumn = 1
-        oDiagTroncons833.pressionSortie = "3.6"
+        oDiagTroncons833.pressionSortie = 3.6
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = 3
         oDiagTroncons833.idColumn = 2
-        oDiagTroncons833.pressionSortie = "3.7"
+        oDiagTroncons833.pressionSortie = 3.7
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = 4
         oDiagTroncons833.idColumn = 1
-        oDiagTroncons833.pressionSortie = "4.6"
+        oDiagTroncons833.pressionSortie = 4.6
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = 4
         oDiagTroncons833.idColumn = 2
-        oDiagTroncons833.pressionSortie = "4.7"
+        oDiagTroncons833.pressionSortie = 4.7
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
 
