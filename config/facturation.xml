@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <root>
-  <isActive>False</isActive>
-  <siren></siren>
-  <tva></tva>
-  <rcs></rcs>
-  <footer></footer>
+  <isActive>true</isActive>
+  <siren>444681705</siren>
+  <tva>444681705111222333</tva>
+  <rcs>RCS01</rcs>
+  <footer>Pied de Page</footer>
   <logo></logo>
   <logo_tn></logo_tn>
 </root>

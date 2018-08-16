@@ -338,6 +338,9 @@
     <Compile Include="Application\diagnostic\diagnostic_dlghelp571.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\frmdiagnostic_facturationCoProp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\diagnostic_facturation.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2012,6 +2015,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp571.resx">
       <DependentUpon>diagnostic_dlghelp571.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_facturationCoProp.resx">
+      <DependentUpon>frmdiagnostic_facturationCoProp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_facturation.resx">
       <DependentUpon>diagnostic_facturation.vb</DependentUpon>

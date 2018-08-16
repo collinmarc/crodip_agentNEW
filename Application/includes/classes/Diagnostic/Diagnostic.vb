@@ -2930,10 +2930,53 @@ Public Class Diagnostic
 
             oReturn = New ds_EtatBL()
             Dim oRow As ds_EtatBL.FactureRow
-            oRow = oReturn.Facture.AddFactureRow(Me.pulverisateurNumNational, Me.proprietaireRaisonSociale, Me.organismePresNom, MontantHT:=Me.TotalHT, MontantTVA:=Me.TotalTVA, MontantTTC:=Me.TotalTTC, refacture:="", dateFacture:=Date.Now(), Footer:="", LogoFileName:="", Logo:=Nothing)
-            oReturn.Pulve.AddPulveRow(oRow, pulverisateurMarque, pulverisateurModele, pulverisateurType, Me.pulverisateurCategorie, pulverisateurLargeur, pulverisateurAnneeAchat, pulverisateurAttelage, Regulation:=pulverisateurRegulation)
-            oReturn.Proprio.AddProprioRow(oRow, proprietaireNom & " " & proprietairePrenom, proprietaireAdresse, proprietaireCodePostal, proprietaireCommune, proprietaireCodeApe, proprietaireNumeroSiren, proprietaireTelephoneFixe, "", proprietaireTelephonePortable, proprietaireEmail)
-            oReturn.Organisme.AddOrganismeRow(oRow, adresse:=organismePresAdresse, Code_postal:=organismePresCodePostal, Commune:=organismePresCommune, Inspecteur:=inspecteurNom & " " & inspecteurPrenom, LieuControle:=Me.controleLieu, Site:=Me.controleSite, Nom_du_site:=Me.controleNomSite, TelFax:="", SIREN:="", TVA:="", RCS:="")
+            Dim oStructure As New Structuree()
+            oStructure = StructureManager.getStructureById(Me.organismeOriginePresId)
+            oRow = oReturn.Facture.AddFactureRow(IdPulve:=Me.pulverisateurNumNational,
+                                                 NomOrganisme:=Me.organismePresNom,
+                                                 MontantHT:=Me.TotalHT,
+                                                 MontantTVA:=Me.TotalTVA,
+                                                 MontantTTC:=Me.TotalTTC,
+                                                 refacture:="",
+                                                 dateFacture:=Date.Now(),
+                                                 Footer:="",
+                                                 LogoFileName:="",
+                                                 Logo:=Nothing)
+            oReturn.Pulve.AddPulveRow(oRow,
+                                      Marque:=pulverisateurMarque,
+                                      Modele:=pulverisateurModele,
+                                      Type:=pulverisateurType,
+                                      Categorie:=Me.pulverisateurCategorie,
+                                      _Largeur_rang:=pulverisateurLargeur,
+                                      Annee:=pulverisateurAnneeAchat,
+                                      Attelage:=pulverisateurAttelage,
+                                      Regulation:=pulverisateurRegulation)
+
+            oReturn.Proprio.AddProprioRow(
+                                          RS:=proprietaireRaisonSociale,
+                                          Nom:=proprietaireNom & " " & proprietairePrenom,
+                                          Adresse:=proprietaireAdresse,
+                                          CodePostal:=proprietaireCodePostal,
+                                          Commune:=proprietaireCommune,
+                                          CodeAPE:=proprietaireCodeApe,
+                                          SIREN:=proprietaireNumeroSiren,
+                                          Tel:=proprietaireTelephoneFixe,
+                                          Fax:="",
+                                          Port:=proprietaireTelephonePortable,
+                                          Mail:=proprietaireEmail)
+
+            oReturn.Organisme.AddOrganismeRow(parentFactureRowByFacture_Organisme:=oRow,
+                                              adresse:=oStructure.adresse,
+                                              Code_postal:=oStructure.codePostal,
+                                              Commune:=oStructure.commune,
+                                              Inspecteur:=inspecteurNom & " " & inspecteurPrenom,
+                                              LieuControle:=Me.controleLieu,
+                                              Site:=Me.controleSite,
+                                              Nom_du_site:=Me.controleNomSite,
+                                              TelFax:=oStructure.telephoneFixe & "" & oStructure.telephoneFax,
+                                              SIREN:="",
+                                              TVA:="",
+                                              RCS:="")
 
         Catch ex As Exception
             CSDebug.dispError("Diagnostic.generateDataSetForBL ERR" & ex.Message)

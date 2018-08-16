@@ -36,13 +36,34 @@ Public Class EtatFacture
     Private m_Reference As String
     Private m_ReportName As String
 
-    Public Sub New(pDiag As Diagnostic, pReference As String)
+    Private m_rsClient As String
+    Private m_NomPrenomClient As String
+    Private m_adresseClient As String
+    Private m_cpClient As String
+    Private m_communeClient As String
+    Public Sub New(pDiag As Diagnostic, pReference As String, Optional pExploitation As Exploitation = Nothing)
         m_oDiag = pDiag
+        If pExploitation Is Nothing Then
+            'Par Défaut les Coordonnées sont celle prises dans le Diag
+            m_rsClient = m_oDiag.proprietaireRaisonSociale
+            m_NomPrenomClient = m_oDiag.proprietaireNom & " " & m_oDiag.proprietairePrenom
+            m_adresseClient = m_oDiag.proprietaireAdresse
+            m_cpClient = m_oDiag.proprietaireCodePostal
+            m_communeClient = m_oDiag.proprietaireCommune
+        Else
+            m_rsClient = pExploitation.raisonSociale
+            m_NomPrenomClient = pExploitation.nomExploitant & " " & pExploitation.prenomExploitant
+            m_adresseClient = pExploitation.adresse
+            m_cpClient = pExploitation.codePostal
+            m_communeClient = pExploitation.commune
+        End If
+
         m_lstPresta = New List(Of facturePrestation)
         m_Reference = pReference
         Dim r1 As New cr_Facture()
         m_ReportName = r1.ResourceName
     End Sub
+
     Public Function AddPresta(pLib As String, pPU As String, pQte As Integer, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal) As Boolean
         Dim bReturn As Boolean
         Try
@@ -71,7 +92,7 @@ Public Class EtatFacture
                 Dim CrExportOptions As ExportOptions
                 Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                 Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                m_FileName = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_FACTURE) & ".pdf"
+                m_FileName = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_FACTURE) & ".pdf"
                 CrDiskFileDestinationOptions.DiskFileName = m_FileName
                 CrExportOptions = objReport.ExportOptions
                 With CrExportOptions
@@ -96,11 +117,23 @@ Public Class EtatFacture
 
             Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(".\config\facturation.xml")
             Dim oStruct As Structuree
-            oStruct = StructureManager.getStructureById(agentCourant.idStructure)
+            oStruct = StructureManager.getStructureById(m_oDiag.organismeOriginePresId)
 
 
             'Génération du DataSet par le DiagNostic (Idem BL)
             m_ods = m_oDiag.generateDataSetForBL()
+            m_ods.Proprio.Clear()
+            m_ods.Proprio.AddProprioRow(RS:=m_rsClient,
+                                        Nom:=m_NomPrenomClient,
+                                        Adresse:=m_adresseClient,
+                                        CodePostal:=m_cpClient,
+                                        Commune:=m_communeClient,
+                                        Fax:="",
+                                        CodeAPE:="",
+                                        Mail:="",
+                                        Port:="",
+                                        SIREN:="",
+                                        Tel:="")
             For Each oPresta As facturePrestation In m_lstPresta
                 m_ods.Prestation.AddPrestationRow(oPresta.m_Libelle, oPresta.m_TotalHT, oPresta.m_TVA, oPresta.m_TotalTTC, oPresta.m_qte, oPresta.m_PU)
 

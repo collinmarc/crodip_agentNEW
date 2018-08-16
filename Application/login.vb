@@ -864,11 +864,13 @@ Public Class login
         Dim oDiag As Diagnostic
         Dim oAgent As Agent
 
-        oPulve = PulverisateurManager.getPulverisateurById("2-81-22")
+        oPulve = PulverisateurManager.getPulverisateurById("2-81-50")
+        oPulve.modeUtilisation = "Co-Propriété"
+        oPulve.nombreExploitants = 3
         oAgent = AgentManager.getAgentByNumeroNational("MCII")
         If oPulve IsNot Nothing Then
             oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
-            oDiag = New Diagnostic(agentCourant, oPulve, oExploit)
+            oDiag = New Diagnostic(oAgent, oPulve, oExploit)
             Dim oFrm As New diagnostic_facturation()
             oFrm.setContexte(oDiag, oExploit, oAgent)
 
