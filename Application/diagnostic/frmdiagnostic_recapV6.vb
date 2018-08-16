@@ -890,40 +890,6 @@ Public Class frmdiagnostic_recapV6
         End Try
     End Sub
 
-    ' Enregistrement de la facture (pour synchronisation)
-    Private Sub createFacture()
-        Try
-
-            '############################################################
-            ' Sauvegarde des infos générales de la facture
-            Dim newFacture As DiagnosticFacture = New DiagnosticFacture
-            newFacture.id = m_diagnostic.id
-
-            newFacture.factureReference = ""
-            newFacture.factureDate = ""
-            newFacture.factureTotal = ""
-
-            newFacture.emetteurOrganisme = ""
-            newFacture.emetteurOrganismeAdresse = ""
-            newFacture.emetteurOrganismeCpVille = ""
-            newFacture.emetteurOrganismeTelFax = ""
-            newFacture.emetteurOrganismeSiren = ""
-            newFacture.emetteurOrganismeTva = ""
-            newFacture.emetteurOrganismeRcs = ""
-
-            newFacture.recepteurRaisonSociale = ""
-            newFacture.recepteurProprio = ""
-            newFacture.recepteurCpVille = ""
-
-            DiagnosticFactureManager.save(newFacture)
-            '############################################################
-            ' Sauvegarde des items de la facture
-
-
-        Catch ex As Exception
-            CSDebug.dispError("DiagnosticRecap.createFacture() : " & ex.Message)
-        End Try
-    End Sub
 
     Private Sub btn_finalisationDiag_imprimerSynthese_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_imprimerSynthese.Click
 

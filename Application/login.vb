@@ -74,6 +74,7 @@ Public Class login
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents btnTestFacturation As System.Windows.Forms.Button
+    Friend WithEvents brnTestDiagRecap As System.Windows.Forms.Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -92,6 +93,7 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.btnTestFacturation = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.cbTestRIFin = New System.Windows.Forms.Button()
@@ -106,7 +108,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.btnTestFacturation = New System.Windows.Forms.Button()
+        Me.brnTestDiagRecap = New System.Windows.Forms.Button()
         Me.formLogin.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
@@ -283,6 +285,7 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.brnTestDiagRecap)
         Me.GroupBox_test.Controls.Add(Me.btnTestFacturation)
         Me.GroupBox_test.Controls.Add(Me.Button2)
         Me.GroupBox_test.Controls.Add(Me.Button1)
@@ -295,6 +298,17 @@ Public Class login
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
+        '
+        'btnTestFacturation
+        '
+        Me.btnTestFacturation.BackColor = System.Drawing.SystemColors.Control
+        Me.btnTestFacturation.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTestFacturation.Location = New System.Drawing.Point(267, 19)
+        Me.btnTestFacturation.Name = "btnTestFacturation"
+        Me.btnTestFacturation.Size = New System.Drawing.Size(104, 23)
+        Me.btnTestFacturation.TabIndex = 31
+        Me.btnTestFacturation.Text = "Facturation"
+        Me.btnTestFacturation.UseVisualStyleBackColor = False
         '
         'Button2
         '
@@ -459,16 +473,16 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'btnTestFacturation
+        'brnTestDiagRecap
         '
-        Me.btnTestFacturation.BackColor = System.Drawing.SystemColors.Control
-        Me.btnTestFacturation.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnTestFacturation.Location = New System.Drawing.Point(267, 19)
-        Me.btnTestFacturation.Name = "btnTestFacturation"
-        Me.btnTestFacturation.Size = New System.Drawing.Size(104, 23)
-        Me.btnTestFacturation.TabIndex = 31
-        Me.btnTestFacturation.Text = "Facturation"
-        Me.btnTestFacturation.UseVisualStyleBackColor = False
+        Me.brnTestDiagRecap.BackColor = System.Drawing.SystemColors.Control
+        Me.brnTestDiagRecap.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.brnTestDiagRecap.Location = New System.Drawing.Point(24, 77)
+        Me.brnTestDiagRecap.Name = "brnTestDiagRecap"
+        Me.brnTestDiagRecap.Size = New System.Drawing.Size(104, 23)
+        Me.brnTestDiagRecap.TabIndex = 32
+        Me.brnTestDiagRecap.Text = "Diag Recap"
+        Me.brnTestDiagRecap.UseVisualStyleBackColor = False
         '
         'login
         '

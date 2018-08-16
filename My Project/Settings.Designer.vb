@@ -163,15 +163,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("2.5.4")>  _
-    Public ReadOnly Property NumVersion() As String
-        Get
-            Return CType(Me("NumVersion"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("moduledocumentaire/_parametres")>  _
     Public ReadOnly Property RepertoireParametres() As String
         Get
@@ -364,15 +355,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("V2.5.4.6")>  _
-    Public ReadOnly Property DBVersionExpected() As String
-        Get
-            Return CType(Me("DBVersionExpected"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
     Public ReadOnly Property WSCrodipProduction() As Boolean
         Get
@@ -382,19 +364,37 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20180706120000")>  _
-    Public ReadOnly Property NumBuild() As String
+     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+    Public ReadOnly Property DesacMat() As Boolean
         Get
-            Return CType(Me("NumBuild"),String)
+            Return CType(Me("DesacMat"),Boolean)
         End Get
     End Property
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-    Public ReadOnly Property DesacMat() As Boolean
+     Global.System.Configuration.DefaultSettingValueAttribute("2.6")>  _
+    Public ReadOnly Property NumVersion() As String
         Get
-            Return CType(Me("DesacMat"),Boolean)
+            Return CType(Me("NumVersion"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("V2.6")>  _
+    Public ReadOnly Property DBVersionExpected() As String
+        Get
+            Return CType(Me("DBVersionExpected"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20180816160000")>  _
+    Public ReadOnly Property NumBuild() As String
+        Get
+            Return CType(Me("NumBuild"),String)
         End Get
     End Property
 End Class

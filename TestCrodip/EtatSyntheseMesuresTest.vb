@@ -282,4 +282,239 @@ Imports CrystalDecisions.Shared
         Assert.IsTrue(oEtat.Open())
     End Sub
 
+    <TestMethod()>
+    Public Sub TestGenereSM_BusesEcart7()
+        Dim oDiag As Diagnostic
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        Dim oDiagBuses As DiagnosticBuses
+        Dim oDiagBusesDetail As DiagnosticBusesDetail
+        Dim idDiag As String
+
+        'Arrange 
+        '============
+
+        oExploit = createExploitation()
+        oPulve = createPulve(oExploit)
+        oDiag = createDiagnostic(oExploit, oPulve)
+
+        oDiag.setOrganisme(m_oAgent)
+        oDiag.controleDateDebut = Date.Now()
+        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now())
+        oDiag.manometrePressionTravail = "3"
+        'I.1   2 Lots de buses 
+        '-----------------------
+        'Lot1
+        oDiagBuses = New DiagnosticBuses()
+        oDiagBuses.marque = "DBMarque1"
+        oDiagBuses.nombre = 5
+        oDiagBuses.nombrebusesusees = "1"
+        oDiagBuses.genre = "DBGenre1"
+        oDiagBuses.calibre = "DBCalibre1"
+        oDiagBuses.couleur = "DBCouleur1"
+        oDiagBuses.debitMoyen = "13,5"
+        oDiagBuses.debitNominal = "10,2"
+        oDiagBuses.idLot = "1"
+        oDiagBuses.ecartTolere = "5"
+        oDiagBuses.debitMin = "15,5"
+        oDiagBuses.debitMax = "15,5"
+        oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
+
+        'Ajout des Détails des buses du lot1
+        'Detail 1 du lot1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 1
+        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.debit = "5,5"
+        oDiagBusesDetail.ecart = "4"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Détail 2 du lot1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 2
+        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.debit = "5,7"
+        oDiagBusesDetail.ecart = "0,7"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Détail 3 du lot1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 3
+        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.debit = "6,7"
+        oDiagBusesDetail.ecart = "15,7"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Détail 4 du lot1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 4
+        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.debit = "6.7"
+        oDiagBusesDetail.ecart = "15"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+
+        'Détail 5 du lot1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 5
+        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.debit = "6.7"
+        oDiagBusesDetail.ecart = "1,5"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Lot2
+        oDiagBuses = New DiagnosticBuses()
+        oDiagBuses.marque = "DBMarque2"
+        oDiagBuses.nombre = "2"
+        oDiagBuses.nombrebusesusees = "1"
+        oDiagBuses.genre = "DBGenre2"
+        oDiagBuses.calibre = "DBCalibre2"
+        oDiagBuses.couleur = "DBCouleur2"
+        oDiagBuses.debitMoyen = "23,5"
+        oDiagBuses.debitNominal = "20,2"
+        oDiagBuses.idLot = "2"
+        oDiagBuses.ecartTolere = "5"
+        oDiagBuses.debitMin = "25,5"
+        oDiagBuses.debitMax = "25,5"
+        oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
+
+        'Ajout des Détails des buses du lot2
+        'Detail 1 du lot2
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 1
+        oDiagBusesDetail.idLot = 2
+        oDiagBusesDetail.debit = "2,6"
+        oDiagBusesDetail.ecart = "0,2"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Détail 2 du lot2
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 2
+        oDiagBusesDetail.idLot = 2
+        oDiagBusesDetail.debit = "5,7"
+        oDiagBusesDetail.ecart = "2,7"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+
+        'Les DiagItems ne sont pas utilisés dans le rapport de synthese
+
+        Dim oEtat As EtatSyntheseMesures
+        oEtat = New EtatSyntheseMesures(oDiag)
+        Assert.IsTrue(oEtat.GenereEtat())
+        Assert.IsNotNull(oEtat.getFileName())
+        Assert.IsTrue(oEtat.Open())
+    End Sub
+    <TestMethod()>
+    Public Sub TestGenereSM_BusesEcart10()
+        Dim oDiag As Diagnostic
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        Dim oDiagBuses As DiagnosticBuses
+        Dim oDiagBusesDetail As DiagnosticBusesDetail
+        Dim idDiag As String
+
+        'Arrange 
+        '============
+
+        oExploit = createExploitation()
+        oPulve = createPulve(oExploit)
+        oDiag = createDiagnostic(oExploit, oPulve)
+
+        oDiag.setOrganisme(m_oAgent)
+        oDiag.controleDateDebut = Date.Now()
+        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now())
+        oDiag.manometrePressionTravail = "3"
+
+        'Passage de l'écart toléré à 10 
+        'NB: le diag créé est mis à 7
+
+        oDiag.diagnosticBusesList.Liste(0).ecartTolere = 10
+        'I.1   2 Lots de buses 
+        '-----------------------
+        'Lot1
+        oDiagBuses = New DiagnosticBuses()
+        oDiagBuses.marque = "DBMarque1"
+        oDiagBuses.nombre = 5
+        oDiagBuses.nombrebusesusees = "1"
+        oDiagBuses.genre = "DBGenre1"
+        oDiagBuses.calibre = "DBCalibre1"
+        oDiagBuses.couleur = "DBCouleur1"
+        oDiagBuses.debitMoyen = "13,5"
+        oDiagBuses.debitNominal = "10,2"
+        oDiagBuses.idLot = "1"
+        oDiagBuses.ecartTolere = "10"
+        oDiagBuses.debitMin = "15,5"
+        oDiagBuses.debitMax = "15,5"
+        oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
+
+        'Ajout des Détails des buses du lot1
+        'Detail 1 du lot1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 1
+        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.debit = "5,5"
+        oDiagBusesDetail.ecart = "4"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Détail 2 du lot1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 2
+        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.debit = "5,7"
+        oDiagBusesDetail.ecart = "0,7"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Détail 3 du lot1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 3
+        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.debit = "6,7"
+        oDiagBusesDetail.ecart = "15,7"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Détail 4 du lot1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 4
+        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.debit = "6.7"
+        oDiagBusesDetail.ecart = "15"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+
+        'Détail 5 du lot1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 5
+        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.debit = "6.7"
+        oDiagBusesDetail.ecart = "1,5"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Lot2
+        oDiagBuses = New DiagnosticBuses()
+        oDiagBuses.marque = "DBMarque2"
+        oDiagBuses.nombre = "2"
+        oDiagBuses.nombrebusesusees = "1"
+        oDiagBuses.genre = "DBGenre2"
+        oDiagBuses.calibre = "DBCalibre2"
+        oDiagBuses.couleur = "DBCouleur2"
+        oDiagBuses.debitMoyen = "23,5"
+        oDiagBuses.debitNominal = "20,2"
+        oDiagBuses.idLot = "2"
+        oDiagBuses.ecartTolere = "10"
+        oDiagBuses.debitMin = "25,5"
+        oDiagBuses.debitMax = "25,5"
+        oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
+
+        'Ajout des Détails des buses du lot2
+        'Detail 1 du lot2
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 1
+        oDiagBusesDetail.idLot = 2
+        oDiagBusesDetail.debit = "2,6"
+        oDiagBusesDetail.ecart = "0,2"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Détail 2 du lot2
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.idBuse = 2
+        oDiagBusesDetail.idLot = 2
+        oDiagBusesDetail.debit = "5,7"
+        oDiagBusesDetail.ecart = "2,7"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+
+        'Les DiagItems ne sont pas utilisés dans le rapport de synthese
+
+        Dim oEtat As EtatSyntheseMesures
+        oEtat = New EtatSyntheseMesures(oDiag)
+        Assert.IsTrue(oEtat.GenereEtat())
+        Assert.IsNotNull(oEtat.getFileName())
+        Assert.IsTrue(oEtat.Open())
+    End Sub
 End Class

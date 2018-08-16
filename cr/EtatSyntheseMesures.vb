@@ -26,9 +26,29 @@ Public Class EtatSyntheseMesures
 
                 m_oReportDocument = New ReportDocument
                 m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
+                'Dim olst As ReportObjects
+                'For Each oSubReport As ReportDocument In m_oReportDocument.Subreports
+                '    If oSubReport.Name = "cr_syntheseBuses10.rpt" Then
+                '        olst = oSubReport.ReportDefinition.ReportObjects
+                '        For Each obj As ReportObject In olst
+                '            If obj.Name = "LinePlus" Then
+                '                Dim oLine As LineObject
+                '                oLine = obj
+                '                Console.Write("Trouvé !!!" & oLine.Top & "/" & oLine.Bottom)
+                '                '                                oLine.LineColor = Color.Blue
+                '                '                                oLine.Bottom = 4996
+                '                '                               oLine.Top = 4996
+                '            End If
+                '        Next
+
+                '    End If
+                'Next
+                ''On Recherche le Sous Rapport qui contient un champ LinePlus
+                'For nSR As Integer = 0 To m_oReportDocument.Subreports.Count
+
+                'Next
 
                 m_oReportDocument.SetDataSource(m_ods)
-
                 If pExportPDF Then
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
@@ -99,7 +119,7 @@ Public Class EtatSyntheseMesures
                     If IsNumeric(oDetail.ecart) Then
                         dEcart = CDec(oDetail.ecart)
                     End If
-                    m_ods.debitBuses.AdddebitBusesRow(numBuse:=oDetail.idBuse + 1, IdLot:=oDetail.idLot, debit:=dDebit, ecartPourcentage:=dEcart, ssgroupe:=0, idDiag:=m_oDiag.id)
+                    m_ods.debitBuses.AdddebitBusesRow(numBuse:=oDetail.idBuse + 1, IdLot:=oDetail.idLot, debit:=dDebit, ecartPourcentage:=dEcart, ssgroupe:=0, idDiag:=m_oDiag.id, EcartTolere:=EcartTolere)
                 Next
 
             Next

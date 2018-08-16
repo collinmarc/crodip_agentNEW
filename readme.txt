@@ -4,6 +4,9 @@ Build:
 #133 : Modification des délais de vérification des maériels Agents
 #149 : Dissociation des causes
 #153 : Nombre de pompes doseuses
+#167 : Etat de synthese des buses (Ecart <>10 et <>15)
+#156 : Recap Diagnostique : Apperçu du rapport
+#160 : Facturation (Quantité, suppr, co-pro)
 
 Build:20180706120000
 #238 : Les bancs se désactivent après synhcro
