@@ -1,5 +1,6 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
+Imports System.Collections.Generic
 
 <Serializable(), XmlInclude(GetType(Diagnostic))> _
 Public Class DiagnosticFacture
@@ -20,7 +21,7 @@ Public Class DiagnosticFacture
     Private _recepteurCpVille As String
     Private _dateModificationAgent As String
     Private _dateModificationCrodip As String
-    Private _diagnosticFactureItems As DiagnosticFactureItemList
+    Private _diagnosticFactureItems As List(Of DiagnosticFactureItem)
 
 
     Sub New()
@@ -171,11 +172,11 @@ Public Class DiagnosticFacture
         End Set
     End Property
 
-    Public Property diagnosticFactureItems() As DiagnosticFactureItemList
+    Public Property diagnosticFactureItems() As List(Of DiagnosticFactureItem)
         Get
             Return _diagnosticFactureItems
         End Get
-        Set(ByVal Value As DiagnosticFactureItemList)
+        Set(ByVal Value As List(Of DiagnosticFactureItem))
             _diagnosticFactureItems = Value
         End Set
     End Property

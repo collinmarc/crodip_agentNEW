@@ -31,8 +31,6 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyVersion("2.6.0.0")>
 
-<Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("CrodipTest3")> 
-<Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodip2")> 
 <Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodip")> 
 <Assembly: AssemblyFileVersionAttribute("2018.07.06.1200")> 
 <Assembly: ComVisible(False)>

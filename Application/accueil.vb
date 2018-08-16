@@ -4549,6 +4549,7 @@ Public Class accueil
                 Statusbar.clear()
                 Me.Cursor = Cursors.WaitCursor
                 Dim frmFact As diagnostic_facturation = New diagnostic_facturation()
+                frmFact.setContexte(diagnosticCourant, clientCourant, agentCourant)
                 frmFact.ShowDialog()
                 Me.Cursor = Cursors.Default
                 bOK = (frmFact.DialogResult = Windows.Forms.DialogResult.OK)

@@ -73,6 +73,7 @@ Public Class login
     Friend WithEvents cbTestRIFin As Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents btnTestFacturation As System.Windows.Forms.Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -105,6 +106,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
+        Me.btnTestFacturation = New System.Windows.Forms.Button()
         Me.formLogin.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
@@ -281,6 +283,7 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.btnTestFacturation)
         Me.GroupBox_test.Controls.Add(Me.Button2)
         Me.GroupBox_test.Controls.Add(Me.Button1)
         Me.GroupBox_test.Controls.Add(Me.cbTestRIFin)
@@ -297,7 +300,7 @@ Public Class login
         '
         Me.Button2.BackColor = System.Drawing.SystemColors.Control
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(344, 49)
+        Me.Button2.Location = New System.Drawing.Point(244, 48)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(104, 23)
         Me.Button2.TabIndex = 30
@@ -455,6 +458,17 @@ Public Class login
         Me.lbl_WS.TabIndex = 31
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'btnTestFacturation
+        '
+        Me.btnTestFacturation.BackColor = System.Drawing.SystemColors.Control
+        Me.btnTestFacturation.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTestFacturation.Location = New System.Drawing.Point(267, 19)
+        Me.btnTestFacturation.Name = "btnTestFacturation"
+        Me.btnTestFacturation.Size = New System.Drawing.Size(104, 23)
+        Me.btnTestFacturation.TabIndex = 31
+        Me.btnTestFacturation.Text = "Facturation"
+        Me.btnTestFacturation.UseVisualStyleBackColor = False
         '
         'login
         '
@@ -840,6 +854,27 @@ Public Class login
         Dim ofrm As New ajout_pulve2()
         ofrm.setContexte(ajout_pulve2.MODE.AJOUT, oAgent, oPulve, oExploit, Nothing)
         TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
+
+    End Sub
+
+    Private Sub btnTestFacturation_Click(sender As Object, e As EventArgs) Handles btnTestFacturation.Click
+
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        Dim oDiag As Diagnostic
+        Dim oAgent As Agent
+
+        oPulve = PulverisateurManager.getPulverisateurById("2-81-22")
+        oAgent = AgentManager.getAgentByNumeroNational("MCII")
+        If oPulve IsNot Nothing Then
+            oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
+            oDiag = New Diagnostic(agentCourant, oPulve, oExploit)
+            Dim oFrm As New diagnostic_facturation()
+            oFrm.setContexte(oDiag, oExploit, oAgent)
+
+            oFrm.ShowDialog()
+
+        End If
 
     End Sub
 End Class

@@ -1278,6 +1278,7 @@
     </None>
     <None Include="img\Exit.jpg" />
     <None Include="My Project\DataSources\ControleMano.datasource" />
+    <None Include="My Project\DataSources\DiagnosticFactureItem.datasource" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

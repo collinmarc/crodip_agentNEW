@@ -17,6 +17,15 @@ Public Class diagnostic_facturation
 
     Public positionTop As Integer = 16
     Friend WithEvents btn_ImprimerFacture As System.Windows.Forms.Label
+    Friend WithEvents m_bsLignes As System.Windows.Forms.BindingSource
+    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents LibelleDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PrixUnitaireDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents QteDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents TvaDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PrixTotalDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnDelete As System.Windows.Forms.DataGridViewImageColumn
+
     Public prestaIncrement As Integer = 0
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -58,23 +67,6 @@ Public Class diagnostic_facturation
     Friend WithEvents btn_facturation_suivant As System.Windows.Forms.Label
     Friend WithEvents btn_facturation_imprimerContrat As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Panel72 As System.Windows.Forms.Panel
-    Friend WithEvents Panel74 As System.Windows.Forms.Panel
-    Friend WithEvents Label103 As System.Windows.Forms.Label
-    Friend WithEvents Panel75 As System.Windows.Forms.Panel
-    Friend WithEvents Label104 As System.Windows.Forms.Label
-    Friend WithEvents panelTarifs_libelle As System.Windows.Forms.Panel
-    Friend WithEvents panelTarifs_prix As System.Windows.Forms.Panel
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents panelTarifs_tva As System.Windows.Forms.Panel
-    Friend WithEvents panelTarifs_prixTTC As System.Windows.Forms.Panel
-    Friend WithEvents Panel4 As System.Windows.Forms.Panel
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents Label11 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents facturation_totalHT As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents facturation_totalTVA As System.Windows.Forms.TextBox
@@ -88,7 +80,12 @@ Public Class diagnostic_facturation
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents btn_facturation_imprimerBL As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_facturation))
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label_diagnostic_61 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -113,34 +110,18 @@ Public Class diagnostic_facturation
         Me.tb_txTVA = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
-        Me.Panel72 = New System.Windows.Forms.Panel()
-        Me.Panel74 = New System.Windows.Forms.Panel()
-        Me.Label103 = New System.Windows.Forms.Label()
-        Me.Panel75 = New System.Windows.Forms.Panel()
-        Me.Label104 = New System.Windows.Forms.Label()
-        Me.panelTarifs_libelle = New System.Windows.Forms.Panel()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.panelTarifs_prix = New System.Windows.Forms.Panel()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.panelTarifs_tva = New System.Windows.Forms.Panel()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.panelTarifs_prixTTC = New System.Windows.Forms.Panel()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
+        Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrixUnitaireDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TvaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrixTotalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
-        Me.Panel72.SuspendLayout()
-        Me.Panel74.SuspendLayout()
-        Me.Panel75.SuspendLayout()
-        Me.panelTarifs_libelle.SuspendLayout()
-        Me.panelTarifs_prix.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.panelTarifs_tva.SuspendLayout()
-        Me.panelTarifs_prixTTC.SuspendLayout()
-        Me.Panel4.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -437,197 +418,110 @@ Public Class diagnostic_facturation
         Me.listTarif_categories.Size = New System.Drawing.Size(208, 21)
         Me.listTarif_categories.TabIndex = 0
         '
-        'Panel72
+        'DataGridView1
         '
-        Me.Panel72.AutoScroll = True
-        Me.Panel72.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.Panel72.Controls.Add(Me.Panel74)
-        Me.Panel72.Controls.Add(Me.Panel75)
-        Me.Panel72.Controls.Add(Me.panelTarifs_libelle)
-        Me.Panel72.Controls.Add(Me.panelTarifs_prix)
-        Me.Panel72.Controls.Add(Me.Panel1)
-        Me.Panel72.Controls.Add(Me.panelTarifs_tva)
-        Me.Panel72.Controls.Add(Me.panelTarifs_prixTTC)
-        Me.Panel72.Controls.Add(Me.Panel4)
-        Me.Panel72.Location = New System.Drawing.Point(16, 64)
-        Me.Panel72.Name = "Panel72"
-        Me.Panel72.Size = New System.Drawing.Size(928, 600)
-        Me.Panel72.TabIndex = 32
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridView1.AutoGenerateColumns = False
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LibelleDataGridViewTextBoxColumn, Me.PrixUnitaireDataGridViewTextBoxColumn, Me.QteDataGridViewTextBoxColumn, Me.TvaDataGridViewTextBoxColumn, Me.PrixTotalDataGridViewTextBoxColumn, Me.columnDelete})
+        Me.DataGridView1.DataSource = Me.m_bsLignes
+        Me.DataGridView1.Location = New System.Drawing.Point(13, 65)
+        Me.DataGridView1.Name = "DataGridView1"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridView1.Size = New System.Drawing.Size(903, 331)
+        Me.DataGridView1.TabIndex = 30
         '
-        'Panel74
+        'm_bsLignes
         '
-        Me.Panel74.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel74.Controls.Add(Me.Label103)
-        Me.Panel74.Location = New System.Drawing.Point(662, 0)
-        Me.Panel74.Name = "Panel74"
-        Me.Panel74.Size = New System.Drawing.Size(88, 40)
-        Me.Panel74.TabIndex = 20
+        Me.m_bsLignes.DataSource = GetType(Crodip_agent.DiagnosticFactureItem)
         '
-        'Label103
+        'LibelleDataGridViewTextBoxColumn
         '
-        Me.Label103.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label103.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label103.Location = New System.Drawing.Point(8, 16)
-        Me.Label103.Name = "Label103"
-        Me.Label103.Size = New System.Drawing.Size(72, 16)
-        Me.Label103.TabIndex = 8
-        Me.Label103.Text = "Prix (HT)"
-        Me.Label103.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.LibelleDataGridViewTextBoxColumn.DataPropertyName = "libelle"
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
+        Me.LibelleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
+        Me.LibelleDataGridViewTextBoxColumn.HeaderText = "Prestation"
+        Me.LibelleDataGridViewTextBoxColumn.Name = "LibelleDataGridViewTextBoxColumn"
+        Me.LibelleDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'Panel75
+        'PrixUnitaireDataGridViewTextBoxColumn
         '
-        Me.Panel75.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel75.Controls.Add(Me.Label104)
-        Me.Panel75.Location = New System.Drawing.Point(0, 0)
-        Me.Panel75.Name = "Panel75"
-        Me.Panel75.Size = New System.Drawing.Size(661, 40)
-        Me.Panel75.TabIndex = 19
+        Me.PrixUnitaireDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.PrixUnitaireDataGridViewTextBoxColumn.DataPropertyName = "prixUnitaire"
+        Me.PrixUnitaireDataGridViewTextBoxColumn.HeaderText = "Prix U H.T."
+        Me.PrixUnitaireDataGridViewTextBoxColumn.Name = "PrixUnitaireDataGridViewTextBoxColumn"
+        Me.PrixUnitaireDataGridViewTextBoxColumn.Width = 114
         '
-        'Label104
+        'QteDataGridViewTextBoxColumn
         '
-        Me.Label104.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label104.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label104.Location = New System.Drawing.Point(8, 16)
-        Me.Label104.Name = "Label104"
-        Me.Label104.Size = New System.Drawing.Size(384, 16)
-        Me.Label104.TabIndex = 6
-        Me.Label104.Text = "Prestation"
-        Me.Label104.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.QteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.QteDataGridViewTextBoxColumn.DataPropertyName = "qte"
+        Me.QteDataGridViewTextBoxColumn.HeaderText = "Quant"
+        Me.QteDataGridViewTextBoxColumn.Name = "QteDataGridViewTextBoxColumn"
+        Me.QteDataGridViewTextBoxColumn.Width = 72
         '
-        'panelTarifs_libelle
+        'TvaDataGridViewTextBoxColumn
         '
-        Me.panelTarifs_libelle.BackColor = System.Drawing.SystemColors.Control
-        Me.panelTarifs_libelle.Controls.Add(Me.Label8)
-        Me.panelTarifs_libelle.Location = New System.Drawing.Point(0, 41)
-        Me.panelTarifs_libelle.Name = "panelTarifs_libelle"
-        Me.panelTarifs_libelle.Size = New System.Drawing.Size(661, 559)
-        Me.panelTarifs_libelle.TabIndex = 16
+        Me.TvaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.TvaDataGridViewTextBoxColumn.DataPropertyName = "tva"
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
+        Me.TvaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
+        Me.TvaDataGridViewTextBoxColumn.HeaderText = "% TVA"
+        Me.TvaDataGridViewTextBoxColumn.Name = "TvaDataGridViewTextBoxColumn"
+        Me.TvaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TvaDataGridViewTextBoxColumn.Width = 66
         '
-        'Label8
+        'PrixTotalDataGridViewTextBoxColumn
         '
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(8, 16)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(640, 16)
-        Me.Label8.TabIndex = 6
-        Me.Label8.Text = "Prestation"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label8.Visible = False
+        Me.PrixTotalDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.PrixTotalDataGridViewTextBoxColumn.DataPropertyName = "prixTotal"
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
+        Me.PrixTotalDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        Me.PrixTotalDataGridViewTextBoxColumn.HeaderText = "Total TTC"
+        Me.PrixTotalDataGridViewTextBoxColumn.Name = "PrixTotalDataGridViewTextBoxColumn"
+        Me.PrixTotalDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PrixTotalDataGridViewTextBoxColumn.Width = 143
         '
-        'panelTarifs_prix
+        'columnDelete
         '
-        Me.panelTarifs_prix.BackColor = System.Drawing.SystemColors.Control
-        Me.panelTarifs_prix.Controls.Add(Me.TextBox1)
-        Me.panelTarifs_prix.Location = New System.Drawing.Point(662, 41)
-        Me.panelTarifs_prix.Name = "panelTarifs_prix"
-        Me.panelTarifs_prix.Size = New System.Drawing.Size(88, 559)
-        Me.panelTarifs_prix.TabIndex = 17
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(4, 13)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(80, 20)
-        Me.TextBox1.TabIndex = 7
-        Me.TextBox1.Text = "TextBox1"
-        Me.TextBox1.Visible = False
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Location = New System.Drawing.Point(751, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(88, 40)
-        Me.Panel1.TabIndex = 20
-        '
-        'Label6
-        '
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(8, 16)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(72, 16)
-        Me.Label6.TabIndex = 8
-        Me.Label6.Text = "TVA (%)"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'panelTarifs_tva
-        '
-        Me.panelTarifs_tva.BackColor = System.Drawing.SystemColors.Control
-        Me.panelTarifs_tva.Controls.Add(Me.Label10)
-        Me.panelTarifs_tva.Location = New System.Drawing.Point(751, 41)
-        Me.panelTarifs_tva.Name = "panelTarifs_tva"
-        Me.panelTarifs_tva.Size = New System.Drawing.Size(88, 559)
-        Me.panelTarifs_tva.TabIndex = 17
-        '
-        'Label10
-        '
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(8, 16)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(72, 16)
-        Me.Label10.TabIndex = 6
-        Me.Label10.Text = "19,6"
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.Label10.Visible = False
-        '
-        'panelTarifs_prixTTC
-        '
-        Me.panelTarifs_prixTTC.BackColor = System.Drawing.SystemColors.Control
-        Me.panelTarifs_prixTTC.Controls.Add(Me.Label11)
-        Me.panelTarifs_prixTTC.Location = New System.Drawing.Point(840, 41)
-        Me.panelTarifs_prixTTC.Name = "panelTarifs_prixTTC"
-        Me.panelTarifs_prixTTC.Size = New System.Drawing.Size(88, 559)
-        Me.panelTarifs_prixTTC.TabIndex = 17
-        '
-        'Label11
-        '
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(8, 16)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(72, 16)
-        Me.Label11.TabIndex = 6
-        Me.Label11.Text = "119,6"
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.Label11.Visible = False
-        '
-        'Panel4
-        '
-        Me.Panel4.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel4.Controls.Add(Me.Label7)
-        Me.Panel4.Location = New System.Drawing.Point(840, 0)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(88, 40)
-        Me.Panel4.TabIndex = 20
-        '
-        'Label7
-        '
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(8, 16)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(72, 16)
-        Me.Label7.TabIndex = 8
-        Me.Label7.Text = "Prix (TTC)"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.columnDelete.HeaderText = "Suppr"
+        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
+        Me.columnDelete.Name = "columnDelete"
+        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.columnDelete.Width = 40
         '
         'diagnostic_facturation
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(933, 607)
         Me.ControlBox = False
+        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.listTarif_categories)
         Me.Controls.Add(Me.panelFooter)
         Me.Controls.Add(Me.img_Add)
         Me.Controls.Add(Me.Label_diagnostic_61)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.listTarif_prestations)
-        Me.Controls.Add(Me.Panel72)
-        Me.Icon = Crodip_Agent.Resources.logoCRODIP
+        Me.Icon = Global.Crodip_agent.Resources.logoCRODIP
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "diagnostic_facturation"
@@ -637,16 +531,8 @@ Public Class diagnostic_facturation
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelFooter.ResumeLayout(False)
         Me.panelFooter.PerformLayout()
-        Me.Panel72.ResumeLayout(False)
-        Me.Panel74.ResumeLayout(False)
-        Me.Panel75.ResumeLayout(False)
-        Me.panelTarifs_libelle.ResumeLayout(False)
-        Me.panelTarifs_prix.ResumeLayout(False)
-        Me.panelTarifs_prix.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.panelTarifs_tva.ResumeLayout(False)
-        Me.panelTarifs_prixTTC.ResumeLayout(False)
-        Me.Panel4.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -657,15 +543,32 @@ Public Class diagnostic_facturation
     Private isValider As Boolean = False
     Private m_pathBl As String
     Private m_pathFacture As String
+    Protected m_oDiag As Diagnostic
+    Protected m_oExploit As Exploitation
+    Protected m_oAgent As Agent
 #End Region
 #Region " Chargement "
+    Public Sub setContexte(pDiag As Diagnostic, pExploit As Exploitation, pAgent As Agent)
+        Debug.Assert(pDiag IsNot Nothing)
+        Debug.Assert(pExploit IsNot Nothing)
+        Debug.Assert(pAgent IsNot Nothing)
+
+        m_oDiag = pDiag
+        m_oExploit = pExploit
+        m_oAgent = pAgent
+    End Sub
+
     ' Chargement de la page
     Private Sub diagnostic_finalisation_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Debug.Assert(m_oDiag IsNot Nothing, "Context must be set before")
+        Debug.Assert(m_oExploit IsNot Nothing, "Context must be set before")
+        Debug.Assert(m_oAgent IsNot Nothing, "Context must be set before")
+
         Statusbar.display(Globals.CONST_STATUTMSG_DIAG_TARIFS, False)
         Me.Cursor = Cursors.WaitCursor
         tb_txTVA.Text = My.Settings.TxTVADefaut
         ' Chargement des catégories de prestations
-        Dim arrCategories() As PrestationCategorie = PrestationCategorieManager.getArrayByStructureId(agentCourant.idStructure)
+        Dim arrCategories() As PrestationCategorie = PrestationCategorieManager.getArrayByStructureId(m_oAgent.idStructure)
         For Each tmpCategorie As PrestationCategorie In arrCategories
             If tmpCategorie.description IsNot Nothing Then
                 Dim objComboItem As New objComboItem(tmpCategorie.id.ToString, tmpCategorie.description)
@@ -704,65 +607,24 @@ Public Class diagnostic_facturation
         If Not listTarif_categories.SelectedItem Is Nothing And Not listTarif_prestations.SelectedItem Is Nothing Then
             If listTarif_categories.SelectedItem.libelle.ToString <> "" And listTarif_prestations.SelectedItem.libelle.ToString <> "" Then
 
-                prestaIncrement = prestaIncrement + 1
-                'panelFooter.Top = panelFooter.Top + 24
 
                 ' On récupère la presta sélectionnée
                 Dim curPrestation As New PrestationTarif
                 Try
                     curPrestation = PrestationTarifManager.getById(CType(listTarif_prestations.SelectedItem.id, Integer), agentCourant.idStructure)
-                    'curPrestation = TarifsManager.getPrestationById(CType(listTarif_prestations.SelectedItem.id, Integer))
                 Catch ex As Exception
                     CSDebug.dispError("Récupération tarif : " & ex.Message.ToString)
                 End Try
 
-                ' Libellé de la presta
-                Dim tmpLibelle As New Label
-                tmpLibelle.Text = listTarif_categories.SelectedItem.libelle.ToString & " : " & listTarif_prestations.SelectedItem.libelle.ToString
-                Controls.Add(tmpLibelle)
-                tmpLibelle.Parent = panelTarifs_libelle
-                tmpLibelle.Name = "controlePrestaLib_" & prestaIncrement
-                tmpLibelle.Location = New System.Drawing.Point(8, positionTop)
-                tmpLibelle.Size = New System.Drawing.Size(640, 16)
-                tmpLibelle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-                tmpLibelle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-                tmpLibelle.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
 
+                Dim oLig As New DiagnosticFactureItem()
+                oLig.libelle = listTarif_categories.SelectedItem.libelle.ToString & " : " & listTarif_prestations.SelectedItem.libelle.ToString
+                oLig.qte = 1
+                oLig.prixUnitaire = curPrestation.tarifHT
+                oLig.tva = curPrestation.tva
 
-                ' Prix HT de la presta
-                Dim tmpPrix As New TextBox
-                tmpPrix.Name = "controlePrixHT_" & prestaIncrement
-                tmpPrix.Text = curPrestation.tarifHT
-                Controls.Add(tmpPrix)
-                tmpPrix.Parent = panelTarifs_prix
-                tmpPrix.Location = New System.Drawing.Point(4, positionTop - 3)
-                tmpPrix.Size = New System.Drawing.Size(80, 20)
-                AddHandler tmpPrix.TextChanged, AddressOf prix_TextChanged
-                AddHandler tmpPrix.KeyPress, AddressOf prix_KeyPress
+                m_bsLignes.Add(oLig)
 
-                ' Prix TVA de la presta
-                Dim tmpPrixTva As New TextBox
-                tmpPrixTva.Name = "controlePrixTVA_" & prestaIncrement
-                tmpPrixTva.Text = curPrestation.tva
-                Controls.Add(tmpPrixTva)
-                tmpPrixTva.Parent = panelTarifs_tva
-                tmpPrixTva.Location = New System.Drawing.Point(4, positionTop - 3)
-                tmpPrixTva.Size = New System.Drawing.Size(80, 20)
-                AddHandler tmpPrixTva.TextChanged, AddressOf prix_TextChanged
-
-                ' Prix TTC de la presta
-                Dim tmpPrixTtc As New TextBox
-                tmpPrixTtc.Name = "controlePrixTTC_" & prestaIncrement
-                tmpPrixTtc.Text = ""
-                Controls.Add(tmpPrixTtc)
-                tmpPrixTtc.Parent = panelTarifs_prixTTC
-                tmpPrixTtc.Location = New System.Drawing.Point(4, positionTop - 3)
-                tmpPrixTtc.Size = New System.Drawing.Size(80, 20)
-                tmpPrixTtc.ReadOnly = True
-                AddHandler tmpPrixTtc.TextChanged, AddressOf prix_TextChanged
-
-
-                positionTop = positionTop + 24
                 ' On passe le total en readonly
                 facturation_totalHT.ReadOnly = True
                 tb_txTVA.ReadOnly = True
@@ -788,10 +650,10 @@ Public Class diagnostic_facturation
                 ' Enregistrement des tarifs
                 calcTotal()
                 'diagnosticCourantTarif = CType(facturation_totalTTC.Text, Double)
-                diagnosticCourant.controleTarif = CType(facturation_totalTTC.Text, Double)
-                diagnosticCourant.TotalHT = CDec(facturation_totalHT.Text)
-                diagnosticCourant.TotalTVA = CDec(facturation_totalTVA.Text)
-                diagnosticCourant.TotalTTC = CDec(facturation_totalTTC.Text)
+                m_oDiag.controleTarif = CType(facturation_totalTTC.Text, Double)
+                m_oDiag.TotalHT = CDec(facturation_totalHT.Text)
+                m_oDiag.TotalTVA = CDec(facturation_totalTVA.Text)
+                m_oDiag.TotalTTC = CDec(facturation_totalTTC.Text)
 
                 ' Changement d'état du bouton
                 btn_facturation_suivant.Text = "Poursuivre"
@@ -802,23 +664,10 @@ Public Class diagnostic_facturation
 
                 listTarif_categories.Enabled = False
                 listTarif_prestations.Enabled = False
-                If prestaIncrement > 0 Then
-                    For i As Integer = 1 To prestaIncrement
-                        Try
-                            Dim tmpPrixInput As TextBox = CSForm.getControlByName("controlePrixHT_" & i, Me)
-                            tmpPrixInput.ReadOnly = True
-                            Dim tmpPrixTVAInput As TextBox = CSForm.getControlByName("controlePrixTVA_" & i, Me)
-                            tmpPrixTVAInput.ReadOnly = True
-                            Dim tmpPrixTTCInput As TextBox = CSForm.getControlByName("controlePrixTTC_" & i, Me)
-                            tmpPrixTTCInput.ReadOnly = True
-                        Catch ex As Exception
-                            CSDebug.dispError("Erreur de calcul du prix total")
-                        End Try
-                    Next
-                End If
+                DataGridView1.Enabled = False
+                img_Add.Enabled = False
                 createContrat()
                 createBl_CR()
-
                 'Facture
                 Try
                     Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Application.StartupPath & "\config\facturation.xml")
@@ -859,61 +708,14 @@ Public Class diagnostic_facturation
 
         Dim prixTotalHT As Double = 0
         Dim prixTotalTTC As Double = 0
-        If prestaIncrement > 0 Then
-            For i As Integer = 1 To prestaIncrement
+        For Each olig As DiagnosticFactureItem In m_bsLignes
+            prixTotalHT = prixTotalHT + (olig.prixUnitaire * olig.qte)
+            prixTotalTTC = prixTotalTTC + olig.prixTotal
+        Next
 
-                Dim prixCurHT As Double = 0
-                Dim prixCurTVA As Double = 0
-                Dim prixCurTTC As Double = 0
-
-                Try
-
-                    ' Prix HT
-                    Dim tmpPrixHTInput As TextBox = CSForm.getControlByName("controlePrixHT_" & i, Me)
-                    If tmpPrixHTInput.Text <> "" Then
-                        prixCurHT = CType(tmpPrixHTInput.Text, Double)
-                    Else
-                        prixCurHT = 0
-                    End If
-                    prixTotalHT = prixTotalHT + prixCurHT
-
-                    ' TVA
-                    Dim tmpPrixTVAInput As TextBox = CSForm.getControlByName("controlePrixTVA_" & i, Me)
-                    If tmpPrixTVAInput.Text <> "" Then
-                        prixCurTVA = CType(tmpPrixTVAInput.Text, Double)
-                    Else
-                        prixCurTVA = 0
-                    End If
-
-                    ' Prix TTC
-                    Dim tmpPrixInput As TextBox = CSForm.getControlByName("controlePrixTTC_" & i, Me)
-                    prixCurTTC = prixCurHT + (prixCurHT * (prixCurTVA / 100))
-                    prixTotalTTC = prixTotalTTC + prixCurTTC
-                    tmpPrixInput.Text = Math.Round(prixCurTTC, 2)
-
-                Catch ex As Exception
-                    CSDebug.dispError("Erreur de calcul du prix total")
-                End Try
-
-            Next
-
-            facturation_totalHT.Text = Math.Round(prixTotalHT, 2)
-            facturation_totalTTC.Text = Math.Round(prixTotalTTC, 2)
-            facturation_totalTVA.Text = Math.Round(prixTotalTTC - prixTotalHT, 2)
-        Else
-            Try
-                ' tHT CType(facturation_txTVA.Text, Double)
-                If facturation_totalHT.Text <> "" And tb_txTVA.Text <> "" Then
-                    prixTotalHT = CType(facturation_totalHT.Text, Double)
-                    facturation_totalTTC.Text = Math.Round(prixTotalHT + (prixTotalHT * (CType(tb_txTVA.Text, Double) / 100)), 2)
-                    facturation_totalTVA.Text = Math.Round(CType(facturation_totalTTC.Text, Double) - prixTotalHT, 2)
-                Else
-                    facturation_totalTVA.Text = ""
-                End If
-            Catch ex As Exception
-                CSDebug.dispError("Erreur de calcul du prix total")
-            End Try
-        End If
+        facturation_totalHT.Text = Math.Round(prixTotalHT, 2)
+        facturation_totalTTC.Text = Math.Round(prixTotalTTC, 2)
+        facturation_totalTVA.Text = Math.Round(prixTotalTTC - prixTotalHT, 2)
 
     End Sub
 
@@ -928,38 +730,13 @@ Public Class diagnostic_facturation
             Dim factureObj As DiagnosticFacture
             factureObj = Me.saveFacture()
 
-            Dim oEtat As New EtatFacture(diagnosticCourant, factureObj.factureReference)
+            Dim oEtat As New EtatFacture(m_oDiag, factureObj.factureReference)
 
             ' On rempli la liste des prestations
-            Dim PrestaLibelle As String = ""
-            Dim PrestaHT As String = ""
-            Dim PrestaTVA As String = ""
-            Dim PrestaTTC As String = ""
-            If prestaIncrement > 0 Then
-                For i As Integer = 1 To prestaIncrement
+            For Each oLig As DiagnosticFactureItem In m_bsLignes
+                oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
 
-                    ' Libellé
-                    Dim tmpPrestaLib As Label = CSForm.getControlByName("controlePrestaLib_" & i, Me)
-                    PrestaLibelle = tmpPrestaLib.Text
-
-                    ' Prix HT
-                    Dim tmpPrixHTInput As TextBox = CSForm.getControlByName("controlePrixHT_" & i, Me)
-                    PrestaHT = tmpPrixHTInput.Text
-
-                    ' TVA
-                    Dim tmpPrixTVAInput As TextBox = CSForm.getControlByName("controlePrixTVA_" & i, Me)
-                    PrestaTVA = tmpPrixTVAInput.Text
-
-                    ' Prix TTC
-                    Dim tmpPrixInput As TextBox = CSForm.getControlByName("controlePrixTTC_" & i, Me)
-                    PrestaTTC = tmpPrixInput.Text
-
-                    oEtat.AddPresta(PrestaLibelle, PrestaHT, 1, PrestaTVA, PrestaHT, PrestaTTC)
-
-
-                Next
-            End If
-
+            Next
             oEtat.GenereEtat()
             m_pathFacture = oEtat.getFileName()
         Catch ex As Exception
@@ -975,7 +752,7 @@ Public Class diagnostic_facturation
         Try
             '####
             Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Application.StartupPath & "\config\facturation.xml")
-            Dim organismePCourant As Structuree = StructureManager.getStructureById(diagnosticCourant.organismePresId)
+            Dim organismePCourant As Structuree = StructureManager.getStructureById(m_oDiag.organismePresId)
             '####
             Dim champTotalTtc As Double = 0
             If prestaIncrement > 0 Then
@@ -1003,9 +780,9 @@ Public Class diagnostic_facturation
             facture.emetteurOrganismeSiren = FACTURATION_XML_CONFIG.getElementValue("/root/siren")
             facture.emetteurOrganismeTva = FACTURATION_XML_CONFIG.getElementValue("/root/tva")
             facture.emetteurOrganismeRcs = FACTURATION_XML_CONFIG.getElementValue("/root/rcs")
-            facture.recepteurRaisonSociale = clientCourant.raisonSociale
-            facture.recepteurProprio = clientCourant.nomExploitant & " " & clientCourant.prenomExploitant
-            facture.recepteurCpVille = clientCourant.codePostal & " " & clientCourant.commune
+            facture.recepteurRaisonSociale = m_oExploit.raisonSociale
+            facture.recepteurProprio = m_oExploit.nomExploitant & " " & m_oExploit.prenomExploitant
+            facture.recepteurCpVille = m_oExploit.codePostal & " " & m_oExploit.commune
             DiagnosticFactureManager.save(facture)
 
         Catch ex As Exception
@@ -1079,10 +856,10 @@ Public Class diagnostic_facturation
         Dim bReturn As Boolean
         Try
 
-            Dim oEtat As New EtatContratCommercial(diagnosticCourant)
+            Dim oEtat As New EtatContratCommercial(m_oDiag)
             If oEtat.GenereEtat() Then
                 pathContrat = Globals.CONST_PATH_EXP & oEtat.getFileName()
-                diagnosticCourant.CCFileName = oEtat.getFileName()
+                m_oDiag.CCFileName = oEtat.getFileName()
             End If
         Catch ex As Exception
             CSDebug.dispError("diagnostic_facturation.createContrat ERR : " & ex.Message)
@@ -1112,37 +889,12 @@ Public Class diagnostic_facturation
             'Dim factureObj As DiagnosticFacture
             'factureObj = Me.saveFacture()
 
-            Dim oEtat As New EtatBL(diagnosticCourant)
+            Dim oEtat As New EtatBL(m_oDiag)
 
             ' On rempli la liste des prestations
-            Dim PrestaLibelle As String = ""
-            Dim PrestaHT As String = ""
-            Dim PrestaTVA As String = ""
-            Dim PrestaTTC As String = ""
-            If prestaIncrement > 0 Then
-                For i As Integer = 1 To prestaIncrement
-
-                    ' Libellé
-                    Dim tmpPrestaLib As Label = CSForm.getControlByName("controlePrestaLib_" & i, Me)
-                    PrestaLibelle = tmpPrestaLib.Text
-
-                    ' Prix HT
-                    Dim tmpPrixHTInput As TextBox = CSForm.getControlByName("controlePrixHT_" & i, Me)
-                    PrestaHT = tmpPrixHTInput.Text
-
-                    ' TVA
-                    Dim tmpPrixTVAInput As TextBox = CSForm.getControlByName("controlePrixTVA_" & i, Me)
-                    PrestaTVA = tmpPrixTVAInput.Text
-
-                    ' Prix TTC
-                    Dim tmpPrixInput As TextBox = CSForm.getControlByName("controlePrixTTC_" & i, Me)
-                    PrestaTTC = tmpPrixInput.Text
-
-                    oEtat.AddPresta(PrestaLibelle, PrestaHT, 1, PrestaTVA, PrestaHT, PrestaTTC)
-
-
-                Next
-            End If
+            For Each oLig As DiagnosticFactureItem In m_bsLignes
+                oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
+            Next
 
             oEtat.GenereEtat()
             m_pathBl = oEtat.getFileName()
@@ -1278,18 +1030,6 @@ Public Class diagnostic_facturation
         End If
     End Sub
 
-    ' Recalcul du total au changement du prix d'une presta
-    Private Sub prix_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        calcTotal()
-    End Sub
-
-    ' Si on rentre le total a la main
-    Private Sub facturation_totalHT_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles facturation_totalHT.TextChanged
-        calcTotal()
-    End Sub
-    Private Sub facturation_txTVA_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tb_txTVA.TextChanged
-        calcTotal()
-    End Sub
 
 #End Region
 
@@ -1329,6 +1069,18 @@ Public Class diagnostic_facturation
         End Try
 
 
+    End Sub
+
+    Private Sub m_bsLignes_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsLignes.CurrentItemChanged
+        calcTotal()
+    End Sub
+
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        If e.ColumnIndex = columnDelete.Index Then
+            'Suppresssion de la ligne courante
+            m_bsLignes.RemoveCurrent()
+        End If
     End Sub
 
 End Class

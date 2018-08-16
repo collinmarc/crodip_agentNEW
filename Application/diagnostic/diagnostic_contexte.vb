@@ -1086,7 +1086,9 @@ Public Class diagnostic_contexte
 
             Else
                 'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
-                m_NextForm = New diagnostic_facturation()
+                Dim ofrm As New diagnostic_facturation()
+                ofrm.setContexte(m_diagnostic, ClientCourant, agentCourant)
+                m_NextForm = ofrm
                 m_NextForm.WindowState = FormWindowState.Normal
                 m_NextForm.MdiParent = Me.MdiParent
                 Statusbar.clear()

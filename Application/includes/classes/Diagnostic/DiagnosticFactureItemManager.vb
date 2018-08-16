@@ -116,7 +116,7 @@ Module DiagnosticFactureItemManager
 #Region "Methodes acces Local"
 
     ' OK
-    Public Function getDiagnosticFactureItemById(ByVal diagnosticitem_id As String) As DiagnosticFactureItem
+    Public Function getDiagnosticFactureItemById2(ByVal diagnosticitem_id As String) As DiagnosticFactureItem
         ' déclarations
         Dim tmpObject As New DiagnosticFactureItem
         Dim oCSDB As New CSDb(True)
@@ -172,7 +172,7 @@ Module DiagnosticFactureItemManager
     End Function
 
     ' OK
-    Public Sub save(ByVal curObject As DiagnosticFactureItem, Optional bSyncro As Boolean = False)
+    Public Sub save2(ByVal curObject As DiagnosticFactureItem, Optional bSyncro As Boolean = False)
         Dim oCSDB As New CSDb(True)
         Try
             If curObject.id <> "" Then
@@ -181,7 +181,7 @@ Module DiagnosticFactureItemManager
 
                 ' On test si le DiagnosticItem existe ou non
                 Dim existsDiagnosticItem As Object
-                existsDiagnosticItem = DiagnosticFactureItemManager.getDiagnosticFactureItemById(curObject.id)
+                existsDiagnosticItem = DiagnosticFactureItemManager.getDiagnosticFactureItemById2(curObject.id)
                 If existsDiagnosticItem.id = "" Then
                     ' Si il n'existe pas, on le crée
                     createDiagnosticFactureItem(curObject.id)

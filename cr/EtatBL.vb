@@ -68,7 +68,7 @@ Public Class EtatBL
                 Dim CrExportOptions As ExportOptions
                 Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                 Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                m_FileName = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_BON_LIVRAISON) & ".pdf"
+                m_FileName = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_BON_LIVRAISON) & ".pdf"
                 CrDiskFileDestinationOptions.DiskFileName = m_FileName
                 CrExportOptions = objReport.ExportOptions
                 With CrExportOptions
@@ -91,9 +91,9 @@ Public Class EtatBL
         Dim bReturn As Boolean
         Try
 
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(".\config\facturation.xml")
-            Dim oStruct As Structuree
-            oStruct = StructureManager.getStructureById(agentCourant.idStructure)
+            'Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(".\config\facturation.xml")
+            'Dim oStruct As Structuree
+            'oStruct = StructureManager.getStructureById(agentCourant.idStructure)
 
 
             '

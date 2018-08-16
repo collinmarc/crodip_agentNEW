@@ -1,3 +1,4 @@
+Imports System.Collections.Generic
 Module DiagnosticFactureManager
 
 #Region "Methodes acces Web Service"
@@ -227,7 +228,7 @@ Module DiagnosticFactureManager
                     Dim tmpListItems As System.Data.OleDb.OleDbDataReader = bddCommande2.ExecuteReader
                     ' Puis on les parcours
                     Dim i As Integer = 0
-                    Dim tmpDiagnosticFactureItemsList As New DiagnosticFactureItemList
+                    Dim tmpDiagnosticFactureItemsList As New List(Of DiagnosticFactureItem)
                     While tmpListItems.Read()
                         Dim tmpItem As New DiagnosticFactureItem
                         ' On rempli notre tableau
@@ -255,14 +256,7 @@ Module DiagnosticFactureManager
                             End Select
                             tmpColId = tmpColId + 1
                         End While
-                        If tmpDiagnosticFactureItemsList.diagnosticFactureItem Is Nothing Then
-                            ReDim Preserve tmpDiagnosticFactureItemsList.diagnosticFactureItem(0)
-                        End If
-                        tmpDiagnosticFactureItemsList.diagnosticFactureItem(i) = tmpItem
-                        i = i + 1
-                        ReDim Preserve tmpDiagnosticFactureItemsList.diagnosticFactureItem(i)
                     End While
-                    ReDim Preserve tmpDiagnosticFactureItemsList.diagnosticFactureItem(i - 1)
                     ' On ajoute les item a la facture
                     tmpObject.diagnosticFactureItems = tmpDiagnosticFactureItemsList
                     ' Test pour fermeture de connection BDD
@@ -501,18 +495,16 @@ Module DiagnosticFactureManager
 
                 ' On enregistre les items de la facture
                 If Not curObject.diagnosticFactureItems Is Nothing Then
-                    If Not curObject.diagnosticFactureItems.diagnosticFactureItem Is Nothing Then
-                        Dim i As Integer = 0
-                        For Each tmpItemCheck As DiagnosticFactureItem In curObject.diagnosticFactureItems.diagnosticFactureItem
-                            If Not tmpItemCheck Is Nothing Then
-                                'Dim tmpNewDiagItemId As String = DiagnosticFactureItemManager.getNewId(agentCourant.idStructure)
-                                'tmpItemCheck.id = tmpNewDiagItemId
-                                'tmpItemCheck.idFacture = curObject.id
-                                'DiagnosticFactureItemManager.save(tmpItemCheck)
-                            End If
-                            i = i + 1
-                        Next
-                    End If
+                    Dim i As Integer = 0
+                    For Each tmpItemCheck As DiagnosticFactureItem In curObject.diagnosticFactureItems
+                        If Not tmpItemCheck Is Nothing Then
+                            'Dim tmpNewDiagItemId As String = DiagnosticFactureItemManager.getNewId(agentCourant.idStructure)
+                            'tmpItemCheck.id = tmpNewDiagItemId
+                            'tmpItemCheck.idFacture = curObject.id
+                            'DiagnosticFactureItemManager.save2(tmpItemCheck)
+                        End If
+                        i = i + 1
+                    Next
                 End If
 
             End If

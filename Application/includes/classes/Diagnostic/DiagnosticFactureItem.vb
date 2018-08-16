@@ -1,25 +1,6 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
 
-Public Class DiagnosticFactureItemList
-
-    Private _diagnosticFactureItem() As diagnosticFactureItem
-
-    Sub New()
-
-    End Sub
-
-    Public Property diagnosticFactureItem() As diagnosticFactureItem()
-        Get
-            Return _diagnosticFactureItem
-        End Get
-        Set(ByVal Value As diagnosticFactureItem())
-            _diagnosticFactureItem = Value
-        End Set
-    End Property
-
-End Class
-
 Public Class DiagnosticFactureItem
 
     Private _id As Integer
@@ -71,6 +52,7 @@ Public Class DiagnosticFactureItem
         End Get
         Set(ByVal Value As String)
             _prixUnitaire = Value
+            calcultTotal()
         End Set
     End Property
 
@@ -80,6 +62,7 @@ Public Class DiagnosticFactureItem
         End Get
         Set(ByVal Value As String)
             _qte = Value
+            calcultTotal()
         End Set
     End Property
 
@@ -89,6 +72,7 @@ Public Class DiagnosticFactureItem
         End Get
         Set(ByVal Value As String)
             _tva = Value
+            calcultTotal()
         End Set
     End Property
 
@@ -119,4 +103,8 @@ Public Class DiagnosticFactureItem
         End Set
     End Property
 
+
+    Private Sub calcultTotal()
+        prixTotal = qte * prixUnitaire * (1 + (tva / 100))
+    End Sub
 End Class
