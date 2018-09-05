@@ -224,24 +224,42 @@ Public Class EtatSyntheseMesures
                             ResultatMesure = "IMPRECISION"
 
                         End If
-                        m_ods.Synth12123.AddSynth12123Row(NumPompe:=oPompe.numero,
-                                                          PressionMesurePompe:=oPompe.PressionMesure,
-                                                          DebitPompe:=oPompe.debitMesure,
+                        Dim NumPompe As String = oPompe.numero
+                        Dim PressionMesurePompe As String = IIf(oPompe.PressionMesure.HasValue, oPompe.PressionMesure.HasValue, "")
+                        Dim DebitPompe As String = IIf(oPompe.debitMesure.HasValue, oPompe.debitMesure, "")
+                        Dim NumMesure As String = oMesure.numeroMesure
+                        Dim PressionMoyenne As String = IIf(oPompe.PressionMoyenne.HasValue, oPompe.PressionMoyenne, "")
+                        Dim NbBuses As String = IIf(oPompe.NbBuses.HasValue, oPompe.NbBuses, "")
+                        Dim DebitReel As String = IIf(oPompe.DebitReelRND.HasValue, oPompe.DebitReelRND, "")
+                        Dim DebitTotal As String = IIf(oPompe.DebitTotalRND.HasValue, oPompe.DebitTotalRND, "")
+                        Dim Reglage As String = IIf(oMesure.ReglageDispositif.HasValue, oMesure.ReglageDispositif, "")
+                        Dim DebitTheo As String = IIf(oMesure.DebitTheoriqueRND.HasValue, oMesure.DebitTheoriqueRND, "")
+                        Dim TempMesure As String = IIf(oMesure.TempsMesure.HasValue, oMesure.TempsMesure, "")
+                        Dim QteEau As String = IIf(oMesure.QteEauPulverisee.HasValue, oMesure.QteEauPulverisee, "")
+                        Dim MassePlus As String = IIf(oMesure.MasseInitiale.HasValue, oMesure.MasseInitiale, "")
+                        Dim MasseMoins As String = IIf(oMesure.MasseAspire.HasValue, oMesure.MasseAspire, "")
+                        Dim QteProduit As Decimal = IIf(oMesure.QteProduitConso.HasValue, oMesure.QteProduitConso, 0D)
+                        Dim DosageReel As String = IIf(oMesure.DosageReelRND.HasValue, oMesure.DosageReelRND, "")
+                        Dim Ecart As Decimal = IIf(oMesure.EcartReglageRND.HasValue, oMesure.EcartReglageRND, 0D)
+
+                        m_ods.Synth12123.AddSynth12123Row(NumPompe:=NumPompe,
+                                                          PressionMesurePompe:=PressionMesurePompe,
+                                                          DebitPompe:=DebitPompe,
                                                           ResultatPompe:=ResultatPompe,
-                                                          NumMesure:=oMesure.numeroMesure,
-                                                          PressionMoyenne:=oPompe.PressionMoyenne,
-                                                          NbBuses:=oPompe.NbBuses,
-                                                          DebitReel:=oPompe.DebitReelRND,
-                                                          DebitTotal:=oPompe.DebitTotalRND,
-                                                          Reglage:=oMesure.ReglageDispositif,
-                                                          DebitTheo:=oMesure.DebitTheoriqueRND,
-                                                          TempMesure:=oMesure.TempsMesure,
-                                                          QteEau:=oMesure.QteEauPulverisee,
-                                                          MassePlus:=oMesure.MasseInitiale,
-                                                          MasseMoins:=oMesure.MasseAspire,
-                                                          QteProduit:=oMesure.QteProduitConso,
-                                                          DosageReel:=oMesure.DosageReelRND,
-                                                          Ecart:=oMesure.EcartReglageRND,
+                                                          NumMesure:=NumMesure,
+                                                          PressionMoyenne:=PressionMoyenne,
+                                                          NbBuses:=NbBuses,
+                                                          DebitReel:=DebitReel,
+                                                          DebitTotal:=DebitTotal,
+                                                          Reglage:=Reglage,
+                                                          DebitTheo:=DebitTheo,
+                                                          TempMesure:=TempMesure,
+                                                          QteEau:=QteEau,
+                                                          MassePlus:=MassePlus,
+                                                          MasseMoins:=MasseMoins,
+                                                          QteProduit:=QteProduit,
+                                                          DosageReel:=DosageReel,
+                                                          Ecart:=Ecart,
                                                           ResultatMesure:=ResultatMesure)
                     Next
 

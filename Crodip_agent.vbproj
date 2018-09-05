@@ -1013,6 +1013,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>cr_RapportInspection.rpt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulve.vb">
       <AutoGen>True</AutoGen>

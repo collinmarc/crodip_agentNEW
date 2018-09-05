@@ -6,7 +6,7 @@ Build :20180905140000
 #248 : Modif Fiche Pulvé
 #249 : Modif Ecran controle du dispositif de dosage
 #250 : Ajout d'un commentaire sur les factures
-#251 : Encodage auto si pas de pômpe doseuses
+#251 : Encodage auto si pas de pompe doseuses
 
 Build:20180816160000
 #133 : Modification des délais de vérification des maériels Agents

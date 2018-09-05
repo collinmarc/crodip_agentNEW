@@ -22,6 +22,7 @@ Public Class EtatRapportInspection
             If (bReturn) Then
                 Dim r1 As New cr_RapportInspection()
                 Dim strReportName As String = r1.ResourceName
+                r1.Close()
 
                 m_oReportDocument = New ReportDocument
                 m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
