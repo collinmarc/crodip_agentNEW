@@ -87,7 +87,6 @@ Partial Class diagnostic_dlghelp12123new
         Me.DosageReelRND = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EcartReglageRND = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Image = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.ImageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.pnl12123.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -298,7 +297,7 @@ Partial Class diagnostic_dlghelp12123new
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.numeroPompe, Me.Column2, Me.ReglageDispositif, Me.DebitTheoriqueRND, Me.TempsMesure, Me.QteEauPulveriseeRND, Me.MasseInitiale, Me.MasseAspire, Me.QteProduitConso, Me.DosageReelRND, Me.EcartReglageRND, Me.Image, Me.ImageDataGridViewImageColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.numeroPompe, Me.Column2, Me.ReglageDispositif, Me.DebitTheoriqueRND, Me.TempsMesure, Me.QteEauPulveriseeRND, Me.MasseInitiale, Me.MasseAspire, Me.QteProduitConso, Me.DosageReelRND, Me.EcartReglageRND, Me.Image})
         Me.DataGridView1.DataSource = Me.m_bsrcMesures
         Me.DataGridView1.Location = New System.Drawing.Point(3, 174)
         Me.DataGridView1.MultiSelect = False
@@ -711,12 +710,6 @@ Partial Class diagnostic_dlghelp12123new
         Me.Image.Name = "Image"
         Me.Image.ReadOnly = True
         '
-        'ImageDataGridViewImageColumn
-        '
-        Me.ImageDataGridViewImageColumn.DataPropertyName = "Image"
-        Me.ImageDataGridViewImageColumn.HeaderText = "Image"
-        Me.ImageDataGridViewImageColumn.Name = "ImageDataGridViewImageColumn"
-        '
         'diagnostic_dlghelp12123new
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -799,6 +792,5 @@ Partial Class diagnostic_dlghelp12123new
     Friend WithEvents DosageReelRND As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents EcartReglageRND As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Image As System.Windows.Forms.DataGridViewImageColumn
-    Friend WithEvents ImageDataGridViewImageColumn As System.Windows.Forms.DataGridViewImageColumn
 
 End Class
