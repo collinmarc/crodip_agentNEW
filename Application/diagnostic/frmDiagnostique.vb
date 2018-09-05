@@ -1324,19 +1324,6 @@ Public Class frmDiagnostique
                     End If
                 Next
             End If
-            'Désactivation du controle "Pompe doseuses"
-            If m_Pulverisateur.isPompesDoseuses = False Then
-                Dim tmpControl As CRODIP_ControlLibrary.CtrlDiag2 = getControlFromDiagItem(New DiagnosticItem("", "1212", "3"))
-                If tmpControl IsNot Nothing Then
-                    tmpControl.Enabled = False
-                    ico_help_12123.Enabled = False
-                    ico_help_12123.Visible = False
-                Else
-                    tmpControl.Enabled = True
-                    ico_help_12123.Enabled = True
-                    ico_help_12123.Visible = True
-                End If
-            End If
             bReturn = True
         Catch ex As Exception
 

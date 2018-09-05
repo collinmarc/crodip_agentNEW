@@ -1453,6 +1453,23 @@ Public Class Pulverisateur
             If Not isRincagecircuit Then
                 oDiagItem.FillWithParam(olstParam.Find("4.6.4.1"))
             End If
+            'Pompes Doseuses
+            '--------------
+            oDiagItem = New DiagnosticItemAuto("", "1211", "0")
+            oReturn.Add(oDiagItem)
+            If Not isPompesDoseuses Then
+                oDiagItem.FillWithParam(olstParam.Find("12.1.1.0"))
+            End If
+            oDiagItem = New DiagnosticItemAuto("", "1212", "0")
+            oReturn.Add(oDiagItem)
+            If Not isPompesDoseuses Then
+                oDiagItem.FillWithParam(olstParam.Find("12.1.2.0"))
+            End If
+            oDiagItem = New DiagnosticItemAuto("", "1213", "0")
+            oReturn.Add(oDiagItem)
+            If Not isPompesDoseuses Then
+                oDiagItem.FillWithParam(olstParam.Find("12.1.3.0"))
+            End If
 
         Catch ex As Exception
             CSDebug.dispError("Pulverisateur.EncodageAutomatiqueDefauts ERR : " & ex.Message)
