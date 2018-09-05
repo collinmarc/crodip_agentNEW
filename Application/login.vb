@@ -75,6 +75,7 @@ Public Class login
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents btnTestFacturation As System.Windows.Forms.Button
     Friend WithEvents brnTestDiagRecap As System.Windows.Forms.Button
+    Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -93,6 +94,7 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.brnTestDiagRecap = New System.Windows.Forms.Button()
         Me.btnTestFacturation = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -108,7 +110,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.brnTestDiagRecap = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.formLogin.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
@@ -285,6 +287,7 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.Button4)
         Me.GroupBox_test.Controls.Add(Me.brnTestDiagRecap)
         Me.GroupBox_test.Controls.Add(Me.btnTestFacturation)
         Me.GroupBox_test.Controls.Add(Me.Button2)
@@ -298,6 +301,17 @@ Public Class login
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
+        '
+        'brnTestDiagRecap
+        '
+        Me.brnTestDiagRecap.BackColor = System.Drawing.SystemColors.Control
+        Me.brnTestDiagRecap.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.brnTestDiagRecap.Location = New System.Drawing.Point(24, 77)
+        Me.brnTestDiagRecap.Name = "brnTestDiagRecap"
+        Me.brnTestDiagRecap.Size = New System.Drawing.Size(104, 23)
+        Me.brnTestDiagRecap.TabIndex = 32
+        Me.brnTestDiagRecap.Text = "Diag Recap"
+        Me.brnTestDiagRecap.UseVisualStyleBackColor = False
         '
         'btnTestFacturation
         '
@@ -473,16 +487,14 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'brnTestDiagRecap
+        'Button4
         '
-        Me.brnTestDiagRecap.BackColor = System.Drawing.SystemColors.Control
-        Me.brnTestDiagRecap.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.brnTestDiagRecap.Location = New System.Drawing.Point(24, 77)
-        Me.brnTestDiagRecap.Name = "brnTestDiagRecap"
-        Me.brnTestDiagRecap.Size = New System.Drawing.Size(104, 23)
-        Me.brnTestDiagRecap.TabIndex = 32
-        Me.brnTestDiagRecap.Text = "Diag Recap"
-        Me.brnTestDiagRecap.UseVisualStyleBackColor = False
+        Me.Button4.Location = New System.Drawing.Point(135, 77)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(128, 23)
+        Me.Button4.TabIndex = 33
+        Me.Button4.Text = "DiagHelp12123(SansPMP)"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'login
         '
@@ -891,6 +903,18 @@ Public Class login
             oFrm.ShowDialog()
 
         End If
+
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim oFRM As diagnostic_dlghelp12123new
+        Dim oDiag12123 As New DiagnosticHelp12123()
+        oDiag12123.calcule()
+
+
+        oFRM = New diagnostic_dlghelp12123new()
+        oFRM.setContexte(oDiag12123, False)
+        oFRM.ShowDialog()
 
     End Sub
 End Class

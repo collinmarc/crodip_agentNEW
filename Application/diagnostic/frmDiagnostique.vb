@@ -4817,7 +4817,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             m_Pulverisateur.buseNbniveaux = diagBuses_conf_nbCategories.Text
 
             'Pompes Doseuses
-            If m_Pulverisateur.isPompesDoseuses Then
+            If m_diagnostic.diagnosticHelp12123.lstPompes.Count() > 0 Then
+                m_Pulverisateur.isPompesDoseuses = True
                 m_Pulverisateur.nbPompesDoseuses = m_diagnostic.diagnosticHelp12123.lstPompes.Count
             End If
             bReturn = True
@@ -10298,6 +10299,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
                 Exit Function
             End If
+            If m_diagnostic.diagnosticHelp12123.lstPompes.Count() = 0 Then
+                m_diagnostic.diagnosticHelp12123.AjoutePompe()
+            End If
             If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
                 ini12123()
             End If
@@ -10313,6 +10317,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                             RadioButton_diagnostic_12123.Checked = False
                         Case DiagnosticItem.EtatDiagItemMAJEUR
                             RadioButton_diagnostic_12123.Checked = True
+                            RadioButton_diagnostic_12120.Checked = False
                     End Select
                 End If
             End If
@@ -10332,6 +10337,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Next
         For Each oPompe As DiagnosticHelp12123Pompe In m_diagnostic.diagnosticHelp12123.lstPompes
             oPompe.NbBuses = nBuses
+            If IsNumeric(Me.diagBuses_usureMoyBuses.Text) Then
+                oPompe.debitMesure = diagBuses_debitMoyen.Text
+            End If
             If IsNumeric(diagBuses_debitMoyen.Text) Then
                 oPompe.debitMesure = diagBuses_debitMoyen.Text
             End If

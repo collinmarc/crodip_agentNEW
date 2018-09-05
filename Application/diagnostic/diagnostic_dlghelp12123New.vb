@@ -17,6 +17,7 @@ Public Class diagnostic_dlghelp12123new
             'pnlPrinc.Enabled = False
             btnValider.Enabled = False
         End If
+
         m_bsrcH12123.Clear()
         m_DiagHelp12123 = pDiagH12123.Clone()
         m_bsrcH12123.Add(m_DiagHelp12123)
