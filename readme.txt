@@ -1,6 +1,9 @@
 TRUNK
 ------------------
-Build:
+Build :
+#246 : Chgmt de numero de fax
+
+Build:20180816160000
 #133 : Modification des délais de vérification des maériels Agents
 #149 : Dissociation des causes
 #153 : Nombre de pompes doseuses
