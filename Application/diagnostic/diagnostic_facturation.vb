@@ -94,6 +94,7 @@ Public Class diagnostic_facturation
         Me.listTarif_prestations = New System.Windows.Forms.ComboBox()
         Me.img_Add = New System.Windows.Forms.PictureBox()
         Me.panelFooter = New System.Windows.Forms.Panel()
+        Me.btn_imprimerFactureCoProp = New System.Windows.Forms.Label()
         Me.btn_ImprimerFacture = New System.Windows.Forms.Label()
         Me.btn_facturation_imprimerContrat = New System.Windows.Forms.Label()
         Me.facturation_totalHT = New System.Windows.Forms.TextBox()
@@ -113,13 +114,12 @@ Public Class diagnostic_facturation
         Me.Label17 = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.btn_imprimerFactureCoProp = New System.Windows.Forms.Label()
         Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrixUnitaireDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TvaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrixTotalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
@@ -209,6 +209,21 @@ Public Class diagnostic_facturation
         Me.panelFooter.Name = "panelFooter"
         Me.panelFooter.Size = New System.Drawing.Size(921, 206)
         Me.panelFooter.TabIndex = 2
+        '
+        'btn_imprimerFactureCoProp
+        '
+        Me.btn_imprimerFactureCoProp.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_imprimerFactureCoProp.Enabled = False
+        Me.btn_imprimerFactureCoProp.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_imprimerFactureCoProp.ForeColor = System.Drawing.Color.White
+        Me.btn_imprimerFactureCoProp.Image = CType(resources.GetObject("btn_imprimerFactureCoProp.Image"), System.Drawing.Image)
+        Me.btn_imprimerFactureCoProp.Location = New System.Drawing.Point(151, 132)
+        Me.btn_imprimerFactureCoProp.Name = "btn_imprimerFactureCoProp"
+        Me.btn_imprimerFactureCoProp.Size = New System.Drawing.Size(180, 24)
+        Me.btn_imprimerFactureCoProp.TabIndex = 34
+        Me.btn_imprimerFactureCoProp.Text = "      Factures co-propriétaires"
+        Me.btn_imprimerFactureCoProp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btn_imprimerFactureCoProp.Visible = False
         '
         'btn_ImprimerFacture
         '
@@ -352,7 +367,6 @@ Public Class diagnostic_facturation
         Me.facturation_totalTTC.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.facturation_totalTTC.Location = New System.Drawing.Point(858, 111)
         Me.facturation_totalTTC.Name = "facturation_totalTTC"
-        Me.facturation_totalTTC.ReadOnly = True
         Me.facturation_totalTTC.Size = New System.Drawing.Size(43, 20)
         Me.facturation_totalTTC.TabIndex = 3
         '
@@ -446,30 +460,6 @@ Public Class diagnostic_facturation
         Me.DataGridView1.Size = New System.Drawing.Size(903, 331)
         Me.DataGridView1.TabIndex = 30
         '
-        'columnDelete
-        '
-        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.columnDelete.HeaderText = "Suppr"
-        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
-        Me.columnDelete.Name = "columnDelete"
-        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.columnDelete.Width = 40
-        '
-        'btn_imprimerFactureCoProp
-        '
-        Me.btn_imprimerFactureCoProp.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_imprimerFactureCoProp.Enabled = False
-        Me.btn_imprimerFactureCoProp.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_imprimerFactureCoProp.ForeColor = System.Drawing.Color.White
-        Me.btn_imprimerFactureCoProp.Image = CType(resources.GetObject("btn_imprimerFactureCoProp.Image"), System.Drawing.Image)
-        Me.btn_imprimerFactureCoProp.Location = New System.Drawing.Point(151, 132)
-        Me.btn_imprimerFactureCoProp.Name = "btn_imprimerFactureCoProp"
-        Me.btn_imprimerFactureCoProp.Size = New System.Drawing.Size(180, 24)
-        Me.btn_imprimerFactureCoProp.TabIndex = 34
-        Me.btn_imprimerFactureCoProp.Text = "      Factures co-propriétaires"
-        Me.btn_imprimerFactureCoProp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btn_imprimerFactureCoProp.Visible = False
-        '
         'LibelleDataGridViewTextBoxColumn
         '
         Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -523,6 +513,15 @@ Public Class diagnostic_facturation
         Me.PrixTotalDataGridViewTextBoxColumn.Name = "PrixTotalDataGridViewTextBoxColumn"
         Me.PrixTotalDataGridViewTextBoxColumn.ReadOnly = True
         Me.PrixTotalDataGridViewTextBoxColumn.Width = 143
+        '
+        'columnDelete
+        '
+        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.columnDelete.HeaderText = "Suppr"
+        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
+        Me.columnDelete.Name = "columnDelete"
+        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.columnDelete.Width = 40
         '
         'm_bsLignes
         '
