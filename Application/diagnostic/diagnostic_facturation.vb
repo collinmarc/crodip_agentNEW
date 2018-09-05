@@ -604,7 +604,7 @@ Public Class diagnostic_facturation
     End Sub
 
     ' Chargement de la page
-    Private Sub diagnostic_finalisation_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub diagnostic_facturation_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Debug.Assert(m_oDiag IsNot Nothing, "Context must be set before")
         Debug.Assert(m_oExploit IsNot Nothing, "Context must be set before")
         Debug.Assert(m_oAgent IsNot Nothing, "Context must be set before")
@@ -635,21 +635,26 @@ Public Class diagnostic_facturation
         '    listTarif_categories.Enabled = False
         '    listTarif_prestations.Enabled = False
         'End If
+        btn_ImprimerFacture.Visible = False
+        btn_imprimerFactureCoProp.Visible = False
         Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Application.StartupPath & "\config\facturation.xml")
         If CType(FACTURATION_XML_CONFIG.getElementValue("/root/isActive"), Boolean) Then
-            btn_ImprimerFacture.Visible = True
-            btn_imprimerFactureCoProp.Visible = False
             If Trim(m_oDiag.pulverisateurNbreExploitants) <> "" Then
                 If m_oDiag.pulverisateurNbreExploitants > 1 Then
                     btn_imprimerFactureCoProp.Visible = True
+                    btn_imprimerFactureCoProp.Location = btn_ImprimerFacture.Location
+                Else
+                    btn_ImprimerFacture.Visible = True
                 End If
+            Else
+                btn_ImprimerFacture.Visible = True
             End If
 
         Else
             btn_ImprimerFacture.Visible = False
         End If
 
-            Me.Cursor = Cursors.Default
+        Me.Cursor = Cursors.Default
 
     End Sub
 

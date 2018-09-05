@@ -5398,4 +5398,10 @@ Public Class accueil
         TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
 
     End Sub
+
+    Private Sub client_search_query_KeyPress(sender As Object, e As KeyPressEventArgs) Handles client_search_query.KeyPress
+        If e.KeyChar = Chr(13) Then
+            searchExploitant()
+        End If
+    End Sub
 End Class
