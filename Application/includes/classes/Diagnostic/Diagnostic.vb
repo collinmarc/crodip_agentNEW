@@ -2924,7 +2924,7 @@ Public Class Diagnostic
     End Function
 
     ''' Generation du dataset en vue la la construction du Bon de Livraison
-    Public Function generateDataSetForBL() As ds_EtatBL
+    Public Function generateDataSetForBL(PCommentaire As String) As ds_EtatBL
         Dim oReturn As ds_EtatBL
         Try
 
@@ -2941,7 +2941,8 @@ Public Class Diagnostic
                                                  dateFacture:=Date.Now(),
                                                  Footer:="",
                                                  LogoFileName:="",
-                                                 Logo:=Nothing)
+                                                 Logo:=Nothing,
+                                                 Commentaire:=PCommentaire)
             oReturn.Pulve.AddPulveRow(oRow,
                                       Marque:=pulverisateurMarque,
                                       Modele:=pulverisateurModele,

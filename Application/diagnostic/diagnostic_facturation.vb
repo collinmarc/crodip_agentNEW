@@ -27,6 +27,8 @@ Public Class diagnostic_facturation
     Friend WithEvents PrixTotalDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnDelete As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents btn_imprimerFactureCoProp As System.Windows.Forms.Label
+    Friend WithEvents tbCommentaire As System.Windows.Forms.TextBox
+    Friend WithEvents Label18 As System.Windows.Forms.Label
 
     Public prestaIncrement As Integer = 0
 
@@ -114,13 +116,15 @@ Public Class diagnostic_facturation
         Me.Label17 = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrixUnitaireDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TvaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrixTotalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
+        Me.tbCommentaire = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -186,6 +190,8 @@ Public Class diagnostic_facturation
         '
         Me.panelFooter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelFooter.Controls.Add(Me.tbCommentaire)
+        Me.panelFooter.Controls.Add(Me.Label18)
         Me.panelFooter.Controls.Add(Me.btn_imprimerFactureCoProp)
         Me.panelFooter.Controls.Add(Me.btn_ImprimerFacture)
         Me.panelFooter.Controls.Add(Me.btn_facturation_imprimerContrat)
@@ -460,6 +466,15 @@ Public Class diagnostic_facturation
         Me.DataGridView1.Size = New System.Drawing.Size(903, 331)
         Me.DataGridView1.TabIndex = 30
         '
+        'columnDelete
+        '
+        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.columnDelete.HeaderText = "Suppr"
+        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
+        Me.columnDelete.Name = "columnDelete"
+        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.columnDelete.Width = 40
+        '
         'LibelleDataGridViewTextBoxColumn
         '
         Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -514,18 +529,28 @@ Public Class diagnostic_facturation
         Me.PrixTotalDataGridViewTextBoxColumn.ReadOnly = True
         Me.PrixTotalDataGridViewTextBoxColumn.Width = 143
         '
-        'columnDelete
-        '
-        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.columnDelete.HeaderText = "Suppr"
-        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
-        Me.columnDelete.Name = "columnDelete"
-        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.columnDelete.Width = 40
-        '
         'm_bsLignes
         '
         Me.m_bsLignes.DataSource = GetType(Crodip_agent.DiagnosticFactureItem)
+        '
+        'tbCommentaire
+        '
+        Me.tbCommentaire.Location = New System.Drawing.Point(110, 20)
+        Me.tbCommentaire.Multiline = True
+        Me.tbCommentaire.Name = "tbCommentaire"
+        Me.tbCommentaire.Size = New System.Drawing.Size(552, 52)
+        Me.tbCommentaire.TabIndex = 45
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label18.Location = New System.Drawing.Point(3, 20)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(87, 13)
+        Me.Label18.TabIndex = 44
+        Me.Label18.Text = "Commentaire :"
         '
         'diagnostic_facturation
         '
@@ -685,13 +710,6 @@ Public Class diagnostic_facturation
                 m_oDiag.TotalTVA = CDec(facturation_totalTVA.Text)
                 m_oDiag.TotalTTC = CDec(facturation_totalTTC.Text)
 
-                ' Changement d'état du bouton
-                btn_facturation_suivant.Text = "Poursuivre"
-                btn_facturation_imprimerContrat.Enabled = True
-                btn_facturation_imprimerBL.Enabled = True
-                btn_ImprimerFacture.Enabled = True
-                btn_imprimerFactureCoProp.Enabled = True
-                isValider = True
 
                 listTarif_categories.Enabled = False
                 listTarif_prestations.Enabled = False
@@ -699,11 +717,18 @@ Public Class diagnostic_facturation
                 img_Add.Enabled = False
                 createContrat()
                 createBl_CR()
+                ' Changement d'état du bouton
+                btn_facturation_suivant.Text = "Poursuivre"
+                btn_facturation_imprimerContrat.Enabled = True
+                btn_facturation_imprimerBL.Enabled = True
+                isValider = True
+
                 'Facture
                 Try
                     Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Application.StartupPath & "\config\facturation.xml")
                     If CType(FACTURATION_XML_CONFIG.getElementValue("/root/isActive"), Boolean) Then
-                        createFacture_CR()
+                        btn_ImprimerFacture.Enabled = True
+                        btn_imprimerFactureCoProp.Enabled = True
                     End If
                 Catch ex As Exception
 
@@ -761,7 +786,7 @@ Public Class diagnostic_facturation
             Dim factureObj As DiagnosticFacture
             factureObj = Me.saveFacture()
 
-            Dim oEtat As New EtatFacture(m_oDiag, factureObj.factureReference)
+            Dim oEtat As New EtatFacture(m_oDiag, factureObj.factureReference, tbCommentaire.Text)
 
             ' On rempli la liste des prestations
             For Each oLig As DiagnosticFactureItem In m_bsLignes
@@ -1094,6 +1119,7 @@ Public Class diagnostic_facturation
     Private Sub btn_ImprimerFacture_Click(sender As Object, e As EventArgs) Handles btn_ImprimerFacture.Click
         ' On affiche le PDF rempli
         Try
+            createFacture_CR()
             CSFile.open(m_pathFacture)
         Catch ex As Exception
             CSDebug.dispError("diagnostic_finalisation::btn_facturation_imprimerFact_Click( Affichage Facture ) : " & ex.Message)

@@ -38,6 +38,8 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents TextBox6 As System.Windows.Forms.TextBox
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents tbCommentaire As System.Windows.Forms.TextBox
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
 
 
@@ -89,10 +91,10 @@ Public Class frmdiagnostic_facturationCoProp
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmdiagnostic_facturationCoProp))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.panelFooter = New System.Windows.Forms.Panel()
@@ -111,12 +113,19 @@ Public Class frmdiagnostic_facturationCoProp
         Me.tb_txTVA = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrixUnitaireDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TvaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrixTotalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.m_bsExploitant = New System.Windows.Forms.BindingSource(Me.components)
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
@@ -124,17 +133,12 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.m_bsExploitant = New System.Windows.Forms.BindingSource(Me.components)
-        Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrixUnitaireDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TvaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrixTotalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.tbCommentaire = New System.Windows.Forms.TextBox()
         Me.panelFooter.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -361,16 +365,70 @@ Public Class frmdiagnostic_facturationCoProp
         Me.DataGridView1.DataSource = Me.m_bsLignes
         Me.DataGridView1.Location = New System.Drawing.Point(12, 228)
         Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridView1.Size = New System.Drawing.Size(903, 168)
         Me.DataGridView1.TabIndex = 6
+        '
+        'LibelleDataGridViewTextBoxColumn
+        '
+        Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.LibelleDataGridViewTextBoxColumn.DataPropertyName = "libelle"
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
+        Me.LibelleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        Me.LibelleDataGridViewTextBoxColumn.HeaderText = "Prestation"
+        Me.LibelleDataGridViewTextBoxColumn.Name = "LibelleDataGridViewTextBoxColumn"
+        Me.LibelleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'PrixUnitaireDataGridViewTextBoxColumn
+        '
+        Me.PrixUnitaireDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.PrixUnitaireDataGridViewTextBoxColumn.DataPropertyName = "prixUnitaire"
+        Me.PrixUnitaireDataGridViewTextBoxColumn.HeaderText = "Prix U H.T."
+        Me.PrixUnitaireDataGridViewTextBoxColumn.Name = "PrixUnitaireDataGridViewTextBoxColumn"
+        Me.PrixUnitaireDataGridViewTextBoxColumn.Width = 114
+        '
+        'QteDataGridViewTextBoxColumn
+        '
+        Me.QteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.QteDataGridViewTextBoxColumn.DataPropertyName = "qte"
+        Me.QteDataGridViewTextBoxColumn.HeaderText = "Quant"
+        Me.QteDataGridViewTextBoxColumn.Name = "QteDataGridViewTextBoxColumn"
+        Me.QteDataGridViewTextBoxColumn.Width = 72
+        '
+        'TvaDataGridViewTextBoxColumn
+        '
+        Me.TvaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.TvaDataGridViewTextBoxColumn.DataPropertyName = "tva"
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
+        Me.TvaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
+        Me.TvaDataGridViewTextBoxColumn.HeaderText = "% TVA"
+        Me.TvaDataGridViewTextBoxColumn.Name = "TvaDataGridViewTextBoxColumn"
+        Me.TvaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TvaDataGridViewTextBoxColumn.Width = 66
+        '
+        'PrixTotalDataGridViewTextBoxColumn
+        '
+        Me.PrixTotalDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.PrixTotalDataGridViewTextBoxColumn.DataPropertyName = "prixTotal"
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
+        Me.PrixTotalDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
+        Me.PrixTotalDataGridViewTextBoxColumn.HeaderText = "Total TTC"
+        Me.PrixTotalDataGridViewTextBoxColumn.Name = "PrixTotalDataGridViewTextBoxColumn"
+        Me.PrixTotalDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PrixTotalDataGridViewTextBoxColumn.Width = 143
         '
         'columnDelete
         '
@@ -381,6 +439,10 @@ Public Class frmdiagnostic_facturationCoProp
         Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.columnDelete.Visible = False
         Me.columnDelete.Width = 40
+        '
+        'm_bsLignes
+        '
+        Me.m_bsLignes.DataSource = GetType(Crodip_agent.DiagnosticFactureItem)
         '
         'Label4
         '
@@ -420,7 +482,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(12, 168)
+        Me.Label8.Location = New System.Drawing.Point(199, 142)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(69, 13)
         Me.Label8.TabIndex = 34
@@ -433,8 +495,12 @@ Public Class frmdiagnostic_facturationCoProp
         Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "nomExploitant", True))
         Me.TextBox1.Location = New System.Drawing.Point(122, 61)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(475, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(699, 20)
         Me.TextBox1.TabIndex = 1
+        '
+        'm_bsExploitant
+        '
+        Me.m_bsExploitant.DataSource = GetType(Crodip_agent.Exploitation)
         '
         'TextBox2
         '
@@ -443,7 +509,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "adresse", True))
         Me.TextBox2.Location = New System.Drawing.Point(122, 113)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(475, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(699, 20)
         Me.TextBox2.TabIndex = 3
         '
         'TextBox3
@@ -453,7 +519,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "codePostal", True))
         Me.TextBox3.Location = New System.Drawing.Point(122, 139)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(61, 20)
         Me.TextBox3.TabIndex = 4
         '
         'TextBox4
@@ -461,9 +527,9 @@ Public Class frmdiagnostic_facturationCoProp
         Me.TextBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "commune", True))
-        Me.TextBox4.Location = New System.Drawing.Point(122, 165)
+        Me.TextBox4.Location = New System.Drawing.Point(274, 139)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(475, 20)
+        Me.TextBox4.Size = New System.Drawing.Size(547, 20)
         Me.TextBox4.TabIndex = 5
         '
         'TextBox5
@@ -473,7 +539,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "prenomExploitant", True))
         Me.TextBox5.Location = New System.Drawing.Point(122, 87)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(475, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(699, 20)
         Me.TextBox5.TabIndex = 2
         '
         'Label10
@@ -505,76 +571,36 @@ Public Class frmdiagnostic_facturationCoProp
         Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "raisonSociale", True))
         Me.TextBox6.Location = New System.Drawing.Point(122, 35)
         Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(475, 20)
+        Me.TextBox6.Size = New System.Drawing.Size(699, 20)
         Me.TextBox6.TabIndex = 0
         '
-        'm_bsExploitant
+        'Label18
         '
-        Me.m_bsExploitant.DataSource = GetType(Crodip_agent.Exploitation)
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label18.Location = New System.Drawing.Point(12, 174)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(87, 13)
+        Me.Label18.TabIndex = 42
+        Me.Label18.Text = "Commentaire :"
         '
-        'LibelleDataGridViewTextBoxColumn
+        'tbCommentaire
         '
-        Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.LibelleDataGridViewTextBoxColumn.DataPropertyName = "libelle"
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
-        Me.LibelleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
-        Me.LibelleDataGridViewTextBoxColumn.HeaderText = "Prestation"
-        Me.LibelleDataGridViewTextBoxColumn.Name = "LibelleDataGridViewTextBoxColumn"
-        Me.LibelleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'PrixUnitaireDataGridViewTextBoxColumn
-        '
-        Me.PrixUnitaireDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.PrixUnitaireDataGridViewTextBoxColumn.DataPropertyName = "prixUnitaire"
-        Me.PrixUnitaireDataGridViewTextBoxColumn.HeaderText = "Prix U H.T."
-        Me.PrixUnitaireDataGridViewTextBoxColumn.Name = "PrixUnitaireDataGridViewTextBoxColumn"
-        Me.PrixUnitaireDataGridViewTextBoxColumn.Width = 114
-        '
-        'QteDataGridViewTextBoxColumn
-        '
-        Me.QteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.QteDataGridViewTextBoxColumn.DataPropertyName = "qte"
-        Me.QteDataGridViewTextBoxColumn.HeaderText = "Quant"
-        Me.QteDataGridViewTextBoxColumn.Name = "QteDataGridViewTextBoxColumn"
-        Me.QteDataGridViewTextBoxColumn.Width = 72
-        '
-        'TvaDataGridViewTextBoxColumn
-        '
-        Me.TvaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.TvaDataGridViewTextBoxColumn.DataPropertyName = "tva"
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        Me.TvaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
-        Me.TvaDataGridViewTextBoxColumn.HeaderText = "% TVA"
-        Me.TvaDataGridViewTextBoxColumn.Name = "TvaDataGridViewTextBoxColumn"
-        Me.TvaDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TvaDataGridViewTextBoxColumn.Width = 66
-        '
-        'PrixTotalDataGridViewTextBoxColumn
-        '
-        Me.PrixTotalDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.PrixTotalDataGridViewTextBoxColumn.DataPropertyName = "prixTotal"
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        Me.PrixTotalDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.PrixTotalDataGridViewTextBoxColumn.HeaderText = "Total TTC"
-        Me.PrixTotalDataGridViewTextBoxColumn.Name = "PrixTotalDataGridViewTextBoxColumn"
-        Me.PrixTotalDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PrixTotalDataGridViewTextBoxColumn.Width = 143
-        '
-        'm_bsLignes
-        '
-        Me.m_bsLignes.DataSource = GetType(Crodip_agent.DiagnosticFactureItem)
+        Me.tbCommentaire.Location = New System.Drawing.Point(126, 177)
+        Me.tbCommentaire.Multiline = True
+        Me.tbCommentaire.Name = "tbCommentaire"
+        Me.tbCommentaire.Size = New System.Drawing.Size(695, 32)
+        Me.tbCommentaire.TabIndex = 43
+        Me.tbCommentaire.Text = "Facture co-propriétaire "
         '
         'frmdiagnostic_facturationCoProp
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(933, 607)
         Me.ControlBox = False
+        Me.Controls.Add(Me.tbCommentaire)
+        Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.TextBox6)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label10)
@@ -600,8 +626,8 @@ Public Class frmdiagnostic_facturationCoProp
         Me.panelFooter.ResumeLayout(False)
         Me.panelFooter.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -687,7 +713,7 @@ Public Class frmdiagnostic_facturationCoProp
             Dim factureObj As DiagnosticFacture
             factureObj = Me.saveFacture()
 
-            Dim oEtat As New EtatFacture(m_oDiag, factureObj.factureReference, m_oExploit)
+            Dim oEtat As New EtatFacture(m_oDiag, factureObj.factureReference, tbCommentaire.Text, m_oExploit)
 
             ' On rempli la liste des prestations
             For Each oLig As DiagnosticFactureItem In m_bsLignes

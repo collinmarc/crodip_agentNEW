@@ -1594,6 +1594,8 @@ Partial Public Class ds_EtatBL
 
         Private columnLogo As Global.System.Data.DataColumn
 
+        Private columnCommentaire As Global.System.Data.DataColumn
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New()
@@ -1710,6 +1712,14 @@ Partial Public Class ds_EtatBL
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property CommentaireColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCommentaire
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
          Global.System.ComponentModel.Browsable(False)> _
         Public ReadOnly Property Count() As Integer
@@ -1746,9 +1756,9 @@ Partial Public Class ds_EtatBL
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Overloads Function AddFactureRow(ByVal IdPulve As String, ByVal NomOrganisme As String, ByVal MontantHT As Decimal, ByVal MontantTVA As Decimal, ByVal MontantTTC As Decimal, ByVal refacture As String, ByVal dateFacture As Date, ByVal Footer As String, ByVal LogoFileName As String, ByVal Logo() As Byte) As FactureRow
+        Public Overloads Function AddFactureRow(ByVal IdPulve As String, ByVal NomOrganisme As String, ByVal MontantHT As Decimal, ByVal MontantTVA As Decimal, ByVal MontantTTC As Decimal, ByVal refacture As String, ByVal dateFacture As Date, ByVal Footer As String, ByVal LogoFileName As String, ByVal Logo() As Byte, ByVal Commentaire As String) As FactureRow
             Dim rowFactureRow As FactureRow = CType(Me.NewRow, FactureRow)
-            Dim columnValuesArray() As Object = New Object() {IdPulve, NomOrganisme, MontantHT, MontantTVA, MontantTTC, refacture, dateFacture, Footer, LogoFileName, Logo}
+            Dim columnValuesArray() As Object = New Object() {IdPulve, NomOrganisme, MontantHT, MontantTVA, MontantTTC, refacture, dateFacture, Footer, LogoFileName, Logo, Commentaire}
             rowFactureRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowFactureRow)
             Return rowFactureRow
@@ -1781,6 +1791,7 @@ Partial Public Class ds_EtatBL
             Me.columnFooter = MyBase.Columns("Footer")
             Me.columnLogoFileName = MyBase.Columns("LogoFileName")
             Me.columnLogo = MyBase.Columns("Logo")
+            Me.columnCommentaire = MyBase.Columns("Commentaire")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -1806,6 +1817,8 @@ Partial Public Class ds_EtatBL
             MyBase.Columns.Add(Me.columnLogoFileName)
             Me.columnLogo = New Global.System.Data.DataColumn("Logo", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLogo)
+            Me.columnCommentaire = New Global.System.Data.DataColumn("Commentaire", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCommentaire)
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -3353,6 +3366,21 @@ Partial Public Class ds_EtatBL
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property Commentaire() As String
+            Get
+                Try
+                    Return CType(Me(Me.tableFacture.CommentaireColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'Commentaire' dans la table 'Facture' est DBNull.", e)
+                End Try
+            End Get
+            Set(value As String)
+                Me(Me.tableFacture.CommentaireColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsIdPulveNull() As Boolean
             Return Me.IsNull(Me.tableFacture.IdPulveColumn)
         End Function
@@ -3469,6 +3497,18 @@ Partial Public Class ds_EtatBL
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetLogoNull()
             Me(Me.tableFacture.LogoColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsCommentaireNull() As Boolean
+            Return Me.IsNull(Me.tableFacture.CommentaireColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetCommentaireNull()
+            Me(Me.tableFacture.CommentaireColumn) = Global.System.Convert.DBNull
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _

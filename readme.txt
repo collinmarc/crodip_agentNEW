@@ -5,6 +5,8 @@ Build :
 #247 : Avoir la possibilté de rentrer un tarif sans prestation
 #248 : Modif Fiche Pulvé
 #249 : Modif Ecran controle du dispositif de dosage
+#250 : Ajout d'un commentaire sur les factures
+
 
 Build:20180816160000
 #133 : Modification des délais de vérification des maériels Agents

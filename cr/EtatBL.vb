@@ -97,7 +97,7 @@ Public Class EtatBL
 
 
             '
-            m_ods = m_oDiag.generateDataSetForBL()
+            m_ods = m_oDiag.generateDataSetForBL("")
             For Each oPresta As LgPrestation In m_lstPresta
                 m_ods.Prestation.AddPrestationRow(oPresta.m_Libelle, oPresta.m_TotalHT, oPresta.m_TVA, oPresta.m_TotalTTC, oPresta.m_qte, oPresta.m_PU)
 

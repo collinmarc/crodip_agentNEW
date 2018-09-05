@@ -18,7 +18,7 @@ Public Class EtatFacture
         Public m_TVA As Decimal
         Public m_TotalHT As Decimal
         Public m_TotalTTC As Decimal
-
+ 
         Public Sub New(pLib As String, pPU As String, pQte As Integer, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal)
             m_Libelle = pLib
             m_PU = pPU
@@ -26,7 +26,7 @@ Public Class EtatFacture
             m_TVA = pTVA
             m_TotalHT = pTotalHT
             m_TotalTTC = pTotalTTC
-
+ 
         End Sub
     End Class
 
@@ -41,7 +41,8 @@ Public Class EtatFacture
     Private m_adresseClient As String
     Private m_cpClient As String
     Private m_communeClient As String
-    Public Sub New(pDiag As Diagnostic, pReference As String, Optional pExploitation As Exploitation = Nothing)
+    Private m_Commentaire As String
+    Public Sub New(pDiag As Diagnostic, pReference As String, pCommentaire As String, Optional pExploitation As Exploitation = Nothing)
         m_oDiag = pDiag
         If pExploitation Is Nothing Then
             'Par Défaut les Coordonnées sont celle prises dans le Diag
@@ -60,6 +61,7 @@ Public Class EtatFacture
 
         m_lstPresta = New List(Of facturePrestation)
         m_Reference = pReference
+        m_Commentaire = pCommentaire
         Dim r1 As New cr_Facture()
         m_ReportName = r1.ResourceName
     End Sub
@@ -121,7 +123,7 @@ Public Class EtatFacture
 
 
             'Génération du DataSet par le DiagNostic (Idem BL)
-            m_ods = m_oDiag.generateDataSetForBL()
+            m_ods = m_oDiag.generateDataSetForBL(m_Commentaire)
             m_ods.Proprio.Clear()
             m_ods.Proprio.AddProprioRow(RS:=m_rsClient,
                                         Nom:=m_NomPrenomClient,
