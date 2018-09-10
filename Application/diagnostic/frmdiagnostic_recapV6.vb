@@ -8,6 +8,7 @@ Imports System.Globalization
 Public Class frmdiagnostic_recapV6
     Inherits frmCRODIP
 #Region " Variables "
+    Private bTest As Boolean = False
     Private m_DiagMode As Globals.DiagMode
     Private m_diagnostic As Diagnostic
     Private m_Exploit As Exploitation
@@ -66,8 +67,12 @@ Public Class frmdiagnostic_recapV6
         InitializeComponent()
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
-
+        m_bsDiag.Add(m_diagnostic)
     End Sub
+    Public Sub setbTest(Optional pTest As Boolean = True)
+        bTest = pTest
+    End Sub
+
     'La méthode substituée Dispose du formulaire pour nettoyer la liste des composants.
     Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing Then
@@ -109,6 +114,7 @@ Public Class frmdiagnostic_recapV6
         Me.btnAppercu = New System.Windows.Forms.Label()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.rtbCommentaire = New System.Windows.Forms.RichTextBox()
+        Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
         Me.grpMateriel = New System.Windows.Forms.GroupBox()
         Me.cbx_diagnosticRecap_materiel_EmplacementIdentification = New System.Windows.Forms.ComboBox()
@@ -123,16 +129,15 @@ Public Class frmdiagnostic_recapV6
         Me.diagnosticRecap_organisme_heureDebut = New System.Windows.Forms.TextBox()
         Me.diagnosticRecap_organisme_heureFin = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
-        Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.conclusion_pictoEtat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpMateriel.SuspendLayout()
         Me.grpProprio.SuspendLayout()
         Me.grpOrganisme.SuspendLayout()
-        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -327,12 +332,16 @@ Public Class frmdiagnostic_recapV6
         Me.rtbCommentaire.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rtbCommentaire.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsDiag, "Commentaire", True))
+        Me.rtbCommentaire.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsDiag, "Commentaire", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.rtbCommentaire.Location = New System.Drawing.Point(6, 307)
         Me.rtbCommentaire.Name = "rtbCommentaire"
         Me.rtbCommentaire.Size = New System.Drawing.Size(341, 226)
         Me.rtbCommentaire.TabIndex = 63
         Me.rtbCommentaire.Text = ""
+        '
+        'm_bsDiag
+        '
+        Me.m_bsDiag.DataSource = GetType(Crodip_agent.Diagnostic)
         '
         'Label4
         '
@@ -442,7 +451,6 @@ Public Class frmdiagnostic_recapV6
         '
         'diagnosticRecap_organisme_dateControle
         '
-        Me.diagnosticRecap_organisme_dateControle.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.m_bsDiag, "controleDateDebut", True))
         Me.diagnosticRecap_organisme_dateControle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.diagnosticRecap_organisme_dateControle.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.diagnosticRecap_organisme_dateControle.Location = New System.Drawing.Point(139, 23)
@@ -497,10 +505,6 @@ Public Class frmdiagnostic_recapV6
         Me.Label19.Text = "/"
         Me.Label19.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
-        'm_bsDiag
-        '
-        Me.m_bsDiag.DataSource = GetType(Crodip_agent.Diagnostic)
-        '
         'frmdiagnostic_recapV6
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -527,12 +531,12 @@ Public Class frmdiagnostic_recapV6
         Me.SplitContainer1.Panel2.PerformLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpMateriel.ResumeLayout(False)
         Me.grpMateriel.PerformLayout()
         Me.grpProprio.ResumeLayout(False)
         Me.grpOrganisme.ResumeLayout(False)
         Me.grpOrganisme.PerformLayout()
-        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -632,6 +636,11 @@ Public Class frmdiagnostic_recapV6
     End Sub
     ' Modifier le diag
     Private Sub btn_finalisationDiag_modifierDiag_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_modifierDiag.Click
+        If MdiParent Is Nothing Then
+            'En cas de tests
+            Close()
+            Exit Sub
+        End If
         'Récupération des infos de la fenêtre
         GetInfos()
         Dim ofrmDiag As Form = Nothing
@@ -873,7 +882,7 @@ Public Class frmdiagnostic_recapV6
                 m_diagnostic.RIFileName = pathRapport
                 bReturn = File.Exists(Globals.CONST_PATH_EXP & pathRapport)
             Else
-                CrystalReportViewer1.ReportSource = oEtat.getReportDocument
+                CrystalReportViewer1.ReportSource = oEtat.getReportdocument
             End If
         Catch ex As Exception
             CSDebug.dispError("createRapportInspection_cr ERR : " & ex.Message.ToString)

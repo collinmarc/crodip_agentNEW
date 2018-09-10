@@ -382,7 +382,6 @@ Public Class EtatRapportInspection
                             End If
                         Next i
                         m_ods.Defauts.AddDefautsRow(oParam.Code, oParam.Libelle, dOrdre, nNiveau)
-                        Console.WriteLine("Ajout du defaut : " + oParam.Code + ":" + oParam.Libelle + "|" + dOrdre.ToString() + "|" + nNiveau.ToString())
                     End If
                 Next
                 'le 194 correspond au dernier elément de la Première page

@@ -875,4 +875,81 @@ Public Class login
         oFRM.ShowDialog()
 
     End Sub
+
+    Private Sub brnTestDiagRecap_Click(sender As Object, e As EventArgs) Handles brnTestDiagRecap.Click
+        Dim oEtat As EtatRapportInspection
+        Dim oDiag As Diagnostic
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        Dim oDiagItem As DiagnosticItem
+        Dim oAgent As Agent
+
+        oPulve = New Pulverisateur()
+        oExploit = New Exploitation()
+        oExploit = ExploitationManager.getExploitationById("2-81-32")
+        '        oPulve = PulverisateurManager.getPulverisateurById("2-1-51") 'Culture maraîchères palissées
+        'oPulve = PulverisateurManager.getPulverisateurById("2-81-63") 'Pulvérisateurs combinés
+        '        oPulve = PulverisateurManager.getPulverisateurById("2-81-50") 'Cultures basses
+        oPulve = PulverisateurManager.getPulverisateurById("2-1083-7") 'Vigne
+        oAgent = AgentManager.getAgentById("1110")
+        oDiag = New Diagnostic(oAgent, oPulve, oExploit)
+        oDiag.controleLieu = "DANS LA COUR"
+        oDiag.controleIsPreControleProfessionel = True
+        oDiag.proprietaireRepresentant = "Repésentant"
+        oDiag.controleIsComplet = False
+        oDiag.buseDebitD = 2.5
+        oDiag.controleInitialId = "010101"
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.inspecteurOrigineNom = "RAULT"
+        oDiag.inspecteurOriginePrenom = "MA"
+        oDiag.organismeOriginePresNom = "CRODIP"
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
+        oDiagItem.LibelleCourt = "LIBCourt2561"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "257", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "258", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "259", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "260", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "261", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "262", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "263", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "264", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+
+        Dim ofrm As frmdiagnostic_recapV6
+        ofrm = New frmdiagnostic_recapV6(Globals.DiagMode.CTRL_COMPLET, oDiag, oPulve, oExploit)
+        ofrm.setbTest(True)
+        ofrm.Show()
+
+
+    End Sub
 End Class
