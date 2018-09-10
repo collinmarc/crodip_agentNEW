@@ -1,6 +1,9 @@
 TRUNK
 ------------------
 Build :20180905140000
+#246 : Chgmt de numero de fax (Enquête de satisfaction)
+
+Build :20180905140000
 #246 : Chgmt de numero de fax
 #247 : Avoir la possibilté de rentrer un tarif sans prestation
 #248 : Modif Fiche Pulvé
