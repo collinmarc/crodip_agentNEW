@@ -44,14 +44,11 @@ Public Class login
     'Elle peut être modifiée en utilisant le Concepteur Windows Form.  
     'Ne la modifiez pas en utilisant l'éditeur de code.
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents login_profil As System.Windows.Forms.ComboBox
     Friend WithEvents login_password As System.Windows.Forms.TextBox
-    Friend WithEvents formLogin As System.Windows.Forms.Panel
     Friend WithEvents picto_profil As System.Windows.Forms.PictureBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents btn_login_seConnecter As System.Windows.Forms.Label
@@ -80,9 +77,6 @@ Public Class login
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.formLogin = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.pnlLoginControls = New System.Windows.Forms.Panel()
         Me.btn_login_seConnecter = New System.Windows.Forms.Label()
@@ -94,6 +88,7 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.brnTestDiagRecap = New System.Windows.Forms.Button()
         Me.btnTestFacturation = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -110,8 +105,6 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.formLogin.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
@@ -129,40 +122,6 @@ Public Class login
         Me.Button3.Text = "Synth sans DM"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'formLogin
-        '
-        Me.formLogin.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.formLogin.Controls.Add(Me.Label2)
-        Me.formLogin.Controls.Add(Me.Label1)
-        Me.formLogin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.formLogin.Location = New System.Drawing.Point(0, 0)
-        Me.formLogin.Name = "formLogin"
-        Me.formLogin.Size = New System.Drawing.Size(1008, 64)
-        Me.formLogin.TabIndex = 1
-        '
-        'Label2
-        '
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(416, 40)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(264, 16)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "CRODIP"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'Label1
-        '
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
-        Me.Label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label1.Location = New System.Drawing.Point(400, 16)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(280, 16)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "        Banc de mesure de débits informatisés"
-        '
         'Panel1
         '
         Me.Panel1.BackgroundImage = CType(resources.GetObject("Panel1.BackgroundImage"), System.Drawing.Image)
@@ -178,9 +137,10 @@ Public Class login
         Me.Panel1.Controls.Add(Me.lbl_environnement_debugType)
         Me.Panel1.Controls.Add(Me.lbl_environnement_debugLvl)
         Me.Panel1.Controls.Add(Me.lbl_WS)
-        Me.Panel1.Location = New System.Drawing.Point(0, 64)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1008, 616)
+        Me.Panel1.Size = New System.Drawing.Size(1008, 680)
         Me.Panel1.TabIndex = 0
         '
         'pnlLoginControls
@@ -301,6 +261,15 @@ Public Class login
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(135, 77)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(128, 23)
+        Me.Button4.TabIndex = 33
+        Me.Button4.Text = "DiagHelp12123(SansPMP)"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'brnTestDiagRecap
         '
@@ -487,21 +456,11 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(135, 77)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(128, 23)
-        Me.Button4.TabIndex = 33
-        Me.Button4.Text = "DiagHelp12123(SansPMP)"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
         'login
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(1008, 680)
         Me.ControlBox = False
-        Me.Controls.Add(Me.formLogin)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -509,7 +468,6 @@ Public Class login
         Me.MinimizeBox = False
         Me.Name = "login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.formLogin.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.pnlLoginControls.ResumeLayout(False)
