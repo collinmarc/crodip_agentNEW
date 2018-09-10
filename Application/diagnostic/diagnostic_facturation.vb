@@ -96,6 +96,8 @@ Public Class diagnostic_facturation
         Me.listTarif_prestations = New System.Windows.Forms.ComboBox()
         Me.img_Add = New System.Windows.Forms.PictureBox()
         Me.panelFooter = New System.Windows.Forms.Panel()
+        Me.tbCommentaire = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.btn_imprimerFactureCoProp = New System.Windows.Forms.Label()
         Me.btn_ImprimerFacture = New System.Windows.Forms.Label()
         Me.btn_facturation_imprimerContrat = New System.Windows.Forms.Label()
@@ -116,15 +118,13 @@ Public Class diagnostic_facturation
         Me.Label17 = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrixUnitaireDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TvaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrixTotalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
-        Me.tbCommentaire = New System.Windows.Forms.TextBox()
-        Me.Label18 = New System.Windows.Forms.Label()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -216,8 +216,28 @@ Public Class diagnostic_facturation
         Me.panelFooter.Size = New System.Drawing.Size(921, 206)
         Me.panelFooter.TabIndex = 2
         '
+        'tbCommentaire
+        '
+        Me.tbCommentaire.Location = New System.Drawing.Point(110, 20)
+        Me.tbCommentaire.Multiline = True
+        Me.tbCommentaire.Name = "tbCommentaire"
+        Me.tbCommentaire.Size = New System.Drawing.Size(552, 52)
+        Me.tbCommentaire.TabIndex = 45
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label18.Location = New System.Drawing.Point(3, 20)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(87, 13)
+        Me.Label18.TabIndex = 44
+        Me.Label18.Text = "Commentaire :"
+        '
         'btn_imprimerFactureCoProp
         '
+        Me.btn_imprimerFactureCoProp.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btn_imprimerFactureCoProp.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_imprimerFactureCoProp.Enabled = False
         Me.btn_imprimerFactureCoProp.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -233,6 +253,7 @@ Public Class diagnostic_facturation
         '
         'btn_ImprimerFacture
         '
+        Me.btn_ImprimerFacture.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btn_ImprimerFacture.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_ImprimerFacture.Enabled = False
         Me.btn_ImprimerFacture.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -248,6 +269,7 @@ Public Class diagnostic_facturation
         '
         'btn_facturation_imprimerContrat
         '
+        Me.btn_facturation_imprimerContrat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btn_facturation_imprimerContrat.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_facturation_imprimerContrat.Enabled = False
         Me.btn_facturation_imprimerContrat.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -282,7 +304,7 @@ Public Class diagnostic_facturation
         '
         'btn_facturation_suivant
         '
-        Me.btn_facturation_suivant.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_facturation_suivant.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_facturation_suivant.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_facturation_suivant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_facturation_suivant.ForeColor = System.Drawing.Color.White
@@ -296,6 +318,7 @@ Public Class diagnostic_facturation
         '
         'Label2
         '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
@@ -309,6 +332,7 @@ Public Class diagnostic_facturation
         '
         'btn_facturation_imprimerBL
         '
+        Me.btn_facturation_imprimerBL.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btn_facturation_imprimerBL.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_facturation_imprimerBL.Enabled = False
         Me.btn_facturation_imprimerBL.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -373,6 +397,7 @@ Public Class diagnostic_facturation
         Me.facturation_totalTTC.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.facturation_totalTTC.Location = New System.Drawing.Point(858, 111)
         Me.facturation_totalTTC.Name = "facturation_totalTTC"
+        Me.facturation_totalTTC.ReadOnly = True
         Me.facturation_totalTTC.Size = New System.Drawing.Size(43, 20)
         Me.facturation_totalTTC.TabIndex = 3
         '
@@ -466,15 +491,6 @@ Public Class diagnostic_facturation
         Me.DataGridView1.Size = New System.Drawing.Size(903, 331)
         Me.DataGridView1.TabIndex = 30
         '
-        'columnDelete
-        '
-        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.columnDelete.HeaderText = "Suppr"
-        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
-        Me.columnDelete.Name = "columnDelete"
-        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.columnDelete.Width = 40
-        '
         'LibelleDataGridViewTextBoxColumn
         '
         Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -529,28 +545,18 @@ Public Class diagnostic_facturation
         Me.PrixTotalDataGridViewTextBoxColumn.ReadOnly = True
         Me.PrixTotalDataGridViewTextBoxColumn.Width = 143
         '
+        'columnDelete
+        '
+        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.columnDelete.HeaderText = "Suppr"
+        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
+        Me.columnDelete.Name = "columnDelete"
+        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.columnDelete.Width = 40
+        '
         'm_bsLignes
         '
         Me.m_bsLignes.DataSource = GetType(Crodip_agent.DiagnosticFactureItem)
-        '
-        'tbCommentaire
-        '
-        Me.tbCommentaire.Location = New System.Drawing.Point(110, 20)
-        Me.tbCommentaire.Multiline = True
-        Me.tbCommentaire.Name = "tbCommentaire"
-        Me.tbCommentaire.Size = New System.Drawing.Size(552, 52)
-        Me.tbCommentaire.TabIndex = 45
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label18.Location = New System.Drawing.Point(3, 20)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(87, 13)
-        Me.Label18.TabIndex = 44
-        Me.Label18.Text = "Commentaire :"
         '
         'diagnostic_facturation
         '
@@ -708,7 +714,6 @@ Public Class diagnostic_facturation
             Me.Cursor = Cursors.WaitCursor
             If facturation_totalTTC.Text <> "" Then
                 ' Enregistrement des tarifs
-                calcTotal()
                 'diagnosticCourantTarif = CType(facturation_totalTTC.Text, Double)
                 m_oDiag.controleTarif = CType(facturation_totalTTC.Text, Double)
                 m_oDiag.TotalHT = CDec(facturation_totalHT.Text)
@@ -1114,6 +1119,7 @@ Public Class diagnostic_facturation
 
 
     Private Sub btn_facturation_suivant_MouseClick(sender As Object, e As MouseEventArgs) Handles btn_facturation_suivant.MouseClick
+        Me.ValidateChildren()
         If e.Button = Windows.Forms.MouseButtons.Right Then
             facturation_totalHT.Text = "0"
             isValider = True
@@ -1152,4 +1158,32 @@ Public Class diagnostic_facturation
         ofrm.setContexte(m_oDiag, m_oExploit, m_oAgent, olst)
         ofrm.ShowDialog()
     End Sub
+
+    Private Sub facturation_totalHT_TextChanged(sender As Object, e As EventArgs) Handles facturation_totalHT.Validated
+        Dim prixTotalHT As Decimal = 0
+        Dim prixTotalTTC As Decimal = 0
+        Dim prixTxTVA As Decimal = 0
+
+        If Not String.IsNullOrEmpty(facturation_totalHT.Text) Then
+            prixTotalHT = CDec(facturation_totalHT.Text)
+        End If
+        'prixTotalTTC = IIf(Not String.IsNullOrEmpty(facturation_totalTTC.Text), CDec(facturation_totalTTC.Text), 0)
+        If Not String.IsNullOrEmpty(facturation_totalTTC.Text) Then
+            prixTotalTTC = CDec(facturation_totalTTC.Text)
+        End If
+        If prixTotalTTC = 0 And prixTotalHT <> 0 Then
+            prixTxTVA = IIf(Not String.IsNullOrEmpty(tb_txTVA.Text), CDec(tb_txTVA.Text), My.Settings.TxTVADefaut)
+            'Il n'y a pas de TTC alors qu'il y a un HT
+            '=> Calcul TVA et TTC
+            prixTotalTTC = prixTotalHT * (1 + (prixTxTVA / 100))
+            facturation_totalHT.Text = Math.Round(prixTotalHT, 2)
+            facturation_totalTTC.Text = Math.Round(prixTotalTTC, 2)
+            facturation_totalTVA.Text = Math.Round(prixTotalTTC - prixTotalHT, 2)
+
+        End If
+
+
+    End Sub
+
+
 End Class

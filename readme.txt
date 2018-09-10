@@ -2,6 +2,7 @@ TRUNK
 ------------------
 Build :20180905140000
 #246 : Chgmt de numero de fax (Enquête de satisfaction)
+#247 : Avoir la possibilté de rentrer un tarif sans prestation: les calculs ne se font pas. 
 
 Build :20180905140000
 #246 : Chgmt de numero de fax
