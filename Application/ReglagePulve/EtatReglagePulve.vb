@@ -44,7 +44,7 @@ Public Class EtatReglagePulve
                 o = Nothing
                 objReport = New ReportDocument
                 objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
-                If m_oDiag.diagnosticBusesList.Liste.Count > 0 Then
+                If m_oDiag.RPDiagnosticBusesList.Count > 0 Then
                     objsubReport = objReport.Subreports(strSubReportName)
                     CSDebug.dispInfo(objsubReport.Name)
                     If objsubReport IsNot Nothing Then
@@ -60,7 +60,7 @@ Public Class EtatReglagePulve
                         Catch ex As Exception
 
                         End Try
-                        If m_oDiag.diagnosticBusesList.Liste(0).ecartTolere = 10 Then
+                        If m_oDiag.RPDiagnosticBusesList(0).ecartTolere = 10 Then
                             'Si l'écart toléré est de 10, on cache les limites de 15
                             If oLineMax15 IsNot Nothing Then
                                 oLineMax15.LineStyle = LineStyle.NoLine

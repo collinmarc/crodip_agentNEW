@@ -2,7 +2,7 @@ Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
 
-<Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemsList))> _
+<Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemsList)), XmlInclude(GetType(DiagnosticItem))> _
 Public Class Diagnostic
     Implements ICloneable
     Private _id As String = ""

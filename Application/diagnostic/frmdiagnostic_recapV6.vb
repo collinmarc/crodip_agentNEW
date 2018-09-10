@@ -574,7 +574,32 @@ Public Class frmdiagnostic_recapV6
         '###########################################################################
         AffichePulverisateur()
 
-        rtbCommentaire.Text = m_diagnostic.Commentaire
+        For Each tmpDiagnosticItem As DiagnosticItem In m_diagnostic.diagnosticItemsLst.items
+            If Not tmpDiagnosticItem Is Nothing Then
+                If Not tmpDiagnosticItem.itemCodeEtat Is Nothing Then
+                    ' Si on a un code état différent de OK, on l'affiche dans le bilan
+                    If tmpDiagnosticItem.itemCodeEtat <> DiagnosticItem.EtatDiagItemOK Then
+
+                        If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMINEUR Then
+                            'Mineur
+                            If conclusionDiagnostique = Globals.enumConclusionDiag.OK Then
+                                conclusionDiagnostique = Globals.enumConclusionDiag.OK_AVECMINEEUR
+                            End If
+                        End If
+                        If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                            'Majeur
+                            conclusionDiagnostique = Globals.enumConclusionDiag.NOK
+                        End If
+                        If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJPRELIM Then
+                            'Majeur Prelim
+                            conclusionDiagnostique = Globals.enumConclusionDiag.NOK_PRELIM
+                        End If
+                    End If
+
+                End If
+            End If
+        Next
+
 
         ' Conclusion sur l'etat du controle
         Select Case conclusionDiagnostique
@@ -683,7 +708,7 @@ Public Class frmdiagnostic_recapV6
                 'objInfos(8) = diagnosticCourant.buseNbBuses
 
                 ' On ouvre le form
-                Dim ofrm As New diagnostic_satisfaction(m_diagnostic.proprietaireRaisonSociale, m_diagnostic.proprietaireNom & " " & m_diagnostic.proprietairePrenom, m_diagnostic.proprietaireAdresse & " - " & m_diagnostic.proprietaireCodePostal & ", " & m_diagnostic.proprietaireCommune, m_diagnostic.proprietaireEmail, m_diagnostic.controleDateDebut, m_diagnostic.controleIsComplet, m_Pulverisateur.type, m_diagnostic.organismePresNom, m_diagnostic.inspecteurNom & " " & m_diagnostic.inspecteurPrenom)
+                Dim ofrm As New diagnostic_satisfaction(m_diagnostic)
                 TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
 
                 Statusbar.clear()

@@ -1,6 +1,7 @@
 ﻿Imports Crodip_agent
 Imports System.Xml.Serialization
 
+<Serializable()>
 <XmlRoot("DiagnosticItem")>
 Public Class DiagnosticItemAuto
     Inherits DiagnosticItem
@@ -21,8 +22,7 @@ Public Class DiagnosticItemAuto
             Return m_Etat
         End Get
 
-        Set(ByVal value As EtatDiagItemAuto
-            )
+        Set(ByVal value As EtatDiagItemAuto)
             m_Etat = value
         End Set
     End Property

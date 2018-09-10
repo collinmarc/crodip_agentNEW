@@ -1812,7 +1812,7 @@ Public Class diagnostic_recap
                 'objInfos(8) = diagnosticCourant.buseNbBuses
 
                 ' On ouvre le form
-                Dim ofrm As New diagnostic_satisfaction(m_diagnostic.proprietaireRaisonSociale, m_diagnostic.proprietaireNom & " " & m_diagnostic.proprietairePrenom, m_diagnostic.proprietaireAdresse & " - " & m_diagnostic.proprietaireCodePostal & ", " & m_diagnostic.proprietaireCommune, m_diagnostic.proprietaireEmail, m_diagnostic.controleDateDebut, m_diagnostic.controleIsComplet, m_Pulverisateur.type, m_diagnostic.organismePresNom, m_diagnostic.inspecteurNom & " " & m_diagnostic.inspecteurPrenom)
+                Dim ofrm As New diagnostic_satisfaction(m_diagnostic)
                 TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
 
                 Statusbar.clear()

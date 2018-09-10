@@ -11,6 +11,7 @@ Public Class diagnostic_satisfaction
 
 #Region " Variables "
 
+    Private m_Diagnostic As Diagnostic
     Dim isPrinted As Boolean = False
     Friend WithEvents btn_ContreVisite As System.Windows.Forms.Label
     Friend WithEvents info_typeControle_complet As System.Windows.Forms.CheckBox
@@ -23,7 +24,8 @@ Public Class diagnostic_satisfaction
 
 #Region " Code généré par le Concepteur Windows Form "
 
-    Public Sub New(ByVal infoRaisonSociale As String, ByVal infoNomPrenom As String, ByVal infoAdresse As String, ByVal infoEmail As String, ByVal infoDateControle As String, ByVal infoTypeControleIsComplet As Boolean, ByVal infoTypePulve As String, ByVal infoInspecteurOrganisme As String, ByVal infoInspecteurNomPrenom As String)
+
+    Public Sub New(pDiag As Diagnostic)
         MyBase.New()
 
         'Cet appel est requis par le Concepteur Windows Form.
@@ -32,31 +34,33 @@ Public Class diagnostic_satisfaction
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         '        Me.objInfos = _objInfos
 
-        info_raisonSociale.Text = infoRaisonSociale
-        info_nomPrenom.Text = infoNomPrenom
-        info_adresse.Text = infoAdresse
-        info_email.Text = infoEmail
-        info_dateControle.Text = infoDateControle
+        m_Diagnostic = pDiag
 
-        If infoTypeControleIsComplet Then
+        info_raisonSociale.Text = m_Diagnostic.proprietaireRaisonSociale
+        info_nomPrenom.Text = m_Diagnostic.proprietaireNom & " " & m_Diagnostic.proprietairePrenom
+        info_adresse.Text = m_Diagnostic.proprietaireAdresse & " - " & m_Diagnostic.proprietaireCodePostal & ", " & m_Diagnostic.proprietaireCommune
+        info_email.Text = m_Diagnostic.proprietaireEmail
+        info_dateControle.Text = m_Diagnostic.controleDateDebut
+
+        If m_Diagnostic.controleIsComplet Then
             info_typeControle_complet.Checked = True
             info_typeControle_partiel.Checked = False
         Else
             info_typeControle_complet.Checked = False
             info_typeControle_partiel.Checked = True
         End If
-        If diagnosticCourant.isContrevisiteImmediate Then
+        If m_Diagnostic.isContrevisiteImmediate Then
             info_typeControle_complet.Checked = True
             info_typeControle_partiel.Checked = True
         End If
 
 
-        tbTypePulve.Text = diagnosticCourant.pulverisateurType
-        info_inspecteur_organisme.Text = infoInspecteurOrganisme
-        info_inspecteur_nomPrenom.Text = infoInspecteurNomPrenom
+        tbTypePulve.Text = m_Diagnostic.pulverisateurType
+        info_inspecteur_organisme.Text = m_Diagnostic.organismePresNom
+        info_inspecteur_nomPrenom.Text = m_Diagnostic.inspecteurNom & " " & m_Diagnostic.inspecteurPrenom
 
         'Le bouton contrevisite n'est activé que si le Diag echoue
-        If diagnosticCourant.controleEtat = Diagnostic.controleEtatNOKCV Then
+        If m_Diagnostic.controleEtat = Diagnostic.controleEtatNOKCV Then
             btn_ContreVisite.Enabled = True
             btn_ContreVisite.Visible = True
         Else
@@ -66,7 +70,6 @@ Public Class diagnostic_satisfaction
         End If
 
     End Sub
-
     'La méthode substituée Dispose du formulaire pour nettoyer la liste des composants.
     Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing Then
@@ -671,7 +674,7 @@ Public Class diagnostic_satisfaction
 #Region " construction de l'enquete de satisfaction et du document de coProp"
 
     Private Sub genereEnquete()
-        Dim oEtat As New EtatEnquete(diagnosticCourant)
+        Dim oEtat As New EtatEnquete(m_Diagnostic)
         If oEtat.GenereEtat() Then
             oEtat.Open()
         End If
@@ -687,7 +690,7 @@ Public Class diagnostic_satisfaction
         ofrm.ShowDialog(Me)
         lstCoProp = ofrm.getListeCoProp()
 
-        Dim oEtat As New EtatDocumentCoPropriete(diagnosticCourant)
+        Dim oEtat As New EtatDocumentCoPropriete(m_Diagnostic)
         For Each s As String In lstCoProp
 
             oEtat.AddCoProprietaire(s)
@@ -704,7 +707,7 @@ Public Class diagnostic_satisfaction
     Private Sub btn_ContreVisite_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ContreVisite.Click
 
         'Création d'un nouveau diagnostic à partir du courant
-        diagnosticCourant = diagnosticCourant.Clone()
+        diagnosticCourant = m_Diagnostic.Clone()
         diagnosticCourant.SetAsContreVisite(agentCourant)
         diagnosticCourant.isContrevisiteImmediate = True
 
@@ -724,7 +727,7 @@ Public Class diagnostic_satisfaction
         btn_DocCoProp.Visible = False
         'Activiation du bouton en cas de co-proprété
         'Comme c'est du texte et qu'il peut changer, je préférence juste tester les 2 première lettres
-        If diagnosticCourant.pulverisateurModeUtilisation.ToUpper().StartsWith("CO") Then
+        If m_Diagnostic.pulverisateurModeUtilisation.ToUpper().StartsWith("CO") Then
             btn_DocCoProp.Visible = True
         End If
     End Sub
