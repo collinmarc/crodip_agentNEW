@@ -651,7 +651,13 @@ Public Class frmdiagnostic_facturationCoProp
         Debug.Assert(pAgent IsNot Nothing)
 
         m_oDiag = pDiag
-        m_oExploit = pExploit
+        m_oExploit = New Exploitation()
+        m_oExploit.raisonSociale = pExploit.raisonSociale
+        m_oExploit.nomExploitant = pExploit.nomExploitant
+        m_oExploit.prenomExploitant = pExploit.prenomExploitant
+        m_oExploit.adresse = pExploit.adresse
+        m_oExploit.codePostal = pExploit.codePostal
+        m_oExploit.commune = pExploit.commune
         m_oAgent = pAgent
         m_oPulverisateur = PulverisateurManager.getPulverisateurById(m_oDiag.pulverisateurId)
         m_bsLignes.Clear()

@@ -1302,6 +1302,7 @@
     <Content Include="moduleDocumentaire\_parametres\Alertes.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\btn_annuler.jpg" />
     <Content Include="toleranceBuses.xml" />
     <None Include="readme.md" />
     <None Include="Resources\PuceVerteT.png" />
@@ -1358,7 +1359,6 @@
     <None Include="Resources\Start3.png" />
     <None Include="Resources\btn_suivant.jpg" />
     <None Include="Resources\btn_valider.jpg" />
-    <None Include="Resources\btn_annuler.jpg" />
     <None Include="Resources\Transparent.ico" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\btn_empty_big.jpg" />
