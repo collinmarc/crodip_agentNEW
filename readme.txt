@@ -1,5 +1,12 @@
 TRUNK
 ------------------
+Build :
+#254 : Erreur en CV immédiate
+#257 : MAJ de l'état du plmve si défaut
+#255 : En cas de fact co-propriétaire, tous ,les docupent suivants sont étét avec le dernier co-pro
+#249 : Modif Ecran controle du dispositif de dosage
+
+#192 : Page de login 
 Build :20180905140000
 #246 : Chgmt de numero de fax (Enquête de satisfaction)
 #247 : Avoir la possibilté de rentrer un tarif sans prestation: les calculs ne se font pas. 

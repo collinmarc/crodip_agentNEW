@@ -49,10 +49,9 @@ Partial Class diagnostic_dlghelp12123new
         Me.TbNumeric4 = New CRODIP_ControlLibrary.TBNumeric()
         Me.TbNumeric3 = New CRODIP_ControlLibrary.TBNumeric()
         Me.pnlDetailPompe = New System.Windows.Forms.Panel()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.laEcartMoyen = New System.Windows.Forms.Label()
         Me.tbEcartMoyen = New CRODIP_ControlLibrary.TBNumeric()
         Me.m_bsrcPompes = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.btnValiderNbMesures = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -81,7 +80,7 @@ Partial Class diagnostic_dlghelp12123new
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
-        Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Image = New System.Windows.Forms.DataGridViewImageColumn()
         Me.numeroPompe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ReglageDispositif = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -93,7 +92,31 @@ Partial Class diagnostic_dlghelp12123new
         Me.QteProduitConso = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DosageReelRND = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EcartReglageRND = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Image = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ImageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.NumeroPompeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumeroMesureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdDiagDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BCalculeDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.DebitReelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DebitReelRNDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DebitTotalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DebitTotalRNDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ReglageDispositifDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DebitTheoriqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DebitTheoriqueRNDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TempsMesureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QteEauPulveriseeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QteEauPulveriseeRNDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MasseInitialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MasseAspireDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QteProduitConsoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DosageReelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DosageReelRNDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EcartReglageDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EcartReglageRNDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ResultatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnl12123.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -264,9 +287,8 @@ Partial Class diagnostic_dlghelp12123new
         Me.pnlDetailPompe.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlDetailPompe.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnlDetailPompe.Controls.Add(Me.Label5)
+        Me.pnlDetailPompe.Controls.Add(Me.laEcartMoyen)
         Me.pnlDetailPompe.Controls.Add(Me.tbEcartMoyen)
-        Me.pnlDetailPompe.Controls.Add(Me.Label4)
         Me.pnlDetailPompe.Controls.Add(Me.btnValiderNbMesures)
         Me.pnlDetailPompe.Controls.Add(Me.Label2)
         Me.pnlDetailPompe.Controls.Add(Me.DataGridView1)
@@ -292,15 +314,16 @@ Partial Class diagnostic_dlghelp12123new
         Me.pnlDetailPompe.Size = New System.Drawing.Size(734, 405)
         Me.pnlDetailPompe.TabIndex = 78
         '
-        'Label5
+        'laEcartMoyen
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(122, 10)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(72, 13)
-        Me.Label5.TabIndex = 114
-        Me.Label5.Text = "Ecart moyen :"
+        Me.laEcartMoyen.AutoSize = True
+        Me.laEcartMoyen.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.laEcartMoyen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.laEcartMoyen.Location = New System.Drawing.Point(494, 10)
+        Me.laEcartMoyen.Name = "laEcartMoyen"
+        Me.laEcartMoyen.Size = New System.Drawing.Size(85, 13)
+        Me.laEcartMoyen.TabIndex = 114
+        Me.laEcartMoyen.Text = "Ecart moyen :"
         '
         'tbEcartMoyen
         '
@@ -309,7 +332,7 @@ Partial Class diagnostic_dlghelp12123new
         Me.tbEcartMoyen.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "EcartReglageMoyen", True))
         Me.tbEcartMoyen.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbEcartMoyen.ForceBindingOnTextChanged = False
-        Me.tbEcartMoyen.Location = New System.Drawing.Point(223, 8)
+        Me.tbEcartMoyen.Location = New System.Drawing.Point(595, 8)
         Me.tbEcartMoyen.Name = "tbEcartMoyen"
         Me.tbEcartMoyen.ReadOnly = True
         Me.tbEcartMoyen.Size = New System.Drawing.Size(100, 20)
@@ -320,18 +343,6 @@ Partial Class diagnostic_dlghelp12123new
         '
         Me.m_bsrcPompes.DataMember = "lstPompes"
         Me.m_bsrcPompes.DataSource = Me.m_bsrcH12123
-        '
-        'Label4
-        '
-        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(224, 10)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(86, 13)
-        Me.Label4.TabIndex = 112
-        Me.Label4.Text = "Ecart Moyen :"
         '
         'btnValiderNbMesures
         '
@@ -369,7 +380,7 @@ Partial Class diagnostic_dlghelp12123new
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.numeroPompe, Me.Column2, Me.ReglageDispositif, Me.DebitTheoriqueRND, Me.TempsMesure, Me.QteEauPulveriseeRND, Me.MasseInitiale, Me.MasseAspire, Me.QteProduitConso, Me.DosageReelRND, Me.EcartReglageRND, Me.Image})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Image, Me.numeroPompe, Me.Column2, Me.ReglageDispositif, Me.DebitTheoriqueRND, Me.TempsMesure, Me.QteEauPulveriseeRND, Me.MasseInitiale, Me.MasseAspire, Me.QteProduitConso, Me.DosageReelRND, Me.EcartReglageRND, Me.ImageDataGridViewImageColumn, Me.NumeroPompeDataGridViewTextBoxColumn, Me.NumeroMesureDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.IdDiagDataGridViewTextBoxColumn, Me.BCalculeDataGridViewCheckBoxColumn, Me.DebitReelDataGridViewTextBoxColumn, Me.DebitReelRNDDataGridViewTextBoxColumn, Me.DebitTotalDataGridViewTextBoxColumn, Me.DebitTotalRNDDataGridViewTextBoxColumn, Me.ReglageDispositifDataGridViewTextBoxColumn, Me.DebitTheoriqueDataGridViewTextBoxColumn, Me.DebitTheoriqueRNDDataGridViewTextBoxColumn, Me.TempsMesureDataGridViewTextBoxColumn, Me.QteEauPulveriseeDataGridViewTextBoxColumn, Me.QteEauPulveriseeRNDDataGridViewTextBoxColumn, Me.MasseInitialeDataGridViewTextBoxColumn, Me.MasseAspireDataGridViewTextBoxColumn, Me.QteProduitConsoDataGridViewTextBoxColumn, Me.DosageReelDataGridViewTextBoxColumn, Me.DosageReelRNDDataGridViewTextBoxColumn, Me.EcartReglageDataGridViewTextBoxColumn, Me.EcartReglageRNDDataGridViewTextBoxColumn, Me.ResultatDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.m_bsrcMesures
         Me.DataGridView1.Location = New System.Drawing.Point(3, 174)
         Me.DataGridView1.MultiSelect = False
@@ -392,11 +403,11 @@ Partial Class diagnostic_dlghelp12123new
         Me.laResultat.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "LabelResultat", True))
         Me.laResultat.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.laResultat.ForeColor = System.Drawing.Color.OliveDrab
-        Me.laResultat.Location = New System.Drawing.Point(592, 7)
+        Me.laResultat.Location = New System.Drawing.Point(414, 8)
         Me.laResultat.Name = "laResultat"
-        Me.laResultat.Size = New System.Drawing.Size(118, 16)
+        Me.laResultat.Size = New System.Drawing.Size(65, 16)
         Me.laResultat.TabIndex = 108
-        Me.laResultat.Text = "Resultat Pompe"
+        Me.laResultat.Text = "Resultat"
         Me.laResultat.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'TbNumeric10
@@ -566,7 +577,7 @@ Partial Class diagnostic_dlghelp12123new
         Me.pctResultat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pctResultat.DataBindings.Add(New System.Windows.Forms.Binding("Image", Me.m_bsrcPompes, "Image", True))
         Me.pctResultat.Image = Global.Crodip_agent.Resources.PuceVerteT
-        Me.pctResultat.Location = New System.Drawing.Point(541, 3)
+        Me.pctResultat.Location = New System.Drawing.Point(390, 8)
         Me.pctResultat.Name = "pctResultat"
         Me.pctResultat.Size = New System.Drawing.Size(18, 20)
         Me.pctResultat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -681,9 +692,12 @@ Partial Class diagnostic_dlghelp12123new
         Me.btnValider.Text = "OK"
         Me.btnValider.UseVisualStyleBackColor = False
         '
-        'm_bsrcH12123
+        'Image
         '
-        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
+        Me.Image.DataPropertyName = "Image"
+        Me.Image.HeaderText = "Résultat"
+        Me.Image.Name = "Image"
+        Me.Image.ReadOnly = True
         '
         'numeroPompe
         '
@@ -790,12 +804,157 @@ Partial Class diagnostic_dlghelp12123new
         Me.EcartReglageRND.HeaderText = "Ecart (%)"
         Me.EcartReglageRND.Name = "EcartReglageRND"
         '
-        'Image
+        'm_bsrcH12123
         '
-        Me.Image.DataPropertyName = "Image"
-        Me.Image.HeaderText = "Résultat"
-        Me.Image.Name = "Image"
-        Me.Image.ReadOnly = True
+        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
+        '
+        'ImageDataGridViewImageColumn
+        '
+        Me.ImageDataGridViewImageColumn.DataPropertyName = "Image"
+        Me.ImageDataGridViewImageColumn.HeaderText = "Image"
+        Me.ImageDataGridViewImageColumn.Name = "ImageDataGridViewImageColumn"
+        '
+        'NumeroPompeDataGridViewTextBoxColumn
+        '
+        Me.NumeroPompeDataGridViewTextBoxColumn.DataPropertyName = "numeroPompe"
+        Me.NumeroPompeDataGridViewTextBoxColumn.HeaderText = "numeroPompe"
+        Me.NumeroPompeDataGridViewTextBoxColumn.Name = "NumeroPompeDataGridViewTextBoxColumn"
+        '
+        'NumeroMesureDataGridViewTextBoxColumn
+        '
+        Me.NumeroMesureDataGridViewTextBoxColumn.DataPropertyName = "numeroMesure"
+        Me.NumeroMesureDataGridViewTextBoxColumn.HeaderText = "numeroMesure"
+        Me.NumeroMesureDataGridViewTextBoxColumn.Name = "NumeroMesureDataGridViewTextBoxColumn"
+        '
+        'IdDataGridViewTextBoxColumn
+        '
+        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "id"
+        Me.IdDataGridViewTextBoxColumn.HeaderText = "id"
+        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        '
+        'IdDiagDataGridViewTextBoxColumn
+        '
+        Me.IdDiagDataGridViewTextBoxColumn.DataPropertyName = "idDiag"
+        Me.IdDiagDataGridViewTextBoxColumn.HeaderText = "idDiag"
+        Me.IdDiagDataGridViewTextBoxColumn.Name = "IdDiagDataGridViewTextBoxColumn"
+        '
+        'BCalculeDataGridViewCheckBoxColumn
+        '
+        Me.BCalculeDataGridViewCheckBoxColumn.DataPropertyName = "bCalcule"
+        Me.BCalculeDataGridViewCheckBoxColumn.HeaderText = "bCalcule"
+        Me.BCalculeDataGridViewCheckBoxColumn.Name = "BCalculeDataGridViewCheckBoxColumn"
+        '
+        'DebitReelDataGridViewTextBoxColumn
+        '
+        Me.DebitReelDataGridViewTextBoxColumn.DataPropertyName = "DebitReel"
+        Me.DebitReelDataGridViewTextBoxColumn.HeaderText = "DebitReel"
+        Me.DebitReelDataGridViewTextBoxColumn.Name = "DebitReelDataGridViewTextBoxColumn"
+        Me.DebitReelDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DebitReelRNDDataGridViewTextBoxColumn
+        '
+        Me.DebitReelRNDDataGridViewTextBoxColumn.DataPropertyName = "DebitReelRND"
+        Me.DebitReelRNDDataGridViewTextBoxColumn.HeaderText = "DebitReelRND"
+        Me.DebitReelRNDDataGridViewTextBoxColumn.Name = "DebitReelRNDDataGridViewTextBoxColumn"
+        Me.DebitReelRNDDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DebitTotalDataGridViewTextBoxColumn
+        '
+        Me.DebitTotalDataGridViewTextBoxColumn.DataPropertyName = "DebitTotal"
+        Me.DebitTotalDataGridViewTextBoxColumn.HeaderText = "DebitTotal"
+        Me.DebitTotalDataGridViewTextBoxColumn.Name = "DebitTotalDataGridViewTextBoxColumn"
+        Me.DebitTotalDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DebitTotalRNDDataGridViewTextBoxColumn
+        '
+        Me.DebitTotalRNDDataGridViewTextBoxColumn.DataPropertyName = "DebitTotalRND"
+        Me.DebitTotalRNDDataGridViewTextBoxColumn.HeaderText = "DebitTotalRND"
+        Me.DebitTotalRNDDataGridViewTextBoxColumn.Name = "DebitTotalRNDDataGridViewTextBoxColumn"
+        Me.DebitTotalRNDDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ReglageDispositifDataGridViewTextBoxColumn
+        '
+        Me.ReglageDispositifDataGridViewTextBoxColumn.DataPropertyName = "ReglageDispositif"
+        Me.ReglageDispositifDataGridViewTextBoxColumn.HeaderText = "ReglageDispositif"
+        Me.ReglageDispositifDataGridViewTextBoxColumn.Name = "ReglageDispositifDataGridViewTextBoxColumn"
+        '
+        'DebitTheoriqueDataGridViewTextBoxColumn
+        '
+        Me.DebitTheoriqueDataGridViewTextBoxColumn.DataPropertyName = "DebitTheorique"
+        Me.DebitTheoriqueDataGridViewTextBoxColumn.HeaderText = "DebitTheorique"
+        Me.DebitTheoriqueDataGridViewTextBoxColumn.Name = "DebitTheoriqueDataGridViewTextBoxColumn"
+        '
+        'DebitTheoriqueRNDDataGridViewTextBoxColumn
+        '
+        Me.DebitTheoriqueRNDDataGridViewTextBoxColumn.DataPropertyName = "DebitTheoriqueRND"
+        Me.DebitTheoriqueRNDDataGridViewTextBoxColumn.HeaderText = "DebitTheoriqueRND"
+        Me.DebitTheoriqueRNDDataGridViewTextBoxColumn.Name = "DebitTheoriqueRNDDataGridViewTextBoxColumn"
+        '
+        'TempsMesureDataGridViewTextBoxColumn
+        '
+        Me.TempsMesureDataGridViewTextBoxColumn.DataPropertyName = "TempsMesure"
+        Me.TempsMesureDataGridViewTextBoxColumn.HeaderText = "TempsMesure"
+        Me.TempsMesureDataGridViewTextBoxColumn.Name = "TempsMesureDataGridViewTextBoxColumn"
+        '
+        'QteEauPulveriseeDataGridViewTextBoxColumn
+        '
+        Me.QteEauPulveriseeDataGridViewTextBoxColumn.DataPropertyName = "QteEauPulverisee"
+        Me.QteEauPulveriseeDataGridViewTextBoxColumn.HeaderText = "QteEauPulverisee"
+        Me.QteEauPulveriseeDataGridViewTextBoxColumn.Name = "QteEauPulveriseeDataGridViewTextBoxColumn"
+        '
+        'QteEauPulveriseeRNDDataGridViewTextBoxColumn
+        '
+        Me.QteEauPulveriseeRNDDataGridViewTextBoxColumn.DataPropertyName = "QteEauPulveriseeRND"
+        Me.QteEauPulveriseeRNDDataGridViewTextBoxColumn.HeaderText = "QteEauPulveriseeRND"
+        Me.QteEauPulveriseeRNDDataGridViewTextBoxColumn.Name = "QteEauPulveriseeRNDDataGridViewTextBoxColumn"
+        '
+        'MasseInitialeDataGridViewTextBoxColumn
+        '
+        Me.MasseInitialeDataGridViewTextBoxColumn.DataPropertyName = "MasseInitiale"
+        Me.MasseInitialeDataGridViewTextBoxColumn.HeaderText = "MasseInitiale"
+        Me.MasseInitialeDataGridViewTextBoxColumn.Name = "MasseInitialeDataGridViewTextBoxColumn"
+        '
+        'MasseAspireDataGridViewTextBoxColumn
+        '
+        Me.MasseAspireDataGridViewTextBoxColumn.DataPropertyName = "MasseAspire"
+        Me.MasseAspireDataGridViewTextBoxColumn.HeaderText = "MasseAspire"
+        Me.MasseAspireDataGridViewTextBoxColumn.Name = "MasseAspireDataGridViewTextBoxColumn"
+        '
+        'QteProduitConsoDataGridViewTextBoxColumn
+        '
+        Me.QteProduitConsoDataGridViewTextBoxColumn.DataPropertyName = "QteProduitConso"
+        Me.QteProduitConsoDataGridViewTextBoxColumn.HeaderText = "QteProduitConso"
+        Me.QteProduitConsoDataGridViewTextBoxColumn.Name = "QteProduitConsoDataGridViewTextBoxColumn"
+        '
+        'DosageReelDataGridViewTextBoxColumn
+        '
+        Me.DosageReelDataGridViewTextBoxColumn.DataPropertyName = "DosageReel"
+        Me.DosageReelDataGridViewTextBoxColumn.HeaderText = "DosageReel"
+        Me.DosageReelDataGridViewTextBoxColumn.Name = "DosageReelDataGridViewTextBoxColumn"
+        '
+        'DosageReelRNDDataGridViewTextBoxColumn
+        '
+        Me.DosageReelRNDDataGridViewTextBoxColumn.DataPropertyName = "DosageReelRND"
+        Me.DosageReelRNDDataGridViewTextBoxColumn.HeaderText = "DosageReelRND"
+        Me.DosageReelRNDDataGridViewTextBoxColumn.Name = "DosageReelRNDDataGridViewTextBoxColumn"
+        '
+        'EcartReglageDataGridViewTextBoxColumn
+        '
+        Me.EcartReglageDataGridViewTextBoxColumn.DataPropertyName = "EcartReglage"
+        Me.EcartReglageDataGridViewTextBoxColumn.HeaderText = "EcartReglage"
+        Me.EcartReglageDataGridViewTextBoxColumn.Name = "EcartReglageDataGridViewTextBoxColumn"
+        '
+        'EcartReglageRNDDataGridViewTextBoxColumn
+        '
+        Me.EcartReglageRNDDataGridViewTextBoxColumn.DataPropertyName = "EcartReglageRND"
+        Me.EcartReglageRNDDataGridViewTextBoxColumn.HeaderText = "EcartReglageRND"
+        Me.EcartReglageRNDDataGridViewTextBoxColumn.Name = "EcartReglageRNDDataGridViewTextBoxColumn"
+        '
+        'ResultatDataGridViewTextBoxColumn
+        '
+        Me.ResultatDataGridViewTextBoxColumn.DataPropertyName = "Resultat"
+        Me.ResultatDataGridViewTextBoxColumn.HeaderText = "Resultat"
+        Me.ResultatDataGridViewTextBoxColumn.Name = "ResultatDataGridViewTextBoxColumn"
         '
         'diagnostic_dlghelp12123new
         '
@@ -867,12 +1026,12 @@ Partial Class diagnostic_dlghelp12123new
     Friend WithEvents m_bsrcPompes As System.Windows.Forms.BindingSource
     Friend WithEvents btnValiderNbMesures As System.Windows.Forms.Label
     Friend WithEvents tbEcartMoyen As CRODIP_ControlLibrary.TBNumeric
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents laEcartMoyen As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents TbNumeric5 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents TbNumeric4 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents TbNumeric3 As CRODIP_ControlLibrary.TBNumeric
+    Friend WithEvents Image As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents numeroPompe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ReglageDispositif As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -884,6 +1043,29 @@ Partial Class diagnostic_dlghelp12123new
     Friend WithEvents QteProduitConso As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DosageReelRND As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents EcartReglageRND As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Image As System.Windows.Forms.DataGridViewImageColumn
+    Friend WithEvents ImageDataGridViewImageColumn As System.Windows.Forms.DataGridViewImageColumn
+    Friend WithEvents NumeroPompeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents NumeroMesureDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents IdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents IdDiagDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents BCalculeDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents DebitReelDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DebitReelRNDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DebitTotalDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DebitTotalRNDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ReglageDispositifDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DebitTheoriqueDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DebitTheoriqueRNDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents TempsMesureDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents QteEauPulveriseeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents QteEauPulveriseeRNDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MasseInitialeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MasseAspireDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents QteProduitConsoDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DosageReelDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DosageReelRNDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents EcartReglageDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents EcartReglageRNDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ResultatDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

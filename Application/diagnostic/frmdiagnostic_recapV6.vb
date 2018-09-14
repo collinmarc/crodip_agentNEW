@@ -189,9 +189,9 @@ Public Class frmdiagnostic_recapV6
         Me.btn_finalisationDiag_valider.ForeColor = System.Drawing.Color.White
         Me.btn_finalisationDiag_valider.Image = CType(resources.GetObject("btn_finalisationDiag_valider.Image"), System.Drawing.Image)
         Me.btn_finalisationDiag_valider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_finalisationDiag_valider.Location = New System.Drawing.Point(868, 629)
+        Me.btn_finalisationDiag_valider.Location = New System.Drawing.Point(862, 629)
         Me.btn_finalisationDiag_valider.Name = "btn_finalisationDiag_valider"
-        Me.btn_finalisationDiag_valider.Size = New System.Drawing.Size(128, 24)
+        Me.btn_finalisationDiag_valider.Size = New System.Drawing.Size(134, 24)
         Me.btn_finalisationDiag_valider.TabIndex = 9
         Me.btn_finalisationDiag_valider.Text = "    Valider"
         Me.btn_finalisationDiag_valider.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -386,7 +386,7 @@ Public Class frmdiagnostic_recapV6
         Me.btn_voirFiche_Pulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_voirFiche_Pulve.ForeColor = System.Drawing.Color.White
         Me.btn_voirFiche_Pulve.Image = CType(resources.GetObject("btn_voirFiche_Pulve.Image"), System.Drawing.Image)
-        Me.btn_voirFiche_Pulve.Location = New System.Drawing.Point(222, 70)
+        Me.btn_voirFiche_Pulve.Location = New System.Drawing.Point(211, 79)
         Me.btn_voirFiche_Pulve.Name = "btn_voirFiche_Pulve"
         Me.btn_voirFiche_Pulve.Size = New System.Drawing.Size(128, 24)
         Me.btn_voirFiche_Pulve.TabIndex = 1

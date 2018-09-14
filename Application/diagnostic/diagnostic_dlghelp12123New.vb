@@ -190,6 +190,8 @@ Public Class diagnostic_dlghelp12123new
                 Else
                     laResultat.ForeColor = System.Drawing.Color.Red
                 End If
+                laEcartMoyen.ForeColor = laResultat.ForeColor
+                tbEcartMoyen.BackColor = laResultat.ForeColor
                 laResultat.Text = oPompe.LabelResultat
                 pctResultat.Image = oPompe.Image
                 If oPompe.EcartReglageMoyen.HasValue Then
