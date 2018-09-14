@@ -2,7 +2,7 @@ TRUNK
 ------------------
 Build :
 #254 : Erreur en CV immédiate
-#257 : MAJ de l'état du plmve si défaut
+#257 : MAJ de l'état du pulve si défaut
 #255 : En cas de fact co-propriétaire, tous ,les docupent suivants sont étét avec le dernier co-pro
 #249 : Modif Ecran controle du dispositif de dosage
 
