@@ -124,6 +124,9 @@ Public Class login
         '
         'Panel1
         '
+        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackgroundImage = CType(resources.GetObject("Panel1.BackgroundImage"), System.Drawing.Image)
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel1.Controls.Add(Me.pnlLoginControls)
@@ -137,7 +140,6 @@ Public Class login
         Me.Panel1.Controls.Add(Me.lbl_environnement_debugType)
         Me.Panel1.Controls.Add(Me.lbl_environnement_debugLvl)
         Me.Panel1.Controls.Add(Me.lbl_WS)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1008, 680)
@@ -221,11 +223,12 @@ Public Class login
         '
         'Lbl_Version
         '
+        Me.Lbl_Version.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Lbl_Version.AutoSize = True
         Me.Lbl_Version.BackColor = System.Drawing.Color.Transparent
         Me.Lbl_Version.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Lbl_Version.ForeColor = System.Drawing.Color.Silver
-        Me.Lbl_Version.Location = New System.Drawing.Point(870, 594)
+        Me.Lbl_Version.Location = New System.Drawing.Point(867, 656)
         Me.Lbl_Version.Name = "Lbl_Version"
         Me.Lbl_Version.Size = New System.Drawing.Size(101, 15)
         Me.Lbl_Version.TabIndex = 30
@@ -445,11 +448,12 @@ Public Class login
         '
         'lbl_WS
         '
+        Me.lbl_WS.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lbl_WS.AutoSize = True
         Me.lbl_WS.BackColor = System.Drawing.Color.Transparent
         Me.lbl_WS.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.lbl_WS.ForeColor = System.Drawing.Color.Silver
-        Me.lbl_WS.Location = New System.Drawing.Point(653, 594)
+        Me.lbl_WS.Location = New System.Drawing.Point(655, 656)
         Me.lbl_WS.Name = "lbl_WS"
         Me.lbl_WS.Size = New System.Drawing.Size(183, 15)
         Me.lbl_WS.TabIndex = 31
