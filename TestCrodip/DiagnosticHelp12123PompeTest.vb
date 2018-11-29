@@ -132,6 +132,8 @@ Public Class DiagnosticHelp12123Pompetest
         Dim idDiag As String = m_oStructure.id & "-" & m_oAgent.id & "-99"
         Dim iD As String
 
+        'Suppressino des Mesures
+        CSDb.ExecuteSQL("DELETE FROM DiagnosticItem WHERE idDiagnostic= '" + idDiag + "'")
 
         oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 1)
         oPompe.idDiag = idDiag
@@ -145,13 +147,16 @@ Public Class DiagnosticHelp12123Pompetest
         oPompe.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
         Dim oMesure As DiagnosticHelp12123Mesure
-        oMesure = oPompe.AjouteMesure()
+        'Mesure 1
+        oMesure = oPompe.lstMesures(0)
         oMesure.idDiag = oPompe.idDiag
         oMesure.ReglageDispositif = 1.1
-        oMesure = oPompe.AjouteMesure()
+        'Mesure 2
+        oMesure = oPompe.lstMesures(1)
         oMesure.idDiag = oPompe.idDiag
         oMesure.ReglageDispositif = 1.2
-        oMesure = oPompe.AjouteMesure()
+        'Mesure 3
+        oMesure = oPompe.lstMesures(2)
         oMesure.idDiag = oPompe.idDiag
         oMesure.ReglageDispositif = 1.3
 
@@ -260,6 +265,7 @@ Public Class DiagnosticHelp12123Pompetest
         Dim oHelp12123 As New DiagnosticHelp12123()
 
 
+        CSDb.ExecuteSQL("DELETE FROM diagnosticItem")
 
         'Creation d'un Diagnostic
         '============================
@@ -289,11 +295,11 @@ Public Class DiagnosticHelp12123Pompetest
         oPompe.debitMesure = 10.1
         'Ajout de 3 Mesures
         Dim oMesure As DiagnosticHelp12123Mesure
-        oMesure = oPompe.AjouteMesure()
+        oMesure = oPompe.lstMesures(0)
         oMesure.ReglageDispositif = 1.1
-        oMesure = oPompe.AjouteMesure()
+        oMesure = oPompe.lstMesures(1)
         oMesure.ReglageDispositif = 1.2
-        oMesure = oPompe.AjouteMesure()
+        oMesure = oPompe.lstMesures(2)
         oMesure.ReglageDispositif = 1.3
 
         oDiag.diagnosticHelp12123.lstPompes.Add(oPompe)
@@ -301,11 +307,11 @@ Public Class DiagnosticHelp12123Pompetest
         oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 2)
         oPompe.debitMesure = 20.1
         'Ajout de 3 Mesures
-        oMesure = oPompe.AjouteMesure()
+        oMesure = oPompe.lstMesures(0)
         oMesure.ReglageDispositif = 2.1
-        oMesure = oPompe.AjouteMesure()
+        oMesure = oPompe.lstMesures(1)
         oMesure.ReglageDispositif = 2.2
-        oMesure = oPompe.AjouteMesure()
+        oMesure = oPompe.lstMesures(2)
         oMesure.ReglageDispositif = 2.3
         oDiag.diagnosticHelp12123.lstPompes.Add(oPompe)
 
@@ -344,11 +350,11 @@ Public Class DiagnosticHelp12123Pompetest
         oPompe = oDiag2.diagnosticHelp12123.AjoutePompe()
         oPompe.debitMesure = 30.1
         'Ajout de 3 Mesures
-        oMesure = oPompe.AjouteMesure()
+        oMesure = oPompe.lstMesures(0)
         oMesure.ReglageDispositif = 3.1
-        oMesure = oPompe.AjouteMesure
+        oMesure = oPompe.lstMesures(1)
         oMesure.ReglageDispositif = 3.2
-        oMesure = oPompe.AjouteMesure
+        oMesure = oPompe.lstMesures(2)
         oMesure.ReglageDispositif = 3.3
 
         'SAuvegarde du Diag
@@ -388,19 +394,19 @@ Public Class DiagnosticHelp12123Pompetest
         oPompe.PressionMoyenne = 15
         oPompe.NbBuses = 5
 
-        oMesure = oPompe.AjouteMesure()
+        oMesure = oPompe.lstMesures(0)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
         oMesure.MasseInitiale = 10.8
         oMesure.MasseAspire = 3.492
 
-        oMesure = oPompe.AjouteMesure()
+        oMesure = oPompe.lstMesures(1)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
         oMesure.MasseInitiale = 10.8
         oMesure.MasseAspire = 3.492
 
-        oMesure = oPompe.AjouteMesure()
+        oMesure = oPompe.lstMesures(2)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
         oMesure.MasseInitiale = 10.8

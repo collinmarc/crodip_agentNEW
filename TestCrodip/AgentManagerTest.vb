@@ -195,17 +195,17 @@ Public Class AgentManagerTest
         'Au début il y a un Agent dans la base
         Assert.AreEqual(1, AgentManager.getAgentList().items.Count)
 
-        'Ajout d'un second Agent
+        'Materiel
+        createMateriel(m_oAgent)
+
+        'Pulvérisateur
+        createPulve(m_oAgent)
 
         'Création d'un DiagnosticComplet
         Dim idDiag As String
         idDiag = CreateDiag(m_oAgent)
 
-        'Pulvérisateur
-        createPulve(m_oAgent)
 
-        'Materiel
-        createMateriel(m_oAgent)
 
 
         'CreateAutoTest
@@ -248,6 +248,8 @@ Public Class AgentManagerTest
 
         'CreateAutoTest
         createAutotests(oAgent)
+
+
 
         'Suppression de l'Agent Créé
         AgentManager.delete(oAgent.id)
@@ -717,13 +719,14 @@ Public Class AgentManagerTest
         While oDR.Read()
 
             Dim oFV As New FVBanc()
-            oFV.id = id
+            oFV.idAgentControleur = m_oAgent.id
             oFV.idBancMesure = oDR.GetString(0)
 
             FVBancManager.save(oFV)
         End While
         oDR.Close()
 
+        oCSdb.free()
     End Sub
     Private Sub createFVManoControle(ByVal pAgent As Agent)
         Dim idMano As String

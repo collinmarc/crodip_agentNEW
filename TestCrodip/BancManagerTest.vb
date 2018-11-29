@@ -213,6 +213,11 @@ Public Class BancManagerTest
         Dim idBanc As String
         Dim tabBanc As List(Of Banc)
 
+        'Suppression de tous les bancs
+        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure, True)
+        For Each obanc In tabBanc
+            BancManager.delete(obanc.id)
+        Next
         'Creation d'un Banc
         obanc = m_oBanc
         idBanc = m_oBanc.id
@@ -260,7 +265,10 @@ Public Class BancManagerTest
     Public Sub GetBancJamaisServi()
         Dim obanc As Banc
         Dim idBanc As String
+        'Suppression de tous les bancs
+        Dim tabBanc As List(Of Banc)
 
+        CSDb.ExecuteSQL("DELETE FROM BancMesure where idStructure=" & m_oAgent.idStructure)
         'Creation d'un Banc
         obanc = m_oBanc
         idBanc = m_oBanc.id

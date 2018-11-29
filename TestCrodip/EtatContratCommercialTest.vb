@@ -21,6 +21,8 @@ Imports System.IO
         oDiag.inspecteurPrenom = "Marc"
         oDiag.proprietaireRepresentant = "Rault Marc Antoine"
         oDiag.TotalHT = 165.2
+        oDiag.TotalTVA = oDiag.TotalHT * 0.2
+        oDiag.TotalTTC = oDiag.TotalHT + oDiag.TotalTVA
 
 
 

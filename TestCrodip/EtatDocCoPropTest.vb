@@ -6,7 +6,7 @@ Imports System.IO
 <TestClass()> Public Class EtatDocCoPropTest
     Inherits CRODIPTest
 
-    <TestMethod()> Public Sub TestGenereEtat()
+    <TestMethod()> Public Sub TestGenereDocCoPro()
         Dim oEtat As EtatDocumentCoPropriete
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur

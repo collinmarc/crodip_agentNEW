@@ -239,6 +239,8 @@ Public Class CSDb
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM AgentManoEtalon"
             bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM BancMesure"
+            bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Controle_Regulier"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM ControleBancMesure"
@@ -336,4 +338,20 @@ Public Class CSDb
         End Try
         Return bReturn
     End Function
+
+    Public Shared Function ExecuteSQL(pSQL As String) As Boolean
+        Dim breturn As Boolean
+
+        breturn = False
+        Dim oCsDB As New CSDb(True)
+        Try
+            oCsDB.Execute(pSQL)
+            breturn = True
+        Catch ex As Exception
+            breturn = False
+        End Try
+        oCsDB.free()
+    End Function
+
+
 End Class

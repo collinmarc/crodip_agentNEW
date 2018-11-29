@@ -6,6 +6,9 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     Inherits CRODIPTest
 
     <TestMethod()> Public Sub TestSaveLoadRPDiag()
+        clientCourant = New Exploitation
+        ' Pulvé actuellement sélectionné
+        pulverisateurCourant = New Pulverisateur
 
         Dim oDiag As New RPDiagnostic()
         initRPDiag(oDiag)
@@ -59,7 +62,6 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     End Sub
 
     Private Sub initRPDiag(pRPDiagnostic As RPDiagnostic)
-
 
 
         clientCourant.raisonSociale = "RSexploitantTest"
