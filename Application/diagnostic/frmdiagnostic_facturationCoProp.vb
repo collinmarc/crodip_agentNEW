@@ -806,7 +806,21 @@ Public Class frmdiagnostic_facturationCoProp
 
     Private Sub btn_imprimerFactCoProp_Click(sender As Object, e As EventArgs) Handles btn_imprimerFactCoProp.Click
         Me.ValidateChildren()
+        'Les totaux ne sont pas binder !!!!!
+        Dim totalHT As Decimal = m_oDiag.TotalHT
+        Dim totalTVA As Decimal = m_oDiag.TotalTVA
+        Dim totalTTC As Decimal = m_oDiag.TotalTTC
+
+        m_oDiag.TotalHT = Convert.ToDecimal(Me.facturation_totalHT.Text)
+        m_oDiag.TotalTVA = Convert.ToDecimal(Me.facturation_totalTVA.Text)
+        m_oDiag.TotalTTC = Convert.ToDecimal(Me.facturation_totalTTC.Text)
+
         createFacture_CR()
+
+        m_oDiag.TotalHT = totalHT
+        m_oDiag.TotalTVA = totalTVA
+        m_oDiag.TotalTTC = totalTTC
+
         CSFile.open(m_pathFacture)
     End Sub
 
