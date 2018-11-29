@@ -189,6 +189,9 @@
     <None Include="TestFiles\REFERENTIEL_BUSEAngles.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\test.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\COLLIN\Documents\NEWCO\CRODIP\Crodip-Agent\Crodip_agent.vbproj">

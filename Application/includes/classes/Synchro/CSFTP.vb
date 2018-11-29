@@ -40,32 +40,11 @@ Public Class CSFTP
                 ftpURI = New Uri("ftp://" & m_host & "/" & pTargetPath & "/" & oFileInfo.Name)
             End If
 
-            nStep = nStep + 1
-            Dim request As FtpWebRequest = DirectCast(WebRequest.Create(ftpURI), FtpWebRequest)
-            'On désactive proxy 
-            request.Proxy = GlobalProxySelection.GetEmptyWebProxy()
 
-            nStep = nStep + 1
-            request.Method = WebRequestMethods.Ftp.UploadFile
-            request.Credentials = New NetworkCredential(m_user, m_password)
-            request.UseBinary = True
-            request.KeepAlive = False
-            request.UsePassive = My.Settings.FTPUsePassiveMode
-            Dim buffer As Byte() = File.ReadAllBytes(pFilePath)
-            nStep = nStep + 1
-            Dim RQstream As Stream = request.GetRequestStream()
-            nStep = nStep + 1
+            Dim oClient As WebClient = New WebClient()
+            oClient.Credentials = New NetworkCredential(m_user, m_password)
+            oClient.UploadFile(ftpURI, pFilePath)
 
-            '            Dim fs As FileStream = File.OpenRead(oFileInfo.FullName)
-            '           Dim block As Integer
-            '          While ((block = fs.Read(buffer, 0, buffer.Length)) > 0)
-            'RQstream.Write(buffer, 0, block)
-            'End While
-            RQstream.Write(buffer, 0, buffer.Length)
-            nStep = nStep + 1
-            RQstream.Close()
-            nStep = nStep + 1
-            RQstream.Dispose()
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("CSFTP.Upload (" & pFilePath & ") ERR[" & nStep & "]:" & ex.Message)
@@ -78,26 +57,11 @@ Public Class CSFTP
         Dim bReturn As Boolean
         Dim nStep As Integer
         Try
-            Dim oFileInfo As FileInfo
-            nStep = 0
             Dim ftpURI As New Uri("ftp://" & m_host & "/" & pSourceFileName)
-            Dim request As FtpWebRequest = DirectCast(FtpWebRequest.Create(ftpURI), FtpWebRequest)
-            nStep = 1
-            request.Method = WebRequestMethods.Ftp.DownloadFile
-            request.Credentials = New NetworkCredential(m_user, m_password)
-            request.KeepAlive = False
-            Dim response As FtpWebResponse
-            response = DirectCast(request.GetResponse(), FtpWebResponse)
-            nStep = 2
-            Dim responseStream As Stream
-            responseStream = response.GetResponseStream()
-            nStep = 3
-            Dim reader As StreamReader = New StreamReader(responseStream)
-            File.WriteAllText(pTargetFilePath & pSourceFileName, reader.ReadToEnd())
-            nStep = 4
+            Dim oClient As WebClient = New WebClient()
+            oClient.Credentials = New NetworkCredential(m_user, m_password)
+            oClient.DownloadFile(ftpURI, pTargetFilePath & pSourceFileName)
 
-            reader.Close()
-            response.Close()
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("CSFTP.Download (" & pSourceFileName & ") ERR[" & nStep & "]:" & ex.Message)
