@@ -47,7 +47,7 @@ Public Class diagnostic_infosInspecteur
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
-    Friend WithEvents diag_conseils As System.Windows.Forms.RichTextBox
+    Friend WithEvents tbConseils As System.Windows.Forms.RichTextBox
     Friend WithEvents btn_finalisationDiag_imprimer As System.Windows.Forms.Label
     Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -58,7 +58,7 @@ Public Class diagnostic_infosInspecteur
     Friend WithEvents diagnosticRecap_infosInspecteur_prixControle As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
-    Friend WithEvents listBusesUsed As System.Windows.Forms.ListBox
+    Friend WithEvents tbInfos As System.Windows.Forms.ListBox
     Friend WithEvents btnOpenTool_volHa As System.Windows.Forms.Label
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
@@ -103,7 +103,7 @@ Public Class diagnostic_infosInspecteur
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_infosInspecteur))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.diag_conseils = New System.Windows.Forms.RichTextBox()
+        Me.tbConseils = New System.Windows.Forms.RichTextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.diagnosticRecap_infosInspecteur_nomOrganisme = New System.Windows.Forms.TextBox()
@@ -115,7 +115,7 @@ Public Class diagnostic_infosInspecteur
         Me.Label3 = New System.Windows.Forms.Label()
         Me.btn_finalisationDiag_imprimer = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.listBusesUsed = New System.Windows.Forms.ListBox()
+        Me.tbInfos = New System.Windows.Forms.ListBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.panelTabRecapVolHa = New System.Windows.Forms.Panel()
         Me.panelDosageBusesNeuves = New System.Windows.Forms.Panel()
@@ -180,7 +180,7 @@ Public Class diagnostic_infosInspecteur
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.diag_conseils)
+        Me.GroupBox1.Controls.Add(Me.tbConseils)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GroupBox1.Location = New System.Drawing.Point(8, 8)
@@ -190,13 +190,13 @@ Public Class diagnostic_infosInspecteur
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Informations / Conseils de l'inspecteur"
         '
-        'diag_conseils
+        'tbConseils
         '
-        Me.diag_conseils.Location = New System.Drawing.Point(16, 24)
-        Me.diag_conseils.Name = "diag_conseils"
-        Me.diag_conseils.Size = New System.Drawing.Size(968, 256)
-        Me.diag_conseils.TabIndex = 0
-        Me.diag_conseils.Text = ""
+        Me.tbConseils.Location = New System.Drawing.Point(16, 24)
+        Me.tbConseils.Name = "tbConseils"
+        Me.tbConseils.Size = New System.Drawing.Size(968, 256)
+        Me.tbConseils.TabIndex = 0
+        Me.tbConseils.Text = ""
         '
         'GroupBox2
         '
@@ -312,7 +312,7 @@ Public Class diagnostic_infosInspecteur
         '
         'GroupBox4
         '
-        Me.GroupBox4.Controls.Add(Me.listBusesUsed)
+        Me.GroupBox4.Controls.Add(Me.tbInfos)
         Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GroupBox4.Location = New System.Drawing.Point(8, 304)
@@ -322,13 +322,13 @@ Public Class diagnostic_infosInspecteur
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Buse usées"
         '
-        'listBusesUsed
+        'tbInfos
         '
-        Me.listBusesUsed.Items.AddRange(New Object() {"Niveau 1 : 1 ; 5 ; 10", "Niveau 2 : 1 ; 7", "Niveau 4 : 4 ; 5 ; 9 ; 10"})
-        Me.listBusesUsed.Location = New System.Drawing.Point(8, 24)
-        Me.listBusesUsed.Name = "listBusesUsed"
-        Me.listBusesUsed.Size = New System.Drawing.Size(352, 199)
-        Me.listBusesUsed.TabIndex = 0
+        Me.tbInfos.Items.AddRange(New Object() {"Niveau 1 : 1 ; 5 ; 10", "Niveau 2 : 1 ; 7", "Niveau 4 : 4 ; 5 ; 9 ; 10"})
+        Me.tbInfos.Location = New System.Drawing.Point(8, 24)
+        Me.tbInfos.Name = "tbInfos"
+        Me.tbInfos.Size = New System.Drawing.Size(352, 199)
+        Me.tbInfos.TabIndex = 0
         '
         'GroupBox5
         '
@@ -842,13 +842,19 @@ Public Class diagnostic_infosInspecteur
         'End Try
     End Sub
     Private Sub btn_finalisationDiag_imprimer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_imprimer.Click
-        sender.Enabled = False
 
         ' On génère le PDF
         Try
-            createFichePedago()
-            CSFile.open(pathFichePedago)
-            CloseDiagnostic()
+
+            Dim oFeuillePeda As New FeuillePeda(diagnosticCourant)
+            oFeuillePeda.Conseils = tbConseils.Text
+            For Each Items As String In tbInfos.Items
+                oFeuillePeda.Infos = oFeuillePeda.Infos & Items.ToString() & vbCrLf
+            Next
+
+            Dim oEtat As New EtatFeuillePeda(oFeuillePeda)
+            oEtat.GenereEtat()
+            oEtat.Open()
         Catch ex As Exception
             CSDebug.dispError("diagnostic_infosInspecteur::createFichePedago(Ouverture feuille pédagogique) : " & ex.Message)
         End Try
@@ -881,13 +887,13 @@ Public Class diagnostic_infosInspecteur
     Private Sub diagnostic_infosInspecteur_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' On charge les buses usées
         Try
-            listBusesUsed.Items.Clear()
+            tbInfos.Items.Clear()
             diagnosticRecap_infosInspecteur_nomOrganisme.Text = diagnosticCourant.organismePresNom
             diagnosticRecap_infosInspecteur_numOrganisme.Text = diagnosticCourant.organismePresNumero
             If Not arrBusesUsed Is Nothing Then
                 For i As Integer = 0 To arrBusesUsed.Length - 1
                     If arrBusesUsed(i) <> "" Then
-                        listBusesUsed.Items.Add("Niveau " & i & " : " & arrBusesUsed(i).Substring(0, (arrBusesUsed(i).Length - 2)))
+                        tbInfos.Items.Add("Niveau " & i & " : " & arrBusesUsed(i).Substring(0, (arrBusesUsed(i).Length - 2)))
                     End If
                 Next
             End If

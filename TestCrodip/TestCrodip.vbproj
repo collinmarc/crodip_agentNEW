@@ -118,6 +118,7 @@
     <Compile Include="DiagnosticTroncons833Test.vb" />
     <Compile Include="EtatBLTest.vb" />
     <Compile Include="EtatContratCommercialTest.vb" />
+    <Compile Include="EtatFeuillePedaTest.vb" />
     <Compile Include="EtatDocCoPropTest.vb" />
     <Compile Include="EtatEnqueteTest.vb" />
     <Compile Include="EtatFactureTest.vb" />

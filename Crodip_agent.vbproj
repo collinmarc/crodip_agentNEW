@@ -433,6 +433,7 @@
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp12123Manager.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticHelp571Manager.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\DiagnosticItemAuto.vb" />
+    <Compile Include="Application\includes\classes\FeuillePeda.vb" />
     <Compile Include="Application\includes\classes\FicheVie\FVMateriel.vb" />
     <Compile Include="Application\includes\classes\IdentifiantPulverisateur\IdentifiantPulverisateur.vb" />
     <Compile Include="Application\includes\classes\IdentifiantPulverisateur\IdentifiantPulverisateurManager.vb" />
@@ -906,6 +907,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsEnquete.xsd</DependentUpon>
     </Compile>
+    <Compile Include="cr\dsEnquete.vb">
+      <DependentUpon>dsEnquete.xsd</DependentUpon>
+    </Compile>
     <Compile Include="cr\dsFvmano.Designer.vb">
       <DependentUpon>dsFvmano.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -929,6 +933,7 @@
     </Compile>
     <Compile Include="cr\EtatCrodip.vb" />
     <Compile Include="cr\EtatContratCommercial.vb" />
+    <Compile Include="cr\EtatFeuillePeda.vb" />
     <Compile Include="cr\EtatEnquete.vb" />
     <Compile Include="cr\EtatDocumentCoPropriete.vb" />
     <Compile Include="cr\EtatFVMano.vb" />
@@ -964,6 +969,13 @@
       <DependentUpon>crTest.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_FeuillePedagogique.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_FeuillePedagogique.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="moduleDocumentaire\_parametres\cr_DocCopropiete.vb">
       <AutoGen>True</AutoGen>
@@ -2336,6 +2348,11 @@
       <LastGenOutput>cr_syntheseBusesxx.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="moduleDocumentaire\_parametres\cr_FeuillePedagogique.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_FeuillePedagogique.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
