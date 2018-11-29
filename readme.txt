@@ -1,5 +1,8 @@
 TRUNK
 ------------------
+Build :20181129100000
+#266 : Contrat Commercial V4 (Livrer en prod en avance de phase)
+
 Build :20180918180000
 #254 : Erreur en CV immédiate
 #257 : MAJ de l'état du pulve si défaut
