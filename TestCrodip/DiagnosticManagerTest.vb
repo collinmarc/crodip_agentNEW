@@ -5552,7 +5552,7 @@ Public Class DiagnosticManagerTest
         Dim oDiag As Diagnostic
 
         agentCourant.id = 1121
-        Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
+        Dim objWSCrodip As Crodip_agent.WSCrodip_prod.CrodipServer = WSCrodip.getWS()
         objWSCrodip.Url = "http://admin.crodip.fr/server"
         oDiag = DiagnosticManager.getWSDiagnosticById(1127, "499-1121-269")
         DiagnosticManager.save(oDiag)
