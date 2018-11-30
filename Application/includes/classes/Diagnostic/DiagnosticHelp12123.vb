@@ -4,7 +4,11 @@ Imports System.Collections.Generic
 '''
 ''' Classe de stockage des infos saisie de mesures pour l'item 12123
 ''' Voir fichier Calcul12123
-<Serializable()> _
+<Serializable()>
+<XmlInclude(GetType(DiagnosticHelp12123Mesure))> _
+<XmlInclude(GetType(DiagnosticHelp12123MesuresTrtSem))> _
+<XmlInclude(GetType(DiagnosticHelp12123Pompe))> _
+<XmlInclude(GetType(DiagnosticHelp12123PompeTrtSem))> _
 Public Class DiagnosticHelp12123
     Implements ICloneable
     Private m_id As String
@@ -16,6 +20,15 @@ Public Class DiagnosticHelp12123
         End Get
         Set(ByVal value As List(Of DiagnosticHelp12123Pompe))
             m_lstPompes = value
+        End Set
+    End Property
+    Private m_lstPompesTrtSem As New List(Of DiagnosticHelp12123PompeTrtSem)
+    Public Property lstPompesTrtSem() As List(Of DiagnosticHelp12123PompeTrtSem)
+        Get
+            Return m_lstPompesTrtSem
+        End Get
+        Set(ByVal value As List(Of DiagnosticHelp12123PompeTrtSem))
+            m_lstPompesTrtSem = value
         End Set
     End Property
 
@@ -306,6 +319,13 @@ Public Class DiagnosticHelp12123
 
         oReturn = New DiagnosticHelp12123Pompe(Me, lstPompes.Count + 1)
         lstPompes.Add(oReturn)
+        Return oReturn
+    End Function
+    Public Function AjoutePompeTrtSem() As DiagnosticHelp12123PompeTrtSem
+        Dim oReturn As DiagnosticHelp12123PompeTrtSem
+
+        oReturn = New DiagnosticHelp12123PompeTrtSem(Me, lstPompes.Count + 1)
+        lstPompesTrtSem.Add(oReturn)
         Return oReturn
     End Function
 End Class

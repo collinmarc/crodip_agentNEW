@@ -1939,7 +1939,7 @@ Public Class controle_preliminaire
         'Dim objInfos(15) As Object
         '        diagnosticCourant.ChargeArrAnswers(arrAnswers)
         m_Diagnostic.ParamDiag = m_oParamdiag
-        Dim ofrm As New diagnostic_recap(m_Mode, m_Diagnostic, m_Pulverisateur, m_Exploit)
+        Dim ofrm As New frmdiagnostic_recap(m_Mode, m_Diagnostic, m_Pulverisateur, m_Exploit)
         TryCast(Me.MdiParent, parentContener).DisplayForm(oFrm)
 
         Statusbar.clear()

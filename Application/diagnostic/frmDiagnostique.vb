@@ -4830,7 +4830,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Function
 
     Protected Overridable Sub NextForm()
-        Dim ofrm As New frmdiagnostic_recapV6(m_modeAffichage, m_diagnostic, m_Pulverisateur, m_Exploit)
+        Dim ofrm As New frmdiagnostic_recap(m_modeAffichage, m_diagnostic, m_Pulverisateur, m_Exploit)
         TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
         Statusbar.clear()
     End Sub

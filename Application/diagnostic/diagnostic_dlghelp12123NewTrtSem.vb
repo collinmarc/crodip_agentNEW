@@ -17,9 +17,9 @@ Public Class diagnostic_dlghelp12123newTrtSem
             'pnlPrinc.Enabled = False
             btnValider.Enabled = False
         End If
-        BindingSource1.Clear()
+        m_bsrcPompes.Clear()
         m_DiagHelp12123 = pDiagH12123.Clone()
-        BindingSource1.Add(m_DiagHelp12123)
+        m_bsrcPompes.Add(m_DiagHelp12123)
 
 
     End Sub
@@ -45,15 +45,51 @@ Public Class diagnostic_dlghelp12123newTrtSem
         formload()
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
+        nupNbPompes.Value = m_DiagHelp12123.lstPompes.Count
+        displayPompes()
 
-        m_bsrcMesures.Add(New DiagnosticHelp12123MesuresTrtSem(1))
-        m_bsrcMesures.Add(New DiagnosticHelp12123MesuresTrtSem(2))
-        m_bsrcMesures.Add(New DiagnosticHelp12123MesuresTrtSem(3))
+    End Sub
+
+    Private Sub DisplayPompes()
+        Dim ImageIndex As Integer = 1
+        Dim oOldNode As Integer = -1
+        If TreeView1.SelectedNode IsNot Nothing Then
+            oOldNode = TreeView1.SelectedNode.Index
+        End If
+
+        TreeView1.Nodes.Clear()
+
+        For Each oPompe As DiagnosticHelp12123PompeTrtSem In m_DiagHelp12123.lstPompesTrtSem
+            Select Case oPompe.Resultat
+                Case ""
+                    ImageIndex = 2
+                Case DiagnosticItem.EtatDiagItemOK
+                    ImageIndex = 1
+                Case DiagnosticItem.EtatDiagItemMAJEUR
+                    ImageIndex = 0
+            End Select
+            Dim oNode As TreeNode
+            oNode = TreeView1.Nodes.Add(oPompe.Nom, ImageIndex)
+            oNode.Text = oPompe.Nom
+            oNode.SelectedImageIndex = ImageIndex
+            oNode.ImageIndex = ImageIndex
+        Next
+        Try
+
+            If oOldNode <> -1 Then
+                TreeView1.SelectedNode = TreeView1.Nodes(oOldNode)
+            Else
+                TreeView1.SelectedNode = TreeView1.Nodes(0)
+            End If
+            m_bsrcPompes.Position = TreeView1.SelectedNode.Index
+        Catch ex As Exception
+            TreeView1.SelectedNode = TreeView1.Nodes(0)
+            m_bsrcPompes.Position = 0
+        End Try
     End Sub
 
 
-
-    Private Sub BindingSource1_CurrentItemChanged(sender As Object, e As EventArgs) Handles BindingSource1.CurrentItemChanged
+    Private Sub BindingSource1_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentItemChanged
         If Not String.IsNullOrEmpty(m_DiagHelp12123.Resultat) Then
             Select Case m_DiagHelp12123.Resultat
                 Case DiagnosticItem.EtatDiagItemOK
@@ -70,11 +106,11 @@ Public Class diagnostic_dlghelp12123newTrtSem
     End Sub
 
     Private Sub TbNumeric11_Validated(sender As Object, e As EventArgs)
-        BindingSource1.ResetBindings(False)
+        m_bsrcPompes.ResetBindings(False)
     End Sub
 
     Private Sub TbNumeric3_Validated(sender As Object, e As EventArgs)
-        BindingSource1.ResetBindings(False)
+        m_bsrcPompes.ResetBindings(False)
 
     End Sub
 

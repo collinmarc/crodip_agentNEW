@@ -9,17 +9,43 @@ Public Class DiagnosticHelp12123MesuresTrtSem
     '    Implements ICloneable
     Public m_id As String
     Public m_idDiag As String
+    Private m_oPompe As DiagnosticHelp12123PompeTrtSem
+    Private m_numPompe As Integer
+    Private m_numMesure As Integer
 
-    Private m_numpompe As Decimal
-    Public Property numPompe() As Decimal
+    Public Property id As String
         Get
-            Return m_numpompe
+            Return m_id
         End Get
-        Set(ByVal value As Decimal)
-            m_numpompe = value
+        Set(ByVal Value As String)
+            m_id = Value
         End Set
     End Property
-    Private m_numMesure As Integer
+    Public Property idDiag As String
+        Get
+            Return m_idDiag
+        End Get
+        Set(ByVal Value As String)
+            m_idDiag = Value
+        End Set
+    End Property
+    Public Property bCalcule As Boolean
+        Get
+            Return m_bCalcule
+        End Get
+        Set(ByVal Value As Boolean)
+            m_bCalcule = Value
+        End Set
+    End Property
+
+    Public Property numPompe() As Decimal
+        Get
+            Return m_numPompe
+        End Get
+        Set(ByVal value As Decimal)
+            m_numPompe = value
+        End Set
+    End Property
     Public Property numMesure() As Integer
         Get
             Return m_numMesure
@@ -133,22 +159,12 @@ Public Class DiagnosticHelp12123MesuresTrtSem
     Public const DIAGITEM_ID As String = "help12123TrtSem"
     Public LIMITE_ECART_MAJEUR As Decimal = 5
 
-    Public Sub New(pNum As Integer)
-        m_Resultat = ""
-        m_numMesure = pNum
-        '''// FOR PROP ONLY
-        If pNum = 1 Then
-            Image = New Bitmap("img/puces/V.jpg")
-            m_Resultat = "OK"
-        End If
-        If pNum = 2 Then
-            Image = New Bitmap("img/puces/R.jpg")
-            m_Resultat = "ERREUR"
-        End If
-        If pNum = 3 Then
-            Image = New Bitmap("img/puces/G.jpg")
-            m_Resultat = ""
-        End If
+    Public Sub New()
+    End Sub
+    Public Sub New(pPompe As DiagnosticHelp12123PompeTrtSem, pNumMesure As Integer)
+        m_oPompe = pPompe
+        m_numPompe = pPompe.numero
+        m_numMesure = pNumMesure
     End Sub
     Private _image As Bitmap
     Public Property Image() As Bitmap
@@ -160,12 +176,140 @@ Public Class DiagnosticHelp12123MesuresTrtSem
         End Set
     End Property
 
+    Public Function calcule() As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+        Catch ex As Exception
+            bReturn = False
+            CSDebug.dispError("DiagnosticHelp12123MesureTrtSem ERR : " & ex.Message)
 
-    Public Sub New(ByVal pId As String, ByVal pIdDiag As String)
-        m_id = pId
-        m_idDiag = pIdDiag
-        m_Resultat = ""
+
+        End Try
+        Return bReturn
+    End Function
+
+    Public Function Load(pidDiag As String, pNumPompe As Integer, pNumMesure As Integer) As Boolean
+        Dim bReturn As Boolean
+        Try
+            Dim oCsDB As New CSDb(True)
+            Dim oCmd As OleDb.OleDbCommand
+
+            oCmd = oCsDB.getConnection().CreateCommand()
+            Dim strQuery As String
+            strQuery = "Select * from DiagnosticItem where idDiagnostic = '" & idDiag & "' and idItem = '" & DIAGITEM_ID & pNumPompe & "-" & pNumMesure & "'"
+            oCmd.CommandText = strQuery
+            Dim oDr As OleDb.OleDbDataReader
+            oDr = oCmd.ExecuteReader()
+            If oDr.HasRows() Then
+                oDr.Read()
+                Dim oDiagItem As DiagnosticItem = New DiagnosticItem()
+                Dim tmpColId As Integer = 0
+                While tmpColId < oDr.FieldCount()
+                    oDiagItem.Fill(oDr.GetName(tmpColId), oDr.Item(tmpColId))
+                    tmpColId = tmpColId + 1
+                End While
+                getDatasFromItemValue(oDiagItem)
+            End If
+            oDr.Close()
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("DiagnocticHelp12123:load(" & pidDiag & "," & pNumPompe & "," & pNumMesure & " ) ERROR" & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
+    Public Function Save(ByVal pStructureId As String, ByVal pAgentId As String) As Boolean
+        '        Debug.Assert(Not String.IsNullOrEmpty(id), "Id must be set")
+        Debug.Assert(Not String.IsNullOrEmpty(idDiag), "IdDiag must be set")
+        Debug.Assert(Not String.IsNullOrEmpty(pStructureId), "pStructureId must be set")
+        Debug.Assert(Not String.IsNullOrEmpty(pAgentId), "pAgentId must be set")
+
+        Dim bReturn As Boolean
+        Try
+            'Cet Object est transformé en DiagItem pour le Stockage
+            Dim oDiagItem As DiagnosticItem
+            Dim oDiagItemLu As DiagnosticItem
+            oDiagItem = ConvertToDiagnosticItem()
+            If Not String.IsNullOrEmpty(id) Then
+                oDiagItemLu = DiagnosticItemManager.getDiagnosticItemById(id, idDiag)
+                If Not String.IsNullOrEmpty(oDiagItemLu.id) Then
+                    oDiagItem.id = oDiagItemLu.id
+                    oDiagItem.idDiagnostic = oDiagItemLu.idDiagnostic
+                    'oDiagItem.idItem
+                    'oDiagItem.itemValue
+                    oDiagItem.cause = oDiagItemLu.cause
+                    oDiagItem.dateModificationAgent = oDiagItemLu.dateModificationAgent
+                    oDiagItem.dateModificationCrodip = oDiagItemLu.dateModificationCrodip
+                End If
+            End If
+            If String.IsNullOrEmpty(oDiagItem.id) Then
+                id = DiagnosticItemManager.getNewId(pStructureId, pAgentId)
+                oDiagItem.id = id
+            End If
+            Dim oCSDB As New CSDb(True)
+            bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
+            oCSDB.free()
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticHelp12123Mesure.Save ERR :" & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Private Sub getDatasFromItemValue(pDiagItem As DiagnosticItem)
+
+        If pDiagItem.idItem.StartsWith(DIAGITEM_ID) Then
+            Try
+                bCalcule = False 'Au rechargement on désactive le calcul
+                id = pDiagItem.id
+                idDiag = pDiagItem.idDiagnostic
+                Dim tabValues As String()
+                tabValues = pDiagItem.itemValue.Split("|")
+                m_numPompe = ConvertStringToAtt(tabValues(0))
+                m_numMesure = ConvertStringToAtt(tabValues(1))
+                'DebitReel = ConvertStringToAtt(tabValues(2))  '4
+                'DebitTotal = ConvertStringToAtt(tabValues(3))  '5
+                bCalcule = True
+            Catch ex As Exception
+                CSDebug.dispError("DiagnosticHelp12123Mesure.load ERR conversion (" & pDiagItem.itemValue & ") ERR " & ex.Message)
+            End Try
+        End If
+
     End Sub
+    Public Function ConvertToDiagnosticItem() As DiagnosticItem
+
+        Dim oDiagItem As DiagnosticItem
+        oDiagItem = New DiagnosticItem
+        oDiagItem.id = id
+        oDiagItem.idDiagnostic = idDiag
+        oDiagItem.idItem = DIAGITEM_ID & m_numPompe & "-" & m_numMesure
+
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(m_numPompe) & "|" '0
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(m_numMesure) & "|" '0
+        oDiagItem.itemValue = oDiagItem.itemValue & "|" '0
+        oDiagItem.itemValue = oDiagItem.itemValue & "|" '1
+
+        Return oDiagItem
+    End Function
+    Private Function ConvertAttToString(pValue? As Decimal) As String
+        If pValue.HasValue Then
+            Return Trim(pValue.ToString())
+        Else
+            Return ""
+        End If
+    End Function
+    Private Function ConvertStringToAtt(pValue As String) As Decimal
+        If String.IsNullOrEmpty(pValue) Then
+            Return Nothing
+        Else
+            Try
+                Return CDec(pValue)
+            Catch
+                Return Nothing
+            End Try
+        End If
+    End Function
 
 
 End Class

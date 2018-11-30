@@ -73,6 +73,7 @@ Public Class login
     Friend WithEvents btnTestFacturation As System.Windows.Forms.Button
     Friend WithEvents brnTestDiagRecap As System.Windows.Forms.Button
     Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents btnTesttrtSemences As System.Windows.Forms.Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -105,6 +106,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
+        Me.btnTesttrtSemences = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
@@ -250,6 +252,7 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.btnTesttrtSemences)
         Me.GroupBox_test.Controls.Add(Me.Button4)
         Me.GroupBox_test.Controls.Add(Me.brnTestDiagRecap)
         Me.GroupBox_test.Controls.Add(Me.btnTestFacturation)
@@ -459,6 +462,15 @@ Public Class login
         Me.lbl_WS.TabIndex = 31
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'btnTesttrtSemences
+        '
+        Me.btnTesttrtSemences.Location = New System.Drawing.Point(267, 77)
+        Me.btnTesttrtSemences.Name = "btnTesttrtSemences"
+        Me.btnTesttrtSemences.Size = New System.Drawing.Size(128, 23)
+        Me.btnTesttrtSemences.TabIndex = 34
+        Me.btnTesttrtSemences.Text = "TrtSemences"
+        Me.btnTesttrtSemences.UseVisualStyleBackColor = True
         '
         'login
         '
@@ -949,11 +961,29 @@ Public Class login
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
-        Dim ofrm As frmdiagnostic_recapV6
-        ofrm = New frmdiagnostic_recapV6(Globals.DiagMode.CTRL_COMPLET, oDiag, oPulve, oExploit)
+        Dim ofrm As frmdiagnostic_recap
+        ofrm = New frmdiagnostic_recap(Globals.DiagMode.CTRL_COMPLET, oDiag, oPulve, oExploit)
         ofrm.setbTest(True)
         ofrm.Show()
 
+
+    End Sub
+
+    Private Sub btnTesttrtSemences_Click(sender As Object, e As EventArgs) Handles btnTesttrtSemences.Click
+        Dim oFRM As diagnostic_dlghelp12123newTrtSem
+        Dim oDiag12123 As New DiagnosticHelp12123()
+        Dim oP1 As DiagnosticHelp12123PompeTrtSem = oDiag12123.AjoutePompeTrtSem()
+        Dim oMesure As DiagnosticHelp12123MesuresTrtSem
+        oMesure = oP1.lstMesures(0)
+        oMesure = oP1.lstMesures(1)
+        oMesure = oP1.lstMesures(2)
+        Dim oP2 As DiagnosticHelp12123PompeTrtSem = oDiag12123.AjoutePompeTrtSem()
+        oDiag12123.calcule()
+
+
+        oFRM = New diagnostic_dlghelp12123newTrtSem
+        oFRM.setContexte(oDiag12123, False)
+        oFRM.ShowDialog()
 
     End Sub
 End Class

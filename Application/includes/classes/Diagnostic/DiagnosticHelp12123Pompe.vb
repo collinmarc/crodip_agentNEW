@@ -2,7 +2,7 @@
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
 '''
-<Serializable()> _
+<Serializable()>
 Public Class DiagnosticHelp12123Pompe
     Implements ICloneable
     Private m_id As String
@@ -42,9 +42,9 @@ Public Class DiagnosticHelp12123Pompe
     Public Const DIAGITEM_ID As String = "H12123P"
     Public LIMITE_ECART_MAJEUR As Decimal = 5
     'Constructeur obligatoire pour la serialiszaion XML (Clone de dighelp12123)
-    Private Sub New()
+    Protected Sub New()
     End Sub
-    Private Sub New(pNum As Integer)
+    Protected Sub New(pNum As Integer)
         m__Numero = pNum
         m_Resultat = ""
         m_bCalcule = True
