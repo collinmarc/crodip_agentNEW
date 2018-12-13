@@ -310,37 +310,31 @@ Module DiagnosticFactureManager
     End Function
 
     '
-    Public Function getNewReference(pAgent As Agent) As String
+    Public Function getDernReference(pAgent As Agent) As String
         ' déclarations
-        Dim tmpObjectIdBase As String = "FA" & Format(Date.Now, "yyyy") & pAgent.numeroNational
-        Dim tmpObjectId As String = tmpObjectIdBase & "000001"
+        Dim Racine As String = "FA" & Format(Date.Now, "yyyy") & pAgent.numeroNational
+        Dim strReturn As String = Racine & "000001"
         If pAgent.idStructure <> 0 Then
 
             Try
                 ' On récupère les résultats
                 Dim bdd As New CSDb(True)
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT `factureReference` FROM `DiagnosticFacture` WHERE `factureReference` LIKE '" & tmpObjectIdBase & "%' ORDER BY `factureReference` DESC")
+                Dim oDataReader As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT factureReference FROM DiagnosticFacture  ORDER BY CDATE(dateModificationAgent) DESC, factureReference DESC")
                 ' Puis on les parcours
                 Dim newId As Integer = 0
-                While tmpListProfils.Read()
-                    ' On récupère le dernier ID
-                    Dim tmpId As Integer = 0
-                    tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(tmpObjectIdBase, ""))
-                    If tmpId > newId Then
-                        newId = tmpId
-                    End If
-                End While
-                tmpObjectId = (newId + 1)
-                tmpObjectId = tmpObjectIdBase & New String("0", 6 - tmpObjectId.Length) & tmpObjectId
+                If oDataReader.HasRows Then
+                    oDataReader.Read()
+                    strReturn = oDataReader.GetString(0)
+                End If
+                oDataReader.Close()
                 bdd.free()
             Catch ex As Exception ' On intercepte l'erreur
-                Console.Write("DiagnosticFactureManager - getNewReference : " & ex.Message & vbNewLine)
+                CSDebug.dispError("DiagnosticFactureManager - getDernReference : " & ex.Message & vbNewLine)
             End Try
 
         End If
-        'on retourne le nouvel id
-        Return tmpObjectId
+        'on retourne la reference
+        Return strReturn
     End Function
 
     ' Recupère toutes les factures non synchronisé (dateModificationAgent / dateModificationCrodip) 

@@ -28,7 +28,7 @@ Public Class diagnostic_facturation
     Friend WithEvents columnDelete As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents btn_imprimerFactureCoProp As System.Windows.Forms.Label
     Friend WithEvents tbCommentaire As System.Windows.Forms.TextBox
-    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents lblCommentaire As System.Windows.Forms.Label
 
     Public prestaIncrement As Integer = 0
 
@@ -97,7 +97,7 @@ Public Class diagnostic_facturation
         Me.img_Add = New System.Windows.Forms.PictureBox()
         Me.panelFooter = New System.Windows.Forms.Panel()
         Me.tbCommentaire = New System.Windows.Forms.TextBox()
-        Me.Label18 = New System.Windows.Forms.Label()
+        Me.lblCommentaire = New System.Windows.Forms.Label()
         Me.btn_imprimerFactureCoProp = New System.Windows.Forms.Label()
         Me.btn_ImprimerFacture = New System.Windows.Forms.Label()
         Me.btn_facturation_imprimerContrat = New System.Windows.Forms.Label()
@@ -191,7 +191,7 @@ Public Class diagnostic_facturation
         Me.panelFooter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panelFooter.Controls.Add(Me.tbCommentaire)
-        Me.panelFooter.Controls.Add(Me.Label18)
+        Me.panelFooter.Controls.Add(Me.lblCommentaire)
         Me.panelFooter.Controls.Add(Me.btn_imprimerFactureCoProp)
         Me.panelFooter.Controls.Add(Me.btn_ImprimerFacture)
         Me.panelFooter.Controls.Add(Me.btn_facturation_imprimerContrat)
@@ -223,17 +223,19 @@ Public Class diagnostic_facturation
         Me.tbCommentaire.Name = "tbCommentaire"
         Me.tbCommentaire.Size = New System.Drawing.Size(552, 52)
         Me.tbCommentaire.TabIndex = 45
+        Me.tbCommentaire.Visible = False
         '
-        'Label18
+        'lblCommentaire
         '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label18.Location = New System.Drawing.Point(3, 20)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(87, 13)
-        Me.Label18.TabIndex = 44
-        Me.Label18.Text = "Commentaire :"
+        Me.lblCommentaire.AutoSize = True
+        Me.lblCommentaire.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCommentaire.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.lblCommentaire.Location = New System.Drawing.Point(3, 20)
+        Me.lblCommentaire.Name = "lblCommentaire"
+        Me.lblCommentaire.Size = New System.Drawing.Size(87, 13)
+        Me.lblCommentaire.TabIndex = 44
+        Me.lblCommentaire.Text = "Commentaire :"
+        Me.lblCommentaire.Visible = False
         '
         'btn_imprimerFactureCoProp
         '
@@ -641,24 +643,6 @@ Public Class diagnostic_facturation
         '    listTarif_categories.Enabled = False
         '    listTarif_prestations.Enabled = False
         'End If
-        btn_ImprimerFacture.Visible = False
-        btn_imprimerFactureCoProp.Visible = False
-        Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Application.StartupPath & "\config\facturation.xml")
-        If CType(FACTURATION_XML_CONFIG.getElementValue("/root/isActive"), Boolean) Then
-            If Trim(m_oDiag.pulverisateurNbreExploitants) <> "" Then
-                If m_oDiag.pulverisateurNbreExploitants > 1 Then
-                    btn_imprimerFactureCoProp.Visible = True
-                    btn_imprimerFactureCoProp.Location = btn_ImprimerFacture.Location
-                Else
-                    btn_ImprimerFacture.Visible = True
-                End If
-            Else
-                btn_ImprimerFacture.Visible = True
-            End If
-
-        Else
-            btn_ImprimerFacture.Visible = False
-        End If
 
         Me.Cursor = Cursors.Default
 
@@ -735,10 +719,34 @@ Public Class diagnostic_facturation
 
                 'Facture
                 Try
+                    btn_ImprimerFacture.Visible = False
+                    btn_imprimerFactureCoProp.Visible = False
                     Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Application.StartupPath & "\config\facturation.xml")
                     If CType(FACTURATION_XML_CONFIG.getElementValue("/root/isActive"), Boolean) Then
-                        btn_ImprimerFacture.Enabled = True
-                        btn_imprimerFactureCoProp.Enabled = True
+                        If Trim(m_oDiag.pulverisateurNbreExploitants) <> "" Then
+                            If m_oDiag.pulverisateurNbreExploitants > 1 Then
+                                btn_imprimerFactureCoProp.Visible = True
+                                btn_ImprimerFacture.Visible = False
+                                btn_imprimerFactureCoProp.Location = btn_ImprimerFacture.Location
+                            Else
+                                btn_ImprimerFacture.Visible = True
+                                btn_imprimerFactureCoProp.Visible = False
+                            End If
+                        Else
+                            btn_ImprimerFacture.Visible = True
+                            btn_imprimerFactureCoProp.Visible = False
+                        End If
+                        btn_ImprimerFacture.Enabled = btn_ImprimerFacture.Visible
+                        btn_imprimerFactureCoProp.Enabled = btn_imprimerFactureCoProp.Visible
+                        tbCommentaire.Visible = btn_ImprimerFacture.Visible
+                        tbCommentaire.Enabled = btn_ImprimerFacture.Visible
+                        lblCommentaire.Visible = btn_ImprimerFacture.Visible
+                        lblCommentaire.Enabled = btn_ImprimerFacture.Visible
+
+                    Else
+                        btn_ImprimerFacture.Visible = False
+                        lblCommentaire.Visible = False
+                        tbCommentaire.Visible = False
                     End If
                 Catch ex As Exception
 
@@ -793,18 +801,22 @@ Public Class diagnostic_facturation
     Private Sub createFacture_CR()
 
         Try
-            Dim factureObj As DiagnosticFacture
-            factureObj = Me.saveFacture()
+            'Saisie du Numero de facture
+            Dim oFrm As New frmSaisieNumFact(m_oAgent)
+            If oFrm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                Dim factureObj As DiagnosticFacture
+                factureObj = Me.saveFacture(oFrm.NUMFACT)
 
-            Dim oEtat As New EtatFacture(m_oDiag, factureObj.factureReference, tbCommentaire.Text)
+                Dim oEtat As New EtatFacture(m_oDiag, factureObj.factureReference, tbCommentaire.Text)
 
-            ' On rempli la liste des prestations
-            For Each oLig As DiagnosticFactureItem In m_bsLignes
-                oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
+                ' On rempli la liste des prestations
+                For Each oLig As DiagnosticFactureItem In m_bsLignes
+                    oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
 
-            Next
-            oEtat.GenereEtat()
-            m_pathFacture = oEtat.getFileName()
+                Next
+                oEtat.GenereEtat()
+                m_pathFacture = oEtat.getFileName()
+            End If
         Catch ex As Exception
             CSDebug.dispError("diagnostic_finalisation::createFacture_CR : " & ex.Message)
         End Try
@@ -813,7 +825,7 @@ Public Class diagnostic_facturation
 
     End Sub
 
-    Private Function saveFacture() As DiagnosticFacture
+    Private Function saveFacture(pReference As String) As DiagnosticFacture
         Dim facture As DiagnosticFacture = New DiagnosticFacture
         Try
             '####
@@ -834,9 +846,8 @@ Public Class diagnostic_facturation
             End If
 
             '######################################################################################
-
             facture.id = DiagnosticFactureManager.getNewId()
-            facture.factureReference = DiagnosticFactureManager.getNewReference(agentCourant)
+            facture.factureReference = pReference
             facture.factureDate = Format(Date.Now, "dd/MM/yyyy")
             facture.factureTotal = champTotalTtc
             facture.emetteurOrganisme = organismePCourant.nom
@@ -1130,6 +1141,8 @@ Public Class diagnostic_facturation
     Private Sub btn_ImprimerFacture_Click(sender As Object, e As EventArgs) Handles btn_ImprimerFacture.Click
         ' On affiche le PDF rempli
         Try
+            ' Génération de la facture
+
             createFacture_CR()
             CSFile.open(m_pathFacture)
         Catch ex As Exception

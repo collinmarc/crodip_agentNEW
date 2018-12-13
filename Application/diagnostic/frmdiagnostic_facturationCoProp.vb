@@ -91,10 +91,10 @@ Public Class frmdiagnostic_facturationCoProp
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmdiagnostic_facturationCoProp))
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.panelFooter = New System.Windows.Forms.Panel()
@@ -170,6 +170,8 @@ Public Class frmdiagnostic_facturationCoProp
         '
         Me.panelFooter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelFooter.Controls.Add(Me.tbCommentaire)
+        Me.panelFooter.Controls.Add(Me.Label18)
         Me.panelFooter.Controls.Add(Me.Label1)
         Me.panelFooter.Controls.Add(Me.facturation_totalHT)
         Me.panelFooter.Controls.Add(Me.Label5)
@@ -365,14 +367,14 @@ Public Class frmdiagnostic_facturationCoProp
         Me.DataGridView1.DataSource = Me.m_bsLignes
         Me.DataGridView1.Location = New System.Drawing.Point(12, 228)
         Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView1.Size = New System.Drawing.Size(903, 168)
         Me.DataGridView1.TabIndex = 6
         '
@@ -380,10 +382,10 @@ Public Class frmdiagnostic_facturationCoProp
         '
         Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.LibelleDataGridViewTextBoxColumn.DataPropertyName = "libelle"
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
-        Me.LibelleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
+        Me.LibelleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
         Me.LibelleDataGridViewTextBoxColumn.HeaderText = "Prestation"
         Me.LibelleDataGridViewTextBoxColumn.Name = "LibelleDataGridViewTextBoxColumn"
         Me.LibelleDataGridViewTextBoxColumn.ReadOnly = True
@@ -408,10 +410,10 @@ Public Class frmdiagnostic_facturationCoProp
         '
         Me.TvaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.TvaDataGridViewTextBoxColumn.DataPropertyName = "tva"
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
-        Me.TvaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
+        Me.TvaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
         Me.TvaDataGridViewTextBoxColumn.HeaderText = "% TVA"
         Me.TvaDataGridViewTextBoxColumn.Name = "TvaDataGridViewTextBoxColumn"
         Me.TvaDataGridViewTextBoxColumn.ReadOnly = True
@@ -421,10 +423,10 @@ Public Class frmdiagnostic_facturationCoProp
         '
         Me.PrixTotalDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.PrixTotalDataGridViewTextBoxColumn.DataPropertyName = "prixTotal"
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
-        Me.PrixTotalDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
+        Me.PrixTotalDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
         Me.PrixTotalDataGridViewTextBoxColumn.HeaderText = "Total TTC"
         Me.PrixTotalDataGridViewTextBoxColumn.Name = "PrixTotalDataGridViewTextBoxColumn"
         Me.PrixTotalDataGridViewTextBoxColumn.ReadOnly = True
@@ -579,7 +581,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label18.Location = New System.Drawing.Point(12, 174)
+        Me.Label18.Location = New System.Drawing.Point(8, 13)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(87, 13)
         Me.Label18.TabIndex = 42
@@ -587,10 +589,10 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'tbCommentaire
         '
-        Me.tbCommentaire.Location = New System.Drawing.Point(126, 177)
+        Me.tbCommentaire.Location = New System.Drawing.Point(122, 16)
         Me.tbCommentaire.Multiline = True
         Me.tbCommentaire.Name = "tbCommentaire"
-        Me.tbCommentaire.Size = New System.Drawing.Size(695, 32)
+        Me.tbCommentaire.Size = New System.Drawing.Size(557, 100)
         Me.tbCommentaire.TabIndex = 43
         Me.tbCommentaire.Text = "Facture co-propriétaire "
         '
@@ -599,8 +601,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(933, 607)
         Me.ControlBox = False
-        Me.Controls.Add(Me.tbCommentaire)
-        Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.TextBox6)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label10)
@@ -716,18 +716,22 @@ Public Class frmdiagnostic_facturationCoProp
     Private Sub createFacture_CR()
 
         Try
-            Dim factureObj As DiagnosticFacture
-            factureObj = Me.saveFacture()
+            Dim oFrm As New frmSaisieNumFact(m_oAgent)
+            If oFrm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                Dim factureObj As DiagnosticFacture
+                factureObj = Me.saveFacture(oFrm.NUMFACT)
 
-            Dim oEtat As New EtatFacture(m_oDiag, factureObj.factureReference, tbCommentaire.Text, m_oExploit)
+ 
+                Dim oEtat As New EtatFacture(m_oDiag, factureObj.factureReference, tbCommentaire.Text, m_oExploit)
 
-            ' On rempli la liste des prestations
-            For Each oLig As DiagnosticFactureItem In m_bsLignes
-                oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
+                ' On rempli la liste des prestations
+                For Each oLig As DiagnosticFactureItem In m_bsLignes
+                    oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
 
-            Next
-            oEtat.GenereEtat()
-            m_pathFacture = oEtat.getFileName()
+                Next
+                oEtat.GenereEtat()
+                m_pathFacture = oEtat.getFileName()
+            End If
         Catch ex As Exception
             CSDebug.dispError("diagnostic_finalisation::createFacture_CR : " & ex.Message)
         End Try
@@ -736,7 +740,7 @@ Public Class frmdiagnostic_facturationCoProp
 
     End Sub
 
-    Private Function saveFacture() As DiagnosticFacture
+    Private Function saveFacture(pReference As String) As DiagnosticFacture
         Dim facture As DiagnosticFacture = New DiagnosticFacture
         Try
             '####
@@ -747,7 +751,7 @@ Public Class frmdiagnostic_facturationCoProp
             '######################################################################################
 
             facture.id = DiagnosticFactureManager.getNewId()
-            facture.factureReference = DiagnosticFactureManager.getNewReference(agentCourant)
+            facture.factureReference = pReference
             facture.factureDate = Format(Date.Now, "dd/MM/yyyy")
             facture.factureTotal = facturation_totalTTC.Text
             facture.emetteurOrganisme = oStructure.nom
@@ -810,11 +814,11 @@ Public Class frmdiagnostic_facturationCoProp
         Dim totalHT As Decimal = m_oDiag.TotalHT
         Dim totalTVA As Decimal = m_oDiag.TotalTVA
         Dim totalTTC As Decimal = m_oDiag.TotalTTC
-
-        m_oDiag.TotalHT = Convert.ToDecimal(Me.facturation_totalHT.Text)
-        m_oDiag.TotalTVA = Convert.ToDecimal(Me.facturation_totalTVA.Text)
-        m_oDiag.TotalTTC = Convert.ToDecimal(Me.facturation_totalTTC.Text)
-
+        If IsNumeric(Me.facturation_totalHT.text)
+            m_oDiag.TotalHT = Convert.ToDecimal(Me.facturation_totalHT.Text)
+            m_oDiag.TotalTVA = Convert.ToDecimal(Me.facturation_totalTVA.Text)
+            m_oDiag.TotalTTC = Convert.ToDecimal(Me.facturation_totalTTC.Text)
+        End If
         createFacture_CR()
 
         m_oDiag.TotalHT = totalHT

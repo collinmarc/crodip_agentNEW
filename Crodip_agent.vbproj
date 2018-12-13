@@ -388,6 +388,12 @@
     <Compile Include="Application\diagnostic\frmDiagnostique.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\frmSaisieNumFact.Designer.vb">
+      <DependentUpon>frmSaisieNumFact.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmSaisieNumFact.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\liste_diagnosticPulve.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2065,6 +2071,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diag_test.resx">
       <DependentUpon>diag_test.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmSaisieNumFact.resx">
+      <DependentUpon>frmSaisieNumFact.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve.resx">
       <DependentUpon>liste_diagnosticPulve.vb</DependentUpon>

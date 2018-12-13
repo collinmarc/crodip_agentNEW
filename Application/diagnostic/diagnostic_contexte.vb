@@ -1226,27 +1226,27 @@ Public Class diagnostic_contexte
 
             Dim strXPath As String
             Dim oLst As System.Xml.XmlNode
+            strXPath = "//PulverisateurModeUtilisation[libelle=""%MODE%""]/Valeurs"
+            strXPath = strXPath.Replace("%MODE%", cbxModeUtilisation.Text)
+            cbxNbreExploitants.Items.Clear()
+            oLst = Globals.GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
+            For Each oVal As String In oLst.InnerText.Split(",")
+                cbxNbreExploitants.Items.Add(oVal)
+            Next
+            If cbxNbreExploitants.Text = "" Then
+                cbxNbreExploitants.Text = cbxNbreExploitants.Items(0)
+            End If
+
             strXPath = "//PulverisateurModeUtilisation[libelle=""%MODE%""]/saisieNbre"
             strXPath = strXPath.Replace("%MODE%", cbxModeUtilisation.Text)
             oLst = Globals.GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
             If CBool(oLst.InnerText) Then
-                strXPath = "//PulverisateurModeUtilisation[libelle=""%MODE%""]/Valeurs"
-                strXPath = strXPath.Replace("%MODE%", cbxModeUtilisation.Text)
-                oLst = Globals.GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
                 lblNbreExploitants.Visible = True
                 cbxNbreExploitants.Visible = True
-                cbxNbreExploitants.Items.Clear()
-                For Each oVal As String In oLst.InnerText.Split(",")
-                    cbxNbreExploitants.Items.Add(oVal)
-                Next
-                If cbxNbreExploitants.Text = "" Then
-                    cbxNbreExploitants.Text = cbxNbreExploitants.Items(0)
-                End If
             Else
                 lblNbreExploitants.Visible = False
                 cbxNbreExploitants.Visible = False
-                cbxNbreExploitants.Text = ""
-
+                cbxNbreExploitants.Text = "1"
             End If
             bReturn = True
         Catch ex As Exception
