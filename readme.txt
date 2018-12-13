@@ -1,6 +1,9 @@
 TRUNK
+Build :20181206110000
 ------------------
 #274 : Calc de l'état des buses après synhcro
+#293 : Fenêtre Recap : Valider = Désactivation appercu
+#272 : Apperçu automatique du RI
 
 Build :20181206110000
 #266 : Contrat Commercial V4 (Livrer en prod en avance de phase)

@@ -637,6 +637,13 @@ Public Class frmdiagnostic_recap
         End If
         btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> Globals.DiagMode.CTRL_VISU
 
+        '##################
+        'Generation de l'apperçu du rapport
+        '###################
+
+        createRapportInspection_cr(False)
+
+
     End Sub
 
     Private Sub AffichePulverisateur()
@@ -816,6 +823,12 @@ Public Class frmdiagnostic_recap
                     btn_finalisationDiag_imprimerRapport.Enabled = True
                     btn_finalisationDiag_modifierDiag.Enabled = False
                     btn_finalisationDiag_imprimerSynthese.Enabled = True
+
+                    'Désactivation de l'apperçu
+                    btnAppercu.Enabled = False
+                    rbEtatRI.Enabled = False
+                    rbEtatSM.Enabled = False
+                    CrystalReportViewer1.Enabled = False
                     isValider = True
 
 
