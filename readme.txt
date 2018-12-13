@@ -5,6 +5,7 @@ Build :20181206110000
 #293 : Fenêtre Recap : Valider = Désactivation appercu
 #272 : Apperçu automatique du RI
 #277: Saisie du numéro de Facture
+#276: Facturation : Possibilité de mettre 0 dans la total
 
 Build :20181206110000
 #266 : Contrat Commercial V4 (Livrer en prod en avance de phase)

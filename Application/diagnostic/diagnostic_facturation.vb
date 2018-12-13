@@ -1173,7 +1173,7 @@ Public Class diagnostic_facturation
     End Sub
 
     Private Sub facturation_totalHT_TextChanged(sender As Object, e As EventArgs) Handles facturation_totalHT.Validated
-        Dim prixTotalHT As Decimal = 0
+        Dim prixTotalHT As Decimal = -1
         Dim prixTotalTTC As Decimal = 0
         Dim prixTxTVA As Decimal = 0
 
@@ -1184,7 +1184,7 @@ Public Class diagnostic_facturation
         If Not String.IsNullOrEmpty(facturation_totalTTC.Text) Then
             prixTotalTTC = CDec(facturation_totalTTC.Text)
         End If
-        If prixTotalTTC = 0 And prixTotalHT <> 0 Then
+        If prixTotalTTC = 0 And prixTotalHT <> -1 Then
             prixTxTVA = IIf(Not String.IsNullOrEmpty(tb_txTVA.Text), CDec(tb_txTVA.Text), My.Settings.TxTVADefaut)
             'Il n'y a pas de TTC alors qu'il y a un HT
             '=> Calcul TVA et TTC
@@ -1199,4 +1199,4 @@ Public Class diagnostic_facturation
     End Sub
 
 
-End Class
+ End Class
