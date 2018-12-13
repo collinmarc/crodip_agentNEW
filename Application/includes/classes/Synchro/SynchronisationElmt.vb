@@ -420,7 +420,21 @@ Public Class SynchronisationElmt
                     Try
                         setStatus("Réception MAJ Buse n°" & pElement.identifiantChaine & "...")
                         tmpObject = BuseManager.getWSBuseById(pElement.identifiantChaine)
-                        BuseManager.save(tmpObject, True)
+                        Dim bOld As Boolean = tmpObject.etat
+                        'Modif du 6/12/2018
+                        'Recalcul de l'état des buses après synhcro
+                        If tmpObject.getAlerte() = Globals.ALERTE.NOIRE Then
+                            tmpObject.etat = False
+                        Else
+                            tmpObject.etat = True
+                        End If
+                        If bOld <> tmpObject.etat Then
+                            'Sauvegarde normale => La buse sera a resynchroniser 
+                            BuseManager.save(tmpObject)
+                        Else
+                            'Sauvegarde en mode synhcro => La buse ne sera pas a resynchroniser 
+                            BuseManager.save(tmpObject, True)
+                        End If
                         bReturn = True
                     Catch ex As Exception
                         CSDebug.dispFatal("Synchronisation::runDescSynchro(GetBuse) : " & ex.Message.ToString)

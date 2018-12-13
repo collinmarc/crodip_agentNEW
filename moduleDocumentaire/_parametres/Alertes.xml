@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Noire= désactivation-->
+<!--Rouge= alerte à 10j avant désactivation-->
+<!--Orange= alerte à 10j+7?-->
 <NiveauxAlertes>
-  <NiveauAlerte Materiel="Banc" Noire="47" Rouge="20" Orange="10" Jaune="5" EcartTolere="7.5" />
-  <NiveauAlerte Materiel="ManometreControle" Noire="47" Rouge="20" Orange="10" Jaune="5" EcartTolere="7.5" />
+  <NiveauAlerte Materiel="Banc" Noire="68" Rouge="61" Orange="46" Jaune="0" EcartTolere="1"></NiveauAlerte>
+  <NiveauAlerte Materiel="ManometreControle" Noire="68" Rouge="61" Orange="46" Jaune="0" EcartTolere="7.5"></NiveauAlerte>
+  <NiveauAlerte Materiel="Buse" Noire="1832" Rouge="1735" Orange="0" Jaune="0" EcartTolere="7.5"></NiveauAlerte>
 </NiveauxAlertes>

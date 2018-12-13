@@ -17,9 +17,9 @@ Public Class diagnostic_dlghelp12123newTrtSem
             'pnlPrinc.Enabled = False
             btnValider.Enabled = False
         End If
-        m_bsrcPompes.Clear()
+        m_bsrcDiagHelp12123.Clear()
         m_DiagHelp12123 = pDiagH12123.Clone()
-        m_bsrcPompes.Add(m_DiagHelp12123)
+        m_bsrcDiagHelp12123.Add(m_DiagHelp12123)
 
 
     End Sub
@@ -81,15 +81,15 @@ Public Class diagnostic_dlghelp12123newTrtSem
             Else
                 TreeView1.SelectedNode = TreeView1.Nodes(0)
             End If
-            m_bsrcPompes.Position = TreeView1.SelectedNode.Index
+            m_bsrcDiagHelp12123.Position = TreeView1.SelectedNode.Index
         Catch ex As Exception
             TreeView1.SelectedNode = TreeView1.Nodes(0)
-            m_bsrcPompes.Position = 0
+            m_bsrcDiagHelp12123.Position = 0
         End Try
     End Sub
 
 
-    Private Sub BindingSource1_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentItemChanged
+    Private Sub BindingSource1_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcDiagHelp12123.CurrentItemChanged
         If Not String.IsNullOrEmpty(m_DiagHelp12123.Resultat) Then
             Select Case m_DiagHelp12123.Resultat
                 Case DiagnosticItem.EtatDiagItemOK
@@ -106,11 +106,11 @@ Public Class diagnostic_dlghelp12123newTrtSem
     End Sub
 
     Private Sub TbNumeric11_Validated(sender As Object, e As EventArgs)
-        m_bsrcPompes.ResetBindings(False)
+        m_bsrcDiagHelp12123.ResetBindings(False)
     End Sub
 
     Private Sub TbNumeric3_Validated(sender As Object, e As EventArgs)
-        m_bsrcPompes.ResetBindings(False)
+        m_bsrcDiagHelp12123.ResetBindings(False)
 
     End Sub
 

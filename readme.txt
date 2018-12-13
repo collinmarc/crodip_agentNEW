@@ -1,6 +1,8 @@
 TRUNK
 ------------------
-Build :20181129100000
+#274 : Calc de l'état des buses après synhcro
+
+Build :20181206110000
 #266 : Contrat Commercial V4 (Livrer en prod en avance de phase)
 #267 : Total Facture CO-PRO
 #119: Les Pdfs téléchargés ne sont pas exploitables

@@ -517,6 +517,12 @@ Public Class DiagnosticHelp12123PompeTrtSem
     Public Function getNbMesures() As Integer
         Return lstMesures.Count
     End Function
+    Public ReadOnly Property nbMesures() As Integer
+        Get
+            Return lstMesures.Count
+        End Get
+    End Property
+
 
     ''' <summary>
     ''' Rend le nombre de mesures

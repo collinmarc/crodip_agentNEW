@@ -3670,7 +3670,7 @@ Public Class accueil
         Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(agentCourant.idStructure, True)
         Dim dateLimite As Date
         Dim njours As Integer
-        Dim nbManoAvantDL(15) As Integer 'Nombre de manomètres devant être controler njours avant la Date Limite
+        Dim nbManoAvantDL(3000) As Integer 'Nombre de manomètres devant être controler njours avant la Date Limite
         'Parcours de manos
         Dim AlerteMano As Globals.ALERTE
         For Each tmpManoControle As ManometreControle In arrManoControle
@@ -3692,7 +3692,7 @@ Public Class accueil
                 nbAlertes_ManometreControle_15jr = nbAlertes_ManometreControle_15jr + 1
                 njours = tmpManoControle.getNbJoursAvantDateLimite()
                 If njours < nbManoAvantDL.Length Then
-                    nbManoAvantDL(njours) = nbManoAvantDL(njours) + 1
+                    nbManoAvantDL(Math.Abs(njours)) = nbManoAvantDL(Math.Abs(njours)) + 1
                 End If
             End If
         Next
@@ -3919,7 +3919,7 @@ Public Class accueil
         Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
         Dim arrBanc As List(Of Banc) = BancManager.getBancByStructureId(agentCourant.idStructure, True)
         Dim njours As Integer
-        Dim nbBancAvantDL(15) As Integer 'Nombre de banc devant être controler njours avant la Date Limite
+        Dim nbBancAvantDL(3000) As Integer 'Nombre de banc devant être controler njours avant la Date Limite
         Dim AlerteBanc As Globals.ALERTE
 
         For Each tmpBanc As Banc In arrBanc
@@ -3941,7 +3941,7 @@ Public Class accueil
                 nbAlertes_Banc_15jr = nbAlertes_Banc_15jr + 1
                 njours = tmpBanc.getNbJoursAvantDateLimite()
                 If njours < nbBancAvantDL.Length Then
-                    nbBancAvantDL(njours) = nbBancAvantDL(njours) + 1
+                    nbBancAvantDL(Math.Abs(njours)) = nbBancAvantDL(Math.Abs(njours)) + 1
                 End If
             End If
         Next

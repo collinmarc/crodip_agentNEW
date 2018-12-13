@@ -40,10 +40,24 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.pnlDetailPompe = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.m_bsrcMesures = New System.Windows.Forms.BindingSource(Me.components)
+        Me.numMesure = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.qteGrains = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DebitSouhaite = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Pesee1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ecart1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Pesee2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ecart2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Pesee3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ecart3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PeseeMoyenne = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EcartMoyen = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ResultatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.m_bsrcMesuresTrtSem = New System.Windows.Forms.BindingSource(Me.components)
+        Me.LstPompesTrtSemBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.m_bsrcDiagHelp12123 = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label16 = New System.Windows.Forms.Label()
         Me.TbNumeric10 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.m_bsrcPompes = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TbNumeric9 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -58,12 +72,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
-        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDiagDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BCalculeDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.ResultatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ImageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.LstPompesTrtSemBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.pnl12123.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -71,12 +80,12 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.SplitContainer1.SuspendLayout()
         Me.pnlDetailPompe.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcMesures, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcPompes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcMesuresTrtSem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LstPompesTrtSemBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcDiagHelp12123, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nupMesures, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nupNbPompes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LstPompesTrtSemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnl12123
@@ -177,6 +186,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.pnlDetailPompe.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlDetailPompe.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlDetailPompe.Controls.Add(Me.Button1)
         Me.pnlDetailPompe.Controls.Add(Me.Label2)
         Me.pnlDetailPompe.Controls.Add(Me.DataGridView1)
         Me.pnlDetailPompe.Controls.Add(Me.Label16)
@@ -215,8 +225,8 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.IdDiagDataGridViewTextBoxColumn, Me.BCalculeDataGridViewCheckBoxColumn, Me.ResultatDataGridViewTextBoxColumn, Me.ImageDataGridViewImageColumn})
-        Me.DataGridView1.DataSource = Me.m_bsrcMesures
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.numMesure, Me.qteGrains, Me.DebitSouhaite, Me.Pesee1, Me.Ecart1, Me.Pesee2, Me.Ecart2, Me.Pesee3, Me.Ecart3, Me.PeseeMoyenne, Me.EcartMoyen, Me.ResultatDataGridViewTextBoxColumn, Me.ImageDataGridViewImageColumn})
+        Me.DataGridView1.DataSource = Me.m_bsrcMesuresTrtSem
         Me.DataGridView1.Location = New System.Drawing.Point(6, 83)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 30
@@ -224,9 +234,100 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.DataGridView1.Size = New System.Drawing.Size(575, 227)
         Me.DataGridView1.TabIndex = 109
         '
-        'm_bsrcMesures
+        'numMesure
         '
-        Me.m_bsrcMesures.DataSource = Me.LstPompesTrtSemBindingSource
+        Me.numMesure.DataPropertyName = "numMesure"
+        Me.numMesure.HeaderText = "Num"
+        Me.numMesure.Name = "numMesure"
+        '
+        'qteGrains
+        '
+        Me.qteGrains.DataPropertyName = "qteGrains"
+        Me.qteGrains.HeaderText = "qte grains (Kg)"
+        Me.qteGrains.Name = "qteGrains"
+        '
+        'DebitSouhaite
+        '
+        Me.DebitSouhaite.DataPropertyName = "DebitSouhaite"
+        Me.DebitSouhaite.HeaderText = "Debit souhaité"
+        Me.DebitSouhaite.Name = "DebitSouhaite"
+        '
+        'Pesee1
+        '
+        Me.Pesee1.DataPropertyName = "Pesee1"
+        Me.Pesee1.HeaderText = "Pesée 1"
+        Me.Pesee1.Name = "Pesee1"
+        '
+        'Ecart1
+        '
+        Me.Ecart1.DataPropertyName = "Ecart1"
+        Me.Ecart1.HeaderText = "Ecart 1"
+        Me.Ecart1.Name = "Ecart1"
+        '
+        'Pesee2
+        '
+        Me.Pesee2.DataPropertyName = "Pesee2"
+        Me.Pesee2.HeaderText = "Pesée 2"
+        Me.Pesee2.Name = "Pesee2"
+        '
+        'Ecart2
+        '
+        Me.Ecart2.DataPropertyName = "Ecart2"
+        Me.Ecart2.HeaderText = "Ecart 2"
+        Me.Ecart2.Name = "Ecart2"
+        '
+        'Pesee3
+        '
+        Me.Pesee3.DataPropertyName = "Pesee3"
+        Me.Pesee3.HeaderText = "Pesée 3 "
+        Me.Pesee3.Name = "Pesee3"
+        '
+        'Ecart3
+        '
+        Me.Ecart3.DataPropertyName = "Ecart3"
+        Me.Ecart3.HeaderText = "Ecart 3"
+        Me.Ecart3.Name = "Ecart3"
+        '
+        'PeseeMoyenne
+        '
+        Me.PeseeMoyenne.DataPropertyName = "PeseeMoyenne"
+        Me.PeseeMoyenne.HeaderText = "Pesée Moyenne"
+        Me.PeseeMoyenne.Name = "PeseeMoyenne"
+        Me.PeseeMoyenne.ReadOnly = True
+        '
+        'EcartMoyen
+        '
+        Me.EcartMoyen.DataPropertyName = "EcartMoyen"
+        Me.EcartMoyen.HeaderText = "Ecart Moyen"
+        Me.EcartMoyen.Name = "EcartMoyen"
+        Me.EcartMoyen.ReadOnly = True
+        '
+        'ResultatDataGridViewTextBoxColumn
+        '
+        Me.ResultatDataGridViewTextBoxColumn.DataPropertyName = "Resultat"
+        Me.ResultatDataGridViewTextBoxColumn.HeaderText = "Resultat"
+        Me.ResultatDataGridViewTextBoxColumn.Name = "ResultatDataGridViewTextBoxColumn"
+        '
+        'ImageDataGridViewImageColumn
+        '
+        Me.ImageDataGridViewImageColumn.DataPropertyName = "Image"
+        Me.ImageDataGridViewImageColumn.HeaderText = "Image"
+        Me.ImageDataGridViewImageColumn.Name = "ImageDataGridViewImageColumn"
+        Me.ImageDataGridViewImageColumn.ReadOnly = True
+        '
+        'm_bsrcMesuresTrtSem
+        '
+        Me.m_bsrcMesuresTrtSem.DataMember = "lstMesures"
+        Me.m_bsrcMesuresTrtSem.DataSource = Me.LstPompesTrtSemBindingSource1
+        '
+        'LstPompesTrtSemBindingSource1
+        '
+        Me.LstPompesTrtSemBindingSource1.DataMember = "lstPompesTrtSem"
+        Me.LstPompesTrtSemBindingSource1.DataSource = Me.m_bsrcDiagHelp12123
+        '
+        'm_bsrcDiagHelp12123
+        '
+        Me.m_bsrcDiagHelp12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
         '
         'Label16
         '
@@ -253,10 +354,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.TbNumeric10.Size = New System.Drawing.Size(98, 20)
         Me.TbNumeric10.TabIndex = 90
         Me.TbNumeric10.TabStop = False
-        '
-        'm_bsrcPompes
-        '
-        Me.m_bsrcPompes.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
         '
         'Label14
         '
@@ -294,7 +391,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         'nupMesures
         '
         Me.nupMesures.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.nupMesures.Location = New System.Drawing.Point(522, 57)
+        Me.nupMesures.Location = New System.Drawing.Point(464, 57)
         Me.nupMesures.Name = "nupMesures"
         Me.nupMesures.Size = New System.Drawing.Size(40, 20)
         Me.nupMesures.TabIndex = 77
@@ -305,7 +402,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(436, 59)
+        Me.Label3.Location = New System.Drawing.Point(378, 59)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(73, 13)
         Me.Label3.TabIndex = 76
@@ -426,41 +523,15 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.btnValider.Text = "OK"
         Me.btnValider.UseVisualStyleBackColor = False
         '
-        'IdDataGridViewTextBoxColumn
+        'Button1
         '
-        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "id"
-        Me.IdDataGridViewTextBoxColumn.HeaderText = "id"
-        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        '
-        'IdDiagDataGridViewTextBoxColumn
-        '
-        Me.IdDiagDataGridViewTextBoxColumn.DataPropertyName = "idDiag"
-        Me.IdDiagDataGridViewTextBoxColumn.HeaderText = "idDiag"
-        Me.IdDiagDataGridViewTextBoxColumn.Name = "IdDiagDataGridViewTextBoxColumn"
-        '
-        'BCalculeDataGridViewCheckBoxColumn
-        '
-        Me.BCalculeDataGridViewCheckBoxColumn.DataPropertyName = "bCalcule"
-        Me.BCalculeDataGridViewCheckBoxColumn.HeaderText = "bCalcule"
-        Me.BCalculeDataGridViewCheckBoxColumn.Name = "BCalculeDataGridViewCheckBoxColumn"
-        '
-        'ResultatDataGridViewTextBoxColumn
-        '
-        Me.ResultatDataGridViewTextBoxColumn.DataPropertyName = "Resultat"
-        Me.ResultatDataGridViewTextBoxColumn.HeaderText = "Resultat"
-        Me.ResultatDataGridViewTextBoxColumn.Name = "ResultatDataGridViewTextBoxColumn"
-        '
-        'ImageDataGridViewImageColumn
-        '
-        Me.ImageDataGridViewImageColumn.DataPropertyName = "Image"
-        Me.ImageDataGridViewImageColumn.HeaderText = "Image"
-        Me.ImageDataGridViewImageColumn.Name = "ImageDataGridViewImageColumn"
-        Me.ImageDataGridViewImageColumn.ReadOnly = True
-        '
-        'LstPompesTrtSemBindingSource
-        '
-        Me.LstPompesTrtSemBindingSource.DataMember = "lstPompesTrtSem"
-        Me.LstPompesTrtSemBindingSource.DataSource = Me.m_bsrcPompes
+        Me.Button1.BackColor = System.Drawing.Color.Red
+        Me.Button1.Location = New System.Drawing.Point(514, 54)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 111
+        Me.Button1.Text = "Valider"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'diagnostic_dlghelp12123newTrtSem
         '
@@ -483,16 +554,16 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.pnlDetailPompe.ResumeLayout(False)
         Me.pnlDetailPompe.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcMesures, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcPompes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcMesuresTrtSem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LstPompesTrtSemBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcDiagHelp12123, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nupMesures, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nupNbPompes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LstPompesTrtSemBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents m_bsrcPompes As System.Windows.Forms.BindingSource
+    Friend WithEvents m_bsrcDiagHelp12123 As System.Windows.Forms.BindingSource
     Friend WithEvents pnl12123 As System.Windows.Forms.Panel
     Friend WithEvents btnAnnuler As System.Windows.Forms.Button
     Friend WithEvents btnValider As System.Windows.Forms.Button
@@ -500,7 +571,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
     Friend WithEvents listImg_flags As System.Windows.Forms.ImageList
     Friend WithEvents lblResultat12123 As System.Windows.Forms.Label
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
-    Friend WithEvents m_bsrcMesures As System.Windows.Forms.BindingSource
     Friend WithEvents pnlDetailPompe As Panel
     Friend WithEvents Label2 As Label
     Friend WithEvents DataGridView1 As DataGridView
@@ -517,10 +587,20 @@ Partial Class diagnostic_dlghelp12123newTrtSem
     Friend WithEvents nupNbPompes As NumericUpDown
     Friend WithEvents btnvaliderNbPompes As Label
     Friend WithEvents Label18 As Label
-    Friend WithEvents IdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents IdDiagDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents BCalculeDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents m_bsrcMesuresTrtSem As System.Windows.Forms.BindingSource
+    Friend WithEvents LstPompesTrtSemBindingSource1 As System.Windows.Forms.BindingSource
+    Friend WithEvents numMesure As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents qteGrains As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DebitSouhaite As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Pesee1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Ecart1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Pesee2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Ecart2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Pesee3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Ecart3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PeseeMoyenne As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents EcartMoyen As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ResultatDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ImageDataGridViewImageColumn As System.Windows.Forms.DataGridViewImageColumn
-    Friend WithEvents LstPompesTrtSemBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

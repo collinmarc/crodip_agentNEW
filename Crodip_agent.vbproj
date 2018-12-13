@@ -1304,7 +1304,7 @@
     <None Include="Resources\AddTableHH.bmp" />
     <None Include="Resources\NavBackHS.bmp" />
     <Content Include="moduleDocumentaire\_parametres\Alertes.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\btn_annuler.jpg" />
     <Content Include="toleranceBuses.xml" />
