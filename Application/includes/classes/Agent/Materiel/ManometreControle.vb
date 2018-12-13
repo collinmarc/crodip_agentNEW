@@ -13,9 +13,9 @@ Public Class ManometreControle
     Private arrPressions_default() As String = {0, 2, 4, 6, 8, 10}
     Private arrPressions() As String
 
-
+    Private m_bIsUpdated As Boolean
     Sub New()
-
+        m_bIsUpdated = False
     End Sub
     Private _controle As ControleMano
     <XmlIgnore>
@@ -49,7 +49,17 @@ Public Class ManometreControle
 
     Public Overrides ReadOnly Property Libelle() As String
         Get
-            Return "Manométre de contrôle : " + idCrodip
+            Dim sLibelle As String = "   "
+            If m_bIsUpdated Then
+                sLibelle = " * "
+            End If
+            sLibelle = sLibelle + idCrodip
+            If etat Then
+                sLibelle = sLibelle + " (OK) "
+            Else
+                sLibelle = sLibelle + " (ERR) "
+            End If
+            Return sLibelle
         End Get
     End Property
     <XmlIgnore>
@@ -430,6 +440,14 @@ Public Class ManometreControle
         nbControles = nbControles + 1
         nbControlesTotal = nbControlesTotal + 1
     End Sub
+
+
+    Public Sub SetUpdated()
+        m_bIsUpdated = True
+    End Sub
+    Public Function isUpdated() As Boolean
+        Return m_bIsUpdated
+    End Function
     'Public Shared Sub incNbControles(ByVal objManometreControle As ManometreControle)
     '    Try
     '        Dim dbLink As New CSDb(True)

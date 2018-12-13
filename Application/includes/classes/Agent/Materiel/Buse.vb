@@ -5,12 +5,12 @@ Imports System.Xml.Serialization
 Public Class Buse
     Inherits Materiel
 
-    Private _couleur As String
-    Private _pressionEtalonnage As Double
-    Private _debitEtalonnage As Double
-    Private _isSynchro As Boolean
-    Private _dateAchat As String
-    Private _isUtilise As Boolean
+    Private _couleur As String = ""
+    Private _pressionEtalonnage As Double = 0.0
+    Private _debitEtalonnage As Double = 0.0
+    Private _isSynchro As Boolean = False
+    Private _dateAchat As String = ""
+    Private _isUtilise As Boolean = False
 
 
     Sub New()

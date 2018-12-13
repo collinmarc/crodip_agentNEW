@@ -3321,6 +3321,13 @@ Public Class accueil
         ' On récupère la liste des profils locaux
         Dim intCount As Decimal = 0
         Dim oExploit As Exploitation
+        'Mémorisation des elements Sél"edctionné
+        Dim lstStringSelected As New List(Of String)
+        If list_clients.SelectedItems.Count > 0 Then
+            For Each obj As ListViewItem In list_clients.SelectedItems
+                lstStringSelected.Add(obj.Tag)
+            Next
+        End If
 
         list_clients.Items.Clear()
         For Each oExploit In pColExploit
@@ -3357,6 +3364,13 @@ Public Class accueil
                         list_clients.Items(CInt(intCount)).BackColor = System.Drawing.Color.LightBlue
                         list_clients.Items(CInt(intCount)).ForeColor = System.Drawing.Color.Black
                     End If
+
+
+                    'Sélection des Items Précédement Selectionnés
+                    If lstStringSelected.Contains(oExploit.id) Then
+                        list_clients.Items(CInt(intCount)).Selected = True
+                    End If
+
 
                     intCount = intCount + 1
                 End If
@@ -4432,11 +4446,14 @@ Public Class accueil
     Private Sub AjouterUnPulve()
         Dim formAddPulve As New ajout_pulve2()
         ' On récupère l'objet du client
-        clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
-        pulverisateurCourant = New Pulverisateur()
-        formAddPulve.setContexte(ajout_pulve2.MODE.AJOUT, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
-        '        formAddPulve.MdiParent = Me.MdiParent
-        formAddPulve.ShowDialog()
+        If (list_clients.SelectedItems().Count > 0) Then
+
+            clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
+            pulverisateurCourant = New Pulverisateur()
+            formAddPulve.setContexte(ajout_pulve2.MODE.AJOUT, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
+            '        formAddPulve.MdiParent = Me.MdiParent
+            formAddPulve.ShowDialog()
+        End If
     End Sub
 
     ' Création d'un nouveau diagnostic

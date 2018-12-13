@@ -75,10 +75,12 @@ Public Class NiveauAlerte
     Public Shared Function readXML(Optional pstrFile As String = "Alertes.xml") As List(Of NiveauAlerte)
         Dim strFileName As String = My.Settings.RepertoireParametres & "/" & pstrFile
         Dim olst As New List(Of NiveauAlerte)
-        Dim objStreamReader As New StreamReader(strFileName)
-        Dim root As XmlRootAttribute = New XmlRootAttribute("NiveauxAlertes")
-        Dim x As New XmlSerializer(GetType(List(Of NiveauAlerte)), root)
-        olst = x.Deserialize(objStreamReader)
+        Using objStreamReader As New StreamReader(strFileName)
+            Dim root As XmlRootAttribute = New XmlRootAttribute("NiveauxAlertes")
+            Dim x As New XmlSerializer(GetType(List(Of NiveauAlerte)), root)
+            olst = x.Deserialize(objStreamReader)
+        End Using
+
         Return olst
     End Function
 

@@ -6,6 +6,9 @@ Build :20181206110000
 #272 : Apperçu automatique du RI
 #277: Saisie du numéro de Facture
 #276: Facturation : Possibilité de mettre 0 dans la total
+#291 : Libération du fichiuer Aletes.xml
+#289 : plantage en fin de controle si Ajout d'un pulvé
+
 
 Build :20181206110000
 #266 : Contrat Commercial V4 (Livrer en prod en avance de phase)
