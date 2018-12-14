@@ -409,9 +409,6 @@
     <Compile Include="Application\dlgExportAutoTest.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\exploitant\pulverisateur\ajout_pulve2V6.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\exploitant\pulverisateur\DlgListPulve.Designer.vb">
       <DependentUpon>DlgListPulve.vb</DependentUpon>
     </Compile>
@@ -2083,9 +2080,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\dlgToleranceBuses.resx">
       <DependentUpon>dlgToleranceBuses.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\exploitant\pulverisateur\ajout_pulve2V6.resx">
-      <DependentUpon>ajout_pulve2V6.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\exploitant\pulverisateur\DlgListPulve.resx">
       <DependentUpon>DlgListPulve.vb</DependentUpon>

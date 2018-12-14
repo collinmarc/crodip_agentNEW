@@ -9,6 +9,7 @@ Build :20181206110000
 #291 : Libération du fichiuer Aletes.xml
 #289 : plantage en fin de controle si Ajout d'un pulvé
 #286 : Bouton "Facture Exploitant" => "Facture "Client"
+#287:Fiche Pulve : Activation des pompes doseuses => Nb de pompes =1
 
 
 Build :20181206110000
