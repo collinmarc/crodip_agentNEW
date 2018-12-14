@@ -12,6 +12,8 @@ Build :20181206110000
 #287:Fiche Pulve : Activation des pompes doseuses => Nb de pompes =1
 #269:Msg erreur sur Fiche pulve si numnat incorrect
 #271:Fiche pulvé : Marques Modèles , pas de saisie libre
+#156 : Modification de la fenêtre de récapitulatif en fin de contrôle
+
 
 
 Build :20181206110000
