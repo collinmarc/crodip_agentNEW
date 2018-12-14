@@ -265,7 +265,7 @@ Public Class diagnostic_facturation
         Me.btn_ImprimerFacture.Name = "btn_ImprimerFacture"
         Me.btn_ImprimerFacture.Size = New System.Drawing.Size(180, 24)
         Me.btn_ImprimerFacture.TabIndex = 33
-        Me.btn_ImprimerFacture.Text = "      Facture exploitant"
+        Me.btn_ImprimerFacture.Text = "      Facture client"
         Me.btn_ImprimerFacture.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.btn_ImprimerFacture.Visible = False
         '

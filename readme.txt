@@ -8,6 +8,7 @@ Build :20181206110000
 #276: Facturation : Possibilité de mettre 0 dans la total
 #291 : Libération du fichiuer Aletes.xml
 #289 : plantage en fin de controle si Ajout d'un pulvé
+#286 : Bouton "Facture Exploitant" => "Facture "Client"
 
 
 Build :20181206110000
