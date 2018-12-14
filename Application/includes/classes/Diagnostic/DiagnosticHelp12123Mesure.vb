@@ -69,6 +69,12 @@ Public Class DiagnosticHelp12123Mesure
         End Set
     End Property
 
+    Public ReadOnly Property numeroMesurestr() As String
+        Get
+            Return "Mesure " & m_numMesure
+        End Get
+    End Property
+
     Public Property id As String
         Get
             Return m_id

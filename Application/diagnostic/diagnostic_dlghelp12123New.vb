@@ -46,6 +46,7 @@ Public Class diagnostic_dlghelp12123new
         formload()
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
+
         nupNbPompes.Value = m_DiagHelp12123.lstPompes.Count
         displayPompes()
     End Sub
@@ -80,10 +81,19 @@ Public Class diagnostic_dlghelp12123new
                 TreeView1.SelectedNode = TreeView1.Nodes(oOldNode)
             Else
                 TreeView1.SelectedNode = TreeView1.Nodes(0)
+                'Mise en surbrillance du noeud par defaut
+                TreeView1.SelectedNode.BackColor = SystemColors.Highlight
+                TreeView1.SelectedNode.ForeColor = SystemColors.HighlightText
+                PreviousSelectedNode = TreeView1.SelectedNode
+
             End If
             m_bsrcPompes.Position = TreeView1.SelectedNode.Index
         Catch ex As Exception
             TreeView1.SelectedNode = TreeView1.Nodes(0)
+            'Mise en surbrillance du noeud par defaut
+            TreeView1.SelectedNode.BackColor = SystemColors.Highlight
+            TreeView1.SelectedNode.ForeColor = SystemColors.HighlightText
+            PreviousSelectedNode = TreeView1.SelectedNode
             m_bsrcPompes.Position = 0
         End Try
     End Sub
@@ -115,6 +125,7 @@ Public Class diagnostic_dlghelp12123new
         Refresh()
     End Sub
 
+
     Private Sub TreeView1_NodeMouseClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles TreeView1.NodeMouseClick
         Dim oNode As TreeNode
         oNode = e.Node
@@ -134,6 +145,11 @@ Public Class diagnostic_dlghelp12123new
         'End If
 
         nupMesures.Value = oPompe.lstMesures.Count
+        If m_bsrcPompes.Position + 1 >= m_bsrcPompes.Count Then
+            btn_PompeSuivante.Enabled = False
+        Else
+            btn_PompeSuivante.Enabled = True
+        End If
     End Sub
 
     Private Sub btnValiderNbMesures_Click(sender As Object, e As EventArgs) Handles btnValiderNbMesures.Click
@@ -175,11 +191,11 @@ Public Class diagnostic_dlghelp12123new
     End Sub
 
     Private Sub m_bsrcMesures_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcMesures.CurrentItemChanged
-        Console.WriteLine("Current Item Mesure Changed")
-        Refresh()
+
+        RefreshGrid()
     End Sub
 
-    Private Sub Refresh()
+    Private Sub RefreshGrid()
         Try
 
             Dim oPompe As DiagnosticHelp12123Pompe
@@ -238,7 +254,22 @@ Public Class diagnostic_dlghelp12123new
         End Try
 
     End Sub
-    Private Sub m_bsrcPompes_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentItemChanged
+    Private PreviousSelectedNode As TreeNode = Nothing
+    Private Sub TreeView1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TreeView1.Validating
+        TreeView1.SelectedNode.BackColor = SystemColors.Highlight
+        TreeView1.SelectedNode.ForeColor = Color.White
+        PreviousSelectedNode = TreeView1.SelectedNode
+    End Sub
+    Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TreeView1.AfterSelect
+        If PreviousSelectedNode IsNot Nothing Then
+            PreviousSelectedNode.BackColor = TreeView1.BackColor
+            PreviousSelectedNode.ForeColor = TreeView1.ForeColor
+        End If
+    End Sub
 
+    Private Sub btn_PompeSuivante_Click(sender As Object, e As EventArgs) Handles btn_PompeSuivante.Click
+        TreeView1.SelectedNode = TreeView1.SelectedNode.NextNode
+        TreeView1_Validating(TreeView1, New System.ComponentModel.CancelEventArgs())
+        m_bsrcPompes.MoveNext()
     End Sub
 End Class

@@ -13,7 +13,7 @@ Build :20181206110000
 #269:Msg erreur sur Fiche pulve si numnat incorrect
 #271:Fiche pulvé : Marques Modèles , pas de saisie libre
 #156 : Modification de la fenêtre de récapitulatif en fin de contrôle
-
+#153: Nombre de pompes dosueuses
 
 
 Build :20181206110000
