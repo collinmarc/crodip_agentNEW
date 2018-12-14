@@ -10,6 +10,8 @@ Build :20181206110000
 #289 : plantage en fin de controle si Ajout d'un pulvé
 #286 : Bouton "Facture Exploitant" => "Facture "Client"
 #287:Fiche Pulve : Activation des pompes doseuses => Nb de pompes =1
+#269:Msg erreur sur Fiche pulve si numnat incorrect
+#271:Fiche pulvé : Marques Modèles , pas de saisie libre
 
 
 Build :20181206110000
