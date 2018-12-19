@@ -731,7 +731,8 @@ Public Class login
         Dim oExploit As Exploitation
         Dim oDiag As Diagnostic
         oPulve = PulverisateurManager.getPulverisateurById("2-81-22")
-        oPulve.type = "Arbres"
+        oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
+        oPulve.categorie = "Traitement des semences"
         oPulve.isPompesDoseuses = True
         oPulve.nbPompesDoseuses = 4
         agentCourant = AgentManager.getAgentByNumeroNational("MCII")

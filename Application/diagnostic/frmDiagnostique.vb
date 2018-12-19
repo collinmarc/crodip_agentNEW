@@ -10290,7 +10290,14 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Function calc12123() As Boolean
         Dim bReturn As Boolean
         Try
-            Dim ofrm As New diagnostic_dlghelp12123new()
+            Dim ofrm As IdlgHelp12123
+            If m_Pulverisateur.isTraitementdesSemences Then
+                ofrm = New diagnostic_dlghelp12123newTrtSem()
+            Else
+                ofrm = New diagnostic_dlghelp12123new()
+
+
+            End If
             If String.IsNullOrEmpty(tbDebitMoyen3bars.Text) Or
                 String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Or
                 String.IsNullOrEmpty(tbPressionMesure.Text) Then
@@ -10298,9 +10305,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 MsgBox("Il faut renseigner le tableau des buses 922")
 
                 Exit Function
-            End If
-            If m_diagnostic.diagnosticHelp12123.lstPompes.Count() = 0 Then
-                m_diagnostic.diagnosticHelp12123.AjoutePompe()
             End If
             If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
                 ini12123()

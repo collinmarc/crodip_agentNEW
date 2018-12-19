@@ -1,9 +1,11 @@
 ﻿Imports System.Windows.Forms
 
 Public Class diagnostic_dlghelp12123new
-    Implements IfrmCRODIP
+    Implements IfrmCRODIP, IdlgHelp12123
     Private m_DiagHelp12123 As DiagnosticHelp12123
     Private m_bModeVisu As Boolean
+
+
 
     ''' <summary>
     ''' </summary>
@@ -11,7 +13,7 @@ Public Class diagnostic_dlghelp12123new
     ''' <param name="pDiag"></param>
     ''' <remarks></remarks>
     ''' 
-    Public Sub setContexte(pDiagH12123 As DiagnosticHelp12123, pbModeVisu As Boolean)
+    Public Sub setContexte(pDiagH12123 As DiagnosticHelp12123, pbModeVisu As Boolean) Implements IdlgHelp12123.setContexte
         m_bModeVisu = pbModeVisu
         If m_bModeVisu Then
             'pnlPrinc.Enabled = False
@@ -24,8 +26,12 @@ Public Class diagnostic_dlghelp12123new
 
 
     End Sub
-    Public Function getContexte() As DiagnosticHelp12123
+    Public Function getContexte() As DiagnosticHelp12123 Implements IdlgHelp12123.getContexte
         Return m_DiagHelp12123
+    End Function
+
+    Public Overloads Function ShowDialog() As DialogResult Implements IdlgHelp12123.ShowDialog
+        Return MyBase.ShowDialog
     End Function
 
     Private Sub btnValider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnValider.Click
@@ -48,7 +54,7 @@ Public Class diagnostic_dlghelp12123new
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
 
         nupNbPompes.Value = m_DiagHelp12123.lstPompes.Count
-        displayPompes()
+        DisplayPompes()
     End Sub
 
     Private Sub DisplayPompes()

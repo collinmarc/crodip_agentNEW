@@ -1577,4 +1577,29 @@ Public Class Pulverisateur
         Return bReturn
     End Function
 
+    ''' <summary>
+    ''' Rend Vrai si le pulvé est de categorie 'traitement des semences"
+    ''' </summary>
+    ''' <param name="pTrt"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function isTRTSPE(pTrt As String) As Boolean
+        'Parcours du fichier config pour remplir une Liste des types-categories
+        Dim bReturn As Boolean
+        Dim xpath As String
+        bReturn = False
+        xpath = MarquesManager.XPATH_VALEURS_TRTSPE.Replace("%type%", type).Replace("%categorie%", categorie)
+        Dim oNodesTrtSpe As Xml.XmlNodeList = Globals.GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
+        For Each oAttCategorie As Xml.XmlNode In oNodesTrtSpe
+            If oAttCategorie.InnerText = pTrt Then
+                bReturn = True
+            End If
+        Next
+        Return bReturn
+    End Function
+    Public Function isTraitementdesSemences() As Boolean
+        Return isTRTSPE("TRTSEM")
+    End Function
+
+
 End Class

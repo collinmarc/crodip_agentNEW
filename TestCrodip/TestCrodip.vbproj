@@ -103,6 +103,7 @@
     <Compile Include="DiagnosticBusesDetailTest.vb" />
     <Compile Include="DiagnosticBusesTest.vb" />
     <Compile Include="DiagnosticHelp12123MesureTest.vb" />
+    <Compile Include="DiagnosticHelp12123TrtSemTest.vb" />
     <Compile Include="DiagnosticHelp12123PompeTest.vb" />
     <Compile Include="DiagnosticHelp12123Test.vb" />
     <Compile Include="DiagnosticHelp551Test.vb" />
@@ -127,6 +128,7 @@
     <Compile Include="EtatManagerTest.vb" />
     <Compile Include="EtatRapportInspectionTest.vb" />
     <Compile Include="EtatReglagePulveTest.vb" />
+    <Compile Include="PulverisateurTest.vb" />
     <Compile Include="ExploitationTest.vb" />
     <Compile Include="FTPTest.vb" />
     <Compile Include="FVBancManagerTest.vb" />

@@ -8,14 +8,15 @@ Public Class DiagnosticHelp12123PompeTrtSem
     Private m_id As String
     Private m_idDiag As String
     Private m__Numero As Integer
-    Private m_debitMesure? As Decimal = Nothing
-    Private m_PressionMesure? As Decimal = Nothing
-    Private m_PressionMoyenne? As Decimal = Nothing
-    Private m_NbBuses? As Decimal = Nothing
+    'Private m_debitMesure? As Decimal = Nothing
+    'Private m_PressionMesure? As Decimal = Nothing
+    'Private m_PressionMoyenne? As Decimal = Nothing
+    'Private m_NbBuses? As Decimal = Nothing
 
-    Private m_DebitReel? As Decimal = Nothing
-    Private m_DebitTotal? As Decimal = Nothing
+    'Private m_DebitReel? As Decimal = Nothing
+    'Private m_DebitTotal? As Decimal = Nothing
     Private m_EcartReglageMoyen? As Decimal
+    Private m_PeseeMoyenne? As Decimal
     Private m_Resultat As String
     Private m_bCalcule As Boolean = False
 
@@ -39,7 +40,7 @@ Public Class DiagnosticHelp12123PompeTrtSem
         End Set
     End Property
 
-    Public Const DIAGITEM_ID As String = "H12123P"
+    Public Const DIAGITEM_ID As String = "HTSP"
     Public LIMITE_ECART_MAJEUR As Decimal = 5
     'Constructeur obligatoire pour la serialiszaion XML (Clone de dighelp12123)
     Protected Sub New()
@@ -131,96 +132,13 @@ Public Class DiagnosticHelp12123PompeTrtSem
         End Get
     End Property
 
-    Public Property debitMesure As Decimal?
+    Public Property PeseeMoyenne As Decimal?
         Get
-            Return m_debitMesure
+            Return m_PeseeMoyenne
         End Get
         Set(value As Decimal?)
-            m_debitMesure = value
-            calcule()
-        End Set
-    End Property
-    Public Property PressionMesure As Decimal?
-        Get
-            Return m_PressionMesure
-        End Get
-        Set(value As Decimal?)
-            m_PressionMesure = value
-            calcule()
-        End Set
-    End Property
-    Public Property PressionMoyenne As Decimal?
-        Get
-            Return m_PressionMoyenne
-        End Get
-        Set(value As Decimal?)
-            m_PressionMoyenne = value
-            calcule()
-        End Set
-    End Property
-    Public Property NbBuses As Decimal?
-        Get
-            Return m_NbBuses
-        End Get
-        Set(value As Decimal?)
-            m_NbBuses = value
-            calcule()
+            m_PeseeMoyenne = value
 
-        End Set
-    End Property
-    Public Property DebitReel As Decimal?
-        Get
-            Return m_DebitReel
-        End Get
-        Set(value As Decimal?)
-            setDebitReel(value)
-        End Set
-    End Property
-    Private Sub setDebitReel(pValue As Decimal?)
-        m_DebitReel = pValue
-        If m_DebitReel.HasValue Then
-            For Each oMesure As DiagnosticHelp12123MesuresTrtSem In lstMesures
-                oMesure.calcule()
-            Next
-        End If
-    End Sub
-
-    Public Property DebitReelRND As Decimal?
-        Get
-            If DebitReel.HasValue Then
-                Return Math.Round(DebitReel.Value, 2)
-            Else
-                Return Nothing
-            End If
-        End Get
-        Set(value As Decimal?)
-            m_DebitReel = value
-        End Set
-    End Property
-    Public Property DebitTotal As Decimal?
-        Get
-            Return m_DebitTotal
-        End Get
-        Set(value As Decimal?)
-            setDebitTotal(value)
-        End Set
-    End Property
-    Private Sub setDebitTotal(pValue As Decimal?)
-        m_DebitTotal = pValue
-        For Each oMesure As DiagnosticHelp12123MesuresTrtSem In lstMesures
-            oMesure.calcule()
-        Next
-    End Sub
-    Public Property DebitTotalRND As Decimal?
-        Get
-            If DebitTotal.HasValue Then
-                Return Math.Round(DebitTotal.Value, 2)
-            Else
-                Return Nothing
-            End If
-        End Get
-        Set(value As Decimal?)
-            m_DebitTotal = value
         End Set
     End Property
     Public Property Resultat As String
@@ -300,15 +218,10 @@ Public Class DiagnosticHelp12123PompeTrtSem
                 'oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(DebitTotal) & "|" '5
                 numero = ConvertStringToAtt(tabValues(0))
                 Resultat = tabValues(1)
-                debitMesure = ConvertStringToAtt(tabValues(2))
-                PressionMesure = ConvertStringToAtt(tabValues(3))
-                PressionMoyenne = ConvertStringToAtt(tabValues(4))
-                NbBuses = ConvertStringToAtt(tabValues(5))
-                DebitReel = ConvertStringToAtt(tabValues(6))
-                DebitTotal = ConvertStringToAtt(tabValues(7))
+                PeseeMoyenne = ConvertStringToAtt(tabValues(2))
+                EcartReglageMoyen = ConvertStringToAtt(tabValues(3))
                 Dim nbMesure As Integer
-                nbMesure = ConvertStringToAtt(tabValues(8))
-                EcartReglageMoyen = ConvertStringToAtt(tabValues(9))
+                nbMesure = ConvertStringToAtt(tabValues(4))
                 m_lstHelp12123Mesures.Clear()
                 For nMesure As Integer = 1 To nbMesure
                     Dim oMesure As DiagnosticHelp12123MesuresTrtSem = New DiagnosticHelp12123MesuresTrtSem(Me, nMesure)
@@ -318,13 +231,13 @@ Public Class DiagnosticHelp12123PompeTrtSem
                 Next
                 bCalcule = True
             Catch ex As Exception
-                CSDebug.dispError("DiagnosticHelp12123Mesure.load ERR conversion (" & pDiagItem.itemValue & ") ERR " & ex.Message)
+                CSDebug.dispError("DiagnosticHelp12123PompeTrtSem.load ERR conversion (" & pDiagItem.itemValue & ") ERR " & ex.Message)
             End Try
         End If
 
     End Sub
 
-    Public Function Save(ByVal pStructureId As String, ByVal pAgentId As String) As Boolean
+    Public Function Save(ByVal pStructureId As Integer, ByVal pAgentId As Integer) As Boolean
         '        Debug.Assert(Not String.IsNullOrEmpty(id), "Id must be set")
         Debug.Assert(Not String.IsNullOrEmpty(idDiag), "IdDiag must be set")
         Debug.Assert(Not String.IsNullOrEmpty(pStructureId), "pStructureId must be set")
@@ -371,16 +284,11 @@ Public Class DiagnosticHelp12123PompeTrtSem
         oDiagItem.idDiagnostic = idDiag
         oDiagItem.idItem = DIAGITEM_ID & numero
 
-        oDiagItem.itemValue = ConvertAttToString(numero) & "|"
+        oDiagItem.itemValue = ConvertAttToString(numero) & "|" '0
         oDiagItem.itemValue = oDiagItem.itemValue & Resultat & "|" '1
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(debitMesure) & "|" '2
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(PressionMesure) & "|" '3
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(PressionMoyenne) & "|" '4
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(NbBuses) & "|" '5
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(DebitReel) & "|" '6
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(DebitTotal) & "|" '7
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(m_lstHelp12123Mesures.Count) & "|" '8
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(EcartReglageMoyen) & "|" '9
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(PeseeMoyenne) & "|" '2
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(EcartReglageMoyen) & "|" '3
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(m_lstHelp12123Mesures.Count) & "|" '4
 
         Return oDiagItem
     End Function
@@ -426,46 +334,31 @@ Public Class DiagnosticHelp12123PompeTrtSem
     Public Function calcule() As Boolean
         Dim bReturn As Boolean
         Try
-            Dim nEcartReglage As Decimal
             If m_bCalcule Then
                 m_bCalcule = False
-                If Me.debitMesure.HasValue And Me.PressionMoyenne.HasValue And Me.PressionMesure.HasValue Then
-                    'Debit Reel
-                    DebitReel = Me.debitMesure * Math.Sqrt(Me.PressionMoyenne / Me.PressionMesure)
-                Else
-                    DebitReel = Nothing
-                End If
-                'Debit Total
-                If DebitReel.HasValue And Me.NbBuses.HasValue Then
-                    DebitTotal = DebitReel * Me.NbBuses
-                Else
-                    DebitTotal = Nothing
-                End If
-                If lstMesures.Count > 0 Then
-                    Dim nMesures As Integer = 0
-                    For Each oMesure As DiagnosticHelp12123MesuresTrtSem In lstMesures
-                        'Le Calcul de la pompe est déclenché par le calcul des Mesures
-                        'Donc ne pas redemander le calcul des mesures ...
-                    Next
-                    If nMesures <> lstMesures.Count Then
-                        'On a donc des mesures qui n'ont pas d'ecart Calculé
-                        EcartReglageMoyen = Nothing
-                        Resultat = ""
-                    Else
-                        EcartReglageMoyen = Math.Round(nEcartReglage / lstMesures.Count, 2)
-                        Resultat = DiagnosticItem.EtatDiagItemOK
-                        If Math.Abs(EcartReglageMoyen.Value) > LIMITE_ECART_MAJEUR Then
-                            Resultat = DiagnosticItem.EtatDiagItemMAJEUR
-                        End If
-                    End If
+                Dim Total As Decimal = 0D
+                For Each item As DiagnosticHelp12123MesuresTrtSem In lstMesures
+                    Total = Total + item.PeseeMoyenne
+                Next
+                PeseeMoyenne = Math.Round((Total / lstMesures.Count), 3)
+                Total = 0
+                For Each item As DiagnosticHelp12123MesuresTrtSem In lstMesures
+                    Total = Total + item.EcartMoyen
+                Next
+                EcartReglageMoyen = Math.Round((Total / lstMesures.Count), 3)
 
-                    If Resultat <> "" Then
-                        m_help12123.calcule()
-                    End If
+                Resultat = DiagnosticItem.EtatDiagItemOK
 
+                If Math.Abs(EcartReglageMoyen.Value) > LIMITE_ECART_MAJEUR Then
+                    Resultat = DiagnosticItem.EtatDiagItemMAJEUR
                 End If
-                m_bCalcule = True
             End If
+
+            If Resultat <> "" Then
+                m_help12123.calcule()
+            End If
+
+            m_bCalcule = True
             bReturn = True
         Catch ex As Exception
             bReturn = False

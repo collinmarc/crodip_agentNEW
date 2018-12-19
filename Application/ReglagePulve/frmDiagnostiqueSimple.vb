@@ -10264,7 +10264,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Function calc12123() As Boolean
         Dim bReturn As Boolean
         Try
-            Dim ofrm As New diagnostic_dlghelp12123()
+            Dim ofrm As New diagnostic_dlghelp12123new()
             If String.IsNullOrEmpty(tbDebitMoyen3bars.Text) Or
                 String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Or
                 String.IsNullOrEmpty(tbPressionMesure.Text) Then

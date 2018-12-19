@@ -13,7 +13,7 @@ Imports Crodip_agent
         m_oPulve = createPulve(m_oExploitation)
         m_oDiag = createDiagnostic(m_oExploitation, m_oPulve)
 
-        oFacture = New EtatFacture(m_oDiag, DiagnosticFactureManager.getNewReference(m_oAgent), "TEST")
+        oFacture = New EtatFacture(m_oDiag, DiagnosticFactureManager.getDernReference(m_oAgent), "TEST")
         oFacture.AddPresta("TEST", "300", "1", 20, 30, 50)
 
         Assert.IsTrue(oFacture.GenereEtat())

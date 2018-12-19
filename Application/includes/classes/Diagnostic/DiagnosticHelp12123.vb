@@ -146,6 +146,14 @@ Public Class DiagnosticHelp12123
                         oPompe.Load(idDiag, nPompe)
                         lstPompes.Add(oPompe)
                     Next
+                    'Pompes traitement de semences
+                    nbPompe = Trim(tabValues(2))
+                    For nPompe As Integer = 1 To nbPompe
+                        Dim oPompeTrtSem As DiagnosticHelp12123PompeTrtSem
+                        oPompeTrtSem = New DiagnosticHelp12123PompeTrtSem(Me, nPompe)
+                        oPompeTrtSem.Load(idDiag, nPompe)
+                        lstPompesTrtSem.Add(oPompeTrtSem)
+                    Next
                     bCalcule = True
                 Catch ex As Exception
                     CSDebug.dispError("DiagnosticHelp12123.load ERR conversion (" & oDiagItem.itemValue & ") ERR " & ex.Message)
@@ -195,6 +203,11 @@ Public Class DiagnosticHelp12123
                 oPompe.idDiag = idDiag
                 oPompe.Save(pStructureId, pAgentId)
             Next
+            'Sauvegarde des pompesTrtSemences
+            For Each oPompe As DiagnosticHelp12123PompeTrtSem In lstPompesTrtSem
+                oPompe.idDiag = idDiag
+                oPompe.Save(pStructureId, pAgentId)
+            Next
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp12123.Save ERR :" & ex.Message)
             bReturn = False
@@ -211,6 +224,7 @@ Public Class DiagnosticHelp12123
 
         oDiagItem.itemValue = Trim(Me.Resultat) & "|" '0
         oDiagItem.itemValue = oDiagItem.itemValue & lstPompes.Count & "|" '1
+        oDiagItem.itemValue = oDiagItem.itemValue & lstPompesTrtSem.Count & "|" '2
 
         Return oDiagItem
     End Function
@@ -259,21 +273,41 @@ Public Class DiagnosticHelp12123
             If m_bCalcule Then
                 m_bCalcule = False
                 Dim nbIncomplet As Integer = 0
-                For Each oPompe As DiagnosticHelp12123Pompe In lstPompes
-                    If oPompe.Resultat <> DiagnosticItem.EtatDiagItemOK And oPompe.Resultat <> DiagnosticItem.EtatDiagItemMAJEUR Then
-                        nbIncomplet = nbIncomplet + 1
-                    End If
-                Next
-                If nbIncomplet > 0 Then
-                    Resultat = ""
-                Else
-                    Resultat = DiagnosticItem.EtatDiagItemOK
+                If (lstPompes.Count > 0) Then
                     For Each oPompe As DiagnosticHelp12123Pompe In lstPompes
-                        If oPompe.Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
-                            Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                        If oPompe.Resultat <> DiagnosticItem.EtatDiagItemOK And oPompe.Resultat <> DiagnosticItem.EtatDiagItemMAJEUR Then
+                            nbIncomplet = nbIncomplet + 1
                         End If
                     Next
+                    If nbIncomplet > 0 Then
+                        Resultat = ""
+                    Else
+                        Resultat = DiagnosticItem.EtatDiagItemOK
+                        For Each oPompe As DiagnosticHelp12123Pompe In lstPompes
+                            If oPompe.Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                                Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                            End If
+                        Next
 
+                    End If
+                End If
+                If (lstPompesTrtSem.Count > 0) Then
+                    For Each oPompe As DiagnosticHelp12123PompeTrtSem In lstPompesTrtSem
+                        If oPompe.Resultat <> DiagnosticItem.EtatDiagItemOK And oPompe.Resultat <> DiagnosticItem.EtatDiagItemMAJEUR Then
+                            nbIncomplet = nbIncomplet + 1
+                        End If
+                    Next
+                    If nbIncomplet > 0 Then
+                        Resultat = ""
+                    Else
+                        Resultat = DiagnosticItem.EtatDiagItemOK
+                        For Each oPompe As DiagnosticHelp12123PompeTrtSem In lstPompesTrtSem
+                            If oPompe.Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                                Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                            End If
+                        Next
+
+                    End If
                 End If
                 m_bCalcule = True
             End If
@@ -324,7 +358,7 @@ Public Class DiagnosticHelp12123
     Public Function AjoutePompeTrtSem() As DiagnosticHelp12123PompeTrtSem
         Dim oReturn As DiagnosticHelp12123PompeTrtSem
 
-        oReturn = New DiagnosticHelp12123PompeTrtSem(Me, lstPompes.Count + 1)
+        oReturn = New DiagnosticHelp12123PompeTrtSem(Me, lstPompesTrtSem.Count + 1)
         lstPompesTrtSem.Add(oReturn)
         Return oReturn
     End Function

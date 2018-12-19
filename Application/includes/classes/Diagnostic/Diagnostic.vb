@@ -2841,10 +2841,21 @@ Public Class Diagnostic
             If poPulve.isPompesDoseuses Then
                 Dim nbPompes As Integer
                 nbPompes = poPulve.nbPompesDoseuses
+
+                _diagnostichelp12123.lstPompesTrtSem.Clear()
                 _diagnostichelp12123.lstPompes.Clear()
-                For i As Integer = 1 To nbPompes
-                    _diagnostichelp12123.AjoutePompe()
-                Next
+                If poPulve.isTraitementdesSemences() Then
+                    For i As Integer = 1 To nbPompes
+                        _diagnostichelp12123.AjoutePompeTrtSem()
+                    Next
+
+                Else
+                    For i As Integer = 1 To nbPompes
+                        _diagnostichelp12123.AjoutePompe()
+                    Next
+
+
+                End If
             Else
                 'Pas de pompes doseuses
                 _diagnostichelp12123.lstPompes.Clear()

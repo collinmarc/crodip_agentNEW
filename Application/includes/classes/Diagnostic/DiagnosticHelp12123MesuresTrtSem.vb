@@ -38,11 +38,11 @@ Public Class DiagnosticHelp12123MesuresTrtSem
         End Set
     End Property
 
-    Public Property numPompe() As Decimal
+    Public Property numPompe() As Integer
         Get
             Return m_numPompe
         End Get
-        Set(ByVal value As Decimal)
+        Set(ByVal value As Integer)
             m_numPompe = value
         End Set
     End Property
@@ -71,6 +71,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
         End Get
         Set(ByVal value As Decimal)
             m_DebitSouhaitee = value
+            calcule()
         End Set
     End Property
     Private m_Pesee1 As Decimal
@@ -80,6 +81,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
         End Get
         Set(ByVal value As Decimal)
             m_Pesee1 = value
+            calcule()
         End Set
     End Property
     Private m_Ecart1 As Decimal
@@ -98,6 +100,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
         End Get
         Set(ByVal value As Decimal)
             m_Pesee2 = value
+            calcule()
         End Set
     End Property
     Private m_Ecart2 As Decimal
@@ -116,6 +119,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
         End Get
         Set(ByVal value As Decimal)
             m_Pesee3 = value
+            calcule()
         End Set
     End Property
     Private m_Ecart3 As Decimal
@@ -156,7 +160,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
     End Property
     Public m_bCalcule As Boolean = True
 
-    Public const DIAGITEM_ID As String = "help12123TrtSem"
+    Public Const DIAGITEM_ID As String = "HTS-M"
     Public LIMITE_ECART_MAJEUR As Decimal = 5
 
     Public Sub New()
@@ -179,6 +183,20 @@ Public Class DiagnosticHelp12123MesuresTrtSem
     Public Function calcule() As Boolean
         Dim bReturn As Boolean
         Try
+            If DebitSouhaite <> 0 Then
+                If Pesee1 <> 0 Then
+                    Ecart1 = Math.Round(((Pesee1 - DebitSouhaite) / DebitSouhaite) * 100, 3)
+                End If
+                If Pesee2 <> 0 Then
+                    Ecart2 = Math.Round(((Pesee2 - DebitSouhaite) / DebitSouhaite) * 100, 3)
+                End If
+                If Pesee3 <> 0 Then
+                    Ecart3 = Math.Round(((Pesee3 - DebitSouhaite) / DebitSouhaite) * 100, 3)
+                End If
+                PeseeMoyenne = Math.Round(((Pesee1 + Pesee2 + Pesee3) / 3), 3)
+                EcartMoyen = Math.Round(((PeseeMoyenne - DebitSouhaite) / DebitSouhaite) * 100, 3)
+
+            End If
             bReturn = True
         Catch ex As Exception
             bReturn = False
@@ -268,11 +286,20 @@ Public Class DiagnosticHelp12123MesuresTrtSem
                 tabValues = pDiagItem.itemValue.Split("|")
                 m_numPompe = ConvertStringToAtt(tabValues(0))
                 m_numMesure = ConvertStringToAtt(tabValues(1))
-                'DebitReel = ConvertStringToAtt(tabValues(2))  '4
-                'DebitTotal = ConvertStringToAtt(tabValues(3))  '5
+                qteGrains = ConvertStringToAtt(tabValues(2))
+                DebitSouhaite = ConvertStringToAtt(tabValues(3))
+                Pesee1 = ConvertStringToAtt(tabValues(4))
+                Ecart1 = ConvertStringToAtt(tabValues(5))
+                Pesee2 = ConvertStringToAtt(tabValues(6))
+                Ecart2 = ConvertStringToAtt(tabValues(7))
+                Pesee3 = ConvertStringToAtt(tabValues(8))
+                Ecart3 = ConvertStringToAtt(tabValues(9))
+                PeseeMoyenne = ConvertStringToAtt(tabValues(10))
+                EcartMoyen = ConvertStringToAtt(tabValues(11))
+                Resultat = ConvertStringToAtt(tabValues(12))
                 bCalcule = True
             Catch ex As Exception
-                CSDebug.dispError("DiagnosticHelp12123Mesure.load ERR conversion (" & pDiagItem.itemValue & ") ERR " & ex.Message)
+                CSDebug.dispError("DiagnosticHelp12123MesureTrtSem.load ERR conversion (" & pDiagItem.itemValue & ") ERR " & ex.Message)
             End Try
         End If
 
@@ -286,9 +313,18 @@ Public Class DiagnosticHelp12123MesuresTrtSem
         oDiagItem.idItem = DIAGITEM_ID & m_numPompe & "-" & m_numMesure
 
         oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(m_numPompe) & "|" '0
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(m_numMesure) & "|" '0
-        oDiagItem.itemValue = oDiagItem.itemValue & "|" '0
-        oDiagItem.itemValue = oDiagItem.itemValue & "|" '1
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(m_numMesure) & "|" '1
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(qteGrains) & "|" '2
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(DebitSouhaite) & "|" '2
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(Pesee1) & "|" '3
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(Ecart1) & "|" '4
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(Pesee2) & "|" '5
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(Ecart2) & "|" '6
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(Pesee3) & "|" '7
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(Ecart3) & "|" '8
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(PeseeMoyenne) & "|" '9
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(EcartMoyen) & "|" '10
+        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(Resultat) & "|" '11
 
         Return oDiagItem
     End Function

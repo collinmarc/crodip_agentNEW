@@ -5,6 +5,7 @@ Public Class MarquesManager
     Public Const XPATH_CATEGORIES_PULVE As String = "/root/type[libelle=""%type%""]/categories/categorie/text()"
     Public Const XPATH_TYPEVALEUR_PULVE As String = "/root/type[libelle=""%type%""]/categories/categorie[text()=""%categorie%""]/@typevaleur"
     Public Const XPATH_VALEURS_PULVE As String = "/root/type[libelle=""%type%""]/categories/categorie[text()=""%categorie%""]/@valeurs"
+    Public Const XPATH_VALEURS_TRTSPE As String = "/root/type[libelle=""%type%""]/categories/categorie[text()=""%categorie%""]/@TRTSPE"
     Public Shared Sub populateCombobox_Largeur_NbRangs_Pulve(ByVal pControl As Object, pType As String, pCategorie As String)
         Try
             Dim xpath As String

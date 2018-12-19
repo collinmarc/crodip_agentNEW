@@ -316,12 +316,10 @@
     <Compile Include="Application\diagnostic\diagnostic_contexte.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123.Designer.vb">
-      <DependentUpon>diagnostic_dlghelp12123.vb</DependentUpon>
+    <Compile Include="Application\diagnostic\Idlghelp12123.Designer.vb">
+      <DependentUpon>Idlghelp12123.vb</DependentUpon>
     </Compile>
-    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Application\diagnostic\Idlghelp12123.vb" />
     <Compile Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem.Designer.vb">
       <DependentUpon>diagnostic_dlghelp12123NewTrtSem.vb</DependentUpon>
     </Compile>
@@ -2025,8 +2023,8 @@
     <EmbeddedResource Include="Application\diagnostic\diagnostic_contexte.resx">
       <DependentUpon>diagnostic_contexte.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp12123.resx">
-      <DependentUpon>diagnostic_dlghelp12123.vb</DependentUpon>
+    <EmbeddedResource Include="Application\diagnostic\Idlghelp12123.resx">
+      <DependentUpon>Idlghelp12123.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem.resx">
       <DependentUpon>diagnostic_dlghelp12123NewTrtSem.vb</DependentUpon>

@@ -64,7 +64,7 @@
 			<categorie typevaleur="LARGEUR" valeurs="0" tdpc="11" label_gip="LANCES OU PISTOLETS">Lances ou pistolets</categorie>
 			<categorie typevaleur="LARGEUR" valeurs="0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6.5|7|7.5|8|8.5|9|9.5|10" tdpc="11" label_gip="CHARIOT ET RAMPE HORIZONTALE">Chariot et rampe horizontale</categorie>
 			<categorie typevaleur="RANG" valeurs="0|0.5|1|1.5|2" tdpc="20.5" label_gip="CHARIOT ET RAMPE VERTICALE">Chariot et rampe verticale</categorie>
-			<categorie typevaleur="LARGEUR" valeurs="0" tdpc="20.5" label_gip="TRAITEMENT DES SEMENCES">Traitement des semences</categorie>
+			<categorie typevaleur="LARGEUR" valeurs="0" tdpc="20.5" label_gip="TRAITEMENT DES SEMENCES" TRTSPE ="TRTSEM">Traitement des semences</categorie>
 			<categorie typevaleur="LARGEUR" valeurs="0" tdpc="20.5" label_gip="TRAITEMENT POST RECOLTE">Traitement post-récolte</categorie>
 			<categorie typevaleur="LARGEUR" valeurs="0|0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6.5|7|7.5|8|8.5|9|9.5|10" tdpc="20.5" label_gip="AUTRES PULVERISATEURS FIXES">Autre pulvérisateur fixe</categorie>
 			<categorie typevaleur="LARGEUR" valeurs="0|0.5|1|1.5|2|2.5|3|3.5|4|4.5|5|5.5|6.5|7|7.5|8|8.5|9|9.5|10" tdpc="20.5" label_gip="AUTRES PULVERISATEURS SEMI MOBILES">Autre pulvérisateur semi mobile</categorie>
