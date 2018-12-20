@@ -10296,25 +10296,34 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 ofrm = New diagnostic_dlghelp12123newTrtSem()
                 bTrtSemence = True
             Else
-                ofrm = New diagnostic_dlghelp12123new()
-                bTrtSemence = False
-                If String.IsNullOrEmpty(tbDebitMoyen3bars.Text) Or
-                    String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Or
-                    String.IsNullOrEmpty(tbPressionMesure.Text) Then
+                If m_Pulverisateur.isPompesDoseuses Then
+                    If String.IsNullOrEmpty(tbDebitMoyen3bars.Text) Or
+                        String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Or
+                        String.IsNullOrEmpty(tbPressionMesure.Text) Or
+                        diagBuses_debitMoyen.Text = "NaN" Then
 
-                    MsgBox("Il faut renseigner le tableau des buses 922")
+                        MsgBox("Il faut renseigner le tableau des buses 922")
 
+                        Exit Function
+                    End If
+                    ofrm = New diagnostic_dlghelp12123new()
+                    bTrtSemence = False
+                Else
                     Exit Function
                 End If
             End If
-            If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
-                ini12123()
-            End If
-            ofrm.setContexte(m_diagnostic.diagnosticHelp12123, m_modeAffichage = Globals.DiagMode.CTRL_VISU)
-            If (ofrm.ShowDialog() = DialogResult.OK) Then
                 If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
-                    'Récupération des valeurs si on est en mode saie de controle
-                    m_diagnostic.diagnosticHelp12123 = ofrm.getContexte()
+                    ini12123()
+                End If
+                ofrm.setContexte(m_diagnostic.diagnosticHelp12123, m_modeAffichage = Globals.DiagMode.CTRL_VISU)
+                If (ofrm.ShowDialog() = DialogResult.OK) Then
+                    If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
+                        'Récupération des valeurs si on est en mode saie de controle
+                        m_diagnostic.diagnosticHelp12123 = ofrm.getContexte()
+                    'Mise à jour de la valeur de synthèse
+                    If bTrtSemence Then
+                        m_diagnostic.syntheseUsureMoyenneBuses = ofrm.getContexte().EcartMoyen
+                    End If
                     If bTrtSemence And m_diagnostic.diagnosticHelp12123.isCuillere Then
                         'Pas de calcul du defaut
                     Else
@@ -10347,14 +10356,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Next
         For Each oPompe As DiagnosticHelp12123Pompe In m_diagnostic.diagnosticHelp12123.lstPompes
             oPompe.NbBuses = nBuses
-            If IsNumeric(Me.diagBuses_usureMoyBuses.Text) Then
-                oPompe.debitMesure = diagBuses_debitMoyen.Text
-            End If
-            If IsNumeric(diagBuses_debitMoyen.Text) Then
-                oPompe.debitMesure = diagBuses_debitMoyen.Text
+           If IsNumeric(diagBuses_debitMoyen.Text) Then
+                oPompe.debitMesure = diagBuses_debitMoyen.DecimalValue
             End If
             If IsNumeric(tbPressionMesure.Text) Then
-                oPompe.PressionMesure = tbPressionMesure.Text
+                oPompe.PressionMesure = tbPressionMesure.DecimalValue
             End If
             For Each oMesure As DiagnosticHelp12123Mesure In oPompe.lstMesures
                 oMesure.calcule()

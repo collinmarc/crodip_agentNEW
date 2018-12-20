@@ -732,12 +732,12 @@ Public Class login
         Dim oDiag As Diagnostic
         oPulve = PulverisateurManager.getPulverisateurById("2-81-22")
         oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
-        oPulve.categorie = "Traitement des semences"
-        oPulve.buseFonctionnement = "CUILLERE"
-        oPulve.isPompesDoseuses = False
+        'oPulve.categorie = "Traitement des semences"
+        'oPulve.buseFonctionnement = "CUILLERE"
+        oPulve.isPompesDoseuses = True
         oPulve.nbPompesDoseuses = 2
-        oPulve.buseNbniveaux = 1
-        oPulve.nombreBuses = 2
+        'oPulve.buseNbniveaux = 1
+        'oPulve.nombreBuses = 2
         agentCourant = AgentManager.getAgentByNumeroNational("MCII")
         If oPulve IsNot Nothing Then
             oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)

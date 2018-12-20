@@ -52,8 +52,12 @@ Public Class diagnostic_dlghelp12123new
         formload()
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
+        Try
+            nupNbPompes.Value = m_DiagHelp12123.lstPompes.Count
 
-        nupNbPompes.Value = m_DiagHelp12123.lstPompes.Count
+        Catch ex As Exception
+
+        End Try
         DisplayPompes()
     End Sub
 

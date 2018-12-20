@@ -15,6 +15,8 @@ Public Class DiagnosticHelp12123
     Private m_idDiag As String
     Private m_lstPompes As New List(Of DiagnosticHelp12123Pompe)
     Private m_fonctionnementDesbuses As String
+    Private m_EcartMoyen As Decimal
+
     Public Property lstPompes() As List(Of DiagnosticHelp12123Pompe)
         Get
             Return m_lstPompes
@@ -33,22 +35,7 @@ Public Class DiagnosticHelp12123
         End Set
     End Property
 
-    'Private m_nbPompesDoseuses As Integer
-    'Private m_debitMesure? As Decimal = Nothing
-    'Private m_PressionMesure? As Decimal = Nothing
-    'Private m_PressionMoyenne? As Decimal = Nothing
-    'Private m_NbBuses? As Decimal = Nothing
-    'Private m_DebitReel? As Decimal = Nothing
-    'Private m_DebitTotal? As Decimal = Nothing
-    'Private m_ReglageDispositif? As Decimal = Nothing
-    'Private m_DebitTheorique? As Decimal = Nothing
-    'Private m_TempsMesure? As Decimal = Nothing
-    'Private m_QteEauPulverisee? As Decimal = Nothing
-    'Private m_MasseapresAspi? As Decimal = Nothing
-    'Private m_MasseApresComplement? As Decimal = Nothing
-    'Private m_QteProduitConso? As Decimal = Nothing
-    'Private m_DosageReel? As Decimal = Nothing
-    'Private m_EcartReglage? As Decimal = Nothing
+    
     Private m_Resultat As String
     Private m_bCalcule As Boolean = True
 
@@ -58,6 +45,7 @@ Public Class DiagnosticHelp12123
     Public Sub New()
         m_Resultat = ""
         m_fonctionnementDesbuses = ""
+        m_EcartMoyen = 0
     End Sub
 
     Public Sub New(ByVal pId As String, ByVal pIdDiag As String)
@@ -66,6 +54,7 @@ Public Class DiagnosticHelp12123
         m_idDiag = pIdDiag
         m_Resultat = ""
         m_fonctionnementDesbuses = ""
+        m_EcartMoyen = 0
     End Sub
     Public Property id As String
         Get
@@ -135,6 +124,15 @@ Public Class DiagnosticHelp12123
             m_fonctionnementDesbuses = value
         End Set
     End Property
+    Public Property EcartMoyen() As Decimal
+        Get
+            Return m_EcartMoyen
+        End Get
+        Set(ByVal value As Decimal)
+            m_EcartMoyen = value
+        End Set
+    End Property
+
     <XmlIgnore>
     Public ReadOnly Property isInjection() As Boolean
         Get
@@ -315,12 +313,16 @@ Public Class DiagnosticHelp12123
                         Resultat = ""
                     Else
                         Resultat = DiagnosticItem.EtatDiagItemOK
+                        Dim Total As Decimal = 0
                         For Each oPompe As DiagnosticHelp12123Pompe In lstPompes
+                            Total = Total + oPompe.EcartReglageMoyen
                             If oPompe.Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
                                 Resultat = DiagnosticItem.EtatDiagItemMAJEUR
                             End If
                         Next
-
+                        If lstPompes.Count > 0 Then
+                            EcartMoyen = Math.Round(Total / lstPompes.Count, 3)
+                        End If
                     End If
                 End If
                 If (lstPompesTrtSem.Count > 0) Then
@@ -333,11 +335,16 @@ Public Class DiagnosticHelp12123
                         Resultat = ""
                     Else
                         Resultat = DiagnosticItem.EtatDiagItemOK
+                        Dim Total As Decimal = 0
                         For Each oPompe As DiagnosticHelp12123PompeTrtSem In lstPompesTrtSem
+                            Total = Total + oPompe.EcartReglageMoyen
                             If oPompe.Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
                                 Resultat = DiagnosticItem.EtatDiagItemMAJEUR
                             End If
                         Next
+                        If lstPompesTrtSem.Count > 0 Then
+                            EcartMoyen = Math.Round(Total / lstPompesTrtSem.Count, 3)
+                        End If
 
                     End If
                 End If
