@@ -2845,9 +2845,11 @@ Public Class Diagnostic
                 _diagnostichelp12123.lstPompesTrtSem.Clear()
                 _diagnostichelp12123.lstPompes.Clear()
                 If poPulve.isTraitementdesSemences() Then
-                    For i As Integer = 1 To nbPompes
-                        _diagnostichelp12123.AjoutePompeTrtSem()
-                    Next
+                    If _diagnostichelp12123.isInjection Then
+                        For i As Integer = 1 To nbPompes
+                            _diagnostichelp12123.AjoutePompeTrtSem()
+                        Next
+                    End If
 
                 Else
                     For i As Integer = 1 To nbPompes
@@ -2859,6 +2861,13 @@ Public Class Diagnostic
             Else
                 'Pas de pompes doseuses
                 _diagnostichelp12123.lstPompes.Clear()
+                _diagnostichelp12123.lstPompesTrtSem.Clear()
+                'Pour le traietement des semences CUILLERES
+                'On ajout une Pompe avec 1 Mesure
+                If poPulve.isTraitementdesSemences() And _diagnostichelp12123.isCuillere Then
+                    Dim oPompe As DiagnosticHelp12123PompeTrtSem
+                    oPompe = _diagnostichelp12123.AjoutePompeTrtSem()
+                End If
             End If
             _diagnostichelp12123.fonctionnementBuses = poPulve.buseFonctionnement
             _diagnostichelp12123.calcule()

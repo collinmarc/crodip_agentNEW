@@ -733,7 +733,8 @@ Public Class login
         oPulve = PulverisateurManager.getPulverisateurById("2-81-22")
         oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
         oPulve.categorie = "Traitement des semences"
-        oPulve.isPompesDoseuses = True
+        oPulve.buseFonctionnement = "CUILLERE"
+        oPulve.isPompesDoseuses = False
         oPulve.nbPompesDoseuses = 2
         oPulve.buseNbniveaux = 1
         oPulve.nombreBuses = 2

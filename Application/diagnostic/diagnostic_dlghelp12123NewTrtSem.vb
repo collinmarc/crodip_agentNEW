@@ -2,7 +2,7 @@
 
 Public Class diagnostic_dlghelp12123newTrtSem
     Implements IfrmCRODIP, IdlgHelp12123
-    Private m_DiagHelp12123 As DiagnosticHelp12123
+    '    Private m_DiagHelp12123 As DiagnosticHelp12123
     Private m_bModeVisu As Boolean
 
 
@@ -19,15 +19,22 @@ Public Class diagnostic_dlghelp12123newTrtSem
             'pnlPrinc.Enabled = False
             btnValider.Enabled = False
         End If
-
+        If pDiagH12123.isCuillere Then
+            nupNbPompes.Minimum = 1
+            nupMesures.Minimum = 1
+        End If
         m_bsrcH12123.Clear()
-        m_DiagHelp12123 = pDiagH12123.Clone()
-        m_bsrcH12123.Add(m_DiagHelp12123)
+        Dim oH12123 As DiagnosticHelp12123
+        oH12123 = pDiagH12123.Clone()
+
+        m_bsrcH12123.Add(oH12123)
 
 
     End Sub
     Public Function getContexte() As DiagnosticHelp12123 Implements IdlgHelp12123.getContexte
-        Return m_DiagHelp12123
+        Dim oH12123 As DiagnosticHelp12123
+        oH12123 = m_bsrcH12123.Current
+        Return oH12123
     End Function
 
     Public Overloads Function ShowDialog() As DialogResult Implements IdlgHelp12123.ShowDialog
@@ -53,7 +60,7 @@ Public Class diagnostic_dlghelp12123newTrtSem
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
 
-        nupNbPompes.Value = m_DiagHelp12123.lstPompesTrtSem.Count
+        nupNbPompes.Value = getContexte().lstPompesTrtSem.Count
         DisplayPompes()
     End Sub
 
@@ -66,7 +73,7 @@ Public Class diagnostic_dlghelp12123newTrtSem
 
         TreeView1.Nodes.Clear()
 
-        For Each oPompe As DiagnosticHelp12123PompeTrtSem In m_DiagHelp12123.lstPompesTrtSem
+        For Each oPompe As DiagnosticHelp12123PompeTrtSem In getContexte().lstPompesTrtSem
             Select Case oPompe.Resultat
                 Case ""
                     ImageIndex = 2
@@ -116,17 +123,17 @@ Public Class diagnostic_dlghelp12123newTrtSem
         m_bsrcH12123.ResetBindings(False)
     End Sub
     Private Sub btnvaliderNbPompes_Click(sender As Object, e As EventArgs) Handles btnvaliderNbPompes.Click
-        If nupNbPompes.Value > m_DiagHelp12123.lstPompesTrtSem.Count Then
-            While m_DiagHelp12123.lstPompesTrtSem.Count < nupNbPompes.Value
-                m_DiagHelp12123.AjoutePompeTrtSem()
+        If nupNbPompes.Value > getContexte().lstPompesTrtSem.Count Then
+            While getContexte().lstPompesTrtSem.Count < nupNbPompes.Value
+                getContexte().AjoutePompeTrtSem()
             End While
         End If
-        If nupNbPompes.Value < m_DiagHelp12123.lstPompesTrtSem.Count Then
-            While m_DiagHelp12123.lstPompesTrtSem.Count > nupNbPompes.Value
-                m_DiagHelp12123.lstPompesTrtSem.RemoveAt(m_DiagHelp12123.lstPompesTrtSem.Count - 1)
+        If nupNbPompes.Value < getContexte().lstPompesTrtSem.Count Then
+            While getContexte().lstPompesTrtSem.Count > nupNbPompes.Value
+                getContexte().lstPompesTrtSem.RemoveAt(getContexte().lstPompesTrtSem.Count - 1)
             End While
         End If
-        m_DiagHelp12123.calcule()
+        getContexte().calcule()
         DisplayPompes()
         Refresh()
     End Sub
@@ -144,11 +151,6 @@ Public Class diagnostic_dlghelp12123newTrtSem
     Private Sub m_bsrcPompes_CurrentChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentChanged
         Dim oPompe As DiagnosticHelp12123PompeTrtSem
         oPompe = m_bsrcPompes.Current
-        'If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
-        '    laResultat.ForeColor = System.Drawing.Color.OliveDrab
-        'Else
-        '    laResultat.ForeColor = System.Drawing.Color.Red
-        'End If
 
         nupMesures.Value = oPompe.lstMesures.Count
         If m_bsrcPompes.Position + 1 >= m_bsrcPompes.Count Then
@@ -156,6 +158,13 @@ Public Class diagnostic_dlghelp12123newTrtSem
         Else
             btn_PompeSuivante.Enabled = True
         End If
+        If m_bsrcPompes.Position = 0 Then
+            btnSupprimer.Enabled = False
+        Else
+            btnSupprimer.Enabled = True
+        End If
+
+
     End Sub
 
     Private Sub btnValiderNbMesures_Click(sender As Object, e As EventArgs) Handles btnValiderNbMesures.Click

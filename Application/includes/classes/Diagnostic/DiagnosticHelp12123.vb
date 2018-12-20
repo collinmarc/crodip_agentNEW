@@ -392,6 +392,10 @@ Public Class DiagnosticHelp12123
 
         oReturn = New DiagnosticHelp12123PompeTrtSem(Me, lstPompesTrtSem.Count + 1)
         lstPompesTrtSem.Add(oReturn)
+        If isCuillere Then
+            oReturn.lstMesures.Clear()
+            oReturn.AjouteMesure()
+        End If
         Return oReturn
     End Function
 End Class
