@@ -10291,20 +10291,21 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim bReturn As Boolean
         Try
             Dim ofrm As IdlgHelp12123
+            Dim bTrtSemence As Boolean
             If m_Pulverisateur.isTraitementdesSemences Then
                 ofrm = New diagnostic_dlghelp12123newTrtSem()
+                bTrtSemence = True
             Else
                 ofrm = New diagnostic_dlghelp12123new()
+                bTrtSemence = False
+                If String.IsNullOrEmpty(tbDebitMoyen3bars.Text) Or
+                    String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Or
+                    String.IsNullOrEmpty(tbPressionMesure.Text) Then
 
+                    MsgBox("Il faut renseigner le tableau des buses 922")
 
-            End If
-            If String.IsNullOrEmpty(tbDebitMoyen3bars.Text) Or
-                String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Or
-                String.IsNullOrEmpty(tbPressionMesure.Text) Then
-
-                MsgBox("Il faut renseigner le tableau des buses 922")
-
-                Exit Function
+                    Exit Function
+                End If
             End If
             If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
                 ini12123()
@@ -10314,15 +10315,19 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
                     'Récupération des valeurs si on est en mode saie de controle
                     m_diagnostic.diagnosticHelp12123 = ofrm.getContexte()
-                    Select Case m_diagnostic.diagnosticHelp12123.Resultat
-                        Case DiagnosticItem.EtatDiagItemOK
-                            RadioButton_diagnostic_12123.Checked = False
-                        Case DiagnosticItem.EtatDiagItemMINEUR
-                            RadioButton_diagnostic_12123.Checked = False
-                        Case DiagnosticItem.EtatDiagItemMAJEUR
-                            RadioButton_diagnostic_12123.Checked = True
-                            RadioButton_diagnostic_12120.Checked = False
-                    End Select
+                    If bTrtSemence And m_diagnostic.diagnosticHelp12123.isCuillere Then
+                        'Pas de calcul du defaut
+                    Else
+                        Select Case m_diagnostic.diagnosticHelp12123.Resultat
+                            Case DiagnosticItem.EtatDiagItemOK
+                                RadioButton_diagnostic_12123.Checked = False
+                            Case DiagnosticItem.EtatDiagItemMINEUR
+                                RadioButton_diagnostic_12123.Checked = False
+                            Case DiagnosticItem.EtatDiagItemMAJEUR
+                                RadioButton_diagnostic_12123.Checked = True
+                                RadioButton_diagnostic_12120.Checked = False
+                        End Select
+                    End If
                 End If
             End If
 
@@ -10334,6 +10339,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Return bReturn
     End Function
     Private Sub ini12123()
+
         'Calcul du nombre de buses
         Dim nBuses As Integer = 0
         For Each oBusList As DiagnosticBuses In m_DiagBuses.Liste
@@ -10359,16 +10365,16 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             oPompe.calcule()
         Next
         m_diagnostic.diagnosticHelp12123.calcule()
-            'm_diagnostic.diagnosticHelp12123.NbBuses = nBuses
+        'm_diagnostic.diagnosticHelp12123.NbBuses = nBuses
 
-            'If Not String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Then
-            '    m_diagnostic.diagnosticHelp12123.debitMesure = diagBuses_debitMoyen.Text
-            '    '        m_diagnosticCourant.diagnosticHelp12123.DebitMesureVTS = diagBuses_debitMoyen.Text
-            'End If
+        'If Not String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Then
+        '    m_diagnostic.diagnosticHelp12123.debitMesure = diagBuses_debitMoyen.Text
+        '    '        m_diagnosticCourant.diagnosticHelp12123.DebitMesureVTS = diagBuses_debitMoyen.Text
+        'End If
 
-            'If Not String.IsNullOrEmpty(tbPressionMesure.Text) Then
-            '    m_diagnostic.diagnosticHelp12123.PressionMesure = tbPressionMesure.Text
-            'End If
+        'If Not String.IsNullOrEmpty(tbPressionMesure.Text) Then
+        '    m_diagnostic.diagnosticHelp12123.PressionMesure = tbPressionMesure.Text
+        'End If
 
     End Sub
 

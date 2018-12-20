@@ -14,6 +14,7 @@ Public Class DiagnosticHelp12123
     Private m_id As String
     Private m_idDiag As String
     Private m_lstPompes As New List(Of DiagnosticHelp12123Pompe)
+    Private m_fonctionnementDesbuses As String
     Public Property lstPompes() As List(Of DiagnosticHelp12123Pompe)
         Get
             Return m_lstPompes
@@ -56,12 +57,15 @@ Public Class DiagnosticHelp12123
 
     Public Sub New()
         m_Resultat = ""
+        m_fonctionnementDesbuses = ""
     End Sub
 
     Public Sub New(ByVal pId As String, ByVal pIdDiag As String)
+
         m_id = pId
         m_idDiag = pIdDiag
         m_Resultat = ""
+        m_fonctionnementDesbuses = ""
     End Sub
     Public Property id As String
         Get
@@ -123,6 +127,27 @@ Public Class DiagnosticHelp12123
         End Get
     End Property
 
+    Public Property fonctionnementBuses() As String
+        Get
+            Return m_fonctionnementDesbuses
+        End Get
+        Set(ByVal value As String)
+            m_fonctionnementDesbuses = value
+        End Set
+    End Property
+    <XmlIgnore>
+    Public ReadOnly Property isInjection() As Boolean
+        Get
+            Return fonctionnementBuses.ToUpper().Contains("INJECTION")
+        End Get
+    End Property
+    <XmlIgnore>
+    Public ReadOnly Property isCuillere() As Boolean
+        Get
+            Return Not isInjection()
+        End Get
+    End Property
+
 
     Public Function Load() As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(id), "Id must be set")
@@ -154,6 +179,7 @@ Public Class DiagnosticHelp12123
                         oPompeTrtSem.Load(idDiag, nPompe)
                         lstPompesTrtSem.Add(oPompeTrtSem)
                     Next
+                    fonctionnementBuses = Trim(tabValues(3))
                     bCalcule = True
                 Catch ex As Exception
                     CSDebug.dispError("DiagnosticHelp12123.load ERR conversion (" & oDiagItem.itemValue & ") ERR " & ex.Message)
@@ -225,6 +251,7 @@ Public Class DiagnosticHelp12123
         oDiagItem.itemValue = Trim(Me.Resultat) & "|" '0
         oDiagItem.itemValue = oDiagItem.itemValue & lstPompes.Count & "|" '1
         oDiagItem.itemValue = oDiagItem.itemValue & lstPompesTrtSem.Count & "|" '2
+        oDiagItem.itemValue = Trim(fonctionnementBuses) & "|" '3
 
         Return oDiagItem
     End Function

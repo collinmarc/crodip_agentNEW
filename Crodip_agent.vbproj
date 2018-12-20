@@ -326,12 +326,6 @@
       <DependentUpon>Idlghelp12123.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\diagnostic\Idlghelp12123.vb" />
-    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem-specs.Designer.vb">
-      <DependentUpon>diagnostic_dlghelp12123NewTrtSem-specs.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem-specs.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\diagnostic\diagnostic_dlghelp12123New.Designer.vb">
       <DependentUpon>diagnostic_dlghelp12123New.vb</DependentUpon>
     </Compile>
@@ -2034,9 +2028,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\Idlghelp12123.resx">
       <DependentUpon>Idlghelp12123.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem-specs.resx">
-      <DependentUpon>diagnostic_dlghelp12123NewTrtSem-specs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp12123New.resx">
       <DependentUpon>diagnostic_dlghelp12123New.vb</DependentUpon>

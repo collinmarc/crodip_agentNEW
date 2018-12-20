@@ -298,4 +298,41 @@ Public Class diagnostic_dlghelp12123newTrtSem
 
 
 
+    Private Sub rbFonctionnementCuillère_CheckedChanged(sender As Object, e As EventArgs) Handles rbFonctionnementCuillère.CheckedChanged
+        If rbFonctionnementCuillère.Checked Then
+            Dim oH12123 As DiagnosticHelp12123
+            oH12123 = m_bsrcH12123.Current
+            oH12123.fonctionnementBuses = "CUILLERE"
+            m_bsrcH12123.ResetCurrentItem()
+            DisplayPompes()
+            btn_PompeSuivante.Text = "  Mécanisme suivant"
+        End If
+    End Sub
+
+    Private Sub rbFonctinonementInjection_CheckedChanged(sender As Object, e As EventArgs) Handles rbFonctinonementInjection.CheckedChanged
+        If rbFonctinonementInjection.Checked Then
+            Dim oH12123 As DiagnosticHelp12123
+            oH12123 = m_bsrcH12123.Current
+            oH12123.fonctionnementBuses = "INJECTION"
+            m_bsrcH12123.ResetCurrentItem()
+            'Le treevieuw ne se met pas à jour automatiquement...
+            DisplayPompes()
+            btn_PompeSuivante.Text = "  Pompe suivante"
+        End If
+
+    End Sub
+
+    Private Sub btnSupprimer_Click(sender As Object, e As EventArgs) Handles btnSupprimer.Click
+        m_bsrcPompes.RemoveCurrent()
+        Dim oH12123 As DiagnosticHelp12123
+        oH12123 = m_bsrcH12123.Current
+        oH12123.calcule()
+        DisplayPompes()
+        If oH12123.Resultat = "" Then
+            btnValider.Enabled = False
+        Else
+            btnValider.Enabled = True
+        End If
+
+    End Sub
 End Class

@@ -126,9 +126,16 @@ Public Class DiagnosticHelp12123PompeTrtSem
             m_bCalcule = Value
         End Set
     End Property
+    <XmlIgnore>
     Public ReadOnly Property Nom() As String
         Get
-            Return "Pompe " & numero
+            Dim racine As String = "Pompe "
+            If m_help12123 IsNot Nothing Then
+                If m_help12123.isCuillere Then
+                    racine = "Mécanisme "
+                End If
+            End If
+            Return racine & numero
         End Get
     End Property
 

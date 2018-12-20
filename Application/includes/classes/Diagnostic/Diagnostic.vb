@@ -2860,6 +2860,7 @@ Public Class Diagnostic
                 'Pas de pompes doseuses
                 _diagnostichelp12123.lstPompes.Clear()
             End If
+            _diagnostichelp12123.fonctionnementBuses = poPulve.buseFonctionnement
             _diagnostichelp12123.calcule()
 
             'On Stocke la referenc du pulve ou l'encodage Automatique
