@@ -1,5 +1,6 @@
 ﻿Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
+Imports System.Linq
 
 Public Class EtatSyntheseMesures
     Inherits EtatCrodip
@@ -98,7 +99,14 @@ Public Class EtatSyntheseMesures
                 EcartTolere = 10
             End If
             'Diagnostic
-            m_ods.Diag.AddDiagRow(idDiag:=m_oDiag.id, DateControle:=m_oDiag.controleDateDebut, NumPulve:=m_oDiag.pulverisateurNumNational, NomPropriétaire:=m_oDiag.proprietaireNom & " " & m_oDiag.proprietairePrenom, NomOrganisme:=m_oDiag.organismePresNom, EcartTolereBuses:=EcartTolere, PulveisPompeDoseuses:=opulve.isPompesDoseuses)
+            m_ods.Diag.AddDiagRow(idDiag:=m_oDiag.id,
+                                  DateControle:=m_oDiag.controleDateDebut,
+                                  NumPulve:=m_oDiag.pulverisateurNumNational,
+                                  NomPropriétaire:=m_oDiag.proprietaireNom & " " & m_oDiag.proprietairePrenom,
+                                  NomOrganisme:=m_oDiag.organismePresNom,
+                                  EcartTolereBuses:=EcartTolere,
+                                  PulveisPompeDoseuses:=opulve.isPompesDoseuses,
+                                  PulveIsTrtSemences:=opulve.isTraitementdesSemences)
 
             'Buses
             Dim pctBusesUsees As Decimal
@@ -225,7 +233,7 @@ Public Class EtatSyntheseMesures
 
                         End If
                         Dim NumPompe As String = oPompe.numero
-                        Dim PressionMesurePompe As String = IIf(oPompe.PressionMesure.HasValue, oPompe.PressionMesure.HasValue, "")
+                        Dim PressionMesurePompe As String = IIf(oPompe.PressionMesure.HasValue, oPompe.PressionMesure, "")
                         Dim DebitPompe As String = IIf(oPompe.debitMesure.HasValue, oPompe.debitMesure, "")
                         Dim NumMesure As String = oMesure.numeroMesure
                         Dim PressionMoyenne As String = IIf(oPompe.PressionMoyenne.HasValue, oPompe.PressionMoyenne, "")
@@ -261,6 +269,72 @@ Public Class EtatSyntheseMesures
                                                           DosageReel:=DosageReel,
                                                           Ecart:=Ecart,
                                                           ResultatMesure:=ResultatMesure)
+                    Next
+
+                Next
+            End If
+            If opulve.isTraitementdesSemences Then
+                Dim ResultatPompe As String
+                Dim ResultatMesure As String
+                Dim ResultatGlobal As String
+                ResultatGlobal = m_oDiag.diagnosticHelp12123.LabelResultat
+                Dim EcartMoyenGlobal As String
+                For Each oPompe As DiagnosticHelp12123PompeTrtSem In m_oDiag.diagnosticHelp12123.lstPompesTrtSem
+
+                Next
+                EcartMoyenGlobal = (From oPompe As DiagnosticHelp12123PompeTrtSem
+                                    In m_oDiag.diagnosticHelp12123.lstPompesTrtSem
+                                    Select oPompe.EcartReglageMoyen).Average()
+
+
+                For Each oPompe As DiagnosticHelp12123PompeTrtSem In m_oDiag.diagnosticHelp12123.lstPompesTrtSem
+                    If oPompe.Resultat = DiagnosticItem.EtatDiagItemOK Then
+                        ResultatPompe = "OK"
+                    Else
+                        ResultatPompe = "IMPRECISION"
+
+                    End If
+                    For Each oMesure As DiagnosticHelp12123MesuresTrtSem In oPompe.lstMesures
+                        If oMesure.Resultat = DiagnosticItem.EtatDiagItemOK Then
+                            ResultatMesure = "OK"
+                        Else
+                            ResultatMesure = "IMPRECISION"
+
+                        End If
+                        Dim NumPompe As String = oPompe.Nom
+                        Dim PeseeMoyennePompe As String = oPompe.PeseeMoyenne
+                        Dim EcartMoyen As String = oPompe.EcartReglageMoyen
+                        Dim NumMesure As String = oMesure.numeroMesurestr
+                        Dim QteGains As String = oMesure.qteGrains
+                        Dim DebitSouhaite As String = oMesure.DebitSouhaite
+                        Dim Pesee1 As String = IIf(oMesure.Pesee1 <> 0, oMesure.Pesee1, "")
+                        Dim Ecart1 As String = IIf(oMesure.Pesee1 <> 0, oMesure.Ecart1, "")
+                        Dim Pesee2 As String = IIf(oMesure.Pesee2 <> 0, oMesure.Pesee2, "")
+                        Dim Ecart2 As String = IIf(oMesure.Pesee2 <> 0, oMesure.Ecart2, "")
+                        Dim Pesee3 As String = IIf(oMesure.Pesee3 <> 0, oMesure.Pesee3, "")
+                        Dim Ecart3 As String = IIf(oMesure.Pesee3 <> 0, oMesure.Ecart3, "")
+                        Dim PeseeMoyenneMesure As String = IIf(oMesure.PeseeMoyenne <> 0, oMesure.PeseeMoyenne, "")
+                        Dim EcartMoyenMesure As String = IIf(oMesure.PeseeMoyenne <> 0, oMesure.EcartMoyen, "")
+
+                        m_ods.Synth12123trtSem.AddSynth12123trtSemRow(NumPompe:=NumPompe,
+                                                                      Pesee1:=Pesee1,
+                                                                      Ecart1:=Ecart1,
+                                                                      Pesee2:=Pesee2,
+                                                                      Ecart2:=Ecart2,
+                                                                      Pesee3:=Pesee3,
+                                                                      Ecart3:=Ecart3,
+                                                                      PeseeMoyenneMesure:=PeseeMoyenneMesure,
+                                                                      EcartMoyenMesure:=EcartMoyenMesure,
+                                                                      ResultatMesure:=ResultatMesure,
+                                                                      PreseeMoyennePompe:=PeseeMoyennePompe,
+                                                                      EcartMoyenPompte:=EcartMoyen,
+                                                                      ResultatPompe:=ResultatPompe,
+                                                                      DebitSouhaite:=DebitSouhaite, QteGrains:=QteGains,
+                                                                      NumMesure:=NumMesure,
+                                                                      ResultatGlobal:=ResultatGlobal,
+                                                                      EcartMoyenGlobal:=EcartMoyenGlobal,
+                                                                      FonctionnementBuses:=opulve.buseFonctionnement)
+
                     Next
 
                 Next

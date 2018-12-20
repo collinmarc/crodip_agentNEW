@@ -371,7 +371,7 @@ Public Class DiagnosticItemManager
                 End If
                 If Not objDiagnosticItem.itemValue Is Nothing And objDiagnosticItem.itemValue <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `itemValue`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticItem.itemValue & "'"
+                    paramsQuery = paramsQuery & " , '" & CSDb.secureString(objDiagnosticItem.itemValue) & "'"
                 End If
                 If Not objDiagnosticItem.itemCodeEtat Is Nothing And objDiagnosticItem.itemCodeEtat <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `itemCodeEtat`"

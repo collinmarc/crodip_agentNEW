@@ -2838,6 +2838,7 @@ Public Class Diagnostic
                 typeDiagnostic = "pulverisateur"
             End If
             'Mise à jour du DiahHelp12123
+            _diagnostichelp12123.fonctionnementBuses = poPulve.buseFonctionnement
             If poPulve.isPompesDoseuses Then
                 Dim nbPompes As Integer
                 nbPompes = poPulve.nbPompesDoseuses
