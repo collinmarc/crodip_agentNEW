@@ -2846,11 +2846,9 @@ Public Class Diagnostic
                 _diagnostichelp12123.lstPompesTrtSem.Clear()
                 _diagnostichelp12123.lstPompes.Clear()
                 If poPulve.isTraitementdesSemences() Then
-                    If _diagnostichelp12123.isInjection Then
-                        For i As Integer = 1 To nbPompes
-                            _diagnostichelp12123.AjoutePompeTrtSem()
-                        Next
-                    End If
+                    For i As Integer = 1 To nbPompes
+                        _diagnostichelp12123.AjoutePompeTrtSem()
+                    Next
 
                 Else
                     For i As Integer = 1 To nbPompes
