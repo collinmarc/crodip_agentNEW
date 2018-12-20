@@ -734,7 +734,9 @@ Public Class login
         oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
         oPulve.categorie = "Traitement des semences"
         oPulve.isPompesDoseuses = True
-        oPulve.nbPompesDoseuses = 4
+        oPulve.nbPompesDoseuses = 2
+        oPulve.buseNbniveaux = 1
+        oPulve.nombreBuses = 2
         agentCourant = AgentManager.getAgentByNumeroNational("MCII")
         If oPulve IsNot Nothing Then
             oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)

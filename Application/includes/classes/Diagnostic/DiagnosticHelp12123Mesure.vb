@@ -34,6 +34,7 @@ Public Class DiagnosticHelp12123Mesure
         m_numPompe = pPompe.numero
         m_numMesure = pNumMesure
     End Sub
+    <XmlIgnore>
     Public Property Image() As Bitmap
         Get
             If Resultat = DiagnosticItem.EtatDiagItemOK Then

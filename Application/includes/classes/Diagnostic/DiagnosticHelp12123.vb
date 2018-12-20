@@ -266,7 +266,12 @@ Public Class DiagnosticHelp12123
         Return bReturn
 
     End Function
-
+    ''' <summary>
+    ''' Calcule le défaut 12123
+    ''' Prend en compte le cas des traitement de semences 
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function calcule() As Boolean
         Dim bReturn As Boolean
         Try

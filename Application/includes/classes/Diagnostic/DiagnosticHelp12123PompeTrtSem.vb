@@ -336,28 +336,37 @@ Public Class DiagnosticHelp12123PompeTrtSem
         Try
             If m_bCalcule Then
                 m_bCalcule = False
-                Dim Total As Decimal = 0D
+                Dim bMesuresOK As Boolean
+                bMesuresOK = True
                 For Each item As DiagnosticHelp12123MesuresTrtSem In lstMesures
-                    Total = Total + item.PeseeMoyenne
-                Next
-                PeseeMoyenne = Math.Round((Total / lstMesures.Count), 3)
-                Total = 0
-                For Each item As DiagnosticHelp12123MesuresTrtSem In lstMesures
-                    Total = Total + item.EcartMoyen
-                Next
-                EcartReglageMoyen = Math.Round((Total / lstMesures.Count), 3)
+                    If item.Resultat = "" Then
+                        bMesuresOK = False
 
-                Resultat = DiagnosticItem.EtatDiagItemOK
+                    End If
+                Next
+                If bMesuresOK Then
+                    Dim Total As Decimal = 0D
+                    For Each item As DiagnosticHelp12123MesuresTrtSem In lstMesures
+                        Total = Total + item.PeseeMoyenne
+                    Next
+                    PeseeMoyenne = Math.Round((Total / lstMesures.Count), 3)
+                    Total = 0
+                    For Each item As DiagnosticHelp12123MesuresTrtSem In lstMesures
+                        Total = Total + item.EcartMoyen
+                    Next
+                    EcartReglageMoyen = Math.Round((Total / lstMesures.Count), 3)
 
-                If Math.Abs(EcartReglageMoyen.Value) > LIMITE_ECART_MAJEUR Then
-                    Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                    Resultat = DiagnosticItem.EtatDiagItemOK
+
+                    If Math.Abs(EcartReglageMoyen.Value) > LIMITE_ECART_MAJEUR Then
+                        Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                    End If
+                End If
+
+                If Resultat <> "" Then
+                    m_help12123.calcule()
                 End If
             End If
-
-            If Resultat <> "" Then
-                m_help12123.calcule()
-            End If
-
             m_bCalcule = True
             bReturn = True
         Catch ex As Exception

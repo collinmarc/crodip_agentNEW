@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class diagnostic_dlghelp12123new
+Partial Class diagnostic_dlghelp12123
 
     Inherits System.Windows.Forms.Form
 
@@ -32,7 +32,7 @@ Partial Class diagnostic_dlghelp12123new
         Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure2", 3, 2)
         Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure3", 2, 2)
         Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Pompe2", New System.Windows.Forms.TreeNode() {TreeNode5, TreeNode6, TreeNode7})
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_dlghelp12123new))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_dlghelp12123))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -83,6 +83,7 @@ Partial Class diagnostic_dlghelp12123new
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
+        Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
         Me.ResultatImageCol = New System.Windows.Forms.DataGridViewImageColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ReglageDispositif = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -94,8 +95,6 @@ Partial Class diagnostic_dlghelp12123new
         Me.QteProduitConso = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DosageReelRND = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EcartReglageRND = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ImageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.pnl12123.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -385,7 +384,7 @@ Partial Class diagnostic_dlghelp12123new
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ResultatImageCol, Me.Column2, Me.ReglageDispositif, Me.DebitTheoriqueRND, Me.TempsMesure, Me.QteEauPulveriseeRND, Me.MasseInitiale, Me.MasseAspire, Me.QteProduitConso, Me.DosageReelRND, Me.EcartReglageRND, Me.ImageDataGridViewImageColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ResultatImageCol, Me.Column2, Me.ReglageDispositif, Me.DebitTheoriqueRND, Me.TempsMesure, Me.QteEauPulveriseeRND, Me.MasseInitiale, Me.MasseAspire, Me.QteProduitConso, Me.DosageReelRND, Me.EcartReglageRND})
         Me.DataGridView1.DataSource = Me.m_bsrcMesures
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
@@ -722,6 +721,10 @@ Partial Class diagnostic_dlghelp12123new
         Me.btnValider.Text = "Valider"
         Me.btnValider.UseVisualStyleBackColor = False
         '
+        'm_bsrcH12123
+        '
+        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
+        '
         'ResultatImageCol
         '
         Me.ResultatImageCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
@@ -834,17 +837,6 @@ Partial Class diagnostic_dlghelp12123new
         Me.EcartReglageRND.HeaderText = "Ecart (%)"
         Me.EcartReglageRND.Name = "EcartReglageRND"
         '
-        'm_bsrcH12123
-        '
-        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
-        '
-        'ImageDataGridViewImageColumn
-        '
-        Me.ImageDataGridViewImageColumn.DataPropertyName = "Image"
-        Me.ImageDataGridViewImageColumn.HeaderText = "Image"
-        Me.ImageDataGridViewImageColumn.Name = "ImageDataGridViewImageColumn"
-        Me.ImageDataGridViewImageColumn.ReadOnly = True
-        '
         'diagnostic_dlghelp12123new
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -932,6 +924,5 @@ Partial Class diagnostic_dlghelp12123new
     Friend WithEvents QteProduitConso As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DosageReelRND As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents EcartReglageRND As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ImageDataGridViewImageColumn As System.Windows.Forms.DataGridViewImageColumn
 
 End Class

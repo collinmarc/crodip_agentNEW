@@ -10355,6 +10355,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Next
             oPompe.calcule()
         Next
+        For Each oPompe As DiagnosticHelp12123PompeTrtSem In m_diagnostic.diagnosticHelp12123.lstPompesTrtSem
+            oPompe.calcule()
+        Next
         m_diagnostic.diagnosticHelp12123.calcule()
             'm_diagnostic.diagnosticHelp12123.NbBuses = nBuses
 

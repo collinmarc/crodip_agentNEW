@@ -54,6 +54,11 @@ Public Class DiagnosticHelp12123MesuresTrtSem
             m_numMesure = value
         End Set
     End Property
+    Public ReadOnly Property numeroMesurestr() As String
+        Get
+            Return "Mesure " & m_numMesure
+        End Get
+    End Property
     Private m_QteGrains As Decimal
     Public Property qteGrains() As Decimal
         Get
@@ -158,6 +163,21 @@ Public Class DiagnosticHelp12123MesuresTrtSem
             m_Resultat = value
         End Set
     End Property
+    <XmlIgnore>
+    Public ReadOnly Property ResultatLabel() As String
+        Get
+            Select Case Resultat
+                Case DiagnosticItem.EtatDiagItemOK
+                    Return "OK"
+                Case DiagnosticItem.EtatDiagItemMAJEUR
+                    Return "ERREUR"
+                Case Else
+                    Return ""
+            End Select
+
+        End Get
+    End Property
+
     Public m_bCalcule As Boolean = True
 
     Public Const DIAGITEM_ID As String = "HTS-M"
@@ -170,13 +190,21 @@ Public Class DiagnosticHelp12123MesuresTrtSem
         m_numPompe = pPompe.numero
         m_numMesure = pNumMesure
     End Sub
-    Private _image As Bitmap
+    <XmlIgnore>
     Public Property Image() As Bitmap
         Get
-            Return _image
+            If Resultat = DiagnosticItem.EtatDiagItemOK Then
+                Return Resources.PuceVerteT
+            Else
+                If Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                    Return Resources.PuceRougeT
+                Else
+                    Return Resources.PuceGriseT
+                End If
+            End If
         End Get
         Set(ByVal value As Bitmap)
-            _image = value
+            '            _image = value
         End Set
     End Property
 
@@ -193,11 +221,25 @@ Public Class DiagnosticHelp12123MesuresTrtSem
                 If Pesee3 <> 0 Then
                     Ecart3 = Math.Round(((Pesee3 - DebitSouhaite) / DebitSouhaite) * 100, 3)
                 End If
-                PeseeMoyenne = Math.Round(((Pesee1 + Pesee2 + Pesee3) / 3), 3)
-                EcartMoyen = Math.Round(((PeseeMoyenne - DebitSouhaite) / DebitSouhaite) * 100, 3)
+                If Pesee1 <> 0 And Pesee2 <> 0 And Pesee3 <> 0 Then
+                    PeseeMoyenne = Math.Round(((Pesee1 + Pesee2 + Pesee3) / 3), 3)
+                    EcartMoyen = Math.Round(((PeseeMoyenne - DebitSouhaite) / DebitSouhaite) * 100, 3)
+                    'EcartReglage > 5% => Majeur, sinon OK
+                    Resultat = DiagnosticItem.EtatDiagItemOK
+                    If Math.Abs(EcartMoyen) > LIMITE_ECART_MAJEUR Then
+                        Resultat = DiagnosticItem.EtatDiagItemMAJEUR
+                    End If
+                Else
+                    PeseeMoyenne = 0
+                    EcartMoyen = 0
+                    Resultat = ""
+                End If
+                If Resultat <> "" Then
+                    m_oPompe.calcule()
+                End If
 
             End If
-            bReturn = True
+                bReturn = True
         Catch ex As Exception
             bReturn = False
             CSDebug.dispError("DiagnosticHelp12123MesureTrtSem ERR : " & ex.Message)
