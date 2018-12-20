@@ -1,5 +1,5 @@
 TRUNK
-Build :20181206110000
+Build :20181220180000
 ------------------
 #274 : Calc de l'état des buses après synhcro
 #293 : Fenêtre Recap : Valider = Désactivation appercu
@@ -9,11 +9,12 @@ Build :20181206110000
 #291 : Libération du fichiuer Aletes.xml
 #289 : plantage en fin de controle si Ajout d'un pulvé
 #286 : Bouton "Facture Exploitant" => "Facture "Client"
-#287:Fiche Pulve : Activation des pompes doseuses => Nb de pompes =1
-#269:Msg erreur sur Fiche pulve si numnat incorrect
-#271:Fiche pulvé : Marques Modèles , pas de saisie libre
-#156 : Modification de la fenêtre de récapitulatif en fin de contrôle
+#287: Fiche Pulve : Activation des pompes doseuses => Nb de pompes =1
+#269: Msg erreur sur Fiche pulve si numnat incorrect
+#271: Fiche pulvé : Marques Modèles , pas de saisie libre
+#156: Modification de la fenêtre de récapitulatif en fin de contrôle
 #153: Nombre de pompes dosueuses
+#154: Traitement des semences
 
 
 Build :20181206110000

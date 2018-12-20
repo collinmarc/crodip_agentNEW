@@ -10314,8 +10314,14 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
                 If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
                     ini12123()
-                End If
-                ofrm.setContexte(m_diagnostic.diagnosticHelp12123, m_modeAffichage = Globals.DiagMode.CTRL_VISU)
+            End If
+            If bTrtSemence And m_diagnostic.diagnosticHelp12123.lstPompesTrtSem.Count = 0 Then
+                Exit Function
+            End If
+            If Not bTrtSemence And m_diagnostic.diagnosticHelp12123.lstPompes.Count = 0 Then
+                Exit Function
+            End If
+            ofrm.setContexte(m_diagnostic.diagnosticHelp12123, m_modeAffichage = Globals.DiagMode.CTRL_VISU)
                 If (ofrm.ShowDialog() = DialogResult.OK) Then
                     If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
                         'Récupération des valeurs si on est en mode saie de controle

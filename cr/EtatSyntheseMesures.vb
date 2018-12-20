@@ -282,9 +282,14 @@ Public Class EtatSyntheseMesures
                 For Each oPompe As DiagnosticHelp12123PompeTrtSem In m_oDiag.diagnosticHelp12123.lstPompesTrtSem
 
                 Next
-                EcartMoyenGlobal = (From oPompe As DiagnosticHelp12123PompeTrtSem
-                                    In m_oDiag.diagnosticHelp12123.lstPompesTrtSem
-                                    Select oPompe.EcartReglageMoyen).Average()
+                Try
+
+                    EcartMoyenGlobal = (From oPompe As DiagnosticHelp12123PompeTrtSem
+                                        In m_oDiag.diagnosticHelp12123.lstPompesTrtSem
+                                        Select oPompe.EcartReglageMoyen).Average()
+                Catch ex As Exception
+                    EcartMoyenGlobal = ""
+                End Try
 
 
                 For Each oPompe As DiagnosticHelp12123PompeTrtSem In m_oDiag.diagnosticHelp12123.lstPompesTrtSem
