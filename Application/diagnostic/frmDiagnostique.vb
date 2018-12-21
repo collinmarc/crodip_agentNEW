@@ -4570,6 +4570,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 #Region " Tableau 5.5.1  & 5.6.2.1"
     ' On cache / affiche la popup
     Private Sub ico_help_551_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_551.Click
+        calc551()
+    End Sub
+
+    Private Sub ico_help_5621_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_5621.Click
+        Calc5621()
+    End Sub
+    Private Sub calc551()
         Dim odlg As New diagnostic_dlghelp551()
         odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode551, m_diagnostic, "Vitesse d'avancement", m_modeAffichage = Globals.DiagMode.CTRL_VISU
                          )
@@ -4591,17 +4598,14 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
             ini571()
         End If
+
     End Sub
 
-    Private Sub ico_help_5621_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_5621.Click
+    Private Sub Calc5621()
         Dim odlg As New diagnostic_dlghelp551()
         odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode5621, m_diagnostic, "Vitesse de fonctionnement", m_modeAffichage = Globals.DiagMode.CTRL_VISU)
         odlg.ShowDialog(Me)
         If odlg.DialogResult = Windows.Forms.DialogResult.OK Then
-            'objInfos(10) = odlg.help551_m1_distance.Text
-            'objInfos(11) = odlg.help551_m1_temps.Text
-            'objInfos(10) = odlg.help551_m2_distance.Text
-            'objInfos(11) = odlg.help551_m2_temps.Text
             'La Valeur ErreurMoyenne du Cinémomètre est soit 551 ou 5621
             m_diagnostic.syntheseErreurMoyenneCinemometre = odlg.help551_erreurMoyenne.Text
             If m_diagnostic.diagnosticHelp5621.Resultat = "OK" Then
@@ -4613,13 +4617,16 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
 
         End If
-    End Sub
 
+    End Sub
 #End Region
 #Region " Tableau 5.5.2 "
 
     ' On cache / affiche la popup
     Private Sub ico_help_552_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_552.Click
+        calc552()
+    End Sub
+    Private Sub calc552()
         If diagBuses_debitMoyen.Text <> "" And tbPressionMesure.Text <> "" Then
             Dim oDlg552 As New Diagnostic_dlghelp552()
             oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode552, m_diagnostic, diagBuses_debitMoyen.Text, tbPressionMesure.Text, (Globals.DiagMode.CTRL_VISU = m_modeAffichage))
@@ -4639,6 +4646,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Else
             MsgBox("Vous devez d'abord compléter le tableau 9.2.2 de l'onglet ""Buses"" !")
         End If
+
     End Sub
 #End Region
 
@@ -4721,19 +4729,20 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
     Protected Overridable Function Valider() As Boolean Implements IfrmCRODIP.Valider
         btn_Valider.Enabled = False
-        Dim bReturn As Boolean
+        Dim bReturn As Boolean = False
         'CSDebug.dispInfo("Diagnostique.btn_diagnostic_valider_Click")
         ' On commence par vérifier que tout a été rempli (Normalement OK car sinon le bouton n'est pas Enabled)
         If checkIsAllFilled() Then
             'Valider
-            validerDiagnostique()
-            'Passage à la fenêtre suivante
-            NextForm()
-            bReturn = True
+            If validerDiagnostique() Then
+                'Passage à la fenêtre suivante
+                NextForm()
+                bReturn = True
+            End If
         Else
             MsgBox("Vous n'avez pas rempli la totalité du contrôle :" & vbNewLine)
-            bReturn = False
         End If
+        btn_Valider.Enabled = True
         Return bReturn
     End Function
     ''' <summary>
@@ -4822,6 +4831,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 m_Pulverisateur.nbPompesDoseuses = m_diagnostic.diagnosticHelp12123.lstPompes.Count
             End If
             bReturn = True
+
+            'Vérification de la saisie de Calculette 551, 5621, 5622, et 571
+            If m_Pulverisateur.pulverisateurRegulationIsDPAE Or m_Pulverisateur.pulverisateurRegulationIsDPMAssiste Then
+                bReturn = VerifDPAE()
+            End If
+
         Catch ex As Exception
             CSDebug.dispError("diagnostique.valider ERR " & ex.Message)
             bReturn = False
@@ -4829,6 +4844,90 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Return bReturn
     End Function
 
+    Private Function VerifDPAE() As Boolean
+        Dim bReturn As Boolean
+        'Vérif 551
+        Dim bVerif551 As Boolean = True
+        Dim bVerif552 As Boolean = True
+        Dim bVerif5621 As Boolean = True
+        Dim bVerif5622 As Boolean = True
+        Dim bVerif571 As Boolean = True
+
+
+        bReturn = True
+        If m_Pulverisateur.pulverisateurRegulationIsDPAESeul Or m_Pulverisateur.pulverisateurRegulationIsDPAEComplet Then
+            If Not m_diagnostic.diagnosticHelp551.HasValue Then
+                bVerif551 = False
+                bReturn = False
+            End If
+            If Not m_diagnostic.diagnosticHelp552.hasValue Then
+                bVerif552 = False
+                bReturn = False
+            End If
+            If Not m_diagnostic.diagnosticHelp571.hasValuePression Then
+                bVerif571 = False
+                bReturn = False
+            End If
+            If Not m_diagnostic.diagnosticHelp571.hasValueDebit Then
+                bVerif571 = False
+                bReturn = False
+            End If
+        End If
+        If m_Pulverisateur.pulverisateurRegulationIsDPAEDebit Then
+            If Not m_diagnostic.diagnosticHelp551.HasValue Then
+                bVerif551 = False
+                bReturn = False
+            End If
+            If Not m_diagnostic.diagnosticHelp552.hasValue Then
+                bVerif552 = False
+                bReturn = False
+            End If
+        End If
+        If m_Pulverisateur.pulverisateurRegulationIsDPAEPression Then
+            If Not m_diagnostic.diagnosticHelp551.HasValue Then
+                bVerif551 = False
+                bReturn = False
+            End If
+            If Not m_diagnostic.diagnosticHelp571.hasValuePression Then
+                bVerif571 = False
+                bReturn = False
+            End If
+        End If
+
+
+        If m_Pulverisateur.pulverisateurRegulationIsDPMAssiste Then
+            If Not m_diagnostic.diagnosticHelp5621.HasValue Then
+                bVerif5621 = False
+                bReturn = False
+            End If
+            If Not m_diagnostic.diagnosticHelp5622.hasValue Then
+                bVerif5622 = False
+                bReturn = False
+            End If
+        End If
+        If Not bVerif551 Or Not bVerif5621 Or Not bVerif5622 Or Not bVerif571 Or Not bVerif552 Then
+            Dim vResult As MsgBoxResult = MsgBox("vous n'avez pas saisi toutes les valeurs des points 551, 552, 562 et 571, voulez-vous les saisir maintenant ?", vbYesNo)
+            If vResult = vbYes Then
+                If Not bVerif551 Then
+                    calc551()
+                End If
+                If Not bVerif552 Then
+                    calc552()
+                End If
+                If Not bVerif5621 Then
+                    Calc5621()
+                End If
+                If Not bVerif5622 Then
+                    Calc5622()
+                End If
+                If Not bVerif571 Then
+                    Calc571()
+                End If
+            End If
+
+        End If
+        Return bReturn
+    End Function
     Protected Overridable Sub NextForm()
         Dim ofrm As New frmdiagnostic_recap(m_modeAffichage, m_diagnostic, m_Pulverisateur, m_Exploit)
         TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
@@ -8967,6 +9066,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
 
     Private Sub ico_help_5622_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_5622.Click
+        Calc5622()
+    End Sub
+
+    Private Sub Calc5622()
         Try
 
             If diagBuses_debitMoyen.Text <> "" And tbPressionMesure.Text <> "" Then
@@ -8989,6 +9092,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Catch ex As Exception
             CSDebug.dispError("diagnostique::ico_help_5622_Click ERR : " & ex.Message)
         End Try
+
 
     End Sub
 
@@ -10312,8 +10416,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     Exit Function
                 End If
             End If
-                If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
-                    ini12123()
+            If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
+                ini12123()
             End If
             If bTrtSemence And m_diagnostic.diagnosticHelp12123.lstPompesTrtSem.Count = 0 Then
                 Exit Function
@@ -10322,10 +10426,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 Exit Function
             End If
             ofrm.setContexte(m_diagnostic.diagnosticHelp12123, m_modeAffichage = Globals.DiagMode.CTRL_VISU)
-                If (ofrm.ShowDialog() = DialogResult.OK) Then
-                    If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
-                        'Récupération des valeurs si on est en mode saie de controle
-                        m_diagnostic.diagnosticHelp12123 = ofrm.getContexte()
+            If (ofrm.ShowDialog() = DialogResult.OK) Then
+                If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
+                    'Récupération des valeurs si on est en mode saie de controle
+                    m_diagnostic.diagnosticHelp12123 = ofrm.getContexte()
                     'Mise à jour de la valeur de synthèse
                     If bTrtSemence Then
                         m_diagnostic.syntheseUsureMoyenneBuses = ofrm.getContexte().EcartMoyen
@@ -10362,7 +10466,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Next
         For Each oPompe As DiagnosticHelp12123Pompe In m_diagnostic.diagnosticHelp12123.lstPompes
             oPompe.NbBuses = nBuses
-           If IsNumeric(diagBuses_debitMoyen.Text) Then
+            If IsNumeric(diagBuses_debitMoyen.Text) Then
                 oPompe.debitMesure = diagBuses_debitMoyen.DecimalValue
             End If
             If IsNumeric(tbPressionMesure.Text) Then

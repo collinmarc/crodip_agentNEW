@@ -5,6 +5,7 @@ Imports System.Security.Cryptography
 Imports System.IO
 Imports System.Text
 Imports System.Collections.Generic
+Imports System.Linq
 ''' <summary>
 ''' 
 ''' </summary>
@@ -20,6 +21,8 @@ Public Class Synchronisation
     Private m_Agent As Agent
     Public m_SynchroBoolean As New SynchroBooleans
     'Boolean de synchronisation
+
+    Private m_ListeElementSynchroASC As New List(Of SynchronisationElmt)
 
     Sub New(pAgent As Agent)
         m_bTraitee = False
@@ -190,12 +193,21 @@ Public Class Synchronisation
 
             SynchronisationManager.LogSynchroStart("ASC")
             m_listSynchro = ""
+            Dim bSynhcro As Boolean
             Notice("Debut Synchro Ascendante")
             ' Synchro diagnostics
             If (m_SynchroBoolean.m_bSynchAscDiag) Then
                 Dim arrUpdatesDiagnostic() As Diagnostic = DiagnosticManager.getUpdates(m_Agent)
                 For Each tmpUpdateDiagnostic As Diagnostic In arrUpdatesDiagnostic
-                    runascSynchroDiag(m_Agent, tmpUpdateDiagnostic)
+                    bSynhcro = runascSynchroDiag(m_Agent, tmpUpdateDiagnostic)
+                    If (bSynhcro) Then
+                        'Ajout du Diag dans la liste des element Synchroniser
+                        Dim oElement As SynchronisationElmt
+                        oElement = SynchronisationElmt.createSynchronisationElmt(SynchronisationElmtDiag.getLabelGet(), m_SynchroBoolean)
+                        oElement.identifiantChaine = tmpUpdateDiagnostic.id
+                        m_ListeElementSynchroASC.Add(oElement)
+                    End If
+
                 Next
             End If
             ' Synchro d'un agent
@@ -796,6 +808,10 @@ Public Class Synchronisation
             Notice("Rapport Inspection et Synthese des mesures")
             DiagnosticManager.SendFTPEtats(pDiag)
 
+
+            'Ajout du Diag 
+
+
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Synchronisation.runascSynchroDiag ERR " & ex.Message)
@@ -835,15 +851,18 @@ Public Class Synchronisation
                 'On synchronise les élements non traité (<> GetAgent)
                 For Each oSynchroElmt As SynchronisationElmt In lstElementsASynchroniser
                     If oSynchroElmt.Traitee = False Then
-                        If oSynchroElmt.type.ToUpper() <> "GETDOCUMENT" Then
-                            Notice(oSynchroElmt.type & "[" & oSynchroElmt.identifiantChaine & "]")
-                        Else
-                            If oSynchroElmt.update Then
+                        If Not IsElementDansSynchroASC(oSynchroElmt) Then
+                            If oSynchroElmt.type.ToUpper() <> "GETDOCUMENT" Then
                                 Notice(oSynchroElmt.type & "[" & oSynchroElmt.identifiantChaine & "]")
+                            Else
+                                If oSynchroElmt.update Then
+                                    Notice(oSynchroElmt.type & "[" & oSynchroElmt.identifiantChaine & "]")
+                                End If
                             End If
+
+                            oSynchroElmt.SynchroDesc(m_Agent)
+                            oSynchroElmt.Traitee = True
                         End If
-                        oSynchroElmt.SynchroDesc(m_Agent)
-                        oSynchroElmt.Traitee = True
                     End If
                 Next
                 '' On affiche le log
@@ -865,6 +884,22 @@ Public Class Synchronisation
 
 
     End Function
+
+    Private Function IsElementDansSynchroASC(pElement As SynchronisationElmt) As Boolean
+        Dim bReturn As Boolean
+        Try
+
+            Dim nbElement As Integer = (From elmt As SynchronisationElmt In m_ListeElementSynchroASC
+                         Where elmt.type = pElement.type And elmt.identifiantChaine = pElement.identifiantChaine
+                         Select elmt).Count
+
+            bReturn = (nbElement > 0)
+        Catch ex As Exception
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
     '''
     ''' Mise à jour de la date de dernère synhcro
     ''' 

@@ -415,6 +415,18 @@ Public Class DiagnosticHelp571
         Return bReturn
 
     End Function
+    Public Function hasValueDebit() As Boolean
+        Dim bReturn As Boolean
+        bReturn = m_ResultDEB <> ""
+        Return bReturn
+
+    End Function
+    Public Function hasValuePression() As Boolean
+        Dim bReturn As Boolean
+        bReturn = m_ResultPRS <> ""
+        Return bReturn
+
+    End Function
 
 
     Public Function calcule() As Boolean

@@ -229,6 +229,16 @@ Public Class Diagnostic_dlghelp552
             Else
                 AfficheResultat(pHelp)
             End If
+
+            Select Case m_Mode
+                Case Help552Mode.Mode552
+                    lblCodeDefaut.Text = "5.5.2.2"
+                Case Help552Mode.Mode5622
+                    lblCodeDefaut.Text = "5.6.2.2"
+                Case Else
+
+            End Select
+
             m_bDuringLoad552 = False
         Catch ex As Exception
             CSDebug.dispError("Diagnostic_dlghelp552.PopupHelp552_init ERR : " & ex.Message)

@@ -32,6 +32,7 @@ Public Class diagnostic_dlghelp571
             pnl_Debit.Enabled = False
             btnValider.Enabled = False
         End If
+        lblCodeDefaut.Text = "5.7.1"
     End Sub
     Public Function getContexte() As DiagnosticHelp571
         Return m_DiagHelp571

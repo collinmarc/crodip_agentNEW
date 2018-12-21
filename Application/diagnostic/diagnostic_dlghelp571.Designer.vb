@@ -63,6 +63,7 @@ Partial Class diagnostic_dlghelp571
         Me.tbErreurVitesseDEB = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
+        Me.lblCodeDefaut = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -79,6 +80,7 @@ Partial Class diagnostic_dlghelp571
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.lblCodeDefaut)
         Me.Panel2.Controls.Add(Me.btnAnnuler)
         Me.Panel2.Controls.Add(Me.btnValider)
         Me.Panel2.Controls.Add(Me.TabControl1)
@@ -91,7 +93,7 @@ Partial Class diagnostic_dlghelp571
         '
         Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAnnuler.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.btnAnnuler.BackgroundImage = Crodip_Agent.Resources.btn_annuler
+        Me.btnAnnuler.BackgroundImage = Global.Crodip_agent.Resources.btn_annuler
         Me.btnAnnuler.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnAnnuler.FlatAppearance.BorderSize = 0
@@ -109,7 +111,7 @@ Partial Class diagnostic_dlghelp571
         '
         Me.btnValider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnValider.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.btnValider.BackgroundImage = Crodip_Agent.Resources.btn_valider
+        Me.btnValider.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
         Me.btnValider.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnValider.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btnValider.FlatAppearance.BorderSize = 0
@@ -553,6 +555,17 @@ Partial Class diagnostic_dlghelp571
         Me.Label13.Text = "DPAE avec capteur de débit"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'lblCodeDefaut
+        '
+        Me.lblCodeDefaut.AutoSize = True
+        Me.lblCodeDefaut.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.lblCodeDefaut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblCodeDefaut.Location = New System.Drawing.Point(8, 309)
+        Me.lblCodeDefaut.Name = "lblCodeDefaut"
+        Me.lblCodeDefaut.Size = New System.Drawing.Size(19, 13)
+        Me.lblCodeDefaut.TabIndex = 61
+        Me.lblCodeDefaut.Text = "..."
+        '
         'diagnostic_dlghelp571
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -567,6 +580,7 @@ Partial Class diagnostic_dlghelp571
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Dialog1"
         Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.pnl_Pression.ResumeLayout(False)
@@ -625,5 +639,6 @@ Partial Class diagnostic_dlghelp571
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents laResultDEB As System.Windows.Forms.Label
+    Friend WithEvents lblCodeDefaut As System.Windows.Forms.Label
 
 End Class

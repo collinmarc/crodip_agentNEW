@@ -108,7 +108,9 @@ Public Class SynchronisationElmt
         Try
             Select Case PNAme.ToUpper.Trim()
                 Case "type".ToUpper.Trim()
-                    type = Trim(pValue)
+                    If type = "" Then
+                        type = Trim(pValue)
+                    End If
                 Case "identifiantEntier".ToUpper.Trim()
                     If Not String.IsNullOrEmpty(pValue) Then
                         identifiantEntier = CInt(Trim(pValue))
@@ -627,6 +629,19 @@ Public Class SynchronisationElmt
                 oReturn = New SynchroElementDocument(pSynchroBooleans)
             Case SynchronisationElmtIdentifiantPulverisateur.getLabelGet.ToUpper().Trim()
                 oReturn = New SynchronisationElmtIdentifiantPulverisateur(pSynchroBooleans)
+            Case SynchronisationElmtDiag.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
+            Case "GetDiagnosticItems".ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
+            Case "GetDiagnosticBuses".ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
+            Case "GetDiagnosticBusesDetail".ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
+            Case "GetDiagnosticMano542".ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
+            Case "GetDiagnosticTroncons833".ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
+
             Case Else
                 oReturn = New SynchronisationElmt(pType, pSynchroBooleans)
 

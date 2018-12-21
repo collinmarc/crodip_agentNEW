@@ -15,6 +15,8 @@ Build :20181220180000
 #156: Modification de la fenêtre de récapitulatif en fin de contrôle
 #153: Nombre de pompes dosueuses
 #154: Traitement des semences
+#148 : controle en fin de Saisie
+#189 : Sychronisation d'un organisme'
 
 
 Build :20181206110000

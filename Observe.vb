@@ -3,7 +3,7 @@
 ''' Objet observé par des obbservateurs
 ''' </summary>
 ''' <remarks></remarks>
-Public Class Observe
+Public MustInherit Class Observe
     Private mList As New List(Of IObservateur)
     Protected m_listSynchro As String
 

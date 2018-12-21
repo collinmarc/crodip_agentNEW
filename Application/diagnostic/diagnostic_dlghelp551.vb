@@ -171,7 +171,14 @@ Public Class diagnostic_dlghelp551
         If Not m_bVisu Then
             calc_help_551()
         End If
-
+        Select Case m_Mode
+            Case DiagnosticHelp551.Help551Mode.Mode551
+                lblCodeDefaut.Text = "5.5.1.2"
+            Case DiagnosticHelp551.Help551Mode.Mode5621
+                lblCodeDefaut.Text = "5.6.2.1"
+            Case DiagnosticHelp551.Help551Mode.Mode12323
+                lblCodeDefaut.Text = "12.3.2.3"
+        End Select
     End Sub
     Private Sub help551_close_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     End Sub

@@ -27,7 +27,9 @@ Partial Class Diagnostic_dlghelp552
         Me.btnValider = New System.Windows.Forms.Button()
         Me.pnl552 = New System.Windows.Forms.Panel()
         Me.Label86 = New System.Windows.Forms.Label()
+        Me.help552_pressionMesure = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label89 = New System.Windows.Forms.Label()
+        Me.help552_debitMoyen0bar = New CRODIP_ControlLibrary.TBNumeric()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tpHelp552 = New System.Windows.Forms.TabPage()
         Me.Panel122 = New System.Windows.Forms.Panel()
@@ -35,10 +37,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel650 = New System.Windows.Forms.Panel()
         Me.Label173 = New System.Windows.Forms.Label()
         Me.Panel654 = New System.Windows.Forms.Panel()
+        Me.help552_m1_ecart = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel655 = New System.Windows.Forms.Panel()
+        Me.help552_m2_ecart = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel656 = New System.Windows.Forms.Panel()
+        Me.help552_m3_ecart = New CRODIP_ControlLibrary.TBNumeric()
         Me.help552_result = New System.Windows.Forms.Label()
         Me.Label87 = New System.Windows.Forms.Label()
+        Me.help552_erreurDebimetre = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel50 = New System.Windows.Forms.Panel()
         Me.Panel51 = New System.Windows.Forms.Panel()
         Me.Label27 = New System.Windows.Forms.Label()
@@ -53,11 +59,17 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel73 = New System.Windows.Forms.Panel()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Panel75 = New System.Windows.Forms.Panel()
+        Me.help552_calculs_m1_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel76 = New System.Windows.Forms.Panel()
+        Me.help552_calculs_m2_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel77 = New System.Windows.Forms.Panel()
+        Me.help552_calculs_m3_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel78 = New System.Windows.Forms.Panel()
+        Me.help552_calculs_m1_pression = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel79 = New System.Windows.Forms.Panel()
+        Me.help552_calculs_m2_pression = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel80 = New System.Windows.Forms.Panel()
+        Me.help552_calculs_m3_pression = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel84 = New System.Windows.Forms.Panel()
         Me.Panel85 = New System.Windows.Forms.Panel()
         Me.Label34 = New System.Windows.Forms.Label()
@@ -72,21 +84,31 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel90 = New System.Windows.Forms.Panel()
         Me.Label39 = New System.Windows.Forms.Label()
         Me.Panel91 = New System.Windows.Forms.Panel()
+        Me.help552_etalon_m1_debitEtalon = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel92 = New System.Windows.Forms.Panel()
+        Me.help552_etalon_m2_debitEtalon = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel93 = New System.Windows.Forms.Panel()
+        Me.help552_etalon_m3_debitEtalon = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel94 = New System.Windows.Forms.Panel()
+        Me.help552_etalon_m1_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel95 = New System.Windows.Forms.Panel()
+        Me.help552_etalon_m2_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel96 = New System.Windows.Forms.Panel()
+        Me.help552_etalon_m3_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
         Me.tpHelp5622 = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.help5622_m1_ecart = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.help5622_m2_ecart = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.help5622_m3_ecart = New CRODIP_ControlLibrary.TBNumeric()
         Me.help5622_result = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.help5622_erreurDebimetre = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -101,11 +123,17 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Panel14 = New System.Windows.Forms.Panel()
+        Me.help5622_calculs_m1_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.help5622_calculs_m2_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.help5622_calculs_m3_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel17 = New System.Windows.Forms.Panel()
+        Me.help5622_calculs_m1_pression = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel18 = New System.Windows.Forms.Panel()
+        Me.help5622_calculs_m2_pression = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel19 = New System.Windows.Forms.Panel()
+        Me.help5622_calculs_m3_pression = New CRODIP_ControlLibrary.TBNumeric()
         Me.Panel20 = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -120,45 +148,18 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel26 = New System.Windows.Forms.Panel()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Panel27 = New System.Windows.Forms.Panel()
-        Me.Panel28 = New System.Windows.Forms.Panel()
-        Me.Panel29 = New System.Windows.Forms.Panel()
-        Me.Panel30 = New System.Windows.Forms.Panel()
-        Me.Panel31 = New System.Windows.Forms.Panel()
-        Me.Panel32 = New System.Windows.Forms.Panel()
-        Me.help552_pressionMesure = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_debitMoyen0bar = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_m1_ecart = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_m2_ecart = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_m3_ecart = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_erreurDebimetre = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_calculs_m1_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_calculs_m2_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_calculs_m3_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_calculs_m1_pression = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_calculs_m2_pression = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_calculs_m3_pression = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_etalon_m1_debitEtalon = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_etalon_m2_debitEtalon = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_etalon_m3_debitEtalon = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_etalon_m1_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_etalon_m2_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help552_etalon_m3_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help5622_m1_ecart = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help5622_m2_ecart = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help5622_m3_ecart = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help5622_erreurDebimetre = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help5622_calculs_m1_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help5622_calculs_m2_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help5622_calculs_m3_nbBuses = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help5622_calculs_m1_pression = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help5622_calculs_m2_pression = New CRODIP_ControlLibrary.TBNumeric()
-        Me.help5622_calculs_m3_pression = New CRODIP_ControlLibrary.TBNumeric()
         Me.help5622_etalon_m1_debitEtalon = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Panel28 = New System.Windows.Forms.Panel()
         Me.help5622_etalon_m2_debitEtalon = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Panel29 = New System.Windows.Forms.Panel()
         Me.help5622_etalon_m3_debitEtalon = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Panel30 = New System.Windows.Forms.Panel()
         Me.help5622_etalon_m1_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Panel31 = New System.Windows.Forms.Panel()
         Me.help5622_etalon_m2_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Panel32 = New System.Windows.Forms.Panel()
         Me.help5622_etalon_m3_debitAfficheur = New CRODIP_ControlLibrary.TBNumeric()
+        Me.lblCodeDefaut = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.pnl552.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -249,7 +250,7 @@ Partial Class Diagnostic_dlghelp552
         '
         Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAnnuler.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.btnAnnuler.BackgroundImage = Crodip_Agent.Resources.btn_annuler
+        Me.btnAnnuler.BackgroundImage = Global.Crodip_agent.Resources.btn_annuler
         Me.btnAnnuler.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnAnnuler.FlatAppearance.BorderSize = 0
@@ -267,7 +268,7 @@ Partial Class Diagnostic_dlghelp552
         '
         Me.btnValider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnValider.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.btnValider.BackgroundImage = Crodip_Agent.Resources.btn_valider
+        Me.btnValider.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
         Me.btnValider.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnValider.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btnValider.FlatAppearance.BorderSize = 0
@@ -287,6 +288,7 @@ Partial Class Diagnostic_dlghelp552
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnl552.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.pnl552.Controls.Add(Me.lblCodeDefaut)
         Me.pnl552.Controls.Add(Me.Label86)
         Me.pnl552.Controls.Add(Me.help552_pressionMesure)
         Me.pnl552.Controls.Add(Me.Label89)
@@ -302,23 +304,43 @@ Partial Class Diagnostic_dlghelp552
         '
         Me.Label86.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label86.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label86.Location = New System.Drawing.Point(34, 13)
+        Me.Label86.Location = New System.Drawing.Point(77, 13)
         Me.Label86.Name = "Label86"
         Me.Label86.Size = New System.Drawing.Size(171, 14)
         Me.Label86.TabIndex = 46
         Me.Label86.Text = "Pression de mesure (bar) :"
         Me.Label86.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
+        'help552_pressionMesure
+        '
+        Me.help552_pressionMesure.Enabled = False
+        Me.help552_pressionMesure.ForceBindingOnTextChanged = False
+        Me.help552_pressionMesure.Location = New System.Drawing.Point(261, 10)
+        Me.help552_pressionMesure.Name = "help552_pressionMesure"
+        Me.help552_pressionMesure.ReadOnly = True
+        Me.help552_pressionMesure.Size = New System.Drawing.Size(83, 20)
+        Me.help552_pressionMesure.TabIndex = 44
+        '
         'Label89
         '
         Me.Label89.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label89.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label89.Location = New System.Drawing.Point(34, 37)
+        Me.Label89.Location = New System.Drawing.Point(77, 37)
         Me.Label89.Name = "Label89"
         Me.Label89.Size = New System.Drawing.Size(171, 14)
         Me.Label89.TabIndex = 47
         Me.Label89.Text = "Débit moyen à 3 bar :"
         Me.Label89.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'help552_debitMoyen0bar
+        '
+        Me.help552_debitMoyen0bar.Enabled = False
+        Me.help552_debitMoyen0bar.ForceBindingOnTextChanged = False
+        Me.help552_debitMoyen0bar.Location = New System.Drawing.Point(261, 34)
+        Me.help552_debitMoyen0bar.Name = "help552_debitMoyen0bar"
+        Me.help552_debitMoyen0bar.ReadOnly = True
+        Me.help552_debitMoyen0bar.Size = New System.Drawing.Size(83, 20)
+        Me.help552_debitMoyen0bar.TabIndex = 45
         '
         'TabControl1
         '
@@ -396,6 +418,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel654.Size = New System.Drawing.Size(72, 24)
         Me.Panel654.TabIndex = 35
         '
+        'help552_m1_ecart
+        '
+        Me.help552_m1_ecart.ForceBindingOnTextChanged = False
+        Me.help552_m1_ecart.Location = New System.Drawing.Point(7, 1)
+        Me.help552_m1_ecart.Name = "help552_m1_ecart"
+        Me.help552_m1_ecart.ReadOnly = True
+        Me.help552_m1_ecart.Size = New System.Drawing.Size(56, 20)
+        Me.help552_m1_ecart.TabIndex = 0
+        '
         'Panel655
         '
         Me.Panel655.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -405,6 +436,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel655.Size = New System.Drawing.Size(72, 24)
         Me.Panel655.TabIndex = 34
         '
+        'help552_m2_ecart
+        '
+        Me.help552_m2_ecart.ForceBindingOnTextChanged = False
+        Me.help552_m2_ecart.Location = New System.Drawing.Point(7, 1)
+        Me.help552_m2_ecart.Name = "help552_m2_ecart"
+        Me.help552_m2_ecart.ReadOnly = True
+        Me.help552_m2_ecart.Size = New System.Drawing.Size(56, 20)
+        Me.help552_m2_ecart.TabIndex = 0
+        '
         'Panel656
         '
         Me.Panel656.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -413,6 +453,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel656.Name = "Panel656"
         Me.Panel656.Size = New System.Drawing.Size(72, 24)
         Me.Panel656.TabIndex = 29
+        '
+        'help552_m3_ecart
+        '
+        Me.help552_m3_ecart.ForceBindingOnTextChanged = False
+        Me.help552_m3_ecart.Location = New System.Drawing.Point(7, 1)
+        Me.help552_m3_ecart.Name = "help552_m3_ecart"
+        Me.help552_m3_ecart.ReadOnly = True
+        Me.help552_m3_ecart.Size = New System.Drawing.Size(56, 20)
+        Me.help552_m3_ecart.TabIndex = 0
         '
         'help552_result
         '
@@ -435,6 +484,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Label87.TabIndex = 32
         Me.Label87.Text = "Erreur Débitmètre (%)"
         Me.Label87.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'help552_erreurDebimetre
+        '
+        Me.help552_erreurDebimetre.ForceBindingOnTextChanged = False
+        Me.help552_erreurDebimetre.Location = New System.Drawing.Point(136, 210)
+        Me.help552_erreurDebimetre.Name = "help552_erreurDebimetre"
+        Me.help552_erreurDebimetre.ReadOnly = True
+        Me.help552_erreurDebimetre.Size = New System.Drawing.Size(72, 20)
+        Me.help552_erreurDebimetre.TabIndex = 33
         '
         'Panel50
         '
@@ -574,6 +632,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel75.Size = New System.Drawing.Size(72, 24)
         Me.Panel75.TabIndex = 1
         '
+        'help552_calculs_m1_nbBuses
+        '
+        Me.help552_calculs_m1_nbBuses.ForceBindingOnTextChanged = False
+        Me.help552_calculs_m1_nbBuses.Location = New System.Drawing.Point(7, 1)
+        Me.help552_calculs_m1_nbBuses.Name = "help552_calculs_m1_nbBuses"
+        Me.help552_calculs_m1_nbBuses.Size = New System.Drawing.Size(56, 20)
+        Me.help552_calculs_m1_nbBuses.TabIndex = 0
+        '
         'Panel76
         '
         Me.Panel76.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -582,6 +648,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel76.Name = "Panel76"
         Me.Panel76.Size = New System.Drawing.Size(72, 24)
         Me.Panel76.TabIndex = 5
+        '
+        'help552_calculs_m2_nbBuses
+        '
+        Me.help552_calculs_m2_nbBuses.ForceBindingOnTextChanged = False
+        Me.help552_calculs_m2_nbBuses.Location = New System.Drawing.Point(7, 1)
+        Me.help552_calculs_m2_nbBuses.Name = "help552_calculs_m2_nbBuses"
+        Me.help552_calculs_m2_nbBuses.Size = New System.Drawing.Size(56, 20)
+        Me.help552_calculs_m2_nbBuses.TabIndex = 0
         '
         'Panel77
         '
@@ -592,6 +666,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel77.Size = New System.Drawing.Size(72, 24)
         Me.Panel77.TabIndex = 9
         '
+        'help552_calculs_m3_nbBuses
+        '
+        Me.help552_calculs_m3_nbBuses.ForceBindingOnTextChanged = False
+        Me.help552_calculs_m3_nbBuses.Location = New System.Drawing.Point(7, 1)
+        Me.help552_calculs_m3_nbBuses.Name = "help552_calculs_m3_nbBuses"
+        Me.help552_calculs_m3_nbBuses.Size = New System.Drawing.Size(56, 20)
+        Me.help552_calculs_m3_nbBuses.TabIndex = 0
+        '
         'Panel78
         '
         Me.Panel78.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -600,6 +682,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel78.Name = "Panel78"
         Me.Panel78.Size = New System.Drawing.Size(72, 24)
         Me.Panel78.TabIndex = 2
+        '
+        'help552_calculs_m1_pression
+        '
+        Me.help552_calculs_m1_pression.ForceBindingOnTextChanged = False
+        Me.help552_calculs_m1_pression.Location = New System.Drawing.Point(7, 1)
+        Me.help552_calculs_m1_pression.Name = "help552_calculs_m1_pression"
+        Me.help552_calculs_m1_pression.Size = New System.Drawing.Size(56, 20)
+        Me.help552_calculs_m1_pression.TabIndex = 0
         '
         'Panel79
         '
@@ -610,6 +700,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel79.Size = New System.Drawing.Size(72, 24)
         Me.Panel79.TabIndex = 6
         '
+        'help552_calculs_m2_pression
+        '
+        Me.help552_calculs_m2_pression.ForceBindingOnTextChanged = False
+        Me.help552_calculs_m2_pression.Location = New System.Drawing.Point(7, 1)
+        Me.help552_calculs_m2_pression.Name = "help552_calculs_m2_pression"
+        Me.help552_calculs_m2_pression.Size = New System.Drawing.Size(56, 20)
+        Me.help552_calculs_m2_pression.TabIndex = 0
+        '
         'Panel80
         '
         Me.Panel80.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -618,6 +716,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel80.Name = "Panel80"
         Me.Panel80.Size = New System.Drawing.Size(72, 24)
         Me.Panel80.TabIndex = 10
+        '
+        'help552_calculs_m3_pression
+        '
+        Me.help552_calculs_m3_pression.ForceBindingOnTextChanged = False
+        Me.help552_calculs_m3_pression.Location = New System.Drawing.Point(7, 1)
+        Me.help552_calculs_m3_pression.Name = "help552_calculs_m3_pression"
+        Me.help552_calculs_m3_pression.Size = New System.Drawing.Size(56, 20)
+        Me.help552_calculs_m3_pression.TabIndex = 0
         '
         'Panel84
         '
@@ -757,6 +863,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel91.Size = New System.Drawing.Size(72, 24)
         Me.Panel91.TabIndex = 3
         '
+        'help552_etalon_m1_debitEtalon
+        '
+        Me.help552_etalon_m1_debitEtalon.Enabled = False
+        Me.help552_etalon_m1_debitEtalon.ForceBindingOnTextChanged = False
+        Me.help552_etalon_m1_debitEtalon.Location = New System.Drawing.Point(7, 1)
+        Me.help552_etalon_m1_debitEtalon.Name = "help552_etalon_m1_debitEtalon"
+        Me.help552_etalon_m1_debitEtalon.Size = New System.Drawing.Size(56, 20)
+        Me.help552_etalon_m1_debitEtalon.TabIndex = 1
+        '
         'Panel92
         '
         Me.Panel92.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -765,6 +880,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel92.Name = "Panel92"
         Me.Panel92.Size = New System.Drawing.Size(72, 24)
         Me.Panel92.TabIndex = 7
+        '
+        'help552_etalon_m2_debitEtalon
+        '
+        Me.help552_etalon_m2_debitEtalon.Enabled = False
+        Me.help552_etalon_m2_debitEtalon.ForceBindingOnTextChanged = False
+        Me.help552_etalon_m2_debitEtalon.Location = New System.Drawing.Point(7, 1)
+        Me.help552_etalon_m2_debitEtalon.Name = "help552_etalon_m2_debitEtalon"
+        Me.help552_etalon_m2_debitEtalon.Size = New System.Drawing.Size(56, 20)
+        Me.help552_etalon_m2_debitEtalon.TabIndex = 1
         '
         'Panel93
         '
@@ -775,6 +899,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel93.Size = New System.Drawing.Size(72, 24)
         Me.Panel93.TabIndex = 11
         '
+        'help552_etalon_m3_debitEtalon
+        '
+        Me.help552_etalon_m3_debitEtalon.Enabled = False
+        Me.help552_etalon_m3_debitEtalon.ForceBindingOnTextChanged = False
+        Me.help552_etalon_m3_debitEtalon.Location = New System.Drawing.Point(7, 1)
+        Me.help552_etalon_m3_debitEtalon.Name = "help552_etalon_m3_debitEtalon"
+        Me.help552_etalon_m3_debitEtalon.Size = New System.Drawing.Size(56, 20)
+        Me.help552_etalon_m3_debitEtalon.TabIndex = 1
+        '
         'Panel94
         '
         Me.Panel94.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -783,6 +916,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel94.Name = "Panel94"
         Me.Panel94.Size = New System.Drawing.Size(72, 24)
         Me.Panel94.TabIndex = 4
+        '
+        'help552_etalon_m1_debitAfficheur
+        '
+        Me.help552_etalon_m1_debitAfficheur.ForceBindingOnTextChanged = False
+        Me.help552_etalon_m1_debitAfficheur.Location = New System.Drawing.Point(7, 1)
+        Me.help552_etalon_m1_debitAfficheur.Name = "help552_etalon_m1_debitAfficheur"
+        Me.help552_etalon_m1_debitAfficheur.Size = New System.Drawing.Size(56, 20)
+        Me.help552_etalon_m1_debitAfficheur.TabIndex = 1
         '
         'Panel95
         '
@@ -793,6 +934,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel95.Size = New System.Drawing.Size(72, 24)
         Me.Panel95.TabIndex = 8
         '
+        'help552_etalon_m2_debitAfficheur
+        '
+        Me.help552_etalon_m2_debitAfficheur.ForceBindingOnTextChanged = False
+        Me.help552_etalon_m2_debitAfficheur.Location = New System.Drawing.Point(7, 1)
+        Me.help552_etalon_m2_debitAfficheur.Name = "help552_etalon_m2_debitAfficheur"
+        Me.help552_etalon_m2_debitAfficheur.Size = New System.Drawing.Size(56, 20)
+        Me.help552_etalon_m2_debitAfficheur.TabIndex = 1
+        '
         'Panel96
         '
         Me.Panel96.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -801,6 +950,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel96.Name = "Panel96"
         Me.Panel96.Size = New System.Drawing.Size(72, 24)
         Me.Panel96.TabIndex = 12
+        '
+        'help552_etalon_m3_debitAfficheur
+        '
+        Me.help552_etalon_m3_debitAfficheur.ForceBindingOnTextChanged = False
+        Me.help552_etalon_m3_debitAfficheur.Location = New System.Drawing.Point(7, 1)
+        Me.help552_etalon_m3_debitAfficheur.Name = "help552_etalon_m3_debitAfficheur"
+        Me.help552_etalon_m3_debitAfficheur.Size = New System.Drawing.Size(56, 20)
+        Me.help552_etalon_m3_debitAfficheur.TabIndex = 1
         '
         'tpHelp5622
         '
@@ -868,6 +1025,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel4.Size = New System.Drawing.Size(72, 24)
         Me.Panel4.TabIndex = 35
         '
+        'help5622_m1_ecart
+        '
+        Me.help5622_m1_ecart.ForceBindingOnTextChanged = False
+        Me.help5622_m1_ecart.Location = New System.Drawing.Point(7, 1)
+        Me.help5622_m1_ecart.Name = "help5622_m1_ecart"
+        Me.help5622_m1_ecart.ReadOnly = True
+        Me.help5622_m1_ecart.Size = New System.Drawing.Size(56, 20)
+        Me.help5622_m1_ecart.TabIndex = 0
+        '
         'Panel5
         '
         Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -877,6 +1043,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel5.Size = New System.Drawing.Size(72, 24)
         Me.Panel5.TabIndex = 34
         '
+        'help5622_m2_ecart
+        '
+        Me.help5622_m2_ecart.ForceBindingOnTextChanged = False
+        Me.help5622_m2_ecart.Location = New System.Drawing.Point(7, 1)
+        Me.help5622_m2_ecart.Name = "help5622_m2_ecart"
+        Me.help5622_m2_ecart.ReadOnly = True
+        Me.help5622_m2_ecart.Size = New System.Drawing.Size(56, 20)
+        Me.help5622_m2_ecart.TabIndex = 0
+        '
         'Panel6
         '
         Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -885,6 +1060,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(72, 24)
         Me.Panel6.TabIndex = 29
+        '
+        'help5622_m3_ecart
+        '
+        Me.help5622_m3_ecart.ForceBindingOnTextChanged = False
+        Me.help5622_m3_ecart.Location = New System.Drawing.Point(7, 1)
+        Me.help5622_m3_ecart.Name = "help5622_m3_ecart"
+        Me.help5622_m3_ecart.ReadOnly = True
+        Me.help5622_m3_ecart.Size = New System.Drawing.Size(56, 20)
+        Me.help5622_m3_ecart.TabIndex = 0
         '
         'help5622_result
         '
@@ -907,6 +1091,15 @@ Partial Class Diagnostic_dlghelp552
         Me.Label3.TabIndex = 32
         Me.Label3.Text = "Erreur Débitmètre (%)"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'help5622_erreurDebimetre
+        '
+        Me.help5622_erreurDebimetre.ForceBindingOnTextChanged = False
+        Me.help5622_erreurDebimetre.Location = New System.Drawing.Point(136, 210)
+        Me.help5622_erreurDebimetre.Name = "help5622_erreurDebimetre"
+        Me.help5622_erreurDebimetre.ReadOnly = True
+        Me.help5622_erreurDebimetre.Size = New System.Drawing.Size(72, 20)
+        Me.help5622_erreurDebimetre.TabIndex = 33
         '
         'Panel7
         '
@@ -1046,6 +1239,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel14.Size = New System.Drawing.Size(72, 24)
         Me.Panel14.TabIndex = 1
         '
+        'help5622_calculs_m1_nbBuses
+        '
+        Me.help5622_calculs_m1_nbBuses.ForceBindingOnTextChanged = False
+        Me.help5622_calculs_m1_nbBuses.Location = New System.Drawing.Point(7, 1)
+        Me.help5622_calculs_m1_nbBuses.Name = "help5622_calculs_m1_nbBuses"
+        Me.help5622_calculs_m1_nbBuses.Size = New System.Drawing.Size(56, 20)
+        Me.help5622_calculs_m1_nbBuses.TabIndex = 0
+        '
         'Panel15
         '
         Me.Panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -1054,6 +1255,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel15.Name = "Panel15"
         Me.Panel15.Size = New System.Drawing.Size(72, 24)
         Me.Panel15.TabIndex = 5
+        '
+        'help5622_calculs_m2_nbBuses
+        '
+        Me.help5622_calculs_m2_nbBuses.ForceBindingOnTextChanged = False
+        Me.help5622_calculs_m2_nbBuses.Location = New System.Drawing.Point(7, 1)
+        Me.help5622_calculs_m2_nbBuses.Name = "help5622_calculs_m2_nbBuses"
+        Me.help5622_calculs_m2_nbBuses.Size = New System.Drawing.Size(56, 20)
+        Me.help5622_calculs_m2_nbBuses.TabIndex = 0
         '
         'Panel16
         '
@@ -1064,6 +1273,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel16.Size = New System.Drawing.Size(72, 24)
         Me.Panel16.TabIndex = 9
         '
+        'help5622_calculs_m3_nbBuses
+        '
+        Me.help5622_calculs_m3_nbBuses.ForceBindingOnTextChanged = False
+        Me.help5622_calculs_m3_nbBuses.Location = New System.Drawing.Point(7, 1)
+        Me.help5622_calculs_m3_nbBuses.Name = "help5622_calculs_m3_nbBuses"
+        Me.help5622_calculs_m3_nbBuses.Size = New System.Drawing.Size(56, 20)
+        Me.help5622_calculs_m3_nbBuses.TabIndex = 0
+        '
         'Panel17
         '
         Me.Panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -1072,6 +1289,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel17.Name = "Panel17"
         Me.Panel17.Size = New System.Drawing.Size(72, 24)
         Me.Panel17.TabIndex = 2
+        '
+        'help5622_calculs_m1_pression
+        '
+        Me.help5622_calculs_m1_pression.ForceBindingOnTextChanged = False
+        Me.help5622_calculs_m1_pression.Location = New System.Drawing.Point(7, 1)
+        Me.help5622_calculs_m1_pression.Name = "help5622_calculs_m1_pression"
+        Me.help5622_calculs_m1_pression.Size = New System.Drawing.Size(56, 20)
+        Me.help5622_calculs_m1_pression.TabIndex = 0
         '
         'Panel18
         '
@@ -1082,6 +1307,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel18.Size = New System.Drawing.Size(72, 24)
         Me.Panel18.TabIndex = 6
         '
+        'help5622_calculs_m2_pression
+        '
+        Me.help5622_calculs_m2_pression.ForceBindingOnTextChanged = False
+        Me.help5622_calculs_m2_pression.Location = New System.Drawing.Point(7, 1)
+        Me.help5622_calculs_m2_pression.Name = "help5622_calculs_m2_pression"
+        Me.help5622_calculs_m2_pression.Size = New System.Drawing.Size(56, 20)
+        Me.help5622_calculs_m2_pression.TabIndex = 0
+        '
         'Panel19
         '
         Me.Panel19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -1090,6 +1323,14 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel19.Name = "Panel19"
         Me.Panel19.Size = New System.Drawing.Size(72, 24)
         Me.Panel19.TabIndex = 10
+        '
+        'help5622_calculs_m3_pression
+        '
+        Me.help5622_calculs_m3_pression.ForceBindingOnTextChanged = False
+        Me.help5622_calculs_m3_pression.Location = New System.Drawing.Point(7, 1)
+        Me.help5622_calculs_m3_pression.Name = "help5622_calculs_m3_pression"
+        Me.help5622_calculs_m3_pression.Size = New System.Drawing.Size(56, 20)
+        Me.help5622_calculs_m3_pression.TabIndex = 0
         '
         'Panel20
         '
@@ -1229,290 +1470,6 @@ Partial Class Diagnostic_dlghelp552
         Me.Panel27.Size = New System.Drawing.Size(72, 24)
         Me.Panel27.TabIndex = 3
         '
-        'Panel28
-        '
-        Me.Panel28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel28.Controls.Add(Me.help5622_etalon_m2_debitEtalon)
-        Me.Panel28.Location = New System.Drawing.Point(176, 24)
-        Me.Panel28.Name = "Panel28"
-        Me.Panel28.Size = New System.Drawing.Size(72, 24)
-        Me.Panel28.TabIndex = 7
-        '
-        'Panel29
-        '
-        Me.Panel29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel29.Controls.Add(Me.help5622_etalon_m3_debitEtalon)
-        Me.Panel29.Location = New System.Drawing.Point(248, 24)
-        Me.Panel29.Name = "Panel29"
-        Me.Panel29.Size = New System.Drawing.Size(72, 24)
-        Me.Panel29.TabIndex = 11
-        '
-        'Panel30
-        '
-        Me.Panel30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel30.Controls.Add(Me.help5622_etalon_m1_debitAfficheur)
-        Me.Panel30.Location = New System.Drawing.Point(104, 48)
-        Me.Panel30.Name = "Panel30"
-        Me.Panel30.Size = New System.Drawing.Size(72, 24)
-        Me.Panel30.TabIndex = 4
-        '
-        'Panel31
-        '
-        Me.Panel31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel31.Controls.Add(Me.help5622_etalon_m2_debitAfficheur)
-        Me.Panel31.Location = New System.Drawing.Point(176, 48)
-        Me.Panel31.Name = "Panel31"
-        Me.Panel31.Size = New System.Drawing.Size(72, 24)
-        Me.Panel31.TabIndex = 8
-        '
-        'Panel32
-        '
-        Me.Panel32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel32.Controls.Add(Me.help5622_etalon_m3_debitAfficheur)
-        Me.Panel32.Location = New System.Drawing.Point(248, 48)
-        Me.Panel32.Name = "Panel32"
-        Me.Panel32.Size = New System.Drawing.Size(72, 24)
-        Me.Panel32.TabIndex = 12
-        '
-        'help552_pressionMesure
-        '
-        Me.help552_pressionMesure.Enabled = False
-        Me.help552_pressionMesure.ForceBindingOnTextChanged = False
-        Me.help552_pressionMesure.Location = New System.Drawing.Point(218, 10)
-        Me.help552_pressionMesure.Name = "help552_pressionMesure"
-        Me.help552_pressionMesure.ReadOnly = True
-        Me.help552_pressionMesure.Size = New System.Drawing.Size(83, 20)
-        Me.help552_pressionMesure.TabIndex = 44
-        '
-        'help552_debitMoyen0bar
-        '
-        Me.help552_debitMoyen0bar.Enabled = False
-        Me.help552_debitMoyen0bar.ForceBindingOnTextChanged = False
-        Me.help552_debitMoyen0bar.Location = New System.Drawing.Point(218, 34)
-        Me.help552_debitMoyen0bar.Name = "help552_debitMoyen0bar"
-        Me.help552_debitMoyen0bar.ReadOnly = True
-        Me.help552_debitMoyen0bar.Size = New System.Drawing.Size(83, 20)
-        Me.help552_debitMoyen0bar.TabIndex = 45
-        '
-        'help552_m1_ecart
-        '
-        Me.help552_m1_ecart.ForceBindingOnTextChanged = False
-        Me.help552_m1_ecart.Location = New System.Drawing.Point(7, 1)
-        Me.help552_m1_ecart.Name = "help552_m1_ecart"
-        Me.help552_m1_ecart.ReadOnly = True
-        Me.help552_m1_ecart.Size = New System.Drawing.Size(56, 20)
-        Me.help552_m1_ecart.TabIndex = 0
-        '
-        'help552_m2_ecart
-        '
-        Me.help552_m2_ecart.ForceBindingOnTextChanged = False
-        Me.help552_m2_ecart.Location = New System.Drawing.Point(7, 1)
-        Me.help552_m2_ecart.Name = "help552_m2_ecart"
-        Me.help552_m2_ecart.ReadOnly = True
-        Me.help552_m2_ecart.Size = New System.Drawing.Size(56, 20)
-        Me.help552_m2_ecart.TabIndex = 0
-        '
-        'help552_m3_ecart
-        '
-        Me.help552_m3_ecart.ForceBindingOnTextChanged = False
-        Me.help552_m3_ecart.Location = New System.Drawing.Point(7, 1)
-        Me.help552_m3_ecart.Name = "help552_m3_ecart"
-        Me.help552_m3_ecart.ReadOnly = True
-        Me.help552_m3_ecart.Size = New System.Drawing.Size(56, 20)
-        Me.help552_m3_ecart.TabIndex = 0
-        '
-        'help552_erreurDebimetre
-        '
-        Me.help552_erreurDebimetre.ForceBindingOnTextChanged = False
-        Me.help552_erreurDebimetre.Location = New System.Drawing.Point(136, 210)
-        Me.help552_erreurDebimetre.Name = "help552_erreurDebimetre"
-        Me.help552_erreurDebimetre.ReadOnly = True
-        Me.help552_erreurDebimetre.Size = New System.Drawing.Size(72, 20)
-        Me.help552_erreurDebimetre.TabIndex = 33
-        '
-        'help552_calculs_m1_nbBuses
-        '
-        Me.help552_calculs_m1_nbBuses.ForceBindingOnTextChanged = False
-        Me.help552_calculs_m1_nbBuses.Location = New System.Drawing.Point(7, 1)
-        Me.help552_calculs_m1_nbBuses.Name = "help552_calculs_m1_nbBuses"
-        Me.help552_calculs_m1_nbBuses.Size = New System.Drawing.Size(56, 20)
-        Me.help552_calculs_m1_nbBuses.TabIndex = 0
-        '
-        'help552_calculs_m2_nbBuses
-        '
-        Me.help552_calculs_m2_nbBuses.ForceBindingOnTextChanged = False
-        Me.help552_calculs_m2_nbBuses.Location = New System.Drawing.Point(7, 1)
-        Me.help552_calculs_m2_nbBuses.Name = "help552_calculs_m2_nbBuses"
-        Me.help552_calculs_m2_nbBuses.Size = New System.Drawing.Size(56, 20)
-        Me.help552_calculs_m2_nbBuses.TabIndex = 0
-        '
-        'help552_calculs_m3_nbBuses
-        '
-        Me.help552_calculs_m3_nbBuses.ForceBindingOnTextChanged = False
-        Me.help552_calculs_m3_nbBuses.Location = New System.Drawing.Point(7, 1)
-        Me.help552_calculs_m3_nbBuses.Name = "help552_calculs_m3_nbBuses"
-        Me.help552_calculs_m3_nbBuses.Size = New System.Drawing.Size(56, 20)
-        Me.help552_calculs_m3_nbBuses.TabIndex = 0
-        '
-        'help552_calculs_m1_pression
-        '
-        Me.help552_calculs_m1_pression.ForceBindingOnTextChanged = False
-        Me.help552_calculs_m1_pression.Location = New System.Drawing.Point(7, 1)
-        Me.help552_calculs_m1_pression.Name = "help552_calculs_m1_pression"
-        Me.help552_calculs_m1_pression.Size = New System.Drawing.Size(56, 20)
-        Me.help552_calculs_m1_pression.TabIndex = 0
-        '
-        'help552_calculs_m2_pression
-        '
-        Me.help552_calculs_m2_pression.ForceBindingOnTextChanged = False
-        Me.help552_calculs_m2_pression.Location = New System.Drawing.Point(7, 1)
-        Me.help552_calculs_m2_pression.Name = "help552_calculs_m2_pression"
-        Me.help552_calculs_m2_pression.Size = New System.Drawing.Size(56, 20)
-        Me.help552_calculs_m2_pression.TabIndex = 0
-        '
-        'help552_calculs_m3_pression
-        '
-        Me.help552_calculs_m3_pression.ForceBindingOnTextChanged = False
-        Me.help552_calculs_m3_pression.Location = New System.Drawing.Point(7, 1)
-        Me.help552_calculs_m3_pression.Name = "help552_calculs_m3_pression"
-        Me.help552_calculs_m3_pression.Size = New System.Drawing.Size(56, 20)
-        Me.help552_calculs_m3_pression.TabIndex = 0
-        '
-        'help552_etalon_m1_debitEtalon
-        '
-        Me.help552_etalon_m1_debitEtalon.Enabled = False
-        Me.help552_etalon_m1_debitEtalon.ForceBindingOnTextChanged = False
-        Me.help552_etalon_m1_debitEtalon.Location = New System.Drawing.Point(7, 1)
-        Me.help552_etalon_m1_debitEtalon.Name = "help552_etalon_m1_debitEtalon"
-        Me.help552_etalon_m1_debitEtalon.Size = New System.Drawing.Size(56, 20)
-        Me.help552_etalon_m1_debitEtalon.TabIndex = 1
-        '
-        'help552_etalon_m2_debitEtalon
-        '
-        Me.help552_etalon_m2_debitEtalon.Enabled = False
-        Me.help552_etalon_m2_debitEtalon.ForceBindingOnTextChanged = False
-        Me.help552_etalon_m2_debitEtalon.Location = New System.Drawing.Point(7, 1)
-        Me.help552_etalon_m2_debitEtalon.Name = "help552_etalon_m2_debitEtalon"
-        Me.help552_etalon_m2_debitEtalon.Size = New System.Drawing.Size(56, 20)
-        Me.help552_etalon_m2_debitEtalon.TabIndex = 1
-        '
-        'help552_etalon_m3_debitEtalon
-        '
-        Me.help552_etalon_m3_debitEtalon.Enabled = False
-        Me.help552_etalon_m3_debitEtalon.ForceBindingOnTextChanged = False
-        Me.help552_etalon_m3_debitEtalon.Location = New System.Drawing.Point(7, 1)
-        Me.help552_etalon_m3_debitEtalon.Name = "help552_etalon_m3_debitEtalon"
-        Me.help552_etalon_m3_debitEtalon.Size = New System.Drawing.Size(56, 20)
-        Me.help552_etalon_m3_debitEtalon.TabIndex = 1
-        '
-        'help552_etalon_m1_debitAfficheur
-        '
-        Me.help552_etalon_m1_debitAfficheur.ForceBindingOnTextChanged = False
-        Me.help552_etalon_m1_debitAfficheur.Location = New System.Drawing.Point(7, 1)
-        Me.help552_etalon_m1_debitAfficheur.Name = "help552_etalon_m1_debitAfficheur"
-        Me.help552_etalon_m1_debitAfficheur.Size = New System.Drawing.Size(56, 20)
-        Me.help552_etalon_m1_debitAfficheur.TabIndex = 1
-        '
-        'help552_etalon_m2_debitAfficheur
-        '
-        Me.help552_etalon_m2_debitAfficheur.ForceBindingOnTextChanged = False
-        Me.help552_etalon_m2_debitAfficheur.Location = New System.Drawing.Point(7, 1)
-        Me.help552_etalon_m2_debitAfficheur.Name = "help552_etalon_m2_debitAfficheur"
-        Me.help552_etalon_m2_debitAfficheur.Size = New System.Drawing.Size(56, 20)
-        Me.help552_etalon_m2_debitAfficheur.TabIndex = 1
-        '
-        'help552_etalon_m3_debitAfficheur
-        '
-        Me.help552_etalon_m3_debitAfficheur.ForceBindingOnTextChanged = False
-        Me.help552_etalon_m3_debitAfficheur.Location = New System.Drawing.Point(7, 1)
-        Me.help552_etalon_m3_debitAfficheur.Name = "help552_etalon_m3_debitAfficheur"
-        Me.help552_etalon_m3_debitAfficheur.Size = New System.Drawing.Size(56, 20)
-        Me.help552_etalon_m3_debitAfficheur.TabIndex = 1
-        '
-        'help5622_m1_ecart
-        '
-        Me.help5622_m1_ecart.ForceBindingOnTextChanged = False
-        Me.help5622_m1_ecart.Location = New System.Drawing.Point(7, 1)
-        Me.help5622_m1_ecart.Name = "help5622_m1_ecart"
-        Me.help5622_m1_ecart.ReadOnly = True
-        Me.help5622_m1_ecart.Size = New System.Drawing.Size(56, 20)
-        Me.help5622_m1_ecart.TabIndex = 0
-        '
-        'help5622_m2_ecart
-        '
-        Me.help5622_m2_ecart.ForceBindingOnTextChanged = False
-        Me.help5622_m2_ecart.Location = New System.Drawing.Point(7, 1)
-        Me.help5622_m2_ecart.Name = "help5622_m2_ecart"
-        Me.help5622_m2_ecart.ReadOnly = True
-        Me.help5622_m2_ecart.Size = New System.Drawing.Size(56, 20)
-        Me.help5622_m2_ecart.TabIndex = 0
-        '
-        'help5622_m3_ecart
-        '
-        Me.help5622_m3_ecart.ForceBindingOnTextChanged = False
-        Me.help5622_m3_ecart.Location = New System.Drawing.Point(7, 1)
-        Me.help5622_m3_ecart.Name = "help5622_m3_ecart"
-        Me.help5622_m3_ecart.ReadOnly = True
-        Me.help5622_m3_ecart.Size = New System.Drawing.Size(56, 20)
-        Me.help5622_m3_ecart.TabIndex = 0
-        '
-        'help5622_erreurDebimetre
-        '
-        Me.help5622_erreurDebimetre.ForceBindingOnTextChanged = False
-        Me.help5622_erreurDebimetre.Location = New System.Drawing.Point(136, 210)
-        Me.help5622_erreurDebimetre.Name = "help5622_erreurDebimetre"
-        Me.help5622_erreurDebimetre.ReadOnly = True
-        Me.help5622_erreurDebimetre.Size = New System.Drawing.Size(72, 20)
-        Me.help5622_erreurDebimetre.TabIndex = 33
-        '
-        'help5622_calculs_m1_nbBuses
-        '
-        Me.help5622_calculs_m1_nbBuses.ForceBindingOnTextChanged = False
-        Me.help5622_calculs_m1_nbBuses.Location = New System.Drawing.Point(7, 1)
-        Me.help5622_calculs_m1_nbBuses.Name = "help5622_calculs_m1_nbBuses"
-        Me.help5622_calculs_m1_nbBuses.Size = New System.Drawing.Size(56, 20)
-        Me.help5622_calculs_m1_nbBuses.TabIndex = 0
-        '
-        'help5622_calculs_m2_nbBuses
-        '
-        Me.help5622_calculs_m2_nbBuses.ForceBindingOnTextChanged = False
-        Me.help5622_calculs_m2_nbBuses.Location = New System.Drawing.Point(7, 1)
-        Me.help5622_calculs_m2_nbBuses.Name = "help5622_calculs_m2_nbBuses"
-        Me.help5622_calculs_m2_nbBuses.Size = New System.Drawing.Size(56, 20)
-        Me.help5622_calculs_m2_nbBuses.TabIndex = 0
-        '
-        'help5622_calculs_m3_nbBuses
-        '
-        Me.help5622_calculs_m3_nbBuses.ForceBindingOnTextChanged = False
-        Me.help5622_calculs_m3_nbBuses.Location = New System.Drawing.Point(7, 1)
-        Me.help5622_calculs_m3_nbBuses.Name = "help5622_calculs_m3_nbBuses"
-        Me.help5622_calculs_m3_nbBuses.Size = New System.Drawing.Size(56, 20)
-        Me.help5622_calculs_m3_nbBuses.TabIndex = 0
-        '
-        'help5622_calculs_m1_pression
-        '
-        Me.help5622_calculs_m1_pression.ForceBindingOnTextChanged = False
-        Me.help5622_calculs_m1_pression.Location = New System.Drawing.Point(7, 1)
-        Me.help5622_calculs_m1_pression.Name = "help5622_calculs_m1_pression"
-        Me.help5622_calculs_m1_pression.Size = New System.Drawing.Size(56, 20)
-        Me.help5622_calculs_m1_pression.TabIndex = 0
-        '
-        'help5622_calculs_m2_pression
-        '
-        Me.help5622_calculs_m2_pression.ForceBindingOnTextChanged = False
-        Me.help5622_calculs_m2_pression.Location = New System.Drawing.Point(7, 1)
-        Me.help5622_calculs_m2_pression.Name = "help5622_calculs_m2_pression"
-        Me.help5622_calculs_m2_pression.Size = New System.Drawing.Size(56, 20)
-        Me.help5622_calculs_m2_pression.TabIndex = 0
-        '
-        'help5622_calculs_m3_pression
-        '
-        Me.help5622_calculs_m3_pression.ForceBindingOnTextChanged = False
-        Me.help5622_calculs_m3_pression.Location = New System.Drawing.Point(7, 1)
-        Me.help5622_calculs_m3_pression.Name = "help5622_calculs_m3_pression"
-        Me.help5622_calculs_m3_pression.Size = New System.Drawing.Size(56, 20)
-        Me.help5622_calculs_m3_pression.TabIndex = 0
-        '
         'help5622_etalon_m1_debitEtalon
         '
         Me.help5622_etalon_m1_debitEtalon.Enabled = False
@@ -1521,6 +1478,15 @@ Partial Class Diagnostic_dlghelp552
         Me.help5622_etalon_m1_debitEtalon.Name = "help5622_etalon_m1_debitEtalon"
         Me.help5622_etalon_m1_debitEtalon.Size = New System.Drawing.Size(56, 20)
         Me.help5622_etalon_m1_debitEtalon.TabIndex = 1
+        '
+        'Panel28
+        '
+        Me.Panel28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel28.Controls.Add(Me.help5622_etalon_m2_debitEtalon)
+        Me.Panel28.Location = New System.Drawing.Point(176, 24)
+        Me.Panel28.Name = "Panel28"
+        Me.Panel28.Size = New System.Drawing.Size(72, 24)
+        Me.Panel28.TabIndex = 7
         '
         'help5622_etalon_m2_debitEtalon
         '
@@ -1531,6 +1497,15 @@ Partial Class Diagnostic_dlghelp552
         Me.help5622_etalon_m2_debitEtalon.Size = New System.Drawing.Size(56, 20)
         Me.help5622_etalon_m2_debitEtalon.TabIndex = 1
         '
+        'Panel29
+        '
+        Me.Panel29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel29.Controls.Add(Me.help5622_etalon_m3_debitEtalon)
+        Me.Panel29.Location = New System.Drawing.Point(248, 24)
+        Me.Panel29.Name = "Panel29"
+        Me.Panel29.Size = New System.Drawing.Size(72, 24)
+        Me.Panel29.TabIndex = 11
+        '
         'help5622_etalon_m3_debitEtalon
         '
         Me.help5622_etalon_m3_debitEtalon.Enabled = False
@@ -1540,6 +1515,15 @@ Partial Class Diagnostic_dlghelp552
         Me.help5622_etalon_m3_debitEtalon.Size = New System.Drawing.Size(56, 20)
         Me.help5622_etalon_m3_debitEtalon.TabIndex = 1
         '
+        'Panel30
+        '
+        Me.Panel30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel30.Controls.Add(Me.help5622_etalon_m1_debitAfficheur)
+        Me.Panel30.Location = New System.Drawing.Point(104, 48)
+        Me.Panel30.Name = "Panel30"
+        Me.Panel30.Size = New System.Drawing.Size(72, 24)
+        Me.Panel30.TabIndex = 4
+        '
         'help5622_etalon_m1_debitAfficheur
         '
         Me.help5622_etalon_m1_debitAfficheur.ForceBindingOnTextChanged = False
@@ -1547,6 +1531,15 @@ Partial Class Diagnostic_dlghelp552
         Me.help5622_etalon_m1_debitAfficheur.Name = "help5622_etalon_m1_debitAfficheur"
         Me.help5622_etalon_m1_debitAfficheur.Size = New System.Drawing.Size(56, 20)
         Me.help5622_etalon_m1_debitAfficheur.TabIndex = 1
+        '
+        'Panel31
+        '
+        Me.Panel31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel31.Controls.Add(Me.help5622_etalon_m2_debitAfficheur)
+        Me.Panel31.Location = New System.Drawing.Point(176, 48)
+        Me.Panel31.Name = "Panel31"
+        Me.Panel31.Size = New System.Drawing.Size(72, 24)
+        Me.Panel31.TabIndex = 8
         '
         'help5622_etalon_m2_debitAfficheur
         '
@@ -1556,6 +1549,15 @@ Partial Class Diagnostic_dlghelp552
         Me.help5622_etalon_m2_debitAfficheur.Size = New System.Drawing.Size(56, 20)
         Me.help5622_etalon_m2_debitAfficheur.TabIndex = 1
         '
+        'Panel32
+        '
+        Me.Panel32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel32.Controls.Add(Me.help5622_etalon_m3_debitAfficheur)
+        Me.Panel32.Location = New System.Drawing.Point(248, 48)
+        Me.Panel32.Name = "Panel32"
+        Me.Panel32.Size = New System.Drawing.Size(72, 24)
+        Me.Panel32.TabIndex = 12
+        '
         'help5622_etalon_m3_debitAfficheur
         '
         Me.help5622_etalon_m3_debitAfficheur.ForceBindingOnTextChanged = False
@@ -1563,6 +1565,17 @@ Partial Class Diagnostic_dlghelp552
         Me.help5622_etalon_m3_debitAfficheur.Name = "help5622_etalon_m3_debitAfficheur"
         Me.help5622_etalon_m3_debitAfficheur.Size = New System.Drawing.Size(56, 20)
         Me.help5622_etalon_m3_debitAfficheur.TabIndex = 1
+        '
+        'lblCodeDefaut
+        '
+        Me.lblCodeDefaut.AutoSize = True
+        Me.lblCodeDefaut.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.lblCodeDefaut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblCodeDefaut.Location = New System.Drawing.Point(3, 4)
+        Me.lblCodeDefaut.Name = "lblCodeDefaut"
+        Me.lblCodeDefaut.Size = New System.Drawing.Size(19, 13)
+        Me.lblCodeDefaut.TabIndex = 60
+        Me.lblCodeDefaut.Text = "..."
         '
         'Diagnostic_dlghelp552
         '
@@ -1820,5 +1833,6 @@ Partial Class Diagnostic_dlghelp552
     Friend WithEvents help5622_etalon_m2_debitAfficheur As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents Panel32 As System.Windows.Forms.Panel
     Friend WithEvents help5622_etalon_m3_debitAfficheur As CRODIP_ControlLibrary.TBNumeric
+    Friend WithEvents lblCodeDefaut As System.Windows.Forms.Label
 
 End Class

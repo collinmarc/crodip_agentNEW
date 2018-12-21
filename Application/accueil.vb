@@ -3386,19 +3386,13 @@ Public Class accueil
     ''' <remarks></remarks>
     Public Sub loadListPulveExploitation(ByVal isAlerte As Boolean)
         ' On récupère le client sélectionné
-        Dim clientSelected_NumSIREN As String = "0"
-        Try
-            clientSelected_NumSIREN = list_clients.SelectedItems.Item(0).Text
-        Catch ex As Exception
-            clientSelected_NumSIREN = "0"
-        End Try
 
         panel_clientele_LstCtrlCtriteres.Visible = False
         panel_ListeDesControles.Visible = False
         panel_clientele_ficheClient.Visible = True
 
         ' On vérifie qu'il y a bien une ligne de sélectionnée
-        If list_clients.SelectedItems().Count > 0 And clientSelected_NumSIREN <> "0" Then
+        If list_clients.SelectedItems().Count > 0 Then
             ' Mise à jour de la barre de status
             Statusbar.display("Chargement des pulvérisateurs du  client n°" & list_clients.SelectedItems().Item(0).SubItems.Item(0).Text)
 

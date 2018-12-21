@@ -1553,6 +1553,41 @@ Public Class Pulverisateur
     Public Function pulverisateurRegulationIsDPAE() As Boolean
         Return regulation.Trim().ToLower().StartsWith("DPAE".Trim().ToLower())
     End Function
+    Public Function pulverisateurRegulationIsDPAESeul() As Boolean
+        Dim bReturn As Boolean
+        bReturn = regulation.Trim().ToLower().StartsWith("DPAE".Trim().ToLower())
+        If bReturn Then
+            bReturn = Not regulationOptions.Contains("Débit") And Not regulationOptions.Contains("Pression")
+        End If
+        Return bReturn
+    End Function
+    Public Function pulverisateurRegulationIsDPAEComplet() As Boolean
+        Dim bReturn As Boolean
+        bReturn = regulation.Trim().ToLower().StartsWith("DPAE".Trim().ToLower())
+        If bReturn Then
+            bReturn = regulationOptions.Contains("Débit") And regulationOptions.Contains("Pression")
+        End If
+        Return bReturn
+    End Function
+    Public Function pulverisateurRegulationIsDPAEDebit() As Boolean
+        Dim bReturn As Boolean
+        bReturn = regulation.Trim().ToLower().StartsWith("DPAE".Trim().ToLower())
+        If bReturn Then
+            bReturn = regulationOptions.Contains("Débit")
+        End If
+        Return bReturn
+    End Function
+    Public Function pulverisateurRegulationIsDPAEPression() As Boolean
+        Dim bReturn As Boolean
+        bReturn = regulation.Trim().ToLower().StartsWith("DPAE".Trim().ToLower())
+        If bReturn Then
+            bReturn = regulationOptions.Contains("Pression")
+        End If
+        Return bReturn
+    End Function
+    Public Function pulverisateurRegulationIsDPMAssiste() As Boolean
+        Return regulation.Trim().ToLower().StartsWith("DPM ASSISTE".Trim().ToLower())
+    End Function
 
     Public Function SetControleEtat(pdiagnostic As Diagnostic) As Boolean
         Dim bReturn As Boolean

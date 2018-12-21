@@ -142,7 +142,7 @@ Public Class DiagnosticHelp12123
     <XmlIgnore>
     Public ReadOnly Property isCuillere() As Boolean
         Get
-            Return Not isInjection()
+            Return fonctionnementBuses.ToUpper().Contains("CUILLERE")
         End Get
     End Property
 
