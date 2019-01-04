@@ -6,7 +6,7 @@ Build :20181220180000
 #272 : Apperçu automatique du RI
 #277: Saisie du numéro de Facture
 #276: Facturation : Possibilité de mettre 0 dans la total
-#291 : Libération du fichiuer Aletes.xml
+#291 : Libération du fichiuer Alertes.xml
 #289 : plantage en fin de controle si Ajout d'un pulvé
 #286 : Bouton "Facture Exploitant" => "Facture "Client"
 #287: Fiche Pulve : Activation des pompes doseuses => Nb de pompes =1

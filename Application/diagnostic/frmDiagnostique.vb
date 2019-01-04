@@ -4858,39 +4858,38 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If m_Pulverisateur.pulverisateurRegulationIsDPAESeul Or m_Pulverisateur.pulverisateurRegulationIsDPAEComplet Then
             If Not m_diagnostic.diagnosticHelp551.HasValue Then
                 bVerif551 = False
-                bReturn = False
+
             End If
             If Not m_diagnostic.diagnosticHelp552.hasValue Then
                 bVerif552 = False
-                bReturn = False
             End If
             If Not m_diagnostic.diagnosticHelp571.hasValuePression Then
                 bVerif571 = False
-                bReturn = False
+
             End If
             If Not m_diagnostic.diagnosticHelp571.hasValueDebit Then
                 bVerif571 = False
-                bReturn = False
+
             End If
         End If
         If m_Pulverisateur.pulverisateurRegulationIsDPAEDebit Then
             If Not m_diagnostic.diagnosticHelp551.HasValue Then
                 bVerif551 = False
-                bReturn = False
+
             End If
             If Not m_diagnostic.diagnosticHelp552.hasValue Then
                 bVerif552 = False
-                bReturn = False
+
             End If
         End If
         If m_Pulverisateur.pulverisateurRegulationIsDPAEPression Then
             If Not m_diagnostic.diagnosticHelp551.HasValue Then
                 bVerif551 = False
-                bReturn = False
+
             End If
             If Not m_diagnostic.diagnosticHelp571.hasValuePression Then
                 bVerif571 = False
-                bReturn = False
+
             End If
         End If
 
@@ -4898,11 +4897,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If m_Pulverisateur.pulverisateurRegulationIsDPMAssiste Then
             If Not m_diagnostic.diagnosticHelp5621.HasValue Then
                 bVerif5621 = False
-                bReturn = False
+
             End If
             If Not m_diagnostic.diagnosticHelp5622.hasValue Then
                 bVerif5622 = False
-                bReturn = False
+
             End If
         End If
         If Not bVerif551 Or Not bVerif5621 Or Not bVerif5622 Or Not bVerif571 Or Not bVerif552 Then
