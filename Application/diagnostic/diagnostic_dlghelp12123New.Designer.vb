@@ -55,6 +55,7 @@ Partial Class diagnostic_dlghelp12123new
         Me.laEcartMoyen = New System.Windows.Forms.Label()
         Me.tbEcartMoyen = New CRODIP_ControlLibrary.TBNumeric()
         Me.m_bsrcPompes = New System.Windows.Forms.BindingSource(Me.components)
+        Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnValiderNbMesures = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -94,8 +95,6 @@ Partial Class diagnostic_dlghelp12123new
         Me.QteProduitConso = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DosageReelRND = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EcartReglageRND = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ImageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.pnl12123.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -103,12 +102,12 @@ Partial Class diagnostic_dlghelp12123new
         Me.SplitContainer1.SuspendLayout()
         Me.pnlDetailPompe.SuspendLayout()
         CType(Me.m_bsrcPompes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsrcMesures, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nupMesures, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pctResultat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nupNbPompes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnl12123
@@ -341,6 +340,10 @@ Partial Class diagnostic_dlghelp12123new
         Me.m_bsrcPompes.DataMember = "lstPompes"
         Me.m_bsrcPompes.DataSource = Me.m_bsrcH12123
         '
+        'm_bsrcH12123
+        '
+        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
+        '
         'btnValiderNbMesures
         '
         Me.btnValiderNbMesures.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -385,7 +388,7 @@ Partial Class diagnostic_dlghelp12123new
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ResultatImageCol, Me.Column2, Me.ReglageDispositif, Me.DebitTheoriqueRND, Me.TempsMesure, Me.QteEauPulveriseeRND, Me.MasseInitiale, Me.MasseAspire, Me.QteProduitConso, Me.DosageReelRND, Me.EcartReglageRND, Me.ImageDataGridViewImageColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ResultatImageCol, Me.Column2, Me.ReglageDispositif, Me.DebitTheoriqueRND, Me.TempsMesure, Me.QteEauPulveriseeRND, Me.MasseInitiale, Me.MasseAspire, Me.QteProduitConso, Me.DosageReelRND, Me.EcartReglageRND})
         Me.DataGridView1.DataSource = Me.m_bsrcMesures
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
@@ -834,17 +837,6 @@ Partial Class diagnostic_dlghelp12123new
         Me.EcartReglageRND.HeaderText = "Ecart (%)"
         Me.EcartReglageRND.Name = "EcartReglageRND"
         '
-        'm_bsrcH12123
-        '
-        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
-        '
-        'ImageDataGridViewImageColumn
-        '
-        Me.ImageDataGridViewImageColumn.DataPropertyName = "Image"
-        Me.ImageDataGridViewImageColumn.HeaderText = "Image"
-        Me.ImageDataGridViewImageColumn.Name = "ImageDataGridViewImageColumn"
-        Me.ImageDataGridViewImageColumn.ReadOnly = True
-        '
         'diagnostic_dlghelp12123new
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -868,12 +860,12 @@ Partial Class diagnostic_dlghelp12123new
         Me.pnlDetailPompe.ResumeLayout(False)
         Me.pnlDetailPompe.PerformLayout()
         CType(Me.m_bsrcPompes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsrcMesures, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nupMesures, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pctResultat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nupNbPompes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -932,6 +924,5 @@ Partial Class diagnostic_dlghelp12123new
     Friend WithEvents QteProduitConso As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DosageReelRND As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents EcartReglageRND As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ImageDataGridViewImageColumn As System.Windows.Forms.DataGridViewImageColumn
 
 End Class

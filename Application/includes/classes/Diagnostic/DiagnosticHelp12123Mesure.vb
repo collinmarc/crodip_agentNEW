@@ -206,7 +206,7 @@ Public Class DiagnosticHelp12123Mesure
     Public Property QteEauPulveriseeRND As Decimal?
         Get
             If m_QteEauPulverisee.HasValue Then
-                Return Math.Round(m_QteEauPulverisee.Value, 4)
+                Return Math.Round(m_QteEauPulverisee.Value, 2)
             Else
                 Return Nothing
             End If

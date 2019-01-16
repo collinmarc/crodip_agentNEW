@@ -243,7 +243,7 @@ Public Class EtatSyntheseMesures
                         Dim Reglage As String = IIf(oMesure.ReglageDispositif.HasValue, oMesure.ReglageDispositif, "")
                         Dim DebitTheo As String = IIf(oMesure.DebitTheoriqueRND.HasValue, oMesure.DebitTheoriqueRND, "")
                         Dim TempMesure As String = IIf(oMesure.TempsMesure.HasValue, oMesure.TempsMesure, "")
-                        Dim QteEau As String = IIf(oMesure.QteEauPulverisee.HasValue, oMesure.QteEauPulverisee, "")
+                        Dim QteEau As String = IIf(oMesure.QteEauPulverisee.HasValue, oMesure.QteEauPulveriseeRND, "")
                         Dim MassePlus As String = IIf(oMesure.MasseInitiale.HasValue, oMesure.MasseInitiale, "")
                         Dim MasseMoins As String = IIf(oMesure.MasseAspire.HasValue, oMesure.MasseAspire, "")
                         Dim QteProduit As Decimal = IIf(oMesure.QteProduitConso.HasValue, oMesure.QteProduitConso, 0D)
