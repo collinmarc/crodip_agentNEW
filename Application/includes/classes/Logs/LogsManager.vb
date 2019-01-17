@@ -12,7 +12,7 @@ Module LogsManager
         Try
 
             Dim bdd As New CSDb(True)
-            bdd.getResults("DELETE FROM `Logs` WHERE `Logs`.`id`=" & log.id & "")
+            bdd.Execute("DELETE FROM `Logs` WHERE `Logs`.`id`=" & log.id & "")
             bdd.free()
 
         Catch ex As Exception

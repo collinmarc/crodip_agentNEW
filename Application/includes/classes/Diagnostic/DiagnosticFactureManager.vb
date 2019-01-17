@@ -286,7 +286,7 @@ Module DiagnosticFactureManager
             Try
                 ' On récupère les résultats
                 Dim bdd As New CSDb(True)
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT `id` FROM `DiagnosticFacture` WHERE `id` LIKE '" & agentCourant.idStructure & "-" & agentCourant.id & "-%' ORDER BY `id` DESC")
+                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT `id` FROM `DiagnosticFacture` WHERE `id` LIKE '" & agentCourant.idStructure & "-" & agentCourant.id & "-%' ORDER BY `id` DESC")
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
@@ -299,6 +299,7 @@ Module DiagnosticFactureManager
                     End If
                 End While
                 tmpObjectId = agentCourant.idStructure & "-" & agentCourant.id & "-" & (newId + 1)
+                tmpListProfils.Close()
                 bdd.free()
             Catch ex As Exception ' On intercepte l'erreur
                 Console.Write("DiagnosticFactureManager - newId : " & ex.Message & vbNewLine)
@@ -319,7 +320,7 @@ Module DiagnosticFactureManager
             Try
                 ' On récupère les résultats
                 Dim bdd As New CSDb(True)
-                Dim oDataReader As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT factureReference FROM DiagnosticFacture  ORDER BY CDATE(dateModificationAgent) DESC, factureReference DESC")
+                Dim oDataReader As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT factureReference FROM DiagnosticFacture  ORDER BY CDATE(dateModificationAgent) DESC, factureReference DESC")
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 If oDataReader.HasRows Then
@@ -517,7 +518,7 @@ Module DiagnosticFactureManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `DiagnosticFacture` SET `DiagnosticFacture`.`dateModificationCrodip`='" & newDate & "',`DiagnosticFacture`.`dateModificationAgent`='" & newDate & "' WHERE `DiagnosticFacture`.`id`='" & objDiagnostic.id & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticFactureManager::setSynchro : " & ex.Message)

@@ -328,9 +328,9 @@ Public Class DiagnosticBusesManager
     Public Shared Sub setSynchro(ByVal objDiagnosticBuses As DiagnosticBuses)
         Try
             Dim dbLink As New CSDb(True)
-            Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `DiagnosticBuses` SET `DiagnosticBuses`.`dateModificationCrodip`='" & newDate & "',`DiagnosticBuses`.`dateModificationAgent`='" & newDate & "' WHERE `DiagnosticBuses`.`id`='" & objDiagnosticBuses.id & "'"
-            dbLink.getResults()
+            Dim newDate As Date = Date.Now
+            dbLink.queryString = "UPDATE `DiagnosticBuses` SET `DiagnosticBuses`.`dateModificationCrodip`='" & newDate & "',`DiagnosticBuses`.`dateModificationAgent`='" & newDate & "' WHERE `DiagnosticBuses`.`id`=" & objDiagnosticBuses.id & ""
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticBusesManager::setSynchro : " & ex.Message)

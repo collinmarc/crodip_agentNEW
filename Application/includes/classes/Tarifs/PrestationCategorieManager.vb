@@ -250,8 +250,8 @@ Public Class PrestationCategorieManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `PrestationCategorie` SET `PrestationCategorie`.`dateModificationCrodip`='" & newDate & "',`PrestationCategorie`.`dateModificationAgent`='" & newDate & "' WHERE `PrestationCategorie`.`id`='" & curObject.id & "'"
-            dbLink.getResults()
+            dbLink.queryString = "UPDATE `PrestationCategorie` SET `PrestationCategorie`.`dateModificationCrodip`='" & newDate & "',`PrestationCategorie`.`dateModificationAgent`='" & newDate & "' WHERE `PrestationCategorie`.`id`=" & curObject.id & ""
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("PrestationCategorieManager::setSynchro : " & ex.Message)
@@ -291,7 +291,7 @@ Public Class PrestationCategorieManager
                 Dim dbLink As New CSDb(True)
                 '## Execution de la requete
                 Dim tmpResults As System.Data.OleDb.OleDbDataReader
-                tmpResults = dbLink.getResults("SELECT * FROM `PrestationCategorie` WHERE idStructure=" & idStructure & " ORDER BY id")
+                tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationCategorie` WHERE idStructure=" & idStructure & " ORDER BY id")
                 '################################################################
                 Dim i As Integer = 0
                 While tmpResults.Read()
@@ -341,7 +341,7 @@ Public Class PrestationCategorieManager
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
             Dim tmpResults As System.Data.OleDb.OleDbDataReader
-            tmpResults = dbLink.getResults("SELECT * FROM `PrestationCategorie` WHERE id=" & idCategorie & " AND idStructure=" & pidStructure)
+            tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationCategorie` WHERE id=" & idCategorie & " AND idStructure=" & pidStructure)
             '################################################################
             Dim i As Integer = 0
             While tmpResults.Read()
@@ -387,7 +387,7 @@ Public Class PrestationCategorieManager
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
             Dim tmpResults As System.Data.OleDb.OleDbDataReader
-            tmpResults = dbLink.getResults("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationCategorie.id")
+            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationCategorie.id")
             '################################################################
             Dim i As Integer = 0
             While tmpResults.Read()

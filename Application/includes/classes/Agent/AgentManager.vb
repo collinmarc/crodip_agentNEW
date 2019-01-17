@@ -441,7 +441,7 @@ Public Class AgentManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `Agent` SET `Agent`.`dateModificationCrodip`='" & CSDate.ToCRODIPString(newDate) & "',`Agent`.`dateModificationAgent`='" & CSDate.ToCRODIPString(newDate) & "' WHERE `Agent`.`id`=" & agent.id & ""
-            dbLink.getResults()
+            dbLink.Execute()
         Catch ex As Exception
             CSDebug.dispFatal("AgentManager::setSynchro : " & ex.Message)
         End Try

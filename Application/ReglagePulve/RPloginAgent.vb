@@ -440,7 +440,7 @@ Public Class RPloginAgent
         ' On récupère le nombre d'organismes
         Dim nbStructures As Integer = 0
         Dim CSDb As New CSDb(True)
-        Dim dataListStructure As System.Data.OleDb.OleDbDataReader = CSDb.getResults("SELECT count(*) FROM Structure")
+        Dim dataListStructure As System.Data.OleDb.OleDbDataReader = CSDb.getResult2s("SELECT count(*) FROM Structure")
         While dataListStructure.Read()
             nbStructures = CType(dataListStructure.Item(0), Integer)
         End While

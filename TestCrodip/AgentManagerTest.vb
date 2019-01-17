@@ -171,7 +171,7 @@ Public Class AgentManagerTest
         Assert.AreNotEqual(0, oStructure.id)
 
         Dim oCSDB As CSDb = New CSDb(True)
-        oCSDB.getResults("DELETE FROM AGENT")
+        oCSDB.Execute("DELETE FROM AGENT")
 
         oAgent = AgentManager.createAgent(999, "9999", "AgentTest")
         oAgent.prenom = "Moi"

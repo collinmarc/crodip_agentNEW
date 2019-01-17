@@ -191,7 +191,7 @@ Public Class BuseManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `AgentBuseEtalon` SET `AgentBuseEtalon`.`dateModificationCrodip`='" & newDate & "',`AgentBuseEtalon`.`dateModificationAgent`='" & newDate & "' WHERE `AgentBuseEtalon`.`numeroNational`='" & objBuseEtalon.numeroNational & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("BuseManager::setSynchro : " & ex.Message)
@@ -200,7 +200,7 @@ Public Class BuseManager
 
     Public Shared Function getBuseByNumeroNational(ByVal buse_id As String) As Buse
         ' déclarations
-        Dim oCSDb As CSDb = nothing
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         Dim tmpBuse As New Buse
@@ -249,7 +249,7 @@ Public Class BuseManager
                 ' On met a jour en base
                 Dim query As String = "UPDATE `AgentBuseEtalon` SET `AgentBuseEtalon`.`dateModificationAgent`='" & Date.Now.ToString & "' , `AgentBuseEtalon`.`isUtilise`=" & True & " WHERE `AgentBuseEtalon`.`numeroNational`='" & objBuse.numeroNational & "'"
                 Dim bdd As New CSDb(True)
-                Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults(query)
+                bdd.Execute(query)
                 bdd.free()
             End If
         Catch ex As Exception
@@ -268,9 +268,9 @@ Public Class BuseManager
 
             Dim query As String = "SELECT * FROM AgentBuseEtalon WHERE AgentBuseEtalon.isUtilise=" & False & " AND AgentBuseEtalon.numeroNational='" & buse_id & "'"
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults(query)
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
             bReturn = dataResults.HasRows
-
+            dataResults.Close()
             bdd.free()
 
         Catch ex As Exception
@@ -292,7 +292,7 @@ Public Class BuseManager
             If Not isUsedBuse(buse_id) Then
                 Dim query As String = "UPDATE `AgentBuseEtalon` SET `AgentBuseEtalon`.`dateModificationAgent`='" & Date.Now.ToString & "' , `AgentBuseEtalon`.`isSupprime`=" & True & " WHERE `AgentBuseEtalon`.`numeroNational`='" & buse_id & "'"
                 Dim bdd As New CSDb(True)
-                Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults(query)
+                bdd.Execute(query)
                 bdd.free()
                 bReturn = True
             Else

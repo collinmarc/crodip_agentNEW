@@ -136,7 +136,7 @@ Public Class DiagnosticHelp12123
     <XmlIgnore>
     Public ReadOnly Property isInjection() As Boolean
         Get
-            Return fonctionnementBuses.ToUpper().Contains("INJECTION")
+            Return fonctionnementBuses.ToUpper().Contains("INJECT")
         End Get
     End Property
     <XmlIgnore>
@@ -160,24 +160,27 @@ Public Class DiagnosticHelp12123
                     bCalcule = False 'Au rechargement on désactive le calcul
                     Dim tabValues As String()
                     tabValues = oDiagItem.itemValue.Split("|")
-                    Me.Resultat = Trim(tabValues(0))
-                    Dim nbPompe As Integer
-                    nbPompe = Trim(tabValues(1))
-                    For nPompe As Integer = 1 To nbPompe
-                        Dim oPompe As DiagnosticHelp12123Pompe
-                        oPompe = New DiagnosticHelp12123Pompe(Me, nPompe)
-                        oPompe.Load(idDiag, nPompe)
-                        lstPompes.Add(oPompe)
-                    Next
-                    'Pompes traitement de semences
-                    nbPompe = Trim(tabValues(2))
-                    For nPompe As Integer = 1 To nbPompe
-                        Dim oPompeTrtSem As DiagnosticHelp12123PompeTrtSem
-                        oPompeTrtSem = New DiagnosticHelp12123PompeTrtSem(Me, nPompe)
-                        oPompeTrtSem.Load(idDiag, nPompe)
-                        lstPompesTrtSem.Add(oPompeTrtSem)
-                    Next
-                    fonctionnementBuses = Trim(tabValues(3))
+                    If tabValues.Length = 5 Then
+                        Me.Resultat = Trim(tabValues(0))
+
+                        Dim nbPompe As Integer
+                        nbPompe = Trim(tabValues(1))
+                        For nPompe As Integer = 1 To nbPompe
+                            Dim oPompe As DiagnosticHelp12123Pompe
+                            oPompe = New DiagnosticHelp12123Pompe(Me, nPompe)
+                            oPompe.Load(idDiag, nPompe)
+                            lstPompes.Add(oPompe)
+                        Next
+                        'Pompes traitement de semences
+                        nbPompe = Trim(tabValues(2))
+                        For nPompe As Integer = 1 To nbPompe
+                            Dim oPompeTrtSem As DiagnosticHelp12123PompeTrtSem
+                            oPompeTrtSem = New DiagnosticHelp12123PompeTrtSem(Me, nPompe)
+                            oPompeTrtSem.Load(idDiag, nPompe)
+                            lstPompesTrtSem.Add(oPompeTrtSem)
+                        Next
+                        fonctionnementBuses = Trim(tabValues(3))
+                    End If
                     bCalcule = True
                 Catch ex As Exception
                     CSDebug.dispError("DiagnosticHelp12123.load ERR conversion (" & oDiagItem.itemValue & ") ERR " & ex.Message)
@@ -249,7 +252,7 @@ Public Class DiagnosticHelp12123
         oDiagItem.itemValue = Trim(Me.Resultat) & "|" '0
         oDiagItem.itemValue = oDiagItem.itemValue & lstPompes.Count & "|" '1
         oDiagItem.itemValue = oDiagItem.itemValue & lstPompesTrtSem.Count & "|" '2
-        oDiagItem.itemValue = Trim(fonctionnementBuses) & "|" '3
+        oDiagItem.itemValue = oDiagItem.itemValue & Trim(fonctionnementBuses) & "|" '3
 
         Return oDiagItem
     End Function

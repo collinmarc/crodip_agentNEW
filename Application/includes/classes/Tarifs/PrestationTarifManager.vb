@@ -182,7 +182,7 @@ Public Class PrestationTarifManager
             '####################################################
             '## Execution de la requete
             Dim tmpResults As System.Data.OleDb.OleDbDataReader
-            tmpResults = dbLink.getResults("SELECT MAX(id)+1 as NEWID  FROM PrestationTarif")
+            tmpResults = dbLink.getResult2s("SELECT MAX(id)+1 as NEWID  FROM PrestationTarif")
             While tmpResults.Read()
                 '# construction de l'objet
                 Dim tmpColId As Integer = 0
@@ -239,8 +239,8 @@ Public Class PrestationTarifManager
             '## Préparation de la connexion
             '## Execution de la requete
             Dim tmpResults As System.Data.OleDb.OleDbDataReader
-            tmpResults = dbLink.getResults("SELECT * FROM `PrestationTarif` WHERE id=" & curObject.id & " AND idStructure=" & curObject.idStructure & " AND idCategorie=" & curObject.idCategorie & "")
-            'tmpResults = dbLink.getResults("SELECT * FROM `PrestationTarif` WHERE id=" & curObject.id & "")
+            tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE id=" & curObject.id & " AND idStructure=" & curObject.idStructure & " AND idCategorie=" & curObject.idCategorie & "")
+            'tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE id=" & curObject.id & "")
             '################################################################
             bReturn = False
             If tmpResults.HasRows Then
@@ -265,7 +265,7 @@ Public Class PrestationTarifManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `PrestationTarif` SET `PrestationTarif`.`dateModificationCrodip`='" & newDate & "',`PrestationTarif`.`dateModificationAgent`='" & newDate & "' WHERE `PrestationTarif`.`id`=" & curObject.id & ""
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("PrestationTarifManager::setSynchro : " & ex.Message)
@@ -283,7 +283,7 @@ Public Class PrestationTarifManager
     Public Shared Sub delete(ByVal curObjectId As Integer)
         Try
             Dim bdd As New CSDb(True)
-            bdd.getResults("DELETE FROM `PrestationTarif` WHERE `PrestationTarif`.`id`=" & curObjectId & "")
+            bdd.Execute("DELETE FROM `PrestationTarif` WHERE `PrestationTarif`.`id`=" & curObjectId & "")
             bdd.free()
         Catch ex As Exception
             CSDebug.dispFatal("PrestationTarifManager::delete() : " & ex.Message)
@@ -302,7 +302,7 @@ Public Class PrestationTarifManager
                 Dim dbLink As New CSDb(True)
                 '## Execution de la requete
                 Dim tmpResults As System.Data.OleDb.OleDbDataReader
-                tmpResults = dbLink.getResults("SELECT * FROM `PrestationTarif` WHERE id=" & idObject & "")
+                tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE id=" & idObject & "")
                 '################################################################
                 Dim i As Integer = 0
                 While tmpResults.Read()
@@ -359,7 +359,7 @@ Public Class PrestationTarifManager
                 Dim dbLink As New CSDb(True)
                 '## Execution de la requete
                 Dim oDR As System.Data.OleDb.OleDbDataReader
-                oDR = dbLink.getResults("SELECT * FROM `PrestationTarif` WHERE idStructure=" & idStructure & " ORDER BY id")
+                oDR = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE idStructure=" & idStructure & " ORDER BY id")
                 '################################################################
                 Dim i As Integer = 0
                 While oDR.Read()
@@ -405,7 +405,7 @@ Public Class PrestationTarifManager
                 Dim dbLink As New CSDb(True)
                 '## Execution de la requete
                 Dim oDR As System.Data.OleDb.OleDbDataReader
-                oDR = dbLink.getResults("SELECT * FROM `PrestationTarif` WHERE idCategorie=" & idCategorie & " ORDER BY id")
+                oDR = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE idCategorie=" & idCategorie & " ORDER BY id")
                 '################################################################
                 Dim i As Integer = 0
                 While oDR.Read()
@@ -447,7 +447,7 @@ Public Class PrestationTarifManager
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
             Dim tmpResults As System.Data.OleDb.OleDbDataReader
-            tmpResults = dbLink.getResults("SELECT * FROM PrestationTarif WHERE PrestationTarif.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationTarif.id")
+            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationTarif WHERE PrestationTarif.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationTarif.id")
             '################################################################
             Dim i As Integer = 0
             While tmpResults.Read()

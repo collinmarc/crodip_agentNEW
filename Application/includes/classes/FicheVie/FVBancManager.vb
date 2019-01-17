@@ -348,7 +348,7 @@ Public Class FVBancManager
 
                 Try
                     ' On récupère les résultats
-                    Dim oDataReader As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.idStructure & "-" & oAgent.id & "-%' ORDER BY `id` DESC")
+                    Dim oDataReader As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.idStructure & "-" & oAgent.id & "-%' ORDER BY `id` DESC")
                     ' Puis on les parcours
                     Dim newId As Integer = 0
                     While oDataReader.Read()
@@ -381,7 +381,7 @@ Public Class FVBancManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `FichevieBancMesure` SET `FichevieBancMesure`.`dateModificationCrodip`='" & newDate & "',`FichevieBancMesure`.`dateModificationAgent`='" & newDate & "' WHERE `FichevieBancMesure`.`id`='" & objFVBanc.id & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("FVBancManager::setSynchro : " & ex.Message)

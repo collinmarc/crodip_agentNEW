@@ -15,7 +15,7 @@ Module CSLocali
 
             ' On récupère les résultats
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults(query)
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
             Dim i As Integer = 0
             While dataResults.Read()
                 arrResults(0, i) = dataResults.Item(0)
@@ -40,15 +40,15 @@ Module CSLocali
             Dim query As String = "SELECT CSL_EntityLabel.id FROM CSL_EntityLabel LEFT JOIN CSL_Entity ON CSL_Entity.id=CSL_EntityLabel.id WHERE CSL_EntityLabel.label LIKE '" & label & "' AND CSL_Entity.type=" & type
 
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults(query)
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
             While dataResults.Read()
                 result = dataResults.Item(0)
             End While
+            bdd.free()
             bdd = Nothing
         Catch ex As Exception
             CSDebug.dispError("CSLocali::getVilleByCp() : " & ex.Message)
         End Try
-
         Return result
     End Function
 

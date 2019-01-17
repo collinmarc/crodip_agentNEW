@@ -244,7 +244,7 @@ Module DiagnosticFactureItemManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `DiagnosticFactureItem` SET `DiagnosticFactureItem`.`dateModificationCrodip`='" & newDate & "',`DiagnosticFactureItem`.`dateModificationAgent`='" & newDate & "' WHERE `DiagnosticFactureItem`.`id`='" & curObject.id & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticFactureItemManager::setSynchro : " & ex.Message)

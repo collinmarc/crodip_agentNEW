@@ -169,7 +169,7 @@ Public Class CSDb
         Dim oCSdb As New CSDb(True)
         Dim oReturn As Object = Nothing
         Try
-            _resultReader = oCSdb.getResults(pQuery)
+            _resultReader = oCSdb.getResult2s(pQuery)
             If _resultReader.HasRows Then
                 _resultReader.Read()
                 oReturn = _resultReader.GetValue(0)
@@ -204,7 +204,7 @@ Public Class CSDb
         End Try
         Return bReturn
     End Function
-    Public Function getResults() As System.Data.OleDb.OleDbDataReader
+    Public Function getResult2s() As System.Data.OleDb.OleDbDataReader
         Dim _resultReader As System.Data.OleDb.OleDbDataReader
         Try
             Dim _dbCommande As System.Data.OleDb.OleDbCommand = getConnection().CreateCommand
@@ -218,10 +218,11 @@ Public Class CSDb
         End Try
         Return _resultReader
     End Function
-    Public Function getResults(ByVal queryString As String) As OleDb.OleDbDataReader
+    Public Function getResult2s(ByVal queryString As String) As OleDb.OleDbDataReader
         _queryString = queryString
-        Return getResults()
+        Return getResult2s()
     End Function
+
 
     Public Function RAZ_BASE_DONNEES() As Boolean
         Debug.Assert(getConnection().State = ConnectionState.Open, "La connexion doit être ouverte")

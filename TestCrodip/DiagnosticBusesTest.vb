@@ -202,7 +202,7 @@ Public Class DiagnosticBusesTest
     Public Sub TST_SynchrobusesWS()
         'Annullation dela synchro de tous les anciens Diags
         Dim oCSDB As New CSDb(True)
-        oCSDB.getResults("UPDATE DIAGNOSTIC SET dateModificationAgent = dateModificationCrodip")
+        oCSDB.Execute("UPDATE DIAGNOSTIC SET dateModificationAgent = dateModificationCrodip")
         oCSDB.free()
 
         Dim odiag As Diagnostic

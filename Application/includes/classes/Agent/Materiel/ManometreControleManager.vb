@@ -201,7 +201,7 @@ Public Class ManometreControleManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `AgentManoControle` SET `AgentManoControle`.`dateModificationCrodip`='" & newDate & "',`AgentManoControle`.`dateModificationAgent`='" & newDate & "' WHERE `AgentManoControle`.`numeroNational`='" & objManometreControle.numeroNational & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("ManometreControleManager::setSynchro : " & ex.Message)
@@ -213,7 +213,7 @@ Public Class ManometreControleManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `AgentManoControle` SET `AgentManoControle`.`nbControles`=0 WHERE `AgentManoControle`.`numeroNational`='" & objManometreControle.numeroNational & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("ManometreControleManager::resetNbControles : " & ex.Message)

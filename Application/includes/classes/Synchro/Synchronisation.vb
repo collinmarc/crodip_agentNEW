@@ -281,10 +281,10 @@ Public Class Synchronisation
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitation) - Erreur Locale")
-                            Case 0 ' OK
+                            Case 0, 2 ' OK
                                 ExploitationManager.setSynchro(tmpUpdateExploitation)
-                            Case 2 ' SENDPROFILAGENT_UPDATE
-                                ExploitationManager.save(ExploitationManager.xml2object(updatedObject), m_Agent, True)
+                                'Case 2 ' SENDPROFILAGENT_UPDATE
+                                '    ExploitationManager.save(ExploitationManager.xml2object(updatedObject), m_Agent, True)
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSExploitation) - Le web service a répondu : Non-Ok")
                             Case 9 ' BADREQUEST
@@ -370,10 +370,10 @@ Public Class Synchronisation
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBuse) - Erreur Locale" & vbNewLine)
-                            Case 0 ' OK
+                            Case 0, 2 ' OK
                                 BuseManager.setSynchro(tmpUpdateBuse)
-                            Case 2 ' SENDPROFILAGENT_UPDATE
-                                BuseManager.save(BuseManager.xml2object(updatedObject), True)
+                                'Case 2 ' SENDPROFILAGENT_UPDATE
+                                '    BuseManager.save(BuseManager.xml2object(updatedObject), True)
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSBuse) - Le web service a répondu : Non-Ok")
                             Case 9 ' BADREQUEST
@@ -397,10 +397,10 @@ Public Class Synchronisation
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreControle) - Erreur Locale")
-                            Case 0 ' OK
+                            Case 0, 2 ' OK
                                 ManometreControleManager.setSynchro(tmpUpdateManometreControle)
-                            Case 2 ' SENDPROFILAGENT_UPDATE
-                                ManometreControleManager.save(ManometreControleManager.xml2object(updatedObject), True)
+                                'Case 2 ' SENDPROFILAGENT_UPDATE
+                                '    ManometreControleManager.save(ManometreControleManager.xml2object(updatedObject), True)
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSManometreControle) - Le web service a répondu : Non-Ok")
                             Case 9 ' BADREQUEST
@@ -424,10 +424,10 @@ Public Class Synchronisation
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Erreur Locale")
-                            Case 0 ' OK
+                            Case 0, 2 ' OK
                                 ManometreEtalonManager.setSynchro(tmpUpdateManometreEtalon)
-                            Case 2 ' SENDPROFILAGENT_UPDATE
-                                ManometreEtalonManager.save(ManometreEtalonManager.xml2object(updatedObject), True)
+                                'Case 2 ' SENDPROFILAGENT_UPDATE
+                                '    ManometreEtalonManager.save(ManometreEtalonManager.xml2object(updatedObject), True)
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Le web service a répondu : Non-Ok")
                             Case 9 ' BADREQUEST
@@ -450,10 +450,10 @@ Public Class Synchronisation
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBanc) - Erreur Locale")
-                            Case 0 ' OK
+                            Case 0, 2 ' OK
                                 BancManager.setSynchro(tmpUpdateBanc)
-                            Case 2 ' SENDPROFILAGENT_UPDATE
-                                BancManager.save(BancManager.xml2object(updatedObject), True)
+                                'Case 2 ' SENDPROFILAGENT_UPDATE
+                                '    BancManager.save(BancManager.xml2object(updatedObject), True)
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSBanc) - Le web service a répondu : Non-Ok")
                             Case 9 ' BADREQUEST
@@ -487,10 +487,10 @@ Public Class Synchronisation
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPulverisateur) - Erreur Locale")
-                            Case 0 ' OK
+                            Case 0, 2 ' OK
                                 PulverisateurManager.setSynchro(oPulverisateur)
-                            Case 2 ' SENDPROFILAGENT_UPDATE
-                                PulverisateurManager.save(PulverisateurManager.xml2object(updatedObject), "0", m_Agent, True)
+                                'Case 2 ' SENDPROFILAGENT_UPDATE
+                                'PulverisateurManager.save(PulverisateurManager.xml2object(updatedObject), "0", m_Agent, True)
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPulverisateur) - Le web service a répondu : Non-Ok")
                             Case 9 ' BADREQUEST
@@ -512,10 +512,10 @@ Public Class Synchronisation
                     Select Case response
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Erreur Locale")
-                        Case 0 ' OK
+                        Case 0, 2 ' OK
                             ExploitationTOPulverisateurManager.setSynchro(oExploitationTOPulverisateur)
-                        Case 2 ' SENDPROFILAGENT_UPDATE
-                            ExploitationTOPulverisateurManager.save(ExploitationTOPulverisateurManager.xml2object(updatedObject), m_Agent, True)
+                            'Case 2 ' SENDPROFILAGENT_UPDATE
+                            'ExploitationTOPulverisateurManager.save(ExploitationTOPulverisateurManager.xml2object(updatedObject), m_Agent, True)
                         Case 1 ' NOK
                             CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Le web service a répondu : Non-Ok")
                         Case 9 ' BADREQUEST
@@ -572,12 +572,12 @@ Public Class Synchronisation
                     Select Case response
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationCategorie) - Erreur Locale")
-                        Case 0 ' OK
+                        Case 0, 2 ' OK
                             PrestationCategorieManager.setSynchro(tmpUpdatePrestationCategorie)
                             '                            listSynchro = listSynchro & "Catégorie de tarif (n°" & tmpUpdatePrestationCategorie.id & ") ; "
-                        Case 2 ' SENDPROFILAGENT_UPDATE
+                            'Case 2 ' SENDPROFILAGENT_UPDATE
                             '                           listSynchro = listSynchro & "Catégorie de tarif (n°" & tmpUpdatePrestationCategorie.id & ") ; "
-                            PrestationCategorieManager.save(PrestationCategorieManager.xml2object(updatedObject), m_Agent, True)
+                            'PrestationCategorieManager.save(PrestationCategorieManager.xml2object(updatedObject), m_Agent, True)
                         Case 1 ' NOK
                             CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPrestationCategorie) - Le web service a répondu : Non-Ok")
                         Case 9 ' BADREQUEST
@@ -600,12 +600,12 @@ Public Class Synchronisation
                     Select Case response
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationTarif) - Erreur Locale")
-                        Case 0 ' OK
+                        Case 0, 2 ' OK
                             PrestationTarifManager.setSynchro(tmpUpdatePrestationTarif)
                             'listSynchro = listSynchro & "Tarif (n°" & tmpUpdatePrestationTarif.id & ") ; "
-                        Case 2 ' SENDPROFILAGENT_UPDATE
+                            'Case 2 ' SENDPROFILAGENT_UPDATE
                             'listSynchro = listSynchro & "Tarif (n°" & tmpUpdatePrestationTarif.id & ") ; "
-                            PrestationTarifManager.save(PrestationTarifManager.xml2object(updatedObject), m_Agent, True)
+                            'PrestationTarifManager.save(PrestationTarifManager.xml2object(updatedObject), m_Agent, True)
                         Case 1 ' NOK
                             CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPrestationTarif) - Le web service a répondu : Non-Ok")
                         Case 9 ' BADREQUEST
@@ -667,11 +667,11 @@ Public Class Synchronisation
                 Case -1 ' ERROR
                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnostic) - Erreur Locale")
                 Case 0, 2 ' OK
-                    If response = 0 Then
-                        DiagnosticManager.setSynchro(pDiag)
-                    Else
-                        DiagnosticManager.save(DiagnosticManager.xml2object(updatedObject), True)
-                    End If
+                    'If response = 0 Then
+                    DiagnosticManager.setSynchro(pDiag)
+                    ' Else
+                    'DiagnosticManager.save(DiagnosticManager.xml2object(updatedObject), True)
+                    'End If
                 Case 1 ' NOK
                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnostic) - Le web service a répondu : Non-Ok")
                 Case 9 ' BADREQUEST
@@ -686,16 +686,16 @@ Public Class Synchronisation
                 Select Case responseDiagItem
                     Case -1 ' ERROR
                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticItem) - Erreur Locale")
-                    Case 0 ' OK
+                    Case 0, 2 ' OK
                         For Each tmpXmlDiagItem As Object In updatedObjectDiagItem
                             DiagnosticItemManager.setSynchro(DiagnosticItemManager.xml2object(tmpXmlDiagItem))
                         Next
-                    Case 2 ' SENDPROFILAGENT_UPDATE
-                        Dim ocsdb As New CSDb(True)
-                        For Each tmpXmlDiagItem As Object In updatedObjectDiagItem
-                            DiagnosticItemManager.save(ocsdb, DiagnosticItemManager.xml2object(tmpXmlDiagItem), True)
-                        Next
-                        ocsdb.free()
+                        'Case 2 ' SENDPROFILAGENT_UPDATE
+                        '    Dim ocsdb As New CSDb(True)
+                        '    For Each tmpXmlDiagItem As Object In updatedObjectDiagItem
+                        '        DiagnosticItemManager.save(ocsdb, DiagnosticItemManager.xml2object(tmpXmlDiagItem), True)
+                        '    Next
+                        '    ocsdb.free()
                     Case 1 ' NOK
                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticItem) - Le web service a répondu : Non-Ok")
                     Case 9 ' BADREQUEST
@@ -711,14 +711,14 @@ Public Class Synchronisation
                     Select Case responseDiagBuse
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Erreur Locale")
-                        Case 0 ' OK
+                        Case 0, 2 ' OK
                             For Each tmpXmlDiagBuse As Object In updatedObjectDiagBuse
                                 DiagnosticBusesManager.setSynchro(DiagnosticBusesManager.xml2object(tmpXmlDiagBuse))
                             Next
-                        Case 2 ' SENDPROFILAGENT_UPDATE
-                            For Each tmpXmlDiagBuse As Object In updatedObjectDiagBuse
-                                DiagnosticBusesManager.save(DiagnosticBusesManager.xml2object(tmpXmlDiagBuse), True)
-                            Next
+                            'Case 2 ' SENDPROFILAGENT_UPDATE
+                            '    For Each tmpXmlDiagBuse As Object In updatedObjectDiagBuse
+                            '        DiagnosticBusesManager.save(DiagnosticBusesManager.xml2object(tmpXmlDiagBuse), True)
+                            '    Next
                         Case 1 ' NOK
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : Non-Ok")
                         Case 9 ' BADREQUEST
@@ -735,14 +735,14 @@ Public Class Synchronisation
                                 Select Case responseDiagBuseDetail
                                     Case -1 ' ERROR
                                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBusesDetail) - Erreur Locale")
-                                    Case 0 ' OK
+                                    Case 0, 2 ' OK
                                         For Each tmpXmlDiagBuseDetail As Object In updatedObjectDiagBuseDetail
                                             DiagnosticBusesDetailManager.setSynchro(DiagnosticBusesDetailManager.xml2object(tmpXmlDiagBuseDetail))
                                         Next
-                                    Case 2 ' SENDPROFILAGENT_UPDATE
-                                        For Each tmpXmlDiagBuseDetail As Object In updatedObjectDiagBuseDetail
-                                            DiagnosticBusesDetailManager.save(DiagnosticBusesDetailManager.xml2object(tmpXmlDiagBuseDetail), True)
-                                        Next
+                                        'Case 2 ' SENDPROFILAGENT_UPDATE
+                                        '    For Each tmpXmlDiagBuseDetail As Object In updatedObjectDiagBuseDetail
+                                        '        DiagnosticBusesDetailManager.save(DiagnosticBusesDetailManager.xml2object(tmpXmlDiagBuseDetail), True)
+                                        '    Next
                                     Case 1 ' NOK
                                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : Non-Ok")
                                     Case 9 ' BADREQUEST
@@ -763,14 +763,14 @@ Public Class Synchronisation
                     Select Case responseDiag542
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticMano542) - Erreur Locale")
-                        Case 0 ' OK
+                        Case 0, 2 ' OK
                             For Each tmpXmlDiag542 As Object In updatedObjectDiag542
                                 DiagnosticMano542Manager.setSynchro(DiagnosticMano542Manager.xml2object(tmpXmlDiag542))
                             Next
-                        Case 2 ' SENDPROFILAGENT_UPDATE
-                            For Each tmpXmlDiag542 As Object In updatedObjectDiag542
-                                DiagnosticMano542Manager.save(DiagnosticMano542Manager.xml2object(tmpXmlDiag542), True)
-                            Next
+                            'Case 2 ' SENDPROFILAGENT_UPDATE
+                            '    For Each tmpXmlDiag542 As Object In updatedObjectDiag542
+                            '        DiagnosticMano542Manager.save(DiagnosticMano542Manager.xml2object(tmpXmlDiag542), True)
+                            '    Next
                         Case 1 ' NOK
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticMano542) - Le web service a répondu : Non-Ok")
                         Case 9 ' BADREQUEST
@@ -789,14 +789,14 @@ Public Class Synchronisation
                     Select Case responseDiag833
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Erreur Locale")
-                        Case 0 ' OK
+                        Case 0, 2 ' OK
                             For Each tmpXmlDiag833 As Object In updatedObjectDiag833
                                 DiagnosticTroncons833Manager.setSynchro(DiagnosticTroncons833Manager.xml2object(tmpXmlDiag833))
                             Next
-                        Case 2 ' SENDPROFILAGENT_UPDATE
-                            For Each tmpXmlDiag833 As Object In updatedObjectDiag833
-                                DiagnosticTroncons833Manager.save(DiagnosticTroncons833Manager.xml2object(tmpXmlDiag833), True)
-                            Next
+                            'Case 2 ' SENDPROFILAGENT_UPDATE
+                            '    For Each tmpXmlDiag833 As Object In updatedObjectDiag833
+                            '        DiagnosticTroncons833Manager.save(DiagnosticTroncons833Manager.xml2object(tmpXmlDiag833), True)
+                            '    Next
                         Case 1 ' NOK
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Le web service a répondu : Non-Ok")
                         Case 9 ' BADREQUEST
@@ -1010,10 +1010,10 @@ Public Class Synchronisation
                 Select Case response
                     Case -1 ' ERROR
                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreEtalon) - Erreur Locale")
-                    Case 0 ' OK
+                    Case 0, 2 ' OK
                         FVManometreEtalonManager.setSynchro(tmpUpdateFVManometreEtalon)
-                    Case 2 ' OK
-                        FVManometreEtalonManager.setSynchro(tmpUpdateFVManometreEtalon)
+                        'Case 2 ' OK
+                        '    FVManometreEtalonManager.setSynchro(tmpUpdateFVManometreEtalon)
                     Case 1 ' NOK
                         CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSFVManometreEtalon) - Le web service a répondu : Non-Ok")
                     Case 9 ' BADREQUEST

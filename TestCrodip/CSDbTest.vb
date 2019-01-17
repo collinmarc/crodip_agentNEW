@@ -63,12 +63,12 @@ Public Class CSDbTest
         Dim strQuery As String
         strQuery = "ALTER TABLE [Diagnostic] ADD MyNewField YESNO;"
         oCSDb = New CSDb(True)
-        oCSDb.getResults(strQuery)
+        oCSDb.Execute(strQuery)
         oCSDb.free()
 
         oCSDb = New CSDb(True)
         strQuery = "ALTER TABLE [Diagnostic] DROP MyNewField ;"
-        oCSDb.getResults(strQuery)
+        oCSDb.Execute(strQuery)
 
         oCSDb.free()
 

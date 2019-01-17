@@ -374,7 +374,7 @@ Public Class StructureManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `Structure` SET `Structure`.`dateModificationCrodip`='" & newDate & "',`Structure`.`dateModificationAgent`='" & newDate & "' WHERE `Structure`.`id`=" & objStructure.id & ""
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("StructureManager::setSynchro : " & ex.Message)

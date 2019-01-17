@@ -175,7 +175,7 @@ Public Class liste_diagnosticPulve
             End If
             query = query & " ORDER BY Diagnostic.controleDateFin DESC"
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults(query)
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
             Dim i As Integer = 0
             listPulveDiagnostic.Items.Clear()
             While dataResults.Read()

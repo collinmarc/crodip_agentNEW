@@ -251,7 +251,7 @@ Public Class DiagnosticHelp831test
         'Annullation dela synchro de tous les anciens Diags
         Dim oCSDB As New CSDb(True)
         Dim oCmd As OleDb.OleDbCommand
-        oCSDB.getResults("UPDATE DIAGNOSTIC SET dateModificationAgent = dateModificationCrodip")
+        oCSDB.Execute("UPDATE DIAGNOSTIC SET dateModificationAgent = dateModificationCrodip")
         'Creation d'un Diagnostic
         '============================
         oDiag = New Diagnostic()

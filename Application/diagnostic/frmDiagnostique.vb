@@ -10434,7 +10434,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                         m_diagnostic.syntheseUsureMoyenneBuses = ofrm.getContexte().EcartMoyen
                     End If
                     If bTrtSemence And m_diagnostic.diagnosticHelp12123.isCuillere Then
-                        'Pas de calcul du defaut
+                        RadioButton_diagnostic_12123.Checked = False
                     Else
                         Select Case m_diagnostic.diagnosticHelp12123.Resultat
                             Case DiagnosticItem.EtatDiagItemOK

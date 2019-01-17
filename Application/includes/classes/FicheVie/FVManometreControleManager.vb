@@ -314,7 +314,7 @@ Public Class FVManometreControleManager
             Try
                 ' On récupère les résultats
                 Dim bdd As New CSDb(True)
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT `id` FROM `FichevieManometreControle` WHERE `id` LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY `id` DESC")
+                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieManometreControle` WHERE `id` LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY `id` DESC")
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
@@ -344,7 +344,7 @@ Public Class FVManometreControleManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `FichevieManometreControle` SET `FichevieManometreControle`.`dateModificationCrodip`='" & newDate & "',`FichevieManometreControle`.`dateModificationAgent`='" & newDate & "' WHERE `FichevieManometreControle`.`id`='" & objFVManometreControle.id & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
             bReturn = True
         Catch ex As Exception

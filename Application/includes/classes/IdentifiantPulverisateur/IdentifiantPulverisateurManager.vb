@@ -31,7 +31,7 @@ Public Class IdentifiantPulverisateurManager
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
             Dim tmpResults As System.Data.OleDb.OleDbDataReader
-            tmpResults = dbLink.getResults("SELECT * FROM IdentifiantPulverisateur WHERE id=" & pId & "")
+            tmpResults = dbLink.getResult2s("SELECT * FROM IdentifiantPulverisateur WHERE id=" & pId & "")
             bReturn = tmpResults.HasRows
             tmpResults.Close()
             dbLink.free()
@@ -53,7 +53,7 @@ Public Class IdentifiantPulverisateurManager
         Dim returnVal As Integer
         bdd = New CSDb(True)
         Try
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT Max(id)+1 AS Id FROM IdentifiantPulverisateur ")
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT Max(id)+1 AS Id FROM IdentifiantPulverisateur ")
             While dataResults.Read()
                 returnVal = dataResults.GetInt32(0)
             End While
@@ -143,7 +143,7 @@ Public Class IdentifiantPulverisateurManager
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
             Dim oDataReader As System.Data.OleDb.OleDbDataReader
-            oDataReader = dbLink.getResults("SELECT * FROM IdentifiantPulverisateur WHERE id=" & pId & "")
+            oDataReader = dbLink.getResult2s("SELECT * FROM IdentifiantPulverisateur WHERE id=" & pId & "")
             While oDataReader.Read()
                 ' On rempli notre Object
                 Dim tmpColId As Integer = 0
@@ -341,7 +341,7 @@ Public Class IdentifiantPulverisateurManager
         Dim oCSDB As New CSDb(True)
         Try
             Dim oDR As OleDb.OleDbDataReader
-            oDR = oCSDB.getResults("SELECT * FROM IDENTIFIANTPULVERISATEUR WHERE IDSTRUCTURE = " & pIdStructure & " ORDER BY NUMERONATIONAL")
+            oDR = oCSDB.getResult2s("SELECT * FROM IDENTIFIANTPULVERISATEUR WHERE IDSTRUCTURE = " & pIdStructure & " ORDER BY NUMERONATIONAL")
             While oDR.Read()
                 Dim oIdentPulve As New IdentifiantPulverisateur
                 Dim nColId As Integer = 0

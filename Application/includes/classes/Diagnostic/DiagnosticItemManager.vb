@@ -416,7 +416,7 @@ Public Class DiagnosticItemManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `DiagnosticItem` SET `DiagnosticItem`.`dateModificationCrodip`='" & newDate & "',`DiagnosticItem`.`dateModificationAgent`='" & newDate & "' WHERE `DiagnosticItem`.`id`='" & objDiagnosticItem.id & "' AND idDiagnostic = '" & objDiagnosticItem.idDiagnostic & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticItemManager::setSynchro : " & ex.Message)

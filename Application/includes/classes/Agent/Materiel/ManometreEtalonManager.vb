@@ -196,7 +196,7 @@ Public Class ManometreEtalonManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `AgentManoEtalon` SET `AgentManoEtalon`.`dateModificationCrodip`='" & newDate & "',`AgentManoEtalon`.`dateModificationAgent`='" & newDate & "' WHERE `AgentManoEtalon`.`numeroNational`='" & objManometreEtalon.numeroNational & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("ManometreEtalonManager::setSynchro : " & ex.Message)
@@ -208,7 +208,7 @@ Public Class ManometreEtalonManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `AgentManoEtalon` SET `AgentManoEtalon`.`nbControles`=(`AgentManoEtalon`.`nbControles`+1), `AgentManoEtalon`.`nbControlesTotal`=(`AgentManoEtalon`.`nbControlesTotal`+1) WHERE `AgentManoEtalon`.`numeroNational`='" & objManometreEtalon.numeroNational & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("ManometreEtalonManager::incNbControles : " & ex.Message)
@@ -219,7 +219,7 @@ Public Class ManometreEtalonManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `AgentManoEtalon` SET `AgentManoEtalon`.`nbControles`=0 WHERE `AgentManoEtalon`.`numeroNational`='" & objManometreEtalon.numeroNational & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("ManometreEtalonManager::resetNbControles : " & ex.Message)

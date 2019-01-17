@@ -12,7 +12,7 @@ Public Class AcquiringManager
         'If Not GLOB_ENV_DEBUG Then
         'On ne Vide pas la table en Debug pour test
         Dim bdd As New CSDb(True, DBTYPE.DAISY)
-        Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults("DELETE FROM tmpDataAcquiring")
+        bdd.Execute("DELETE FROM tmpDataAcquiring")
         bdd.free()
     End Sub
     Public Shared Function Save(arrAcquiring As List(Of Acquiring)) As Boolean
@@ -48,7 +48,7 @@ Public Class AcquiringManager
 
         ' Initialisation de la DB
         Dim bdd As New CSDb(True, DBTYPE.DAISY)
-        Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT * FROM tmpDataAcquiring")
+        Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT * FROM tmpDataAcquiring")
 
         ' Parcourt des résultats
         Dim i As Integer = 0
@@ -82,7 +82,7 @@ Public Class AcquiringManager
         Dim nbNiveaux As Integer = 0
         Try
             Dim bdd As New CSDb(True, DBTYPE.DAISY)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT Distinct idNiveau FROM tmpDataAcquiring")
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT Distinct idNiveau FROM tmpDataAcquiring")
 
             nbNiveaux = 0
             If dataResults.HasRows() Then
@@ -109,7 +109,7 @@ Public Class AcquiringManager
         Dim nbBusesLu As Integer = -1
         Try
             Dim bdd As New CSDb(True, DBTYPE.DAISY)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT Count(*) AS nbBuses FROM tmpDataAcquiring WHERE idNiveau = " & pnNiveau & "")
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT Count(*) AS nbBuses FROM tmpDataAcquiring WHERE idNiveau = " & pnNiveau & "")
             Dim nbNiveaux As Integer = 0
 
             isOk = True
@@ -130,7 +130,7 @@ Public Class AcquiringManager
         Dim isOk As Boolean = True
         Try
             Dim bdd As New CSDb(True, DBTYPE.DAISY)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT idNiveau,Count(*) AS nbBuses FROM tmpDataAcquiring GROUP BY idNiveau")
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT idNiveau,Count(*) AS nbBuses FROM tmpDataAcquiring GROUP BY idNiveau")
             Dim nbNiveaux As Integer = 0
             Dim nbNiveauxDec As Integer = 0
 

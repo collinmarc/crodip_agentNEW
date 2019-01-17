@@ -228,7 +228,7 @@ Public Class FVManometreEtalonManager
             Try
                 ' On récupère les résultats
                 Dim bdd As New CSDb(True)
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT `id` FROM `FichevieManometreEtalon` WHERE `id` LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY `id` DESC")
+                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieManometreEtalon` WHERE `id` LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY `id` DESC")
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
@@ -256,7 +256,7 @@ Public Class FVManometreEtalonManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `FichevieManometreEtalon` SET `FichevieManometreEtalon`.`dateModificationCrodip`='" & newDate & "',`FichevieManometreEtalon`.`dateModificationAgent`='" & newDate & "' WHERE `FichevieManometreEtalon`.`id`='" & objFVManometreEtalon.id & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispError("FVManometreEtalonManager::setSynchro : " & ex.Message)

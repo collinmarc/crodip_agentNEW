@@ -387,7 +387,7 @@ Public Class DiagnosticManager
             End If
             query = query & " ORDER BY Diagnostic.controleDateFin DESC"
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults(query)
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
             Dim i As String = 0
             colDiag.Clear()
             While dataResults.Read()
@@ -675,7 +675,7 @@ Public Class DiagnosticManager
         If pAgent.idStructure <> 0 Then
 
             ' On test si la table est vide
-            Dim tmpNbDiagResult As System.Data.OleDb.OleDbDataReader = oCSDb.getResults("SELECT count(*) as nbControles FROM `Diagnostic` WHERE `Diagnostic`.`InspecteurID` = " & pAgent.id & "")
+            Dim tmpNbDiagResult As System.Data.OleDb.OleDbDataReader = oCSDb.getResult2s("SELECT count(*) as nbControles FROM `Diagnostic` WHERE `Diagnostic`.`InspecteurID` = " & pAgent.id & "")
             Dim tmpNbDiag As Integer = 0
             While tmpNbDiagResult.Read()
                 tmpNbDiag = tmpNbDiagResult.GetInt32(0)
@@ -1245,7 +1245,7 @@ Public Class DiagnosticManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `Diagnostic` SET `Diagnostic`.`dateModificationCrodip`='" & newDate & "',`Diagnostic`.`dateModificationAgent`='" & newDate & "' WHERE `Diagnostic`.`id`='" & objDiagnostic.id & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticManager::setSynchro : " & ex.Message)

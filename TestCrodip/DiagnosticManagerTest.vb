@@ -757,8 +757,8 @@ Public Class DiagnosticManagerTest
 
         'Mise à jour du Flag de synchro 
         oCsDb = New CSDb(True)
-        oCsDb.getResults("UPDATE DIAGNOSTIC SET dateModificationCrodip = dateModificationAgent")
-        oCsDb.getResults("UPDATE DIAGNOSTIC SET dateSynchro = dateModificationAgent")
+        oCsDb.Execute("UPDATE DIAGNOSTIC SET dateModificationCrodip = dateModificationAgent")
+        oCsDb.Execute("UPDATE DIAGNOSTIC SET dateSynchro = dateModificationAgent")
 
 
         'Creation d'un Diagnostic
@@ -3820,7 +3820,7 @@ Public Class DiagnosticManagerTest
 
         'Maj du diag Id pour simler le Bug de GreenControl
         Dim oCsdb As New CSDb(True)
-        oCsdb.getResults("UPDATE DIAGNOSTIC set id = '45-99-33' WHERE id = " & strId)
+        oCsdb.Execute("UPDATE DIAGNOSTIC set id = '45-99-33' WHERE id = " & strId)
 
         'Récupération d'un nouvel Id
         strId = DiagnosticManager.getNewId(m_oAgent)

@@ -183,8 +183,8 @@ Public Class DiagnosticBusesDetailManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `DiagnosticBusesDetail` SET `DiagnosticBusesDetail`.`dateModificationCrodip`='" & newDate & "',`DiagnosticBusesDetail`.`dateModificationAgent`='" & newDate & "' WHERE `DiagnosticBusesDetail`.`id`='" & objDiagnosticBusesDetail.id & "'"
-            dbLink.getResults()
+            dbLink.queryString = "UPDATE `DiagnosticBusesDetail` SET `DiagnosticBusesDetail`.`dateModificationCrodip`='" & newDate & "',`DiagnosticBusesDetail`.`dateModificationAgent`='" & newDate & "' WHERE `DiagnosticBusesDetail`.`id`='" & objDiagnosticBusesDetail.id & ""
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticBusesDetailManager::setSynchro : " & ex.Message)

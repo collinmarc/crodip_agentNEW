@@ -354,7 +354,7 @@ Public Class PulverisateurManager
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
             dbLink.queryString = "UPDATE `Pulverisateur` SET `Pulverisateur`.`dateModificationCrodip`='" & newDate & "',`Pulverisateur`.`dateModificationAgent`='" & newDate & "' WHERE `Pulverisateur`.`id`='" & objPulverisateur.id & "'"
-            dbLink.getResults()
+            dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("PulverisateurManager::setSynchro : " & ex.Message)
@@ -434,7 +434,7 @@ Public Class PulverisateurManager
             ' On vérifie que le pulvé n'a pas servi dans un diag
             Dim query As String = "SELECT * FROM Diagnostic WHERE Diagnostic.pulverisateurId = '" & pulverisateur_id & "'"
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults(query)
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
 
             bReturn = dataResults.HasRows
             bdd.free()
@@ -475,12 +475,12 @@ Public Class PulverisateurManager
             ' On supprime le Pulverisateur de la base
             Dim query As String = "DELETE FROM `Pulverisateur` WHERE Pulverisateur.id='" & pPulveId & "'"
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults(query)
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
             bdd.free()
             'Suppression de la relation vers les exploitations
             query = "DELETE FROM `ExploitationTOPulverisateur` WHERE `ExploitationTOPulverisateur`.`idPulverisateur`='" & pPulveId & "'"
             Dim bdd2 As New CSDb(True)
-            Dim dataResults2 As System.Data.OleDb.OleDbDataReader = bdd2.getResults(query)
+            Dim dataResults2 As System.Data.OleDb.OleDbDataReader = bdd2.getResult2s(query)
             bdd2.free()
 
             Return True
@@ -615,7 +615,7 @@ Public Class PulverisateurManager
             strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) OR Diagnostic.controleDateFin IS NULL) "
             strQuery = strQuery & " AND pulverisateur.idStructure = " & pAgent.idStructure
             strQuery = strQuery & " ORDER BY  Pulverisateur.dateProchainControle ASC"
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResults(strQuery)
+            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(strQuery)
 
             Dim i As Integer = 0
             ' Puis on les parcours
@@ -693,7 +693,7 @@ Public Class PulverisateurManager
         Dim bdd As CSDb
         bdd = New CSDb(True)
         Try
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "' AND id <> '" & pulveId & "'")
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "' AND id <> '" & pulveId & "'")
             While dataResults.Read()
                 Dim returnVal As Integer = CInt(Trim(dataResults.Item(0).ToString))
                 bdd.free()
@@ -717,7 +717,7 @@ Public Class PulverisateurManager
         Dim returnVal As Integer
         Try
             bdd = New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResults("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "'")
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "'")
             While dataResults.Read()
                 returnVal = CInt(Trim(dataResults.Item(0).ToString))
             End While

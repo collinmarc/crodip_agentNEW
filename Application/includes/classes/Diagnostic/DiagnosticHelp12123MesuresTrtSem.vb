@@ -338,7 +338,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
                 Ecart3 = ConvertStringToAtt(tabValues(9))
                 PeseeMoyenne = ConvertStringToAtt(tabValues(10))
                 EcartMoyen = ConvertStringToAtt(tabValues(11))
-                Resultat = ConvertStringToAtt(tabValues(12))
+                Resultat = tabValues(12)
                 bCalcule = True
             Catch ex As Exception
                 CSDebug.dispError("DiagnosticHelp12123MesureTrtSem.load ERR conversion (" & pDiagItem.itemValue & ") ERR " & ex.Message)
@@ -366,7 +366,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
         oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(Ecart3) & "|" '8
         oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(PeseeMoyenne) & "|" '9
         oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(EcartMoyen) & "|" '10
-        oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(Resultat) & "|" '11
+        oDiagItem.itemValue = oDiagItem.itemValue & Resultat & "|" '11
 
         Return oDiagItem
     End Function

@@ -13,7 +13,7 @@ Public Class AutoTestManager
             '## Préparation de la connexion
             '## Execution de la requete
             Dim tmpResults As System.Data.OleDb.OleDbDataReader
-            tmpResults = dbLink.getResults("SELECT * FROM `Controle_Regulier` WHERE ctrg_id=" & idControle & "")
+            tmpResults = dbLink.getResult2s("SELECT * FROM `Controle_Regulier` WHERE ctrg_id=" & idControle & "")
             '################################################################
             Dim i As Integer = 0
             If tmpResults.HasRows Then
@@ -58,7 +58,7 @@ Public Class AutoTestManager
             Dim oDBReader As System.Data.OleDb.OleDbDataReader
             Dim sqlQuery As String
             sqlQuery = "SELECT MAX(CTRG_ID) as ctrg_id FROM CONTROLE_REGULIER "
-            oDBReader = oCSDB.getResults(sqlQuery)
+            oDBReader = oCSDb.getResult2s(sqlQuery)
 
             '################################################################
             Dim i As Integer = 0
@@ -69,6 +69,7 @@ Public Class AutoTestManager
                     oCtrlRegulier.setId(oDBReader.GetInt32(tmpColId))
                 End If
             End If
+            oDBReader.Close()
 
         Catch ex As Exception
             CSDebug.dispFatal("ControleregulierManager - create : " & ex.Message)
@@ -186,7 +187,7 @@ Public Class AutoTestManager
 
         Try
             Dim bdd As New CSDb(True)
-            bdd.getResults("DELETE FROM `Controle_Regulier` WHERE `ctrg_id`=" & pIdControle & "")
+            bdd.Execute("DELETE FROM `Controle_Regulier` WHERE `ctrg_id`=" & pIdControle & "")
             bdd.free()
             bReturn = True
         Catch ex As Exception
@@ -224,7 +225,7 @@ Public Class AutoTestManager
                 If pSynchro Then
                     sqlQuery = sqlQuery & " AND dateModificationAgent > dateModificationCrodip "
                 End If
-                oDBReader = dbLink.getResults(sqlQuery & " ORDER BY CTRG_ID")
+                oDBReader = dbLink.getResult2s(sqlQuery & " ORDER BY CTRG_ID")
 
                 '################################################################
                 Dim i As Integer = 0
@@ -236,6 +237,7 @@ Public Class AutoTestManager
                     oDBCtrl.Fill(oDBReader)
                     ocolReturn.Add(oDBCtrl)
                 End While
+                oDBReader.Close()
                 dbLink.free()
             End If
         Catch ex As Exception
