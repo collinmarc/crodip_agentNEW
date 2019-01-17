@@ -1747,6 +1747,7 @@ Public Class frmcontrole_bancs
         Me.Controls.Add(Me.btn_controleBanc_annuler)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.KeyPreview = True
+        Me.MinimizeBox = False
         Me.Name = "frmcontrole_bancs"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Contrôle des bancs"
@@ -2260,4 +2261,7 @@ Public Class frmcontrole_bancs
 
 
  
- End Class
+    Private Sub Label28_Click(sender As Object, e As EventArgs) Handles Label28.Click
+
+    End Sub
+End Class
