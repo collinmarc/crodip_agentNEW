@@ -4905,7 +4905,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
         End If
         If Not bVerif551 Or Not bVerif5621 Or Not bVerif5622 Or Not bVerif571 Or Not bVerif552 Then
-            Dim vResult As MsgBoxResult = MsgBox("vous n'avez pas saisi toutes les valeurs des points 551, 552, 562 et 571, voulez-vous les saisir maintenant ?", vbYesNo)
+            Dim vResult As MsgBoxResult = MsgBox("Vous n'avez pas saisi les valeurs de vitesse, de débit et les valeurs du cumuls des erreurs.Voulez-vous les saisir maintenant ?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo)
             If vResult = vbYes Then
                 If Not bVerif551 Then
                     calc551()
@@ -10418,9 +10418,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
                 ini12123()
             End If
-            If bTrtSemence And m_diagnostic.diagnosticHelp12123.lstPompesTrtSem.Count = 0 Then
-                Exit Function
-            End If
+           
             If Not bTrtSemence And m_diagnostic.diagnosticHelp12123.lstPompes.Count = 0 Then
                 Exit Function
             End If

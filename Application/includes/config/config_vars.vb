@@ -6,6 +6,7 @@ Public Class Globals
         ORANGE = 1
         JAUNE = 2
         NONE = 3
+        CONTROLE = 4
     End Enum
     Public Enum DiagMode As Integer
         CTRL_COMPLET = 0

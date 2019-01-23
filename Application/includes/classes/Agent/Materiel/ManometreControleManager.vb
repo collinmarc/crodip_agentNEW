@@ -407,6 +407,8 @@ Public Class ManometreControleManager
             Else
                 bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE AgentManoControle.idStructure=" & pIdStructure & " AND AgentManoControle.isSupprime=" & False & " AND AgentManoControle.jamaisServi = " & False & " AND AgentManoControle.etat=" & True & ""
             End If
+            bddCommande.CommandText = bddCommande.CommandText & " ORDER BY idCrodip"
+
             Try
                 ' On récupère les résultats
                 Dim oDataReader As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader

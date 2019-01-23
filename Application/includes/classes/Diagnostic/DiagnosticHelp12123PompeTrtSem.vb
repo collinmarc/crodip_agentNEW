@@ -50,8 +50,7 @@ Public Class DiagnosticHelp12123PompeTrtSem
         m_Resultat = ""
         m_bCalcule = True
         m_lstHelp12123Mesures = New List(Of DiagnosticHelp12123MesuresTrtSem)
-        'Minimum 3 mesures
-        AjouteMesure()
+        'Minimum 2 mesures
         AjouteMesure()
         AjouteMesure()
     End Sub

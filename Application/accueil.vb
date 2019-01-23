@@ -3670,6 +3670,7 @@ Public Class accueil
         Dim nbAlertes_ManometreControle_15jr As Integer = 0
         Dim nbAlertes_ManometreControle_1mois As Integer = 0
         Dim nbAlertes_ManometreControle_1mois7jr As Integer = 0
+        Dim nbAlertes_Controle As Integer = 0
 
 
         Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
@@ -3683,6 +3684,10 @@ Public Class accueil
         Dim AlerteMano As Globals.ALERTE
         For Each tmpManoControle As ManometreControle In arrManoControle
             AlerteMano = tmpManoControle.getAlerte()
+
+            If AlerteMano = Globals.ALERTE.CONTROLE Then ' Defaillant
+                nbAlertes_Controle = nbAlertes_Controle + 1
+            End If
 
             If AlerteMano = Globals.ALERTE.NOIRE Then ' 1mois7jrs
                 nbAlertes_ManometreControle_1mois7jr = nbAlertes_ManometreControle_1mois7jr + 1
@@ -3736,13 +3741,22 @@ Public Class accueil
         If nbAlertes_ManometreControle_1mois7jr > 0 Then
             sName = "alerteManoControle_1mois7jr"
             If nbAlertes_ManometreControle_1mois7jr > 1 Then
-                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_ManometreControle_1mois7jr & " manomètres de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics et vous vous exposez à des sanctions de sa part."
+                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_ManometreControle_1mois7jr & " manomètres de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             Else
-                sTexte = "Vous avez trop attendu pour vérifier 1 manomètre de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics et vous vous exposez à des sanctions de sa part."
+                sTexte = "Vous avez trop attendu pour vérifier 1 manomètre de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             End If
             AjouteUneAlerte(Globals.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
         End If
 
+        If nbAlertes_Controle > 0 Then
+            sName = "alerteManoControle_defaillant"
+            If nbAlertes_Controle > 1 Then
+                sTexte = "Vous avez " & nbAlertes_Controle & " manomètres de contrôle défectueux. Contactez le CRODIP."
+            Else
+                sTexte = "Vous avez 1 manomètre de contrôle défectueux. Contactez le CRODIP."
+            End If
+            AjouteUneAlerte(Globals.ALERTE.CONTROLE, sName, sTexte, positionTopAlertes)
+        End If
     End Sub
     'Chargement des alertes
     Private Sub loadAccueilAlertsIdentifiantsPulvérisateurs(ByRef positionTopAlertes As Integer)
@@ -3785,6 +3799,7 @@ Public Class accueil
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
         tmpAlerte.Name = pName
         tmpAlerte.Text = "       " & ptext
+        accueil_panelAlertes.Controls.Add(tmpAlerte)
         Controls.Add(tmpAlerte)
         ' Position
         tmpAlerte.Parent = accueil_panelAlertes
@@ -3808,8 +3823,11 @@ Public Class accueil
             Case Globals.ALERTE.NOIRE
                 tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(203, Byte), CType(19, Byte), CType(31, Byte)) ' => Rouge
                 tmpAlerte.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
-                tmpAlerte.Height = 32
-                positionTopAlertes = positionTopAlertes + 40
+                positionTopAlertes = positionTopAlertes + 24
+            Case Globals.ALERTE.CONTROLE
+                tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(203, Byte), CType(19, Byte), CType(31, Byte)) ' => Rouge
+                tmpAlerte.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
+                positionTopAlertes = positionTopAlertes + 24
         End Select
         ' Apparence texte
         Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -3922,6 +3940,7 @@ Public Class accueil
         Dim nbAlertes_Banc_15jr As Integer = 0
         Dim nbAlertes_Banc_1mois As Integer = 0
         Dim nbAlertes_Banc_1mois7jr As Integer = 0
+        Dim nbAlertes_Banc_defaillant As Integer = 0
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
 
         Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
@@ -3951,6 +3970,9 @@ Public Class accueil
                 If njours < nbBancAvantDL.Length Then
                     nbBancAvantDL(Math.Abs(njours)) = nbBancAvantDL(Math.Abs(njours)) + 1
                 End If
+            End If
+            If AlerteBanc = Globals.ALERTE.CONTROLE Then 'Etat defaillant
+                nbAlertes_Banc_defaillant = nbAlertes_Banc_defaillant + 1
             End If
         Next
         'Affichage des alertes 
@@ -3984,13 +4006,22 @@ Public Class accueil
         If nbAlertes_Banc_1mois7jr > 0 Then
             sName = "alerteManoControle_1mois7jr"
             If nbAlertes_Banc_1mois7jr > 1 Then
-                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_Banc_1mois7jr & " banc de mesure. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics et vous vous exposez à des sanctions de sa part."
+                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_Banc_1mois7jr & " banc de mesure. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             Else
-                sTexte = "Vous avez trop attendu pour vérifier 1 banc de mesure. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics et vous vous exposez à des sanctions de sa part."
+                sTexte = "Vous avez trop attendu pour vérifier 1 banc de mesure. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             End If
             AjouteUneAlerte(Globals.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
         End If
 
+        If nbAlertes_Banc_defaillant > 0 Then
+            sName = "alerteManoControle_defaillant"
+            If nbAlertes_Banc_defaillant > 1 Then
+                sTexte = "Vous avez " & nbAlertes_Banc_defaillant & " bancs de mesure défectueux. Contactez le CRODIP."
+            Else
+                sTexte = "Vous avez 1 banc de mesure défectueux. Contactez le CRODIP."
+            End If
+            AjouteUneAlerte(Globals.ALERTE.CONTROLE, sName, sTexte, positionTopAlertes)
+        End If
 
     End Sub
 

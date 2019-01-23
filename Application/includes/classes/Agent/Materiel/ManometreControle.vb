@@ -310,6 +310,9 @@ Public Class ManometreControle
 
         oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.ManometreControle)
         bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
+        If bReturn = Globals.ALERTE.NONE And etat = False Then
+            bReturn = Globals.ALERTE.CONTROLE
+        End If
         Return bReturn
     End Function
     '''

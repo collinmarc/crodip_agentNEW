@@ -2863,7 +2863,7 @@ Public Class Diagnostic
                 _diagnostichelp12123.lstPompesTrtSem.Clear()
                 'Pour le traietement des semences CUILLERES
                 'On ajout une Pompe avec 1 Mesure
-                If poPulve.isTraitementdesSemences() And _diagnostichelp12123.isCuillere Then
+                If poPulve.isTraitementdesSemences() Then
                     Dim oPompe As DiagnosticHelp12123PompeTrtSem
                     oPompe = _diagnostichelp12123.AjoutePompeTrtSem()
                 End If

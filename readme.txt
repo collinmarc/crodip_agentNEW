@@ -1,4 +1,12 @@
 TRUNK
+Build :20190117100000
+------------------
+#297 : Modification des textes des fenêtres de verifs des bancs et des manos
+#154 : Traitements des semences
+#153 : Pompes doseuses
+#148 : Accélération des controles
+
+
 Build :20181220180000
 ------------------
 #274 : Calc de l'état des buses après synhcro

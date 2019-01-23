@@ -43,6 +43,9 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnl12123 = New System.Windows.Forms.Panel()
+        Me.rbFonctionnementCuillère = New System.Windows.Forms.RadioButton()
+        Me.rbFonctinonementInjection = New System.Windows.Forms.RadioButton()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
@@ -50,6 +53,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.btn_PompeSuivante = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.pnlDetailPompe = New System.Windows.Forms.Panel()
+        Me.btnSupprimer = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.numeroMesurestr = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.m_bsrcMesures = New System.Windows.Forms.BindingSource(Me.components)
@@ -69,9 +73,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.Label18 = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.rbFonctinonementInjection = New System.Windows.Forms.RadioButton()
-        Me.rbFonctionnementCuillère = New System.Windows.Forms.RadioButton()
         Me.TbNumeric5 = New CRODIP_ControlLibrary.TBNumeric()
         Me.TbNumeric4 = New CRODIP_ControlLibrary.TBNumeric()
         Me.tbEcartMoyen = New CRODIP_ControlLibrary.TBNumeric()
@@ -93,7 +94,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.EcartMoyenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ResultatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ImageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.btnSupprimer = New System.Windows.Forms.Label()
         Me.pnl12123.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -130,6 +130,45 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.pnl12123.Name = "pnl12123"
         Me.pnl12123.Size = New System.Drawing.Size(1027, 603)
         Me.pnl12123.TabIndex = 43
+        '
+        'rbFonctionnementCuillère
+        '
+        Me.rbFonctionnementCuillère.AutoSize = True
+        Me.rbFonctionnementCuillère.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Me.m_bsrcH12123, "isCuillere", True))
+        Me.rbFonctionnementCuillère.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbFonctionnementCuillère.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.rbFonctionnementCuillère.Location = New System.Drawing.Point(752, 40)
+        Me.rbFonctionnementCuillère.Name = "rbFonctionnementCuillère"
+        Me.rbFonctionnementCuillère.Size = New System.Drawing.Size(87, 24)
+        Me.rbFonctionnementCuillère.TabIndex = 84
+        Me.rbFonctionnementCuillère.TabStop = True
+        Me.rbFonctionnementCuillère.Text = "Cuillère"
+        Me.rbFonctionnementCuillère.UseVisualStyleBackColor = True
+        '
+        'rbFonctinonementInjection
+        '
+        Me.rbFonctinonementInjection.AutoSize = True
+        Me.rbFonctinonementInjection.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Me.m_bsrcH12123, "isInjection", True))
+        Me.rbFonctinonementInjection.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbFonctinonementInjection.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.rbFonctinonementInjection.Location = New System.Drawing.Point(655, 40)
+        Me.rbFonctinonementInjection.Name = "rbFonctinonementInjection"
+        Me.rbFonctinonementInjection.Size = New System.Drawing.Size(96, 24)
+        Me.rbFonctinonementInjection.TabIndex = 83
+        Me.rbFonctinonementInjection.TabStop = True
+        Me.rbFonctinonementInjection.Text = "Injection"
+        Me.rbFonctinonementInjection.UseVisualStyleBackColor = True
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(436, 42)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(223, 20)
+        Me.Label4.TabIndex = 81
+        Me.Label4.Text = "Mode de fonctionnement : "
         '
         'Label1
         '
@@ -272,6 +311,18 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.pnlDetailPompe.Size = New System.Drawing.Size(879, 405)
         Me.pnlDetailPompe.TabIndex = 78
         '
+        'btnSupprimer
+        '
+        Me.btnSupprimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSupprimer.ForeColor = System.Drawing.Color.White
+        Me.btnSupprimer.Image = Global.Crodip_agent.Resources.btn_delete
+        Me.btnSupprimer.Location = New System.Drawing.Point(4, 30)
+        Me.btnSupprimer.Name = "btnSupprimer"
+        Me.btnSupprimer.Size = New System.Drawing.Size(128, 24)
+        Me.btnSupprimer.TabIndex = 117
+        Me.btnSupprimer.Text = "    Supprimer"
+        Me.btnSupprimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
@@ -399,7 +450,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.nupMesures.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nupMesures.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.nupMesures.Location = New System.Drawing.Point(666, 49)
-        Me.nupMesures.Minimum = New Decimal(New Integer() {3, 0, 0, 0})
         Me.nupMesures.Name = "nupMesures"
         Me.nupMesures.Size = New System.Drawing.Size(40, 26)
         Me.nupMesures.TabIndex = 77
@@ -523,45 +573,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.btnValider.TabIndex = 42
         Me.btnValider.Text = "Valider"
         Me.btnValider.UseVisualStyleBackColor = False
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(436, 42)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(223, 20)
-        Me.Label4.TabIndex = 81
-        Me.Label4.Text = "Mode de fonctionnement : "
-        '
-        'rbFonctinonementInjection
-        '
-        Me.rbFonctinonementInjection.AutoSize = True
-        Me.rbFonctinonementInjection.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Me.m_bsrcH12123, "isInjection", True))
-        Me.rbFonctinonementInjection.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbFonctinonementInjection.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.rbFonctinonementInjection.Location = New System.Drawing.Point(655, 40)
-        Me.rbFonctinonementInjection.Name = "rbFonctinonementInjection"
-        Me.rbFonctinonementInjection.Size = New System.Drawing.Size(96, 24)
-        Me.rbFonctinonementInjection.TabIndex = 83
-        Me.rbFonctinonementInjection.TabStop = True
-        Me.rbFonctinonementInjection.Text = "Injection"
-        Me.rbFonctinonementInjection.UseVisualStyleBackColor = True
-        '
-        'rbFonctionnementCuillère
-        '
-        Me.rbFonctionnementCuillère.AutoSize = True
-        Me.rbFonctionnementCuillère.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Me.m_bsrcH12123, "isCuillere", True))
-        Me.rbFonctionnementCuillère.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbFonctionnementCuillère.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.rbFonctionnementCuillère.Location = New System.Drawing.Point(752, 40)
-        Me.rbFonctionnementCuillère.Name = "rbFonctionnementCuillère"
-        Me.rbFonctionnementCuillère.Size = New System.Drawing.Size(87, 24)
-        Me.rbFonctionnementCuillère.TabIndex = 84
-        Me.rbFonctionnementCuillère.TabStop = True
-        Me.rbFonctionnementCuillère.Text = "Cuillère"
-        Me.rbFonctionnementCuillère.UseVisualStyleBackColor = True
         '
         'TbNumeric5
         '
@@ -761,18 +772,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.ImageDataGridViewImageColumn.DataPropertyName = "Image"
         Me.ImageDataGridViewImageColumn.HeaderText = ""
         Me.ImageDataGridViewImageColumn.Name = "ImageDataGridViewImageColumn"
-        '
-        'btnSupprimer
-        '
-        Me.btnSupprimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSupprimer.ForeColor = System.Drawing.Color.White
-        Me.btnSupprimer.Image = Global.Crodip_agent.Resources.btn_delete
-        Me.btnSupprimer.Location = New System.Drawing.Point(4, 30)
-        Me.btnSupprimer.Name = "btnSupprimer"
-        Me.btnSupprimer.Size = New System.Drawing.Size(128, 24)
-        Me.btnSupprimer.TabIndex = 117
-        Me.btnSupprimer.Text = "    Supprimer"
-        Me.btnSupprimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'diagnostic_dlghelp12123newTrtSem
         '

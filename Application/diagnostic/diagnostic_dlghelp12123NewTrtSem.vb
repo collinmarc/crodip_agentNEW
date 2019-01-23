@@ -19,14 +19,14 @@ Public Class diagnostic_dlghelp12123newTrtSem
             'pnlPrinc.Enabled = False
             btnValider.Enabled = False
         End If
-        If pDiagH12123.isCuillere Then
-            nupNbPompes.Minimum = 1
-            nupMesures.Minimum = 1
-        End If
+        nupNbPompes.Minimum = 1
+        nupNbPompes.Maximum = 10
+        nupMesures.Minimum = 2
+        nupMesures.Maximum = 10
         m_bsrcH12123.Clear()
         Dim oH12123 As DiagnosticHelp12123
         oH12123 = pDiagH12123.Clone()
-
+        nupMesures.Value = oH12123.lstPompesTrtSem(0).lstMesures.Count
         m_bsrcH12123.Add(oH12123)
 
 
