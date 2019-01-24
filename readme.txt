@@ -5,6 +5,7 @@ Build :20190124100000
 #297 : Modification texte Onglerts de vérif de Manos et de bancs
 #285 : Le paramétrage Contre-visite gratuite est annulé par la MAJ de la version
 #148 : Contrôle de la saisie des mesures Vitesse / Débit / Cumul des erreurs
+#298 : Controle des Mano : Dernier Mano Sans Numéro
 
 
 
