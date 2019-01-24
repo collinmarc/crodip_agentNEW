@@ -99,8 +99,8 @@ Public Class gestion_tarifs
         Me.ckCVGratuite.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ckCVGratuite.AutoSize = True
         Me.ckCVGratuite.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ckCVGratuite.Checked = My.Settings.CVgratuite
-        Me.ckCVGratuite.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.Crodip_agent.MySettings.Default, "CVgratuite", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        '        Me.ckCVGratuite.Checked = My.Settings.CVgratuite
+        '        Me.ckCVGratuite.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.Crodip_agent.MySettings.Default, "CVgratuite", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.ckCVGratuite.Location = New System.Drawing.Point(518, 410)
         Me.ckCVGratuite.Name = "ckCVGratuite"
         Me.ckCVGratuite.Size = New System.Drawing.Size(172, 17)
@@ -299,7 +299,7 @@ Public Class gestion_tarifs
         m_Agent = pAgent
     End Sub
     Private Sub gestion_tarifs_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+        ckCVGratuite.Checked = System.IO.File.Exists("ContreVisiteGratuite")
         FillForm()
     End Sub
 
@@ -338,7 +338,13 @@ Public Class gestion_tarifs
                 PrestationTarifManager.save(oPrestation, m_Agent)
             End If
         Next
-
+        If ckCVGratuite.Checked Then
+            System.IO.File.CreateText("ContreVisiteGratuite")
+        Else
+            If System.IO.File.Exists("ContreVisiteGratuite") Then
+                System.IO.File.Delete("ContreVisiteGratuite")
+            End If
+        End If
         'Remise à zéro des information de dernier controle
         My.Settings.Save()
         Me.Cursor = Me.DefaultCursor

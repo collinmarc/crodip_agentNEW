@@ -1,4 +1,13 @@
 TRUNK
+Build :20190124100000
+------------------
+#292 : Feneêtre Gestion des Buses
+#297 : Modification texte Onglerts de vérif de Manos et de bancs
+#285 : Le paramétrage Contre-visite gratuite est annulé par la MAJ de la version
+#148 : Contrôle de la saisie des mesures Vitesse / Débit / Cumul des erreurs
+
+
+
 Build :20190117100000
 ------------------
 #297 : Modification des textes des fenêtres de verifs des bancs et des manos

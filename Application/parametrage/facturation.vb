@@ -53,31 +53,32 @@ Public Class facturation
     Friend WithEvents facturation_logo As System.Windows.Forms.PictureBox
     Friend WithEvents lblError As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(facturation))
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.facturation_siren = New System.Windows.Forms.TextBox
-        Me.Label104 = New System.Windows.Forms.Label
-        Me.btn_facturation_valider = New System.Windows.Forms.Label
-        Me.btn_facturation_annuler = New System.Windows.Forms.Label
-        Me.facturation_tva = New System.Windows.Forms.TextBox
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.facturation_rcs = New System.Windows.Forms.TextBox
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
-        Me.panel_logo_bg = New System.Windows.Forms.Panel
-        Me.facturation_logo = New System.Windows.Forms.PictureBox
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.facturation_footer = New System.Windows.Forms.RichTextBox
-        Me.facturation_isActivated = New System.Windows.Forms.CheckBox
-        Me.btn_facturation_ajouterLogo = New System.Windows.Forms.Label
-        Me.lblError = New System.Windows.Forms.Label
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(facturation))
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.facturation_siren = New System.Windows.Forms.TextBox()
+        Me.Label104 = New System.Windows.Forms.Label()
+        Me.btn_facturation_valider = New System.Windows.Forms.Label()
+        Me.btn_facturation_annuler = New System.Windows.Forms.Label()
+        Me.facturation_tva = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.facturation_rcs = New System.Windows.Forms.TextBox()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.panel_logo_bg = New System.Windows.Forms.Panel()
+        Me.facturation_logo = New System.Windows.Forms.PictureBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.facturation_footer = New System.Windows.Forms.RichTextBox()
+        Me.facturation_isActivated = New System.Windows.Forms.CheckBox()
+        Me.btn_facturation_ajouterLogo = New System.Windows.Forms.Label()
+        Me.lblError = New System.Windows.Forms.Label()
         Me.panel_logo_bg.SuspendLayout()
+        CType(Me.facturation_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(2, Byte), CType(129, Byte), CType(198, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
         Me.Label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Label1.Location = New System.Drawing.Point(8, 8)
@@ -92,12 +93,11 @@ Public Class facturation
         Me.facturation_siren.Name = "facturation_siren"
         Me.facturation_siren.Size = New System.Drawing.Size(232, 20)
         Me.facturation_siren.TabIndex = 28
-        Me.facturation_siren.Text = ""
         '
         'Label104
         '
         Me.Label104.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label104.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
+        Me.Label104.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label104.Location = New System.Drawing.Point(32, 88)
         Me.Label104.Name = "Label104"
         Me.Label104.Size = New System.Drawing.Size(96, 16)
@@ -137,12 +137,11 @@ Public Class facturation
         Me.facturation_tva.Name = "facturation_tva"
         Me.facturation_tva.Size = New System.Drawing.Size(232, 20)
         Me.facturation_tva.TabIndex = 28
-        Me.facturation_tva.Text = ""
         '
         'Label2
         '
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(32, 136)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(96, 16)
@@ -153,7 +152,7 @@ Public Class facturation
         'Label3
         '
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label3.Location = New System.Drawing.Point(32, 184)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(96, 16)
@@ -167,7 +166,6 @@ Public Class facturation
         Me.facturation_rcs.Name = "facturation_rcs"
         Me.facturation_rcs.Size = New System.Drawing.Size(232, 20)
         Me.facturation_rcs.TabIndex = 28
-        Me.facturation_rcs.Text = ""
         '
         'panel_logo_bg
         '
@@ -191,7 +189,7 @@ Public Class facturation
         'Label4
         '
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label4.Location = New System.Drawing.Point(32, 232)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(168, 16)
@@ -211,10 +209,10 @@ Public Class facturation
         'facturation_isActivated
         '
         Me.facturation_isActivated.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.facturation_isActivated.ForeColor = System.Drawing.Color.FromArgb(CType(0, Byte), CType(125, Byte), CType(192, Byte))
+        Me.facturation_isActivated.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.facturation_isActivated.Location = New System.Drawing.Point(40, 40)
         Me.facturation_isActivated.Name = "facturation_isActivated"
-        Me.facturation_isActivated.Size = New System.Drawing.Size(144, 16)
+        Me.facturation_isActivated.Size = New System.Drawing.Size(181, 16)
         Me.facturation_isActivated.TabIndex = 37
         Me.facturation_isActivated.Text = "Activation du module"
         '
@@ -262,12 +260,15 @@ Public Class facturation
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.facturation_rcs)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MinimizeBox = False
         Me.Name = "facturation"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Facturation"
         Me.TopMost = True
         Me.panel_logo_bg.ResumeLayout(False)
+        CType(Me.facturation_logo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 

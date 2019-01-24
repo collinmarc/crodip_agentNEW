@@ -4586,7 +4586,9 @@ Public Class accueil
         bOK = (formDiagnostic_Contexte.DialogResult = Windows.Forms.DialogResult.OK)
         If bOK Then
             formDiagnostic_Contexte.Close()
-            If Not diagnosticCourant.isContrevisiteImmediate Or Not My.Settings.CVgratuite Then
+            Dim isContreVisiteGratuite As Boolean
+            isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
+            If Not diagnosticCourant.isContrevisiteImmediate Or Not isContreVisiteGratuite Then
                 'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
                 Statusbar.clear()
                 Me.Cursor = Cursors.WaitCursor
@@ -4943,10 +4945,9 @@ Public Class accueil
     End Sub
     'Buses
     Private Sub btn_parametrage_parametrageBuses_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_parametrage_parametrageBuses.Click
-        Dim formGestion_busesEtalons As New gestion_busesEtalons
+        Dim ofrm As New gestion_busesEtalons
         'globFormGestionBusesEtalons = formGestion_busesEtalons
-        formGestion_busesEtalons.MdiParent = Me.MdiParent
-        formGestion_busesEtalons.Show()
+        TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
     End Sub
     'Bancs
     Private Sub btn_parametrage_parametrageBancs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_parametrage_parametrageBancs.Click

@@ -418,25 +418,22 @@ Public Class SynchronisationElmt
                 End If
             Case "GetBuse".ToUpper().Trim() ' Synchro d'une buse étalon
                 If (m_SynchroBoolean.m_bSynchDescBuse) Then
-                    Dim tmpObject As New Buse
+                    Dim oBuseE As Buse
                     Try
                         setStatus("Réception MAJ Buse n°" & pElement.identifiantChaine & "...")
-                        tmpObject = BuseManager.getWSBuseById(pElement.identifiantChaine)
-                        Dim bOld As Boolean = tmpObject.etat
+                        oBuseE = BuseManager.getWSBuseById(pElement.identifiantChaine)
+                        Dim bOld As Boolean = oBuseE.etat
                         'Modif du 6/12/2018
                         'Recalcul de l'état des buses après synhcro
-                        If tmpObject.getAlerte() = Globals.ALERTE.NOIRE Then
-                            tmpObject.etat = False
+                        If oBuseE.getAlerte() = Globals.ALERTE.NOIRE Then
+                            oBuseE.Desactiver()
+                            Dim obj As Object
+                            BuseManager.sendWSBuse(oBuseE, obj)
                         Else
-                            tmpObject.etat = True
+                            oBuseE.etat = True
                         End If
-                        If bOld <> tmpObject.etat Then
-                            'Sauvegarde normale => La buse sera a resynchroniser 
-                            BuseManager.save(tmpObject)
-                        Else
-                            'Sauvegarde en mode synhcro => La buse ne sera pas a resynchroniser 
-                            BuseManager.save(tmpObject, True)
-                        End If
+
+                        BuseManager.save(oBuseE, True)
                         bReturn = True
                     Catch ex As Exception
                         CSDebug.dispFatal("Synchronisation::runDescSynchro(GetBuse) : " & ex.Message.ToString)

@@ -343,9 +343,13 @@ Public Class gestion_busesEtalons
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(1008, 679)
         Me.Controls.Add(Me.Panel64)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "gestion_busesEtalons"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Gestion des buses étalons"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel64.ResumeLayout(False)
         Me.Panel65.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)

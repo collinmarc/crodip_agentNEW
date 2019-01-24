@@ -1075,8 +1075,9 @@ Public Class diagnostic_contexte
             My.Settings.DernierControleSiteSecurise = ckisSiteSecurise.Checked
             My.Settings.DernierControleRecupResidus = ckisRecuperationResidus.Checked
             My.Settings.Save()
-
-            If m_diagnostic.isContrevisiteImmediate And My.Settings.CVgratuite Then
+            Dim isContreVisiteGratuite As Boolean
+            isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
+            If m_diagnostic.isContrevisiteImmediate And isContreVisiteGratuite Then
                 'Mise à jour du tarif du Diagnostique
                 m_diagnostic.controleTarif = CType(0, Double)
                 'Création des fenêtres de Diagnostique

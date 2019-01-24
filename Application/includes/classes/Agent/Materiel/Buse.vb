@@ -157,7 +157,7 @@ Public Class Buse
         Return bReturn
     End Function
 
-    Public Function Desactiver()
+    Public Function Desactiver() As Boolean
         Dim bReturn As Boolean
 
         Try
