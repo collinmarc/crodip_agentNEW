@@ -1368,8 +1368,10 @@ Public Class Pulverisateur
             End If
             'RegulationIsDPAE
             '----------------
-            oDiagItem = New DiagnosticItemAuto("", "562", "0")
-            oReturn.Add(oDiagItem)
+            If Not pulverisateurRegulationIsDPMAssiste() Then
+                oDiagItem = New DiagnosticItemAuto("", "562", "0")
+                oReturn.Add(oDiagItem)
+            End If
             If pulverisateurRegulationIsDPAE() Then
                 oDiagItem.FillWithParam(olstParam.Find("5.6.2.0"))
             End If

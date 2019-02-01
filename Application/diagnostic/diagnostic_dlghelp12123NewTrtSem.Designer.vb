@@ -44,6 +44,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnl12123 = New System.Windows.Forms.Panel()
         Me.rbFonctionnementCuillère = New System.Windows.Forms.RadioButton()
+        Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
         Me.rbFonctinonementInjection = New System.Windows.Forms.RadioButton()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -52,13 +53,33 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.listImg_flags = New System.Windows.Forms.ImageList(Me.components)
         Me.btn_PompeSuivante = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.TbNumeric5 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.TbNumeric4 = New CRODIP_ControlLibrary.TBNumeric()
         Me.pnlDetailPompe = New System.Windows.Forms.Panel()
         Me.btnSupprimer = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdDiagDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BCalculeDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.NumPompeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.numeroMesurestr = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QteGrainsDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DebitSouhaiteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Pesee1DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ecart1DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Pesee2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ecart2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Pesee3DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ecart3DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PeseeMoyenneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EcartMoyenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ResultatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsrcMesures = New System.Windows.Forms.BindingSource(Me.components)
         Me.m_bsrcPompes = New System.Windows.Forms.BindingSource(Me.components)
+        Me.tbEcartMoyen = New CRODIP_ControlLibrary.TBNumeric()
         Me.laEcartMoyen = New System.Windows.Forms.Label()
+        Me.tbPeseeMoyenne = New CRODIP_ControlLibrary.TBNumeric()
         Me.laPesseMoyenne = New System.Windows.Forms.Label()
         Me.btnValiderNbMesures = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -73,28 +94,8 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.Label18 = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
-        Me.TbNumeric5 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.TbNumeric4 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.tbEcartMoyen = New CRODIP_ControlLibrary.TBNumeric()
-        Me.tbPeseeMoyenne = New CRODIP_ControlLibrary.TBNumeric()
-        Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDiagDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BCalculeDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.NumPompeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QteGrainsDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DebitSouhaiteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Pesee1DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Ecart1DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Pesee2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Ecart2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Pesee3DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Ecart3DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PeseeMoyenneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EcartMoyenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ResultatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ImageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.pnl12123.SuspendLayout()
+        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -106,7 +107,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         CType(Me.nupMesures, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pctResultat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nupNbPompes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnl12123
@@ -144,6 +144,10 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.rbFonctionnementCuillère.TabStop = True
         Me.rbFonctionnementCuillère.Text = "Cuillère"
         Me.rbFonctionnementCuillère.UseVisualStyleBackColor = True
+        '
+        'm_bsrcH12123
+        '
+        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
         '
         'rbFonctinonementInjection
         '
@@ -288,6 +292,33 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.Label6.TabIndex = 117
         Me.Label6.Text = "Légende :"
         '
+        'TbNumeric5
+        '
+        Me.TbNumeric5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.TbNumeric5.BackColor = System.Drawing.Color.White
+        Me.TbNumeric5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TbNumeric5.ForceBindingOnTextChanged = False
+        Me.TbNumeric5.Location = New System.Drawing.Point(210, 460)
+        Me.TbNumeric5.Name = "TbNumeric5"
+        Me.TbNumeric5.ReadOnly = True
+        Me.TbNumeric5.Size = New System.Drawing.Size(100, 20)
+        Me.TbNumeric5.TabIndex = 116
+        Me.TbNumeric5.Text = "Zone de saisie"
+        '
+        'TbNumeric4
+        '
+        Me.TbNumeric4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.TbNumeric4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.TbNumeric4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TbNumeric4.ForceBindingOnTextChanged = False
+        Me.TbNumeric4.Location = New System.Drawing.Point(106, 460)
+        Me.TbNumeric4.Name = "TbNumeric4"
+        Me.TbNumeric4.ReadOnly = True
+        Me.TbNumeric4.Size = New System.Drawing.Size(98, 20)
+        Me.TbNumeric4.TabIndex = 115
+        Me.TbNumeric4.TabStop = False
+        Me.TbNumeric4.Text = "Zone calculée"
+        '
         'pnlDetailPompe
         '
         Me.pnlDetailPompe.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -359,6 +390,34 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.DataGridView1.Size = New System.Drawing.Size(861, 150)
         Me.DataGridView1.TabIndex = 116
         '
+        'IdDataGridViewTextBoxColumn
+        '
+        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "id"
+        Me.IdDataGridViewTextBoxColumn.HeaderText = "id"
+        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        Me.IdDataGridViewTextBoxColumn.Visible = False
+        '
+        'IdDiagDataGridViewTextBoxColumn
+        '
+        Me.IdDiagDataGridViewTextBoxColumn.DataPropertyName = "idDiag"
+        Me.IdDiagDataGridViewTextBoxColumn.HeaderText = "idDiag"
+        Me.IdDiagDataGridViewTextBoxColumn.Name = "IdDiagDataGridViewTextBoxColumn"
+        Me.IdDiagDataGridViewTextBoxColumn.Visible = False
+        '
+        'BCalculeDataGridViewCheckBoxColumn
+        '
+        Me.BCalculeDataGridViewCheckBoxColumn.DataPropertyName = "bCalcule"
+        Me.BCalculeDataGridViewCheckBoxColumn.HeaderText = "bCalcule"
+        Me.BCalculeDataGridViewCheckBoxColumn.Name = "BCalculeDataGridViewCheckBoxColumn"
+        Me.BCalculeDataGridViewCheckBoxColumn.Visible = False
+        '
+        'NumPompeDataGridViewTextBoxColumn
+        '
+        Me.NumPompeDataGridViewTextBoxColumn.DataPropertyName = "numPompe"
+        Me.NumPompeDataGridViewTextBoxColumn.HeaderText = "numPompe"
+        Me.NumPompeDataGridViewTextBoxColumn.Name = "NumPompeDataGridViewTextBoxColumn"
+        Me.NumPompeDataGridViewTextBoxColumn.Visible = False
+        '
         'numeroMesurestr
         '
         Me.numeroMesurestr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
@@ -372,6 +431,117 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.numeroMesurestr.ReadOnly = True
         Me.numeroMesurestr.Width = 87
         '
+        'QteGrainsDataGridViewTextBoxColumn
+        '
+        Me.QteGrainsDataGridViewTextBoxColumn.DataPropertyName = "qteGrains"
+        Me.QteGrainsDataGridViewTextBoxColumn.HeaderText = "Qté grains (kg)"
+        Me.QteGrainsDataGridViewTextBoxColumn.Name = "QteGrainsDataGridViewTextBoxColumn"
+        '
+        'DebitSouhaiteDataGridViewTextBoxColumn
+        '
+        Me.DebitSouhaiteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.DebitSouhaiteDataGridViewTextBoxColumn.DataPropertyName = "DebitSouhaite"
+        Me.DebitSouhaiteDataGridViewTextBoxColumn.HeaderText = "Débit souhaité"
+        Me.DebitSouhaiteDataGridViewTextBoxColumn.Name = "DebitSouhaiteDataGridViewTextBoxColumn"
+        Me.DebitSouhaiteDataGridViewTextBoxColumn.Width = 80
+        '
+        'Pesee1DataGridViewTextBoxColumn
+        '
+        Me.Pesee1DataGridViewTextBoxColumn.DataPropertyName = "Pesee1"
+        Me.Pesee1DataGridViewTextBoxColumn.HeaderText = "Pesée 1"
+        Me.Pesee1DataGridViewTextBoxColumn.Name = "Pesee1DataGridViewTextBoxColumn"
+        '
+        'Ecart1DataGridViewTextBoxColumn
+        '
+        Me.Ecart1DataGridViewTextBoxColumn.DataPropertyName = "Ecart1"
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
+        Me.Ecart1DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Ecart1DataGridViewTextBoxColumn.HeaderText = "Ecart 1 %"
+        Me.Ecart1DataGridViewTextBoxColumn.Name = "Ecart1DataGridViewTextBoxColumn"
+        Me.Ecart1DataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'Pesee2DataGridViewTextBoxColumn
+        '
+        Me.Pesee2DataGridViewTextBoxColumn.DataPropertyName = "Pesee2"
+        Me.Pesee2DataGridViewTextBoxColumn.HeaderText = "Pesée 2"
+        Me.Pesee2DataGridViewTextBoxColumn.Name = "Pesee2DataGridViewTextBoxColumn"
+        '
+        'Ecart2DataGridViewTextBoxColumn
+        '
+        Me.Ecart2DataGridViewTextBoxColumn.DataPropertyName = "Ecart2"
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle4.Format = "N2"
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
+        Me.Ecart2DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Ecart2DataGridViewTextBoxColumn.HeaderText = "Ecart 2 %"
+        Me.Ecart2DataGridViewTextBoxColumn.Name = "Ecart2DataGridViewTextBoxColumn"
+        Me.Ecart2DataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'Pesee3DataGridViewTextBoxColumn
+        '
+        Me.Pesee3DataGridViewTextBoxColumn.DataPropertyName = "Pesee3"
+        Me.Pesee3DataGridViewTextBoxColumn.HeaderText = "Pesée 3"
+        Me.Pesee3DataGridViewTextBoxColumn.Name = "Pesee3DataGridViewTextBoxColumn"
+        '
+        'Ecart3DataGridViewTextBoxColumn
+        '
+        Me.Ecart3DataGridViewTextBoxColumn.DataPropertyName = "Ecart3"
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle5.Format = "N2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
+        Me.Ecart3DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        Me.Ecart3DataGridViewTextBoxColumn.HeaderText = "Ecart 3 %"
+        Me.Ecart3DataGridViewTextBoxColumn.Name = "Ecart3DataGridViewTextBoxColumn"
+        Me.Ecart3DataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'PeseeMoyenneDataGridViewTextBoxColumn
+        '
+        Me.PeseeMoyenneDataGridViewTextBoxColumn.DataPropertyName = "PeseeMoyenne"
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
+        Me.PeseeMoyenneDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
+        Me.PeseeMoyenneDataGridViewTextBoxColumn.HeaderText = "Pesée Moy."
+        Me.PeseeMoyenneDataGridViewTextBoxColumn.Name = "PeseeMoyenneDataGridViewTextBoxColumn"
+        Me.PeseeMoyenneDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'EcartMoyenDataGridViewTextBoxColumn
+        '
+        Me.EcartMoyenDataGridViewTextBoxColumn.DataPropertyName = "EcartMoyen"
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
+        Me.EcartMoyenDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
+        Me.EcartMoyenDataGridViewTextBoxColumn.HeaderText = "Ecart Moy."
+        Me.EcartMoyenDataGridViewTextBoxColumn.Name = "EcartMoyenDataGridViewTextBoxColumn"
+        Me.EcartMoyenDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ResultatDataGridViewTextBoxColumn
+        '
+        Me.ResultatDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.ResultatDataGridViewTextBoxColumn.DataPropertyName = "ResultatLabel"
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black
+        Me.ResultatDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle8
+        Me.ResultatDataGridViewTextBoxColumn.HeaderText = "Résultat"
+        Me.ResultatDataGridViewTextBoxColumn.Name = "ResultatDataGridViewTextBoxColumn"
+        Me.ResultatDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ResultatDataGridViewTextBoxColumn.Width = 80
+        '
+        'ImageDataGridViewImageColumn
+        '
+        Me.ImageDataGridViewImageColumn.DataPropertyName = "Image"
+        Me.ImageDataGridViewImageColumn.HeaderText = ""
+        Me.ImageDataGridViewImageColumn.Name = "ImageDataGridViewImageColumn"
+        '
         'm_bsrcMesures
         '
         Me.m_bsrcMesures.DataMember = "lstMesures"
@@ -381,6 +551,21 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         '
         Me.m_bsrcPompes.DataMember = "lstPompesTrtSem"
         Me.m_bsrcPompes.DataSource = Me.m_bsrcH12123
+        '
+        'tbEcartMoyen
+        '
+        Me.tbEcartMoyen.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbEcartMoyen.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.tbEcartMoyen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.tbEcartMoyen.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "EcartReglageMoyen", True))
+        Me.tbEcartMoyen.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbEcartMoyen.ForceBindingOnTextChanged = False
+        Me.tbEcartMoyen.Location = New System.Drawing.Point(726, 281)
+        Me.tbEcartMoyen.Name = "tbEcartMoyen"
+        Me.tbEcartMoyen.ReadOnly = True
+        Me.tbEcartMoyen.Size = New System.Drawing.Size(98, 26)
+        Me.tbEcartMoyen.TabIndex = 115
+        Me.tbEcartMoyen.TabStop = False
         '
         'laEcartMoyen
         '
@@ -393,6 +578,20 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.laEcartMoyen.Size = New System.Drawing.Size(106, 20)
         Me.laEcartMoyen.TabIndex = 114
         Me.laEcartMoyen.Text = "Ecart moyen :"
+        '
+        'tbPeseeMoyenne
+        '
+        Me.tbPeseeMoyenne.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.tbPeseeMoyenne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.tbPeseeMoyenne.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "PeseeMoyenne", True))
+        Me.tbPeseeMoyenne.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbPeseeMoyenne.ForceBindingOnTextChanged = False
+        Me.tbPeseeMoyenne.Location = New System.Drawing.Point(311, 281)
+        Me.tbPeseeMoyenne.Name = "tbPeseeMoyenne"
+        Me.tbPeseeMoyenne.ReadOnly = True
+        Me.tbPeseeMoyenne.Size = New System.Drawing.Size(100, 26)
+        Me.tbPeseeMoyenne.TabIndex = 113
+        Me.tbPeseeMoyenne.TabStop = False
         '
         'laPesseMoyenne
         '
@@ -574,205 +773,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.btnValider.Text = "Valider"
         Me.btnValider.UseVisualStyleBackColor = False
         '
-        'TbNumeric5
-        '
-        Me.TbNumeric5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TbNumeric5.BackColor = System.Drawing.Color.White
-        Me.TbNumeric5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TbNumeric5.ForceBindingOnTextChanged = False
-        Me.TbNumeric5.Location = New System.Drawing.Point(210, 460)
-        Me.TbNumeric5.Name = "TbNumeric5"
-        Me.TbNumeric5.ReadOnly = True
-        Me.TbNumeric5.Size = New System.Drawing.Size(100, 20)
-        Me.TbNumeric5.TabIndex = 116
-        Me.TbNumeric5.Text = "Zone de saisie"
-        '
-        'TbNumeric4
-        '
-        Me.TbNumeric4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TbNumeric4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.TbNumeric4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TbNumeric4.ForceBindingOnTextChanged = False
-        Me.TbNumeric4.Location = New System.Drawing.Point(106, 460)
-        Me.TbNumeric4.Name = "TbNumeric4"
-        Me.TbNumeric4.ReadOnly = True
-        Me.TbNumeric4.Size = New System.Drawing.Size(98, 20)
-        Me.TbNumeric4.TabIndex = 115
-        Me.TbNumeric4.TabStop = False
-        Me.TbNumeric4.Text = "Zone calculée"
-        '
-        'tbEcartMoyen
-        '
-        Me.tbEcartMoyen.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tbEcartMoyen.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.tbEcartMoyen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.tbEcartMoyen.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "EcartReglageMoyen", True))
-        Me.tbEcartMoyen.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbEcartMoyen.ForceBindingOnTextChanged = False
-        Me.tbEcartMoyen.Location = New System.Drawing.Point(726, 281)
-        Me.tbEcartMoyen.Name = "tbEcartMoyen"
-        Me.tbEcartMoyen.ReadOnly = True
-        Me.tbEcartMoyen.Size = New System.Drawing.Size(98, 26)
-        Me.tbEcartMoyen.TabIndex = 115
-        Me.tbEcartMoyen.TabStop = False
-        '
-        'tbPeseeMoyenne
-        '
-        Me.tbPeseeMoyenne.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.tbPeseeMoyenne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.tbPeseeMoyenne.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcPompes, "PeseeMoyenne", True))
-        Me.tbPeseeMoyenne.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbPeseeMoyenne.ForceBindingOnTextChanged = False
-        Me.tbPeseeMoyenne.Location = New System.Drawing.Point(311, 281)
-        Me.tbPeseeMoyenne.Name = "tbPeseeMoyenne"
-        Me.tbPeseeMoyenne.ReadOnly = True
-        Me.tbPeseeMoyenne.Size = New System.Drawing.Size(100, 26)
-        Me.tbPeseeMoyenne.TabIndex = 113
-        Me.tbPeseeMoyenne.TabStop = False
-        '
-        'm_bsrcH12123
-        '
-        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
-        '
-        'IdDataGridViewTextBoxColumn
-        '
-        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "id"
-        Me.IdDataGridViewTextBoxColumn.HeaderText = "id"
-        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        Me.IdDataGridViewTextBoxColumn.Visible = False
-        '
-        'IdDiagDataGridViewTextBoxColumn
-        '
-        Me.IdDiagDataGridViewTextBoxColumn.DataPropertyName = "idDiag"
-        Me.IdDiagDataGridViewTextBoxColumn.HeaderText = "idDiag"
-        Me.IdDiagDataGridViewTextBoxColumn.Name = "IdDiagDataGridViewTextBoxColumn"
-        Me.IdDiagDataGridViewTextBoxColumn.Visible = False
-        '
-        'BCalculeDataGridViewCheckBoxColumn
-        '
-        Me.BCalculeDataGridViewCheckBoxColumn.DataPropertyName = "bCalcule"
-        Me.BCalculeDataGridViewCheckBoxColumn.HeaderText = "bCalcule"
-        Me.BCalculeDataGridViewCheckBoxColumn.Name = "BCalculeDataGridViewCheckBoxColumn"
-        Me.BCalculeDataGridViewCheckBoxColumn.Visible = False
-        '
-        'NumPompeDataGridViewTextBoxColumn
-        '
-        Me.NumPompeDataGridViewTextBoxColumn.DataPropertyName = "numPompe"
-        Me.NumPompeDataGridViewTextBoxColumn.HeaderText = "numPompe"
-        Me.NumPompeDataGridViewTextBoxColumn.Name = "NumPompeDataGridViewTextBoxColumn"
-        Me.NumPompeDataGridViewTextBoxColumn.Visible = False
-        '
-        'QteGrainsDataGridViewTextBoxColumn
-        '
-        Me.QteGrainsDataGridViewTextBoxColumn.DataPropertyName = "qteGrains"
-        Me.QteGrainsDataGridViewTextBoxColumn.HeaderText = "Qté grains (kg)"
-        Me.QteGrainsDataGridViewTextBoxColumn.Name = "QteGrainsDataGridViewTextBoxColumn"
-        '
-        'DebitSouhaiteDataGridViewTextBoxColumn
-        '
-        Me.DebitSouhaiteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.DebitSouhaiteDataGridViewTextBoxColumn.DataPropertyName = "DebitSouhaite"
-        Me.DebitSouhaiteDataGridViewTextBoxColumn.HeaderText = "Débit souhaité"
-        Me.DebitSouhaiteDataGridViewTextBoxColumn.Name = "DebitSouhaiteDataGridViewTextBoxColumn"
-        Me.DebitSouhaiteDataGridViewTextBoxColumn.Width = 80
-        '
-        'Pesee1DataGridViewTextBoxColumn
-        '
-        Me.Pesee1DataGridViewTextBoxColumn.DataPropertyName = "Pesee1"
-        Me.Pesee1DataGridViewTextBoxColumn.HeaderText = "Pesée 1"
-        Me.Pesee1DataGridViewTextBoxColumn.Name = "Pesee1DataGridViewTextBoxColumn"
-        '
-        'Ecart1DataGridViewTextBoxColumn
-        '
-        Me.Ecart1DataGridViewTextBoxColumn.DataPropertyName = "Ecart1"
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        Me.Ecart1DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Ecart1DataGridViewTextBoxColumn.HeaderText = "Ecart 1 %"
-        Me.Ecart1DataGridViewTextBoxColumn.Name = "Ecart1DataGridViewTextBoxColumn"
-        Me.Ecart1DataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'Pesee2DataGridViewTextBoxColumn
-        '
-        Me.Pesee2DataGridViewTextBoxColumn.DataPropertyName = "Pesee2"
-        Me.Pesee2DataGridViewTextBoxColumn.HeaderText = "Pesée 2"
-        Me.Pesee2DataGridViewTextBoxColumn.Name = "Pesee2DataGridViewTextBoxColumn"
-        '
-        'Ecart2DataGridViewTextBoxColumn
-        '
-        Me.Ecart2DataGridViewTextBoxColumn.DataPropertyName = "Ecart2"
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle4.Format = "N2"
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
-        Me.Ecart2DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Ecart2DataGridViewTextBoxColumn.HeaderText = "Ecart 2 %"
-        Me.Ecart2DataGridViewTextBoxColumn.Name = "Ecart2DataGridViewTextBoxColumn"
-        Me.Ecart2DataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'Pesee3DataGridViewTextBoxColumn
-        '
-        Me.Pesee3DataGridViewTextBoxColumn.DataPropertyName = "Pesee3"
-        Me.Pesee3DataGridViewTextBoxColumn.HeaderText = "Pesée 3"
-        Me.Pesee3DataGridViewTextBoxColumn.Name = "Pesee3DataGridViewTextBoxColumn"
-        '
-        'Ecart3DataGridViewTextBoxColumn
-        '
-        Me.Ecart3DataGridViewTextBoxColumn.DataPropertyName = "Ecart3"
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle5.Format = "N2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
-        Me.Ecart3DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
-        Me.Ecart3DataGridViewTextBoxColumn.HeaderText = "Ecart 3 %"
-        Me.Ecart3DataGridViewTextBoxColumn.Name = "Ecart3DataGridViewTextBoxColumn"
-        Me.Ecart3DataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'PeseeMoyenneDataGridViewTextBoxColumn
-        '
-        Me.PeseeMoyenneDataGridViewTextBoxColumn.DataPropertyName = "PeseeMoyenne"
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
-        Me.PeseeMoyenneDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
-        Me.PeseeMoyenneDataGridViewTextBoxColumn.HeaderText = "Pesée Moy."
-        Me.PeseeMoyenneDataGridViewTextBoxColumn.Name = "PeseeMoyenneDataGridViewTextBoxColumn"
-        Me.PeseeMoyenneDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'EcartMoyenDataGridViewTextBoxColumn
-        '
-        Me.EcartMoyenDataGridViewTextBoxColumn.DataPropertyName = "EcartMoyen"
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
-        Me.EcartMoyenDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
-        Me.EcartMoyenDataGridViewTextBoxColumn.HeaderText = "Ecart Moy."
-        Me.EcartMoyenDataGridViewTextBoxColumn.Name = "EcartMoyenDataGridViewTextBoxColumn"
-        Me.EcartMoyenDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ResultatDataGridViewTextBoxColumn
-        '
-        Me.ResultatDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.ResultatDataGridViewTextBoxColumn.DataPropertyName = "ResultatLabel"
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black
-        Me.ResultatDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle8
-        Me.ResultatDataGridViewTextBoxColumn.HeaderText = "Résultat"
-        Me.ResultatDataGridViewTextBoxColumn.Name = "ResultatDataGridViewTextBoxColumn"
-        Me.ResultatDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ResultatDataGridViewTextBoxColumn.Width = 80
-        '
-        'ImageDataGridViewImageColumn
-        '
-        Me.ImageDataGridViewImageColumn.DataPropertyName = "Image"
-        Me.ImageDataGridViewImageColumn.HeaderText = ""
-        Me.ImageDataGridViewImageColumn.Name = "ImageDataGridViewImageColumn"
-        '
         'diagnostic_dlghelp12123newTrtSem
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -788,6 +788,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.Text = "Controle du dispositif de dosage"
         Me.pnl12123.ResumeLayout(False)
         Me.pnl12123.PerformLayout()
+        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.Panel2.PerformLayout()
@@ -801,7 +802,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         CType(Me.nupMesures, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pctResultat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nupNbPompes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcH12123, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -106,7 +106,7 @@ Public Class EtatRapportInspection
             Dim nbPagefinal As Integer = Int(m_ods.Defauts.Rows.Count / 164) + 1
 
             sUtilisation = m_oDiag.pulverisateurModeUtilisation
-            If m_oDiag.pulverisateurNbreExploitants <> "" Then
+            If m_oDiag.pulverisateurNbreExploitants <> "" And sUtilisation.ToUpper <> "INDIVIDUEL" Then
                 sUtilisation = sUtilisation & " (" & m_oDiag.pulverisateurNbreExploitants & ")"
             End If
             If Not m_oPulve.isPulveAdditionnel Then

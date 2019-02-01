@@ -127,6 +127,7 @@ Public Class diagnostic_dlghelp12123newTrtSem
             While getContexte().lstPompesTrtSem.Count < nupNbPompes.Value
                 getContexte().AjoutePompeTrtSem()
             End While
+            calcbtnPompes()
         End If
         If nupNbPompes.Value < getContexte().lstPompesTrtSem.Count Then
             While getContexte().lstPompesTrtSem.Count > nupNbPompes.Value
@@ -147,24 +148,26 @@ Public Class diagnostic_dlghelp12123newTrtSem
         End If
     End Sub
 
-
     Private Sub m_bsrcPompes_CurrentChanged(sender As Object, e As EventArgs) Handles m_bsrcPompes.CurrentChanged
+        calcbtnPompes()
+
+    End Sub
+    Private Sub calcbtnPompes()
         Dim oPompe As DiagnosticHelp12123PompeTrtSem
         oPompe = m_bsrcPompes.Current
-
-        nupMesures.Value = oPompe.lstMesures.Count
-        If m_bsrcPompes.Position + 1 >= m_bsrcPompes.Count Then
-            btn_PompeSuivante.Enabled = False
-        Else
-            btn_PompeSuivante.Enabled = True
+        If oPompe IsNot Nothing Then
+            nupMesures.Value = oPompe.lstMesures.Count
+            If m_bsrcPompes.Position + 1 >= m_bsrcPompes.Count Then
+                btn_PompeSuivante.Enabled = False
+            Else
+                btn_PompeSuivante.Enabled = True
+            End If
+            If m_bsrcPompes.Position = 0 Then
+                btnSupprimer.Enabled = False
+            Else
+                btnSupprimer.Enabled = True
+            End If
         End If
-        If m_bsrcPompes.Position = 0 Then
-            btnSupprimer.Enabled = False
-        Else
-            btnSupprimer.Enabled = True
-        End If
-
-
     End Sub
 
     Private Sub btnValiderNbMesures_Click(sender As Object, e As EventArgs) Handles btnValiderNbMesures.Click
@@ -344,4 +347,5 @@ Public Class diagnostic_dlghelp12123newTrtSem
         End If
 
     End Sub
+
 End Class
