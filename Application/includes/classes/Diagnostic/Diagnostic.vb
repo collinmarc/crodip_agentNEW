@@ -2951,7 +2951,7 @@ Public Class Diagnostic
             oReturn = New ds_EtatBL()
             Dim oRow As ds_EtatBL.FactureRow
             Dim oStructure As New Structuree()
-            oStructure = StructureManager.getStructureById(Me.organismeOriginePresId)
+            oStructure = StructureManager.getStructureById(Me.organismePresId)
             oRow = oReturn.Facture.AddFactureRow(IdPulve:=Me.pulverisateurNumNational,
                                                  NomOrganisme:=Me.organismePresNom,
                                                  MontantHT:=Me.TotalHT,

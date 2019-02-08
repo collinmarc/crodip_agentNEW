@@ -119,7 +119,7 @@ Public Class EtatFacture
 
             Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(".\config\facturation.xml")
             Dim oStruct As Structuree
-            oStruct = StructureManager.getStructureById(m_oDiag.organismeOriginePresId)
+            oStruct = StructureManager.getStructureById(m_oDiag.organismePresId)
 
 
             'Génération du DataSet par le DiagNostic (Idem BL)

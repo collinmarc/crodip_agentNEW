@@ -5578,4 +5578,41 @@ Public Class DiagnosticManagerTest
 
 
     End Sub
+
+    <TestMethod()>
+    Public Sub GenerateDateSetForBLTest()
+        Dim oDiag As Diagnostic
+        Dim oDiag2 As Diagnostic
+        Dim bReturn As Boolean
+        Dim id As String
+        Dim oExploit As Exploitation
+        Dim oPulve As Pulverisateur
+        Dim oList As List(Of Diagnostic)
+        Dim AddOld As String
+
+        AddOld = m_oStructure.adresse
+
+        m_oStructure.adresse = "Ma nouvelle adrrsse"
+        StructureManager.save(m_oStructure)
+        ' Création d'un Diag
+        oExploit = createExploitation()
+        oExploit.codePostal = "35250"
+        oExploit.commune = "CHASNE SUR ILLET"
+        ExploitationManager.save(oExploit, m_oAgent)
+        oPulve = createPulve(oExploit)
+        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+
+        oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
+
+        Dim dsBL As Crodip_agent.ds_EtatBL
+        dsBL = oDiag.generateDataSetForBL("")
+        Assert.AreEqual(1, dsBL.Organisme.Count)
+
+        Assert.AreEqual("Ma nouvelle adrrsse", dsBL.Organisme(0).adresse)
+
+
+        m_oStructure.adresse = AddOld
+        StructureManager.save(m_oStructure)
+
+    End Sub
 End Class

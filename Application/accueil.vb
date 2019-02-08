@@ -4561,7 +4561,7 @@ Public Class accueil
                 End If
             Catch ex As Exception
                 Statusbar.clear()
-                CSDebug.dispFatal("Acceuil.nouveauDiagnostique ERR : " & ex.Message)
+                CSDebug.dispFatal("Accueil.nouveauDiagnostique ERR : " & ex.Message)
             End Try
         End If
 

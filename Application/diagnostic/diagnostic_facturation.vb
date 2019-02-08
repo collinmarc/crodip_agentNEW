@@ -1185,7 +1185,11 @@ Public Class diagnostic_facturation
             prixTotalTTC = CDec(facturation_totalTTC.Text)
         End If
         If prixTotalTTC = 0 And prixTotalHT <> -1 Then
-            prixTxTVA = IIf(Not String.IsNullOrEmpty(tb_txTVA.Text), CDec(tb_txTVA.Text), My.Settings.TxTVADefaut)
+            If Not String.IsNullOrEmpty(tb_txTVA.Text) Then
+                prixTxTVA = CDec(tb_txTVA.Text)
+            Else
+                prixTxTVA = My.Settings.TxTVADefaut
+            End If
             'Il n'y a pas de TTC alors qu'il y a un HT
             '=> Calcul TVA et TTC
             prixTotalTTC = prixTotalHT * (1 + (prixTxTVA / 100))

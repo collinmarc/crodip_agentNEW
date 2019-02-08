@@ -1,4 +1,9 @@
 TRUNK
+
+Build :20190208100000
+------------------
+#300 : Retour version 2.6 en prod
+
 Build :20190124100000
 ------------------
 #292 : Feneêtre Gestion des Buses
