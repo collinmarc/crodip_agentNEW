@@ -314,7 +314,7 @@ Public Class frmdiagnostic_recap
         Me.CrystalReportViewer1.Location = New System.Drawing.Point(0, 42)
         Me.CrystalReportViewer1.Name = "CrystalReportViewer1"
         Me.CrystalReportViewer1.ShowCloseButton = False
-        Me.CrystalReportViewer1.ShowCopyButton = False
+        ' Me.CrystalReportViewer1.ShowCopyButton = False
         Me.CrystalReportViewer1.ShowExportButton = False
         Me.CrystalReportViewer1.ShowGotoPageButton = False
         Me.CrystalReportViewer1.ShowGroupTreeButton = False
