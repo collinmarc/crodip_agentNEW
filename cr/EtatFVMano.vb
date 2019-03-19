@@ -13,32 +13,36 @@ Public Class EtatFVMano
 
     Public Function GenereEtat() As Boolean
         Dim bReturn As Boolean
+        Dim strReportName As String
         Try
             bReturn = genereDS()
             If (bReturn) Then
-                Dim objReport As ReportDocument
-                Dim r1 As New cr_FicheVerifMano()
-                Dim strReportName As String = r1.ResourceName
+                Using objReport As New ReportDocument
+                    Using r1 As New cr_FicheVerifMano()
+                        strReportName = r1.ResourceName
+                        r1.Close()
+                    End Using
 
-                objReport = New ReportDocument
-                objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
+                    objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
 
-                objReport.SetDataSource(m_ods)
-                Dim CrExportOptions As ExportOptions
-                Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
-                Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                Dim oMano As ManometreControle
-                oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)
-                m_FileName = CSDiagPdf.makeFilename(oMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
-                CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                CrExportOptions = objReport.ExportOptions
-                With CrExportOptions
-                    .ExportDestinationType = ExportDestinationType.DiskFile
-                    .ExportFormatType = ExportFormatType.PortableDocFormat
-                    .DestinationOptions = CrDiskFileDestinationOptions
-                    .FormatOptions = CrFormatTypeOptions
-                End With
-                objReport.Export()
+                        objReport.SetDataSource(m_ods)
+                        Dim CrExportOptions As ExportOptions
+                        Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
+                        Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
+                        Dim oMano As ManometreControle
+                        oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)
+                        m_FileName = CSDiagPdf.makeFilename(oMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
+                        CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                        CrExportOptions = objReport.ExportOptions
+                        With CrExportOptions
+                            .ExportDestinationType = ExportDestinationType.DiskFile
+                            .ExportFormatType = ExportFormatType.PortableDocFormat
+                            .DestinationOptions = CrDiskFileDestinationOptions
+                            .FormatOptions = CrFormatTypeOptions
+                        End With
+                        objReport.Export()
+                        objReport.Close()
+                    End Using
 
             End If
         Catch ex As Exception

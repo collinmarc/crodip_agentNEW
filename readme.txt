@@ -1,5 +1,12 @@
 TRUNK
 
+Build :
+----------------------
+
+#306 : Erreur en génération de rapport si plusieurs Controle de suite
+#308 : Erreur en facturation ligne à 0.
+
+
 Build :20190208100000
 ------------------
 #300 : Retour version 2.6 en prod

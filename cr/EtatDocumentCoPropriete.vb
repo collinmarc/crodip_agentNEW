@@ -15,9 +15,10 @@ Public Class EtatDocumentCoPropriete
         m_oDiag = pDiag
         m_lstCoProp = New List(Of String)
         'Récupération du nom du modème Crystal pour un chargement ultérieur
-        Dim r1 As New cr_DocCopropiete()
-        m_ReportName = r1.ResourceName
-        r1.Dispose()
+        Using r1 As New cr_DocCopropiete()
+            m_ReportName = r1.ResourceName
+            r1.Close()
+        End Using
     End Sub
 
 
@@ -40,25 +41,26 @@ Public Class EtatDocumentCoPropriete
         Try
             bReturn = genereDS()
             If (bReturn) Then
-                Dim objReport As ReportDocument
+                Using objReport As New ReportDocument
+                    objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
 
-                objReport = New ReportDocument
-                objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
+                    objReport.SetDataSource(m_ods)
+                    Dim CrExportOptions As ExportOptions
+                    Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
+                    Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
+                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_DOC_COPROP) & ".pdf"
+                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrExportOptions = objReport.ExportOptions
+                    With CrExportOptions
+                        .ExportDestinationType = ExportDestinationType.DiskFile
+                        .ExportFormatType = ExportFormatType.PortableDocFormat
+                        .DestinationOptions = CrDiskFileDestinationOptions
+                        .FormatOptions = CrFormatTypeOptions
+                    End With
+                    objReport.Export()
+                    objReport.Close()
+                End Using
 
-                objReport.SetDataSource(m_ods)
-                Dim CrExportOptions As ExportOptions
-                Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
-                Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_DOC_COPROP) & ".pdf"
-                CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                CrExportOptions = objReport.ExportOptions
-                With CrExportOptions
-                    .ExportDestinationType = ExportDestinationType.DiskFile
-                    .ExportFormatType = ExportFormatType.PortableDocFormat
-                    .DestinationOptions = CrDiskFileDestinationOptions
-                    .FormatOptions = CrFormatTypeOptions
-                End With
-                objReport.Export()
 
             End If
         Catch ex As Exception

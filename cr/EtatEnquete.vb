@@ -13,9 +13,10 @@ Public Class EtatEnquete
     Public Sub New(pDiag As Diagnostic)
         m_oDiag = pDiag
         'Récupération du nom du modème Crystal pour un chargement ultérieur
-        Dim r1 As New cr_EnqueteSatisfaction()
-        m_ReportName = r1.ResourceName
-        r1.Dispose()
+        Using r1 As New cr_EnqueteSatisfaction()
+            m_ReportName = r1.ResourceName
+            r1.Close()
+        End Using
     End Sub
 
     Public Function GenereEtat() As Boolean
@@ -23,10 +24,8 @@ Public Class EtatEnquete
         Try
             bReturn = genereDS()
             If (bReturn) Then
-                Dim objReport As ReportDocument
-
-                objReport = New ReportDocument
-                objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
+                Using objReport As New ReportDocument()
+                    objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
 
                 objReport.SetDataSource(m_ods)
                 Dim CrExportOptions As ExportOptions
@@ -42,6 +41,8 @@ Public Class EtatEnquete
                     .FormatOptions = CrFormatTypeOptions
                 End With
                 objReport.Export()
+                    objReport.Close()
+                End Using
 
             End If
         Catch ex As Exception

@@ -955,7 +955,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>crRapportInspectionFin2.rpt</DependentUpon>
       <SubType>Component</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="moduleDocumentaire\_parametres\crTest1.vb">
       <AutoGen>True</AutoGen>
@@ -2291,7 +2291,7 @@
     <Content Include="moduleDocumentaire\_parametres\crRapportInspectionFin2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crRapportInspectionFin2.vb</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="moduleDocumentaire\_parametres\crTest.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -699,11 +699,18 @@ Public Class diagnostic_facturation
             If facturation_totalTTC.Text <> "" Then
                 ' Enregistrement des tarifs
                 'diagnosticCourantTarif = CType(facturation_totalTTC.Text, Double)
-                m_oDiag.controleTarif = CType(facturation_totalTTC.Text, Double)
-                m_oDiag.TotalHT = CDec(facturation_totalHT.Text)
-                m_oDiag.TotalTVA = CDec(facturation_totalTVA.Text)
-                m_oDiag.TotalTTC = CDec(facturation_totalTTC.Text)
-
+                If Not String.IsNullOrEmpty(facturation_totalTTC.Text) Then
+                    m_oDiag.controleTarif = CType(facturation_totalTTC.Text, Double)
+                End If
+                If Not String.IsNullOrEmpty(facturation_totalHT.Text) Then
+                    m_oDiag.TotalHT = CDec(facturation_totalHT.Text)
+                End If
+                If Not String.IsNullOrEmpty(facturation_totalTVA.Text) Then
+                    m_oDiag.TotalTVA = CDec(facturation_totalTVA.Text)
+                End If
+                If Not String.IsNullOrEmpty(facturation_totalTTC.Text) Then
+                    m_oDiag.TotalTTC = CDec(facturation_totalTTC.Text)
+                End If
 
                 listTarif_categories.Enabled = False
                 listTarif_prestations.Enabled = False
@@ -760,7 +767,7 @@ Public Class diagnostic_facturation
             End If
 
             sender.Enabled = True
-        End If
+            End If
 
     End Sub
     ' Retour au contexte

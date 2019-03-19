@@ -320,11 +320,29 @@ Public Class PrestationTarifManager
                             Case "description"
                                 tmpObject.description = tmpResults.Item(tmpColId).ToString()
                             Case "tarifHT"
-                                tmpObject.tarifHT = tmpResults.Item(tmpColId)
+                                Try
+                                    tmpObject.tarifHT = tmpResults.Item(tmpColId)
+                                Catch ex As Exception
+                                    tmpObject.tarifHT = 0
+                                End Try
                             Case "tarifTTC"
-                                tmpObject.tarifTTC = tmpResults.Item(tmpColId)
+                                Try
+
+                                    tmpObject.tarifTTC = tmpResults.Item(tmpColId)
+                                Catch ex As Exception
+                                    tmpObject.tarifTTC = 0
+                                End Try
+
                             Case "tva"
-                                tmpObject.tva = tmpResults.Item(tmpColId)
+                                Try
+
+
+                                    tmpObject.tva = tmpResults.Item(tmpColId)
+                                Catch ex As Exception
+                                    tmpObject.tva = 0
+
+                                End Try
+
                             Case "dateModificationAgent"
                                 tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
                             Case "dateModificationCrodip"

@@ -4,11 +4,18 @@ Imports System.Linq
 
 Public Class EtatSyntheseMesures
     Inherits EtatCrodip
+    Implements IDisposable
 
     Private m_oDiag As Diagnostic
     Private m_ods As ds_Etat_SM
     Public Sub New(pDiag As Diagnostic)
         m_oDiag = pDiag
+    End Sub
+
+    Public Sub Dispose() Implements IDisposable.Dispose
+        If (m_oReportDocument IsNot Nothing) Then
+            m_oReportDocument.Dispose()
+        End If
     End Sub
 
     Public Function getDs() As DataSet
@@ -18,13 +25,14 @@ Public Class EtatSyntheseMesures
 
     Public Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
+        Dim strReportName As String
         Try
             bReturn = genereDS()
             If (bReturn) Then
-                Dim r1 As New cr_EtatSynthese()
-                Dim strReportName As String = r1.ResourceName
-                r1.Close()
-
+                Using r1 As New cr_EtatSynthese()
+                    strReportName = r1.ResourceName
+                    r1.Close()
+                End Using
                 m_oReportDocument = New ReportDocument
                 m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
                 'Dim olst As ReportObjects

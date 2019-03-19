@@ -3,6 +3,7 @@ Imports CrystalDecisions.Shared
 
 Public Class EtatRapportInspection
     Inherits EtatCrodip
+    Implements IDisposable
 
     Private m_oDiag As Diagnostic
     Private m_oPulve As Pulverisateur
@@ -17,30 +18,34 @@ Public Class EtatRapportInspection
 
     Public Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
+        Dim strReportName As String
         Try
             bReturn = genereDS()
             If (bReturn) Then
-                Dim r1 As New cr_RapportInspection()
-                Dim strReportName As String = r1.ResourceName
-                r1.Close()
+
+                Using r1 As New cr_RapportInspection()
+                    strReportName = r1.ResourceName
+                    r1.Close()
+                End Using
 
                 m_oReportDocument = New ReportDocument
                 m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
-                m_oReportDocument.SetDataSource(m_ods)
+                m_oReportdocument.SetDataSource(m_ods)
                 If pExportPDF Then
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                     m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                    CrExportOptions = m_oReportDocument.ExportOptions
+                    CrExportOptions = m_oReportdocument.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile
                         .ExportFormatType = ExportFormatType.PortableDocFormat
                         .DestinationOptions = CrDiskFileDestinationOptions
                         .FormatOptions = CrFormatTypeOptions
                     End With
-                    m_oReportDocument.Export()
+                    m_oReportdocument.Export()
+                    m_oReportdocument.Close()
                 End If
             End If
         Catch ex As Exception
@@ -423,4 +428,10 @@ Public Class EtatRapportInspection
 
 
     End Function
+
+    Public Sub Dispose() Implements IDisposable.Dispose
+        If m_oReportDocument IsNot Nothing Then
+            m_oReportDocument.Dispose()
+        End If
+    End Sub
 End Class

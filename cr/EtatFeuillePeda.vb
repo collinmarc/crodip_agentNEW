@@ -15,6 +15,7 @@ Public Class EtatFeuillePeda
         'Récupération du nom du modème Crystal pour un chargement ultérieur
         Using r1 As New cr_FeuillePedagogique()
             m_ReportName = r1.ResourceName
+            r1.Close()
         End Using
         m_ods = New dsEnquete
     End Sub
@@ -24,10 +25,8 @@ Public Class EtatFeuillePeda
         Try
             bReturn = genereDS()
             If (bReturn) Then
-                Dim objReport As ReportDocument
-
-                objReport = New ReportDocument
-                objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
+                Using objReport As New ReportDocument
+                    objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
 
                 objReport.SetDataSource(m_ods)
                 Dim CrExportOptions As ExportOptions
@@ -43,6 +42,8 @@ Public Class EtatFeuillePeda
                     .FormatOptions = CrFormatTypeOptions
                 End With
                 objReport.Export()
+                    objReport.Close()
+                End Using
 
             End If
         Catch ex As Exception

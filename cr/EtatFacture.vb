@@ -62,8 +62,10 @@ Public Class EtatFacture
         m_lstPresta = New List(Of facturePrestation)
         m_Reference = pReference
         m_Commentaire = pCommentaire
-        Dim r1 As New cr_Facture()
-        m_ReportName = r1.ResourceName
+        Using r1 As New cr_Facture()
+            m_ReportName = r1.ResourceName
+            r1.Close()
+        End Using
     End Sub
 
     Public Function AddPresta(pLib As String, pPU As String, pQte As Integer, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal) As Boolean
@@ -85,10 +87,8 @@ Public Class EtatFacture
         Try
             bReturn = genereDS()
             If (bReturn) Then
-                Dim objReport As ReportDocument
-
-                objReport = New ReportDocument
-                objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
+                Using objReport As New ReportDocument
+                    objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
 
                 objReport.SetDataSource(m_ods)
                 Dim CrExportOptions As ExportOptions
@@ -104,6 +104,8 @@ Public Class EtatFacture
                     .FormatOptions = CrFormatTypeOptions
                 End With
                 objReport.Export()
+                    objReport.Close()
+                End Using
 
             End If
         Catch ex As Exception
