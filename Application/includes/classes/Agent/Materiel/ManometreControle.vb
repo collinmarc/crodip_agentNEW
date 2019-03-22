@@ -316,12 +316,16 @@ Public Class ManometreControle
         Return bReturn
     End Function
     '''
-    ''' Calcul du nombre de jours restant avant la date limite de controle
-    Public Function getNbJoursAvantDateLimite() As Integer
+    ''' Calcul du nombre de jours restant avant L'alerteRouge
+    Public Function getNbJoursAvantAlerteRouge() As Integer
         Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
         Dim DL As Date
         Dim n As Integer
-        DL = DateAdd(DateInterval.Month, -1, Now) '1 mois 
+        Dim oNiveau As NiveauAlerte
+        oNiveau = Materiel.getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.ManometreControle)
+        Dim nbJRouge As Integer = oNiveau.Rouge
+        DL = DateAdd(DateInterval.DayOfYear, -nbJRouge, Now) ''Date limit pour passer En alerte Rouge
+
 
         n = DateDiff(DateInterval.DayOfYear, DL, tmpDateLCManoControle)
 

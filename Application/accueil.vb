@@ -3667,9 +3667,9 @@ Public Class accueil
     Private Sub loadAccueilAlertsManoControle(ByRef positionTopAlertes As Integer)
 
         ' Vérification des alertes sur les manomètre de contrôle
-        Dim nbAlertes_ManometreControle_15jr As Integer = 0
-        Dim nbAlertes_ManometreControle_1mois As Integer = 0
-        Dim nbAlertes_ManometreControle_1mois7jr As Integer = 0
+        Dim nbAlertes_ManometreControle_Orange As Integer = 0
+        Dim nbAlertes_ManometreControle_Rouge As Integer = 0
+        Dim nbAlertes_ManometreControle_Noire As Integer = 0
         Dim nbAlertes_Controle As Integer = 0
 
 
@@ -3677,9 +3677,8 @@ Public Class accueil
 
         'Chargement de tous les manos
         Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(agentCourant.idStructure, True)
-        Dim dateLimite As Date
         Dim njours As Integer
-        Dim nbManoAvantDL(3000) As Integer 'Nombre de manomètres devant être controler njours avant la Date Limite
+        Dim nbManoOrange(3000) As Integer 'Nombre de manomètres devant être controler njours avant la Date Limite
         'Parcours de manos
         Dim AlerteMano As Globals.ALERTE
         For Each tmpManoControle As ManometreControle In arrManoControle
@@ -3690,7 +3689,7 @@ Public Class accueil
             End If
 
             If AlerteMano = Globals.ALERTE.NOIRE Then ' 1mois7jrs
-                nbAlertes_ManometreControle_1mois7jr = nbAlertes_ManometreControle_1mois7jr + 1
+                nbAlertes_ManometreControle_Noire = nbAlertes_ManometreControle_Noire + 1
                 If tmpManoControle.etat = True Then
                     If My.Settings.DesacMat Then
                         tmpManoControle.Desactiver(agentCourant)
@@ -3699,13 +3698,13 @@ Public Class accueil
             End If
 
             If AlerteMano = Globals.ALERTE.ROUGE Then ' 1mois
-                nbAlertes_ManometreControle_1mois = nbAlertes_ManometreControle_1mois + 1
+                nbAlertes_ManometreControle_Rouge = nbAlertes_ManometreControle_Rouge + 1
             End If
             If AlerteMano = Globals.ALERTE.ORANGE Then '15 jours
-                nbAlertes_ManometreControle_15jr = nbAlertes_ManometreControle_15jr + 1
-                njours = tmpManoControle.getNbJoursAvantDateLimite()
-                If njours < nbManoAvantDL.Length Then
-                    nbManoAvantDL(Math.Abs(njours)) = nbManoAvantDL(Math.Abs(njours)) + 1
+                nbAlertes_ManometreControle_Orange = nbAlertes_ManometreControle_Orange + 1
+                njours = tmpManoControle.getNbJoursAvantAlerteRouge()
+                If njours < nbManoOrange.Length Then
+                    nbManoOrange(Math.Abs(njours)) = nbManoOrange(Math.Abs(njours)) + 1
                 End If
             End If
         Next
@@ -3713,13 +3712,13 @@ Public Class accueil
         'Affichage des alertes 
         Dim sName As String
         Dim sTexte As String
-        If nbAlertes_ManometreControle_15jr > 0 Then
-            For n As Integer = nbManoAvantDL.Length To 1 Step -1
+        If nbAlertes_ManometreControle_Orange > 0 Then
+            For n As Integer = nbManoOrange.Length To 1 Step -1
                 sName = "alerteManoControle_" & n & "jr"
-                If nbManoAvantDL(n - 1) > 0 Then
+                If nbManoOrange(n - 1) > 0 Then
                     'Si on a des Manos à controler avant n jours
-                    If nbManoAvantDL(n - 1) > 1 Then
-                        sTexte = "Attention, vous avez " & nbManoAvantDL(n - 1) & " manomètres de contrôle devant être vérifiés dans " & n - 1 & " jours !"
+                    If nbManoOrange(n - 1) > 1 Then
+                        sTexte = "Attention, vous avez " & nbManoOrange(n - 1) & " manomètres de contrôle devant être vérifiés dans " & (n - 1) & " jours !"
                     Else
                         sTexte = "Attention, vous avez 1 manomètre de contrôle devant être vérifié dans " & n - 1 & " jours !"
                     End If
@@ -3728,20 +3727,20 @@ Public Class accueil
             Next n
         End If
 
-        If nbAlertes_ManometreControle_1mois > 0 Then
+        If nbAlertes_ManometreControle_Rouge > 0 Then
             sName = "alerteManoControle_1mois"
-            If nbAlertes_ManometreControle_1mois > 1 Then
-                sTexte = "Attention, vous venez de dépasser la date autorisée pour " & nbAlertes_ManometreControle_1mois & " manomètres de contrôle. Veuillez effectuer vos contrôles immédiatement !"
+            If nbAlertes_ManometreControle_Rouge > 1 Then
+                sTexte = "Attention, vous venez de dépasser la date autorisée pour " & nbAlertes_ManometreControle_Rouge & " manomètres de contrôle. Veuillez effectuer vos contrôles immédiatement !"
             Else
                 sTexte = "Attention, vous venez de dépasser la date autorisée pour 1 manomètre de contrôle. Veuillez effectuer votre contrôle immédiatement !"
             End If
             AjouteUneAlerte(Globals.ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
         End If
 
-        If nbAlertes_ManometreControle_1mois7jr > 0 Then
+        If nbAlertes_ManometreControle_Noire > 0 Then
             sName = "alerteManoControle_1mois7jr"
-            If nbAlertes_ManometreControle_1mois7jr > 1 Then
-                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_ManometreControle_1mois7jr & " manomètres de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
+            If nbAlertes_ManometreControle_Noire > 1 Then
+                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_ManometreControle_Noire & " manomètres de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             Else
                 sTexte = "Vous avez trop attendu pour vérifier 1 manomètre de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             End If
@@ -3937,7 +3936,7 @@ Public Class accueil
 
     Private Sub LoadAccueilAlertsBancsMesures(ByRef positionTopAlertes As Integer)
         ' Vérification des alertes sur les banc de mesure
-        Dim nbAlertes_Banc_15jr As Integer = 0
+        Dim nbAlertes_Banc_Orange As Integer = 0
         Dim nbAlertes_Banc_1mois As Integer = 0
         Dim nbAlertes_Banc_1mois7jr As Integer = 0
         Dim nbAlertes_Banc_defaillant As Integer = 0
@@ -3965,8 +3964,8 @@ Public Class accueil
                 nbAlertes_Banc_1mois = nbAlertes_Banc_1mois + 1
             End If
             If AlerteBanc = Globals.ALERTE.ORANGE Then '15 jours
-                nbAlertes_Banc_15jr = nbAlertes_Banc_15jr + 1
-                njours = tmpBanc.getNbJoursAvantDateLimite()
+                nbAlertes_Banc_Orange = nbAlertes_Banc_Orange + 1
+                njours = tmpBanc.getNbJoursAvantAlerteRouge()
                 If njours < nbBancAvantDL.Length Then
                     nbBancAvantDL(Math.Abs(njours)) = nbBancAvantDL(Math.Abs(njours)) + 1
                 End If
@@ -3978,7 +3977,7 @@ Public Class accueil
         'Affichage des alertes 
         Dim sName As String
         Dim sTexte As String
-        If nbAlertes_Banc_15jr > 0 Then
+        If nbAlertes_Banc_Orange > 0 Then
             For n As Integer = nbBancAvantDL.Length To 1 Step -1
                 sName = "alerteManoControle_" & n & "jr"
                 If nbBancAvantDL(n - 1) > 0 Then

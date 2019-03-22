@@ -206,7 +206,7 @@ Public MustInherit Class Materiel
 
     Public MustOverride Function creerFichevieActivation(ByVal pAgent As Agent) As Boolean
 
-    Public Function getNiveauAlerte(pType As NiveauAlerte.Enum_typeMateriel) As NiveauAlerte
+    Public Shared Function getNiveauAlerte(pType As NiveauAlerte.Enum_typeMateriel) As NiveauAlerte
         Dim bReturn As Globals.ALERTE
         bReturn = Globals.ALERTE.NONE
         Dim lstNiveauAlerte As List(Of NiveauAlerte)

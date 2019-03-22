@@ -5,7 +5,7 @@ Build :
 
 #306 : Erreur en génération de rapport si plusieurs Controle de suite
 #308 : Erreur en facturation ligne à 0.
-
+#309 : Decompte des alerts va en augementant
 
 Build :20190208100000
 ------------------

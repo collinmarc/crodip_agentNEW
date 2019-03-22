@@ -246,11 +246,13 @@ Public Class Banc
     End Function
     '''
     ''' Calcul du nombre de jours restant avant la date limite de controle
-    Public Function getNbJoursAvantDateLimite() As Integer
+    Public Function getNbJoursAvantAlerteRouge() As Integer
         Dim dernCtrl As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
         Dim DL As Date
         Dim n As Integer
-        DL = DateAdd(DateInterval.Month, -1, Now) '1 mois 
+        Dim oNiveau As NiveauAlerte
+        oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.Banc)
+        DL = DateAdd(DateInterval.DayOfYear, oNiveau.Rouge * -1, Now) '1 mois 
 
         n = DateDiff(DateInterval.DayOfYear, DL, dernCtrl)
 
