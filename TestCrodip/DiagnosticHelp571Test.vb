@@ -80,6 +80,9 @@ Public Class DiagnosticHelp571test
         oDiagHelp571.ErreurGlobalePRS = 1.93D
         oDiagHelp571.Regulation = "DPAE"
         oDiagHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMAJEUR
+        oDiagHelp571.IsDPAE = True
+        oDiagHelp571.IsDPAEDebit = False
+        oDiagHelp571.IsDPAEPression = True
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp571.id))
@@ -105,6 +108,9 @@ Public Class DiagnosticHelp571test
         Assert.AreEqual(oDiagHelp571.ErreurDebitPRS, 1.92D)
         Assert.AreEqual(oDiagHelp571.ErreurGlobalePRS, 1.93D)
         Assert.AreEqual(oDiagHelp571.ResultPRS, DiagnosticItem.EtatDiagItemMAJEUR)
+        Assert.AreEqual(True, oDiagHelp571.IsDPAE)
+        Assert.AreEqual(False, oDiagHelp571.IsDPAEDebit)
+        Assert.AreEqual(True, oDiagHelp571.IsDPAEPression)
 
 
         'Maj de l'objet
@@ -123,6 +129,9 @@ Public Class DiagnosticHelp571test
         oDiagHelp571.ErreurDebitPRS = 1.92D * 10
         oDiagHelp571.ErreurGlobalePRS = 1.93D * 10
         oDiagHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMINEUR
+        oDiagHelp571.IsDPAE = False
+        oDiagHelp571.IsDPAEDebit = True
+        oDiagHelp571.IsDPAEPression = False
 
         Debug.WriteLine("Update")
         Assert.IsTrue(oDiagHelp571.Save(oDiag.organismePresId, oDiag.inspecteurId))
@@ -145,6 +154,9 @@ Public Class DiagnosticHelp571test
         Assert.AreEqual(oDiagHelp571.ErreurDebitPRS, 1.92D * 10)
         Assert.AreEqual(oDiagHelp571.ErreurGlobalePRS, 1.93D * 10)
         Assert.AreEqual(oDiagHelp571.ResultPRS, DiagnosticItem.EtatDiagItemMINEUR)
+        Assert.AreEqual(False, oDiagHelp571.IsDPAE)
+        Assert.AreEqual(True, oDiagHelp571.IsDPAEDebit)
+        Assert.AreEqual(False, oDiagHelp571.IsDPAEPression)
 
         Debug.WriteLine("Suppression")
         oDiagHelp571.Delete()
@@ -324,6 +336,69 @@ Public Class DiagnosticHelp571test
         oHelp571.ErreurVitessePRS = oHelp571.ErreurDebitPRS + 4D
         Assert.AreEqual(4D, oHelp571.ErreurGlobalePRSRND)
         Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oHelp571.ResultPRS)
+    End Sub
+    <TestMethod()>
+    Public Sub testCalcGetResult()
+        Dim oHelp571 As New DiagnosticHelp571()
+        oHelp571.IsDPAE = True
+        oHelp571.IsDPAEDebit = False
+        oHelp571.IsDPAEPression = False
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemOK
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemOK
+        Assert.AreEqual("", oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemMINEUR
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMINEUR
+        Assert.AreEqual("", oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemMAJEUR
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMAJEUR
+        Assert.AreEqual("", oHelp571.getResult())
+        oHelp571.IsDPAEDebit = True
+        oHelp571.IsDPAEPression = False
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemOK
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemOK
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemMINEUR
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMINEUR
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemMINEUR, oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemMAJEUR
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMAJEUR
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemMAJEUR, oHelp571.getResult())
+        oHelp571.IsDPAEDebit = False
+        oHelp571.IsDPAEPression = True
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemOK
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemOK
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemMINEUR
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMINEUR
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemMINEUR, oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemMAJEUR
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMAJEUR
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemMAJEUR, oHelp571.getResult())
+
+        oHelp571.IsDPAEDebit = True
+        oHelp571.IsDPAEPression = True
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemOK
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemOK
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemMINEUR
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMINEUR
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemMINEUR, oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemMAJEUR
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMAJEUR
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemMAJEUR, oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemOK
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMINEUR
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemMINEUR, oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemMINEUR
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemOK
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemMINEUR, oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemOK
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemMAJEUR
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemMAJEUR, oHelp571.getResult())
+        oHelp571.ResultDEB = DiagnosticItem.EtatDiagItemMAJEUR
+        oHelp571.ResultPRS = DiagnosticItem.EtatDiagItemOK
+        Assert.AreEqual(DiagnosticItem.EtatDiagItemMAJEUR, oHelp571.getResult())
+
     End Sub
     '<TestMethod()>
     'Public Sub testClone()

@@ -6,7 +6,8 @@
 			<categorie typevaleur="RANG" unite="RG" valeurs="0.5|1|2" tdpc="20.5" tdpp="0" tdec="11" tdep="0" label_gip="AXIAL">Axial</categorie>
 			<categorie typevaleur="RANG" unite="RG" valeurs="0.5|1|2" tdpc="20.5" label_gip="JET DIRIGE">Jet dirigé</categorie>
 		</categories>
-	</type>
+    <ATTELAGES valeurs="PORTE|TRAINE" />
+  </type>
 	<type>
 		<libelle label_gip="CULTURES BASSES">Cultures basses</libelle>
 		<categories>

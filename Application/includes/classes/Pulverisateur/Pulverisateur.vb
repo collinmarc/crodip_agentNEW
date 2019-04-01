@@ -1557,23 +1557,20 @@ Public Class Pulverisateur
     End Function
     Public Function pulverisateurRegulationIsDPAESeul() As Boolean
         Dim bReturn As Boolean
-        bReturn = regulation.Trim().ToLower().StartsWith("DPAE".Trim().ToLower())
+        bReturn = pulverisateurRegulationIsDPAE()
         If bReturn Then
-            bReturn = Not regulationOptions.Contains("Débit") And Not regulationOptions.Contains("Pression")
+            bReturn = Not (pulverisateurRegulationIsDPAEDebit() Or pulverisateurRegulationIsDPAEPression())
         End If
         Return bReturn
     End Function
     Public Function pulverisateurRegulationIsDPAEComplet() As Boolean
         Dim bReturn As Boolean
-        bReturn = regulation.Trim().ToLower().StartsWith("DPAE".Trim().ToLower())
-        If bReturn Then
-            bReturn = regulationOptions.Contains("Débit") And regulationOptions.Contains("Pression")
-        End If
+        bReturn = pulverisateurRegulationIsDPAEDebit() And pulverisateurRegulationIsDPAEPression()
         Return bReturn
     End Function
     Public Function pulverisateurRegulationIsDPAEDebit() As Boolean
         Dim bReturn As Boolean
-        bReturn = regulation.Trim().ToLower().StartsWith("DPAE".Trim().ToLower())
+        bReturn = pulverisateurRegulationIsDPAE()
         If bReturn Then
             bReturn = regulationOptions.Contains("Débit")
         End If
@@ -1581,7 +1578,7 @@ Public Class Pulverisateur
     End Function
     Public Function pulverisateurRegulationIsDPAEPression() As Boolean
         Dim bReturn As Boolean
-        bReturn = regulation.Trim().ToLower().StartsWith("DPAE".Trim().ToLower())
+        bReturn = pulverisateurRegulationIsDPAE()
         If bReturn Then
             bReturn = regulationOptions.Contains("Pression")
         End If

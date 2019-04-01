@@ -11,6 +11,9 @@ Public Class DiagnosticHelp571
     Private m_id As String
     Private m_idDiag As String
     Private m_Regulation As String
+    Private m_isDPAE As Boolean
+    Private m_isDPAEDebit As Boolean
+    Private m_isDPAEPression As Boolean
     Private m_bCalcul As Boolean = True
     'Capteur de débit
     Private m_ErreurVitesseDEB? As Decimal
@@ -102,6 +105,30 @@ Public Class DiagnosticHelp571
             m_Regulation = Value
         End Set
     End Property
+    Public Property IsDPAE As Boolean
+        Get
+            Return m_isDPAE
+        End Get
+        Set(ByVal Value As Boolean)
+            m_isDPAE = Value
+        End Set
+    End Property
+    Public Property IsDPAEDebit As Boolean
+        Get
+            Return m_isDPAEDebit
+        End Get
+        Set(ByVal Value As Boolean)
+            m_isDPAEDebit = Value
+        End Set
+    End Property
+    Public Property IsDPAEPression As Boolean
+        Get
+            Return m_isDPAEPression
+        End Get
+        Set(ByVal Value As Boolean)
+            m_isDPAEPression = Value
+        End Set
+    End Property
     Public Property ResultPRS As String
         Get
             Return m_ResultPRS
@@ -119,15 +146,36 @@ Public Class DiagnosticHelp571
         End Set
     End Property
     Public Function getResult() As String
-        Dim sResult As String
-        If ResultDEB = DiagnosticItem.EtatDiagItemMAJEUR Or ResultPRS = DiagnosticItem.EtatDiagItemMAJEUR Then
-            sResult = DiagnosticItem.EtatDiagItemMAJEUR
-        Else
-            If ResultDEB = DiagnosticItem.EtatDiagItemMINEUR Or ResultPRS = DiagnosticItem.EtatDiagItemMINEUR Then
+        Dim sResult As String = ""
+        If IsDPAEDebit And Not IsDPAEPression Then
+            sResult = DiagnosticItem.EtatDiagItemOK
+            If ResultDEB = DiagnosticItem.EtatDiagItemMAJEUR Then
+                sResult = DiagnosticItem.EtatDiagItemMAJEUR
+            End If
+            If ResultDEB = DiagnosticItem.EtatDiagItemMINEUR Then
                 sResult = DiagnosticItem.EtatDiagItemMINEUR
             End If
         End If
-        Return sResult
+        If Not IsDPAEDebit And IsDPAEPression Then
+            sResult = DiagnosticItem.EtatDiagItemOK
+            If ResultPRS = DiagnosticItem.EtatDiagItemMAJEUR Then
+                sResult = DiagnosticItem.EtatDiagItemMAJEUR
+            End If
+            If ResultPRS = DiagnosticItem.EtatDiagItemMINEUR Then
+                sResult = DiagnosticItem.EtatDiagItemMINEUR
+            End If
+        End If
+        If IsDPAEDebit And IsDPAEPression Then
+            sResult = DiagnosticItem.EtatDiagItemOK
+            If ResultDEB = DiagnosticItem.EtatDiagItemMAJEUR Or ResultPRS = DiagnosticItem.EtatDiagItemMAJEUR Then
+                sResult = DiagnosticItem.EtatDiagItemMAJEUR
+            Else
+                If ResultDEB = DiagnosticItem.EtatDiagItemMINEUR Or ResultPRS = DiagnosticItem.EtatDiagItemMINEUR Then
+                    sResult = DiagnosticItem.EtatDiagItemMINEUR
+                End If
+            End If
+        End If
+            Return sResult
     End Function
     Public Property erreurVitesseDEB As Decimal?
         Get
@@ -302,6 +350,12 @@ Public Class DiagnosticHelp571
                     ErreurGlobalePRS = ConvertStringToAtt(tabValues(10))
                     Regulation = tabValues(11)
                     ResultPRS = tabValues(12)
+                    ResultPRS = tabValues(12)
+                    If tabValues.Length >= 14 Then
+                        IsDPAE = tabValues(13)
+                        IsDPAEDebit = tabValues(14)
+                        IsDPAEPression = tabValues(15)
+                    End If
                     bCalcule = True
                 Catch ex As Exception
                     CSDebug.dispError("DiagnosticHelp571.load ERR conversion (" & oDiagItem.itemValue & ") ERR " & ex.Message)
@@ -374,6 +428,9 @@ Public Class DiagnosticHelp571
         oDiagItem.itemValue = oDiagItem.itemValue & ConvertAttToString(ErreurGlobalePRS) & "|"
         oDiagItem.itemValue = oDiagItem.itemValue & Trim(Regulation) & "|"
         oDiagItem.itemValue = oDiagItem.itemValue & Trim(ResultPRS) & "|"
+        oDiagItem.itemValue = oDiagItem.itemValue & Trim(IsDPAE) & "|"
+        oDiagItem.itemValue = oDiagItem.itemValue & Trim(IsDPAEDebit) & "|"
+        oDiagItem.itemValue = oDiagItem.itemValue & Trim(IsDPAEPression) & "|"
 
         Return oDiagItem
     End Function
@@ -450,7 +507,7 @@ Public Class DiagnosticHelp571
                 End If
                 If m_ErreurGlobalePRS.HasValue And Not String.IsNullOrEmpty(Regulation) Then
                     m_ResultPRS = DiagnosticItem.EtatDiagItemOK
-                    If Regulation.StartsWith(RegulationDPAE) Then
+                    If IsDPAE Then
                         'On ne fait le calcul que pour les Pulve DPAE
                         m_ResultPRS = DiagnosticItem.EtatDiagItemOK
                         If VTSB1 <= Math.Abs(m_ErreurGlobalePRS.Value) And Math.Abs(m_ErreurGlobalePRS.Value) < VTSB2 Then

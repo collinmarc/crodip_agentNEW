@@ -10379,6 +10379,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End If
         If Not String.IsNullOrEmpty(m_diagnostic.pulverisateurRegulation) Then
             m_diagnostic.diagnosticHelp571.Regulation = m_diagnostic.pulverisateurRegulation
+            m_diagnostic.diagnosticHelp571.IsDPAE = m_Pulverisateur.pulverisateurRegulationIsDPAE()
+            m_diagnostic.diagnosticHelp571.IsDPAEDebit = m_Pulverisateur.pulverisateurRegulationIsDPAEDebit()
+            m_diagnostic.diagnosticHelp571.IsDPAEPression = m_Pulverisateur.pulverisateurRegulationIsDPAEPression()
+
         End If
 
     End Sub

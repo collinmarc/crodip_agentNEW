@@ -1,8 +1,12 @@
 TRUNK
 
-Build :
+Build : 20190322180000
 ----------------------
+#312 : Cumul des erreurs (571) : Pas de mise à OK
 
+PRODUCTION
+Build : 20190322180000
+----------------------
 #306 : Erreur en génération de rapport si plusieurs Controle de suite
 #308 : Erreur en facturation ligne à 0.
 #309 : Decompte des alerts va en augementant
