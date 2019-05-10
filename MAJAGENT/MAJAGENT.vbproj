@@ -130,6 +130,10 @@
       <Project>{dd7c56aa-4a81-4966-94bc-6b9b62054235}</Project>
       <Name>Crodip_agent</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CRODIP_ControlLibrary\CRODIP_ControlLibrary\CRODIP_ControlLibrary.vbproj">
+      <Project>{2e21234e-daef-48b6-aff5-a3655c9420e4}</Project>
+      <Name>CRODIP_ControlLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
