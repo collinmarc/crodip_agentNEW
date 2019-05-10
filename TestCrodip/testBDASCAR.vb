@@ -3,7 +3,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports Crodip_agent
 
 <TestClass()> Public Class testBDASCAR
-
+ Inherits CRODIPTest
     'Test uniquement pour MAJ base ASCAR
     'Mettre la base crodip_agent_dev(ASCAROK).mdb active avant l'executio du test
     <TestMethod(), Ignore()>
@@ -83,4 +83,49 @@ Imports Crodip_agent
 
     End Sub
 
+    <TestMethod(), Ignore()>
+    Public Sub TestGetControleFromProd()
+
+        WSCrodip.Init("http://admin.crodip.fr/server")
+        Dim oagent = New Agent
+        oagent.id = 1144
+        oagent.numeroNational = 128
+        oagent.nom = "CHAPON"
+        oagent.prenom = "KEVIN"
+        oagent.dateDerniereSynchro = "2018-05-17 14:51:00"
+        agentCourant = oagent
+
+        Dim oExploit As Exploitation
+        oExploit = ExploitationManager.getWSExploitationById("5-1144-100")
+        Assert.AreEqual("5-1144-100", oExploit.id)
+        ExploitationManager.save(oExploit, oagent)
+
+        Dim oPulve As Pulverisateur
+
+        oPulve = PulverisateurManager.getWSPulverisateurById(oagent, "5-1144-241")
+        Assert.AreEqual("5-1144-241", oPulve.id)
+        PulverisateurManager.save(oPulve, oExploit.id, oagent)
+
+        Dim oDiag As Diagnostic
+        oDiag = DiagnosticManager.getWSDiagnosticById(128, "5-1144-687")
+        DiagnosticManager.save(oDiag)
+
+        oDiag = DiagnosticItemManager.getWSDiagnosticItemsByDiagnosticId(oagent, "5-1144-687")
+
+        DiagnosticManager.save(oDiag)
+
+        oDiag = DiagnosticManager.getDiagnosticById(oDiag.id)
+
+
+
+        Assert.AreEqual("5-1144-687", oDiag.id)
+
+        Dim oEtat As New EtatRapportInspection(oDiag)
+        Assert.IsTrue(oEtat.GenereEtat())
+
+        oEtat.Open()
+
+
+
+    End Sub
 End Class

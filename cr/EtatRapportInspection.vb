@@ -278,7 +278,18 @@ Public Class EtatRapportInspection
             End If
             oDiagRow = m_ods.Diagnostic.AddDiagnosticRow(m_oDiag.id, m_oDiag.organismeInspAgrement, CDate(m_oDiag.controleDateDebut), m_oDiag.controleLieu, CDate(m_oDiag.controleDateDebut).ToShortTimeString(), CDate(m_oDiag.controleDateFin).ToShortTimeString(), m_oDiag.controleIsPreControleProfessionel, m_oDiag.controleIsComplet, m_oDiag.controleInitialId, oMaterielRow, Conclusion:=m_oDiag.controleEtat, dateLimiteControle:=dateLimiteControle, DateEmission:=Date.Now, _
                                                          DateControleInitial:=m_oDiag.getDateDernierControleDate(), OrganismeInitial:=m_oDiag.organismeOriginePresNom, InspecteurInitial:=m_oDiag.inspecteurOrigineNom & " " & m_oDiag.inspecteurOriginePrenom, NbPageRFinal:=nbPagefinal, Commentaire:=m_oDiag.Commentaire)
-            m_ods.Organisme.AddOrganismeRow(oDiagRow, m_oDiag.organismePresNom, m_oDiag.inspecteurNom & " " & m_oDiag.inspecteurPrenom, m_oDiag.inspecteurNumeroNational)
+
+            Dim strPrestataire As String = ""
+            Dim oStructure As Structuree
+            Dim oAgent As Agent
+            oAgent = AgentManager.getAgentById(m_oDiag.inspecteurId)
+            If (oAgent.idStructure <> 0) Then
+                oStructure = StructureManager.getStructureById(oAgent.idStructure)
+                strPrestataire = oStructure.commentaire
+            End If
+
+            m_ods.Organisme.AddOrganismeRow(oDiagRow, m_oDiag.organismePresNom, m_oDiag.inspecteurNom & " " & m_oDiag.inspecteurPrenom, m_oDiag.inspecteurNumeroNational, strPrestataire)
+
             Dim strCumuldesErreurs As String
             If m_oDiag.diagnosticHelp571.ErreurGlobalePRSRND.HasValue Or m_oDiag.diagnosticHelp571.erreurGlobaleDEB.HasValue Then
                 If m_oDiag.diagnosticHelp571.ErreurGlobalePRSRND.HasValue Then

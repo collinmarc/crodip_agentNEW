@@ -317,27 +317,27 @@ Public Class ParamCtrlDiag
         Return NewCode
     End Function
 
-    Public Shared Function getLibelleLong(ByVal code As String, ByVal pParamfile As String) As String
+    'Public Shared Function getLibelleLong(ByVal code As String, ByVal pParamfile As String) As String
 
-        Dim sReturn As String
-        Dim olst As CRODIP_ControlLibrary.LstParamCtrlDiag
-        Dim oParam As CRODIP_ControlLibrary.ParamCtrlDiag
+    '    Dim sReturn As String
+    '    Dim olst As CRODIP_ControlLibrary.LstParamCtrlDiag
+    '    Dim oParam As CRODIP_ControlLibrary.ParamCtrlDiag
 
-        olst = New CRODIP_ControlLibrary.LstParamCtrlDiag()
-        olst.readXML(pParamfile)
-        'Le Code que l'on recoit n'a pas de point, il faut donc le reconstruire pour être en accord avec le ?xml
-        If code.IndexOf(".") = -1 Then
-            oParam = New CRODIP_ControlLibrary.ParamCtrlDiag()
-            code = ConvertCode(code)
-        End If
+    '    olst = New CRODIP_ControlLibrary.LstParamCtrlDiag()
+    '    olst.readXML(pParamfile)
+    '    'Le Code que l'on recoit n'a pas de point, il faut donc le reconstruire pour être en accord avec le ?xml
+    '    If code.IndexOf(".") = -1 Then
+    '        oParam = New CRODIP_ControlLibrary.ParamCtrlDiag()
+    '        code = ConvertCode(code)
+    '    End If
 
-        oParam = olst.Find(code)
-        If oParam IsNot Nothing Then
-            sReturn = oParam.LibelleLong
-        Else
-            sReturn = ""
-        End If
-        Return sReturn
-    End Function
+    '    oParam = olst.Find(code)
+    '    If oParam IsNot Nothing Then
+    '        sReturn = oParam.LibelleLong
+    '    Else
+    '        sReturn = ""
+    '    End If
+    '    Return sReturn
+    'End Function
 
 End Class

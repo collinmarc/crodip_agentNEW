@@ -77,6 +77,7 @@ Module StartApplication
 
 
         Try
+
             m_reportName = My.Settings.RepertoireParametres & "/" & ocr.ResourceName
             ocr.Dispose()
 
@@ -89,7 +90,7 @@ Module StartApplication
             If System.IO.File.Exists(m_reportName) Then
 
 
-                Using objReport As crTest = New crTest()
+                Using objReport As ReportDocument = New ReportDocument()
                     objReport.Load(m_reportName)
                     objReport.SetDataSource(ods)
 
@@ -108,6 +109,7 @@ Module StartApplication
 
                 End Using
             Else
+                CSDebug.dispError("StartApplication.TestCrystalReport Modele" & m_reportName & " introuvable")
 
             End If
             ods.Dispose()
@@ -125,6 +127,7 @@ Module StartApplication
             End If
             bReturn = False
         End Try
+
         Return bReturn
     End Function
 

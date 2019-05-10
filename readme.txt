@@ -1,8 +1,16 @@
 TRUNK
 
+Build : 20190509180000
+----------------------
+#327 : La procédure d'installation ne crée pas les raccourcis sur le bureau
+#326 : Erreur sur le modele de BL
+#307 : Les libellés long des défauts ne s'affichent pas lors d'une contre visite.
+#159 : Rapport d’inspection : Nom du prestataire
+
 Build : 20190322180000
 ----------------------
 #312 : Cumul des erreurs (571) : Pas de mise à OK
+
 
 PRODUCTION
 Build : 20190322180000

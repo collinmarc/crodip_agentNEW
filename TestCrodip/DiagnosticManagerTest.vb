@@ -5615,4 +5615,68 @@ Public Class DiagnosticManagerTest
         StructureManager.save(m_oStructure)
 
     End Sub
+
+    <TestMethod()> Public Sub TestRecuperationdesLibellesDeDiagItem()
+        Dim oEtat As EtatRapportInspection
+        Dim oDiag As Diagnostic
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        Dim oDiagItem As DiagnosticItem
+
+        oExploit = createExploitation()
+        ExploitationManager.save(oExploit, m_oAgent)
+
+        oPulve = createPulve(oExploit)
+        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+
+        oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
+        oDiag.controleLieu = "DANS LA COUR"
+        oDiag.controleIsPreControleProfessionel = True
+        oDiag.proprietaireRepresentant = "Repésentant"
+        oDiag.id = "2-852-963"
+        oDiag.controleIsComplet = False
+        oDiag.buseDebitD = 2.5
+        oDiag.controleInitialId = "010101"
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.inspecteurOrigineNom = "RAULT"
+        oDiag.inspecteurOriginePrenom = "MA"
+        oDiag.organismeOriginePresNom = "CRODIP"
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
+        'Assert.AreEqual(CSDate.ToCRODIPString("06/02/1964"), oDiag.CalculDateProchainControle)
+        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4)), oDiag.CalculDateProchainControle)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "3", "1", "O")
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "4", "1", "O")
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "5", "1", "O")
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "6", "1", "O")
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "7", "1", "O")
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "8", "1", "O")
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "9", "1", "O")
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "257", "2", "1", "O")
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+
+        For Each oDiagItem In oDiag.diagnosticItemsLst.Values
+            Assert.IsNull(oDiagItem.LibelleCourt)
+            Assert.IsNull(oDiagItem.LibelleLong)
+        Next
+        DiagnosticManager.save(oDiag)
+
+        oDiag = DiagnosticManager.getDiagnosticById(oDiag.id)
+
+        For Each oDiagItem In oDiag.diagnosticItemsLst.Values
+            Assert.AreNotEqual("", oDiagItem.LibelleCourt)
+            Assert.AreNotEqual("", oDiagItem.LibelleLong)
+        Next
+    End Sub
+
 End Class

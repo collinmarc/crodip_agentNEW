@@ -955,7 +955,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>crRapportInspectionFin2.rpt</DependentUpon>
       <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="moduleDocumentaire\_parametres\crTest1.vb">
       <AutoGen>True</AutoGen>
@@ -969,7 +969,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>cr_FeuillePedagogique.rpt</DependentUpon>
       <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="moduleDocumentaire\_parametres\cr_DocCopropiete.vb">
       <AutoGen>True</AutoGen>
@@ -1247,6 +1247,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Content Include="bdd\crodip_agent.mdb" />
+    <Content Include="bdd\crodip_dasylab.mdb" />
+    <Content Include="bdd\crodip_etats.mdb" />
     <Content Include="config\bancs\marques.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1272,18 +1275,19 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="config\buses\fonctionnement.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="config\buses\types.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="config\CodesAPE.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Application\ReglagePulve\ds_Etat_ReglagePulve.xsd">
+    <None Include="Application\ReglagePulve\ds_Etat_ReglagePulve.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ds_Etat_ReglagePulve.Designer.vb</LastGenOutput>
-    </Content>
+    </None>
+    <Content Include="bdd\crodip_agent.mdw" />
     <None Include="cr\dsTest.xsc">
       <DependentUpon>dsTest.xsd</DependentUpon>
     </None>
@@ -1309,7 +1313,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="moduleDocumentaire\_parametres\Alertes.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\btn_annuler.jpg" />
     <None Include="Resources\btn_suivantGrd.jpg" />
@@ -1495,11 +1499,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="cr\Notes.txt" />
-    <Content Include="cr\ds_Etat_SM.xsd">
+    <None Include="cr\Notes.txt" />
+    <None Include="cr\ds_Etat_SM.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ds_Etat_SM.Designer.vb</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="favicon.ico" />
     <Content Include="img\accept.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1707,11 +1711,11 @@
     <None Include="cr\ds_etatBL.xsc">
       <DependentUpon>ds_etatBL.xsd</DependentUpon>
     </None>
-    <Content Include="cr\ds_etatBL.xsd">
+    <None Include="cr\ds_etatBL.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ds_etatBL.Designer.vb</LastGenOutput>
-    </Content>
+    </None>
     <None Include="cr\ds_etatBL.xss">
       <DependentUpon>ds_etatBL.xsd</DependentUpon>
     </None>
@@ -1842,12 +1846,12 @@
     <Content Include="img\tick.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="itextsharp.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="moduleDocumentaire\_parametres\base_officielle_codes_postaux.csv">
+    <None Include="itextsharp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="moduleDocumentaire\_parametres\base_officielle_codes_postaux.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="moduleDocumentaire\_parametres\Paramétrage des défauts.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2291,13 +2295,13 @@
     <Content Include="moduleDocumentaire\_parametres\crRapportInspectionFin2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crRapportInspectionFin2.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="moduleDocumentaire\_parametres\crTest.rpt">
+    <Content Include="moduleDocumentaire\_parametres\crTest.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crTest1.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
     <Content Include="moduleDocumentaire\_parametres\cr_DocCopropiete.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_DocCopropiete.vb</LastGenOutput>
@@ -2338,11 +2342,11 @@
       <LastGenOutput>cr_syntheseBusesxx.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="moduleDocumentaire\_parametres\cr_FeuillePedagogique.rpt">
+    <Content Include="moduleDocumentaire\_parametres\cr_FeuillePedagogique.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_FeuillePedagogique.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="My Project\Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -2407,8 +2411,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\exploitant\fichevie\" />
-    <Folder Include="config\NewFolder1\" />
-    <Folder Include="config\pulverisateurs\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="JRO">

@@ -1,6 +1,7 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
+Imports System.Linq
 
 
 <Serializable(), XmlInclude(GetType(DiagnosticItemsList))> _
@@ -347,6 +348,9 @@ Public Class DiagnosticItem
         End Select
 
     End Sub
+
+
+
 
 
 End Class

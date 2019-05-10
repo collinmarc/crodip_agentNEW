@@ -100,7 +100,13 @@ Public Class DiagnosticItemManager
         Dim oCSDB As New CSDb(True)
         Dim bddCommande2 As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
         Try
-
+            ' récupération du fichier de config associé au Pulvé
+            Dim oPulve As Pulverisateur
+            oPulve = PulverisateurManager.getPulverisateurById(pDiagnostic.pulverisateurId)
+            Dim sFichierConfig As String = oPulve.getParamDiag().fichierConfig
+            '' Chargement de la liste des Défauts pour ce Type de pulvé
+            Dim olst As New CRODIP_ControlLibrary.LstParamCtrlDiag()
+            olst.readXML(MySettings.Default.RepertoireParametres & "/" & sFichierConfig)
 
             bddCommande2.CommandText = "SELECT * FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' AND  DiagnosticItem.idItem <> '" & DiagnosticInfosComplementaires.DIAGITEM_ID & "' AND DiagnosticItem.idItem not Like 'h%' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats
@@ -117,6 +123,12 @@ Public Class DiagnosticItemManager
                     End If
                     nColId = nColId + 1
                 End While
+                'Les libellés n'étant pas strocké en BDD, on les récupère dans le fichier de config
+                Dim oParamctrlDiag As CRODIP_ControlLibrary.ParamCtrlDiag = olst.FindDiagItem(oDiagnosticItem.getItemCode())
+                If oParamctrlDiag IsNot Nothing Then
+                    oDiagnosticItem.LibelleCourt = oParamctrlDiag.Libelle
+                    oDiagnosticItem.LibelleLong = oParamctrlDiag.LibelleLong
+                End If
                 'Transformation du code du DiagItem 2319 en 2310 pour le Lot3
                 If oDiagnosticItem.idItem = 231 And oDiagnosticItem.itemValue = 9 And oDiagnosticItem.itemCodeEtat = "B" Then
                     oDiagnosticItem.itemValue = 0
@@ -175,10 +187,10 @@ Public Class DiagnosticItemManager
         ' déclarations
         Dim tmpDiagnosticItem As New DiagnosticItem
         If diagnosticitem_id <> "" Then
-            Dim oCSDb As CSDb = nothing
-            oCsdb = New CSDb(True)
+            Dim oCSDb As CSDb = Nothing
+            oCSDb = New CSDb(True)
             Dim bddCommande As OleDb.OleDbCommand
-            bddCommande = oCsdb.getConnection().CreateCommand()
+            bddCommande = oCSDb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM DiagnosticItem WHERE DiagnosticItem.id='" & diagnosticitem_id & "' AND idDiagnostic = '" & pIdDiagnostic & "'"
             Try
                 ' On récupère les résultats
@@ -198,9 +210,9 @@ Public Class DiagnosticItemManager
             End Try
 
             ' Test pour fermeture de connection BDD
-            If Not oCsdb Is Nothing Then
+            If Not oCSDb Is Nothing Then
                 ' On ferme la connexion
-                oCsdb.free()
+                oCSDb.free()
             End If
 
         End If
@@ -446,12 +458,12 @@ Public Class DiagnosticItemManager
     Public Shared Function deleteByDiagnosticID(ByVal pDiagnosticId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pDiagnosticId), "Diagnostic.id doit être inialisé")
         Dim bReturn As Boolean
-        Dim oCSDb As CSDb = nothing
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Try
-            oCsDb = New CSDb(True)
-            bddCommande = oCsDb.getConnection().CreateCommand()
+            oCSDb = New CSDb(True)
+            bddCommande = oCSDb.getConnection().CreateCommand()
             bddCommande.CommandText = "DELETE from DiagnosticItem WHERE idDiagnostic='" & pDiagnosticId & "'"
             nResult = bddCommande.ExecuteNonQuery()
             bReturn = True
@@ -460,8 +472,8 @@ Public Class DiagnosticItemManager
             bReturn = False
         End Try
 
-        If Not oCsDb Is Nothing Then
-            oCsDb.free()
+        If Not oCSDb Is Nothing Then
+            oCSDb.free()
         End If
         Return bReturn
     End Function 'deleteByDiagnosticID
@@ -469,12 +481,12 @@ Public Class DiagnosticItemManager
     Public Shared Function delete(ByVal pDiagnosticItemId As String, pIdDiagnostic As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pDiagnosticItemId), "DiagnosticItemid doit être inialisé")
         Dim bReturn As Boolean
-        Dim oCSDb As CSDb = nothing
+        Dim oCSDb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Try
-            oCsDb = New CSDb(True)
-            bddCommande = oCsDb.getConnection().CreateCommand()
+            oCSDb = New CSDb(True)
+            bddCommande = oCSDb.getConnection().CreateCommand()
             bddCommande.CommandText = "DELETE from DiagnosticItem WHERE id='" & pDiagnosticItemId & "' and idDiagnostic = '" & pIdDiagnostic & "'"
             nResult = bddCommande.ExecuteNonQuery()
             bReturn = True
@@ -483,8 +495,8 @@ Public Class DiagnosticItemManager
             bReturn = False
         End Try
 
-        If Not oCsDb Is Nothing Then
-            oCsDb.free()
+        If Not oCSDb Is Nothing Then
+            oCSDb.free()
         End If
         Return bReturn
     End Function 'delete

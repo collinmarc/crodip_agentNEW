@@ -3,12 +3,12 @@ Public Class PulverisateurManager
 
 #Region "Methodes acces Web Service"
 
-    Public Shared Function getWSPulverisateurById(pAgent As Agent, ByVal pulverisateur_id As String) As Object
+    Public Shared Function getWSPulverisateurById(pAgent As Agent, ByVal pulverisateur_id As String) As Pulverisateur
         Dim objPulverisateur As New Pulverisateur
         Try
 
             ' déclarations
-            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS(True)
+            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             objWSCrodip.Timeout = 10000
             Dim objWSCrodip_response As Object = Nothing
             ' Appel au WS
@@ -411,7 +411,7 @@ Public Class PulverisateurManager
 
             oDataReader.Close()
         Catch ex As Exception ' On intercepte l'erreur
-            CSDebug.dispError("PulverisateurManager Error: " & ex.Message)
+            CSDebug.dispError("PulverisateurManager.getPulverisateurSQL Error: " & ex.Message)
         End Try
 
 

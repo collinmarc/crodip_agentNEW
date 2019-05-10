@@ -61,6 +61,8 @@ Public Class gestion_structures
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents ficheStructure_contactPrenom As System.Windows.Forms.TextBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents tbCommentaire As System.Windows.Forms.TextBox
+    Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents ficheStructure_idCrodip As System.Windows.Forms.TextBox
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gestion_structures))
@@ -97,6 +99,8 @@ Public Class gestion_structures
         Me.btn_ficheStructure_annuler = New System.Windows.Forms.Label()
         Me.ficheStructure_idCrodip = New System.Windows.Forms.TextBox()
         Me.ficheStructure_id = New System.Windows.Forms.TextBox()
+        Me.tbCommentaire = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.panel_clientele_ficheClient_fichePulve.SuspendLayout()
         Me.grpContact.SuspendLayout()
         Me.grpResponsable.SuspendLayout()
@@ -104,6 +108,8 @@ Public Class gestion_structures
         '
         'panel_clientele_ficheClient_fichePulve
         '
+        Me.panel_clientele_ficheClient_fichePulve.Controls.Add(Me.tbCommentaire)
+        Me.panel_clientele_ficheClient_fichePulve.Controls.Add(Me.Label13)
         Me.panel_clientele_ficheClient_fichePulve.Controls.Add(Me.Label10)
         Me.panel_clientele_ficheClient_fichePulve.Controls.Add(Me.ficheStructure_type)
         Me.panel_clientele_ficheClient_fichePulve.Controls.Add(Me.grpContact)
@@ -119,7 +125,7 @@ Public Class gestion_structures
         Me.panel_clientele_ficheClient_fichePulve.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panel_clientele_ficheClient_fichePulve.Location = New System.Drawing.Point(0, 0)
         Me.panel_clientele_ficheClient_fichePulve.Name = "panel_clientele_ficheClient_fichePulve"
-        Me.panel_clientele_ficheClient_fichePulve.Size = New System.Drawing.Size(536, 456)
+        Me.panel_clientele_ficheClient_fichePulve.Size = New System.Drawing.Size(536, 491)
         Me.panel_clientele_ficheClient_fichePulve.TabIndex = 4
         '
         'Label10
@@ -168,7 +174,7 @@ Public Class gestion_structures
         Me.grpContact.Controls.Add(Me.ficheStructure_contactPrenom)
         Me.grpContact.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpContact.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.grpContact.Location = New System.Drawing.Point(8, 168)
+        Me.grpContact.Location = New System.Drawing.Point(3, 216)
         Me.grpContact.Name = "grpContact"
         Me.grpContact.Size = New System.Drawing.Size(520, 232)
         Me.grpContact.TabIndex = 11
@@ -356,17 +362,17 @@ Public Class gestion_structures
         '
         Me.ficheStructure_nom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ficheStructure_nom.Location = New System.Drawing.Point(384, 72)
+        Me.ficheStructure_nom.Location = New System.Drawing.Point(144, 99)
         Me.ficheStructure_nom.Name = "ficheStructure_nom"
         Me.ficheStructure_nom.ReadOnly = True
-        Me.ficheStructure_nom.Size = New System.Drawing.Size(144, 20)
+        Me.ficheStructure_nom.Size = New System.Drawing.Size(376, 20)
         Me.ficheStructure_nom.TabIndex = 10
         '
         'Label3
         '
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(336, 72)
+        Me.Label3.Location = New System.Drawing.Point(96, 99)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(40, 16)
         Me.Label3.TabIndex = 9
@@ -415,7 +421,7 @@ Public Class gestion_structures
         Me.grpResponsable.Controls.Add(Me.Label12)
         Me.grpResponsable.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpResponsable.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.grpResponsable.Location = New System.Drawing.Point(8, 104)
+        Me.grpResponsable.Location = New System.Drawing.Point(0, 154)
         Me.grpResponsable.Name = "grpResponsable"
         Me.grpResponsable.Size = New System.Drawing.Size(520, 56)
         Me.grpResponsable.TabIndex = 11
@@ -451,7 +457,7 @@ Public Class gestion_structures
         Me.btn_ficheStructure_annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheStructure_annuler.ForeColor = System.Drawing.Color.White
         Me.btn_ficheStructure_annuler.Image = CType(resources.GetObject("btn_ficheStructure_annuler.Image"), System.Drawing.Image)
-        Me.btn_ficheStructure_annuler.Location = New System.Drawing.Point(204, 416)
+        Me.btn_ficheStructure_annuler.Location = New System.Drawing.Point(204, 451)
         Me.btn_ficheStructure_annuler.Name = "btn_ficheStructure_annuler"
         Me.btn_ficheStructure_annuler.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheStructure_annuler.TabIndex = 26
@@ -475,13 +481,35 @@ Public Class gestion_structures
         Me.ficheStructure_id.TabIndex = 4
         Me.ficheStructure_id.Visible = False
         '
+        'tbCommentaire
+        '
+        Me.tbCommentaire.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbCommentaire.Location = New System.Drawing.Point(144, 125)
+        Me.tbCommentaire.Name = "tbCommentaire"
+        Me.tbCommentaire.ReadOnly = True
+        Me.tbCommentaire.Size = New System.Drawing.Size(376, 20)
+        Me.tbCommentaire.TabIndex = 30
+        '
+        'Label13
+        '
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.Label13.Location = New System.Drawing.Point(43, 125)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(93, 20)
+        Me.Label13.TabIndex = 29
+        Me.Label13.Text = "Commentaire :"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
         'gestion_structures
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(536, 456)
+        Me.ClientSize = New System.Drawing.Size(536, 491)
         Me.ControlBox = False
         Me.Controls.Add(Me.panel_clientele_ficheClient_fichePulve)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MinimizeBox = False
         Me.Name = "gestion_structures"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Coordonnées de l’organisme"
@@ -517,6 +545,7 @@ Public Class gestion_structures
         ficheStructure_responsableTelPort.Text = objStructure.telephonePortable
         ficheStructure_responsableTelFax.Text = objStructure.telephoneFax
         ficheStructure_responsableEmail.Text = objStructure.eMail
+        tbCommentaire.Text = objStructure.commentaire
     End Sub
 
     Private Sub ficheStructure_responsableTelFixe_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles ficheStructure_responsableTelFixe.KeyPress
@@ -560,6 +589,7 @@ Public Class gestion_structures
             objStructure.telephonePortable = ficheStructure_responsableTelPort.Text
             objStructure.telephoneFax = ficheStructure_responsableTelFax.Text
             objStructure.eMail = ficheStructure_responsableEmail.Text
+            objStructure.commentaire = tbCommentaire.Text
 
             StructureManager.save(objStructure)
 

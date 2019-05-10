@@ -1029,6 +1029,8 @@ Partial Public Class ds_Etat_RI
 
         Private columnNumeroInspecteur As Global.System.Data.DataColumn
 
+        Private columnCommentaire As Global.System.Data.DataColumn
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New()
@@ -1097,6 +1099,14 @@ Partial Public Class ds_Etat_RI
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property CommentaireColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCommentaire
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
          Global.System.ComponentModel.Browsable(False)> _
         Public ReadOnly Property Count() As Integer
@@ -1133,9 +1143,9 @@ Partial Public Class ds_Etat_RI
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Overloads Function AddOrganismeRow(ByVal parentDiagnosticRowByDiagnostic_Organisme As DiagnosticRow, ByVal NomOrganisme As String, ByVal NomInspecteur As String, ByVal NumeroInspecteur As String) As OrganismeRow
+        Public Overloads Function AddOrganismeRow(ByVal parentDiagnosticRowByDiagnostic_Organisme As DiagnosticRow, ByVal NomOrganisme As String, ByVal NomInspecteur As String, ByVal NumeroInspecteur As String, ByVal Commentaire As String) As OrganismeRow
             Dim rowOrganismeRow As OrganismeRow = CType(Me.NewRow, OrganismeRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, NomOrganisme, NomInspecteur, NumeroInspecteur}
+            Dim columnValuesArray() As Object = New Object() {Nothing, NomOrganisme, NomInspecteur, NumeroInspecteur, Commentaire}
             If (Not (parentDiagnosticRowByDiagnostic_Organisme) Is Nothing) Then
                 columnValuesArray(0) = parentDiagnosticRowByDiagnostic_Organisme(1)
             End If
@@ -1171,6 +1181,7 @@ Partial Public Class ds_Etat_RI
             Me.columnNomOrganisme = MyBase.Columns("NomOrganisme")
             Me.columnNomInspecteur = MyBase.Columns("NomInspecteur")
             Me.columnNumeroInspecteur = MyBase.Columns("NumeroInspecteur")
+            Me.columnCommentaire = MyBase.Columns("Commentaire")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -1184,6 +1195,8 @@ Partial Public Class ds_Etat_RI
             MyBase.Columns.Add(Me.columnNomInspecteur)
             Me.columnNumeroInspecteur = New Global.System.Data.DataColumn("NumeroInspecteur", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNumeroInspecteur)
+            Me.columnCommentaire = New Global.System.Data.DataColumn("Commentaire", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCommentaire)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Organisme_constraint1", New Global.System.Data.DataColumn() {Me.columnNumeroAgrement}, True))
             Me.columnNumeroAgrement.AllowDBNull = False
             Me.columnNumeroAgrement.Unique = True
@@ -3853,124 +3866,151 @@ Partial Public Class ds_Etat_RI
             End If
         End Function
     End Class
-    
+
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class OrganismeRow
         Inherits Global.System.Data.DataRow
-        
+
         Private tableOrganisme As OrganismeDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tableOrganisme = CType(Me.Table,OrganismeDataTable)
+            Me.tableOrganisme = CType(Me.Table, OrganismeDataTable)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property NumeroAgrement() As String
             Get
-                Return CType(Me(Me.tableOrganisme.NumeroAgrementColumn),String)
+                Return CType(Me(Me.tableOrganisme.NumeroAgrementColumn), String)
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableOrganisme.NumeroAgrementColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property NomOrganisme() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableOrganisme.NomOrganismeColumn),String)
+                Try
+                    Return CType(Me(Me.tableOrganisme.NomOrganismeColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'NomOrganisme' dans la table 'Organisme' est DBNull.", e)
                 End Try
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableOrganisme.NomOrganismeColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property NomInspecteur() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableOrganisme.NomInspecteurColumn),String)
+                Try
+                    Return CType(Me(Me.tableOrganisme.NomInspecteurColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'NomInspecteur' dans la table 'Organisme' est DBNull.", e)
                 End Try
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableOrganisme.NomInspecteurColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property NumeroInspecteur() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableOrganisme.NumeroInspecteurColumn),String)
+                Try
+                    Return CType(Me(Me.tableOrganisme.NumeroInspecteurColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'NumeroInspecteur' dans la table 'Organisme' est DBNull"& _ 
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'NumeroInspecteur' dans la table 'Organisme' est DBNull" & _
                             ".", e)
                 End Try
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableOrganisme.NumeroInspecteurColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property Commentaire() As String
+            Get
+                Try
+                    Return CType(Me(Me.tableOrganisme.CommentaireColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'Commentaire' dans la table 'Organisme' est DBNull.", e)
+                End Try
+            End Get
+            Set(value As String)
+                Me(Me.tableOrganisme.CommentaireColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property DiagnosticRow() As DiagnosticRow
             Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("Diagnostic_Organisme")),DiagnosticRow)
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("Diagnostic_Organisme")), DiagnosticRow)
             End Get
-            Set
+            Set(value As DiagnosticRow)
                 Me.SetParentRow(value, Me.Table.ParentRelations("Diagnostic_Organisme"))
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsNomOrganismeNull() As Boolean
             Return Me.IsNull(Me.tableOrganisme.NomOrganismeColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetNomOrganismeNull()
             Me(Me.tableOrganisme.NomOrganismeColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsNomInspecteurNull() As Boolean
             Return Me.IsNull(Me.tableOrganisme.NomInspecteurColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetNomInspecteurNull()
             Me(Me.tableOrganisme.NomInspecteurColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsNumeroInspecteurNull() As Boolean
             Return Me.IsNull(Me.tableOrganisme.NumeroInspecteurColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetNumeroInspecteurNull()
             Me(Me.tableOrganisme.NumeroInspecteurColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsCommentaireNull() As Boolean
+            Return Me.IsNull(Me.tableOrganisme.CommentaireColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetCommentaireNull()
+            Me(Me.tableOrganisme.CommentaireColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
