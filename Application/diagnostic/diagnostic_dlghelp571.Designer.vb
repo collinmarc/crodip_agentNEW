@@ -25,6 +25,7 @@ Partial Class diagnostic_dlghelp571
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lblCodeDefaut = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
@@ -63,7 +64,6 @@ Partial Class diagnostic_dlghelp571
         Me.tbErreurVitesseDEB = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.lblCodeDefaut = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -88,6 +88,17 @@ Partial Class diagnostic_dlghelp571
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(629, 336)
         Me.Panel2.TabIndex = 42
+        '
+        'lblCodeDefaut
+        '
+        Me.lblCodeDefaut.AutoSize = True
+        Me.lblCodeDefaut.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.lblCodeDefaut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblCodeDefaut.Location = New System.Drawing.Point(8, 309)
+        Me.lblCodeDefaut.Name = "lblCodeDefaut"
+        Me.lblCodeDefaut.Size = New System.Drawing.Size(19, 13)
+        Me.lblCodeDefaut.TabIndex = 61
+        Me.lblCodeDefaut.Text = "..."
         '
         'btnAnnuler
         '
@@ -554,17 +565,6 @@ Partial Class diagnostic_dlghelp571
         Me.Label13.TabIndex = 56
         Me.Label13.Text = "DPAE avec capteur de débit"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lblCodeDefaut
-        '
-        Me.lblCodeDefaut.AutoSize = True
-        Me.lblCodeDefaut.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.lblCodeDefaut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblCodeDefaut.Location = New System.Drawing.Point(8, 309)
-        Me.lblCodeDefaut.Name = "lblCodeDefaut"
-        Me.lblCodeDefaut.Size = New System.Drawing.Size(19, 13)
-        Me.lblCodeDefaut.TabIndex = 61
-        Me.lblCodeDefaut.Text = "..."
         '
         'diagnostic_dlghelp571
         '

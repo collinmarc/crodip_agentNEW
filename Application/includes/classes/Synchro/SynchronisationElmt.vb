@@ -210,7 +210,7 @@ Public Class SynchronisationElmt
                     End Try
                 End If
 
-            Case "GetDiagnostic".ToUpper().Trim()
+            Case SynchronisationElmtDiag.getLabelGet.ToUpper().Trim()
                 If (m_SynchroBoolean.m_bSynchDescDiag) Then
                     Dim tmpObject As New Diagnostic
                     Try
@@ -223,13 +223,14 @@ Public Class SynchronisationElmt
                                 DiagnosticManager.getFTPEtats(tmpObject)
                             End If
                         End If
+
                         bReturn = True
                     Catch ex As Exception
                         CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnostic) : " & ex.Message.ToString)
                         bReturn = False
                     End Try
                 End If
-            Case "GetDiagnosticItems".ToUpper().Trim()
+            Case SynchronisationElmtDiagItem.getLabelGet.ToUpper().Trim()
                 If (m_SynchroBoolean.m_bSynchDescDiag) Then
                     Dim tmpObject As Diagnostic
                     Try
@@ -243,7 +244,8 @@ Public Class SynchronisationElmt
                     End Try
                 End If
 
-            Case "GetDiagnosticBuses".ToUpper().Trim()
+            Case SynchronisationElmtDiagBuses.getLabelGet.ToUpper().Trim()
+
                 If (m_SynchroBoolean.m_bSynchDescDiag) Then
                     Dim tmpObjectList As DiagnosticBusesList
                     Dim tmpObject As DiagnosticBuses
@@ -259,7 +261,7 @@ Public Class SynchronisationElmt
                         bReturn = False
                     End Try
                 End If
-            Case "GetDiagnosticBusesDetail".ToUpper().Trim()
+            Case SynchronisationElmtDiagBusesDetail.getLabelGet.ToUpper().Trim()
                 If (m_SynchroBoolean.m_bSynchDescDiag) Then
                     Dim tmpObjectList As New DiagnosticBusesDetailList
                     Dim tmpObject As New DiagnosticBusesDetail
@@ -275,7 +277,7 @@ Public Class SynchronisationElmt
                         bReturn = False
                     End Try
                 End If
-            Case "GetDiagnosticMano542".ToUpper().Trim()
+            Case SynchronisationElmtDiagMano542.getLabelGet.ToUpper().Trim()
                 If (m_SynchroBoolean.m_bSynchDescDiag) Then
                     Dim tmpObjectList As New DiagnosticMano542List
                     Dim tmpObject As New DiagnosticMano542
@@ -291,7 +293,7 @@ Public Class SynchronisationElmt
                         bReturn = False
                     End Try
                 End If
-            Case "GetDiagnosticTroncons833".ToUpper().Trim()
+            Case SynchronisationElmtDiagMano833.getLabelGet.ToUpper().Trim()
                 If (m_SynchroBoolean.m_bSynchDescDiag) Then
                     Dim tmpObject As New DiagnosticTroncons833
                     Dim tmpObjectList As New DiagnosticTroncons833List
@@ -628,16 +630,16 @@ Public Class SynchronisationElmt
                 oReturn = New SynchronisationElmtIdentifiantPulverisateur(pSynchroBooleans)
             Case SynchronisationElmtDiag.getLabelGet.ToUpper().Trim()
                 oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
-            Case "GetDiagnosticItems".ToUpper().Trim()
-                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
-            Case "GetDiagnosticBuses".ToUpper().Trim()
-                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
-            Case "GetDiagnosticBusesDetail".ToUpper().Trim()
-                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
-            Case "GetDiagnosticMano542".ToUpper().Trim()
-                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
-            Case "GetDiagnosticTroncons833".ToUpper().Trim()
-                oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
+            Case SynchronisationElmtDiagItem.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiagItem(pSynchroBooleans)
+            Case SynchronisationElmtDiagBuses.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiagBuses(pSynchroBooleans)
+            Case SynchronisationElmtDiagBusesDetail.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiagBusesDetail(pSynchroBooleans)
+            Case SynchronisationElmtDiagMano542.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiagMano542(pSynchroBooleans)
+            Case SynchronisationElmtDiagMano833.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtDiagMano833(pSynchroBooleans)
 
             Case Else
                 oReturn = New SynchronisationElmt(pType, pSynchroBooleans)

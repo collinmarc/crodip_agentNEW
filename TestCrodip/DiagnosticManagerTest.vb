@@ -1240,14 +1240,7 @@ Public Class DiagnosticManagerTest
 
         'Synchronisation descendate du Diag
         '==================================
-        Dim oLstSynchro As List(Of SynchronisationElmt)
-        oLstSynchro = oSynchro.getListeElementsASynchroniserDESC()
-        Assert.AreNotEqual(0, oLstSynchro.Count)
-
-        For Each oSynchroElmt In oLstSynchro
-            Console.WriteLine(oSynchroElmt.type & "(" & oSynchroElmt.identifiantChaine & "," & oSynchroElmt.identifiantEntier & ")")
-            oSynchroElmt.SynchroDesc(m_oAgent)
-        Next oSynchroElmt
+        oSynchro.runDescSynchro()
 
         'Vérification des Objets
         oDiag2 = DiagnosticManager.getDiagnosticById(idDiag)

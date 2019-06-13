@@ -660,6 +660,11 @@
     <Compile Include="Application\includes\classes\Synchro\CSFTP.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchroBooleans.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchroElementDocument.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagMano833.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagMano542.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagBusesDetail.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagBuses.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagItem.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtFVBanc.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiag.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtIdentifiantPulve.vb" />

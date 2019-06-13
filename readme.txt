@@ -1,5 +1,7 @@
 TRUNK
 
+#328 : Synhcro descendante des Diag
+
 Build : 20190509180000
 ----------------------
 #327 : La procédure d'installation ne crée pas les raccourcis sur le bureau
