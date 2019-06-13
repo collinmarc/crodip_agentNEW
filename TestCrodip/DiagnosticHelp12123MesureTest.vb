@@ -255,7 +255,7 @@ Public Class DiagnosticHelp12123Mesuretest
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
         oMesure.calcule()
-        Assert.AreEqual(30.6186D, oMesure.QteEauPulveriseeRND)
+        Assert.AreEqual(30.62D, oMesure.QteEauPulveriseeRND)
 
     End Sub
     <TestMethod()>

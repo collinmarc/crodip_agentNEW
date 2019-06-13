@@ -1748,13 +1748,6 @@ Imports System.IO
         oMesure.Pesee3 = 99
         oMesure.calcule()
 
-        oMesure = oPompe.lstMesures(2)
-        oMesure.qteGrains = 35
-        oMesure.DebitSouhaite = 36
-        oMesure.Pesee1 = 37
-        oMesure.Pesee2 = 38
-        oMesure.Pesee3 = 39
-        oMesure.calcule()
         oPompe.calcule()
 
         oPompe = oDiag.diagnosticHelp12123.lstPompesTrtSem(1)
@@ -1774,13 +1767,6 @@ Imports System.IO
         oMesure.Pesee3 = 199
         oMesure.calcule()
 
-        oMesure = oPompe.lstMesures(2)
-        oMesure.qteGrains = 135
-        oMesure.DebitSouhaite = 136
-        oMesure.Pesee1 = 137
-        oMesure.Pesee2 = 138
-        oMesure.Pesee3 = 139
-        oMesure.calcule()
         oPompe.calcule()
 
 

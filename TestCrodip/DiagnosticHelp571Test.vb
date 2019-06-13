@@ -309,6 +309,7 @@ Public Class DiagnosticHelp571test
     Public Sub testCalcP2()
         Dim oHelp571 As New DiagnosticHelp571()
         oHelp571.Regulation = "DPAE"
+        oHelp571.IsDPAE = True
         oHelp571.PressionMesurePRS = 3
         oHelp571.DebitMesurePRS = 1.202
         oHelp571.PressionMoyennePRS = 2.725
@@ -326,6 +327,7 @@ Public Class DiagnosticHelp571test
         Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oHelp571.ResultPRS)
 
         oHelp571.Regulation = "DPM"
+        oHelp571.IsDPAE = False
         oHelp571.ErreurDebitPRS = 1.25D
         oHelp571.ErreurVitessePRS = oHelp571.ErreurDebitPRS + 6.3D
         Assert.AreEqual(6.328D, oHelp571.ErreurGlobalePRSRND)

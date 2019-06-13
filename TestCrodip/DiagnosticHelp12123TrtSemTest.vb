@@ -134,10 +134,10 @@ Public Class DiagnosticHelp12123TrtSemTest
         oMesure = oPompe.lstMesures(1)
         oMesure.idDiag = oPompe.idDiag
         oMesure.qteGrains = 1.2D
-        'Mesure 3
-        oMesure = oPompe.lstMesures(2)
-        oMesure.idDiag = oPompe.idDiag
-        oMesure.qteGrains = 1.3D
+        ''Mesure 3
+        'oMesure = oPompe.lstMesures(2)
+        'oMesure.idDiag = oPompe.idDiag
+        'oMesure.qteGrains = 1.3D
 
         Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id))
         iD = oPompe.id
@@ -146,7 +146,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         Debug.WriteLine("Lecture")
         oPompe = New DiagnosticHelp12123PompeTrtSem(iD, idDiag)
         Assert.IsTrue(oPompe.Load())
-        Assert.AreEqual(3, oPompe.getNbMesures())
+        Assert.AreEqual(2, oPompe.getNbMesures())
         oMesure = oPompe.getMesure(0)
         Assert.AreEqual(oPompe.idDiag, idDiag)
         Assert.AreEqual(oPompe.numero, oMesure.numPompe)
@@ -159,11 +159,11 @@ Public Class DiagnosticHelp12123TrtSemTest
         Assert.AreEqual(2, oMesure.numMesure)
         Assert.AreEqual(1.2D, oMesure.qteGrains)
 
-        oMesure = oPompe.getMesure(2)
-        Assert.AreEqual(oPompe.idDiag, idDiag)
-        Assert.AreEqual(oPompe.numero, oMesure.numPompe)
-        Assert.AreEqual(3, oMesure.numMesure)
-        Assert.AreEqual(1.3D, oMesure.qteGrains)
+        'oMesure = oPompe.getMesure(2)
+        'Assert.AreEqual(oPompe.idDiag, idDiag)
+        'Assert.AreEqual(oPompe.numero, oMesure.numPompe)
+        'Assert.AreEqual(3, oMesure.numMesure)
+        'Assert.AreEqual(1.3D, oMesure.qteGrains)
 
 
         'Maj des mesures
@@ -173,23 +173,23 @@ Public Class DiagnosticHelp12123TrtSemTest
         oMesure = oPompe.getMesure(1)
         oMesure.qteGrains = 2.2D
 
-        oMesure = oPompe.getMesure(2)
-        oMesure.qteGrains = 2.3D
+        'oMesure = oPompe.getMesure(2)
+        'oMesure.qteGrains = 2.3D
 
         Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id))
         Debug.WriteLine("Lecture")
         oPompe = New DiagnosticHelp12123PompeTrtSem(iD, idDiag)
         Assert.IsTrue(oPompe.Load())
 
-        Assert.AreEqual(3, oPompe.getNbMesures())
+        Assert.AreEqual(2, oPompe.getNbMesures())
         oMesure = oPompe.getMesure(0)
         Assert.AreEqual(2.1D, oMesure.qteGrains)
 
         oMesure = oPompe.getMesure(1)
         Assert.AreEqual(2.2D, oMesure.qteGrains)
 
-        oMesure = oPompe.getMesure(2)
-        Assert.AreEqual(2.3D, oMesure.qteGrains)
+        'oMesure = oPompe.getMesure(2)
+        'Assert.AreEqual(2.3D, oMesure.qteGrains)
 
 
 
@@ -269,8 +269,8 @@ Public Class DiagnosticHelp12123TrtSemTest
         oMesure.qteGrains = 1.1
         oMesure = oPompe.lstMesures(1)
         oMesure.qteGrains = 1.2
-        oMesure = oPompe.lstMesures(2)
-        oMesure.qteGrains = 1.3
+        'oMesure = oPompe.lstMesures(2)
+        'oMesure.qteGrains = 1.3
 
         oDiag.diagnosticHelp12123.lstPompesTrtSem.Add(oPompe)
 
@@ -281,8 +281,8 @@ Public Class DiagnosticHelp12123TrtSemTest
         oMesure.qteGrains = 2.1
         oMesure = oPompe.lstMesures(1)
         oMesure.qteGrains = 2.2
-        oMesure = oPompe.lstMesures(2)
-        oMesure.qteGrains = 2.3
+        'oMesure = oPompe.lstMesures(2)
+        'oMesure.qteGrains = 2.3
         oDiag.diagnosticHelp12123.lstPompesTrtSem.Add(oPompe)
 
         'SAuvegarde du Diag
@@ -302,19 +302,19 @@ Public Class DiagnosticHelp12123TrtSemTest
         oPompe = oDiag2.diagnosticHelp12123.lstPompesTrtSem(0)
         Assert.AreEqual(1, oPompe.numero)
         Assert.AreEqual(10.1D, oPompe.PeseeMoyenne)
-        Assert.AreEqual(3, oPompe.getNbMesures())
+        Assert.AreEqual(2, oPompe.getNbMesures())
         Assert.AreEqual(1.1D, oPompe.getMesure(0).qteGrains)
         Assert.AreEqual(1.2D, oPompe.getMesure(1).qteGrains)
-        Assert.AreEqual(1.3D, oPompe.getMesure(2).qteGrains)
+        '        Assert.AreEqual(1.3D, oPompe.getMesure(2).qteGrains)
 
         'Verif Pompe2
         oPompe = oDiag2.diagnosticHelp12123.lstPompesTrtSem(1)
         Assert.AreEqual(2, oPompe.numero)
         Assert.AreEqual(20.1D, oPompe.PeseeMoyenne)
-        Assert.AreEqual(3, oPompe.getNbMesures())
+        Assert.AreEqual(2, oPompe.getNbMesures())
         Assert.AreEqual(2.1D, oPompe.getMesure(0).qteGrains)
         Assert.AreEqual(2.2D, oPompe.getMesure(1).qteGrains)
-        Assert.AreEqual(2.3D, oPompe.getMesure(2).qteGrains)
+        'Assert.AreEqual(2.3D, oPompe.getMesure(2).qteGrains)
 
         'Ajout pompe3
         oPompe = oDiag2.diagnosticHelp12123.AjoutePompeTrtSem()
@@ -324,8 +324,8 @@ Public Class DiagnosticHelp12123TrtSemTest
         oMesure.qteGrains = 3.1D
         oMesure = oPompe.lstMesures(1)
         oMesure.qteGrains = 3.2D
-        oMesure = oPompe.lstMesures(2)
-        oMesure.qteGrains = 3.3D
+        'oMesure = oPompe.lstMesures(2)
+        'oMesure.qteGrains = 3.3D
 
         'SAuvegarde du Diag
         '====================
@@ -342,10 +342,10 @@ Public Class DiagnosticHelp12123TrtSemTest
         oPompe = oDiag.diagnosticHelp12123.lstPompesTrtSem(2)
         Assert.AreEqual(3, oPompe.numero)
         Assert.AreEqual(30.1D, oPompe.PeseeMoyenne)
-        Assert.AreEqual(3, oPompe.getNbMesures())
+        Assert.AreEqual(2, oPompe.getNbMesures())
         Assert.AreEqual(3.1D, oPompe.getMesure(0).qteGrains)
         Assert.AreEqual(3.2D, oPompe.getMesure(1).qteGrains)
-        Assert.AreEqual(3.3D, oPompe.getMesure(2).qteGrains)
+        ' Assert.AreEqual(3.3D, oPompe.getMesure(2).qteGrains)
         Dim bReturn As Boolean
         bReturn = DiagnosticManager.delete(idDiag)
         Assert.IsTrue(bReturn)
@@ -386,19 +386,19 @@ Public Class DiagnosticHelp12123TrtSemTest
         Assert.AreEqual(0D, oMesure.Ecart3)
         Assert.AreEqual(-1.155D, oMesure.EcartMoyen)
 
-        oMesure = oPompe.lstMesures(2)
-        oMesure.qteGrains = 7
-        oMesure.DebitSouhaite = 6.8D
-        oMesure.Pesee1 = 6.5D
-        oMesure.Pesee2 = 6.9D
-        oMesure.Pesee3 = 6.8D
+        'oMesure = oPompe.lstMesures(2)
+        'oMesure.qteGrains = 7
+        'oMesure.DebitSouhaite = 6.8D
+        'oMesure.Pesee1 = 6.5D
+        'oMesure.Pesee2 = 6.9D
+        'oMesure.Pesee3 = 6.8D
 
         oPompe.calcule()
-        Assert.AreEqual(5.733D, oPompe.PeseeMoyenne)
-        Assert.AreEqual(4.554D, oPompe.EcartReglageMoyen)
+        Assert.AreEqual(5.233D, oPompe.PeseeMoyenne)
+        Assert.AreEqual(-1.276D, oPompe.EcartReglageMoyen)
         Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oPompe.Resultat)
 
-        oMesure = oPompe.lstMesures(2)
+        oMesure = oPompe.lstMesures(1)
         oMesure.qteGrains = 7
         oMesure.DebitSouhaite = 4D
         oMesure.Pesee1 = 6.5D
@@ -406,7 +406,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         oMesure.Pesee3 = 6.8D
         oPompe.calcule()
         Assert.AreEqual(5.733D, oPompe.PeseeMoyenne)
-        Assert.AreEqual(27.658D, oPompe.EcartReglageMoyen)
+        Assert.AreEqual(33.464D, oPompe.EcartReglageMoyen)
         Assert.AreEqual(DiagnosticItem.EtatDiagItemMAJEUR, oPompe.Resultat)
 
     End Sub
@@ -433,17 +433,17 @@ Public Class DiagnosticHelp12123TrtSemTest
         oMesure.Pesee3 = 5.8D
 
 
-        oMesure = oPompe.lstMesures(2)
-        oMesure.qteGrains = 7
-        oMesure.DebitSouhaite = 6.8D
-        oMesure.Pesee1 = 6.5D
-        oMesure.Pesee2 = 6.9D
-        oMesure.Pesee3 = 6.8D
+        'oMesure = oPompe.lstMesures(2)
+        'oMesure.qteGrains = 7
+        'oMesure.DebitSouhaite = 6.8D
+        'oMesure.Pesee1 = 6.5D
+        'oMesure.Pesee2 = 6.9D
+        'oMesure.Pesee3 = 6.8D
 
         '==== POMPE1
         oPompe.calcule()
-        Assert.AreEqual(5.733D, oPompe.PeseeMoyenne)
-        Assert.AreEqual(-1.179D, oPompe.EcartReglageMoyen)
+        Assert.AreEqual(5.233D, oPompe.PeseeMoyenne)
+        Assert.AreEqual(-1.276D, oPompe.EcartReglageMoyen)
         Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oPompe.Resultat)
 
         '======= POMPE2 =====
@@ -466,16 +466,16 @@ Public Class DiagnosticHelp12123TrtSemTest
         oMesure.Pesee3 = 5.8D
 
 
-        oMesure = oPompe.lstMesures(2)
-        oMesure.qteGrains = 7
-        oMesure.DebitSouhaite = 6.6D
-        oMesure.Pesee1 = 6.5D
-        oMesure.Pesee2 = 6.9D
-        oMesure.Pesee3 = 6.8D
+        'oMesure = oPompe.lstMesures(2)
+        'oMesure.qteGrains = 7
+        'oMesure.DebitSouhaite = 6.6D
+        'oMesure.Pesee1 = 6.5D
+        'oMesure.Pesee2 = 6.9D
+        'oMesure.Pesee3 = 6.8D
 
         oPompe.calcule()
-        Assert.AreEqual(5.733D, oPompe.PeseeMoyenne)
-        Assert.AreEqual(-0.179D, oPompe.EcartReglageMoyen)
+        Assert.AreEqual(5.233D, oPompe.PeseeMoyenne)
+        Assert.AreEqual(-1.276D, oPompe.EcartReglageMoyen)
         Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oPompe.Resultat)
 
         'Les Deux pompes sont OK = > Pas de defaut
@@ -487,7 +487,7 @@ Public Class DiagnosticHelp12123TrtSemTest
 
 
         'Modification de la Mompe2
-        oMesure = oPompe.lstMesures(2)
+        oMesure = oPompe.lstMesures(1)
         oMesure.qteGrains = 7
         oMesure.DebitSouhaite = 4D
         oMesure.Pesee1 = 6.5D
@@ -510,6 +510,8 @@ Public Class DiagnosticHelp12123TrtSemTest
 
         Dim oPulve As Pulverisateur
         oPulve = createPulve(oExploit)
+        oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
+
         oPulve.isPompesDoseuses = True
         oPulve.nbPompesDoseuses = 2
 
@@ -519,7 +521,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         Assert.AreEqual(2, oDiag.diagnosticHelp12123.lstPompes.Count)
         Assert.AreEqual(0, oDiag.diagnosticHelp12123.lstPompesTrtSem.Count)
 
-        oPulve.categorie = "Traitement de semences"
+        oPulve.categorie = "Traitement des semences"
         oDiag.setPulverisateur(oPulve)
         Assert.AreEqual(0, oDiag.diagnosticHelp12123.lstPompes.Count)
         Assert.AreEqual(2, oDiag.diagnosticHelp12123.lstPompesTrtSem.Count)
