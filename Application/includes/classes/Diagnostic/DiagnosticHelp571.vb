@@ -488,22 +488,20 @@ Public Class DiagnosticHelp571
 
     Public Function calcule() As Boolean
         Dim bReturn As Boolean
-        Try
-            If bCalcule Then
+        If bCalcule Then
+            Try
+                m_DebitReelPRS = Nothing
+                m_ErreurDebitPRS = Nothing
+                m_ErreurGlobalePRS = Nothing
+                m_ResultPRS = String.Empty
+
                 'Calcul Vitesse
                 If m_debitMesurePRS.HasValue And m_PressionMesurePRS.HasValue And m_PressionMoyennePRS.HasValue And m_DebitBuseProgrammePRS.HasValue Then
                     m_DebitReelPRS = Math.Round(CDec(m_debitMesurePRS * Math.Sqrt(m_PressionMoyennePRS / m_PressionMesurePRS)), 3)
                     m_ErreurDebitPRS = ((m_DebitBuseProgrammePRS - m_DebitReelPRS) / m_DebitReelPRS) * 100
-                Else
-                    m_DebitReelPRS = Nothing
-                    m_ErreurDebitPRS = Nothing
-
                 End If
                 If m_ErreurVitessePRS.HasValue And m_ErreurDebitPRS.HasValue Then
                     m_ErreurGlobalePRS = m_ErreurVitessePRS - m_ErreurDebitPRS
-                Else
-                    m_ErreurGlobalePRS = Nothing
-
                 End If
                 If m_ErreurGlobalePRS.HasValue And Not String.IsNullOrEmpty(Regulation) Then
                     m_ResultPRS = DiagnosticItem.EtatDiagItemOK
@@ -519,14 +517,19 @@ Public Class DiagnosticHelp571
                             m_ResultPRS = DiagnosticItem.EtatDiagItemMAJEUR
                         End If
                     End If
-                Else
-                    m_ResultPRS = String.Empty
                 End If
+                bReturn = True
+            Catch ex As Exception
+                CSDebug.dispError("DiagnosticHelp571.calcule Pression ERR" & ex.Message)
+                bReturn = False
+            End Try
+
+            Try
+                m_ErreurGlobaleDEB = Nothing
+                m_ResultDEB = String.Empty
                 'Calcul Débit
                 If m_ErreurDebitDEB.HasValue And m_ErreurVitesseDEB.HasValue Then
                     m_ErreurGlobaleDEB = m_ErreurVitesseDEB.Value - m_ErreurDebitDEB.Value
-                Else
-                    m_ErreurGlobaleDEB = Nothing
                 End If
                 If m_ErreurGlobaleDEB.HasValue Then
                     m_ResultDEB = DiagnosticItem.EtatDiagItemOK
@@ -540,15 +543,14 @@ Public Class DiagnosticHelp571
                         '10<=Erreur
                         m_ResultDEB = DiagnosticItem.EtatDiagItemMAJEUR
                     End If
-                Else
-                    m_ResultDEB = String.Empty
                 End If
-            End If
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError("DiagnosticHelp571.calcule ERR" & ex.Message)
-            bReturn = False
-        End Try
+                bReturn = True
+            Catch ex As Exception
+                CSDebug.dispError("DiagnosticHelp571.calcule Débit ERR" & ex.Message)
+                bReturn = False
+            End Try
+
+        End If
         Return bReturn
     End Function
 

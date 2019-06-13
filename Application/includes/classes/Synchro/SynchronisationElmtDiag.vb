@@ -25,6 +25,12 @@ Public Class SynchronisationElmtDiag
         valeurAuxiliaire = ""
     End Sub
 
+    Public Sub New(pIdDiag As String)
+        MyBase.New(getLabelGet(), New SynchroBooleans)
+        identifiantEntier = 0
+        identifiantChaine = pIdDiag
+        valeurAuxiliaire = ""
+    End Sub
     Public Shared Function getLabelGet() As String
         Return "GetDiagnostic"
     End Function

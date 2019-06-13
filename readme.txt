@@ -1,6 +1,9 @@
 TRUNK
 
+Build : 
+----------------------
 #328 : Synhcro descendante des Diag
+#329 : pb de mise à jour du cumul d'erreur (prod et préprod)
 
 Build : 20190509180000
 ----------------------

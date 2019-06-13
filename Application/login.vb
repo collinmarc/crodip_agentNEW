@@ -1,7 +1,3 @@
-Imports iTextSharp
-Imports iTextSharp.text
-Imports iTextSharp.text.pdf
-Imports iTextSharp.text.xml
 Imports System.IO
 'Imports CrystalDecisions.CrystalReports.Engine
 'Imports CrystalDecisions.Shared
@@ -10,6 +6,8 @@ Imports System.IO
 Imports System.Text.RegularExpressions
 Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
+Imports System.Collections.Generic
+
 
 Public Class login
     Inherits frmCRODIP
@@ -74,6 +72,7 @@ Public Class login
     Friend WithEvents brnTestDiagRecap As System.Windows.Forms.Button
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents btnTesttrtSemences As System.Windows.Forms.Button
+    Friend WithEvents bntGetWSDiag As System.Windows.Forms.Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -89,6 +88,7 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.btnTesttrtSemences = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.brnTestDiagRecap = New System.Windows.Forms.Button()
         Me.btnTestFacturation = New System.Windows.Forms.Button()
@@ -106,7 +106,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.btnTesttrtSemences = New System.Windows.Forms.Button()
+        Me.bntGetWSDiag = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
@@ -252,6 +252,7 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.bntGetWSDiag)
         Me.GroupBox_test.Controls.Add(Me.btnTesttrtSemences)
         Me.GroupBox_test.Controls.Add(Me.Button4)
         Me.GroupBox_test.Controls.Add(Me.brnTestDiagRecap)
@@ -267,6 +268,15 @@ Public Class login
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
+        '
+        'btnTesttrtSemences
+        '
+        Me.btnTesttrtSemences.Location = New System.Drawing.Point(267, 77)
+        Me.btnTesttrtSemences.Name = "btnTesttrtSemences"
+        Me.btnTesttrtSemences.Size = New System.Drawing.Size(128, 23)
+        Me.btnTesttrtSemences.TabIndex = 34
+        Me.btnTesttrtSemences.Text = "TrtSemences"
+        Me.btnTesttrtSemences.UseVisualStyleBackColor = True
         '
         'Button4
         '
@@ -463,14 +473,14 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'btnTesttrtSemences
+        'bntGetWSDiag
         '
-        Me.btnTesttrtSemences.Location = New System.Drawing.Point(267, 77)
-        Me.btnTesttrtSemences.Name = "btnTesttrtSemences"
-        Me.btnTesttrtSemences.Size = New System.Drawing.Size(128, 23)
-        Me.btnTesttrtSemences.TabIndex = 34
-        Me.btnTesttrtSemences.Text = "TrtSemences"
-        Me.btnTesttrtSemences.UseVisualStyleBackColor = True
+        Me.bntGetWSDiag.Location = New System.Drawing.Point(377, 19)
+        Me.bntGetWSDiag.Name = "bntGetWSDiag"
+        Me.bntGetWSDiag.Size = New System.Drawing.Size(128, 23)
+        Me.bntGetWSDiag.TabIndex = 35
+        Me.bntGetWSDiag.Text = "GetWSDiag"
+        Me.bntGetWSDiag.UseVisualStyleBackColor = True
         '
         'login
         '
@@ -990,5 +1000,38 @@ Public Class login
         oFRM.setContexte(oDiag12123, False)
         oFRM.ShowDialog()
 
+    End Sub
+
+    Private Sub bntGetWSDiag_Click(sender As Object, e As EventArgs) Handles bntGetWSDiag.Click
+        Dim idDiag As String
+        Dim oAgent As Agent
+
+        idDiag = InputBox("ID Diag : ", "Indiquer le numéro de diag à récupérer")
+
+        oAgent = AgentManager.getAgentList().items(0)
+        If Not String.IsNullOrEmpty(idDiag) Then
+            Dim oSynchro As New Synchronisation(oAgent)
+            Dim lstElementsASynchroniser As New List(Of SynchronisationElmt)
+            Dim oElmt As SynchronisationElmt
+            oElmt = New SynchronisationElmtDiag(oSynchro.m_SynchroBoolean)
+            oElmt.identifiantChaine = idDiag
+            lstElementsASynchroniser.Add(oElmt)
+            oElmt = New SynchronisationElmtDiagItem(oSynchro.m_SynchroBoolean)
+            oElmt.identifiantChaine = idDiag
+            lstElementsASynchroniser.Add(oElmt)
+            oElmt = New SynchronisationElmtDiagBuses(oSynchro.m_SynchroBoolean)
+            oElmt.identifiantChaine = idDiag
+            lstElementsASynchroniser.Add(oElmt)
+            oElmt = New SynchronisationElmtDiagBusesDetail(oSynchro.m_SynchroBoolean)
+            oElmt.identifiantChaine = idDiag
+            lstElementsASynchroniser.Add(oElmt)
+            oElmt = New SynchronisationElmtDiagMano542(oSynchro.m_SynchroBoolean)
+            oElmt.identifiantChaine = idDiag
+            lstElementsASynchroniser.Add(oElmt)
+            oElmt = New SynchronisationElmtDiagMano833(oSynchro.m_SynchroBoolean)
+            oElmt.identifiantChaine = idDiag
+            lstElementsASynchroniser.Add(oElmt)
+            oSynchro.runDescSynchro(lstElementsASynchroniser)
+        End If
     End Sub
 End Class

@@ -824,6 +824,11 @@ Public Class Synchronisation
         lstElementsASynchroniser = SynchronisationManager.getWSlstElementsASynchroniser(m_Agent, m_SynchroBoolean)
         Return lstElementsASynchroniser
     End Function
+    ''' <summary>
+    ''' Synchronisation Descendante : Récupération de la liste des elements à synchroniser
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function runDescSynchro() As Boolean
         Dim bReturn As Boolean
         Try
@@ -834,6 +839,26 @@ Public Class Synchronisation
             Dim lstElementsASynchroniser As List(Of SynchronisationElmt)
             lstElementsASynchroniser = getListeElementsASynchroniserDESC()
 
+            bReturn = runDescSynchro(lstElementsASynchroniser)
+        Catch Ex As Exception
+            CSDebug.dispError("Synchronisation.runDescSynchro Err : " & Ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    ''' <summary>
+    ''' Synchronisation Descendante à partir d'une liste des elements à synchroniser 
+    ''' Utiliser en test
+    ''' </summary>
+    ''' <param name="lstElementsASynchroniser"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function runDescSynchro(lstElementsASynchroniser As List(Of SynchronisationElmt)) As Boolean
+        Debug.Assert(lstElementsASynchroniser IsNot Nothing)
+        Dim bReturn As Boolean
+        Try
+
+            m_listSynchro = ""
             'On Traite les synchro Agent D'abord
             For Each oSynchroElmt As SynchronisationElmt In lstElementsASynchroniser
                 If oSynchroElmt.type.ToUpper().Trim() = "GetAgent".ToUpper().Trim() Then
