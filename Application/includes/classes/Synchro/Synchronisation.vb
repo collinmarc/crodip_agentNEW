@@ -166,6 +166,31 @@ Public Class Synchronisation
         Return m_listSynchro
     End Function
 
+    Public Function Synchro() As Boolean
+        Dim bReturn As Boolean
+        Try
+            If CSEnvironnement.checkNetwork() = True Then
+                If CSEnvironnement.checkWebService() = True Then
+
+                    '#######################################################################
+                    '######################### Synchro Montantes ###########################
+                    '#######################################################################
+                    Me.runAscSynchro()
+
+                    '#######################################################################
+                    '####################### Synchro Descendantes ##########################
+                    '#######################################################################
+                    Me.runDescSynchro()
+                    bReturn = True
+                End If
+            End If
+        Catch Ex As Exception
+            CSDebug.dispError("Synhcro.synchro ERR " & Ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+
+    End Function
     ''' <summary>
     ''' Execute la synchro ascendante 
     ''' </summary>
