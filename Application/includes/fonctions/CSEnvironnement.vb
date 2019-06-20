@@ -18,7 +18,7 @@ Public Class CSEnvironnement
     Public Shared versionUrl As String = ""
 
     ' Fonction permettant de tester si la version de l'application est en accord avec la version mini. du crodip
-    Public Shared Function checkVersion()
+    Public Shared Function checkVersion() As Boolean
         ' Init Vars
         Dim curVersion() As String = Globals.GLOB_APPLI_VERSION.Split(".")
         Dim csVersionResult() As String = CSVersion.getWSVersion()
@@ -87,7 +87,7 @@ Public Class CSEnvironnement
 #Region " Connectivité "
 
     ' Fonction permettant de tester si on a une connexion internet
-    Public Shared Function checkNetwork()
+    Public Shared Function checkNetwork() As Boolean
 
         '--- Déclaration des variables de la fonction
         Dim requete As HttpWebRequest = Nothing
@@ -101,6 +101,7 @@ Public Class CSEnvironnement
             If reponse.StatusCode = HttpStatusCode.OK Then
                 '                globConnectFlagNok.Visible = False
                 '                globConnectFlagOk.Visible = True
+                Globals.GLOB_NETWORKAVAILABLE = True
                 Return True
             Else
                 '               globConnectFlagNok.Visible = True
@@ -120,7 +121,7 @@ Public Class CSEnvironnement
     End Function
 
     ' Fonction permettant de tester si le webservice est en ligne
-    Public Shared Function checkWebService()
+    Public Shared Function checkWebService() As Boolean
 
         '--- Déclaration des variables de la fonction
         Dim requete As HttpWebRequest = Nothing

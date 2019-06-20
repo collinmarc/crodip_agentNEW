@@ -3417,7 +3417,6 @@ Public Class accueil
             btn_ficheClient_diagnostic_nouveau.Enabled = False
             btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
 
-            Dim bPulveEnAlerte As Boolean
             'list_ficheClient_puverisateur.Items.Clear()
             Dim lstPulverisateurs As New List(Of Pulverisateur)
             lstPulverisateurs.AddRange(PulverisateurManager.getPulverisateurByClientId(pExploit.id, ""))
@@ -3449,7 +3448,6 @@ Public Class accueil
             Dim arrPulverisateurs As List(Of Pulverisateur) = PulverisateurManager.getPulverisateurList(agentCourant, "")
             '
             Dim tmpPulverisateur As Pulverisateur
-            Dim tmpClient As Exploitation
             listPulverisateurs.Items.Clear()
             For Each tmpPulverisateur In arrPulverisateurs
                 Try
@@ -5135,8 +5133,6 @@ Public Class accueil
         lv_Docs.Items.Clear()
         'Récupération du directory info dans le TreeView
         Dim nodeDirInfo As DirectoryInfo = CType(newSelected.Tag, DirectoryInfo)
-        Dim subItems() As ListViewItem.ListViewSubItem
-        Dim item As ListViewItem = Nothing
 
         ModDoc_AfficheListView(nodeDirInfo)
 

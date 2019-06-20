@@ -2920,8 +2920,6 @@ Public Class frmControleManometres
     ' Changement d'onglet
     Private Sub ongletsManos_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ongletsManos.SelectedIndexChanged
         ' Placer la puce sur onglet courant
-        Dim sMano As String
-        Dim oMano As ManometreControle
         Try
             'Si on avait pas de précédent
             If prevSelectedManoOnglet <> -1 Then

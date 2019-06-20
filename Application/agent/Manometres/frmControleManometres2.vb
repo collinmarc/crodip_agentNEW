@@ -2376,7 +2376,7 @@ Public Class frmControleManometres2
             Return ""
         End If
     End Function
-    Private Function calcConformite(pErrAbs As String, pEMT As String)
+    Private Function calcConformite(pErrAbs As String, pEMT As String) As String
         If Not String.IsNullOrEmpty(pErrAbs) And Not String.IsNullOrEmpty(pEMT) Then
             If Globals.StringToDouble(pErrAbs) > Globals.StringToDouble(pEMT) Then
                 Return "0" ' NOK

@@ -1147,7 +1147,6 @@ Public Class frmDiagnostiqueSimple
             If Not m_diagnostic.diagnosticMano542List Is Nothing And Not m_diagnostic.diagnosticMano542List.Liste Is Nothing Then
                 Dim curPression As Integer = 1
                 Dim tmpTxtBox_pressionPulve As CRODIP_ControlLibrary.TBNumeric
-                Dim tmpTxtBox_pressionControle As CRODIP_ControlLibrary.TBNumeric
                 For Each tmpDiagnosticMano542 In m_diagnostic.diagnosticMano542List.Liste
                     ' Récupération des contrôles
                     tmpTxtBox_pressionPulve = CSForm.getControlByName("manopulvePressionPulve_" & curPression, pnl542)
@@ -1172,7 +1171,6 @@ Public Class frmDiagnostiqueSimple
                 'On affiche la pression de controle, car le choix de la famille de pression RAZ les pressions de controles
                 If Not m_diagnostic.diagnosticMano542List Is Nothing And Not m_diagnostic.diagnosticMano542List.Liste Is Nothing Then
                     Dim curPression As Integer = 1
-                    Dim tmpTxtBox_pressionPulve As CRODIP_ControlLibrary.TBNumeric
                     Dim tmpTxtBox_pressionControle As CRODIP_ControlLibrary.TBNumeric
                     For Each tmpDiagnosticMano542 In m_diagnostic.diagnosticMano542List.Liste
                         ' Récupération des contrôles
