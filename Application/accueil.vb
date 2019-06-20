@@ -4803,6 +4803,7 @@ Public Class accueil
     ' Synchro manuelle
     Private Sub btn_synchro_run_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_synchro_run.Click
         If CSEnvironnement.checkNetwork() = True Then
+            Globals.GLOB_NETWORKAVAILABLE = True
             If CSEnvironnement.checkWebService() = True Then
                 ' On vérifie les mises à jour
                 Statusbar.display(Globals.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)

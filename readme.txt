@@ -4,6 +4,8 @@ Build :
 ----------------------
 #328 : Synhcro descendante des Diag
 #329 : pb de mise à jour du cumul d'erreur (prod et préprod)
+#330 : Vérification de la connexion avant synchro
+
 
 Build : 20190509180000
 ----------------------
