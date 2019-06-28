@@ -523,94 +523,89 @@ Public Class login
         Try
             ' On récupère l'agent sélèctionné
             Dim selectedAgent As Agent
-            If login_profil.Text <> "" Then
-                selectedAgent = AgentManager.getAgentByNumeroNational(login_profil.SelectedItem.Id)
-                If selectedAgent.numeroNational.ToString <> "" Then
-                    If login_password.Text <> "" Then
-                        If CSEnvironnement.checkWebService() = True Then
-                            ' On commence par redescendre le pass de l'agent courant
-                            Dim tmpObject As New Agent
-                            Try
-                                tmpObject = AgentManager.getWSAgentById(selectedAgent.numeroNational)
-                                If tmpObject.id > 0 And tmpObject.isActif And Not tmpObject.isSupprime Then
-                                    selectedAgent.duppliqueInfosAgent(tmpObject, False)
-                                    AgentManager.save(selectedAgent)
-                                    bAgentExistant = True
-                                Else
-                                    bAgentExistant = False
-                                    If tmpObject.id > 0 And tmpObject.isSupprime Then
-                                        'Suppression de l'agent en base
-                                        AgentManager.save(tmpObject)
-                                    End If
-                                    Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
-                                    MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
-                                    'On recharge la Liste des profils 
-                                    FillCbxAgent()
-                                    login_password.Clear()
-                                    pnlLoginControls.Enabled = True
-
-                                    Exit Sub
-                                End If
-                            Catch ex As Exception
-                                CSDebug.dispError("doLogin():: GetAgent mot de passe : " & ex.Message.ToString)
-                            End Try
-                        Else
-                            'Pas de WS => on considère que l'agent est OK
+            selectedAgent = AgentManager.getAgentByNumeroNational(login_profil.SelectedItem.Id)
+            If selectedAgent.numeroNational.ToString <> "" Then
+                If CSEnvironnement.checkWebService() = True Then
+                    ' On commence par redescendre le pass de l'agent courant
+                    Dim tmpObject As New Agent
+                    Try
+                        tmpObject = AgentManager.getWSAgentById(selectedAgent.numeroNational)
+                        If tmpObject.id > 0 And tmpObject.isActif And Not tmpObject.isSupprime Then
+                            selectedAgent.duppliqueInfosAgent(tmpObject, False)
+                            AgentManager.save(selectedAgent)
                             bAgentExistant = True
-                        End If
-                        If bAgentExistant Then
-                            If CSCrypt.encode(login_password.Text, "sha256") = selectedAgent.motDePasse Or Globals.GLOB_ENV_DEBUG Then
-                                ' Mot de passe correct => On le met en "session"
-                                agentCourant = selectedAgent
-                                ' On met à jour le numéro de version du logiciel agent
-                                If selectedAgent.versionLogiciel <> Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD Then
-                                    selectedAgent.versionLogiciel = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
-                                    CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & selectedAgent.dateModificationAgent)
-                                    AgentManager.save(selectedAgent)
-                                End If
-                                'Synhcronisation 
-                                If Globals.GLOB_ENV_AUTOSYNC = True And Not selectedAgent.isGestionnaire Then
-                                    panel_splashSynchro.Visible = True
-                                    CSTime.pause(500) ' Pause de 500ms
-
-                                    ' On vérifie les mises à jour
-                                    Statusbardisplay(Globals.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
-                                    Me.Cursor = Cursors.WaitCursor
-                                    Dim oSynchro As New Synchronisation(selectedAgent)
-                                    oSynchro.ajouteObservateur(TryCast(Me.MdiParent, parentContener))
-                                    '###### SYNCHRO ######
-                                    oSynchro.Synchro()
-                                    oSynchro.Notice("")
-                                    Me.Cursor = Cursors.Default
-                                End If
-                                panel_splashSynchro.Visible = False
-                                ' On met à jour la barre de status
-                                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_OK, False)
-                                CSDebug.dispInfo("Connexion réussie " & selectedAgent.nom)
-                                ' On met a jour la date de dernière connexion
-                                selectedAgent.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now)
-                                AgentManager.save(agentCourant)
-                                ' On affiche le formulaire d'accueil de l'application
-                                Dim formAccueil As New accueil
-                                globFormAccueil = formAccueil
-                                formAccueil.MdiParent = Me.MdiParent
-                                formAccueil.Init() '' initialisation de la fenêtre avant l'affichage
-                                TryCast(MdiParent, parentContener).DisplayForm(formAccueil)
-                                Me.Hide()
-                            End If
-
                         Else
-                            ' On met à jour la barre de status
-                            Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
-                            MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
+                            bAgentExistant = False
+                            If tmpObject.id > 0 And tmpObject.isSupprime Then
+                                'Suppression de l'agent en base
+                                AgentManager.save(tmpObject)
+                            End If
+                            Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
+                            MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
+                            'On recharge la Liste des profils 
+                            FillCbxAgent()
+                            login_password.Clear()
+                            pnlLoginControls.Enabled = True
+
+                            Exit Sub
                         End If
-                    End If 'bAgentOK
+                    Catch ex As Exception
+                        CSDebug.dispError("doLogin():: GetAgent mot de passe : " & ex.Message.ToString)
+                    End Try
                 Else
-                    Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez renseigner un mot de passe.", False)
+                    'Pas de WS => on considère que l'agent est OK
+                    bAgentExistant = True
                 End If
-            Else
-                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Aucun agent correspondant", False)
-            End If
+                If bAgentExistant Then
+                    If CSCrypt.encode(login_password.Text, "sha256") = selectedAgent.motDePasse Or Globals.GLOB_ENV_DEBUG Then
+                        ' Mot de passe correct => On le met en "session"
+                        agentCourant = selectedAgent
+                        ' On met à jour le numéro de version du logiciel agent
+                        If selectedAgent.versionLogiciel <> Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD Then
+                            selectedAgent.versionLogiciel = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
+                            CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & selectedAgent.dateModificationAgent)
+                            AgentManager.save(selectedAgent)
+                        End If
+                        'Synchronisation 
+                        If Globals.GLOB_ENV_AUTOSYNC = True And Not selectedAgent.isGestionnaire Then
+                            If CSEnvironnement.checkWebService() = True Then
+                                panel_splashSynchro.Visible = True
+                                CSTime.pause(500) ' Pause de 500ms
+
+                                ' On vérifie les mises à jour
+                                Statusbardisplay(Globals.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
+                                Me.Cursor = Cursors.WaitCursor
+                                Dim oSynchro As New Synchronisation(selectedAgent)
+                                oSynchro.ajouteObservateur(TryCast(Me.MdiParent, parentContener))
+                                '###### SYNCHRO ######
+                                oSynchro.Synchro()
+                                oSynchro.Notice("")
+                                Me.Cursor = Cursors.Default
+                            End If
+                        End If
+                        panel_splashSynchro.Visible = False
+                        ' On met à jour la barre de status
+                        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_OK, False)
+                        CSDebug.dispInfo("Connexion réussie " & selectedAgent.nom)
+                        ' On met a jour la date de dernière connexion
+                        selectedAgent.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now)
+                        AgentManager.save(agentCourant)
+                        ' On affiche le formulaire d'accueil de l'application
+                        Dim formAccueil As New accueil
+                        globFormAccueil = formAccueil
+                        formAccueil.MdiParent = Me.MdiParent
+                        formAccueil.Init() '' initialisation de la fenêtre avant l'affichage
+                        TryCast(MdiParent, parentContener).DisplayForm(formAccueil)
+                        Me.Hide()
+
+                    Else
+                        ' On met à jour la barre de status
+                        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
+                        MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
+                        login_password.Text = ""
+                    End If 'Mot de passe
+                End If 'bAgentExistant
+            End If 'bAgentOK
         Catch ex As Exception
             ' On met à jour la barre de status
             Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)

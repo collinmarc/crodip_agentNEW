@@ -140,6 +140,7 @@ Global
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Debug|PHP 5.5.ActiveCfg = Debug|Any CPU
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Debug|x86.Build.0 = Debug|Any CPU
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.DebugReglagePulve|Any CPU.ActiveCfg = DebugReglagePulve|Any CPU
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.DebugReglagePulve|Any CPU.Build.0 = DebugReglagePulve|Any CPU
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.DebugReglagePulve|Mixed Platforms.ActiveCfg = DebugReglagePulve|x86
@@ -394,7 +395,6 @@ Global
 		{737BF79A-4836-442E-853F-F34EA19E2CCC}.Debug|PHP 5.5.ActiveCfg = Debug
 		{737BF79A-4836-442E-853F-F34EA19E2CCC}.Debug|PHP 5.5.Build.0 = Debug
 		{737BF79A-4836-442E-853F-F34EA19E2CCC}.Debug|x86.ActiveCfg = Debug
-		{737BF79A-4836-442E-853F-F34EA19E2CCC}.Debug|x86.Build.0 = Debug
 		{737BF79A-4836-442E-853F-F34EA19E2CCC}.DebugReglagePulve|Any CPU.ActiveCfg = Debug
 		{737BF79A-4836-442E-853F-F34EA19E2CCC}.DebugReglagePulve|Any CPU.Build.0 = Debug
 		{737BF79A-4836-442E-853F-F34EA19E2CCC}.DebugReglagePulve|Mixed Platforms.ActiveCfg = Debug

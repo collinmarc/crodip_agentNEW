@@ -105,12 +105,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_19E1B7141FA610E052F24A21EC867C0F"
-        "OwnerKey" = "8:_6C7156B8D7254CD09CF6AC087B3C530E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_20BA30B823EF15D42AB28C737EEA19CB"
         "OwnerKey" = "8:_6C7156B8D7254CD09CF6AC087B3C530E"
         "MsmSig" = "8:_UNDEFINED"
@@ -119,6 +113,12 @@
         {
         "MsmKey" = "8:_20BA30B823EF15D42AB28C737EEA19CB"
         "OwnerKey" = "8:_314E08545F8234F634B5C4F764E32A0C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_20DFFF2B52F27C422E214D58238573EC"
+        "OwnerKey" = "8:_6C7156B8D7254CD09CF6AC087B3C530E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -868,7 +868,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C136244B71EA45F3A287C083D7368FD0"
+        "OwnerKey" = "8:_20DFFF2B52F27C422E214D58238573EC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -898,6 +898,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C136244B71EA45F3A287C083D7368FD0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6C7156B8D7254CD09CF6AC087B3C530E"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -911,12 +917,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_667533AC4448828B0B8CD6AAB5E6827F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_19E1B7141FA610E052F24A21EC867C0F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1132,7 +1132,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\SetupAgent20190509180000.msi"
+        "OutputFilename" = "8:Release\\SetupAgent20190620180000.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -1336,37 +1336,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_19E1B7141FA610E052F24A21EC867C0F"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CRODIP_ControlLibrary, Version=5.4.7103.24491, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_19E1B7141FA610E052F24A21EC867C0F"
-                    {
-                    "Name" = "8:CRODIP_ControlLibrary.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:CRODIP_ControlLibrary.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_38A3C5787B424B5C8EB7AE4CAE42DBAF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_20BA30B823EF15D42AB28C737EEA19CB"
             {
             "AssemblyRegister" = "3:1"
@@ -1395,6 +1364,37 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_20DFFF2B52F27C422E214D58238573EC"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CRODIP_ControlLibrary, Version=5.4.7114.15236, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_20DFFF2B52F27C422E214D58238573EC"
+                    {
+                    "Name" = "8:CRODIP_ControlLibrary.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CRODIP_ControlLibrary.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_38A3C5787B424B5C8EB7AE4CAE42DBAF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -2487,7 +2487,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CRODIP"
         "ProductCode" = "8:{2CC7A77D-04AB-4B99-9A6B-E5DFCA641C5C}"
-        "PackageCode" = "8:{3F568B2E-BEE3-4402-8264-33A059983536}"
+        "PackageCode" = "8:{4D98A617-F01D-4AB8-A88F-B6525A848167}"
         "UpgradeCode" = "8:{39D128A3-5EA3-4485-ACEE-4477EF2BECB7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -3064,7 +3064,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6C7156B8D7254CD09CF6AC087B3C530E"
             {
-            "SourcePath" = "8:C:\\Users\\COLLIN\\Documents\\NEWCO\\CRODIP\\Crodip-Agent\\obj\\x86\\Debug\\Logiciel Crodip Agent.exe"
+            "SourcePath" = "8:C:\\Users\\COLLIN\\Documents\\NEWCO\\CRODIP\\Crodip-Agent\\obj\\x86\\ReleaseReglagePulve\\Logiciel Crodip Agent.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_38A3C5787B424B5C8EB7AE4CAE42DBAF"
@@ -3092,7 +3092,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C136244B71EA45F3A287C083D7368FD0"
             {
-            "SourcePath" = "8:C:\\Users\\COLLIN\\Documents\\NEWCO\\CRODIP\\Crodip-Agent\\CRODIP_ControlLibrary\\CRODIP_ControlLibrary\\obj\\Debug\\CRODIP_ControlLibrary.dll"
+            "SourcePath" = "8:C:\\Users\\COLLIN\\Documents\\NEWCO\\CRODIP\\Crodip-Agent\\CRODIP_ControlLibrary\\CRODIP_ControlLibrary\\obj\\x86\\ReleaseReglagePulve\\CRODIP_ControlLibrary.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_38A3C5787B424B5C8EB7AE4CAE42DBAF"
