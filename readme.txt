@@ -4,6 +4,7 @@ Build :
 ----------------------
 #333 : Bloquer les Maj pour les systèmes XP
 NEW
+Compil en VS2017
 
 
 Build : 20190620180000
