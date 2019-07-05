@@ -36,7 +36,7 @@ Module CSSoftwareUpdate
     Public Function checkMAJ() As Boolean
         Dim bReturn As Boolean = False
         Try
-            If Globals.GLOB_NETWORKAVAILABLE Then
+            If Globals.GLOB_NETWORKAVAILABLE And Not isXPorBefore() Then
                 Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
 
                 Dim wsResponse As Object
@@ -56,5 +56,10 @@ Module CSSoftwareUpdate
 
     End Function
 
+    Public Function isXPorBefore() As Boolean
+        Dim nMajor As Integer
+        nMajor = System.Environment.OSVersion.Version.Major
+        Return (nMajor <= 5)
+    End Function
 
 End Module

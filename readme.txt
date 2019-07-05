@@ -1,5 +1,10 @@
 TRUNK
 
+Build : 
+----------------------
+#333 : Bloquer les Maj pour les systèmes XP
+
+
 Build : 20190620180000
 ----------------------
 #328 : Synhcro descendante des Diag
