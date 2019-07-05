@@ -21,7 +21,7 @@ Imports System
 '''<summary>
 '''  Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
 '''</summary>
-<Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0"),  _
+<Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0"),  _
  Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
  Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
 Friend Class Resources
