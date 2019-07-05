@@ -509,7 +509,7 @@ Public Class test
         tmpAgent.isActif = "1"
 
         Try
-            Dim UpdatedObject As Object
+            Dim UpdatedObject As Object = Nothing
             Dim response As Integer = AgentManager.sendWSAgent(tmpAgent, UpdatedObject)
             'MsgBox("Code retour : " & response.ToString)
             Select Case response
@@ -569,7 +569,7 @@ Public Class test
         End Try
     End Sub
 
- 
+
     ' Client load local item
     Private Sub Button12_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button12.Click
         Dim tmpExploitation As New Exploitation
@@ -587,8 +587,8 @@ Public Class test
         Dim objClient As Exploitation = ExploitationManager.getExploitationById("1-1-1")
 
         Try
-            Dim updatedObject As Object
-            Dim response As Object = ExploitationManager.sendWSExploitation(objClient, updatedObject)
+            Dim UpdatedObject As Object = Nothing
+            Dim response As Integer = ExploitationManager.sendWSExploitation(objClient, UpdatedObject)
             'MsgBox("Code retour : " & response.ToString)
             Select Case response
                 Case -1 ' ERREUR
@@ -653,8 +653,8 @@ Public Class test
         'objStructure.dateModificationAgent = "2009-06-25 14:50:01"
 
         Try
-            Dim UpdatedObject As Object
-            Dim response As Object = StructureManager.sendWSStructuree(objStructure, UpdatedObject)
+            Dim UpdatedObject As Object = Nothing
+            Dim response As Integer = StructureManager.sendWSStructuree(objStructure, UpdatedObject)
             Select Case response
                 Case -1 ' ERROR
                     MsgBox("Erreur - sendWSStructure - Erreur Locale")
@@ -816,8 +816,8 @@ Public Class test
             'tmpDiagnosticItems.diagnosticItem = arrItems
             'tmpDiagnostic.diagnosticItem = tmpDiagnosticItems
 
-            Dim UpdatedObject As Object
-            Dim response As Object = DiagnosticManager.sendWSDiagnostic(agentCourant, tmpDiagnostic, UpdatedObject)
+            Dim UpdatedObject As Object = Nothing
+            Dim response As Integer = DiagnosticManager.sendWSDiagnostic(agentCourant, tmpDiagnostic, UpdatedObject)
             'DiagnosticManager.save(tmpDiagnostic)
             Select Case response
                 Case -1 ' ERROR
@@ -858,7 +858,6 @@ Public Class test
         'SendDiagnosticItems
 
         Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-        Dim response As Object
 
         Dim arrItems(2) As Object
 
@@ -943,8 +942,8 @@ Public Class test
         arrItems(2) = tmpDiagnosticItems
 
         'objWSCrodip.SendDiagnostic(tmpDiagnostic)
-        Dim updatedObject As Object
-        objWSCrodip.SendDiagnosticItems(agentCourant.id, arrItems, updatedObject)
+        Dim UpdatedObject As Object = Nothing
+        objWSCrodip.SendDiagnosticItems(agentCourant.id, arrItems, UpdatedObject)
 
     End Sub
 
@@ -970,8 +969,8 @@ Public Class test
     Private Sub btnWSPulve_send_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnWSPulve_send.Click
         Dim objPulverisateur As Pulverisateur = PulverisateurManager.getPulverisateurById("1-1-1")
         Try
-            Dim UpdatedObject As Object
-            Dim response As Object = PulverisateurManager.sendWSPulverisateur(agentCourant, objPulverisateur, UpdatedObject)
+            Dim UpdatedObject As Object = Nothing
+            Dim response As Integer = PulverisateurManager.sendWSPulverisateur(agentCourant, objPulverisateur, UpdatedObject)
             Select Case response
                 Case -1 ' ERROR
                     MsgBox("Erreur - sendWSPulverisateur - Erreur Locale")
@@ -1054,7 +1053,7 @@ Public Class test
     Private Sub Button13_Click(sender As System.Object, e As System.EventArgs) Handles Button13.Click
         Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
 
-        Dim wsResponse As Object
+        Dim wsResponse As Object = Nothing
         ' Appel au WS
         Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate("201201010000", wsResponse)
         MsgBox("CodeReponse=" & codeResponse)

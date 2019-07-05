@@ -118,7 +118,6 @@ Public Class EtatSyntheseMesures
 
             'Buses
             Dim pctBusesUsees As Decimal
-            Dim debit As Decimal
             For Each oLot As DiagnosticBuses In m_oDiag.diagnosticBusesList.Liste
                 If oLot.nombre <> 0 Then
                     pctBusesUsees = Math.Round((oLot.nombrebusesusees / oLot.nombre) * 100, 2)

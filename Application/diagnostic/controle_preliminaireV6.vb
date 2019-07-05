@@ -2104,7 +2104,6 @@ Public Class controle_preliminaireV6
                     Dim strCode As String = oParam.Code
                     If strCode.StartsWith("1.") Then
                         'inclusion des paramètes 'Préliminaires"
-                        Dim nNiveau As Integer
                         strCode = strCode.Replace(".", "") 'Remplace les codes par rien
                         If oParam.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_GROUPE Then
                             'C'est un Label ou un Group
