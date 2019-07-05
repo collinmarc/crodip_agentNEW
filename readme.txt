@@ -5,6 +5,7 @@ Build :
 #333 : Bloquer les Maj pour les systèmes XP
 NEW
 Compil en VS2017
+#141 : 1.3.5 Configuration de l’attelage en fonction des catégories de pulvérisateurs
 
 
 

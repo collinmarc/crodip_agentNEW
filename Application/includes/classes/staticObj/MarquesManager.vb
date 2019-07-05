@@ -5,6 +5,7 @@ Public Class MarquesManager
     Public Const XPATH_CATEGORIES_PULVE As String = "/root/type[libelle=""%type%""]/categories/categorie/text()"
     Public Const XPATH_TYPEVALEUR_PULVE As String = "/root/type[libelle=""%type%""]/categories/categorie[text()=""%categorie%""]/@typevaleur"
     Public Const XPATH_VALEURS_PULVE As String = "/root/type[libelle=""%type%""]/categories/categorie[text()=""%categorie%""]/@valeurs"
+    Public Const XPATH_VALEURS_ATTELAGE As String = "/root/type[libelle=""%type%""]/attelages/@valeurs"
     Public Const XPATH_VALEURS_TRTSPE As String = "/root/type[libelle=""%type%""]/categories/categorie[text()=""%categorie%""]/@TRTSPE"
     Public Shared Sub populateCombobox_Largeur_NbRangs_Pulve(ByVal pControl As Object, pType As String, pCategorie As String)
         Try
@@ -33,6 +34,26 @@ Public Class MarquesManager
         End Try
 
     End Sub
+    Public Shared Sub populateCombobox_Attelage_Pulve(ByVal pControl As Object, pType As String)
+        Try
+            Dim xpath As String
+            Dim strValeurs As String()
+            Dim oCbx As ComboBox
+            oCbx = CType(pControl, ComboBox)
+            oCbx.Items.Clear()
+            xpath = XPATH_VALEURS_ATTELAGE.Replace("%type%", pType)
+            Dim oNodes As Xml.XmlNodeList = Globals.GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
+            For Each oNode As Xml.XmlNode In oNodes
+                strValeurs = oNode.InnerText().Split("|")
+                For Each Str As String In strValeurs
+                    oCbx.Items.Add(Str)
+                Next Str
+            Next oNode
+        Catch ex As Exception
+            CSDebug.dispError("populateCombobox_Attelage_Pulve : " & ex.Message)
+        End Try
+
+    End Sub 'populateCombobox_Attelage_Pulve
     ''' <summary>
     ''' Rend le type de valeur associé au type et à la catégorie de pulvérisateur
     ''' </summary>
