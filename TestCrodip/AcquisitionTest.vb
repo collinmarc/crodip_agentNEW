@@ -48,8 +48,6 @@ Public Class AcquisitionTest
     <TestMethod()>
     Public Sub AcqTestLoad()
         Dim oAss As Assembly = Assembly.LoadFrom("AcquisitionMD2.dll")
-        Console.WriteLine(oAss.GetTypes()(0).Name
-                          )
         Dim oT As Type = oAss.GetType("AcquisitionMD2.Main")
 
         Dim oMainAcq As Object = Activator.CreateInstance(oT)
@@ -57,21 +55,105 @@ Public Class AcquisitionTest
 
         Dim oAcq As ICRODIPAcquisition = CType(mainMethod.Invoke(oMainAcq, Nothing), ICRODIPAcquisition)
 
-        Dim oLstValues As List(Of IAcquisitionValue)
+        Dim oLstValues As List(Of AcquisitionValue)
         oLstValues = oAcq.GetValues()
 
         Assert.AreEqual(2, oLstValues.Count)
 
         Dim oValue As AcquisitionValue
-        oValue = CType(oLstValues(0), AcquisitionValue)
+        oValue = oLstValues(0)
         Assert.AreEqual(1, oValue.Niveau)
-        Assert.AreEqual(1, oValue.nBuse)
-        Assert.AreEqual(1.5D, oValue.Value)
+        Assert.AreEqual(1, oValue.NumBuse)
+        Assert.AreEqual(1.5D, oValue.Debit)
 
-        oValue = CType(oLstValues(1), AcquisitionValue)
+        oValue = oLstValues(1)
+        Assert.AreEqual(2, oValue.Niveau)
+        Assert.AreEqual(1, oValue.NumBuse)
+        Assert.AreEqual(2.5D, oValue.Debit)
+
+    End Sub
+    <TestMethod()>
+    Public Sub CreateListModulesXML()
+        Dim oModule As ModuleAcq
+
+        If System.IO.File.Exists(ModuleAcq.XMLFILE) Then
+            System.IO.File.Delete(ModuleAcq.XMLFILE)
+        End If
+
+        Dim oLst As New List(Of ModuleAcq)
+
+        oModule = New ModuleAcq()
+        oModule.Nom = "MD2"
+        oModule.Assembly = "AcquisitionMD2.dll"
+        oModule.Main = "AcquisitionMD2.Main"
+
+        oLst.Add(oModule)
+        oModule = New ModuleAcq()
+        oModule.Nom = "ITEQ"
+        oModule.Assembly = "AcquisitionITEQ.dll"
+        oModule.Main = "AcquisitionITEQ.Main"
+
+        oLst.Add(oModule)
+
+        ModuleAcq.WriteXML(oLst)
+
+        Assert.IsTrue(System.IO.File.Exists(ModuleAcq.XMLFILE))
+
+        oLst = ModuleAcq.ReadXML()
+        Assert.IsNotNull(oLst)
+        Assert.AreEqual(2, oLst.Count)
+        Assert.AreEqual("MD2", oLst(0).Nom)
+        Assert.AreEqual("AcquisitionMD2.dll", oLst(0).Assembly)
+        Assert.AreEqual("AcquisitionMD2.Main", oLst(0).Main)
+
+        Assert.AreEqual("ITEQ", oLst(1).Nom)
+        Assert.AreEqual("AcquisitionITEQ.dll", oLst(1).Assembly)
+        Assert.AreEqual("AcquisitionITEQ.Main", oLst(1).Main)
+
+    End Sub
+
+    <TestMethod()>
+    Public Sub TestLoadModule()
+        Dim oModule As ModuleAcq
+
+        If System.IO.File.Exists(ModuleAcq.XMLFILE) Then
+            System.IO.File.Delete(ModuleAcq.XMLFILE)
+        End If
+
+        Dim oLst As New List(Of ModuleAcq)
+
+        oModule = New ModuleAcq()
+        oModule.Nom = "MD2"
+        oModule.Assembly = "AcquisitionMD2.dll"
+        oModule.Main = "AcquisitionMD2.Main"
+
+        oLst.Add(oModule)
+        oModule = New ModuleAcq()
+        oModule.Nom = "ITEQ"
+        oModule.Assembly = "AcquisitionITEQ.dll"
+        oModule.Main = "AcquisitionITEQ.Main"
+
+        oLst.Add(oModule)
+
+        ModuleAcq.WriteXML(oLst)
+
+        Dim oModuleAcq As ModuleAcq
+        oModuleAcq = ModuleAcq.GetModule("MD2")
+        Assert.AreEqual("MD2", oModuleAcq.Nom)
+
+        Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.createModuleAcquisition().GetValues()
+        Assert.AreEqual(2, oLstResult.Count)
+        Dim oValue As AcquisitionValue
+        oValue = oLstResult(0)
         Assert.AreEqual(1, oValue.Niveau)
-        Assert.AreEqual(2, oValue.nBuse)
-        Assert.AreEqual(2.5D, oValue.Value)
+        Assert.AreEqual(1, oValue.NumBuse)
+        Assert.AreEqual(1.5D, oValue.Debit)
+
+        oValue = CType(oLstResult(1), AcquisitionValue)
+        Assert.AreEqual(2, oValue.Niveau)
+        Assert.AreEqual(1, oValue.NumBuse)
+        Assert.AreEqual(2.5D, oValue.Debit)
+
 
     End Sub
 

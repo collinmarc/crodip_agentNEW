@@ -1,8 +1,8 @@
-﻿Public Interface IAcquisitionValue
+﻿'Public Interface IAcquisitionValue
 
-End Interface
+'End Interface
 Public Class AcquisitionValue
-    Implements IAcquisitionValue
+    ' Implements IAcquisitionValue
     Private m_nNiveau As Integer
     Public Property Niveau() As Integer
         Get
@@ -13,7 +13,7 @@ Public Class AcquisitionValue
         End Set
     End Property
     Private m_NBuse As Integer
-    Public Property nBuse() As Integer
+    Public Property NumBuse() As Integer
         Get
             Return m_NBuse
         End Get
@@ -21,26 +21,37 @@ Public Class AcquisitionValue
             m_NBuse = value
         End Set
     End Property
-    Private m_value As Decimal
-    Public Property Value() As Decimal
+    Private m_debit As Decimal
+    Public Property Debit() As Decimal
         Get
-            Return m_value
+            Return m_debit
         End Get
         Set(ByVal value As Decimal)
-            m_value = value
+            m_debit = value
         End Set
     End Property
 
+    Private m_Pression As Decimal
+    Public Property Pression() As Decimal
+        Get
+            Return m_Pression
+        End Get
+        Set(ByVal value As Decimal)
+            m_Pression = value
+        End Set
+    End Property
 
     Public Sub New()
         Niveau = 0
-        nBuse = 0
-        Value = 0
+        NumBuse = 0
+        Debit = 0
+        Pression = 0
     End Sub
-    Public Sub New(pNiveau As Integer, pNbuse As Integer, pValue As Decimal)
+    Public Sub New(pNiveau As Integer, pNbuse As Integer, pValue As Decimal, pPression As Decimal)
         Niveau = pNiveau
-        nBuse = pNbuse
-        Value = pValue
+        NumBuse = pNbuse
+        Debit = pValue
+        Pression = pPression
     End Sub
 
 End Class

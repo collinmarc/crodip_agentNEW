@@ -2434,6 +2434,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="CRODIPAcquisition\CRODIPAcquisition.vbproj">
+      <Project>{6a47aca1-97a9-468d-9c04-9b9cc11f6fe9}</Project>
+      <Name>CRODIPAcquisition</Name>
+    </ProjectReference>
     <ProjectReference Include="CRODIP_ControlLibrary\CRODIP_ControlLibrary\CRODIP_ControlLibrary.vbproj">
       <Project>{2e21234e-daef-48b6-aff5-a3655c9420e4}</Project>
       <Name>CRODIP_ControlLibrary</Name>

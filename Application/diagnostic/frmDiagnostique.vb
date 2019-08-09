@@ -10422,7 +10422,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
                 ini12123()
             End If
-           
+
             If Not bTrtSemence And m_diagnostic.diagnosticHelp12123.lstPompes.Count = 0 Then
                 Exit Function
             End If

@@ -190,7 +190,7 @@ Public Class diagnostic_dlghelp12123new
     Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
         If TypeOf (e.Exception) Is FormatException Then
 
-            Dim strValue = DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
+            Dim strValue As String = DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
             strValue = strValue.replace(".", ",")
             If IsNumeric(strValue) Then
                 DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = strValue
