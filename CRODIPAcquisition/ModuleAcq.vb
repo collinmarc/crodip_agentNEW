@@ -97,6 +97,13 @@ Public Class ModuleAcq
 
         Return oModule
     End Function
+    Public Shared Function GetlstModules() As List(Of ModuleAcq)
+
+        Dim oLst As List(Of ModuleAcq)
+        oLst = ModuleAcq.ReadXML()
+
+        Return oLst
+    End Function
 
     Public Function createModuleAcquisition() As ICRODIPAcquisition
 
@@ -111,5 +118,31 @@ Public Class ModuleAcq
         Return oAcq
     End Function
 
-
+    Public Function getValues() As List(Of AcquisitionValue)
+        Dim oModule As ICRODIPAcquisition
+        Dim oReturn As New List(Of AcquisitionValue)
+        oModule = createModuleAcquisition()
+        If oModule IsNot Nothing Then
+            oReturn = oModule.GetValues()
+        End If
+        Return oReturn
+    End Function
+    Public Function getNbNiveaux() As Integer
+        Dim oModule As ICRODIPAcquisition
+        Dim oReturn As Integer = 0
+        oModule = createModuleAcquisition()
+        If oModule IsNot Nothing Then
+            oReturn = oModule.GetNbNiveaux()
+        End If
+        Return oReturn
+    End Function
+    Public Function getNbBuses(pNiveau As Integer) As Integer
+        Dim oModule As ICRODIPAcquisition
+        Dim oReturn As Integer = 0
+        oModule = createModuleAcquisition()
+        If oModule IsNot Nothing Then
+            oReturn = oModule.GetNbBuses(pNiveau)
+        End If
+        Return oReturn
+    End Function
 End Class

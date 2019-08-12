@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfModuleAcq>
+  <ModuleAcq>
+    <Nom>MD2</Nom>
+    <Assembly>AcquisitionMD2.dll</Assembly>
+    <Main>AcquisitionMD2.Main</Main>
+  </ModuleAcq>
+  <ModuleAcq>
+    <Nom>ITEQ</Nom>
+    <Assembly>AcquisitionITEQ.dll</Assembly>
+    <Main>AcquisitionITEQ.Main</Main>
+  </ModuleAcq>
+</ArrayOfModuleAcq>

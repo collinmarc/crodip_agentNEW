@@ -2,7 +2,7 @@
 Imports System.Data.OleDb
 Imports System.Linq
 
-Public Class AcquisitionMD2
+Public Class AcquisitionITEQ
     Implements ICRODIPAcquisition
 
     Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
@@ -11,19 +11,16 @@ Public Class AcquisitionMD2
 
 
         Dim oConn As OleDb.OleDbConnection
-        oConn = New OleDbConnection(My.Settings.BDD)
+        oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Extended Properties=Text;Data Source=" & My.Settings.FolderName)
         oConn.Open()
         ' Initialisation de la DB
         Dim ocmd As OleDbCommand
         ocmd = oConn.CreateCommand()
-        ocmd.CommandText = "SELECT IdNiveau,debit,pression FROM tmpDataAcquiring ORDER BY IdNiveau, IdBuse"
+        ocmd.CommandText = "SELECT * FROM " & My.Settings.FileName
         Dim dataResults As System.Data.OleDb.OleDbDataReader = ocmd.ExecuteReader()
 
         ' Parcourt des résultats
         Dim i As Integer = 0
-        Dim prevIdNiveau As Integer = 0
-        Dim curIdBuse As Integer = 0
-
         While dataResults.Read()
 
             Dim tmpResponse As New CRODIPAcquisition.AcquisitionValue()
@@ -32,21 +29,13 @@ Public Class AcquisitionMD2
             While tmpColId < dataResults.FieldCount()
                 If Not dataResults.IsDBNull(tmpColId) Then
                     Select Case dataResults.GetName(tmpColId).ToUpper().Trim()
-                        Case "idBuse".ToUpper().Trim()
-
-'                            tmpResponse.NumBuse = curIdBuse
-                        Case "idNiveau".ToUpper().Trim()
+                        Case "Jeu N°".ToUpper().Trim()
+                            tmpResponse.NumBuse = dataResults.GetValue(tmpColId)
+                        Case "N° buse".ToUpper().Trim()
                             tmpResponse.Niveau = dataResults.GetValue(tmpColId)
-                            'S'il y a rupture de niveau => Renumérotation de la buse
-                            If tmpResponse.Niveau <> prevIdNiveau Then
-                                curIdBuse = 0
-                            End If
-                            prevIdNiveau = tmpResponse.Niveau
-                            curIdBuse += 1
-                            tmpResponse.NumBuse = curIdBuse
-                        Case "debit".ToUpper().Trim()
+                        Case "Débit mesuré (l/min)".ToUpper().Trim()
                             tmpResponse.Debit = dataResults.GetValue(tmpColId)
-                        Case "pression".ToUpper().Trim()
+                        Case "Pression mesurée (bar)".ToUpper().Trim()
                             tmpResponse.Pression = dataResults.GetValue(tmpColId)
                     End Select
                 End If
@@ -61,31 +50,11 @@ Public Class AcquisitionMD2
     End Function
 
     Public Function GetNbNiveaux() As Integer Implements ICRODIPAcquisition.GetNbNiveaux
-        Dim oValues As List(Of AcquisitionValue)
-        Dim prevNiveau As Integer = -1
-        Dim nNiveaux As Integer = 0
-
-        oValues = GetValues()
-        For Each oValue As AcquisitionValue In oValues
-            If oValue.Niveau <> prevNiveau Then
-                prevNiveau = oValue.Niveau
-                nNiveaux = nNiveaux + 1
-            End If
-        Next
-        Return nNiveaux
+        Return 0
     End Function
 
     Public Function GetNbBuses(pNiveau As Integer) As Integer Implements ICRODIPAcquisition.GetNbBuses
-        Dim oValues As List(Of AcquisitionValue)
-        Dim nBuses As Integer = 0
-
-        oValues = GetValues()
-        For Each oValue As AcquisitionValue In oValues
-            If oValue.Niveau = pNiveau Then
-                nBuses = nBuses + 1
-            End If
-        Next
-        Return nBuses
+        Return 0
     End Function
 
 

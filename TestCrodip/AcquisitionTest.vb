@@ -138,23 +138,135 @@ Public Class AcquisitionTest
         ModuleAcq.WriteXML(oLst)
 
         Dim oModuleAcq As ModuleAcq
+        Dim oModule2 As ICRODIPAcquisition
         oModuleAcq = ModuleAcq.GetModule("MD2")
         Assert.AreEqual("MD2", oModuleAcq.Nom)
 
-        Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.createModuleAcquisition().GetValues()
-        Assert.AreEqual(2, oLstResult.Count)
-        Dim oValue As AcquisitionValue
-        oValue = oLstResult(0)
-        Assert.AreEqual(1, oValue.Niveau)
-        Assert.AreEqual(1, oValue.NumBuse)
-        Assert.AreEqual(1.5D, oValue.Debit)
+        oModule2 = oModule.createModuleAcquisition()
 
-        oValue = CType(oLstResult(1), AcquisitionValue)
-        Assert.AreEqual(2, oValue.Niveau)
-        Assert.AreEqual(1, oValue.NumBuse)
-        Assert.AreEqual(2.5D, oValue.Debit)
+        Assert.IsNotNull(oModule2)
+
+        oModuleAcq = ModuleAcq.GetModule("ITEQ")
+        Assert.AreEqual("ITEQ", oModuleAcq.Nom)
+
+        oModule2 = oModule.createModuleAcquisition()
+
+        Assert.IsNotNull(oModule2)
+    End Sub
+    <TestMethod()>
+    Public Sub TestMD2()
 
 
+        Dim builder As New OleDb.OleDbConnectionStringBuilder()
+        builder.Add("Data Source", ".\bdd\crodip_dasylab.mdb")
+        builder.Add("Provider", "Microsoft.Jet.Oledb.4.0")
+
+        Dim oConn As New OleDb.OleDbConnection(builder.ConnectionString)
+        oConn.Open()
+        Assert.IsTrue(oConn.State = ConnectionState.Open)
+
+        Dim oCmd As OleDb.OleDbCommand = oConn.CreateCommand()
+
+        oCmd.CommandText = "DELETE  FROM tmpDataAcquiring "
+        oCmd.ExecuteNonQuery()
+        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(1,1,3.1,1.5)"
+        oCmd.ExecuteNonQuery()
+        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(2,1,3.1,2.5)"
+        oCmd.ExecuteNonQuery()
+        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(3,2,3.1,3.5)"
+        oCmd.ExecuteNonQuery()
+        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(4,2,3.1,4.5)"
+        oCmd.ExecuteNonQuery()
+        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(5,2,3.1,5.5)"
+        oCmd.ExecuteNonQuery()
+        oConn.Close()
+
+        Dim oModuleAcq As ModuleAcq
+        oModuleAcq = ModuleAcq.GetModule("MD2")
+        Assert.AreEqual("MD2", oModuleAcq.Nom)
+
+        Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.getValues()
+
+        Assert.AreEqual(5, oLstResult.Count)
+
+        Assert.AreEqual(1, oLstResult(0).Niveau)
+        Assert.AreEqual(1, oLstResult(1).Niveau)
+        Assert.AreEqual(2, oLstResult(2).Niveau)
+        Assert.AreEqual(2, oLstResult(3).Niveau)
+        Assert.AreEqual(2, oLstResult(4).Niveau)
+
+        Assert.AreEqual(1, oLstResult(0).NumBuse)
+        Assert.AreEqual(2, oLstResult(1).NumBuse)
+        Assert.AreEqual(1, oLstResult(2).NumBuse)
+        Assert.AreEqual(2, oLstResult(3).NumBuse)
+        Assert.AreEqual(3, oLstResult(4).NumBuse)
+
+        Assert.AreEqual(3.1D, oLstResult(0).Debit)
+        Assert.AreEqual(3.1D, oLstResult(1).Debit)
+        Assert.AreEqual(3.1D, oLstResult(2).Debit)
+        Assert.AreEqual(3.1D, oLstResult(3).Debit)
+        Assert.AreEqual(3.1D, oLstResult(4).Debit)
+
+        Assert.AreEqual(1.5D, oLstResult(0).Pression)
+        Assert.AreEqual(2.5D, oLstResult(1).Pression)
+        Assert.AreEqual(3.5D, oLstResult(2).Pression)
+        Assert.AreEqual(4.5D, oLstResult(3).Pression)
+        Assert.AreEqual(5.5D, oLstResult(4).Pression)
+
+
+        Assert.AreEqual(2, oModuleAcq.getNbNiveaux())
+        Assert.AreEqual(2, oModuleAcq.getNbBuses(1))
+        Assert.AreEqual(3, oModuleAcq.getNbBuses(2))
     End Sub
 
+    <TestMethod()>
+    Public Sub TestITEQ()
+
+
+        'Dim builder As New OleDb.OleDbConnectionStringBuilder()
+        'builder.Add("Data Source", ".\bdd\crodip_dasylab.mdb")
+        'builder.Add("Provider", "Microsoft.Jet.Oledb.4.0")
+
+        'Dim oConn As New OleDb.OleDbConnection(builder.ConnectionString)
+        'oConn.Open()
+        'Assert.IsTrue(oConn.State = ConnectionState.Open)
+
+        'Dim oCmd As OleDb.OleDbCommand = oConn.CreateCommand()
+
+        'oCmd.CommandText = "DELETE  FROM tmpDataAcquiring "
+        'oCmd.ExecuteNonQuery()
+        'oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(1,1,3.1,1.5)"
+        'oCmd.ExecuteNonQuery()
+        'oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(2,1,3.1,2.5)"
+        'oCmd.ExecuteNonQuery()
+        'oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(3,2,3.1,3.5)"
+        'oCmd.ExecuteNonQuery()
+        'oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(4,2,3.1,4.5)"
+        'oCmd.ExecuteNonQuery()
+        'oConn.Close()
+
+        Dim oModuleAcq As ModuleAcq
+        oModuleAcq = ModuleAcq.GetModule("ITEQ")
+        Assert.AreEqual("ITEQ", oModuleAcq.Nom)
+
+        Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.getValues()
+
+        Assert.AreEqual(10, oLstResult.Count)
+
+        Assert.AreEqual(1, oLstResult(0).NumBuse)
+        Assert.AreEqual(1, oLstResult(1).NumBuse)
+        Assert.AreEqual(1, oLstResult(2).NumBuse)
+        Assert.AreEqual(1, oLstResult(3).NumBuse)
+
+        Assert.AreEqual(1.614D, oLstResult(0).Debit)
+        Assert.AreEqual(1.622D, oLstResult(1).Debit)
+        Assert.AreEqual(1.628D, oLstResult(2).Debit)
+        Assert.AreEqual(1.627D, oLstResult(3).Debit)
+
+        Assert.AreEqual(2.845D, oLstResult(0).Pression)
+        Assert.AreEqual(2.838D, oLstResult(1).Pression)
+        Assert.AreEqual(2.832D, oLstResult(2).Pression)
+        Assert.AreEqual(2.832D, oLstResult(3).Pression)
+
+    End Sub
 End Class

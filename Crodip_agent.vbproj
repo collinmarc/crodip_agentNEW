@@ -1327,6 +1327,9 @@
     </Content>
     <None Include="Resources\btn_annuler.jpg" />
     <None Include="Resources\btn_suivantGrd.jpg" />
+    <Content Include="moduleDocumentaire\_parametres\ModulesAcquisision.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="public\exports\exports.txt" />
     <Content Include="toleranceBuses.xml" />
     <None Include="readme.md" />
