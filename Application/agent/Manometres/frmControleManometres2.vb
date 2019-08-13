@@ -5,6 +5,8 @@ Imports iTextSharp.text.pdf
 Imports iTextSharp.text.xml
 Imports System.IO
 Imports System.Collections.Generic
+Imports CRODIPAcquisition
+Imports System.Linq
 ''' <summary>
 ''' Fenêtre de controle des manomètres
 ''' </summary>
@@ -20,6 +22,9 @@ Public Class frmControleManometres2
     Private arrPressions_default() As String = {0, 2, 4, 6, 8, 10}
     Friend WithEvents btn_controleManos_acquiring As System.Windows.Forms.PictureBox
     Friend WithEvents m_bsControle As System.Windows.Forms.BindingSource
+    Friend WithEvents cbxModules As ComboBox
+    Friend WithEvents Label39 As Label
+    Friend WithEvents m_bsModulesAcq As BindingSource
     Private arrPressions() As String
 
 
@@ -333,6 +338,9 @@ Public Class frmControleManometres2
         Me.btn_controleBanc_annuler = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.cbxModules = New System.Windows.Forms.ComboBox()
+        Me.m_bsModulesAcq = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel64.SuspendLayout()
         CType(Me.m_bsControle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -347,14 +355,15 @@ Public Class frmControleManometres2
         CType(Me.btn_controleManos_acquiring, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel_loading.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsModulesAcq, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tbTemperature
         '
         Me.tbTemperature.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tbTemperature.Location = New System.Drawing.Point(926, 14)
+        Me.tbTemperature.Location = New System.Drawing.Point(948, 16)
         Me.tbTemperature.Name = "tbTemperature"
-        Me.tbTemperature.Size = New System.Drawing.Size(74, 20)
+        Me.tbTemperature.Size = New System.Drawing.Size(48, 20)
         Me.tbTemperature.TabIndex = 1
         '
         'Label9
@@ -363,11 +372,11 @@ Public Class frmControleManometres2
         Me.Label9.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(785, 17)
+        Me.Label9.Location = New System.Drawing.Point(843, 17)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(135, 16)
+        Me.Label9.Size = New System.Drawing.Size(101, 16)
         Me.Label9.TabIndex = 16
-        Me.Label9.Text = "Température de l'air"
+        Me.Label9.Text = "Température air"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'Label8
@@ -375,7 +384,7 @@ Public Class frmControleManometres2
         Me.Label8.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(464, 17)
+        Me.Label8.Location = New System.Drawing.Point(314, 33)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(151, 16)
         Me.Label8.TabIndex = 14
@@ -388,7 +397,7 @@ Public Class frmControleManometres2
         Me.cbx_manometresEtalon.DisplayMember = "idCrodip"
         Me.cbx_manometresEtalon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbx_manometresEtalon.ItemHeight = 13
-        Me.cbx_manometresEtalon.Location = New System.Drawing.Point(621, 14)
+        Me.cbx_manometresEtalon.Location = New System.Drawing.Point(471, 32)
         Me.cbx_manometresEtalon.Name = "cbx_manometresEtalon"
         Me.cbx_manometresEtalon.Size = New System.Drawing.Size(144, 21)
         Me.cbx_manometresEtalon.TabIndex = 0
@@ -414,6 +423,8 @@ Public Class frmControleManometres2
         'Panel64
         '
         Me.Panel64.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel64.Controls.Add(Me.cbxModules)
+        Me.Panel64.Controls.Add(Me.Label39)
         Me.Panel64.Controls.Add(Me.btn_controleManos_valider)
         Me.Panel64.Controls.Add(Me.btn_controleManos_suivant)
         Me.Panel64.Controls.Add(Me.lblResultat)
@@ -744,7 +755,7 @@ Public Class frmControleManometres2
         '
         Me.SplitContainer1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SplitContainer1.Location = New System.Drawing.Point(12, 41)
+        Me.SplitContainer1.Location = New System.Drawing.Point(13, 63)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
         'SplitContainer1.Panel1
@@ -786,7 +797,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox1, 7, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox2, 6, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox3, 7, 4)
@@ -851,7 +862,7 @@ Public Class frmControleManometres2
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(97, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
         Me.TextBox1.TabIndex = 60
         Me.TextBox1.TabStop = False
         '
@@ -874,7 +885,7 @@ Public Class frmControleManometres2
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(97, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
         Me.TextBox3.TabIndex = 58
         Me.TextBox3.TabStop = False
         '
@@ -897,7 +908,7 @@ Public Class frmControleManometres2
         Me.TextBox5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(97, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(100, 20)
         Me.TextBox5.TabIndex = 56
         Me.TextBox5.TabStop = False
         '
@@ -920,7 +931,7 @@ Public Class frmControleManometres2
         Me.TextBox7.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(97, 20)
+        Me.TextBox7.Size = New System.Drawing.Size(100, 20)
         Me.TextBox7.TabIndex = 54
         Me.TextBox7.TabStop = False
         '
@@ -943,7 +954,7 @@ Public Class frmControleManometres2
         Me.TextBox9.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(97, 20)
+        Me.TextBox9.Size = New System.Drawing.Size(100, 20)
         Me.TextBox9.TabIndex = 52
         Me.TextBox9.TabStop = False
         '
@@ -966,7 +977,7 @@ Public Class frmControleManometres2
         Me.TextBox11.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.ReadOnly = True
-        Me.TextBox11.Size = New System.Drawing.Size(97, 20)
+        Me.TextBox11.Size = New System.Drawing.Size(100, 20)
         Me.TextBox11.TabIndex = 50
         Me.TextBox11.TabStop = False
         '
@@ -1327,7 +1338,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC6, 7, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbErrAbsPC6, 6, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC5, 7, 4)
@@ -1392,7 +1403,7 @@ Public Class frmControleManometres2
         Me.tbFondPC6.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC6.Name = "tbFondPC6"
         Me.tbFondPC6.ReadOnly = True
-        Me.tbFondPC6.Size = New System.Drawing.Size(97, 20)
+        Me.tbFondPC6.Size = New System.Drawing.Size(100, 20)
         Me.tbFondPC6.TabIndex = 60
         Me.tbFondPC6.TabStop = False
         '
@@ -1415,7 +1426,7 @@ Public Class frmControleManometres2
         Me.tbFondPC5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC5.Name = "tbFondPC5"
         Me.tbFondPC5.ReadOnly = True
-        Me.tbFondPC5.Size = New System.Drawing.Size(97, 20)
+        Me.tbFondPC5.Size = New System.Drawing.Size(100, 20)
         Me.tbFondPC5.TabIndex = 58
         Me.tbFondPC5.TabStop = False
         '
@@ -1438,7 +1449,7 @@ Public Class frmControleManometres2
         Me.tbFondPC4.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC4.Name = "tbFondPC4"
         Me.tbFondPC4.ReadOnly = True
-        Me.tbFondPC4.Size = New System.Drawing.Size(97, 20)
+        Me.tbFondPC4.Size = New System.Drawing.Size(100, 20)
         Me.tbFondPC4.TabIndex = 56
         Me.tbFondPC4.TabStop = False
         '
@@ -1461,7 +1472,7 @@ Public Class frmControleManometres2
         Me.tbFondPC3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC3.Name = "tbFondPC3"
         Me.tbFondPC3.ReadOnly = True
-        Me.tbFondPC3.Size = New System.Drawing.Size(97, 20)
+        Me.tbFondPC3.Size = New System.Drawing.Size(100, 20)
         Me.tbFondPC3.TabIndex = 54
         Me.tbFondPC3.TabStop = False
         '
@@ -1484,7 +1495,7 @@ Public Class frmControleManometres2
         Me.tbFondPC2.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC2.Name = "tbFondPC2"
         Me.tbFondPC2.ReadOnly = True
-        Me.tbFondPC2.Size = New System.Drawing.Size(97, 20)
+        Me.tbFondPC2.Size = New System.Drawing.Size(100, 20)
         Me.tbFondPC2.TabIndex = 52
         Me.tbFondPC2.TabStop = False
         '
@@ -1507,7 +1518,7 @@ Public Class frmControleManometres2
         Me.tbFondPC1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC1.Name = "tbFondPC1"
         Me.tbFondPC1.ReadOnly = True
-        Me.tbFondPC1.Size = New System.Drawing.Size(97, 20)
+        Me.tbFondPC1.Size = New System.Drawing.Size(100, 20)
         Me.tbFondPC1.TabIndex = 50
         Me.tbFondPC1.TabStop = False
         '
@@ -1868,7 +1879,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label5, 4, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label6, 5, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label7, 6, 0)
@@ -1924,7 +1935,7 @@ Public Class frmControleManometres2
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(425, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(160, 48)
+        Me.Label7.Size = New System.Drawing.Size(163, 48)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1936,7 +1947,7 @@ Public Class frmControleManometres2
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(486, 50)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(99, 49)
+        Me.Label11.Size = New System.Drawing.Size(102, 49)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2058,7 +2069,7 @@ Public Class frmControleManometres2
         Me.btn_controleBanc_annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_controleBanc_annuler.ForeColor = System.Drawing.Color.White
         Me.btn_controleBanc_annuler.Image = CType(resources.GetObject("btn_controleBanc_annuler.Image"), System.Drawing.Image)
-        Me.btn_controleBanc_annuler.Location = New System.Drawing.Point(328, 8)
+        Me.btn_controleBanc_annuler.Location = New System.Drawing.Point(730, 646)
         Me.btn_controleBanc_annuler.Name = "btn_controleBanc_annuler"
         Me.btn_controleBanc_annuler.Size = New System.Drawing.Size(128, 24)
         Me.btn_controleBanc_annuler.TabIndex = 29
@@ -2083,6 +2094,33 @@ Public Class frmControleManometres2
         Me.ImageList_onglets.ImageStream = CType(resources.GetObject("ImageList_onglets.ImageStream"), System.Windows.Forms.ImageListStreamer)
         Me.ImageList_onglets.TransparentColor = System.Drawing.Color.White
         Me.ImageList_onglets.Images.SetKeyName(0, "")
+        '
+        'Label39
+        '
+        Me.Label39.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label39.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label39.Location = New System.Drawing.Point(14, 37)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(151, 16)
+        Me.Label39.TabIndex = 55
+        Me.Label39.Text = "Module d'acquisition :"
+        Me.Label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'cbxModules
+        '
+        Me.cbxModules.DataSource = Me.m_bsModulesAcq
+        Me.cbxModules.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxModules.ItemHeight = 13
+        Me.cbxModules.Location = New System.Drawing.Point(151, 36)
+        Me.cbxModules.Name = "cbxModules"
+        Me.cbxModules.Size = New System.Drawing.Size(85, 21)
+        Me.cbxModules.TabIndex = 56
+        Me.cbxModules.ValueMember = "idCrodip"
+        '
+        'm_bsModulesAcq
+        '
+        Me.m_bsModulesAcq.DataMember = "String"
         '
         'frmControleManometres2
         '
@@ -2111,6 +2149,7 @@ Public Class frmControleManometres2
         CType(Me.btn_controleManos_acquiring, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel_loading.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsModulesAcq, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2128,6 +2167,12 @@ Public Class frmControleManometres2
 
     ' Chargement des mano / construction des onglets & forms
     Private Sub controle_manometres_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Dim lstBanc As List(Of Banc) = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString)
+
+        m_bsModulesAcq.DataSource = ((From oBanc As Banc In lstBanc
+                                      Select oBanc.ModuleAcquisition).Distinct())
+
 
         '####################################################
         '######### Chargement des manomètres étalon #########
@@ -2807,80 +2852,126 @@ Public Class frmControleManometres2
     ' Bouton acquisitin des données
     Private Sub btn_controleManos_acquiring_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_acquiring.Click
         Panel_loading.Visible = True
-        doAcqiring()
+        doAcquiring()
     End Sub
 
     Private _thread_doAcqiring As Thread
-    Private Sub thr_doAcqiring()
-
+    Private Sub thr_doAcquiring()
+        Dim oModuleAcq As CRODIPAcquisition.ModuleAcq
+        Dim olstValues As List(Of AcquisitionValue)
         Dim oControle As ControleMano
+
+
+        oModuleAcq = ModuleAcq.GetModule(cbxModules.Text)
+        olstValues = oModuleAcq.getValues()
         oControle = m_bsControle.Current
-        Dim nbBusesAcquis As Integer = AcquiringManager.getNbBuses(2)
-        Dim isok As Boolean = (Me.nbMesures = nbBusesAcquis)
-        If isok Then
-            ' On récupère les buses de la table d'échange
-            Dim arrBuses() As Acquiring = AcquiringManager.GetAcquiring()
-            Dim prevIdNiveau As Integer = 0
-            Dim curIdBuse As Integer = 0
-            For Each tmpResponse As Acquiring In arrBuses
-                Try
-                    If tmpResponse.idBuse <> 0 Then
-                        ' On injecte les valeurs
-                        Try
+        For Each oVal As AcquisitionValue In olstValues
+            If oVal.Niveau = 1 Then
+                Select Case oVal.NumBuse
+                    Case 1
+                        oControle.up_pt1_pres_manoEtalon = oVal.Debit
+                    Case 2
+                        oControle.up_pt2_pres_manoEtalon = oVal.Debit
+                    Case 3
+                        oControle.up_pt3_pres_manoEtalon = oVal.Debit
+                    Case 4
+                        oControle.up_pt4_pres_manoEtalon = oVal.Debit
+                    Case 5
+                        oControle.up_pt5_pres_manoEtalon = oVal.Debit
+                    Case 6
+                        oControle.up_pt6_pres_manoEtalon = oVal.Debit
+                End Select
+            Else
+                Select Case oVal.NumBuse
+                    Case 1
+                        oControle.down_pt1_pres_manoEtalon = oVal.Debit
+                    Case 2
+                        oControle.down_pt2_pres_manoEtalon = oVal.Debit
+                    Case 3
+                        oControle.down_pt3_pres_manoEtalon = oVal.Debit
+                    Case 4
+                        oControle.down_pt4_pres_manoEtalon = oVal.Debit
+                    Case 5
+                        oControle.down_pt5_pres_manoEtalon = oVal.Debit
+                    Case 6
+                        oControle.down_pt6_pres_manoEtalon = oVal.Debit
+                End Select
 
 
-                            If tmpResponse.idNiveau = 1 Then ' Croissante
-                                Select Case tmpResponse.idBuse
-                                    Case 1
-                                        oControle.up_pt1_pres_manoEtalon = tmpResponse.debit
-                                    Case 2
-                                        oControle.up_pt2_pres_manoEtalon = tmpResponse.debit
-                                    Case 3
-                                        oControle.up_pt3_pres_manoEtalon = tmpResponse.debit
-                                    Case 4
-                                        oControle.up_pt4_pres_manoEtalon = tmpResponse.debit
-                                    Case 5
-                                        oControle.up_pt5_pres_manoEtalon = tmpResponse.debit
-                                    Case 6
-                                        oControle.up_pt6_pres_manoEtalon = tmpResponse.debit
-                                End Select
-                            Else ' Decroissante
-                                Dim tmpId As Integer = tmpResponse.idBuse - Me.nbMesures
-                                Select Case tmpId
-                                    Case 1
-                                        oControle.down_pt1_pres_manoEtalon = tmpResponse.debit
-                                    Case 2
-                                        oControle.down_pt2_pres_manoEtalon = tmpResponse.debit
-                                    Case 3
-                                        oControle.down_pt3_pres_manoEtalon = tmpResponse.debit
-                                    Case 4
-                                        oControle.down_pt4_pres_manoEtalon = tmpResponse.debit
-                                    Case 5
-                                        oControle.down_pt5_pres_manoEtalon = tmpResponse.debit
-                                    Case 6
-                                        oControle.down_pt6_pres_manoEtalon = tmpResponse.debit
-                                End Select
-                            End If
+            End If
+        Next
 
-                        Catch ex As Exception
-                            CSDebug.dispError("[x0C0004] : " & ex.Message)
-                        End Try
-                    End If
-                Catch ex As Exception
-                    CSDebug.dispError("[x0C0003] : " & ex.Message.ToString)
-                End Try
-            Next
-            ' On vide la table d'échange
-            m_bsControle.ResetBindings(False)
-            'AcquiringManager.clearResults()
-        Else
-            MsgBox("Le nombre de buses acquises est différent du nombre de mesures nécéssaires. Veuillez vérifiez.")
-        End If
+        oModuleAcq.clearResults()
+        m_bsControle.ResetBindings(False)
+
+        'Dim oControle As ControleMano
+        'oControle = m_bsControle.Current
+        ''Dim nbBusesAcquis As Integer = AcquiringManager.getNbBuses(2)
+        'Dim isok As Boolean = (Me.nbMesures = nbBusesAcquis)
+        'If isok Then
+        '    ' On récupère les buses de la table d'échange
+        '    Dim arrBuses() As Acquiring = AcquiringManager.GetAcquiring()
+        '    Dim prevIdNiveau As Integer = 0
+        '    Dim curIdBuse As Integer = 0
+        '    For Each tmpResponse As Acquiring In arrBuses
+        '        Try
+        '            If tmpResponse.idBuse <> 0 Then
+        '                ' On injecte les valeurs
+        '                Try
+
+
+        '                    If tmpResponse.idNiveau = 1 Then ' Croissante
+        '                        Select Case tmpResponse.idBuse
+        '                            Case 1
+        '                                oControle.up_pt1_pres_manoEtalon = tmpResponse.debit
+        '                            Case 2
+        '                                oControle.up_pt2_pres_manoEtalon = tmpResponse.debit
+        '                            Case 3
+        '                                oControle.up_pt3_pres_manoEtalon = tmpResponse.debit
+        '                            Case 4
+        '                                oControle.up_pt4_pres_manoEtalon = tmpResponse.debit
+        '                            Case 5
+        '                                oControle.up_pt5_pres_manoEtalon = tmpResponse.debit
+        '                            Case 6
+        '                                oControle.up_pt6_pres_manoEtalon = tmpResponse.debit
+        '                        End Select
+        '                    Else ' Decroissante
+        '                        Dim tmpId As Integer = tmpResponse.idBuse - Me.nbMesures
+        '                        Select Case tmpId
+        '                            Case 1
+        '                                oControle.down_pt1_pres_manoEtalon = tmpResponse.debit
+        '                            Case 2
+        '                                oControle.down_pt2_pres_manoEtalon = tmpResponse.debit
+        '                            Case 3
+        '                                oControle.down_pt3_pres_manoEtalon = tmpResponse.debit
+        '                            Case 4
+        '                                oControle.down_pt4_pres_manoEtalon = tmpResponse.debit
+        '                            Case 5
+        '                                oControle.down_pt5_pres_manoEtalon = tmpResponse.debit
+        '                            Case 6
+        '                                oControle.down_pt6_pres_manoEtalon = tmpResponse.debit
+        '                        End Select
+        '                    End If
+
+        '                Catch ex As Exception
+        '                    CSDebug.dispError("[x0C0004] : " & ex.Message)
+        '                End Try
+        '            End If
+        '        Catch ex As Exception
+        '            CSDebug.dispError("[x0C0003] : " & ex.Message.ToString)
+        '        End Try
+        '    Next
+        '    ' On vide la table d'échange
+        '    m_bsControle.ResetBindings(False)
+        '    'AcquiringManager.clearResults()
+        'Else
+        '    MsgBox("Le nombre de buses acquises est différent du nombre de mesures nécéssaires. Veuillez vérifiez.")
+        'End If
 
     End Sub
 
-    Public Sub doAcqiring()
-        _thread_doAcqiring = New Thread(AddressOf thr_doAcqiring) 'ThrFunc est la fonction exécutée par le thread.
+    Public Sub doAcquiring()
+        _thread_doAcqiring = New Thread(AddressOf thr_doAcquiring) 'ThrFunc est la fonction exécutée par le thread.
         _thread_doAcqiring.Name = "thr_doAcqiring" 'Il est parfois pratique de nommer les threads surtout si on en créé plusieurs.
         _thread_doAcqiring.Start() ' Démarrage du thread.
         _thread_doAcqiring.Join() ' Démarrage du thread.

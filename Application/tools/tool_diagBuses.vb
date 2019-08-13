@@ -12,11 +12,11 @@ Public Class tool_diagBuses
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         globFormToolBuses = Me
-        m_oRefBuses = New ReferentielBusesCSV()
+        'm_oRefBuses = New ReferentielBusesCSV()
 
     End Sub
     Public Sub New(ByVal _objInfos As Object, ByVal _formFichePedagogique As diagnostic_infosInspecteur)
-        Me.new()
+        Me.New()
     End Sub
 
     'La méthode substituée Dispose du formulaire pour nettoyer la liste des composants.
@@ -1611,7 +1611,7 @@ Public Class tool_diagBuses
         Try
 
             ' Récupération des variables
-            Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(frmDiagnostique))
+            Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(FrmDiagnostique))
             Dim tabCategories As TabControl = diagBuses_tab_categories
             tabCategories.TabPages.Clear()
             Dim nbCategories As Integer = diagBuses_conf_nbCategories.Text
@@ -2552,27 +2552,23 @@ Public Class tool_diagBuses
 #Region " Acquisition des données "
 
     Public Sub doAcqiring()
-        Dim isok As Boolean = AcquiringManager.checkNbBusesTool()
+        Dim isok As Boolean = True
         If isok Then
             ' On récupère les buses de la table d'échange
-            Dim arrBuses() As Acquiring = AcquiringManager.GetAcquiring()
+            Dim oModule As CRODIPAcquisition.ModuleAcq = CRODIPAcquisition.ModuleAcq.GetModule("MD2")
+            Dim arrBuses As List(Of CRODIPAcquisition.AcquisitionValue) = oModule.getValues()
             Dim curIdBuse As Integer = 0
             Dim prevIdNiveau As Integer = 0
-            For Each tmpResponse As Acquiring In arrBuses
+            For Each tmpResponse As CRODIPAcquisition.AcquisitionValue In arrBuses
                 Try
-                    If tmpResponse.idBuse <> 0 Then
+                    If tmpResponse.NumBuse <> 0 Then
                         ' On transmet le tout au diag
                         Try
-                            ' En cas de changement de niveau on remet d'idBuse à 0
-                            If tmpResponse.idNiveau <> prevIdNiveau Then
-                                curIdBuse = 0
-                            End If
-                            prevIdNiveau = tmpResponse.idNiveau
-                            curIdBuse += 1
+
 
                             Dim x As Control
-                            x = CSForm.getControlByName("diagBuses_mesureDebit_" & tmpResponse.idNiveau.ToString & "_" & curIdBuse & "_debit", globFormToolBuses)
-                            x.Text = tmpResponse.debit.ToString
+                            x = CSForm.getControlByName("diagBuses_mesureDebit_" & tmpResponse.Niveau & "_" & tmpResponse.NumBuse & "_debit", globFormToolBuses)
+                            x.Text = tmpResponse.Debit.ToString
                         Catch ex As Exception
                             CSDebug.dispError("tool_diagBuses.doAcquiring : " & ex.Message)
                         End Try
@@ -2582,7 +2578,7 @@ Public Class tool_diagBuses
                 End Try
             Next
             ' On vide la table d'échange
-            AcquiringManager.clearResults()
+            oModule.clearResults()
         Else
             MsgBox("Le nombre de buses saisi et le nombre de buses acquises est différent. Veuillez vérifiez.")
         End If

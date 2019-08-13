@@ -1,6 +1,6 @@
 ﻿Imports System.Collections.Generic
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmDiagnostique
+Partial Class FrmDiagnostique
     Inherits frmCRODIP
 
 

@@ -114,6 +114,27 @@ Public Class AcquisitionMD2
 
     End Sub
 
+    Public Function clearResults() As Boolean Implements ICRODIPAcquisition.clearResults
+        Dim bReturn As Boolean = False
+        Try
+            Dim oConn As OleDb.OleDbConnection
+            oConn = New OleDbConnection(My.Settings.BDD)
+            oConn.Open()
+            ' Initialisation de la DB
+            Dim ocmd As OleDbCommand
+            ocmd = oConn.CreateCommand()
+            Dim n As Integer = 0
+            ocmd.CommandText = String.Format("DELETE FROM tmpDataAcquiring ")
+            ocmd.ExecuteNonQuery()
+
+            oConn.Close()
+            bReturn = True
+        Catch ex As Exception
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
 
     'Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
     '    Dim oReturn As New List(Of AcquisitionValue)

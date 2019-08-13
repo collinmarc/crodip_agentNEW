@@ -4179,9 +4179,23 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 #End Region
 
 #Region " Acquisition des données "
-    Private Function CheckAcquisition() As Boolean
+    Private Function GetBanc() As Banc
+        Dim oReturn As Banc = Nothing
+
+        If buses_listBancs.SelectedItem IsNot Nothing Then
+            oReturn = BancManager.getBancById(buses_listBancs.SelectedItem.id())
+        End If
+
+        Return oReturn
+    End Function
+
+    Private Function CheckAcquisition(pBanc As Banc) As Boolean
+        Debug.Assert(pBanc IsNot Nothing)
         Dim bReturn As Boolean
         Try
+
+            Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
+            oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule(pBanc.ModuleAcquisition)
 
             'Récupération du nombre de niveau et du nombre de buses
             Dim nbNiveauDeclare As Integer = 0
@@ -4190,7 +4204,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 nbNiveauDeclare = CInt(diagBuses_conf_nbCategories.Text)
             End If
             'Vérification du nombre de niveau en acquisition
-            Dim nbNiveauAcquis As Integer = AcquiringManager.getNbNiveaux()
+            Dim nbNiveauAcquis As Integer = oModuleAcquisition.getNbNiveaux()
             bReturn = (nbNiveauAcquis = nbNiveauDeclare)
             If bReturn Then
                 'Vérification du nombre de buses en acquisition
@@ -4203,7 +4217,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     If tb.Text <> "" And IsNumeric(tb.Text) Then
                         nbBusesDeclare = CInt(tb.Text)
                     End If
-                    Dim nbBusesAcquis As Integer = AcquiringManager.getNbBuses(nNiveau)
+                    Dim nbBusesAcquis As Integer = oModuleAcquisition.getNbBuses(nNiveau)
                     bReturn = bReturn And (nbBusesDeclare = nbBusesAcquis)
                 Next
             End If
@@ -4220,7 +4234,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Sub doAcqiring()
+    Private Sub doAcquiring()
+        Dim obanc As Banc
+        obanc = GetBanc()
+        If obanc Is Nothing Then
+            Return
+        End If
+
         Dim isok As Boolean
         'Récupération du nombre de niveau et du nombre de buses
         Dim nbNiveauDeclare As Integer = 0
@@ -4228,31 +4248,77 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If diagBuses_conf_nbCategories.Text <> "" And IsNumeric(diagBuses_conf_nbCategories.Text) Then
             nbNiveauDeclare = CInt(diagBuses_conf_nbCategories.Text)
         End If
-        'Vérification du nombre de niveau en acquisition
-        isok = CheckAcquisition()
+        isok = CheckAcquisition(obanc)
         If isok Then
+            Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
+            oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule(obanc.ModuleAcquisition)
             ' On récupère les buses de la table d'échange
-            Dim arrBuses() As Acquiring = AcquiringManager.GetAcquiring()
-            Dim prevIdNiveau As Integer = 0
-            Dim curIdBuse As Integer = 0
-            For Each tmpResponse As Acquiring In arrBuses
-                If tmpResponse.idBuse <> 0 Then
+            Dim lstValues As List(Of CRODIPAcquisition.AcquisitionValue) = oModuleAcquisition.getValues()
+            For Each oValue As CRODIPAcquisition.AcquisitionValue In lstValues
+                If oValue.NumBuse <> 0 Then
                     ' On transmet le tout au diag
                     Try
 
-                        If tmpResponse.idNiveau <> prevIdNiveau Then
-                            curIdBuse = 0
-                        End If
-                        prevIdNiveau = tmpResponse.idNiveau
-                        curIdBuse += 1
 
                         Dim x As Control
-                        x = CSForm.getControlByName("diagBuses_mesureDebit_" & tmpResponse.idNiveau.ToString & "_" & curIdBuse & "_debit", globFormDiagnostic)
+                        x = CSForm.getControlByName("diagBuses_mesureDebit_" & oValue.Niveau.ToString & "_" & oValue.NumBuse & "_debit", globFormDiagnostic)
                         If x IsNot Nothing Then
-                            x.Text = tmpResponse.debit.ToString
-                            mutCalcUsure1Buse(tmpResponse.idNiveau, curIdBuse)
-                            mutCalcIs1BuseUsee(tmpResponse.idNiveau, curIdBuse)
+                            x.Text = oValue.Debit.ToString
+                            mutCalcUsure1Buse(oValue.Niveau, oValue.NumBuse)
+                            mutCalcIs1BuseUsee(oValue.Niveau, oValue.NumBuse)
                         End If
+                        If oValue.DebitNominal <> -1 Then
+                            'Debit Nominal constructeur
+                            x = CSForm.getControlByName("TextBox_debitNominalCONSTructeur_" & oValue.Niveau, diagBuses_tab_categories)
+                            If x IsNot Nothing Then
+                                x.Text = oValue.DebitNominal
+                            End If
+                            'Debit Nominal pour Calcul
+                            x = CSForm.getControlByName("TextBox_debitNominal_" & oValue.Niveau, diagBuses_tab_categories)
+                            If x IsNot Nothing Then
+                                x.Text = oValue.DebitNominal
+                            End If
+                        End If
+                        If oValue.MarqueTypeFonctionement <> "" Then
+                            Try
+                                Dim tab As String() = oValue.MarqueTypeFonctionement.Split("-")
+                                Dim strMarque As String = tab(0).Trim
+                                Dim strModele As String = tab(1).Trim
+                                Dim strFonction As String = tab(2).Trim
+
+                                x = CSForm.getControlByName("ComboBox_marque_" & oValue.Niveau, diagBuses_tab_categories)
+                                If x IsNot Nothing Then
+                                    x.Text = strMarque
+                                End If
+                                x = CSForm.getControlByName("ComboBox_modele_" & oValue.Niveau, diagBuses_tab_categories)
+                                If x IsNot Nothing Then
+                                    x.Text = strModele
+                                End If
+
+                            Catch
+
+                            End Try
+                        End If
+                        If oValue.Calibre <> "" Then
+                            Try
+                                Dim tab As String() = oValue.MarqueTypeFonctionement.Split("-")
+                                Dim strCouleur As String = tab(0).Trim
+                                Dim strCalibre As String = tab(1).Trim
+
+                                x = CSForm.getControlByName("ComboBox_couleur_" & oValue.Niveau, diagBuses_tab_categories)
+                                If x IsNot Nothing Then
+                                    x.Text = strCouleur
+                                End If
+                                x = CSForm.getControlByName("TextBox_calibre_" & oValue.Niveau, diagBuses_tab_categories)
+                                If x IsNot Nothing Then
+                                    x.Text = strCalibre
+                                End If
+
+                            Catch
+
+                            End Try
+                        End If
+
 
                     Catch ex As Exception
                         CSDebug.dispError("diagnostique.doAcquiring ERR 1 : " & ex.Message)
@@ -4260,20 +4326,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 End If
             Next
             ' On vide la table d'échange
-            AcquiringManager.clearResults()
+            oModuleAcquisition.clearResults()
             mutCalcDebitMoy()
             'Recalcul de l'usure des buses pour prendre en compte le debit nominal
-            curIdBuse = 0
-            prevIdNiveau = 0
-            For Each tmpResponse As Acquiring In arrBuses
-                If tmpResponse.idNiveau <> prevIdNiveau Then
-                    curIdBuse = 0
-                End If
-                prevIdNiveau = tmpResponse.idNiveau
-                curIdBuse += 1
-
-                mutCalcUsure1Buse(tmpResponse.idNiveau, curIdBuse)
-                mutCalcIs1BuseUsee(tmpResponse.idNiveau, curIdBuse)
+            For Each oValue As CRODIPAcquisition.AcquisitionValue In lstValues
+                mutCalcUsure1Buse(oValue.Niveau, oValue.NumBuse)
+                mutCalcIs1BuseUsee(oValue.Niveau, oValue.NumBuse)
             Next
 
             mutCalcNbBusesUsee()
@@ -7416,7 +7474,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             odlg.Show()
         Else
             'transfert des données de l'acquisition
-            doAcqiring()
+            doAcquiring()
 
         End If
 

@@ -4346,7 +4346,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 End If
             Next
             ' On vide la table d'échange
-            AcquiringManager.clearResults()
+            oModuleAcquisition.clearResults()
             mutCalcDebitMoy()
             'Recalcul de l'usure des buses pour prendre en compte le debit nominal
             For Each oValue As CRODIPAcquisition.AcquisitionValue In lstValues

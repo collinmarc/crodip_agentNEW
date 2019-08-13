@@ -145,4 +145,14 @@ Public Class ModuleAcq
         End If
         Return oReturn
     End Function
+
+    Public Function clearResults() As Boolean
+        Dim oModule As ICRODIPAcquisition
+        Dim bReturn As Boolean = False
+        oModule = createModuleAcquisition()
+        If oModule IsNot Nothing Then
+            bReturn = oModule.clearResults()
+        End If
+        Return bReturn
+    End Function
 End Class

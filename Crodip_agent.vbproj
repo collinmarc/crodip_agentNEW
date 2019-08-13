@@ -288,9 +288,6 @@
     <Compile Include="Application\agent\gestion_agent.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\agent\Manometres\frmControleManometres%28ADEL%29.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\agent\Manometres\gestion_manometres.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2006,9 +2003,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\agent\gestion_agent.resx">
       <DependentUpon>gestion_agent.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\agent\Manometres\frmControleManometres%28ADEL%29.resx">
-      <DependentUpon>frmControleManometres%28ADEL%29.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\agent\Manometres\gestion_manometres.resx">
       <DependentUpon>gestion_manometres.vb</DependentUpon>

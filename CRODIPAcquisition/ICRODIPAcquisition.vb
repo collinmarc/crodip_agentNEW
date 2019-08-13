@@ -3,6 +3,7 @@
     Function GetNbNiveaux() As Integer
     Function GetNbBuses(pNiveau As Integer) As Integer
     Sub FTO_SaveData(plst As List(Of AcquisitionValue))
+    Function clearResults() As Boolean
 
 
 End Interface
