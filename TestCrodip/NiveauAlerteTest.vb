@@ -15,7 +15,7 @@ Imports System.Collections.Generic
         oNiveau.Rouge = 20
         oNiveau.Orange = 10
         oNiveau.Jaune = 5
-        oNiveau.EcartTolere = 7.5
+        oNiveau.EcartTolere = 7.5D
         oLst.Add(oNiveau)
 
         oNiveau = New NiveauAlerte
@@ -24,7 +24,7 @@ Imports System.Collections.Generic
         oNiveau.Rouge = 120
         oNiveau.Orange = 110
         oNiveau.Jaune = 15
-        oNiveau.EcartTolere = 17.5
+        oNiveau.EcartTolere = 17.5D
         oLst.Add(oNiveau)
 
         Assert.IsTrue(NiveauAlerte.FTO_writeXml(oLst, "Test.xml"))
@@ -40,7 +40,7 @@ Imports System.Collections.Generic
         oNiveau.Rouge = 20
         oNiveau.Orange = 10
         oNiveau.Jaune = 5
-        oNiveau.EcartTolere = 7.5
+        oNiveau.EcartTolere = 7.5D
         oLst.Add(oNiveau)
         oNiveau = New NiveauAlerte
         oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.ManometreControle
@@ -48,7 +48,7 @@ Imports System.Collections.Generic
         oNiveau.Rouge = 120
         oNiveau.Orange = 110
         oNiveau.Jaune = 15
-        oNiveau.EcartTolere = 17.5
+        oNiveau.EcartTolere = 17.5D
         oLst.Add(oNiveau)
 
         Assert.IsTrue(NiveauAlerte.FTO_writeXml(oLst, "Test.xml"))

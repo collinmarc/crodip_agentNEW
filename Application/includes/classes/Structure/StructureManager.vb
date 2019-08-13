@@ -8,7 +8,7 @@ Public Class StructureManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object = Nothing
+            Dim objWSCrodip_response As new Object 
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetStructure(agentCourant.id, structuree_id, objWSCrodip_response)
             Select Case codeResponse
@@ -274,7 +274,7 @@ Public Class StructureManager
 
     Private Shared Sub createStructure(ByVal structuree_id As String)
         Try
-            Dim oCSDb As CSDb = Nothing
+            Dim oCsdb As CSDb = Nothing
             oCSDb = New CSDb(True)
             Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
 
@@ -458,7 +458,7 @@ Public Class StructureManager
 
     Public Shared Function delete(ByVal pStructureID As Integer) As Boolean
         Debug.Assert(pStructureID > 0, " le paramètre StructureID doit être initialisé")
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean

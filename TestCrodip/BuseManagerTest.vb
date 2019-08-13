@@ -32,7 +32,7 @@ Public Class BuseManagerTest
         objBuse.pressionEtalonnage = 16.5
         objBuse.AgentSuppression = m_oAgent.nom
         objBuse.RaisonSuppression = "MaRaison"
-        objBuse.dateSuppression = CDate("06/02/1964")
+        objBuse.DateSuppression = "06/02/1964"
 
         Assert.AreEqual(objBuse.idCrodip, "MonBuse")
         Assert.AreEqual(objBuse.idStructure, m_oAgent.idStructure)
@@ -67,7 +67,7 @@ Public Class BuseManagerTest
         objBuse2.isSupprime = False
         objBuse2.AgentSuppression = "MonAgentSuppression"
         objBuse2.RaisonSuppression = "MaRaison2"
-        objBuse2.dateSuppression = CDate("06/02/1965")
+        objBuse2.DateSuppression = CDate("06/02/1965").ToShortDateString()
 
         Assert.IsTrue(BuseManager.save(objBuse2))
 
@@ -94,7 +94,6 @@ Public Class BuseManagerTest
         Dim oBuse2 As Buse
         Dim bReturn As Boolean
         Dim idBuse As String
-        Dim UpdatedObject As Object
 
         'Creation d'un Buse
         oBuse = New Buse()
@@ -114,7 +113,7 @@ Public Class BuseManagerTest
         oBuse.RaisonSuppression = "MaRaison"
         Assert.IsTrue(BuseManager.save(oBuse))
 
-        Dim response As Integer = BuseManager.sendWSBuse(oBuse, UpdatedObject)
+        Dim response As Integer = BuseManager.sendWSBuse(oBuse)
         Assert.IsTrue(response = 0 Or response = 2)
 
         oBuse2 = BuseManager.getWSBuseById(oBuse.numeroNational)
@@ -141,7 +140,6 @@ Public Class BuseManagerTest
         Dim oBuse2 As Buse
         Dim bReturn As Boolean
         Dim idBuse As String
-        Dim UpdatedObject As Object
 
         'Creation d'un Buse
         oBuse = New Buse()
@@ -159,7 +157,7 @@ Public Class BuseManagerTest
         oBuse = BuseManager.getBuseByNumeroNational(oBuse.numeroNational)
         Assert.AreEqual("1899-12-30 00:00:00", oBuse.DateSuppression)
 
-        Dim response As Integer = BuseManager.sendWSBuse(oBuse, UpdatedObject)
+        Dim response As Integer = BuseManager.sendWSBuse(oBuse)
         Assert.IsTrue(response = 0 Or response = 2)
 
         oBuse2 = BuseManager.getWSBuseById(oBuse.numeroNational)
@@ -177,7 +175,6 @@ Public Class BuseManagerTest
         Dim objBuse2 As Buse
         Dim bReturn As Boolean
         Dim idBuse As String
-        Dim UpdatedObject As Object
 
         'Creation d'un Buse
         objBuse = New Buse()
@@ -215,7 +212,6 @@ Public Class BuseManagerTest
         Dim objBuse As Buse = Nothing
         Dim expected As Object = Nothing
         Dim objBuse2 As Buse
-        Dim UpdatedObject As Object
 
         objBuse = New Buse()
         objBuse.idCrodip = "MonBuse"
@@ -247,7 +243,7 @@ Public Class BuseManagerTest
         Assert.AreEqual(objBuse.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse.pressionEtalonnage, 16.5)
 
-        BuseManager.sendWSBuse(objBuse, UpdatedObject)
+        BuseManager.sendWSBuse(objBuse)
 
         objBuse2 = BuseManager.getWSBuseById(objBuse.numeroNational)
         Assert.AreEqual(objBuse2.debitEtalonnage, 15.5)
@@ -320,36 +316,36 @@ Public Class BuseManagerTest
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
 
         Assert.IsTrue(BuseManager.save(oBuse))
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure)
+        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString)
         Assert.AreEqual(1, tabBuse.Count)
 
         'Suppression du Buse
         oBuse.isSupprime = True
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure)
+        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString)
         Assert.AreEqual(0, tabBuse.Count)
 
         'Buse Jamais Servi
         oBuse.isSupprime = False
         oBuse.JamaisServi = True
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure, True)
+        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString, True)
         Assert.AreEqual(0, tabBuse.Count)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure, False)
+        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString, False)
         Assert.AreEqual(0, tabBuse.Count)
 
         oBuse.JamaisServi = False 'Le Buse n'a pas jamaisservi => il est actif
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure, True)
+        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString, True)
         Assert.AreEqual(1, tabBuse.Count)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure)
+        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString)
         Assert.AreEqual(1, tabBuse.Count)
 
         oBuse.etat = False 'Buse non controlé
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure, True)
+        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString, True)
         Assert.AreEqual(1, tabBuse.Count)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure)
+        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString)
         Assert.AreEqual(0, tabBuse.Count)
 
 
@@ -371,17 +367,17 @@ Public Class BuseManagerTest
         BuseManager.save(oBuse)
 
         'Vérification que le Buse n'est pas dans les liste des jamais servi
-        Assert.AreEqual(0, BuseManager.getBusesEtalonByStructureIdJamaisServi(m_oAgent.idStructure).Count)
+        Assert.AreEqual(0, BuseManager.getBusesEtalonByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
 
         oBuse.JamaisServi = True
         BuseManager.save(oBuse)
         'Vérification que le Buse est dans la liste des jamais servi
-        Assert.AreEqual(1, BuseManager.getBusesEtalonByStructureIdJamaisServi(m_oAgent.idStructure).Count)
+        Assert.AreEqual(1, BuseManager.getBusesEtalonByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
 
         oBuse.JamaisServi = False
         BuseManager.save(oBuse)
         'Vérification que le Buse n'est plus dans la liste des jamais servi
-        Assert.AreEqual(0, BuseManager.getBusesEtalonByStructureIdJamaisServi(m_oAgent.idStructure).Count)
+        Assert.AreEqual(0, BuseManager.getBusesEtalonByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
 
         BuseManager.delete(idBuse)
     End Sub
@@ -440,7 +436,7 @@ Public Class BuseManagerTest
         oNiveau.Rouge = 120
         oNiveau.Orange = 110
         oNiveau.Jaune = 15
-        oNiveau.EcartTolere = 17.5
+        oNiveau.EcartTolere = 17.5D
         oLst.Add(oNiveau)
         oNiveau = New NiveauAlerte
         oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Buse
@@ -456,17 +452,17 @@ Public Class BuseManagerTest
 
         Dim oBuse As Buse
         oBuse = New Buse
-        oBuse.dateAchat = Now
+        oBuse.dateAchat = Now.ToShortDateString()
         Assert.AreEqual(Globals.ALERTE.NONE, oBuse.getAlerte())
 
-        oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -37, Now)
+        oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -37, Now).ToString()
         Assert.AreEqual(Globals.ALERTE.NOIRE, oBuse.getAlerte())
 
-        oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -31, Now)
+        oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -31, Now).ToShortDateString()
         Assert.AreEqual(Globals.ALERTE.ROUGE, oBuse.getAlerte())
 
 
-        oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -29, Now)
+        oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -29, Now).ToShortDateString()
         Assert.AreEqual(Globals.ALERTE.NONE, oBuse.getAlerte())
 
     End Sub

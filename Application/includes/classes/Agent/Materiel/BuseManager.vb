@@ -32,11 +32,12 @@ Public Class BuseManager
 
     End Function
 
-    Public Shared Function sendWSBuse(ByVal buse As Buse, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSBuse(ByVal buse As Buse) As Integer
         Try
             ' Appel au Web Service
+            Dim UpdatedObject As New Object()
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Return objWSCrodip.SendBuse(agentCourant.id, buse, updatedObject)
+            Return objWSCrodip.SendBuse(agentCourant.id, buse, UpdatedObject)
         Catch ex As Exception
             Return -1
         End Try
@@ -64,7 +65,7 @@ Public Class BuseManager
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Shared Function getNewNumeroNationalforTestOnly(ByVal agentCourant As Agent) As String
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         ' déclarations
         Dim tmpObjectId As String = agentCourant.idStructure & "-" & agentCourant.id & "-1"
@@ -104,7 +105,7 @@ Public Class BuseManager
 
     Public Shared Function save(ByVal objBuseEtalon As Buse, Optional bSynchro As Boolean = False) As Boolean
 
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
 
@@ -200,7 +201,7 @@ Public Class BuseManager
 
     Public Shared Function getBuseByNumeroNational(ByVal buse_id As String) As Buse
         ' déclarations
-        Dim oCSDb As CSDb = Nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         Dim tmpBuse As New Buse
@@ -313,7 +314,7 @@ Public Class BuseManager
     ''' <remarks></remarks>
     Private Shared Function createBuse(ByVal buse_id As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(buse_id), "l'Id doit être renseignée")
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Try
@@ -343,7 +344,7 @@ Public Class BuseManager
     ''' <remarks></remarks>
     Public Shared Function getMaterielsSupprimes(ByVal pIdStructure As String) As Collection
         Dim colReturn As New Collection()
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim oDataReader As System.Data.OleDb.OleDbDataReader
         Try
@@ -384,7 +385,7 @@ Public Class BuseManager
     Public Shared Function getUpdates(ByVal agent As Agent) As Buse()
         ' déclarations
         Dim arrItems(0) As Buse
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         Try
@@ -429,7 +430,7 @@ Public Class BuseManager
 #End Region
     Public Shared Function delete(ByVal pNumeroNational As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pNumeroNational), " le paramètre NumeroNational doit être initialisé")
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
@@ -453,7 +454,7 @@ Public Class BuseManager
     Public Shared Function getBusesEtalonByStructureId(ByVal pIdStructure As String, Optional ByVal isShowAll As Boolean = False) As List(Of Buse)
 
         Dim lstResponse As New List(Of Buse)
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         If pIdStructure <> "" Then
 
@@ -500,7 +501,7 @@ Public Class BuseManager
 
     Public Shared Function getBusesEtalonByStructureIdJamaisServi(ByVal pIdStructure As String) As List(Of Buse)
         Dim arrResponse As New List(Of Buse)
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         If pIdStructure <> "" Then
 

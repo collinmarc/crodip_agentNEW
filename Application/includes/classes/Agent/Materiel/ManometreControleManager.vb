@@ -3,13 +3,13 @@ Public Class ManometreControleManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSManometreControleById(pAgent As Agent, ByVal manometrecontrole_id As String) As Object
+    Public Shared Function getWSManometreControleById(pAgent As Agent, ByVal manometrecontrole_id As String) As ManometreControle
         Dim objManometreControle As New ManometreControle
         Try
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetManometreControle(pAgent.id, manometrecontrole_id, objWSCrodip_response)
             Select Case codeResponse
@@ -267,7 +267,7 @@ Public Class ManometreControleManager
     ''' <remarks></remarks>
     Public Shared Function getMaterielsSupprimes(ByVal pIdStructure As String) As Collection
         Dim colReturn As New Collection()
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand = Nothing
         Dim oDataReader As System.Data.OleDb.OleDbDataReader
         Try
@@ -367,7 +367,7 @@ Public Class ManometreControleManager
 #Region " - Suppression - "
     Public Shared Function delete(ByVal pNumeroNational As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pNumeroNational), " le paramètre pID doit être initialisé")
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean

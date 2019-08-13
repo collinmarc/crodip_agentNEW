@@ -429,8 +429,7 @@ Public Class SynchronisationElmt
                         'Recalcul de l'état des buses après synhcro
                         If oBuseE.getAlerte() = Globals.ALERTE.NOIRE Then
                             oBuseE.Desactiver()
-                            Dim obj As Object
-                            BuseManager.sendWSBuse(oBuseE, obj)
+                            BuseManager.sendWSBuse(oBuseE)
                         Else
                             oBuseE.etat = True
                         End If

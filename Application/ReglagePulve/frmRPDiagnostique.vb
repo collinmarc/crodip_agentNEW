@@ -3,7 +3,7 @@
     Implements IfrmCRODIP
 
 
-    Public Sub refresh()
+    Public Overrides Sub refresh()
         Formload()
     End Sub
     ''' <summary>

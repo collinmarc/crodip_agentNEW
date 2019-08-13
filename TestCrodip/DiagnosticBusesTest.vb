@@ -70,7 +70,6 @@ Public Class DiagnosticBusesTest
 
         DiagnosticBusesManager.save(oDiagBuse)
         iD = oDiagBuse.id
-        Assert.IsFalse(String.IsNullOrEmpty(oDiagBuse.id))
         oDiagBuse = DiagnosticBusesManager.getDiagnosticBusesById(oDiagBuse.id, oDiagBuse.idDiagnostic)
 
         Assert.AreEqual(oDiagBuse.id, iD)
@@ -117,7 +116,6 @@ Public Class DiagnosticBusesTest
         Dim odiag As Diagnostic
 
         Dim oDiagBuse As DiagnosticBuses
-        Dim iD As Integer
 
         odiag = New Diagnostic()
         odiag.id = "99-99"
@@ -136,14 +134,14 @@ Public Class DiagnosticBusesTest
         Dim oDiagBuseDetail As DiagnosticBusesDetail
         oDiagBuseDetail = New DiagnosticBusesDetail()
         oDiagBuseDetail.idBuse = 1
-        oDiagBuseDetail.idLot = 1
+        oDiagBuseDetail.idLot = "1"
         oDiagBuseDetail.debit = "1,6"
         oDiagBuseDetail.ecart = "0.67"
         oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         oDiagBuseDetail = New DiagnosticBusesDetail()
         oDiagBuseDetail.idBuse = 2
-        oDiagBuseDetail.idLot = 1
+        oDiagBuseDetail.idLot = "1"
         oDiagBuseDetail.debit = "1,6"
         oDiagBuseDetail.ecart = "0.67"
         oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
@@ -220,9 +218,9 @@ Public Class DiagnosticBusesTest
         odiag.controleIsPreControleProfessionel = True
         odiag.controleIsAutoControle = True
         odiag.proprietaireRepresentant = "REP1"
-        odiag.dateModificationCrodip = CDate("06/02/1964")
+        odiag.dateModificationCrodip = CDate("06/02/1964").ToShortDateString()
         odiag.controleEtat = Diagnostic.controleEtatNOKCV
-        odiag.controleDateFin = Date.Today
+        odiag.controleDateFin = Date.Today.ToShortDateString()
         odiag.pulverisateurEmplacementIdentification = "DERRIERE"
         odiag.controleManoControleNumNational = "TEST"
         odiag.controleNbreNiveaux = 2
@@ -313,7 +311,7 @@ Public Class DiagnosticBusesTest
 
         'on Simule la date de dernière synchro de l'agent à -1 munites
         '======================================
-        m_oAgent.dateDerniereSynchro = CDate(odiag.dateModificationAgent).AddMinutes(-1)
+        m_oAgent.dateDerniereSynchro = CDate(odiag.dateModificationAgent).AddMinutes(-1).ToShortDateString()
         AgentManager.save(m_oAgent)
 
         'Suppression du diag par sécurité 
@@ -481,7 +479,7 @@ Public Class DiagnosticBusesTest
         'Ajout du lot2 dans le diag
         oDiagBuseList.Liste.Add(oDiagBuse)
 
-        Dim response() As Object
+        Dim response As New Object
 
         Dim nResponse As Integer = DiagnosticBusesManager.sendWSDiagnosticBuses(agentCourant, oDiagBuseList, response)
 

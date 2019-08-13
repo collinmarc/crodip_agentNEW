@@ -66,8 +66,7 @@ Public Class DiagnosticBusesDetailTest
 
         DiagnosticBusesDetailManager.save(oDiagBuse)
         iD = oDiagBuse.id
-        Assert.IsFalse(String.IsNullOrEmpty(oDiagBuse.id))
-        oDiagBuse = DiagnosticBusesDetailManager.getDiagnosticBusesDetailById(oDiagBuse.id, oDiagBuse.idDiagnostic)
+        oDiagBuse = DiagnosticBusesDetailManager.getDiagnosticBusesDetailById(oDiagBuse.id.ToString, oDiagBuse.idDiagnostic.ToString)
 
         Assert.AreEqual(oDiagBuse.id, iD)
         Assert.AreEqual(oDiagBuse.idDiagnostic, "99")
@@ -82,7 +81,7 @@ Public Class DiagnosticBusesDetailTest
         oDiagBuse.debit = "debit2"
         oDiagBuse.ecart = "ecart2"
         DiagnosticBusesDetailManager.save(oDiagBuse)
-        oDiagBuse = DiagnosticBusesDetailManager.getDiagnosticBusesDetailById(oDiagBuse.id, oDiagBuse.idDiagnostic)
+        oDiagBuse = DiagnosticBusesDetailManager.getDiagnosticBusesDetailById(oDiagBuse.id.ToString, oDiagBuse.idDiagnostic.ToString)
 
         Assert.AreEqual(oDiagBuse.id, iD)
         Assert.AreEqual(oDiagBuse.idDiagnostic, "99")
@@ -91,7 +90,7 @@ Public Class DiagnosticBusesDetailTest
         Assert.AreEqual(oDiagBuse.debit, "debit2")
         Assert.AreEqual(oDiagBuse.ecart, "ecart2")
 
-        DiagnosticBusesDetailManager.delete(oDiagBuse.id, oDiagBuse.idDiagnostic)
+        DiagnosticBusesDetailManager.delete(oDiagBuse.id.ToString, oDiagBuse.idDiagnostic.ToString)
 
 
     End Sub

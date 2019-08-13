@@ -28,7 +28,7 @@ Public Class ManometreControleManagerTest
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"
-        objManometreControle.dateSuppression = CDate("06/02/1964")
+        objManometreControle.DateSuppression = "06/02/1964"
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
 
@@ -66,7 +66,7 @@ Public Class ManometreControleManagerTest
         objManometreControle2.isSupprime = False
         objManometreControle2.AgentSuppression = "MonAgentSuppression"
         objManometreControle2.RaisonSuppression = "MaRaison2"
-        objManometreControle2.dateSuppression = CDate("06/02/1965")
+        objManometreControle2.DateSuppression = CDate("06/02/1965").ToShortDateString()
         objManometreControle2.nbControles = 6
         objManometreControle2.nbControlesTotal = 16
         objManometreControle2.idCrodip = "MonManometreControle2"
@@ -103,7 +103,7 @@ Public Class ManometreControleManagerTest
         Dim oManometreControle2 As ManometreControle
         Dim bReturn As Boolean
         Dim idManometreControle As String
-        Dim UpdatedObject As Object
+        Dim UpdatedObject As New Object
 
         'Creation d'un ManometreControle
         oManometreControle = New ManometreControle()
@@ -191,7 +191,7 @@ Public Class ManometreControleManagerTest
         Dim oManoControle2 As ManometreControle
         Dim bReturn As Boolean
         Dim idManoControle As String
-        Dim UpdatedObject As Object
+        Dim UpdatedObject As New Object
 
         'Creation d'un ManoControle
         oManoControle = New ManometreControle()
@@ -260,8 +260,6 @@ Public Class ManometreControleManagerTest
     <TestMethod()>
     Public Sub GetManoCByStructureTest()
         Dim oManometreControle As ManometreControle
-        Dim oManometreControle2 As ManometreControle
-        Dim bReturn As Boolean
         Dim idManometreControle As String
         Dim lstMano As List(Of ManometreControle)
 
@@ -286,61 +284,61 @@ Public Class ManometreControleManagerTest
         Assert.IsTrue(ManometreControleManager.save(oManometreControle))
 
 
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure)
+        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString)
         Assert.AreEqual(1, lstMano.Count)
 
         'Suppression du banc
         oManometreControle.isSupprime = True
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure)
+        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString)
         Assert.AreEqual(0, lstMano.Count)
 
         oManometreControle.isSupprime = False
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure)
+        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString)
         Assert.AreEqual(1, lstMano.Count)
 
         'banc Jamais Servi
         oManometreControle.isSupprime = False
         oManometreControle.JamaisServi = True
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure, True)
+        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString, True)
         Assert.AreEqual(0, lstMano.Count)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure, False)
+        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString, False)
         Assert.AreEqual(0, lstMano.Count)
 
         oManometreControle.JamaisServi = False 'Le Mano n'a pas jamaisservi => il est actif
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure, True)
+        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString, True)
         Assert.AreEqual(1, lstMano.Count)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure)
+        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString)
         Assert.AreEqual(1, lstMano.Count)
 
         oManometreControle.etat = False 'Mano non controlé
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure, True)
+        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString, True)
         Assert.AreEqual(1, lstMano.Count)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure)
+        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString)
         Assert.AreEqual(0, lstMano.Count)
 
         oManometreControle.JamaisServi = False 'Le Mano n'a pas jamaisservi => il est actif
         oManometreControle.etat = False 'Mano non controlé
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure)
+        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString)
         Assert.AreEqual(0, lstMano.Count)
         oManometreControle.etat = True 'Mano controlé
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure)
+        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString)
         Assert.AreEqual(0, lstMano.Count)
 
         oManometreControle.JamaisServi = True 'Le Mano n'a jamaisservi 
         oManometreControle.etat = False 'Mano non controlé
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure)
+        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString)
         Assert.AreEqual(1, lstMano.Count)
         oManometreControle.etat = True 'Mano controlé
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure)
+        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString)
         Assert.AreEqual(1, lstMano.Count)
 
         ManometreControleManager.delete(idManometreControle)
@@ -362,17 +360,17 @@ Public Class ManometreControleManagerTest
         ManometreControleManager.save(pMano)
 
         'Vérification que le banc n'est pas dans les liste des jamais servi
-        Assert.AreEqual(0, ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure).Count)
+        Assert.AreEqual(0, ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
 
         pMano.JamaisServi = True
         ManometreControleManager.save(pMano)
         'Vérification que le banc est dans la liste des jamais servi
-        Assert.AreEqual(1, ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure).Count)
+        Assert.AreEqual(1, ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
 
         pMano.JamaisServi = False
         ManometreControleManager.save(pMano)
         'Vérification que le banc n'est plus dans la liste des jamais servi
-        Assert.AreEqual(0, ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure).Count)
+        Assert.AreEqual(0, ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
 
         ManometreControleManager.delete(idMano)
     End Sub

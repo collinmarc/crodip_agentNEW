@@ -1,3 +1,5 @@
+Imports System.Collections.Generic
+Imports System.Linq
 Public Class fiche_banc
     Inherits System.Windows.Forms.Form
 
@@ -7,6 +9,8 @@ Public Class fiche_banc
     Friend WithEvents imagesEtatMateriel As System.Windows.Forms.ImageList
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents pbEtat As System.Windows.Forms.PictureBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents cbxModulesAcquisition As ComboBox
     Friend WithEvents btnActiver As System.Windows.Forms.Button
 
 
@@ -76,6 +80,8 @@ Public Class fiche_banc
         Me.Label5 = New System.Windows.Forms.Label()
         Me.pbEtat = New System.Windows.Forms.PictureBox()
         Me.btnActiver = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cbxModulesAcquisition = New System.Windows.Forms.ComboBox()
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -157,7 +163,7 @@ Public Class fiche_banc
         '
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(-21, 176)
+        Me.Label7.Location = New System.Drawing.Point(-21, 205)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(157, 16)
         Me.Label7.TabIndex = 14
@@ -168,7 +174,7 @@ Public Class fiche_banc
         '
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(-6, 200)
+        Me.Label8.Location = New System.Drawing.Point(-6, 229)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(144, 16)
         Me.Label8.TabIndex = 14
@@ -179,7 +185,7 @@ Public Class fiche_banc
         '
         Me.ficheBanc_dateActivation.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ficheBanc_dateActivation.ForeColor = System.Drawing.Color.Black
-        Me.ficheBanc_dateActivation.Location = New System.Drawing.Point(157, 179)
+        Me.ficheBanc_dateActivation.Location = New System.Drawing.Point(157, 208)
         Me.ficheBanc_dateActivation.Name = "ficheBanc_dateActivation"
         Me.ficheBanc_dateActivation.Size = New System.Drawing.Size(160, 16)
         Me.ficheBanc_dateActivation.TabIndex = 14
@@ -189,7 +195,7 @@ Public Class fiche_banc
         '
         Me.ficheBanc_dateControle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ficheBanc_dateControle.ForeColor = System.Drawing.Color.Black
-        Me.ficheBanc_dateControle.Location = New System.Drawing.Point(157, 200)
+        Me.ficheBanc_dateControle.Location = New System.Drawing.Point(157, 229)
         Me.ficheBanc_dateControle.Name = "ficheBanc_dateControle"
         Me.ficheBanc_dateControle.Size = New System.Drawing.Size(160, 16)
         Me.ficheBanc_dateControle.TabIndex = 14
@@ -250,7 +256,7 @@ Public Class fiche_banc
         '
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(32, 157)
+        Me.Label5.Location = New System.Drawing.Point(32, 186)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(104, 16)
         Me.Label5.TabIndex = 15
@@ -259,7 +265,7 @@ Public Class fiche_banc
         '
         'pbEtat
         '
-        Me.pbEtat.Location = New System.Drawing.Point(160, 155)
+        Me.pbEtat.Location = New System.Drawing.Point(160, 184)
         Me.pbEtat.Name = "pbEtat"
         Me.pbEtat.Size = New System.Drawing.Size(20, 18)
         Me.pbEtat.TabIndex = 16
@@ -267,17 +273,39 @@ Public Class fiche_banc
         '
         'btnActiver
         '
-        Me.btnActiver.Location = New System.Drawing.Point(196, 155)
+        Me.btnActiver.Location = New System.Drawing.Point(196, 184)
         Me.btnActiver.Name = "btnActiver"
         Me.btnActiver.Size = New System.Drawing.Size(60, 21)
         Me.btnActiver.TabIndex = 17
         Me.btnActiver.Text = "Activer"
         Me.btnActiver.UseVisualStyleBackColor = True
         '
+        'Label4
+        '
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(8, 144)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(139, 16)
+        Me.Label4.TabIndex = 18
+        Me.Label4.Text = "Module d'acquisition :"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'cbxModulesAcquisition
+        '
+        Me.cbxModulesAcquisition.Enabled = False
+        Me.cbxModulesAcquisition.Location = New System.Drawing.Point(160, 143)
+        Me.cbxModulesAcquisition.Name = "cbxModulesAcquisition"
+        Me.cbxModulesAcquisition.Size = New System.Drawing.Size(256, 21)
+        Me.cbxModulesAcquisition.Sorted = True
+        Me.cbxModulesAcquisition.TabIndex = 19
+        '
         'fiche_banc
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(441, 326)
+        Me.Controls.Add(Me.cbxModulesAcquisition)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btnActiver)
         Me.Controls.Add(Me.pbEtat)
         Me.Controls.Add(Me.Label5)
@@ -316,6 +344,16 @@ Public Class fiche_banc
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
         MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_BANC, ficheBanc_marque)
+        'Chargement des modules d'acquisisition
+        Dim olstModules As New List(Of CRODIPAcquisition.ModuleAcq)
+
+        olstModules = CRODIPAcquisition.ModuleAcq.GetlstModules()
+
+        For Each oMod As CRODIPAcquisition.ModuleAcq In olstModules
+            cbxModulesAcquisition.Items.Add(oMod.Nom)
+        Next
+
+
         dispBancCourant()
     End Sub
     Private Sub dispBancCourant()
@@ -331,7 +369,7 @@ Public Class fiche_banc
                 ficheBanc_dateAchat.Enabled = False
                 ficheBanc_dateAchat.Visible = False
             End If
-            If BancCourant.jamaisServi Then
+            If BancCourant.JamaisServi Then
                 pbEtat.Image = imagesEtatMateriel.Images(2) 'Gris
             Else
                 If BancCourant.etat Then
@@ -340,13 +378,14 @@ Public Class fiche_banc
                     pbEtat.Image = imagesEtatMateriel.Images(0) 'Rouge
                 End If
             End If
-            btnActiver.Visible = BancCourant.jamaisServi
+            btnActiver.Visible = BancCourant.JamaisServi
             If Not CSDate.isDateNull(BancCourant.DateActivation) Then
                 ficheBanc_dateActivation.Text = CSDate.mysql2access(BancCourant.DateActivation)
             End If
             If Not CSDate.isDateNull(BancCourant.dateDernierControleS) Then
                 ficheBanc_dateControle.Text = CSDate.mysql2access(BancCourant.dateDernierControleS)
             End If
+            cbxModulesAcquisition.Text = BancCourant.ModuleAcquisition
 
         Catch ex As Exception
             CSDebug.dispError("fiche_banc.dispBancCourant ERR" & ex.Message)
@@ -365,6 +404,7 @@ Public Class fiche_banc
                 '                BancCourant.id = ficheBanc_id.Text
                 BancCourant.marque = ficheBanc_marque.Text
                 BancCourant.modele = ficheBanc_modele.Text
+                BancCourant.ModuleAcquisition = cbxModulesAcquisition.Text
                 If (ficheBanc_dateAchat.Visible) Then
                     BancCourant.dateAchat = CSDate.mysql2access(ficheBanc_dateAchat.Value)
                 End If

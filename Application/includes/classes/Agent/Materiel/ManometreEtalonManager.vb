@@ -9,7 +9,7 @@ Public Class ManometreEtalonManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetManometreEtalon(pAgent.id, manometreetalon_id, objWSCrodip_response)
             Select Case codeResponse
@@ -34,8 +34,9 @@ Public Class ManometreEtalonManager
 
     End Function
 
-    Public Shared Function sendWSManometreEtalon(pAgent As Agent, ByVal manometreetalon As ManometreEtalon, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSManometreEtalon(pAgent As Agent, ByVal manometreetalon As ManometreEtalon) As Integer
         Try
+            Dim updatedObject As New Object
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Return objWSCrodip.SendManometreEtalon(pAgent.id, manometreetalon, updatedObject)
@@ -102,7 +103,7 @@ Public Class ManometreEtalonManager
     Public Shared Function save(ByVal objManometreEtalon As ManometreEtalon, Optional bSyncro As Boolean = False) As Boolean
 
         Dim paramsQuery As String = ""
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bReturn As Boolean
         Try
             If objManometreEtalon.numeroNational <> "" Then
@@ -229,7 +230,7 @@ Public Class ManometreEtalonManager
     Public Shared Function getManometreEtalonByNumeroNational(ByVal pNumeroNational As String) As ManometreEtalon
         ' déclarations
         Dim tmpManometreEtalon As New ManometreEtalon
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         If pNumeroNational <> "" Then
             oCSDB = New CSDb(True)
             Dim bddCommande As OleDb.OleDbCommand
@@ -269,7 +270,7 @@ Public Class ManometreEtalonManager
         ' déclarations
         Dim tmpManometreEtalon As ManometreEtalon
         Dim lstManometreEtalon As New List(Of ManometreEtalon)
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         oCSDB = New CSDb(True)
         Dim bddCommande As OleDb.OleDbCommand
         bddCommande = oCSDB.getConnection().CreateCommand()
@@ -314,7 +315,7 @@ Public Class ManometreEtalonManager
         ' déclarations
         Dim tmpManometreEtalon As ManometreEtalon
         Dim lstManometreEtalon As New List(Of ManometreEtalon)
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         oCSDB = New CSDb(True)
         Dim bddCommande As OleDb.OleDbCommand
         bddCommande = oCSDB.getConnection().CreateCommand()
@@ -358,7 +359,7 @@ Public Class ManometreEtalonManager
     ''' <remarks></remarks>
     Public Shared Function getMaterielsSupprimes(ByVal pIdStructure As String) As Collection
         Dim colReturn As New Collection()
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim oDataReader As System.Data.OleDb.OleDbDataReader
         Try
@@ -415,7 +416,7 @@ Public Class ManometreEtalonManager
 
     Public Shared Function delete(ByVal pNumeroNational As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pNumeroNational), " le paramètre pNumeroNational doit être initialisé")
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
@@ -443,7 +444,7 @@ Public Class ManometreEtalonManager
 
     Private Shared Function createManometreEtalon(ByVal manometreetalon_id As String) As Boolean
         Dim bReturn As Boolean
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Try
             Dim bddCommande As OleDb.OleDbCommand
             oCSDB = New CSDb(True)
@@ -468,7 +469,7 @@ Public Class ManometreEtalonManager
     Public Shared Function getUpdates(ByVal agent As Agent) As ManometreEtalon()
         ' déclarations
         Dim arrItems(0) As ManometreEtalon
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Try
             oCSDB = New CSDb(True)
             Dim bddCommande As OleDb.OleDbCommand

@@ -64,8 +64,7 @@ Public Class DiagnosticTroncons833Test
 
         DiagnosticTroncons833Manager.save(oDiagTroncons833)
         iD = oDiagTroncons833.id
-        Assert.IsFalse(String.IsNullOrEmpty(oDiagTroncons833.id))
-        oDiagTroncons833 = DiagnosticTroncons833Manager.getDiagnosticTroncons833ById(oDiagTroncons833.id, oDiagTroncons833.idDiagnostic)
+        oDiagTroncons833 = DiagnosticTroncons833Manager.getDiagnosticTroncons833ById(oDiagTroncons833.id.ToString, oDiagTroncons833.idDiagnostic)
 
         Assert.AreEqual(oDiagTroncons833.id, iD)
         Assert.AreEqual(oDiagTroncons833.idDiagnostic, "99-99")
@@ -78,13 +77,13 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
         DiagnosticTroncons833Manager.save(oDiagTroncons833)
-        oDiagTroncons833 = DiagnosticTroncons833Manager.getDiagnosticTroncons833ById(oDiagTroncons833.id, oDiagTroncons833.idDiagnostic)
+        oDiagTroncons833 = DiagnosticTroncons833Manager.getDiagnosticTroncons833ById(oDiagTroncons833.id.ToString, oDiagTroncons833.idDiagnostic)
 
         Assert.AreEqual(oDiagTroncons833.idPression, "2")
         Assert.AreEqual(oDiagTroncons833.idColumn, "2")
         Assert.AreEqual(oDiagTroncons833.pressionSortie, "2.7")
 
-        DiagnosticTroncons833Manager.delete(oDiagTroncons833.id, oDiagTroncons833.idDiagnostic)
+        DiagnosticTroncons833Manager.delete(oDiagTroncons833.id.ToString, oDiagTroncons833.idDiagnostic)
 
 
     End Sub
@@ -96,7 +95,6 @@ Public Class DiagnosticTroncons833Test
         Dim odiag As Diagnostic
 
         Dim oDiagTroncons833 As DiagnosticTroncons833
-        Dim iD As Integer
 
         odiag = New Diagnostic()
         odiag.id = "99-99"

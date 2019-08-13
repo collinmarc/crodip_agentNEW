@@ -8,7 +8,7 @@ Imports System.IO
 
     <TestMethod()> Public Sub TestGenereEtat()
         Dim oCtrl As New ControleBanc()
-        oCtrl.DateVerif = Date.Now()
+        oCtrl.DateVerif = Date.Now().ToShortDateString()
         oCtrl.AgentVerif = m_oAgent.nom
         oCtrl.Proprietaire = m_oStructure.nom
         oCtrl.idBanc = "123-564-852"
@@ -105,44 +105,44 @@ Imports System.IO
     Public Sub TestCalcul()
         Dim oControle As New ControleBanc()
         oControle.b1_couleur = "Orange"
-        oControle.b1_debitEtal = 0.523
-        oControle.b1_pressionEtal = 3
-        oControle.b1_3bar_m1 = 0.56
-        oControle.b1_3bar_m2 = 0.65
-        oControle.b1_3bar_m3 = 0.5
+        oControle.b1_debitEtal = "0,523"
+        oControle.b1_pressionEtal = "3"
+        oControle.b1_3bar_m1 = "0,56"
+        oControle.b1_3bar_m2 = "0,65"
+        oControle.b1_3bar_m3 = "0,5"
         oControle.calc1()
         Assert.AreEqual("0,570", oControle.b1_3bar_moy)
         'Assert.AreEqual("0.025", oControle.b1_3bar_ecart)
         Assert.AreEqual("8,99%", oControle.b1_pctEcart3bar)
 
         oControle.b1_couleur = "Jaune"
-        oControle.b1_debitEtal = 1.523
-        oControle.b1_pressionEtal = 3
-        oControle.b1_3bar_m1 = 1.56
-        oControle.b1_3bar_m2 = 1.65
-        oControle.b1_3bar_m3 = 1.5
+        oControle.b1_debitEtal = "1,523"
+        oControle.b1_pressionEtal = "3"
+        oControle.b1_3bar_m1 = "1,56"
+        oControle.b1_3bar_m2 = "1,65"
+        oControle.b1_3bar_m3 = "1,5"
         oControle.calc1()
         Assert.AreEqual("1,570", oControle.b1_3bar_moy)
         'Assert.AreEqual("0.025", oControle.b1_3bar_ecart)
         Assert.AreEqual("3,09%", oControle.b1_pctEcart3bar)
 
         oControle.b1_couleur = "Rouge"
-        oControle.b1_debitEtal = 2.523
-        oControle.b1_pressionEtal = 3
-        oControle.b1_3bar_m1 = 2.56
-        oControle.b1_3bar_m2 = 2.65
-        oControle.b1_3bar_m3 = 2.5
+        oControle.b1_debitEtal = "2,523"
+        oControle.b1_pressionEtal = "3"
+        oControle.b1_3bar_m1 = "2,56"
+        oControle.b1_3bar_m2 = "2,65"
+        oControle.b1_3bar_m3 = "2,5"
         oControle.calc1()
         Assert.AreEqual("2,570", oControle.b1_3bar_moy)
         'Assert.AreEqual("0.025", oControle.b1_3bar_ecart)
         Assert.AreEqual("1,86%", oControle.b1_pctEcart3bar)
 
         oControle.b1_couleur = "Grise"
-        oControle.b1_debitEtal = 3.523
-        oControle.b1_pressionEtal = 3
-        oControle.b1_3bar_m1 = 3.56
-        oControle.b1_3bar_m2 = 3.65
-        oControle.b1_3bar_m3 = 3.5
+        oControle.b1_debitEtal = "3,523"
+        oControle.b1_pressionEtal = "3"
+        oControle.b1_3bar_m1 = "3,56"
+        oControle.b1_3bar_m2 = "3,65"
+        oControle.b1_3bar_m3 = "3,5"
         oControle.calc1()
         Assert.AreEqual("3,570", oControle.b1_3bar_moy)
         'Assert.AreEqual("0.025", oControle.b1_3bar_ecart)

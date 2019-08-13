@@ -95,7 +95,7 @@ Public Class DiagnosticManagerTest
         pClient.isProdLegume = False
         pClient.isProdViticulture = True
         pClient.isProdAutre = False
-        pClient.surfaceAgricoleUtile = 1500
+        pClient.surfaceAgricoleUtile = "1500"
         oDiag.SetProprietaire(pClient)
         Assert.AreEqual(oDiag.proprietaireId, pClient.id)
         Assert.AreEqual(oDiag.proprietaireNumeroSiren, pClient.numeroSiren)
@@ -139,11 +139,11 @@ Public Class DiagnosticManagerTest
         poPulve.largeurPlantation = "15"
         poPulve.isVentilateur = True
         poPulve.isDebrayage = True
-        poPulve.anneeAchat = 1970
-        poPulve.surfaceParAn = 10
-        poPulve.nombreUtilisateurs = 2
+        poPulve.anneeAchat = "1970"
+        poPulve.surfaceParAn = "10"
+        poPulve.nombreUtilisateurs = "2"
         poPulve.isCuveRincage = True
-        poPulve.capaciteCuveRincage = 20
+        poPulve.capaciteCuveRincage = "20"
         poPulve.isRotobuse = True
         poPulve.isRinceBidon = True
         poPulve.isBidonLaveMain = True
@@ -164,7 +164,7 @@ Public Class DiagnosticManagerTest
 
         poPulve.buseMarque = "BUSEMARQUE"
         poPulve.buseModele = "BUSEModele"
-        poPulve.buseAge = 5
+        poPulve.buseAge = "5"
         poPulve.nombreBuses = 10
         poPulve.buseType = "A FENTE"
         poPulve.buseAngle = "90"
@@ -543,7 +543,7 @@ Public Class DiagnosticManagerTest
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationAgent = CDate("06/02/1964")
+        oDiag.dateModificationAgent = CDate("06/02/1964").ToShortDateString()
 
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
@@ -593,9 +593,9 @@ Public Class DiagnosticManagerTest
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationAgent = CDate("06/02/1964")
+        oDiag.dateModificationAgent = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
@@ -603,20 +603,20 @@ Public Class DiagnosticManagerTest
 
         'Creation d'un DiagItem
         oDiagItem = New DiagnosticItem()
-        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.idStructure, m_oAgent.id)
+        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.idStructure.ToString, m_oAgent.id.ToString)
         oDiagItem.idDiagnostic = oDiag.id
-        oDiagItem.idItem = 522
-        oDiagItem.itemValue = 4
+        oDiagItem.idItem = "522"
+        oDiagItem.itemValue = "4"
         oDiagItem.itemCodeEtat = "B"
         bReturn = DiagnosticItemManager.save(oCsDb, oDiagItem)
         Assert.IsTrue(bReturn)
 
         'Creation d'un DiagItem
         oDiagItem = New DiagnosticItem()
-        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.idStructure, m_oAgent.id)
+        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.idStructure.ToString, m_oAgent.id.ToString)
         oDiagItem.idDiagnostic = oDiag.id
-        oDiagItem.idItem = 542
-        oDiagItem.itemValue = 4
+        oDiagItem.idItem = "542"
+        oDiagItem.itemValue = "4"
         oDiagItem.cause = "2"
         oDiagItem.itemCodeEtat = "B"
         bReturn = DiagnosticItemManager.save(oCsDb, oDiagItem)
@@ -629,31 +629,31 @@ Public Class DiagnosticManagerTest
 
         '=============
         Dim colDiags As List(Of Diagnostic)
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure.ToString)
         Assert.AreEqual(1, colDiags.Count)
 
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure, oDiag.id)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure.ToString, oDiag.id)
         Assert.AreEqual(1, colDiags.Count)
 
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure, "RIEN")
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure.ToString, "RIEN")
         Assert.AreEqual(0, colDiags.Count)
         'Suppression des diagnosticItems 
 
         'Pas de contre visite pour les diag < 4 mois
-        oDiag.controleDateFin = DateAdd(DateInterval.Month, -5, Date.Today)
+        oDiag.controleDateFin = DateAdd(DateInterval.Month, -5, Date.Today).ToShortDateString()
         DiagnosticManager.save(oDiag)
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure.ToString)
         Assert.AreEqual(0, colDiags.Count)
 
-        oDiag.controleDateFin = DateAdd(DateInterval.Month, -3, Date.Today)
+        oDiag.controleDateFin = DateAdd(DateInterval.Month, -3, Date.Today).ToShortDateString()
         DiagnosticManager.save(oDiag)
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure.ToString)
         Assert.AreEqual(1, colDiags.Count)
 
         bReturn = DiagnosticItemManager.deleteByDiagnosticID(id)
         'Sans diagItem => Pas de Diagnostic pour Contre visite
         'Modif du 15/09/2013 : On accepte Les Diag sans DiagItems pendant 4 mois après la 2.5.3
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure.ToString)
         Assert.AreEqual(1, colDiags.Count)
         '=======
 
@@ -698,7 +698,7 @@ Public Class DiagnosticManagerTest
         oDiag.organismePresId = m_oAgent.idStructure
         oDiag.inspecteurId = m_oAgent.id
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = DateLimite
+        oDiag.controleDateFin = DateLimite.ToShortDateString()
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
@@ -710,7 +710,7 @@ Public Class DiagnosticManagerTest
         oDiag.organismePresId = m_oAgent.idStructure
         oDiag.inspecteurId = m_oAgent.id
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = DateLimitePlus1j
+        oDiag.controleDateFin = DateLimitePlus1j.ToShortDateString()
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
@@ -722,13 +722,13 @@ Public Class DiagnosticManagerTest
         oDiag.organismePresId = m_oAgent.idStructure
         oDiag.inspecteurId = m_oAgent.id
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = DateLimiteMoins1j
+        oDiag.controleDateFin = DateLimiteMoins1j.ToShortDateString()
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
         '=============
         Dim colDiags As List(Of Diagnostic)
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite("PULVETEST", m_oAgent.idStructure.ToString)
         Assert.AreEqual(2, colDiags.Count)
 
         '=================
@@ -773,17 +773,17 @@ Public Class DiagnosticManagerTest
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationAgent = CDate("06/02/1964")
+        oDiag.dateModificationAgent = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
 
         '        Dim DiagItemLst As New List(Of DiagnosticItem)
         'Creation d'un DiagItem
         oDiagItem = New DiagnosticItem()
-        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.idStructure, m_oAgent.id)
+        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.idStructure.ToString, m_oAgent.id.ToString)
         oDiagItem.idDiagnostic = oDiag.id
-        oDiagItem.idItem = 522
-        oDiagItem.itemValue = 4
+        oDiagItem.idItem = "522"
+        oDiagItem.itemValue = "4"
         oDiagItem.cause = "2"
         oDiagItem.itemCodeEtat = "B"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
@@ -792,10 +792,10 @@ Public Class DiagnosticManagerTest
 
         'Creation d'un DiagItem
         oDiagItem = New DiagnosticItem()
-        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.idStructure, m_oAgent.id)
+        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.idStructure.ToString, m_oAgent.id.ToString)
         oDiagItem.idDiagnostic = oDiag.id
-        oDiagItem.idItem = 542
-        oDiagItem.itemValue = 4
+        oDiagItem.idItem = "542"
+        oDiagItem.itemValue = "4"
         oDiagItem.itemCodeEtat = "B"
         'bReturn = DiagnosticItemManager.save(oDiagItem)
         'Assert.IsTrue(bReturn)
@@ -805,7 +805,7 @@ Public Class DiagnosticManagerTest
         'Creation des DiagnosticBuses
         Dim oDiagBuses As New DiagnosticBuses()
         oDiagBuses.idDiagnostic = oDiag.id
-        oDiagBuses.idLot = 1
+        oDiagBuses.idLot = "1"
         oDiagBuses.nombre = "2"
         oDiagBuses.marque = "Hardi"
         oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
@@ -813,7 +813,7 @@ Public Class DiagnosticManagerTest
 
         oDiagBuses = New DiagnosticBuses()
         oDiagBuses.idDiagnostic = oDiag.id
-        oDiagBuses.idLot = 2
+        oDiagBuses.idLot = "2"
         oDiagBuses.nombre = "2"
         oDiagBuses.marque = "TEST"
         '        DiagnosticBusesManager.save(oDiagBuses)
@@ -821,49 +821,49 @@ Public Class DiagnosticManagerTest
 
         Dim oDiagBusesDetail As New DiagnosticBusesDetail()
         oDiagBusesDetail.idDiagnostic = oDiag.id
-        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.idLot = "1"
         oDiagBusesDetail.idBuse = 1
-        oDiagBusesDetail.debit = 0.51
+        oDiagBusesDetail.debit = "0,51"
         oDiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         '        DiagnosticBusesDetailManager.save(oDiagBusesDetail)
 
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.idDiagnostic = oDiag.id
-        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.idLot = "1"
         oDiagBusesDetail.idBuse = 2
-        oDiagBusesDetail.debit = 0.52
+        oDiagBusesDetail.debit = "0,52"
         oDiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         '        DiagnosticBusesDetailManager.save(oDiagBusesDetail)
 
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.idDiagnostic = oDiag.id
-        oDiagBusesDetail.idLot = 2
+        oDiagBusesDetail.idLot = "2"
         oDiagBusesDetail.idBuse = 1
-        oDiagBusesDetail.debit = 0.53
+        oDiagBusesDetail.debit = "0,53"
         oDiag.diagnosticBusesList.Liste(1).diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         '        DiagnosticBusesDetailManager.save(oDiagBusesDetail)
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.idDiagnostic = oDiag.id
-        oDiagBusesDetail.idLot = 2
+        oDiagBusesDetail.idLot = "2"
         oDiagBusesDetail.idBuse = 2
-        oDiagBusesDetail.debit = 0.54
+        oDiagBusesDetail.debit = "0,54"
         oDiag.diagnosticBusesList.Liste(1).diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         '        DiagnosticBusesDetailManager.save(oDiagBusesDetail)
 
         Dim oMano542 As DiagnosticMano542
         oMano542 = New DiagnosticMano542()
         oMano542.idDiagnostic = oDiag.id
-        oMano542.pressionPulve = 1
-        oMano542.pressionControle = 1.5
+        oMano542.pressionPulve = "1"
+        oMano542.pressionControle = "1.5"
         oDiag.diagnosticMano542List.Liste.Add(oMano542)
         '        DiagnosticMano542Manager.save(oMano542)
 
         Dim oTroncons833 As DiagnosticTroncons833
         oTroncons833 = New DiagnosticTroncons833()
         oTroncons833.idDiagnostic = oDiag.id
-        oTroncons833.idColumn = 1
-        oTroncons833.idPression = 15
-        oTroncons833.pressionSortie = 16
+        oTroncons833.idColumn = "1"
+        oTroncons833.idPression = "15"
+        oTroncons833.pressionSortie = "16"
         oDiag.diagnosticTroncons833.Liste.Add(oTroncons833)
         '        DiagnosticTroncons833Manager.save(oTroncons833)
 
@@ -886,7 +886,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(1, oDiag2.diagnosticTroncons833.Liste.Count)
 
 
-        oDiag.controleDateFin = DateAdd(DateInterval.Month, -5, Date.Today)
+        oDiag.controleDateFin = DateAdd(DateInterval.Month, -5, Date.Today).ToShortDateString()
         DiagnosticManager.save(oDiag)
 
         colDiags = DiagnosticManager.getUpdates(m_oAgent)
@@ -929,9 +929,9 @@ Public Class DiagnosticManagerTest
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationAgent = CDate("06/02/1964")
+        oDiag.dateModificationAgent = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
 
         oDiag.setOrganisme(m_oAgent)
         Assert.AreEqual(oDiag.organismePresId, m_oAgent.idStructure)
@@ -1008,12 +1008,12 @@ Public Class DiagnosticManagerTest
         Dim idDiag As String
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
-        Dim UpdateInfo As Object
+        Dim UpdateInfo As New Object
 
         oExploit = createExploitation()
         ExploitationManager.sendWSExploitation(oExploit, UpdateInfo)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve, UpdateInfo)
+        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve)
         Dim oExploitToPulve As ExploitationTOPulverisateur
         oExploitToPulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
         ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(oExploitToPulve, UpdateInfo)
@@ -1028,7 +1028,7 @@ Public Class DiagnosticManagerTest
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         oDiag.pulverisateurEmplacementIdentification = "DERRIERE"
         oDiag.controleManoControleNumNational = "TEST"
         oDiag.controleNbreNiveaux = 2
@@ -1116,52 +1116,52 @@ Public Class DiagnosticManagerTest
         Dim oDiagTroncons833 As DiagnosticTroncons833
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1,6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1,7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "2,6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2,7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "3.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "3.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "4.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "4.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
@@ -1233,8 +1233,8 @@ Public Class DiagnosticManagerTest
 
         'on Simule la date de dernière synchro de l'agent à -1 munites
         '======================================
-        m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS(CDate(oDiag.dateModificationAgent).AddMinutes(-10))
-        Dim obj As Object
+        m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS(CDate(oDiag.dateModificationAgent).AddMinutes(-10).ToShortDateString())
+        Dim obj As New Object
         AgentManager.sendWSAgent(m_oAgent, obj)
 
 
@@ -1331,43 +1331,43 @@ Public Class DiagnosticManagerTest
 
         Assert.AreEqual(8, oDiag2.diagnosticTroncons833.Liste.Count)
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(0)
-        Assert.IsTrue(oDiagTroncons833.idPression = 1)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "1")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "1,6")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(1)
-        Assert.IsTrue(oDiagTroncons833.idPression = 1)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "1")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "1,7")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(2)
-        Assert.IsTrue(oDiagTroncons833.idPression = 2)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "2")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "2,6")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(3)
-        Assert.IsTrue(oDiagTroncons833.idPression = 2)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "2")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "2,7")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(4)
-        Assert.IsTrue(oDiagTroncons833.idPression = 3)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "3")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "3.6")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(5)
-        Assert.IsTrue(oDiagTroncons833.idPression = 3)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "3")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "3.7")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(6)
-        Assert.IsTrue(oDiagTroncons833.idPression = 4)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "4")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "4.6")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(7)
-        Assert.IsTrue(oDiagTroncons833.idPression = 4)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "4")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "4.7")
 
         'Vérification des DiagItems
@@ -1526,7 +1526,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("E001-2", oDiag.pulverisateurAncienId)
 
 
-        Dim UpdatedObject As Object
+        Dim UpdatedObject As New Object
         DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
 
         oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
@@ -1561,8 +1561,7 @@ Public Class DiagnosticManagerTest
 
     <TestMethod()> _
     Public Sub TST_GetWSIncrement()
-        Dim oDiag As Diagnostic
-        Dim curIncrement As String
+        Dim curIncrement As String = ""
         DiagnosticManager.getWSDiagnosticIncrement(m_oAgent, curIncrement)
         Assert.IsNotNull(curIncrement)
 
@@ -1751,53 +1750,53 @@ Public Class DiagnosticManagerTest
         oDiag.id = idDiag
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 1
-        oDiagTroncons833.pressionSortie = "1.6"
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "1"
+        oDiagTroncons833.pressionSortie = "1,6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 2
-        oDiagTroncons833.pressionSortie = "1.7"
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "2"
+        oDiagTroncons833.pressionSortie = "1,7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 1
-        oDiagTroncons833.pressionSortie = "2.6"
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "1"
+        oDiagTroncons833.pressionSortie = "2,6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 2
-        oDiagTroncons833.pressionSortie = "2.7"
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "2"
+        oDiagTroncons833.pressionSortie = "2,7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 1
-        oDiagTroncons833.pressionSortie = "3.6"
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "1"
+        oDiagTroncons833.pressionSortie = "3,6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 2
-        oDiagTroncons833.pressionSortie = "3.7"
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "2"
+        oDiagTroncons833.pressionSortie = "3,7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 1
-        oDiagTroncons833.pressionSortie = "4.6"
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "1"
+        oDiagTroncons833.pressionSortie = "4,6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 2
-        oDiagTroncons833.pressionSortie = "4.7"
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "2"
+        oDiagTroncons833.pressionSortie = "4,7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         DiagnosticManager.save(oDiag)
@@ -1808,44 +1807,44 @@ Public Class DiagnosticManagerTest
 
         Assert.AreEqual(8, oDiag.diagnosticTroncons833.Liste.Count)
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(0)
-        Assert.IsTrue(oDiagTroncons833.idPression = 1)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
-        Assert.IsTrue(oDiagTroncons833.pressionSortie = "1.6")
+        Assert.IsTrue(oDiagTroncons833.idPression = "1")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
+        Assert.IsTrue(oDiagTroncons833.pressionSortie = "1,6")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(1)
-        Assert.IsTrue(oDiagTroncons833.idPression = 1)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
-        Assert.IsTrue(oDiagTroncons833.pressionSortie = "1.7")
+        Assert.IsTrue(oDiagTroncons833.idPression = "1")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
+        Assert.IsTrue(oDiagTroncons833.pressionSortie = "1,7")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(2)
-        Assert.IsTrue(oDiagTroncons833.idPression = 2)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
-        Assert.IsTrue(oDiagTroncons833.pressionSortie = "2.6")
+        Assert.IsTrue(oDiagTroncons833.idPression = "2")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
+        Assert.IsTrue(oDiagTroncons833.pressionSortie = "2,6")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(3)
-        Assert.IsTrue(oDiagTroncons833.idPression = 2)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
-        Assert.IsTrue(oDiagTroncons833.pressionSortie = "2.7")
+        Assert.IsTrue(oDiagTroncons833.idPression = "2")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
+        Assert.IsTrue(oDiagTroncons833.pressionSortie = "2,7")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(4)
-        Assert.IsTrue(oDiagTroncons833.idPression = 3)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
-        Assert.IsTrue(oDiagTroncons833.pressionSortie = "3.6")
+        Assert.IsTrue(oDiagTroncons833.idPression = "3")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
+        Assert.IsTrue(oDiagTroncons833.pressionSortie = "3,6")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(5)
-        Assert.IsTrue(oDiagTroncons833.idPression = 3)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
-        Assert.IsTrue(oDiagTroncons833.pressionSortie = "3.7")
+        Assert.IsTrue(oDiagTroncons833.idPression = "3")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
+        Assert.IsTrue(oDiagTroncons833.pressionSortie = "3,7")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(6)
-        Assert.IsTrue(oDiagTroncons833.idPression = 4)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
-        Assert.IsTrue(oDiagTroncons833.pressionSortie = "4.6")
+        Assert.IsTrue(oDiagTroncons833.idPression = "4")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
+        Assert.IsTrue(oDiagTroncons833.pressionSortie = "4,6")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(7)
-        Assert.IsTrue(oDiagTroncons833.idPression = 4)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
-        Assert.IsTrue(oDiagTroncons833.pressionSortie = "4.7")
+        Assert.IsTrue(oDiagTroncons833.idPression = "4")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
+        Assert.IsTrue(oDiagTroncons833.pressionSortie = "4,7")
         DiagnosticManager.delete(oDiag.id)
 
     End Sub
@@ -2040,52 +2039,52 @@ Public Class DiagnosticManagerTest
         Dim oDiagTroncons833 As DiagnosticTroncons833
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "2.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "3.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "3.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "4.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "4.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
@@ -2197,43 +2196,43 @@ Public Class DiagnosticManagerTest
 
         Assert.AreEqual(8, oDiag.diagnosticTroncons833.Liste.Count)
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(0)
-        Assert.IsTrue(oDiagTroncons833.idPression = 1)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "1")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "1.6")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(1)
-        Assert.IsTrue(oDiagTroncons833.idPression = 1)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "1")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "1.7")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(2)
-        Assert.IsTrue(oDiagTroncons833.idPression = 2)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "2")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "2.6")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(3)
-        Assert.IsTrue(oDiagTroncons833.idPression = 2)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "2")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "2.7")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(4)
-        Assert.IsTrue(oDiagTroncons833.idPression = 3)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "3")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "3.6")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(5)
-        Assert.IsTrue(oDiagTroncons833.idPression = 3)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "3")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "3.7")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(6)
-        Assert.IsTrue(oDiagTroncons833.idPression = 4)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "4")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "4.6")
 
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(7)
-        Assert.IsTrue(oDiagTroncons833.idPression = 4)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "4")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "4.7")
 
         'Vérification des DiagItems
@@ -2360,52 +2359,52 @@ Public Class DiagnosticManagerTest
         Dim oDiagTroncons833 As DiagnosticTroncons833
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "2.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "3.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "3.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "4.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "4.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
@@ -2537,8 +2536,6 @@ Public Class DiagnosticManagerTest
     <TestMethod()> _
     Public Sub TST_SendDiagWSMano542()
         Dim oDiag As Diagnostic
-        Dim oDiagBuses As DiagnosticBuses
-        Dim oDiagBusesDetail As DiagnosticBusesDetail
         Dim idDiag As String
         'Creation d'un Diagnostic
         oDiag = New Diagnostic()
@@ -2599,52 +2596,52 @@ Public Class DiagnosticManagerTest
         Dim oDiagTroncons833 As DiagnosticTroncons833
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "2.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "3.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "3.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "4.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "4.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
@@ -2957,8 +2954,8 @@ Public Class DiagnosticManagerTest
         idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
-        oDiag.controleDateDebut = Date.Now()
-        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now())
+        oDiag.controleDateDebut = Date.Now().ToShortDateString()
+        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now()).ToShortDateString()
         oDiag.manometrePressionTravail = "3"
         'I.1   2 Lots de buses 
         '-----------------------
@@ -2982,14 +2979,14 @@ Public Class DiagnosticManagerTest
         'Detail 1 du lot1
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.idBuse = 1
-        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.idLot = "1"
         oDiagBusesDetail.debit = "1,6"
         oDiagBusesDetail.ecart = "0,6"
         oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         'Détail 2 du lot1
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.idBuse = 2
-        oDiagBusesDetail.idLot = 1
+        oDiagBusesDetail.idLot = "1"
         oDiagBusesDetail.debit = "1,7"
         oDiagBusesDetail.ecart = "0,7"
         oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
@@ -3014,14 +3011,14 @@ Public Class DiagnosticManagerTest
         'Detail 1 du lot2
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.idBuse = 1
-        oDiagBusesDetail.idLot = 2
+        oDiagBusesDetail.idLot = "2"
         oDiagBusesDetail.debit = "2,6"
         oDiagBusesDetail.ecart = "0,2"
         oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         'Détail 2 du lot2
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.idBuse = 2
-        oDiagBusesDetail.idLot = 2
+        oDiagBusesDetail.idLot = "2"
         oDiagBusesDetail.debit = "5,7"
         oDiagBusesDetail.ecart = "2,7"
         oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
@@ -3053,7 +3050,7 @@ Public Class DiagnosticManagerTest
         'oDiagBuses.debitMin = "15,5"
         'oDiagBuses.debitMax = "15,5"
 
-        oRowDBI = ods.debitBuses_infos.Rows(0)
+        oRowDBI = CType(ods.debitBuses_infos.Rows(0), ds_Etat_SM.debitBuses_infosRow)
         Assert.AreEqual(oRowDBI.IdLot, 1)
         Assert.AreEqual(oRowDBI.debitNominal, "10,2")
         Assert.AreEqual(oRowDBI.pressionControle, "3")
@@ -3080,7 +3077,7 @@ Public Class DiagnosticManagerTest
         'oDiagBuses.debitMax = "25,5"
         'oDiag.manometrePressionTravail = "99,1" => Pression de controle ?
 
-        oRowDBI = ods.debitBuses_infos.Rows(1)
+        oRowDBI = CType(ods.debitBuses_infos.Rows(1), ds_Etat_SM.debitBuses_infosRow)
         Assert.AreEqual(oRowDBI.IdLot, 2)
         Assert.AreEqual(oRowDBI.debitNominal, "20,2")
         Assert.AreEqual(oRowDBI.pressionControle, "3")
@@ -3095,23 +3092,23 @@ Public Class DiagnosticManagerTest
 
         Assert.AreEqual(ods.debitBuses.Rows.Count, 4) '4 Mesures (2 par lots)
         Dim oRow As ds_Etat_SM.debitBusesRow
-        oRow = ods.debitBuses.Rows(0)
+        oRow = CType(ods.debitBuses.Rows(0), ds_Etat_SM.debitBusesRow)
         Assert.AreEqual(oRow.IdLot, 1)
         Assert.AreEqual(oRow.numBuse, 2)
         Assert.AreEqual(oRow.debit, 1.6D)
         Assert.AreEqual(oRow.ecartPourcentage, 0.6D)
-        oRow = ods.debitBuses.Rows(1)
+        oRow = CType(ods.debitBuses.Rows(1), ds_Etat_SM.debitBusesRow)
         Assert.AreEqual(oRow.IdLot, 1)
         Assert.AreEqual(oRow.numBuse, 3)
         Assert.AreEqual(oRow.debit, 1.7D)
         Assert.AreEqual(oRow.ecartPourcentage, 0.7D)
 
-        oRow = ods.debitBuses.Rows(2)
+        oRow = CType(ods.debitBuses.Rows(2), ds_Etat_SM.debitBusesRow)
         Assert.AreEqual(oRow.IdLot, 2)
         Assert.AreEqual(oRow.numBuse, 2)
         Assert.AreEqual(oRow.debit, 2.6D)
         Assert.AreEqual(oRow.ecartPourcentage, 0.2D)
-        oRow = ods.debitBuses.Rows(3)
+        oRow = CType(ods.debitBuses.Rows(3), ds_Etat_SM.debitBusesRow)
         Assert.AreEqual(oRow.IdLot, 2)
         Assert.AreEqual(oRow.numBuse, 3)
         Assert.AreEqual(oRow.debit, 5.7D)
@@ -3123,8 +3120,6 @@ Public Class DiagnosticManagerTest
     <TestMethod()> _
     Public Sub TST_CreateEtatsynthes_542()
         Dim oDiag As Diagnostic
-        Dim oDiagBuses As DiagnosticBuses
-        Dim oDiagBusesDetail As DiagnosticBusesDetail
         Dim idDiag As String
         'I - Creation d'un Diagnostic
         '============================
@@ -3132,8 +3127,8 @@ Public Class DiagnosticManagerTest
         idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
-        oDiag.controleDateDebut = Date.Now()
-        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now())
+        oDiag.controleDateDebut = Date.Now().ToShortDateString()
+        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now()).ToShortDateString()
 
         'I.2   Mesures Manomètre 542 
         '---------------------------
@@ -3144,28 +3139,28 @@ Public Class DiagnosticManagerTest
         oDiagMano542 = New DiagnosticMano542()
         oDiagMano542.pressionControle = "1,6"
         oDiagMano542.pressionPulve = "1,7"
-        oDiagMano542.Ecart = "0,1"
+        oDiagMano542.Ecart = 0.1D
         oDiagMano542.Erreur = DiagnosticMano542.ERR542.FAIBLE
         oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
         'Mano2
         oDiagMano542 = New DiagnosticMano542()
         oDiagMano542.pressionControle = "2"
         oDiagMano542.pressionPulve = "2,1"
-        oDiagMano542.Ecart = "0,2"
+        oDiagMano542.Ecart = 0.2D
         oDiagMano542.Erreur = DiagnosticMano542.ERR542.FORTE
         oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
         'Mano3
         oDiagMano542 = New DiagnosticMano542()
         oDiagMano542.pressionControle = "3"
         oDiagMano542.pressionPulve = "3,1"
-        oDiagMano542.Ecart = "0,3"
+        oDiagMano542.Ecart = 0.3D
         oDiagMano542.Erreur = DiagnosticMano542.ERR542.FORTE
         oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
         'Mano4
         oDiagMano542 = New DiagnosticMano542()
         oDiagMano542.pressionControle = "4"
         oDiagMano542.pressionPulve = "4,1"
-        oDiagMano542.Ecart = "0,4"
+        oDiagMano542.Ecart = 0.4D
         oDiagMano542.Erreur = DiagnosticMano542.ERR542.OK
         oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
 
@@ -3226,32 +3221,32 @@ Public Class DiagnosticManagerTest
 
         Assert.AreEqual(1, ods.Mano542.Count)
         Dim oRow542 As ds_etat_SM.Mano542Row
-        oRow542 = ods.Mano542.Rows(0)
+        oRow542 = CType(ods.Mano542.Rows(0), ds_Etat_SM.Mano542Row)
         Assert.AreEqual(oRow542.EcartMaxi, 0.4D)
         Assert.AreEqual(oRow542.EcartMoyen, 0.5D)
 
         Assert.AreEqual(4, ods.Mano542Detail.Count)
         Dim oRow542D As ds_etat_SM.Mano542DetailRow
-        oRow542D = ods.Mano542Detail.Rows(0)
+        oRow542D = CType(ods.Mano542Detail.Rows(0), ds_Etat_SM.Mano542DetailRow)
         Assert.AreEqual(oRow542D.pressionControle, 1.6D)
         Assert.AreEqual(oRow542D.PressionPulve, 1.7D)
         Assert.AreEqual(oRow542D.Ecart, 0.1D)
         Assert.AreEqual(oRow542D.Imprecision, DiagnosticMano542.ERR542.FAIBLE.ToString())
 
 
-        oRow542D = ods.Mano542Detail.Rows(1)
+        oRow542D = CType(ods.Mano542Detail.Rows(1), ds_Etat_SM.Mano542DetailRow)
         Assert.AreEqual(oRow542D.pressionControle, 2D)
         Assert.AreEqual(oRow542D.PressionPulve, 2.1D)
         Assert.AreEqual(oRow542D.Ecart, 0.2D)
         Assert.AreEqual(oRow542D.Imprecision, DiagnosticMano542.ERR542.FORTE.ToString())
 
-        oRow542D = ods.Mano542Detail.Rows(2)
+        oRow542D = CType(ods.Mano542Detail.Rows(2), ds_Etat_SM.Mano542DetailRow)
         Assert.AreEqual(oRow542D.pressionControle, 3D)
         Assert.AreEqual(oRow542D.PressionPulve, 3.1D)
         Assert.AreEqual(oRow542D.Ecart, 0.3D)
         Assert.AreEqual(oRow542D.Imprecision, DiagnosticMano542.ERR542.FORTE.ToString())
 
-        oRow542D = ods.Mano542Detail.Rows(3)
+        oRow542D = CType(ods.Mano542Detail.Rows(3), ds_Etat_SM.Mano542DetailRow)
         Assert.AreEqual(oRow542D.pressionControle, 4D)
         Assert.AreEqual(oRow542D.PressionPulve, 4.1D)
         Assert.AreEqual(oRow542D.Ecart, 0.4D)
@@ -3264,8 +3259,6 @@ Public Class DiagnosticManagerTest
     <TestMethod()> _
     Public Sub TST_CreateEtatsynthes_833()
         Dim oDiag As Diagnostic
-        Dim oDiagBuses As DiagnosticBuses
-        Dim oDiagBusesDetail As DiagnosticBusesDetail
         Dim idDiag As String
         Dim oParam833 As CRODIP_ControlLibrary.ParamDiagCalc833
         oParam833 = CRODIP_ControlLibrary.ParamDiag.readXML()(0).ParamDiagCalc833
@@ -3275,110 +3268,110 @@ Public Class DiagnosticManagerTest
         idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
-        oDiag.controleDateDebut = Date.Now()
-        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now())
+        oDiag.controleDateDebut = Date.Now().ToShortDateString()
+        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now()).ToShortDateString()
 
 
         'I.3   Mesures Pression 833
         '---------------------------
         oDiag.controleNbreNiveaux = 1
         oDiag.controleNbreTroncons = 2
-        oDiag.relevePression833_1 = New RelevePression833(1, 2, 5.1, oParam833)
-        oDiag.relevePression833_2 = New RelevePression833(1, 2, 10.1, oParam833)
-        oDiag.relevePression833_3 = New RelevePression833(1, 2, 15.1, oParam833)
-        oDiag.relevePression833_4 = New RelevePression833(1, 2, 20.1, oParam833)
+        oDiag.relevePression833_1 = New RelevePression833(1, 2, 5.1D, oParam833)
+        oDiag.relevePression833_2 = New RelevePression833(1, 2, 10.1D, oParam833)
+        oDiag.relevePression833_3 = New RelevePression833(1, 2, 15.1D, oParam833)
+        oDiag.relevePression833_4 = New RelevePression833(1, 2, 20.1D, oParam833)
 
         Dim oDiagTroncons833 As DiagnosticTroncons833
         'Pression Tab1 Mesure 1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1,6"
-        oDiagTroncons833.EcartBar = 0.1
-        oDiagTroncons833.Ecartpct = 0.11
-        oDiagTroncons833.MoyenneAutrePression = 0.111
-        oDiagTroncons833.HeterogeneiteBar = 1.1
-        oDiagTroncons833.HeterogeneitePct = 0.1
+        oDiagTroncons833.EcartBar = 0.1D
+        oDiagTroncons833.Ecartpct = 0.11D
+        oDiagTroncons833.MoyenneAutrePression = 0.111D
+        oDiagTroncons833.HeterogeneiteBar = 1.1D
+        oDiagTroncons833.HeterogeneitePct = 0.1D
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1 Mesure 2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1,7"
-        oDiagTroncons833.EcartBar = 0.2
-        oDiagTroncons833.Ecartpct = 0.22
-        oDiagTroncons833.MoyenneAutrePression = 0.222
-        oDiagTroncons833.HeterogeneiteBar = 2.2
-        oDiagTroncons833.HeterogeneitePct = 0.2
+        oDiagTroncons833.EcartBar = 0.2D
+        oDiagTroncons833.Ecartpct = 0.22D
+        oDiagTroncons833.MoyenneAutrePression = 0.222D
+        oDiagTroncons833.HeterogeneiteBar = 2.2D
+        oDiagTroncons833.HeterogeneitePct = 0.2D
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab2 Mesure 1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "2,6"
-        oDiagTroncons833.EcartBar = 0.1
-        oDiagTroncons833.Ecartpct = 0.11
-        oDiagTroncons833.MoyenneAutrePression = 0.111
-        oDiagTroncons833.HeterogeneiteBar = 1.1
-        oDiagTroncons833.HeterogeneitePct = 0.1
+        oDiagTroncons833.EcartBar = 0.1D
+        oDiagTroncons833.Ecartpct = 0.11D
+        oDiagTroncons833.MoyenneAutrePression = 0.111D
+        oDiagTroncons833.HeterogeneiteBar = 1.1D
+        oDiagTroncons833.HeterogeneitePct = 0.1D
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2 Mesure 2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2,7"
-        oDiagTroncons833.EcartBar = 0.2
-        oDiagTroncons833.Ecartpct = 0.22
-        oDiagTroncons833.MoyenneAutrePression = 0.222
-        oDiagTroncons833.HeterogeneiteBar = 2.2
-        oDiagTroncons833.HeterogeneitePct = 0.2
+        oDiagTroncons833.EcartBar = 0.2D
+        oDiagTroncons833.Ecartpct = 0.22D
+        oDiagTroncons833.MoyenneAutrePression = 0.222D
+        oDiagTroncons833.HeterogeneiteBar = 2.2D
+        oDiagTroncons833.HeterogeneitePct = 0.2D
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3 Mesure 1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "3,6"
-        oDiagTroncons833.EcartBar = 0.1
-        oDiagTroncons833.Ecartpct = 0.11
-        oDiagTroncons833.MoyenneAutrePression = 0.111
-        oDiagTroncons833.HeterogeneiteBar = 1.1
-        oDiagTroncons833.HeterogeneitePct = 0.1
+        oDiagTroncons833.EcartBar = 0.1D
+        oDiagTroncons833.Ecartpct = 0.11D
+        oDiagTroncons833.MoyenneAutrePression = 0.111D
+        oDiagTroncons833.HeterogeneiteBar = 1.1D
+        oDiagTroncons833.HeterogeneitePct = 0.1D
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3 Mesure 2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "3,7"
-        oDiagTroncons833.EcartBar = 0.2
-        oDiagTroncons833.Ecartpct = 0.22
-        oDiagTroncons833.MoyenneAutrePression = 0.222
-        oDiagTroncons833.HeterogeneiteBar = 2.2
-        oDiagTroncons833.HeterogeneitePct = 0.2
+        oDiagTroncons833.EcartBar = 0.2D
+        oDiagTroncons833.Ecartpct = 0.22D
+        oDiagTroncons833.MoyenneAutrePression = 0.222D
+        oDiagTroncons833.HeterogeneiteBar = 2.2D
+        oDiagTroncons833.HeterogeneitePct = 0.2D
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4 Mesure 1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "4,6"
-        oDiagTroncons833.EcartBar = 0.1
-        oDiagTroncons833.Ecartpct = 0.11
-        oDiagTroncons833.MoyenneAutrePression = 0.111
-        oDiagTroncons833.HeterogeneiteBar = 1.1
-        oDiagTroncons833.HeterogeneitePct = 0.1
+        oDiagTroncons833.EcartBar = 0.1D
+        oDiagTroncons833.Ecartpct = 0.11D
+        oDiagTroncons833.MoyenneAutrePression = 0.111D
+        oDiagTroncons833.HeterogeneiteBar = 1.1D
+        oDiagTroncons833.HeterogeneitePct = 0.1D
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4 Mesure 2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "4,7"
-        oDiagTroncons833.EcartBar = 0.2
-        oDiagTroncons833.Ecartpct = 0.22
-        oDiagTroncons833.MoyenneAutrePression = 0.222
-        oDiagTroncons833.HeterogeneiteBar = 2.2
-        oDiagTroncons833.HeterogeneitePct = 0.2
+        oDiagTroncons833.EcartBar = 0.2D
+        oDiagTroncons833.Ecartpct = 0.22D
+        oDiagTroncons833.MoyenneAutrePression = 0.222D
+        oDiagTroncons833.HeterogeneiteBar = 2.2D
+        oDiagTroncons833.HeterogeneitePct = 0.2D
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Les DiagItems ne sont pas utilisés dans le rapport de synthese
@@ -3396,28 +3389,28 @@ Public Class DiagnosticManagerTest
 
         Assert.AreEqual(1, ods.Synthese833.Rows.Count)
         Dim oRow833 As ds_etat_SM.Synthese833Row
-        oRow833 = ods.Synthese833.Rows(0)
+        oRow833 = CType(ods.Synthese833.Rows(0), ds_Etat_SM.Synthese833Row)
         Assert.AreEqual(oRow833.NbreNiveaux, 1)
         Assert.AreEqual(oRow833.NbreTroncons, 2)
 
         Assert.AreEqual(4, ods.synthese833Pression.Rows.Count)
         Dim oRow833P As ds_etat_SM.synthese833PressionRow
-        oRow833P = ods.synthese833Pression.Rows(0)
+        oRow833P = CType(ods.synthese833Pression.Rows(0), ds_Etat_SM.synthese833PressionRow)
         Assert.AreEqual(oRow833P.PressionMesure, 5.1D)
         Assert.AreEqual(oRow833P.MoyennePression, 0D)
         Assert.AreEqual(oRow833P.EcartBars, 5.1D)
 
-        oRow833P = ods.synthese833Pression.Rows(1)
+        oRow833P = CType(ods.synthese833Pression.Rows(1), ds_Etat_SM.synthese833PressionRow)
         Assert.AreEqual(oRow833P.PressionMesure, 10.1D)
         Assert.AreEqual(oRow833P.MoyennePression, 0D)
         Assert.AreEqual(oRow833P.EcartBars, 10.1D)
 
-        oRow833P = ods.synthese833Pression.Rows(2)
+        oRow833P = CType(ods.synthese833Pression.Rows(2), ds_Etat_SM.synthese833PressionRow)
         Assert.AreEqual(oRow833P.PressionMesure, 15.1D)
         Assert.AreEqual(oRow833P.MoyennePression, 0D)
         Assert.AreEqual(oRow833P.EcartBars, 15.1D)
 
-        oRow833P = ods.synthese833Pression.Rows(3)
+        oRow833P = CType(ods.synthese833Pression.Rows(3), ds_Etat_SM.synthese833PressionRow)
         Assert.AreEqual(oRow833P.PressionMesure, 20.1D)
         Assert.AreEqual(oRow833P.MoyennePression, 0D)
         Assert.AreEqual(oRow833P.EcartBars, 20.1D)
@@ -3425,7 +3418,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(8, ods.synthese833Detail.Rows.Count)
         Dim oRow833D As ds_etat_SM.synthese833DetailRow
 
-        oRow833D = ods.synthese833Detail.Rows(0)
+        oRow833D = CType(ods.synthese833Detail.Rows(0), ds_Etat_SM.synthese833DetailRow)
         Assert.AreEqual(oRow833D.nPression, 1)
 
         'oDiagTroncons833.idPression = 1
@@ -3453,7 +3446,7 @@ Public Class DiagnosticManagerTest
         'oDiagTroncons833.HeterogeneiteBar = 2.2
         'oDiagTroncons833.HeterogeneitePct = 0.2
         'oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
-        oRow833D = ods.synthese833Detail.Rows(1)
+        oRow833D = CType(ods.synthese833Detail.Rows(1), ds_Etat_SM.synthese833DetailRow)
         Assert.AreEqual(oRow833D.nPression, 1)
         Assert.AreEqual(oRow833D.nDetail, 2)
         Assert.AreEqual(oRow833D.PressionLue, 1.7D)
@@ -3471,7 +3464,7 @@ Public Class DiagnosticManagerTest
         'oDiagTroncons833.MoyenneAutrePression = 0.111
         'oDiagTroncons833.HeterogeneiteBar = 1.1
         'oDiagTroncons833.HeterogeneitePct = 0.1
-        oRow833D = ods.synthese833Detail.Rows(2)
+        oRow833D = CType(ods.synthese833Detail.Rows(2), ds_Etat_SM.synthese833DetailRow)
         Assert.AreEqual(oRow833D.nPression, 2)
         Assert.AreEqual(oRow833D.nDetail, 1)
         Assert.AreEqual(oRow833D.PressionLue, 2.6D)
@@ -3489,7 +3482,7 @@ Public Class DiagnosticManagerTest
         'oDiagTroncons833.MoyenneAutrePression = 0.222
         'oDiagTroncons833.HeterogeneiteBar = 2.2
         'oDiagTroncons833.HeterogeneitePct = 0.2
-        oRow833D = ods.synthese833Detail.Rows(3)
+        oRow833D = CType(ods.synthese833Detail.Rows(3), ds_Etat_SM.synthese833DetailRow)
         Assert.AreEqual(oRow833D.nPression, 2)
         Assert.AreEqual(oRow833D.nDetail, 2)
         Assert.AreEqual(oRow833D.PressionLue, 2.7D)
@@ -3507,7 +3500,7 @@ Public Class DiagnosticManagerTest
         'oDiagTroncons833.MoyenneAutrePression = 0.222
         'oDiagTroncons833.HeterogeneiteBar = 2.2
         'oDiagTroncons833.HeterogeneitePct = 0.2
-        oRow833D = ods.synthese833Detail.Rows(4)
+        oRow833D = CType(ods.synthese833Detail.Rows(4), ds_Etat_SM.synthese833DetailRow)
         Assert.AreEqual(oRow833D.nPression, 3)
         Assert.AreEqual(oRow833D.nDetail, 1)
         Assert.AreEqual(oRow833D.PressionLue, 3.6D)
@@ -3525,7 +3518,7 @@ Public Class DiagnosticManagerTest
         'oDiagTroncons833.MoyenneAutrePression = 0.222
         'oDiagTroncons833.HeterogeneiteBar = 2.2
         'oDiagTroncons833.HeterogeneitePct = 0.2
-        oRow833D = ods.synthese833Detail.Rows(5)
+        oRow833D = CType(ods.synthese833Detail.Rows(5), ds_Etat_SM.synthese833DetailRow)
         Assert.AreEqual(oRow833D.nPression, 3)
         Assert.AreEqual(oRow833D.nDetail, 2)
         Assert.AreEqual(oRow833D.PressionLue, 3.7D)
@@ -3544,7 +3537,7 @@ Public Class DiagnosticManagerTest
         'oDiagTroncons833.HeterogeneiteBar = 1.1
         'oDiagTroncons833.HeterogeneitePct = 0.1
 
-        oRow833D = ods.synthese833Detail.Rows(6)
+        oRow833D = CType(ods.synthese833Detail.Rows(6), ds_Etat_SM.synthese833DetailRow)
         Assert.AreEqual(oRow833D.nPression, 4)
         Assert.AreEqual(oRow833D.nDetail, 1)
         Assert.AreEqual(oRow833D.PressionLue, 4.6D)
@@ -3561,7 +3554,7 @@ Public Class DiagnosticManagerTest
         'oDiagTroncons833.MoyenneAutrePression = 0.222
         'oDiagTroncons833.HeterogeneiteBar = 2.2
         'oDiagTroncons833.HeterogeneitePct = 0.2
-        oRow833D = ods.synthese833Detail.Rows(7)
+        oRow833D = CType(ods.synthese833Detail.Rows(7), ds_Etat_SM.synthese833DetailRow)
         Assert.AreEqual(oRow833D.nPression, 4)
         Assert.AreEqual(oRow833D.nDetail, 2)
         Assert.AreEqual(oRow833D.PressionLue, 4.7D)
@@ -3585,37 +3578,37 @@ Public Class DiagnosticManagerTest
         idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
-        oDiag.controleDateDebut = Date.Now()
-        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now())
+        oDiag.controleDateDebut = Date.Now().ToShortDateString()
+        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now()).ToShortDateString()
 
 
-        oDiag.diagnosticHelp551.Distance1 = 10.5
-        oDiag.diagnosticHelp551.Temps1 = 10.6
-        oDiag.diagnosticHelp551.VitesseReelle1 = 10.7
-        oDiag.diagnosticHelp551.VitesseLue1 = 10.8
-        oDiag.diagnosticHelp551.Ecart1 = 10.9
+        oDiag.diagnosticHelp551.Distance1 = 10.5D
+        oDiag.diagnosticHelp551.Temps1 = 10.6D
+        oDiag.diagnosticHelp551.VitesseReelle1 = 10.7D
+        oDiag.diagnosticHelp551.VitesseLue1 = 10.8D
+        oDiag.diagnosticHelp551.Ecart1 = 10.9D
 
-        oDiag.diagnosticHelp551.Distance2 = 20.5
-        oDiag.diagnosticHelp551.Temps2 = 20.6
-        oDiag.diagnosticHelp551.VitesseReelle2 = 20.7
-        oDiag.diagnosticHelp551.VitesseLue2 = 20.8
-        oDiag.diagnosticHelp551.Ecart2 = 20.9
+        oDiag.diagnosticHelp551.Distance2 = 20.5D
+        oDiag.diagnosticHelp551.Temps2 = 20.6D
+        oDiag.diagnosticHelp551.VitesseReelle2 = 20.7D
+        oDiag.diagnosticHelp551.VitesseLue2 = 20.8D
+        oDiag.diagnosticHelp551.Ecart2 = 20.9D
 
-        oDiag.diagnosticHelp551.ErreurMoyenneSigned = 30.5
+        oDiag.diagnosticHelp551.ErreurMoyenneSigned = 30.5D
 
-        oDiag.diagnosticHelp5621.Distance1 = 30.5
-        oDiag.diagnosticHelp5621.Temps1 = 30.6
-        oDiag.diagnosticHelp5621.VitesseReelle1 = 30.7
-        oDiag.diagnosticHelp5621.VitesseLue1 = 30.8
-        oDiag.diagnosticHelp5621.Ecart1 = 30.9
+        oDiag.diagnosticHelp5621.Distance1 = 30.5D
+        oDiag.diagnosticHelp5621.Temps1 = 30.6D
+        oDiag.diagnosticHelp5621.VitesseReelle1 = 30.7D
+        oDiag.diagnosticHelp5621.VitesseLue1 = 30.8D
+        oDiag.diagnosticHelp5621.Ecart1 = 30.9D
 
-        oDiag.diagnosticHelp5621.Distance2 = 40.5
-        oDiag.diagnosticHelp5621.Temps2 = 40.6
-        oDiag.diagnosticHelp5621.VitesseReelle2 = 40.7
-        oDiag.diagnosticHelp5621.VitesseLue2 = 40.8
-        oDiag.diagnosticHelp5621.Ecart2 = 40.9
+        oDiag.diagnosticHelp5621.Distance2 = 40.5D
+        oDiag.diagnosticHelp5621.Temps2 = 40.6D
+        oDiag.diagnosticHelp5621.VitesseReelle2 = 40.7D
+        oDiag.diagnosticHelp5621.VitesseLue2 = 40.8D
+        oDiag.diagnosticHelp5621.Ecart2 = 40.9D
 
-        oDiag.diagnosticHelp5621.ErreurMoyenneSigned = 50.5
+        oDiag.diagnosticHelp5621.ErreurMoyenneSigned = 50.5D
 
         'Les DiagItems ne sont pas utilisés dans le rapport de synthese
 
@@ -3631,7 +3624,7 @@ Public Class DiagnosticManagerTest
 
         Assert.AreEqual(2, ods.SyntheseCapteurVitesse.Rows.Count)
         Dim oRowCV As ds_etat_SM.SyntheseCapteurVitesseRow
-        oRowCV = ods.SyntheseCapteurVitesse.Rows(0)
+        oRowCV = CType(ods.SyntheseCapteurVitesse.Rows(0), ds_Etat_SM.SyntheseCapteurVitesseRow)
         Assert.AreEqual(oRowCV.type, "help551")
         Assert.AreEqual(oRowCV.Distance1, 10.5D)
         Assert.AreEqual(oRowCV.Temps1, 10.6D)
@@ -3645,7 +3638,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(oRowCV.VitesseLue2, 20.8D)
 
 
-        oRowCV = ods.SyntheseCapteurVitesse.Rows(1)
+        oRowCV = CType(ods.SyntheseCapteurVitesse.Rows(1), ds_Etat_SM.SyntheseCapteurVitesseRow)
         Assert.AreEqual(oRowCV.type, "help5621")
         Assert.AreEqual(oRowCV.Distance1, 30.5D)
         Assert.AreEqual(oRowCV.Temps1, 30.6D)
@@ -3673,49 +3666,49 @@ Public Class DiagnosticManagerTest
         idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
-        oDiag.controleDateDebut = Date.Now()
-        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now())
+        oDiag.controleDateDebut = Date.Now().ToShortDateString()
+        oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now()).ToShortDateString()
 
 
-        oDiag.diagnosticHelp552.NbBuses_m1 = 10
-        oDiag.diagnosticHelp552.Pression_m1 = 10.1
-        oDiag.diagnosticHelp552.DebitEtalon_m1 = 10.2
-        oDiag.diagnosticHelp552.DebitAfficheur_m1 = 10.3
-        oDiag.diagnosticHelp552.EcartPct_m1 = 10.4
+        oDiag.diagnosticHelp552.NbBuses_m1 = 10D
+        oDiag.diagnosticHelp552.Pression_m1 = 10.1D
+        oDiag.diagnosticHelp552.DebitEtalon_m1 = 10.2D
+        oDiag.diagnosticHelp552.DebitAfficheur_m1 = 10.3D
+        oDiag.diagnosticHelp552.EcartPct_m1 = 10.4D
 
-        oDiag.diagnosticHelp552.NbBuses_m2 = 20
-        oDiag.diagnosticHelp552.Pression_m2 = 20.1
-        oDiag.diagnosticHelp552.DebitEtalon_m2 = 20.2
-        oDiag.diagnosticHelp552.DebitAfficheur_m2 = 20.3
-        oDiag.diagnosticHelp552.EcartPct_m2 = 20.4
+        oDiag.diagnosticHelp552.NbBuses_m2 = 20D
+        oDiag.diagnosticHelp552.Pression_m2 = 20.1D
+        oDiag.diagnosticHelp552.DebitEtalon_m2 = 20.2D
+        oDiag.diagnosticHelp552.DebitAfficheur_m2 = 20.3D
+        oDiag.diagnosticHelp552.EcartPct_m2 = 20.4D
 
-        oDiag.diagnosticHelp552.NbBuses_m3 = 30
-        oDiag.diagnosticHelp552.Pression_m3 = 30.1
-        oDiag.diagnosticHelp552.DebitEtalon_m3 = 30.2
-        oDiag.diagnosticHelp552.DebitAfficheur_m3 = 30.3
-        oDiag.diagnosticHelp552.EcartPct_m3 = 30.4
+        oDiag.diagnosticHelp552.NbBuses_m3 = 30D
+        oDiag.diagnosticHelp552.Pression_m3 = 30.1D
+        oDiag.diagnosticHelp552.DebitEtalon_m3 = 30.2D
+        oDiag.diagnosticHelp552.DebitAfficheur_m3 = 30.3D
+        oDiag.diagnosticHelp552.EcartPct_m3 = 30.4D
 
-        oDiag.diagnosticHelp552.ErreurDebitMetre = 40.5
+        oDiag.diagnosticHelp552.ErreurDebitMetre = 40.5D
 
-        oDiag.diagnosticHelp5622.NbBuses_m1 = 40
-        oDiag.diagnosticHelp5622.Pression_m1 = 40.1
-        oDiag.diagnosticHelp5622.DebitEtalon_m1 = 40.2
-        oDiag.diagnosticHelp5622.DebitAfficheur_m1 = 40.3
-        oDiag.diagnosticHelp5622.EcartPct_m1 = 40.4
+        oDiag.diagnosticHelp5622.NbBuses_m1 = 40D
+        oDiag.diagnosticHelp5622.Pression_m1 = 40.1D
+        oDiag.diagnosticHelp5622.DebitEtalon_m1 = 40.2D
+        oDiag.diagnosticHelp5622.DebitAfficheur_m1 = 40.3D
+        oDiag.diagnosticHelp5622.EcartPct_m1 = 40.4D
 
-        oDiag.diagnosticHelp5622.NbBuses_m2 = 50
-        oDiag.diagnosticHelp5622.Pression_m2 = 50.1
-        oDiag.diagnosticHelp5622.DebitEtalon_m2 = 50.2
-        oDiag.diagnosticHelp5622.DebitAfficheur_m2 = 50.3
-        oDiag.diagnosticHelp5622.EcartPct_m2 = 50.4
+        oDiag.diagnosticHelp5622.NbBuses_m2 = 50D
+        oDiag.diagnosticHelp5622.Pression_m2 = 50.1D
+        oDiag.diagnosticHelp5622.DebitEtalon_m2 = 50.2D
+        oDiag.diagnosticHelp5622.DebitAfficheur_m2 = 50.3D
+        oDiag.diagnosticHelp5622.EcartPct_m2 = 50.4D
 
-        oDiag.diagnosticHelp5622.NbBuses_m3 = 60
-        oDiag.diagnosticHelp5622.Pression_m3 = 60.1
-        oDiag.diagnosticHelp5622.DebitEtalon_m3 = 60.2
-        oDiag.diagnosticHelp5622.DebitAfficheur_m3 = 60.3
-        oDiag.diagnosticHelp5622.EcartPct_m3 = 60.4
+        oDiag.diagnosticHelp5622.NbBuses_m3 = 60D
+        oDiag.diagnosticHelp5622.Pression_m3 = 60.1D
+        oDiag.diagnosticHelp5622.DebitEtalon_m3 = 60.2D
+        oDiag.diagnosticHelp5622.DebitAfficheur_m3 = 60.3D
+        oDiag.diagnosticHelp5622.EcartPct_m3 = 60.4D
 
-        oDiag.diagnosticHelp5622.ErreurDebitMetre = 70.5
+        oDiag.diagnosticHelp5622.ErreurDebitMetre = 70.5D
 
         'Les DiagItems ne sont pas utilisés dans le rapport de synthese
 
@@ -3731,11 +3724,11 @@ Public Class DiagnosticManagerTest
 
         Assert.AreEqual(2, ods.SyntheseDebitmetre.Rows.Count)
         Dim oRowDM As ds_etat_SM.SyntheseDebitmetreRow
-        oRowDM = ods.SyntheseDebitmetre.Rows(0)
+        oRowDM = CType(ods.SyntheseDebitmetre.Rows(0), ds_Etat_SM.SyntheseDebitmetreRow)
         Assert.AreEqual(oRowDM.type, "help552")
         Assert.AreEqual(oRowDM.ErreurDebitMetre, 40.5D)
 
-        oRowDM = ods.SyntheseDebitmetre.Rows(1)
+        oRowDM = CType(ods.SyntheseDebitmetre.Rows(1), ds_Etat_SM.SyntheseDebitmetreRow)
         Assert.AreEqual(oRowDM.type, "help5622")
         Assert.AreEqual(oRowDM.ErreurDebitMetre, 70.5D)
 
@@ -3804,7 +3797,7 @@ Public Class DiagnosticManagerTest
         strId = DiagnosticManager.getNewId(m_oAgent)
 
         odiag.id = strId
-        tabStr = strId.Split("-")
+        tabStr = strId.Split("-"c)
         'On mémorise son numéro 
         nId = CInt(tabStr(2))
 
@@ -3813,11 +3806,11 @@ Public Class DiagnosticManagerTest
 
         'Maj du diag Id pour simler le Bug de GreenControl
         Dim oCsdb As New CSDb(True)
-        oCsdb.Execute("UPDATE DIAGNOSTIC set id = '45-99-33' WHERE id = " & strId)
+        oCsdb.Execute("UPDATE DIAGNOSTIC Set id = '45-99-33' WHERE id = " & strId)
 
         'Récupération d'un nouvel Id
         strId = DiagnosticManager.getNewId(m_oAgent)
-        tabStr = strId.Split("-")
+        tabStr = strId.Split("-"c)
         'Le nouvel Id doit être égal à l'ancien +1
         Assert.AreEqual(nId + 1, CInt(tabStr(2)))
 
@@ -3867,7 +3860,7 @@ Public Class DiagnosticManagerTest
         pClient.isProdLegume = False
         pClient.isProdViticulture = True
         pClient.isProdAutre = False
-        pClient.surfaceAgricoleUtile = 1500
+        pClient.surfaceAgricoleUtile = "1500"
         oDiag.SetProprietaire(pClient)
 
         idDiag = DiagnosticManager.getNewId(m_oAgent)
@@ -3948,52 +3941,52 @@ Public Class DiagnosticManagerTest
         Dim oDiagTroncons833 As DiagnosticTroncons833
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "2.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "3.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "3.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "4.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "4.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
@@ -4037,7 +4030,7 @@ Public Class DiagnosticManagerTest
 
         Dim oDiag2 As Diagnostic
         '===========================================================
-        oDiag2 = oDiag.Clone()
+        oDiag2 = CType(oDiag.Clone(), Diagnostic)
         Assert.IsNotNull(oDiag2)
 
         Assert.AreEqual(idDiag, oDiag2.id)
@@ -4106,43 +4099,43 @@ Public Class DiagnosticManagerTest
 
         Assert.AreEqual(8, oDiag2.diagnosticTroncons833.Liste.Count)
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(0)
-        Assert.IsTrue(oDiagTroncons833.idPression = 1)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "1")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "1.6")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(1)
-        Assert.IsTrue(oDiagTroncons833.idPression = 1)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "1")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "1.7")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(2)
-        Assert.IsTrue(oDiagTroncons833.idPression = 2)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "2")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "2.6")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(3)
-        Assert.IsTrue(oDiagTroncons833.idPression = 2)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "2")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "2.7")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(4)
-        Assert.IsTrue(oDiagTroncons833.idPression = 3)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "3")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "3.6")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(5)
-        Assert.IsTrue(oDiagTroncons833.idPression = 3)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "3")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "3.7")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(6)
-        Assert.IsTrue(oDiagTroncons833.idPression = 4)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 1)
+        Assert.IsTrue(oDiagTroncons833.idPression = "4")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "1")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "4.6")
 
         oDiagTroncons833 = oDiag2.diagnosticTroncons833.Liste(7)
-        Assert.IsTrue(oDiagTroncons833.idPression = 4)
-        Assert.IsTrue(oDiagTroncons833.idColumn = 2)
+        Assert.IsTrue(oDiagTroncons833.idPression = "4")
+        Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "4.7")
         DiagnosticManager.delete(oDiag2.id)
 
@@ -4252,7 +4245,7 @@ Public Class DiagnosticManagerTest
         pClient.isProdLegume = False
         pClient.isProdViticulture = True
         pClient.isProdAutre = False
-        pClient.surfaceAgricoleUtile = 1500
+        pClient.surfaceAgricoleUtile = "1500"
         oDiag.SetProprietaire(pClient)
 
         idDiag = DiagnosticManager.getNewId(m_oAgent)
@@ -4333,52 +4326,52 @@ Public Class DiagnosticManagerTest
         Dim oDiagTroncons833 As DiagnosticTroncons833
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "2.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "3.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "3.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "4.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "4.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
@@ -4423,7 +4416,7 @@ Public Class DiagnosticManagerTest
 
         Dim oDiag2 As Diagnostic
 
-        oDiag2 = oDiag.Clone()
+        oDiag2 = CType(oDiag.Clone(), Diagnostic)
         Assert.AreEqual("", oDiag2.organismeOrigineInspNom)
         Assert.AreEqual("", oDiag2.organismeOriginePresNom)
 
@@ -4464,11 +4457,11 @@ Public Class DiagnosticManagerTest
         poPulve.largeurPlantation = "15"
         poPulve.isVentilateur = True
         poPulve.isDebrayage = True
-        poPulve.anneeAchat = 1970
-        poPulve.surfaceParAn = 10
-        poPulve.nombreUtilisateurs = 2
+        poPulve.anneeAchat = "1970"
+        poPulve.surfaceParAn = "10"
+        poPulve.nombreUtilisateurs = "2"
         poPulve.isCuveRincage = True
-        poPulve.capaciteCuveRincage = 20
+        poPulve.capaciteCuveRincage = "20"
         poPulve.isRotobuse = True
         poPulve.isRinceBidon = True
         poPulve.isBidonLaveMain = True
@@ -4482,7 +4475,7 @@ Public Class DiagnosticManagerTest
 
         poPulve.buseMarque = "BUSEMARQUE"
         poPulve.buseModele = "BUSEModele"
-        poPulve.buseAge = 5
+        poPulve.buseAge = "5"
         poPulve.nombreBuses = 10
         poPulve.buseType = "A FENTE"
         poPulve.buseAngle = "90"
@@ -4564,9 +4557,9 @@ Public Class DiagnosticManagerTest
         oDiag.controleIsPreControleProfessionel = True
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
-        oDiag.dateModificationCrodip = CDate("06/02/1964")
+        oDiag.dateModificationCrodip = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         oDiag.pulverisateurEmplacementIdentification = "DERRIERE"
         oDiag.controleManoControleNumNational = "TEST"
         oDiag.controleNbreNiveaux = 2
@@ -4598,8 +4591,8 @@ Public Class DiagnosticManagerTest
         '==================================
         'On simule une MAJ sur ler Server
         pause(1000)
-        oDiag.dateModificationCrodip = CSDate.GetDateForWS(Now())
-        Dim UpdateInfo As Object
+        oDiag.dateModificationCrodip = CSDate.GetDateForWS(Now().ToShortDateString())
+        Dim UpdateInfo As New Object
         DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdateInfo)
 
 
@@ -4608,8 +4601,8 @@ Public Class DiagnosticManagerTest
         '======================================
         'on Simule la date de dernière synchro de l'agent à -1 munites
         '======================================
-        m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS(CDate(oDiag.dateModificationAgent).AddMinutes(-1))
-        Dim obj As Object
+        m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS(CDate(oDiag.dateModificationAgent).AddMinutes(-1).ToShortDateString())
+        Dim obj As New Object
         AgentManager.sendWSAgent(m_oAgent, obj)
 
         Dim oLstSynchro As List(Of SynchronisationElmt)
@@ -4743,7 +4736,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("Jet projeté", oDiag.pulverisateurPulverisation)
 
 
-        Dim UpdatedObject As Object
+        Dim UpdatedObject As New Object
         DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
 
         oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
@@ -5058,7 +5051,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("A PASTILLE", oDiag2.buseFonctionnement)
 
 
-        Dim UpdatedObject As Object
+        Dim UpdatedObject As New Object
         DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
 
         oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
@@ -5088,7 +5081,7 @@ Public Class DiagnosticManagerTest
         Dim lstFonctionnement As List(Of String)
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
-        Dim UpdatedObject As Object
+        Dim UpdatedObject As New Object
 
         oExploit = createExploitation()
         oPulve = createPulve(oExploit)
@@ -5160,9 +5153,9 @@ Public Class DiagnosticManagerTest
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationAgent = CDate("06/02/1964")
+        oDiag.dateModificationAgent = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
@@ -5177,9 +5170,9 @@ Public Class DiagnosticManagerTest
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationAgent = CDate("06/02/1964")
+        oDiag.dateModificationAgent = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
@@ -5194,9 +5187,9 @@ Public Class DiagnosticManagerTest
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationAgent = CDate("06/02/1964")
+        oDiag.dateModificationAgent = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
@@ -5269,9 +5262,9 @@ Public Class DiagnosticManagerTest
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationAgent = CDate("06/02/1964")
+        oDiag.dateModificationAgent = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
 
         oDiag.controleManoControleNumNational = oManoC.numeroNational
         oDiag.controleBancMesureId = oBanc.numeroNational
@@ -5382,7 +5375,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("NON", oDiag.pulverisateurRincagecircuit)
 
 
-        Dim UpdatedObject As Object
+        Dim UpdatedObject As New Object
         DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
 
         oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
@@ -5463,7 +5456,7 @@ Public Class DiagnosticManagerTest
 
 
 
-        Dim UpdatedObject As Object
+        Dim UpdatedObject As New Object
         DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
 
         oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
@@ -5508,8 +5501,6 @@ Public Class DiagnosticManagerTest
     <TestMethod()> _
     Public Sub TST_getDiagPourCV()
         Dim oDiag As Diagnostic
-        Dim oDiag2 As Diagnostic
-        Dim bReturn As Boolean
         Dim id As String
         Dim oExploit As Exploitation
         Dim oPulve As Pulverisateur
@@ -5533,7 +5524,7 @@ Public Class DiagnosticManagerTest
         id = oDiag.id
         DiagnosticManager.save(oDiag)
 
-        oList = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.idStructure, "", CDate("2017/01/26 18:08"))
+        oList = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.idStructure.ToString, "", CDate("2017/01/26 18:08"))
         Assert.AreEqual(1, oList.Count)
 
         oDiag = DiagnosticManager.getWSDiagnosticById(1123, "27-1123-580")
@@ -5575,12 +5566,8 @@ Public Class DiagnosticManagerTest
     <TestMethod()>
     Public Sub GenerateDateSetForBLTest()
         Dim oDiag As Diagnostic
-        Dim oDiag2 As Diagnostic
-        Dim bReturn As Boolean
-        Dim id As String
         Dim oExploit As Exploitation
         Dim oPulve As Pulverisateur
-        Dim oList As List(Of Diagnostic)
         Dim AddOld As String
 
         AddOld = m_oStructure.adresse
@@ -5610,7 +5597,6 @@ Public Class DiagnosticManagerTest
     End Sub
 
     <TestMethod()> Public Sub TestRecuperationdesLibellesDeDiagItem()
-        Dim oEtat As EtatRapportInspection
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
@@ -5628,9 +5614,9 @@ Public Class DiagnosticManagerTest
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"

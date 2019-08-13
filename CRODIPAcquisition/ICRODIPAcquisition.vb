@@ -2,6 +2,7 @@
     Function GetValues() As List(Of AcquisitionValue)
     Function GetNbNiveaux() As Integer
     Function GetNbBuses(pNiveau As Integer) As Integer
+    Sub FTO_SaveData(plst As List(Of AcquisitionValue))
 
 
 End Interface

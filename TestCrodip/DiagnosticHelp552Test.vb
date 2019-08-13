@@ -66,24 +66,24 @@ Public Class DiagnosticHelp552test
 
         oDiagHelp552.idDiag = oDiag.id
 
-        oDiagHelp552.NbBuses_m1 = 10.1
-        oDiagHelp552.Pression_m1 = 11.1
-        oDiagHelp552.DebitEtalon_m1 = 12.1
-        oDiagHelp552.DebitAfficheur_m1 = 13.1
+        oDiagHelp552.NbBuses_m1 = 10.1D
+        oDiagHelp552.Pression_m1 = 11.1D
+        oDiagHelp552.DebitEtalon_m1 = 12.1D
+        oDiagHelp552.DebitAfficheur_m1 = 13.1D
 
-        oDiagHelp552.NbBuses_m2 = 10.2
-        oDiagHelp552.Pression_m2 = 11.2
-        oDiagHelp552.DebitEtalon_m2 = 12.2
-        oDiagHelp552.DebitAfficheur_m2 = 13.2
+        oDiagHelp552.NbBuses_m2 = 10.2D
+        oDiagHelp552.Pression_m2 = 11.2D
+        oDiagHelp552.DebitEtalon_m2 = 12.2D
+        oDiagHelp552.DebitAfficheur_m2 = 13.2D
 
-        oDiagHelp552.NbBuses_m3 = 10.3
-        oDiagHelp552.Pression_m3 = 11.3
-        oDiagHelp552.DebitEtalon_m3 = 12.3
-        oDiagHelp552.DebitAfficheur_m3 = 13.3
+        oDiagHelp552.NbBuses_m3 = 10.3D
+        oDiagHelp552.Pression_m3 = 11.3D
+        oDiagHelp552.DebitEtalon_m3 = 12.3D
+        oDiagHelp552.DebitAfficheur_m3 = 13.3D
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp552.id))
-        Assert.IsTrue(oDiagHelp552.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp552.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
         iD = oDiagHelp552.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp552.id))
 
@@ -109,24 +109,24 @@ Public Class DiagnosticHelp552test
         Assert.AreEqual(oDiagHelp552.DebitAfficheur_m3, 13.3D)
 
         'Maj de l'objet
-        oDiagHelp552.NbBuses_m1 = 110.1
-        oDiagHelp552.Pression_m1 = 111.1
-        oDiagHelp552.DebitEtalon_m1 = 112.1
-        oDiagHelp552.DebitAfficheur_m1 = 113.1
+        oDiagHelp552.NbBuses_m1 = 110.1D
+        oDiagHelp552.Pression_m1 = 111.1D
+        oDiagHelp552.DebitEtalon_m1 = 112.1D
+        oDiagHelp552.DebitAfficheur_m1 = 113.1D
 
-        oDiagHelp552.NbBuses_m2 = 110.2
-        oDiagHelp552.Pression_m2 = 111.2
-        oDiagHelp552.DebitEtalon_m2 = 112.2
-        oDiagHelp552.DebitAfficheur_m2 = 113.2
+        oDiagHelp552.NbBuses_m2 = 110.2D
+        oDiagHelp552.Pression_m2 = 111.2D
+        oDiagHelp552.DebitEtalon_m2 = 112.2D
+        oDiagHelp552.DebitAfficheur_m2 = 113.2D
 
-        oDiagHelp552.NbBuses_m3 = 110.3
-        oDiagHelp552.Pression_m3 = 111.3
-        oDiagHelp552.DebitEtalon_m3 = 112.3
-        oDiagHelp552.DebitAfficheur_m3 = 113.3
+        oDiagHelp552.NbBuses_m3 = 110.3D
+        oDiagHelp552.Pression_m3 = 111.3D
+        oDiagHelp552.DebitEtalon_m3 = 112.3D
+        oDiagHelp552.DebitAfficheur_m3 = 113.3D
 
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp552.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp552.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
 
         Debug.WriteLine("Lecture")
         oDiagHelp552 = New DiagnosticHelp552()
@@ -174,9 +174,9 @@ Public Class DiagnosticHelp552test
         oDiag.controleIsPreControleProfessionel = True
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
-        oDiag.dateModificationCrodip = CDate("06/02/1964")
+        oDiag.dateModificationCrodip = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         oDiag.pulverisateurEmplacementIdentification = "DERRIERE"
         oDiag.controleManoControleNumNational = "TEST"
         oDiag.controleNbreNiveaux = 2
@@ -200,20 +200,20 @@ Public Class DiagnosticHelp552test
         'Ajout des mesures help552
         '=========================
 
-        oDiag.diagnosticHelp552.NbBuses_m1 = 110.1
-        oDiag.diagnosticHelp552.Pression_m1 = 111.1
-        oDiag.diagnosticHelp552.DebitEtalon_m1 = 112.1
-        oDiag.diagnosticHelp552.DebitAfficheur_m1 = 113.1
+        oDiag.diagnosticHelp552.NbBuses_m1 = 110.1D
+        oDiag.diagnosticHelp552.Pression_m1 = 111.1D
+        oDiag.diagnosticHelp552.DebitEtalon_m1 = 112.1D
+        oDiag.diagnosticHelp552.DebitAfficheur_m1 = 113.1D
 
-        oDiag.diagnosticHelp552.NbBuses_m2 = 110.2
-        oDiag.diagnosticHelp552.Pression_m2 = 111.2
-        oDiag.diagnosticHelp552.DebitEtalon_m2 = 112.2
-        oDiag.diagnosticHelp552.DebitAfficheur_m2 = 113.2
+        oDiag.diagnosticHelp552.NbBuses_m2 = 110.2D
+        oDiag.diagnosticHelp552.Pression_m2 = 111.2D
+        oDiag.diagnosticHelp552.DebitEtalon_m2 = 112.2D
+        oDiag.diagnosticHelp552.DebitAfficheur_m2 = 113.2D
 
-        oDiag.diagnosticHelp552.NbBuses_m3 = 110.3
-        oDiag.diagnosticHelp552.Pression_m3 = 111.3
-        oDiag.diagnosticHelp552.DebitEtalon_m3 = 112.3
-        oDiag.diagnosticHelp552.DebitAfficheur_m3 = 113.3
+        oDiag.diagnosticHelp552.NbBuses_m3 = 110.3D
+        oDiag.diagnosticHelp552.Pression_m3 = 111.3D
+        oDiag.diagnosticHelp552.DebitEtalon_m3 = 112.3D
+        oDiag.diagnosticHelp552.DebitAfficheur_m3 = 113.3D
 
 
         'SAuvegarde du Diag
@@ -238,7 +238,7 @@ Public Class DiagnosticHelp552test
 
         'on Simule la date de dernière synchro de l'agent à -1 munites
         '======================================
-        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1)
+        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1).ToShortDateString()
 
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
@@ -296,12 +296,12 @@ Public Class DiagnosticHelp552test
         Assert.IsTrue(oDiag2.diagnosticHelp552.DebitEtalon_m1 = 112.1)
         Assert.IsTrue(oDiag2.diagnosticHelp552.DebitAfficheur_m1 = 113.1)
 
-        Assert.IsTrue(oDiag2.diagnosticHelp552.NbBuses_m2, 110.2D)
+        Assert.IsTrue(oDiag2.diagnosticHelp552.NbBuses_m2 = 110.2D)
         Assert.IsTrue(oDiag2.diagnosticHelp552.Pression_m2 = 111.2)
         Assert.IsTrue(oDiag2.diagnosticHelp552.DebitEtalon_m2 = 112.2)
         Assert.IsTrue(oDiag2.diagnosticHelp552.DebitAfficheur_m2 = 113.2)
 
-        Assert.IsTrue(oDiag2.diagnosticHelp552.NbBuses_m3, 110.3D)
+        Assert.IsTrue(oDiag2.diagnosticHelp552.NbBuses_m3 = 110.3D)
         Assert.IsTrue(oDiag2.diagnosticHelp552.Pression_m3 = 111.3)
         Assert.IsTrue(oDiag2.diagnosticHelp552.DebitEtalon_m3 = 112.3)
         Assert.IsTrue(oDiag2.diagnosticHelp552.DebitAfficheur_m3 = 113.3)
@@ -316,29 +316,29 @@ Public Class DiagnosticHelp552test
         Dim oDiagHelp552 As New DiagnosticHelp552()
         Dim oDiagHelp552Clone As DiagnosticHelp552
 
-        oDiagHelp552.id = 562
+        oDiagHelp552.id = "562"
         oDiagHelp552.idDiag = "00-000-000"
 
 
-        oDiagHelp552.NbBuses_m1 = 10.1
-        oDiagHelp552.Pression_m1 = 11.1
-        oDiagHelp552.DebitEtalon_m1 = 12.1
-        oDiagHelp552.DebitAfficheur_m1 = 13.1
+        oDiagHelp552.NbBuses_m1 = 10.1D
+        oDiagHelp552.Pression_m1 = 11.1D
+        oDiagHelp552.DebitEtalon_m1 = 12.1D
+        oDiagHelp552.DebitAfficheur_m1 = 13.1D
 
-        oDiagHelp552.NbBuses_m2 = 10.2
-        oDiagHelp552.Pression_m2 = 11.2
-        oDiagHelp552.DebitEtalon_m2 = 12.2
-        oDiagHelp552.DebitAfficheur_m2 = 13.2
+        oDiagHelp552.NbBuses_m2 = 10.2D
+        oDiagHelp552.Pression_m2 = 11.2D
+        oDiagHelp552.DebitEtalon_m2 = 12.2D
+        oDiagHelp552.DebitAfficheur_m2 = 13.2D
 
-        oDiagHelp552.NbBuses_m3 = 10.3
-        oDiagHelp552.Pression_m3 = 11.3
-        oDiagHelp552.DebitEtalon_m3 = 12.3
-        oDiagHelp552.DebitAfficheur_m3 = 13.3
+        oDiagHelp552.NbBuses_m3 = 10.3D
+        oDiagHelp552.Pression_m3 = 11.3D
+        oDiagHelp552.DebitEtalon_m3 = 12.3D
+        oDiagHelp552.DebitAfficheur_m3 = 13.3D
 
         oDiagHelp552.calc()
 
 
-        oDiagHelp552Clone = oDiagHelp552.Clone()
+        oDiagHelp552Clone = CType(oDiagHelp552.Clone(), DiagnosticHelp552)
         Assert.AreEqual(oDiagHelp552.NbBuses_m1, oDiagHelp552Clone.NbBuses_m1)
         Assert.AreEqual(oDiagHelp552.Pression_m1, oDiagHelp552Clone.Pression_m1)
         Assert.AreEqual(oDiagHelp552.DebitEtalon_m1, oDiagHelp552Clone.DebitEtalon_m1)
@@ -364,7 +364,7 @@ Public Class DiagnosticHelp552test
         Assert.AreEqual(oDiagHelp552.idDiag, oDiagHelp552Clone.idDiag)
         Assert.AreEqual(oDiagHelp552.iditem, oDiagHelp552Clone.iditem)
 
-        oDiagHelp552.id = 123
+        oDiagHelp552.id = "123"
         Assert.AreNotEqual(oDiagHelp552.id, oDiagHelp552Clone.id)
 
     End Sub
@@ -380,9 +380,9 @@ Public Class DiagnosticHelp552test
         oDiagHelp552.Pression_m2 = 2
         oDiagHelp552.Pression_m3 = 3
 
-        oDiagHelp552.DebitAfficheur_m1 = 1.5
-        oDiagHelp552.DebitAfficheur_m2 = 2.5
-        oDiagHelp552.DebitAfficheur_m3 = 3.5
+        oDiagHelp552.DebitAfficheur_m1 = 1.5D
+        oDiagHelp552.DebitAfficheur_m2 = 2.5D
+        oDiagHelp552.DebitAfficheur_m3 = 3.5D
 
         oDiagHelp552.PressionMesure = 3
         oDiagHelp552.DebitMoyen0Bar = 1
@@ -395,16 +395,16 @@ Public Class DiagnosticHelp552test
         oDiagHelp552.NbBuses_m2 = 10
         oDiagHelp552.NbBuses_m3 = 10
 
-        oDiagHelp552.Pression_m1 = 1.45
-        oDiagHelp552.Pression_m2 = 2.975
-        oDiagHelp552.Pression_m3 = 3.875
+        oDiagHelp552.Pression_m1 = 1.45D
+        oDiagHelp552.Pression_m2 = 2.975D
+        oDiagHelp552.Pression_m3 = 3.875D
 
         oDiagHelp552.DebitAfficheur_m1 = 7
-        oDiagHelp552.DebitAfficheur_m2 = 9.5
-        oDiagHelp552.DebitAfficheur_m3 = 11.5
+        oDiagHelp552.DebitAfficheur_m2 = 9.5D
+        oDiagHelp552.DebitAfficheur_m3 = 11.5D
 
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen0Bar = 0.99
+        oDiagHelp552.DebitMoyen0Bar = 0.99D
 
         Assert.IsTrue(oDiagHelp552.calc())
         Assert.AreEqual(CDec(1.704), oDiagHelp552.EcartPct_m1)
@@ -417,16 +417,16 @@ Public Class DiagnosticHelp552test
         oDiagHelp552.NbBuses_m2 = 10
         oDiagHelp552.NbBuses_m3 = 10
 
-        oDiagHelp552.Pression_m1 = 1.45
-        oDiagHelp552.Pression_m2 = 2.975
-        oDiagHelp552.Pression_m3 = 3.5 ' Valeur Modifiée
+        oDiagHelp552.Pression_m1 = 1.45D
+        oDiagHelp552.Pression_m2 = 2.975D
+        oDiagHelp552.Pression_m3 = 3.5D ' Valeur Modifiée
 
         oDiagHelp552.DebitAfficheur_m1 = 7
-        oDiagHelp552.DebitAfficheur_m2 = 9.5
-        oDiagHelp552.DebitAfficheur_m3 = 11.5
+        oDiagHelp552.DebitAfficheur_m2 = 9.5D
+        oDiagHelp552.DebitAfficheur_m3 = 11.5D
 
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen0Bar = 0.99
+        oDiagHelp552.DebitMoyen0Bar = 0.99D
 
         Assert.IsTrue(oDiagHelp552.calc())
         Assert.AreEqual(CDec(1.704), oDiagHelp552.EcartPct_m1)
@@ -440,16 +440,16 @@ Public Class DiagnosticHelp552test
         oDiagHelp552.NbBuses_m2 = 10
         oDiagHelp552.NbBuses_m3 = 10
 
-        oDiagHelp552.Pression_m1 = 1.45
-        oDiagHelp552.Pression_m2 = 2.4 ' Valeur Modifée
-        oDiagHelp552.Pression_m3 = 3.5
+        oDiagHelp552.Pression_m1 = 1.45D
+        oDiagHelp552.Pression_m2 = 2.4D ' Valeur Modifée
+        oDiagHelp552.Pression_m3 = 3.5D
 
-        oDiagHelp552.DebitAfficheur_m1 = 7
-        oDiagHelp552.DebitAfficheur_m2 = 9.5
-        oDiagHelp552.DebitAfficheur_m3 = 11.5
+        oDiagHelp552.DebitAfficheur_m1 = 7D
+        oDiagHelp552.DebitAfficheur_m2 = 9.5D
+        oDiagHelp552.DebitAfficheur_m3 = 11.5D
 
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen0Bar = 0.99
+        oDiagHelp552.DebitMoyen0Bar = 0.99D
 
         Assert.IsTrue(oDiagHelp552.calc())
         Assert.AreEqual(CDec(1.704), oDiagHelp552.EcartPct_m1)
@@ -469,19 +469,19 @@ Public Class DiagnosticHelp552test
     Public Sub TST_CalcMAR()
         Dim oDiagHelp552 As New DiagnosticHelp552()
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen0Bar = 0.992
+        oDiagHelp552.DebitMoyen0Bar = 0.992D
 
         oDiagHelp552.NbBuses_m1 = 10
         oDiagHelp552.NbBuses_m2 = 10
         oDiagHelp552.NbBuses_m3 = 10
 
-        oDiagHelp552.Pression_m1 = 1.45
-        oDiagHelp552.Pression_m2 = 2.975
-        oDiagHelp552.Pression_m3 = 3.875
+        oDiagHelp552.Pression_m1 = 1.45D
+        oDiagHelp552.Pression_m2 = 2.975D
+        oDiagHelp552.Pression_m3 = 3.875D
 
-        oDiagHelp552.DebitAfficheur_m1 = 7
-        oDiagHelp552.DebitAfficheur_m2 = 9.5
-        oDiagHelp552.DebitAfficheur_m3 = 11.5
+        oDiagHelp552.DebitAfficheur_m1 = 7D
+        oDiagHelp552.DebitAfficheur_m2 = 9.5D
+        oDiagHelp552.DebitAfficheur_m3 = 11.5D
 
         Assert.IsTrue(oDiagHelp552.calc())
 
@@ -513,19 +513,19 @@ Public Class DiagnosticHelp552test
         Dim oDiagHelp552 As New DiagnosticHelp552()
 
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen0Bar = 1.202
+        oDiagHelp552.DebitMoyen0Bar = 1.202D
 
         oDiagHelp552.NbBuses_m1 = 48
         oDiagHelp552.NbBuses_m2 = 48
         oDiagHelp552.NbBuses_m3 = 48
 
-        oDiagHelp552.Pression_m1 = 2.9
-        oDiagHelp552.Pression_m2 = 2.9
-        oDiagHelp552.Pression_m3 = 2.9
+        oDiagHelp552.Pression_m1 = 2.9D
+        oDiagHelp552.Pression_m2 = 2.9D
+        oDiagHelp552.Pression_m3 = 2.9D
 
-        oDiagHelp552.DebitAfficheur_m1 = 54.3
-        oDiagHelp552.DebitAfficheur_m2 = 54.3
-        oDiagHelp552.DebitAfficheur_m3 = 54.3
+        oDiagHelp552.DebitAfficheur_m1 = 54.3D
+        oDiagHelp552.DebitAfficheur_m2 = 54.3D
+        oDiagHelp552.DebitAfficheur_m3 = 54.3D
 
         oDiagHelp552.calc()
         Assert.AreEqual(-4.277D, oDiagHelp552.EcartPct_m1)

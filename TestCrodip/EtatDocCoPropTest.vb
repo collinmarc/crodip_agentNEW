@@ -46,9 +46,9 @@ Imports System.IO
 
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
 
 

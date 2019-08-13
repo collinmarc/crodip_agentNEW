@@ -448,7 +448,7 @@ Public Class CSXml
 
     Public Function getAttribute(ByVal path As String, ByVal nom As String) As String
 
-        Dim valeur As String
+        Dim valeur As String = ""
         Try
             'charge le fichier xml
             Dim doc As New XmlDocument
@@ -471,7 +471,7 @@ Public Class CSXml
 
     Public Function getAttribute(ByVal path As String, ByVal nom As String, ByVal position As Integer) As String
 
-        Dim valeur As String
+        Dim valeur As String = ""
         Try
             'charge le fichier xml
             Dim doc As New XmlDocument

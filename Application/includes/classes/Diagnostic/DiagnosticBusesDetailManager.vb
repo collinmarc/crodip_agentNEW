@@ -10,7 +10,7 @@ Public Class DiagnosticBusesDetailManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBusesDetail(agentCourant.id, diag_id, objWSCrodip_response)
             Select Case codeResponse
@@ -197,7 +197,7 @@ Public Class DiagnosticBusesDetailManager
         Debug.Assert(Not String.IsNullOrEmpty(pidDiag))
         ' déclarations
         Dim oCSDB As New CSDb(True)
-        Dim tmpDiagnosticBusesDetail As DiagnosticBusesDetail
+        Dim tmpDiagnosticBusesDetail As DiagnosticBusesDetail = Nothing
         If diagnosticbusesdetail_id <> "" Then
 
             Dim bddCommande As OleDb.OleDbCommand

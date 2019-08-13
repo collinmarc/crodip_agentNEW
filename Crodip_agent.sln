@@ -26,6 +26,10 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CRODIPAcquisition", "CRODIPAcquisition\CRODIPAcquisition.vbproj", "{6A47ACA1-97A9-468D-9C04-9B9CC11F6FE9}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestCrodip", "TestCrodip\TestCrodip.vbproj", "{EB1EABF3-4919-48EB-AC1A-5697B33F063D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{261D4ECE-CFCD-4BC7-B7EB-EA41468A3439} = {261D4ECE-CFCD-4BC7-B7EB-EA41468A3439}
+		{333CD6FE-B2A4-4536-B8B9-18547927CD05} = {333CD6FE-B2A4-4536-B8B9-18547927CD05}
+	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AcquisitionITEQ", "AcquisitionITEQ\AcquisitionITEQ.vbproj", "{261D4ECE-CFCD-4BC7-B7EB-EA41468A3439}"
 EndProject
@@ -105,7 +109,6 @@ Global
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.Debug|PHP 5.5.ActiveCfg = Debug|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.Debug|x86.ActiveCfg = Debug|x86
-		{65815FF1-9AC8-4D74-A001-3069EA510506}.Debug|x86.Build.0 = Debug|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.DebugReglagePulve|Any CPU.ActiveCfg = DebugReglagePulve|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.DebugReglagePulve|Mixed Platforms.ActiveCfg = DebugReglagePulve|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.DebugReglagePulve|Mixed Platforms.Build.0 = DebugReglagePulve|x86

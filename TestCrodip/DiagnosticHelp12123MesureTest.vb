@@ -76,7 +76,7 @@ Public Class DiagnosticHelp12123Mesuretest
         oDiagHelp12123M.EcartReglage = 1.12D
         oDiagHelp12123M.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
-        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.idStructure, m_oAgent.id))
+        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString))
         iD = oDiagHelp12123M.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp12123M.id))
 
@@ -120,7 +120,7 @@ Public Class DiagnosticHelp12123Mesuretest
         oDiagHelp12123M.Resultat = DiagnosticItem.EtatDiagItemMINEUR
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.idStructure, m_oAgent.id))
+        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString))
 
         Debug.WriteLine("Lecture")
         oDiagHelp12123M = New DiagnosticHelp12123Mesure()
@@ -272,8 +272,8 @@ Public Class DiagnosticHelp12123Mesuretest
         oMesure = New DiagnosticHelp12123Mesure(oPompe, 1)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
-        oMesure.MasseInitiale = 3.756
-        oMesure.MasseAspire = 3.492
+        oMesure.MasseInitiale = 3.756D
+        oMesure.MasseAspire = 3.492D
 
         Assert.AreEqual(0.264D, oMesure.QteProduitConso)
 
@@ -293,8 +293,8 @@ Public Class DiagnosticHelp12123Mesuretest
         oMesure = New DiagnosticHelp12123Mesure(oPompe, 1)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
-        oMesure.MasseInitiale = 3.756
-        oMesure.MasseAspire = 3.492
+        oMesure.MasseInitiale = 3.756D
+        oMesure.MasseAspire = 3.492D
         Assert.AreEqual(0.264D, oMesure.QteProduitConso)
 
         Assert.AreEqual(0.862D, oMesure.DosageReelRND)
@@ -315,8 +315,8 @@ Public Class DiagnosticHelp12123Mesuretest
         oMesure = New DiagnosticHelp12123Mesure(oPompe, 1)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
-        oMesure.MasseInitiale = 3.756
-        oMesure.MasseAspire = 3.492
+        oMesure.MasseInitiale = 3.756D
+        oMesure.MasseAspire = 3.492D
 
         Assert.AreEqual(0.862D, oMesure.DosageReelRND)
 
@@ -335,11 +335,11 @@ Public Class DiagnosticHelp12123Mesuretest
         oMesure = New DiagnosticHelp12123Mesure(oPompe, 1)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
-        oMesure.MasseInitiale = 10.8
-        oMesure.MasseAspire = 3.492
+        oMesure.MasseInitiale = 10.8D
+        oMesure.MasseAspire = 3.492D
 
         Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oMesure.Resultat)
-        oMesure.MasseInitiale = 10.9
+        oMesure.MasseInitiale = 10.9D
         Assert.AreEqual(DiagnosticItem.EtatDiagItemMAJEUR, oMesure.Resultat)
 
 

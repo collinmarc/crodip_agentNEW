@@ -201,7 +201,7 @@ Public Class IdentifiantPulverisateurManager
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS(True)
             objWSCrodip.Timeout = 10000
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetIdentifiantPulverisateur(pAgent.id, pId, objWSCrodip_response)
             Select Case codeResponse
@@ -240,7 +240,7 @@ Public Class IdentifiantPulverisateurManager
             '            Dim objWSCrodip1 As WSCrodip_prod.CrodipServer = WSCrodip.getWS(True)
             Dim objWSCrodip As WSCrodip2.CrodipServer = WSCrodip.getWS2(True)
             '            objWSCrodip.Timeout = 10000
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             Dim rq As WSCrodip2.SendIdentifiantPulverisateurRequest
             Dim oWSIdentificateurPulve As New WSCrodip2.IdentifiantPulverisateur()

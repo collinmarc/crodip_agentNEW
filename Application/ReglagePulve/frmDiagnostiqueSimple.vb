@@ -2447,7 +2447,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     Dim ecartTolereTextBox As ComboBox = CSForm.getControlByName("ComboBox_ecartTolere_" & lotId, diagBuses_tab_categories)
                     Dim ecartTolereValue As Decimal = CType(ecartTolereTextBox.Text, Decimal)
                     ' On Calcul
-                    Dim tmpEcartPourcentage As Decimal
                     Dim oBuse As New DiagnosticBusesDetail()
                     oBuse.debit = debitValue
                     oBuse.CalcEcart(debitNominalValue, ecartTolereValue)
@@ -2911,7 +2910,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
                 If nBuses = 2 Then
                     Dim TBDebit As CRODIP_ControlLibrary.TBNumeric
-                    Dim Debit As Decimal
                     'Récupération du debit de la buse1
                     TBDebit = CSForm.getControlByName("diagBuses_mesureDebit_" & lotId & "_1_debit", diagBuses_tab_categories)
                     tbdebitNominal.Text = TBDebit.DecimalValue
@@ -3932,7 +3930,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         'CSDebug.dispInfo("Diagnostique.SaveBuses")
         Dim oBanc As Banc
         Dim nbLots As Integer
-        Dim bReturn As Boolean
         Try
 
             If buses_listBancs.SelectedItem IsNot Nothing Then
@@ -9330,7 +9327,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     Dim strCode As String = oParam.Code
                     If Not strCode.StartsWith("1.") Then
                         'Exclusion des paramètes 'Préliminaires"
-                        Dim nNiveau As Integer
                         strCode = strCode.Replace(".", "") 'Remplace les codes par rien
                         If oParam.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_GROUPE Then
                             'C'est un Label ou un Group

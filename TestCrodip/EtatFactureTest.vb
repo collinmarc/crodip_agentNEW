@@ -14,7 +14,7 @@ Imports Crodip_agent
         m_oDiag = createDiagnostic(m_oExploitation, m_oPulve)
 
         oFacture = New EtatFacture(m_oDiag, DiagnosticFactureManager.getDernReference(m_oAgent), "TEST")
-        oFacture.AddPresta("TEST", "300", "1", 20, 30, 50)
+        oFacture.AddPresta("TEST", "300", 1, 20, 30, 50)
 
         Assert.IsTrue(oFacture.GenereEtat())
         Assert.IsTrue(oFacture.getFileName().EndsWith("FACTURE.pdf"))

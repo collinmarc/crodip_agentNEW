@@ -5,11 +5,13 @@ Public Class dlgAquisition
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
-        Dim olst As New List(Of Acquiring)
-        For Each oAcq As Acquiring In BindingSource1
-            olst.Add(oAcq)
+        Dim oModuleAcq As CRODIPAcquisition.ModuleAcq
+        oModuleAcq = CRODIPAcquisition.ModuleAcq.GetModule("MD2")
+        Dim oLst As New List(Of CRODIPAcquisition.AcquisitionValue)
+        For Each oVal As CRODIPAcquisition.AcquisitionValue In BindingSource1
+            oLst.Add(oVal)
         Next
-        AcquiringManager.Save(olst)
+        oModuleAcq.createModuleAcquisition().FTO_SaveData(oLst)
         Me.Close()
     End Sub
 
@@ -20,6 +22,12 @@ Public Class dlgAquisition
 
     Private Sub dlgAquisition_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Chargement du contenu de la base
-        BindingSource1.Add(AcquiringManager.GetAcquiring())
+        Dim oModuleAcq As CRODIPAcquisition.ModuleAcq
+        oModuleAcq = CRODIPAcquisition.ModuleAcq.GetModule("MD2")
+        Dim lst As List(Of CRODIPAcquisition.AcquisitionValue)
+        lst = oModuleAcq.getValues()
+        For Each oValue As CRODIPAcquisition.AcquisitionValue In lst
+            BindingSource1.Add(oValue)
+        Next
     End Sub
 End Class

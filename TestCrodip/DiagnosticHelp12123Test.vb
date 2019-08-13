@@ -70,7 +70,7 @@ Public Class DiagnosticHelp12123test
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp12123.id))
-        Assert.IsTrue(oDiagHelp12123.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp12123.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
         iD = oDiagHelp12123.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp12123.id))
 
@@ -85,7 +85,7 @@ Public Class DiagnosticHelp12123test
         oDiagHelp12123.bCalcule = False
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp12123.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp12123.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
 
         Debug.WriteLine("Lecture")
         oDiagHelp12123 = New DiagnosticHelp12123()

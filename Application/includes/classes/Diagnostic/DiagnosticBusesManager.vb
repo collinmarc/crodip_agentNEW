@@ -9,7 +9,7 @@ Public Class DiagnosticBusesManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBuses(agentCourant.id, diag_id, objWSCrodip_response)
             Select Case codeResponse
@@ -340,7 +340,6 @@ Public Class DiagnosticBusesManager
         Dim bReturn As Boolean
         Dim oCSDB As New CSDb(True)
         Try
-            Dim nColId As Integer
             Dim bddCommande3 As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
             bddCommande3.CommandText = "SELECT MAX(IDLOT) FROM DiagnosticBuses WHERE DiagnosticBuses.idDiagnostic='" & pDiagnostic.id & "'"
             ' On récupère les résultats
@@ -430,13 +429,13 @@ Public Class DiagnosticBusesManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function getDiagnosticBusesById(ByVal diagnosticbuses_id As String, ByVal pidDiagnostic As String) As DiagnosticBuses
-        Debug.Assert(Not String.IsNullOrEmpty(diagnosticbuses_id))
+    Public Shared Function getDiagnosticBusesById(ByVal diagnosticbuses_id As Integer, ByVal pidDiagnostic As String) As DiagnosticBuses
+        Debug.Assert(diagnosticbuses_id > 0)
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
         Dim oCSDB As New CSDb(True)
         Dim tmpDiagnosticBuses As New DiagnosticBuses
-        If diagnosticbuses_id <> "" Then
+        If diagnosticbuses_id > 0 Then
 
             Dim bddCommande As OleDb.OleDbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
@@ -490,7 +489,7 @@ Public Class DiagnosticBusesManager
         Return tmpDiagnosticBuses
     End Function
 
-    Public Shared Function delete(ByVal diagnosticbuses_id As String, ByVal pidDiagnostic As String) As Boolean
+    Public Shared Function delete(ByVal diagnosticbuses_id As Integer, ByVal pidDiagnostic As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(diagnosticbuses_id))
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
@@ -520,7 +519,6 @@ Public Class DiagnosticBusesManager
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
         Dim bReturn As Boolean
-        Dim oDiagBuses As DiagnosticBuses
         Try
 
             Dim oCSDB As New CSDb(True)

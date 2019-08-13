@@ -5,7 +5,7 @@ Public Class ReferentielManager
         Try
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             bReturn = True
         Catch ex As Exception

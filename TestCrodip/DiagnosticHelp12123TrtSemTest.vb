@@ -262,13 +262,13 @@ Public Class DiagnosticHelp12123TrtSemTest
         'Ajout de 2 pompes
         Dim oPompe As DiagnosticHelp12123PompeTrtSem
         oPompe = New DiagnosticHelp12123PompeTrtSem(oHelp12123, 1)
-        oPompe.PeseeMoyenne = 10.1
+        oPompe.PeseeMoyenne = 10.1D
         'Ajout de 3 Mesures
         Dim oMesure As DiagnosticHelp12123MesuresTrtSem
         oMesure = oPompe.lstMesures(0)
-        oMesure.qteGrains = 1.1
+        oMesure.qteGrains = 1.1D
         oMesure = oPompe.lstMesures(1)
-        oMesure.qteGrains = 1.2
+        oMesure.qteGrains = 1.2D
         'oMesure = oPompe.lstMesures(2)
         'oMesure.qteGrains = 1.3
 
@@ -278,9 +278,9 @@ Public Class DiagnosticHelp12123TrtSemTest
         oPompe.PeseeMoyenne = 20.1D
         'Ajout de 3 Mesures
         oMesure = oPompe.lstMesures(0)
-        oMesure.qteGrains = 2.1
+        oMesure.qteGrains = 2.1D
         oMesure = oPompe.lstMesures(1)
-        oMesure.qteGrains = 2.2
+        oMesure.qteGrains = 2.2D
         'oMesure = oPompe.lstMesures(2)
         'oMesure.qteGrains = 2.3
         oDiag.diagnosticHelp12123.lstPompesTrtSem.Add(oPompe)

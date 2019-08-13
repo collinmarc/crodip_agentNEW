@@ -160,7 +160,6 @@ Public Class tests
         For buseId As Integer = 1 To 20
 
             ' Rand value
-            Dim randVal As String
 
             ' On ajoute la buse a la table d'échange
             Dim oCSDB As New CSDb(True, DBTYPE.ETAT)

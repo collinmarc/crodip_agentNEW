@@ -9,7 +9,7 @@ Public Class FVBancManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetFVBanc(agentCourant.id, fvbanc_id, objWSCrodip_response)
             Select Case codeResponse
@@ -315,7 +315,7 @@ Public Class FVBancManager
 
     Public Shared Function delete(ByVal pId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pId), " le paramètre ID doit être initialisé")
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
@@ -454,7 +454,7 @@ Public Class FVBancManager
         ' déclarations
         Dim arrItems(0) As FVBanc
         Dim bddCommande As OleDb.OleDbCommand
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         oCSDb = New CSDb(True)
         bddCommande = oCSDb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT `FichevieBancMesure`.* FROM `FichevieBancMesure` INNER JOIN `BancMesure` ON `FichevieBancMesure`.`idBancMesure` = `BancMesure`.`id` WHERE `FichevieBancMesure`.`dateModificationAgent`<>`FichevieBancMesure`.`dateModificationCrodip` AND `BancMesure`.`idStructure`=" & pAgent.idStructure
@@ -500,7 +500,7 @@ Public Class FVBancManager
         Debug.Assert(Not String.IsNullOrEmpty(pBancId), "Id doit être renseigné")
 
         Dim lstFVBanc As New System.Collections.Generic.List(Of FVBanc)
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Try
             oCSDB = New CSDb(True)

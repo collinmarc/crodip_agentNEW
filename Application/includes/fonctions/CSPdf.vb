@@ -1293,7 +1293,7 @@ Public Class cPDF
         Dim bArray(FileLen(sFileName) - 1) As Byte
         Dim iJPGFile As Integer = FreeFile()
         FileOpen(iJPGFile, sFileName, OpenMode.Binary, OpenAccess.Read)
-        FileGet(iJPGFile, bArray)
+        FileGet(iJPGFile, CType(bArray, Byte()))
         FileClose(iJPGFile)
 
         'On récupère les données

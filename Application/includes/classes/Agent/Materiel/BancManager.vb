@@ -3,13 +3,13 @@ Public Class BancManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSBancById(poAgent As Agent, ByVal banc_id As String) As Object
+    Public Shared Function getWSBancById(poAgent As Agent, ByVal banc_id As String) As Banc
         Dim objBanc As New Banc
         Try
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As New Object
             Dim bReturn As Boolean
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetBanc(poAgent.id, banc_id, objWSCrodip_response)
@@ -35,8 +35,9 @@ Public Class BancManager
 
     End Function
 
-    Public Shared Function sendWSBanc(pAgent As Agent, ByVal banc As Banc, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSBanc(pAgent As Agent, ByVal banc As Banc) As Integer
         Try
+            Dim updatedObject As New Object
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Return objWSCrodip.SendBanc(pAgent.id, banc, updatedObject)
@@ -66,7 +67,7 @@ Public Class BancManager
     ''' Cette méthode n'est plus utilisée depuis la 2.5.4.3 , car les matériels sont créés sur le Serveur 
     Public Shared Function FTO_getNewId(ByVal pAgent As Agent) As String
         ' déclarations
-        Dim oCSDb As CSDb = Nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
@@ -107,7 +108,7 @@ Public Class BancManager
 
     Public Shared Function save(ByVal objBanc As Banc, Optional bsynchro As Boolean = False) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(objBanc.id), "L'Id doit être inititialisé")
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Try
@@ -179,6 +180,7 @@ Public Class BancManager
                     If objBanc.DateActivation <> Nothing Then
                         paramsQuery = paramsQuery & " , `BancMesure`.`dateActivation`='" & CSDate.mysql2access(objBanc.DateActivation) & "'"
                     End If
+                    paramsQuery = paramsQuery & " , `BancMesure`.`ModuleAcquisition`='" & objBanc.ModuleAcquisition & "'"
 
 
                     ' On finalise la requete et en l'execute
@@ -318,7 +320,7 @@ Public Class BancManager
 
     Public Shared Function delete(ByVal pBancId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pBancId), " le paramètre ID doit être initialisé")
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
@@ -355,7 +357,7 @@ Public Class BancManager
     Public Shared Function getMaterielsSupprimes(ByVal pIdStructure As String) As Collection
         Debug.Assert(Not String.IsNullOrEmpty(pIdStructure), "L'Id Structre doit être initialisé")
         Dim colReturn As New Collection()
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand = Nothing
         Dim oDataReader As System.Data.OleDb.OleDbDataReader
         Try

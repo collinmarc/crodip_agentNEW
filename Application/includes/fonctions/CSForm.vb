@@ -83,7 +83,7 @@ Module CSForm
     End Function
 
     Public Function getControlByNameFromPanel(ByVal controlName As String, ByVal panel As Panel) As Control
-        Dim tmpReturn As Control
+        Dim tmpReturn As Control = Nothing
         For Each Obj As Object In panel.Controls
             If Not Obj Is Nothing Then
                 If TypeOf Obj Is Panel Then

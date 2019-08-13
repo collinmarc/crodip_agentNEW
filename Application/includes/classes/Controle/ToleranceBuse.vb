@@ -23,7 +23,7 @@ Public Class lstToleranceBuse
 
     End Sub
     Public Sub DeSerialize()
-        Dim oRd As System.IO.StreamReader
+        Dim oRd As System.IO.StreamReader = Nothing
         Try
             oRd = New System.IO.StreamReader("./toleranceBuses.xml")
             Dim oSer As New System.Xml.Serialization.XmlSerializer(Me.GetType())

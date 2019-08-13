@@ -302,7 +302,7 @@ Public Class ManometreControle
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getAlerte() As Globals.ALERTE
+    Public Overloads Function getAlerte() As Globals.ALERTE
         Dim bReturn As Globals.ALERTE
         bReturn = Globals.ALERTE.NONE
 
@@ -345,7 +345,7 @@ Public Class ManometreControle
         Return creerFicheVie(FVManometreControle.FVTYPE_DESACTIVATION, pAgent) IsNot Nothing
     End Function
     Public Function creerfFicheVieControle(ByVal pAgent As Agent, pControleMano As ControleMano) As FVManometreControle
-        Dim oReturn As FVManometreControle
+        Dim oReturn As FVManometreControle = Nothing
         Try
             Dim oFV As FVManometreControle
             oFV = creerFicheVie(FVMateriel.FVTYPE_CONTROLE, pAgent)

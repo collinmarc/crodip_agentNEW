@@ -13,7 +13,8 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("MCII")> 
 <Assembly: AssemblyProduct("CRODIP_ControlLibrary")> 
 <Assembly: AssemblyCopyright("Copyright © MCII 2013")> 
-<Assembly: AssemblyTrademark("20160906170000")> 
+<Assembly: AssemblyTrademark("20160906170000")>
+<Assembly: CLSCompliant(False)>
 
 <Assembly: ComVisible(False)>
 

@@ -15,7 +15,7 @@ Imports Crodip_agent
         PulverisateurManager.save(oPulverisateur, oExploit.id, m_oAgent)
         oDiag = createDiagnostic(oExploit, oPulverisateur, True)
 
-        Assert.IsTrue(CSReglagePulve.Execute(oDiag.id, m_oAgent.id))
+        Assert.IsTrue(CSReglagePulve.Execute(oDiag.id, m_oAgent.id.ToString))
         Threading.Thread.Sleep(1000)
     End Sub
 

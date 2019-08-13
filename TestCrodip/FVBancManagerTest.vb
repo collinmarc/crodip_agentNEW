@@ -176,7 +176,6 @@ Public Class FVBancManagerTest
     <TestMethod()> _
     Public Sub SynhcroDesFichesDeViesBancTest()
         Dim obanc As Banc
-        Dim oFVBanc As FVBanc
         Dim olstFV As New List(Of FVBanc)
         obanc = m_oBanc
         obanc.JamaisServi = True
@@ -197,7 +196,7 @@ Public Class FVBancManagerTest
 
         'controle du banc
         Dim oCtrl As New ControleBanc()
-        oCtrl.DateVerif = Date.Now()
+        oCtrl.DateVerif = Date.Now().ToShortDateString()
         oCtrl.Proprietaire = m_oStructure.nom
         oCtrl.tempExt = "15"
         oCtrl.tempEau = "21"
@@ -366,7 +365,7 @@ Public Class FVBancManagerTest
 
         'controle du banc
         Dim oCtrl As New ControleBanc()
-        oCtrl.DateVerif = Date.Now()
+        oCtrl.DateVerif = Date.Now().ToShortDateString()
         oCtrl.Proprietaire = m_oStructure.nom
         oCtrl.tempExt = "15"
         oCtrl.tempEau = "21"

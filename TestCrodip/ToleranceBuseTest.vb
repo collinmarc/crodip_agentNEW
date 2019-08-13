@@ -92,7 +92,7 @@ Public Class ToleranceBuseTest
         Assert.AreEqual(0.01875D, oTolerance.pctTolerance)
         oTolerance.pctTolerance = 10
         Assert.AreEqual(0.1D, oTolerance.pctTolerance)
-        oTolerance.pctTolerance = 0.2
+        oTolerance.pctTolerance = 0.2D
         Assert.AreEqual(0.2D, oTolerance.pctTolerance)
 
         oTolerance.Couleur = "Jaune"
@@ -144,7 +144,7 @@ Public Class ToleranceBuseTest
         oTol = Nothing
 
         Dim oRd As New System.IO.StreamReader("./toleranceBuse.xml")
-        oTol = oSer.Deserialize(oRd)
+        oTol = CType(oSer.Deserialize(oRd), ToleranceBuse)
         Assert.AreEqual(oTol.Couleur, "jaune")
         Assert.AreEqual(oTol.pctTolerance, 0.1D)
         Assert.AreEqual(oTol.debitMesure, 10D)

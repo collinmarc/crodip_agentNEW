@@ -11,7 +11,7 @@ Public Class CSDebug
         displayMsg("[Fatal] - " & errorMsg)
         ' Dim curVersion As String = Globals.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
         'CSDebug.saveLog("fatal", agentCourant.id, errorMsg, curVersion)
-        MsgBox(errorMsg, MsgBoxStyle.Critical, "FATAL ERROR")
+        'MsgBox(errorMsg, MsgBoxStyle.Critical, "FATAL ERROR")
     End Sub
     Public Shared Sub dispError(ByVal errorMsg As String)
         logger.Error(errorMsg)

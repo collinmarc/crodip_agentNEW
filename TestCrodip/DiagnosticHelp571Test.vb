@@ -86,7 +86,7 @@ Public Class DiagnosticHelp571test
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp571.id))
-        Assert.IsTrue(oDiagHelp571.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp571.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
         iD = oDiagHelp571.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp571.id))
 
@@ -134,7 +134,7 @@ Public Class DiagnosticHelp571test
         oDiagHelp571.IsDPAEPression = False
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp571.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp571.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
 
         Debug.WriteLine("Lecture")
         oDiagHelp571 = New DiagnosticHelp571()
@@ -191,18 +191,18 @@ Public Class DiagnosticHelp571test
         'Ajout des mesures help571
         '=========================
         oDiag.diagnosticHelp571.bCalcule = False
-        oDiag.diagnosticHelp571.erreurVitesseDEB = 10.1
-        oDiag.diagnosticHelp571.erreurDebitDEB = 10.2
-        oDiag.diagnosticHelp571.erreurGlobaleDEB = 10.3
+        oDiag.diagnosticHelp571.erreurVitesseDEB = 10.1D
+        oDiag.diagnosticHelp571.erreurDebitDEB = 10.2D
+        oDiag.diagnosticHelp571.erreurGlobaleDEB = 10.3D
         'Attention on affectre les valeur saisie avant les valeurs calculées , sinon le calcul se redécclenche
-        oDiag.diagnosticHelp571.DebitMesurePRS = 20.2
-        oDiag.diagnosticHelp571.PressionMesurePRS = 20.1
-        oDiag.diagnosticHelp571.PressionMoyennePRS = 20.4
-        oDiag.diagnosticHelp571.DebitBuseProgrammePRS = 20.5
-        oDiag.diagnosticHelp571.ErreurVitessePRS = 20.6
-        oDiag.diagnosticHelp571.DebitReelPRS = 20.3
-        oDiag.diagnosticHelp571.ErreurDebitPRS = 20.7
-        oDiag.diagnosticHelp571.ErreurGlobalePRS = 20.7
+        oDiag.diagnosticHelp571.DebitMesurePRS = 20.2D
+        oDiag.diagnosticHelp571.PressionMesurePRS = 20.1D
+        oDiag.diagnosticHelp571.PressionMoyennePRS = 20.4D
+        oDiag.diagnosticHelp571.DebitBuseProgrammePRS = 20.5D
+        oDiag.diagnosticHelp571.ErreurVitessePRS = 20.6D
+        oDiag.diagnosticHelp571.DebitReelPRS = 20.3D
+        oDiag.diagnosticHelp571.ErreurDebitPRS = 20.7D
+        oDiag.diagnosticHelp571.ErreurGlobalePRS = 20.7D
 
         'SAuvegarde du Diag
         '====================
@@ -227,18 +227,18 @@ Public Class DiagnosticHelp571test
         Assert.AreEqual(oDiag2.diagnosticHelp571.ErreurDebitPRS, 20.7D)
         Assert.AreEqual(oDiag2.diagnosticHelp571.ErreurGlobalePRS, 20.7D)
 
-        oDiag2.diagnosticHelp571.erreurVitesseDEB = 10.1 * 10
-        oDiag2.diagnosticHelp571.erreurDebitDEB = 10.2 * 10
-        oDiag2.diagnosticHelp571.erreurGlobaleDEB = 10.3 * 10
+        oDiag2.diagnosticHelp571.erreurVitesseDEB = 10.1D * 10D
+        oDiag2.diagnosticHelp571.erreurDebitDEB = 10.2D * 10D
+        oDiag2.diagnosticHelp571.erreurGlobaleDEB = 10.3D * 10D
 
-        oDiag2.diagnosticHelp571.DebitMesurePRS = 20.2 * 10
-        oDiag2.diagnosticHelp571.PressionMesurePRS = 20.1 * 10
-        oDiag2.diagnosticHelp571.PressionMoyennePRS = 20.4 * 10
-        oDiag2.diagnosticHelp571.DebitBuseProgrammePRS = 20.5 * 10
-        oDiag2.diagnosticHelp571.ErreurVitessePRS = 20.6 * 10
-        oDiag2.diagnosticHelp571.DebitReelPRS = 20.3 * 10
-        oDiag2.diagnosticHelp571.ErreurDebitPRS = 20.7 * 10
-        oDiag2.diagnosticHelp571.ErreurGlobalePRS = 20.7 * 10
+        oDiag2.diagnosticHelp571.DebitMesurePRS = 20.2D * 10D
+        oDiag2.diagnosticHelp571.PressionMesurePRS = 20.1D * 10D
+        oDiag2.diagnosticHelp571.PressionMoyennePRS = 20.4D * 10D
+        oDiag2.diagnosticHelp571.DebitBuseProgrammePRS = 20.5D * 10D
+        oDiag2.diagnosticHelp571.ErreurVitessePRS = 20.6D * 10D
+        oDiag2.diagnosticHelp571.DebitReelPRS = 20.3D * 10D
+        oDiag2.diagnosticHelp571.ErreurDebitPRS = 20.7D * 10D
+        oDiag2.diagnosticHelp571.ErreurGlobalePRS = 20.7D * 10D
 
         'SAuvegarde du Diag
         '====================
@@ -272,12 +272,12 @@ Public Class DiagnosticHelp571test
         Dim oHelp571 As New DiagnosticHelp571()
 
         oHelp571.PressionMesurePRS = 3
-        oHelp571.DebitMesurePRS = 1.202
-        oHelp571.PressionMoyennePRS = 2.725
-        oHelp571.DebitBuseProgrammePRS = 1.16
+        oHelp571.DebitMesurePRS = 1.202D
+        oHelp571.PressionMoyennePRS = 2.725D
+        oHelp571.DebitBuseProgrammePRS = 1.16D
         Assert.AreEqual(1.146D, oHelp571.DebitReelPRSRND)
         Assert.AreEqual(1.22D, oHelp571.ErreurDebitPRSRND)
-        oHelp571.ErreurVitessePRS = 1.89
+        oHelp571.ErreurVitessePRS = 1.89D
         Assert.AreEqual(0.668D, oHelp571.ErreurGlobalePRSRND)
     End Sub
     <TestMethod()>
@@ -311,9 +311,9 @@ Public Class DiagnosticHelp571test
         oHelp571.Regulation = "DPAE"
         oHelp571.IsDPAE = True
         oHelp571.PressionMesurePRS = 3
-        oHelp571.DebitMesurePRS = 1.202
-        oHelp571.PressionMoyennePRS = 2.725
-        oHelp571.DebitBuseProgrammePRS = 1.16
+        oHelp571.DebitMesurePRS = 1.202D
+        oHelp571.PressionMoyennePRS = 2.725D
+        oHelp571.DebitBuseProgrammePRS = 1.16D
 
         oHelp571.ErreurDebitPRS = 1.25D
         oHelp571.ErreurVitessePRS = oHelp571.ErreurDebitPRS + 6.3D

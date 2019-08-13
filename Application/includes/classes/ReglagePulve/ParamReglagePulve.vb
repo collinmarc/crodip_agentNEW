@@ -15,7 +15,7 @@ Public Class ParamReglagePulve
         End Set
     End Property
     Public Function getUSer(pCode As String) As RPUser
-        Dim oReturn As RPUser
+        Dim oReturn As RPUser = Nothing
         Dim oUser As RPUser
         For Each oUser In _Coluser
             If oUser.Code = pCode Then

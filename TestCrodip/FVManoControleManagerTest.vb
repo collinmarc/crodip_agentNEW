@@ -181,7 +181,7 @@ Public Class FVManometreControleManagerTest
         oManoE.isUtilise = False
         ManometreEtalonManager.save(oManoE)
 
-        oCtrl.DateVerif = Date.Now
+        oCtrl.DateVerif = Date.Now.ToShortDateString()
         oCtrl.manoEtalon = oManoE.idCrodip
         oCtrl.idMano = oMano.idCrodip
 

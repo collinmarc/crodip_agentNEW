@@ -73,6 +73,7 @@ Public Class login
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents btnTesttrtSemences As System.Windows.Forms.Button
     Friend WithEvents bntGetWSDiag As System.Windows.Forms.Button
+    Friend WithEvents btn_dlgAcquisition As Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -88,6 +89,7 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.bntGetWSDiag = New System.Windows.Forms.Button()
         Me.btnTesttrtSemences = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.brnTestDiagRecap = New System.Windows.Forms.Button()
@@ -106,7 +108,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.bntGetWSDiag = New System.Windows.Forms.Button()
+        Me.btn_dlgAcquisition = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
@@ -252,6 +254,7 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.btn_dlgAcquisition)
         Me.GroupBox_test.Controls.Add(Me.bntGetWSDiag)
         Me.GroupBox_test.Controls.Add(Me.btnTesttrtSemences)
         Me.GroupBox_test.Controls.Add(Me.Button4)
@@ -268,6 +271,15 @@ Public Class login
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
+        '
+        'bntGetWSDiag
+        '
+        Me.bntGetWSDiag.Location = New System.Drawing.Point(377, 19)
+        Me.bntGetWSDiag.Name = "bntGetWSDiag"
+        Me.bntGetWSDiag.Size = New System.Drawing.Size(128, 23)
+        Me.bntGetWSDiag.TabIndex = 35
+        Me.bntGetWSDiag.Text = "GetWSDiag"
+        Me.bntGetWSDiag.UseVisualStyleBackColor = True
         '
         'btnTesttrtSemences
         '
@@ -432,7 +444,7 @@ Public Class login
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(512, 32)
         Me.Label3.TabIndex = 0
-        Me.Label3.Text = "        Pour accéder au logiciel, veuillez sélectionner votre profil ci-dessous e" & _
+        Me.Label3.Text = "        Pour accéder au logiciel, veuillez sélectionner votre profil ci-dessous e" &
     "t indiquer votre mot de passe :"
         '
         'lbl_environnement_debugType
@@ -473,14 +485,14 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'bntGetWSDiag
+        'btn_dlgAcquisition
         '
-        Me.bntGetWSDiag.Location = New System.Drawing.Point(377, 19)
-        Me.bntGetWSDiag.Name = "bntGetWSDiag"
-        Me.bntGetWSDiag.Size = New System.Drawing.Size(128, 23)
-        Me.bntGetWSDiag.TabIndex = 35
-        Me.bntGetWSDiag.Text = "GetWSDiag"
-        Me.bntGetWSDiag.UseVisualStyleBackColor = True
+        Me.btn_dlgAcquisition.Location = New System.Drawing.Point(375, 47)
+        Me.btn_dlgAcquisition.Name = "btn_dlgAcquisition"
+        Me.btn_dlgAcquisition.Size = New System.Drawing.Size(128, 23)
+        Me.btn_dlgAcquisition.TabIndex = 36
+        Me.btn_dlgAcquisition.Text = "dlgAcquisition"
+        Me.btn_dlgAcquisition.UseVisualStyleBackColor = True
         '
         'login
         '
@@ -882,7 +894,6 @@ Public Class login
     End Sub
 
     Private Sub brnTestDiagRecap_Click(sender As Object, e As EventArgs) Handles brnTestDiagRecap.Click
-        Dim oEtat As EtatRapportInspection
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
@@ -1008,5 +1019,10 @@ Public Class login
             lstElementsASynchroniser.Add(oElmt)
             oSynchro.runDescSynchro(lstElementsASynchroniser)
         End If
+    End Sub
+
+    Private Sub btn_dlgAcquisition_Click(sender As Object, e As EventArgs) Handles btn_dlgAcquisition.Click
+        Dim odlg As Form = New dlgAquisition()
+        odlg.Show()
     End Sub
 End Class

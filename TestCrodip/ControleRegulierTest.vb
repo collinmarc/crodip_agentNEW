@@ -170,7 +170,7 @@
 '        objBanc.isSupprime = True
 '        objBanc.AgentSuppression = m_oAgent.nom
 '        objBanc.RaisonSuppression = "MaRaison"
-'        objBanc.dateSuppression = CDate("06/02/1964")
+'        objBanc.DateSuppression = "06/02/1964"
 '        objBanc.nbControles = 5
 '        objBanc.nbControlesTotal = 15
 '        BancManager.save(objBanc)
@@ -187,7 +187,7 @@
 '        objManometreControle.isSupprime = True
 '        objManometreControle.AgentSuppression = m_oAgent.nom
 '        objManometreControle.RaisonSuppression = "MaRaison"
-'        objManometreControle.dateSuppression = CDate("06/02/1964")
+'        objManometreControle.DateSuppression = "06/02/1964"
 '        objManometreControle.nbControles = 5
 '        objManometreControle.nbControlesTotal = 15
 '        ManometreControleManager.save(objManometreControle)
@@ -204,7 +204,7 @@
 '        objManometreEtalon.isSupprime = True
 '        objManometreEtalon.AgentSuppression = m_oAgent.nom
 '        objManometreEtalon.RaisonSuppression = "MaRaison"
-'        objManometreEtalon.dateSuppression = CDate("06/02/1964")
+'        objManometreEtalon.DateSuppression = "06/02/1964"
 '        objManometreEtalon.nbControles = 5
 '        objManometreEtalon.nbControlesTotal = 15
 '        ManometreEtalonManager.save(objManometreEtalon)
@@ -246,7 +246,7 @@
 '        objBanc.isSupprime = True
 '        objBanc.AgentSuppression = m_oAgent.nom
 '        objBanc.RaisonSuppression = "MaRaison"
-'        objBanc.dateSuppression = CDate("06/02/1964")
+'        objBanc.DateSuppression = "06/02/1964"
 '        objBanc.nbControles = 5
 '        objBanc.nbControlesTotal = 15
 '        BancManager.save(objBanc)
@@ -263,7 +263,7 @@
 '        objManometreControle.isSupprime = True
 '        objManometreControle.AgentSuppression = m_oAgent.nom
 '        objManometreControle.RaisonSuppression = "MaRaison"
-'        objManometreControle.dateSuppression = CDate("06/02/1964")
+'        objManometreControle.DateSuppression = "06/02/1964"
 '        objManometreControle.nbControles = 5
 '        objManometreControle.nbControlesTotal = 15
 '        ManometreControleManager.save(objManometreControle)
@@ -280,7 +280,7 @@
 '        objManometreEtalon.isSupprime = True
 '        objManometreEtalon.AgentSuppression = m_oAgent.nom
 '        objManometreEtalon.RaisonSuppression = "MaRaison"
-'        objManometreEtalon.dateSuppression = CDate("06/02/1964")
+'        objManometreEtalon.DateSuppression = "06/02/1964"
 '        objManometreEtalon.nbControles = 5
 '        objManometreEtalon.nbControlesTotal = 15
 '        ManometreEtalonManager.save(objManometreEtalon)
@@ -397,7 +397,7 @@
 '        objBanc.isSupprime = True
 '        objBanc.AgentSuppression = m_oAgent.nom
 '        objBanc.RaisonSuppression = "MaRaison"
-'        objBanc.dateSuppression = CDate("06/02/1964")
+'        objBanc.DateSuppression = "06/02/1964"
 '        objBanc.nbControles = 5
 '        objBanc.nbControlesTotal = 15
 '        BancManager.save(objBanc)
@@ -449,7 +449,7 @@
 '        objManometreControle.isSupprime = True
 '        objManometreControle.AgentSuppression = m_oAgent.nom
 '        objManometreControle.RaisonSuppression = "MaRaison"
-'        objManometreControle.dateSuppression = CDate("06/02/1964")
+'        objManometreControle.DateSuppression = "06/02/1964"
 '        objManometreControle.nbControles = 5
 '        objManometreControle.nbControlesTotal = 15
 '        ManometreControleManager.save(objManometreControle)

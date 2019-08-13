@@ -4,7 +4,7 @@ Module ReferentielManometreManager
         Try
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object = Nothing
+            Dim objWSCrodip_response As new Object 
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetReferentielManometre(agentCourant.id, objWSCrodip_response)
             Select Case codeResponse

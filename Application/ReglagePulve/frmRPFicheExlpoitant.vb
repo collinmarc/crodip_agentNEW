@@ -2,7 +2,7 @@
     Implements IfrmCRODIP
 
     Protected m_oDiag As RPDiagnostic
-    Public Sub setContexte(pIsModediag As Boolean, pClient As Exploitation, pRPdiag As RPDiagnostic)
+    Public Overloads Sub setContexte(pIsModediag As Boolean, pClient As Exploitation, pRPdiag As RPDiagnostic)
         MyBase.setContexte(pIsModediag, pClient)
         m_bsExploitation.Clear()
         m_bsExploitation.Add(clientCourant)
@@ -58,7 +58,7 @@
         'Valider()
     End Sub
 
-    Public Sub refresh()
+    Public Overrides Sub Refresh()
         m_bsExploitation.ResetBindings(False)
     End Sub
 End Class

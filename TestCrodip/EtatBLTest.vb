@@ -13,7 +13,7 @@ Imports Crodip_agent
         m_oPulve = createPulve(m_oExploitation)
         m_oDiag = createDiagnostic(m_oExploitation, m_oPulve)
         oEtat = New EtatBL(m_oDiag)
-        oEtat.AddPresta("TEST", "300", "1", 20, 30, 50)
+        oEtat.AddPresta("TEST", "300", 1, 20, 30, 50)
 
         Assert.IsTrue(oEtat.GenereEtat())
         Assert.IsTrue(oEtat.getFileName().EndsWith("BL.pdf"))

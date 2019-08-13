@@ -11,7 +11,7 @@ Public Class DiagnosticManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetDiagnostic(pAgentID, diagnostic_id, objWSCrodip_response)
             Select Case codeResponse
@@ -171,7 +171,7 @@ Public Class DiagnosticManager
         ' déclarations
         Dim DebugStep As String
         Dim bReturn As Boolean = True
-        Dim oCsdb As CSDb
+        Dim oCsdb As CSDb = Nothing
         Try
 
 
@@ -221,11 +221,11 @@ Public Class DiagnosticManager
 
     Protected Shared Function LoadDiagnosticAttributes(pDiag As Diagnostic) As Boolean
         Dim DebugStep As String
-        Dim oCSDB As CSDb
+        Dim oCsdb As CSDb = Nothing
         Dim bReturn As Boolean = True
         Try
 
-            oCSDB = New CSDb(True)
+            oCsdb = New CSDb(True)
             '########################################
             ' On récupère les items du diagnostic
             '########################################
@@ -290,7 +290,7 @@ Public Class DiagnosticManager
             '#########################################################
 
             Dim bddCommande5 As New OleDb.OleDbCommand
-            bddCommande5.Connection = oCSDB.getConnection()
+            bddCommande5.Connection = oCsdb.getConnection()
             bddCommande5.CommandText = "SELECT * FROM DiagnosticMano542 WHERE DiagnosticMano542.idDiagnostic='" & pDiag.id & "' ORDER BY id"
             ' On récupère les résultats
             Dim oDataReader As System.Data.OleDb.OleDbDataReader = bddCommande5.ExecuteReader
@@ -319,7 +319,7 @@ Public Class DiagnosticManager
             '#########################################################
             ' On récupère les pressions aux tronçons
             Dim bddCommande6 As New OleDb.OleDbCommand
-            bddCommande6.Connection = oCSDB.getConnection()
+            bddCommande6.Connection = oCsdb.getConnection()
             bddCommande6.CommandText = "SELECT * FROM DiagnosticTroncons833 WHERE DiagnosticTroncons833.idDiagnostic='" & pDiag.id & "'"
             ' On récupère les résultats
             oDataReader = bddCommande6.ExecuteReader
@@ -344,8 +344,8 @@ Public Class DiagnosticManager
             oDataReader.Close()
             DebugStep = "23"
 
-            If oCSDB IsNot Nothing Then
-                oCSDB.free()
+            If oCsdb IsNot Nothing Then
+                oCsdb.free()
             End If
             bReturn = True
 
@@ -1210,7 +1210,7 @@ Public Class DiagnosticManager
         Dim bReturn As Boolean
         Try
             Dim oCsdb As New CSDb(True)
-            Dim tmpNewDiagItemId As String
+            Dim tmpNewDiagItemId As String = ""
             'Pour accellérer la sauvegarde en création on récupère le nouvel id des diagItem et on l'incrémentera au fur et à mesure
             If bcreationDiag Then
                 tmpNewDiagItemId = DiagnosticItemManager.getNewId(pDiagnostic.organismePresId, pDiagnostic.inspecteurId)
@@ -1257,7 +1257,7 @@ Public Class DiagnosticManager
     Public Shared Function delete(ByVal pDiagnosticId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pDiagnosticId), "Diagnostic.id doit être inialisé")
         Dim bReturn As Boolean
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDbCommand
         Dim nResult As Integer
         bReturn = False

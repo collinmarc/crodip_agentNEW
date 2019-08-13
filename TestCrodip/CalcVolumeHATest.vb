@@ -8,9 +8,9 @@ Imports System.IO
 
     <TestMethod()> Public Sub TestCalDebit1()
         Dim oCalc As New CalcVolumeHa()
-        oCalc.PressionDeMesure = 3.5
-        oCalc.DebitMoyenPM = 2.8
-        oCalc.Pression1 = 3
+        oCalc.PressionDeMesure = 3.5D
+        oCalc.DebitMoyenPM = 2.8D
+        oCalc.Pression1 = 3D
 
         Assert.AreEqual(CDec(2.592), Math.Round(oCalc.Debit1, 3))
 

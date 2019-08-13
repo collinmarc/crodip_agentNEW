@@ -12,8 +12,8 @@ Public Class Referentiel
     ' Fonction de téléchargement du fichier
     Protected Shared Function GetURLDataBin(ByVal URL As String, Optional ByRef UserName As String = "", Optional ByRef Password As String = "") As Byte()
         Dim Req As HttpWebRequest
-        Dim SourceStream As System.IO.Stream
-        Dim Response As HttpWebResponse
+        Dim SourceStream As System.IO.Stream = Nothing
+        Dim Response As HttpWebResponse = Nothing
 
         Try
             ' Création de la requete HTTP

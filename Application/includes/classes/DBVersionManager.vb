@@ -27,7 +27,7 @@ Public Class DBVersionManagerManager
     ''' <returns> une instance de dbVersion</returns>
     ''' <remarks></remarks>
     Public Shared Function getDBVersion() As DBVersion
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim oDBVersion As New DBVersion()
 
@@ -66,7 +66,7 @@ Public Class DBVersionManagerManager
         Debug.Assert(Not pDBVersion Is Nothing, "La version doit être renseignée")
         Debug.Assert(Not String.IsNullOrEmpty(pDBVersion.NUM), "La version doit être renseignée")
 
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Dim nResult As Integer

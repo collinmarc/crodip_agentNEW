@@ -179,12 +179,15 @@
 --UPDATE Diagnostic SET typeDiagnostic = "equipement" where pulverisateurId in ( select id from pulverisateur where isPulveAdditionnel)
 --INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.5.4.6",#12/06/2016#, "Version 20161216170000") 
 --Version 2.5.6
-ALTER TABLE [pulverisateur] ADD isPompesDoseuses YESNO
-UPDATE pulverisateur SET isPompesDoseuses = 0 
-ALTER TABLE [pulverisateur] ADD nbPompesDoseuses LONG
-UPDATE pulverisateur SET nbPompesDoseuses = 0 
-UPDATE pulverisateur SET nbPompesDoseuses = 0 
-ALTER TABLE [diagnostic] ADD commentaire varchar(255)
-UPDATE Diagnostic SET commentaire = '' 
-INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6",#09/01/2018#, "Pompes Doseuses") 
+--ALTER TABLE [pulverisateur] ADD isPompesDoseuses YESNO
+--UPDATE pulverisateur SET isPompesDoseuses = 0 
+--ALTER TABLE [pulverisateur] ADD nbPompesDoseuses LONG
+--UPDATE pulverisateur SET nbPompesDoseuses = 0 
+--UPDATE pulverisateur SET nbPompesDoseuses = 0 
+--ALTER TABLE [diagnostic] ADD commentaire varchar(255)
+--UPDATE Diagnostic SET commentaire = '' 
+--INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6",#09/01/2018#, "Pompes Doseuses") 
+ALTER TABLE BancMesure ADD ModuleAcquisition VARCHAR(255)
+UPDATE BancMesure SET ModuleAcquisition = 'MD2' 
+INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.1", "12/08/2019" , "Modules Acquisition") 
 

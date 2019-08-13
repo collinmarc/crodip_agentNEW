@@ -1,6 +1,6 @@
 ﻿Imports System.Collections.Generic
 Imports System.IO
-Public Class frmDiagnostique
+Public Class FrmDiagnostique
     Inherits frmCRODIP
     Implements IfrmCRODIP
 
@@ -57,7 +57,7 @@ Public Class frmDiagnostique
     Protected m_bDuringLoad551 As Boolean = True
     Protected m_bDuringLoad552 As Boolean = True
 
-    Protected m_oParamdiag As CRODIP_ControlLibrary.ParamDiag
+    Protected m_Paramdiag As CRODIP_ControlLibrary.ParamDiag
     Protected m_DiagBuses As New DiagnosticBusesList()
     Protected m_referentielBuses As New ReferentielBusesCSV()
     Protected m_diagnostic As Diagnostic
@@ -721,11 +721,11 @@ Public Class frmDiagnostique
             '' Mise a jour de la barre de statut
             'Statusbar.display(Globals.CONST_STATUTMSG_DIAG_ENCOURS, False)
             'Lecture du paramétrage associé au pulvérisateur
-            m_oParamdiag = m_Pulverisateur.getParamDiag()
-            If String.IsNullOrEmpty(m_oParamdiag.fichierConfig) Then
+            m_Paramdiag = m_Pulverisateur.getParamDiag()
+            If String.IsNullOrEmpty(m_Paramdiag.fichierConfig) Then
                 CSDebug.dispFatal("Impossible de Trouver le fichier de configuration du controle pour le Pulve type = " & m_Pulverisateur.type & ", categorie = " & m_Pulverisateur.categorie)
             End If
-            Dim sParamFile As String = My.Settings.RepertoireParametres & "/" & m_oParamdiag.fichierConfig
+            Dim sParamFile As String = My.Settings.RepertoireParametres & "/" & m_Paramdiag.fichierConfig
             If Not System.IO.File.Exists(sParamFile) Then
                 CSDebug.dispFatal("le fichier de configuration du controle pour le Pulve type = " & m_Pulverisateur.type & ", categorie = " & m_Pulverisateur.categorie & " Fichier de config " & sParamFile & "n'existe pas")
             End If
@@ -863,10 +863,10 @@ Public Class frmDiagnostique
             '================================
             'Initialisation de l'onglet Buses
             '================================
-            diagBuses_conf_nbCategories.Text = m_Pulverisateur.buseNbNiveaux
+            diagBuses_conf_nbCategories.Text = m_Pulverisateur.buseNbniveaux
             tbPressionMesure.Text = 3 'Pression de controle
             validNbCategories() 'Création des controles 
-            For nbLot As Integer = 1 To m_Pulverisateur.buseNbNiveaux
+            For nbLot As Integer = 1 To m_Pulverisateur.buseNbniveaux
                 'Initialisation de la catégorie n
                 Dim Lot As String = nbLot.ToString()
 
@@ -894,11 +894,11 @@ Public Class frmDiagnostique
             '===================
             'Mano833
             '====================
-            If m_Pulverisateur.manometreNbNiveaux <> 0 Then
-                nup_niveaux.Value = m_Pulverisateur.manometreNbNiveaux
+            If m_Pulverisateur.manometreNbniveaux <> 0 Then
+                nup_niveaux.Value = m_Pulverisateur.manometreNbniveaux
             End If
-            If m_Pulverisateur.manometreNbTroncons <> 0 Then
-                nupTroncons.Value = m_Pulverisateur.manometreNbTroncons
+            If m_Pulverisateur.manometreNbtroncons <> 0 Then
+                nupTroncons.Value = m_Pulverisateur.manometreNbtroncons
             End If
             CreerNiveauxTroncons833()
             '            SetCurrentPressionControls()
@@ -1170,7 +1170,6 @@ Public Class frmDiagnostique
             If Not m_diagnostic.diagnosticMano542List Is Nothing And Not m_diagnostic.diagnosticMano542List.Liste Is Nothing Then
                 Dim curPression As Integer = 1
                 Dim tmpTxtBox_pressionPulve As CRODIP_ControlLibrary.TBNumeric
-                Dim tmpTxtBox_pressionControle As CRODIP_ControlLibrary.TBNumeric
                 For Each tmpDiagnosticMano542 In m_diagnostic.diagnosticMano542List.Liste
                     ' Récupération des contrôles
                     tmpTxtBox_pressionPulve = CSForm.getControlByName("manopulvePressionPulve_" & curPression, pnl542)
@@ -1195,7 +1194,6 @@ Public Class frmDiagnostique
                 'On affiche la pression de controle, car le choix de la famille de pression RAZ les pressions de controles
                 If Not m_diagnostic.diagnosticMano542List Is Nothing And Not m_diagnostic.diagnosticMano542List.Liste Is Nothing Then
                     Dim curPression As Integer = 1
-                    Dim tmpTxtBox_pressionPulve As CRODIP_ControlLibrary.TBNumeric
                     Dim tmpTxtBox_pressionControle As CRODIP_ControlLibrary.TBNumeric
                     For Each tmpDiagnosticMano542 In m_diagnostic.diagnosticMano542List.Liste
                         ' Récupération des contrôles
@@ -1552,7 +1550,7 @@ Public Class frmDiagnostique
                 oCalc542 = New DiagnosticMano542(manoPulvetextBox.Text, manoAgenttextBox.Text)
                 oLstMano542.Liste.Add(oCalc542)
             Next i
-            oLstMano542.CalcImprecisionNew(m_oParamdiag.ParamDiagCalc542)
+            oLstMano542.CalcImprecisionNew(m_Paramdiag.ParamDiagCalc542)
             For i As Integer = 1 To 4
                 oCalc542 = oLstMano542.Liste(i - 1)
                 Select Case i
@@ -2470,7 +2468,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     Dim ecartTolereTextBox As ComboBox = CSForm.getControlByName("ComboBox_ecartTolere_" & lotId, diagBuses_tab_categories)
                     Dim ecartTolereValue As Decimal = CType(ecartTolereTextBox.Text, Decimal)
                     ' On Calcul
-                    Dim tmpEcartPourcentage As Decimal
                     Dim oBuse As New DiagnosticBusesDetail()
                     oBuse.debit = debitValue
                     oBuse.CalcEcart(debitNominalValue, ecartTolereValue)
@@ -2608,7 +2605,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         'End If
         'End If
         If nbBusesUsees > 0 Then
-            If (nbBusesUsees / mutCalcNbBuses()) * 100 < m_oParamdiag.ParamDiagCalc922.limitePctBuseUsees Then
+            If (nbBusesUsees / mutCalcNbBuses()) * 100 < m_Paramdiag.ParamDiagCalc922.limitePctBuseUsees Then
                 diagBuses_resultat.Text = "USURE PARTIELLE"
                 diagBuses_resultat.ForeColor = System.Drawing.Color.Red
                 '       tabBuses_isOk = 0
@@ -2933,7 +2930,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
                 If nBuses = 2 Then
                     Dim TBDebit As CRODIP_ControlLibrary.TBNumeric
-                    Dim Debit As Decimal
                     'Récupération du debit de la buse1
                     TBDebit = CSForm.getControlByName("diagBuses_mesureDebit_" & lotId & "_1_debit", diagBuses_tab_categories)
                     tbdebitNominal.Text = TBDebit.DecimalValue
@@ -3067,7 +3063,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
 
             ' Récupération des variables
-            Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(frmDiagnostique))
+            Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(FrmDiagnostique))
             'Dim tabCategories As TabControl = diagBuses_tab_categories
             Dim isCleared As Boolean = False
             Do While isCleared = False
@@ -3608,7 +3604,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
                 'l'écartToléré est fixé en fonction du paramétrage
                 Dim cbxEcartTolere As ComboBox = CSForm.getControlByName("ComboBox_ecartTolere_" & i, diagBuses_tab_categories)
-                cbxEcartTolere.Text = m_oParamdiag.ParamDiagCalc922.pctToleranceDebitNominal
+                cbxEcartTolere.Text = m_Paramdiag.ParamDiagCalc922.pctToleranceDebitNominal
 
             Next
         Catch ex As Exception
@@ -3945,6 +3941,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End Try
 
     End Sub
+    Private Function GetBanc() As Banc
+        Dim oReturn As Banc = Nothing
+
+        If buses_listBancs.SelectedItem IsNot Nothing Then
+            oReturn = BancManager.getBancById(buses_listBancs.SelectedItem.id())
+        End If
+
+        Return oReturn
+    End Function
     ''' <summary>
     ''' Validation de l'onglet Buses
     ''' </summary>
@@ -3954,14 +3959,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         'CSDebug.dispInfo("Diagnostique.SaveBuses")
         Dim oBanc As Banc
         Dim nbLots As Integer
-        Dim bReturn As Boolean
+        Dim bReturn As Boolean = False
         Try
 
-            If buses_listBancs.SelectedItem IsNot Nothing Then
-                oBanc = BancManager.getBancById(buses_listBancs.SelectedItem.id())
-                If oBanc IsNot Nothing Then
-                    m_diagnostic.controleBancMesureId = oBanc.id
-                End If
+            oBanc = GetBanc()
+            If oBanc IsNot Nothing Then
+                m_diagnostic.controleBancMesureId = oBanc.id
             End If
             If Not String.IsNullOrEmpty(tbPressionMesure.Text) Then
                 m_diagnostic.manometrePressionTravail = tbPressionMesure.Text
@@ -4038,10 +4041,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Récupération de la pression de mesure à 3 bars
             m_diagnostic.buseDebit = tbDebitMoyen3bars.Text
             m_diagnostic.buseDebitMoyenPM = Globals.StringToDouble(diagBuses_debitMoyen.Text)
+            bReturn = True
         Catch ex As Exception
             CSDebug.dispError("diagnostique::ValiderDiagnostiqueBuses : " & ex.Message)
         End Try
 
+        Return bReturn
     End Function
 
 #End Region
@@ -4204,12 +4209,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 #End Region
 
 #Region " Acquisition des données "
-    Private Function CheckAcquisition() As Boolean
+    Private Function CheckAcquisition(pBanc As Banc) As Boolean
+        Debug.Assert(pBanc IsNot Nothing)
         Dim bReturn As Boolean
         Try
 
             Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
-            oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule("MD2")
+            oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule(pBanc.ModuleAcquisition)
 
             'Récupération du nombre de niveau et du nombre de buses
             Dim nbNiveauDeclare As Integer = 0
@@ -4248,9 +4254,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Sub doAcqiring()
-        Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
-        oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule("MD2")
+    Private Sub doAcquiring()
+        Dim obanc As Banc
+        obanc = GetBanc()
+        If obanc Is Nothing Then
+            Return
+        End If
+
         Dim isok As Boolean
         'Récupération du nombre de niveau et du nombre de buses
         Dim nbNiveauDeclare As Integer = 0
@@ -4258,8 +4268,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If diagBuses_conf_nbCategories.Text <> "" And IsNumeric(diagBuses_conf_nbCategories.Text) Then
             nbNiveauDeclare = CInt(diagBuses_conf_nbCategories.Text)
         End If
-        isok = CheckAcquisition()
+        isok = CheckAcquisition(obanc)
         If isok Then
+            Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
+            oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule(obanc.ModuleAcquisition)
             ' On récupère les buses de la table d'échange
             Dim lstValues As List(Of CRODIPAcquisition.AcquisitionValue) = oModuleAcquisition.getValues()
             For Each oValue As CRODIPAcquisition.AcquisitionValue In lstValues
@@ -4275,6 +4287,58 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                             mutCalcUsure1Buse(oValue.Niveau, oValue.NumBuse)
                             mutCalcIs1BuseUsee(oValue.Niveau, oValue.NumBuse)
                         End If
+                        If oValue.DebitNominal <> -1 Then
+                            'Debit Nominal constructeur
+                            x = CSForm.getControlByName("TextBox_debitNominalCONSTructeur_" & oValue.Niveau, diagBuses_tab_categories)
+                            If x IsNot Nothing Then
+                                x.Text = oValue.DebitNominal
+                            End If
+                            'Debit Nominal pour Calcul
+                            x = CSForm.getControlByName("TextBox_debitNominal_" & oValue.Niveau, diagBuses_tab_categories)
+                            If x IsNot Nothing Then
+                                x.Text = oValue.DebitNominal
+                            End If
+                        End If
+                        If oValue.MarqueTypeFonctionement <> "" Then
+                            Try
+                                Dim tab As String() = oValue.MarqueTypeFonctionement.Split("-")
+                                Dim strMarque As String = tab(0).Trim
+                                Dim strModele As String = tab(1).Trim
+                                Dim strFonction As String = tab(2).Trim
+
+                                x = CSForm.getControlByName("ComboBox_marque_" & oValue.Niveau, diagBuses_tab_categories)
+                                If x IsNot Nothing Then
+                                    x.Text = strMarque
+                                End If
+                                x = CSForm.getControlByName("ComboBox_modele_" & oValue.Niveau, diagBuses_tab_categories)
+                                If x IsNot Nothing Then
+                                    x.Text = strModele
+                                End If
+
+                            Catch
+
+                            End Try
+                        End If
+                        If oValue.Calibre <> "" Then
+                            Try
+                                Dim tab As String() = oValue.MarqueTypeFonctionement.Split("-")
+                                Dim strCouleur As String = tab(0).Trim
+                                Dim strCalibre As String = tab(1).Trim
+
+                                x = CSForm.getControlByName("ComboBox_couleur_" & oValue.Niveau, diagBuses_tab_categories)
+                                If x IsNot Nothing Then
+                                    x.Text = strCouleur
+                                End If
+                                x = CSForm.getControlByName("TextBox_calibre_" & oValue.Niveau, diagBuses_tab_categories)
+                                If x IsNot Nothing Then
+                                    x.Text = strCalibre
+                                End If
+
+                            Catch
+
+                            End Try
+                        End If
+
 
                     Catch ex As Exception
                         CSDebug.dispError("diagnostique.doAcquiring ERR 1 : " & ex.Message)
@@ -4674,12 +4738,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Public Sub SetDiagnostic833Type()
 
         tab_833.Visible = True
-        If m_oParamdiag.ParamDiagCalc833.Pression1 = 1.6D Then
+        If m_Paramdiag.ParamDiagCalc833.Pression1 = 1.6D Then
             manopulveIsFaiblePression.Checked = True
             nup_niveaux.Value = 1
             nupTroncons.Value = 4
         End If
-        If m_oParamdiag.ParamDiagCalc833.Pression1 = 5D Then
+        If m_Paramdiag.ParamDiagCalc833.Pression1 = 5D Then
             manopulveIsFortePression.Checked = True
             nup_niveaux.Value = 1
             nupTroncons.Value = 2
@@ -4783,7 +4847,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'diagnosticCourant.syntheseErreurMoyenneCinemometre = help551_erreurMoyenne.Text
 
 
-            m_diagnostic.ParamDiag = Me.m_oParamdiag
+            m_diagnostic.ParamDiag = Me.m_Paramdiag
 
             '====================================================================================
             'Mise à jour du pulvérisateurCourant
@@ -7534,7 +7598,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             odlg.Show()
         Else
             'transfert des données de l'acquisition
-            doAcqiring()
+            doAcquiring()
 
         End If
 
@@ -7806,7 +7870,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'car le défaut est calculé sur la différence entre la pression d'un tronçon et la moyenne des autres tronçons
             For nTroncon = 1 To m_Troncons
                 nCol = ((pNiveau - 1) * m_Troncons) + nTroncon
-                If m_RelevePression833_Current.GetTroncon(pNiveau, nTroncon).isDefaultHeterogeneite(m_oParamdiag.ParamDiagCalc833) Then
+                If m_RelevePression833_Current.GetTroncon(pNiveau, nTroncon).isDefaultHeterogeneite(m_Paramdiag.ParamDiagCalc833) Then
                     'Ce troncon est en défaut
                     m_dgvPressionCurrent(nCol, ROW_HETERO_PCT).Style.ForeColor = System.Drawing.Color.Red
                 Else
@@ -8082,19 +8146,19 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     IsNumeric(manopulvePressionPulve_3.Text) And
                     IsNumeric(manopulvePressionPulve_4.Text) Then
                     'Les 4 valeurs sont coorectes
-                    If m_oParamdiag.ParamDiagCalc833.PressionParDefaut = "1" Then
+                    If m_Paramdiag.ParamDiagCalc833.PressionParDefaut = "1" Then
                         rbPression1.Checked = True
                         setRelevePressionparDeFaut(1, True)
                     Else
-                        If m_oParamdiag.ParamDiagCalc833.PressionParDefaut = "2" Then
+                        If m_Paramdiag.ParamDiagCalc833.PressionParDefaut = "2" Then
                             rbPression2.Checked = True
                             setRelevePressionparDeFaut(2, True)
                         Else
-                            If m_oParamdiag.ParamDiagCalc833.PressionParDefaut = "3" Then
+                            If m_Paramdiag.ParamDiagCalc833.PressionParDefaut = "3" Then
                                 rbPression3.Checked = True
                                 setRelevePressionparDeFaut(3, True)
                             Else
-                                If m_oParamdiag.ParamDiagCalc833.PressionParDefaut = "4" Then
+                                If m_Paramdiag.ParamDiagCalc833.PressionParDefaut = "4" Then
                                     rbPression4.Checked = True
                                     setRelevePressionparDeFaut(4, True)
                                 Else
@@ -8637,19 +8701,19 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Try
 
             Dim pressionMano As Decimal
-            pressionMano = CDec(m_oParamdiag.ParamDiagCalc833.Pression1)
-            m_RelevePression833_P1 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_oParamdiag.ParamDiagCalc833)
+            pressionMano = CDec(m_Paramdiag.ParamDiagCalc833.Pression1)
+            m_RelevePression833_P1 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_Paramdiag.ParamDiagCalc833)
 
 
 
-            pressionMano = CDec(m_oParamdiag.ParamDiagCalc833.Pression2)
-            m_RelevePression833_P2 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_oParamdiag.ParamDiagCalc833)
+            pressionMano = CDec(m_Paramdiag.ParamDiagCalc833.Pression2)
+            m_RelevePression833_P2 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_Paramdiag.ParamDiagCalc833)
 
-            pressionMano = CDec(m_oParamdiag.ParamDiagCalc833.Pression3)
-            m_RelevePression833_P3 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_oParamdiag.ParamDiagCalc833)
+            pressionMano = CDec(m_Paramdiag.ParamDiagCalc833.Pression3)
+            m_RelevePression833_P3 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_Paramdiag.ParamDiagCalc833)
 
-            pressionMano = CDec(m_oParamdiag.ParamDiagCalc833.Pression4)
-            m_RelevePression833_P4 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_oParamdiag.ParamDiagCalc833)
+            pressionMano = CDec(m_Paramdiag.ParamDiagCalc833.Pression4)
+            m_RelevePression833_P4 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_Paramdiag.ParamDiagCalc833)
 
             SelectTableauMesurePourDefaut()
             SetCurrentPressionControls()
@@ -8879,7 +8943,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     oNiveau.SetPressionLue(nTroncon, m_dgvPressionCurrent.CurrentCell.Value)
                 End If
                 'Vérification du défaut 'Ecart de pression' pour le Niveau
-                If m_RelevePression833_Current.GetNiveau(nNiveau).isDefaultEcart(m_oParamdiag.ParamDiagCalc833) Then
+                If m_RelevePression833_Current.GetNiveau(nNiveau).isDefaultEcart(m_Paramdiag.ParamDiagCalc833) Then
                     'Ce troncon est en défaut
                     m_dgvPressionCurrent(ncol, ROW_ECARTMOYEN_PCT).Style.ForeColor = System.Drawing.Color.Red
                 Else
@@ -9450,7 +9514,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     Dim strCode As String = oParam.Code
                     If Not strCode.StartsWith("1.") Then
                         'Exclusion des paramètes 'Préliminaires"
-                        Dim nNiveau As Integer
                         strCode = strCode.Replace(".", "") 'Remplace les codes par rien
                         If oParam.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_GROUPE Then
                             'C'est un Label ou un Group

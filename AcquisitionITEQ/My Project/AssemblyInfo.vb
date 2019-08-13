@@ -14,6 +14,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyProduct("AcquisitionITEQ")>
 <Assembly: AssemblyCopyright("Copyright ©  2019")>
 <Assembly: AssemblyTrademark("")>
+<Assembly: CLSCompliant(False)>
 
 <Assembly: ComVisible(False)>
 

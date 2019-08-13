@@ -60,7 +60,7 @@
     Private Sub frmRPDlgHelp551_TextChanged(sender As Object, e As EventArgs) Handles Me.TextChanged
         laTitre.Text = Me.Text
     End Sub
-    Public Sub Setcontexte(pMode As DiagnosticHelp551.Help551Mode, pDiag As RPDiagnostic, pTitre As String, pVisu As Boolean)
+    Public Overloads Sub Setcontexte(pMode As DiagnosticHelp551.Help551Mode, pDiag As RPDiagnostic, pTitre As String, pVisu As Boolean)
         m_oDiag = pDiag
         m_mode = pMode
         MyBase.setContexte(pMode, pDiag, pTitre, pVisu)

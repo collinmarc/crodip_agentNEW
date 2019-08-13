@@ -9,7 +9,7 @@ Public Class FVManometreControleManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetFVManometreControle(agentCourant.id, fvmanometrecontrole_id, objWSCrodip_response)
             Select Case codeResponse
@@ -72,8 +72,7 @@ Public Class FVManometreControleManager
 
     Public Shared Function save(ByVal objFVManometreControle As FVManometreControle, Optional bSyncro As Boolean = False) As Boolean
         'Dim paramsQueryUpdate As String
-        Dim oCSDb As CSDb = nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim oCsdb As CSDb = Nothing
         Dim bReturn As Boolean
 
         Try
@@ -356,12 +355,12 @@ Public Class FVManometreControleManager
     Public Shared Function getFVManometreControleById(ByVal fvmanometrecontrole_id As String) As FVManometreControle
         Debug.Assert(Not String.IsNullOrEmpty(fvmanometrecontrole_id), "Id doit être initialisé")
         ' déclarations
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         Dim tmpFVManometreControle As New FVManometreControle(New Agent)
-        oCSDB = New CSDb(True)
-        bddCommande = oCSDB.getConnection().CreateCommand()
+        oCsdb = New CSDb(True)
+        bddCommande = oCsdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM FichevieManometreControle WHERE FichevieManometreControle.id='" & fvmanometrecontrole_id & "'"
         Try
             ' On récupère les résultats
@@ -380,9 +379,9 @@ Public Class FVManometreControleManager
         End Try
 
         ' Test pour fermeture de connection BDD
-        If oCSDB IsNot Nothing Then
+        If oCsdb IsNot Nothing Then
             ' On ferme la connexion
-            oCSDB.free()
+            oCsdb.free()
         End If
 
         'on retourne le fvmanometrecontrole ou un objet vide en cas d'erreur
@@ -393,14 +392,14 @@ Public Class FVManometreControleManager
     ''' Rend les fiches de vie des mano de la structure qui ont été modifiées depuis la dateCrodip
     Public Shared Function getUpdates(ByVal agent As Agent) As FVManometreControle()
         ' déclarations
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim arrItems(0) As FVManometreControle
         Dim bddCommande As OleDb.OleDbCommand
 
 
         Try
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT `FichevieManometreControle`.* FROM `FichevieManometreControle` INNER JOIN `AgentManoControle` ON `FichevieManometreControle`.`idManometre` = `AgentManoControle`.`idCrodip` WHERE `FichevieManometreControle`.`dateModificationAgent`<>`FichevieManometreControle`.`dateModificationCrodip` AND `AgentManoControle`.`idStructure`=" & agent.idStructure
             ' On récupère les résultats
             Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
@@ -423,8 +422,8 @@ Public Class FVManometreControleManager
             CSDebug.dispError("FVManometreControleManager - getUpdates ERR : " & ex.Message)
         End Try
 
-        If oCSDB IsNot Nothing Then
-            oCSDB.free()
+        If oCsdb IsNot Nothing Then
+            oCsdb.free()
         End If
         'on retourne les objet non synchro
         Return arrItems
@@ -433,12 +432,12 @@ Public Class FVManometreControleManager
     Public Shared Function getLstFVManometreControle(ByVal pIdManometre As String) As List(Of FVManometreControle)
         Debug.Assert(Not String.IsNullOrEmpty(pIdManometre), "L'ID doit êtr initialisé")
         Dim lstResponse As New List(Of FVManometreControle)
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
         If pIdManometre <> "" Then
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM FichevieManometreControle WHERE FichevieManometreControle.idManometre='" & pIdManometre & "'"
             Try
 
@@ -461,8 +460,8 @@ Public Class FVManometreControleManager
                 CSDebug.dispError("FVManometreControleManager - getArrFVManometreControle ERR : " & ex.Message)
             End Try
 
-            If oCSDB IsNot Nothing Then
-                oCSDB.free()
+            If oCsdb IsNot Nothing Then
+                oCsdb.free()
             End If
 
         End If
@@ -472,7 +471,7 @@ Public Class FVManometreControleManager
 #End Region
     Public Shared Function delete(ByVal pId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pId), " le paramètre ID doit être initialisé")
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean

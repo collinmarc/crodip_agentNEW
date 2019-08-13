@@ -50,26 +50,26 @@ Public Class ParamDiagTest
             If oCtrl.Code = "8.3.1.3" Then
                 oCtrl.Actif = True
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.UN Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.UN.ToString Then
                 oCtrl.Cause1 = True
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.DEUX Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.DEUX.ToString Then
                 oCtrl.Cause1 = True
                 oCtrl.Cause2 = True
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.TROIS Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.TROIS.ToString Then
                 oCtrl.Cause1 = True
                 oCtrl.Cause2 = True
                 oCtrl.Cause3 = True
             End If
             If oCtrl.Code = "10.2.1.3" Then
-                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR.ToString
             End If
             If oCtrl.Code = "10.2.2.2" Then
-                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR.ToString
             End If
             If oCtrl.Code = "10.2.2.3" Then
-                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR.ToString
             End If
         Next
         'Sauvegarde du fichier
@@ -117,26 +117,26 @@ Public Class ParamDiagTest
             If oCtrl.Code = "8.3.1.3" Then
                 oCtrl.Actif = False
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.UN Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.UN.ToString Then
                 oCtrl.Cause1 = True
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.DEUX Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.DEUX.ToString Then
                 oCtrl.Cause1 = True
                 oCtrl.Cause2 = True
             End If
-            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.TROIS Then
+            If oCtrl.NiveauCauseMax = CRODIP_NIVEAUCAUSE.TROIS.ToString Then
                 oCtrl.Cause1 = True
                 oCtrl.Cause2 = True
                 oCtrl.Cause3 = True
             End If
             If oCtrl.Code = "10.2.1.3" Then
-                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
+                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR.ToString
             End If
             If oCtrl.Code = "10.2.2.2" Then
-                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
+                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR.ToString
             End If
             If oCtrl.Code = "10.2.2.3" Then
-                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
+                oCtrl.DefaultCategorie = CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR.ToString
             End If
         Next
         'Sauvegarde du fichier
@@ -173,19 +173,19 @@ Public Class ParamDiagTest
         oParamDiag.libelle = "Cultures basses"
         oParamDiag.fichierConfig = "File1.xml"
         oParamDiag.ParamDiagCalc542.FTO_init()
-        Dim oPression As New ParamDiagCalc542PlagePression(0, 2)
+        Dim oPression As New ParamDiagCalc542PlagePression("0", "2")
         oPression.colEcart.Add(New ParamDiagCalc542Ecart("VALEUR", "0,1", "0,2", 1))
         oPression.colEcart.Add(New ParamDiagCalc542Ecart("VALEUR", "0,2", "999", 2))
         oParamDiag.ParamDiagCalc542.EcartVariable.colPression.Add(oPression)
-        oPression = New ParamDiagCalc542PlagePression(2, 999)
+        oPression = New ParamDiagCalc542PlagePression("2", "999")
         oPression.colEcart.Add(New ParamDiagCalc542Ecart("%_PRESSION_REELLE", "5", "10", 1))
         oPression.colEcart.Add(New ParamDiagCalc542Ecart("%_PRESSION_REELLE", "10", "100", 2))
         oParamDiag.ParamDiagCalc542.EcartVariable.colPression.Add(oPression)
-        oPression = New ParamDiagCalc542PlagePression(0, 10)
+        oPression = New ParamDiagCalc542PlagePression("0", "10")
         oPression.colEcart.Add(New ParamDiagCalc542Ecart("VALEUR", "0", "0,5", 1))
         oPression.colEcart.Add(New ParamDiagCalc542Ecart("VALEUR", "0,5", "999", 2))
         oParamDiag.ParamDiagCalc542.EcartConstant.colPression.Add(oPression)
-        oPression = New ParamDiagCalc542PlagePression(10, 999)
+        oPression = New ParamDiagCalc542PlagePression("10", "999")
         oPression.colEcart.Add(New ParamDiagCalc542Ecart("VALEUR", "0", "1", 1))
         oPression.colEcart.Add(New ParamDiagCalc542Ecart("VALEUR", "1", "999", 2))
         oParamDiag.ParamDiagCalc542.EcartConstant.colPression.Add(oPression)

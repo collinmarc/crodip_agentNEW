@@ -68,14 +68,14 @@ Public Class SynchronisationTest
     Public Sub testSynhcronisationExploitationToPulverisateur()
         Dim oExploit As Exploitation = createExploitation()
         Dim oPulve As Pulverisateur = createPulverisateur(oExploit)
-        Dim UpdatedObject As Object
+        Dim UpdatedObject As Object = Nothing
         Dim oExploitToPulve As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
         Dim response As Integer
 
         response = ExploitationManager.sendWSExploitation(oExploit, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2, "Synhcro Ascendante Exploit NOK=>" & response)
 
-        response = PulverisateurManager.sendWSPulverisateur(m_oAgent,oPulve, UpdatedObject)
+        response = PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve)
         Assert.IsTrue(response = 0 Or response = 2, "Synhcro Ascendante Pulve NOK=>" & response)
 
         response = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(oExploitToPulve, UpdatedObject)
@@ -179,11 +179,7 @@ Public Class SynchronisationTest
         Next
     End Sub
     Private Function createExploitant() As Exploitation
-        Dim oEtat As EtatRapportInspection
-        Dim oDiag As Diagnostic
-        Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
-        Dim oDiagItem As DiagnosticItem
 
         oExploit = New Exploitation()
         oExploit.raisonSociale = "RS EXPLOITANT"
@@ -198,11 +194,7 @@ Public Class SynchronisationTest
         Return oExploit
     End Function
     Private Function createPulverisateur(pExploit As Exploitation) As Pulverisateur
-        Dim oEtat As EtatRapportInspection
-        Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur
-        Dim oExploit As Exploitation
-        Dim oDiagItem As DiagnosticItem
 
         oPulve = New Pulverisateur()
         oPulve.idStructure = m_oAgent.idStructure
@@ -232,8 +224,6 @@ Public Class SynchronisationTest
     Private Function createDiag(pExploit As Exploitation, pPulve As Pulverisateur) As Diagnostic
         Dim oEtat As EtatRapportInspection
         Dim oDiag As Diagnostic
-        Dim oPulve As Pulverisateur
-        Dim oExploit As Exploitation
         Dim oDiagItem As DiagnosticItem
 
         oDiag = New Diagnostic(m_oAgent, pPulve, pExploit)
@@ -241,7 +231,7 @@ Public Class SynchronisationTest
         oDiag.controleIsPreControleProfessionel = True
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
 
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"

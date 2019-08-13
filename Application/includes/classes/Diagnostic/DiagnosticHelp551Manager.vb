@@ -23,8 +23,8 @@ Public Class DiagnosticHelp551Manager
         Dim oHelp551 As DiagnosticHelp551
         Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
         Try
-            Dim strIdItem As String
-            Select pMode
+            Dim strIdItem As String = ""
+            Select Case pMode
                 Case DiagnosticHelp551.Help551Mode.Mode551
                     strIdItem = "help551"
                 Case DiagnosticHelp551.Help551Mode.Mode5621

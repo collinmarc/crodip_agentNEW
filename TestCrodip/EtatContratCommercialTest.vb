@@ -20,8 +20,8 @@ Imports System.IO
         oDiag.inspecteurNom = "Collin"
         oDiag.inspecteurPrenom = "Marc"
         oDiag.proprietaireRepresentant = "Rault Marc Antoine"
-        oDiag.TotalHT = 165.2
-        oDiag.TotalTVA = oDiag.TotalHT * 0.2
+        oDiag.TotalHT = 165.2D
+        oDiag.TotalTVA = oDiag.TotalHT * 0.2D
         oDiag.TotalTTC = oDiag.TotalHT + oDiag.TotalTVA
 
 
@@ -88,16 +88,16 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
 
-        oDiag.syntheseErreurMoyenneManoD = 0.35
-        oDiag.syntheseErreurMoyenneCinemometreD = 0.36
-        oDiag.synthesePerteChargeMoyenneD = 0.37
-        oDiag.syntheseErreurMaxiManoD = 1.35
-        oDiag.syntheseUsureMoyenneBusesD = 1.36
-        oDiag.synthesePerteChargeMaxiD = 1.37
-        oDiag.syntheseErreurDebitmetreD = 0.38
-        oDiag.syntheseNbBusesUseesD = 1.38
+        oDiag.syntheseErreurMoyenneManoD = 0.35D
+        oDiag.syntheseErreurMoyenneCinemometreD = 0.36D
+        oDiag.synthesePerteChargeMoyenneD = 0.37D
+        oDiag.syntheseErreurMaxiManoD = 1.35D
+        oDiag.syntheseUsureMoyenneBusesD = 1.36D
+        oDiag.synthesePerteChargeMaxiD = 1.37D
+        oDiag.syntheseErreurDebitmetreD = 0.38D
+        oDiag.syntheseNbBusesUseesD = 1.38D
 
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         DiagnosticManager.save(oDiag)

@@ -5,7 +5,7 @@
 
     Private m_oRPDiag As RPDiagnostic
 
-    Public Overridable Sub setContexte(ByVal bModeAjout As MODE, pAgent As Agent, pPulverisateur As Pulverisateur, pExploitation As Exploitation, pDiagnostic As Diagnostic)
+    Public Overridable Overloads Sub setContexte(ByVal bModeAjout As MODE, pAgent As Agent, pPulverisateur As Pulverisateur, pExploitation As Exploitation, pDiagnostic As Diagnostic)
         m_oRPDiag = pDiagnostic
         MyBase.setContexte(bModeAjout, pAgent, pPulverisateur, pExploitation, pDiagnostic)
         Me.Text = "Pulvérisateur"
@@ -142,7 +142,7 @@
         'Valider()
     End Sub
 
-    Public Sub refresh()
+    Public Overrides Sub refresh()
         FillForm()
     End Sub
 End Class

@@ -241,16 +241,16 @@ Public Class Synchronisation
                 Dim arrUpdatesAgent() As Agent = AgentManager.getUpdates(m_Agent)
                 For Each tmpUpdateAgent As Agent In arrUpdatesAgent
                     Try
-                        Dim UpdatedObject As Object = nothing
+                        Dim UpdatedObject As New Object
                         Notice("Agent n°" & tmpUpdateAgent.id)
-                        Dim response As integer = AgentManager.sendWSAgent(tmpUpdateAgent, updatedObject)
+                        Dim response As Integer = AgentManager.sendWSAgent(tmpUpdateAgent, UpdatedObject)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSAgent) - Erreur Locale")
                             Case 0 ' OK
                                 AgentManager.setSynchro(tmpUpdateAgent)
                             Case 2 ' SENDPROFILAGENT_UPDATE
-                                Dim tmpAgentUpdated As Agent = AgentManager.xml2object(updatedObject)
+                                Dim tmpAgentUpdated As Agent = AgentManager.xml2object(UpdatedObject)
                                 m_Agent = tmpAgentUpdated
                                 agentCourant = m_Agent
                                 AgentManager.save(tmpAgentUpdated, True)
@@ -273,16 +273,16 @@ Public Class Synchronisation
                 Dim arrUpdatesStructuree() As Structuree = StructureManager.getUpdates(m_Agent)
                 For Each tmpUpdateStructuree As Structuree In arrUpdatesStructuree
                     Try
-                        Dim UpdatedObject As Object = nothing
+                        Dim UpdatedObject As New Object
                         Notice("Organisme n°" & tmpUpdateStructuree.id)
-                        Dim response As integer = StructureManager.sendWSStructuree(tmpUpdateStructuree, updatedObject)
+                        Dim response As Integer = StructureManager.sendWSStructuree(tmpUpdateStructuree, UpdatedObject)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSStructuree) - Erreur Locale")
                             Case 0 ' OK
                                 StructureManager.setSynchro(tmpUpdateStructuree)
                             Case 2 ' SENDPROFILAGENT_UPDATE
-                                StructureManager.setSynchro(StructureManager.xml2object(updatedObject))
+                                StructureManager.setSynchro(StructureManager.xml2object(UpdatedObject))
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSStructuree) - Le web service a répondu : NOK")
                             Case 9 ' BADREQUEST
@@ -300,9 +300,9 @@ Public Class Synchronisation
                 Dim arrUpdatesExploitation() As Exploitation = ExploitationManager.getUpdates(m_Agent)
                 For Each tmpUpdateExploitation As Exploitation In arrUpdatesExploitation
                     Try
-                        Dim UpdatedObject As Object = nothing
+                        Dim UpdatedObject As New Object
                         Notice("Exploitation n°" & tmpUpdateExploitation.id)
-                        Dim response As integer = ExploitationManager.sendWSExploitation(tmpUpdateExploitation, updatedObject)
+                        Dim response As Integer = ExploitationManager.sendWSExploitation(tmpUpdateExploitation, UpdatedObject)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitation) - Erreur Locale")
@@ -327,7 +327,7 @@ Public Class Synchronisation
                 'Dim arrUpdatesControleBanc() As ControleBanc = ControleBancManager.getUpdates()
                 'For Each tmpUpdateControleBanc As ControleBanc In arrUpdatesControleBanc
                 '    Try
-                '        Dim UpdatedObject As Object = nothing
+                '        Dim UpdatedObject As new Object
                 '        Dim response As integer = ControleBancManager.sendWSControleBanc(tmpUpdateControleBanc, updatedObject)
                 '        Select Case response
                 '            Case -1 ' ERROR
@@ -357,7 +357,7 @@ Public Class Synchronisation
                 '    Dim arrUpdatesControleMano() As ControleMano = ControleManoManager.getUpdates()
                 '    For Each tmpUpdateControleMano As ControleMano In arrUpdatesControleMano
                 '        Try
-                '            Dim UpdatedObject As Object = nothing
+                '            Dim UpdatedObject As new Object
                 '            Dim response As integer = ControleManoManager.sendWSControleMano(tmpUpdateControleMano, updatedObject)
                 '            Select Case response
                 '                Case -1 ' ERROR
@@ -389,9 +389,8 @@ Public Class Synchronisation
                 Dim arrUpdatesBuse() As Buse = BuseManager.getUpdates(m_Agent)
                 For Each tmpUpdateBuse As Buse In arrUpdatesBuse
                     Try
-                        Dim UpdatedObject As Object = nothing
                         Notice("Buse n°" & tmpUpdateBuse.numeroNational)
-                        Dim response As integer = BuseManager.sendWSBuse(tmpUpdateBuse, updatedObject)
+                        Dim response As Integer = BuseManager.sendWSBuse(tmpUpdateBuse)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBuse) - Erreur Locale" & vbNewLine)
@@ -416,9 +415,9 @@ Public Class Synchronisation
                 Dim arrUpdatesManometreControle() As ManometreControle = ManometreControleManager.getUpdates(m_Agent)
                 For Each tmpUpdateManometreControle As ManometreControle In arrUpdatesManometreControle
                     Try
-                        Dim UpdatedObject As Object = nothing
+                        Dim UpdatedObject As New Object
                         Notice("Manometre de Controle n°" & tmpUpdateManometreControle.numeroNational)
-                        Dim response As integer = ManometreControleManager.sendWSManometreControle(m_Agent, tmpUpdateManometreControle, updatedObject)
+                        Dim response As Integer = ManometreControleManager.sendWSManometreControle(m_Agent, tmpUpdateManometreControle, UpdatedObject)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreControle) - Erreur Locale")
@@ -443,9 +442,9 @@ Public Class Synchronisation
                 Dim arrUpdatesManometreEtalon() As ManometreEtalon = ManometreEtalonManager.getUpdates(m_Agent)
                 For Each tmpUpdateManometreEtalon As ManometreEtalon In arrUpdatesManometreEtalon
                     Try
-                        Dim UpdatedObject As Object = nothing
+                        Dim UpdatedObject As New Object
                         Notice("Manometre Etalon n°" & tmpUpdateManometreEtalon.numeroNational)
-                        Dim response As integer = ManometreEtalonManager.sendWSManometreEtalon(m_Agent, tmpUpdateManometreEtalon, updatedObject)
+                        Dim response As Integer = ManometreEtalonManager.sendWSManometreEtalon(m_Agent, tmpUpdateManometreEtalon)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Erreur Locale")
@@ -469,9 +468,9 @@ Public Class Synchronisation
                 Dim arrUpdatesBanc() As Banc = BancManager.getUpdates(m_Agent)
                 For Each tmpUpdateBanc As Banc In arrUpdatesBanc
                     Try
-                        Dim UpdatedObject As Object = nothing
+                        Dim UpdatedObject As New Object
                         Notice("Banc de mesure n°" & tmpUpdateBanc.id)
-                        Dim response As integer = BancManager.sendWSBanc(m_Agent, tmpUpdateBanc, updatedObject)
+                        Dim response As Integer = BancManager.sendWSBanc(m_Agent, tmpUpdateBanc)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBanc) - Erreur Locale")
@@ -506,9 +505,9 @@ Public Class Synchronisation
                 Dim arrUpdatesPulverisateur() As Pulverisateur = PulverisateurManager.getUpdates(m_Agent)
                 For Each oPulverisateur As Pulverisateur In arrUpdatesPulverisateur
                     Try
-                        Dim UpdatedObject As Object = nothing
+                        Dim UpdatedObject As New Object
                         Notice("Pulverisateur n°" & oPulverisateur.id)
-                        Dim response As integer = PulverisateurManager.sendWSPulverisateur(m_Agent, oPulverisateur, updatedObject)
+                        Dim response As Integer = PulverisateurManager.sendWSPulverisateur(m_Agent, oPulverisateur)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPulverisateur) - Erreur Locale")
@@ -531,9 +530,9 @@ Public Class Synchronisation
                 ' Synchro d'un ExploitationTOPulverisateur
                 Dim arrUpdatesExploitationTOPulverisateur() As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getUpdates(m_Agent)
                 For Each oExploitationTOPulverisateur As ExploitationTOPulverisateur In arrUpdatesExploitationTOPulverisateur
-                    Dim UpdatedObject As Object = nothing
+                    Dim UpdatedObject As New Object
                     Notice("ExploitationToPulverisateur n°" & oExploitationTOPulverisateur.idPulverisateur)
-                    Dim response As integer = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(oExploitationTOPulverisateur, updatedObject)
+                    Dim response As Integer = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(oExploitationTOPulverisateur, UpdatedObject)
                     Select Case response
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Erreur Locale")
@@ -591,8 +590,8 @@ Public Class Synchronisation
             Dim arrUpdatesPrestationCategorie() As PrestationCategorie = PrestationCategorieManager.getUpdates
             For Each tmpUpdatePrestationCategorie As PrestationCategorie In arrUpdatesPrestationCategorie
                 Try
-                    Dim UpdatedObject As Object = nothing
-                    Dim response As integer = PrestationCategorieManager.sendWSPrestationCategorie(tmpUpdatePrestationCategorie, m_Agent, updatedObject)
+                    Dim UpdatedObject As New Object
+                    Dim response As Integer = PrestationCategorieManager.sendWSPrestationCategorie(tmpUpdatePrestationCategorie, m_Agent, UpdatedObject)
                     Notice("PrestationCategorie n°" & tmpUpdatePrestationCategorie.id)
                     Select Case response
                         Case -1 ' ERROR
@@ -619,9 +618,9 @@ Public Class Synchronisation
             Dim arrUpdatesPrestationTarif() As PrestationTarif = PrestationTarifManager.getUpdates
             For Each tmpUpdatePrestationTarif As PrestationTarif In arrUpdatesPrestationTarif
                 Try
-                    Dim UpdatedObject As Object = nothing
+                    Dim UpdatedObject As New Object
                     Notice("PrestationTarif n°" & tmpUpdatePrestationTarif.id)
-                    Dim response As integer = PrestationTarifManager.sendWSPrestationTarif(tmpUpdatePrestationTarif, m_Agent, updatedObject)
+                    Dim response As Integer = PrestationTarifManager.sendWSPrestationTarif(tmpUpdatePrestationTarif, m_Agent, UpdatedObject)
                     Select Case response
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationTarif) - Erreur Locale")
@@ -652,9 +651,9 @@ Public Class Synchronisation
         Dim arrUpdatesFVBanc() As FVBanc = FVBancManager.getUpdates(m_Agent)
         For Each oFVBanc As FVBanc In arrUpdatesFVBanc
             Try
-                Dim UpdatedObject As Object = nothing
+                Dim UpdatedObject As New Object
                 Notice("Fiche de Vie Banc de Mesure n°" & oFVBanc.id)
-                Dim response As integer = FVBancManager.sendWSFVBanc(oFVBanc, updatedObject)
+                Dim response As Integer = FVBancManager.sendWSFVBanc(oFVBanc, UpdatedObject)
                 Select Case response
                     Case -1 ' ERROR
                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVBanc) - Erreur Locale")
@@ -677,13 +676,13 @@ Public Class Synchronisation
         Try
             Notice("Diagnostic " & pDiag.id)
 
-            Dim UpdatedObject As Object = nothing
+            Dim UpdatedObject As New Object
             'On Efface les propiétés de DiagItemList et DiagBusesList car elle n'ont pas besoin d'être serialisées avec le diag vues qu'elle sont synchronisées à part
             Dim oDiagItemList As DiagnosticItemsList = pDiag.diagnosticItemsLst
             pDiag.diagnosticItemsLst = Nothing
             Dim oDiagBusesList As DiagnosticBusesList = pDiag.diagnosticBusesList
             pDiag.diagnosticBusesList = Nothing
-            Dim response As integer = DiagnosticManager.sendWSDiagnostic(pAgent, pDiag, updatedObject)
+            Dim response As Integer = DiagnosticManager.sendWSDiagnostic(pAgent, pDiag, UpdatedObject)
             'Après Synchro on replace les propriétés
             pDiag.diagnosticItemsLst = oDiagItemList
             pDiag.diagnosticBusesList = oDiagBusesList
@@ -705,7 +704,7 @@ Public Class Synchronisation
 
             ' Synchro des items du diag courant
             If pDiag.diagnosticItemsLst.Count > 0 Then
-                Dim updatedObjectDiagItem As Object
+                Dim updatedObjectDiagItem As New Object
                 Notice("diagnostic items n°" & pDiag.id)
                 Dim responseDiagItem As Integer = DiagnosticItemManager.sendWSDiagnosticItem(pAgent, pDiag.diagnosticItemsLst, updatedObjectDiagItem)
                 Select Case responseDiagItem
@@ -730,10 +729,10 @@ Public Class Synchronisation
             ' Synchro des buses du diag courant
             If Not pDiag.diagnosticBusesList Is Nothing Then
                 If pDiag.diagnosticBusesList.Liste.Count > 0 Then
-                    Dim updatedObjectDiagBuse As Object
+                    Dim updatedObjectDiagBuse As New Object
                     Notice("diagnostic Buses n°" & pDiag.id)
                     Dim responseDiagBuse As Object = DiagnosticBusesManager.sendWSDiagnosticBuses(pAgent, pDiag.diagnosticBusesList, updatedObjectDiagBuse)
-                    Select Case responseDiagBuse
+                    Select Case CType(responseDiagBuse, Integer)
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Erreur Locale")
                         Case 0, 2 ' OK
@@ -754,10 +753,10 @@ Public Class Synchronisation
                     For Each tmpUpdateDiagnosticBuses As DiagnosticBuses In pDiag.diagnosticBusesList.Liste
                         If Not tmpUpdateDiagnosticBuses.diagnosticBusesDetailList Is Nothing Then
                             If tmpUpdateDiagnosticBuses.diagnosticBusesDetailList.Liste.Count > 0 Then
-                                Dim updatedObjectDiagBuseDetail As Object
+                                Dim updatedObjectDiagBuseDetail As New Object
                                 Notice("diagnostic Buse Detail n°" & pDiag.id)
                                 Dim responseDiagBuseDetail As Object = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(pAgent, tmpUpdateDiagnosticBuses.diagnosticBusesDetailList, updatedObjectDiagBuseDetail)
-                                Select Case responseDiagBuseDetail
+                                Select Case CType(responseDiagBuseDetail, Integer)
                                     Case -1 ' ERROR
                                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBusesDetail) - Erreur Locale")
                                     Case 0, 2 ' OK
@@ -782,10 +781,10 @@ Public Class Synchronisation
             ' Synchro des 542
             If Not pDiag.diagnosticMano542List Is Nothing Then
                 If pDiag.diagnosticMano542List.Liste.Count > 0 Then
-                    Dim updatedObjectDiag542 As Object
+                    Dim updatedObjectDiag542 As New Object
                     Dim responseDiag542 As Object = DiagnosticMano542Manager.sendWSDiagnosticMano542(pAgent, pDiag.diagnosticMano542List, updatedObjectDiag542)
                     Notice("diagnostic mano 542 n°" & pDiag.id)
-                    Select Case responseDiag542
+                    Select Case CType(responseDiag542, Integer)
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticMano542) - Erreur Locale")
                         Case 0, 2 ' OK
@@ -808,10 +807,10 @@ Public Class Synchronisation
             ' Synchro des 833
             If Not pDiag.diagnosticTroncons833 Is Nothing Then
                 If pDiag.diagnosticTroncons833.Liste.Count > 0 Then
-                    Dim updatedObjectDiag833 As Object
+                    Dim updatedObjectDiag833 As New Object
                     Notice("diagnostic Troncons 833 n°" & pDiag.id)
                     Dim responseDiag833 As Object = DiagnosticTroncons833Manager.sendWSDiagnosticTroncons833(pAgent, pDiag.diagnosticTroncons833, updatedObjectDiag833)
-                    Select Case responseDiag833
+                    Select Case CType(responseDiag833, Integer)
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Erreur Locale")
                         Case 0, 2 ' OK
@@ -940,8 +939,8 @@ Public Class Synchronisation
         Try
 
             Dim nbElement As Integer = (From elmt As SynchronisationElmt In m_ListeElementSynchroASC
-                         Where elmt.type = pElement.type And elmt.identifiantChaine = pElement.identifiantChaine
-                         Select elmt).Count
+                                        Where elmt.type = pElement.type And elmt.identifiantChaine = pElement.identifiantChaine
+                                        Select elmt).Count
 
             bReturn = (nbElement > 0)
         Catch ex As Exception
@@ -1028,7 +1027,7 @@ Public Class Synchronisation
         Dim arrUpdatesFVManometreControle() As FVManometreControle = FVManometreControleManager.getUpdates(m_Agent)
         For Each tmpUpdateFVManometreControle As FVManometreControle In arrUpdatesFVManometreControle
             Try
-                Dim UpdatedObject As Object = nothing
+                Dim UpdatedObject As New Object
                 Notice("Fiche de Vie Manometre de Controle n°" & tmpUpdateFVManometreControle.id)
                 Dim response As integer = FVManometreControleManager.sendWSFVManometreControle(tmpUpdateFVManometreControle, updatedObject)
                 Select Case response
@@ -1054,7 +1053,7 @@ Public Class Synchronisation
         Dim arrUpdatesFVManometreEtalon() As FVManometreEtalon = FVManometreEtalonManager.getUpdates(m_Agent)
         For Each tmpUpdateFVManometreEtalon As FVManometreEtalon In arrUpdatesFVManometreEtalon
             Try
-                Dim UpdatedObject As Object = nothing
+                Dim UpdatedObject As New Object
                 Notice("Fiche de Vie Manometre Etalon n°" & tmpUpdateFVManometreEtalon.id)
                 Dim response As integer = FVManometreEtalonManager.sendWSFVManometreEtalon(tmpUpdateFVManometreEtalon, updatedObject)
                 Select Case response

@@ -60,8 +60,7 @@ Public Class DiagnosticMano542Test
 
         DiagnosticMano542Manager.save(oDiagMAno542)
         iD = oDiagMAno542.id
-        Assert.IsFalse(String.IsNullOrEmpty(oDiagMAno542.id))
-        oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(oDiagMAno542.id, oDiagMAno542.idDiagnostic)
+        oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(oDiagMAno542.id.ToString, oDiagMAno542.idDiagnostic)
 
         Assert.AreEqual(oDiagMAno542.id, iD)
         Assert.AreEqual(oDiagMAno542.idDiagnostic, "99-99")
@@ -72,12 +71,12 @@ Public Class DiagnosticMano542Test
         oDiagMAno542.pressionControle = "1.61"
         oDiagMAno542.pressionPulve = "1.71"
         DiagnosticMano542Manager.save(oDiagMAno542)
-        oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(oDiagMAno542.id, oDiagMAno542.idDiagnostic)
+        oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(oDiagMAno542.id.ToString, oDiagMAno542.idDiagnostic)
 
         Assert.AreEqual(oDiagMAno542.pressionControle, "1.61")
         Assert.AreEqual(oDiagMAno542.pressionPulve, "1.71")
 
-        DiagnosticMano542Manager.delete(oDiagMAno542.id, oDiagMAno542.idDiagnostic)
+        DiagnosticMano542Manager.delete(oDiagMAno542.id.ToString, oDiagMAno542.idDiagnostic)
 
 
     End Sub
@@ -89,7 +88,6 @@ Public Class DiagnosticMano542Test
         Dim odiag As Diagnostic
 
         Dim oDiagMAno542 As DiagnosticMano542
-        Dim iD As Integer
 
         odiag = New Diagnostic()
         odiag.id = "99-99"
@@ -599,7 +597,6 @@ Public Class DiagnosticMano542Test
         Dim oMano542_2 As DiagnosticMano542
         Dim oMano542_3 As DiagnosticMano542
         Dim oMano542_4 As DiagnosticMano542
-        Dim oMano542 As DiagnosticMano542
 
         Dim oColMano542 As New DiagnosticMano542List()
         Dim oParamCalc542 As CRODIP_ControlLibrary.ParamDiagCalc542
@@ -733,9 +730,6 @@ Public Class DiagnosticMano542Test
     <TestMethod()> _
     Public Sub TST_CalcImprecisionMano_ValeursLimitesEcartConstant()
         Dim oMano542_1 As DiagnosticMano542
-        Dim oMano542_2 As DiagnosticMano542
-        Dim oMano542_3 As DiagnosticMano542
-        Dim oMano542_4 As DiagnosticMano542
 
         Dim oColMano542 As New DiagnosticMano542List()
         Dim oParamCalc542 As CRODIP_ControlLibrary.ParamDiagCalc542
@@ -854,8 +848,6 @@ Public Class DiagnosticMano542Test
     <TestMethod()> _
     Public Sub TST_CalcImprecisionMano_ValeursLimitesEcartVariable()
         Dim oMano542_1 As DiagnosticMano542
-        Dim oMano542_2 As DiagnosticMano542
-        Dim oMano542_3 As DiagnosticMano542
         Dim oMano542_4 As DiagnosticMano542
 
         Dim oColMano542 As New DiagnosticMano542List()
@@ -985,7 +977,7 @@ Public Class DiagnosticMano542Test
         Dim oMano542_2 As DiagnosticMano542
         Dim oMano542_3 As DiagnosticMano542
         Dim oMano542_4 As DiagnosticMano542
-        Dim oParamCalc542 As CRODIP_ControlLibrary.ParamDiagCalc542
+        Dim oParamCalc542 As New CRODIP_ControlLibrary.ParamDiagCalc542
         Dim lst As List(Of CRODIP_ControlLibrary.ParamDiag)
         lst = New List(Of CRODIP_ControlLibrary.ParamDiag)
         lst = CRODIP_ControlLibrary.ParamDiag.readXML()
@@ -1022,7 +1014,7 @@ Public Class DiagnosticMano542Test
         Dim oMano542_2 As DiagnosticMano542
         Dim oMano542_3 As DiagnosticMano542
         Dim oMano542_4 As DiagnosticMano542
-        Dim oParamCalc542 As CRODIP_ControlLibrary.ParamDiagCalc542
+        Dim oParamCalc542 As CRODIP_ControlLibrary.ParamDiagCalc542 = Nothing
         Dim lst As List(Of CRODIP_ControlLibrary.ParamDiag)
         lst = New List(Of CRODIP_ControlLibrary.ParamDiag)
         lst = CRODIP_ControlLibrary.ParamDiag.readXML()

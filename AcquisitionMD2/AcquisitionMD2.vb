@@ -88,6 +88,32 @@ Public Class AcquisitionMD2
         Return nBuses
     End Function
 
+    Public Sub FTO_SaveData(plst As List(Of AcquisitionValue)) Implements ICRODIPAcquisition.FTO_SaveData
+        Dim oConn As OleDb.OleDbConnection
+        oConn = New OleDbConnection(My.Settings.BDD)
+        oConn.Open()
+        ' Initialisation de la DB
+        Dim ocmd As OleDbCommand
+        ocmd = oConn.CreateCommand()
+        Dim n As Integer = 0
+        ocmd.CommandText = String.Format("DELETE FROM tmpDataAcquiring ")
+        ocmd.ExecuteNonQuery()
+        ocmd.CommandText = "Insert INTO tmpDataAcquiring (IdBuse,IdNiveau,debit,pression) VALUES (?,?,?,?)"
+
+        For Each oVal In plst
+            n = n + 1
+            ocmd.Parameters.Clear()
+            ocmd.Parameters.Add("?", OleDb.OleDbType.Integer).Value = n
+            ocmd.Parameters.Add("?", OleDb.OleDbType.Integer).Value = oVal.Niveau
+            ocmd.Parameters.Add("?", OleDb.OleDbType.Double).Value = oVal.Debit
+            ocmd.Parameters.Add("?", OleDb.OleDbType.Double).Value = oVal.Pression
+            ocmd.ExecuteNonQuery()
+        Next
+
+        oConn.Close()
+
+    End Sub
+
 
     'Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
     '    Dim oReturn As New List(Of AcquisitionValue)

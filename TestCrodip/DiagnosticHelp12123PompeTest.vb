@@ -71,7 +71,7 @@ Public Class DiagnosticHelp12123Pompetest
         oDiagHelp12123P.DebitReel = 1.6D
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure, m_oAgent.id))
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString))
         iD = oDiagHelp12123P.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp12123P.id))
 
@@ -105,7 +105,7 @@ Public Class DiagnosticHelp12123Pompetest
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMINEUR
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure, m_oAgent.id))
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString))
 
         Debug.WriteLine("Lecture")
         oDiagHelp12123P = New DiagnosticHelp12123Pompe(iD, idDiag)
@@ -150,17 +150,17 @@ Public Class DiagnosticHelp12123Pompetest
         'Mesure 1
         oMesure = oPompe.lstMesures(0)
         oMesure.idDiag = oPompe.idDiag
-        oMesure.ReglageDispositif = 1.1
+        oMesure.ReglageDispositif = 1.1D
         'Mesure 2
         oMesure = oPompe.lstMesures(1)
         oMesure.idDiag = oPompe.idDiag
-        oMesure.ReglageDispositif = 1.2
+        oMesure.ReglageDispositif = 1.2D
         'Mesure 3
         oMesure = oPompe.lstMesures(2)
         oMesure.idDiag = oPompe.idDiag
-        oMesure.ReglageDispositif = 1.3
+        oMesure.ReglageDispositif = 1.3D
 
-        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id))
+        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString))
         iD = oPompe.id
         Assert.IsFalse(String.IsNullOrEmpty(oPompe.id))
 
@@ -190,15 +190,15 @@ Public Class DiagnosticHelp12123Pompetest
 
         'Maj des mesures
         oMesure = oPompe.getMesure(0)
-        oMesure.ReglageDispositif = 2.1
+        oMesure.ReglageDispositif = 2.1D
 
         oMesure = oPompe.getMesure(1)
-        oMesure.ReglageDispositif = 2.2
+        oMesure.ReglageDispositif = 2.2D
 
         oMesure = oPompe.getMesure(2)
-        oMesure.ReglageDispositif = 2.3
+        oMesure.ReglageDispositif = 2.3D
 
-        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id))
+        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString.ToString))
         Debug.WriteLine("Lecture")
         oPompe = New DiagnosticHelp12123Pompe(iD, idDiag)
         Assert.IsTrue(oPompe.Load())
@@ -235,7 +235,7 @@ Public Class DiagnosticHelp12123Pompetest
         oDiagHelp12123P.DebitReel = 1.6D
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oStructure.id, m_oAgent.id))
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oStructure.id.ToString, m_oAgent.id.ToString))
         iD = oDiagHelp12123P.id
 
         'Act
@@ -292,27 +292,27 @@ Public Class DiagnosticHelp12123Pompetest
         'Ajout de 2 pompes
         Dim oPompe As DiagnosticHelp12123Pompe
         oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 1)
-        oPompe.debitMesure = 10.1
+        oPompe.debitMesure = 10.1D
         'Ajout de 3 Mesures
         Dim oMesure As DiagnosticHelp12123Mesure
         oMesure = oPompe.lstMesures(0)
-        oMesure.ReglageDispositif = 1.1
+        oMesure.ReglageDispositif = 1.1D
         oMesure = oPompe.lstMesures(1)
-        oMesure.ReglageDispositif = 1.2
+        oMesure.ReglageDispositif = 1.2D
         oMesure = oPompe.lstMesures(2)
-        oMesure.ReglageDispositif = 1.3
+        oMesure.ReglageDispositif = 1.3D
 
         oDiag.diagnosticHelp12123.lstPompes.Add(oPompe)
 
         oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 2)
-        oPompe.debitMesure = 20.1
+        oPompe.debitMesure = 20.1D
         'Ajout de 3 Mesures
         oMesure = oPompe.lstMesures(0)
-        oMesure.ReglageDispositif = 2.1
+        oMesure.ReglageDispositif = 2.1D
         oMesure = oPompe.lstMesures(1)
-        oMesure.ReglageDispositif = 2.2
+        oMesure.ReglageDispositif = 2.2D
         oMesure = oPompe.lstMesures(2)
-        oMesure.ReglageDispositif = 2.3
+        oMesure.ReglageDispositif = 2.3D
         oDiag.diagnosticHelp12123.lstPompes.Add(oPompe)
 
         'SAuvegarde du Diag
@@ -348,14 +348,14 @@ Public Class DiagnosticHelp12123Pompetest
 
         'Ajout pompe3
         oPompe = oDiag2.diagnosticHelp12123.AjoutePompe()
-        oPompe.debitMesure = 30.1
+        oPompe.debitMesure = 30.1D
         'Ajout de 3 Mesures
         oMesure = oPompe.lstMesures(0)
-        oMesure.ReglageDispositif = 3.1
+        oMesure.ReglageDispositif = 3.1D
         oMesure = oPompe.lstMesures(1)
-        oMesure.ReglageDispositif = 3.2
+        oMesure.ReglageDispositif = 3.2D
         oMesure = oPompe.lstMesures(2)
-        oMesure.ReglageDispositif = 3.3
+        oMesure.ReglageDispositif = 3.3D
 
         'SAuvegarde du Diag
         '====================
@@ -397,29 +397,29 @@ Public Class DiagnosticHelp12123Pompetest
         oMesure = oPompe.lstMesures(0)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
-        oMesure.MasseInitiale = 10.8
-        oMesure.MasseAspire = 3.492
+        oMesure.MasseInitiale = 10.8D
+        oMesure.MasseAspire = 3.492D
 
         oMesure = oPompe.lstMesures(1)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
-        oMesure.MasseInitiale = 10.8
-        oMesure.MasseAspire = 3.492
+        oMesure.MasseInitiale = 10.8D
+        oMesure.MasseAspire = 3.492D
 
         oMesure = oPompe.lstMesures(2)
         oMesure.ReglageDispositif = 23
         oMesure.TempsMesure = 30
-        oMesure.MasseInitiale = 10.8
-        oMesure.MasseAspire = 3.492
+        oMesure.MasseInitiale = 10.8D
+        oMesure.MasseAspire = 3.492D
 
         Assert.AreEqual(3.77D, oPompe.EcartReglageMoyen)
         Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oPompe.Resultat)
 
-        oMesure.MasseInitiale = 11
+        oMesure.MasseInitiale = 11D
         Assert.AreEqual(4.72D, oPompe.EcartReglageMoyen)
         Assert.AreEqual(DiagnosticItem.EtatDiagItemOK, oPompe.Resultat)
 
-        oMesure.MasseInitiale = 11.1
+        oMesure.MasseInitiale = 11.1D
         Assert.AreEqual(5.19D, oPompe.EcartReglageMoyen)
         Assert.AreEqual(DiagnosticItem.EtatDiagItemMAJEUR, oPompe.Resultat)
     End Sub

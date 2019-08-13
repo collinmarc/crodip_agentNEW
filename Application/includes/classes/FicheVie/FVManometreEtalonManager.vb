@@ -9,7 +9,7 @@ Public Class FVManometreEtalonManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetFVManometreEtalon(agentCourant.id, fvmanometrecontrole_id, objWSCrodip_response)
             Select Case codeResponse
@@ -122,7 +122,7 @@ Public Class FVManometreEtalonManager
 
     Public Shared Function save(ByVal objFVManometreEtalon As FVManometreEtalon, Optional bSyncro As Boolean = False) As Boolean
         Dim paramsQueryUpdate As String
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
         Try
@@ -266,7 +266,7 @@ Public Class FVManometreEtalonManager
     Public Shared Function getFVManometreEtalonById(ByVal fvmanometreetalon_id As String) As FVManometreEtalon
         ' déclarations
         Dim tmpFVManometreEtalon As New FVManometreEtalon(New Agent())
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         If fvmanometreetalon_id <> "" Then
             oCSDB = New CSDb(True)
@@ -332,7 +332,7 @@ Public Class FVManometreEtalonManager
     End Function
 
     Private Shared Function createFVManometreEtalon(ByVal fvmanometreetalon_id As String) As Boolean
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim bReturn As Boolean
 
@@ -356,7 +356,7 @@ Public Class FVManometreEtalonManager
 
     Public Shared Function getUpdates(ByVal agent As Agent) As FVManometreEtalon()
         ' déclarations
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
 
         Dim arrItems(0) As FVManometreEtalon
         Dim bddCommande As OleDb.OleDbCommand
@@ -432,7 +432,7 @@ Public Class FVManometreEtalonManager
 
     Public Shared Function getArrFVManometreEtalon(ByVal param As String) As List(Of FVManometreEtalon)
         Dim lstResponse As New List(Of FVManometreEtalon)
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
 
 
@@ -505,7 +505,7 @@ Public Class FVManometreEtalonManager
 #End Region
     Public Shared Function delete(ByVal pId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pId), " le paramètre ID doit être initialisé")
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean

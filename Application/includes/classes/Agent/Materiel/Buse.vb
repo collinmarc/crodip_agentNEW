@@ -146,7 +146,7 @@ Public Class Buse
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getAlerte() As Globals.ALERTE
+    Public Overloads Function getAlerte() As Globals.ALERTE
         Dim bReturn As Globals.ALERTE
         bReturn = Globals.ALERTE.NONE
 

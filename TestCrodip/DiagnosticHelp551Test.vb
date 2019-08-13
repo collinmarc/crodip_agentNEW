@@ -65,16 +65,16 @@ Public Class DiagnosticHelp551test
         oDiagHelp551 = New DiagnosticHelp551(DiagnosticHelp551.Help551Mode.Mode551)
 
         oDiagHelp551.idDiag = oDiag.id
-        oDiagHelp551.Distance1 = 10.1
-        oDiagHelp551.Distance2 = 10.2
-        oDiagHelp551.Temps1 = 20.1
-        oDiagHelp551.Temps2 = 20.2
-        oDiagHelp551.VitesseLue1 = 30.1
-        oDiagHelp551.VitesseLue2 = 30.2
+        oDiagHelp551.Distance1 = 10.1D
+        oDiagHelp551.Distance2 = 10.2D
+        oDiagHelp551.Temps1 = 20.1D
+        oDiagHelp551.Temps2 = 20.2D
+        oDiagHelp551.VitesseLue1 = 30.1D
+        oDiagHelp551.VitesseLue2 = 30.2D
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp551.id))
-        Assert.IsTrue(oDiagHelp551.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp551.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
         iD = oDiagHelp551.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp551.id))
 
@@ -93,15 +93,15 @@ Public Class DiagnosticHelp551test
 
 
         'Maj de l'objet
-        oDiagHelp551.Distance1 = 100.1
-        oDiagHelp551.Distance2 = 100.2
-        oDiagHelp551.Temps1 = 200.1
-        oDiagHelp551.Temps2 = 200.2
-        oDiagHelp551.VitesseLue1 = 300.1
-        oDiagHelp551.VitesseLue2 = 300.2
+        oDiagHelp551.Distance1 = 100.1D
+        oDiagHelp551.Distance2 = 100.2D
+        oDiagHelp551.Temps1 = 200.1D
+        oDiagHelp551.Temps2 = 200.2D
+        oDiagHelp551.VitesseLue1 = 300.1D
+        oDiagHelp551.VitesseLue2 = 300.2D
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp551.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp551.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
 
         Debug.WriteLine("Lecture")
         oDiagHelp551 = New DiagnosticHelp551(DiagnosticHelp551.Help551Mode.Mode551)
@@ -142,9 +142,9 @@ Public Class DiagnosticHelp551test
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationCrodip = CDate("06/02/1964")
+        oDiag.dateModificationCrodip = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         oDiag.organismeOrigineInspAgrement = "AgrementOrigine"
         oDiag.organismeOrigineInspNom = "NomOrigine"
         oDiag.organismeOriginePresId = m_oAgent.idStructure
@@ -176,19 +176,19 @@ Public Class DiagnosticHelp551test
         'Ajout des mesures help551
         '=========================
 
-        oDiag.diagnosticHelp551.Distance1 = 10.1
-        oDiag.diagnosticHelp551.Distance2 = 10.2
-        oDiag.diagnosticHelp551.Temps1 = 20.1
-        oDiag.diagnosticHelp551.Temps2 = 20.2
-        oDiag.diagnosticHelp551.VitesseLue1 = 30.1
-        oDiag.diagnosticHelp551.VitesseLue2 = 30.2
+        oDiag.diagnosticHelp551.Distance1 = 10.1D
+        oDiag.diagnosticHelp551.Distance2 = 10.2D
+        oDiag.diagnosticHelp551.Temps1 = 20.1D
+        oDiag.diagnosticHelp551.Temps2 = 20.2D
+        oDiag.diagnosticHelp551.VitesseLue1 = 30.1D
+        oDiag.diagnosticHelp551.VitesseLue2 = 30.2D
 
-        oDiag.diagnosticHelp12323.Distance1 = 11.1
-        oDiag.diagnosticHelp12323.Distance2 = 11.2
-        oDiag.diagnosticHelp12323.Temps1 = 21.1
-        oDiag.diagnosticHelp12323.Temps2 = 21.2
-        oDiag.diagnosticHelp12323.VitesseLue1 = 31.1
-        oDiag.diagnosticHelp12323.VitesseLue2 = 31.2
+        oDiag.diagnosticHelp12323.Distance1 = 11.1D
+        oDiag.diagnosticHelp12323.Distance2 = 11.2D
+        oDiag.diagnosticHelp12323.Temps1 = 21.1D
+        oDiag.diagnosticHelp12323.Temps2 = 21.2D
+        oDiag.diagnosticHelp12323.VitesseLue1 = 31.1D
+        oDiag.diagnosticHelp12323.VitesseLue2 = 31.2D
 
         'SAuvegarde du Diag
         '====================
@@ -212,7 +212,7 @@ Public Class DiagnosticHelp551test
 
         'on Simule la date de dernière synchro de l'agent à -1 munites
         '======================================
-        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1)
+        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1).ToShortDateString()
 
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
@@ -332,11 +332,11 @@ Public Class DiagnosticHelp551test
 
         oHelp551.Distance1 = 100
         oHelp551.Temps1 = 35
-        oHelp551.VitesseLue1 = 10.5
+        oHelp551.VitesseLue1 = 10.5D
 
         oHelp551.Distance2 = 100
         oHelp551.Temps2 = 35
-        oHelp551.VitesseLue2 = 11.1
+        oHelp551.VitesseLue2 = 11.1D
         oHelp551.calc(5)
 
         Assert.AreEqual(2.04D, oHelp551.Ecart1)
@@ -348,11 +348,11 @@ Public Class DiagnosticHelp551test
 
         oHelp551.Distance1 = 100
         oHelp551.Temps1 = 35
-        oHelp551.VitesseLue1 = 10.5
+        oHelp551.VitesseLue1 = 10.5D
 
         oHelp551.Distance2 = 100
         oHelp551.Temps2 = 35
-        oHelp551.VitesseLue2 = 11.2
+        oHelp551.VitesseLue2 = 11.2D
         oHelp551.calc(5)
 
         Assert.AreEqual(2.04D, oHelp551.Ecart1)
@@ -369,7 +369,7 @@ Public Class DiagnosticHelp551test
         Dim oHelp551 As New DiagnosticHelp551(DiagnosticHelp551.Help551Mode.Mode551)
         Dim oHelp551Clone As DiagnosticHelp551
 
-        oHelp551.id = 562
+        oHelp551.id = "562"
         oHelp551.idDiag = "00-000-000"
 
 
@@ -388,7 +388,7 @@ Public Class DiagnosticHelp551test
         Assert.AreEqual(1.32D, oHelp551.ErreurMoyenne)
         Assert.AreEqual("OK", oHelp551.Resultat)
 
-        oHelp551Clone = oHelp551.Clone()
+        oHelp551Clone = CType(oHelp551.Clone(), DiagnosticHelp551)
         Assert.AreEqual(oHelp551.Distance1, oHelp551Clone.Distance1)
         Assert.AreEqual(oHelp551.Temps1, oHelp551Clone.Temps1)
         Assert.AreEqual(oHelp551.VitesseLue1, oHelp551Clone.VitesseLue1)
@@ -410,7 +410,7 @@ Public Class DiagnosticHelp551test
         Assert.AreEqual(oHelp551.idDiag, oHelp551Clone.idDiag)
         Assert.AreEqual(oHelp551.iditem, oHelp551Clone.iditem)
 
-        oHelp551.id = 123
+        oHelp551.id = "123"
         Assert.AreNotEqual(oHelp551.id, oHelp551Clone.id)
 
     End Sub

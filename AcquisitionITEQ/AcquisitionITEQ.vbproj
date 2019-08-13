@@ -112,6 +112,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(TargetPath) $(SolutionDir)\TestCrodip\$(OutDir)
-copy  $(SolutionDir)\$(ProjectName)\$(OutDir)$(TargetName).dll.config $(SolutionDir)\TestCrodip\$(OutDir)</PostBuildEvent>
+copy  $(SolutionDir)\$(ProjectName)\$(OutDir)$(TargetName).dll.config $(SolutionDir)\TestCrodip\$(OutDir)
+copy $(TargetPath) $(SolutionDir)\$(OutDir)
+copy  $(SolutionDir)\$(ProjectName)\$(OutDir)$(TargetName).dll.config $(SolutionDir)\$(OutDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>

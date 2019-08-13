@@ -43,7 +43,6 @@ Public Class ReferentielPulverisateurMarquesModeles
     End Property
 
     Public Shared Function SynchroDesc(Optional pDateDerniereModif As String = "", Optional pNomFichier As String = "") As RETOURSYNCHRO
-        Dim bReturn As RETOURSYNCHRO
         'Try
 
         '    Dim strDateDernierModif As String

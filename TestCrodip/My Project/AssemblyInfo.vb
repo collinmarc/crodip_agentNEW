@@ -13,9 +13,9 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("MCII")> 
 <Assembly: AssemblyProduct("TestCrodip")> 
 <Assembly: AssemblyCopyright("Copyright © MCII 2012")> 
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyTrademark("")>
 
-<Assembly: CLSCompliant(True)> 
+<Assembly: CLSCompliant(False)>
 
 <Assembly: ComVisible(False)>
 

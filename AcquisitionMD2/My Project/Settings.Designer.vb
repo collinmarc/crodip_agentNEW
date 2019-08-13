@@ -64,6 +64,17 @@ Namespace My
                 Return CType(Me("BDD"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\COLLIN\Documents\NEWCO\CROD"& _ 
+            "IP\crodip_agentNEW\bdd\crodip_dasylab.mdb;Persist Security Info=True")>  _
+        Public ReadOnly Property crodip_dasylabConnectionString() As String
+            Get
+                Return CType(Me("crodip_dasylabConnectionString"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

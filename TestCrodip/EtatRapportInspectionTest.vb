@@ -61,9 +61,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -171,9 +171,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = True 'Controle Complet
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -286,30 +286,30 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
 
         For i As Integer = 0 To 25
-            oDiagItem = New DiagnosticItem(oDiag.id, "257", i, "2", "O")
+            oDiagItem = New DiagnosticItem(oDiag.id, "257", i.ToString, "2", "O")
             oDiagItem.LibelleCourt = "LIBCourt257" & i
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 257" & i
             oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
         For i As Integer = 0 To 25
-            oDiagItem = New DiagnosticItem(oDiag.id, "256", i, "2", "P")
+            oDiagItem = New DiagnosticItem(oDiag.id, "256", i.ToString, "2", "P")
             oDiagItem.LibelleCourt = "LIBCourt256" & i
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 256" & i
             oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
-        oDiag.syntheseErreurMoyenneManoD = 0.35
-        oDiag.syntheseErreurMoyenneCinemometreD = 0.36
-        oDiag.synthesePerteChargeMoyenneD = 0.37
-        oDiag.syntheseErreurMaxiManoD = 1.35
-        oDiag.syntheseUsureMoyenneBusesD = 1.36
-        oDiag.synthesePerteChargeMaxiD = 1.37
-        oDiag.syntheseErreurDebitmetreD = 0.38
-        oDiag.syntheseNbBusesUseesD = 1.38
+        oDiag.syntheseErreurMoyenneManoD = 0.35D
+        oDiag.syntheseErreurMoyenneCinemometreD = 0.36D
+        oDiag.synthesePerteChargeMoyenneD = 0.37D
+        oDiag.syntheseErreurMaxiManoD = 1.35D
+        oDiag.syntheseUsureMoyenneBusesD = 1.36D
+        oDiag.synthesePerteChargeMaxiD = 1.37D
+        oDiag.syntheseErreurDebitmetreD = 0.38D
+        oDiag.syntheseNbBusesUseesD = 1.38D
 
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
 
@@ -375,30 +375,30 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
 
         For i As Integer = 0 To 60
-            oDiagItem = New DiagnosticItem(oDiag.id, "257", i, "2", "O")
+            oDiagItem = New DiagnosticItem(oDiag.id, "257", i.ToString, "2", "O")
             oDiagItem.LibelleCourt = "LIBCourt257" & i
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 257" & i
             oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
         For i As Integer = 0 To 60
-            oDiagItem = New DiagnosticItem(oDiag.id, "256", i, "2", "P")
+            oDiagItem = New DiagnosticItem(oDiag.id, "256", i.ToString, "2", "P")
             oDiagItem.LibelleCourt = "LIBCourt256" & i
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 256" & i
             oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Next
-        oDiag.syntheseErreurMoyenneManoD = 0.35
-        oDiag.syntheseErreurMoyenneCinemometreD = 0.36
-        oDiag.synthesePerteChargeMoyenneD = 0.37
-        oDiag.syntheseErreurMaxiManoD = 1.35
-        oDiag.syntheseUsureMoyenneBusesD = 1.36
-        oDiag.synthesePerteChargeMaxiD = 1.37
-        oDiag.syntheseErreurDebitmetreD = 0.38
-        oDiag.syntheseNbBusesUseesD = 1.38
+        oDiag.syntheseErreurMoyenneManoD = 0.35D
+        oDiag.syntheseErreurMoyenneCinemometreD = 0.36D
+        oDiag.synthesePerteChargeMoyenneD = 0.37D
+        oDiag.syntheseErreurMaxiManoD = 1.35D
+        oDiag.syntheseUsureMoyenneBusesD = 1.36D
+        oDiag.synthesePerteChargeMaxiD = 1.37D
+        oDiag.syntheseErreurDebitmetreD = 0.38D
+        oDiag.syntheseNbBusesUseesD = 1.38D
 
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
 
@@ -412,7 +412,6 @@ Imports System.IO
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
-        Dim oDiagItem As DiagnosticItem
 
         oPulve = New Pulverisateur()
         oExploit = New Exploitation()
@@ -458,16 +457,16 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
 
-        oDiag.syntheseErreurMoyenneManoD = 0.35
-        oDiag.syntheseErreurMoyenneCinemometreD = 0.36
-        oDiag.synthesePerteChargeMoyenneD = 0.37
-        oDiag.syntheseErreurMaxiManoD = 1.35
-        oDiag.syntheseUsureMoyenneBusesD = 1.36
-        oDiag.synthesePerteChargeMaxiD = 1.37
-        oDiag.syntheseErreurDebitmetreD = 0.38
-        oDiag.syntheseNbBusesUseesD = 1.38
+        oDiag.syntheseErreurMoyenneManoD = 0.35D
+        oDiag.syntheseErreurMoyenneCinemometreD = 0.36D
+        oDiag.synthesePerteChargeMoyenneD = 0.37D
+        oDiag.syntheseErreurMaxiManoD = 1.35D
+        oDiag.syntheseUsureMoyenneBusesD = 1.36D
+        oDiag.synthesePerteChargeMaxiD = 1.37D
+        oDiag.syntheseErreurDebitmetreD = 0.38D
+        oDiag.syntheseNbBusesUseesD = 1.38D
 
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
 
@@ -530,15 +529,15 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
 
         For i As Integer = 0 To 21
-            oDiagItem = New DiagnosticItem(oDiag.id, "256", i, "2", "O")
+            oDiagItem = New DiagnosticItem(oDiag.id, "256", i.ToString, "2", "O")
             oDiagItem.LibelleCourt = "LIBCourt2561"
             oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561"
             oDiag.AdOrReplaceDiagItem(oDiagItem)
@@ -571,16 +570,16 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
 
-        oDiag.syntheseErreurMoyenneManoD = 0.35
-        oDiag.syntheseErreurMoyenneCinemometreD = 0.36
-        oDiag.synthesePerteChargeMoyenneD = 0.37
-        oDiag.syntheseErreurMaxiManoD = 1.35
-        oDiag.syntheseUsureMoyenneBusesD = 1.36
-        oDiag.synthesePerteChargeMaxiD = 1.37
-        oDiag.syntheseErreurDebitmetreD = 0.38
-        oDiag.syntheseNbBusesUseesD = 1.38
+        oDiag.syntheseErreurMoyenneManoD = 0.35D
+        oDiag.syntheseErreurMoyenneCinemometreD = 0.36D
+        oDiag.synthesePerteChargeMoyenneD = 0.37D
+        oDiag.syntheseErreurMaxiManoD = 1.35D
+        oDiag.syntheseUsureMoyenneBusesD = 1.36D
+        oDiag.synthesePerteChargeMaxiD = 1.37D
+        oDiag.syntheseErreurDebitmetreD = 0.38D
+        oDiag.syntheseNbBusesUseesD = 1.38D
 
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         DiagnosticManager.save(oDiag)
@@ -668,9 +667,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = True 'Controle Complet
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -748,9 +747,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -839,7 +838,7 @@ Imports System.IO
         oPulvePrinc.attelage = "PORTE"
         oPulvePrinc.type = "Cultures basses"
         oPulvePrinc.categorie = "Rampe"
-        oPulvePrinc.capacite = "350"
+        oPulvePrinc.capacite = 350
         oPulvePrinc.marque = "vicon"
         oPulvePrinc.modele = "VRT520"
         oPulvePrinc.emplacementIdentification = "ARRIERE"
@@ -887,9 +886,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -978,9 +977,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -1106,9 +1105,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = True 'Controle Complet
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -1221,9 +1220,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -1279,7 +1278,6 @@ Imports System.IO
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
-        Dim oDiagItem As DiagnosticItem
 
         oPulve = New Pulverisateur()
         oExploit = New Exploitation()
@@ -1331,9 +1329,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -1389,7 +1387,6 @@ Imports System.IO
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
-        Dim oDiagItem As DiagnosticItem
 
         oPulve = New Pulverisateur()
         oExploit = New Exploitation()
@@ -1441,9 +1438,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -1548,9 +1545,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = True 'Controle Complet
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -1599,9 +1596,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = True 'Controle Complet
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -1622,8 +1619,8 @@ Imports System.IO
         oPompe.PressionMesure = 10.6D
         oPompe.PressionMoyenne = 10.7D
         oPompe.NbBuses = 10
-        oPompe.DebitReel = 10.8
-        oPompe.DebitTotal = 10.9
+        oPompe.DebitReel = 10.8D
+        oPompe.DebitTotal = 10.9D
 
         oMesure = oPompe.lstMesures(0)
         oMesure.ReglageDispositif = 15
@@ -1633,17 +1630,17 @@ Imports System.IO
         oMesure.calcule()
 
         oMesure = oPompe.lstMesures(1)
-        oMesure.ReglageDispositif = 15.1
-        oMesure.TempsMesure = 16.1
-        oMesure.MasseInitiale = 17.1
-        oMesure.MasseAspire = 18.1
+        oMesure.ReglageDispositif = 15.1D
+        oMesure.TempsMesure = 16.1D
+        oMesure.MasseInitiale = 17.1D
+        oMesure.MasseAspire = 18.1D
         oMesure.calcule()
 
         oMesure = oPompe.lstMesures(2)
-        oMesure.ReglageDispositif = 15.2
-        oMesure.TempsMesure = 16.2
-        oMesure.MasseInitiale = 17.2
-        oMesure.MasseAspire = 18.2
+        oMesure.ReglageDispositif = 15.2D
+        oMesure.TempsMesure = 16.2D
+        oMesure.MasseInitiale = 17.2D
+        oMesure.MasseAspire = 18.2D
         oMesure.calcule()
         oPompe.calcule()
 
@@ -1653,8 +1650,8 @@ Imports System.IO
         oPompe.PressionMesure = 20.6D
         oPompe.PressionMoyenne = 20.7D
         oPompe.NbBuses = 20
-        oPompe.DebitReel = 20.8
-        oPompe.DebitTotal = 20.9
+        oPompe.DebitReel = 20.8D
+        oPompe.DebitTotal = 20.9D
 
         oMesure = oPompe.lstMesures(0)
         oMesure.ReglageDispositif = 25
@@ -1664,17 +1661,17 @@ Imports System.IO
         oMesure.calcule()
 
         oMesure = oPompe.lstMesures(1)
-        oMesure.ReglageDispositif = 25.1
-        oMesure.TempsMesure = 26.1
-        oMesure.MasseInitiale = 27.1
-        oMesure.MasseAspire = 28.1
+        oMesure.ReglageDispositif = 25.1D
+        oMesure.TempsMesure = 26.1D
+        oMesure.MasseInitiale = 27.1D
+        oMesure.MasseAspire = 28.1D
         oMesure.calcule()
 
         oMesure = oPompe.lstMesures(2)
-        oMesure.ReglageDispositif = 25.2
-        oMesure.TempsMesure = 26.2
-        oMesure.MasseInitiale = 27.2
-        oMesure.MasseAspire = 28.2
+        oMesure.ReglageDispositif = 25.2D
+        oMesure.TempsMesure = 26.2D
+        oMesure.MasseInitiale = 27.2D
+        oMesure.MasseAspire = 28.2D
         oMesure.calcule()
         oPompe.calcule()
 
@@ -1712,9 +1709,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = True 'Controle Complet
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
@@ -1803,9 +1800,9 @@ Imports System.IO
         oDiag.proprietaireRepresentant = "Repésentant"
         oDiag.id = "2-852-963"
         oDiag.controleIsComplet = True 'Controle Complet
-        oDiag.buseDebitD = 2.5
+        oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1).ToShortDateString()
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"

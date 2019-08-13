@@ -66,24 +66,24 @@ Public Class DiagnosticHelp5622test
 
         oDiagHelp5622.idDiag = oDiag.id
 
-        oDiagHelp5622.NbBuses_m1 = 10.1
-        oDiagHelp5622.Pression_m1 = 11.1
-        oDiagHelp5622.DebitEtalon_m1 = 12.1
-        oDiagHelp5622.DebitAfficheur_m1 = 13.1
+        oDiagHelp5622.NbBuses_m1 = 10.1D
+        oDiagHelp5622.Pression_m1 = 11.1D
+        oDiagHelp5622.DebitEtalon_m1 = 12.1D
+        oDiagHelp5622.DebitAfficheur_m1 = 13.1D
 
-        oDiagHelp5622.NbBuses_m2 = 10.2
-        oDiagHelp5622.Pression_m2 = 11.2
-        oDiagHelp5622.DebitEtalon_m2 = 12.2
-        oDiagHelp5622.DebitAfficheur_m2 = 13.2
+        oDiagHelp5622.NbBuses_m2 = 10.2D
+        oDiagHelp5622.Pression_m2 = 11.2D
+        oDiagHelp5622.DebitEtalon_m2 = 12.2D
+        oDiagHelp5622.DebitAfficheur_m2 = 13.2D
 
-        oDiagHelp5622.NbBuses_m3 = 10.3
-        oDiagHelp5622.Pression_m3 = 11.3
-        oDiagHelp5622.DebitEtalon_m3 = 12.3
-        oDiagHelp5622.DebitAfficheur_m3 = 13.3
+        oDiagHelp5622.NbBuses_m3 = 10.3D
+        oDiagHelp5622.Pression_m3 = 11.3D
+        oDiagHelp5622.DebitEtalon_m3 = 12.3D
+        oDiagHelp5622.DebitAfficheur_m3 = 13.3D
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp5622.id))
-        Assert.IsTrue(oDiagHelp5622.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp5622.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
         iD = oDiagHelp5622.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp5622.id))
 
@@ -109,24 +109,24 @@ Public Class DiagnosticHelp5622test
         Assert.AreEqual(oDiagHelp5622.DebitAfficheur_m3, 13.3D)
 
         'Maj de l'objet
-        oDiagHelp5622.NbBuses_m1 = 110.1
-        oDiagHelp5622.Pression_m1 = 111.1
-        oDiagHelp5622.DebitEtalon_m1 = 112.1
-        oDiagHelp5622.DebitAfficheur_m1 = 113.1
+        oDiagHelp5622.NbBuses_m1 = 110.1D
+        oDiagHelp5622.Pression_m1 = 111.1D
+        oDiagHelp5622.DebitEtalon_m1 = 112.1D
+        oDiagHelp5622.DebitAfficheur_m1 = 113.1D
 
-        oDiagHelp5622.NbBuses_m2 = 110.2
-        oDiagHelp5622.Pression_m2 = 111.2
-        oDiagHelp5622.DebitEtalon_m2 = 112.2
-        oDiagHelp5622.DebitAfficheur_m2 = 113.2
+        oDiagHelp5622.NbBuses_m2 = 110.2D
+        oDiagHelp5622.Pression_m2 = 111.2D
+        oDiagHelp5622.DebitEtalon_m2 = 112.2D
+        oDiagHelp5622.DebitAfficheur_m2 = 113.2D
 
-        oDiagHelp5622.NbBuses_m3 = 110.3
-        oDiagHelp5622.Pression_m3 = 111.3
-        oDiagHelp5622.DebitEtalon_m3 = 112.3
-        oDiagHelp5622.DebitAfficheur_m3 = 113.3
+        oDiagHelp5622.NbBuses_m3 = 110.3D
+        oDiagHelp5622.Pression_m3 = 111.3D
+        oDiagHelp5622.DebitEtalon_m3 = 112.3D
+        oDiagHelp5622.DebitAfficheur_m3 = 113.3D
 
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp5622.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp5622.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
 
         Debug.WriteLine("Lecture")
         oDiagHelp5622 = New DiagnosticHelp5622()
@@ -175,9 +175,9 @@ Public Class DiagnosticHelp5622test
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationCrodip = CDate("06/02/1964")
+        oDiag.dateModificationCrodip = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         oDiag.pulverisateurEmplacementIdentification = "DERRIERE"
         oDiag.controleManoControleNumNational = "TEST"
         oDiag.controleNbreNiveaux = 2
@@ -201,20 +201,20 @@ Public Class DiagnosticHelp5622test
         'Ajout des mesures help5622
         '=========================
 
-        oDiag.diagnosticHelp5622.NbBuses_m1 = 110.1
-        oDiag.diagnosticHelp5622.Pression_m1 = 111.1
-        oDiag.diagnosticHelp5622.DebitEtalon_m1 = 112.1
-        oDiag.diagnosticHelp5622.DebitAfficheur_m1 = 113.1
+        oDiag.diagnosticHelp5622.NbBuses_m1 = 110.1D
+        oDiag.diagnosticHelp5622.Pression_m1 = 111.1D
+        oDiag.diagnosticHelp5622.DebitEtalon_m1 = 112.1D
+        oDiag.diagnosticHelp5622.DebitAfficheur_m1 = 113.1D
 
-        oDiag.diagnosticHelp5622.NbBuses_m2 = 110.2
-        oDiag.diagnosticHelp5622.Pression_m2 = 111.2
-        oDiag.diagnosticHelp5622.DebitEtalon_m2 = 112.2
-        oDiag.diagnosticHelp5622.DebitAfficheur_m2 = 113.2
+        oDiag.diagnosticHelp5622.NbBuses_m2 = 110.2D
+        oDiag.diagnosticHelp5622.Pression_m2 = 111.2D
+        oDiag.diagnosticHelp5622.DebitEtalon_m2 = 112.2D
+        oDiag.diagnosticHelp5622.DebitAfficheur_m2 = 113.2D
 
-        oDiag.diagnosticHelp5622.NbBuses_m3 = 110.3
-        oDiag.diagnosticHelp5622.Pression_m3 = 111.3
-        oDiag.diagnosticHelp5622.DebitEtalon_m3 = 112.3
-        oDiag.diagnosticHelp5622.DebitAfficheur_m3 = 113.3
+        oDiag.diagnosticHelp5622.NbBuses_m3 = 110.3D
+        oDiag.diagnosticHelp5622.Pression_m3 = 111.3D
+        oDiag.diagnosticHelp5622.DebitEtalon_m3 = 112.3D
+        oDiag.diagnosticHelp5622.DebitAfficheur_m3 = 113.3D
 
 
         'SAuvegarde du Diag
@@ -239,7 +239,7 @@ Public Class DiagnosticHelp5622test
 
         'on Simule la date de dernière synchro de l'agent à -1 munites
         '======================================
-        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1)
+        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1).ToShortDateString()
 
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
@@ -296,12 +296,12 @@ Public Class DiagnosticHelp5622test
         Assert.IsTrue(oDiag2.diagnosticHelp5622.DebitEtalon_m1 = 112.1)
         Assert.IsTrue(oDiag2.diagnosticHelp5622.DebitAfficheur_m1 = 113.1)
 
-        Assert.IsTrue(oDiag2.diagnosticHelp5622.NbBuses_m2, 110.2D)
+        Assert.IsTrue(oDiag2.diagnosticHelp5622.NbBuses_m2 = 110.2D)
         Assert.IsTrue(oDiag2.diagnosticHelp5622.Pression_m2 = 111.2)
         Assert.IsTrue(oDiag2.diagnosticHelp5622.DebitEtalon_m2 = 112.2)
         Assert.IsTrue(oDiag2.diagnosticHelp5622.DebitAfficheur_m2 = 113.2)
 
-        Assert.IsTrue(oDiag2.diagnosticHelp5622.NbBuses_m3, 110.3D)
+        Assert.IsTrue(oDiag2.diagnosticHelp5622.NbBuses_m3 = 110.3D)
         Assert.IsTrue(oDiag2.diagnosticHelp5622.Pression_m3 = 111.3)
         Assert.IsTrue(oDiag2.diagnosticHelp5622.DebitEtalon_m3 = 112.3)
         Assert.IsTrue(oDiag2.diagnosticHelp5622.DebitAfficheur_m3 = 113.3)

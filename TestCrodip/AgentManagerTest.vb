@@ -228,7 +228,7 @@ Public Class AgentManagerTest
 
         'Création d'un second Agent
         Dim oAgent As Agent
-        Dim idAgent = "777"
+        Dim idAgent As Integer = 777
         oAgent = AgentManager.createAgent(idAgent, "TST1", "Agent de test")
         oAgent.prenom = "Pr"
         oAgent.idStructure = m_oAgent.idStructure
@@ -258,57 +258,57 @@ Public Class AgentManagerTest
         Dim oCSDB As New CSDb(True)
         Dim n As Integer
         'Vérification Que la base n'est pas vide
-        n = oCSDB.getValue("Select count(*) FROM  Agent")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Agent"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  AgentBuseEtalon")
+        n = CType(oCSDB.getValue("Select count(*) FROM  AgentBuseEtalon"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  AgentManoControle")
+        n = CType(oCSDB.getValue("Select count(*) FROM  AgentManoControle"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  AgentManoEtalon")
+        n = CType(oCSDB.getValue("Select count(*) FROM  AgentManoEtalon"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  BancMesure")
+        n = CType(oCSDB.getValue("Select count(*) FROM  BancMesure"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Controle_Regulier")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Controle_Regulier"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  ControleBancMesure")
+        n = CType(oCSDB.getValue("Select count(*) FROM  ControleBancMesure"), Integer)
         '        Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  ControleManoMesure")
+        n = CType(oCSDB.getValue("Select count(*) FROM  ControleManoMesure"), Integer)
         '        Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Diagnostic")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Diagnostic"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticBuses")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticBuses"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticBusesDetail")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticBusesDetail"), Integer)
         Assert.AreNotEqual(0, n)
         'n = oCSDB.getValue("Select count(*) FROM  DiagnosticFacture")
         'Assert.AreNotEqual(0, n)
         'n = oCSDB.getValue("Select count(*) FROM  DiagnosticFactureItem")
         'Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticItem")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticItem"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticMano542")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticMano542"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticTroncons833")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticTroncons833"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Exploitation")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Exploitation"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  ExploitationToPulverisateur")
+        n = CType(oCSDB.getValue("Select count(*) FROM  ExploitationToPulverisateur"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  FicheVieBancMesure")
+        n = CType(oCSDB.getValue("Select count(*) FROM  FicheVieBancMesure"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  FicheVieManometreControle")
+        n = CType(oCSDB.getValue("Select count(*) FROM  FicheVieManometreControle"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  FicheVieManometreEtalon")
+        n = CType(oCSDB.getValue("Select count(*) FROM  FicheVieManometreEtalon"), Integer)
         Assert.AreNotEqual(0, n)
         'n = oCSDB.getValue("Select count(*) FROM  Logs")
         'Assert.AreNotEqual(0, n)
         'n = oCSDB.getValue("Select count(*) FROM  PrestationCategorie")
         'Assert.AreNotEqual(0, n)
         'n = oCSDB.getValue("Select count(*) FROM  PrestationTarif")
+        'Assert.AreNotEqual(0, n)
+        n = CType(oCSDB.getValue("Select count(*) FROM  Pulverisateur"), Integer)
         Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Pulverisateur")
-        Assert.AreNotEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Structure")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Structure"), Integer)
         Assert.AreNotEqual(0, n)
         'n = oCSDB.getValue("Select count(*) FROM  Synchronisation")
         'Assert.AreNotEqual(0, n)
@@ -318,59 +318,59 @@ Public Class AgentManagerTest
         Assert.AreEqual(0, AgentManager.getAgentList().items.Count)
 
         'Vérification du Vidage complet de la base
-        n = oCSDB.getValue("Select count(*) FROM  Agent")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Agent"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  AgentBuseEtalon")
+        n = CType(oCSDB.getValue("Select count(*) FROM  AgentBuseEtalon"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  AgentManoControle")
+        n = CType(oCSDB.getValue("Select count(*) FROM  AgentManoControle"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  AgentManoEtalon")
+        n = CType(oCSDB.getValue("Select count(*) FROM  AgentManoEtalon"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  BancMesure")
+        n = CType(oCSDB.getValue("Select count(*) FROM  BancMesure"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Controle_Regulier")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Controle_Regulier"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  ControleBancMesure")
+        n = CType(oCSDB.getValue("Select count(*) FROM  ControleBancMesure"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  ControleManoMesure")
+        n = CType(oCSDB.getValue("Select count(*) FROM  ControleManoMesure"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Diagnostic")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Diagnostic"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticBuses")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticBuses"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticBusesDetail")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticBusesDetail"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticFacture")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticFacture"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticFactureItem")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticFactureItem"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticItem")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticItem"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticMano542")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticMano542"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  DiagnosticTroncons833")
+        n = CType(oCSDB.getValue("Select count(*) FROM  DiagnosticTroncons833"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Exploitation")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Exploitation"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  ExploitationToPulverisateur")
+        n = CType(oCSDB.getValue("Select count(*) FROM  ExploitationToPulverisateur"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  FicheVieBancMesure")
+        n = CType(oCSDB.getValue("Select count(*) FROM  FicheVieBancMesure"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  FicheVieManometreControle")
+        n = CType(oCSDB.getValue("Select count(*) FROM  FicheVieManometreControle"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  FicheVieManometreEtalon")
+        n = CType(oCSDB.getValue("Select count(*) FROM  FicheVieManometreEtalon"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Logs")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Logs"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  PrestationCategorie")
+        n = CType(oCSDB.getValue("Select count(*) FROM  PrestationCategorie"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  PrestationTarif")
+        n = CType(oCSDB.getValue("Select count(*) FROM  PrestationTarif"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Pulverisateur")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Pulverisateur"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Structure")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Structure"), Integer)
         Assert.AreEqual(0, n)
-        n = oCSDB.getValue("Select count(*) FROM  Synchronisation")
+        n = CType(oCSDB.getValue("Select count(*) FROM  Synchronisation"), Integer)
         Assert.AreEqual(0, n)
 
         oCSDB.free()
@@ -466,52 +466,52 @@ Public Class AgentManagerTest
         Dim oDiagTroncons833 As DiagnosticTroncons833
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 1
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "2.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 2
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "3.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 3
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "3.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 1
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "4.6"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = 4
-        oDiagTroncons833.idColumn = 2
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "4.7"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
@@ -563,7 +563,7 @@ Public Class AgentManagerTest
 
     End Function
 
-    Private Function createPulve(ByVal pAgent As Agent) As String
+    Private Overloads Function createPulve(ByVal pAgent As Agent) As String
         Dim oPulve As New Pulverisateur()
         Dim oExploitation As New Exploitation()
 
@@ -710,7 +710,6 @@ Public Class AgentManagerTest
     'End Sub
 
     Private Sub createFVBanc(ByVal pAgent As Agent)
-        Dim id As String
         Dim oCSdb As New CSDb(True)
         Dim cmd As OleDb.OleDbCommand = oCSdb.getConnection().CreateCommand
         Dim oDR As OleDb.OleDbDataReader
@@ -731,7 +730,7 @@ Public Class AgentManagerTest
     Private Sub createFVManoControle(ByVal pAgent As Agent)
         Dim idMano As String
 
-        Dim Lst As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(pAgent.idStructure, True)
+        Dim Lst As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(pAgent.idStructure.ToString(), True)
         For Each oMano As ManometreControle In Lst
             idMano = FVManometreControleManager.getNewId(pAgent)
             Dim oFV As New FVManometreControle()
@@ -745,7 +744,7 @@ Public Class AgentManagerTest
     Private Sub createFVManoEtalon(ByVal pAgent As Agent)
         Dim idMano As String
 
-        Dim Lst As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(pAgent.idStructure, True)
+        Dim Lst As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(pAgent.idStructure.ToString, True)
         For Each oMano As ManometreEtalon In Lst
             idMano = FVManometreEtalonManager.getNewId(pAgent)
             Dim oFV As New FVManometreEtalon()

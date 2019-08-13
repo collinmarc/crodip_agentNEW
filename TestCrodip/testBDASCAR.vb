@@ -15,14 +15,13 @@ Imports Crodip_agent
 
 
         WSCrodip.Init("http://admin.crodip.fr/server")
-        oAgent = AgentManager.getAgentById("1048")
+        oAgent = AgentManager.getAgentById(1048)
         PulverisateurManager.MAJetatPulverisateurs(oAgent, olst)
 
         For Each oPulve In olst
             If oPulve.numeroNational <> "E001" Then
-                Dim oReturn As Object
                 Dim nRet As Integer
-                nRet = PulverisateurManager.sendWSPulverisateur(oAgent, oPulve, oReturn)
+                nRet = PulverisateurManager.sendWSPulverisateur(oAgent, oPulve)
 
             End If
         Next
@@ -70,7 +69,7 @@ Imports Crodip_agent
         WSCrodip.Init("http://admin.crodip.fr/server")
         Dim oagent = New Agent
         oagent.id = 1144
-        oagent.numeroNational = 128
+        oagent.numeroNational = "128"
         oagent.nom = "CHAPON"
         oagent.prenom = "KEVIN"
         oagent.dateDerniereSynchro = "2018-05-17 14:51:00"
@@ -89,7 +88,7 @@ Imports Crodip_agent
         WSCrodip.Init("http://admin.crodip.fr/server")
         Dim oagent = New Agent
         oagent.id = 1144
-        oagent.numeroNational = 128
+        oagent.numeroNational = "128"
         oagent.nom = "CHAPON"
         oagent.prenom = "KEVIN"
         oagent.dateDerniereSynchro = "2018-05-17 14:51:00"

@@ -143,7 +143,6 @@ Public Class FVManoEtalonManagerTest
     <TestMethod()> _
     Public Sub SynhcroDesFichesDeViesBancTest()
         Dim oMano As ManometreEtalon
-        Dim oFVManometreEtalon As FVManometreEtalon
         Dim olstFV As New List(Of FVManometreEtalon)
         oMano = New ManometreEtalon()
         oMano.idStructure = m_oAgent.idStructure

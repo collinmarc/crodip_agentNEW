@@ -43,7 +43,7 @@ Public Class AutoTestManager
         Return oReturn
     End Function
     Private Shared Function create(ByVal pAgent As Agent) As AutoTest
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Dim oCtrlRegulier As New AutoTest(pAgent)
         Try
@@ -83,7 +83,7 @@ Public Class AutoTestManager
     End Function
     Public Shared Function save(ByVal pCtrlRegulier As AutoTest, Optional bSyncro As Boolean = False) As Boolean
         Dim bReturn As Boolean
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
 
         Try
             bReturn = True
@@ -139,7 +139,7 @@ Public Class AutoTestManager
 
     Public Shared Function saveSynchro(ByVal pCtrlRegulier As AutoTest) As Boolean
         Dim bReturn As Boolean
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
 
         Try
             bReturn = True

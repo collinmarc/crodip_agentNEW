@@ -73,7 +73,7 @@ Public Class DiagnosticHelp831test
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp831.id))
-        Assert.IsTrue(oDiagHelp831.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp831.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
         iD = oDiagHelp831.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp831.id))
 
@@ -96,7 +96,7 @@ Public Class DiagnosticHelp831test
         oDiagHelp831.Ecart_pct = "2.8"
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp831.Save(oDiag.organismePresId, oDiag.inspecteurId))
+        Assert.IsTrue(oDiagHelp831.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
 
         Debug.WriteLine("Lecture")
         oDiagHelp831 = New DiagnosticHelp831(DiagnosticHelp831.ModeHelp831.Mode8312)
@@ -132,9 +132,9 @@ Public Class DiagnosticHelp831test
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationCrodip = CDate("06/02/1964")
+        oDiag.dateModificationCrodip = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         oDiag.organismeOrigineInspAgrement = "AgrementOrigine"
         oDiag.organismeOrigineInspNom = "NomOrigine"
         oDiag.organismeOriginePresId = 98
@@ -244,13 +244,10 @@ Public Class DiagnosticHelp831test
     Public Sub Get_Send_WS()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
-        Dim oDiagBuses As DiagnosticBuses
-        Dim oDiagBusesDetail As DiagnosticBusesDetail
         Dim idDiag As String
 
         'Annullation dela synchro de tous les anciens Diags
         Dim oCSDB As New CSDb(True)
-        Dim oCmd As OleDb.OleDbCommand
         oCSDB.Execute("UPDATE DIAGNOSTIC SET dateModificationAgent = dateModificationCrodip")
         'Creation d'un Diagnostic
         '============================
@@ -265,9 +262,9 @@ Public Class DiagnosticHelp831test
         oDiag.controleIsAutoControle = True
         oDiag.proprietaireRepresentant = "REP1"
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.dateModificationCrodip = CDate("06/02/1964")
+        oDiag.dateModificationCrodip = CDate("06/02/1964").ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
-        oDiag.controleDateFin = Date.Today
+        oDiag.controleDateFin = Date.Today.ToShortDateString()
         oDiag.organismeOrigineInspAgrement = "AgrementOrigine"
         oDiag.organismeOrigineInspNom = "NomOrigine"
         oDiag.organismeOriginePresId = 98
@@ -331,7 +328,7 @@ Public Class DiagnosticHelp831test
 
         'on Simule la date de dernière synchro de l'agent à -1 munites
         '======================================
-        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1)
+        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1).ToShortDateString()
 
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class dlgAquisition
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class dlgAquisition
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée à l'aide du Concepteur Windows Form.  
     'Ne la modifiez pas à l'aide de l'éditeur de code.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -28,10 +28,16 @@ Partial Class dlgAquisition
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.IdBuseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdNiveauDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NiveauDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumBuseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DebitDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PressionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RefDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HVDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MarqueTypeFonctionementDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CalibreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PressionCtrlDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DebitNominalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,7 +79,7 @@ Partial Class dlgAquisition
         '
         'BindingSource1
         '
-        Me.BindingSource1.DataSource = GetType(Crodip_agent.Acquiring)
+        Me.BindingSource1.DataSource = GetType(CRODIPAcquisition.AcquisitionValue)
         '
         'DataGridView1
         '
@@ -82,36 +88,72 @@ Partial Class dlgAquisition
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdBuseDataGridViewTextBoxColumn, Me.IdNiveauDataGridViewTextBoxColumn, Me.DebitDataGridViewTextBoxColumn, Me.PressionDataGridViewTextBoxColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NiveauDataGridViewTextBoxColumn, Me.NumBuseDataGridViewTextBoxColumn, Me.DebitDataGridViewTextBoxColumn, Me.PressionDataGridViewTextBoxColumn, Me.RefDataGridViewTextBoxColumn, Me.HVDataGridViewTextBoxColumn, Me.MarqueTypeFonctionementDataGridViewTextBoxColumn, Me.CalibreDataGridViewTextBoxColumn, Me.PressionCtrlDataGridViewTextBoxColumn, Me.DebitNominalDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.BindingSource1
         Me.DataGridView1.Location = New System.Drawing.Point(13, 27)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(444, 213)
         Me.DataGridView1.TabIndex = 1
         '
-        'IdBuseDataGridViewTextBoxColumn
+        'NiveauDataGridViewTextBoxColumn
         '
-        Me.IdBuseDataGridViewTextBoxColumn.DataPropertyName = "idBuse"
-        Me.IdBuseDataGridViewTextBoxColumn.HeaderText = "idBuse"
-        Me.IdBuseDataGridViewTextBoxColumn.Name = "IdBuseDataGridViewTextBoxColumn"
+        Me.NiveauDataGridViewTextBoxColumn.DataPropertyName = "Niveau"
+        Me.NiveauDataGridViewTextBoxColumn.HeaderText = "Niveau"
+        Me.NiveauDataGridViewTextBoxColumn.Name = "NiveauDataGridViewTextBoxColumn"
         '
-        'IdNiveauDataGridViewTextBoxColumn
+        'NumBuseDataGridViewTextBoxColumn
         '
-        Me.IdNiveauDataGridViewTextBoxColumn.DataPropertyName = "idNiveau"
-        Me.IdNiveauDataGridViewTextBoxColumn.HeaderText = "idNiveau"
-        Me.IdNiveauDataGridViewTextBoxColumn.Name = "IdNiveauDataGridViewTextBoxColumn"
+        Me.NumBuseDataGridViewTextBoxColumn.DataPropertyName = "NumBuse"
+        Me.NumBuseDataGridViewTextBoxColumn.HeaderText = "NumBuse"
+        Me.NumBuseDataGridViewTextBoxColumn.Name = "NumBuseDataGridViewTextBoxColumn"
         '
         'DebitDataGridViewTextBoxColumn
         '
-        Me.DebitDataGridViewTextBoxColumn.DataPropertyName = "debit"
-        Me.DebitDataGridViewTextBoxColumn.HeaderText = "debit"
+        Me.DebitDataGridViewTextBoxColumn.DataPropertyName = "Debit"
+        Me.DebitDataGridViewTextBoxColumn.HeaderText = "Debit"
         Me.DebitDataGridViewTextBoxColumn.Name = "DebitDataGridViewTextBoxColumn"
         '
         'PressionDataGridViewTextBoxColumn
         '
-        Me.PressionDataGridViewTextBoxColumn.DataPropertyName = "pression"
-        Me.PressionDataGridViewTextBoxColumn.HeaderText = "pression"
+        Me.PressionDataGridViewTextBoxColumn.DataPropertyName = "Pression"
+        Me.PressionDataGridViewTextBoxColumn.HeaderText = "Pression"
         Me.PressionDataGridViewTextBoxColumn.Name = "PressionDataGridViewTextBoxColumn"
+        '
+        'RefDataGridViewTextBoxColumn
+        '
+        Me.RefDataGridViewTextBoxColumn.DataPropertyName = "Ref"
+        Me.RefDataGridViewTextBoxColumn.HeaderText = "Ref"
+        Me.RefDataGridViewTextBoxColumn.Name = "RefDataGridViewTextBoxColumn"
+        '
+        'HVDataGridViewTextBoxColumn
+        '
+        Me.HVDataGridViewTextBoxColumn.DataPropertyName = "HV"
+        Me.HVDataGridViewTextBoxColumn.HeaderText = "HV"
+        Me.HVDataGridViewTextBoxColumn.Name = "HVDataGridViewTextBoxColumn"
+        '
+        'MarqueTypeFonctionementDataGridViewTextBoxColumn
+        '
+        Me.MarqueTypeFonctionementDataGridViewTextBoxColumn.DataPropertyName = "MarqueTypeFonctionement"
+        Me.MarqueTypeFonctionementDataGridViewTextBoxColumn.HeaderText = "MarqueTypeFonctionement"
+        Me.MarqueTypeFonctionementDataGridViewTextBoxColumn.Name = "MarqueTypeFonctionementDataGridViewTextBoxColumn"
+        '
+        'CalibreDataGridViewTextBoxColumn
+        '
+        Me.CalibreDataGridViewTextBoxColumn.DataPropertyName = "Calibre"
+        Me.CalibreDataGridViewTextBoxColumn.HeaderText = "Calibre"
+        Me.CalibreDataGridViewTextBoxColumn.Name = "CalibreDataGridViewTextBoxColumn"
+        '
+        'PressionCtrlDataGridViewTextBoxColumn
+        '
+        Me.PressionCtrlDataGridViewTextBoxColumn.DataPropertyName = "PressionCtrl"
+        Me.PressionCtrlDataGridViewTextBoxColumn.HeaderText = "PressionCtrl"
+        Me.PressionCtrlDataGridViewTextBoxColumn.Name = "PressionCtrlDataGridViewTextBoxColumn"
+        '
+        'DebitNominalDataGridViewTextBoxColumn
+        '
+        Me.DebitNominalDataGridViewTextBoxColumn.DataPropertyName = "DebitNominal"
+        Me.DebitNominalDataGridViewTextBoxColumn.HeaderText = "DebitNominal"
+        Me.DebitNominalDataGridViewTextBoxColumn.Name = "DebitNominalDataGridViewTextBoxColumn"
         '
         'dlgAquisition
         '
@@ -140,9 +182,14 @@ Partial Class dlgAquisition
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents BindingSource1 As System.Windows.Forms.BindingSource
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents IdBuseDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents IdNiveauDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DebitDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PressionDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-
+    Friend WithEvents NiveauDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NumBuseDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DebitDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PressionDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents RefDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents HVDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents MarqueTypeFonctionementDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CalibreDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PressionCtrlDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DebitNominalDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 End Class

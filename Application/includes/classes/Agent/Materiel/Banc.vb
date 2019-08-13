@@ -13,6 +13,7 @@ Public Class Banc
     Private _isUtilise As Boolean
     Private _nbControles As Integer
     Private _nbControlesTotal As Integer
+    Private _ModuleAcquisition As String
 
 
     Sub New()
@@ -83,6 +84,14 @@ Public Class Banc
         End Get
         Set(ByVal Value As Integer)
             _nbControlesTotal = Value
+        End Set
+    End Property
+    Public Property ModuleAcquisition() As String
+        Get
+            Return _ModuleAcquisition
+        End Get
+        Set(ByVal Value As String)
+            _ModuleAcquisition = Value
         End Set
     End Property
 
@@ -187,6 +196,8 @@ Public Class Banc
                     Me.JamaisServi = pcolValue
                 Case "dateActivation".Trim().ToUpper()
                     Me.DateActivation = pcolValue
+                Case "ModuleAcquisition".Trim().ToUpper()
+                    Me.ModuleAcquisition = pcolValue
                 Case Else
                     CSDebug.dispError("Banc.Fill  (" + pColName + "," + pcolValue.ToString + ") ERR : Champs inconnu")
 
@@ -229,7 +240,7 @@ Public Class Banc
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getAlerte() As Globals.ALERTE
+    Public Overloads Function getAlerte() As Globals.ALERTE
         Dim bReturn As Globals.ALERTE
         bReturn = Globals.ALERTE.NONE
 

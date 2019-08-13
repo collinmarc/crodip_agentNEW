@@ -10,7 +10,7 @@ Public Class DiagnosticMano542Manager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As Object
+            Dim objWSCrodip_response As new Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetDiagnosticMano542(agentCourant.id, diagnosticMano542_id, objWSCrodip_response)
             Select Case codeResponse
@@ -257,7 +257,6 @@ Public Class DiagnosticMano542Manager
         Debug.Assert(Not String.IsNullOrEmpty(pidDiagnostic))
         ' déclarations
         Dim bReturn As Boolean
-        Dim oDiagBuses As DiagnosticBuses
         Try
 
             Dim oCSDB As New CSDb(True)

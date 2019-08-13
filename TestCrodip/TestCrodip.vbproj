@@ -217,7 +217,7 @@
       <Project>{6a47aca1-97a9-468d-9c04-9b9cc11f6fe9}</Project>
       <Name>CRODIPAcquisition</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\COLLIN\Documents\NEWCO\CRODIP\Crodip-Agent\Crodip_agent.vbproj">
+    <ProjectReference Include="..\Crodip_agent.vbproj">
       <Project>{dd7c56aa-4a81-4966-94bc-6b9b62054235}</Project>
       <Name>Crodip_agent</Name>
     </ProjectReference>

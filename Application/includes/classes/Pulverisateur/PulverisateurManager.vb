@@ -10,7 +10,7 @@ Public Class PulverisateurManager
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             objWSCrodip.Timeout = 10000
-            Dim objWSCrodip_response As Object = Nothing
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetPulverisateur(pAgent.id, pulverisateur_id, objWSCrodip_response)
             Select Case codeResponse
@@ -35,8 +35,9 @@ Public Class PulverisateurManager
 
     End Function
 
-    Public Shared Function sendWSPulverisateur(pAgent As Agent, ByVal pulverisateur As Pulverisateur, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSPulverisateur(pAgent As Agent, ByVal pulverisateur As Pulverisateur) As Integer
         Try
+            Dim updatedObject As New Object
             ' Appel au Web Service
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Return objWSCrodip.SendPulverisateur(pAgent.id, pulverisateur, updatedObject)
@@ -62,7 +63,6 @@ Public Class PulverisateurManager
 #Region "Methodes acces Local"
 
     Public Shared Function isAlerte(ByVal pulverisateur_id As String) As Boolean
-        Dim bReturn As Boolean
         Dim ncontrole As Integer
         Dim oCSDB As New CSDb(True)
         If pulverisateur_id <> "" Then
@@ -92,12 +92,12 @@ Public Class PulverisateurManager
     ''' <remarks></remarks>
     Public Shared Function getNewId(ByVal curAgent As Agent) As String
         ' déclarations
-        Dim tmpPulveId As String
-        Dim oCSDb As CSDb = nothing
+        Dim tmpPulveId As String = ""
+        Dim oCsdb As CSDb = Nothing
         If Not curAgent.numeroNational Is Nothing Then
-            oCSDB = New CSDb(True)
+            oCsdb = New CSDb(True)
             Dim bddCommande As OleDb.OleDbCommand
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT `Pulverisateur`.`id` FROM `Pulverisateur` WHERE `Pulverisateur`.`id` LIKE '" & curAgent.idStructure & "-" & curAgent.id & "-%' ORDER BY `Pulverisateur`.`id` DESC"
             Try
                 ' On récupère les résultats
@@ -119,9 +119,9 @@ Public Class PulverisateurManager
             End Try
 
             ' Test pour fermeture de connection BDD
-            If Not oCSDB Is Nothing Then
+            If Not oCsdb Is Nothing Then
                 ' On ferme la connexion
-                oCSDB.free()
+                oCsdb.free()
             End If
 
         End If
@@ -736,7 +736,7 @@ Public Class PulverisateurManager
         Debug.Assert(Not String.IsNullOrEmpty(Filename))
 
         Dim bReturn As Boolean
-        Dim oCSDb As CSDb = nothing
+        Dim oCsdb As CSDb = Nothing
         Dim oCmd As OleDb.OleDbCommand
         Dim oDR As OleDb.OleDbDataReader
         Dim oFI As IO.FileInfo

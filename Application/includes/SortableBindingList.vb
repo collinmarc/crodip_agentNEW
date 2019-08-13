@@ -63,7 +63,7 @@ Public Class SortableBindingList(Of T)
         Dim itemsList As List(Of T) = DirectCast(Me.Items, List(Of T))
 
         Dim propertyType As Type = [property].PropertyType
-        Dim comparer As PropertyComparer(Of T)
+        Dim comparer As PropertyComparer(Of T) = Nothing
         If Not Me.comparers.TryGetValue(propertyType, comparer) Then
             comparer = New PropertyComparer(Of T)([property], direction)
             Me.comparers.Add(propertyType, comparer)

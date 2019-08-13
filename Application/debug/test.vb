@@ -970,7 +970,7 @@ Public Class test
         Dim objPulverisateur As Pulverisateur = PulverisateurManager.getPulverisateurById("1-1-1")
         Try
             Dim UpdatedObject As Object = Nothing
-            Dim response As Integer = PulverisateurManager.sendWSPulverisateur(agentCourant, objPulverisateur, UpdatedObject)
+            Dim response As Integer = PulverisateurManager.sendWSPulverisateur(agentCourant, objPulverisateur)
             Select Case response
                 Case -1 ' ERROR
                     MsgBox("Erreur - sendWSPulverisateur - Erreur Locale")

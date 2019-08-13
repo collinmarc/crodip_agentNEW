@@ -211,7 +211,7 @@ Public MustInherit Class Materiel
         bReturn = Globals.ALERTE.NONE
         Dim lstNiveauAlerte As List(Of NiveauAlerte)
         lstNiveauAlerte = NiveauAlerte.readXML()
-        Dim oNiveau As NiveauAlerte
+        Dim oNiveau As NiveauAlerte = Nothing
         For Each oNiv As NiveauAlerte In lstNiveauAlerte
             If oNiv.Materiel = pType Then
                 oNiveau = oNiv

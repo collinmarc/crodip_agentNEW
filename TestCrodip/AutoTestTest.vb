@@ -100,7 +100,7 @@ Public Class AutoTestTest
         Assert.AreEqual(m_oAgent.idStructure, obj.IdStructure)
         Assert.AreEqual(m_oAgent.id.ToString(), obj.NumAgent)
         Dim str As String
-        str = obj.dateModificationAgent
+        str = obj.dateModificationAgent.ToString()
         Assert.AreNotEqual(obj.dateModificationAgent, CDate("01/01/1970"))
         Assert.AreEqual(obj.dateModificationCrodip, CDate("01/01/1970"))
 
@@ -176,7 +176,7 @@ Public Class AutoTestTest
         objBanc.isSupprime = True
         objBanc.AgentSuppression = m_oAgent.nom
         objBanc.RaisonSuppression = "MaRaison"
-        objBanc.DateSuppression = CDate("06/02/1964")
+        objBanc.DateSuppression = "06/02/1964"
         objBanc.nbControles = 5
         objBanc.nbControlesTotal = 15
         BancManager.save(objBanc)
@@ -193,7 +193,7 @@ Public Class AutoTestTest
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"
-        objManometreControle.DateSuppression = CDate("06/02/1964")
+        objManometreControle.DateSuppression = "06/02/1964"
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
         ManometreControleManager.save(objManometreControle)
@@ -210,7 +210,7 @@ Public Class AutoTestTest
         objManometreEtalon.isSupprime = True
         objManometreEtalon.AgentSuppression = m_oAgent.nom
         objManometreEtalon.RaisonSuppression = "MaRaison"
-        objManometreEtalon.DateSuppression = CDate("06/02/1964")
+        objManometreEtalon.DateSuppression = "06/02/1964"
         objManometreEtalon.nbControles = 5
         objManometreEtalon.nbControlesTotal = 15
         ManometreEtalonManager.save(objManometreEtalon)
@@ -252,7 +252,7 @@ Public Class AutoTestTest
         objBanc.isSupprime = True
         objBanc.AgentSuppression = m_oAgent.nom
         objBanc.RaisonSuppression = "MaRaison"
-        objBanc.DateSuppression = CDate("06/02/1964")
+        objBanc.DateSuppression = "06/02/1964"
         objBanc.nbControles = 5
         objBanc.nbControlesTotal = 15
         BancManager.save(objBanc)
@@ -269,7 +269,7 @@ Public Class AutoTestTest
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"
-        objManometreControle.DateSuppression = CDate("06/02/1964")
+        objManometreControle.DateSuppression = "06/02/1964"
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
         ManometreControleManager.save(objManometreControle)
@@ -286,7 +286,7 @@ Public Class AutoTestTest
         objManometreEtalon.isSupprime = True
         objManometreEtalon.AgentSuppression = m_oAgent.nom
         objManometreEtalon.RaisonSuppression = "MaRaison"
-        objManometreEtalon.DateSuppression = CDate("06/02/1964")
+        objManometreEtalon.DateSuppression = "06/02/1964"
         objManometreEtalon.nbControles = 5
         objManometreEtalon.nbControlesTotal = 15
         ManometreEtalonManager.save(objManometreEtalon)
@@ -405,7 +405,7 @@ Public Class AutoTestTest
         objBanc.isSupprime = True
         objBanc.AgentSuppression = m_oAgent.nom
         objBanc.RaisonSuppression = "MaRaison"
-        objBanc.DateSuppression = CDate("06/02/1964")
+        objBanc.DateSuppression = "06/02/1964"
         objBanc.nbControles = 5
         objBanc.nbControlesTotal = 15
         objBanc.JamaisServi = False
@@ -458,7 +458,7 @@ Public Class AutoTestTest
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"
-        objManometreControle.DateSuppression = CDate("06/02/1964")
+        objManometreControle.DateSuppression = "06/02/1964"
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
         ManometreControleManager.save(objManometreControle)
@@ -469,23 +469,23 @@ Public Class AutoTestTest
         'Creation des controles Regulier des bancs
         oColCtrl = AutoTestManager.CreateControlesReguliers(m_oAgent, Now(), "BANC")
         Assert.AreEqual(2, oColCtrl.Count)
-        octrl = oColCtrl(1)
+        octrl = CType(oColCtrl(1), AutoTest)
         Assert.AreEqual("MonBanc1", octrl.IdMateriel)
         Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
-        octrl = oColCtrl(2)
+        octrl = CType(oColCtrl(2), AutoTest)
         Assert.AreEqual("MonBanc2", octrl.IdMateriel)
         Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
 
         'Creation des controles Regulier des Manos
         oColCtrl = AutoTestManager.CreateControlesReguliers(m_oAgent, Now(), "MANOC")
         Assert.AreEqual(oColCtrl.Count, 3)
-        octrl = oColCtrl(1)
+        octrl = CType(oColCtrl(1), AutoTest)
         Assert.AreEqual("MonManometreControle1", octrl.IdMateriel)
         Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
-        octrl = oColCtrl(2)
+        octrl = CType(oColCtrl(2), AutoTest)
         Assert.AreEqual("MonManometreControle2", octrl.IdMateriel)
         Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
-        octrl = oColCtrl(3)
+        octrl = CType(oColCtrl(3), AutoTest)
         Assert.AreEqual("MonManometreControle3", octrl.IdMateriel)
         Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
 
@@ -525,19 +525,19 @@ Public Class AutoTestTest
         col = AutoTestManager.getcolControlesReguliers(m_oAgent, "MANOC")
         Assert.AreEqual(1, col.Count)
 
-        col = AutoTestManager.getcolControlesReguliers(m_oAgent, "TOUS", CDate("1/2/1964"), CDate("28/02/1964"))
+        col = AutoTestManager.getcolControlesReguliers(m_oAgent, "TOUS", "1/2/1964", "28/02/1964")
         Assert.AreEqual(1, col.Count)
 
-        col = AutoTestManager.getcolControlesReguliers(m_oAgent, "TOUS", CDate("1/2/1964"))
+        col = AutoTestManager.getcolControlesReguliers(m_oAgent, "TOUS", "1/2/1964")
         Assert.AreEqual(1, col.Count)
 
-        col = AutoTestManager.getcolControlesReguliers(m_oAgent, , , CDate("28/02/1964"))
+        col = AutoTestManager.getcolControlesReguliers(m_oAgent, , , "28/02/1964")
         Assert.AreEqual(1, col.Count)
 
-        col = AutoTestManager.getcolControlesReguliers(m_oAgent, , CDate("1/3/1964"), CDate("28/03/1964"))
+        col = AutoTestManager.getcolControlesReguliers(m_oAgent, , "1/3/1964", "28/03/1964")
         Assert.AreEqual(0, col.Count)
 
-        col = AutoTestManager.getcolControlesReguliers(m_oAgent, , CDate("1/3/1964"))
+        col = AutoTestManager.getcolControlesReguliers(m_oAgent, , "1/3/1964")
         Assert.AreEqual(0, col.Count)
     End Sub
     ''' <summary>
@@ -549,7 +549,6 @@ Public Class AutoTestTest
         Dim serializer As New XmlSerializer(GetType(AutoTest))
         Dim writer As New StreamWriter("testSer.xml")
         Dim obj As AutoTest
-        Dim nId As Integer
 
         obj = New AutoTest(m_oAgent)
         obj.DateControle = CDate("25/02/1964")
@@ -571,7 +570,6 @@ Public Class AutoTestTest
     <TestMethod()>
     Public Sub TestSendWS()
         Dim obj As AutoTest
-        Dim nId As Integer
 
         obj = New AutoTest(m_oAgent)
         obj.DateControle = CDate("25/02/1964")
@@ -618,7 +616,6 @@ Public Class AutoTestTest
     <TestMethod()>
     Public Sub TestExportCSV()
         Dim obj As AutoTest
-        Dim nId As Integer
 
         obj = New AutoTest(m_oAgent)
         obj.DateControle = CDate("25/02/1964")

@@ -57,6 +57,14 @@ Public Class AcquisitionITEQ
         Return 0
     End Function
 
+    Public Sub FTO_SaveData(plst As List(Of AcquisitionValue))
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ICRODIPAcquisition_FTO_SaveData(plst As List(Of AcquisitionValue)) Implements ICRODIPAcquisition.FTO_SaveData
+        Throw New NotImplementedException()
+    End Sub
+
 
     'Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
     '    Dim oReturn As New List(Of AcquisitionValue)

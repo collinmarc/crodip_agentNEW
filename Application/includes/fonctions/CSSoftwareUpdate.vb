@@ -39,7 +39,7 @@ Module CSSoftwareUpdate
             If Globals.GLOB_NETWORKAVAILABLE And Not isXPorBefore() Then
                 Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
 
-                Dim wsResponse As Object
+                Dim wsResponse As New Object
                 ' Appel au WS
                 Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(Globals.GLOB_APPLI_BUILD, wsResponse)
 

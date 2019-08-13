@@ -20,13 +20,13 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oDiag2 = RPDiagnostic.readXML(strFilename)
         Assert.IsNotNull(oDiag2)
 
-        Assert.IsTrue(oDiag2.CalcVitesseRotation = "1000")
+        Assert.IsTrue(oDiag2.CalcVitesseRotation = 1000D)
         Assert.IsTrue(oDiag2.CalcNbreDescentes = 20)
         Assert.IsTrue(oDiag2.CalcNbreNiveauParDescente = 5)
 
         Assert.AreEqual(5.5D, oDiag2.diagnosticHelp551.VitesseReelle1)
         Assert.AreEqual(6.7D, oDiag2.diagnosticHelp551.VitesseReelle2)
-        Assert.IsTrue(oDiag2.manometrePressionTravail = 3.5D)
+        Assert.IsTrue(oDiag2.manometrePressionTravail = "3,5")
         Assert.AreEqual(oDiag2.buseDebitMoyenPM, 2.8D)
         Assert.IsTrue(oDiag2.diagnosticHelp551.VitesseReelle1 = 5.5D)
         Assert.IsTrue(oDiag2.diagnosticHelp551.VitesseReelle2 = 6.7D)
@@ -74,19 +74,19 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         pulverisateurCourant.marque = "ACP"
         pulverisateurCourant.modele = "INCONNU"
-        pulverisateurCourant.anneeAchat = 1974
+        pulverisateurCourant.anneeAchat = "1974"
         pulverisateurCourant.type = "Cultures basses"
         pulverisateurCourant.categorie = "Rampe"
         pulverisateurCourant.largeur = "3.5"
         pulverisateurCourant.attelage = "PORTE"
         pulverisateurCourant.pulverisation = "Pneumatique"
-        pulverisateurCourant.capacite = "300"
+        pulverisateurCourant.capacite = 300
         pulverisateurCourant.regulation = "DPM"
         pulverisateurCourant.buseType = "BUSES A FENTE"
         pulverisateurCourant.buseFonctionnement = "STANDARD"
         pulverisateurCourant.largeurPlantation = "25"
-        pulverisateurCourant.buseNbniveaux = "2"
-        pulverisateurCourant.nombreBuses = "5"
+        pulverisateurCourant.buseNbniveaux = 2
+        pulverisateurCourant.nombreBuses = 5
 
 
 
@@ -94,16 +94,16 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         pRPDiagnostic.SetProprietaire(clientCourant)
         pRPDiagnostic.setPulverisateur(pulverisateurCourant)
 
-        pRPDiagnostic.CalcVitesseRotation = "1000"
+        pRPDiagnostic.CalcVitesseRotation = 1000D
         pRPDiagnostic.CalcNbreDescentes = 20
         pRPDiagnostic.CalcNbreNiveauParDescente = 5
 
-        pRPDiagnostic.diagnosticHelp551.VitesseReelle1 = 5.5
-        pRPDiagnostic.diagnosticHelp551.VitesseReelle2 = 6.7
-        pRPDiagnostic.manometrePressionTravail = 3.5
-        pRPDiagnostic.buseDebitMoyenPM = 2.8
-        pRPDiagnostic.diagnosticHelp551.VitesseReelle1 = 5.5
-        pRPDiagnostic.diagnosticHelp551.VitesseReelle2 = 6.7
+        pRPDiagnostic.diagnosticHelp551.VitesseReelle1 = 5.5D
+        pRPDiagnostic.diagnosticHelp551.VitesseReelle2 = 6.7D
+        pRPDiagnostic.manometrePressionTravail = "3,5"
+        pRPDiagnostic.buseDebitMoyenPM = 2.8D
+        pRPDiagnostic.diagnosticHelp551.VitesseReelle1 = 5.5D
+        pRPDiagnostic.diagnosticHelp551.VitesseReelle2 = 6.7D
 
         pRPDiagnostic.diagnosticMano542List.Liste.Add(New DiagnosticMano542("1.6", "2"))
         pRPDiagnostic.diagnosticTroncons833.Liste.Add(New DiagnosticTroncons833("1", "2", "3", "4"))
@@ -111,20 +111,20 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         For nlot As Integer = 1 To 2
             Dim oDiagbuse As New DiagnosticBuses
-            oDiagbuse.idLot = nlot
+            oDiagbuse.idLot = nlot.ToString
             For nBuse As Integer = 1 To 4
                 Dim oDiagBuseDet As DiagnosticBusesDetail = New DiagnosticBusesDetail()
-                oDiagBuseDet.idLot = nlot
+                oDiagBuseDet.idLot = nlot.ToString
                 oDiagBuseDet.idBuse = nBuse
-                oDiagBuseDet.debit = 2.8
+                oDiagBuseDet.debit = "2,8"
                 oDiagbuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDet)
             Next
 
-            oDiagbuse.nombre = oDiagbuse.diagnosticBusesDetailList.Liste.Count
+            oDiagbuse.nombre = oDiagbuse.diagnosticBusesDetailList.Liste.Count.ToString
             pRPDiagnostic.diagnosticBusesList.Liste.Add(oDiagbuse)
         Next
-        pRPDiagnostic.CalcDebitMoyenPM = 2.8
-        pRPDiagnostic.CalcPressionDeMesure = 3.5
+        pRPDiagnostic.CalcDebitMoyenPM = 2.8D
+        pRPDiagnostic.CalcPressionDeMesure = 3.5D
 
 
     End Sub
