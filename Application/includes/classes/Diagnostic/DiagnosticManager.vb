@@ -60,6 +60,7 @@ Public Class DiagnosticManager
                 filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
                     bReturn = oCSftp.Upload(filePath)
+                    bReturn = oCSftp.FileExists(pDiag.RIFileName)
                     SynchronisationManager.LogSynchroElmt(filePath)
                 End If
             End If
@@ -68,6 +69,7 @@ Public Class DiagnosticManager
                 If System.IO.File.Exists(filePath) Then
                     SynchronisationManager.LogSynchroElmt(filePath)
                     bReturn = bReturn And oCSftp.Upload(filePath)
+                    bReturn = bReturn And oCSftp.FileExists(pDiag.SMFileName)
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
@@ -75,6 +77,7 @@ Public Class DiagnosticManager
                 If System.IO.File.Exists(filePath) Then
                     SynchronisationManager.LogSynchroElmt(filePath)
                     bReturn = bReturn And oCSftp.Upload(filePath)
+                    bReturn = bReturn And oCSftp.FileExists(pDiag.CCFileName)
                 End If
             End If
         Catch ex As Exception

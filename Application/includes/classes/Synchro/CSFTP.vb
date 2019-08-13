@@ -12,8 +12,8 @@ Public Class CSFTP
             m_password = My.Settings.FTPPassword
             m_host = My.Settings.FTPHost
         Else
-            m_user = My.Settings.FTPUserTest
-            m_password = My.Settings.FTPPasswordTest
+            m_user = My.Settings.FTPUserTest ' Utilisateur de test
+            m_password = My.Settings.FTPPasswordTest 'Mot de passe de test
             m_host = My.Settings.FTPHostTest
         End If
 
@@ -66,6 +66,22 @@ Public Class CSFTP
         Catch ex As Exception
             CSDebug.dispError("CSFTP.Download (" & pSourceFileName & ") ERR[" & nStep & "]:" & ex.Message)
             bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
+    Public Function FileExists(pTargetfileName As String) As Boolean
+        Dim bReturn As Boolean = False
+        Dim oRQ As System.Net.FtpWebRequest
+        oRQ = CType(WebRequest.Create("ftp://" & m_host & "/" & pTargetfileName), FtpWebRequest)
+        oRQ.Credentials = New NetworkCredential(m_user, m_password)
+        oRQ.Method = WebRequestMethods.Ftp.GetFileSize
+        Try
+            Dim oRep As FtpWebResponse = CType(oRQ.GetResponse(), FtpWebResponse)
+            oRep.Close()
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("CSFTP:FileExist ERR : " & ex.Message)
         End Try
         Return bReturn
     End Function
