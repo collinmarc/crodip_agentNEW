@@ -56,19 +56,10 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("ITEQ.csv")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("./bdd/ITEQ.csv")>  _
         Public ReadOnly Property FileName() As String
             Get
                 Return CType(Me("FileName"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("./bdd")>  _
-        Public ReadOnly Property FolderName() As String
-            Get
-                Return CType(Me("FolderName"),String)
             End Get
         End Property
     End Class

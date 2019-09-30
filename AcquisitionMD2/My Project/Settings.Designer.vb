@@ -56,23 +56,10 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\bdd\crodip_dasylab.m"& _ 
-            "db")>  _
-        Public ReadOnly Property BDD() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("./bdd/crodip_dasylab.mdb")>  _
+        Public ReadOnly Property FichierMD2() As String
             Get
-                Return CType(Me("BDD"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\COLLIN\Documents\NEWCO\CROD"& _ 
-            "IP\crodip_agentNEW\bdd\crodip_dasylab.mdb;Persist Security Info=True")>  _
-        Public ReadOnly Property crodip_dasylabConnectionString() As String
-            Get
-                Return CType(Me("crodip_dasylabConnectionString"),String)
+                Return CType(Me("FichierMD2"),String)
             End Get
         End Property
     End Class

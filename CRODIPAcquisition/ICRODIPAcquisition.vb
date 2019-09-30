@@ -4,6 +4,8 @@
     Function GetNbBuses(pNiveau As Integer) As Integer
     Sub FTO_SaveData(plst As List(Of AcquisitionValue))
     Function clearResults() As Boolean
+    Function getFichier() As String
+    Sub setFichier(pFichier As String)
 
 
 End Interface

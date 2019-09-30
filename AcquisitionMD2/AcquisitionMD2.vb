@@ -4,6 +4,19 @@ Imports System.Linq
 
 Public Class AcquisitionMD2
     Implements ICRODIPAcquisition
+    Public Sub New()
+        m_fichierMD2 = My.Settings.FichierMD2
+    End Sub
+
+    Private m_fichierMD2 As String
+    Public Property fichierMD2() As String
+        Get
+            Return m_fichierMD2
+        End Get
+        Set(ByVal value As String)
+            m_fichierMD2 = value
+        End Set
+    End Property
 
     Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
 
@@ -11,7 +24,7 @@ Public Class AcquisitionMD2
 
 
         Dim oConn As OleDb.OleDbConnection
-        oConn = New OleDbConnection(My.Settings.BDD)
+        oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fichierMD2)
         oConn.Open()
         ' Initialisation de la DB
         Dim ocmd As OleDbCommand
@@ -90,7 +103,7 @@ Public Class AcquisitionMD2
 
     Public Sub FTO_SaveData(plst As List(Of AcquisitionValue)) Implements ICRODIPAcquisition.FTO_SaveData
         Dim oConn As OleDb.OleDbConnection
-        oConn = New OleDbConnection(My.Settings.BDD)
+        oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fichierMD2)
         oConn.Open()
         ' Initialisation de la DB
         Dim ocmd As OleDbCommand
@@ -118,7 +131,7 @@ Public Class AcquisitionMD2
         Dim bReturn As Boolean = False
         Try
             Dim oConn As OleDb.OleDbConnection
-            oConn = New OleDbConnection(My.Settings.BDD)
+            oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fichierMD2)
             oConn.Open()
             ' Initialisation de la DB
             Dim ocmd As OleDbCommand
@@ -134,6 +147,14 @@ Public Class AcquisitionMD2
         End Try
         Return bReturn
     End Function
+
+    Public Function getFichier() As String Implements ICRODIPAcquisition.getFichier
+        Return m_fichierMD2
+    End Function
+
+    Public Sub setFichier(pFichier As String) Implements ICRODIPAcquisition.setFichier
+        m_fichierMD2 = pFichier
+    End Sub
 
 
     'Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues

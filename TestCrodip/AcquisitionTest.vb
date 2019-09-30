@@ -3,10 +3,12 @@ Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports TestCrodip
 Imports CRODIPAcquisition
+Imports Crodip_agent
 
 
 <TestClass()>
 Public Class AcquisitionTest
+    Inherits CRODIPTest
 
     Private testContextInstance As TestContext
 
@@ -128,44 +130,21 @@ Public Class AcquisitionTest
         oModuleAcq = ModuleAcq.GetModule("MD2")
         Assert.AreEqual("MD2", oModuleAcq.Nom)
 
-        oModule2 = oModule.createModuleAcquisition()
+        oModule2 = oModule.Instance
 
         Assert.IsNotNull(oModule2)
 
         oModuleAcq = ModuleAcq.GetModule("ITEQ")
         Assert.AreEqual("ITEQ", oModuleAcq.Nom)
 
-        oModule2 = oModule.createModuleAcquisition()
+        oModule2 = oModule.Instance
 
         Assert.IsNotNull(oModule2)
     End Sub
     <TestMethod()>
     Public Sub TestMD2()
 
-
-        Dim builder As New OleDb.OleDbConnectionStringBuilder()
-        builder.Add("Data Source", ".\bdd\crodip_dasylab.mdb")
-        builder.Add("Provider", "Microsoft.Jet.Oledb.4.0")
-
-        Dim oConn As New OleDb.OleDbConnection(builder.ConnectionString)
-        oConn.Open()
-        Assert.IsTrue(oConn.State = ConnectionState.Open)
-
-        Dim oCmd As OleDb.OleDbCommand = oConn.CreateCommand()
-
-        oCmd.CommandText = "DELETE  FROM tmpDataAcquiring "
-        oCmd.ExecuteNonQuery()
-        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(1,1,3.1,1.5)"
-        oCmd.ExecuteNonQuery()
-        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(2,1,3.1,2.5)"
-        oCmd.ExecuteNonQuery()
-        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(3,2,3.1,3.5)"
-        oCmd.ExecuteNonQuery()
-        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(4,2,3.1,4.5)"
-        oCmd.ExecuteNonQuery()
-        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(5,2,3.1,5.5)"
-        oCmd.ExecuteNonQuery()
-        oConn.Close()
+        fillMD2Database()
 
         Dim oModuleAcq As ModuleAcq
         oModuleAcq = ModuleAcq.GetModule("MD2")
@@ -255,4 +234,34 @@ Public Class AcquisitionTest
         Assert.AreEqual(2.832D, oLstResult(3).Pression)
 
     End Sub
+
+
+
+    Private Sub fillMD2Database()
+        Dim builder As New OleDb.OleDbConnectionStringBuilder()
+        builder.Add("Data Source", ".\bdd\crodip_dasylab.mdb")
+        builder.Add("Provider", "Microsoft.Jet.Oledb.4.0")
+
+        Dim oConn As New OleDb.OleDbConnection(builder.ConnectionString)
+        oConn.Open()
+        Assert.IsTrue(oConn.State = ConnectionState.Open)
+
+        Dim oCmd As OleDb.OleDbCommand = oConn.CreateCommand()
+
+        oCmd.CommandText = "DELETE  FROM tmpDataAcquiring "
+        oCmd.ExecuteNonQuery()
+        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(1,1,3.1,1.5)"
+        oCmd.ExecuteNonQuery()
+        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(2,1,3.1,2.5)"
+        oCmd.ExecuteNonQuery()
+        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(3,2,3.1,3.5)"
+        oCmd.ExecuteNonQuery()
+        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(4,2,3.1,4.5)"
+        oCmd.ExecuteNonQuery()
+        oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(5,2,3.1,5.5)"
+        oCmd.ExecuteNonQuery()
+        oConn.Close()
+
+    End Sub
+
 End Class

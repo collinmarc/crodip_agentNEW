@@ -1,6 +1,7 @@
 ﻿Module Module1
 
     Sub Main()
+        CSDebug.dispInfo("DBUPDATE Start")
         Dim target As UpdateInfo = New UpdateInfo()
         Dim actual As Boolean
 

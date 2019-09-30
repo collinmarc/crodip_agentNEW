@@ -4209,13 +4209,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 #End Region
 
 #Region " Acquisition des données "
-    Private Function CheckAcquisition(pBanc As Banc) As Boolean
-        Debug.Assert(pBanc IsNot Nothing)
+    Private Function CheckAcquisition(oModuleAcquisition As CRODIPAcquisition.ModuleAcq) As Boolean
         Dim bReturn As Boolean
         Try
 
-            Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
-            oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule(pBanc.ModuleAcquisition)
 
             'Récupération du nombre de niveau et du nombre de buses
             Dim nbNiveauDeclare As Integer = 0
@@ -4261,6 +4258,24 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Return
         End If
 
+        'Module D'acquisition
+        Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
+        oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule(obanc.ModuleAcquisition)
+        If (oModuleAcquisition Is Nothing) Then
+            MsgBox("Aucun module d'acquisition n'est disponible pour : " + obanc.ModuleAcquisition)
+            Exit Sub
+        End If
+        Dim pModule As CRODIPAcquisition.ICRODIPAcquisition = oModuleAcquisition.Instance
+
+        If Not System.IO.File.Exists(pModule.getFichier()) Then
+            Dim oDLG As New OpenFileDialog()
+            oDLG.Multiselect = False
+            If oDLG.ShowDialog() = DialogResult.OK Then
+                pModule.setFichier(oDLG.FileName)
+            Else
+                Exit Sub
+            End If
+        End If
         Dim isok As Boolean
         'Récupération du nombre de niveau et du nombre de buses
         Dim nbNiveauDeclare As Integer = 0
@@ -4268,18 +4283,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If diagBuses_conf_nbCategories.Text <> "" And IsNumeric(diagBuses_conf_nbCategories.Text) Then
             nbNiveauDeclare = CInt(diagBuses_conf_nbCategories.Text)
         End If
-        isok = CheckAcquisition(obanc)
+        isok = CheckAcquisition(oModuleAcquisition)
         If isok Then
-            Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
-            oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule(obanc.ModuleAcquisition)
+
             ' On récupère les buses de la table d'échange
             Dim lstValues As List(Of CRODIPAcquisition.AcquisitionValue) = oModuleAcquisition.getValues()
             For Each oValue As CRODIPAcquisition.AcquisitionValue In lstValues
                 If oValue.NumBuse <> 0 Then
                     ' On transmet le tout au diag
                     Try
-
-
                         Dim x As Control
                         x = CSForm.getControlByName("diagBuses_mesureDebit_" & oValue.Niveau.ToString & "_" & oValue.NumBuse & "_debit", globFormDiagnostic)
                         If x IsNot Nothing Then

@@ -39,7 +39,19 @@ Public Class ModuleAcq
             _Main = value
         End Set
     End Property
-
+    Private _instance As ICRODIPAcquisition
+    <XmlIgnore()>
+    Public Property Instance() As ICRODIPAcquisition
+        Get
+            If _instance Is Nothing Then
+                _instance = createModuleAcquisition()
+            End If
+            Return _instance
+        End Get
+        Set(ByVal value As ICRODIPAcquisition)
+            _instance = value
+        End Set
+    End Property
     Public Shared Function ReadXML() As List(Of ModuleAcq)
         Dim oReturn As New List(Of ModuleAcq)
         Try
@@ -105,7 +117,7 @@ Public Class ModuleAcq
         Return oLst
     End Function
 
-    Public Function createModuleAcquisition() As ICRODIPAcquisition
+    Private Function createModuleAcquisition() As ICRODIPAcquisition
 
         Dim oAss As Assembly = System.Reflection.Assembly.LoadFrom(Assembly)
         Dim oT As Type = oAss.GetType(Main)
@@ -115,43 +127,36 @@ Public Class ModuleAcq
 
         Dim oAcq As ICRODIPAcquisition = CType(mainMethod.Invoke(oMainAcq, Nothing), ICRODIPAcquisition)
 
+        Me.Instance = oAcq
         Return oAcq
     End Function
 
     Public Function getValues() As List(Of AcquisitionValue)
-        Dim oModule As ICRODIPAcquisition
         Dim oReturn As New List(Of AcquisitionValue)
-        oModule = createModuleAcquisition()
-        If oModule IsNot Nothing Then
-            oReturn = oModule.GetValues()
+        If Instance IsNot Nothing Then
+            oReturn = Instance.GetValues()
         End If
         Return oReturn
     End Function
     Public Function getNbNiveaux() As Integer
-        Dim oModule As ICRODIPAcquisition
         Dim oReturn As Integer = 0
-        oModule = createModuleAcquisition()
-        If oModule IsNot Nothing Then
-            oReturn = oModule.GetNbNiveaux()
+        If Instance IsNot Nothing Then
+            oReturn = Instance.GetNbNiveaux()
         End If
         Return oReturn
     End Function
     Public Function getNbBuses(pNiveau As Integer) As Integer
-        Dim oModule As ICRODIPAcquisition
         Dim oReturn As Integer = 0
-        oModule = createModuleAcquisition()
-        If oModule IsNot Nothing Then
-            oReturn = oModule.GetNbBuses(pNiveau)
+        If Instance IsNot Nothing Then
+            oReturn = Instance.GetNbBuses(pNiveau)
         End If
         Return oReturn
     End Function
 
     Public Function clearResults() As Boolean
-        Dim oModule As ICRODIPAcquisition
         Dim bReturn As Boolean = False
-        oModule = createModuleAcquisition()
-        If oModule IsNot Nothing Then
-            bReturn = oModule.clearResults()
+        If Instance IsNot Nothing Then
+            bReturn = Instance.clearResults()
         End If
         Return bReturn
     End Function

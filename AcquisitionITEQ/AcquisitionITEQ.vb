@@ -5,18 +5,22 @@ Imports System.Linq
 Public Class AcquisitionITEQ
     Implements ICRODIPAcquisition
 
+    Public Sub New()
+        m_fichierITEQ = My.Settings.FileName
+    End Sub
+
+    Private m_fichierITEQ As String
     Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
 
         Dim oReturn As New List(Of AcquisitionValue)
 
-
         Dim oConn As OleDb.OleDbConnection
-        oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Extended Properties=Text;Data Source=" & My.Settings.FolderName)
+        oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Extended Properties=Text;Data Source=" & System.IO.Path.GetDirectoryName(m_fichierITEQ))
         oConn.Open()
         ' Initialisation de la DB
         Dim ocmd As OleDbCommand
         ocmd = oConn.CreateCommand()
-        ocmd.CommandText = "SELECT * FROM " & My.Settings.FileName
+        ocmd.CommandText = "SELECT * FROM " & System.IO.Path.GetFileName(m_fichierITEQ)
         Dim dataResults As System.Data.OleDb.OleDbDataReader = ocmd.ExecuteReader()
 
         ' Parcourt des résultats
@@ -86,6 +90,14 @@ Public Class AcquisitionITEQ
         End Try
         Return bReturn
     End Function
+
+    Public Function getFichier() As String Implements ICRODIPAcquisition.getFichier
+        Return m_fichierITEQ
+    End Function
+
+    Public Sub setFichier(pFichier As String) Implements ICRODIPAcquisition.setFichier
+        m_fichierITEQ = pFichier
+    End Sub
 
 
     'Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues

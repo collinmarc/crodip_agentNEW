@@ -11,7 +11,7 @@ Public Class dlgAquisition
         For Each oVal As CRODIPAcquisition.AcquisitionValue In BindingSource1
             oLst.Add(oVal)
         Next
-        oModuleAcq.createModuleAcquisition().FTO_SaveData(oLst)
+        oModuleAcq.Instance.FTO_SaveData(oLst)
         Me.Close()
     End Sub
 
