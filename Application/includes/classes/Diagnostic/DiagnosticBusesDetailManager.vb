@@ -10,7 +10,7 @@ Public Class DiagnosticBusesDetailManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As new Object
+            Dim objWSCrodip_response() As Object = Nothing
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBusesDetail(agentCourant.id, diag_id, objWSCrodip_response)
             Select Case codeResponse
@@ -38,9 +38,10 @@ Public Class DiagnosticBusesDetailManager
     End Function
 
     'ok
-    Public Shared Function sendWSDiagnosticBusesDetail(pAgent As Agent, ByVal objDiagnosticBusesDetail As DiagnosticBusesDetailList, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSDiagnosticBusesDetail(pAgent As Agent, ByVal objDiagnosticBusesDetail As DiagnosticBusesDetailList) As Integer
         Dim tmpArr(1)() As DiagnosticBusesDetail
         tmpArr(0) = objDiagnosticBusesDetail.Liste.ToArray()
+        Dim updatedObject() As Object = Nothing
         Try
             ' Appel au WS
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()

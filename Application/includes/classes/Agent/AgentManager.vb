@@ -460,7 +460,7 @@ Public Class AgentManager
 
         oCSDB = New CSDb(True)
         bddCommande = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM `Agent` WHERE `Agent`.`dateModificationAgent`<>`Agent`.`dateModificationCrodip` AND `Agent`.`id`=" & agent.id
+        bddCommande.CommandText = "SELECT * FROM `Agent` WHERE `Agent`.`dateModificationAgent`<>`Agent`.`dateModificationCrodip` AND `Agent`.`idStructure`=" & agent.idStructure
 
         Try
             ' On récupère les résultats

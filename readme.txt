@@ -7,6 +7,7 @@ NEW
 Compil en VS2017
 #141 : 1.3.5 Configuration de l’attelage en fonction des catégories de pulvérisateurs
 #319 : Acquisition des mesures depuis bancs autre que MD2
+#189 : Synchronisation d'un organisme
 
 
 

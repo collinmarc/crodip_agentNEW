@@ -24,7 +24,7 @@ Public Class DiagnosticItemManager
 
         Dim objDiagnosticItem As DiagnosticItem
         Dim objWSCrodip As WSCrodip_prod.CrodipServer
-        Dim objWSCrodip_response As New Object
+        Dim objWSCrodip_response() As Object = Nothing
         Dim oDiag As Diagnostic = Nothing
         '        Dim oLst As List(Of DiagnosticItem)
         Try
@@ -65,10 +65,13 @@ Public Class DiagnosticItemManager
 
     End Function
 
-    Public Shared Function sendWSDiagnosticItem(pAgent As Agent, ByVal objDiagnosticItems As DiagnosticItemsList, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSDiagnosticItem(pAgent As Agent, ByVal objDiagnosticItems As DiagnosticItemsList) As Integer
         Dim tmpArr(1)() As DiagnosticItem
         tmpArr(0) = objDiagnosticItems.items
+        Dim updatedObject() As Object = Nothing
+        'updatedObject = New Object()
         Try
+
             ' Appel au WS
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Return objWSCrodip.SendDiagnosticItems(pAgent.id, tmpArr, updatedObject)

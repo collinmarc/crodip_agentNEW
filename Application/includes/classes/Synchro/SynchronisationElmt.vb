@@ -639,6 +639,10 @@ Public Class SynchronisationElmt
                 oReturn = New SynchronisationElmtDiagMano542(pSynchroBooleans)
             Case SynchronisationElmtDiagMano833.getLabelGet.ToUpper().Trim()
                 oReturn = New SynchronisationElmtDiagMano833(pSynchroBooleans)
+            Case SynchronisationGetVersionLogicielAgent.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationGetVersionLogicielAgent(pSynchroBooleans)
+            Case SynchronisationGetSynchroDateTime.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationGetSynchroDateTime(pSynchroBooleans)
 
             Case Else
                 oReturn = New SynchronisationElmt(pType, pSynchroBooleans)

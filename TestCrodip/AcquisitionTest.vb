@@ -12,18 +12,6 @@ Public Class AcquisitionTest
 
     Private testContextInstance As TestContext
 
-    '''<summary>
-    '''Obtient ou définit le contexte de test qui fournit
-    '''des informations sur la série de tests active, ainsi que ses fonctionnalités.
-    '''</summary>
-    Public Property TestContext() As TestContext
-        Get
-            Return testContextInstance
-        End Get
-        Set(ByVal value As TestContext)
-            testContextInstance = value
-        End Set
-    End Property
 
 #Region "Attributs de tests supplémentaires"
     '

@@ -669,6 +669,8 @@
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagItem.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtFVBanc.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiag.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationGetSynchroDateTime.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationGetVersionLogicielAgent.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtIdentifiantPulve.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmt.vb" />
     <Compile Include="Application\includes\classes\Synchro\Synchronisation.vb">

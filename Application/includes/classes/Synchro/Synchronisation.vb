@@ -302,7 +302,7 @@ Public Class Synchronisation
                     Try
                         Dim UpdatedObject As New Object
                         Notice("Exploitation n°" & tmpUpdateExploitation.id)
-                        Dim response As Integer = ExploitationManager.sendWSExploitation(tmpUpdateExploitation, UpdatedObject)
+                        Dim response As Integer = ExploitationManager.sendWSExploitation(m_Agent, tmpUpdateExploitation, UpdatedObject)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitation) - Erreur Locale")
@@ -532,7 +532,7 @@ Public Class Synchronisation
                 For Each oExploitationTOPulverisateur As ExploitationTOPulverisateur In arrUpdatesExploitationTOPulverisateur
                     Dim UpdatedObject As New Object
                     Notice("ExploitationToPulverisateur n°" & oExploitationTOPulverisateur.idPulverisateur)
-                    Dim response As Integer = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(oExploitationTOPulverisateur, UpdatedObject)
+                    Dim response As Integer = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_Agent, oExploitationTOPulverisateur, UpdatedObject)
                     Select Case response
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Erreur Locale")
@@ -671,7 +671,7 @@ Public Class Synchronisation
         Next
 
     End Sub
-    Public Function runascSynchroDiag(ByVal pAgent As Agent, ByVal pDiag As Diagnostic) As Boolean
+    Friend Function runascSynchroDiag(ByVal pAgent As Agent, ByVal pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             Notice("Diagnostic " & pDiag.id)
@@ -697,9 +697,9 @@ Public Class Synchronisation
                     '====================================================
                     ' Synchro des items du diag courant
                     If pDiag.diagnosticItemsLst.Count > 0 Then
-                        Dim updatedObjectDiagItem As New Object
+                        Dim updatedObjectDiagItem As New Object()
                         Notice("diagnostic items n°" & pDiag.id)
-                        Dim responseDiagItem As Integer = DiagnosticItemManager.sendWSDiagnosticItem(pAgent, pDiag.diagnosticItemsLst, updatedObjectDiagItem)
+                        Dim responseDiagItem As Integer = DiagnosticItemManager.sendWSDiagnosticItem(pAgent, pDiag.diagnosticItemsLst)
                         Select Case responseDiagItem
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticItem) - Erreur Locale")
@@ -730,7 +730,7 @@ Public Class Synchronisation
                         If pDiag.diagnosticBusesList.Liste.Count > 0 Then
                             Dim updatedObjectDiagBuse As New Object
                             Notice("diagnostic Buses n°" & pDiag.id)
-                            Dim responseDiagBuse As Object = DiagnosticBusesManager.sendWSDiagnosticBuses(pAgent, pDiag.diagnosticBusesList, updatedObjectDiagBuse)
+                            Dim responseDiagBuse As Object = DiagnosticBusesManager.sendWSDiagnosticBuses(pAgent, pDiag.diagnosticBusesList)
                             Select Case CType(responseDiagBuse, Integer)
                                 Case -1 ' ERROR
                                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Erreur Locale")
@@ -761,7 +761,7 @@ Public Class Synchronisation
                                     If tmpUpdateDiagnosticBuses.diagnosticBusesDetailList.Liste.Count > 0 Then
                                         Dim updatedObjectDiagBuseDetail As New Object
                                         Notice("diagnostic Buse Detail n°" & pDiag.id)
-                                        Dim responseDiagBuseDetail As Object = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(pAgent, tmpUpdateDiagnosticBuses.diagnosticBusesDetailList, updatedObjectDiagBuseDetail)
+                                        Dim responseDiagBuseDetail As Object = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(pAgent, tmpUpdateDiagnosticBuses.diagnosticBusesDetailList)
                                         Select Case CType(responseDiagBuseDetail, Integer)
                                             Case -1 ' ERROR
                                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBusesDetail) - Erreur Locale")
@@ -795,7 +795,7 @@ Public Class Synchronisation
                     If Not pDiag.diagnosticMano542List Is Nothing Then
                         If pDiag.diagnosticMano542List.Liste.Count > 0 Then
                             Dim updatedObjectDiag542 As New Object
-                            Dim responseDiag542 As Object = DiagnosticMano542Manager.sendWSDiagnosticMano542(pAgent, pDiag.diagnosticMano542List, updatedObjectDiag542)
+                            Dim responseDiag542 As Object = DiagnosticMano542Manager.sendWSDiagnosticMano542(pAgent, pDiag.diagnosticMano542List)
                             Notice("diagnostic mano 542 n°" & pDiag.id)
                             Select Case CType(responseDiag542, Integer)
                                 Case -1 ' ERROR
@@ -827,7 +827,7 @@ Public Class Synchronisation
                         If pDiag.diagnosticTroncons833.Liste.Count > 0 Then
                             Dim updatedObjectDiag833 As New Object
                             Notice("diagnostic Troncons 833 n°" & pDiag.id)
-                            Dim responseDiag833 As Object = DiagnosticTroncons833Manager.sendWSDiagnosticTroncons833(pAgent, pDiag.diagnosticTroncons833, updatedObjectDiag833)
+                            Dim responseDiag833 As Object = DiagnosticTroncons833Manager.sendWSDiagnosticTroncons833(pAgent, pDiag.diagnosticTroncons833)
                             Select Case CType(responseDiag833, Integer)
                                 Case -1 ' ERROR
                                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Erreur Locale")
@@ -881,8 +881,30 @@ Public Class Synchronisation
         Return bReturn
     End Function
     Public Function getListeElementsASynchroniserDESC() As List(Of SynchronisationElmt)
+        Dim lstElementsASynchronisertotal As New List(Of SynchronisationElmt)
+        Dim lstElementsASynchroniserAgent As New List(Of SynchronisationElmt)
+        Dim oList As AgentList
+        oList = AgentManager.getAgentList()
+
+        'On récupère les éléments à synchroniser de chaque Agent
+        For Each oAgent As Agent In oList.items
+            lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
+
+            'et on les fusionne dans la liste Globale
+            For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
+                Dim n As Integer = (From o In lstElementsASynchroniserTotal
+                                    Select o.type = oelmt.type And o.identifiantChaine = oelmt.identifiantChaine And o.identifiantEntier = oelmt.identifiantEntier) _
+                                        .Count()
+                If n = 0 Then
+                    lstElementsASynchroniserTotal.Add(oelmt)
+                End If
+            Next
+        Next
+        Return lstElementsASynchronisertotal
+    End Function
+    Private Function getListeElementsASynchroniserDESC(pAgent As Agent) As List(Of SynchronisationElmt)
         Dim lstElementsASynchroniser As List(Of SynchronisationElmt)
-        lstElementsASynchroniser = SynchronisationManager.getWSlstElementsASynchroniser(m_Agent, m_SynchroBoolean)
+        lstElementsASynchroniser = SynchronisationManager.getWSlstElementsASynchroniser(pAgent, m_SynchroBoolean)
         Return lstElementsASynchroniser
     End Function
     ''' <summary>
@@ -892,15 +914,31 @@ Public Class Synchronisation
     ''' <remarks></remarks>
     Public Function runDescSynchro() As Boolean
         Dim bReturn As Boolean
+        Dim lstElementsASynchroniserAgent As List(Of SynchronisationElmt)
+        Dim lstElementsASynchroniserTotal As New List(Of SynchronisationElmt)
         Try
             m_listSynchro = ""
             Notice("Debut synchro descendante")
             SynchronisationManager.LogSynchroStart("DESC")
-            'On récupère les éléments à synchroniser
-            Dim lstElementsASynchroniser As List(Of SynchronisationElmt)
-            lstElementsASynchroniser = getListeElementsASynchroniserDESC()
+            Dim oList As AgentList
+            oList = AgentManager.getAgentList()
 
-            bReturn = runDescSynchro(lstElementsASynchroniser)
+            'On récupère les éléments à synchroniser de chaque Agent
+            For Each oAgent As Agent In oList.items
+                lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
+
+                'et on les fusionne dans la liste Globale
+                For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
+                    Dim n As Integer = (From o In lstElementsASynchroniserTotal
+                                        Select o.type = oelmt.type And o.identifiantChaine = oelmt.identifiantChaine And o.identifiantEntier = oelmt.identifiantEntier) _
+                                        .Count()
+                    If n = 0 Then
+                        lstElementsASynchroniserTotal.Add(oelmt)
+                    End If
+                Next
+            Next
+
+            bReturn = runDescSynchro(lstElementsASynchroniserTotal)
         Catch Ex As Exception
             CSDebug.dispError("Synchronisation.runDescSynchro Err : " & Ex.Message)
             bReturn = False
@@ -989,7 +1027,7 @@ Public Class Synchronisation
     '''
     ''' Mise à jour de la date de dernère synhcro
     ''' 
-    Private Function MAJDateDerniereSynchro() As Boolean
+    Public Function MAJDateDerniereSynchro() As Boolean
         Dim bReturn As Boolean
         Try
             ' Récupération de la date de synchro à partir du serveur
@@ -1009,14 +1047,18 @@ Public Class Synchronisation
             End Try
             'Ajout de 10 Secondes 
             dtSRV.AddSeconds(10)
-            'Maj de l'agent 
-            m_Agent.dateDerniereSynchro = CSDate.ToCRODIPString(dtSRV)
-            If Not m_Agent.isSupprime Then
-                AgentManager.save(m_Agent)
-            End If
-            'Maj de la date de dernière synchro de l'agent sur le SRV
-            CSDebug.dispInfo("MAJ date dernier Synchro ID=" & m_Agent.id & ",DateDernSynchro=" & m_Agent.dateDerniereSynchro)
-            objWSCrodip.SetDateSynchroAgent(m_Agent.id, m_Agent.dateDerniereSynchro)
+            'Maj des agents
+            Dim oList As AgentList
+            oList = AgentManager.getAgentList()
+            For Each oAgent As Agent In oList.items
+                oAgent.dateDerniereSynchro = CSDate.ToCRODIPString(dtSRV)
+                If Not oAgent.isSupprime Then
+                    AgentManager.save(oAgent)
+                End If
+                'Maj de la date de dernière synchro de l'agent sur le SRV
+                CSDebug.dispInfo("MAJ date dernier Synchro ID=" & oAgent.id & ",DateDernSynchro=" & oAgent.dateDerniereSynchro)
+                objWSCrodip.SetDateSynchroAgent(oAgent.id, oAgent.dateDerniereSynchro)
+            Next
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("SynchronisationManager.MAJDateDerniereSynchro ERR" & ex.Message)

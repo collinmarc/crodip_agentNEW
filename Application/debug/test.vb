@@ -588,7 +588,7 @@ Public Class test
 
         Try
             Dim UpdatedObject As Object = Nothing
-            Dim response As Integer = ExploitationManager.sendWSExploitation(objClient, UpdatedObject)
+            Dim response As Integer = ExploitationManager.sendWSExploitation(agentCourant, objClient, UpdatedObject)
             'MsgBox("Code retour : " & response.ToString)
             Select Case response
                 Case -1 ' ERREUR

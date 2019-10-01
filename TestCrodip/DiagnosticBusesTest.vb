@@ -481,11 +481,11 @@ Public Class DiagnosticBusesTest
 
         Dim response As New Object
 
-        Dim nResponse As Integer = DiagnosticBusesManager.sendWSDiagnosticBuses(agentCourant, oDiagBuseList, response)
+        Dim nResponse As Integer = DiagnosticBusesManager.sendWSDiagnosticBuses(agentCourant, oDiagBuseList)
 
         '        Assert.AreNotEqual(-1, nResponse)
 
-        nResponse = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(agentCourant, oDiagBuse.diagnosticBusesDetailList, response)
+        nResponse = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(agentCourant, oDiagBuse.diagnosticBusesDetailList)
 
 
         'Assert.AreNotEqual(-1, nResponse)

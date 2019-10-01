@@ -10,7 +10,7 @@ Public Class DiagnosticTroncons833Manager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As new Object
+            Dim objWSCrodip_response() As Object = Nothing
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetDiagnosticTroncons833(agentCourant.id, diagnosticTroncons833_id, objWSCrodip_response)
             Select Case codeResponse
@@ -70,9 +70,11 @@ Public Class DiagnosticTroncons833Manager
     End Function
 
     ' o
-    Public Shared Function sendWSDiagnosticTroncons833(pAgent As Agent, ByVal objDiagnosticTroncons833 As DiagnosticTroncons833List, ByRef updatedObject As Object) As Integer
+    Public Shared Function sendWSDiagnosticTroncons833(pAgent As Agent, ByVal objDiagnosticTroncons833 As DiagnosticTroncons833List) As Integer
         Dim tmpArr(1)() As DiagnosticTroncons833
         tmpArr(0) = objDiagnosticTroncons833.Liste.ToArray()
+        Dim updatedObject() As Object = Nothing
+
         Try
             ' Appel au WS
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()

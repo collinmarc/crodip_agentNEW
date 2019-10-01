@@ -67,18 +67,21 @@ Public Class SynchronisationTest
     <TestMethod()>
     Public Sub testSynhcronisationExploitationToPulverisateur()
         Dim oExploit As Exploitation = createExploitation()
+        ExploitationManager.save(oExploit, m_oAgent)
         Dim oPulve As Pulverisateur = createPulverisateur(oExploit)
+        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
         Dim UpdatedObject As Object = Nothing
         Dim oExploitToPulve As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
         Dim response As Integer
 
-        response = ExploitationManager.sendWSExploitation(oExploit, UpdatedObject)
+        agentCourant = m_oAgent
+        response = ExploitationManager.sendWSExploitation(m_oAgent, oExploit, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2, "Synhcro Ascendante Exploit NOK=>" & response)
 
         response = PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve)
         Assert.IsTrue(response = 0 Or response = 2, "Synhcro Ascendante Pulve NOK=>" & response)
 
-        response = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(oExploitToPulve, UpdatedObject)
+        response = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_oAgent, oExploitToPulve, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2, "Synhcro Ascendante NOK=>" & response)
 
         Dim oExploitToPulve2 As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getWSExploitationTOPulverisateurById(oExploitToPulve.id)
@@ -247,4 +250,184 @@ Public Class SynchronisationTest
         Return oDiag
 
     End Function
+    ''' <summary>
+    ''' Test de la récuperation des elmts à synchroniser entre 2 Agents
+    ''' </summary>
+
+    <TestMethod()>
+    Public Sub getUpdatesOrganismeTest()
+        'Creation d'un agent
+        Dim oAgent2 As Agent
+        oAgent2 = AgentManager.createAgent(1125, "TESTUNITAgent2", "TEST")
+        oAgent2.idStructure = m_oAgent.idStructure
+        oAgent2.nom = "Agent2 de test unitaires"
+        oAgent2.prenom = "Agent2 de test unitaires"
+        oAgent2.telephonePortable = "0606060606"
+        oAgent2.eMail = "a@a.com"
+        oAgent2.isActif = True
+        AgentManager.save(oAgent2)
+
+        Dim oAgent1 As Agent
+        oAgent1 = m_oAgent
+
+        'on crée une exploit, un pulve , un diag avec l'agent2
+        m_oAgent = oAgent2
+
+        Dim oExploit As Exploitation = createExploitant()
+        ExploitationManager.save(oExploit, m_oAgent)
+        Dim oPulve As Pulverisateur = createPulve(oExploit)
+        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        Dim odiag As Diagnostic = createDiagnostic(oExploit, oPulve)
+        DiagnosticManager.save(odiag)
+
+
+        m_oAgent = oAgent1
+        Dim oLstExploit As Exploitation()
+        Dim oLstPulve As Pulverisateur()
+        Dim oLstDiag As Diagnostic()
+        oLstExploit = ExploitationManager.getUpdates(m_oAgent)
+        Assert.AreEqual(1, oLstExploit.Count())
+
+        oLstPulve = PulverisateurManager.getUpdates(m_oAgent)
+        Assert.AreEqual(1, oLstPulve.Count())
+
+        oLstDiag = DiagnosticManager.getUpdates(m_oAgent)
+        Assert.AreEqual(1, oLstDiag.Count())
+
+
+        m_oAgent = oAgent2
+
+        oLstExploit = ExploitationManager.getUpdates(m_oAgent)
+        Assert.AreEqual(1, oLstExploit.Count())
+
+        oLstPulve = PulverisateurManager.getUpdates(m_oAgent)
+        Assert.AreEqual(1, oLstPulve.Count())
+
+        oLstDiag = DiagnosticManager.getUpdates(m_oAgent)
+        Assert.AreEqual(1, oLstDiag.Count())
+
+
+    End Sub
+    ''' <summary>
+    ''' Test de la synchronisation Asendante de 2 Agents
+    ''' </summary>
+    <TestMethod()>
+    Public Sub SynchronisationAsc2AgentsTest()
+        'Creation d'un agent
+        Dim oAgent2 As Agent
+        oAgent2 = AgentManager.createAgent(1125, "TESTUNITAgent2", "TEST")
+        oAgent2.idStructure = m_oAgent.idStructure
+        oAgent2.nom = "Agent2 de test unitaires"
+        oAgent2.prenom = "Agent2 de test unitaires"
+        oAgent2.telephonePortable = "0606060606"
+        oAgent2.eMail = "a@a.com"
+        oAgent2.isActif = True
+        AgentManager.save(oAgent2)
+
+        Dim oAgent1 As Agent
+        oAgent1 = m_oAgent
+
+        'on crée une exploit, un pulve , un diag avec l'agent2
+        m_oAgent = oAgent2
+
+        Dim oExploit As Exploitation = createExploitant()
+        ExploitationManager.save(oExploit, m_oAgent)
+        Dim oPulve As Pulverisateur = createPulve(oExploit)
+        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        Dim odiag As Diagnostic = createDiagnostic(oExploit, oPulve)
+        DiagnosticManager.save(odiag)
+
+
+        m_oAgent = oAgent1
+        Dim osync As New Synchronisation(m_oAgent)
+        osync.runAscSynchro()
+
+
+
+        m_oAgent = oAgent2
+        Dim oLstExploit As Exploitation()
+        Dim oLstPulve As Pulverisateur()
+        Dim oLstDiag As Diagnostic()
+
+        oLstExploit = ExploitationManager.getUpdates(m_oAgent)
+        Assert.AreEqual(0, oLstExploit.Count())
+
+        oLstPulve = PulverisateurManager.getUpdates(m_oAgent)
+        Assert.AreEqual(0, oLstPulve.Count())
+
+        oLstDiag = DiagnosticManager.getUpdates(m_oAgent)
+        Assert.AreEqual(0, oLstDiag.Count())
+
+
+    End Sub
+    ''' <summary>
+    ''' Test de synchronisation descendante de 2 agents
+    ''' </summary>
+    <TestMethod()>
+    Public Sub SynchronisationDesc2AgentsTest()
+        'Creation d'un agent
+        Dim oAgent2 As Agent
+        oAgent2 = AgentManager.createAgent(1125, "498002", "AGENT2 Test")
+        oAgent2.idStructure = m_oAgent.idStructure
+        oAgent2.prenom = "AGENT2 Test"
+        oAgent2.telephonePortable = "0606060606"
+        oAgent2.eMail = "a@a.com"
+        oAgent2.isActif = True
+        AgentManager.save(oAgent2)
+
+        Dim oAgent1 As Agent
+        oAgent1 = m_oAgent
+        Dim osync As Synchronisation
+
+        ' on déclare les 2 agents comme synchronisé
+        'Pour éviter de recevoir trop d'information
+        osync = New Synchronisation(oAgent2)
+        osync.MAJDateDerniereSynchro()
+        osync = New Synchronisation(oAgent1)
+        osync.MAJDateDerniereSynchro()
+
+
+        'on crée une exploit, un pulve , un diag avec l'agent2
+        m_oAgent = oAgent2
+
+        Dim oExploit As Exploitation = createExploitant()
+        ExploitationManager.save(oExploit, m_oAgent)
+        Dim oPulve As Pulverisateur = createPulve(oExploit)
+        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        Dim odiag As Diagnostic = createDiagnostic(oExploit, oPulve)
+        DiagnosticManager.save(odiag)
+
+
+        Dim oList As List(Of SynchronisationElmt)
+
+        'L'agent 1 se synchronise en Ascendant => Il envoie tous les elements créés par l'Agent2
+        osync = New Synchronisation(oAgent1)
+
+        osync.runAscSynchro()
+        'Et descendant
+        'on regarde combien on a d'éelements à synchroniser
+        oList = osync.getListeElementsASynchroniserDESC()
+        Console.WriteLine("===Agent1 = ELEMT à SynchroniserDESC (" & oList.Count & ")")
+        For Each oElmt As SynchronisationElmt In oList
+            Console.WriteLine(oElmt.type & ":" & oElmt.identifiantChaine)
+        Next
+        osync.runDescSynchro()
+
+        'Lorsque l'agent2 demande s'il y a des choses à synchroniser
+        'Il n'y a Rien
+
+        osync = New Synchronisation(oAgent2)
+        oList = osync.getListeElementsASynchroniserDESC()
+
+        Console.WriteLine("===Agent2 = ELEMT à SynchroniserDESC (" & oList.Count & ")")
+        For Each oElmt As SynchronisationElmt In oList
+            Console.WriteLine(oElmt.type & ":" & oElmt.identifiantChaine)
+        Next
+
+        Assert.AreEqual(0, oList.Count)
+
+        m_oAgent = oAgent2
+
+
+    End Sub
 End Class

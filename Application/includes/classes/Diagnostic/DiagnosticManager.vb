@@ -451,7 +451,7 @@ Public Class DiagnosticManager
     End Function
 
     ' Recupère tous les diagnostics non synchronisé (dateModificationAgent / dateModificationCrodip) 
-    Public Shared Function getUpdates(ByVal agent As Agent) As Diagnostic()
+    Public Shared Function getUpdates(ByVal pAgent As Agent) As Diagnostic()
 
         ' déclarations
         Dim arrItems(0) As Diagnostic
@@ -459,8 +459,9 @@ Public Class DiagnosticManager
         Dim oCsdb As New CSDb(True)
         ' On test si la connexion est déjà ouverte ou non
         bddCommande.Connection = oCsdb.getConnection()
-        bddCommande.CommandText = "SELECT * FROM `Diagnostic` WHERE `Diagnostic`.`dateModificationAgent`<>`Diagnostic`.`dateModificationCrodip` AND `Diagnostic`.`inspecteurId`=" & agent.id
-
+        '        bddCommande.CommandText = "SELECT * FROM `Diagnostic` WHERE `Diagnostic`.`dateModificationAgent`<>`Diagnostic`.`dateModificationCrodip` AND `Diagnostic`.`inspecteurId`=" & agent.id
+        bddCommande.CommandText = "Select Diagnostic.* From Diagnostic INNER Join Agent On Diagnostic.inspecteurId = Agent.Id Where Agent.idStructure = " & pAgent.idStructure
+        bddCommande.CommandText = bddCommande.CommandText & " AND Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip"
         Try
             ' On récupère les résultats
             Dim oDRDiagnostic As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader

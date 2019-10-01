@@ -103,7 +103,9 @@ Public Class SynchronisationManager
             End If
 
             LogSynchroElmt(oSynchro, "WS.UpdateAvailable")
-            oLst.Add(oSynchro)
+            If oSynchro.update Then
+                oLst.Add(oSynchro)
+            End If
         Next objWSUpdates_items
         logger.Trace("</SynchroElmt>")
 

@@ -1011,12 +1011,12 @@ Public Class DiagnosticManagerTest
         Dim UpdateInfo As New Object
 
         oExploit = createExploitation()
-        ExploitationManager.sendWSExploitation(oExploit, UpdateInfo)
+        ExploitationManager.sendWSExploitation(m_oAgent, oExploit, UpdateInfo)
         oPulve = createPulve(oExploit)
         PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve)
         Dim oExploitToPulve As ExploitationTOPulverisateur
         oExploitToPulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
-        ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(oExploitToPulve, UpdateInfo)
+        ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_oAgent, oExploitToPulve, UpdateInfo)
 
         'Creation d'un Diagnostic
         '============================
