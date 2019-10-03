@@ -643,6 +643,10 @@ Public Class frmdiagnostic_recap
 
         createRapportInspection_cr(False)
 
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            Me.Text = Me.Text & " - Mode Simplifié - "
+        End If
+
 
     End Sub
 
@@ -708,37 +712,16 @@ Public Class frmdiagnostic_recap
         End If
         If isValider Then
 
-            Try
 
-                ' On rempli l'objet d'infos
-                'objInfos(7) = diagnosticCourant.pulverisateurLargeur
-                'objInfos(8) = diagnosticCourant.buseNbBuses
-
-                ' On ouvre le form
+            If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
+                ' On ouvre la fen^petre de l'enquete
                 Dim ofrm As New diagnostic_satisfaction(m_diagnostic)
                 TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
-
                 Statusbar.clear()
-            Catch ex As Exception
-                CSDebug.dispError("diag_recap::btn_finalisationDiag_valider_Click 1 : " & ex.Message)
-            End Try
-            Try
-                If Not globFormDiagnostic Is Nothing Then
-                    CSDebug.dispInfo("Closing globFormDiagnostic")
-                    globFormDiagnostic.Close()
-                End If
-                If Not globFormControlePreliminaire Is Nothing Then
-                    globFormControlePreliminaire.Close()
-                End If
-            Catch ex As Exception
-                CSDebug.dispError("diag_recap::btn_finalisationDiag_valider_Click 2 : " & ex.Message)
-            End Try
-            Try
-                globFormAccueil.loadListPulveExploitation(False)
-            Catch ex As Exception
-                CSDebug.dispError("Diag. Recap - Reloading list pulvé : Error")
-            End Try
-            Me.Close()
+            Else
+                CloseDiagnostic()
+            End If
+
         Else
             If checkForm() Then
                 If MsgBox("Attention, la validation du contrôle est définitive, vous ne pourrez plus revenir en arrière. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Validation du contrôle") = MsgBoxResult.Yes Then

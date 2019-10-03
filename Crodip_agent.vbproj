@@ -309,9 +309,6 @@
     <Compile Include="Application\debug\test.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\controle_preliminaireV6.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\diagnostic\controle_preliminaire.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2026,9 +2023,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\debug\test.resx">
       <DependentUpon>test.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\controle_preliminaireV6.resx">
-      <DependentUpon>controle_preliminaireV6.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\controle_preliminaire.resx">
       <DependentUpon>controle_preliminaire.vb</DependentUpon>

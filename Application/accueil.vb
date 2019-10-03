@@ -167,7 +167,7 @@ Public Class accueil
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents PictureBox5 As System.Windows.Forms.PictureBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents lblModuledocumentaire As System.Windows.Forms.Label
     Friend WithEvents synchroSens As System.Windows.Forms.ColumnHeader
     Friend WithEvents synchroDate As System.Windows.Forms.ColumnHeader
     Friend WithEvents ImageList_synchro As System.Windows.Forms.ImageList
@@ -186,8 +186,8 @@ Public Class accueil
     Friend WithEvents btn_parametrage_verificationBancs As System.Windows.Forms.Label
     Friend WithEvents btn_parametrage_parametrageBuses As System.Windows.Forms.Label
     Friend WithEvents btn_parametrage_parametrageBancs As System.Windows.Forms.Label
-    Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents lblParametresOrganisme As System.Windows.Forms.Label
+    Friend WithEvents lblParametrageAppareilsMesures As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents btn_outilsComplementaires_calcVolumeHectare As System.Windows.Forms.Label
     Friend WithEvents btn_outilsComplementaires_calcDebitBuses As System.Windows.Forms.Label
@@ -234,7 +234,7 @@ Public Class accueil
     Friend WithEvents isNOK As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents isNonEffectue As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents btn_imprimerDoc As System.Windows.Forms.Label
-    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
+    Friend WithEvents SplitContainer_ModuleDocumentaire As System.Windows.Forms.SplitContainer
     Friend WithEvents tv_Docs As System.Windows.Forms.TreeView
     Friend WithEvents ImageList_Docs As System.Windows.Forms.ImageList
     Friend WithEvents lv_Docs As System.Windows.Forms.ListView
@@ -441,7 +441,7 @@ Public Class accueil
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnMAJPulverisateurs = New System.Windows.Forms.Button()
         Me.pctbx_Docs_refresh = New System.Windows.Forms.PictureBox()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.SplitContainer_ModuleDocumentaire = New System.Windows.Forms.SplitContainer()
         Me.tv_Docs = New System.Windows.Forms.TreeView()
         Me.lv_Docs = New System.Windows.Forms.ListView()
         Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -449,17 +449,17 @@ Public Class accueil
         Me.btn_outilsComplementaires_calcVolumeHectare = New System.Windows.Forms.Label()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblModuledocumentaire = New System.Windows.Forms.Label()
         Me.btn_outilsComplementaires_calcDebitBuses = New System.Windows.Forms.Label()
         Me.tabControl_parametrage = New System.Windows.Forms.TabPage()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.lblIdentifiantPulve = New System.Windows.Forms.Label()
         Me.lblMaterielsSupprimes = New System.Windows.Forms.Label()
         Me.btn_parametrage_facturation = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
+        Me.lblParametresOrganisme = New System.Windows.Forms.Label()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.title_parametrage = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
+        Me.lblParametrageAppareilsMesures = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.btn_parametrage_tarifs = New System.Windows.Forms.Label()
         Me.btn_parametrage_coordonneesOrganisme = New System.Windows.Forms.Label()
@@ -550,10 +550,10 @@ Public Class accueil
         Me.tabControl_outilscomp.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.pctbx_Docs_refresh, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
+        CType(Me.SplitContainer_ModuleDocumentaire, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer_ModuleDocumentaire.Panel1.SuspendLayout()
+        Me.SplitContainer_ModuleDocumentaire.Panel2.SuspendLayout()
+        Me.SplitContainer_ModuleDocumentaire.SuspendLayout()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_parametrage.SuspendLayout()
         Me.Panel5.SuspendLayout()
@@ -2078,12 +2078,12 @@ Public Class accueil
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Panel2.Controls.Add(Me.btnMAJPulverisateurs)
         Me.Panel2.Controls.Add(Me.pctbx_Docs_refresh)
-        Me.Panel2.Controls.Add(Me.SplitContainer1)
+        Me.Panel2.Controls.Add(Me.SplitContainer_ModuleDocumentaire)
         Me.Panel2.Controls.Add(Me.btn_imprimerDoc)
         Me.Panel2.Controls.Add(Me.btn_outilsComplementaires_calcVolumeHectare)
         Me.Panel2.Controls.Add(Me.PictureBox5)
         Me.Panel2.Controls.Add(Me.Label2)
-        Me.Panel2.Controls.Add(Me.Label3)
+        Me.Panel2.Controls.Add(Me.lblModuledocumentaire)
         Me.Panel2.Controls.Add(Me.btn_outilsComplementaires_calcDebitBuses)
         Me.Panel2.ForeColor = System.Drawing.SystemColors.ButtonFace
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
@@ -2112,21 +2112,21 @@ Public Class accueil
         Me.pctbx_Docs_refresh.TabIndex = 35
         Me.pctbx_Docs_refresh.TabStop = False
         '
-        'SplitContainer1
+        'SplitContainer_ModuleDocumentaire
         '
-        Me.SplitContainer1.Location = New System.Drawing.Point(26, 166)
-        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer_ModuleDocumentaire.Location = New System.Drawing.Point(26, 166)
+        Me.SplitContainer_ModuleDocumentaire.Name = "SplitContainer_ModuleDocumentaire"
         '
-        'SplitContainer1.Panel1
+        'SplitContainer_ModuleDocumentaire.Panel1
         '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.tv_Docs)
+        Me.SplitContainer_ModuleDocumentaire.Panel1.Controls.Add(Me.tv_Docs)
         '
-        'SplitContainer1.Panel2
+        'SplitContainer_ModuleDocumentaire.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.lv_Docs)
-        Me.SplitContainer1.Size = New System.Drawing.Size(597, 479)
-        Me.SplitContainer1.SplitterDistance = 199
-        Me.SplitContainer1.TabIndex = 34
+        Me.SplitContainer_ModuleDocumentaire.Panel2.Controls.Add(Me.lv_Docs)
+        Me.SplitContainer_ModuleDocumentaire.Size = New System.Drawing.Size(597, 479)
+        Me.SplitContainer_ModuleDocumentaire.SplitterDistance = 199
+        Me.SplitContainer_ModuleDocumentaire.TabIndex = 34
         '
         'tv_Docs
         '
@@ -2206,17 +2206,17 @@ Public Class accueil
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "     Outils de calcul"
         '
-        'Label3
+        'lblModuledocumentaire
         '
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label3.Image = CType(resources.GetObject("Label3.Image"), System.Drawing.Image)
-        Me.Label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label3.Location = New System.Drawing.Point(16, 120)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(352, 24)
-        Me.Label3.TabIndex = 0
-        Me.Label3.Text = "     Module documentaire"
+        Me.lblModuledocumentaire.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblModuledocumentaire.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.lblModuledocumentaire.Image = CType(resources.GetObject("lblModuledocumentaire.Image"), System.Drawing.Image)
+        Me.lblModuledocumentaire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblModuledocumentaire.Location = New System.Drawing.Point(16, 120)
+        Me.lblModuledocumentaire.Name = "lblModuledocumentaire"
+        Me.lblModuledocumentaire.Size = New System.Drawing.Size(352, 24)
+        Me.lblModuledocumentaire.TabIndex = 0
+        Me.lblModuledocumentaire.Text = "     Module documentaire"
         '
         'btn_outilsComplementaires_calcDebitBuses
         '
@@ -2250,10 +2250,10 @@ Public Class accueil
         Me.Panel5.Controls.Add(Me.lblIdentifiantPulve)
         Me.Panel5.Controls.Add(Me.lblMaterielsSupprimes)
         Me.Panel5.Controls.Add(Me.btn_parametrage_facturation)
-        Me.Panel5.Controls.Add(Me.Label16)
+        Me.Panel5.Controls.Add(Me.lblParametresOrganisme)
         Me.Panel5.Controls.Add(Me.PictureBox3)
         Me.Panel5.Controls.Add(Me.title_parametrage)
-        Me.Panel5.Controls.Add(Me.Label17)
+        Me.Panel5.Controls.Add(Me.lblParametrageAppareilsMesures)
         Me.Panel5.Controls.Add(Me.Label18)
         Me.Panel5.Controls.Add(Me.btn_parametrage_tarifs)
         Me.Panel5.Controls.Add(Me.btn_parametrage_coordonneesOrganisme)
@@ -2309,18 +2309,18 @@ Public Class accueil
         Me.btn_parametrage_facturation.Text = "     Facture"
         Me.btn_parametrage_facturation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label16
+        'lblParametresOrganisme
         '
-        Me.Label16.BackColor = System.Drawing.Color.Transparent
-        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label16.Image = CType(resources.GetObject("Label16.Image"), System.Drawing.Image)
-        Me.Label16.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label16.Location = New System.Drawing.Point(16, 56)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(256, 16)
-        Me.Label16.TabIndex = 10
-        Me.Label16.Text = "       Paramètres de l’organisme"
+        Me.lblParametresOrganisme.BackColor = System.Drawing.Color.Transparent
+        Me.lblParametresOrganisme.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblParametresOrganisme.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.lblParametresOrganisme.Image = CType(resources.GetObject("lblParametresOrganisme.Image"), System.Drawing.Image)
+        Me.lblParametresOrganisme.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.lblParametresOrganisme.Location = New System.Drawing.Point(16, 56)
+        Me.lblParametresOrganisme.Name = "lblParametresOrganisme"
+        Me.lblParametresOrganisme.Size = New System.Drawing.Size(256, 16)
+        Me.lblParametresOrganisme.TabIndex = 10
+        Me.lblParametresOrganisme.Text = "       Paramètres de l’organisme"
         '
         'PictureBox3
         '
@@ -2343,18 +2343,18 @@ Public Class accueil
         Me.title_parametrage.TabIndex = 0
         Me.title_parametrage.Text = "     Paramétrage"
         '
-        'Label17
+        'lblParametrageAppareilsMesures
         '
-        Me.Label17.BackColor = System.Drawing.Color.Transparent
-        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label17.Image = CType(resources.GetObject("Label17.Image"), System.Drawing.Image)
-        Me.Label17.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label17.Location = New System.Drawing.Point(312, 56)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(290, 16)
-        Me.Label17.TabIndex = 10
-        Me.Label17.Text = "        Paramétrage des appareils de mesure"
+        Me.lblParametrageAppareilsMesures.BackColor = System.Drawing.Color.Transparent
+        Me.lblParametrageAppareilsMesures.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblParametrageAppareilsMesures.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.lblParametrageAppareilsMesures.Image = CType(resources.GetObject("lblParametrageAppareilsMesures.Image"), System.Drawing.Image)
+        Me.lblParametrageAppareilsMesures.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.lblParametrageAppareilsMesures.Location = New System.Drawing.Point(312, 56)
+        Me.lblParametrageAppareilsMesures.Name = "lblParametrageAppareilsMesures"
+        Me.lblParametrageAppareilsMesures.Size = New System.Drawing.Size(290, 16)
+        Me.lblParametrageAppareilsMesures.TabIndex = 10
+        Me.lblParametrageAppareilsMesures.Text = "        Paramétrage des appareils de mesure"
         '
         'Label18
         '
@@ -3090,10 +3090,10 @@ Public Class accueil
         Me.tabControl_outilscomp.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         CType(Me.pctbx_Docs_refresh, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
+        Me.SplitContainer_ModuleDocumentaire.Panel1.ResumeLayout(False)
+        Me.SplitContainer_ModuleDocumentaire.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer_ModuleDocumentaire, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer_ModuleDocumentaire.ResumeLayout(False)
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_parametrage.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
@@ -3231,6 +3231,24 @@ Public Class accueil
         'REDIECTION DE LA DATA SOURCE du dataGRIDView !!!!!!
         dgvPulveExploit.DataSource = m_BindingListOfPulve
 
+        'Gestion du Mode Simplifié
+        'Module Documentaire
+        pctbx_Docs_refresh.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        lblModuledocumentaire.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        SplitContainer_ModuleDocumentaire.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        btn_imprimerDoc.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        'Paramétrage
+        btn_parametrage_coordonneesOrganisme.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        btn_parametrage_coordonneesInspecteur.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        btn_parametrage_tarifs.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        btn_parametrage_facturation.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        lblParametresOrganisme.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        lblIdentifiantPulve.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        lblParametrageAppareilsMesures.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        btn_parametrage_parametrageManometre.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        btn_parametrage_parametrageBuses.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        btn_parametrage_parametrageBancs.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        lblMaterielsSupprimes.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
 
         m_bDuringLoad = False
         Statusbar.display("Bienvenu(e) sur le logiciel Crodip Agent v" & Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD, False)
@@ -3243,6 +3261,9 @@ Public Class accueil
     Public Sub Init()
         ' Affichage des alertes
         Me.Text = agentCourant.nom & " " & agentCourant.prenom & " / " & agentCourant.NomStructure
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            Me.Text = Me.Text & " - Mode Simplifié - "
+        End If
         loadAccueilAlerts()
 
         LoadListeExploitation()
@@ -4585,7 +4606,10 @@ Public Class accueil
             formDiagnostic_Contexte.Close()
             Dim isContreVisiteGratuite As Boolean
             isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
-            If Not diagnosticCourant.isContrevisiteImmediate Or Not isContreVisiteGratuite Then
+            If (diagnosticCourant.isContrevisiteImmediate And isContreVisiteGratuite) Or Globals.GLOB_ENV_MODESIMPLIFIE Then
+                'Mise à jour du tarif du Diagnostique
+                diagnosticCourant.controleTarif = CType(0, Double)
+            Else
                 'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
                 Statusbar.clear()
                 Me.Cursor = Cursors.WaitCursor
@@ -4594,9 +4618,6 @@ Public Class accueil
                 frmFact.ShowDialog()
                 Me.Cursor = Cursors.Default
                 bOK = (frmFact.DialogResult = Windows.Forms.DialogResult.OK)
-            Else
-                'Mise à jour du tarif du Diagnostique
-                diagnosticCourant.controleTarif = CType(0, Double)
             End If
             Statusbar.clear()
             If bOK Then

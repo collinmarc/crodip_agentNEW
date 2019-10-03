@@ -915,6 +915,9 @@ Public Class diagnostic_contexte
         CSEnvironnement.checkDateTimePicker(dateDernierControleComplet)
         CSEnvironnement.checkDateTimePicker(dateDernierControlePartiel)
 
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            Me.Text = Me.Text & " - Mode Simplifié - "
+        End If
 
 
 
@@ -1075,25 +1078,7 @@ Public Class diagnostic_contexte
             My.Settings.DernierControleSiteSecurise = ckisSiteSecurise.Checked
             My.Settings.DernierControleRecupResidus = ckisRecuperationResidus.Checked
             My.Settings.Save()
-            Dim isContreVisiteGratuite As Boolean
-            isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
-            If m_diagnostic.isContrevisiteImmediate And isContreVisiteGratuite Then
-                'Mise à jour du tarif du Diagnostique
-                m_diagnostic.controleTarif = CType(0, Double)
-                'Création des fenêtres de Diagnostique
-                m_NextForm = New controle_preliminaire(m_DiagMode, m_diagnostic, m_Pulverisateur, ClientCourant)
-                m_NextForm.MdiParent = Me.MdiParent
-                Statusbar.clear()
 
-            Else
-                'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
-                Dim ofrm As New diagnostic_facturation()
-                ofrm.setContexte(m_diagnostic, ClientCourant, agentCourant)
-                m_NextForm = ofrm
-                m_NextForm.WindowState = FormWindowState.Normal
-                m_NextForm.MdiParent = Me.MdiParent
-                Statusbar.clear()
-            End If
             Me.DialogResult = Windows.Forms.DialogResult.OK
             'Me.Close() elle sera fermée par la fenêtre appelante
             Me.Cursor = Cursors.Default

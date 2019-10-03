@@ -30,7 +30,8 @@ Public Class EtatRapportInspection
 
                 m_oReportDocument = New ReportDocument
                 m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
-                m_oReportdocument.SetDataSource(m_ods)
+                m_oReportDocument.SetDataSource(m_ods)
+                m_oReportDocument.SetParameterValue("ModeSimplifie", Globals.GLOB_ENV_MODESIMPLIFIE)
                 If pExportPDF Then
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions

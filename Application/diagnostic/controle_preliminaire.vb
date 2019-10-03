@@ -1571,6 +1571,11 @@ Public Class controle_preliminaire
                 btn_controlePreliminaire_poursuivre.Visible = True
                 CSForm.disableAllCheckBox(Me)
         End Select
+
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            Me.Text = Me.Text & " - Mode Simplifié - "
+        End If
+
         Me.Cursor = Cursors.Default
     End Sub
 

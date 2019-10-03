@@ -99,10 +99,13 @@
       <Value Profile="(Default)">2.6</Value>
     </Setting>
     <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">V2.6</Value>
+      <Value Profile="(Default)">V2.6.1</Value>
     </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20190322180000</Value>
+      <Value Profile="(Default)">20190930090000</Value>
+    </Setting>
+    <Setting Name="Mode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Normal</Value>
     </Setting>
   </Settings>
 </SettingsFile>

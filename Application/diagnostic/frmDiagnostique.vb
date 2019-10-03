@@ -10318,6 +10318,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 checkAllIsOk()
             End If
         End If
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            Me.Text = Me.Text & " - Mode Simplifié - "
+        End If
 
     End Sub
 

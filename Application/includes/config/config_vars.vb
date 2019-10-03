@@ -54,6 +54,7 @@ Public Class Globals
     ' Comportement
     Public Shared GLOB_ENV_AUTOSYNC As Boolean = My.Settings.AutoSync
     Public Shared GLOB_ENV_SHOWSPLASH As Boolean = True
+    Public Shared GLOB_ENV_MODESIMPLIFIE As Boolean = (My.Settings.Mode = "Simplifié")
 
     ' Conf
     Public Shared GLOB_XML_CONFIG As CSXml
@@ -351,8 +352,10 @@ Public Class Globals
     Public Shared Sub Init()
         My.Settings.Reload()
         GLOB_ENV_AUTOSYNC = My.Settings.AutoSync
+        GLOB_ENV_MODESIMPLIFIE = (My.Settings.Mode = "Simplifié")
         GLOB_APPLI_VERSION = My.Settings.NumVersion
         GLOB_APPLI_BUILD = My.Settings.NumBuild
+
         GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
         CSDebug.dispInfo("Globals.Init user LocalUserAppDataPath :" & Application.LocalUserAppDataPath)
         CSDebug.dispInfo("Globals.Init App My.Settings.NumVersion:" & My.Settings.NumVersion)

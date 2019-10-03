@@ -58,6 +58,7 @@ Public Class EtatSyntheseMesures
                 'Next
 
                 m_oReportDocument.SetDataSource(m_ods)
+                m_oReportDocument.SetParameterValue("ModeSimplifie", Globals.GLOB_ENV_MODESIMPLIFIE)
                 If pExportPDF Then
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions

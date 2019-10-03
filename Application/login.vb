@@ -74,6 +74,7 @@ Public Class login
     Friend WithEvents btnTesttrtSemences As System.Windows.Forms.Button
     Friend WithEvents bntGetWSDiag As System.Windows.Forms.Button
     Friend WithEvents btn_dlgAcquisition As Button
+    Friend WithEvents lblMode As Label
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -89,6 +90,7 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.btn_dlgAcquisition = New System.Windows.Forms.Button()
         Me.bntGetWSDiag = New System.Windows.Forms.Button()
         Me.btnTesttrtSemences = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -108,7 +110,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.btn_dlgAcquisition = New System.Windows.Forms.Button()
+        Me.lblMode = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
@@ -133,6 +135,7 @@ Public Class login
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackgroundImage = CType(resources.GetObject("Panel1.BackgroundImage"), System.Drawing.Image)
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.lblMode)
         Me.Panel1.Controls.Add(Me.pnlLoginControls)
         Me.Panel1.Controls.Add(Me.Lbl_Version)
         Me.Panel1.Controls.Add(Me.lbl_environnement_ws)
@@ -271,6 +274,15 @@ Public Class login
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
+        '
+        'btn_dlgAcquisition
+        '
+        Me.btn_dlgAcquisition.Location = New System.Drawing.Point(375, 47)
+        Me.btn_dlgAcquisition.Name = "btn_dlgAcquisition"
+        Me.btn_dlgAcquisition.Size = New System.Drawing.Size(128, 23)
+        Me.btn_dlgAcquisition.TabIndex = 36
+        Me.btn_dlgAcquisition.Text = "dlgAcquisition"
+        Me.btn_dlgAcquisition.UseVisualStyleBackColor = True
         '
         'bntGetWSDiag
         '
@@ -485,14 +497,19 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'btn_dlgAcquisition
+        'lblMode
         '
-        Me.btn_dlgAcquisition.Location = New System.Drawing.Point(375, 47)
-        Me.btn_dlgAcquisition.Name = "btn_dlgAcquisition"
-        Me.btn_dlgAcquisition.Size = New System.Drawing.Size(128, 23)
-        Me.btn_dlgAcquisition.TabIndex = 36
-        Me.btn_dlgAcquisition.Text = "dlgAcquisition"
-        Me.btn_dlgAcquisition.UseVisualStyleBackColor = True
+        Me.lblMode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblMode.AutoSize = True
+        Me.lblMode.BackColor = System.Drawing.Color.Transparent
+        Me.lblMode.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblMode.ForeColor = System.Drawing.Color.Silver
+        Me.lblMode.Location = New System.Drawing.Point(466, 656)
+        Me.lblMode.Name = "lblMode"
+        Me.lblMode.Size = New System.Drawing.Size(112, 15)
+        Me.lblMode.TabIndex = 33
+        Me.lblMode.Text = "Mode : Simplifié"
+        Me.lblMode.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'login
         '
@@ -638,6 +655,7 @@ Public Class login
         lbl_environnement_debugType.Text = "Type de sortie debug..................: " & Globals.GLOB_ENV_DEBUGTYPE
         lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & Globals.GLOB_ENV_DEBUGLVL
         lbl_WS.Text = WSCrodip.getWS().Url
+        lblMode.Visible = Globals.GLOB_ENV_MODESIMPLIFIE
 
         CSDebug.dispInfo("Login.Load: CheckWS()")
         If Not CSEnvironnement.checkWebService() Then
