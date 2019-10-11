@@ -39,6 +39,8 @@ Partial Public Class ds_Etat_RI
     
     Private tableDefauts As DefautsDataTable
     
+    Private tablesignatureDiag As signatureDiagDataTable
+    
     Private relationDiagnostic_Organisme As Global.System.Data.DataRelation
     
     Private relationDiagitem_Diagnostic As Global.System.Data.DataRelation
@@ -48,6 +50,8 @@ Partial Public Class ds_Etat_RI
     Private relationMateriel_Proprietaire As Global.System.Data.DataRelation
     
     Private relationMateriel_Diagnostic As Global.System.Data.DataRelation
+    
+    Private relationDiagnostic_signatureDiag As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -98,6 +102,9 @@ Partial Public Class ds_Etat_RI
             End If
             If (Not (ds.Tables("Defauts")) Is Nothing) Then
                 MyBase.Tables.Add(New DefautsDataTable(ds.Tables("Defauts")))
+            End If
+            If (Not (ds.Tables("signatureDiag")) Is Nothing) Then
+                MyBase.Tables.Add(New signatureDiagDataTable(ds.Tables("signatureDiag")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -183,6 +190,16 @@ Partial Public Class ds_Etat_RI
     Public ReadOnly Property Defauts() As DefautsDataTable
         Get
             Return Me.tableDefauts
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property signatureDiag() As signatureDiagDataTable
+        Get
+            Return Me.tablesignatureDiag
         End Get
     End Property
     
@@ -274,6 +291,9 @@ Partial Public Class ds_Etat_RI
             If (Not (ds.Tables("Defauts")) Is Nothing) Then
                 MyBase.Tables.Add(New DefautsDataTable(ds.Tables("Defauts")))
             End If
+            If (Not (ds.Tables("signatureDiag")) Is Nothing) Then
+                MyBase.Tables.Add(New signatureDiagDataTable(ds.Tables("signatureDiag")))
+            End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
             Me.Namespace = ds.Namespace
@@ -348,11 +368,18 @@ Partial Public Class ds_Etat_RI
                 Me.tableDefauts.InitVars
             End If
         End If
+        Me.tablesignatureDiag = CType(MyBase.Tables("signatureDiag"),signatureDiagDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tablesignatureDiag) Is Nothing) Then
+                Me.tablesignatureDiag.InitVars
+            End If
+        End If
         Me.relationDiagnostic_Organisme = Me.Relations("Diagnostic_Organisme")
         Me.relationDiagitem_Diagnostic = Me.Relations("Diagitem_Diagnostic")
         Me.relationDiagnostic_Synthese = Me.Relations("Diagnostic_Synthese")
         Me.relationMateriel_Proprietaire = Me.Relations("Materiel_Proprietaire")
         Me.relationMateriel_Diagnostic = Me.Relations("Materiel_Diagnostic")
+        Me.relationDiagnostic_signatureDiag = Me.Relations("Diagnostic_signatureDiag")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -377,6 +404,8 @@ Partial Public Class ds_Etat_RI
         MyBase.Tables.Add(Me.tableSynthese)
         Me.tableDefauts = New DefautsDataTable()
         MyBase.Tables.Add(Me.tableDefauts)
+        Me.tablesignatureDiag = New signatureDiagDataTable()
+        MyBase.Tables.Add(Me.tablesignatureDiag)
         Me.relationDiagnostic_Organisme = New Global.System.Data.DataRelation("Diagnostic_Organisme", New Global.System.Data.DataColumn() {Me.tableDiagnostic.NumeroAgrementColumn}, New Global.System.Data.DataColumn() {Me.tableOrganisme.NumeroAgrementColumn}, false)
         Me.Relations.Add(Me.relationDiagnostic_Organisme)
         Me.relationDiagitem_Diagnostic = New Global.System.Data.DataRelation("Diagitem_Diagnostic", New Global.System.Data.DataColumn() {Me.tableDiagnostic.NumeroControleColumn}, New Global.System.Data.DataColumn() {Me.tableDiagitem.NumeroControleColumn}, false)
@@ -387,6 +416,8 @@ Partial Public Class ds_Etat_RI
         Me.Relations.Add(Me.relationMateriel_Proprietaire)
         Me.relationMateriel_Diagnostic = New Global.System.Data.DataRelation("Materiel_Diagnostic", New Global.System.Data.DataColumn() {Me.tableMateriel.IdentifiantColumn}, New Global.System.Data.DataColumn() {Me.tableDiagnostic.IdentifiantMaterielColumn}, false)
         Me.Relations.Add(Me.relationMateriel_Diagnostic)
+        Me.relationDiagnostic_signatureDiag = New Global.System.Data.DataRelation("Diagnostic_signatureDiag", New Global.System.Data.DataColumn() {Me.tableDiagnostic.NumeroControleColumn}, New Global.System.Data.DataColumn() {Me.tablesignatureDiag.NumeroControleColumn}, false)
+        Me.Relations.Add(Me.relationDiagnostic_signatureDiag)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -428,6 +459,12 @@ Partial Public Class ds_Etat_RI
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Private Function ShouldSerializeDefauts() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Private Function ShouldSerializesignatureDiag() As Boolean
         Return false
     End Function
     
@@ -509,6 +546,9 @@ Partial Public Class ds_Etat_RI
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Delegate Sub DefautsRowChangeEventHandler(ByVal sender As Object, ByVal e As DefautsRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Delegate Sub signatureDiagRowChangeEventHandler(ByVal sender As Object, ByVal e As signatureDiagRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -3331,6 +3371,287 @@ Partial Public Class ds_Etat_RI
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class signatureDiagDataTable
+        Inherits Global.System.Data.TypedTableBase(Of signatureDiagRow)
+        
+        Private columnNumeroControle As Global.System.Data.DataColumn
+        
+        Private columnSignatureClient As Global.System.Data.DataColumn
+        
+        Private columnSignatureAgent As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "signatureDiag"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property NumeroControleColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNumeroControle
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SignatureClientColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSignatureClient
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SignatureAgentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSignatureAgent
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As signatureDiagRow
+            Get
+                Return CType(Me.Rows(index),signatureDiagRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event signatureDiagRowChanging As signatureDiagRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event signatureDiagRowChanged As signatureDiagRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event signatureDiagRowDeleting As signatureDiagRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event signatureDiagRowDeleted As signatureDiagRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Sub AddsignatureDiagRow(ByVal row As signatureDiagRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Function AddsignatureDiagRow(ByVal parentDiagnosticRowByDiagnostic_signatureDiag As DiagnosticRow, ByVal SignatureClient() As Byte, ByVal SignatureAgent() As Byte) As signatureDiagRow
+            Dim rowsignatureDiagRow As signatureDiagRow = CType(Me.NewRow,signatureDiagRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, SignatureClient, SignatureAgent}
+            If (Not (parentDiagnosticRowByDiagnostic_signatureDiag) Is Nothing) Then
+                columnValuesArray(0) = parentDiagnosticRowByDiagnostic_signatureDiag(0)
+            End If
+            rowsignatureDiagRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowsignatureDiagRow)
+            Return rowsignatureDiagRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As signatureDiagDataTable = CType(MyBase.Clone,signatureDiagDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New signatureDiagDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnNumeroControle = MyBase.Columns("NumeroControle")
+            Me.columnSignatureClient = MyBase.Columns("SignatureClient")
+            Me.columnSignatureAgent = MyBase.Columns("SignatureAgent")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnNumeroControle = New Global.System.Data.DataColumn("NumeroControle", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNumeroControle)
+            Me.columnSignatureClient = New Global.System.Data.DataColumn("SignatureClient", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSignatureClient)
+            Me.columnSignatureAgent = New Global.System.Data.DataColumn("SignatureAgent", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSignatureAgent)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function NewsignatureDiagRow() As signatureDiagRow
+            Return CType(Me.NewRow,signatureDiagRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New signatureDiagRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(signatureDiagRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.signatureDiagRowChangedEvent) Is Nothing) Then
+                RaiseEvent signatureDiagRowChanged(Me, New signatureDiagRowChangeEvent(CType(e.Row,signatureDiagRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.signatureDiagRowChangingEvent) Is Nothing) Then
+                RaiseEvent signatureDiagRowChanging(Me, New signatureDiagRowChangeEvent(CType(e.Row,signatureDiagRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.signatureDiagRowDeletedEvent) Is Nothing) Then
+                RaiseEvent signatureDiagRowDeleted(Me, New signatureDiagRowChangeEvent(CType(e.Row,signatureDiagRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.signatureDiagRowDeletingEvent) Is Nothing) Then
+                RaiseEvent signatureDiagRowDeleting(Me, New signatureDiagRowChangeEvent(CType(e.Row,signatureDiagRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub RemovesignatureDiagRow(ByVal row As signatureDiagRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As ds_Etat_RI = New ds_Etat_RI()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "signatureDiagDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class DiagnosticRow
@@ -3863,6 +4184,16 @@ Partial Public Class ds_Etat_RI
                 Return New SyntheseRow(-1) {}
             Else
                 Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("Diagnostic_Synthese")),SyntheseRow())
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function GetsignatureDiagRows() As signatureDiagRow()
+            If (Me.Table.ChildRelations("Diagnostic_signatureDiag") Is Nothing) Then
+                Return New signatureDiagRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("Diagnostic_signatureDiag")),signatureDiagRow())
             End If
         End Function
     End Class
@@ -5677,6 +6008,117 @@ Partial Public Class ds_Etat_RI
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class signatureDiagRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tablesignatureDiag As signatureDiagDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablesignatureDiag = CType(Me.Table,signatureDiagDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property NumeroControle() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablesignatureDiag.NumeroControleColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'NumeroControle' dans la table 'signatureDiag' est DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablesignatureDiag.NumeroControleColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SignatureClient() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tablesignatureDiag.SignatureClientColumn),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'SignatureClient' dans la table 'signatureDiag' est DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablesignatureDiag.SignatureClientColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SignatureAgent() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tablesignatureDiag.SignatureAgentColumn),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'SignatureAgent' dans la table 'signatureDiag' est DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablesignatureDiag.SignatureAgentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DiagnosticRow() As DiagnosticRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("Diagnostic_signatureDiag")),DiagnosticRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("Diagnostic_signatureDiag"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsNumeroControleNull() As Boolean
+            Return Me.IsNull(Me.tablesignatureDiag.NumeroControleColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetNumeroControleNull()
+            Me(Me.tablesignatureDiag.NumeroControleColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSignatureClientNull() As Boolean
+            Return Me.IsNull(Me.tablesignatureDiag.SignatureClientColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSignatureClientNull()
+            Me(Me.tablesignatureDiag.SignatureClientColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSignatureAgentNull() As Boolean
+            Return Me.IsNull(Me.tablesignatureDiag.SignatureAgentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSignatureAgentNull()
+            Me(Me.tablesignatureDiag.SignatureAgentColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -5914,6 +6356,42 @@ Partial Public Class ds_Etat_RI
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public ReadOnly Property Row() As DefautsRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Class signatureDiagRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As signatureDiagRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New(ByVal row As signatureDiagRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Row() As signatureDiagRow
             Get
                 Return Me.eventRow
             End Get

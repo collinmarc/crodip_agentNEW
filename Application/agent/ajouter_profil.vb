@@ -248,7 +248,7 @@ Public Class ajouter_profil
                             existsAgent = AgentManager.getAgentByNumeroNational(objAgent.numeroNational)
                             If existsAgent.numeroNational = "" Then
                                 ' Création d'un agent avec l'Id et le numéro national
-                                AgentManager.createAgent(objAgent.id, objAgent.numeroNational, "Nouveau")
+                                AgentManager.createAgent(objAgent.id, objAgent.numeroNational, "Nouveau", 0)
                                 objAgent.dateDerniereSynchro = "01/01/1970"
                                 'Update de cet agent avec l'agent recu pas WS
                                 AgentManager.save(objAgent)

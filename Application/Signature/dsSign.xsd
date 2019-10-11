@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsSign" targetNamespace="http://tempuri.org/dsSign.xsd" xmlns:mstns="http://tempuri.org/dsSign.xsd" xmlns="http://tempuri.org/dsSign.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsSign" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsSign" msprop:Generator_UserDSName="dsSign">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ta1" msprop:Generator_TableClassName="ta1DataTable" msprop:Generator_TableVarName="tableta1" msprop:Generator_TablePropName="ta1" msprop:Generator_RowDeletingName="ta1RowDeleting" msprop:Generator_RowChangingName="ta1RowChanging" msprop:Generator_RowEvHandlerName="ta1RowChangeEventHandler" msprop:Generator_RowDeletedName="ta1RowDeleted" msprop:Generator_UserTableName="ta1" msprop:Generator_RowChangedName="ta1RowChanged" msprop:Generator_RowEvArgName="ta1RowChangeEvent" msprop:Generator_RowClassName="ta1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="signature" msprop:Generator_ColumnVarNameInTable="columnsignature" msprop:Generator_ColumnPropNameInRow="signature" msprop:Generator_ColumnPropNameInTable="signatureColumn" msprop:Generator_UserColumnName="signature" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="Libelle" msprop:Generator_ColumnVarNameInTable="columnLibelle" msprop:Generator_ColumnPropNameInRow="Libelle" msprop:Generator_ColumnPropNameInTable="LibelleColumn" msprop:Generator_UserColumnName="Libelle" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -264,7 +264,7 @@ Public Class AgentManager
     End Function
 
     ' Methode OK
-    Public Shared Function createAgent(ByVal id As Integer, ByVal pNumeronational As String, ByVal pNom As String) As Agent
+    Public Shared Function createAgent(ByVal id As Integer, ByVal pNumeronational As String, ByVal pNom As String, pIdStructure As Integer) As Agent
         Debug.Assert(Not String.IsNullOrEmpty(pNumeronational), " le paramètre NumeroNational doit être initialisé")
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
@@ -277,7 +277,7 @@ Public Class AgentManager
 
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO Agent (id,numeroNational, nom) VALUES (" & id & ",'" & pNumeronational & "', '" & pNom & "')"
+            bddCommande.CommandText = "INSERT INTO Agent (id,numeroNational, nom, idStructure) VALUES (" & id & ",'" & pNumeronational & "', '" & pNom & "'," & pIdStructure & ")"
             bddCommande.ExecuteNonQuery()
             oCsdb.free()
             oAgent = getAgentByNumeroNational(pNumeronational)
@@ -417,6 +417,7 @@ Public Class AgentManager
                     paramsQuery = paramsQuery & " , `Agent`.`isActif`=" & agent.isActif & ""
                     paramsQuery = paramsQuery & " , `Agent`.`DroitsPulves`='" & agent.DroitsPulves & "'"
                     paramsQuery = paramsQuery & " , `Agent`.`isGestionnaire`=" & agent.isGestionnaire & ""
+                    paramsQuery = paramsQuery & " , `Agent`.`SignatureElect`=" & agent.isSignElecActive & ""
 
                     bddCommande.CommandText = "UPDATE `Agent` SET " & paramsQuery & " WHERE `Agent`.`numeroNational`='" & agent.numeroNational & "'"
                     nResult = bddCommande.ExecuteNonQuery()

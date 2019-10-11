@@ -191,3 +191,6 @@ ALTER TABLE BancMesure ADD ModuleAcquisition VARCHAR(255)
 UPDATE BancMesure SET ModuleAcquisition = 'MD2' 
 INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.1", "12/08/2019" , "Modules Acquisition") 
 
+ALTER TABLE Agent ADD SignatureElect BIT
+UPDATE Agent SET SignatureElect = False
+INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.2", "12/08/2019" , "Signature Electronique") 

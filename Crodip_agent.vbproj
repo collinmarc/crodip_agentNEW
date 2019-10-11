@@ -429,6 +429,8 @@
     <Compile Include="Application\includes\classes\FicheVie\FVMateriel.vb" />
     <Compile Include="Application\includes\classes\IdentifiantPulverisateur\IdentifiantPulverisateur.vb" />
     <Compile Include="Application\includes\classes\IdentifiantPulverisateur\IdentifiantPulverisateurManager.vb" />
+    <Compile Include="Application\includes\classes\Pulverisateur\NiveauBusePulveManager.vb" />
+    <Compile Include="Application\includes\classes\Pulverisateur\NiveauBusePulve.vb" />
     <Compile Include="Application\includes\classes\Referentiel\Commune.vb" />
     <Compile Include="Application\includes\classes\Referentiel\dsCommunes.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -868,6 +870,25 @@
     <Compile Include="Application\ReglagePulve\RPParamUser.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\Signature\crTestSignature.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crTestSignature.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Application\Signature\dsSign1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSign.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Signature\frmsignature.vb" />
+    <Compile Include="Application\Signature\frmSignClient.Designer.vb">
+      <DependentUpon>frmSignClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Signature\frmSignClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\Signature\frmTestSignature.vb" />
     <Compile Include="Application\splash.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -1294,6 +1315,17 @@
       <LastGenOutput>ds_Etat_ReglagePulve.Designer.vb</LastGenOutput>
     </None>
     <Content Include="bdd\crodip_agent.mdw" />
+    <None Include="Application\Signature\dsSign.xsc">
+      <DependentUpon>dsSign.xsd</DependentUpon>
+    </None>
+    <None Include="Application\Signature\dsSign.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSign1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Application\Signature\dsSign.xss">
+      <DependentUpon>dsSign.xsd</DependentUpon>
+    </None>
     <None Include="cr\dsTest.xsc">
       <DependentUpon>dsTest.xsd</DependentUpon>
     </None>
@@ -2162,6 +2194,15 @@
     <EmbeddedResource Include="Application\ReglagePulve\RPParamUser.resx">
       <DependentUpon>RPParamUser.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\Signature\crTestSignature.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crTestSignature.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\Signature\frmsignature.resx" />
+    <EmbeddedResource Include="Application\Signature\frmSignClient.resx">
+      <DependentUpon>frmSignClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\Signature\frmTestSignature.resx" />
     <EmbeddedResource Include="Application\splash.resx">
       <DependentUpon>splash.vb</DependentUpon>
     </EmbeddedResource>

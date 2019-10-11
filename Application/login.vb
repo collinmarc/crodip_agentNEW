@@ -980,7 +980,7 @@ Public Class login
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Dim ofrm As frmdiagnostic_recap
-        ofrm = New frmdiagnostic_recap(Globals.DiagMode.CTRL_COMPLET, oDiag, oPulve, oExploit)
+        ofrm = New frmdiagnostic_recap(Globals.DiagMode.CTRL_COMPLET, oDiag, oPulve, oExploit, oAgent)
         ofrm.setbTest(True)
         ofrm.Show()
 

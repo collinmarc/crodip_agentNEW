@@ -13,6 +13,7 @@ Public Class frmdiagnostic_recap
     Private m_diagnostic As Diagnostic
     Private m_Exploit As Exploitation
     Private m_Pulverisateur As Pulverisateur
+    Private m_oAgent As Agent
     Dim isValider As Boolean = False
     Dim conclusionDiagnostique As Globals.enumConclusionDiag
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
@@ -36,6 +37,10 @@ Public Class frmdiagnostic_recap
     Friend WithEvents rbEtatSM As System.Windows.Forms.RadioButton
     Friend WithEvents rbEtatRI As System.Windows.Forms.RadioButton
     Friend WithEvents m_bsDiag As System.Windows.Forms.BindingSource
+    Friend WithEvents label_pulveBonEtat As Label
+    Friend WithEvents conclusion_pictoEtat As PictureBox
+    Private WithEvents btnSignClient As Label
+    Private WithEvents btnSignAgent As Label
     Friend WithEvents btn_finalisationDiag_imprimerSynthese As System.Windows.Forms.Label
     'Private objInfos(15) As Object
 
@@ -55,13 +60,14 @@ Public Class frmdiagnostic_recap
 
     End Sub
 
-    Public Sub New(pDiagMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation)
+    Public Sub New(pDiagMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation, pAgent As Agent)
         MyBase.New()
         m_DiagMode = pDiagMode
 
         m_diagnostic = pDiag
         m_Pulverisateur = pPulve
         m_Exploit = pExploit
+        m_oAgent = pAgent
 
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
@@ -94,15 +100,11 @@ Public Class frmdiagnostic_recap
     Private WithEvents btn_finalisationDiag_valider As System.Windows.Forms.Label
     Friend WithEvents btn_finalisationDiag_imprimerRapport As System.Windows.Forms.Label
     Friend WithEvents btn_finalisationDiag_modifierDiag As System.Windows.Forms.Label
-    Friend WithEvents label_pulveBonEtat As System.Windows.Forms.Label
-    Friend WithEvents conclusion_pictoEtat As System.Windows.Forms.PictureBox
     '    Friend WithEvents cr_debitBuses As CrystalDecisions.Windows.Forms.CrystalReportViewer
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmdiagnostic_recap))
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.conclusion_pictoEtat = New System.Windows.Forms.PictureBox()
-        Me.label_pulveBonEtat = New System.Windows.Forms.Label()
         Me.ImageList_Etat = New System.Windows.Forms.ImageList(Me.components)
         Me.btn_finalisationDiag_valider = New System.Windows.Forms.Label()
         Me.btn_finalisationDiag_imprimerRapport = New System.Windows.Forms.Label()
@@ -129,7 +131,10 @@ Public Class frmdiagnostic_recap
         Me.diagnosticRecap_organisme_heureDebut = New System.Windows.Forms.TextBox()
         Me.diagnosticRecap_organisme_heureFin = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
-        CType(Me.conclusion_pictoEtat, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.label_pulveBonEtat = New System.Windows.Forms.Label()
+        Me.conclusion_pictoEtat = New System.Windows.Forms.PictureBox()
+        Me.btnSignClient = New System.Windows.Forms.Label()
+        Me.btnSignAgent = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -138,6 +143,7 @@ Public Class frmdiagnostic_recap
         Me.grpMateriel.SuspendLayout()
         Me.grpProprio.SuspendLayout()
         Me.grpOrganisme.SuspendLayout()
+        CType(Me.conclusion_pictoEtat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -151,28 +157,6 @@ Public Class frmdiagnostic_recap
         Me.Label3.Size = New System.Drawing.Size(344, 24)
         Me.Label3.TabIndex = 3
         Me.Label3.Text = "     Visualisation du contrôle"
-        '
-        'conclusion_pictoEtat
-        '
-        Me.conclusion_pictoEtat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.conclusion_pictoEtat.Image = CType(resources.GetObject("conclusion_pictoEtat.Image"), System.Drawing.Image)
-        Me.conclusion_pictoEtat.Location = New System.Drawing.Point(571, 632)
-        Me.conclusion_pictoEtat.Name = "conclusion_pictoEtat"
-        Me.conclusion_pictoEtat.Size = New System.Drawing.Size(16, 16)
-        Me.conclusion_pictoEtat.TabIndex = 13
-        Me.conclusion_pictoEtat.TabStop = False
-        '
-        'label_pulveBonEtat
-        '
-        Me.label_pulveBonEtat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.label_pulveBonEtat.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label_pulveBonEtat.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.label_pulveBonEtat.Location = New System.Drawing.Point(587, 629)
-        Me.label_pulveBonEtat.Name = "label_pulveBonEtat"
-        Me.label_pulveBonEtat.Size = New System.Drawing.Size(311, 24)
-        Me.label_pulveBonEtat.TabIndex = 12
-        Me.label_pulveBonEtat.Text = "Pulvérisateur en bon état"
-        Me.label_pulveBonEtat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'ImageList_Etat
         '
@@ -314,7 +298,6 @@ Public Class frmdiagnostic_recap
         Me.CrystalReportViewer1.Location = New System.Drawing.Point(0, 42)
         Me.CrystalReportViewer1.Name = "CrystalReportViewer1"
         Me.CrystalReportViewer1.ShowCloseButton = False
-        ' Me.CrystalReportViewer1.ShowCopyButton = False
         Me.CrystalReportViewer1.ShowExportButton = False
         Me.CrystalReportViewer1.ShowGotoPageButton = False
         Me.CrystalReportViewer1.ShowGroupTreeButton = False
@@ -505,26 +488,79 @@ Public Class frmdiagnostic_recap
         Me.Label19.Text = "/"
         Me.Label19.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
-        'frmdiagnostic_recapV6
+        'label_pulveBonEtat
+        '
+        Me.label_pulveBonEtat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.label_pulveBonEtat.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label_pulveBonEtat.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.label_pulveBonEtat.Location = New System.Drawing.Point(682, 9)
+        Me.label_pulveBonEtat.Name = "label_pulveBonEtat"
+        Me.label_pulveBonEtat.Size = New System.Drawing.Size(311, 24)
+        Me.label_pulveBonEtat.TabIndex = 15
+        Me.label_pulveBonEtat.Text = "Pulvérisateur en bon état"
+        Me.label_pulveBonEtat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'conclusion_pictoEtat
+        '
+        Me.conclusion_pictoEtat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.conclusion_pictoEtat.Image = CType(resources.GetObject("conclusion_pictoEtat.Image"), System.Drawing.Image)
+        Me.conclusion_pictoEtat.Location = New System.Drawing.Point(666, 12)
+        Me.conclusion_pictoEtat.Name = "conclusion_pictoEtat"
+        Me.conclusion_pictoEtat.Size = New System.Drawing.Size(16, 16)
+        Me.conclusion_pictoEtat.TabIndex = 16
+        Me.conclusion_pictoEtat.TabStop = False
+        '
+        'btnSignClient
+        '
+        Me.btnSignClient.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSignClient.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSignClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSignClient.ForeColor = System.Drawing.Color.White
+        Me.btnSignClient.Image = CType(resources.GetObject("btnSignClient.Image"), System.Drawing.Image)
+        Me.btnSignClient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnSignClient.Location = New System.Drawing.Point(571, 629)
+        Me.btnSignClient.Name = "btnSignClient"
+        Me.btnSignClient.Size = New System.Drawing.Size(134, 24)
+        Me.btnSignClient.TabIndex = 17
+        Me.btnSignClient.Text = "   Signature Client"
+        Me.btnSignClient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btnSignAgent
+        '
+        Me.btnSignAgent.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSignAgent.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSignAgent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSignAgent.ForeColor = System.Drawing.Color.White
+        Me.btnSignAgent.Image = CType(resources.GetObject("btnSignAgent.Image"), System.Drawing.Image)
+        Me.btnSignAgent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnSignAgent.Location = New System.Drawing.Point(711, 629)
+        Me.btnSignAgent.Name = "btnSignAgent"
+        Me.btnSignAgent.Size = New System.Drawing.Size(134, 24)
+        Me.btnSignAgent.TabIndex = 18
+        Me.btnSignAgent.Text = "    Signature Agent"
+        Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'frmdiagnostic_recap
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(1008, 679)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnSignAgent)
+        Me.Controls.Add(Me.btnSignClient)
+        Me.Controls.Add(Me.label_pulveBonEtat)
+        Me.Controls.Add(Me.conclusion_pictoEtat)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.btn_finalisationDiag_valider)
         Me.Controls.Add(Me.btn_finalisationDiag_imprimerSynthese)
-        Me.Controls.Add(Me.label_pulveBonEtat)
         Me.Controls.Add(Me.btn_finalisationDiag_modifierDiag)
         Me.Controls.Add(Me.btn_finalisationDiag_imprimerRapport)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.conclusion_pictoEtat)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmdiagnostic_recapV6"
+        Me.Name = "frmdiagnostic_recap"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "diagnostic_recap"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.conclusion_pictoEtat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)
@@ -537,6 +573,7 @@ Public Class frmdiagnostic_recap
         Me.grpProprio.ResumeLayout(False)
         Me.grpOrganisme.ResumeLayout(False)
         Me.grpOrganisme.PerformLayout()
+        CType(Me.conclusion_pictoEtat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -547,6 +584,7 @@ Public Class frmdiagnostic_recap
         'Propriété a mettre obligatoirement par programme
         Me.WindowState = FormWindowState.Maximized
         Me.ControlBox = False
+        m_oAgent = agentCourant
         CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
 
         '###########################################################################
@@ -643,6 +681,12 @@ Public Class frmdiagnostic_recap
 
         createRapportInspection_cr(False)
 
+        '======================
+        ' Boutons de Signatures
+        '=======================
+        btnSignClient.Visible = m_oAgent.isSignElecActive
+        btnSignAgent.Visible = m_oAgent.isSignElecActive
+
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
             Me.Text = Me.Text & " - Mode Simplifié - "
         End If
@@ -683,7 +727,7 @@ Public Class frmdiagnostic_recap
         If m_diagnostic.controleEtat <> Diagnostic.controleEtatNOKCC Then
             'Activation de la fenêtre
             For Each oForm As Form In MdiParent.MdiChildren
-                If TypeOf oForm Is frmDiagnostique Then
+                If TypeOf oForm Is FrmDiagnostique Then
                     ofrmDiag = oForm
                     Exit For
                 End If
@@ -752,7 +796,7 @@ Public Class frmdiagnostic_recap
                 Statusbar.display("Mise à jour de l'exploitant", True)
                 m_Exploit.numeroSiren = m_diagnostic.proprietaireNumeroSiren
                 m_Exploit.dateDernierControle = m_diagnostic.controleDateDebut
-                ExploitationManager.save(m_Exploit, agentCourant)
+                ExploitationManager.save(m_Exploit, m_oAgent)
 
                 Statusbar.display("Mise à jour du pulvérisateur", True)
                 'Calcul de la date de prochain controle
@@ -760,14 +804,14 @@ Public Class frmdiagnostic_recap
                 m_Pulverisateur.emplacementIdentification = m_diagnostic.pulverisateurEmplacementIdentification
                 m_Pulverisateur.SetControleEtat(m_diagnostic)
                 m_Pulverisateur.DecodageAutomatiqueDefauts(m_diagnostic.diagnosticItemsLst.Values)
-                PulverisateurManager.save(m_Pulverisateur, m_Exploit.id, agentCourant)
+                PulverisateurManager.save(m_Pulverisateur, m_Exploit.id, m_oAgent)
 
 
                 ' Enregistrement du diag
                 Statusbar.display("Récupération d'un nouvel ID", True)
                 Dim tmpNewDiagId As String
-                'tmpNewDiagId = InputBox("DiagID", "Entrez le numéro du diag", agentCourant.idStructure & "-" & agentCourant.id & "-")
-                tmpNewDiagId = DiagnosticManager.getNewId(agentCourant)
+                'tmpNewDiagId = InputBox("DiagID", "Entrez le numéro du diag", m_oagent.idStructure & "-" & m_oagent.id & "-")
+                tmpNewDiagId = DiagnosticManager.getNewId(m_oAgent)
                 m_diagnostic.id = tmpNewDiagId
 
                 Statusbar.display("Génération du rapport d'inspection", True)
@@ -798,7 +842,7 @@ Public Class frmdiagnostic_recap
                     End If
 
                     Statusbar.display("Mise à jour du manomètre et banc de mesures", True)
-                    m_diagnostic.setUtiliseBancEtMano(agentCourant)
+                    m_diagnostic.setUtiliseBancEtMano(m_oAgent)
 
 
                     ' On met en place les boutons
@@ -1017,7 +1061,7 @@ Public Class frmdiagnostic_recap
         ' Affichage de la fiche du pulvérisateur
 
         Dim formEdition_fiche_pulve As New ajout_pulve2()
-        formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.VERIF, agentCourant, m_Pulverisateur, m_Exploit, m_diagnostic)
+        formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.VERIF, m_oAgent, m_Pulverisateur, m_Exploit, m_diagnostic)
         formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
         m_diagnostic.setPulverisateur(m_Pulverisateur)
         'AffichePulverisateur()
@@ -1104,6 +1148,21 @@ Public Class frmdiagnostic_recap
 
     Private Sub btn_voirFiche_Pulve_Click_1(sender As Object, e As EventArgs) Handles btn_voirFiche_Pulve.Click
         displayFichePulve()
+
+    End Sub
+
+    Private Sub btnSignClient_Click(sender As Object, e As EventArgs) Handles btnSignClient.Click
+        Signatureclient()
+    End Sub
+
+    Private Sub btnSignAgent_Click(sender As Object, e As EventArgs) Handles btnSignAgent.Click
+        SignatureAgent()
+    End Sub
+
+    Public Sub Signatureclient()
+
+    End Sub
+    Public Sub SignatureAgent()
 
     End Sub
 End Class

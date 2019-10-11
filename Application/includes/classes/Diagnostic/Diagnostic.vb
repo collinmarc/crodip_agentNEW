@@ -3155,4 +3155,14 @@ Public Class Diagnostic
 
     End Sub
 
+    Private _Signclient As Byte()
+    Public Property SignClient() As Byte()
+        Get
+            Return _Signclient
+        End Get
+        Set(ByVal value As Byte())
+            _Signclient = value
+        End Set
+    End Property
+
 End Class

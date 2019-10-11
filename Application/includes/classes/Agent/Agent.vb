@@ -43,6 +43,7 @@ Public Class Agent
     Private _isSupprime As Boolean
     Private _droitsPulves As String
     Private _IsGestionnaire As Boolean
+    Private _IsSignElecActive As Boolean
 
 
 
@@ -68,6 +69,7 @@ Public Class Agent
         _isSupprime = False
         _droitsPulves = ""
         _IsGestionnaire = False
+        _IsSignElecActive = False
     End Sub
 
     Public Property id() As Integer
@@ -281,6 +283,14 @@ Public Class Agent
             _IsGestionnaire = value
         End Set
     End Property
+    Public Property isSignElecActive As Boolean
+        Get
+            Return _IsSignElecActive
+        End Get
+        Set(value As Boolean)
+            _IsSignElecActive = value
+        End Set
+    End Property
     ''' <summary>
     ''' Rend la liste des types et catégories de pulvés disponibles. L'utilisation des droits des inspecteurs est facultative
     ''' </summary>
@@ -391,6 +401,8 @@ Public Class Agent
                     Me.DroitsPulves = pValue
                 Case "isGestionnaire".Trim().ToUpper()
                     Me.isGestionnaire = pValue
+                Case "SignatureElect".Trim().ToUpper()
+                    Me.isSignElecActive = pValue
             End Select
 
             bReturn = True
@@ -758,5 +770,18 @@ Public Class Agent
         End Try
         Return bReturn
 
+    End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean
+        Dim bReturn As Boolean = False
+        If (obj IsNot Nothing) Then
+            If obj.GetType().Equals(Me.GetType()) Then
+                Dim oagent As Agent
+                oagent = CType(obj, Agent)
+                bReturn = (Me.id = oagent.id)
+
+            End If
+        End If
+        Return bReturn
     End Function
 End Class

@@ -41,6 +41,33 @@ Public Class AgentManagerTest
     '
 #End Region
 
+    <TestMethod()>
+    Public Sub CRUDTest()
+        Dim oAgent1 As Agent
+        Dim oAgent2 As Agent
+        oAgent1 = AgentManager.createAgent(99, "CRUDTest01", "CRUDTEST", m_oStructure.id)
+        oAgent1.prenom = "test"
+        oAgent1.idStructure = m_oStructure.id
+        Assert.IsFalse(oAgent1.isSignElecActive)
+        oAgent1.isSignElecActive = True
+        Assert.IsTrue(oAgent1.isSignElecActive)
+        AgentManager.save(oAgent1)
+
+        oAgent2 = AgentManager.getAgentById(oAgent1.id)
+
+        Assert.AreEqual(oAgent1, oAgent2)
+
+        Assert.IsTrue(oAgent2.isSignElecActive)
+        oAgent2.isSignElecActive = False
+
+        AgentManager.save(oAgent2)
+
+        oAgent1 = AgentManager.getAgentById(oAgent2.id)
+        Assert.IsFalse(oAgent2.isSignElecActive)
+
+        AgentManager.delete(oAgent1.id)
+
+    End Sub
 
     '''<summary>
     '''Test pour sendWSAgent
@@ -76,6 +103,7 @@ Public Class AgentManagerTest
         agent.versionLogiciel = "VERSION"
         agent.DroitsPulves = "Rampes|Voute"
         agent.isGestionnaire = True
+        agent.isSignElecActive = True
 
         actual = AgentManager.sendWSAgent(agent, updatedObject)
 
@@ -100,6 +128,8 @@ Public Class AgentManagerTest
         'Assert.AreEqual(agentLu.telephonePortable, "0680667189")
         'Assert.AreEqual(agentLu.versionLogiciel, "VERSION")
         'Assert.AreEqual(agentLu.DroitsPulves, "Rampes|Voute")
+        Assert.AreEqual(agentLu.isSignElecActive, True)
+
     End Sub
 
 
@@ -118,7 +148,7 @@ Public Class AgentManagerTest
         oCommand.ExecuteNonQuery()
 
         Dim oAgent As Agent
-        AgentManager.createAgent(1, "123456", "AgentTest")
+        AgentManager.createAgent(1, "123456", "AgentTest", m_oStructure.id)
         oAgent = AgentManager.getAgentByNumeroNational("123456")
 
         Assert.IsNotNull(oAgent)
@@ -142,7 +172,7 @@ Public Class AgentManagerTest
         If oAgent.numeroNational = "9999" Then
             AgentManager.delete(oAgent.id)
         End If
-        oAgent = AgentManager.createAgent(9999, "9999", "AgentTest")
+        oAgent = AgentManager.createAgent(9999, "9999", "AgentTest", m_oStructure.id)
         oAgent.prenom = "Moi"
         oAgent.idStructure = oStructure.id
         AgentManager.save(oAgent)
@@ -173,7 +203,7 @@ Public Class AgentManagerTest
         Dim oCSDB As CSDb = New CSDb(True)
         oCSDB.Execute("DELETE FROM AGENT")
 
-        oAgent = AgentManager.createAgent(999, "9999", "AgentTest")
+        oAgent = AgentManager.createAgent(999, "9999", "AgentTest", oStructure.id)
         oAgent.prenom = "Moi"
         oAgent.idStructure = oStructure.id
         AgentManager.save(oAgent)
@@ -229,7 +259,7 @@ Public Class AgentManagerTest
         'Création d'un second Agent
         Dim oAgent As Agent
         Dim idAgent As Integer = 777
-        oAgent = AgentManager.createAgent(idAgent, "TST1", "Agent de test")
+        oAgent = AgentManager.createAgent(idAgent, "TST1", "Agent de test", m_oStructure.id)
         oAgent.prenom = "Pr"
         oAgent.idStructure = m_oAgent.idStructure
         AgentManager.save(oAgent)

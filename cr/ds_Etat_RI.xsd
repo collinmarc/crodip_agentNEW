@@ -135,6 +135,15 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="signatureDiag" msprop:Generator_TableClassName="signatureDiagDataTable" msprop:Generator_TableVarName="tablesignatureDiag" msprop:Generator_RowChangedName="signatureDiagRowChanged" msprop:Generator_TablePropName="signatureDiag" msprop:Generator_RowDeletingName="signatureDiagRowDeleting" msprop:Generator_RowChangingName="signatureDiagRowChanging" msprop:Generator_RowEvHandlerName="signatureDiagRowChangeEventHandler" msprop:Generator_RowDeletedName="signatureDiagRowDeleted" msprop:Generator_RowClassName="signatureDiagRow" msprop:Generator_UserTableName="signatureDiag" msprop:Generator_RowEvArgName="signatureDiagRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NumeroControle" msprop:Generator_ColumnVarNameInTable="columnNumeroControle" msprop:Generator_ColumnPropNameInRow="NumeroControle" msprop:Generator_ColumnPropNameInTable="NumeroControleColumn" msprop:Generator_UserColumnName="NumeroControle" type="xs:string" minOccurs="0" />
+              <xs:element name="SignatureClient" msprop:Generator_ColumnVarNameInTable="columnSignatureClient" msprop:Generator_ColumnPropNameInRow="SignatureClient" msprop:Generator_ColumnPropNameInTable="SignatureClientColumn" msprop:Generator_UserColumnName="SignatureClient" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="SignatureAgent" msprop:Generator_ColumnVarNameInTable="columnSignatureAgent" msprop:Generator_ColumnPropNameInRow="SignatureAgent" msprop:Generator_ColumnPropNameInTable="SignatureAgentColumn" msprop:Generator_UserColumnName="SignatureAgent" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="CONSTraint1" msdata:PrimaryKey="true">
@@ -157,6 +166,7 @@
       <msdata:Relationship name="Diagnostic_Synthese" msdata:parent="Diagnostic" msdata:child="Synthese" msdata:parentkey="NumeroControle" msdata:childkey="NumeroControle" msprop:Generator_UserChildTable="Synthese" msprop:Generator_ChildPropName="GetSyntheseRows" msprop:Generator_UserRelationName="Diagnostic_Synthese" msprop:Generator_ParentPropName="DiagnosticRow" msprop:Generator_RelationVarName="relationDiagnostic_Synthese" msprop:Generator_UserParentTable="Diagnostic" />
       <msdata:Relationship name="Materiel_Proprietaire" msdata:parent="Materiel" msdata:child="Proprietaire" msdata:parentkey="SIRENProprietaire" msdata:childkey="SIREN" msprop:Generator_UserChildTable="Proprietaire" msprop:Generator_ChildPropName="GetProprietaireRows" msprop:Generator_UserRelationName="Materiel_Proprietaire" msprop:Generator_ParentPropName="MaterielRow" msprop:Generator_RelationVarName="relationMateriel_Proprietaire" msprop:Generator_UserParentTable="Materiel" />
       <msdata:Relationship name="Materiel_Diagnostic" msdata:parent="Materiel" msdata:child="Diagnostic" msdata:parentkey="Identifiant" msdata:childkey="IdentifiantMateriel" msprop:Generator_UserChildTable="Diagnostic" msprop:Generator_ChildPropName="GetDiagnosticRows" msprop:Generator_UserRelationName="Materiel_Diagnostic" msprop:Generator_ParentPropName="MaterielRow" msprop:Generator_RelationVarName="relationMateriel_Diagnostic" msprop:Generator_UserParentTable="Materiel" />
+      <msdata:Relationship name="Diagnostic_signatureDiag" msdata:parent="Diagnostic" msdata:child="signatureDiag" msdata:parentkey="NumeroControle" msdata:childkey="NumeroControle" msprop:Generator_UserChildTable="signatureDiag" msprop:Generator_ChildPropName="GetsignatureDiagRows" msprop:Generator_UserRelationName="Diagnostic_signatureDiag" msprop:Generator_ParentPropName="DiagnosticRow" msprop:Generator_RelationVarName="relationDiagnostic_signatureDiag" msprop:Generator_UserParentTable="Diagnostic" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
