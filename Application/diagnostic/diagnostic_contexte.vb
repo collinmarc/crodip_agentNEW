@@ -92,7 +92,6 @@ Public Class diagnostic_contexte
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents btn_retour As System.Windows.Forms.Label
     Friend WithEvents btn_poursuivre As System.Windows.Forms.Label
@@ -105,7 +104,6 @@ Public Class diagnostic_contexte
     Friend WithEvents labelDateDernierControlePartiel As System.Windows.Forms.Label
     Friend WithEvents tbcodePostal As System.Windows.Forms.TextBox
     Friend WithEvents tbnomSite As System.Windows.Forms.TextBox
-    Friend WithEvents cbxterritoire As System.Windows.Forms.ComboBox
     Friend WithEvents ckisRecuperationResidus As System.Windows.Forms.CheckBox
     Friend WithEvents ckisSiteSecurise As System.Windows.Forms.CheckBox
     Friend WithEvents cbxSite As System.Windows.Forms.ComboBox
@@ -122,10 +120,8 @@ Public Class diagnostic_contexte
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.tbcodePostal = New System.Windows.Forms.TextBox()
         Me.tbnomSite = New System.Windows.Forms.TextBox()
-        Me.cbxterritoire = New System.Windows.Forms.ComboBox()
         Me.ckisRecuperationResidus = New System.Windows.Forms.CheckBox()
         Me.ckisSiteSecurise = New System.Windows.Forms.CheckBox()
         Me.cbxSite = New System.Windows.Forms.ComboBox()
@@ -144,8 +140,10 @@ Public Class diagnostic_contexte
         Me.btn_poursuivre = New System.Windows.Forms.Label()
         Me.btn_retour = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.Label14 = New System.Windows.Forms.Label()
+        Me.cbxNbreExploitants = New System.Windows.Forms.ComboBox()
+        Me.lblNbreExploitants = New System.Windows.Forms.Label()
         Me.cbxModeUtilisation = New System.Windows.Forms.ComboBox()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.pnlreparOuiNon = New System.Windows.Forms.Panel()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -172,8 +170,6 @@ Public Class diagnostic_contexte
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.rbPrecontroleOui = New System.Windows.Forms.RadioButton()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.lblNbreExploitants = New System.Windows.Forms.Label()
-        Me.cbxNbreExploitants = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -197,10 +193,8 @@ Public Class diagnostic_contexte
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.tbcodePostal)
         Me.GroupBox1.Controls.Add(Me.tbnomSite)
-        Me.GroupBox1.Controls.Add(Me.cbxterritoire)
         Me.GroupBox1.Controls.Add(Me.ckisRecuperationResidus)
         Me.GroupBox1.Controls.Add(Me.ckisSiteSecurise)
         Me.GroupBox1.Controls.Add(Me.cbxSite)
@@ -294,16 +288,6 @@ Public Class diagnostic_contexte
         Me.Label3.Text = "Nom du site : "
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
-        'Label5
-        '
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(80, 123)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(104, 16)
-        Me.Label5.TabIndex = 1
-        Me.Label5.Text = "Territoire : "
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
         'tbcodePostal
         '
         Me.tbcodePostal.Location = New System.Drawing.Point(193, 16)
@@ -317,14 +301,6 @@ Public Class diagnostic_contexte
         Me.tbnomSite.Name = "tbnomSite"
         Me.tbnomSite.Size = New System.Drawing.Size(160, 20)
         Me.tbnomSite.TabIndex = 3
-        '
-        'cbxterritoire
-        '
-        Me.cbxterritoire.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxterritoire.Location = New System.Drawing.Point(193, 122)
-        Me.cbxterritoire.Name = "cbxterritoire"
-        Me.cbxterritoire.Size = New System.Drawing.Size(160, 21)
-        Me.cbxterritoire.TabIndex = 4
         '
         'ckisRecuperationResidus
         '
@@ -523,6 +499,32 @@ Public Class diagnostic_contexte
         Me.GroupBox3.TabIndex = 15
         Me.GroupBox3.TabStop = False
         '
+        'cbxNbreExploitants
+        '
+        Me.cbxNbreExploitants.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxNbreExploitants.Location = New System.Drawing.Point(315, 42)
+        Me.cbxNbreExploitants.Name = "cbxNbreExploitants"
+        Me.cbxNbreExploitants.Size = New System.Drawing.Size(84, 21)
+        Me.cbxNbreExploitants.TabIndex = 7
+        '
+        'lblNbreExploitants
+        '
+        Me.lblNbreExploitants.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNbreExploitants.Location = New System.Drawing.Point(8, 39)
+        Me.lblNbreExploitants.Name = "lblNbreExploitants"
+        Me.lblNbreExploitants.Size = New System.Drawing.Size(211, 16)
+        Me.lblNbreExploitants.TabIndex = 6
+        Me.lblNbreExploitants.Text = "Nombre d'exploitants :"
+        Me.lblNbreExploitants.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'cbxModeUtilisation
+        '
+        Me.cbxModeUtilisation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxModeUtilisation.Location = New System.Drawing.Point(219, 15)
+        Me.cbxModeUtilisation.Name = "cbxModeUtilisation"
+        Me.cbxModeUtilisation.Size = New System.Drawing.Size(180, 21)
+        Me.cbxModeUtilisation.TabIndex = 5
+        '
         'Label14
         '
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -532,14 +534,6 @@ Public Class diagnostic_contexte
         Me.Label14.TabIndex = 2
         Me.Label14.Text = "Mode d'utilisation du pulvérisateur : "
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'cbxModeUtilisation
-        '
-        Me.cbxModeUtilisation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxModeUtilisation.Location = New System.Drawing.Point(219, 15)
-        Me.cbxModeUtilisation.Name = "cbxModeUtilisation"
-        Me.cbxModeUtilisation.Size = New System.Drawing.Size(180, 21)
-        Me.cbxModeUtilisation.TabIndex = 5
         '
         'GroupBox4
         '
@@ -851,24 +845,6 @@ Public Class diagnostic_contexte
         Me.Label6.TabIndex = 15
         Me.Label6.Text = "Dans l’optique du contrôle,"
         '
-        'lblNbreExploitants
-        '
-        Me.lblNbreExploitants.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNbreExploitants.Location = New System.Drawing.Point(8, 39)
-        Me.lblNbreExploitants.Name = "lblNbreExploitants"
-        Me.lblNbreExploitants.Size = New System.Drawing.Size(211, 16)
-        Me.lblNbreExploitants.TabIndex = 6
-        Me.lblNbreExploitants.Text = "Nombre d'exploitants :"
-        Me.lblNbreExploitants.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'cbxNbreExploitants
-        '
-        Me.cbxNbreExploitants.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxNbreExploitants.Location = New System.Drawing.Point(315, 42)
-        Me.cbxNbreExploitants.Name = "cbxNbreExploitants"
-        Me.cbxNbreExploitants.Size = New System.Drawing.Size(84, 21)
-        Me.cbxNbreExploitants.TabIndex = 7
-        '
         'diagnostic_contexte
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -926,7 +902,7 @@ Public Class diagnostic_contexte
             Globals.GLOB_XML_CONFIG = New CSXml("config\config.xml")
 
             MarquesManager.populateCombobox(Globals.GLOB_XML_CONFIG, cbxSite, "/root/sites_proprietaire")
-            MarquesManager.populateCombobox(Globals.GLOB_XML_CONFIG, cbxterritoire, "/root/territoires_proprietaire")
+            '            MarquesManager.populateCombobox(Globals.GLOB_XML_CONFIG, cbxterritoire, "/root/territoires_proprietaire")
             'ModeUtilisation
             MarquesManager.populateCombobox(Globals.GLOB_XML_MODEUTILISATION, cbxModeUtilisation, "/root", True)
         Catch ex As Exception
@@ -974,7 +950,7 @@ Public Class diagnostic_contexte
             cbxcommune.Text = m_diagnostic.controleCommune
             cbxSite.Text = m_diagnostic.controleSite
             tbnomSite.Text = m_diagnostic.controleNomSite
-            cbxterritoire.Text = m_diagnostic.controleTerritoire
+            '            cbxterritoire.Text = m_diagnostic.controleTerritoire
             ckisSiteSecurise.Checked = m_diagnostic.controleIsSiteSecurise
             ckisRecuperationResidus.Checked = m_diagnostic.controleIsRecupResidus
             isPremierControle.Checked = m_diagnostic.controleIsPremierControle
@@ -1017,8 +993,8 @@ Public Class diagnostic_contexte
                 MsgBox("Vous devez renseigner Le code postal et la commune du lieu du controle")
                 bReturn = False
             End If
-            If (rbAutoControleNon.Checked = CheckState.Unchecked And rbAutoControleOui.Checked = CheckState.Unchecked) Or _
-                (rbPrecontroleOui.Checked = CheckState.Unchecked And rbPrecontroleNon.Checked = CheckState.Unchecked) Or _
+            If (rbAutoControleNon.Checked = CheckState.Unchecked And rbAutoControleOui.Checked = CheckState.Unchecked) Or
+                (rbPrecontroleOui.Checked = CheckState.Unchecked And rbPrecontroleNon.Checked = CheckState.Unchecked) Or
                 (rbReparNon.Checked = CheckState.Unchecked And rbReparOui.Checked = CheckState.Unchecked) Then
 
                 MsgBox("Vous devez renseigner les actions préalables au contrôle (Pre-controle,Auto-controle,Réparation)")
@@ -1034,7 +1010,7 @@ Public Class diagnostic_contexte
                 m_diagnostic.controleSite = cbxSite.Text
                 m_diagnostic.controleNomSite = tbnomSite.Text
                 m_diagnostic.controleLieu = tbcodePostal.Text & ", " & cbxcommune.Text
-                m_diagnostic.controleTerritoire = cbxterritoire.Text
+                'm_diagnostic.controleTerritoire = cbxterritoire.Text
                 m_diagnostic.controleIsSiteSecurise = ckisSiteSecurise.Checked
                 m_diagnostic.controleIsRecupResidus = ckisRecuperationResidus.Checked
                 m_diagnostic.controleIsPremierControle = isPremierControle.Checked
@@ -1074,7 +1050,7 @@ Public Class diagnostic_contexte
             My.Settings.DernierControleSite = cbxSite.Text
             My.Settings.DernierControleNomDuSite = tbnomSite.Text
             My.Settings.DernierControleNomRepresentant = tbNomPrenomRepresentant.Text
-            My.Settings.DernierControleTerritoire = cbxterritoire.Text
+            'My.Settings.DernierControleTerritoire = cbxterritoire.Text
             My.Settings.DernierControleSiteSecurise = ckisSiteSecurise.Checked
             My.Settings.DernierControleRecupResidus = ckisRecuperationResidus.Checked
             My.Settings.Save()
@@ -1180,18 +1156,18 @@ Public Class diagnostic_contexte
         cbxSite.Text = My.Settings.DernierControleSite
         tbnomSite.Text = My.Settings.DernierControleNomDuSite
         tbNomPrenomRepresentant.Text = My.Settings.DernierControleNomRepresentant
-        cbxterritoire.Text = My.Settings.DernierControleTerritoire
+        'cbxterritoire.Text = My.Settings.DernierControleTerritoire
         ckisSiteSecurise.Checked = My.Settings.DernierControleSiteSecurise
         ckisRecuperationResidus.Checked = My.Settings.DernierControleRecupResidus
         My.Settings.DernierControleInfosChezProp = False
     End Sub
     Private Sub RappelInfosChezProprietaire()
-        tbcodePostal.Text = clientCourant.codePostal
-        cbxcommune.Text = clientCourant.commune
+        tbcodePostal.Text = ClientCourant.codePostal
+        cbxcommune.Text = ClientCourant.commune
         cbxSite.Text = "Chez propriétaire"
         tbnomSite.Text = ""
         tbNomPrenomRepresentant.Text = ""
-        cbxterritoire.Text = ""
+        'cbxterritoire.Text = ""
         ckisSiteSecurise.Checked = False
         ckisRecuperationResidus.Checked = False
 
@@ -1242,11 +1218,11 @@ Public Class diagnostic_contexte
         Return bReturn
     End Function
 
-    Private Sub cbxterritoire_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxterritoire.SelectedIndexChanged
+    Private Sub cbxterritoire_SelectedIndexChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
+    Private Sub Label5_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class

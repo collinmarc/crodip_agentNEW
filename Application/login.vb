@@ -41,7 +41,7 @@ Public Class login
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée en utilisant le Concepteur Windows Form.  
     'Ne la modifiez pas en utilisant l'éditeur de code.
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents pnlPrincipal As System.Windows.Forms.Panel
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
@@ -79,7 +79,8 @@ Public Class login
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.pnlPrincipal = New System.Windows.Forms.Panel()
+        Me.lblMode = New System.Windows.Forms.Label()
         Me.pnlLoginControls = New System.Windows.Forms.Panel()
         Me.btn_login_seConnecter = New System.Windows.Forms.Label()
         Me.btn_login_ajouterProfil = New System.Windows.Forms.Label()
@@ -110,8 +111,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.lblMode = New System.Windows.Forms.Label()
-        Me.Panel1.SuspendLayout()
+        Me.pnlPrincipal.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
         Me.panel_splashSynchro.SuspendLayout()
@@ -128,29 +128,43 @@ Public Class login
         Me.Button3.Text = "Synth sans DM"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'Panel1
+        'pnlPrincipal
         '
-        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.pnlPrincipal.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.BackgroundImage = CType(resources.GetObject("Panel1.BackgroundImage"), System.Drawing.Image)
-        Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel1.Controls.Add(Me.lblMode)
-        Me.Panel1.Controls.Add(Me.pnlLoginControls)
-        Me.Panel1.Controls.Add(Me.Lbl_Version)
-        Me.Panel1.Controls.Add(Me.lbl_environnement_ws)
-        Me.Panel1.Controls.Add(Me.GroupBox_test)
-        Me.Panel1.Controls.Add(Me.panel_splashSynchro)
-        Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.picto_profil)
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.lbl_environnement_debugType)
-        Me.Panel1.Controls.Add(Me.lbl_environnement_debugLvl)
-        Me.Panel1.Controls.Add(Me.lbl_WS)
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1008, 680)
-        Me.Panel1.TabIndex = 0
+        Me.pnlPrincipal.BackgroundImage = Global.Crodip_agent.Resources.Login_bgcrodipIndigo
+        Me.pnlPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pnlPrincipal.Controls.Add(Me.lblMode)
+        Me.pnlPrincipal.Controls.Add(Me.pnlLoginControls)
+        Me.pnlPrincipal.Controls.Add(Me.Lbl_Version)
+        Me.pnlPrincipal.Controls.Add(Me.lbl_environnement_ws)
+        Me.pnlPrincipal.Controls.Add(Me.GroupBox_test)
+        Me.pnlPrincipal.Controls.Add(Me.panel_splashSynchro)
+        Me.pnlPrincipal.Controls.Add(Me.Label6)
+        Me.pnlPrincipal.Controls.Add(Me.picto_profil)
+        Me.pnlPrincipal.Controls.Add(Me.Label3)
+        Me.pnlPrincipal.Controls.Add(Me.lbl_environnement_debugType)
+        Me.pnlPrincipal.Controls.Add(Me.lbl_environnement_debugLvl)
+        Me.pnlPrincipal.Controls.Add(Me.lbl_WS)
+        Me.pnlPrincipal.Location = New System.Drawing.Point(0, 0)
+        Me.pnlPrincipal.Name = "pnlPrincipal"
+        Me.pnlPrincipal.Size = New System.Drawing.Size(1008, 680)
+        Me.pnlPrincipal.TabIndex = 0
+        '
+        'lblMode
+        '
+        Me.lblMode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblMode.AutoSize = True
+        Me.lblMode.BackColor = System.Drawing.Color.Transparent
+        Me.lblMode.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblMode.ForeColor = System.Drawing.Color.Silver
+        Me.lblMode.Location = New System.Drawing.Point(466, 656)
+        Me.lblMode.Name = "lblMode"
+        Me.lblMode.Size = New System.Drawing.Size(112, 15)
+        Me.lblMode.TabIndex = 33
+        Me.lblMode.Text = "Mode : Simplifié"
+        Me.lblMode.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'pnlLoginControls
         '
@@ -497,34 +511,20 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'lblMode
-        '
-        Me.lblMode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblMode.AutoSize = True
-        Me.lblMode.BackColor = System.Drawing.Color.Transparent
-        Me.lblMode.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.lblMode.ForeColor = System.Drawing.Color.Silver
-        Me.lblMode.Location = New System.Drawing.Point(466, 656)
-        Me.lblMode.Name = "lblMode"
-        Me.lblMode.Size = New System.Drawing.Size(112, 15)
-        Me.lblMode.TabIndex = 33
-        Me.lblMode.Text = "Mode : Simplifié"
-        Me.lblMode.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'login
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(1008, 680)
         Me.ControlBox = False
-        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.pnlPrincipal)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
+        Me.pnlPrincipal.ResumeLayout(False)
+        Me.pnlPrincipal.PerformLayout()
         Me.pnlLoginControls.ResumeLayout(False)
         Me.pnlLoginControls.PerformLayout()
         Me.GroupBox_test.ResumeLayout(False)
@@ -655,7 +655,15 @@ Public Class login
         lbl_environnement_debugType.Text = "Type de sortie debug..................: " & Globals.GLOB_ENV_DEBUGTYPE
         lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & Globals.GLOB_ENV_DEBUGLVL
         lbl_WS.Text = WSCrodip.getWS().Url
-        lblMode.Visible = Globals.GLOB_ENV_MODESIMPLIFIE
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            lblMode.Visible = True
+            pnlPrincipal.BackgroundImage = Crodip_agent.Resources.login_bgcrodip
+        Else
+            lblMode.Visible = False
+            pnlPrincipal.BackgroundImage = Crodip_agent.Resources.Login_bgcrodipIndigo
+        End If
+
+
 
         CSDebug.dispInfo("Login.Load: CheckWS()")
         If Not CSEnvironnement.checkWebService() Then

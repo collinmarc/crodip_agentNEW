@@ -43,7 +43,7 @@ Partial Class FrmDiagnostique
         Me.btn_annuler = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btn_Poursuivre = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.pctLogo = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.diag_client_proprioSiren = New System.Windows.Forms.Label()
         Me.diag_client_raisonSociale = New System.Windows.Forms.Label()
@@ -837,7 +837,7 @@ Partial Class FrmDiagnostique
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pctb_calc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -1166,7 +1166,7 @@ Partial Class FrmDiagnostique
         Me.Panel2.Controls.Add(Me.btn_annuler)
         Me.Panel2.Controls.Add(Me.btn_Valider)
         Me.Panel2.Controls.Add(Me.btn_Poursuivre)
-        Me.Panel2.Controls.Add(Me.PictureBox1)
+        Me.Panel2.Controls.Add(Me.pctLogo)
         Me.Panel2.Controls.Add(Me.GroupBox1)
         Me.Panel2.Controls.Add(Me.GroupBox2)
         Me.Panel2.Location = New System.Drawing.Point(4, 23)
@@ -1188,16 +1188,18 @@ Partial Class FrmDiagnostique
         Me.btn_Poursuivre.Text = "Poursuivre"
         Me.btn_Poursuivre.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'pctLogo
         '
-        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(912, 16)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(76, 84)
-        Me.PictureBox1.TabIndex = 7
-        Me.PictureBox1.TabStop = False
+        Me.pctLogo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pctLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pctLogo.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.pctLogo.Image = Global.Crodip_agent.Resources.logo_crodipIndigo
+        Me.pctLogo.Location = New System.Drawing.Point(912, 16)
+        Me.pctLogo.Name = "pctLogo"
+        Me.pctLogo.Size = New System.Drawing.Size(76, 84)
+        Me.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pctLogo.TabIndex = 7
+        Me.pctLogo.TabStop = False
         '
         'GroupBox1
         '
@@ -14178,7 +14180,7 @@ Partial Class FrmDiagnostique
         CType(Me.PictureBox2,System.ComponentModel.ISupportInitialize).EndInit
         CType(Me.Pctb_calc,System.ComponentModel.ISupportInitialize).EndInit
         Me.Panel2.ResumeLayout(false)
-        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.pctLogo,System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox1.ResumeLayout(false)
         Me.GroupBox2.ResumeLayout(false)
         Me.Panel1.ResumeLayout(false)
@@ -14771,7 +14773,7 @@ End Sub
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents pctLogo As System.Windows.Forms.PictureBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label

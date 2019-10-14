@@ -241,4 +241,16 @@
   <data name="btn_suivantGrd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_suivantGrd.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logoCRODIPIMG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="login_bgcrodip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\login_bgReglagePulve.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Login_bgcrodipIndigo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\login_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo_crodipIndigo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\ico_crodipIndigo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

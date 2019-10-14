@@ -70,7 +70,7 @@ Public Class controle_preliminaire
     Friend WithEvents GroupBox_diagnostic_112 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox_diagnostic_113 As System.Windows.Forms.GroupBox
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents pctLogo As System.Windows.Forms.PictureBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -161,7 +161,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1131 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label_diagnostic_1 = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.pctLogo = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -208,7 +208,7 @@ Public Class controle_preliminaire
         Me.GroupBox_diagnostic_112.SuspendLayout()
         Me.GroupBox_diagnostic_113.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -390,7 +390,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1113.Location = New System.Drawing.Point(1, 56)
         Me.RadioButton_diagnostic_1113.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1113.Name = "RadioButton_diagnostic_1113"
-        Me.RadioButton_diagnostic_1113.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1113.NombreCauses = 0
         Me.RadioButton_diagnostic_1113.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1113.TabIndex = 7
         '
@@ -414,7 +414,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1110.Location = New System.Drawing.Point(1, 72)
         Me.RadioButton_diagnostic_1110.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1110.Name = "RadioButton_diagnostic_1110"
-        Me.RadioButton_diagnostic_1110.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1110.NombreCauses = 0
         Me.RadioButton_diagnostic_1110.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1110.TabIndex = 6
         '
@@ -438,7 +438,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1112.Location = New System.Drawing.Point(1, 40)
         Me.RadioButton_diagnostic_1112.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1112.Name = "RadioButton_diagnostic_1112"
-        Me.RadioButton_diagnostic_1112.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1112.NombreCauses = 0
         Me.RadioButton_diagnostic_1112.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1112.TabIndex = 5
         '
@@ -462,7 +462,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1111.Location = New System.Drawing.Point(1, 24)
         Me.RadioButton_diagnostic_1111.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1111.Name = "RadioButton_diagnostic_1111"
-        Me.RadioButton_diagnostic_1111.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1111.NombreCauses = 0
         Me.RadioButton_diagnostic_1111.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1111.TabIndex = 4
         '
@@ -513,7 +513,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1123.Location = New System.Drawing.Point(2, 56)
         Me.RadioButton_diagnostic_1123.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1123.Name = "RadioButton_diagnostic_1123"
-        Me.RadioButton_diagnostic_1123.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1123.NombreCauses = 0
         Me.RadioButton_diagnostic_1123.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1123.TabIndex = 7
         '
@@ -537,7 +537,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1120.Location = New System.Drawing.Point(2, 72)
         Me.RadioButton_diagnostic_1120.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1120.Name = "RadioButton_diagnostic_1120"
-        Me.RadioButton_diagnostic_1120.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1120.NombreCauses = 0
         Me.RadioButton_diagnostic_1120.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1120.TabIndex = 6
         '
@@ -561,7 +561,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1122.Location = New System.Drawing.Point(2, 40)
         Me.RadioButton_diagnostic_1122.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1122.Name = "RadioButton_diagnostic_1122"
-        Me.RadioButton_diagnostic_1122.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1122.NombreCauses = 0
         Me.RadioButton_diagnostic_1122.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1122.TabIndex = 5
         '
@@ -585,7 +585,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1121.Location = New System.Drawing.Point(2, 24)
         Me.RadioButton_diagnostic_1121.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1121.Name = "RadioButton_diagnostic_1121"
-        Me.RadioButton_diagnostic_1121.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1121.NombreCauses = 0
         Me.RadioButton_diagnostic_1121.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1121.TabIndex = 4
         '
@@ -624,7 +624,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1132.Location = New System.Drawing.Point(2, 40)
         Me.RadioButton_diagnostic_1132.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1132.Name = "RadioButton_diagnostic_1132"
-        Me.RadioButton_diagnostic_1132.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1132.NombreCauses = 0
         Me.RadioButton_diagnostic_1132.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1132.TabIndex = 7
         '
@@ -648,7 +648,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1130.Location = New System.Drawing.Point(2, 72)
         Me.RadioButton_diagnostic_1130.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1130.Name = "RadioButton_diagnostic_1130"
-        Me.RadioButton_diagnostic_1130.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1130.NombreCauses = 0
         Me.RadioButton_diagnostic_1130.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1130.TabIndex = 6
         '
@@ -672,7 +672,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1133.Location = New System.Drawing.Point(2, 56)
         Me.RadioButton_diagnostic_1133.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1133.Name = "RadioButton_diagnostic_1133"
-        Me.RadioButton_diagnostic_1133.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1133.NombreCauses = 0
         Me.RadioButton_diagnostic_1133.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1133.TabIndex = 5
         '
@@ -696,7 +696,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1131.Location = New System.Drawing.Point(2, 24)
         Me.RadioButton_diagnostic_1131.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1131.Name = "RadioButton_diagnostic_1131"
-        Me.RadioButton_diagnostic_1131.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1131.NombreCauses = 0
         Me.RadioButton_diagnostic_1131.Size = New System.Drawing.Size(217, 16)
         Me.RadioButton_diagnostic_1131.TabIndex = 4
         '
@@ -706,7 +706,7 @@ Public Class controle_preliminaire
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Panel2.Controls.Add(Me.Label_diagnostic_1)
-        Me.Panel2.Controls.Add(Me.PictureBox1)
+        Me.Panel2.Controls.Add(Me.pctLogo)
         Me.Panel2.Controls.Add(Me.GroupBox1)
         Me.Panel2.Controls.Add(Me.GroupBox2)
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
@@ -726,16 +726,17 @@ Public Class controle_preliminaire
         Me.Label_diagnostic_1.TabIndex = 2
         Me.Label_diagnostic_1.Text = "     Examens préliminaires"
         '
-        'PictureBox1
+        'pctLogo
         '
-        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(858, 16)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(76, 84)
-        Me.PictureBox1.TabIndex = 7
-        Me.PictureBox1.TabStop = False
+        Me.pctLogo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pctLogo.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.pctLogo.Image = CType(resources.GetObject("pctLogo.Image"), System.Drawing.Image)
+        Me.pctLogo.Location = New System.Drawing.Point(858, 16)
+        Me.pctLogo.Name = "pctLogo"
+        Me.pctLogo.Size = New System.Drawing.Size(76, 84)
+        Me.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pctLogo.TabIndex = 7
+        Me.pctLogo.TabStop = False
         '
         'ContextMenuStrip1
         '
@@ -878,7 +879,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1230.Location = New System.Drawing.Point(3, 56)
         Me.RadioButton_diagnostic_1230.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1230.Name = "RadioButton_diagnostic_1230"
-        Me.RadioButton_diagnostic_1230.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1230.NombreCauses = 0
         Me.RadioButton_diagnostic_1230.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1230.TabIndex = 6
         '
@@ -902,7 +903,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1232.Location = New System.Drawing.Point(3, 40)
         Me.RadioButton_diagnostic_1232.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1232.Name = "RadioButton_diagnostic_1232"
-        Me.RadioButton_diagnostic_1232.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1232.NombreCauses = 0
         Me.RadioButton_diagnostic_1232.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1232.TabIndex = 5
         '
@@ -926,7 +927,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1231.Location = New System.Drawing.Point(3, 24)
         Me.RadioButton_diagnostic_1231.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1231.Name = "RadioButton_diagnostic_1231"
-        Me.RadioButton_diagnostic_1231.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1231.NombreCauses = 0
         Me.RadioButton_diagnostic_1231.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1231.TabIndex = 4
         '
@@ -965,7 +966,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1250.Location = New System.Drawing.Point(3, 40)
         Me.RadioButton_diagnostic_1250.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1250.Name = "RadioButton_diagnostic_1250"
-        Me.RadioButton_diagnostic_1250.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1250.NombreCauses = 0
         Me.RadioButton_diagnostic_1250.Size = New System.Drawing.Size(321, 16)
         Me.RadioButton_diagnostic_1250.TabIndex = 6
         '
@@ -989,7 +990,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1251.Location = New System.Drawing.Point(3, 24)
         Me.RadioButton_diagnostic_1251.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1251.Name = "RadioButton_diagnostic_1251"
-        Me.RadioButton_diagnostic_1251.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1251.NombreCauses = 0
         Me.RadioButton_diagnostic_1251.Size = New System.Drawing.Size(321, 16)
         Me.RadioButton_diagnostic_1251.TabIndex = 5
         '
@@ -1029,7 +1030,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1224.Location = New System.Drawing.Point(3, 72)
         Me.RadioButton_diagnostic_1224.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1224.Name = "RadioButton_diagnostic_1224"
-        Me.RadioButton_diagnostic_1224.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1224.NombreCauses = 0
         Me.RadioButton_diagnostic_1224.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1224.TabIndex = 8
         '
@@ -1053,7 +1054,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1223.Location = New System.Drawing.Point(3, 56)
         Me.RadioButton_diagnostic_1223.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1223.Name = "RadioButton_diagnostic_1223"
-        Me.RadioButton_diagnostic_1223.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1223.NombreCauses = 0
         Me.RadioButton_diagnostic_1223.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1223.TabIndex = 7
         '
@@ -1077,7 +1078,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1220.Location = New System.Drawing.Point(3, 88)
         Me.RadioButton_diagnostic_1220.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1220.Name = "RadioButton_diagnostic_1220"
-        Me.RadioButton_diagnostic_1220.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1220.NombreCauses = 0
         Me.RadioButton_diagnostic_1220.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1220.TabIndex = 6
         '
@@ -1101,7 +1102,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1222.Location = New System.Drawing.Point(3, 40)
         Me.RadioButton_diagnostic_1222.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1222.Name = "RadioButton_diagnostic_1222"
-        Me.RadioButton_diagnostic_1222.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1222.NombreCauses = 0
         Me.RadioButton_diagnostic_1222.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1222.TabIndex = 5
         '
@@ -1125,7 +1126,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1221.Location = New System.Drawing.Point(3, 24)
         Me.RadioButton_diagnostic_1221.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1221.Name = "RadioButton_diagnostic_1221"
-        Me.RadioButton_diagnostic_1221.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1221.NombreCauses = 0
         Me.RadioButton_diagnostic_1221.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1221.TabIndex = 4
         '
@@ -1170,7 +1171,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1247.Location = New System.Drawing.Point(3, 120)
         Me.RadioButton_diagnostic_1247.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1247.Name = "RadioButton_diagnostic_1247"
-        Me.RadioButton_diagnostic_1247.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1247.NombreCauses = 0
         Me.RadioButton_diagnostic_1247.Size = New System.Drawing.Size(321, 16)
         Me.RadioButton_diagnostic_1247.TabIndex = 11
         '
@@ -1194,7 +1195,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1246.Location = New System.Drawing.Point(3, 104)
         Me.RadioButton_diagnostic_1246.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1246.Name = "RadioButton_diagnostic_1246"
-        Me.RadioButton_diagnostic_1246.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1246.NombreCauses = 0
         Me.RadioButton_diagnostic_1246.Size = New System.Drawing.Size(321, 16)
         Me.RadioButton_diagnostic_1246.TabIndex = 10
         '
@@ -1218,7 +1219,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1245.Location = New System.Drawing.Point(3, 88)
         Me.RadioButton_diagnostic_1245.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1245.Name = "RadioButton_diagnostic_1245"
-        Me.RadioButton_diagnostic_1245.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1245.NombreCauses = 0
         Me.RadioButton_diagnostic_1245.Size = New System.Drawing.Size(321, 16)
         Me.RadioButton_diagnostic_1245.TabIndex = 9
         '
@@ -1242,7 +1243,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1244.Location = New System.Drawing.Point(3, 72)
         Me.RadioButton_diagnostic_1244.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1244.Name = "RadioButton_diagnostic_1244"
-        Me.RadioButton_diagnostic_1244.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1244.NombreCauses = 0
         Me.RadioButton_diagnostic_1244.Size = New System.Drawing.Size(321, 16)
         Me.RadioButton_diagnostic_1244.TabIndex = 8
         '
@@ -1266,7 +1267,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1243.Location = New System.Drawing.Point(3, 56)
         Me.RadioButton_diagnostic_1243.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1243.Name = "RadioButton_diagnostic_1243"
-        Me.RadioButton_diagnostic_1243.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1243.NombreCauses = 0
         Me.RadioButton_diagnostic_1243.Size = New System.Drawing.Size(321, 16)
         Me.RadioButton_diagnostic_1243.TabIndex = 7
         '
@@ -1290,7 +1291,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1240.Location = New System.Drawing.Point(3, 136)
         Me.RadioButton_diagnostic_1240.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1240.Name = "RadioButton_diagnostic_1240"
-        Me.RadioButton_diagnostic_1240.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1240.NombreCauses = 0
         Me.RadioButton_diagnostic_1240.Size = New System.Drawing.Size(321, 16)
         Me.RadioButton_diagnostic_1240.TabIndex = 6
         '
@@ -1314,7 +1315,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1242.Location = New System.Drawing.Point(3, 40)
         Me.RadioButton_diagnostic_1242.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1242.Name = "RadioButton_diagnostic_1242"
-        Me.RadioButton_diagnostic_1242.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1242.NombreCauses = 0
         Me.RadioButton_diagnostic_1242.Size = New System.Drawing.Size(321, 16)
         Me.RadioButton_diagnostic_1242.TabIndex = 5
         '
@@ -1338,7 +1339,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1241.Location = New System.Drawing.Point(3, 24)
         Me.RadioButton_diagnostic_1241.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1241.Name = "RadioButton_diagnostic_1241"
-        Me.RadioButton_diagnostic_1241.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1241.NombreCauses = 0
         Me.RadioButton_diagnostic_1241.Size = New System.Drawing.Size(321, 16)
         Me.RadioButton_diagnostic_1241.TabIndex = 4
         '
@@ -1377,7 +1378,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1213.Location = New System.Drawing.Point(3, 56)
         Me.RadioButton_diagnostic_1213.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1213.Name = "RadioButton_diagnostic_1213"
-        Me.RadioButton_diagnostic_1213.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1213.NombreCauses = 0
         Me.RadioButton_diagnostic_1213.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1213.TabIndex = 6
         '
@@ -1401,7 +1402,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1210.Location = New System.Drawing.Point(3, 72)
         Me.RadioButton_diagnostic_1210.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1210.Name = "RadioButton_diagnostic_1210"
-        Me.RadioButton_diagnostic_1210.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1210.NombreCauses = 0
         Me.RadioButton_diagnostic_1210.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1210.TabIndex = 7
         '
@@ -1425,7 +1426,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1212.Location = New System.Drawing.Point(3, 40)
         Me.RadioButton_diagnostic_1212.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1212.Name = "RadioButton_diagnostic_1212"
-        Me.RadioButton_diagnostic_1212.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1212.NombreCauses = 0
         Me.RadioButton_diagnostic_1212.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1212.TabIndex = 5
         '
@@ -1449,7 +1450,7 @@ Public Class controle_preliminaire
         Me.RadioButton_diagnostic_1211.Location = New System.Drawing.Point(3, 24)
         Me.RadioButton_diagnostic_1211.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_1211.Name = "RadioButton_diagnostic_1211"
-        Me.RadioButton_diagnostic_1211.NombreCauses = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.ZERO
+        Me.RadioButton_diagnostic_1211.NombreCauses = 0
         Me.RadioButton_diagnostic_1211.Size = New System.Drawing.Size(348, 16)
         Me.RadioButton_diagnostic_1211.TabIndex = 4
         '
@@ -1485,7 +1486,7 @@ Public Class controle_preliminaire
         Me.GroupBox_diagnostic_112.ResumeLayout(False)
         Me.GroupBox_diagnostic_113.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
@@ -1574,6 +1575,10 @@ Public Class controle_preliminaire
 
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
             Me.Text = Me.Text & " - Mode Simplifié - "
+            pctLogo.Image = Crodip_agent.Resources.logoCRODIPIMG
+        Else
+            pctLogo.Image = Crodip_agent.Resources.logo_crodipIndigo
+
         End If
 
         Me.Cursor = Cursors.Default

@@ -246,7 +246,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="Application\accueil.vb">
+    <Compile Include="Application\tools\accueil.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\agent\ajouter_profil.vb">
@@ -1351,6 +1351,7 @@
     <Content Include="img\btn\btn_suivantGrd.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="img\login_bgReglagePulve.jpg" />
     <Content Include="moduleDocumentaire\_parametres\Alertes.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1360,6 +1361,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="public\exports\exports.txt" />
+    <None Include="Resources\LogoCRODIPIMG.bmp" />
     <Content Include="toleranceBuses.xml" />
     <None Include="readme.md" />
     <None Include="Resources\PuceVerteT.png" />
@@ -1993,7 +1995,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Service References\WSCrodip2\crodip.wsdl" />
-    <EmbeddedResource Include="Application\accueil.resx">
+    <EmbeddedResource Include="Application\tools\accueil.resx">
       <DependentUpon>accueil.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\agent\ajouter_profil.resx">

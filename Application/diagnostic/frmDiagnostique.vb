@@ -10320,6 +10320,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End If
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
             Me.Text = Me.Text & " - Mode Simplifié - "
+            pctLogo.Image = Crodip_agent.Resources.logoCRODIPIMG
+        Else
+            pctLogo.Image = Crodip_agent.Resources.logo_crodipIndigo
         End If
 
     End Sub

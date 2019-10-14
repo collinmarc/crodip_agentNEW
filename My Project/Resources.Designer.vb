@@ -296,9 +296,39 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property login_bgcrodip() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("login_bgcrodip", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property Login_bgcrodipIndigo() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("Login_bgcrodipIndigo", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property logo() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("logo", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property logo_crodipIndigo() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("logo_crodipIndigo", resourceCulture)
             Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property
@@ -310,6 +340,16 @@ Friend Class Resources
         Get
             Dim obj As Object = ResourceManager.GetObject("logoCRODIP", resourceCulture)
             Return CType(obj,System.Drawing.Icon)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property logoCRODIPIMG() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("logoCRODIPIMG", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property
     
