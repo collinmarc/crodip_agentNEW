@@ -153,6 +153,8 @@ Public Class AgentManager
             strSQL = strSQL & "Agent.cleActivation as cleActivation, "
             strSQL = strSQL & "Agent.isActif as isActif, "
             strSQL = strSQL & "Agent.DroitsPulves as DroitsPulves, "
+            strSQL = strSQL & "Agent.isGestionnaire as isGestionnaire, "
+            strSQL = strSQL & "Agent.SignatureElect as SignatureElect, "
             strSQL = strSQL & "Structure.nom as structureNom "
             strSQL = strSQL & "FROM Agent LEFT JOIN Structure ON ( Agent.idStructure = Structure.id )"
             bddCommande.CommandText = strSQL
