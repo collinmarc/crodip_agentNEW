@@ -4,7 +4,7 @@ Imports System.IO
 Imports System.IO.Compression
 
 Public Class ParamReglagePulve
-    Private Const XMLFileName As String = "aqwzsx.crodip"
+    Public Shared XMLFileName As String = "aqwzsx.crodip"
     Private _Coluser As New List(Of RPUser)
     Public Property coluser As List(Of RPUser)
         Get

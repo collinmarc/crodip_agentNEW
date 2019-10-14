@@ -658,6 +658,7 @@ Public Class login
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
             lblMode.Visible = True
             pnlPrincipal.BackgroundImage = Crodip_agent.Resources.login_bgcrodip
+
         Else
             lblMode.Visible = False
             pnlPrincipal.BackgroundImage = Crodip_agent.Resources.Login_bgcrodipIndigo

@@ -28,7 +28,6 @@ Public Class parentContener
     Protected Overridable Sub Load_CRODIPINDIGO()
         Me.Cursor = Cursors.WaitCursor
         loadSplash()
-        Globals.Init()
 
         Application.CurrentCulture = New System.Globalization.CultureInfo("fr-FR")
         CSEnvironnement.createFolders()

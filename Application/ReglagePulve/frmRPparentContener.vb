@@ -317,7 +317,7 @@ Public Class frmRPparentContener
         'tsbQuitter
         '
         Me.tsbQuitter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbQuitter.Image = Crodip_Agent.Resources.ClosePreviewHH
+        Me.tsbQuitter.Image = Global.Crodip_agent.Resources.ClosePreviewHH
         Me.tsbQuitter.ImageTransparentColor = System.Drawing.Color.Black
         Me.tsbQuitter.Name = "tsbQuitter"
         Me.tsbQuitter.Size = New System.Drawing.Size(36, 36)
@@ -326,7 +326,7 @@ Public Class frmRPparentContener
         'tsbDemarrer
         '
         Me.tsbDemarrer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbDemarrer.Image = Crodip_Agent.Resources.AddTableHH
+        Me.tsbDemarrer.Image = Global.Crodip_agent.Resources.AddTableHH
         Me.tsbDemarrer.ImageTransparentColor = System.Drawing.Color.Black
         Me.tsbDemarrer.Name = "tsbDemarrer"
         Me.tsbDemarrer.Size = New System.Drawing.Size(36, 36)
@@ -335,7 +335,7 @@ Public Class frmRPparentContener
         'tsbLoad
         '
         Me.tsbLoad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbLoad.Image = Crodip_Agent.Resources.Open36
+        Me.tsbLoad.Image = Global.Crodip_agent.Resources.Open36
         Me.tsbLoad.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbLoad.Name = "tsbLoad"
         Me.tsbLoad.Size = New System.Drawing.Size(36, 36)
@@ -344,7 +344,7 @@ Public Class frmRPparentContener
         'tsbSave
         '
         Me.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbSave.Image = Crodip_Agent.Resources.save36
+        Me.tsbSave.Image = Global.Crodip_agent.Resources.save36
         Me.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbSave.Name = "tsbSave"
         Me.tsbSave.Size = New System.Drawing.Size(36, 36)
@@ -362,7 +362,7 @@ Public Class frmRPparentContener
         'tsbSuivant
         '
         Me.tsbSuivant.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbSuivant.Image = Crodip_Agent.Resources.Next36
+        Me.tsbSuivant.Image = Global.Crodip_agent.Resources.Next36
         Me.tsbSuivant.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbSuivant.Name = "tsbSuivant"
         Me.tsbSuivant.Size = New System.Drawing.Size(36, 36)
@@ -371,7 +371,7 @@ Public Class frmRPparentContener
         'tsbLoadCrodip
         '
         Me.tsbLoadCrodip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbLoadCrodip.Image = Crodip_Agent.Resources.ico_crodipIndigo36
+        Me.tsbLoadCrodip.Image = Global.Crodip_agent.Resources.ico_crodipIndigo36
         Me.tsbLoadCrodip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbLoadCrodip.Name = "tsbLoadCrodip"
         Me.tsbLoadCrodip.Size = New System.Drawing.Size(36, 36)
@@ -389,7 +389,7 @@ Public Class frmRPparentContener
         Me.tsbExploitant.Image = CType(resources.GetObject("tsbExploitant.Image"), System.Drawing.Image)
         Me.tsbExploitant.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbExploitant.Name = "tsbExploitant"
-        Me.tsbExploitant.Size = New System.Drawing.Size(63, 36)
+        Me.tsbExploitant.Size = New System.Drawing.Size(64, 36)
         Me.tsbExploitant.Text = "Exploitant"
         '
         'tsbPulvérisateur

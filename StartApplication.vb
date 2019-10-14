@@ -23,9 +23,9 @@ Module StartApplication
     ' Form parent
     Public globFormParent As parentContener
     ' Form principal "Accueil"
-    Public globFormAccueil As accueil
     ' Diagnostic - Contrôle préliminaire
     Public globFormControlePreliminaire As controle_preliminaire
+    Public globFormAccueil As Accueil
     ' Diagnostic - Contrôle préliminaire
     Public globFormDiagnostic As frmDiagnostique
     Public globFormToolBuses As tool_diagBuses
@@ -44,6 +44,8 @@ Module StartApplication
 
         If TestCrystalReport() Then
             Dim ofrm As Form
+            Dim bLoginFailed As Boolean = True
+
 #If REGLAGEPULVE Then
             Dim args As String()
             args = Environment.GetCommandLineArgs()
@@ -58,14 +60,36 @@ Module StartApplication
                 ofrm = New frmRPparentContener()
 
             End If
+            bLoginFailed = false
 #Else
+            Globals.Init()
+            If Globals.GLOB_ENV_MODESIMPLIFIE Then
+
+                'Test de la validité 
+                ParamReglagePulve.XMLFileName = "zsxedc.crodip"
+                Dim objParamRP As ParamReglagePulve = ParamReglagePulve.ReadXML(".")
+                If objParamRP.coluser.Count = 1 Then
+                    Dim objRPUser As RPUser = objParamRP.coluser(0)
+                    If objRPUser.TestDateExp(Now) Then
+                        bLoginFailed = False
+                    End If
+                End If
+                If bLoginFailed Then
+                    MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre version simplifiée a expirée , contactez le CRODIP")
+                    Application.Exit()
+                End If
+            Else
+                bLoginFailed = False
+            End If
 
             ofrm = New parentContener()
 #End If
             CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
-            ofrm.ShowDialog()
+            If Not bLoginFailed Then
+                ofrm.ShowDialog()
+            End If
         Else
-            CSDebug.dispFatal("Erreur en Génération de PDF, Vérifier Crystal Report")
+                CSDebug.dispFatal("Erreur en Génération de PDF, Vérifier Crystal Report")
         End If
     End Sub
 

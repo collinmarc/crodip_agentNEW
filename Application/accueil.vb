@@ -64,6 +64,7 @@ Public Class accueil
     Friend WithEvents lbSynhcroCourante As System.Windows.Forms.ListBox
     Friend WithEvents pnl_ListSynhcros As System.Windows.Forms.Panel
     Friend WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
+    Friend WithEvents btnParamModeSimplifie As Button
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -439,6 +440,7 @@ Public Class accueil
         Me.Label14 = New System.Windows.Forms.Label()
         Me.tabControl_outilscomp = New System.Windows.Forms.TabPage()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.btnParamModeSimplifie = New System.Windows.Forms.Button()
         Me.btnMAJPulverisateurs = New System.Windows.Forms.Button()
         Me.pctbx_Docs_refresh = New System.Windows.Forms.PictureBox()
         Me.SplitContainer_ModuleDocumentaire = New System.Windows.Forms.SplitContainer()
@@ -2076,6 +2078,7 @@ Public Class accueil
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.btnParamModeSimplifie)
         Me.Panel2.Controls.Add(Me.btnMAJPulverisateurs)
         Me.Panel2.Controls.Add(Me.pctbx_Docs_refresh)
         Me.Panel2.Controls.Add(Me.SplitContainer_ModuleDocumentaire)
@@ -2091,6 +2094,18 @@ Public Class accueil
         Me.Panel2.Size = New System.Drawing.Size(1000, 656)
         Me.Panel2.TabIndex = 3
         '
+        'btnParamModeSimplifie
+        '
+        Me.btnParamModeSimplifie.BackgroundImage = CType(resources.GetObject("btnParamModeSimplifie.BackgroundImage"), System.Drawing.Image)
+        Me.btnParamModeSimplifie.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnParamModeSimplifie.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnParamModeSimplifie.Location = New System.Drawing.Point(686, 56)
+        Me.btnParamModeSimplifie.Name = "btnParamModeSimplifie"
+        Me.btnParamModeSimplifie.Size = New System.Drawing.Size(194, 24)
+        Me.btnParamModeSimplifie.TabIndex = 37
+        Me.btnParamModeSimplifie.Text = "Paramétrage Mode Simplifié"
+        Me.btnParamModeSimplifie.UseVisualStyleBackColor = True
+        '
         'btnMAJPulverisateurs
         '
         Me.btnMAJPulverisateurs.BackgroundImage = CType(resources.GetObject("btnMAJPulverisateurs.BackgroundImage"), System.Drawing.Image)
@@ -2098,7 +2113,7 @@ Public Class accueil
         Me.btnMAJPulverisateurs.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnMAJPulverisateurs.Location = New System.Drawing.Point(474, 56)
         Me.btnMAJPulverisateurs.Name = "btnMAJPulverisateurs"
-        Me.btnMAJPulverisateurs.Size = New System.Drawing.Size(237, 24)
+        Me.btnMAJPulverisateurs.Size = New System.Drawing.Size(175, 24)
         Me.btnMAJPulverisateurs.TabIndex = 36
         Me.btnMAJPulverisateurs.Text = "MAJ des pulvérisateurs"
         Me.btnMAJPulverisateurs.UseVisualStyleBackColor = True
@@ -3175,6 +3190,8 @@ Public Class accueil
             list_search_fieldSearch.Items.Add(objComboItem_Pulve)
 
 
+            btnParamModeSimplifie.Visible = False
+
         Else
             btn_controleQuotdien_Exporter.Enabled = False
             btn_controleQuotdien_Valider.Enabled = False
@@ -3224,6 +3241,8 @@ Public Class accueil
             accueil_panelAlertesContener.Visible = False
 
             list_search_fieldSearch.Items.Add(objComboItem_ID)
+
+            btnParamModeSimplifie.Visible = True
 
         End If
         list_search_fieldSearch.SelectedIndex = 0
@@ -3281,10 +3300,11 @@ Public Class accueil
     Private Sub tabControl_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tabControl.SelectedIndexChanged
 
         If agentCourant.isGestionnaire Then
-            If tabControl.SelectedIndex > 1 Then
+            If tabControl.SelectedIndex > 1 And tabControl.SelectedIndex <> 4 Then
                 'Le gestionaire ne peut pas accéder aux onglets autres que controle
                 tabControl.SelectedIndex = prevSelectedOnglet
             End If
+            Exit Sub
         End If
         ' Placer la puce sur onglet courant
         If prevSelectedOnglet = -1 Then
@@ -3296,19 +3316,6 @@ Public Class accueil
             prevSelectedOnglet = tabControl.SelectedTab.TabIndex
         End If
 
-        '**************************
-        '**************************
-        ' Onglet "Clientèle"
-        '**************************
-        '**************************
-        If tabControl.SelectedTab.Name = "tabControl_clientele" Then
-            'loadClientsListe(False)
-        End If
-        '**************************
-        '**************************
-        ' FIN --- Onglet "Clientèle"
-        '**************************
-        '**************************
 
     End Sub
 
@@ -3579,16 +3586,16 @@ Public Class accueil
                         newFicheVieManoEtalon.type = "DESACTIVATION"
                         newFicheVieManoEtalon.auteur = "AGENT"
                         newFicheVieManoEtalon.idAgentControleur = agentCourant.id
-                        newFicheVieManoEtalon.caracteristiques = _
-                        tmpManoEtalon.idCrodip & "|" & _
-                        tmpManoEtalon.marque & "|" & _
-                        tmpManoEtalon.classe & "|" & _
-                        tmpManoEtalon.type & "|" & _
-                        tmpManoEtalon.fondEchelle & "|" & _
-                        tmpManoEtalon.idStructure & "|" & _
-                        tmpManoEtalon.isSynchro & "|" & _
-                        tmpManoEtalon.dateDernierControleS & "|" & _
-                        tmpManoEtalon.dateModificationAgent & "|" & _
+                        newFicheVieManoEtalon.caracteristiques =
+                        tmpManoEtalon.idCrodip & "|" &
+                        tmpManoEtalon.marque & "|" &
+                        tmpManoEtalon.classe & "|" &
+                        tmpManoEtalon.type & "|" &
+                        tmpManoEtalon.fondEchelle & "|" &
+                        tmpManoEtalon.idStructure & "|" &
+                        tmpManoEtalon.isSynchro & "|" &
+                        tmpManoEtalon.dateDernierControleS & "|" &
+                        tmpManoEtalon.dateModificationAgent & "|" &
                         tmpManoEtalon.dateModificationCrodip
                         newFicheVieManoEtalon.dateModif = CSDate.ToCRODIPString(Date.Now).ToString
                         newFicheVieManoEtalon.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
@@ -4054,52 +4061,54 @@ Public Class accueil
         Dim positionTopAlertes As Integer = 8
 
         ' Vérification des alertes sur les manomètre étalon
-        Dim isVerifManoEtalon As Boolean = False
-        If isVerifManoEtalon Then
-            loadAccueilAlertsManoEtalon(positionTopAlertes)
-        End If
+        'Dim isVerifManoEtalon As Boolean = False
+        'If isVerifManoEtalon Then
+        '    loadAccueilAlertsManoEtalon(positionTopAlertes)
+        'End If
 
         loadAccueilAlertsManoControle(positionTopAlertes)
         loadAccueilAlertsBuseEtalon(positionTopAlertes)
         LoadAccueilAlertsBancsMesures(positionTopAlertes)
-        loadAccueilAlertsIdentifiantsPulvérisateurs(positionTopAlertes)
-        ' Vérification de la date de dernière synchro
-        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
-        Try
-            Dim tmpDateLastSynchro As Date
+        If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
+            loadAccueilAlertsIdentifiantsPulvérisateurs(positionTopAlertes)
+            ' Vérification de la date de dernière synchro
+            Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
             Try
-                tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+                Dim tmpDateLastSynchro As Date
+                Try
+                    tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+                Catch ex As Exception
+                    tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+                End Try
+                Dim tmpCompareResponse As Integer = tmpDateLastSynchro.CompareTo(DateAdd(DateInterval.DayOfYear, -10, Now))
+                If tmpCompareResponse < 1 Then
+                    Dim tmpAlerte As New Label
+
+                    tmpAlerte.Name = "alerteSynchro"
+                    tmpAlerte.Text = "       Vous devez connecter le logiciel à Internet pour effectuer une synchronisation des données."
+                    Controls.Add(tmpAlerte)
+                    ' Position
+                    tmpAlerte.Parent = accueil_panelAlertes
+                    tmpAlerte.Left = 16
+                    tmpAlerte.Top = positionTopAlertes
+                    tmpAlerte.TextAlign = ContentAlignment.TopLeft
+                    ' Taille
+                    tmpAlerte.Width = 960
+                    tmpAlerte.Height = 16
+                    ' Couleur
+                    tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte))
+                    tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
+                    tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+                    ' Apparence texte
+                    Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+                    tmpAlerte.Font = tmpFontLabelCategorie
+
+                    positionTopAlertes = positionTopAlertes + 24
+                End If
             Catch ex As Exception
-                tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+                CSDebug.dispError("Alertes page accueil : " & ex.Message)
             End Try
-            Dim tmpCompareResponse As Integer = tmpDateLastSynchro.CompareTo(DateAdd(DateInterval.DayOfYear, -10, Now))
-            If tmpCompareResponse < 1 Then
-                Dim tmpAlerte As New Label
-
-                tmpAlerte.Name = "alerteSynchro"
-                tmpAlerte.Text = "       Vous devez connecter le logiciel à Internet pour effectuer une synchronisation des données."
-                Controls.Add(tmpAlerte)
-                ' Position
-                tmpAlerte.Parent = accueil_panelAlertes
-                tmpAlerte.Left = 16
-                tmpAlerte.Top = positionTopAlertes
-                tmpAlerte.TextAlign = ContentAlignment.TopLeft
-                ' Taille
-                tmpAlerte.Width = 960
-                tmpAlerte.Height = 16
-                ' Couleur
-                tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte))
-                tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
-                tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-                ' Apparence texte
-                Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-                tmpAlerte.Font = tmpFontLabelCategorie
-
-                positionTopAlertes = positionTopAlertes + 24
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("Alertes page accueil : " & ex.Message)
-        End Try
+        End If
 
         'Vérification du nombre de controles effectuées depuis le dernier controle Regulier
         loadAccueilAlertsNbControle(positionTopAlertes)
@@ -5124,7 +5133,7 @@ Public Class accueil
     End Sub
 
     ''' Ajout des Sous Répertoire dans un noeud du Tv (Récursif)
-    Private Sub ModDoc_GetDirectories(ByVal subDirs() As DirectoryInfo, _
+    Private Sub ModDoc_GetDirectories(ByVal subDirs() As DirectoryInfo,
         ByVal nodeToAddTo As TreeNode)
 
         Dim aNode As TreeNode
@@ -5176,8 +5185,8 @@ Public Class accueil
                 If dir.Name.ToUpper.Trim() <> "_parametres".ToUpper().Trim() Then
                     item = New ListViewItem(dir.Name, 0)
                     subItems = New ListViewItem.ListViewSubItem() _
-                        {New ListViewItem.ListViewSubItem(item, "Directory"), _
-                        New ListViewItem.ListViewSubItem(item, _
+                        {New ListViewItem.ListViewSubItem(item, "Directory"),
+                        New ListViewItem.ListViewSubItem(item,
                         dir.LastAccessTime.ToShortDateString())}
 
                     item.SubItems.AddRange(subItems)
@@ -5192,8 +5201,8 @@ Public Class accueil
                 item = New ListViewItem(file.Name, 1)
                 item.Tag = file.FullName
                 subItems = New ListViewItem.ListViewSubItem() _
-                    {New ListViewItem.ListViewSubItem(item, "File"), _
-                    New ListViewItem.ListViewSubItem(item, _
+                    {New ListViewItem.ListViewSubItem(item, "File"),
+                    New ListViewItem.ListViewSubItem(item,
                     file.LastAccessTime.ToShortDateString())}
 
                 item.SubItems.AddRange(subItems)
@@ -5467,5 +5476,11 @@ Public Class accueil
         If e.KeyChar = Chr(13) Then
             searchExploitant()
         End If
+    End Sub
+
+    Private Sub btnParamModeSimplifie_Click(sender As Object, e As EventArgs) Handles btnParamModeSimplifie.Click
+        Dim frm As New tool_ParamModeSimplifie
+        frm.ShowDialog()
+
     End Sub
 End Class

@@ -45,30 +45,6 @@ Public Class CSDebug
 
 #Region " Divers "
 
-    Public Shared Function var_dump(ByVal ar As Array)
-        Dim rm As String
-        Dim i As Integer = 0
-        If ar.GetType.IsArray = True Then
-            rm &= "array(" & ar.Length & ") {" & vbCrLf
-            For Each var As String In ar
-                rm &= Space(2) & "[" & i & "]=>" & vbCrLf
-                rm &= TypeName(var).Replace("()", "") & "(" & Len(var) & ") "
-                If TypeName(var) = "array()" Then
-                    Dim v() As String
-                    v = var.Split("")
-                    rm &= var_dump(v) & vbCrLf
-                Else
-                    rm &= Chr(34) & var & Chr(34) & vbCrLf
-                End If
-                i += 1
-            Next
-            rm &= "}"
-        Else
-            rm = "Error: Given array is not an array!!!"
-            Throw New System.Exception("Given array is not an array!!!")
-        End If
-        Return rm
-    End Function
 
 #End Region
 

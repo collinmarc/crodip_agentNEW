@@ -10,7 +10,7 @@ Module CSFile
         End If
     End Function
 
-    Public Function open(ByVal fileName As String)
+    Public Sub open(ByVal fileName As String)
         Try
             Dim monProcess As New Process
             monProcess.StartInfo.FileName = fileName
@@ -20,17 +20,17 @@ Module CSFile
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::open : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
-    Public Function delete(ByVal fileName As String)
+    Public Sub delete(ByVal fileName As String)
         Try
             System.IO.File.Delete(fileName)
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::delete : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
-    Public Function create(ByVal fileName As String, ByVal fileBody As String)
+    Public Sub create(ByVal fileName As String, ByVal fileBody As String)
         Try
             Dim curFile As StreamWriter
             If Not File.Exists(fileName) Then
@@ -43,12 +43,12 @@ Module CSFile
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::create : " & ex.Message)
         End Try
-    End Function
-    Public Function create(ByVal fileName As String)
+    End Sub
+    Public Sub create(ByVal fileName As String)
         CSFile.create(fileName, "")
-    End Function
+    End Sub
 
-    Public Function append(ByVal fileName As String, ByVal fileContent As String)
+    Public Sub append(ByVal fileName As String, ByVal fileContent As String)
         Try
             Dim curFile As StreamWriter
             If File.Exists(fileName) Then
@@ -61,9 +61,9 @@ Module CSFile
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::append : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
-    Public Function write(ByVal fileName As String, ByVal fileContent As String)
+    Public Sub write(ByVal fileName As String, ByVal fileContent As String)
         Try
             Dim curFile As StreamWriter
             If File.Exists(fileName) Then
@@ -76,6 +76,6 @@ Module CSFile
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::append : " & ex.Message)
         End Try
-    End Function
+    End Sub
 
 End Module

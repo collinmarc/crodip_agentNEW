@@ -41,9 +41,11 @@
     End Sub
 
     Public Function TestDateExp(pDate As Date) As Boolean
+        Dim bReturn As Boolean
         Dim oDateExp As Date
         oDateExp = New Date(DateExpCrypted)
-        Return pDate.Ticks < DateExpCrypted
+        bReturn = pDate.Ticks < DateExpCrypted
+        Return bReturn
     End Function
 
     Private Function Crypt(pValue As String) As String

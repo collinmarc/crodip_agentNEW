@@ -246,7 +246,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="Application\tools\accueil.vb">
+    <Compile Include="Application\tools\tool_ParamModeSimplifie.Designer.vb">
+      <DependentUpon>tool_ParamModeSimplifie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\tools\tool_ParamModeSimplifie.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\accueil.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\agent\ajouter_profil.vb">
@@ -1995,7 +2001,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Service References\WSCrodip2\crodip.wsdl" />
-    <EmbeddedResource Include="Application\tools\accueil.resx">
+    <EmbeddedResource Include="Application\tools\tool_ParamModeSimplifie.resx">
+      <DependentUpon>tool_ParamModeSimplifie.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\accueil.resx">
       <DependentUpon>accueil.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\agent\ajouter_profil.resx">
