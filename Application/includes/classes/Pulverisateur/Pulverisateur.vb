@@ -128,7 +128,12 @@ Public Class Pulverisateur
     Private _nbPompesDoseuses As Integer
 
     Sub New()
-        numeroNational = Globals.GLOB_DIAG_NUMAGR
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            'En mod simplifié ce n'est pas un E001
+            numeroNational = ""
+        Else
+            numeroNational = Globals.GLOB_DIAG_NUMAGR
+        End If
         _idStructure = -1
     End Sub
     Public Property id() As String

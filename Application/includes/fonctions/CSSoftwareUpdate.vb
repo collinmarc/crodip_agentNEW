@@ -35,6 +35,10 @@ Module CSSoftwareUpdate
 
     Public Function checkMAJ() As Boolean
         Dim bReturn As Boolean = False
+        'En mode simplifié pas de Mise à jour
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            Return False
+        End If
         Try
             If Globals.GLOB_NETWORKAVAILABLE And Not isXPorBefore() Then
                 Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
