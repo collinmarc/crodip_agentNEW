@@ -102,10 +102,10 @@
       <Value Profile="(Default)">V2.6.1</Value>
     </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20190930090000</Value>
+      <Value Profile="(Default)">20191014180000</Value>
     </Setting>
     <Setting Name="Mode" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Normal</Value>
+      <Value Profile="(Default)">Simplifié</Value>
     </Setting>
   </Settings>
 </SettingsFile>

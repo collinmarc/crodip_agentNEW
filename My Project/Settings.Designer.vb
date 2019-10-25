@@ -382,7 +382,7 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20190930090000")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20191014180000")>  _
     Public ReadOnly Property NumBuild() As String
         Get
             Return CType(Me("NumBuild"),String)
@@ -391,7 +391,7 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("Normal")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("Simplifié")>  _
     Public ReadOnly Property Mode() As String
         Get
             Return CType(Me("Mode"),String)

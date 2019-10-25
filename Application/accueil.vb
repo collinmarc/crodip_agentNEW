@@ -588,7 +588,7 @@ Public Class accueil
         '
         Me.ImageList_onglets.ImageStream = CType(resources.GetObject("ImageList_onglets.ImageStream"), System.Windows.Forms.ImageListStreamer)
         Me.ImageList_onglets.TransparentColor = System.Drawing.Color.White
-        Me.ImageList_onglets.Images.SetKeyName(0, "")
+        Me.ImageList_onglets.Images.SetKeyName(0, "puce_h1.jpg")
         '
         'ImageListPulve
         '
@@ -702,6 +702,7 @@ Public Class accueil
         Me.tabControl_accueil.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
         Me.tabControl_accueil.Controls.Add(Me.accueil_panelAlertesContener)
         Me.tabControl_accueil.Controls.Add(Me.tabAccueil_mesinfos)
+        Me.tabControl_accueil.ImageIndex = 0
         Me.tabControl_accueil.Location = New System.Drawing.Point(4, 22)
         Me.tabControl_accueil.Name = "tabControl_accueil"
         Me.tabControl_accueil.Size = New System.Drawing.Size(1000, 653)
@@ -3250,9 +3251,17 @@ Public Class accueil
         'REDIECTION DE LA DATA SOURCE du dataGRIDView !!!!!!
         dgvPulveExploit.DataSource = m_BindingListOfPulve
 
+        If agentCourant.isGestionnaire Then
+            tabControl.TabPages.RemoveByKey(tabControl_pulverisateurs.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_synchro.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_parametrage.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_Statistiques.Name)
+        End If
+
         'Gestion du Mode Simplifié
         'Module Documentaire
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            'on ne peut rendre invisible ou inactive une page, il faut la supprimer de la tabPages
             tabControl.TabPages.RemoveByKey(tabControl_outilscomp.Name)
         End If
         '        tabControl_outilscomp.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
@@ -3296,25 +3305,12 @@ Public Class accueil
 
     End Sub
     ' Changement d'onglet
-    Dim prevSelectedOnglet As Integer = -1
     Private Sub tabControl_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tabControl.SelectedIndexChanged
+        For Each oTab As TabPage In Me.tabControl.TabPages
+            oTab.ImageIndex = -1
+        Next
 
-        If agentCourant.isGestionnaire Then
-            If tabControl.SelectedIndex > 1 And tabControl.SelectedIndex <> 4 Then
-                'Le gestionaire ne peut pas accéder aux onglets autres que controle
-                tabControl.SelectedIndex = prevSelectedOnglet
-            End If
-            Exit Sub
-        End If
-        ' Placer la puce sur onglet courant
-        If prevSelectedOnglet = -1 Then
-            prevSelectedOnglet = tabControl.SelectedTab.TabIndex
-            tabControl.SelectedTab.ImageIndex = 0
-        Else
-            tabControl.TabPages(prevSelectedOnglet).ImageIndex = -1
-            tabControl.SelectedTab.ImageIndex = 0
-            prevSelectedOnglet = tabControl.SelectedTab.TabIndex
-        End If
+        tabControl.SelectedTab.ImageIndex = 0
 
 
     End Sub

@@ -1,5 +1,10 @@
 TRUNK
 
+Build : 20191025100000
+----------------------
+0001049: Version simplifiée du logiciel Agent
+0001113: Plantage en chgmt d'onglets en mode simplifié
+
 Build : 20190930090000
 ----------------------
 #333 : Bloquer les Maj pour les systèmes XP

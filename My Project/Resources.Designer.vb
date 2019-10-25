@@ -426,6 +426,16 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property puce_h1() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("puce_h1", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property puce_h2() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("puce_h2", resourceCulture)

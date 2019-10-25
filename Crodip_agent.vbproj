@@ -1368,6 +1368,7 @@
     </Content>
     <Content Include="public\exports\exports.txt" />
     <None Include="Resources\LogoCRODIPIMG.bmp" />
+    <None Include="Resources\puce_h1.jpg" />
     <Content Include="toleranceBuses.xml" />
     <None Include="readme.md" />
     <None Include="Resources\PuceVerteT.png" />
