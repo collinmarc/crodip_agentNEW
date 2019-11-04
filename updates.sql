@@ -187,11 +187,15 @@
 --ALTER TABLE [diagnostic] ADD commentaire varchar(255)
 --UPDATE Diagnostic SET commentaire = '' 
 --INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6",#09/01/2018#, "Pompes Doseuses") 
-ALTER TABLE BancMesure ADD ModuleAcquisition VARCHAR(255)
-UPDATE BancMesure SET ModuleAcquisition = 'MD2' 
+--ALTER TABLE BancMesure ADD ModuleAcquisition VARCHAR(255)
+--UPDATE BancMesure SET ModuleAcquisition = 'MD2' 
 -- date au format MM/JJ/AAAA
-INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.1", #08/12/2019# , "Modules Acquisition") 
+--INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.1", #08/12/2019# , "Modules Acquisition") 
 
-ALTER TABLE Agent ADD SignatureElect BIT
-UPDATE Agent SET SignatureElect = False
+--ALTER TABLE Agent ADD SignatureElect BIT
+--UPDATE Agent SET SignatureElect = False
+--INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.2", #10/14/2019# , "Signature Electronique") 
+DELETE FROM VERSION WHERE VERSION_DATE>#01/01/2019#
+INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.1", #08/12/2019# , "Modules Acquisition") 
 INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.2", #10/14/2019# , "Signature Electronique") 
+

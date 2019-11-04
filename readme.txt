@@ -1,5 +1,9 @@
 TRUNK
 
+Build : 
+----------------------
+0001118: Passage en mode simplifié impossible
+
 Build : 20191025100000
 ----------------------
 0001049: Version simplifiée du logiciel Agent

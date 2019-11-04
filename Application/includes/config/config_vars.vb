@@ -352,7 +352,7 @@ Public Class Globals
     Public Shared Sub Init()
         My.Settings.Reload()
         GLOB_ENV_AUTOSYNC = My.Settings.AutoSync
-        GLOB_ENV_MODESIMPLIFIE = (My.Settings.Mode = "Simplifié")
+        GLOB_ENV_MODESIMPLIFIE = (My.Settings.Mode = "SIMPLIFIE")
         GLOB_APPLI_VERSION = My.Settings.NumVersion
         GLOB_APPLI_BUILD = My.Settings.NumBuild
 
