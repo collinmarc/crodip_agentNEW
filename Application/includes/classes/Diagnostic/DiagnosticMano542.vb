@@ -85,6 +85,17 @@ Public Class DiagnosticMano542List
         m_EcartMoy = 0
         Dim bEcartCONSTant As Boolean = True
         Dim ecartCONSTant As Decimal = Decimal.MinValue
+        Dim bPressionControleSaisie As Boolean = True
+        'Vérification que la Pression de controle est saisi sur chaque mano
+        For Each oMano542 As DiagnosticMano542 In _diagnosticMano542
+            If String.IsNullOrEmpty(oMano542.pressionControle) Then
+                bPressionControleSaisie = False
+            End If
+        Next
+        'Si tout les pressions n'ont pas été saisie => On Sort
+        If (Not bPressionControleSaisie) Then
+            Exit Sub
+        End If
 
         'Dim oCalc542 As New CRODIP_ControlLibrary.ParanDiagCalc542()
 
@@ -389,48 +400,55 @@ Public Class DiagnosticMano542
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub calcEcarts()
-        Ecart = pressionPulved - pressionControled
-        EcartPct = Math.Round((Math.Abs(Ecart) / pressionControled) * 100, 2) 'Pourcentage
-
+        If pressionPulve <> "" Then
+            Ecart = pressionPulved - pressionControled
+            If Ecart = 0 And pressionControled = 0 Then
+                EcartPct = 0
+            Else
+                If pressionControled <> 0 Then
+                    EcartPct = Math.Round((Math.Abs(Ecart) / pressionControled) * 100, 2) 'Pourcentage
+                End If
+            End If
+        End If
     End Sub
 
-    Public Sub calcimprecision2()
-        'Calcul de l'écart
-        calcEcarts()
-        Dim Ecart_VAbsolue As Decimal
+    'Public Sub calcimprecision2()
+    '    'Calcul de l'écart
+    '    calcEcarts()
+    '    Dim Ecart_VAbsolue As Decimal
 
-        Ecart_VAbsolue = Math.Abs(Ecart)
+    '    Ecart_VAbsolue = Math.Abs(Ecart)
 
-        '===================
-        'Pression <=2 bars 
-        '   0.1>err>0.2 => FAIBLE
-        '   err>0.2 => FORTE
-        'Pression > 2 bars
-        '   %<10 =FAIBLE
-        '   %>10 = FORTE
-        '==================
-        If pressionPulved <= 2 And Ecart_VAbsolue <= 0.1 Then
-            Erreur = ERR542.OK
-        End If
-        If pressionPulved > 2 And Ecart_VAbsolue <= (pressionControled * 0.05) Then
-            Erreur = ERR542.OK
-        End If
+    '    '===================
+    '    'Pression <=2 bars 
+    '    '   0.1>err>0.2 => FAIBLE
+    '    '   err>0.2 => FORTE
+    '    'Pression > 2 bars
+    '    '   %<10 =FAIBLE
+    '    '   %>10 = FORTE
+    '    '==================
+    '    If pressionPulved <= 2 And Ecart_VAbsolue <= 0.1 Then
+    '        Erreur = ERR542.OK
+    '    End If
+    '    If pressionPulved > 2 And Ecart_VAbsolue <= (pressionControled * 0.05) Then
+    '        Erreur = ERR542.OK
+    '    End If
 
-        If pressionPulved <= 2 And (Ecart_VAbsolue > 0.1 And Ecart_VAbsolue <= 0.2) Then
-            Erreur = ERR542.FAIBLE
-        End If
-        If pressionPulved > 2 And (Ecart_VAbsolue > (pressionControled * 0.05) And Ecart_VAbsolue <= (pressionControled * 0.1)) Then
-            Erreur = ERR542.FAIBLE
-        End If
+    '    If pressionPulved <= 2 And (Ecart_VAbsolue > 0.1 And Ecart_VAbsolue <= 0.2) Then
+    '        Erreur = ERR542.FAIBLE
+    '    End If
+    '    If pressionPulved > 2 And (Ecart_VAbsolue > (pressionControled * 0.05) And Ecart_VAbsolue <= (pressionControled * 0.1)) Then
+    '        Erreur = ERR542.FAIBLE
+    '    End If
 
-        If pressionPulved <= 2 And (Ecart_VAbsolue > 0.2) Then
-            Erreur = ERR542.FORTE
-        End If
-        If pressionPulved > 2 And (Ecart_VAbsolue > (pressionControled * 0.1)) Then
-            Erreur = ERR542.FORTE
-        End If
+    '    If pressionPulved <= 2 And (Ecart_VAbsolue > 0.2) Then
+    '        Erreur = ERR542.FORTE
+    '    End If
+    '    If pressionPulved > 2 And (Ecart_VAbsolue > (pressionControled * 0.1)) Then
+    '        Erreur = ERR542.FORTE
+    '    End If
 
-    End Sub
+    'End Sub
 
     Public Shared Function GetErreurLabel(ByVal pErr As ERR542) As String
         Dim strReturn As String
