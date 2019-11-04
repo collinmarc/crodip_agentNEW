@@ -3,6 +3,7 @@ TRUNK
 Build : 
 ----------------------
 0001118: Passage en mode simplifié impossible
+0001119: Modification du nb de tronçons => Validation de l'onglet
 
 Build : 20191025100000
 ----------------------
