@@ -51,28 +51,6 @@ Public Class SynchronisationElmtFVBanc
         End Try
         Return bReturn
     End Function
-    ''' <summary>
-    ''' Synhcronisation Ascendante des IdentifiantPulverisateur
-    ''' </summary>
-    ''' <param name="pAgent"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Public Overloads Shared Function SynchroAsc(pAgent As Agent) As Boolean
-        Dim bReturn As Boolean
-        Try
-            bReturn = True
-            ' Synchro des Identifiants Pulvés
-            Dim arrUpdatesIdentifiantPulverisateur() As IdentifiantPulverisateur = IdentifiantPulverisateurManager.getUpdates(pAgent)
-            For Each oIdentPulve As IdentifiantPulverisateur In arrUpdatesIdentifiantPulverisateur
-                bReturn = IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(pAgent, oIdentPulve)
-            Next
 
-        Catch ex As Exception
-            CSDebug.dispError("SynchronisationElmtIdentifiantPulverisateur.SynhcroAsc ERR" & ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-
-    End Function
 
 End Class

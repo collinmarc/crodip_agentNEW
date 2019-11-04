@@ -246,6 +246,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtPulverisateur.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitation.vb" />
     <Compile Include="Application\tools\tool_ParamModeSimplifie.Designer.vb">
       <DependentUpon>tool_ParamModeSimplifie.vb</DependentUpon>
     </Compile>
@@ -666,7 +669,7 @@
     <Compile Include="Application\includes\classes\Synchro\Cmd.vb" />
     <Compile Include="Application\includes\classes\Synchro\CSFTP.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchroBooleans.vb" />
-    <Compile Include="Application\includes\classes\Synchro\SynchroElementDocument.vb" />
+    <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDocument.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagMano833.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagMano542.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagBusesDetail.vb" />

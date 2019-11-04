@@ -3819,6 +3819,30 @@ Public Class accueil
         End If
 
     End Sub
+    ''' <summary>
+    ''' Verification de la date de synhcro de l'agent courant
+    ''' alerte ORANGE si plus de 10 jours sans connexion
+    ''' </summary>
+    ''' <param name="positionTopAlertes"></param>
+    Private Sub loadAccueilAlertsSynchro(ByRef positionTopAlertes As Integer)
+
+        ' Vérification de la date de dernière synchro
+        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
+        Dim tmpDateLastSynchro As Date
+        Try
+                tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+            Catch ex As Exception
+                tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+            End Try
+            Dim tmpCompareResponse As Integer = tmpDateLastSynchro.CompareTo(DateAdd(DateInterval.DayOfYear, -10, Now))
+            If tmpCompareResponse < 1 Then
+                Dim sText As String
+            sText = "Vous devez connecter le logiciel à Internet pour effectuer une synchronisation des données."
+            AjouteUneAlerte(Globals.ALERTE.ORANGE, "alerte synhcro", sText, positionTopAlertes)
+
+            End If
+
+    End Sub
     Private Sub AjouteUneAlerte(ByVal TypeAlerte As Globals.ALERTE, ByVal pName As String, ByVal ptext As String, ByRef positionTopAlertes As Integer)
         Dim tmpAlerte As New Label
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
@@ -3887,55 +3911,23 @@ Public Class accueil
             End If
         Next
         If nbAlertes_Buse_alerte > 0 Then
-            Dim tmpAlerte As New Label
-            tmpAlerte.Name = "alerteBuseEtalon_alerte"
+            '            Dim tmpAlerte As New Label
+            Dim stext As String
             If nbAlertes_Buse_alerte > 1 Then
-                tmpAlerte.Text = "       Il faut commander de nouvelles buses étalons car " & nbAlertes_Buse_alerte & " ne seront plus reconnues dans 3 mois."
+                stext = "Il faut commander de nouvelles buses étalons car " & nbAlertes_Buse_alerte & " ne seront plus reconnues dans 3 mois."
             Else
-                tmpAlerte.Text = "       Il faut commander de nouvelles buses étalons car " & nbAlertes_Buse_alerte & " ne sera plus reconnue dans 3 mois."
+                stext = "Il faut commander de nouvelles buses étalons car " & nbAlertes_Buse_alerte & " ne sera plus reconnue dans 3 mois."
             End If
-            Controls.Add(tmpAlerte)
-            ' Position
-            tmpAlerte.Parent = accueil_panelAlertes
-            tmpAlerte.Left = 16
-            tmpAlerte.Top = positionTopAlertes
-            tmpAlerte.TextAlign = ContentAlignment.TopLeft
-            ' Taille
-            tmpAlerte.Width = 960
-            tmpAlerte.Height = 16
-            ' Couleur
-            tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte))
-            tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
-            tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-            ' Apparence texte
-            Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpAlerte.Font = tmpFontLabelCategorie
-            positionTopAlertes = positionTopAlertes + 24
+            AjouteUneAlerte(Globals.ALERTE.ORANGE, "alerteBuseEtalon_alerte", stext, positionTopAlertes)
         End If
         If nbAlertes_Buse_out > 0 Then
-            Dim tmpAlerte As New Label
-            tmpAlerte.Name = "alerteBuseEtalon_out"
+            Dim sText As String
             If nbAlertes_Buse_out > 1 Then
-                tmpAlerte.Text = "       Il faut commander de nouvelles buses étalons car " & nbAlertes_Buse_out & " buses ne sont plus reconnues."
+                sText = "Il faut commander de nouvelles buses étalons car " & nbAlertes_Buse_out & " buses ne sont plus reconnues."
             Else
-                tmpAlerte.Text = "       Il faut commander de nouvelles buses étalons car " & nbAlertes_Buse_out & " buse n'est plus reconnue."
+                sText = "Il faut commander de nouvelles buses étalons car " & nbAlertes_Buse_out & " buse n'est plus reconnue."
             End If
-            Controls.Add(tmpAlerte)
-            ' Position
-            tmpAlerte.Parent = accueil_panelAlertes
-            tmpAlerte.Left = 16
-            tmpAlerte.Top = positionTopAlertes
-            tmpAlerte.TextAlign = ContentAlignment.TopLeft
-            ' Taille
-            tmpAlerte.Width = 960
-            tmpAlerte.Height = 16
-            ' Couleur
-            tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(203, Byte), CType(19, Byte), CType(31, Byte))
-            tmpAlerte.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
-            tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-            ' Apparence texte
-            tmpAlerte.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            positionTopAlertes = positionTopAlertes + 24
+            AjouteUneAlerte(Globals.ALERTE.NOIRE, "alerteBuseEtalon_out", sText, positionTopAlertes)
         End If
 
     End Sub
@@ -4031,7 +4023,7 @@ Public Class accueil
         If nbAlertes_Banc_1mois7jr > 0 Then
             sName = "alerteManoControle_1mois7jr"
             If nbAlertes_Banc_1mois7jr > 1 Then
-                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_Banc_1mois7jr & " banc de mesure. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
+                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_Banc_1mois7jr & " bancs de mesure. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             Else
                 sTexte = "Vous avez trop attendu pour vérifier 1 banc de mesure. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             End If
@@ -4055,6 +4047,7 @@ Public Class accueil
 
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
         Dim positionTopAlertes As Integer = 8
+        accueil_panelAlertes.Controls.Clear()
 
         ' Vérification des alertes sur les manomètre étalon
         'Dim isVerifManoEtalon As Boolean = False
@@ -4067,43 +4060,7 @@ Public Class accueil
         LoadAccueilAlertsBancsMesures(positionTopAlertes)
         If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
             loadAccueilAlertsIdentifiantsPulvérisateurs(positionTopAlertes)
-            ' Vérification de la date de dernière synchro
-            Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
-            Try
-                Dim tmpDateLastSynchro As Date
-                Try
-                    tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
-                Catch ex As Exception
-                    tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
-                End Try
-                Dim tmpCompareResponse As Integer = tmpDateLastSynchro.CompareTo(DateAdd(DateInterval.DayOfYear, -10, Now))
-                If tmpCompareResponse < 1 Then
-                    Dim tmpAlerte As New Label
-
-                    tmpAlerte.Name = "alerteSynchro"
-                    tmpAlerte.Text = "       Vous devez connecter le logiciel à Internet pour effectuer une synchronisation des données."
-                    Controls.Add(tmpAlerte)
-                    ' Position
-                    tmpAlerte.Parent = accueil_panelAlertes
-                    tmpAlerte.Left = 16
-                    tmpAlerte.Top = positionTopAlertes
-                    tmpAlerte.TextAlign = ContentAlignment.TopLeft
-                    ' Taille
-                    tmpAlerte.Width = 960
-                    tmpAlerte.Height = 16
-                    ' Couleur
-                    tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte))
-                    tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
-                    tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-                    ' Apparence texte
-                    Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-                    tmpAlerte.Font = tmpFontLabelCategorie
-
-                    positionTopAlertes = positionTopAlertes + 24
-                End If
-            Catch ex As Exception
-                CSDebug.dispError("Alertes page accueil : " & ex.Message)
-            End Try
+            loadAccueilAlertsSynchro(positionTopAlertes)
         End If
 
         'Vérification du nombre de controles effectuées depuis le dernier controle Regulier
@@ -4205,12 +4162,10 @@ Public Class accueil
 #Region " - Btn Refresh - "
 
     Private Sub picsRefresh_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles picsRefresh.Click, btn_refresh_lst_clients.Click
-        accueil_panelAlertes.Controls.Clear()
         loadAccueilAlerts()
         LoadListControleRegulier()
     End Sub
     Private Sub Label15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label15.Click
-        accueil_panelAlertes.Controls.Clear()
         loadAccueilAlerts()
         LoadListControleRegulier()
     End Sub

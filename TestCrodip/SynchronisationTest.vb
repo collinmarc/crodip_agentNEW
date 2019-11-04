@@ -93,7 +93,7 @@ Public Class SynchronisationTest
     <TestMethod()>
     Public Sub testSynchroElemntModuleDocumentaire()
         Dim oSynchro As New Synchronisation(m_oAgent)
-        Dim oElmt As New SynchroElementDocument(oSynchro.m_SynchroBoolean)
+        Dim oElmt As New SynchronisationElmtDocument(oSynchro.m_SynchroBoolean)
         Assert.AreEqual("GetDocument", oElmt.type)
         oElmt.identifiantChaine = "/_parametres/cr_RapportInspection.rpt"
         oElmt.identifiantEntier = 0
@@ -106,7 +106,7 @@ Public Class SynchronisationTest
         Dim oFileInfo As New FileInfo("ModuleDocumentaire/_parametres/cr_RapportInspection.rpt")
         Assert.IsTrue(oFileInfo.Length > 1000)
 
-        oElmt = New SynchroElementDocument("/_parametres/REFERENTIEL_BUSE.csv", "http://admin-pp.crodip.fr/depots/_parametres/REFERENTIEL_BUSE.csv", oSynchro.m_SynchroBoolean)
+        oElmt = New SynchronisationElmtDocument("/_parametres/REFERENTIEL_BUSE.csv", "http://admin-pp.crodip.fr/depots/_parametres/REFERENTIEL_BUSE.csv", oSynchro.m_SynchroBoolean)
         Assert.AreEqual("GetDocument", oElmt.type)
         If File.Exists("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv") Then
             File.Delete("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv")
@@ -121,7 +121,7 @@ Public Class SynchronisationTest
     <TestMethod()>
     Public Sub testSynchroElemntModuleDocumentaire_DLT()
         Dim oSynchro As New Synchronisation(m_oAgent)
-        Dim oElmt As New SynchroElementDocument(oSynchro.m_SynchroBoolean)
+        Dim oElmt As New SynchronisationElmtDocument(oSynchro.m_SynchroBoolean)
         Assert.AreEqual("GetDocument", oElmt.type)
         oElmt.identifiantChaine = "/_parametres/cr_RapportInspection.rpt"
         oElmt.identifiantEntier = 0
@@ -134,7 +134,7 @@ Public Class SynchronisationTest
         Dim oFileInfo As New FileInfo("ModuleDocumentaire/_parametres/cr_RapportInspection.rpt")
         Assert.IsTrue(oFileInfo.Length > 1000)
 
-        oElmt = New SynchroElementDocument("/_parametres/REFERENTIEL_BUSE.csv", "http://admin-pp.crodip.fr/depots/_parametres/REFERENTIEL_BUSE.csv", oSynchro.m_SynchroBoolean)
+        oElmt = New SynchronisationElmtDocument("/_parametres/REFERENTIEL_BUSE.csv", "http://admin-pp.crodip.fr/depots/_parametres/REFERENTIEL_BUSE.csv", oSynchro.m_SynchroBoolean)
         Assert.AreEqual("GetDocument", oElmt.type)
         If File.Exists("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv") Then
             File.Delete("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv")
@@ -144,7 +144,7 @@ Public Class SynchronisationTest
         oFileInfo = New FileInfo("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv")
         Assert.IsTrue(oFileInfo.Length > 1000)
 
-        oElmt = New SynchroElementDocument("/_parametres/REFERENTIEL_BUSE.csv.DLT", "http://admin-pp.crodip.fr/depots/_parametres/REFERENTIEL_BUSE.csv.DLT", oSynchro.m_SynchroBoolean)
+        oElmt = New SynchronisationElmtDocument("/_parametres/REFERENTIEL_BUSE.csv.DLT", "http://admin-pp.crodip.fr/depots/_parametres/REFERENTIEL_BUSE.csv.DLT", oSynchro.m_SynchroBoolean)
         Assert.IsTrue(File.Exists("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv"))
         oElmt.SynchroDesc(m_oAgent)
         Assert.IsFalse(File.Exists("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv"))
@@ -156,7 +156,7 @@ Public Class SynchronisationTest
         oSW.Close()
         Assert.IsTrue(File.Exists("ModuleDocumentaire/_parametres/_reptemp/FileToTest.txt"))
 
-        oElmt = New SynchroElementDocument("/_parametres/_reptemp.DLT/FileToTest.txt", "http://admin-pp.crodip.fr/depots/_parametres/_reptemp.DLT/FileToTest.txt", oSynchro.m_SynchroBoolean)
+        oElmt = New SynchronisationElmtDocument("/_parametres/_reptemp.DLT/FileToTest.txt", "http://admin-pp.crodip.fr/depots/_parametres/_reptemp.DLT/FileToTest.txt", oSynchro.m_SynchroBoolean)
         Assert.IsTrue(Directory.Exists("ModuleDocumentaire/_parametres/_reptemp"))
         oElmt.SynchroDesc(m_oAgent)
         Assert.IsFalse(Directory.Exists("ModuleDocumentaire/_parametres/_reptemp"))

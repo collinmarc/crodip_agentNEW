@@ -85,7 +85,7 @@ Public Class FrmDiagnostique
         Me.New()
         setContexte(pDiag, _modeAffichage, pPulverisateur, pExploit)
     End Sub
-    Public Sub setContexte(pDiag As Diagnostic, ByVal _modeAffichage As Globals.DiagMode, pPulve As Pulverisateur, pExploit As Exploitation)
+    Public Sub SetContexte(pDiag As Diagnostic, ByVal _modeAffichage As Globals.DiagMode, pPulve As Pulverisateur, pExploit As Exploitation)
         m_modeAffichage = _modeAffichage
         m_diagnostic = pDiag
         m_Pulverisateur = pPulve

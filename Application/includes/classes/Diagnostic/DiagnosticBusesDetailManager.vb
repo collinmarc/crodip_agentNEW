@@ -3,7 +3,7 @@ Public Class DiagnosticBusesDetailManager
 #Region "Methodes Web Service"
 
     'ok
-    Public Shared Function getWSDiagnosticBusesDetailById(ByVal diag_id As String) As DiagnosticBusesDetailList
+    Public Shared Function getWSDiagnosticBusesDetailByDiagId(ByVal diag_id As String) As DiagnosticBusesDetailList
         Dim objDiagnosticBusesDetailList As New DiagnosticBusesDetailList
         Dim objDiagnosticBusesDetail As New DiagnosticBusesDetail
         Try

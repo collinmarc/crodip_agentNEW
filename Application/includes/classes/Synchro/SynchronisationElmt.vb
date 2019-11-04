@@ -19,7 +19,7 @@ Public Class SynchronisationElmt
     Private m_bTraitee As Boolean
     Private _Update As Boolean 'A télécharger (0 = Non , 1 = Oui)
     Private _Status As String
-    Private m_SynchroBoolean As SynchroBooleans
+    Protected m_SynchroBoolean As SynchroBooleans
 
     Public Sub New()
         _type = ""
@@ -35,7 +35,7 @@ Public Class SynchronisationElmt
         m_SynchroBoolean = pSynchroBooleans
     End Sub
 
-    Public Property type() As String
+    Public Property Type() As String
         Get
             Return _type
         End Get
@@ -44,7 +44,7 @@ Public Class SynchronisationElmt
         End Set
     End Property
 
-    Public Property identifiantEntier() As Integer
+    Public Property IdentifiantEntier() As Integer
         Get
             Return _identifiantEntier
         End Get
@@ -53,7 +53,7 @@ Public Class SynchronisationElmt
         End Set
     End Property
 
-    Public Property identifiantChaine() As String
+    Public Property IdentifiantChaine() As String
         Get
             Return _identifiantChaine
         End Get
@@ -61,7 +61,7 @@ Public Class SynchronisationElmt
             _identifiantChaine = Value
         End Set
     End Property
-    Public Property valeurAuxiliaire() As String
+    Public Property ValeurAuxiliaire() As String
         Get
             Return _valeurAuxiliaire
         End Get
@@ -69,7 +69,7 @@ Public Class SynchronisationElmt
             _valeurAuxiliaire = Value
         End Set
     End Property
-    Public Property checksumMD5() As String
+    Public Property ChecksumMD5() As String
         Get
             Return _checksumMD5
         End Get
@@ -77,7 +77,7 @@ Public Class SynchronisationElmt
             _checksumMD5 = Value
         End Set
     End Property
-    Public Property checksumCalc() As String
+    Public Property ChecksumCalc() As String
         Get
             Return _checksumCalc
         End Get
@@ -85,7 +85,7 @@ Public Class SynchronisationElmt
             _checksumCalc = Value
         End Set
     End Property
-    Public Property update() As Boolean
+    Public Property Update() As Boolean
         Get
             Return _Update
         End Get
@@ -103,7 +103,7 @@ Public Class SynchronisationElmt
         End Set
     End Property
 
-    Public Function Fill(ByVal PNAme As String, ByVal pValue As String) As Boolean
+    Public Overridable Function Fill(ByVal PNAme As String, ByVal pValue As String) As Boolean
         Dim bReturn As Boolean
         Try
             Select Case PNAme.ToUpper.Trim()
@@ -166,10 +166,10 @@ Public Class SynchronisationElmt
         Return sb.ToString().ToLower
 
     End Function
-    Public Sub setStatus(pString As String)
+    Public Sub SetStatus(pString As String)
         _Status = pString
     End Sub
-    Public Function getStatus() As String
+    Public Function GetStatus() As String
         Return _Status
     End Function
     Public Overridable Function SynchroDesc(pAgent As Agent) As Boolean
@@ -210,105 +210,6 @@ Public Class SynchronisationElmt
                     End Try
                 End If
 
-            Case SynchronisationElmtDiag.getLabelGet.ToUpper().Trim()
-                If (m_SynchroBoolean.m_bSynchDescDiag) Then
-                    Dim tmpObject As New Diagnostic
-                    Try
-                        setStatus("Réception MAJ contrôle n°" & pElement.identifiantChaine & "...")
-                        tmpObject = DiagnosticManager.getWSDiagnosticById(pAgent.id, pElement.identifiantChaine)
-                        DiagnosticManager.save(tmpObject, True)
-                        'Récupération des etats du diagnostic s'ils n'existent pas
-                        If Not String.IsNullOrEmpty(tmpObject.RIFileName) Then
-                            If Not File.Exists(Globals.CONST_PATH_EXP & "/" & tmpObject.RIFileName) Then
-                                DiagnosticManager.getFTPEtats(tmpObject)
-                            End If
-                        End If
-
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnostic) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
-            Case SynchronisationElmtDiagItem.getLabelGet.ToUpper().Trim()
-                If (m_SynchroBoolean.m_bSynchDescDiag) Then
-                    Dim tmpObject As Diagnostic
-                    Try
-                        setStatus("Réception MAJ item de contrôle n°" & pElement.identifiantChaine & "...")
-                        tmpObject = DiagnosticItemManager.getWSDiagnosticItemsByDiagnosticId(pAgent, pElement.identifiantChaine)
-                        DiagnosticManager.SaveDiagItems(tmpObject, False, True)
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticItems) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
-
-            Case SynchronisationElmtDiagBuses.getLabelGet.ToUpper().Trim()
-
-                If (m_SynchroBoolean.m_bSynchDescDiag) Then
-                    Dim tmpObjectList As DiagnosticBusesList
-                    Dim tmpObject As DiagnosticBuses
-                    Try
-                        setStatus("Réception MAJ buse de contrôle n°" & pElement.identifiantChaine & "...")
-                        tmpObjectList = DiagnosticBusesManager.getWSDiagnosticBusesById(pElement.identifiantChaine)
-                        For Each tmpObject In tmpObjectList.Liste
-                            DiagnosticBusesManager.save(tmpObject, True)
-                        Next
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticBuses) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
-            Case SynchronisationElmtDiagBusesDetail.getLabelGet.ToUpper().Trim()
-                If (m_SynchroBoolean.m_bSynchDescDiag) Then
-                    Dim tmpObjectList As New DiagnosticBusesDetailList
-                    Dim tmpObject As New DiagnosticBusesDetail
-                    Try
-                        setStatus("Réception MAJ détail des buse de contrôle n°" & pElement.identifiantChaine & "...")
-                        tmpObjectList = DiagnosticBusesDetailManager.getWSDiagnosticBusesDetailById(pElement.identifiantChaine)
-                        For Each tmpObject In tmpObjectList.Liste
-                            DiagnosticBusesDetailManager.save(tmpObject, True)
-                        Next
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticBusesDetail) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
-            Case SynchronisationElmtDiagMano542.getLabelGet.ToUpper().Trim()
-                If (m_SynchroBoolean.m_bSynchDescDiag) Then
-                    Dim tmpObjectList As New DiagnosticMano542List
-                    Dim tmpObject As New DiagnosticMano542
-                    Try
-                        setStatus("Réception MAJ DiagnosticMano542 n°" & pElement.identifiantChaine & "...")
-                        tmpObjectList = DiagnosticMano542Manager.getWSDiagnosticMano542ById(pElement.identifiantChaine)
-                        For Each tmpObject In tmpObjectList.Liste
-                            DiagnosticMano542Manager.save(tmpObject, True)
-                        Next
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticBusesDetail) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
-            Case SynchronisationElmtDiagMano833.getLabelGet.ToUpper().Trim()
-                If (m_SynchroBoolean.m_bSynchDescDiag) Then
-                    Dim tmpObject As New DiagnosticTroncons833
-                    Dim tmpObjectList As New DiagnosticTroncons833List
-                    Try
-                        setStatus("Réception MAJ DiagnosticTroncons833 n°" & pElement.identifiantChaine & "...")
-                        tmpObjectList = DiagnosticTroncons833Manager.getWSDiagnosticTroncons833ById(pElement.identifiantChaine)
-                        For Each tmpObject In tmpObjectList.Liste
-                            DiagnosticTroncons833Manager.save(tmpObject, True)
-                        Next
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticBusesDetail) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
                 'Case "GetReferentielBuse".ToUpper().Trim()
                 '    If (m_SynchroBoolean.m_bSynchDescReferentiel) Then
                 '        SynchronisationManager.LogSynchroElmt(pElement)
@@ -386,19 +287,48 @@ Public Class SynchronisationElmt
                 '    Return False
                 'End If
 
-            Case "GetExploitation".ToUpper().Trim() ' Synchro d'un client
-                If (m_SynchroBoolean.m_bSynchDescExploitation) Then
-                    Dim tmpObject As New Exploitation
-                    Try
-                        setStatus("Réception MAJ Exploitation n°" & pElement.identifiantChaine & "...")
-                        tmpObject = ExploitationManager.getWSExploitationById(pElement.identifiantChaine)
-                        ExploitationManager.save(tmpObject, pAgent, True)
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetExploitation) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
+                'Case "GetExploitation".ToUpper().Trim() ' Synchro d'un client
+                '    If (m_SynchroBoolean.m_bSynchDescExploitation) Then
+                '        Try
+                '            SetStatus("Réception MAJ Exploitation n°" & pElement.IdentifiantChaine & "...")
+                '            pElement.SynchroDesc(pAgent)
+                '            tmpObject = ExploitationManager.getWSExploitationById(pElement.IdentifiantChaine)
+                '            ExploitationManager.save(tmpObject, pAgent, True)
+                '            bReturn = True
+                '        Catch ex As Exception
+                '            CSDebug.dispFatal("Synchronisation::runDescSynchro(GetExploitation) : " & ex.Message.ToString)
+                '            bReturn = False
+                '        End Try
+                '    End If
+
+                'Case "GetPulverisateur".ToUpper().Trim() ' Synchro d'un Pulverisateur
+                '    If (m_SynchroBoolean.m_bSynchDescPulve) Then
+                '        Dim tmpObject As New Pulverisateur
+                '        Try
+                '            SetStatus("Réception MAJ Pulvérisateur n°" & pElement.IdentifiantChaine & "...")
+                '            tmpObject = PulverisateurManager.getWSPulverisateurById(pAgent, pElement.IdentifiantChaine)
+                '            If tmpObject IsNot Nothing Then
+                '                PulverisateurManager.save(tmpObject, "0", pAgent, True)
+                '            End If
+                '            bReturn = True
+                '        Catch ex As Exception
+                '            CSDebug.dispFatal("Synchronisation::runDescSynchro(GetPulverisateur) : " & ex.Message.ToString)
+                '            bReturn = False
+                '        End Try
+                '    End If
+                ''Case "GetExploitationTOPulverisateur".ToUpper().Trim() ' Synchro d'un Partage de pulvé (ExploitationTOPulverisateur)
+                'If (m_SynchroBoolean.m_bSynchDescPulve) Then
+                '    Dim tmpObject As New ExploitationTOPulverisateur
+                '    Try
+                '        SetStatus("Réception MAJ Partages pulvés...")
+                '        tmpObject = ExploitationTOPulverisateurManager.getWSExploitationTOPulverisateurById(pElement.IdentifiantChaine)
+                '        ExploitationTOPulverisateurManager.save(tmpObject, pAgent, True)
+                '        bReturn = True
+                '    Catch ex As Exception
+                '        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetExploitationTOPulverisateur) : " & ex.Message.ToString)
+                '        bReturn = False
+                '    End Try
+                'End If
 
             Case "GetAgent".ToUpper().Trim() ' Synchro d'un agent
                 If (m_SynchroBoolean.m_bSynchDescAgent) Then
@@ -573,34 +503,6 @@ Public Class SynchronisationElmt
                         bReturn = False
                     End Try
                 End If
-            Case "GetPulverisateur".ToUpper().Trim() ' Synchro d'un Pulverisateur
-                If (m_SynchroBoolean.m_bSynchDescPulve) Then
-                    Dim tmpObject As New Pulverisateur
-                    Try
-                        setStatus("Réception MAJ Pulvérisateur n°" & pElement.identifiantChaine & "...")
-                        tmpObject = PulverisateurManager.getWSPulverisateurById(pAgent, pElement.identifiantChaine)
-                        If tmpObject IsNot Nothing Then
-                            PulverisateurManager.save(tmpObject, "0", pAgent, True)
-                        End If
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetPulverisateur) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
-            Case "GetExploitationTOPulverisateur".ToUpper().Trim() ' Synchro d'un Partage de pulvé (ExploitationTOPulverisateur)
-                If (m_SynchroBoolean.m_bSynchDescPulve) Then
-                    Dim tmpObject As New ExploitationTOPulverisateur
-                    Try
-                        setStatus("Réception MAJ Partages pulvés...")
-                        tmpObject = ExploitationTOPulverisateurManager.getWSExploitationTOPulverisateurById(pElement.identifiantChaine)
-                        ExploitationTOPulverisateurManager.save(tmpObject, pAgent, True)
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetExploitationTOPulverisateur) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
             Case "GetDocument".ToUpper().Trim() ' Récupération d'un fichier pour stockage dans le ModuleDocumentaire
                 'Fait dans la classe SynchronisationElmtDocument
             Case "GetIdentifiantPulverisateur".ToUpper().Trim() ' Synchro d'un Identifint De Pulvérisateur
@@ -610,39 +512,42 @@ Public Class SynchronisationElmt
 
     End Function
 
-    Public Shared Function SynchroAsc(pAgent As Agent) As Boolean
-
-    End Function
-
     ''' <summary>
     ''' Fabrique des elements de Synchronisation
     ''' </summary>
     ''' <param name="pType"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function createSynchronisationElmt(pType As String, pSynchroBooleans As SynchroBooleans) As SynchronisationElmt
+    Public Shared Function CreateSynchronisationElmt(pType As String, pSynchroBooleans As SynchroBooleans) As SynchronisationElmt
         Dim oReturn As SynchronisationElmt
         Select Case pType.ToUpper().Trim()
-            Case SynchroElementDocument.getLabelGet.ToUpper().Trim()
-                oReturn = New SynchroElementDocument(pSynchroBooleans)
+            Case SynchronisationElmtDocument.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtDocument(pSynchroBooleans)
             Case SynchronisationElmtIdentifiantPulverisateur.getLabelGet.ToUpper().Trim()
                 oReturn = New SynchronisationElmtIdentifiantPulverisateur(pSynchroBooleans)
             Case SynchronisationElmtDiag.getLabelGet.ToUpper().Trim()
                 oReturn = New SynchronisationElmtDiag(pSynchroBooleans)
             Case SynchronisationElmtDiagItem.getLabelGet.ToUpper().Trim()
-                oReturn = New SynchronisationElmtDiagItem(pSynchroBooleans)
+                oReturn = Nothing
             Case SynchronisationElmtDiagBuses.getLabelGet.ToUpper().Trim()
-                oReturn = New SynchronisationElmtDiagBuses(pSynchroBooleans)
+                oReturn = Nothing
             Case SynchronisationElmtDiagBusesDetail.getLabelGet.ToUpper().Trim()
-                oReturn = New SynchronisationElmtDiagBusesDetail(pSynchroBooleans)
+                oReturn = Nothing
             Case SynchronisationElmtDiagMano542.getLabelGet.ToUpper().Trim()
-                oReturn = New SynchronisationElmtDiagMano542(pSynchroBooleans)
+                oReturn = Nothing
             Case SynchronisationElmtDiagMano833.getLabelGet.ToUpper().Trim()
-                oReturn = New SynchronisationElmtDiagMano833(pSynchroBooleans)
+                oReturn = Nothing
             Case SynchronisationGetVersionLogicielAgent.getLabelGet.ToUpper().Trim()
                 oReturn = New SynchronisationGetVersionLogicielAgent(pSynchroBooleans)
             Case SynchronisationGetSynchroDateTime.getLabelGet.ToUpper().Trim()
                 oReturn = New SynchronisationGetSynchroDateTime(pSynchroBooleans)
+
+            Case SynchronisationElmtExploitation.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtExploitation(pSynchroBooleans)
+            Case SynchronisationElmtExploitationToPulverisateur.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtExploitationToPulverisateur(pSynchroBooleans)
+            Case SynchronisationElmtPulverisateur.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtPulverisateur(pSynchroBooleans)
 
             Case Else
                 oReturn = New SynchronisationElmt(pType, pSynchroBooleans)

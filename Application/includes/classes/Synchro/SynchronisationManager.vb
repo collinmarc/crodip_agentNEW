@@ -100,11 +100,11 @@ Public Class SynchronisationManager
                 For Each objWSUpdates_item As System.Xml.XmlNode In objWSUpdates_items
                     oSynchro.Fill(objWSUpdates_item.Name(), objWSUpdates_item.InnerText())
                 Next objWSUpdates_item
-            End If
 
-            LogSynchroElmt(oSynchro, "WS.UpdateAvailable")
-            If oSynchro.update Then
-                oLst.Add(oSynchro)
+                LogSynchroElmt(oSynchro, "WS.UpdateAvailable")
+                If oSynchro.update Then
+                    oLst.Add(oSynchro)
+                End If
             End If
         Next objWSUpdates_items
         logger.Trace("</SynchroElmt>")

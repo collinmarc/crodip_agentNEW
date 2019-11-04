@@ -2,7 +2,7 @@ Public Class DiagnosticBusesManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSDiagnosticBusesById(ByVal diag_id As String) As DiagnosticBusesList
+    Public Shared Function getWSDiagnosticBusesByDiagId(ByVal diag_id As String) As DiagnosticBusesList
         Dim objDiagnosticBusesList As New DiagnosticBusesList
         Dim objDiagnosticBuses As New DiagnosticBuses
         Try

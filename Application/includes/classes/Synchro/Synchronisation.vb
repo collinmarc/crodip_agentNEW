@@ -294,34 +294,97 @@ Public Class Synchronisation
                 Next
             End If
             If (m_SynchroBoolean.m_bSynchAscExploitation) Then
+                ' Synchro d'une exploitation
+                Try
+                    Dim arrUpdatesExploitation() As Exploitation = ExploitationManager.getUpdates(m_Agent)
+                    For Each oExploitation As Exploitation In arrUpdatesExploitation
+                        Try
+                            Notice("Exploitation n°" & oExploitation.id)
 
-                ' Synchro d'un exploitant
-                ' On récupère les mises à jours
-                Dim arrUpdatesExploitation() As Exploitation = ExploitationManager.getUpdates(m_Agent)
-                For Each tmpUpdateExploitation As Exploitation In arrUpdatesExploitation
-                    Try
-                        Dim UpdatedObject As New Object
-                        Notice("Exploitation n°" & tmpUpdateExploitation.id)
-                        Dim response As Integer = ExploitationManager.sendWSExploitation(m_Agent, tmpUpdateExploitation, UpdatedObject)
-                        Select Case response
-                            Case -1 ' ERROR
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitation) - Erreur Locale")
-                            Case 0, 2 ' OK
-                                ExploitationManager.setSynchro(tmpUpdateExploitation)
+                            Dim UpdatedObject As New Object
+                            Dim response As Integer = ExploitationManager.sendWSExploitation(m_Agent, oExploitation, UpdatedObject)
+                            Select Case response
+                                Case -1 ' ERROR
+                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitation) - Erreur Locale")
+                                Case 0, 2 ' OK
+                                    ExploitationManager.setSynchro(oExploitation)
+                                    'Ajout de l'exploitation dans la liste des elements Synchronisés 
+                                    Dim oElement As SynchronisationElmt
+                                    oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtExploitation.getLabelGet(), m_SynchroBoolean)
+                                    oElement.IdentifiantChaine = oExploitation.id
+                                    m_ListeElementSynchroASC.Add(oElement)
+
                                 'Case 2 ' SENDPROFILAGENT_UPDATE
                                 '    ExploitationManager.save(ExploitationManager.xml2object(updatedObject), m_Agent, True)
+                                Case 1 ' NOK
+                                    CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSExploitation) - Le web service a répondu : Non-Ok")
+                                Case 9 ' BADREQUEST
+                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitation) - Le web service a répondu : BadRequest")
+                            End Select
+                        Catch ex As Exception
+                            CSDebug.dispFatal("Synchronisation::runAscSynchro(Exploitation) : " & ex.Message.ToString)
+                        End Try
+                    Next
+
+                Catch ex As Exception
+                    CSDebug.dispError("SynchronisationElmtIdentifiantPulverisateur.SynhcroAsc ERR" & ex.Message)
+                End Try
+
+
+            End If
+            If (m_SynchroBoolean.m_bSynchAscPulve) Then
+                ' Synchro d'un Pulverisateur
+                Dim arrUpdatesPulverisateur() As Pulverisateur = PulverisateurManager.getUpdates(m_Agent)
+                For Each oPulverisateur As Pulverisateur In arrUpdatesPulverisateur
+                    Try
+                        Dim UpdatedObject As New Object
+                        Notice("Pulverisateur n°" & oPulverisateur.id)
+                        Dim response As Integer = PulverisateurManager.sendWSPulverisateur(m_Agent, oPulverisateur)
+                        Select Case response
+                            Case -1 ' ERROR
+                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPulverisateur) - Erreur Locale")
+                            Case 0, 2 ' OK
+                                PulverisateurManager.setSynchro(oPulverisateur)
+                                Dim oElement As SynchronisationElmt
+                                oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtPulverisateur.getLabelGet(), m_SynchroBoolean)
+                                oElement.IdentifiantChaine = oPulverisateur.id
+                                m_ListeElementSynchroASC.Add(oElement)
                             Case 1 ' NOK
-                                CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSExploitation) - Le web service a répondu : Non-Ok")
+                                CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPulverisateur) - Le web service a répondu : Non-Ok")
                             Case 9 ' BADREQUEST
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitation) - Le web service a répondu : BadRequest")
+                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPulverisateur) - Le web service a répondu : BadRequest")
                         End Select
                     Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runAscSynchro(Exploitation) : " & ex.Message.ToString)
+                        CSDebug.dispFatal("Synchronisation::runAscSynchro(Pulverisateur) : " & ex.Message.ToString)
                     End Try
                 Next
 
             End If
-            If (m_SynchroBoolean.m_bSynchAscBanc) Then
+            If (m_SynchroBoolean.m_bSynchAscPulve) Then
+                ' Synchro d'un ExploitationTOPulverisateur
+                Dim arrUpdatesExploitationTOPulverisateur() As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getUpdates(m_Agent)
+                For Each oExploitationTOPulverisateur As ExploitationTOPulverisateur In arrUpdatesExploitationTOPulverisateur
+                    Dim UpdatedObject As New Object
+                    Notice("ExploitationToPulverisateur n°" & oExploitationTOPulverisateur.idPulverisateur)
+                    Dim response As Integer = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_Agent, oExploitationTOPulverisateur, UpdatedObject)
+                    Select Case response
+                        Case -1 ' ERROR
+                            CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Erreur Locale")
+                        Case 0, 2 ' OK
+                            ExploitationTOPulverisateurManager.setSynchro(oExploitationTOPulverisateur)
+                            Dim oElement As SynchronisationElmt
+                            oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtExploitationToPulverisateur.getLabelGet(), m_SynchroBoolean)
+                            oElement.IdentifiantChaine = oExploitationTOPulverisateur.id
+                            m_ListeElementSynchroASC.Add(oElement)
+                        Case 1 ' NOK
+                            CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Le web service a répondu : Non-Ok")
+                        Case 9 ' BADREQUEST
+                            CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Le web service a répondu : BadRequest")
+                    End Select
+                Next
+
+
+                If (m_SynchroBoolean.m_bSynchAscBanc) Then
                 ' Synchro d'un ControleBancMesure
                 ' On récupère les mises à jours
                 'Dim arrUpdatesControleBanc() As ControleBanc = ControleBancManager.getUpdates()
@@ -500,54 +563,8 @@ Public Class Synchronisation
                 runascSynchroFVBanc()
 
             End If
-            If (m_SynchroBoolean.m_bSynchAscPulve) Then
-                ' Synchro d'un Pulverisateur
-                Dim arrUpdatesPulverisateur() As Pulverisateur = PulverisateurManager.getUpdates(m_Agent)
-                For Each oPulverisateur As Pulverisateur In arrUpdatesPulverisateur
-                    Try
-                        Dim UpdatedObject As New Object
-                        Notice("Pulverisateur n°" & oPulverisateur.id)
-                        Dim response As Integer = PulverisateurManager.sendWSPulverisateur(m_Agent, oPulverisateur)
-                        Select Case response
-                            Case -1 ' ERROR
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPulverisateur) - Erreur Locale")
-                            Case 0, 2 ' OK
-                                PulverisateurManager.setSynchro(oPulverisateur)
-                                'Case 2 ' SENDPROFILAGENT_UPDATE
-                                'PulverisateurManager.save(PulverisateurManager.xml2object(updatedObject), "0", m_Agent, True)
-                            Case 1 ' NOK
-                                CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPulverisateur) - Le web service a répondu : Non-Ok")
-                            Case 9 ' BADREQUEST
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPulverisateur) - Le web service a répondu : BadRequest")
-                        End Select
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runAscSynchro(Pulverisateur) : " & ex.Message.ToString)
-                    End Try
-                Next
 
-            End If
-            If (m_SynchroBoolean.m_bSynchAscPulve) Then
-                ' Synchro d'un ExploitationTOPulverisateur
-                Dim arrUpdatesExploitationTOPulverisateur() As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getUpdates(m_Agent)
-                For Each oExploitationTOPulverisateur As ExploitationTOPulverisateur In arrUpdatesExploitationTOPulverisateur
-                    Dim UpdatedObject As New Object
-                    Notice("ExploitationToPulverisateur n°" & oExploitationTOPulverisateur.idPulverisateur)
-                    Dim response As Integer = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_Agent, oExploitationTOPulverisateur, UpdatedObject)
-                    Select Case response
-                        Case -1 ' ERROR
-                            CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Erreur Locale")
-                        Case 0, 2 ' OK
-                            ExploitationTOPulverisateurManager.setSynchro(oExploitationTOPulverisateur)
-                            'Case 2 ' SENDPROFILAGENT_UPDATE
-                            'ExploitationTOPulverisateurManager.save(ExploitationTOPulverisateurManager.xml2object(updatedObject), m_Agent, True)
-                        Case 1 ' NOK
-                            CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Le web service a répondu : Non-Ok")
-                        Case 9 ' BADREQUEST
-                            CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Le web service a répondu : BadRequest")
-                    End Select
-                Next
-
-            End If
+        End If
             If (m_SynchroBoolean.m_bSynchAscPulve) Then
                 Notice("IdentifiantsPulverisateurs ")
                 Dim bReturn As Boolean = SynchronisationElmtIdentifiantPulverisateur.SynchroAsc(m_Agent)
@@ -892,8 +909,9 @@ Public Class Synchronisation
 
             'et on les fusionne dans la liste Globale
             For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
-                Dim n As Integer = (From o In lstElementsASynchroniserTotal
-                                    Select o.type = oelmt.type And o.identifiantChaine = oelmt.identifiantChaine And o.identifiantEntier = oelmt.identifiantEntier) _
+                Dim n As Integer = (From o In lstElementsASynchronisertotal
+                                    Where o.type = oelmt.type And o.identifiantChaine = oelmt.identifiantChaine And o.identifiantEntier = oelmt.identifiantEntier
+                                    Select o) _
                                         .Count()
                 If n = 0 Then
                     lstElementsASynchroniserTotal.Add(oelmt)
@@ -931,7 +949,8 @@ Public Class Synchronisation
                     'et on les fusionne dans la liste Globale
                     For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
                         Dim n As Integer = (From o In lstElementsASynchroniserTotal
-                                            Select o.type = oelmt.type And o.identifiantChaine = oelmt.identifiantChaine And o.identifiantEntier = oelmt.identifiantEntier) _
+                                            Where o.type = oelmt.type And o.identifiantChaine = oelmt.identifiantChaine And o.identifiantEntier = oelmt.identifiantEntier
+                                            Select o) _
                                             .Count()
                         If n = 0 Then
                             lstElementsASynchroniserTotal.Add(oelmt)
