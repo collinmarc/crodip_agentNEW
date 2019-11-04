@@ -101,6 +101,11 @@ Public Class CRODIPTest
             m_oBanc.idStructure = m_idStructure
             BancManager.save(m_oBanc)
         End If
+
+        Dim oSynchro As New Synchronisation(m_oAgent)
+
+        oSynchro.MAJDateDerniereSynchro()
+
     End Sub
     '
     'Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté

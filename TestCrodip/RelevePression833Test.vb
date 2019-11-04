@@ -132,15 +132,15 @@ Public Class RelevePression833Test
         Dim olst As List(Of CRODIP_ControlLibrary.ParamDiag)
         olst = CRODIP_ControlLibrary.ParamDiag.readXML()
         Dim oParam833 As CRODIP_ControlLibrary.ParamDiagCalc833
-        oParam833 = olst(0).ParamDiagCalc833
+        oParam833 = olst(0).ParamDiagCalc833 ' Culture basse
 
         '1 Niveau , 4 Tronçons, 3.0 de pression
         oPression = New RelevePression833(1, 4, 3D, oParam833)
 
-        oPression.colNiveaux(0).colTroncons(0).SetPressionLue(2.7D)
-        oPression.colNiveaux(0).colTroncons(1).SetPressionLue(2.7D)
-        oPression.colNiveaux(0).colTroncons(2).SetPressionLue(2.7D)
-        oPression.colNiveaux(0).colTroncons(3).SetPressionLue(2.7D)
+        oPression.colNiveaux(0).colTroncons(0).SetPressionLue(2.6D)
+        oPression.colNiveaux(0).colTroncons(1).SetPressionLue(2.6D)
+        oPression.colNiveaux(0).colTroncons(2).SetPressionLue(2.6D)
+        oPression.colNiveaux(0).colTroncons(3).SetPressionLue(2.6D)
         oPression.calcDefauts()
 
         Assert.IsTrue(oPression.Result_isDefautEcart)
@@ -149,35 +149,35 @@ Public Class RelevePression833Test
 
         '1 Niveau , 4 Tronçons, 5.0 de pression
         oPression = New RelevePression833(1, 5, 5D, oParam833)
-        oPression.colNiveaux(0).colTroncons(0).SetPressionLue(4.7D)
+        oPression.colNiveaux(0).colTroncons(0).SetPressionLue(4D)
         oPression.colNiveaux(0).colTroncons(1).SetPressionLue(4.75D)
         oPression.colNiveaux(0).colTroncons(2).SetPressionLue(4.8D)
         oPression.colNiveaux(0).colTroncons(3).SetPressionLue(4.15D)
         oPression.colNiveaux(0).colTroncons(4).SetPressionLue(4.2D)
         oPression.calcDefauts()
 
-        Assert.AreEqual(CDec(0.48), oPression.colNiveaux(0).EcartMoyenneTousTroncons)
-        Assert.AreEqual(CDec(10.62), oPression.colNiveaux(0).EcartMoyenneTousTroncons_pct)
-        Assert.AreEqual(CDec(4.52), oPression.colNiveaux(0).MoyenneTousTroncons)
+        Assert.AreEqual(CDec(0.62), oPression.colNiveaux(0).EcartMoyenneTousTroncons)
+        Assert.AreEqual(CDec(14.16), oPression.colNiveaux(0).EcartMoyenneTousTroncons_pct)
+        Assert.AreEqual(CDec(4.38), oPression.colNiveaux(0).MoyenneTousTroncons)
 
         Assert.IsTrue(oPression.Result_isDefautEcart)
         Assert.IsTrue(oPression.Result_isDefautHeterogeneite)
 
         '1 Niveau , 4 Tronçons, 5.0 de pression
         oPression = New RelevePression833(1, 5, 5D, oParam833)
-        oPression.colNiveaux(0).colTroncons(0).SetPressionLue(4.7D)
+        oPression.colNiveaux(0).colTroncons(0).SetPressionLue(4D)
         oPression.colNiveaux(0).colTroncons(1).SetPressionLue(4.75D)
         oPression.colNiveaux(0).colTroncons(2).SetPressionLue(4.8D)
         oPression.colNiveaux(0).colTroncons(3).SetPressionLue(4.2D)
         oPression.colNiveaux(0).colTroncons(4).SetPressionLue(4.2D)
         oPression.calcDefauts()
 
-        Assert.AreEqual(CDec(0.47), oPression.colNiveaux(0).EcartMoyenneTousTroncons)
-        Assert.AreEqual(CDec(10.38), oPression.colNiveaux(0).EcartMoyenneTousTroncons_pct)
-        Assert.AreEqual(CDec(4.53), oPression.colNiveaux(0).MoyenneTousTroncons)
+        Assert.AreEqual(CDec(0.61), oPression.colNiveaux(0).EcartMoyenneTousTroncons)
+        Assert.AreEqual(CDec(13.9), oPression.colNiveaux(0).EcartMoyenneTousTroncons_pct)
+        Assert.AreEqual(CDec(4.39), oPression.colNiveaux(0).MoyenneTousTroncons)
 
         Assert.IsTrue(oPression.Result_isDefautEcart)
-        Assert.IsFalse(oPression.Result_isDefautHeterogeneite)
+        Assert.IsTrue(oPression.Result_isDefautHeterogeneite)
 
     End Sub
 

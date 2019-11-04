@@ -380,8 +380,8 @@ Public Class SynchronisationTest
         'Pour éviter de recevoir trop d'information
         osync = New Synchronisation(oAgent2)
         osync.MAJDateDerniereSynchro()
-        osync = New Synchronisation(oAgent1)
-        osync.MAJDateDerniereSynchro()
+        oAgent1 = AgentManager.getAgentById(oAgent1.id)
+        oAgent2 = AgentManager.getAgentById(oAgent2.id)
 
 
         'on crée une exploit, un pulve , un diag avec l'agent2
@@ -406,7 +406,7 @@ Public Class SynchronisationTest
         oList = osync.getListeElementsASynchroniserDESC()
         Console.WriteLine("===Agent1 = ELEMT à SynchroniserDESC (" & oList.Count & ")")
         For Each oElmt As SynchronisationElmt In oList
-            Console.WriteLine(oElmt.type & ":" & oElmt.identifiantChaine)
+            Console.WriteLine(oElmt.Type & ":" & oElmt.IdentifiantChaine)
         Next
         osync.runDescSynchro()
 
@@ -418,7 +418,7 @@ Public Class SynchronisationTest
 
         Console.WriteLine("===Agent2 = ELEMT à SynchroniserDESC (" & oList.Count & ")")
         For Each oElmt As SynchronisationElmt In oList
-            Console.WriteLine(oElmt.type & ":" & oElmt.identifiantChaine)
+            Console.WriteLine(oElmt.Type & ":" & oElmt.IdentifiantChaine)
         Next
 
         Assert.AreEqual(0, oList.Count)

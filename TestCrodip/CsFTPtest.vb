@@ -5,7 +5,7 @@ Imports System.Net
 <TestClass()> Public Class CsFTPTest
     Inherits CRODIPTest
 
-    <TestMethod()> Public Sub UpLoad()
+    <TestMethod(), Ignore()> Public Sub UpLoad()
 
         'Creation d'un fichier
         If System.IO.File.Exists("./a.tst") Then

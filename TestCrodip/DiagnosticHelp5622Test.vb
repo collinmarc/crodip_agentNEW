@@ -158,10 +158,14 @@ Public Class DiagnosticHelp5622test
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
         Dim idDiag As String
+        Dim oSynchro As New Synchronisation(m_oAgent)
+
+        oSynchro.MAJDateDerniereSynchro()
 
         'Annullation dela synchro de tous les anciens Diags
         Dim oCSDB As New CSDb(True)
         oCSDB.Execute("UPDATE DIAGNOSTIC SET dateModificationAgent = dateModificationCrodip")
+
         'Creation d'un Diagnostic
         '============================
         oDiag = New Diagnostic()
@@ -230,7 +234,6 @@ Public Class DiagnosticHelp5622test
         '========================
         Dim oDiags As Diagnostic() = DiagnosticManager.getUpdates(m_oAgent)
         Assert.AreEqual(1, oDiags.Length)
-        Dim oSynchro As New Synchronisation(m_oAgent)
         For Each oDiag In oDiags
             Assert.IsTrue(oSynchro.runascSynchroDiag(m_oAgent, oDiag))
         Next
