@@ -37,7 +37,7 @@
           <!-- Ecart en % comprise entre 5 et 10  => Imprecision = FAIBLE -->
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="5" Maxi="10" Imprecision="1" />
           <!-- Ecart en % > 10%  => Imprecision = FORTE -->
-          <ECART TypeValeur="%_PRESSION_REELLE" Mini="10.001" Maxi="100" Imprecision="2" />
+          <ECART TypeValeur="%_PRESSION_REELLE" Mini="10.001" Maxi="1000" Imprecision="2" />
         </PLAGEPRESSION>
       </TYPEECART>
     </ParamDiagCalc542>

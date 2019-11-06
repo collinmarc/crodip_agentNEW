@@ -134,7 +134,7 @@
         End Try
         Return bReturn
     End Function
-    Protected Overrides Function validerLeNumeroNational(pNumNational As String) As ajout_pulve2.ValiderNumeroNationalResult
+    Protected Overrides Function validerLeNumeroNational() As ajout_pulve2.ValiderNumeroNationalResult
         Return ValiderNumeroNationalResult.OK
     End Function
 

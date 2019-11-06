@@ -2,6 +2,10 @@ TRUNK
 
 Build : 
 ----------------------
+0001049: Version simplifiée du logiciel Agent : notes1&2
+
+Build : 20191104140000
+----------------------
 0001118: Passage en mode simplifié impossible
 0001119: Modification du nb de tronçons => Validation de l'onglet
 

@@ -88,6 +88,7 @@ Public Class DiagnosticMano542List
         Dim bPressionControleSaisie As Boolean = True
         'Vérification que la Pression de controle est saisi sur chaque mano
         For Each oMano542 As DiagnosticMano542 In _diagnosticMano542
+            oMano542.Erreur = Crodip_agent.DiagnosticMano542.ERR542.NONCALC
             If String.IsNullOrEmpty(oMano542.pressionControle) Then
                 bPressionControleSaisie = False
             End If
@@ -130,7 +131,6 @@ Public Class DiagnosticMano542List
 
         'Pour Chaque Mano
         For Each oMano542 As DiagnosticMano542 In _diagnosticMano542
-            'Par Défaut l'imprecission est OK
             oMano542.Erreur = Crodip_agent.DiagnosticMano542.ERR542.OK
             'Parcours des plages de pression du type d'écart (Variable ou constant)
             For Each oPlagePression As CRODIP_ControlLibrary.ParamDiagCalc542PlagePression In TypeEcart.colPression
@@ -215,6 +215,7 @@ End Class
 <Serializable()> _
 Public Class DiagnosticMano542
     Public Enum ERR542 As Integer
+        NONCALC = -1
         OK = 0
         FAIBLE = 1
         FORTE = 2
@@ -407,6 +408,11 @@ Public Class DiagnosticMano542
             Else
                 If pressionControled <> 0 Then
                     EcartPct = Math.Round((Math.Abs(Ecart) / pressionControled) * 100, 2) 'Pourcentage
+                    If EcartPct > 100 Then
+                        EcartPct = 100
+                    End If
+                Else
+                    EcartPct = 100
                 End If
             End If
         End If
@@ -460,6 +466,8 @@ Public Class DiagnosticMano542
                 strReturn = "FORTE"
             Case ERR542.OK
                 strReturn = "OK"
+            Case ERR542.NONCALC
+                strReturn = ""
         End Select
         Return strReturn
     End Function

@@ -38,7 +38,7 @@ Public Class accueil
     Friend WithEvents btn_proprietaire_exportCsv As System.Windows.Forms.Label
     Friend WithEvents btn_proprietaire_derniersControles As System.Windows.Forms.Label
     Friend WithEvents btn_rechercher_exploitant As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents pct_LogoControle As System.Windows.Forms.PictureBox
     Friend WithEvents title_alertes As System.Windows.Forms.Label
     Friend WithEvents list_search_fieldSearch As System.Windows.Forms.ComboBox
     Friend WithEvents client_search_query As System.Windows.Forms.TextBox
@@ -114,7 +114,7 @@ Public Class accueil
     Friend WithEvents tabControl_outilscomp As System.Windows.Forms.TabPage
     Friend WithEvents tabControl_parametrage As System.Windows.Forms.TabPage
     Friend WithEvents tabAccueil_mesinfos As System.Windows.Forms.Panel
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents pctLogo As System.Windows.Forms.PictureBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
@@ -131,8 +131,8 @@ Public Class accueil
     Friend WithEvents ColumnHeader6 As System.Windows.Forms.ColumnHeader
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
-    Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
+    Friend WithEvents pctLogoParametrage As System.Windows.Forms.PictureBox
+    Friend WithEvents pctLogoSynchro As System.Windows.Forms.PictureBox
     Friend WithEvents title_mesInfos As System.Windows.Forms.Label
     Friend WithEvents title_mesAlertes As System.Windows.Forms.Label
     Friend WithEvents title_listSynchro As System.Windows.Forms.Label
@@ -166,7 +166,7 @@ Public Class accueil
     Friend WithEvents ColumnHeader13 As System.Windows.Forms.ColumnHeader
     Friend WithEvents ColumnHeader14 As System.Windows.Forms.ColumnHeader
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents PictureBox5 As System.Windows.Forms.PictureBox
+    Friend WithEvents pctLogoOutilComp As System.Windows.Forms.PictureBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents lblModuledocumentaire As System.Windows.Forms.Label
     Friend WithEvents synchroSens As System.Windows.Forms.ColumnHeader
@@ -245,7 +245,7 @@ Public Class accueil
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents PictureBox9 As System.Windows.Forms.PictureBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents PictureBox8 As System.Windows.Forms.PictureBox
+    Friend WithEvents pctLogoStat As System.Windows.Forms.PictureBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents bsStatistiques As System.Windows.Forms.BindingSource
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
@@ -333,7 +333,7 @@ Public Class accueil
         Me.tabAccueil_mesinfos = New System.Windows.Forms.Panel()
         Me.lbl_infosAgent_dateLastUse = New System.Windows.Forms.Label()
         Me.lbl_infosAgent_IdCrodip = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.pctLogo = New System.Windows.Forms.PictureBox()
         Me.lbl_mesInfos_dateDernièreConnexion = New System.Windows.Forms.Label()
         Me.lbl_mesInfos_dateDerniereUtilisation = New System.Windows.Forms.Label()
         Me.lbl_mesInfos_prenom = New System.Windows.Forms.Label()
@@ -364,7 +364,7 @@ Public Class accueil
         Me.btn_refresh_lst_clients = New System.Windows.Forms.PictureBox()
         Me.btn_proprietaire_exportCsv = New System.Windows.Forms.Label()
         Me.btn_rechercher_exploitant = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.pct_LogoControle = New System.Windows.Forms.PictureBox()
         Me.title_alertes = New System.Windows.Forms.Label()
         Me.list_search_fieldSearch = New System.Windows.Forms.ComboBox()
         Me.client_search_query = New System.Windows.Forms.TextBox()
@@ -435,7 +435,7 @@ Public Class accueil
         Me.Label13 = New System.Windows.Forms.Label()
         Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.pctLogoSynchro = New System.Windows.Forms.PictureBox()
         Me.title_listSynchro = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.tabControl_outilscomp = New System.Windows.Forms.TabPage()
@@ -449,7 +449,7 @@ Public Class accueil
         Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.btn_imprimerDoc = New System.Windows.Forms.Label()
         Me.btn_outilsComplementaires_calcVolumeHectare = New System.Windows.Forms.Label()
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
+        Me.pctLogoOutilComp = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.lblModuledocumentaire = New System.Windows.Forms.Label()
         Me.btn_outilsComplementaires_calcDebitBuses = New System.Windows.Forms.Label()
@@ -459,7 +459,7 @@ Public Class accueil
         Me.lblMaterielsSupprimes = New System.Windows.Forms.Label()
         Me.btn_parametrage_facturation = New System.Windows.Forms.Label()
         Me.lblParametresOrganisme = New System.Windows.Forms.Label()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.pctLogoParametrage = New System.Windows.Forms.PictureBox()
         Me.title_parametrage = New System.Windows.Forms.Label()
         Me.lblParametrageAppareilsMesures = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -513,7 +513,7 @@ Public Class accueil
         Me.TextBox24 = New System.Windows.Forms.TextBox()
         Me.laNomStructure2 = New System.Windows.Forms.Label()
         Me.laNomAgent2 = New System.Windows.Forms.Label()
-        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
+        Me.pctLogoStat = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
@@ -524,14 +524,14 @@ Public Class accueil
         CType(Me.picsRefresh, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.accueil_panelAlertes.SuspendLayout()
         Me.tabAccueil_mesinfos.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_clientele.SuspendLayout()
         Me.panel_ListeDesControles.SuspendLayout()
         Me.panel_clientele_LstCtrlCtriteres.SuspendLayout()
         Me.pnl_SearchDates.SuspendLayout()
         CType(Me.btn_refresh_lst_clients, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btn_rechercher_exploitant, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pct_LogoControle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_clientele_ficheClient.SuspendLayout()
         Me.grp_ficheClient_ListePulve.SuspendLayout()
         CType(Me.dgvPulveExploit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -548,7 +548,7 @@ Public Class accueil
         Me.SplitContainer2.SuspendLayout()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pctLogoSynchro, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_outilscomp.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.pctbx_Docs_refresh, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -556,17 +556,17 @@ Public Class accueil
         Me.SplitContainer_ModuleDocumentaire.Panel1.SuspendLayout()
         Me.SplitContainer_ModuleDocumentaire.Panel2.SuspendLayout()
         Me.SplitContainer_ModuleDocumentaire.SuspendLayout()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pctLogoOutilComp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_parametrage.SuspendLayout()
         Me.Panel5.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pctLogoParametrage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_Statistiques.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.bsStatistiques, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pctLogoStat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ImageList_synchro
@@ -940,7 +940,7 @@ Public Class accueil
         Me.tabAccueil_mesinfos.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_dateLastUse)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_IdCrodip)
-        Me.tabAccueil_mesinfos.Controls.Add(Me.PictureBox1)
+        Me.tabAccueil_mesinfos.Controls.Add(Me.pctLogo)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_mesInfos_dateDernièreConnexion)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_mesInfos_dateDerniereUtilisation)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_mesInfos_prenom)
@@ -969,14 +969,15 @@ Public Class accueil
         Me.lbl_infosAgent_IdCrodip.Size = New System.Drawing.Size(176, 16)
         Me.lbl_infosAgent_IdCrodip.TabIndex = 7
         '
-        'PictureBox1
+        'pctLogo
         '
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(896, 24)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(76, 84)
-        Me.PictureBox1.TabIndex = 6
-        Me.PictureBox1.TabStop = False
+        Me.pctLogo.Image = CType(resources.GetObject("pctLogo.Image"), System.Drawing.Image)
+        Me.pctLogo.Location = New System.Drawing.Point(896, 24)
+        Me.pctLogo.Name = "pctLogo"
+        Me.pctLogo.Size = New System.Drawing.Size(76, 84)
+        Me.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pctLogo.TabIndex = 6
+        Me.pctLogo.TabStop = False
         '
         'lbl_mesInfos_dateDernièreConnexion
         '
@@ -1153,7 +1154,7 @@ Public Class accueil
         Me.panel_clientele_LstCtrlCtriteres.Controls.Add(Me.btn_refresh_lst_clients)
         Me.panel_clientele_LstCtrlCtriteres.Controls.Add(Me.btn_proprietaire_exportCsv)
         Me.panel_clientele_LstCtrlCtriteres.Controls.Add(Me.btn_rechercher_exploitant)
-        Me.panel_clientele_LstCtrlCtriteres.Controls.Add(Me.PictureBox2)
+        Me.panel_clientele_LstCtrlCtriteres.Controls.Add(Me.pct_LogoControle)
         Me.panel_clientele_LstCtrlCtriteres.Controls.Add(Me.title_alertes)
         Me.panel_clientele_LstCtrlCtriteres.Controls.Add(Me.list_search_fieldSearch)
         Me.panel_clientele_LstCtrlCtriteres.Controls.Add(Me.client_search_query)
@@ -1255,14 +1256,15 @@ Public Class accueil
         Me.btn_rechercher_exploitant.TabIndex = 21
         Me.btn_rechercher_exploitant.TabStop = False
         '
-        'PictureBox2
+        'pct_LogoControle
         '
-        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(912, 8)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(76, 84)
-        Me.PictureBox2.TabIndex = 6
-        Me.PictureBox2.TabStop = False
+        Me.pct_LogoControle.Image = CType(resources.GetObject("pct_LogoControle.Image"), System.Drawing.Image)
+        Me.pct_LogoControle.Location = New System.Drawing.Point(912, 8)
+        Me.pct_LogoControle.Name = "pct_LogoControle"
+        Me.pct_LogoControle.Size = New System.Drawing.Size(76, 84)
+        Me.pct_LogoControle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pct_LogoControle.TabIndex = 6
+        Me.pct_LogoControle.TabStop = False
         '
         'title_alertes
         '
@@ -1886,7 +1888,7 @@ Public Class accueil
         Me.Panel4.Controls.Add(Me.Label13)
         Me.Panel4.Controls.Add(Me.PictureBox7)
         Me.Panel4.Controls.Add(Me.PictureBox6)
-        Me.Panel4.Controls.Add(Me.PictureBox4)
+        Me.Panel4.Controls.Add(Me.pctLogoSynchro)
         Me.Panel4.Controls.Add(Me.title_listSynchro)
         Me.Panel4.Controls.Add(Me.Label14)
         Me.Panel4.Location = New System.Drawing.Point(0, 0)
@@ -2030,14 +2032,15 @@ Public Class accueil
         Me.PictureBox6.TabIndex = 12
         Me.PictureBox6.TabStop = False
         '
-        'PictureBox4
+        'pctLogoSynchro
         '
-        Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
-        Me.PictureBox4.Location = New System.Drawing.Point(912, 8)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(76, 84)
-        Me.PictureBox4.TabIndex = 10
-        Me.PictureBox4.TabStop = False
+        Me.pctLogoSynchro.Image = CType(resources.GetObject("pctLogoSynchro.Image"), System.Drawing.Image)
+        Me.pctLogoSynchro.Location = New System.Drawing.Point(912, 8)
+        Me.pctLogoSynchro.Name = "pctLogoSynchro"
+        Me.pctLogoSynchro.Size = New System.Drawing.Size(76, 84)
+        Me.pctLogoSynchro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pctLogoSynchro.TabIndex = 10
+        Me.pctLogoSynchro.TabStop = False
         '
         'title_listSynchro
         '
@@ -2085,7 +2088,7 @@ Public Class accueil
         Me.Panel2.Controls.Add(Me.SplitContainer_ModuleDocumentaire)
         Me.Panel2.Controls.Add(Me.btn_imprimerDoc)
         Me.Panel2.Controls.Add(Me.btn_outilsComplementaires_calcVolumeHectare)
-        Me.Panel2.Controls.Add(Me.PictureBox5)
+        Me.Panel2.Controls.Add(Me.pctLogoOutilComp)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.lblModuledocumentaire)
         Me.Panel2.Controls.Add(Me.btn_outilsComplementaires_calcDebitBuses)
@@ -2201,14 +2204,15 @@ Public Class accueil
         Me.btn_outilsComplementaires_calcVolumeHectare.Text = "        Calcul du « volume-hectare »"
         Me.btn_outilsComplementaires_calcVolumeHectare.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'PictureBox5
+        'pctLogoOutilComp
         '
-        Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
-        Me.PictureBox5.Location = New System.Drawing.Point(896, 24)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(76, 84)
-        Me.PictureBox5.TabIndex = 6
-        Me.PictureBox5.TabStop = False
+        Me.pctLogoOutilComp.Image = CType(resources.GetObject("pctLogoOutilComp.Image"), System.Drawing.Image)
+        Me.pctLogoOutilComp.Location = New System.Drawing.Point(896, 24)
+        Me.pctLogoOutilComp.Name = "pctLogoOutilComp"
+        Me.pctLogoOutilComp.Size = New System.Drawing.Size(76, 84)
+        Me.pctLogoOutilComp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pctLogoOutilComp.TabIndex = 6
+        Me.pctLogoOutilComp.TabStop = False
         '
         'Label2
         '
@@ -2267,7 +2271,7 @@ Public Class accueil
         Me.Panel5.Controls.Add(Me.lblMaterielsSupprimes)
         Me.Panel5.Controls.Add(Me.btn_parametrage_facturation)
         Me.Panel5.Controls.Add(Me.lblParametresOrganisme)
-        Me.Panel5.Controls.Add(Me.PictureBox3)
+        Me.Panel5.Controls.Add(Me.pctLogoParametrage)
         Me.Panel5.Controls.Add(Me.title_parametrage)
         Me.Panel5.Controls.Add(Me.lblParametrageAppareilsMesures)
         Me.Panel5.Controls.Add(Me.Label18)
@@ -2338,14 +2342,15 @@ Public Class accueil
         Me.lblParametresOrganisme.TabIndex = 10
         Me.lblParametresOrganisme.Text = "       Paramètres de l’organisme"
         '
-        'PictureBox3
+        'pctLogoParametrage
         '
-        Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
-        Me.PictureBox3.Location = New System.Drawing.Point(896, 24)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(76, 84)
-        Me.PictureBox3.TabIndex = 6
-        Me.PictureBox3.TabStop = False
+        Me.pctLogoParametrage.Image = CType(resources.GetObject("pctLogoParametrage.Image"), System.Drawing.Image)
+        Me.pctLogoParametrage.Location = New System.Drawing.Point(896, 24)
+        Me.pctLogoParametrage.Name = "pctLogoParametrage"
+        Me.pctLogoParametrage.Size = New System.Drawing.Size(76, 84)
+        Me.pctLogoParametrage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pctLogoParametrage.TabIndex = 6
+        Me.pctLogoParametrage.TabStop = False
         '
         'title_parametrage
         '
@@ -2507,7 +2512,7 @@ Public Class accueil
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Panel1.Controls.Add(Me.TableLayoutPanel2)
         Me.Panel1.Controls.Add(Me.TableLayoutPanel1)
-        Me.Panel1.Controls.Add(Me.PictureBox8)
+        Me.Panel1.Controls.Add(Me.pctLogoStat)
         Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.Panel1.Location = New System.Drawing.Point(0, -1)
@@ -3031,14 +3036,15 @@ Public Class accueil
         Me.laNomAgent2.Text = "inspecteur"
         Me.laNomAgent2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'PictureBox8
+        'pctLogoStat
         '
-        Me.PictureBox8.Image = CType(resources.GetObject("PictureBox8.Image"), System.Drawing.Image)
-        Me.PictureBox8.Location = New System.Drawing.Point(896, 24)
-        Me.PictureBox8.Name = "PictureBox8"
-        Me.PictureBox8.Size = New System.Drawing.Size(76, 84)
-        Me.PictureBox8.TabIndex = 6
-        Me.PictureBox8.TabStop = False
+        Me.pctLogoStat.Image = CType(resources.GetObject("pctLogoStat.Image"), System.Drawing.Image)
+        Me.pctLogoStat.Location = New System.Drawing.Point(896, 24)
+        Me.pctLogoStat.Name = "pctLogoStat"
+        Me.pctLogoStat.Size = New System.Drawing.Size(76, 84)
+        Me.pctLogoStat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pctLogoStat.TabIndex = 6
+        Me.pctLogoStat.TabStop = False
         '
         'Label7
         '
@@ -3076,7 +3082,7 @@ Public Class accueil
         CType(Me.picsRefresh, System.ComponentModel.ISupportInitialize).EndInit()
         Me.accueil_panelAlertes.ResumeLayout(False)
         Me.tabAccueil_mesinfos.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_clientele.ResumeLayout(False)
         Me.panel_ListeDesControles.ResumeLayout(False)
         Me.panel_clientele_LstCtrlCtriteres.ResumeLayout(False)
@@ -3085,7 +3091,7 @@ Public Class accueil
         Me.pnl_SearchDates.PerformLayout()
         CType(Me.btn_refresh_lst_clients, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btn_rechercher_exploitant, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pct_LogoControle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panel_clientele_ficheClient.ResumeLayout(False)
         Me.grp_ficheClient_ListePulve.ResumeLayout(False)
         CType(Me.dgvPulveExploit, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3102,7 +3108,7 @@ Public Class accueil
         Me.SplitContainer2.ResumeLayout(False)
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pctLogoSynchro, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_outilscomp.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         CType(Me.pctbx_Docs_refresh, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3110,10 +3116,10 @@ Public Class accueil
         Me.SplitContainer_ModuleDocumentaire.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer_ModuleDocumentaire, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer_ModuleDocumentaire.ResumeLayout(False)
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pctLogoOutilComp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_parametrage.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pctLogoParametrage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_Statistiques.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
@@ -3122,7 +3128,7 @@ Public Class accueil
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         CType(Me.bsStatistiques, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pctLogoStat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3276,11 +3282,27 @@ Public Class accueil
         btn_parametrage_facturation.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
         lblParametresOrganisme.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
         lblIdentifiantPulve.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        lblParametrageAppareilsMesures.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        '        lblParametrageAppareilsMesures.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
         'btn_parametrage_parametrageManometre.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
         'btn_parametrage_parametrageBuses.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
         'btn_parametrage_parametrageBancs.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
         'lblMaterielsSupprimes.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            pctLogo.Image = Crodip_agent.Resources.logoCRODIPIMG
+            pct_LogoControle.Image = Crodip_agent.Resources.logoCRODIPIMG
+            pctLogoOutilComp.Image = Crodip_agent.Resources.logoCRODIPIMG
+            pctLogoParametrage.Image = Crodip_agent.Resources.logoCRODIPIMG
+            pctLogoStat.Image = Crodip_agent.Resources.logoCRODIPIMG
+            pctLogoSynchro.Image = Crodip_agent.Resources.logoCRODIPIMG
+
+        Else
+            pctLogo.Image = Crodip_agent.Resources.logo_crodipIndigo
+            pct_LogoControle.Image = Crodip_agent.Resources.logo_crodipIndigo
+            pctLogoOutilComp.Image = Crodip_agent.Resources.logo_crodipIndigo
+            pctLogoParametrage.Image = Crodip_agent.Resources.logo_crodipIndigo
+            pctLogoStat.Image = Crodip_agent.Resources.logo_crodipIndigo
+            pctLogoSynchro.Image = Crodip_agent.Resources.logo_crodipIndigo
+        End If
 
         m_bDuringLoad = False
         Statusbar.display("Bienvenu(e) sur le logiciel Crodip Agent v" & Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD, False)
@@ -3830,17 +3852,17 @@ Public Class accueil
         Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
         Dim tmpDateLastSynchro As Date
         Try
-                tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
-            Catch ex As Exception
-                tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
-            End Try
-            Dim tmpCompareResponse As Integer = tmpDateLastSynchro.CompareTo(DateAdd(DateInterval.DayOfYear, -10, Now))
-            If tmpCompareResponse < 1 Then
-                Dim sText As String
+            tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+        Catch ex As Exception
+            tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+        End Try
+        Dim tmpCompareResponse As Integer = tmpDateLastSynchro.CompareTo(DateAdd(DateInterval.DayOfYear, -10, Now))
+        If tmpCompareResponse < 1 Then
+            Dim sText As String
             sText = "Vous devez connecter le logiciel à Internet pour effectuer une synchronisation des données."
             AjouteUneAlerte(Globals.ALERTE.ORANGE, "alerte synhcro", sText, positionTopAlertes)
 
-            End If
+        End If
 
     End Sub
     Private Sub AjouteUneAlerte(ByVal TypeAlerte As Globals.ALERTE, ByVal pName As String, ByVal ptext As String, ByRef positionTopAlertes As Integer)
@@ -5413,7 +5435,7 @@ Public Class accueil
         afficheSynchroCourante(pMsg)
     End Sub
 
-    Private Sub PictureBox4_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox4.MouseClick
+    Private Sub PictureBox4_MouseClick(sender As Object, e As MouseEventArgs) Handles pctLogoSynchro.MouseClick
         MajDateDernSynhcroagent()
     End Sub
 
@@ -5432,6 +5454,10 @@ Public Class accueil
     Private Sub btnParamModeSimplifie_Click(sender As Object, e As EventArgs) Handles btnParamModeSimplifie.Click
         Dim frm As New tool_ParamModeSimplifie
         frm.ShowDialog()
+
+    End Sub
+
+    Private Sub accueil_MarginChanged(sender As Object, e As EventArgs) Handles Me.MarginChanged
 
     End Sub
 End Class

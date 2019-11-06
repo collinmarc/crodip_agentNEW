@@ -101,6 +101,8 @@ Public Class RelevePression833Troncon
             '            EcartPressionpct = Math.Round((EcartPression * 100) / PressionMano, 2)
             If PressionLue <> 0 Then
                 EcartPressionpct = Math.Round((EcartPression * 100) / PressionLue, 2)
+            Else
+                EcartPressionpct = 100
             End If
             bReturn = True
         Catch ex As Exception

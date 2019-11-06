@@ -170,7 +170,7 @@ Public Class RelevePression833
                 dPression = dPression / n
 
                 If dPression = 0 Then
-                    dReturn = 0
+                    dReturn = 100
                 Else
                     dReturn = Math.Round(((PressionMano - dPression) / dPression) * 100, 2)
                 End If

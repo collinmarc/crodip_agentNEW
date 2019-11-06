@@ -1224,6 +1224,7 @@ Public Class Pulverisateur
         NUMEROPASLEPREMIER = 2
         NUMEROPASDANSLALISTE = 3
         NUMEROFORMATINCORRECT = 4
+        NUMEROPART1FORMATINCORRECT = 5
     End Enum
     ''' <summary>
     ''' Check numéro national Pulvérisateur
@@ -1233,13 +1234,15 @@ Public Class Pulverisateur
     ''' <param name="pbAjout">VRAI si on est en ajout de Pulvéridateur</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Overridable Function CheckNumeroNational(pNumNAtional As String, pAgent As Agent, pbAjout As Boolean) As CheckResult
+    Public Overridable Function CheckNumeroNational(pNumNatPart1 As String, pNumNatPart2 As String, pAgent As Agent, pbAjout As Boolean) As CheckResult
         Dim bReturn As CheckResult = CheckResult.OK
-        Dim strNumNatPart1 As String = pNumNAtional.Substring(0, 4)
-        Dim strNumNatPart2 As String = pNumNAtional.Substring(4)
+        Dim pNumNational As String = pNumNatPart1 & pNumNatPart2
+        If Not checkPart1NumNat(pNumNatPart1) Then
+            Return CheckResult.NUMEROPART1FORMATINCORRECT
+        End If
         ' Lecture de la liste des identifiant dispo
         Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(pAgent.idStructure)
-        If strNumNatPart2.Length <> 6 Or Not IsNumeric(strNumNatPart2) Then
+        If pNumNatPart2.Length <> 6 Or Not IsNumeric(pNumNatPart2) Then
             bReturn = CheckResult.NUMEROFORMATINCORRECT
         End If
         If bReturn = CheckResult.OK And pbAjout Then
@@ -1258,14 +1261,14 @@ Public Class Pulverisateur
         If bReturn = CheckResult.OK Then
             If olst.Count > 0 And bCheck Then
                 'S'il y a des identifiant Pulvés
-                If strNumNatPart1 = Globals.GLOB_DIAG_NUMAGR Then
+                If pNumNatPart1 = Globals.GLOB_DIAG_NUMAGR Then
                     'Si on  test un numero CRODIP
-                    If pNumNAtional <> olst(0).numeroNational Then
+                    If pNumNational <> olst(0).numeroNational Then
                         bReturn = CheckResult.NUMEROPASLEPREMIER
                     End If
                     Dim bDansLaListe As Boolean = False
                     For Each oIdent As IdentifiantPulverisateur In olst
-                        If oIdent.numeroNational = pNumNAtional Then
+                        If oIdent.numeroNational = pNumNational Then
                             bDansLaListe = True
                         End If
                     Next
@@ -1277,6 +1280,37 @@ Public Class Pulverisateur
         End If
         Return bReturn
     End Function
+    Private Function checkPart1NumNat(pNumNatPart1 As String) As Boolean
+        Dim strValue As String
+        Dim strC1 As String
+        Dim strC2_4 As String
+        Dim bOk As Boolean
+        Dim strAlphabet As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+        strValue = pNumNatPart1
+        bOk = True
+        If strValue.Length <> 4 Then
+            bOk = False
+        End If
+        If bOk Then
+            strC1 = strValue(0)
+            If Not strAlphabet.Contains(strC1.ToUpper()) Then
+                bOk = False
+            End If
+        End If
+        If bOk Then
+            strC2_4 = strValue.Substring(1, 3)
+            If Not IsNumeric(strC2_4) Then
+                bOk = False
+            End If
+            If strC2_4.Contains(".") Or strC2_4.Contains(",") Then
+                bOk = False
+            End If
+        End If
+        Return bOk
+
+    End Function
+
     ''' <summary>
     ''' Initialisation du numéro nationnal avec le Premier Identifiant disponible
     ''' </summary>

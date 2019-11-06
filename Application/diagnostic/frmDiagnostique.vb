@@ -1246,8 +1246,10 @@ Public Class FrmDiagnostique
                     tab_833.SelectTab(nPression - 1)
                     If tmpDiagnosticTroncons833.idColumn < m_dgvPressionCurrent.Columns.Count Then
                         m_dgvPressionCurrent.CurrentCell = m_dgvPressionCurrent(CInt(tmpDiagnosticTroncons833.idColumn), ROW_PRESSION)
-                        m_dgvPressionCurrent(CInt(tmpDiagnosticTroncons833.idColumn), ROW_PRESSION).Value = tmpDiagnosticTroncons833.pressionSortie
-                        validatePressionTronc(nPression)
+                        If tmpDiagnosticTroncons833.pressionSortie <> 0 Then
+                            m_dgvPressionCurrent(CInt(tmpDiagnosticTroncons833.idColumn), ROW_PRESSION).Value = tmpDiagnosticTroncons833.pressionSortie
+                            validatePressionTronc(nPression)
+                        End If
                     End If
                 Next
             End If
@@ -1587,6 +1589,8 @@ Public Class FrmDiagnostique
                             imprecisiontextBox.BackColor = System.Drawing.Color.Red
                         Case DiagnosticMano542.ERR542.OK
                             imprecisiontextBox.BackColor = System.Drawing.Color.Green
+                            'Case DiagnosticMano542.ERR542.NONCALC
+                            '    imprecisiontextBox.BackColor = System.Drawing.Color.Gray
                     End Select
                 End If
 
@@ -1637,6 +1641,10 @@ Public Class FrmDiagnostique
                 End If
                 manopulveResultat.ForeColor = System.Drawing.Color.Red
             End If
+            '            If oLstMano542.Result = DiagnosticMano542.ERR542.NONCALC Then
+            '            manopulveResultat.Text = ""
+            '            manopulveResultat.ForeColor = System.Drawing.Color.Gray
+            '            End If
             checkIsOk(7)
 
 
