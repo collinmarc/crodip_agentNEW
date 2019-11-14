@@ -22,9 +22,6 @@ Public Class frmControleManometres2
     Private arrPressions_default() As String = {0, 2, 4, 6, 8, 10}
     Friend WithEvents btn_controleManos_acquiring As System.Windows.Forms.PictureBox
     Friend WithEvents m_bsControle As System.Windows.Forms.BindingSource
-    Friend WithEvents cbxModules As ComboBox
-    Friend WithEvents Label39 As Label
-    Friend WithEvents m_bsModulesAcq As BindingSource
     Private arrPressions() As String
 
 
@@ -338,9 +335,6 @@ Public Class frmControleManometres2
         Me.btn_controleBanc_annuler = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
-        Me.Label39 = New System.Windows.Forms.Label()
-        Me.cbxModules = New System.Windows.Forms.ComboBox()
-        Me.m_bsModulesAcq = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel64.SuspendLayout()
         CType(Me.m_bsControle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -355,7 +349,6 @@ Public Class frmControleManometres2
         CType(Me.btn_controleManos_acquiring, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel_loading.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsModulesAcq, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tbTemperature
@@ -423,8 +416,6 @@ Public Class frmControleManometres2
         'Panel64
         '
         Me.Panel64.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.Panel64.Controls.Add(Me.cbxModules)
-        Me.Panel64.Controls.Add(Me.Label39)
         Me.Panel64.Controls.Add(Me.btn_controleManos_valider)
         Me.Panel64.Controls.Add(Me.btn_controleManos_suivant)
         Me.Panel64.Controls.Add(Me.lblResultat)
@@ -797,7 +788,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox1, 7, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox2, 6, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox3, 7, 4)
@@ -862,7 +853,7 @@ Public Class frmControleManometres2
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(101, 20)
         Me.TextBox1.TabIndex = 60
         Me.TextBox1.TabStop = False
         '
@@ -885,7 +876,7 @@ Public Class frmControleManometres2
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(101, 20)
         Me.TextBox3.TabIndex = 58
         Me.TextBox3.TabStop = False
         '
@@ -908,7 +899,7 @@ Public Class frmControleManometres2
         Me.TextBox5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(101, 20)
         Me.TextBox5.TabIndex = 56
         Me.TextBox5.TabStop = False
         '
@@ -931,7 +922,7 @@ Public Class frmControleManometres2
         Me.TextBox7.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox7.Size = New System.Drawing.Size(101, 20)
         Me.TextBox7.TabIndex = 54
         Me.TextBox7.TabStop = False
         '
@@ -954,7 +945,7 @@ Public Class frmControleManometres2
         Me.TextBox9.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox9.Size = New System.Drawing.Size(101, 20)
         Me.TextBox9.TabIndex = 52
         Me.TextBox9.TabStop = False
         '
@@ -977,7 +968,7 @@ Public Class frmControleManometres2
         Me.TextBox11.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.ReadOnly = True
-        Me.TextBox11.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox11.Size = New System.Drawing.Size(101, 20)
         Me.TextBox11.TabIndex = 50
         Me.TextBox11.TabStop = False
         '
@@ -1338,7 +1329,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC6, 7, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbErrAbsPC6, 6, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC5, 7, 4)
@@ -1403,7 +1394,7 @@ Public Class frmControleManometres2
         Me.tbFondPC6.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC6.Name = "tbFondPC6"
         Me.tbFondPC6.ReadOnly = True
-        Me.tbFondPC6.Size = New System.Drawing.Size(100, 20)
+        Me.tbFondPC6.Size = New System.Drawing.Size(101, 20)
         Me.tbFondPC6.TabIndex = 60
         Me.tbFondPC6.TabStop = False
         '
@@ -1426,7 +1417,7 @@ Public Class frmControleManometres2
         Me.tbFondPC5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC5.Name = "tbFondPC5"
         Me.tbFondPC5.ReadOnly = True
-        Me.tbFondPC5.Size = New System.Drawing.Size(100, 20)
+        Me.tbFondPC5.Size = New System.Drawing.Size(101, 20)
         Me.tbFondPC5.TabIndex = 58
         Me.tbFondPC5.TabStop = False
         '
@@ -1449,7 +1440,7 @@ Public Class frmControleManometres2
         Me.tbFondPC4.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC4.Name = "tbFondPC4"
         Me.tbFondPC4.ReadOnly = True
-        Me.tbFondPC4.Size = New System.Drawing.Size(100, 20)
+        Me.tbFondPC4.Size = New System.Drawing.Size(101, 20)
         Me.tbFondPC4.TabIndex = 56
         Me.tbFondPC4.TabStop = False
         '
@@ -1472,7 +1463,7 @@ Public Class frmControleManometres2
         Me.tbFondPC3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC3.Name = "tbFondPC3"
         Me.tbFondPC3.ReadOnly = True
-        Me.tbFondPC3.Size = New System.Drawing.Size(100, 20)
+        Me.tbFondPC3.Size = New System.Drawing.Size(101, 20)
         Me.tbFondPC3.TabIndex = 54
         Me.tbFondPC3.TabStop = False
         '
@@ -1495,7 +1486,7 @@ Public Class frmControleManometres2
         Me.tbFondPC2.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC2.Name = "tbFondPC2"
         Me.tbFondPC2.ReadOnly = True
-        Me.tbFondPC2.Size = New System.Drawing.Size(100, 20)
+        Me.tbFondPC2.Size = New System.Drawing.Size(101, 20)
         Me.tbFondPC2.TabIndex = 52
         Me.tbFondPC2.TabStop = False
         '
@@ -1518,7 +1509,7 @@ Public Class frmControleManometres2
         Me.tbFondPC1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC1.Name = "tbFondPC1"
         Me.tbFondPC1.ReadOnly = True
-        Me.tbFondPC1.Size = New System.Drawing.Size(100, 20)
+        Me.tbFondPC1.Size = New System.Drawing.Size(101, 20)
         Me.tbFondPC1.TabIndex = 50
         Me.tbFondPC1.TabStop = False
         '
@@ -1879,7 +1870,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label5, 4, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label6, 5, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label7, 6, 0)
@@ -1935,7 +1926,7 @@ Public Class frmControleManometres2
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(425, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(163, 48)
+        Me.Label7.Size = New System.Drawing.Size(164, 48)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1947,7 +1938,7 @@ Public Class frmControleManometres2
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(486, 50)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(102, 49)
+        Me.Label11.Size = New System.Drawing.Size(103, 49)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2095,33 +2086,6 @@ Public Class frmControleManometres2
         Me.ImageList_onglets.TransparentColor = System.Drawing.Color.White
         Me.ImageList_onglets.Images.SetKeyName(0, "")
         '
-        'Label39
-        '
-        Me.Label39.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label39.Location = New System.Drawing.Point(14, 37)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(151, 16)
-        Me.Label39.TabIndex = 55
-        Me.Label39.Text = "Module d'acquisition :"
-        Me.Label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'cbxModules
-        '
-        Me.cbxModules.DataSource = Me.m_bsModulesAcq
-        Me.cbxModules.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxModules.ItemHeight = 13
-        Me.cbxModules.Location = New System.Drawing.Point(151, 36)
-        Me.cbxModules.Name = "cbxModules"
-        Me.cbxModules.Size = New System.Drawing.Size(85, 21)
-        Me.cbxModules.TabIndex = 56
-        Me.cbxModules.ValueMember = "idCrodip"
-        '
-        'm_bsModulesAcq
-        '
-        Me.m_bsModulesAcq.DataMember = "String"
-        '
         'frmControleManometres2
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -2149,7 +2113,6 @@ Public Class frmControleManometres2
         CType(Me.btn_controleManos_acquiring, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel_loading.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsModulesAcq, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2170,8 +2133,6 @@ Public Class frmControleManometres2
 
         Dim lstBanc As List(Of Banc) = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString)
 
-        m_bsModulesAcq.DataSource = ((From oBanc As Banc In lstBanc
-                                      Select oBanc.ModuleAcquisition).Distinct())
 
 
         '####################################################
@@ -2851,18 +2812,18 @@ Public Class frmControleManometres2
 #Region " Acquisition des données "
     ' Bouton acquisitin des données
     Private Sub btn_controleManos_acquiring_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_acquiring.Click
-        Panel_loading.Visible = True
-        doAcquiring()
+        'Panel_loading.Visible = True
+        'doAcquiring()
     End Sub
 
     Private _thread_doAcqiring As Thread
     Private Sub thr_doAcquiring()
-        Dim oModuleAcq As CRODIPAcquisition.ModuleAcq
+        Dim oModuleAcq As New CRODIPAcquisition.ModuleAcq()
         Dim olstValues As List(Of AcquisitionValue)
         Dim oControle As ControleMano
 
 
-        oModuleAcq = ModuleAcq.GetModule(cbxModules.Text)
+        '        oModuleAcq = ModuleAcq.GetModule(cbxModules.Text)
         olstValues = oModuleAcq.getValues()
         oControle = m_bsControle.Current
         For Each oVal As AcquisitionValue In olstValues

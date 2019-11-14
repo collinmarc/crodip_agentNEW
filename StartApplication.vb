@@ -40,8 +40,17 @@ Module StartApplication
 
     Public Sub Main()
         CSDebug.dispInfo("StartApplication.Main")
-        CSDebug.dispInfo("StartApplication.TestCrystalReport")
 
+        Globals.Init()
+        If System.IO.File.Exists("cmd.txt") Then
+            Dim ocmd As New Cmd
+            ocmd.execute("cmd.txt")
+            If System.IO.File.Exists("Cmd.txt.old") Then
+                System.IO.File.Delete("cmd.txt.old")
+            End If
+            System.IO.File.Move("cmd.txt", "cmd.txt.old")
+        End If
+        CSDebug.dispInfo("StartApplication.TestCrystalReport")
         If TestCrystalReport() Then
             Dim ofrm As Form
             Dim bLoginFailed As Boolean = True
@@ -62,7 +71,6 @@ Module StartApplication
             End If
             bLoginFailed = false
 #Else
-            Globals.Init()
             If Globals.GLOB_ENV_MODESIMPLIFIE Then
 
                 'Test de la validité 
@@ -89,7 +97,7 @@ Module StartApplication
                 ofrm.ShowDialog()
             End If
         Else
-                CSDebug.dispFatal("Erreur en Génération de PDF, Vérifier Crystal Report")
+            CSDebug.dispFatal("Erreur en Génération de PDF, Vérifier Crystal Report")
         End If
     End Sub
 

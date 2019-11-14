@@ -4268,6 +4268,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
         'Module D'acquisition
         Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
+        If String.IsNullOrEmpty(obanc.ModuleAcquisition) Then
+            obanc.ModuleAcquisition = "MD2"
+        End If
         oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule(obanc.ModuleAcquisition)
         If (oModuleAcquisition Is Nothing) Then
             MsgBox("Aucun module d'acquisition n'est disponible pour : " + obanc.ModuleAcquisition)

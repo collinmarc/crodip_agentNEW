@@ -120,6 +120,9 @@
   <metadata name="m_bsManoEtalon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="m_bsManoEtalon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Label82.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -150,9 +153,6 @@
         dq0jo3bpTbXk+aWvrovuXYUtL20tGdrdPi2HEkE4JHJ71C1SvroiT//Z
 </value>
   </data>
-  <metadata name="m_bsModulesAcq.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>727, 17</value>
-  </metadata>
   <data name="btn_controleManos_valider.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEASABIAAD/4QBaRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAZKG
@@ -324,12 +324,6 @@
         ychGDluYhL2//9k=
 </value>
   </data>
-  <metadata name="m_bsControle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>600, 17</value>
-  </metadata>
-  <metadata name="m_bsManoControle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>311, 17</value>
-  </metadata>
   <data name="btn_controleBanc_annuler.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEASABIAAD/4QBaRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAZKG
@@ -389,6 +383,12 @@
   <data name="Label36.Text" xml:space="preserve">
     <value>La vérification de vos manomètres doit être effectuée selon la fréquence définie par le CRODIP Indigo.En cas de résultat non conforme, l'équipement concerné doit être écarté et vous devez immédiatement prévenir le CRODIP Indigo.Après investigation et éventuelle remise en état, vous devez à nouveau vérifier votre équipement.Dans le cas d'une vérification conforme et après validation par le CRODIP Indigo, le matériel peut être remis en service.Dans le cas contraire, vous ne pouvez plus l'utiliser et il doit être mis au rebus.</value>
   </data>
+  <metadata name="m_bsControle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>600, 17</value>
+  </metadata>
+  <metadata name="m_bsManoControle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>311, 17</value>
+  </metadata>
   <metadata name="m_bsManoControle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>311, 17</value>
   </metadata>
@@ -628,41 +628,41 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABS
-        CAAAAk1TRnQBSQFMAwEBAAGEAQEBhAEBARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
-        ARADAAEBAQABIAYAARASAAG/AU0BAAH/Ab8BTgEAAf8BwAFOAQAB/wHAAU4BAAH/Ab8BTgEAAf8BvgFO
-        AQAB/wG+AU4BAAH/Ab8BTQEAAf8BvQFNAQAB/wHBAU0BAAH/Ab4BTgEAAf8BwAFOAQAB/wHBAU4BAAH/
-        AcIBTgEAAf8BwAFPAQAB/wG/AU4BAAH/wAABvwFPAQAB/wG+AU8BAAH/AcEBTQEAAf8BwQFNAQAB/wHB
-        AU4BAAH/AcIBgQEAAf8BwgGBAQAB/wG/AYABAAH/AcABTwEAAf8BvwFOAQAB/wHBAU4BAAH/AcABTwEA
-        Af8BwQFOAQAB/wHCAU4BAAH/AcEBTwEAAf8BwAFOAQAB/8AAAb4BTQEAAf8BwAFNAQAB/wHBAU4BAAH/
-        AcEBTQEAAf8BvwFOAQAB/wHJAY0BAAH/AdcBqAEoAf8BxgGGAQAB/wHBAU4BAAH/Ab8BTwEAAf8BwAFP
-        AQAB/wHAAU4BAAH/AcABTwEAAf8BvwFPAQAB/wG/AU4BAAH/Ab4BTgEAAf/AAAHAAU4BAAH/AcEBTgEA
-        Af8BwQFOAQAB/wHAAU4BAAH/AcEBTgEAAf8BzgGUAQMB/wHvAeEBxAH/AeEBwQGIAf8BxQGBAQAB/wHA
-        AU4BAAH/AcABTwEAAf8BwAFOAQAB/wG/AU4BAAH/AcABTwEAAf8BwAGAAQAB/wHAAU4BAAH/wAABwAFO
-        AQAB/wHCAUwBAAH/AcEBTwEAAf8BwAFOAQAB/wHBAU4BAAH/Ac0BlAECAf8B8gHnAdEB/wH6AfcB8gH/
-        AeUBxgGQAf8BwwGCAQAB/wHAAU4BAAH/AcEBTgEAAf8BwQFNAQAB/wHAAU8BAAH/Ab8BTwEAAf8BwgFN
-        AQAB/8AAAb8BTgEAAf8BvwFNAQAB/wG/AU4BAAH/Ab8BTQEAAf8BwAFOAQAB/wHLAZQBAgH/A0ABcANk
-        AecB/AH6AfUB/wHkAcoBlwH/AcQBggEAAf8BwAFOAQAB/wHAAU8BAAH/Ab8BTgEAAf8BwAFOAQAB/wHB
-        AU8BAAH/wAABvwFNAQAB/wG/AU4BAAH/Ab8BTgEAAf8BwAFOAQAB/wHCAU8BAAH/AcsBlAECAf8DZAHn
-        A28B+wMXASAB/AH5AfMB/wHmAccBlwH/AcIBggEAAf8BvwFOAQAB/wHBAU0BAAH/AcABTwEAAf8BvgFO
-        AQAB/8AAAb8BTgEAAf8BvwFOAQAB/wHBAU4BAAH/Ab8BTgEAAf8BvwFOAQAB/wHNAZQBAgH/AfIB5wHR
-        Af8DFwEgAf0D/wP+Af8B/AH6AfIB/wHiAcQBjAH/AcQBgQEAAf8BwgFPAQAB/wHCAU4BAAH/Ab8BTwEA
-        Af/AAAG/AU4BAAH/Ab8BTgEAAf8BvgFNAQAB/wHAAU4BAAH/Ab8BTwEAAf8BzQGUAQIB/wH0AecB0QH/
-        AfwC/gL/Af0C/wL+AfwB/wHyAegB1AH/AdMBogEgAf8BwQFOAQAB/wG/AU0BAAH/Ab4BTQEAAf8BvgFN
-        AQAB/8AAAb8BTgEAAf8BvwFOAQAB/wHAAU8BAAH/AcABTgEAAf8BvwFOAQAB/wHLAZMBAwH/AfMB5wHS
-        Af8D/gP/Af4B/wHxAekB0gH/AdMBpAEjAf8BvwFNAQAB/wG/AU8BAAH/Ab8BTwEAAf8BwAFPAQAB/wHB
-        AU4BAAH/wAABvwFOAQAB/wG/AU4BAAH/AcABTwEAAf8BvgGAAQAB/wHAAU8BAAH/AcsBkwECAf8B8gHn
-        AdIB/wH+Af8B/QH/AfUB6AHTAf8B0wGiAR4B/wG/AU4BAAH/AcABTgEAAf8BwAFPAQAB/wG9AU8BAAH/
-        AcABTgEAAf8BvwFOAQAB/8AAAb8BTgEAAf8BvwFOAQAB/wHAAU4BAAH/AcABTwEAAf8BwAFOAQAB/wHM
-        AZMBAwH/A1EBoANiAe8B0QGfARkB/wHAAU4BAAH/AcABTgEAAf8BvwFPAQAB/wHAAU8BAAH/Ab8BTgEA
-        Af8BvwFOAQAB/wHBAU4BAAH/wAABvgFNAQAB/wHBAU8BAAH/Ab4BTwEAAf8BvwFOAQAB/wHAAU4BAAH/
-        Ac0BkwECAf8DVwG3Al8BTAHzAcABTgEAAf8BvwFPAQAB/wHAAU4BAAH/AcABTgEAAf8BwQFPAQAB/wHA
-        AU4BAAH/AcABTgEAAf8BwAFOAQAB/8AAAb8BTgEAAf8BwQFOAQAB/wHAAU8BAAH/AcABTwEAAf8BwgFO
-        AQAB/wHGAYQBAAH/AccBjQEAAf8BwAGAAQAB/wHAAU8BAAH/AcIBTgEAAf8BwAFNAQAB/wHAAU4BAAH/
-        Ab8BTgEAAf8BvwFOAQAB/wHBAU4BAAH/Ab8BTgEAAf/AAAG/AU4BAAH/Ab8BTgEAAf8BwQFOAQAB/wHB
-        AU4BAAH/Ab8BTgEAAf8BvwFPAQAB/wHBAYABAAH/AcEBTgEAAf8BvwFOAQAB/wHAAU0BAAH/Ab8BTgEA
-        Af8BwAFOAQAB/wHBAU8BAAH/AcABTgEAAf8BwAFOAQAB/wG/AU8BAAH/wAABvwFNAQAB/wHEAU8BAAH/
-        AcEBTgEAAf8BvwFPAQAB/wHBAU8BAAH/AcIBTwEAAf8BwAFOAQAB/wHBAU4BAAH/Ab8BTgEAAf8BvwFO
-        AQAB/wHAAU4BAAH/AcIBTgEAAf8BwgFPAQAB/wHBAU8BAAH/AcABTwEAAf8BwQFOAQAB/8AAAUIBTQE+
+        CAAAAk1TRnQBSQFMAwEBAAGMAQEBjAEBARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
+        ARADAAEBAQABIAYAARASAAG/AUwBAAH/Ab8BTQEAAf8BwAFNAQAB/wHAAU0BAAH/Ab8BTQEAAf8BvgFN
+        AQAB/wG+AU0BAAH/Ab8BTAEAAf8BvQFMAQAB/wHBAUwBAAH/Ab4BTQEAAf8BwAFNAQAB/wHBAU0BAAH/
+        AcIBTQEAAf8BwAFOAQAB/wG/AU0BAAH/wAABvwFOAQAB/wG+AU4BAAH/AcEBTAEAAf8BwQFMAQAB/wHB
+        AU0BAAH/AcIBgQEAAf8BwgGBAQAB/wG/AYABAAH/AcABTgEAAf8BvwFNAQAB/wHBAU0BAAH/AcABTgEA
+        Af8BwQFNAQAB/wHCAU0BAAH/AcEBTgEAAf8BwAFNAQAB/8AAAb4BTAEAAf8BwAFMAQAB/wHBAU0BAAH/
+        AcEBTAEAAf8BvwFNAQAB/wHJAY0BAAH/AdcBqAEnAf8BxgGGAQAB/wHBAU0BAAH/Ab8BTgEAAf8BwAFO
+        AQAB/wHAAU0BAAH/AcABTgEAAf8BvwFOAQAB/wG/AU0BAAH/Ab4BTQEAAf/AAAHAAU0BAAH/AcEBTQEA
+        Af8BwQFNAQAB/wHAAU0BAAH/AcEBTQEAAf8BzgGUAQIB/wHvAeEBxAH/AeEBwQGIAf8BxQGBAQAB/wHA
+        AU0BAAH/AcABTgEAAf8BwAFNAQAB/wG/AU0BAAH/AcABTgEAAf8BwAGAAQAB/wHAAU0BAAH/wAABwAFN
+        AQAB/wHCAUsBAAH/AcEBTgEAAf8BwAFNAQAB/wHBAU0BAAH/Ac0BlAEBAf8B8gHnAdEB/wH6AfcB8gH/
+        AeUBxgGQAf8BwwGCAQAB/wHAAU0BAAH/AcEBTQEAAf8BwQFMAQAB/wHAAU4BAAH/Ab8BTgEAAf8BwgFM
+        AQAB/8AAAb8BTQEAAf8BvwFMAQAB/wG/AU0BAAH/Ab8BTAEAAf8BwAFNAQAB/wHLAZQBAQH/A0ABcANk
+        AecB/AH6AfUB/wHkAcoBlwH/AcQBggEAAf8BwAFNAQAB/wHAAU4BAAH/Ab8BTQEAAf8BwAFNAQAB/wHB
+        AU4BAAH/wAABvwFMAQAB/wG/AU0BAAH/Ab8BTQEAAf8BwAFNAQAB/wHCAU4BAAH/AcsBlAEBAf8DZAHn
+        A2sB+wMXASAB/AH5AfMB/wHmAccBlwH/AcIBggEAAf8BvwFNAQAB/wHBAUwBAAH/AcABTgEAAf8BvgFN
+        AQAB/8AAAb8BTQEAAf8BvwFNAQAB/wHBAU0BAAH/Ab8BTQEAAf8BvwFNAQAB/wHNAZQBAQH/AfIB5wHR
+        Af8DFwEgAf0D/wP+Af8B/AH6AfIB/wHiAcQBjAH/AcQBgQEAAf8BwgFOAQAB/wHCAU0BAAH/Ab8BTgEA
+        Af/AAAG/AU0BAAH/Ab8BTQEAAf8BvgFMAQAB/wHAAU0BAAH/Ab8BTgEAAf8BzQGUAQEB/wH0AecB0QH/
+        AfwC/gL/Af0C/wL+AfwB/wHyAegB1AH/AdMBogEfAf8BwQFNAQAB/wG/AUwBAAH/Ab4BTAEAAf8BvgFM
+        AQAB/8AAAb8BTQEAAf8BvwFNAQAB/wHAAU4BAAH/AcABTQEAAf8BvwFNAQAB/wHLAZMBAgH/AfMB5wHS
+        Af8D/gP/Af4B/wHxAekB0gH/AdMBpAEiAf8BvwFMAQAB/wG/AU4BAAH/Ab8BTgEAAf8BwAFOAQAB/wHB
+        AU0BAAH/wAABvwFNAQAB/wG/AU0BAAH/AcABTgEAAf8BvgGAAQAB/wHAAU4BAAH/AcsBkwEBAf8B8gHn
+        AdIB/wH+Af8B/QH/AfUB6AHTAf8B0wGiAR0B/wG/AU0BAAH/AcABTQEAAf8BwAFOAQAB/wG9AU4BAAH/
+        AcABTQEAAf8BvwFNAQAB/8AAAb8BTQEAAf8BvwFNAQAB/wHAAU0BAAH/AcABTgEAAf8BwAFNAQAB/wHM
+        AZMBAgH/A1EBoANiAe8B0QGfARgB/wHAAU0BAAH/AcABTQEAAf8BvwFOAQAB/wHAAU4BAAH/Ab8BTQEA
+        Af8BvwFNAQAB/wHBAU0BAAH/wAABvgFMAQAB/wHBAU4BAAH/Ab4BTgEAAf8BvwFNAQAB/wHAAU0BAAH/
+        Ac0BkwEBAf8DVwG3Al8BTAHzAcABTQEAAf8BvwFOAQAB/wHAAU0BAAH/AcABTQEAAf8BwQFOAQAB/wHA
+        AU0BAAH/AcABTQEAAf8BwAFNAQAB/8AAAb8BTQEAAf8BwQFNAQAB/wHAAU4BAAH/AcABTgEAAf8BwgFN
+        AQAB/wHGAYQBAAH/AccBjQEAAf8BwAGAAQAB/wHAAU4BAAH/AcIBTQEAAf8BwAFMAQAB/wHAAU0BAAH/
+        Ab8BTQEAAf8BvwFNAQAB/wHBAU0BAAH/Ab8BTQEAAf/AAAG/AU0BAAH/Ab8BTQEAAf8BwQFNAQAB/wHB
+        AU0BAAH/Ab8BTQEAAf8BvwFOAQAB/wHBAYABAAH/AcEBTQEAAf8BvwFNAQAB/wHAAUwBAAH/Ab8BTQEA
+        Af8BwAFNAQAB/wHBAU4BAAH/AcABTQEAAf8BwAFNAQAB/wG/AU4BAAH/wAABvwFMAQAB/wHEAU4BAAH/
+        AcEBTQEAAf8BvwFOAQAB/wHBAU4BAAH/AcIBTgEAAf8BwAFNAQAB/wHBAU0BAAH/Ab8BTQEAAf8BvwFN
+        AQAB/wHAAU0BAAH/AcIBTQEAAf8BwgFOAQAB/wHBAU4BAAH/AcABTgEAAf8BwQFNAQAB/8AAAUIBTQE+
         BwABPgMAASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/+BAAs=
 </value>
   </data>

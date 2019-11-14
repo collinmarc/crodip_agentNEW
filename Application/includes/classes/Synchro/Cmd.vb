@@ -46,11 +46,21 @@ Public Class Cmd
                     End If
 
                 End If
+            Else
+                Using p As Process = New Process()
+                    Dim pi As ProcessStartInfo = New ProcessStartInfo()
+                    pi.Arguments = " " + "/C" + " " + pcmdLine
+                    pi.FileName = "cmd.exe"
+                    p.StartInfo = pi
+                    p.Start()
+                    p.WaitForExit()
+                    CSDebug.dispInfo("Cmd.executeLine " & pcmdLine & " Exitcode = " & p.ExitCode)
+                End Using
 
             End If
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("Cmd.executeLine Err " & ex.Message)
+            CSDebug.dispError("Cmd.executeLine Err " & pcmdLine & ":" & ex.Message)
             bReturn = False
         End Try
         Return bReturn

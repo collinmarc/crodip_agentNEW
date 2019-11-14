@@ -1286,6 +1286,9 @@
     <Content Include="bdd\crodip_agent.mdb" />
     <Content Include="bdd\crodip_dasylab.mdb" />
     <Content Include="bdd\crodip_etats.mdb" />
+    <Content Include="cmd.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="config\bancs\marques.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

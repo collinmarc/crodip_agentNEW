@@ -1,8 +1,17 @@
 TRUNK
 
-Build : 
+BUILD : 20191114170000
+----------------------
+0001130: Suppression de l'acquisition sur le module de vérif du manomètre
+0001129: Acquisition par défaut = MD2
+0001125: Livraison et installation du CrystalReport lors la diffusion de la version
+
+
+
+Build : 20191106170000
 ----------------------
 0001049: Version simplifiée du logiciel Agent : notes1&2
+0001119: Modification du nb de tronçons => Validation de l'onglet N2
 
 Build : 20191104140000
 ----------------------
