@@ -40,16 +40,19 @@ Public Class parentContener
         End If
         ' Mises a jour
         If CSSoftwareUpdate.checkMAJ Then
-            Dim doMAJ As MsgBoxResult = MsgBox("Une mise à jour est disponible.", MsgBoxStyle.OkOnly, "Mise à jour disponible !")
-            If doMAJ = MsgBoxResult.Ok Then
-                CSSoftwareUpdate.runUpdater(False)
-                m_bCloseByUpdate = True
-                CSEnvironnement.delPid()
-                Close()
-                Exit Sub
+            If CSSoftwareUpdate.MyUpdateInfo IsNot Nothing Then
+                Dim ofrm As New frmMAJVersion()
+                ofrm.Setcontexte(CSSoftwareUpdate.MyUpdateInfo)
+                ofrm.ShowDialog()
+            Else
+                MsgBox("Une mise à jour est disponible.", MsgBoxStyle.OkOnly, "Mise à jour disponible !")
             End If
+            'CSSoftwareUpdate.runUpdater(False)
+            m_bCloseByUpdate = True
+            CSEnvironnement.delPid()
+            Close()
+            Exit Sub
         End If
-
         ' Initialisation du boot
         CSDebug.dispInfo("ParentContainer.CheckVersion")
 

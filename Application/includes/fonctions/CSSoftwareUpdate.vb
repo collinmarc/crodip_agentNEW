@@ -1,13 +1,13 @@
 Imports System.IO
 Imports System.Threading
 
-Module CSSoftwareUpdate
+Public Class CSSoftwareUpdate
 
 
-    Public Sub runUpdater()
+    Public Shared Sub runUpdater()
         CSSoftwareUpdate.runUpdater(False)
     End Sub
-    Public Sub runUpdater(ByVal withThread As Boolean)
+    Public Shared Sub runUpdater(ByVal withThread As Boolean)
         If withThread Then
             CSSoftwareUpdate.thr_majSoftware()
         Else
@@ -16,8 +16,8 @@ Module CSSoftwareUpdate
         Globals.Init()
     End Sub
 
-    Private _thread_majSoftware As Thread
-    Private Sub majSoftware()
+    Private Shared _thread_majSoftware As Thread
+    Private Shared Sub majSoftware()
 
         'Lancement du programme de mise a jour
         Dim Processus As New System.Diagnostics.Process
@@ -27,13 +27,12 @@ Module CSSoftwareUpdate
         'retourne un booléen confirmant le démarage du process
 
     End Sub
-    Sub thr_majSoftware()
+    Private Shared Sub thr_majSoftware()
         _thread_majSoftware = New Thread(AddressOf CSSoftwareUpdate.thr_majSoftware) 'ThrFunc est la fonction exécutée par le thread.
         _thread_majSoftware.Name = "CSSoftwareUpdate_majSoftware" 'Il est parfois pratique de nommer les threads surtout si on en créé plusieurs.
         _thread_majSoftware.Start() ' Démarrage du thread.
     End Sub
-
-    Public Function checkMAJ() As Boolean
+    Public Shared Function checkMAJ() As Boolean
         Dim bReturn As Boolean = False
         'En mode simplifié pas de Mise à jour
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
@@ -46,6 +45,17 @@ Module CSSoftwareUpdate
                 Dim wsResponse As New Object
                 ' Appel au WS
                 Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(Globals.GLOB_APPLI_BUILD, wsResponse)
+                Dim oUpdateInfo As UpdateInfo
+                oUpdateInfo = New UpdateInfo(wsResponse)
+
+                For Each sFile As String In oUpdateInfo.files
+                    If sFile.ToUpper().EndsWith("VERSION.HTML") Or sFile.ToUpper().EndsWith("VERSION.HTM") Then
+                        oUpdateInfo.DoDownload(sFile)
+                        MyUpdateInfo = oUpdateInfo
+                    End If
+
+                Next
+
 
                 If codeResponse = 2 Then
                     bReturn = True
@@ -59,11 +69,20 @@ Module CSSoftwareUpdate
         Return bReturn
 
     End Function
+    Private Shared _UpdateInfo As UpdateInfo
+    Public Shared Property MyUpdateInfo() As UpdateInfo
+        Get
+            Return _UpdateInfo
+        End Get
+        Set(ByVal value As UpdateInfo)
+            _UpdateInfo = value
+        End Set
+    End Property
 
-    Public Function isXPorBefore() As Boolean
+    Public Shared Function isXPorBefore() As Boolean
         Dim nMajor As Integer
         nMajor = System.Environment.OSVersion.Version.Major
         Return (nMajor <= 5)
     End Function
 
-End Module
+End Class
