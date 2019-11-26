@@ -5,8 +5,7 @@ BUILD : 20191114170000
 0001130: Suppression de l'acquisition sur le module de vérif du manomètre
 0001129: Acquisition par défaut = MD2
 0001125: Livraison et installation du CrystalReport lors la diffusion de la version
-
-
+0001127: Ajout d'un message Personnalisable lors de l'installation de version
 
 Build : 20191106170000
 ----------------------

@@ -92,7 +92,7 @@ Public Class SynchronisationManager
             'création de l'objet de synhcronisation en fonction du type
             For Each objWSUpdates_item As System.Xml.XmlNode In objWSUpdates_items
                 If objWSUpdates_item.Name().ToUpper.Trim() = "type".ToUpper.Trim() Then
-                    oSynchro = SynchronisationElmt.createSynchronisationElmt(objWSUpdates_item.InnerText(), pSynchroBoolean)
+                    oSynchro = SynchronisationElmt.CreateSynchronisationElmt(objWSUpdates_item.InnerText(), pSynchroBoolean)
                 End If
             Next objWSUpdates_item
             'Initialisation de l'object avec les données issues du WS
@@ -102,7 +102,7 @@ Public Class SynchronisationManager
                 Next objWSUpdates_item
 
                 LogSynchroElmt(oSynchro, "WS.UpdateAvailable")
-                If oSynchro.update Then
+                If oSynchro.Update Then
                     oLst.Add(oSynchro)
                 End If
             End If

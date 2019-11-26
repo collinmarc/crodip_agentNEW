@@ -237,10 +237,10 @@ Public Class IdentifiantPulverisateurManager
         Try
 
             ' déclarations
-            '            Dim objWSCrodip1 As WSCrodip_prod.CrodipServer = WSCrodip.getWS(True)
-            Dim objWSCrodip As WSCrodip2.CrodipServer = WSCrodip.getWS2(True)
-            '            objWSCrodip.Timeout = 10000
-            Dim objWSCrodip_response As new Object
+            'Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS(True)
+            'objWSCrodip.Timeout = 10000
+            Dim objWSCrodip2 As WSCrodip2.CrodipServer = WSCrodip.getWS2(True)
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim rq As WSCrodip2.SendIdentifiantPulverisateurRequest
             Dim oWSIdentificateurPulve As New WSCrodip2.IdentifiantPulverisateur()
@@ -252,9 +252,12 @@ Public Class IdentifiantPulverisateurManager
             oWSIdentificateurPulve.dateUtilisation = pIdentPulve.dateUtilisation
             oWSIdentificateurPulve.dateModificationCrodip = pIdentPulve.dateModificationCrodip
             oWSIdentificateurPulve.dateModificationAgent = pIdentPulve.dateModificationAgent
+            SynchronisationManager.LogSynchroElmt(oWSIdentificateurPulve)
+
             rq = New WSCrodip2.SendIdentifiantPulverisateurRequest(pAgent.id, oWSIdentificateurPulve)
-            Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(rq).result
-            Select Case codeResponse
+            Dim codeResponse2 As Integer = objWSCrodip2.SendIdentifiantPulverisateur(rq).result
+            'Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve, objWSCrodip_response)
+            Select Case codeResponse2
                 Case 0 ' OK
                 Case 1 ' NOK
                     CSDebug.dispError("sendWSIdentifiantPulverisateurr - Code 1 : Non-Trouvée")

@@ -21,6 +21,14 @@ Public Class IdentifiantPulverisateur
             m_id = value
         End Set
     End Property
+    Public Property IdentifiantPulverisateur As String
+        Get
+            Return m_id
+        End Get
+        Set(value As String)
+
+        End Set
+    End Property
     Public Property idStructure As Long
         Get
             Return m_idStructure
@@ -46,7 +54,7 @@ Public Class IdentifiantPulverisateur
             If value = "INUTILISE" Or value = "UTILISE" Or value = "INUTILISABLE" Then
                 m_etat = value
             Else
-                Throw New Exception("Valeurs possibles INUTILISE, UTILISE,INITIMISABLE")
+                Throw New Exception("Valeurs possibles INUTILISE, UTILISE,INUTILISABLE")
             End If
         End Set
     End Property
