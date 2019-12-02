@@ -173,56 +173,104 @@ Public Class AcquisitionTest
     End Sub
 
     <TestMethod()>
-    Public Sub TestITEQ()
+    Public Sub TestITEQTest3bCRODIP()
 
 
-        'Dim builder As New OleDb.OleDbConnectionStringBuilder()
-        'builder.Add("Data Source", ".\bdd\crodip_dasylab.mdb")
-        'builder.Add("Provider", "Microsoft.Jet.Oledb.4.0")
-
-        'Dim oConn As New OleDb.OleDbConnection(builder.ConnectionString)
-        'oConn.Open()
-        'Assert.IsTrue(oConn.State = ConnectionState.Open)
-
-        'Dim oCmd As OleDb.OleDbCommand = oConn.CreateCommand()
-
-        'oCmd.CommandText = "DELETE  FROM tmpDataAcquiring "
-        'oCmd.ExecuteNonQuery()
-        'oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(1,1,3.1,1.5)"
-        'oCmd.ExecuteNonQuery()
-        'oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(2,1,3.1,2.5)"
-        'oCmd.ExecuteNonQuery()
-        'oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(3,2,3.1,3.5)"
-        'oCmd.ExecuteNonQuery()
-        'oCmd.CommandText = "INSERT INTO tmpDataAcquiring ( idbuse, idNiveau,debit,pression) VALUES(4,2,3.1,4.5)"
-        'oCmd.ExecuteNonQuery()
-        'oConn.Close()
 
         Dim oModuleAcq As ModuleAcq
         oModuleAcq = ModuleAcq.GetModule("ITEQ")
         Assert.AreEqual("ITEQ", oModuleAcq.Nom)
+        oModuleAcq.Instance.setFichier("TestFiles\test 3 b crodip.csv")
 
         Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.getValues()
 
-        Assert.AreEqual(10, oLstResult.Count)
+        Assert.AreEqual(36, oLstResult.Count)
 
         Assert.AreEqual(1, oLstResult(0).NumBuse)
-        Assert.AreEqual(1, oLstResult(1).NumBuse)
-        Assert.AreEqual(1, oLstResult(2).NumBuse)
-        Assert.AreEqual(1, oLstResult(3).NumBuse)
+        Assert.AreEqual(2, oLstResult(1).NumBuse)
+        Assert.AreEqual(17, oLstResult(16).NumBuse)
+        Assert.AreEqual(18, oLstResult(17).NumBuse)
+        Assert.AreEqual(1, oLstResult(18).NumBuse)
+        Assert.AreEqual(2, oLstResult(19).NumBuse)
+        Assert.AreEqual(17, oLstResult(34).NumBuse)
+        Assert.AreEqual(18, oLstResult(35).NumBuse)
 
-        Assert.AreEqual(1.614D, oLstResult(0).Debit)
-        Assert.AreEqual(1.622D, oLstResult(1).Debit)
-        Assert.AreEqual(1.628D, oLstResult(2).Debit)
-        Assert.AreEqual(1.627D, oLstResult(3).Debit)
+        Assert.AreEqual(1, oLstResult(0).Niveau)
+        Assert.AreEqual(1, oLstResult(1).Niveau)
+        Assert.AreEqual(1, oLstResult(16).Niveau)
+        Assert.AreEqual(1, oLstResult(17).Niveau)
+        Assert.AreEqual(2, oLstResult(18).Niveau)
+        Assert.AreEqual(2, oLstResult(19).Niveau)
+        Assert.AreEqual(2, oLstResult(34).Niveau)
+        Assert.AreEqual(2, oLstResult(35).Niveau)
 
-        Assert.AreEqual(2.845D, oLstResult(0).Pression)
-        Assert.AreEqual(2.838D, oLstResult(1).Pression)
-        Assert.AreEqual(2.832D, oLstResult(2).Pression)
-        Assert.AreEqual(2.832D, oLstResult(3).Pression)
+        Assert.AreEqual(0.332D, oLstResult(0).Debit)
+        Assert.AreEqual(0.332D, oLstResult(1).Debit)
+        Assert.AreEqual(4.062D, oLstResult(16).Debit)
+        Assert.AreEqual(4.062D, oLstResult(17).Debit)
+        Assert.AreEqual(0.403D, oLstResult(18).Debit)
+        Assert.AreEqual(0.404D, oLstResult(19).Debit)
+        Assert.AreEqual(4.057D, oLstResult(34).Debit)
+        Assert.AreEqual(4.057D, oLstResult(35).Debit)
+
+        Assert.AreEqual(1.989D, oLstResult(0).Pression)
+        Assert.AreEqual(1.998D, oLstResult(1).Pression)
+        Assert.AreEqual(2.002D, oLstResult(16).Pression)
+        Assert.AreEqual(2.002D, oLstResult(17).Pression)
+        Assert.AreEqual(2.993D, oLstResult(18).Pression)
+        Assert.AreEqual(2.999D, oLstResult(19).Pression)
+        Assert.AreEqual(3.01D, oLstResult(34).Pression)
+        Assert.AreEqual(3.011D, oLstResult(35).Pression)
 
     End Sub
 
+    <TestMethod()>
+    Public Sub TestITEQEvrardnozay()
+
+
+
+        Dim oModuleAcq As ModuleAcq
+        oModuleAcq = ModuleAcq.GetModule("ITEQ")
+        Assert.AreEqual("ITEQ", oModuleAcq.Nom)
+        oModuleAcq.Instance.setFichier("TestFiles\evrard nozay alex 26 buses.csv")
+
+        Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.getValues()
+
+        Assert.AreEqual(26, oLstResult.Count)
+
+        Assert.AreEqual(1, oLstResult(0).NumBuse)
+        Assert.AreEqual(2, oLstResult(1).NumBuse)
+        Assert.AreEqual(17, oLstResult(16).NumBuse)
+        Assert.AreEqual(18, oLstResult(17).NumBuse)
+        Assert.AreEqual(19, oLstResult(18).NumBuse)
+        Assert.AreEqual(20, oLstResult(19).NumBuse)
+        Assert.AreEqual(26, oLstResult(25).NumBuse)
+
+        Assert.AreEqual(1, oLstResult(0).Niveau)
+        Assert.AreEqual(1, oLstResult(1).Niveau)
+        Assert.AreEqual(1, oLstResult(16).Niveau)
+        Assert.AreEqual(1, oLstResult(17).Niveau)
+        Assert.AreEqual(1, oLstResult(18).Niveau)
+        Assert.AreEqual(1, oLstResult(19).Niveau)
+        Assert.AreEqual(1, oLstResult(25).Niveau)
+
+        Assert.AreEqual(1.197D, oLstResult(0).Debit)
+        Assert.AreEqual(1.179D, oLstResult(1).Debit)
+        Assert.AreEqual(1.189D, oLstResult(16).Debit)
+        Assert.AreEqual(1.202D, oLstResult(17).Debit)
+        Assert.AreEqual(1.191D, oLstResult(18).Debit)
+        Assert.AreEqual(1.188D, oLstResult(19).Debit)
+        Assert.AreEqual(1.2D, oLstResult(25).Debit)
+
+        Assert.AreEqual(0D, oLstResult(0).Pression)
+        Assert.AreEqual(0D, oLstResult(1).Pression)
+        Assert.AreEqual(0D, oLstResult(16).Pression)
+        Assert.AreEqual(0D, oLstResult(17).Pression)
+        Assert.AreEqual(0D, oLstResult(18).Pression)
+        Assert.AreEqual(0D, oLstResult(19).Pression)
+        Assert.AreEqual(0D, oLstResult(25).Pression)
+
+    End Sub
 
 
     Private Sub fillMD2Database()

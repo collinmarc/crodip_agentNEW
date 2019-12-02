@@ -138,8 +138,8 @@ Public Class UpdateInfo
 
     Private Function GetURLDataBin(ByVal URL As String) As Byte()
         Dim Req As HttpWebRequest
-        Dim SourceStream As System.IO.Stream
-        Dim Response As HttpWebResponse
+        Dim SourceStream As System.IO.Stream = Nothing
+        Dim Response As HttpWebResponse = Nothing
         Dim tabReturn As Byte()
 
         Try
@@ -179,7 +179,9 @@ Public Class UpdateInfo
             tabReturn = errStream.ToArray()
         Finally
             Try
-                SourceStream.Close()
+                If SourceStream IsNot Nothing Then
+                    SourceStream.Close()
+                End If
             Catch ex As Exception
             End Try
             Try

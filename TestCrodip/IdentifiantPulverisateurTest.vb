@@ -100,7 +100,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Next
 
         'Rechargement du dernier Identifiant
-        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId)
+        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId.ToString())
         oIdent2.libelle = "TEST"
         oIdent2.SetEtatINUTILISABLE()
         IdentifiantPulverisateurManager.Save(oIdent2)
@@ -129,7 +129,6 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     End Sub
     <XmlInclude(GetType(IdentifiantPulverisateur))>
     <TestMethod()> Public Sub TESTSOAP()
-        Dim oIdent As IdentifiantPulverisateur
         Dim oIdent2 As IdentifiantPulverisateur
         Dim nId As Long
 
@@ -148,7 +147,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Next
 
         'Rechargement du dernier Identifiant
-        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId)
+        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId.ToString())
         oIdent2.libelle = "TEST"
         oIdent2.SetEtatINUTILISABLE()
 
