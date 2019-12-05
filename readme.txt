@@ -1,6 +1,9 @@
 TRUNK
 MASTER
 
+BUILD : 20191202120000
+----------------------
+0001054: Acquisition des mesures depuis bancs autre que MD2
 
 BUILD : 20191114170000
 ----------------------
@@ -8,7 +11,6 @@ BUILD : 20191114170000
 0001129: Acquisition par défaut = MD2
 0001125: Livraison et installation du CrystalReport lors la diffusion de la version
 0001127: Ajout d'un message Personnalisable lors de l'installation de version
-0001054: Acquisition des mesures depuis bancs autre que MD2
 
 Build : 20191106170000
 ----------------------
