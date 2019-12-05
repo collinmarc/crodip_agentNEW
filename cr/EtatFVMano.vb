@@ -26,8 +26,9 @@ Public Class EtatFVMano
                     objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
 
                         objReport.SetDataSource(m_ods)
-                        Dim CrExportOptions As ExportOptions
-                        Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
+                    objReport.SetParameterValue("ModeSimplifie", Globals.GLOB_ENV_MODESIMPLIFIE)
+                    Dim CrExportOptions As ExportOptions
+                    Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                         Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                         Dim oMano As ManometreControle
                         oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)

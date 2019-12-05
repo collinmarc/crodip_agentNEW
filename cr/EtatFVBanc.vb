@@ -27,8 +27,10 @@ Public Class EtatFVBanc
 
                     objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
 
-                        objReport.SetDataSource(m_ods)
-                        Dim CrExportOptions As ExportOptions
+                    objReport.SetDataSource(m_ods)
+                    objReport.SetParameterValue("ModeSimplifie", Globals.GLOB_ENV_MODESIMPLIFIE)
+
+                    Dim CrExportOptions As ExportOptions
                         Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                         Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                         m_FileName = CSDiagPdf.makeFilename(m_oControle.idBanc, CSDiagPdf.TYPE_FV_BANCMESURE) & ".pdf"

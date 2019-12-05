@@ -4,6 +4,7 @@ MASTER
 BUILD : 20191205120000
 ----------------------
 0001134: Fiche de Verif des Mano : Pression décroissante inversée
+0001135: Fiche de Verif Mano et Banc : Supression du Logo en Mode simplié
 
 BUILD : 20191202120000
 ----------------------
