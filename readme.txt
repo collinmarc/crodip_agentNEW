@@ -1,6 +1,10 @@
 TRUNK
 MASTER
 
+BUILD : 20191205120000
+----------------------
+0001134: Fiche de Verif des Mano : Pression décroissante inversée
+
 BUILD : 20191202120000
 ----------------------
 0001054: Acquisition des mesures depuis bancs autre que MD2
