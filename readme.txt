@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+BUILD : 201912XXXXXXXX
+----------------------
+0001136: Calcul du cumuls des erreurs (571) : Prendre en copte la valeur négative du capteur de vittesse (551)
 
 BUILD : 20191205120000
 ----------------------

@@ -10429,11 +10429,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If Not String.IsNullOrEmpty(tbPressionMesure.Text) Then
             m_diagnostic.diagnosticHelp571.PressionMesurePRS = tbPressionMesure.Text
         End If
-        If Not String.IsNullOrEmpty(m_diagnostic.syntheseErreurMoyenneCinemometre) Then
-
-            m_diagnostic.diagnosticHelp571.ErreurVitessePRS = m_diagnostic.syntheseErreurMoyenneCinemometre
-        End If
-        If Not String.IsNullOrEmpty(m_diagnostic.syntheseErreurMoyenneCinemometre) Then
+        If m_diagnostic.diagnosticHelp551.ErreurMoyenneSigned.HasValue Then
+            m_diagnostic.diagnosticHelp571.ErreurVitessePRS = m_diagnostic.diagnosticHelp551.ErreurMoyenneSigned
             m_diagnostic.diagnosticHelp571.erreurVitesseDEB = m_diagnostic.diagnosticHelp551.ErreurMoyenneSigned
         End If
         If m_diagnostic.diagnosticHelp552.ErreurDebitMetreSigned.HasValue Then

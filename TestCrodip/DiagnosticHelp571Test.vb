@@ -280,6 +280,23 @@ Public Class DiagnosticHelp571test
         oHelp571.ErreurVitessePRS = 1.89D
         Assert.AreEqual(0.668D, oHelp571.ErreurGlobalePRSRND)
     End Sub
+    ''' <summary>
+    ''' Test la prise en compte de l'erreur de vitesse négative (#1136)
+    ''' </summary>
+    <TestMethod()>
+    Public Sub testCalcVTSNégatif()
+        Dim oHelp571 As New DiagnosticHelp571()
+
+        oHelp571.PressionMesurePRS = 3
+        oHelp571.DebitMesurePRS = 1.202D
+        oHelp571.PressionMoyennePRS = 2.725D
+        oHelp571.DebitBuseProgrammePRS = 1.16D
+        Assert.AreEqual(1.146D, oHelp571.DebitReelPRSRND)
+        Assert.AreEqual(1.22D, oHelp571.ErreurDebitPRSRND)
+        oHelp571.ErreurVitessePRS = -1.89D
+        Assert.AreEqual(-3.112D, oHelp571.ErreurGlobalePRSRND)
+    End Sub
+
     <TestMethod()>
     Public Sub testCalcDEBIT()
         Dim oHelp571 As New DiagnosticHelp571()
