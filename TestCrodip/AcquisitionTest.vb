@@ -271,6 +271,45 @@ Public Class AcquisitionTest
         Assert.AreEqual(0D, oLstResult(25).Pression)
 
     End Sub
+    <TestMethod()>
+    Public Sub TestITEQTestNiv()
+
+
+
+        Dim oModuleAcq As ModuleAcq
+        oModuleAcq = ModuleAcq.GetModule("ITEQ")
+        Assert.AreEqual("ITEQ", oModuleAcq.Nom)
+        oModuleAcq.Instance.setFichier("TestFiles\test niv.csv")
+
+        Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.getValues()
+
+        Assert.AreEqual(20, oLstResult.Count)
+
+        Assert.AreEqual(1, oLstResult(0).NumBuse)
+        Assert.AreEqual(2, oLstResult(1).NumBuse)
+        Assert.AreEqual(7, oLstResult(16).NumBuse)
+        Assert.AreEqual(8, oLstResult(17).NumBuse)
+        Assert.AreEqual(9, oLstResult(18).NumBuse)
+
+        Assert.AreEqual(1, oLstResult(0).Niveau)
+        Assert.AreEqual(1, oLstResult(1).Niveau)
+        Assert.AreEqual(2, oLstResult(16).Niveau)
+        Assert.AreEqual(2, oLstResult(17).Niveau)
+        Assert.AreEqual(2, oLstResult(18).Niveau)
+
+        Assert.AreEqual(0.995D, oLstResult(0).Debit)
+        Assert.AreEqual(0.998D, oLstResult(1).Debit)
+        Assert.AreEqual(1.2D, oLstResult(16).Debit)
+        Assert.AreEqual(1.2D, oLstResult(17).Debit)
+        Assert.AreEqual(1.2D, oLstResult(18).Debit)
+
+        Assert.AreEqual(0D, oLstResult(0).Pression)
+        Assert.AreEqual(0D, oLstResult(1).Pression)
+        Assert.AreEqual(2D, oLstResult(16).Pression)
+        Assert.AreEqual(2D, oLstResult(17).Pression)
+        Assert.AreEqual(2D, oLstResult(18).Pression)
+
+    End Sub
 
 
     Private Sub fillMD2Database()

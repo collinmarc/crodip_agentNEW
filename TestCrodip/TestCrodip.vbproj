@@ -216,6 +216,9 @@
     <None Include="TestFiles\test 3 b crodip.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\test niv.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestFiles\test.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
