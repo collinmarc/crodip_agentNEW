@@ -284,6 +284,8 @@ Public Class AcquisitionTest
         Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.getValues()
 
         Assert.AreEqual(20, oLstResult.Count)
+        Assert.AreEqual(2, oModuleAcq.getNbNiveaux())
+        Assert.AreEqual(10, oModuleAcq.getNbBuses(1))
 
         Assert.AreEqual(1, oLstResult(0).NumBuse)
         Assert.AreEqual(2, oLstResult(1).NumBuse)

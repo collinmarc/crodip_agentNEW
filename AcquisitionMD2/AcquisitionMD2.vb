@@ -1,9 +1,12 @@
 ﻿Imports CRODIPAcquisition
+Imports NLog
 Imports System.Data.OleDb
 Imports System.Linq
 
 Public Class AcquisitionMD2
     Implements ICRODIPAcquisition
+    Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
+
     Public Sub New()
         m_fichierMD2 = My.Settings.FichierMD2
     End Sub
@@ -19,6 +22,7 @@ Public Class AcquisitionMD2
     End Property
 
     Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
+        logger.Info("AcquisitionMD2.GetValues Start")
 
         Dim oReturn As New List(Of AcquisitionValue)
 
@@ -69,11 +73,13 @@ Public Class AcquisitionMD2
         End While
         dataResults.Close()
         oConn.Close()
+        logger.Info("AcquisitionMD2.GetValues Return " & oReturn.Count & "elements")
         Return oReturn
 
     End Function
 
     Public Function GetNbNiveaux() As Integer Implements ICRODIPAcquisition.GetNbNiveaux
+        logger.Info("AcquisitionMD2.getnbNiveaux Start")
         Dim oValues As List(Of AcquisitionValue)
         Dim prevNiveau As Integer = -1
         Dim nNiveaux As Integer = 0
@@ -85,10 +91,12 @@ Public Class AcquisitionMD2
                 nNiveaux = nNiveaux + 1
             End If
         Next
+        logger.Info("AcquisitionMD2.getnbNiveaux return" & nNiveaux)
         Return nNiveaux
     End Function
 
     Public Function GetNbBuses(pNiveau As Integer) As Integer Implements ICRODIPAcquisition.GetNbBuses
+        logger.Info("AcquisitionMD2.getnbBuses Start")
         Dim oValues As List(Of AcquisitionValue)
         Dim nBuses As Integer = 0
 
@@ -98,6 +106,7 @@ Public Class AcquisitionMD2
                 nBuses = nBuses + 1
             End If
         Next
+        logger.Info("AcquisitionMD2.getnbBuses return" & nBuses)
         Return nBuses
     End Function
 

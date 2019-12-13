@@ -1,16 +1,18 @@
 ﻿Imports CRODIPAcquisition
+Imports NLog
 Imports System.Data.OleDb
 Imports System.Linq
 
 Public Class AcquisitionITEQ
     Implements ICRODIPAcquisition
-
+    Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
     Public Sub New()
         m_fichierITEQ = My.Settings.FileName
     End Sub
 
     Private m_fichierITEQ As String
     Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
+        logger.Info("AcquisitionITEQ.GetValues Start")
 
         Dim oReturn As New List(Of AcquisitionValue)
         Dim bConvert As Boolean = False 'conversion de Format (OUI /NON)
@@ -123,16 +125,31 @@ Public Class AcquisitionITEQ
         End While
         dataResults.Close()
         oConn.Close()
+        logger.Info("AcquisitionITEQ.GetValues Return " & oReturn.Count & "elements")
         Return oReturn
 
     End Function
 
     Public Function GetNbNiveaux() As Integer Implements ICRODIPAcquisition.GetNbNiveaux
-        Return 0
+        logger.Info("AcquisitionITEQ.getnbNiveaux Start")
+        Dim lstValues As New List(Of AcquisitionValue)
+        Dim nReturn As Integer = 0
+        lstValues = GetValues()
+        nReturn = lstValues.Max(Function(oVal) _
+                          oVal.Niveau)
+        logger.Info("AcquisitionITEQ.getnbNiveaux Return " & nReturn)
+        Return nReturn
     End Function
 
     Public Function GetNbBuses(pNiveau As Integer) As Integer Implements ICRODIPAcquisition.GetNbBuses
-        Return 0
+        logger.Info("AcquisitionITEQ.getnbBuses Start")
+        Dim lstValues As New List(Of AcquisitionValue)
+        Dim nReturn As Integer = 0
+        lstValues = GetValues()
+        nReturn = lstValues.Max(Function(oVal) _
+                          oVal.NumBuse)
+        logger.Info("AcquisitionITEQ.getnbBuses return " & nReturn)
+        Return nReturn
     End Function
 
     Public Sub FTO_SaveData(plst As List(Of AcquisitionValue))

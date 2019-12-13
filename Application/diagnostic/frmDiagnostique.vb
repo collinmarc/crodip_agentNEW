@@ -3721,6 +3721,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         TEXTBox_mesureDebit_debit.Size = New System.Drawing.Size(56, 20)
         TEXTBox_mesureDebit_debit.Text = ""
         AddHandler TEXTBox_mesureDebit_debit.Validated, AddressOf calcUsureBuse_Validated
+        AddHandler TEXTBox_mesureDebit_debit.KeyDown, AddressOf mesureDebit__KeyDown
 
         '
         'diagBuses_mesureDebit_1_usure
@@ -3809,6 +3810,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             CSDebug.dispError("diagnostique::calcUsureBuse_TextChanged : " & ex.Message)
         End Try
     End Sub
+    Private Sub mesureDebit__KeyDown(sender As Object, e As KeyEventArgs)
+        If (e.KeyCode = Keys.Enter) Then
+            SendKeys.Send("{TAB}")
+        End If
+
+    End Sub
+
 
 
 
@@ -10594,4 +10602,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
 
+    Private Sub diagBuses_mesureDebit_1_debit_KeyDown(sender As Object, e As KeyEventArgs) Handles diagBuses_mesureDebit_1_debit.KeyDown
+
+    End Sub
 End Class
