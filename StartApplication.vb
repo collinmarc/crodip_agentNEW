@@ -1,5 +1,6 @@
 ﻿Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
+Imports System.Windows.Forms
 
 Module StartApplication
 #Region "Variables de SESSION"
@@ -37,22 +38,16 @@ Module StartApplication
     ' Gestion des buses
     'Public globFormGestionBusesEtalons As gestion_busesEtalons
 #End Region
+    Private splashScreen As splash
 
     Public Sub Main()
-        CSDebug.dispInfo("StartApplication.Main")
+        'Application.UseWaitCursor = True
 
-        Globals.Init()
-        If System.IO.File.Exists("cmd.txt") Then
-            Dim ocmd As New Cmd
-            ocmd.execute("cmd.txt")
-            If System.IO.File.Exists("Cmd.txt.old") Then
-                System.IO.File.Delete("cmd.txt.old")
-            End If
-            System.IO.File.Move("cmd.txt", "cmd.txt.old")
-        End If
-        CSDebug.dispInfo("StartApplication.TestCrystalReport")
-        If TestCrystalReport() Then
-            Dim ofrm As Form
+        CSDebug.dispInfo("StartApplication.Main")
+        ''        CSDebug.dispInfo("StartApplication.TestCrystalReport")
+        '        If TestCrystalReport() Then
+
+        Dim ofrm As Form
             Dim bLoginFailed As Boolean = True
 
 #If REGLAGEPULVE Then
@@ -71,34 +66,34 @@ Module StartApplication
             End If
             bLoginFailed = false
 #Else
-            If Globals.GLOB_ENV_MODESIMPLIFIE Then
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
 
-                'Test de la validité 
-                ParamReglagePulve.XMLFileName = "zsxedc.crodip"
-                Dim objParamRP As ParamReglagePulve = ParamReglagePulve.ReadXML(".")
-                If objParamRP.coluser.Count = 1 Then
-                    Dim objRPUser As RPUser = objParamRP.coluser(0)
-                    If objRPUser.TestDateExp(Now) Then
-                        bLoginFailed = False
-                    End If
+            'Test de la validité 
+            ParamReglagePulve.XMLFileName = "zsxedc.crodip"
+            Dim objParamRP As ParamReglagePulve = ParamReglagePulve.ReadXML(".")
+            If objParamRP.coluser.Count = 1 Then
+                Dim objRPUser As RPUser = objParamRP.coluser(0)
+                If objRPUser.TestDateExp(Now) Then
+                    bLoginFailed = False
                 End If
-                If bLoginFailed Then
-                    MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre version simplifiée a expirée , contactez le CRODIP")
-                    Application.Exit()
-                End If
-            Else
-                bLoginFailed = False
             End If
+            If bLoginFailed Then
+                MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre version simplifiée a expirée , contactez le CRODIP")
+                Application.Exit()
+            End If
+        Else
+            bLoginFailed = False
+        End If
 
-            ofrm = New parentContener()
+        ofrm = New parentContener()
 #End If
             CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
             If Not bLoginFailed Then
-                ofrm.ShowDialog()
-            End If
-        Else
-            CSDebug.dispFatal("Erreur en Génération de PDF, Vérifier Crystal Report")
+            ofrm.ShowDialog()
         End If
+        ''        Else
+        ''       MsgBox("Erreur en Génération de PDF, Vérifier votre version de Crystal Report")
+        ''     End If
     End Sub
 
     Public Function TestCrystalReport() As Boolean
@@ -107,8 +102,12 @@ Module StartApplication
         Dim m_reportName As String
         Dim ods As dsTest
 
+        CSDebug.dispInfo("StartApplication.TestCrystalReport")
 
         Try
+            If System.IO.File.Exists("./test.pdf") Then
+                System.IO.File.Delete("./test.pdf")
+            End If
 
             m_reportName = My.Settings.RepertoireParametres & "/" & ocr.ResourceName
             ocr.Dispose()
@@ -116,9 +115,6 @@ Module StartApplication
             ods = New dsTest()
             ods.dtTest.AdddtTestRow(Date.Now.ToLongDateString())
 
-            If System.IO.File.Exists("./test.pdf") Then
-                System.IO.File.Delete("./test.pdf")
-            End If
             If System.IO.File.Exists(m_reportName) Then
 
 
@@ -162,5 +158,25 @@ Module StartApplication
 
         Return bReturn
     End Function
+
+    Public Sub ExecuteCMD()
+        If System.IO.File.Exists("cmd.txt") Then
+            Dim ocmd As New Cmd
+            ocmd.execute("cmd.txt")
+            If System.IO.File.Exists("Cmd.txt.old") Then
+                System.IO.File.Delete("cmd.txt.old")
+            End If
+            System.IO.File.Move("cmd.txt", "cmd.txt.old")
+        End If
+
+    End Sub
+
+    Public Sub loadSplash()
+        splashScreen = New splash
+        splashScreen.Show()
+    End Sub
+    Public Sub unloadSplash()
+        splashScreen.Close()
+    End Sub
 
 End Module

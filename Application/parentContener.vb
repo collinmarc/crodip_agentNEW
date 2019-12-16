@@ -6,28 +6,37 @@ Public Class parentContener
     '
     Private m_col As New Collection()
     Private m_nStep As Integer = 0
-    Private splashScreen As New splash
     Private m_bCloseByUpdate As Boolean = False
 
-    Public Sub loadSplash()
-        If Globals.GLOB_ENV_SHOWSPLASH Then
-            splashScreen.Show()
-        End If
-    End Sub
-    Public Sub unloadSplash()
-        If Globals.GLOB_ENV_SHOWSPLASH Then
-            splashScreen.Close()
-        End If
+    Public Sub New()
+
+        ' Cet appel est requis par le concepteur.
+        InitializeComponent()
+
+        ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
+        '        Me.UseWaitCursor = True
+        '       loadSplash()
+
     End Sub
 
+
     Private Sub parentContener_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ' Dim oPulve As New Pulverisateur()
-        globFormParent = Me
-        Load_CRODIPINDIGO()
-    End Sub
-    Protected Overridable Sub Load_CRODIPINDIGO()
         Me.Cursor = Cursors.WaitCursor
         loadSplash()
+        Globals.Init()
+
+        ExecuteCMD()
+
+        If TestCrystalReport() Then
+            globFormParent = Me
+            Me.UseWaitCursor = False
+            Load_CRODIPINDIGO()
+        Else
+            MsgBox("Erreur en Génération de PDF, Vérifier votre version de Crystal Report")
+            Application.Exit()
+        End If
+    End Sub
+    Protected Overridable Sub Load_CRODIPINDIGO()
 
         Application.CurrentCulture = New System.Globalization.CultureInfo("fr-FR")
         CSEnvironnement.createFolders()
@@ -38,6 +47,9 @@ Public Class parentContener
             m_bCloseByUpdate = True
             Me.Close()
         End If
+        CSDebug.dispInfo("ParentContainer.unloadSplash")
+        unloadSplash()
+
         ' Mises a jour
         If CSSoftwareUpdate.checkMAJ Then
             If CSSoftwareUpdate.MyUpdateInfo IsNot Nothing Then
@@ -72,11 +84,9 @@ Public Class parentContener
             Statusbar.clear()
             DisplayForm(loginMDIChild)
         Catch ex As Exception
-            ' CSDebug.dispError("parentContener::load" & ex.Message)
+            CSDebug.dispError("parentContener::load" & ex.Message)
         End Try
 
-        CSDebug.dispInfo("ParentContainer.unloadSplash")
-        unloadSplash()
         Me.Cursor = Cursors.Default
     End Sub
 

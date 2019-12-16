@@ -54,7 +54,6 @@ Public Class Globals
     ' Comportement
     Public Shared GLOB_ENV_AUTOSYNC As Boolean = My.Settings.AutoSync
     Public Shared GLOB_ENV_MODESIMPLIFIE As Boolean = (My.Settings.Mode = "Simplifié")
-    Public Shared GLOB_ENV_SHOWSPLASH As Boolean = Not GLOB_ENV_MODESIMPLIFIE
 
     ' Conf
     Public Shared GLOB_XML_CONFIG As CSXml
