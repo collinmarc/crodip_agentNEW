@@ -143,12 +143,32 @@ Public MustInherit Class Materiel
     <XmlIgnoreAttribute()>
     Public Property dateDernierControle() As Date
         Get
-            Return DateTime.Parse(_dateDernierControle)
+            If Not String.IsNullOrEmpty(_dateDernierControle) Then
+                Return DateTime.Parse(_dateDernierControle)
+            Else
+                Return Nothing
+            End If
         End Get
         Set(ByVal Value As Date)
             _dateDernierControle = CSDate.ToCRODIPString(Value)
         End Set
     End Property
+    Public Function IsDateControle() As Boolean
+        Dim bReturn As Boolean = False
+        If _dateDernierControle = "" Then
+            bReturn = False
+        Else
+            Try
+                Dim dDate As Date = Date.Parse(_dateDernierControle)
+                If dDate.Year > 1970 Then
+                    bReturn = True
+                End If
+            Catch
+                bReturn = False
+            End Try
+        End If
+        Return bReturn
+    End Function
     Public Property dateModificationAgent() As String
         Get
             Return _dateModificationAgent

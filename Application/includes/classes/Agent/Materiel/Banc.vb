@@ -247,7 +247,9 @@ Public Class Banc
         Dim oNiveau As NiveauAlerte
 
         oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.Banc)
-        bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
+        If IsDateControle() Then
+            bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
+        End If
         If bReturn = Globals.ALERTE.NONE Then
             If etat = False Then
                 bReturn = Globals.ALERTE.CONTROLE

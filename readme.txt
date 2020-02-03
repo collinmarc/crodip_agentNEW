@@ -4,7 +4,8 @@ BUILD : 201912XXXXXXXX
 ----------------------
 0001136: Calcul du cumuls des erreurs (571) : Prendre en copte la valeur négative du capteur de vittesse (551)
 0001160: Sélection du banc dans vérif matériel : Affichage de la marque
-0001057: Import de données Clients depuis autre base
+0001057: Import de données clients depuis autre base
+0001165: Ajout de matériel Banc de controle : etat non grisé
 
 BUILD : 20191205120000
 ----------------------

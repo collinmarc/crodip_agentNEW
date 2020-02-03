@@ -235,7 +235,15 @@ Public Class ManometreControle
             Case "isutilise".Trim().ToUpper()
                 Me.isUtilise = CType(pValue, Boolean)
             Case "dateDernierControle".Trim.ToUpper()
-                Me.dateDernierControleS = CSDate.ToCRODIPString(pValue).ToString 'Public dateAchat As String
+                Dim dateC As Date
+                Try
+                    dateC = CDate(pValue)
+                    If dateC.Year <> 1899 And dateC.Year <> 0 Then
+                        Me.dateDernierControleS = CSDate.ToCRODIPString(pValue).ToString 'Public dateAchat As String
+                    End If
+                Catch ex As Exception
+
+                End Try
             Case "dateModificationAgent".Trim.ToUpper()
                 Me.dateModificationAgent = CSDate.ToCRODIPString(pValue).ToString 'Public dateModificationAgent As String
             Case "dateModificationCrodip".Trim.ToUpper()
@@ -307,11 +315,14 @@ Public Class ManometreControle
         bReturn = Globals.ALERTE.NONE
 
         Dim oNiveau As NiveauAlerte
+        If Not String.IsNullOrEmpty(dateDernierControleS) Then
+            oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.ManometreControle)
 
-        oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.ManometreControle)
-        bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
-        If bReturn = Globals.ALERTE.NONE And etat = False Then
-            bReturn = Globals.ALERTE.CONTROLE
+            bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
+
+            If bReturn = Globals.ALERTE.NONE And etat = False Then
+                bReturn = Globals.ALERTE.CONTROLE
+            End If
         End If
         Return bReturn
     End Function
