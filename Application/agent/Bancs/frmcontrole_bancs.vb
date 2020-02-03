@@ -1856,7 +1856,7 @@ Public Class frmcontrole_bancs
         '###########################################################
         Dim arrBanc As List(Of Banc) = BancManager.getBancByStructureId(agentCourant.idStructure, True)
         For Each tmpBanc As Banc In arrBanc
-            Dim objComboItem As New objComboItem(tmpBanc.id, tmpBanc.modele & " (" & tmpBanc.id & ")")
+            Dim objComboItem As New objComboItem(tmpBanc.id, tmpBanc.marque & " (" & tmpBanc.id & ")")
             controleBanc_numBanc.Items.Add(objComboItem)
         Next
 
