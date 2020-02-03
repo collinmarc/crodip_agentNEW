@@ -251,9 +251,11 @@ Public Class Synchronisation
                                 AgentManager.setSynchro(tmpUpdateAgent)
                             Case 2 ' SENDPROFILAGENT_UPDATE
                                 Dim tmpAgentUpdated As Agent = AgentManager.xml2object(UpdatedObject)
-                                m_Agent = tmpAgentUpdated
-                                agentCourant = m_Agent
+                                'A Suppr
+                                'm_Agent = tmpAgentUpdated
+                                'agentCourant = m_Agent
                                 AgentManager.save(tmpAgentUpdated, True)
+                                m_Agent = AgentManager.getAgentById(tmpAgentUpdated.id)
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro : Envoi Agent n°" & tmpUpdateAgent.id & " Erreur : Agent inconnu.")
                             Case 3 ' NOAGENT

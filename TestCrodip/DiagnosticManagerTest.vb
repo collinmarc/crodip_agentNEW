@@ -3829,7 +3829,6 @@ Public Class DiagnosticManagerTest
         'SetPulverisateur
         Dim oPulve As New Pulverisateur()
         oPulve.idStructure = m_oAgent.idStructure
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         oPulve.marque = "MAMARQUE"
         oPulve.modele = "MONMODELE"
         oPulve.type = Pulverisateur.TYPEPULVE_ARBRES
@@ -4216,7 +4215,6 @@ Public Class DiagnosticManagerTest
         'SetPulverisateur
         Dim oPulve As New Pulverisateur()
         oPulve.idStructure = m_oAgent.idStructure
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         oPulve.marque = "MAMARQUE"
         oPulve.modele = "MONMODELE"
         oPulve.type = Pulverisateur.TYPEPULVE_ARBRES

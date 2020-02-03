@@ -251,7 +251,6 @@ Imports System.IO
         oExploit.commune = "Chasné sur illet"
         oExploit.codeApe = "987"
         ExploitationManager.save(oExploit, m_oAgent)
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         oPulve.idStructure = m_oAgent.idStructure
         oPulve.marque = "MA MARQUE"
         oPulve.modele = "MON MODELE"
@@ -340,7 +339,6 @@ Imports System.IO
         oExploit.commune = "Chasné sur illet"
         oExploit.codeApe = "987"
         ExploitationManager.save(oExploit, m_oAgent)
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         oPulve.idStructure = m_oAgent.idStructure
         oPulve.marque = "MA MARQUE"
         oPulve.modele = "MON MODELE"
@@ -736,7 +734,6 @@ Imports System.IO
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         oPulve.idStructure = m_oAgent.idStructure
 
         PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
@@ -833,7 +830,6 @@ Imports System.IO
         oPulvePrinc = New Pulverisateur()
         oPulvePrinc.isPulveAdditionnel = False
         oPulvePrinc.numeroNational = "E999999999"
-        oPulvePrinc.id = PulverisateurManager.getNewId(m_oAgent)
         oPulvePrinc.idStructure = m_oAgent.idStructure
         oPulvePrinc.attelage = "PORTE"
         oPulvePrinc.type = "Cultures basses"
@@ -845,7 +841,6 @@ Imports System.IO
         PulverisateurManager.save(oPulvePrinc, oExploit.id, m_oAgent)
 
         oPulve = New Pulverisateur()
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         oPulve.idStructure = m_oAgent.idStructure
         oPulve.isPulveAdditionnel = True
         oPulve.pulvePrincipalNumNat = oPulvePrinc.numeroNational
@@ -875,7 +870,6 @@ Imports System.IO
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         oPulve.idStructure = m_oAgent.idStructure
 
         PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
@@ -1185,7 +1179,6 @@ Imports System.IO
         oExploit.commune = "Chasné sur illet"
         oExploit.codeApe = "987"
         ExploitationManager.save(oExploit, m_oAgent)
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         oPulve.idStructure = m_oAgent.idStructure
         oPulve.marque = "MA MARQUE"
         oPulve.modele = "MON MODELE"
@@ -1294,7 +1287,6 @@ Imports System.IO
         oExploit.commune = "Chasné sur illet"
         oExploit.codeApe = "987"
         ExploitationManager.save(oExploit, m_oAgent)
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         oPulve.idStructure = m_oAgent.idStructure
         oPulve.marque = "MA MARQUE"
         oPulve.modele = "MON MODELE"
@@ -1403,7 +1395,6 @@ Imports System.IO
         oExploit.commune = "Chasné sur illet"
         oExploit.codeApe = "987"
         ExploitationManager.save(oExploit, m_oAgent)
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         oPulve.idStructure = m_oAgent.idStructure
         oPulve.marque = "MA MARQUE"
         oPulve.modele = "MON MODELE"

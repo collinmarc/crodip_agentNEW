@@ -158,7 +158,7 @@ Public Class Banc
                 Case "modele".Trim().ToUpper()
                     Me.modele = pcolValue.ToString() 'Public modele As String
                 Case "dateachat".Trim().ToUpper()
-                    If Not CDate(pcolValue).Equals(CDate("30/12/1899")) Then
+                    If Not CDate(pcolValue).Equals(CDate("1899-12-30")) Then
                         Me.dateAchat = CSDate.ToCRODIPString(pcolValue.ToString()) 'Public dateAchat As String
                     End If
                 Case "datederniercontrole".Trim().ToUpper()

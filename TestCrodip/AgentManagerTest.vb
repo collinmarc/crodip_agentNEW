@@ -604,8 +604,6 @@ Public Class AgentManagerTest
 
 
         oPulve.idStructure = pAgent.idStructure
-        oPulve.id = PulverisateurManager.getNewId(pAgent)
-        Assert.AreNotEqual("", oPulve.id)
 
         oPulve.marque = "MAMARQUE"
         oPulve.modele = "MONMODELE"

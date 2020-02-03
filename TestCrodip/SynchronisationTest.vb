@@ -220,7 +220,6 @@ Public Class SynchronisationTest
         oPulve.isLanceLavage = True
         oPulve.isRotobuse = True
         oPulve.isCuveIncorporation = False
-        oPulve.id = PulverisateurManager.getNewId(m_oAgent)
         PulverisateurManager.save(oPulve, pExploit.id, m_oAgent)
         Return oPulve
     End Function
