@@ -607,7 +607,7 @@ Public Class login
                                 Dim oSynchro As New Synchronisation(selectedAgent)
                                 oSynchro.ajouteObservateur(TryCast(Me.MdiParent, parentContener))
                                 '###### SYNCHRO ######
-                                oSynchro.Synchro()
+                                oSynchro.Synchro(True, True)
                                 oSynchro.Notice("")
                                 Me.Cursor = Cursors.Default
                             End If

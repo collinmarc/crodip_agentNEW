@@ -3,6 +3,7 @@ Imports System.Xml.Serialization
 Imports System.IO.File
 Imports NLog
 Imports System.Xml
+Imports System.Linq
 
 ''' <summary>
 ''' 
@@ -77,7 +78,8 @@ Public Class SynchronisationManager
     End Function
     Public Shared Function getWSlstElementsASynchroniser(ByVal pAgent As Agent, pSynchroBoolean As SynchroBooleans) As List(Of SynchronisationElmt)
         Dim oLst As New List(Of SynchronisationElmt)()
-        Dim objWSUpdates As Object = Nothing
+        Dim objWSUpdates As Object()
+        '= Nothing
         'Récupération des infos depuis le SRV
         ' déclarations
         Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
@@ -86,6 +88,16 @@ Public Class SynchronisationManager
         Dim isComplete As Integer
         logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(pAgent.dateDerniereSynchro) & ")'>")
         objWSCrodip.UpdatesAvailable(pAgent.numeroNational, CSDate.GetDateForWS(pAgent.dateDerniereSynchro), isUpdateAvailable, isComplete, objWSUpdates)
+        'l'obejt objWSupdates est en fait un tableau de XMLNode
+        'Dim oTabXml As List(Of XmlNode())
+        'oTabXml = (From obj In objWSUpdates Select CType(obj, XmlNode())).ToList()
+        'logger.Trace("<FROMWS>")
+        'For Each otabNode As XmlNode() In oTabXml
+        '    logger.Trace("<xmlNode>")
+        '    logger.Trace(From oNode As XmlNode In otabNode Select oNode.OuterXml)
+        '    logger.Trace("</xmlNode>")
+        'Next
+        'logger.Trace("</FROMWS>")
         Dim oSynchro As SynchronisationElmt = Nothing
         'Parcours de la Liste des Objets à synchroniser
         For Each objWSUpdates_items As Object In objWSUpdates

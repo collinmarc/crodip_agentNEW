@@ -4838,16 +4838,8 @@ Public Class accueil
                     Dim oSynchro As New Synchronisation(agentCourant)
                     oSynchro.ajouteObservateur(TryCast(MdiParent, parentContener))
                     oSynchro.ajouteObservateur(Me)
-                    '#######################################################################
-                    '######################### Synchro Montantes ###########################
-                    '#######################################################################
-                    oSynchro.runAscSynchro()
 
-                    '#######################################################################
-                    '####################### Synchro Descendantes ##########################
-                    '#######################################################################
-                    oSynchro.runDescSynchro()
-                    oSynchro.Notice("")
+                    oSynchro.Synchro(True, True)
                     Me.Cursor = Cursors.Default
 
                 Catch ex As Exception
