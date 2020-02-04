@@ -1,6 +1,6 @@
 TRUNK
 MASTER
-BUILD : 201912XXXXXXXX
+BUILD : 20200204120000
 ----------------------
 0001136: Calcul du cumuls des erreurs (571) : Prendre en copte la valeur négative du capteur de vittesse (551)
 0001160: Sélection du banc dans vérif matériel : Affichage de la marque

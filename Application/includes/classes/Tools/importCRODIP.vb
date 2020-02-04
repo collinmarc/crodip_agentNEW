@@ -188,7 +188,7 @@ Public Class importCRODIP
         Try
 
             Dim olstExploit As New List(Of Exploitation)
-            Using reader As StreamReader = New StreamReader(pfileName)
+            Using reader As StreamReader = New StreamReader(pfileName, System.Text.Encoding.GetEncoding(1252))
                 Using csv As CsvReader = New CsvReader(reader, Globalization.CultureInfo.CurrentCulture)
                     csv.Configuration.HeaderValidated = Nothing
                     csv.Configuration.MissingFieldFound = Nothing

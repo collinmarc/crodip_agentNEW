@@ -25,12 +25,15 @@ Public Class tool_importData
         End If
     End Sub
 
-    Private Sub btnimportClick_Click(sender As Object, e As EventArgs) Handles btnImport.Click, btnImport.Click
+    Private Sub btnimportClick_Click(sender As Object, e As EventArgs) Handles btnImport.Click
         Cursor = Cursors.WaitCursor
         Dim FileName As String
         FileName = TextBox1.Text
-        importer(FileName)
-        OK_Button.Enabled = True
+        If System.IO.File.Exists(FileName) Then
+            importer(FileName)
+            OK_Button.Enabled = True
+            TextBox1.Text = ""
+        End If
         Cursor = Cursors.Default
 
 
