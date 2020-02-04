@@ -97,9 +97,9 @@ Public Class importCRODIP
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
     Public Property manometrePressionTravail As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
-    Public Property dateProchainControle As String
+    Public Property controleEtat As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
-    Public Property ControleEtat As String
+    Public Property dateProchainControle As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
     Public Property emplacementIdentification As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
