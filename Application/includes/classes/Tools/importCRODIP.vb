@@ -192,6 +192,7 @@ Public Class importCRODIP
                 Using csv As CsvReader = New CsvReader(reader, Globalization.CultureInfo.CurrentCulture)
                     csv.Configuration.HeaderValidated = Nothing
                     csv.Configuration.MissingFieldFound = Nothing
+                    csv.Configuration.PrepareHeaderForMatch = Function(h As String, n As Integer) h.ToLower()
                     Dim lst As IEnumerable(Of importCRODIP)
                     lst = csv.GetRecords(Of importCRODIP)()
                     Dim oExploitation As Exploitation

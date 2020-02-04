@@ -14,7 +14,165 @@ Imports CsvHelper
 Public Class ImportCRODIPTest
     Inherits CRODIPTest
 
+    Public Class importCRODIPcolsinversée
+        'Les Cols CodeAPE et numéroSIREN sont inversées
+        'Les cols ControleEtat et dateProchaincontrole aussi
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property id As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property codeApe As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property numeroSiren As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property RAISONSOCIALE As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property nomexploitant As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property prenomExploitant As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property adresse As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property codePostal As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property commune As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property codeInsee As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property telephonePortable As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property telephoneFax As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>
+        Public Property eMail As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property numeroNational As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property type As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property marque As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property modele As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property anneeAchat As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property attelage As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property capacite As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property largeur As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property nombrerangs As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property largeurPlantation As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property surfaceParAn As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property nombreUtilisateurs As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isVentilateur As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isDebrayage As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isCuveRincage As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property capaciteCuveRincage As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isRotobuse As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isCuveIncorporation As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isRinceBidon As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isBidonLaveMain As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isLanceLavage As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property nombreBuses As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property buseIsIso As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property buseMarque As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property buseType As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property buseFonctionnement As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property buseAge As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property buseAngle As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property manometreMarque As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property manometreType As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property manometreFondEchelle As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property manometreDiametre As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property manometrePressionTravail As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property emplacementIdentification As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property controleEtat As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property dateProchainControle As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property ancienIdentifiant As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isEclairageRampe As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isBarreGuidage As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isCoupureAutoTroncons As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isRincageAutoAssiste As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property buseModele As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property buseNbniveaux As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property manometreNbniveaux As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property manometreNbtroncons As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property buseCouleur As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property regulation As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property regulationOptions As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property modeUtilisation As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property nombreExploitants As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property categorie As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property pulverisation As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isAspirationExt As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isDispoAntiRetour As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isReglageAutoHauteur As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isFiltrationAspiration As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isFiltrationRefoulement As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isFiltrationTroncons As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isFiltrationBuses As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isPulveAdditionnel As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property pulvePrincipalNumNat As String
 
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+        Public Property isRincagecircuit As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR, "IsPompesDoseuses")>
+        Public Property isPompesDoseuses As String
+        <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR, "nbPompesDoseuses")>
+        Public Property nbPompesDoseuses As String
+    End Class
 
 #Region "Attributs de tests supplémentaires"
     '
@@ -46,120 +204,161 @@ Public Class ImportCRODIPTest
     '''Test pour D'init de l'objet + properties
     '''</summary>
     <TestMethod()>
-    Public Sub TST_Object()
+        Public Sub TST_Object()
 
-        Dim obj As importCRODIP
-        Dim olstin = New List(Of importCRODIP)
+            Dim obj As importCRODIP
+            Dim olstin = New List(Of importCRODIP)
 
-        obj = New importCRODIP()
-        obj.nomExploitant = "TEST1"
+            obj = New importCRODIP()
+            obj.nomExploitant = "TEST1"
+            obj.numeroSiren = "1235467"
+            obj.numeroNational = "E001001"
+            olstin.Add(obj)
+            obj = New importCRODIP()
+            obj.nomExploitant = "TEST2"
+            obj.numeroSiren = "789456123"
+            obj.numeroNational = "E001002"
+            olstin.Add(obj)
+
+            Dim sw As New StreamWriter("./TEST.CSV")
+            Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
+                csv.WriteRecords(olstin)
+
+
+            End Using
+            Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+            Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+
+            Dim oResult As importCRODIP.ImportCrodipResult
+            oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
+
+            Assert.AreEqual(2, oResult.nClientimport)
+            Assert.AreEqual(2, oResult.nPulveimport)
+            Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+            Assert.AreEqual(nExploitapres, nExploitAvant + 2)
+
+            Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+            Assert.AreEqual(nPulveApres, nPulveAvant + 2)
+
+        End Sub
+
+        <TestMethod()>
+        Public Sub TST_ImportPulveSansNumNat()
+
+            Dim obj As importCRODIP
+            Dim olstin = New List(Of importCRODIP)
+
+            obj = New importCRODIP()
+            obj.nomExploitant = "TEST1"
+            obj.numeroSiren = "1235467"
+            obj.numeroNational = "E001001"
+            olstin.Add(obj)
+            obj = New importCRODIP()
+            obj.nomExploitant = "TEST2"
+            obj.numeroSiren = "789456123"
+            'obj.numeroNational = "E001002" 'Pas de numéro national pour le second Pulvé
+            olstin.Add(obj)
+
+            Dim sw As New StreamWriter("./TEST.CSV")
+            Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
+                csv.WriteRecords(olstin)
+
+
+            End Using
+            Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+            Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+
+            Dim oResult As importCRODIP.ImportCrodipResult
+            oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
+
+            Assert.AreEqual(2, oResult.nClientimport)
+            Assert.AreEqual(1, oResult.nPulveimport)
+            Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+            Assert.AreEqual(nExploitapres, nExploitAvant + 2)
+
+            Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+            Assert.AreEqual(nPulveApres, nPulveAvant + 1)
+
+        End Sub
+
+        <TestMethod()>
+        Public Sub TST_Import2Pulve1Client()
+
+            Dim obj As importCRODIP
+            Dim olstin = New List(Of importCRODIP)
+
+            obj = New importCRODIP()
+            obj.nomExploitant = "TEST1"
+            obj.numeroSiren = "1235467"
+            obj.numeroNational = "E001001"
+            olstin.Add(obj)
+            obj = New importCRODIP()
+            obj.nomExploitant = "TEST1"
+            obj.numeroSiren = "1235467"
+            obj.numeroNational = "E001002"
+            olstin.Add(obj)
+
+            Dim sw As New StreamWriter("./TEST.CSV")
+            Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
+                csv.WriteRecords(olstin)
+
+
+            End Using
+            Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+            Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+
+            Dim oResult As importCRODIP.ImportCrodipResult
+            oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
+
+            Assert.AreEqual(1, oResult.nClientimport)
+            Assert.AreEqual(2, oResult.nPulveimport)
+            Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+            Assert.AreEqual(nExploitapres, nExploitAvant + 1)
+
+            Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+            Assert.AreEqual(nPulveApres, nPulveAvant + 2)
+
+        End Sub
+
+        <TestMethod()>
+        Public Sub TST_OrdreCols()
+
+        Dim obj As importCRODIPcolsinversée
+        Dim olstin = New List(Of importCRODIPcolsinversée)
+
+        obj = New importCRODIPcolsinversée()
+        obj.NomExploitant = "TEST1"
+        obj.codeApe = "AQWZS"
         obj.numeroSiren = "1235467"
+        'Raisonsociale commence par une majuscule
+        obj.RaisonSociale = "RS001"
         obj.numeroNational = "E001001"
         olstin.Add(obj)
-        obj = New importCRODIP()
+        obj = New importCRODIPcolsinversée()
         obj.nomExploitant = "TEST2"
+        obj.codeApe = "POIUY"
         obj.numeroSiren = "789456123"
         obj.numeroNational = "E001002"
-        olstin.Add(obj)
+            olstin.Add(obj)
 
-        Dim sw As New StreamWriter("./TEST.CSV")
+        Dim sw As New StreamWriter("./TESTcolInvers.CSV")
         Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
-            csv.WriteRecords(olstin)
+                csv.WriteRecords(olstin)
 
 
-        End Using
-        Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-        Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+            End Using
 
         Dim oResult As importCRODIP.ImportCrodipResult
-        oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
-
+        oResult = importCRODIP.import("./TESTcolInvers.CSV", m_oAgent)
         Assert.AreEqual(2, oResult.nClientimport)
-        Assert.AreEqual(2, oResult.nPulveimport)
-        Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-        Assert.AreEqual(nExploitapres, nExploitAvant + 2)
+        Dim olstExpl As List(Of Exploitation)
+        olstExpl = ExploitationManager.searchExploitation(m_oAgent, 4, "TEST1")
+        Dim oExploit As Exploitation
+        oExploit = olstExpl(0)
+        Assert.AreEqual("AQWZS", oExploit.codeApe)
+        Assert.AreEqual("1235467", oExploit.numeroSiren)
+        Assert.AreEqual("RS001", oExploit.raisonSociale)
 
-        Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
-        Assert.AreEqual(nPulveApres, nPulveAvant + 2)
 
     End Sub
-
-    <TestMethod()>
-    Public Sub TST_ImportPulveSansNumNat()
-
-        Dim obj As importCRODIP
-        Dim olstin = New List(Of importCRODIP)
-
-        obj = New importCRODIP()
-        obj.nomExploitant = "TEST1"
-        obj.numeroSiren = "1235467"
-        obj.numeroNational = "E001001"
-        olstin.Add(obj)
-        obj = New importCRODIP()
-        obj.nomExploitant = "TEST2"
-        obj.numeroSiren = "789456123"
-        'obj.numeroNational = "E001002" 'Pas de numéro national pour le second Pulvé
-        olstin.Add(obj)
-
-        Dim sw As New StreamWriter("./TEST.CSV")
-        Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
-            csv.WriteRecords(olstin)
-
-
-        End Using
-        Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-        Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
-
-        Dim oResult As importCRODIP.ImportCrodipResult
-        oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
-
-        Assert.AreEqual(2, oResult.nClientimport)
-        Assert.AreEqual(1, oResult.nPulveimport)
-        Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-        Assert.AreEqual(nExploitapres, nExploitAvant + 2)
-
-        Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
-        Assert.AreEqual(nPulveApres, nPulveAvant + 1)
-
-    End Sub
-
-    <TestMethod()>
-    Public Sub TST_Import2Pulve1Client()
-
-        Dim obj As importCRODIP
-        Dim olstin = New List(Of importCRODIP)
-
-        obj = New importCRODIP()
-        obj.nomExploitant = "TEST1"
-        obj.numeroSiren = "1235467"
-        obj.numeroNational = "E001001"
-        olstin.Add(obj)
-        obj = New importCRODIP()
-        obj.nomExploitant = "TEST1"
-        obj.numeroSiren = "1235467"
-        obj.numeroNational = "E001002"
-        olstin.Add(obj)
-
-        Dim sw As New StreamWriter("./TEST.CSV")
-        Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
-            csv.WriteRecords(olstin)
-
-
-        End Using
-        Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-        Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
-
-        Dim oResult As importCRODIP.ImportCrodipResult
-        oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
-
-        Assert.AreEqual(1, oResult.nClientimport)
-        Assert.AreEqual(2, oResult.nPulveimport)
-        Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-        Assert.AreEqual(nExploitapres, nExploitAvant + 1)
-
-        Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
-        Assert.AreEqual(nPulveApres, nPulveAvant + 2)
-
-    End Sub
-
-End Class
+    End Class
