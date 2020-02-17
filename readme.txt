@@ -4,6 +4,7 @@ BUILD : 20200217120000
 ----------------------
 0001169: synchro module documentaire en mode simplifié
 0001171: MAJ de la date de synhcro agent Dans le Crodipagent en mode gestionnaire
+0001175: Acquisition ITEQ en ARBO : Nbre de buses incorrect
 
 BUILD : 20200204120000
 ----------------------

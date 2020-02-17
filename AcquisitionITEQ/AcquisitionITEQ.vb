@@ -146,8 +146,7 @@ Public Class AcquisitionITEQ
         Dim lstValues As New List(Of AcquisitionValue)
         Dim nReturn As Integer = 0
         lstValues = GetValues()
-        nReturn = lstValues.Max(Function(oVal) _
-                          oVal.NumBuse)
+        nReturn = lstValues.Where(Function(oVal) oVal.Niveau = pNiveau).Max(Function(oVal) oVal.NumBuse)
         logger.Info("AcquisitionITEQ.getnbBuses return " & nReturn)
         Return nReturn
     End Function
