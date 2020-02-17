@@ -1,5 +1,10 @@
 TRUNK
 MASTER
+BUILD : 20200217120000
+----------------------
+0001169: synchro module documentaire en mode simplifié
+0001171: MAJ de la date de synhcro agent Dans le Crodipagent en mode gestionnaire
+
 BUILD : 20200204120000
 ----------------------
 0001136: Calcul du cumuls des erreurs (571) : Prendre en copte la valeur négative du capteur de vittesse (551)
