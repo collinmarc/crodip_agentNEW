@@ -114,6 +114,14 @@ Public Class SynchronisationManager
                 Next objWSUpdates_item
 
                 LogSynchroElmt(oSynchro, "WS.UpdateAvailable")
+                If Globals.GLOB_ENV_MODESIMPLIFIE Then
+                    'En mode simplifié on ne synchronise pas les Elements communs et Organisme du Module documentaire
+                    If TypeOf oSynchro Is SynchronisationElmtDocument And oSynchro.Update Then
+                        If oSynchro.IdentifiantChaine.Contains("/Commun/") Or oSynchro.IdentifiantChaine.Contains("/Organismes/") Then
+                            oSynchro.Update = False
+                        End If
+                    End If
+                End If
                 If oSynchro.Update Then
                     oLst.Add(oSynchro)
                 End If

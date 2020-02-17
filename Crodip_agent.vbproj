@@ -1002,6 +1002,12 @@
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\agent\frmMAJsynchroAgent.Designer.vb">
+      <DependentUpon>frmMAJsynchroAgent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\agent\frmMAJsynchroAgent.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCrodip.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2442,6 +2448,9 @@
       <LastGenOutput>cr_FeuillePedagogique.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Application\agent\frmMAJsynchroAgent.resx">
+      <DependentUpon>frmMAJsynchroAgent.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMAJVersion.resx">
       <DependentUpon>frmMAJVersion.vb</DependentUpon>
     </EmbeddedResource>

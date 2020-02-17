@@ -45,19 +45,17 @@ Public Class CSSoftwareUpdate
                 Dim wsResponse As New Object
                 ' Appel au WS
                 Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(Globals.GLOB_APPLI_BUILD, wsResponse)
-                Dim oUpdateInfo As UpdateInfo
-                oUpdateInfo = New UpdateInfo(wsResponse)
-
-                For Each sFile As String In oUpdateInfo.files
-                    If sFile.ToUpper().EndsWith("VERSION.HTML") Or sFile.ToUpper().EndsWith("VERSION.HTM") Then
-                        oUpdateInfo.DoDownload(sFile)
-                        MyUpdateInfo = oUpdateInfo
-                    End If
-
-                Next
-
-
                 If codeResponse = 2 Then
+                    Dim oUpdateInfo As UpdateInfo
+                    oUpdateInfo = New UpdateInfo(wsResponse)
+
+                    For Each sFile As String In oUpdateInfo.files
+                        If sFile.ToUpper().EndsWith("VERSION.HTML") Or sFile.ToUpper().EndsWith("VERSION.HTM") Then
+                            oUpdateInfo.DoDownload(sFile)
+                            MyUpdateInfo = oUpdateInfo
+                        End If
+
+                    Next
                     bReturn = True
                 End If
             End If
