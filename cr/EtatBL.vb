@@ -9,12 +9,12 @@ Public Class EtatBL
     Private Class LgPrestation
         Public m_Libelle As String
         Public m_PU As Decimal
-        Public m_qte As Integer
+        Public m_qte As Decimal
         Public m_TVA As Decimal
         Public m_TotalHT As Decimal
         Public m_TotalTTC As Decimal
 
-        Public Sub New(pLib As String, pPU As String, pQte As Integer, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal)
+        Public Sub New(pLib As String, pPU As Decimal, pQte As Decimal, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal)
             m_Libelle = pLib
             m_PU = pPU
             m_qte = pQte
@@ -42,7 +42,7 @@ Public Class EtatBL
 
 
 
-    Public Function AddPresta(pLib As String, pPU As String, pQte As Integer, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal) As Boolean
+    Public Function AddPresta(pLib As String, pPU As Decimal, pQte As Decimal, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal) As Boolean
         Dim bReturn As Boolean
         Try
             Dim oPresta As LgPrestation = New LgPrestation(pLib, pPU, pQte, pTVA, pTotalHT, pTotalTTC)

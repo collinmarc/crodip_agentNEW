@@ -11,7 +11,10 @@ Imports System.Net
 
 #End Region
 Public Class CSEnvironnement
-
+    Private Enum Protocol
+        http
+        https
+    End Enum
 #Region " Version "
 
     Public Shared versionMessage As String = ""
@@ -88,40 +91,90 @@ Public Class CSEnvironnement
 
     ' Fonction permettant de tester si on a une connexion internet
     Public Shared Function checkNetwork() As Boolean
+        'Par Défaut
+        'System.Net.ServicePointManager.Expect100Continue = True
+        'ServicePointManager.DefaultConnectionLimit = 2
+        'ServicePointManager.SecurityProtocol = 0
+        System.Net.ServicePointManager.Expect100Continue = My.Settings.Expect100Continue
+        'ServicePointManager.DefaultConnectionLimit = My.Settings.DefaultConnectionLimit
+        '''        SecurityProtocolType.Tls Or SecurityProtocolType.Tls11 Or SecurityProtocolType.Tls12 Or SecurityProtocolType.Ssl3 = 4080
+        If My.Settings.SecurityProtocol <> 0 Then
+            ServicePointManager.SecurityProtocol = My.Settings.SecurityProtocol
+        End If
+        Dim bReturn As Boolean = False
+        If checkNetwork(Protocol.https) Then
+            bReturn = True
+        Else
+            bReturn = checkNetwork(Protocol.http)
+        End If
+        Return bReturn
+
+    End Function
+    Private Shared Function ChangeProtocol(pProtocol As Protocol, purl As String) As String
+        Dim urlReturn As String
+        ' Supresssion des procole existant
+        urlReturn = purl.Replace("https://", "")
+        urlReturn = urlReturn.Replace("http://", "")
+        'Ajout du protocole demandé
+        If pProtocol = Protocol.http Then
+            urlReturn = "http://" & urlReturn
+        End If
+        If pProtocol = Protocol.https Then
+            urlReturn = "https://" & urlReturn
+        End If
+        Return urlReturn
+    End Function
+
+    Private Shared Function checkNetwork(pProtocol As Protocol) As Boolean
 
         '--- Déclaration des variables de la fonction
         Dim requete As HttpWebRequest = Nothing
         Dim reponse As HttpWebResponse = Nothing
+        Dim url As String
+        url = ChangeProtocol(pProtocol, My.Settings.urlCRODIP)
 
         '--- Suivi des erreurs rencontrées
         Try
-            requete = CType(WebRequest.Create("http://www.crodip.fr"), HttpWebRequest)
+            requete = CType(WebRequest.Create(url), HttpWebRequest)
             reponse = CType(requete.GetResponse, HttpWebResponse)
-            requete.Abort() '--- Déconnexion
+            reponse.Close() '--- Déconnexion
             If reponse.StatusCode = HttpStatusCode.OK Then
-                '                globConnectFlagNok.Visible = False
-                '                globConnectFlagOk.Visible = True
                 Globals.GLOB_NETWORKAVAILABLE = True
                 Return True
             Else
-                '               globConnectFlagNok.Visible = True
-                '              globConnectFlagOk.Visible = False
+                If requete IsNot Nothing Then
+                    requete.Abort()
+                End If
                 Return False
             End If
         Catch generatedExceptionVariable0 As WebException
-            '         globConnectFlagNok.Visible = True
-            '        globConnectFlagOk.Visible = False
+            If requete IsNot Nothing Then
+                requete.Abort()
+            End If
+            CSDebug.dispError(String.Format("CSEnvironnement.CheckNetwork ({0}) ERR1 : ({1})", url, generatedExceptionVariable0.Message))
             Return False
-        Catch generatedExceptionVariable1 As Exception
-            '       globConnectFlagNok.Visible = True
-            '      globConnectFlagOk.Visible = False
+        Catch ex As Exception
+            If requete IsNot Nothing Then
+                requete.Abort()
+            End If
+            CSDebug.dispError(String.Format("CSEnvironnement.CheckNetwork2 ({0}) ERR1 : ({1})", url, ex.Message))
             Return False
         End Try
 
     End Function
-
     ' Fonction permettant de tester si le webservice est en ligne
     Public Shared Function checkWebService() As Boolean
+        Dim bReturn As Boolean = False
+        If checkWebService(Protocol.https) Then
+            bReturn = True
+        Else
+            bReturn = checkWebService(Protocol.http)
+        End If
+
+
+        Return bReturn
+    End Function
+    Private Shared Function checkWebService(pProtocol As Protocol) As Boolean
 
         '--- Déclaration des variables de la fonction
         Dim requete As HttpWebRequest = Nothing
@@ -130,24 +183,27 @@ Public Class CSEnvironnement
         Dim bReturn As Boolean = False
         Dim webservice As WSCrodip_prod.CrodipServer
 
+        Globals.GLOB_NETWORKAVAILABLE = checkNetwork()
         If Globals.GLOB_NETWORKAVAILABLE Then
             webservice = WSCrodip.getWS()
             webserviceUrl = webservice.Url
+            webserviceUrl = ChangeProtocol(pProtocol, webserviceUrl)
             '--- Suivi des erreurs rencontrées
             Try
                 requete = CType(WebRequest.Create(webserviceUrl), HttpWebRequest)
                 reponse = CType(requete.GetResponse, HttpWebResponse)
                 requete.Abort() '--- Déconnexion
                 If reponse.StatusCode = HttpStatusCode.OK Then
+                    webservice.Url = webserviceUrl
                     bReturn = True
                 Else
                     bReturn = False
                 End If
             Catch generatedExceptionVariable0 As WebException
-                'CSDebug.dispError(generatedExceptionVariable0.Message.ToString)
+                CSDebug.dispError(String.Format("CSEnvironnement.checckWebServices({0}) ERR1 : {1}  ", webserviceUrl, generatedExceptionVariable0.Message))
                 bReturn = False
-            Catch generatedExceptionVariable1 As Exception
-                'CSDebug.dispError(generatedExceptionVariable1.Message.ToString)
+            Catch ex As Exception
+                CSDebug.dispError(String.Format("CSEnvironnement.checckWebServices({0}) ERR2 : {1}  ", webserviceUrl, ex.Message))
                 bReturn = False
             End Try
         End If

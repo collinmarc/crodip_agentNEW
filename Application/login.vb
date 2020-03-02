@@ -159,7 +159,7 @@ Public Class login
         Me.lblMode.BackColor = System.Drawing.Color.Transparent
         Me.lblMode.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.lblMode.ForeColor = System.Drawing.Color.Silver
-        Me.lblMode.Location = New System.Drawing.Point(466, 656)
+        Me.lblMode.Location = New System.Drawing.Point(428, 656)
         Me.lblMode.Name = "lblMode"
         Me.lblMode.Size = New System.Drawing.Size(112, 15)
         Me.lblMode.TabIndex = 33
@@ -249,7 +249,7 @@ Public Class login
         Me.Lbl_Version.BackColor = System.Drawing.Color.Transparent
         Me.Lbl_Version.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Lbl_Version.ForeColor = System.Drawing.Color.Silver
-        Me.Lbl_Version.Location = New System.Drawing.Point(867, 656)
+        Me.Lbl_Version.Location = New System.Drawing.Point(804, 656)
         Me.Lbl_Version.Name = "Lbl_Version"
         Me.Lbl_Version.Size = New System.Drawing.Size(101, 15)
         Me.Lbl_Version.TabIndex = 30
@@ -504,7 +504,7 @@ Public Class login
         Me.lbl_WS.BackColor = System.Drawing.Color.Transparent
         Me.lbl_WS.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.lbl_WS.ForeColor = System.Drawing.Color.Silver
-        Me.lbl_WS.Location = New System.Drawing.Point(655, 656)
+        Me.lbl_WS.Location = New System.Drawing.Point(566, 656)
         Me.lbl_WS.Name = "lbl_WS"
         Me.lbl_WS.Size = New System.Drawing.Size(183, 15)
         Me.lbl_WS.TabIndex = 31
@@ -549,10 +549,12 @@ Public Class login
         Dim myFormParentContener As Form = Me.MdiParent
         Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_ENCOURS, True)
         Dim bAgentExistant As Boolean = False
+        Dim idAgent As Integer
         Try
             ' On récupère l'agent sélèctionné
             Dim selectedAgent As Agent
             selectedAgent = AgentManager.getAgentByNumeroNational(login_profil.SelectedItem.Id)
+            idAgent = selectedAgent.id
             If selectedAgent.numeroNational.ToString <> "" Then
                 If CSEnvironnement.checkWebService() = True Then
                     ' On commence par redescendre le pass de l'agent courant
@@ -612,6 +614,7 @@ Public Class login
                                 Me.Cursor = Cursors.Default
                             End If
                         End If
+                        agentCourant = AgentManager.getAgentById(idAgent)
                         panel_splashSynchro.Visible = False
                         ' On met à jour la barre de status
                         Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_OK, False)
@@ -623,7 +626,7 @@ Public Class login
                         Dim formAccueil As New accueil
                         globFormAccueil = formAccueil
                         formAccueil.MdiParent = Me.MdiParent
-                        formAccueil.Init() '' initialisation de la fenêtre avant l'affichage
+                        formAccueil.Init(idAgent) '' initialisation de la fenêtre avant l'affichage
                         TryCast(MdiParent, parentContener).DisplayForm(formAccueil)
                         Me.Hide()
 
@@ -668,9 +671,15 @@ Public Class login
 
         CSDebug.dispInfo("Login.Load: CheckWS()")
         If Not CSEnvironnement.checkWebService() Then
+            lbl_WS.Text = WSCrodip.getWS().Url
             lbl_WS.ForeColor = Drawing.Color.Red
         End If
         Lbl_Version.Text = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
+        If Not My.Settings.AutoSync Then
+            Lbl_Version.Text = Lbl_Version.Text & " SYNC OFF"
+        Else
+            Lbl_Version.Text = Lbl_Version.Text & " SYNC ON"
+        End If
         ' On récupère le formulaire contener
         CSDebug.dispInfo("Login.Load: GO")
 

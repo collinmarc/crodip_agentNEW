@@ -154,15 +154,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-    Public ReadOnly Property AutoSync() As Boolean
-        Get
-            Return CType(Me("AutoSync"),Boolean)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("moduledocumentaire/_parametres")>  _
     Public ReadOnly Property RepertoireParametres() As String
         Get
@@ -373,7 +364,16 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("V2.6.1")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+    Public ReadOnly Property AutoSync() As Boolean
+        Get
+            Return CType(Me("AutoSync"),Boolean)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("V2.6.2")>  _
     Public ReadOnly Property DBVersionExpected() As String
         Get
             Return CType(Me("DBVersionExpected"),String)
@@ -382,7 +382,7 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20191014180000")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20200217120000")>  _
     Public ReadOnly Property NumBuild() As String
         Get
             Return CType(Me("NumBuild"),String)
@@ -391,10 +391,28 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("Simplifié")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("NORMAL")>  _
     Public ReadOnly Property Mode() As String
         Get
             Return CType(Me("Mode"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("admin.crodip.fr")>  _
+    Public ReadOnly Property urlCRODIP() As String
+        Get
+            Return CType(Me("urlCRODIP"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("4080")>  _
+    Public ReadOnly Property SecurityProtocol() As Integer
+        Get
+            Return CType(Me("SecurityProtocol"),Integer)
         End Get
     End Property
 End Class

@@ -32,9 +32,6 @@
     <Setting Name="DernierControleSite" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="AutoSync" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="RepertoireParametres" Type="System.String" Scope="Application">
       <Value Profile="(Default)">moduledocumentaire/_parametres</Value>
     </Setting>
@@ -98,14 +95,23 @@
     <Setting Name="NumVersion" Type="System.String" Scope="Application">
       <Value Profile="(Default)">2.6</Value>
     </Setting>
+    <Setting Name="AutoSync" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">V2.6.1</Value>
+      <Value Profile="(Default)">V2.6.2</Value>
     </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20191014180000</Value>
+      <Value Profile="(Default)">20200217120000</Value>
     </Setting>
     <Setting Name="Mode" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Simplifié</Value>
+      <Value Profile="(Default)">NORMAL</Value>
+    </Setting>
+    <Setting Name="urlCRODIP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin.crodip.fr</Value>
+    </Setting>
+    <Setting Name="SecurityProtocol" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">4080</Value>
     </Setting>
   </Settings>
 </SettingsFile>

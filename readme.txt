@@ -1,5 +1,10 @@
 TRUNK
 MASTER
+BUILD : 20200302150000
+----------------------
+0001058: Passage des serveurs en HTTPS
+0001176: Gestion des décimal en facturation
+
 BUILD : 20200217120000
 ----------------------
 0001169: synchro module documentaire en mode simplifié

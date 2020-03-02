@@ -52,7 +52,6 @@ Public Class WSCrodip
         If (Not m_bInit) Or (pbForce) Then
             Init()
         End If
-        System.Net.ServicePointManager.Expect100Continue = My.Settings.Expect100Continue
         Return m_WS
     End Function
 

@@ -3175,7 +3175,20 @@ Public Class accueil
 #End Region
 
 #Region " *** Loaders *** "
-
+    Private _idAgent As Integer
+    Public Property IDAgent() As Integer
+        Get
+            Return _idAgent
+        End Get
+        Set(ByVal value As Integer)
+            _idAgent = value
+        End Set
+    End Property
+    Public Sub SetContexte(pidAgent As Integer)
+        IDAgent = pidAgent
+        CSDebug.dispInfo("Accueil.SetContexte IdAgent = " & IDAgent)
+        agentCourant = AgentManager.getAgentById(IDAgent)
+    End Sub
     ' Chargement form
     Private Sub accueil_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         CSEnvironnement.checkDateTimePicker(dtpSearchCrit1)
@@ -3352,7 +3365,9 @@ Public Class accueil
     ''' Iniitalization de la la fênêtre
     ''' </summary>
     ''' <remarks></remarks>
-    Public Sub Init()
+    Public Sub Init(pIdAgent As Integer)
+        IDAgent = pIdAgent
+        agentCourant = AgentManager.getAgentById(pIdAgent)
         ' Affichage des alertes
         Me.Text = agentCourant.nom & " " & agentCourant.prenom & " / " & agentCourant.NomStructure
         If Globals.GLOB_ENV_MODESIMPLIFIE Then

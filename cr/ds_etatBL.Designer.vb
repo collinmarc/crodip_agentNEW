@@ -2088,7 +2088,7 @@ Partial Public Class ds_EtatBL
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddPrestationRow(ByVal Description As String, ByVal TotalHT As Decimal, ByVal TxTVA As Decimal, ByVal TotalTTC As Decimal, ByVal Qte As Integer, ByVal PrixUnitaire As Decimal) As PrestationRow
+        Public Overloads Function AddPrestationRow(ByVal Description As String, ByVal TotalHT As Decimal, ByVal TxTVA As Decimal, ByVal TotalTTC As Decimal, ByVal Qte As Decimal, ByVal PrixUnitaire As Decimal) As PrestationRow
             Dim rowPrestationRow As PrestationRow = CType(Me.NewRow,PrestationRow)
             Dim columnValuesArray() As Object = New Object() {Description, TotalHT, TxTVA, TotalTTC, Qte, PrixUnitaire}
             rowPrestationRow.ItemArray = columnValuesArray
@@ -2132,7 +2132,7 @@ Partial Public Class ds_EtatBL
             MyBase.Columns.Add(Me.columnTxTVA)
             Me.columnTotalTTC = New Global.System.Data.DataColumn("TotalTTC", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTotalTTC)
-            Me.columnQte = New Global.System.Data.DataColumn("Qte", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnQte = New Global.System.Data.DataColumn("Qte", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQte)
             Me.columnPrixUnitaire = New Global.System.Data.DataColumn("PrixUnitaire", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPrixUnitaire)
@@ -3609,10 +3609,10 @@ Partial Public Class ds_EtatBL
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Qte() As Integer
+        Public Property Qte() As Decimal
             Get
                 Try 
-                    Return CType(Me(Me.tablePrestation.QteColumn),Integer)
+                    Return CType(Me(Me.tablePrestation.QteColumn),Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'Qte' dans la table 'Prestation' est DBNull.", e)
                 End Try

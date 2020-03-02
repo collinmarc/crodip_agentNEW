@@ -14,19 +14,19 @@ Public Class EtatFacture
     Private Class facturePrestation
         Public m_Libelle As String
         Public m_PU As Decimal
-        Public m_qte As Integer
+        Public m_qte As Decimal
         Public m_TVA As Decimal
         Public m_TotalHT As Decimal
         Public m_TotalTTC As Decimal
- 
-        Public Sub New(pLib As String, pPU As String, pQte As Integer, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal)
+
+        Public Sub New(pLib As String, pPU As String, pQte As Decimal, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal)
             m_Libelle = pLib
             m_PU = pPU
             m_qte = pQte
             m_TVA = pTVA
             m_TotalHT = pTotalHT
             m_TotalTTC = pTotalTTC
- 
+
         End Sub
     End Class
 
@@ -68,7 +68,7 @@ Public Class EtatFacture
         End Using
     End Sub
 
-    Public Function AddPresta(pLib As String, pPU As String, pQte As Integer, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal) As Boolean
+    Public Function AddPresta(pLib As String, pPU As String, pQte As Decimal, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal) As Boolean
         Dim bReturn As Boolean
         Try
             Dim oPresta As facturePrestation = New facturePrestation(pLib, pPU, pQte, pTVA, pTotalHT, pTotalTTC)

@@ -51,8 +51,19 @@ Public Class DiagnosticFactureItem
             Return _prixUnitaire
         End Get
         Set(ByVal Value As String)
-            _prixUnitaire = Value
-            calcultTotal()
+            Try
+                Dim strValue As String = Value
+                strValue = strValue.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                strValue = strValue.Replace(",", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                If Convert.ToDecimal(strValue) Then
+                    _prixUnitaire = strValue
+                    calcultTotal()
+                End If
+
+
+            Catch ex As Exception
+
+            End Try
         End Set
     End Property
 
@@ -61,8 +72,18 @@ Public Class DiagnosticFactureItem
             Return _qte
         End Get
         Set(ByVal Value As String)
-            _qte = Value
-            calcultTotal()
+            Try
+                Dim strValue As String = Value
+                strValue = strValue.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                strValue = strValue.Replace(",", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                If Convert.ToDecimal(strValue) Then
+                    _qte = strValue
+                    calcultTotal()
+                End If
+
+            Catch ex As Exception
+
+            End Try
         End Set
     End Property
 
@@ -71,8 +92,17 @@ Public Class DiagnosticFactureItem
             Return _tva
         End Get
         Set(ByVal Value As String)
-            _tva = Value
-            calcultTotal()
+            Try
+                Value.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                Value.Replace(",", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                If Convert.ToDecimal(Value) Then
+                    _tva = Value
+                    calcultTotal()
+                End If
+
+            Catch ex As Exception
+
+            End Try
         End Set
     End Property
 

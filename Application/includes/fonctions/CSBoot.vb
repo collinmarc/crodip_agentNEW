@@ -63,27 +63,6 @@ Module CSBoot
         End If
     End Function
 
-    ' On test la connexion internet
-    Private Function checkNetwork() As Boolean
-        Dim bReturn As Boolean
-        ' On test la connexion internet
-        Try
-
-            If CSEnvironnement.checkNetwork() = True Then
-                globFormParent.notify_connexionStatus_nok.Visible = False
-                globFormParent.notify_connexionStatus_ok.Visible = True
-            Else
-                globFormParent.notify_connexionStatus_ok.Visible = False
-                globFormParent.notify_connexionStatus_nok.Visible = True
-            End If
-            globFormParent.notify_connexionStatus_wait.Visible = False
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError("CSBoot.CheckNetwork Err" & ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
 
 #End Region
 
