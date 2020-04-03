@@ -66,6 +66,10 @@ Module StartApplication
             End If
             bLoginFailed = false
 #Else
+        If Not System.IO.File.Exists(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME) Then
+            FacturationConfig.WriteXml()
+        End If
+
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
 
             'Test de la validité 

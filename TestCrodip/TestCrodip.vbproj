@@ -198,6 +198,7 @@
     </Compile>
     <Compile Include="CsFTPtest.vb" />
     <Compile Include="IdentifiantPulverisateurTest.vb" />
+    <Compile Include="FacturationConfigTest.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

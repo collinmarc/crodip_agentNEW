@@ -119,7 +119,7 @@ Public Class EtatFacture
         Dim bReturn As Boolean
         Try
 
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(".\config\facturation.xml")
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
             Dim oStruct As Structuree
             oStruct = StructureManager.getStructureById(m_oDiag.organismePresId)
 

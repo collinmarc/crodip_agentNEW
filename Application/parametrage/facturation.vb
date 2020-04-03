@@ -5,7 +5,7 @@ Imports System.Drawing.Imaging
 Public Class facturation
     Inherits frmCRODIP
 
-    Private FACTURATION_XML_CONFIG As CSXml = New CSXml(Application.StartupPath & "\config\facturation.xml")
+    Private FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
 
 #Region " Code généré par le Concepteur Windows Form "
 

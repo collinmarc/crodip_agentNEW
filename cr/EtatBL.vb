@@ -94,9 +94,6 @@ Public Class EtatBL
         Dim bReturn As Boolean
         Try
 
-            'Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(".\config\facturation.xml")
-            'Dim oStruct As Structuree
-            'oStruct = StructureManager.getStructureById(agentCourant.idStructure)
 
 
             '

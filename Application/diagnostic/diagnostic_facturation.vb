@@ -728,7 +728,7 @@ Public Class diagnostic_facturation
                 Try
                     btn_ImprimerFacture.Visible = False
                     btn_imprimerFactureCoProp.Visible = False
-                    Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Application.StartupPath & "\config\facturation.xml")
+                    Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
                     If CType(FACTURATION_XML_CONFIG.getElementValue("/root/isActive"), Boolean) Then
                         If Trim(m_oDiag.pulverisateurNbreExploitants) <> "" Then
                             If m_oDiag.pulverisateurNbreExploitants > 1 Then
@@ -836,7 +836,7 @@ Public Class diagnostic_facturation
         Dim facture As DiagnosticFacture = New DiagnosticFacture
         Try
             '####
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Application.StartupPath & "\config\facturation.xml")
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
             Dim organismePCourant As Structuree = StructureManager.getStructureById(m_oDiag.organismePresId)
             '####
             Dim champTotalTtc As Double = 0

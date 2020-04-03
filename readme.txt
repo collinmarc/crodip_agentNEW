@@ -3,7 +3,7 @@ MASTER
 BUILD : 202004XXXXXX
 ----------------------
 0001106: Ajout d'une acquisistion AAMS
-
+0001178: plantage si le fichier de config 'config/Facturation.xml' n'est pas présent
 
 BUILD : 20200302150000
 ----------------------
