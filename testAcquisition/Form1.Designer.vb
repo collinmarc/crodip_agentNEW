@@ -40,14 +40,19 @@ Partial Class Form1
         Me.AcquisitionValueBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tbNiveaux = New System.Windows.Forms.TextBox()
+        Me.rbAAMS = New System.Windows.Forms.RadioButton()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.FlowPanelAAMS = New System.Windows.Forms.FlowLayoutPanel()
+        Me.tbNbreBuseParNiveauAAMS = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AcquisitionValueBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FlowPanelAAMS.SuspendLayout()
         Me.SuspendLayout()
         '
         'rbMD2
         '
         Me.rbMD2.AutoSize = True
-        Me.rbMD2.Location = New System.Drawing.Point(13, 13)
+        Me.rbMD2.Location = New System.Drawing.Point(12, 17)
         Me.rbMD2.Name = "rbMD2"
         Me.rbMD2.Size = New System.Drawing.Size(48, 17)
         Me.rbMD2.TabIndex = 0
@@ -58,7 +63,7 @@ Partial Class Form1
         'rbITEQ
         '
         Me.rbITEQ.AutoSize = True
-        Me.rbITEQ.Location = New System.Drawing.Point(129, 13)
+        Me.rbITEQ.Location = New System.Drawing.Point(93, 17)
         Me.rbITEQ.Name = "rbITEQ"
         Me.rbITEQ.Size = New System.Drawing.Size(50, 17)
         Me.rbITEQ.TabIndex = 1
@@ -68,7 +73,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(219, 13)
+        Me.Button1.Location = New System.Drawing.Point(454, 14)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(146, 23)
         Me.Button1.TabIndex = 2
@@ -91,7 +96,7 @@ Partial Class Form1
         Me.DataGridView1.DataSource = Me.AcquisitionValueBindingSource
         Me.DataGridView1.Location = New System.Drawing.Point(3, 74)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(887, 201)
+        Me.DataGridView1.Size = New System.Drawing.Size(887, 255)
         Me.DataGridView1.TabIndex = 3
         '
         'NiveauDataGridViewTextBoxColumn
@@ -175,11 +180,52 @@ Partial Class Form1
         Me.tbNiveaux.Size = New System.Drawing.Size(272, 20)
         Me.tbNiveaux.TabIndex = 5
         '
+        'rbAAMS
+        '
+        Me.rbAAMS.AutoSize = True
+        Me.rbAAMS.Location = New System.Drawing.Point(179, 17)
+        Me.rbAAMS.Name = "rbAAMS"
+        Me.rbAAMS.Size = New System.Drawing.Size(55, 17)
+        Me.rbAAMS.TabIndex = 6
+        Me.rbAAMS.TabStop = True
+        Me.rbAAMS.Text = "AAMS"
+        Me.rbAAMS.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(5, 5)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(5)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(135, 13)
+        Me.Label2.TabIndex = 7
+        Me.Label2.Text = "Nbre de buses par niveau :"
+        '
+        'FlowPanelAAMS
+        '
+        Me.FlowPanelAAMS.Controls.Add(Me.Label2)
+        Me.FlowPanelAAMS.Controls.Add(Me.tbNbreBuseParNiveauAAMS)
+        Me.FlowPanelAAMS.Location = New System.Drawing.Point(237, 12)
+        Me.FlowPanelAAMS.Name = "FlowPanelAAMS"
+        Me.FlowPanelAAMS.Size = New System.Drawing.Size(211, 26)
+        Me.FlowPanelAAMS.TabIndex = 9
+        Me.FlowPanelAAMS.Visible = False
+        '
+        'tbNbreBuseParNiveauAAMS
+        '
+        Me.tbNbreBuseParNiveauAAMS.Location = New System.Drawing.Point(145, 0)
+        Me.tbNbreBuseParNiveauAAMS.Margin = New System.Windows.Forms.Padding(0)
+        Me.tbNbreBuseParNiveauAAMS.Name = "tbNbreBuseParNiveauAAMS"
+        Me.tbNbreBuseParNiveauAAMS.Size = New System.Drawing.Size(39, 20)
+        Me.tbNbreBuseParNiveauAAMS.TabIndex = 8
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(902, 284)
+        Me.ClientSize = New System.Drawing.Size(902, 338)
+        Me.Controls.Add(Me.FlowPanelAAMS)
+        Me.Controls.Add(Me.rbAAMS)
         Me.Controls.Add(Me.tbNiveaux)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.DataGridView1)
@@ -190,6 +236,8 @@ Partial Class Form1
         Me.Text = "Test Modules D'acquisition"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AcquisitionValueBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FlowPanelAAMS.ResumeLayout(False)
+        Me.FlowPanelAAMS.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -212,4 +260,8 @@ Partial Class Form1
     Friend WithEvents AcquisitionValueBindingSource As BindingSource
     Friend WithEvents Label1 As Label
     Friend WithEvents tbNiveaux As TextBox
+    Friend WithEvents rbAAMS As RadioButton
+    Friend WithEvents Label2 As Label
+    Friend WithEvents FlowPanelAAMS As FlowLayoutPanel
+    Friend WithEvents tbNbreBuseParNiveauAAMS As TextBox
 End Class

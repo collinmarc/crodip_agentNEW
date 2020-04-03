@@ -2,14 +2,25 @@
 Public Class Form1
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         'Module D'acquisition
-        Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
+        Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq = Nothing
         If rbMD2.Checked Then
             oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule("MD2")
-        Else
+        End If
+        If rbITEQ.Checked Then
             oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule("ITEQ")
         End If
-        Dim pModule As CRODIPAcquisition.ICRODIPAcquisition = oModuleAcquisition.Instance
+        If rbAAMS.Checked Then
+            oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule("AAMS")
 
+        End If
+        If (oModuleAcquisition Is Nothing) Then
+            MessageBox.Show("Impossible de charger le Module d'acquisition")
+            Exit Sub
+        End If
+        Dim pModule As CRODIPAcquisition.ICRODIPAcquisition = oModuleAcquisition.Instance
+        If rbAAMS.Checked Then
+            pModule.setNbBusesParNiveau(tbNbreBuseParNiveauAAMS.Text)
+        End If
         If Not System.IO.File.Exists(pModule.getFichier()) Then
             Dim oDLG As New OpenFileDialog()
             oDLG.Multiselect = False
@@ -40,5 +51,9 @@ Public Class Form1
             AcquisitionValueBindingSource.Add(oValue)
         Next
 
+    End Sub
+
+    Private Sub rbAAMS_CheckedChanged(sender As Object, e As EventArgs) Handles rbAAMS.CheckedChanged
+        FlowPanelAAMS.Visible = rbAAMS.Checked
     End Sub
 End Class

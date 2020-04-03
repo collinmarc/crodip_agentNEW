@@ -165,6 +165,14 @@ Public Class AcquisitionMD2
         m_fichierMD2 = pFichier
     End Sub
 
+    Public Function getGestionDesNiveaux() As Boolean Implements ICRODIPAcquisition.getGestionDesNiveaux
+        Return True
+    End Function
+
+    Public Sub setNbBusesParNiveau(pNbreBuses As Integer) Implements ICRODIPAcquisition.setNbBusesParNiveau
+        Throw New NotImplementedException()
+    End Sub
+
 
     'Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
     '    Dim oReturn As New List(Of AcquisitionValue)

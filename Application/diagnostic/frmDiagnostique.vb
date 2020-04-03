@@ -4273,6 +4273,19 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If obanc Is Nothing Then
             Return
         End If
+        'Vérification du nombre de niveau et du nbre de buses dans le premier niveau
+        If String.IsNullOrEmpty(diagBuses_conf_nbCategories.Text) Or Not IsNumeric(diagBuses_conf_nbCategories.Text) Then
+            Exit Sub
+        End If
+        Dim oCtrl As Control
+        oCtrl = CSForm.getControlByName("TextBox_nbBuses_1", Me)
+        If oCtrl IsNot Nothing Then
+
+            If String.IsNullOrEmpty(oCtrl.Text) Or Not IsNumeric(oCtrl.Text) Then
+                Exit Sub
+            End If
+        End If
+
 
         'Module D'acquisition
         Dim oModuleAcquisition As CRODIPAcquisition.ModuleAcq
@@ -4286,6 +4299,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End If
         Dim pModule As CRODIPAcquisition.ICRODIPAcquisition = oModuleAcquisition.Instance
 
+        If Not pModule.getGestionDesNiveaux() Then
+            Dim nbBuses As Integer = CSForm.getControlByName("TextBox_nbBuses_1", Me).Text
+            pModule.setNbBusesParNiveau(nbBuses)
+        End If
+
         If Not System.IO.File.Exists(pModule.getFichier()) Then
             Dim oDLG As New OpenFileDialog()
             oDLG.Multiselect = False
@@ -4296,12 +4314,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
         End If
         Dim isok As Boolean
-        'Récupération du nombre de niveau et du nombre de buses
-        Dim nbNiveauDeclare As Integer = 0
-        Dim nbBusesDeclare As Integer = 0
-        If diagBuses_conf_nbCategories.Text <> "" And IsNumeric(diagBuses_conf_nbCategories.Text) Then
-            nbNiveauDeclare = CInt(diagBuses_conf_nbCategories.Text)
-        End If
         isok = CheckAcquisition(oModuleAcquisition)
         If isok Then
 

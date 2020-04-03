@@ -4,6 +4,11 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports TestCrodip
 Imports CRODIPAcquisition
 Imports Crodip_agent
+Imports System.IO
+Imports CsvHelper.Configuration.Attributes
+Imports CsvHelper
+Imports System.Globalization
+Imports AcquisitionAAMS
 
 
 <TestClass()>
@@ -71,13 +76,20 @@ Public Class AcquisitionTest
 
         oLst.Add(oModule)
 
+        oModule = New ModuleAcq()
+        oModule.Nom = "AAMS"
+        oModule.Assembly = "AcquisitionAAMS.dll"
+        oModule.Main = "AcquisitionAAMS.Main"
+
+        oLst.Add(oModule)
+
         ModuleAcq.WriteXML(oLst)
 
         Assert.IsTrue(System.IO.File.Exists(ModuleAcq.XMLFILE))
 
         oLst = ModuleAcq.ReadXML()
         Assert.IsNotNull(oLst)
-        Assert.AreEqual(2, oLst.Count)
+        Assert.AreEqual(3, oLst.Count)
         Assert.AreEqual("MD2", oLst(0).Nom)
         Assert.AreEqual("AcquisitionMD2.dll", oLst(0).Assembly)
         Assert.AreEqual("AcquisitionMD2.Main", oLst(0).Main)
@@ -85,6 +97,10 @@ Public Class AcquisitionTest
         Assert.AreEqual("ITEQ", oLst(1).Nom)
         Assert.AreEqual("AcquisitionITEQ.dll", oLst(1).Assembly)
         Assert.AreEqual("AcquisitionITEQ.Main", oLst(1).Main)
+
+        Assert.AreEqual("AAMS", oLst(2).Nom)
+        Assert.AreEqual("AcquisitionAAMS.dll", oLst(2).Assembly)
+        Assert.AreEqual("AcquisitionAAMS.Main", oLst(2).Main)
 
     End Sub
 
@@ -313,6 +329,109 @@ Public Class AcquisitionTest
 
     End Sub
 
+    <TestMethod()>
+    Public Sub TestAAMSLoadAcq()
+
+        Dim olst As New List(Of ValueAAMS)
+
+        olst.Add(New ValueAAMS("001", "1.201", "2.901", "1.201"))
+        olst.Add(New ValueAAMS("002", "1.202", "2.902", "1.202"))
+        olst.Add(New ValueAAMS("003", "1.203", "2.903", "1.203"))
+        olst.Add(New ValueAAMS("004", "1.204", "2.904", "1.204"))
+        olst.Add(New ValueAAMS("005", "1.205", "2.905", "1.205"))
+        olst.Add(New ValueAAMS("006", "1.206", "2.906", "1.206"))
+        olst.Add(New ValueAAMS("007", "1.207", "2.907", "1.207"))
+        olst.Add(New ValueAAMS("008", "1.208", "2.908", "1.208"))
+        olst.Add(New ValueAAMS("009", "1.209", "2.909", "1.209"))
+        olst.Add(New ValueAAMS("010", "1.210", "2.910", "1.210"))
+        olst.Add(New ValueAAMS("011", "1.211", "2.911", "1.211"))
+        olst.Add(New ValueAAMS("012", "1.212", "2.912", "1.212"))
+        olst.Add(New ValueAAMS("013", "1.213", "2.913", "1.213"))
+        olst.Add(New ValueAAMS("014", "1.214", "2.914", "1.214"))
+        olst.Add(New ValueAAMS("015", "1.215", "2.915", "1.215"))
+        Using sw As New StreamWriter("./testAAMS.csv")
+            Using csvw As New CsvWriter(sw, CultureInfo.InvariantCulture)
+                csvw.Configuration.Delimiter = ";"
+                csvw.WriteRecords(olst)
+            End Using
+        End Using
+
+        Dim oModuleAcq As ModuleAcq
+        oModuleAcq = ModuleAcq.GetModule("AAMS")
+        Assert.AreEqual("AAMS", oModuleAcq.Nom)
+        oModuleAcq.Instance.setFichier("./testAAMS.csv")
+        oModuleAcq.Instance.setNbBusesParNiveau(5)
+
+        Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.getValues()
+
+        Assert.AreEqual(15, oLstResult.Count)
+
+    End Sub
+
+    <TestMethod()>
+    Public Sub TestAAMSLoadCalcNNiveauNBuses()
+
+        Dim olst As New List(Of ValueAAMS)
+
+        olst.Add(New ValueAAMS("001", "1.201", "2.901", "1.201"))
+        olst.Add(New ValueAAMS("002", "1.202", "2.902", "1.202"))
+        olst.Add(New ValueAAMS("003", "1.203", "2.903", "1.203"))
+        olst.Add(New ValueAAMS("004", "1.204", "2.904", "1.204"))
+        olst.Add(New ValueAAMS("005", "1.205", "2.905", "1.205"))
+        olst.Add(New ValueAAMS("006", "1.206", "2.906", "1.206"))
+        olst.Add(New ValueAAMS("007", "1.207", "2.907", "1.207"))
+        olst.Add(New ValueAAMS("008", "1.208", "2.908", "1.208"))
+        olst.Add(New ValueAAMS("009", "1.209", "2.909", "1.209"))
+        olst.Add(New ValueAAMS("010", "1.210", "2.910", "1.210"))
+        olst.Add(New ValueAAMS("011", "1.211", "2.911", "1.211"))
+        olst.Add(New ValueAAMS("012", "1.212", "2.912", "1.212"))
+        olst.Add(New ValueAAMS("013", "1.213", "2.913", "1.213"))
+        olst.Add(New ValueAAMS("014", "1.214", "2.914", "1.214"))
+        olst.Add(New ValueAAMS("015", "1.215", "2.915", "1.215"))
+        Using sw As New StreamWriter("./testAAMS.csv")
+            Using csvw As New CsvWriter(sw, CultureInfo.InvariantCulture)
+                csvw.Configuration.Delimiter = ";"
+                csvw.WriteRecords(olst)
+            End Using
+        End Using
+
+        Dim oModuleAcq As ModuleAcq
+        oModuleAcq = ModuleAcq.GetModule("AAMS")
+        Assert.AreEqual("AAMS", oModuleAcq.Nom)
+        oModuleAcq.Instance.setFichier("./testAAMS.csv")
+        oModuleAcq.Instance.setNbBusesParNiveau(5)
+
+        Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.getValues()
+
+        Assert.AreEqual(15, oLstResult.Count)
+
+        Assert.AreEqual(3, oModuleAcq.Instance.GetNbNiveaux())
+        Assert.AreEqual(5, oModuleAcq.Instance.GetNbBuses(1))
+
+
+    End Sub
+    <TestMethod()>
+    Public Sub TestAAMSFichierCRODIP()
+
+        Dim oModuleAcq As ModuleAcq
+        oModuleAcq = ModuleAcq.GetModule("AAMS")
+        Assert.AreEqual("AAMS", oModuleAcq.Nom)
+        oModuleAcq.Instance.setFichier("./Testfiles/csv_report_for 000509_N12.txt")
+        oModuleAcq.Instance.setNbBusesParNiveau(6)
+
+        Dim oLstResult As List(Of AcquisitionValue) = oModuleAcq.getValues()
+
+        Assert.AreEqual(24, oLstResult.Count)
+
+        Assert.AreEqual(4, oModuleAcq.Instance.GetNbNiveaux())
+        Assert.AreEqual(6, oModuleAcq.Instance.GetNbBuses(1))
+
+        Assert.AreEqual(1.208D, oLstResult(0).Debit)
+        Assert.AreEqual(2.974D, oLstResult(0).Pression)
+        Assert.AreEqual("1.213", oLstResult(0).Ref)
+
+
+    End Sub
 
     Private Sub fillMD2Database()
         Dim builder As New OleDb.OleDbConnectionStringBuilder()

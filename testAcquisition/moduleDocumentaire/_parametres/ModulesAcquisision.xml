@@ -10,4 +10,9 @@
     <Assembly>AcquisitionITEQ.dll</Assembly>
     <Main>AcquisitionITEQ.Main</Main>
   </ModuleAcq>
+  <ModuleAcq>
+    <Nom>AAMS</Nom>
+    <Assembly>AcquisitionAAMS.dll</Assembly>
+    <Main>AcquisitionAAMS.Main</Main>
+  </ModuleAcq>
 </ArrayOfModuleAcq>

@@ -1,5 +1,10 @@
 TRUNK
 MASTER
+BUILD : 202004XXXXXX
+----------------------
+0001106: Ajout d'une acquisistion AAMS
+
+
 BUILD : 20200302150000
 ----------------------
 0001058: Passage des serveurs en HTTPS

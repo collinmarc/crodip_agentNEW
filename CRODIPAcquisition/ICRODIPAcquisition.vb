@@ -6,6 +6,7 @@
     Function clearResults() As Boolean
     Function getFichier() As String
     Sub setFichier(pFichier As String)
-
+    Function getGestionDesNiveaux() As Boolean
+    Sub setNbBusesParNiveau(pNbreBuses As Integer)
 
 End Interface

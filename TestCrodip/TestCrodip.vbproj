@@ -239,6 +239,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AcquisitionAAMS\AcquisitionAAMS.vbproj">
+      <Project>{20a5b624-091f-4463-9d58-fd9591e0cb51}</Project>
+      <Name>AcquisitionAAMS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AcquisitionITEQ\AcquisitionITEQ.vbproj">
+      <Project>{261d4ece-cfcd-4bc7-b7eb-ea41468a3439}</Project>
+      <Name>AcquisitionITEQ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AcquisitionMD2\AcquisitionMD2.vbproj">
+      <Project>{333cd6fe-b2a4-4536-b8b9-18547927cd05}</Project>
+      <Name>AcquisitionMD2</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CRODIPAcquisition\CRODIPAcquisition.vbproj">
       <Project>{6a47aca1-97a9-468d-9c04-9b9cc11f6fe9}</Project>
       <Name>CRODIPAcquisition</Name>
@@ -259,6 +271,9 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestFiles\csv_report_for 000509_N12.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestFiles\ParamdiagArboViti.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

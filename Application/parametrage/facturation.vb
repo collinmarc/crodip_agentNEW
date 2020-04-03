@@ -387,23 +387,24 @@ Public Class facturation
 
         Me.loadLogo()
         Dim x As Xml.XmlNode = Me.FACTURATION_XML_CONFIG.getXmlNode("/root")
-        Dim y As Integer = x.ChildNodes.Count
-        For i As Integer = 0 To y - 1
-            Select Case x.ChildNodes.Item(i).Name()
-                Case "isActive"
-                    facturation_isActivated.Checked = CType(x.ChildNodes.Item(i).InnerText, Boolean)
-                    Me.toggleForm(facturation_isActivated.Checked)
-                Case "siren"
-                    facturation_siren.Text = x.ChildNodes.Item(i).InnerText
-                Case "tva"
-                    facturation_tva.Text = x.ChildNodes.Item(i).InnerText
-                Case "rcs"
-                    facturation_rcs.Text = x.ChildNodes.Item(i).InnerText
-                Case "footer"
-                    facturation_footer.Text = x.ChildNodes.Item(i).InnerText
-            End Select
-        Next
-
+        If x IsNot Nothing Then
+            Dim y As Integer = x.ChildNodes.Count
+            For i As Integer = 0 To y - 1
+                Select Case x.ChildNodes.Item(i).Name()
+                    Case "isActive"
+                        facturation_isActivated.Checked = CType(x.ChildNodes.Item(i).InnerText, Boolean)
+                        Me.toggleForm(facturation_isActivated.Checked)
+                    Case "siren"
+                        facturation_siren.Text = x.ChildNodes.Item(i).InnerText
+                    Case "tva"
+                        facturation_tva.Text = x.ChildNodes.Item(i).InnerText
+                    Case "rcs"
+                        facturation_rcs.Text = x.ChildNodes.Item(i).InnerText
+                    Case "footer"
+                        facturation_footer.Text = x.ChildNodes.Item(i).InnerText
+                End Select
+            Next
+        End If
     End Sub
 
     ' Sauvegarde la configuration
