@@ -611,6 +611,65 @@ Imports System.IO
         CSFile.open(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
 
     End Sub
+    <TestMethod()> Public Sub TestSynhcroHTTPEtat()
+        Dim oEtat As EtatRapportInspection
+        Dim oDiag As Diagnostic
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+
+        oExploit = createExploitation()
+        oPulve = createPulve(oExploit)
+
+
+        oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
+        oDiag.controleLieu = "DANS LA COUR"
+        oDiag.controleIsPreControleProfessionel = True
+        oDiag.proprietaireRepresentant = "Repésentant"
+        oDiag.id = "2-852-963"
+        oDiag.controleIsComplet = False
+        oDiag.buseDebitD = "2,5"
+
+        oDiag.syntheseErreurMoyenneManoD = 0.35D
+        oDiag.syntheseErreurMoyenneCinemometreD = 0.36D
+        oDiag.synthesePerteChargeMoyenneD = 0.37D
+        oDiag.syntheseErreurMaxiManoD = 1.35D
+        oDiag.syntheseUsureMoyenneBusesD = 1.36D
+        oDiag.synthesePerteChargeMaxiD = 1.37D
+        oDiag.syntheseErreurDebitmetreD = 0.38D
+        oDiag.syntheseNbBusesUseesD = 1.38D
+
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCC
+        DiagnosticManager.save(oDiag)
+        oEtat = New EtatRapportInspection(oDiag)
+        oEtat.GenereEtat()
+        oDiag.RIFileName = oEtat.getFileName()
+        'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
+
+        Dim oEtatSM As New EtatSyntheseMesures(oDiag)
+        oEtatSM.GenereEtat()
+        oDiag.SMFileName = oEtat.getFileName()
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
+
+        oDiag.SMFileName = oEtatSM.getFileName()
+        DiagnosticManager.save(oDiag)
+
+        ''Synchronisation des etats
+        Assert.IsTrue(DiagnosticManager.SendHTTPEtats(oDiag))
+
+        'Suppression des etats générés en local
+        File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+        File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName)
+        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
+        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
+
+        'Récupération des fichiers par HTTP
+        Assert.IsTrue(DiagnosticManager.getHTTPEtats(oDiag))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
+        CSFile.open(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+
+    End Sub
     <TestMethod()> Public Sub TestOrdredesDiagItems()
         Dim oEtat As EtatRapportInspection
         Dim oDiag As Diagnostic

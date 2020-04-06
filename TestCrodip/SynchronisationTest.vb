@@ -426,4 +426,17 @@ Public Class SynchronisationTest
 
 
     End Sub
+
+    <TestMethod>
+    Public Sub GetDateDernSynchro()
+
+        Dim oSynchro As New Synchronisation(m_oAgent)
+
+        oSynchro.Synchro(True, True)
+
+        m_oAgent = AgentManager.getAgentById(m_oAgent.id)
+
+        Assert.AreEqual(DateTime.Now, m_oAgent.dateDerniereSynchro)
+
+    End Sub
 End Class

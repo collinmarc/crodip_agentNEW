@@ -14,6 +14,7 @@ Public Class frmdiagnostic_recap
     Private m_Exploit As Exploitation
     Private m_Pulverisateur As Pulverisateur
     Private m_oAgent As Agent
+    Private m_frmdiagnostic As Form
     Dim isValider As Boolean = False
     Dim conclusionDiagnostique As Globals.enumConclusionDiag
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
@@ -60,7 +61,7 @@ Public Class frmdiagnostic_recap
 
     End Sub
 
-    Public Sub New(pDiagMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation, pAgent As Agent)
+    Public Sub New(pDiagMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation, pAgent As Agent, pfrmDiagnostic As Form)
         MyBase.New()
         m_DiagMode = pDiagMode
 
@@ -68,7 +69,7 @@ Public Class frmdiagnostic_recap
         m_Pulverisateur = pPulve
         m_Exploit = pExploit
         m_oAgent = pAgent
-
+        m_frmdiagnostic = pfrmDiagnostic
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
 
@@ -724,15 +725,19 @@ Public Class frmdiagnostic_recap
         'Récupération des infos de la fenêtre
         GetInfos()
         Dim ofrmDiag As Form = Nothing
-        If m_diagnostic.controleEtat <> Diagnostic.controleEtatNOKCC Then
-            'Activation de la fenêtre
-            For Each oForm As Form In MdiParent.MdiChildren
-                If TypeOf oForm Is FrmDiagnostique Then
-                    ofrmDiag = oForm
-                    Exit For
-                End If
-            Next
+        'Si on a une fenêtre Précédente on prend celle_là , sinon on recherche la bonne
+        If m_frmdiagnostic IsNot Nothing Then
+            ofrmDiag = m_frmdiagnostic
         Else
+            If m_diagnostic.controleEtat <> Diagnostic.controleEtatNOKCC Then
+                'Activation de la fenêtre
+                For Each oForm As Form In MdiParent.MdiChildren
+                    If TypeOf oForm Is FrmDiagnostique Then
+                        ofrmDiag = oForm
+                        Exit For
+                    End If
+                Next
+            End If
             For Each oForm As Form In MdiParent.MdiChildren
                 If TypeOf oForm Is controle_preliminaire Then
                     ofrmDiag = oForm

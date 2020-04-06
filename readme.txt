@@ -4,6 +4,9 @@ BUILD : 202004XXXXXX
 ----------------------
 0001106: Ajout d'une acquisistion AAMS
 0001178: plantage si le fichier de config 'config/Facturation.xml' n'est pas présent
+0001168: Création de pulve non indigo : revient à E001 après sauvegarde
+0001142: Synhcronisation d'un nouvel agent
+0001197: Contre-viste immédiate + Modifier => Controle complet
 
 BUILD : 20200302150000
 ----------------------

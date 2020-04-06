@@ -86,6 +86,44 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
+    Public Shared Function SendHTTPEtats(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
+            'Dim uri As New Uri(objWSCrodip.Url & "/../pdf")
+            Dim Crediential As New System.Net.NetworkCredential("toto", "crodip")
+            Dim uri As New Uri("http://admin.crodip.fr/index/envoi-diagnostic-pdf")
+            Dim filePath As String
+            If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
+                If System.IO.File.Exists(filePath) Then
+                    Dim uri2 As New Uri("http://admin.crodip.fr/index/envoi-diagnostic-pdf")
+
+                    My.Computer.Network.UploadFile(filePath, uri2, Crediential, False, 10000)
+                    SynchronisationManager.LogSynchroElmt(filePath)
+                End If
+            End If
+            If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
+                If System.IO.File.Exists(filePath) Then
+                    My.Computer.Network.UploadFile(filePath, uri, "crodip", "crodip35")
+                    SynchronisationManager.LogSynchroElmt(filePath)
+                End If
+            End If
+            If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.CCFileName
+                If System.IO.File.Exists(filePath) Then
+                    My.Computer.Network.UploadFile(filePath, uri, "crodip", "crodip35")
+                    SynchronisationManager.LogSynchroElmt(filePath)
+                End If
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.SendHTTPEtats ERR : " & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
 
     ''' <summary>
     ''' Recupère par FTP les Etats relatid au diag
@@ -122,6 +160,41 @@ Public Class DiagnosticManager
             End If
         Catch ex As Exception
             CSDebug.dispError("DiagnosticManager.GetFTPEtats ERR : " & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Public Shared Function getHTTPEtats(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
+            Dim url As String = objWSCrodip.Url
+            Dim filePath As String
+            If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                Dim uri As New Uri(url & "/../pdf/" & pDiag.RIFileName)
+                My.Computer.Network.DownloadFile(uri, filePath, "crodip", "crodip35")
+            End If
+            If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                My.Computer.Network.DownloadFile(New Uri(url & "/pdf/" & pDiag.RIFileName), filePath, "crodip", "crodip35")
+            End If
+            If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
+                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.CCFileName
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                My.Computer.Network.DownloadFile(objWSCrodip.Url + "/pdf/" & pDiag.RIFileName, filePath, "crodip", "crodip35")
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.GetHTTPEtats ERR : " & ex.Message)
             bReturn = False
         End Try
         Return bReturn
