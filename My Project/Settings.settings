@@ -62,17 +62,11 @@
     <Setting Name="TxTVADefaut" Type="System.Double" Scope="Application">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="FTPHost" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">ourea.cognix-systems.net</Value>
-    </Setting>
     <Setting Name="FTPuser" Type="System.String" Scope="Application">
       <Value Profile="(Default)">crodip-pdf</Value>
     </Setting>
     <Setting Name="FTPPassword" Type="System.String" Scope="Application">
       <Value Profile="(Default)">bvdkEn5xnQx</Value>
-    </Setting>
-    <Setting Name="FTPHostTest" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">ourea.cognix-systems.net</Value>
     </Setting>
     <Setting Name="FTPUserTest" Type="System.String" Scope="Application">
       <Value Profile="(Default)">crodip-pp-pdf</Value>
@@ -95,14 +89,8 @@
     <Setting Name="NumVersion" Type="System.String" Scope="Application">
       <Value Profile="(Default)">2.6</Value>
     </Setting>
-    <Setting Name="AutoSync" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
       <Value Profile="(Default)">V2.6.2</Value>
-    </Setting>
-    <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20200217120000</Value>
     </Setting>
     <Setting Name="Mode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">NORMAL</Value>
@@ -112,6 +100,27 @@
     </Setting>
     <Setting Name="SecurityProtocol" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">4080</Value>
+    </Setting>
+    <Setting Name="FTPHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin.crodip.fr</Value>
+    </Setting>
+    <Setting Name="FTPHostTest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin-pp.crodip.fr</Value>
+    </Setting>
+    <Setting Name="AutoSync" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20200302150000</Value>
+    </Setting>
+    <Setting Name="SynchroEtatUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/index/envoi-diagnostic-pdf</Value>
+    </Setting>
+    <Setting Name="SynchroEtatUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip</Value>
+    </Setting>
+    <Setting Name="SynhcroEtatPwd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip</Value>
     </Setting>
   </Settings>
 </SettingsFile>

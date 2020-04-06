@@ -701,196 +701,197 @@ Public Class Synchronisation
 
             Dim bSynchroDiagOK As Boolean = False
             Dim UpdatedObject As New Object
-            'On Efface les propiétés de DiagItemList et DiagBusesList car elle n'ont pas besoin d'être serialisées avec le diag vues qu'elle sont synchronisées à part
-            Dim oDiagItemList As DiagnosticItemsList = pDiag.diagnosticItemsLst
-            pDiag.diagnosticItemsLst = Nothing
-            Dim oDiagBusesList As DiagnosticBusesList = pDiag.diagnosticBusesList
-            pDiag.diagnosticBusesList = Nothing
-            Dim response As Integer = DiagnosticManager.sendWSDiagnostic(pAgent, pDiag, UpdatedObject)
-            'Après Synchro on replace les propriétés
-            pDiag.diagnosticItemsLst = oDiagItemList
-            pDiag.diagnosticBusesList = oDiagBusesList
 
-            Select Case response
-                Case -1 ' ERROR
-                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnostic) - Erreur Locale")
-                Case 0, 2 ' OK
-                    bSynchroDiagOK = True
-                    'si le Diag est OK on passe au elements constitutifs
-                    '====================================================
-                    ' Synchro des items du diag courant
-                    If pDiag.diagnosticItemsLst.Count > 0 Then
-                        Dim updatedObjectDiagItem As New Object()
-                        Notice("diagnostic items n°" & pDiag.id)
-                        Dim responseDiagItem As Integer = DiagnosticItemManager.sendWSDiagnosticItem(pAgent, pDiag.diagnosticItemsLst)
-                        Select Case responseDiagItem
-                            Case -1 ' ERROR
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticItem) - Erreur Locale")
-                                bSynchroDiagOK = False
-                            Case 0, 2 ' OK
-                                'ça ne sert à rien de marques les diagItems
-                                'For Each tmpXmlDiagItem As Object In updatedObjectDiagItem
-                                '    DiagnosticItemManager.setSynchro(DiagnosticItemManager.xml2object(tmpXmlDiagItem))
-                                'Next
-                        'Case 2 ' SENDPROFILAGENT_UPDATE
-                        '    Dim ocsdb As New CSDb(True)
-                        '    For Each tmpXmlDiagItem As Object In updatedObjectDiagItem
-                        '        DiagnosticItemManager.save(ocsdb, DiagnosticItemManager.xml2object(tmpXmlDiagItem), True)
-                        '    Next
-                        '    ocsdb.free()
-                            Case 1 ' NOK
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticItem) - Le web service a répondu : Non-Ok")
-                                bSynchroDiagOK = False
+            'Synchro des Rapports d'inspection et Synthèse des mesures
+            '=========================================================
+            Notice("Rapport Inspection et Synthese des mesures")
+            bReturn = DiagnosticManager.SendEtats(pDiag)
+            If bReturn Then
+                'Transfère du diag ssi le transfert des fichier est correct
+                '============================================================
+                'On Efface les propiétés de DiagItemList et DiagBusesList car elle n'ont pas besoin d'être serialisées avec le diag vues qu'elle sont synchronisées à part
+                Dim oDiagItemList As DiagnosticItemsList = pDiag.diagnosticItemsLst
+                pDiag.diagnosticItemsLst = Nothing
+                Dim oDiagBusesList As DiagnosticBusesList = pDiag.diagnosticBusesList
+                pDiag.diagnosticBusesList = Nothing
+                Dim response As Integer = DiagnosticManager.sendWSDiagnostic(pAgent, pDiag, UpdatedObject)
+                'Après Synchro on replace les propriétés
+                pDiag.diagnosticItemsLst = oDiagItemList
+                pDiag.diagnosticBusesList = oDiagBusesList
 
-                            Case 9 ' BADREQUEST
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticItem) - Le web service a répondu : BadRequest")
-                                bSynchroDiagOK = False
-
-                        End Select
-                    End If
-                    ' Synchro des buses du diag courant
-                    If Not pDiag.diagnosticBusesList Is Nothing Then
-                        If pDiag.diagnosticBusesList.Liste.Count > 0 Then
-                            Dim updatedObjectDiagBuse As New Object
-                            Notice("diagnostic Buses n°" & pDiag.id)
-                            Dim responseDiagBuse As Object = DiagnosticBusesManager.sendWSDiagnosticBuses(pAgent, pDiag.diagnosticBusesList)
-                            Select Case CType(responseDiagBuse, Integer)
+                Select Case response
+                    Case -1 ' ERROR
+                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnostic) - Erreur Locale")
+                    Case 0, 2 ' OK
+                        bSynchroDiagOK = True
+                        'si le Diag est OK on passe au elements constitutifs
+                        '====================================================
+                        ' Synchro des items du diag courant
+                        If pDiag.diagnosticItemsLst.Count > 0 Then
+                            Dim updatedObjectDiagItem As New Object()
+                            Notice("diagnostic items n°" & pDiag.id)
+                            Dim responseDiagItem As Integer = DiagnosticItemManager.sendWSDiagnosticItem(pAgent, pDiag.diagnosticItemsLst)
+                            Select Case responseDiagItem
                                 Case -1 ' ERROR
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Erreur Locale")
+                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticItem) - Erreur Locale")
                                     bSynchroDiagOK = False
-
                                 Case 0, 2 ' OK
-                                    'ç_a ne sert à rien de marquer les Buses
-                                    'For Each tmpXmlDiagBuse As Object In updatedObjectDiagBuse
-                                    '    DiagnosticBusesManager.setSynchro(DiagnosticBusesManager.xml2object(tmpXmlDiagBuse))
-                                    'Next
-                                    'Case 2 ' SENDPROFILAGENT_UPDATE
-                                    '    For Each tmpXmlDiagBuse As Object In updatedObjectDiagBuse
-                                    '        DiagnosticBusesManager.save(DiagnosticBusesManager.xml2object(tmpXmlDiagBuse), True)
-                                    '    Next
-                                Case 1 ' NOK
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : Non-Ok")
-                                    bSynchroDiagOK = False
-
-                                Case 9 ' BADREQUEST
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : BadRequest")
-                                    bSynchroDiagOK = False
-
-                            End Select
-
-                            ' Synchro des détails des buses du diag courant
-                            For Each tmpUpdateDiagnosticBuses As DiagnosticBuses In pDiag.diagnosticBusesList.Liste
-                                If Not tmpUpdateDiagnosticBuses.diagnosticBusesDetailList Is Nothing Then
-                                    If tmpUpdateDiagnosticBuses.diagnosticBusesDetailList.Liste.Count > 0 Then
-                                        Dim updatedObjectDiagBuseDetail As New Object
-                                        Notice("diagnostic Buse Detail n°" & pDiag.id)
-                                        Dim responseDiagBuseDetail As Object = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(pAgent, tmpUpdateDiagnosticBuses.diagnosticBusesDetailList)
-                                        Select Case CType(responseDiagBuseDetail, Integer)
-                                            Case -1 ' ERROR
-                                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBusesDetail) - Erreur Locale")
-                                                bSynchroDiagOK = False
-
-                                            Case 0, 2 ' OK
-                                                'ça ne sert à rien
-                                                'For Each tmpXmlDiagBuseDetail As Object In updatedObjectDiagBuseDetail
-                                                '    DiagnosticBusesDetailManager.setSynchro(DiagnosticBusesDetailManager.xml2object(tmpXmlDiagBuseDetail))
-                                                'Next
-                                        'Case 2 ' SENDPROFILAGENT_UPDATE
-                                        '    For Each tmpXmlDiagBuseDetail As Object In updatedObjectDiagBuseDetail
-                                        '        DiagnosticBusesDetailManager.save(DiagnosticBusesDetailManager.xml2object(tmpXmlDiagBuseDetail), True)
-                                        '    Next
-                                            Case 1 ' NOK
-                                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : Non-Ok")
-                                                bSynchroDiagOK = False
-
-                                            Case 9 ' BADREQUEST
-                                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : BadRequest")
-                                                bSynchroDiagOK = False
-
-                                        End Select
-                                    End If
-                                End If
-                            Next
-                            ' FIN --- Synchro des détails des buses du diag courant
-                        End If
-                    End If
-                    ' Synchro des 542
-                    If Not pDiag.diagnosticMano542List Is Nothing Then
-                        If pDiag.diagnosticMano542List.Liste.Count > 0 Then
-                            Dim updatedObjectDiag542 As New Object
-                            Dim responseDiag542 As Object = DiagnosticMano542Manager.sendWSDiagnosticMano542(pAgent, pDiag.diagnosticMano542List)
-                            Notice("diagnostic mano 542 n°" & pDiag.id)
-                            Select Case CType(responseDiag542, Integer)
-                                Case -1 ' ERROR
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticMano542) - Erreur Locale")
-                                    bSynchroDiagOK = False
-
-                                Case 0, 2 ' OK
-                                    'For Each tmpXmlDiag542 As Object In updatedObjectDiag542
-                                    '    DiagnosticMano542Manager.setSynchro(DiagnosticMano542Manager.xml2object(tmpXmlDiag542))
+                                    'ça ne sert à rien de marques les diagItems
+                                    'For Each tmpXmlDiagItem As Object In updatedObjectDiagItem
+                                    '    DiagnosticItemManager.setSynchro(DiagnosticItemManager.xml2object(tmpXmlDiagItem))
                                     'Next
                             'Case 2 ' SENDPROFILAGENT_UPDATE
-                            '    For Each tmpXmlDiag542 As Object In updatedObjectDiag542
-                            '        DiagnosticMano542Manager.save(DiagnosticMano542Manager.xml2object(tmpXmlDiag542), True)
+                            '    Dim ocsdb As New CSDb(True)
+                            '    For Each tmpXmlDiagItem As Object In updatedObjectDiagItem
+                            '        DiagnosticItemManager.save(ocsdb, DiagnosticItemManager.xml2object(tmpXmlDiagItem), True)
                             '    Next
+                            '    ocsdb.free()
                                 Case 1 ' NOK
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticMano542) - Le web service a répondu : Non-Ok")
-                                    bSynchroDiagOK = False
-                                Case 9 ' BADREQUEST
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticMano542) - Le web service a répondu : BadRequest")
-                                    bSynchroDiagOK = False
-                            End Select
-                        End If
-                    End If
-
-
-                    ' Synchro des 833
-                    If Not pDiag.diagnosticTroncons833 Is Nothing Then
-
-                        If pDiag.diagnosticTroncons833.Liste.Count > 0 Then
-                            Dim updatedObjectDiag833 As New Object
-                            Notice("diagnostic Troncons 833 n°" & pDiag.id)
-                            Dim responseDiag833 As Object = DiagnosticTroncons833Manager.sendWSDiagnosticTroncons833(pAgent, pDiag.diagnosticTroncons833)
-                            Select Case CType(responseDiag833, Integer)
-                                Case -1 ' ERROR
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Erreur Locale")
-                                    bSynchroDiagOK = False
-                                Case 0, 2 ' OK
-                            '        For Each tmpXmlDiag833 As Object In updatedObjectDiag833
-                            '            DiagnosticTroncons833Manager.setSynchro(DiagnosticTroncons833Manager.xml2object(tmpXmlDiag833))
-                            '        Next
-                            ''Case 2 ' SENDPROFILAGENT_UPDATE
-                            '    For Each tmpXmlDiag833 As Object In updatedObjectDiag833
-                            '        DiagnosticTroncons833Manager.save(DiagnosticTroncons833Manager.xml2object(tmpXmlDiag833), True)
-                            '    Next
-                                Case 1 ' NOK
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Le web service a répondu : Non-Ok")
+                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticItem) - Le web service a répondu : Non-Ok")
                                     bSynchroDiagOK = False
 
                                 Case 9 ' BADREQUEST
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Le web service a répondu : BadRequest")
+                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticItem) - Le web service a répondu : BadRequest")
                                     bSynchroDiagOK = False
 
                             End Select
                         End If
-                    End If
+                        ' Synchro des buses du diag courant
+                        If Not pDiag.diagnosticBusesList Is Nothing Then
+                            If pDiag.diagnosticBusesList.Liste.Count > 0 Then
+                                Dim updatedObjectDiagBuse As New Object
+                                Notice("diagnostic Buses n°" & pDiag.id)
+                                Dim responseDiagBuse As Object = DiagnosticBusesManager.sendWSDiagnosticBuses(pAgent, pDiag.diagnosticBusesList)
+                                Select Case CType(responseDiagBuse, Integer)
+                                    Case -1 ' ERROR
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Erreur Locale")
+                                        bSynchroDiagOK = False
 
-                    'Synchro des Rapports d'inspection et Synthèse des mesures
-                    '=========================================================
-                    Notice("Rapport Inspection et Synthese des mesures")
-                    bReturn = DiagnosticManager.SendFTPEtats(pDiag)
-                    If Not bReturn Then
+                                    Case 0, 2 ' OK
+                                        'ç_a ne sert à rien de marquer les Buses
+                                        'For Each tmpXmlDiagBuse As Object In updatedObjectDiagBuse
+                                        '    DiagnosticBusesManager.setSynchro(DiagnosticBusesManager.xml2object(tmpXmlDiagBuse))
+                                        'Next
+                                        'Case 2 ' SENDPROFILAGENT_UPDATE
+                                        '    For Each tmpXmlDiagBuse As Object In updatedObjectDiagBuse
+                                        '        DiagnosticBusesManager.save(DiagnosticBusesManager.xml2object(tmpXmlDiagBuse), True)
+                                        '    Next
+                                    Case 1 ' NOK
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : Non-Ok")
+                                        bSynchroDiagOK = False
+
+                                    Case 9 ' BADREQUEST
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : BadRequest")
+                                        bSynchroDiagOK = False
+
+                                End Select
+
+                                ' Synchro des détails des buses du diag courant
+                                For Each tmpUpdateDiagnosticBuses As DiagnosticBuses In pDiag.diagnosticBusesList.Liste
+                                    If Not tmpUpdateDiagnosticBuses.diagnosticBusesDetailList Is Nothing Then
+                                        If tmpUpdateDiagnosticBuses.diagnosticBusesDetailList.Liste.Count > 0 Then
+                                            Dim updatedObjectDiagBuseDetail As New Object
+                                            Notice("diagnostic Buse Detail n°" & pDiag.id)
+                                            Dim responseDiagBuseDetail As Object = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(pAgent, tmpUpdateDiagnosticBuses.diagnosticBusesDetailList)
+                                            Select Case CType(responseDiagBuseDetail, Integer)
+                                                Case -1 ' ERROR
+                                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBusesDetail) - Erreur Locale")
+                                                    bSynchroDiagOK = False
+
+                                                Case 0, 2 ' OK
+                                                    'ça ne sert à rien
+                                                    'For Each tmpXmlDiagBuseDetail As Object In updatedObjectDiagBuseDetail
+                                                    '    DiagnosticBusesDetailManager.setSynchro(DiagnosticBusesDetailManager.xml2object(tmpXmlDiagBuseDetail))
+                                                    'Next
+                                            'Case 2 ' SENDPROFILAGENT_UPDATE
+                                            '    For Each tmpXmlDiagBuseDetail As Object In updatedObjectDiagBuseDetail
+                                            '        DiagnosticBusesDetailManager.save(DiagnosticBusesDetailManager.xml2object(tmpXmlDiagBuseDetail), True)
+                                            '    Next
+                                                Case 1 ' NOK
+                                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : Non-Ok")
+                                                    bSynchroDiagOK = False
+
+                                                Case 9 ' BADREQUEST
+                                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : BadRequest")
+                                                    bSynchroDiagOK = False
+
+                                            End Select
+                                        End If
+                                    End If
+                                Next
+                                ' FIN --- Synchro des détails des buses du diag courant
+                            End If
+                        End If
+                        ' Synchro des 542
+                        If Not pDiag.diagnosticMano542List Is Nothing Then
+                            If pDiag.diagnosticMano542List.Liste.Count > 0 Then
+                                Dim updatedObjectDiag542 As New Object
+                                Dim responseDiag542 As Object = DiagnosticMano542Manager.sendWSDiagnosticMano542(pAgent, pDiag.diagnosticMano542List)
+                                Notice("diagnostic mano 542 n°" & pDiag.id)
+                                Select Case CType(responseDiag542, Integer)
+                                    Case -1 ' ERROR
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticMano542) - Erreur Locale")
+                                        bSynchroDiagOK = False
+
+                                    Case 0, 2 ' OK
+                                        'For Each tmpXmlDiag542 As Object In updatedObjectDiag542
+                                        '    DiagnosticMano542Manager.setSynchro(DiagnosticMano542Manager.xml2object(tmpXmlDiag542))
+                                        'Next
+                                'Case 2 ' SENDPROFILAGENT_UPDATE
+                                '    For Each tmpXmlDiag542 As Object In updatedObjectDiag542
+                                '        DiagnosticMano542Manager.save(DiagnosticMano542Manager.xml2object(tmpXmlDiag542), True)
+                                '    Next
+                                    Case 1 ' NOK
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticMano542) - Le web service a répondu : Non-Ok")
+                                        bSynchroDiagOK = False
+                                    Case 9 ' BADREQUEST
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticMano542) - Le web service a répondu : BadRequest")
+                                        bSynchroDiagOK = False
+                                End Select
+                            End If
+                        End If
+
+
+                        ' Synchro des 833
+                        If Not pDiag.diagnosticTroncons833 Is Nothing Then
+
+                            If pDiag.diagnosticTroncons833.Liste.Count > 0 Then
+                                Dim updatedObjectDiag833 As New Object
+                                Notice("diagnostic Troncons 833 n°" & pDiag.id)
+                                Dim responseDiag833 As Object = DiagnosticTroncons833Manager.sendWSDiagnosticTroncons833(pAgent, pDiag.diagnosticTroncons833)
+                                Select Case CType(responseDiag833, Integer)
+                                    Case -1 ' ERROR
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Erreur Locale")
+                                        bSynchroDiagOK = False
+                                    Case 0, 2 ' OK
+                                '        For Each tmpXmlDiag833 As Object In updatedObjectDiag833
+                                '            DiagnosticTroncons833Manager.setSynchro(DiagnosticTroncons833Manager.xml2object(tmpXmlDiag833))
+                                '        Next
+                                ''Case 2 ' SENDPROFILAGENT_UPDATE
+                                '    For Each tmpXmlDiag833 As Object In updatedObjectDiag833
+                                '        DiagnosticTroncons833Manager.save(DiagnosticTroncons833Manager.xml2object(tmpXmlDiag833), True)
+                                '    Next
+                                    Case 1 ' NOK
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Le web service a répondu : Non-Ok")
+                                        bSynchroDiagOK = False
+
+                                    Case 9 ' BADREQUEST
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Le web service a répondu : BadRequest")
+                                        bSynchroDiagOK = False
+
+                                End Select
+                            End If
+                        End If
+
+
+                    Case 1 ' NOK
+                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnostic) - Le web service a répondu : Non-Ok")
                         bSynchroDiagOK = False
-                    End If
-
-                Case 1 ' NOK
-                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnostic) - Le web service a répondu : Non-Ok")
-                    bSynchroDiagOK = False
-                Case 9 ' BADREQUEST
-                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnostic) - Le web service a répondu : BadRequest")
-                    bSynchroDiagOK = False
-            End Select
-
+                    Case 9 ' BADREQUEST
+                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnostic) - Le web service a répondu : BadRequest")
+                        bSynchroDiagOK = False
+                End Select
+            End If
             'Marquage  du Diag 
             If bSynchroDiagOK Then
                 DiagnosticManager.setSynchro(pDiag)

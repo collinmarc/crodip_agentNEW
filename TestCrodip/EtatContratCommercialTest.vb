@@ -108,7 +108,7 @@ Imports System.IO
         Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.CCFileName))
 
         ''Synchronisation des etats
-        Assert.IsTrue(DiagnosticManager.SendFTPEtats(oDiag))
+        Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
         'Suppression des etats générés en local
         File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.CCFileName)

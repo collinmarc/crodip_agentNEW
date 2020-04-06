@@ -45,12 +45,28 @@ Public Class DiagnosticManager
         End Try
     End Function
     ''' <summary>
+    ''' envoi des Etats rattachés au diag au serveur
+    ''' Envoi par FTP, si cela ne fonctionne pas
+    ''' envoi par HTTP
+    ''' </summary>
+    ''' <param name="pDiag"></param>
+    ''' <returns></returns>
+    Public Shared Function SendEtats(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        bReturn = SendFTPEtats(pDiag)
+        If Not bReturn Then
+            bReturn = SendHTTPEtats(pDiag)
+        End If
+        Return bReturn
+    End Function
+
+    ''' <summary>
     ''' Envoie par FTP des Etats relatid au diag
     ''' </summary>
     ''' <param name="pDiag"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function SendFTPEtats(pDiag As Diagnostic) As Boolean
+    Private Shared Function SendFTPEtats(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -86,35 +102,32 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function SendHTTPEtats(pDiag As Diagnostic) As Boolean
+    Private Shared Function SendHTTPEtats(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            'Dim uri As New Uri(objWSCrodip.Url & "/../pdf")
-            Dim Crediential As New System.Net.NetworkCredential("toto", "crodip")
-            Dim uri As New Uri("http://admin.crodip.fr/index/envoi-diagnostic-pdf")
+            Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatUrl)
+            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatUser, My.Settings.SynhcroEtatPwd)
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
                 filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
-                    Dim uri2 As New Uri("http://admin.crodip.fr/index/envoi-diagnostic-pdf")
-
-                    My.Computer.Network.UploadFile(filePath, uri2, Crediential, False, 10000)
+                    My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
                     SynchronisationManager.LogSynchroElmt(filePath)
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
                 filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
                 If System.IO.File.Exists(filePath) Then
-                    My.Computer.Network.UploadFile(filePath, uri, "crodip", "crodip35")
+                    My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
                     SynchronisationManager.LogSynchroElmt(filePath)
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
                 filePath = Globals.CONST_PATH_EXP & "/" & pDiag.CCFileName
                 If System.IO.File.Exists(filePath) Then
-                    My.Computer.Network.UploadFile(filePath, uri, "crodip", "crodip35")
+                    My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
                     SynchronisationManager.LogSynchroElmt(filePath)
                 End If
             End If

@@ -265,15 +265,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("ourea.cognix-systems.net")>  _
-    Public ReadOnly Property FTPHost() As String
-        Get
-            Return CType(Me("FTPHost"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("crodip-pdf")>  _
     Public ReadOnly Property FTPuser() As String
         Get
@@ -287,15 +278,6 @@ Partial Friend NotInheritable Class MySettings
     Public ReadOnly Property FTPPassword() As String
         Get
             Return CType(Me("FTPPassword"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("ourea.cognix-systems.net")>  _
-    Public ReadOnly Property FTPHostTest() As String
-        Get
-            Return CType(Me("FTPHostTest"),String)
         End Get
     End Property
     
@@ -364,28 +346,10 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-    Public ReadOnly Property AutoSync() As Boolean
-        Get
-            Return CType(Me("AutoSync"),Boolean)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("V2.6.2")>  _
     Public ReadOnly Property DBVersionExpected() As String
         Get
             Return CType(Me("DBVersionExpected"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20200217120000")>  _
-    Public ReadOnly Property NumBuild() As String
-        Get
-            Return CType(Me("NumBuild"),String)
         End Get
     End Property
     
@@ -413,6 +377,69 @@ Partial Friend NotInheritable Class MySettings
     Public ReadOnly Property SecurityProtocol() As Integer
         Get
             Return CType(Me("SecurityProtocol"),Integer)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("admin.crodip.fr")>  _
+    Public ReadOnly Property FTPHost() As String
+        Get
+            Return CType(Me("FTPHost"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("admin-pp.crodip.fr")>  _
+    Public ReadOnly Property FTPHostTest() As String
+        Get
+            Return CType(Me("FTPHostTest"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+    Public ReadOnly Property AutoSync() As Boolean
+        Get
+            Return CType(Me("AutoSync"),Boolean)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20200302150000")>  _
+    Public ReadOnly Property NumBuild() As String
+        Get
+            Return CType(Me("NumBuild"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-diagnostic-pdf")>  _
+    Public ReadOnly Property SynchroEtatUrl() As String
+        Get
+            Return CType(Me("SynchroEtatUrl"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("crodip")>  _
+    Public ReadOnly Property SynchroEtatUser() As String
+        Get
+            Return CType(Me("SynchroEtatUser"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("crodip")>  _
+    Public ReadOnly Property SynhcroEtatPwd() As String
+        Get
+            Return CType(Me("SynhcroEtatPwd"),String)
         End Get
     End Property
 End Class

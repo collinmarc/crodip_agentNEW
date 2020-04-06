@@ -596,7 +596,7 @@ Imports System.IO
         DiagnosticManager.save(oDiag)
 
         ''Synchronisation des etats
-        Assert.IsTrue(DiagnosticManager.SendFTPEtats(oDiag))
+        Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
         'Suppression des etats générés en local
         File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
@@ -655,7 +655,7 @@ Imports System.IO
         DiagnosticManager.save(oDiag)
 
         ''Synchronisation des etats
-        Assert.IsTrue(DiagnosticManager.SendHTTPEtats(oDiag))
+        Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
         'Suppression des etats générés en local
         File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
@@ -1938,7 +1938,7 @@ Imports System.IO
         ''Synchronisation des etats
         'On teste si in fichier est mal envoyé 
         'Pourcela il faut modifier le prog DiagnosticManager.SendFTPEtats
-        Assert.IsFalse(DiagnosticManager.SendFTPEtats(oDiag))
+        Assert.IsFalse(DiagnosticManager.SendEtats(oDiag))
 
 
     End Sub
