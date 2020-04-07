@@ -9,6 +9,7 @@ BUILD : 20200407170000
 0001197: Contre-viste immédiate + Modifier => Controle complet
 0001055: Ajout de N° chassis sur la fiche pulvé
 0001195: Champs à ajouter dans l'import
+0001172: Effectué le transfert des rapports par HTTP au lieu de FTP
 
 BUILD : 20200302150000
 ----------------------

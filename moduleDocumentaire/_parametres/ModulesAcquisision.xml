@@ -15,4 +15,9 @@
     <Assembly>AcquisitionAAMS.dll</Assembly>
     <Main>AcquisitionAAMS.Main</Main>
   </ModuleAcq>
-</ArrayOfModuleAcq>
+    <ModuleAcq>
+      <Nom>MANUEL</Nom>
+      <Assembly></Assembly>
+      <Main></Main>
+    </ModuleAcq>
+  </ArrayOfModuleAcq>
