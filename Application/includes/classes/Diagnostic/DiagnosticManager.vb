@@ -102,7 +102,7 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Private Shared Function SendHTTPEtats(pDiag As Diagnostic) As Boolean
+    Friend Shared Function SendHTTPEtats(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -177,7 +177,7 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function getHTTPEtats(pDiag As Diagnostic) As Boolean
+    Friend Shared Function getHTTPEtats(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -189,23 +189,23 @@ Public Class DiagnosticManager
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If
-                Dim uri As New Uri(url & "/../pdf/" & pDiag.RIFileName)
-                My.Computer.Network.DownloadFile(uri, filePath, "crodip", "crodip35")
+                Dim uri As New Uri(url & My.Settings.SynchroDescGetEtat & "?id=" & pDiag.id)
+                My.Computer.Network.DownloadFile(uri, filePath)
             End If
-            If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
-                If System.IO.File.Exists(filePath) Then
-                    System.IO.File.Delete(filePath)
-                End If
-                My.Computer.Network.DownloadFile(New Uri(url & "/pdf/" & pDiag.RIFileName), filePath, "crodip", "crodip35")
-            End If
-            If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.CCFileName
-                If System.IO.File.Exists(filePath) Then
-                    System.IO.File.Delete(filePath)
-                End If
-                My.Computer.Network.DownloadFile(objWSCrodip.Url + "/pdf/" & pDiag.RIFileName, filePath, "crodip", "crodip35")
-            End If
+            'If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
+            '    filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
+            '    If System.IO.File.Exists(filePath) Then
+            '        System.IO.File.Delete(filePath)
+            '    End If
+            '    My.Computer.Network.DownloadFile(New Uri(url & "/pdf/" & pDiag.RIFileName), filePath, "crodip", "crodip35")
+            'End If
+            'If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
+            '    filePath = Globals.CONST_PATH_EXP & "/" & pDiag.CCFileName
+            '    If System.IO.File.Exists(filePath) Then
+            '        System.IO.File.Delete(filePath)
+            '    End If
+            '    My.Computer.Network.DownloadFile(objWSCrodip.Url + "/pdf/" & pDiag.RIFileName, filePath, "crodip", "crodip35")
+            'End If
         Catch ex As Exception
             CSDebug.dispError("DiagnosticManager.GetHTTPEtats ERR : " & ex.Message)
             bReturn = False
@@ -535,6 +535,46 @@ Public Class DiagnosticManager
         'on retourne la liste des diagnostic
         Return lstDiag
     End Function
+    ''' <summary>
+    ''' Rend une liste de Diagnostic par exploitation triée par date de début de controle descendant
+    ''' </summary>
+    ''' <param name="Exploitation_id"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Shared Function getlstDiagnosticByExploitationId(ByVal exploitation_id As String) As List(Of Diagnostic)
+        Debug.Assert(Not String.IsNullOrEmpty(exploitation_id))
+        ' déclarations
+        Dim lstDiag As New List(Of Diagnostic)
+        Dim bddCommande As New OleDb.OleDbCommand
+        Dim oCSDb As New CSDb(True)
+        bddCommande = oCSDb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT * FROM Diagnostic  WHERE proprietaireId='" & exploitation_id & "' ORDER BY controleDateDebut DESC"
+        Try
+            ' On récupère les résultats
+            Dim oDR As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            While oDR.Read()
+                ' On initialise un diag
+                Dim oDiagnostic As New Diagnostic
+                Dim tmpColId As Integer = 0
+                While tmpColId < oDR.FieldCount()
+                    If Not oDR.IsDBNull(tmpColId) Then
+                        oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+                    End If
+                    tmpColId = tmpColId + 1
+                End While
+                'On l'ajoute à la liste
+                lstDiag.Add(oDiagnostic)
+            End While
+            oDR.Close()
+        Catch ex As Exception ' On intercepte l'erreur
+            CSDebug.dispError("DiagnosticManager.getDiagnosticByExploitationId ERR:" & ex.Message)
+        End Try
+        ' Test pour fermeture de connection BDD
+        oCSDb.free()
+        'on retourne la liste des diagnostic
+        Return lstDiag
+    End Function
 
     ' Recupère tous les diagnostics non synchronisé (dateModificationAgent / dateModificationCrodip) 
     Public Shared Function getUpdates(ByVal pAgent As Agent) As Diagnostic()
@@ -798,13 +838,10 @@ Public Class DiagnosticManager
                         tmpDiagnosticId = oDataReader.Item(0).ToString
                         tabId = tmpDiagnosticId.Split("-")
                         If IsNumeric(tabId(2)) Then
-
-                            '                            If tmpDiagnosticId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", "") <> "" Then
                             tmpId = CInt(tabId(2))
                         Else
                             tmpId = 1
                         End If
-                        'tmpId = CInt(tmpDiagnosticId.Replace(structure_id & "-" & agentCourant.id & "-", ""))
                         If tmpId > newId Then
                             newId = tmpId
                         End If
@@ -851,324 +888,327 @@ Public Class DiagnosticManager
                 bddCommande.Connection = CSDb.getConnection()
 
                 ' Initialisation de la requete
-                Dim paramsQuery As String = "`Diagnostic`.`id`='" & objDiagnostic.id & "'"
-                Dim paramsQuery2 As String = "`Diagnostic`.`id`='" & objDiagnostic.id & "'"
+                Dim paramsQuery As String = "Diagnostic.id='" & objDiagnostic.id & "'"
+                Dim paramsQuery2 As String = "Diagnostic.id='" & objDiagnostic.id & "'"
 
                 ' Mise a jour de la date de derniere modification
                 If Not bsyncro Then
                     objDiagnostic.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                 End If
 
-                paramsQuery = paramsQuery & " , `Diagnostic`.`organismePresId`=" & objDiagnostic.organismePresId & ""
+                paramsQuery = paramsQuery & " , Diagnostic.organismePresId=" & objDiagnostic.organismePresId & ""
                 If Not objDiagnostic.organismePresNumero Is Nothing And objDiagnostic.organismePresNumero <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`organismePresNumero`='" & CSDb.secureString(objDiagnostic.organismePresNumero) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.organismePresNumero='" & CSDb.secureString(objDiagnostic.organismePresNumero) & "'"
                 End If
                 If Not objDiagnostic.organismePresNom Is Nothing And objDiagnostic.organismePresNom <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`organismePresNom`='" & CSDb.secureString(objDiagnostic.organismePresNom) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.organismePresNom='" & CSDb.secureString(objDiagnostic.organismePresNom) & "'"
                 End If
                 If Not objDiagnostic.organismeInspNom Is Nothing And objDiagnostic.organismeInspNom <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`organismeInspNom`='" & CSDb.secureString(objDiagnostic.organismeInspNom) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.organismeInspNom='" & CSDb.secureString(objDiagnostic.organismeInspNom) & "'"
                 End If
                 If Not objDiagnostic.organismeInspAgrement Is Nothing And objDiagnostic.organismeInspAgrement <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`organismeInspAgrement`='" & CSDb.secureString(objDiagnostic.organismeInspAgrement) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.organismeInspAgrement='" & CSDb.secureString(objDiagnostic.organismeInspAgrement) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`inspecteurId`=" & objDiagnostic.inspecteurId & ""
+                paramsQuery = paramsQuery & " , Diagnostic.inspecteurId=" & objDiagnostic.inspecteurId & ""
                 If Not objDiagnostic.inspecteurNom Is Nothing And objDiagnostic.inspecteurNom <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`inspecteurNom`='" & CSDb.secureString(objDiagnostic.inspecteurNom) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.inspecteurNom='" & CSDb.secureString(objDiagnostic.inspecteurNom) & "'"
                 End If
                 If Not objDiagnostic.inspecteurPrenom Is Nothing And objDiagnostic.inspecteurPrenom <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`inspecteurPrenom`='" & CSDb.secureString(objDiagnostic.inspecteurPrenom) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.inspecteurPrenom='" & CSDb.secureString(objDiagnostic.inspecteurPrenom) & "'"
                 End If
                 'Organisme et inspecteur d'origine
-                paramsQuery = paramsQuery & " , `Diagnostic`.`organismeOriginePresId`=" & objDiagnostic.organismeOriginePresId & ""
+                paramsQuery = paramsQuery & " , Diagnostic.organismeOriginePresId=" & objDiagnostic.organismeOriginePresId & ""
                 If Not objDiagnostic.organismeOriginePresNumero Is Nothing And objDiagnostic.organismeOriginePresNumero <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`organismeOriginePresNumero`='" & CSDb.secureString(objDiagnostic.organismeOriginePresNumero) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.organismeOriginePresNumero='" & CSDb.secureString(objDiagnostic.organismeOriginePresNumero) & "'"
                 End If
                 If Not objDiagnostic.organismeOriginePresNom Is Nothing And objDiagnostic.organismeOriginePresNom <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`organismeOriginePresNom`='" & CSDb.secureString(objDiagnostic.organismeOriginePresNom) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.organismeOriginePresNom='" & CSDb.secureString(objDiagnostic.organismeOriginePresNom) & "'"
                 End If
                 If Not objDiagnostic.organismeOrigineInspNom Is Nothing And objDiagnostic.organismeOrigineInspNom <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`organismeOrigineInspNom`='" & CSDb.secureString(objDiagnostic.organismeOrigineInspNom) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.organismeOrigineInspNom='" & CSDb.secureString(objDiagnostic.organismeOrigineInspNom) & "'"
                 End If
                 If Not objDiagnostic.organismeOrigineInspAgrement Is Nothing And objDiagnostic.organismeOrigineInspAgrement <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`organismeOrigineInspAgrement`='" & CSDb.secureString(objDiagnostic.organismeOrigineInspAgrement) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.organismeOrigineInspAgrement='" & CSDb.secureString(objDiagnostic.organismeOrigineInspAgrement) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`inspecteurOrigineId`=" & objDiagnostic.inspecteurOrigineId & ""
+                paramsQuery = paramsQuery & " , Diagnostic.inspecteurOrigineId=" & objDiagnostic.inspecteurOrigineId & ""
                 If Not objDiagnostic.inspecteurOrigineNom Is Nothing And objDiagnostic.inspecteurOrigineNom <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`inspecteurOrigineNom`='" & CSDb.secureString(objDiagnostic.inspecteurOrigineNom) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.inspecteurOrigineNom='" & CSDb.secureString(objDiagnostic.inspecteurOrigineNom) & "'"
                 End If
                 If Not objDiagnostic.inspecteurOriginePrenom Is Nothing And objDiagnostic.inspecteurOriginePrenom <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`inspecteurOriginePrenom`='" & CSDb.secureString(objDiagnostic.inspecteurOriginePrenom) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.inspecteurOriginePrenom='" & CSDb.secureString(objDiagnostic.inspecteurOriginePrenom) & "'"
                 End If
 
                 If Not objDiagnostic.controleDateDebut Is Nothing And objDiagnostic.controleDateDebut <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleDateDebut`='" & CSDb.secureString(objDiagnostic.controleDateDebut) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleDateDebut='" & CSDb.secureString(objDiagnostic.controleDateDebut) & "'"
                 End If
                 If Not objDiagnostic.controleDateFin Is Nothing And objDiagnostic.controleDateFin <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleDateFin`='" & CSDb.secureString(objDiagnostic.controleDateFin) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleDateFin='" & CSDb.secureString(objDiagnostic.controleDateFin) & "'"
                 End If
                 If Not objDiagnostic.controleCommune Is Nothing And objDiagnostic.controleCommune <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleCommune`='" & CSDb.secureString(objDiagnostic.controleCommune) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleCommune='" & CSDb.secureString(objDiagnostic.controleCommune) & "'"
                 End If
                 If Not objDiagnostic.controleCodePostal Is Nothing And objDiagnostic.controleCodePostal <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleCodePostal`='" & CSDb.secureString(objDiagnostic.controleCodePostal) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleCodePostal='" & CSDb.secureString(objDiagnostic.controleCodePostal) & "'"
                 End If
                 If Not objDiagnostic.controleLieu Is Nothing And objDiagnostic.controleLieu <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleLieu`='" & CSDb.secureString(objDiagnostic.controleLieu) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleLieu='" & CSDb.secureString(objDiagnostic.controleLieu) & "'"
                 End If
                 If Not objDiagnostic.controleTerritoire Is Nothing And objDiagnostic.controleTerritoire <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleTerritoire`='" & CSDb.secureString(objDiagnostic.controleTerritoire) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleTerritoire='" & CSDb.secureString(objDiagnostic.controleTerritoire) & "'"
                 End If
                 If Not objDiagnostic.controleSite Is Nothing And objDiagnostic.controleSite <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleSite`='" & CSDb.secureString(objDiagnostic.controleSite) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleSite='" & CSDb.secureString(objDiagnostic.controleSite) & "'"
                 End If
                 If Not objDiagnostic.controleNomSite Is Nothing And objDiagnostic.controleNomSite <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleNomSite`='" & CSDb.secureString(objDiagnostic.controleNomSite) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleNomSite='" & CSDb.secureString(objDiagnostic.controleNomSite) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`controleIsComplet`=" & objDiagnostic.controleIsComplet & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`controleIsPremierControle`=" & objDiagnostic.controleIsPremierControle & ""
+                paramsQuery = paramsQuery & " , Diagnostic.controleIsComplet=" & objDiagnostic.controleIsComplet & ""
+                paramsQuery = paramsQuery & " , Diagnostic.controleIsPremierControle=" & objDiagnostic.controleIsPremierControle & ""
                 If Not objDiagnostic.controleDateDernierControle Is Nothing And objDiagnostic.controleDateDernierControle <> "" And objDiagnostic.controleDateDernierControle <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleDateDernierControle`='" & CSDb.secureString(objDiagnostic.controleDateDernierControle) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleDateDernierControle='" & CSDb.secureString(objDiagnostic.controleDateDernierControle) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`controleIsSiteSecurise`=" & objDiagnostic.controleIsSiteSecurise & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`controleIsRecupResidus`=" & objDiagnostic.controleIsRecupResidus & ""
+                paramsQuery = paramsQuery & " , Diagnostic.controleIsSiteSecurise=" & objDiagnostic.controleIsSiteSecurise & ""
+                paramsQuery = paramsQuery & " , Diagnostic.controleIsRecupResidus=" & objDiagnostic.controleIsRecupResidus & ""
                 If Not objDiagnostic.controleEtat Is Nothing And objDiagnostic.controleEtat <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleEtat`='" & CSDb.secureString(objDiagnostic.controleEtat) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleEtat='" & CSDb.secureString(objDiagnostic.controleEtat) & "'"
                 End If
                 If Not objDiagnostic.controleInfosConseils Is Nothing And objDiagnostic.controleInfosConseils <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleInfosConseils`='" & CSDb.secureString(objDiagnostic.controleInfosConseils) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleInfosConseils='" & CSDb.secureString(objDiagnostic.controleInfosConseils) & "'"
                 End If
                 If Not objDiagnostic.controleTarif Is Nothing And objDiagnostic.controleTarif <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`controleTarif`='" & CSDb.secureString(objDiagnostic.controleTarif) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.controleTarif='" & CSDb.secureString(objDiagnostic.controleTarif) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`controleIsPulveRepare`=" & objDiagnostic.controleIsPulveRepare & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`controleIsPreControleProfessionel`=" & objDiagnostic.controleIsPreControleProfessionel & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`controleIsAutoControle`=" & objDiagnostic.controleIsAutoControle & ""
+                paramsQuery = paramsQuery & " , Diagnostic.controleIsPulveRepare=" & objDiagnostic.controleIsPulveRepare & ""
+                paramsQuery = paramsQuery & " , Diagnostic.controleIsPreControleProfessionel=" & objDiagnostic.controleIsPreControleProfessionel & ""
+                paramsQuery = paramsQuery & " , Diagnostic.controleIsAutoControle=" & objDiagnostic.controleIsAutoControle & ""
                 If Not objDiagnostic.proprietaireId Is Nothing And objDiagnostic.proprietaireId <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireId`='" & CSDb.secureString(objDiagnostic.proprietaireId) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireId='" & CSDb.secureString(objDiagnostic.proprietaireId) & "'"
                 End If
                 If Not objDiagnostic.proprietaireRaisonSociale Is Nothing And objDiagnostic.proprietaireRaisonSociale <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireRaisonSociale`='" & CSDb.secureString(objDiagnostic.proprietaireRaisonSociale) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireRaisonSociale='" & CSDb.secureString(objDiagnostic.proprietaireRaisonSociale) & "'"
                 End If
                 If Not objDiagnostic.proprietairePrenom Is Nothing And objDiagnostic.proprietairePrenom <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietairePrenom`='" & CSDb.secureString(objDiagnostic.proprietairePrenom) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietairePrenom='" & CSDb.secureString(objDiagnostic.proprietairePrenom) & "'"
                 End If
                 If Not objDiagnostic.proprietaireNom Is Nothing And objDiagnostic.proprietaireNom <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireNom`='" & CSDb.secureString(objDiagnostic.proprietaireNom) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireNom='" & CSDb.secureString(objDiagnostic.proprietaireNom) & "'"
                 End If
                 If Not objDiagnostic.proprietaireCodeApe Is Nothing And objDiagnostic.proprietaireCodeApe <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireCodeApe`='" & CSDb.secureString(objDiagnostic.proprietaireCodeApe) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireCodeApe='" & CSDb.secureString(objDiagnostic.proprietaireCodeApe) & "'"
                 End If
                 If Not objDiagnostic.proprietaireNumeroSiren Is Nothing And objDiagnostic.proprietaireNumeroSiren <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireNumeroSiren`='" & CSDb.secureString(objDiagnostic.proprietaireNumeroSiren) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireNumeroSiren='" & CSDb.secureString(objDiagnostic.proprietaireNumeroSiren) & "'"
                 End If
                 If Not objDiagnostic.proprietaireCommune Is Nothing And objDiagnostic.proprietaireCommune <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireCommune`='" & CSDb.secureString(objDiagnostic.proprietaireCommune) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireCommune='" & CSDb.secureString(objDiagnostic.proprietaireCommune) & "'"
                 End If
                 If Not objDiagnostic.proprietaireCodePostal Is Nothing And objDiagnostic.proprietaireCodePostal <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireCodePostal`='" & CSDb.secureString(objDiagnostic.proprietaireCodePostal) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireCodePostal='" & CSDb.secureString(objDiagnostic.proprietaireCodePostal) & "'"
                 End If
                 If Not objDiagnostic.proprietaireAdresse Is Nothing And objDiagnostic.proprietaireAdresse <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireAdresse`='" & CSDb.secureString(objDiagnostic.proprietaireAdresse) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireAdresse='" & CSDb.secureString(objDiagnostic.proprietaireAdresse) & "'"
                 End If
                 If Not objDiagnostic.proprietaireEmail Is Nothing And objDiagnostic.proprietaireEmail <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireEmail`='" & CSDb.secureString(objDiagnostic.proprietaireEmail) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireEmail='" & CSDb.secureString(objDiagnostic.proprietaireEmail) & "'"
                 End If
                 If Not objDiagnostic.proprietaireTelephonePortable Is Nothing And objDiagnostic.proprietaireTelephonePortable <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireTelephonePortable`='" & CSDb.secureString(objDiagnostic.proprietaireTelephonePortable) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireTelephonePortable='" & CSDb.secureString(objDiagnostic.proprietaireTelephonePortable) & "'"
                 End If
                 If Not objDiagnostic.proprietaireTelephoneFixe Is Nothing And objDiagnostic.proprietaireTelephoneFixe <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireTelephoneFixe`='" & CSDb.secureString(objDiagnostic.proprietaireTelephoneFixe) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireTelephoneFixe='" & CSDb.secureString(objDiagnostic.proprietaireTelephoneFixe) & "'"
                 End If
                 If Not String.IsNullOrEmpty(objDiagnostic.proprietaireRepresentant) Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`proprietaireRepresentant`='" & CSDb.secureString(objDiagnostic.proprietaireRepresentant) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.proprietaireRepresentant='" & CSDb.secureString(objDiagnostic.proprietaireRepresentant) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurId Is Nothing And objDiagnostic.pulverisateurId <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurId`='" & CSDb.secureString(objDiagnostic.pulverisateurId) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurId='" & CSDb.secureString(objDiagnostic.pulverisateurId) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurMarque Is Nothing And objDiagnostic.pulverisateurMarque <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurMarque`='" & CSDb.secureString(objDiagnostic.pulverisateurMarque) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurMarque='" & CSDb.secureString(objDiagnostic.pulverisateurMarque) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurModele Is Nothing And objDiagnostic.pulverisateurModele <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurModele`='" & CSDb.secureString(objDiagnostic.pulverisateurModele) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurModele='" & CSDb.secureString(objDiagnostic.pulverisateurModele) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurType Is Nothing And objDiagnostic.pulverisateurType <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurType`='" & CSDb.secureString(objDiagnostic.pulverisateurType) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurType='" & CSDb.secureString(objDiagnostic.pulverisateurType) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurCapacite Is Nothing And objDiagnostic.pulverisateurCapacite <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurCapacite`='" & CSDb.secureString(objDiagnostic.pulverisateurCapacite) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurCapacite='" & CSDb.secureString(objDiagnostic.pulverisateurCapacite) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurLargeur Is Nothing And objDiagnostic.pulverisateurLargeur <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurLargeur`='" & CSDb.secureString(objDiagnostic.pulverisateurLargeur) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurLargeur='" & CSDb.secureString(objDiagnostic.pulverisateurLargeur) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurNbRangs Is Nothing And objDiagnostic.pulverisateurNbRangs <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurNbRangs`='" & CSDb.secureString(objDiagnostic.pulverisateurNbRangs) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurNbRangs='" & CSDb.secureString(objDiagnostic.pulverisateurNbRangs) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurLargeurPlantation Is Nothing And objDiagnostic.pulverisateurLargeurPlantation <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurLargeurPlantation`='" & CSDb.secureString(objDiagnostic.pulverisateurLargeurPlantation) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurLargeurPlantation='" & CSDb.secureString(objDiagnostic.pulverisateurLargeurPlantation) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurIsVentilateur`=" & objDiagnostic.pulverisateurIsVentilateur & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurIsDebrayage`=" & objDiagnostic.pulverisateurIsDebrayage & ""
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurIsVentilateur=" & objDiagnostic.pulverisateurIsVentilateur & ""
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurIsDebrayage=" & objDiagnostic.pulverisateurIsDebrayage & ""
                 If Not objDiagnostic.pulverisateurAnneeAchat Is Nothing And objDiagnostic.pulverisateurAnneeAchat <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurAnneeAchat`='" & CSDb.secureString(objDiagnostic.pulverisateurAnneeAchat) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurAnneeAchat='" & CSDb.secureString(objDiagnostic.pulverisateurAnneeAchat) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurSurface Is Nothing And objDiagnostic.pulverisateurSurface <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurSurface`='" & CSDb.secureString(objDiagnostic.pulverisateurSurface) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurSurface='" & CSDb.secureString(objDiagnostic.pulverisateurSurface) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurNbUtilisateurs Is Nothing And objDiagnostic.pulverisateurNbUtilisateurs <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurNbUtilisateurs`='" & CSDb.secureString(objDiagnostic.pulverisateurNbUtilisateurs) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurNbUtilisateurs='" & CSDb.secureString(objDiagnostic.pulverisateurNbUtilisateurs) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurIsCuveRincage`=" & objDiagnostic.pulverisateurIsCuveRincage & ""
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurIsCuveRincage=" & objDiagnostic.pulverisateurIsCuveRincage & ""
                 If Not objDiagnostic.pulverisateurCapaciteCuveRincage Is Nothing And objDiagnostic.pulverisateurCapaciteCuveRincage <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurCapaciteCuveRincage`='" & CSDb.secureString(objDiagnostic.pulverisateurCapaciteCuveRincage) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurCapaciteCuveRincage='" & CSDb.secureString(objDiagnostic.pulverisateurCapaciteCuveRincage) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurIsRotobuse`=" & objDiagnostic.pulverisateurIsRotobuse & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurIsRinceBidon`=" & objDiagnostic.pulverisateurIsRinceBidon & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurIsBidonLaveMain`=" & objDiagnostic.pulverisateurIsBidonLaveMain & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurIsLanceLavageExterieur`=" & objDiagnostic.pulverisateurIsLanceLavageExterieur & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurIsCuveIncorporation`=" & objDiagnostic.pulverisateurIsCuveIncorporation & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurCategorie`='" & CSDb.secureString(objDiagnostic.pulverisateurCategorie) & "'"
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurIsRotobuse=" & objDiagnostic.pulverisateurIsRotobuse & ""
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurIsRinceBidon=" & objDiagnostic.pulverisateurIsRinceBidon & ""
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurIsBidonLaveMain=" & objDiagnostic.pulverisateurIsBidonLaveMain & ""
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurIsLanceLavageExterieur=" & objDiagnostic.pulverisateurIsLanceLavageExterieur & ""
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurIsCuveIncorporation=" & objDiagnostic.pulverisateurIsCuveIncorporation & ""
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurCategorie='" & CSDb.secureString(objDiagnostic.pulverisateurCategorie) & "'"
                 If Not objDiagnostic.pulverisateurAttelage Is Nothing And objDiagnostic.pulverisateurAttelage <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurAttelage`='" & CSDb.secureString(objDiagnostic.pulverisateurAttelage) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurAttelage='" & CSDb.secureString(objDiagnostic.pulverisateurAttelage) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurRegulation`='" & CSDb.secureString(objDiagnostic.pulverisateurRegulation) & "'"
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurRegulationOptions`='" & CSDb.secureString(objDiagnostic.pulverisateurRegulationOptions) & "'"
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurPulverisation`='" & CSDb.secureString(objDiagnostic.pulverisateurPulverisation) & "'"
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurRegulation='" & CSDb.secureString(objDiagnostic.pulverisateurRegulation) & "'"
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurRegulationOptions='" & CSDb.secureString(objDiagnostic.pulverisateurRegulationOptions) & "'"
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurPulverisation='" & CSDb.secureString(objDiagnostic.pulverisateurPulverisation) & "'"
                 If Not objDiagnostic.pulverisateurAutresAccessoires Is Nothing And objDiagnostic.pulverisateurAutresAccessoires <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurAutresAccessoires`='" & CSDb.secureString(objDiagnostic.pulverisateurAutresAccessoires) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurAutresAccessoires='" & CSDb.secureString(objDiagnostic.pulverisateurAutresAccessoires) & "'"
                 End If
                 If Not objDiagnostic.pulverisateurEmplacementIdentification Is Nothing And objDiagnostic.pulverisateurEmplacementIdentification <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurEmplacementIdentification`='" & CSDb.secureString(objDiagnostic.pulverisateurEmplacementIdentification) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.pulverisateurEmplacementIdentification='" & CSDb.secureString(objDiagnostic.pulverisateurEmplacementIdentification) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurModeUtilisation`='" & CSDb.secureString(objDiagnostic.pulverisateurModeUtilisation) & "'"
-                paramsQuery = paramsQuery & " , `Diagnostic`.`pulverisateurNbreExploitants`='" & CSDb.secureString(objDiagnostic.pulverisateurNbreExploitants) & "'"
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurModeUtilisation='" & CSDb.secureString(objDiagnostic.pulverisateurModeUtilisation) & "'"
+                paramsQuery = paramsQuery & " , Diagnostic.pulverisateurNbreExploitants='" & CSDb.secureString(objDiagnostic.pulverisateurNbreExploitants) & "'"
                 If Not objDiagnostic.buseMarque Is Nothing And objDiagnostic.buseMarque <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseMarque`='" & CSDb.secureString(objDiagnostic.buseMarque) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseMarque='" & CSDb.secureString(objDiagnostic.buseMarque) & "'"
                 End If
                 If Not objDiagnostic.buseModele Is Nothing And objDiagnostic.buseModele <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseModele`='" & CSDb.secureString(objDiagnostic.buseModele) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseModele='" & CSDb.secureString(objDiagnostic.buseModele) & "'"
                 End If
                 If Not objDiagnostic.buseCouleur Is Nothing And objDiagnostic.buseCouleur <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseCouleur`='" & CSDb.secureString(objDiagnostic.buseCouleur) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseCouleur='" & CSDb.secureString(objDiagnostic.buseCouleur) & "'"
                 End If
                 If Not objDiagnostic.buseGenre Is Nothing And objDiagnostic.buseGenre <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseGenre`='" & CSDb.secureString(objDiagnostic.buseGenre) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseGenre='" & CSDb.secureString(objDiagnostic.buseGenre) & "'"
                 End If
                 If Not objDiagnostic.buseCalibre Is Nothing And objDiagnostic.buseCalibre <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseCalibre`='" & CSDb.secureString(objDiagnostic.buseCalibre) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseCalibre='" & CSDb.secureString(objDiagnostic.buseCalibre) & "'"
                 End If
                 If Not objDiagnostic.buseDebit Is Nothing And objDiagnostic.buseDebit <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseDebit`='" & CSDb.secureString(objDiagnostic.buseDebit) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseDebit='" & CSDb.secureString(objDiagnostic.buseDebit) & "'"
                 End If
                 If Not objDiagnostic.buseDebit2bars Is Nothing And objDiagnostic.buseDebit2bars <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseDebit2bars`='" & CSDb.secureString(objDiagnostic.buseDebit2bars) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseDebit2bars='" & CSDb.secureString(objDiagnostic.buseDebit2bars) & "'"
                 End If
                 If Not objDiagnostic.buseDebit3bars Is Nothing And objDiagnostic.buseDebit3bars <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseDebit3bars`='" & CSDb.secureString(objDiagnostic.buseDebit3bars) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseDebit3bars='" & CSDb.secureString(objDiagnostic.buseDebit3bars) & "'"
                 End If
                 If Not objDiagnostic.buseAge Is Nothing And objDiagnostic.buseAge <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseAge`='" & CSDb.secureString(objDiagnostic.buseAge) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseAge='" & CSDb.secureString(objDiagnostic.buseAge) & "'"
                 End If
                 If Not objDiagnostic.buseNbBuses Is Nothing And objDiagnostic.buseNbBuses <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseNbBuses`='" & CSDb.secureString(objDiagnostic.buseNbBuses) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseNbBuses='" & CSDb.secureString(objDiagnostic.buseNbBuses) & "'"
                 End If
                 If Not objDiagnostic.buseType Is Nothing And objDiagnostic.buseType <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseType`='" & CSDb.secureString(objDiagnostic.buseType) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseType='" & CSDb.secureString(objDiagnostic.buseType) & "'"
                 End If
                 If Not objDiagnostic.buseAngle Is Nothing And objDiagnostic.buseAngle <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`buseAngle`='" & CSDb.secureString(objDiagnostic.buseAngle) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.buseAngle='" & CSDb.secureString(objDiagnostic.buseAngle) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`buseFonctionnement`='" & CSDb.secureString(objDiagnostic.buseFonctionnement) & "'"
-                '                paramsQuery = paramsQuery & " , `Diagnostic`.`buseFonctionnementIsStandard`=" & objDiagnostic.buseFonctionnementIsStandard & ""
-                '                paramsQuery = paramsQuery & " , `Diagnostic`.`buseFonctionnementIsPastilleChambre`=" & objDiagnostic.buseFonctionnementIsPastilleChambre & ""
-                '               paramsQuery = paramsQuery & " , `Diagnostic`.`buseFonctionnementIsInjectionAirLibre`=" & objDiagnostic.buseFonctionnementIsInjectionAirLibre & ""
-                '              paramsQuery = paramsQuery & " , `Diagnostic`.`buseFonctionnementIsInjectionAirForce`=" & objDiagnostic.buseFonctionnementIsInjectionAirForce & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`buseIsISO`=" & objDiagnostic.buseIsISO & ""
+                paramsQuery = paramsQuery & " , Diagnostic.buseFonctionnement='" & CSDb.secureString(objDiagnostic.buseFonctionnement) & "'"
+                '                paramsQuery = paramsQuery & " , Diagnostic.buseFonctionnementIsStandard=" & objDiagnostic.buseFonctionnementIsStandard & ""
+                '                paramsQuery = paramsQuery & " , Diagnostic.buseFonctionnementIsPastilleChambre=" & objDiagnostic.buseFonctionnementIsPastilleChambre & ""
+                '               paramsQuery = paramsQuery & " , Diagnostic.buseFonctionnementIsInjectionAirLibre=" & objDiagnostic.buseFonctionnementIsInjectionAirLibre & ""
+                '              paramsQuery = paramsQuery & " , Diagnostic.buseFonctionnementIsInjectionAirForce=" & objDiagnostic.buseFonctionnementIsInjectionAirForce & ""
+                paramsQuery = paramsQuery & " , Diagnostic.buseIsISO=" & objDiagnostic.buseIsISO & ""
                 If Not objDiagnostic.manometreMarque Is Nothing And objDiagnostic.manometreMarque <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`manometreMarque`='" & CSDb.secureString(objDiagnostic.manometreMarque) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.manometreMarque='" & CSDb.secureString(objDiagnostic.manometreMarque) & "'"
                 End If
                 If Not objDiagnostic.manometreDiametre Is Nothing And objDiagnostic.manometreDiametre <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`manometreDiametre`='" & CSDb.secureString(objDiagnostic.manometreDiametre) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.manometreDiametre='" & CSDb.secureString(objDiagnostic.manometreDiametre) & "'"
                 End If
                 If Not objDiagnostic.manometreType Is Nothing And objDiagnostic.manometreType <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`manometreType`='" & CSDb.secureString(objDiagnostic.manometreType) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.manometreType='" & CSDb.secureString(objDiagnostic.manometreType) & "'"
                 End If
                 If Not objDiagnostic.manometreFondEchelle Is Nothing And objDiagnostic.manometreFondEchelle <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`manometreFondEchelle`='" & CSDb.secureString(objDiagnostic.manometreFondEchelle) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.manometreFondEchelle='" & CSDb.secureString(objDiagnostic.manometreFondEchelle) & "'"
                 End If
                 If Not objDiagnostic.manometrePressionTravail Is Nothing And objDiagnostic.manometrePressionTravail <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`manometrePressionTravail`='" & CSDb.secureString(objDiagnostic.manometrePressionTravail) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.manometrePressionTravail='" & CSDb.secureString(objDiagnostic.manometrePressionTravail) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Diagnostic`.`exploitationTypeCultureIsGrandeCulture`=" & objDiagnostic.exploitationTypeCultureIsGrandeCulture & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`exploitationTypeCultureIsLegume`=" & objDiagnostic.exploitationTypeCultureIsLegume & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`exploitationTypeCultureIsElevage`=" & objDiagnostic.exploitationTypeCultureIsElevage & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`exploitationTypeCultureIsArboriculture`=" & objDiagnostic.exploitationTypeCultureIsArboriculture & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`exploitationTypeCultureIsViticulture`=" & objDiagnostic.exploitationTypeCultureIsViticulture & ""
-                paramsQuery = paramsQuery & " , `Diagnostic`.`exploitationTypeCultureIsAutres`=" & objDiagnostic.exploitationTypeCultureIsAutres & ""
+                paramsQuery = paramsQuery & " , Diagnostic.exploitationTypeCultureIsGrandeCulture=" & objDiagnostic.exploitationTypeCultureIsGrandeCulture & ""
+                paramsQuery = paramsQuery & " , Diagnostic.exploitationTypeCultureIsLegume=" & objDiagnostic.exploitationTypeCultureIsLegume & ""
+                paramsQuery = paramsQuery & " , Diagnostic.exploitationTypeCultureIsElevage=" & objDiagnostic.exploitationTypeCultureIsElevage & ""
+                paramsQuery = paramsQuery & " , Diagnostic.exploitationTypeCultureIsArboriculture=" & objDiagnostic.exploitationTypeCultureIsArboriculture & ""
+                paramsQuery = paramsQuery & " , Diagnostic.exploitationTypeCultureIsViticulture=" & objDiagnostic.exploitationTypeCultureIsViticulture & ""
+                paramsQuery = paramsQuery & " , Diagnostic.exploitationTypeCultureIsAutres=" & objDiagnostic.exploitationTypeCultureIsAutres & ""
                 If Not objDiagnostic.exploitationSau Is Nothing And objDiagnostic.exploitationSau <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`exploitationSau`='" & CSDb.secureString(objDiagnostic.exploitationSau) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.exploitationSau='" & CSDb.secureString(objDiagnostic.exploitationSau) & "'"
                 End If
                 If Not objDiagnostic.dateModificationAgent Is Nothing And objDiagnostic.dateModificationAgent <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`dateModificationAgent`='" & CSDb.secureString(objDiagnostic.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.dateModificationAgent='" & CSDb.secureString(objDiagnostic.dateModificationAgent) & "'"
                 End If
                 If Not objDiagnostic.dateModificationCrodip Is Nothing And objDiagnostic.dateModificationCrodip <> "" Then
-                    paramsQuery = paramsQuery & " , `Diagnostic`.`dateModificationCrodip`='" & CSDb.secureString(objDiagnostic.dateModificationCrodip) & "'"
+                    paramsQuery = paramsQuery & " , Diagnostic.dateModificationCrodip='" & CSDb.secureString(objDiagnostic.dateModificationCrodip) & "'"
                 End If
 
                 'On scinde la requete en 2 car elle est trop longue sinon
                 If Not objDiagnostic.dateSynchro Is Nothing And objDiagnostic.dateSynchro <> "" Then
-                    paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`dateSynchro`='" & CSDb.secureString(objDiagnostic.dateSynchro) & "'"
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSynchro='" & CSDb.secureString(objDiagnostic.dateSynchro) & "'"
                 End If
                 If Not objDiagnostic.syntheseErreurMoyenneMano Is Nothing And objDiagnostic.syntheseErreurMoyenneMano <> "" Then
-                    paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`syntheseErreurMoyenneMano`='" & CSDb.secureString(objDiagnostic.syntheseErreurMoyenneMano) & "'"
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.syntheseErreurMoyenneMano='" & CSDb.secureString(objDiagnostic.syntheseErreurMoyenneMano) & "'"
                 End If
                 If Not objDiagnostic.syntheseErreurMaxiMano Is Nothing And objDiagnostic.syntheseErreurMaxiMano <> "" Then
-                    paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`syntheseErreurMaxiMano`='" & CSDb.secureString(objDiagnostic.syntheseErreurMaxiMano) & "'"
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.syntheseErreurMaxiMano='" & CSDb.secureString(objDiagnostic.syntheseErreurMaxiMano) & "'"
                 End If
                 If Not objDiagnostic.syntheseErreurDebitmetre Is Nothing And objDiagnostic.syntheseErreurDebitmetre <> "" Then
-                    paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`syntheseErreurDebitmetre`='" & CSDb.secureString(objDiagnostic.syntheseErreurDebitmetre) & "'"
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.syntheseErreurDebitmetre='" & CSDb.secureString(objDiagnostic.syntheseErreurDebitmetre) & "'"
                 End If
                 If Not objDiagnostic.syntheseErreurMoyenneCinemometre Is Nothing And objDiagnostic.syntheseErreurMoyenneCinemometre <> "" Then
-                    paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`syntheseErreurMoyenneCinemometre`='" & CSDb.secureString(objDiagnostic.syntheseErreurMoyenneCinemometre) & "'"
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.syntheseErreurMoyenneCinemometre='" & CSDb.secureString(objDiagnostic.syntheseErreurMoyenneCinemometre) & "'"
                 End If
                 If Not objDiagnostic.syntheseUsureMoyenneBuses Is Nothing And objDiagnostic.syntheseUsureMoyenneBuses <> "" Then
-                    paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`syntheseUsureMoyenneBuses`='" & CSDb.secureString(objDiagnostic.syntheseUsureMoyenneBuses) & "'"
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.syntheseUsureMoyenneBuses='" & CSDb.secureString(objDiagnostic.syntheseUsureMoyenneBuses) & "'"
                 End If
                 If Not objDiagnostic.syntheseNbBusesUsees Is Nothing And objDiagnostic.syntheseNbBusesUsees <> "" Then
-                    paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`syntheseNbBusesUsees`='" & CSDb.secureString(objDiagnostic.syntheseNbBusesUsees) & "'"
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.syntheseNbBusesUsees='" & CSDb.secureString(objDiagnostic.syntheseNbBusesUsees) & "'"
                 End If
                 If Not objDiagnostic.synthesePerteChargeMoyenne Is Nothing And objDiagnostic.synthesePerteChargeMoyenne <> "" Then
-                    paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`synthesePerteChargeMoyenne`='" & CSDb.secureString(objDiagnostic.synthesePerteChargeMoyenne) & "'"
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.synthesePerteChargeMoyenne='" & CSDb.secureString(objDiagnostic.synthesePerteChargeMoyenne) & "'"
                 End If
                 If Not objDiagnostic.synthesePerteChargeMaxi Is Nothing And objDiagnostic.synthesePerteChargeMaxi <> "" Then
-                    paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`synthesePerteChargeMaxi`='" & CSDb.secureString(objDiagnostic.synthesePerteChargeMaxi) & "'"
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.synthesePerteChargeMaxi='" & CSDb.secureString(objDiagnostic.synthesePerteChargeMaxi) & "'"
                 End If
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`isSynchro`=" & objDiagnostic.isSynchro & ""
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`isATGIP`=" & objDiagnostic.isATGIP & ""
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`isTGIP`=" & objDiagnostic.isTGIP & ""
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`isFacture`=" & objDiagnostic.isFacture & ""
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`controleBancMesureId`='" & objDiagnostic.controleBancMesureId & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`controleUseCalibrateur`=" & objDiagnostic.controleUseCalibrateur & ""
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`controleNbreNiveaux`='" & objDiagnostic.controleNbreNiveaux & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`controleNbreTroncons`='" & objDiagnostic.controleNbreTroncons & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`controleManoControleNumNational`='" & objDiagnostic.controleManoControleNumNational & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`controleInitialId`='" & objDiagnostic.controleInitialId & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`pulverisateurAncienId`='" & objDiagnostic.pulverisateurAncienId & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`RIFileName`='" & CSDb.secureString(objDiagnostic.RIFileName) & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`SMFileName`='" & CSDb.secureString(objDiagnostic.SMFileName) & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`CCFileName`='" & CSDb.secureString(objDiagnostic.CCFileName) & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`pulverisateurCoupureAutoTroncons`='" & CSDb.secureString(objDiagnostic.pulverisateurCoupureAutoTroncons) & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`pulverisateurReglageAutoHauteur`='" & CSDb.secureString(objDiagnostic.pulverisateurReglageAutoHauteur) & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`pulverisateurRincagecircuit`='" & CSDb.secureString(objDiagnostic.pulverisateurRincagecircuit) & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`typeDiagnostic`='" & CSDb.secureString(objDiagnostic.typeDiagnostic) & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`codeInsee`='" & CSDb.secureString(objDiagnostic.codeInsee) & "'"
-                paramsQuery2 = paramsQuery2 & " , `Diagnostic`.`commentaire`='" & CSDb.secureString(objDiagnostic.Commentaire) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSynchro=" & objDiagnostic.isSynchro & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isATGIP=" & objDiagnostic.isATGIP & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isTGIP=" & objDiagnostic.isTGIP & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isFacture=" & objDiagnostic.isFacture & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.controleBancMesureId='" & objDiagnostic.controleBancMesureId & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.controleUseCalibrateur=" & objDiagnostic.controleUseCalibrateur & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.controleNbreNiveaux='" & objDiagnostic.controleNbreNiveaux & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.controleNbreTroncons='" & objDiagnostic.controleNbreTroncons & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.controleManoControleNumNational='" & objDiagnostic.controleManoControleNumNational & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.controleInitialId='" & objDiagnostic.controleInitialId & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurAncienId='" & objDiagnostic.pulverisateurAncienId & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.RIFileName='" & CSDb.secureString(objDiagnostic.RIFileName) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.SMFileName='" & CSDb.secureString(objDiagnostic.SMFileName) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.CCFileName='" & CSDb.secureString(objDiagnostic.CCFileName) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurCoupureAutoTroncons='" & CSDb.secureString(objDiagnostic.pulverisateurCoupureAutoTroncons) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurReglageAutoHauteur='" & CSDb.secureString(objDiagnostic.pulverisateurReglageAutoHauteur) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurRincagecircuit='" & CSDb.secureString(objDiagnostic.pulverisateurRincagecircuit) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.typeDiagnostic='" & CSDb.secureString(objDiagnostic.typeDiagnostic) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.codeInsee='" & CSDb.secureString(objDiagnostic.codeInsee) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.commentaire='" & CSDb.secureString(objDiagnostic.Commentaire) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurNumNational='" & CSDb.secureString(objDiagnostic.pulverisateurNumNational) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurNumChassis='" & CSDb.secureString(objDiagnostic.pulverisateurNumChassis) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.OrigineDiag='" & CSDb.secureString(objDiagnostic.origineDiag) & "'"
 
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE `Diagnostic` SET " & paramsQuery & " WHERE `Diagnostic`.`id`='" & objDiagnostic.id & "'"
+                bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
                 'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
                 bddCommande.ExecuteNonQuery()
-                bddCommande.CommandText = "UPDATE `Diagnostic` SET " & paramsQuery2 & " WHERE `Diagnostic`.`id`='" & objDiagnostic.id & "'"
+                bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
                 'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
                 bddCommande.ExecuteNonQuery()
 
@@ -1382,5 +1422,20 @@ Public Class DiagnosticManager
         End If
         Return bReturn
     End Function 'delete
+    Public Shared Function getCount(ByVal pAgent As Agent) As Integer
+        Debug.Assert(pAgent IsNot Nothing)
+        ' déclarations
+        Dim nDiag As Integer = 0
+        Dim oCSDb As New CSDb(True)
+        Try
+            nDiag = oCSDb.getValue("Select count(*) from Diagnostic Where InspecteurId=" & pAgent.id)
+        Catch ex As Exception ' On intercepte l'erreur
+            nDiag = 0
+            CSDebug.dispError("DiagnosticManager.getDiagnosticByPulveId ERR:" & ex.Message)
+        End Try
+        ' Test pour fermeture de connection BDD
+        oCSDb.free()
+        Return nDiag
+    End Function
 
 End Class

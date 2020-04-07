@@ -94,6 +94,7 @@ Public Class Diagnostic
     Private _pulverisateurReglageAutoHauteur As String = ""
     Private _pulverisateurRincagecircuit As String = ""
     Private _pulverisateur As Pulverisateur 'Reference sur le Pulve (non exportées ni sauvegardée)
+    Private _pulverisateurNumChassis As String = ""
 
 
     Private _buseMarque As String = ""
@@ -185,6 +186,7 @@ Public Class Diagnostic
 
     Private _isContreVisiteImmediate As Boolean
     Private _typeDiagnostic As String
+    Private _OrigineDiag As String
 
     Protected m_buseDebitMoyenPM As Decimal 'utilisé pour le Reglage Pulve
 
@@ -872,6 +874,14 @@ Public Class Diagnostic
         End Get
         Set(ByVal Value As String)
             _pulverisateurNumNational = Value
+        End Set
+    End Property
+    Public Property pulverisateurNumChassis() As String
+        Get
+            Return _pulverisateurNumChassis
+        End Get
+        Set(ByVal Value As String)
+            _pulverisateurNumChassis = Value
         End Set
     End Property
 
@@ -2211,7 +2221,19 @@ Public Class Diagnostic
             _isContreVisiteImmediate = Value
         End Set
     End Property
-
+    ''' <summary>
+    ''' origine du diag (CRODIP, GIP, ITEQ, ...
+    ''' </summary>
+    ''' <returns></returns>
+    <XmlElement("typeDiag")>
+    Public Property origineDiag() As String
+        Get
+            Return _OrigineDiag
+        End Get
+        Set(ByVal Value As String)
+            _OrigineDiag = Value
+        End Set
+    End Property
     Public Property typeDiagnostic() As String
         Get
             Return _typeDiagnostic
@@ -2669,6 +2691,12 @@ Public Class Diagnostic
                     Me.codeInsee = pcolValue.ToString
                 Case "commentaire".ToUpper().Trim()
                     Me.Commentaire = pcolValue.ToString
+                Case "pulverisateurNumNational".ToUpper().Trim()
+                    Me.pulverisateurNumNational = pcolValue.ToString()
+                Case "pulverisateurNumchassis".ToUpper().Trim()
+                    Me.pulverisateurNumChassis = pcolValue.ToString()
+                Case "typeDiag".ToUpper().Trim(), "origineDiag".ToUpper().Trim()
+                    Me.origineDiag = pcolValue.ToString()
             End Select
             bReturn = True
         Catch ex As Exception
@@ -2742,6 +2770,7 @@ Public Class Diagnostic
         Try
             Me.pulverisateurId = poPulve.id
             Me.pulverisateurNumNational = poPulve.numeroNational
+            Me.pulverisateurNumChassis = poPulve.numChassis
             If String.IsNullOrEmpty(poPulve.ancienIdentifiant) Then
                 pulverisateurAncienId = ""
             Else
@@ -2837,6 +2866,7 @@ Public Class Diagnostic
             Else
                 typeDiagnostic = "pulverisateur"
             End If
+
             'Mise à jour du DiahHelp12123
             _diagnostichelp12123.fonctionnementBuses = poPulve.buseFonctionnement
             If poPulve.isPompesDoseuses Then

@@ -89,9 +89,6 @@
     <Setting Name="NumVersion" Type="System.String" Scope="Application">
       <Value Profile="(Default)">2.6</Value>
     </Setting>
-    <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">V2.6.2</Value>
-    </Setting>
     <Setting Name="Mode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">NORMAL</Value>
     </Setting>
@@ -121,6 +118,12 @@
     </Setting>
     <Setting Name="SynhcroEtatPwd" Type="System.String" Scope="Application">
       <Value Profile="(Default)">crodip</Value>
+    </Setting>
+    <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">V2.6.3</Value>
+    </Setting>
+    <Setting Name="SynchroDescGetEtat" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/admin/diagnostic/get-pdf-view</Value>
     </Setting>
   </Settings>
 </SettingsFile>

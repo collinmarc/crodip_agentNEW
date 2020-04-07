@@ -126,6 +126,7 @@ Public Class Pulverisateur
     Private _isRincagecircuit As Boolean = False
     Private _isPompesDoseuses As Boolean = False
     Private _nbPompesDoseuses As Integer
+    Private _numChassis As String
 
     Sub New()
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
@@ -903,6 +904,15 @@ Public Class Pulverisateur
         End Set
     End Property
 
+    Public Property numChassis() As String
+        Get
+            Return _numChassis
+        End Get
+        Set(ByVal value As String)
+            _numChassis = value
+        End Set
+    End Property
+
     Public Function setLargeurNbreRangs(pstr As String) As Boolean
         Dim bReturn As Boolean
         Try
@@ -1092,6 +1102,8 @@ Public Class Pulverisateur
                     Me.isPompesDoseuses = pColValue
                 Case "nbPompesDoseuses".ToUpper().Trim()
                     Me.nbPompesDoseuses = pColValue
+                Case "numChassis".ToUpper().Trim()
+                    Me.numChassis = pColValue
             End Select
             bReturn = True
         Catch ex As Exception

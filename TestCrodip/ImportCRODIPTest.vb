@@ -361,4 +361,100 @@ Public Class ImportCRODIPTest
 
 
     End Sub
-    End Class
+    <TestMethod()>
+    Public Sub TST_ImportDiag()
+
+        Dim obj As importCRODIP
+        Dim olstin = New List(Of importCRODIP)
+
+        obj = New importCRODIP()
+        obj.nomExploitant = "TEST1"
+        obj.numeroSiren = "1235467"
+        obj.numeroNational = "E001001"
+        obj.OrigineDiag = "GIP"
+        obj.isATGIP = "VRAI"
+        obj.isFacture = "VRAI"
+        obj.controleIsComplet = "FAUX"
+        obj.typeDiagnostic = "EQUIPEMENT"
+        obj.telephoneFixe = "0201020304"
+        obj.numchassis = "11111"
+        olstin.Add(obj)
+        obj = New importCRODIP()
+        obj.nomExploitant = "TEST2"
+        obj.numeroSiren = "789456123"
+        obj.numeroNational = "E001002"
+        obj.OrigineDiag = "TST"
+        obj.isATGIP = "FAUX"
+        obj.isFacture = "FAUX"
+        obj.controleIsComplet = "VRAI"
+        obj.typeDiagnostic = "TEST"
+        obj.telephoneFixe = "0301020304"
+        obj.numchassis = "22222"
+        olstin.Add(obj)
+
+        Dim sw As New StreamWriter("./TEST.CSV")
+        Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
+            csv.WriteRecords(olstin)
+        End Using
+        Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+        Dim nDiagAvant As Integer = DiagnosticManager.getCount(m_oAgent)
+
+        Dim oResult As importCRODIP.ImportCrodipResult
+        oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
+
+        Assert.AreEqual(2, oResult.nClientimport)
+        Assert.AreEqual(2, oResult.nPulveimport)
+        Assert.AreEqual(2, oResult.nDiagimport)
+        Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Assert.AreEqual(nExploitAvant + 2, nExploitapres)
+
+        Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+        Assert.AreEqual(nPulveAvant + 2, nPulveApres)
+
+        Dim nDiagAPres As Integer = DiagnosticManager.getCount(m_oAgent)
+        Assert.AreEqual(nDiagAvant + 2, nDiagAPres)
+        Dim lstImport As List(Of Exploitation) = oResult.lstExploitationimport
+        Dim nId As String
+        Dim odiag As Diagnostic
+        Dim oPulve As Pulverisateur
+
+        nId = lstImport(0).lstDiagImport(0).id
+        odiag = DiagnosticManager.getDiagnosticById(nId)
+        Assert.AreEqual("TEST1", odiag.proprietaireNom)
+        Assert.AreNotEqual("", odiag.proprietaireId)
+        Assert.AreNotEqual("", odiag.pulverisateurId)
+        Assert.AreEqual("E001001", odiag.pulverisateurNumNational)
+        Assert.AreEqual(True, odiag.isATGIP)
+        Assert.AreEqual(True, odiag.isFacture)
+        Assert.AreEqual(False, odiag.controleIsComplet)
+        Assert.AreEqual("EQUIPEMENT", odiag.typeDiagnostic)
+        Assert.AreEqual("0201020304", odiag.proprietaireTelephoneFixe)
+        Assert.AreEqual("GIP", odiag.origineDiag)
+
+        nId = lstImport(0).lstPulveImport(0).id
+        oPulve = PulverisateurManager.getPulverisateurById(nId)
+        Assert.AreEqual("E001001", oPulve.numeroNational)
+        Assert.AreEqual("11111", oPulve.numChassis)
+
+        nId = lstImport(1).lstDiagImport(0).id
+        odiag = DiagnosticManager.getDiagnosticById(nId)
+        Assert.AreNotEqual("", odiag.proprietaireId)
+        Assert.AreNotEqual("", odiag.pulverisateurId)
+        Assert.AreEqual("TEST2", odiag.proprietaireNom)
+        Assert.AreEqual("E001002", odiag.pulverisateurNumNational)
+        Assert.AreEqual(False, odiag.isATGIP)
+        Assert.AreEqual(False, odiag.isFacture)
+        Assert.AreEqual(True, odiag.controleIsComplet)
+        Assert.AreEqual("TEST", odiag.typeDiagnostic)
+        Assert.AreEqual("0301020304", odiag.proprietaireTelephoneFixe)
+        Assert.AreEqual("TST", odiag.origineDiag)
+
+        nId = lstImport(1).lstPulveImport(0).id
+        oPulve = PulverisateurManager.getPulverisateurById(nId)
+        Assert.AreEqual("E001002", oPulve.numeroNational)
+        Assert.AreEqual("22222", oPulve.numChassis)
+
+
+    End Sub
+End Class

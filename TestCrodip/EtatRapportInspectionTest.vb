@@ -655,7 +655,7 @@ Imports System.IO
         DiagnosticManager.save(oDiag)
 
         ''Synchronisation des etats
-        Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
+        Assert.IsTrue(DiagnosticManager.getHTTPEtats(oDiag))
 
         'Suppression des etats générés en local
         File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
@@ -666,7 +666,10 @@ Imports System.IO
         'Récupération des fichiers par HTTP
         Assert.IsTrue(DiagnosticManager.getHTTPEtats(oDiag))
         Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
+        Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+        Assert.AreNotEqual(0L, oFi.Length)
+        'L'api ne permet pas de récupérer la synthèses des mesures ou le contrat commercial
+        'Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
         CSFile.open(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
 
     End Sub

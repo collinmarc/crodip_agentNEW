@@ -192,142 +192,143 @@ Public Class PulverisateurManager
                 Dim bddCommande As OleDb.OleDbCommand
                 bddCommande = bdd.getConnection().CreateCommand()
 
-                    ' Initialisation de la requete
-                    paramsQuery = "`Pulverisateur`.`id`='" & objPulverisateur.id & "'"
+                ' Initialisation de la requete
+                paramsQuery = "Pulverisateur.id='" & objPulverisateur.id & "'"
 
-                    ' Mise a jour de la date de derniere modification
-                    If Not bSynchro Then
-                        objPulverisateur.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-                    End If
+                ' Mise a jour de la date de derniere modification
+                If Not bSynchro Then
+                    objPulverisateur.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                End If
 
-                    If Not objPulverisateur.numeroNational Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`numeroNational`='" & objPulverisateur.numeroNational & "'"
-                    End If
-                    If Not objPulverisateur.type Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`type`='" & objPulverisateur.type & "'"
-                    End If
-                    If Not objPulverisateur.marque Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`marque`='" & CSDb.secureString(objPulverisateur.marque) & "'"
-                    End If
-                    If Not objPulverisateur.modele Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`modele`='" & CSDb.secureString(objPulverisateur.modele) & "'"
-                    End If
-                    If Not objPulverisateur.anneeAchat Is Nothing And objPulverisateur.anneeAchat <> "" Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`anneeAchat`='" & objPulverisateur.anneeAchat & "'"
-                    End If
-                    paramsQuery = paramsQuery & " , Pulverisateur.categorie='" & CSDb.secureString(objPulverisateur.categorie) & "'"
-                    If Not objPulverisateur.attelage Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`attelage`='" & CSDb.secureString(objPulverisateur.attelage) & "'"
-                    End If
-                    paramsQuery = paramsQuery & " , Pulverisateur.pulverisation='" & CSDb.secureString(objPulverisateur.pulverisation) & "'"
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`capacite`=" & objPulverisateur.capacite & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`largeur`='" & objPulverisateur.largeur & "'"
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`nombreRangs`='" & objPulverisateur.nombreRangs & "'"
-                    If Not objPulverisateur.largeurPlantation Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`largeurPlantation`='" & objPulverisateur.largeurPlantation & "'"
-                    End If
-                    If Not objPulverisateur.surfaceParAn Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`surfaceParAn`='" & objPulverisateur.surfaceParAn & "'"
-                    End If
-                    If Not objPulverisateur.nombreUtilisateurs Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`nombreUtilisateurs`='" & objPulverisateur.nombreUtilisateurs & "'"
-                    End If
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isVentilateur`=" & objPulverisateur.isVentilateur & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isDebrayage`=" & objPulverisateur.isDebrayage & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isCuveRincage`=" & objPulverisateur.isCuveRincage & ""
-                    If Not objPulverisateur.capaciteCuveRincage Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`capaciteCuveRincage`='" & objPulverisateur.capaciteCuveRincage & "'"
-                    End If
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isRotobuse`=" & objPulverisateur.isRotobuse & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isCuveIncorporation`=" & objPulverisateur.isCuveIncorporation & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isRinceBidon`=" & objPulverisateur.isRinceBidon & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isBidonLaveMain`=" & objPulverisateur.isBidonLaveMain & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isLanceLavage`=" & objPulverisateur.isLanceLavage & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`Regulation`='" & CSDb.secureString(objPulverisateur.regulation) & "'"
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`RegulationOptions`='" & CSDb.secureString(objPulverisateur.regulationOptions) & "'"
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`nombreBuses`=" & objPulverisateur.nombreBuses & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`buseIsIso`=" & objPulverisateur.buseIsIso & ""
-                    If Not objPulverisateur.buseMarque Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`buseMarque`='" & CSDb.secureString(objPulverisateur.buseMarque) & "'"
-                    End If
-                    If Not objPulverisateur.buseType Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`buseType`='" & CSDb.secureString(objPulverisateur.buseType) & "'"
-                    End If
-                    If Not objPulverisateur.buseFonctionnement Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`buseFonctionnement`='" & CSDb.secureString(objPulverisateur.buseFonctionnement) & "'"
-                    End If
-                    If Not objPulverisateur.buseAge = "" Then
-                        'Le Champs BuseAge est stocké en boolean mais la prop est du String
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`buseAge`=" & objPulverisateur.buseAge & ""
-                    End If
-                    If Not objPulverisateur.buseAngle Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`buseAngle`='" & objPulverisateur.buseAngle & "'"
-                    End If
-                    If Not objPulverisateur.buseCouleur Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`buseCouleur`='" & objPulverisateur.buseCouleur & "'"
-                    End If
-                    If Not objPulverisateur.manometreMarque Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`manometreMarque`='" & CSDb.secureString(objPulverisateur.manometreMarque) & "'"
-                    End If
-                    If Not objPulverisateur.manometreType Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`manometreType`='" & CSDb.secureString(objPulverisateur.manometreType) & "'"
-                    End If
-                    If Not objPulverisateur.manometreFondEchelle Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`manometreFondEchelle`='" & objPulverisateur.manometreFondEchelle & "'"
-                    End If
-                    If Not objPulverisateur.manometreDiametre Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`manometreDiametre`='" & objPulverisateur.manometreDiametre & "'"
-                    End If
-                    If Not objPulverisateur.manometrePressionTravail Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`manometrePressionTravail`='" & objPulverisateur.manometrePressionTravail & "'"
-                    End If
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isSynchro`=" & objPulverisateur.isSynchro & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isSupprime`=" & objPulverisateur.isSupprime & ""
-                    If Not objPulverisateur.dateProchainControle Is Nothing And objPulverisateur.dateProchainControle <> "" And objPulverisateur.dateProchainControle <> "0000-00-00 00:00:00" Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`dateProchainControle`='" & objPulverisateur.dateProchainControle & "'"
-                    End If
-                    If Not objPulverisateur.dateModificationCrodip Is Nothing And objPulverisateur.dateModificationCrodip <> "" Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`dateModificationCrodip`='" & objPulverisateur.dateModificationCrodip & "'"
-                    End If
-                    If Not objPulverisateur.dateModificationAgent Is Nothing And objPulverisateur.dateModificationAgent <> "" Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`dateModificationAgent`='" & objPulverisateur.dateModificationAgent & "'"
-                    End If
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`idStructure`=" & objPulverisateur.idStructure & ""
-                    ' Emplacement Identification
-                    If Not objPulverisateur.emplacementIdentification Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`emplacementIdentification`='" & CSDb.secureString(objPulverisateur.emplacementIdentification) & "'"
-                    End If
-                    ' ancien Identifiant
-                    If Not objPulverisateur.ancienIdentifiant Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Pulverisateur`.`ancienIdentifiant`='" & CSDb.secureString(objPulverisateur.ancienIdentifiant) & "'"
-                    End If
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isEclairageRampe`=" & objPulverisateur.isEclairageRampe & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isBarreGuidage`=" & objPulverisateur.isBarreGuidage & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isCoupureAutoTroncons`=" & objPulverisateur.isCoupureAutoTroncons & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isRincageAutoAssiste`=" & objPulverisateur.isRincageAutoAssiste & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`buseModele`='" & objPulverisateur.buseModele & "'"
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`buseNbniveaux`=" & objPulverisateur.buseNbniveaux & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`manometreNbNiveaux`=" & objPulverisateur.manometreNbniveaux & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`manometreNbTroncons`=" & objPulverisateur.manometreNbtroncons & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`modeUtilisation`='" & CSDb.secureString(objPulverisateur.modeUtilisation) & "'"
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`nombreExploitants`='" & CSDb.secureString(objPulverisateur.nombreExploitants) & "'"
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`controleEtat`='" & CSDb.secureString(objPulverisateur.controleEtat) & "'"
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isAspirationExt`=" & objPulverisateur.isAspirationExt & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isDispoAntiRetour`=" & objPulverisateur.isDispoAntiRetour & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isReglageAutoHauteur`=" & objPulverisateur.isReglageAutoHauteur & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isFiltrationAspiration`=" & objPulverisateur.isFiltrationAspiration & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isFiltrationRefoulement`=" & objPulverisateur.isFiltrationRefoulement & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isFiltrationTroncons`=" & objPulverisateur.isFiltrationTroncons & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isFiltrationBuses`=" & objPulverisateur.isFiltrationBuses & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isPulveAdditionnel`=" & objPulverisateur.isPulveAdditionnel & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`pulvePrincipalNumNat`='" & CSDb.secureString(objPulverisateur.pulvePrincipalNumNat) & "'"
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isRincagecircuit`=" & objPulverisateur.isRincagecircuit & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`isPompesDoseuses`=" & objPulverisateur.isPompesDoseuses & ""
-                    paramsQuery = paramsQuery & " , `Pulverisateur`.`nbPompesDoseuses`=" & objPulverisateur.nbPompesDoseuses & ""
+                If Not objPulverisateur.numeroNational Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.numeroNational='" & objPulverisateur.numeroNational & "'"
+                End If
+                If Not objPulverisateur.type Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.type='" & objPulverisateur.type & "'"
+                End If
+                If Not objPulverisateur.marque Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.marque='" & CSDb.secureString(objPulverisateur.marque) & "'"
+                End If
+                If Not objPulverisateur.modele Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.modele='" & CSDb.secureString(objPulverisateur.modele) & "'"
+                End If
+                If Not objPulverisateur.anneeAchat Is Nothing And objPulverisateur.anneeAchat <> "" Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.anneeAchat='" & objPulverisateur.anneeAchat & "'"
+                End If
+                paramsQuery = paramsQuery & " , Pulverisateur.categorie='" & CSDb.secureString(objPulverisateur.categorie) & "'"
+                If Not objPulverisateur.attelage Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.attelage='" & CSDb.secureString(objPulverisateur.attelage) & "'"
+                End If
+                paramsQuery = paramsQuery & " , Pulverisateur.pulverisation='" & CSDb.secureString(objPulverisateur.pulverisation) & "'"
+                paramsQuery = paramsQuery & " , Pulverisateur.capacite=" & objPulverisateur.capacite & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.largeur='" & objPulverisateur.largeur & "'"
+                paramsQuery = paramsQuery & " , Pulverisateur.nombreRangs='" & objPulverisateur.nombreRangs & "'"
+                If Not objPulverisateur.largeurPlantation Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.largeurPlantation='" & objPulverisateur.largeurPlantation & "'"
+                End If
+                If Not objPulverisateur.surfaceParAn Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.surfaceParAn='" & objPulverisateur.surfaceParAn & "'"
+                End If
+                If Not objPulverisateur.nombreUtilisateurs Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.nombreUtilisateurs='" & objPulverisateur.nombreUtilisateurs & "'"
+                End If
+                paramsQuery = paramsQuery & " , Pulverisateur.isVentilateur=" & objPulverisateur.isVentilateur & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isDebrayage=" & objPulverisateur.isDebrayage & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isCuveRincage=" & objPulverisateur.isCuveRincage & ""
+                If Not objPulverisateur.capaciteCuveRincage Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.capaciteCuveRincage='" & objPulverisateur.capaciteCuveRincage & "'"
+                End If
+                paramsQuery = paramsQuery & " , Pulverisateur.isRotobuse=" & objPulverisateur.isRotobuse & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isCuveIncorporation=" & objPulverisateur.isCuveIncorporation & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isRinceBidon=" & objPulverisateur.isRinceBidon & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isBidonLaveMain=" & objPulverisateur.isBidonLaveMain & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isLanceLavage=" & objPulverisateur.isLanceLavage & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.Regulation='" & CSDb.secureString(objPulverisateur.regulation) & "'"
+                paramsQuery = paramsQuery & " , Pulverisateur.RegulationOptions='" & CSDb.secureString(objPulverisateur.regulationOptions) & "'"
+                paramsQuery = paramsQuery & " , Pulverisateur.nombreBuses=" & objPulverisateur.nombreBuses & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.buseIsIso=" & objPulverisateur.buseIsIso & ""
+                If Not objPulverisateur.buseMarque Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.buseMarque='" & CSDb.secureString(objPulverisateur.buseMarque) & "'"
+                End If
+                If Not objPulverisateur.buseType Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.buseType='" & CSDb.secureString(objPulverisateur.buseType) & "'"
+                End If
+                If Not objPulverisateur.buseFonctionnement Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.buseFonctionnement='" & CSDb.secureString(objPulverisateur.buseFonctionnement) & "'"
+                End If
+                If Not objPulverisateur.buseAge = "" Then
+                    'Le Champs BuseAge est stocké en boolean mais la prop est du String
+                    paramsQuery = paramsQuery & " , Pulverisateur.buseAge=" & objPulverisateur.buseAge & ""
+                End If
+                If Not objPulverisateur.buseAngle Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.buseAngle='" & objPulverisateur.buseAngle & "'"
+                End If
+                If Not objPulverisateur.buseCouleur Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.buseCouleur='" & objPulverisateur.buseCouleur & "'"
+                End If
+                If Not objPulverisateur.manometreMarque Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.manometreMarque='" & CSDb.secureString(objPulverisateur.manometreMarque) & "'"
+                End If
+                If Not objPulverisateur.manometreType Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.manometreType='" & CSDb.secureString(objPulverisateur.manometreType) & "'"
+                End If
+                If Not objPulverisateur.manometreFondEchelle Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.manometreFondEchelle='" & objPulverisateur.manometreFondEchelle & "'"
+                End If
+                If Not objPulverisateur.manometreDiametre Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.manometreDiametre='" & objPulverisateur.manometreDiametre & "'"
+                End If
+                If Not objPulverisateur.manometrePressionTravail Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.manometrePressionTravail='" & objPulverisateur.manometrePressionTravail & "'"
+                End If
+                paramsQuery = paramsQuery & " , Pulverisateur.isSynchro=" & objPulverisateur.isSynchro & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isSupprime=" & objPulverisateur.isSupprime & ""
+                If Not objPulverisateur.dateProchainControle Is Nothing And objPulverisateur.dateProchainControle <> "" And objPulverisateur.dateProchainControle <> "0000-00-00 00:00:00" Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.dateProchainControle='" & objPulverisateur.dateProchainControle & "'"
+                End If
+                If Not objPulverisateur.dateModificationCrodip Is Nothing And objPulverisateur.dateModificationCrodip <> "" Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.dateModificationCrodip='" & objPulverisateur.dateModificationCrodip & "'"
+                End If
+                If Not objPulverisateur.dateModificationAgent Is Nothing And objPulverisateur.dateModificationAgent <> "" Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.dateModificationAgent='" & objPulverisateur.dateModificationAgent & "'"
+                End If
+                paramsQuery = paramsQuery & " , Pulverisateur.idStructure=" & objPulverisateur.idStructure & ""
+                ' Emplacement Identification
+                If Not objPulverisateur.emplacementIdentification Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.emplacementIdentification='" & CSDb.secureString(objPulverisateur.emplacementIdentification) & "'"
+                End If
+                ' ancien Identifiant
+                If Not objPulverisateur.ancienIdentifiant Is Nothing Then
+                    paramsQuery = paramsQuery & " , Pulverisateur.ancienIdentifiant='" & CSDb.secureString(objPulverisateur.ancienIdentifiant) & "'"
+                End If
+                paramsQuery = paramsQuery & " , Pulverisateur.isEclairageRampe=" & objPulverisateur.isEclairageRampe & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isBarreGuidage=" & objPulverisateur.isBarreGuidage & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isCoupureAutoTroncons=" & objPulverisateur.isCoupureAutoTroncons & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isRincageAutoAssiste=" & objPulverisateur.isRincageAutoAssiste & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.buseModele='" & objPulverisateur.buseModele & "'"
+                paramsQuery = paramsQuery & " , Pulverisateur.buseNbniveaux=" & objPulverisateur.buseNbniveaux & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.manometreNbNiveaux=" & objPulverisateur.manometreNbniveaux & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.manometreNbTroncons=" & objPulverisateur.manometreNbtroncons & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.modeUtilisation='" & CSDb.secureString(objPulverisateur.modeUtilisation) & "'"
+                paramsQuery = paramsQuery & " , Pulverisateur.nombreExploitants='" & CSDb.secureString(objPulverisateur.nombreExploitants) & "'"
+                paramsQuery = paramsQuery & " , Pulverisateur.controleEtat='" & CSDb.secureString(objPulverisateur.controleEtat) & "'"
+                paramsQuery = paramsQuery & " , Pulverisateur.isAspirationExt=" & objPulverisateur.isAspirationExt & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isDispoAntiRetour=" & objPulverisateur.isDispoAntiRetour & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isReglageAutoHauteur=" & objPulverisateur.isReglageAutoHauteur & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isFiltrationAspiration=" & objPulverisateur.isFiltrationAspiration & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isFiltrationRefoulement=" & objPulverisateur.isFiltrationRefoulement & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isFiltrationTroncons=" & objPulverisateur.isFiltrationTroncons & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isFiltrationBuses=" & objPulverisateur.isFiltrationBuses & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isPulveAdditionnel=" & objPulverisateur.isPulveAdditionnel & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.pulvePrincipalNumNat='" & CSDb.secureString(objPulverisateur.pulvePrincipalNumNat) & "'"
+                paramsQuery = paramsQuery & " , Pulverisateur.isRincagecircuit=" & objPulverisateur.isRincagecircuit & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.isPompesDoseuses=" & objPulverisateur.isPompesDoseuses & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.nbPompesDoseuses=" & objPulverisateur.nbPompesDoseuses & ""
+                paramsQuery = paramsQuery & " , Pulverisateur.Numchassis='" & CSDb.secureString(objPulverisateur.numChassis) & "'"
 
-                    ' On finalise la requete et en l'execute
-                    bddCommande.CommandText = "UPDATE `Pulverisateur` SET " & paramsQuery & " WHERE `Pulverisateur`.`id`='" & objPulverisateur.id & "'"
-                    bddCommande.ExecuteNonQuery()
+                ' On finalise la requete et en l'execute
+                bddCommande.CommandText = "UPDATE Pulverisateur SET " & paramsQuery & " WHERE Pulverisateur.id='" & objPulverisateur.id & "'"
+                bddCommande.ExecuteNonQuery()
 
                     ' Vérificatin du lien entre le pulvérisateur et l'exploitation
                     Dim oExploit2Pulve As ExploitationTOPulverisateur

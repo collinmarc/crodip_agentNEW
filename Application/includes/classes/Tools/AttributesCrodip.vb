@@ -5,6 +5,7 @@ Public Class importCrodipAtt
     Public Enum enumCRODIPClass As Integer
         EXPLOITATION
         PULVERISATEUR
+        DIAGNOSTIC
     End Enum
     Public Property sourceProperty As String
     Public Property targetClass As enumCRODIPClass
