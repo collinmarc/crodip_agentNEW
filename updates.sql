@@ -199,10 +199,10 @@
 --INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.1", #08/12/2019# , "Modules Acquisition") 
 --INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.2", #10/14/2019# , "Signature Electronique") 
 
---ALTER TABLE DIAGNOSTIC ADD pulverisateurNumNational varchar(255)
---UPDATE DIAGNOSTIC, pulverisateur SET DIAGNOSTIC.pulverisateurNumNational = pulverisateur.numeroNational WHERE pulverisateur.id = diagnostic.pulverisateurid
---ALTER TABLE DIAGNOSTIC ADD pulverisateurNumchassis varchar(255)
---ALTER TABLE PULVERISATEUR ADD Numchassis varchar(255)
+ALTER TABLE DIAGNOSTIC ADD pulverisateurNumNational varchar(255)
+UPDATE DIAGNOSTIC, pulverisateur SET DIAGNOSTIC.pulverisateurNumNational = pulverisateur.numeroNational WHERE pulverisateur.id = diagnostic.pulverisateurid
+ALTER TABLE DIAGNOSTIC ADD pulverisateurNumchassis varchar(255)
+ALTER TABLE PULVERISATEUR ADD Numchassis varchar(255)
 ALTER TABLE DIAGNOSTIC ADD origineDiag varchar(255)
---INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.3", #04/07/2020# , "NumChassis,diag.pulveNumnat") 
+INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.3", #04/07/2020# , "NumChassis,diag.pulveNumnat") 
 
