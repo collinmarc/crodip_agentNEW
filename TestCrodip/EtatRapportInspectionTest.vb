@@ -655,7 +655,7 @@ Imports System.IO
         DiagnosticManager.save(oDiag)
 
         ''Synchronisation des etats
-        Assert.IsTrue(DiagnosticManager.getHTTPEtats(oDiag))
+        Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
         'Suppression des etats générés en local
         File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)

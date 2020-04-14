@@ -439,4 +439,316 @@ Public Class SynchronisationTest
         Assert.AreEqual(DateTime.Now, m_oAgent.dateDerniereSynchro)
 
     End Sub
+    <TestMethod()> Public Sub TestGetHTTPEtat()
+        Dim oEtat As EtatRapportInspection
+        Dim oDiag As Diagnostic
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+
+        oExploit = createExploitation()
+        oPulve = createPulve(oExploit)
+
+
+        oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
+        oDiag.controleLieu = "DANS LA COUR"
+        oDiag.controleIsPreControleProfessionel = True
+        oDiag.proprietaireRepresentant = "Repésentant"
+        oDiag.id = "2-852-963"
+        oDiag.controleIsComplet = False
+        oDiag.buseDebitD = "2,5"
+
+        oDiag.syntheseErreurMoyenneManoD = 0.35D
+        oDiag.syntheseErreurMoyenneCinemometreD = 0.36D
+        oDiag.synthesePerteChargeMoyenneD = 0.37D
+        oDiag.syntheseErreurMaxiManoD = 1.35D
+        oDiag.syntheseUsureMoyenneBusesD = 1.36D
+        oDiag.synthesePerteChargeMaxiD = 1.37D
+        oDiag.syntheseErreurDebitmetreD = 0.38D
+        oDiag.syntheseNbBusesUseesD = 1.38D
+
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCC
+        DiagnosticManager.save(oDiag)
+        oEtat = New EtatRapportInspection(oDiag)
+        oEtat.GenereEtat()
+        oDiag.RIFileName = oEtat.getFileName()
+        'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
+        Dim oFi1 As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+        Dim nOriginalLength As Long
+        nOriginalLength = oFi1.Length
+
+        DiagnosticManager.save(oDiag)
+
+        ''Synchronisation des etats
+        Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
+
+        'Suppression des etats générés en local
+        File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
+
+        'Récupération des fichiers par HTTP
+        Dim Credential As New System.Net.NetworkCredential("crodip", "crodip35")
+        Dim filePath As String
+        filePath = Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName
+        If System.IO.File.Exists(filePath) Then
+            System.IO.File.Delete(filePath)
+        End If
+        Dim uri As Uri
+        Dim bResult As Boolean = False
+        Dim Methode As String = ""
+        If (Not bResult) Then
+            Try
+                Methode = "Methode1 (getView sans identification)"
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                uri = New Uri("http://admin-pp.crodip.fr/admin/diagnostic/get-pdf-view?id=" & oDiag.id)
+                My.Computer.Network.DownloadFile(uri, filePath)
+                If File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+                    If (oFi.Length <> nOriginalLength) Then
+                        Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
+                    Else
+                        Trace.WriteLine(Methode & " : download file OK, FILE OK !!!!!!")
+                        bResult = True
+                    End If
+
+                End If
+            Catch ex As Exception
+                Trace.WriteLine(Methode & " : download ERR " & ex.Message)
+
+            End Try
+        End If
+
+        If (Not bResult) Then
+            Try
+                Methode = "Methode2 (getView avec identification en ligne)"
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                uri = New Uri("http://admin-pp.crodip.fr/admin/diagnostic/get-pdf-view?id=" & oDiag.id)
+                My.Computer.Network.DownloadFile(uri, filePath, "crodip", "crodip35")
+                If File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+                    If (oFi.Length <> nOriginalLength) Then
+                        Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
+                    Else
+                        Trace.WriteLine(Methode & " : download file OK, FILE OK !!!!!!")
+                        bResult = True
+                    End If
+
+                End If
+            Catch ex As Exception
+                Trace.WriteLine(Methode & " : download ERR " & ex.Message)
+
+            End Try
+
+        End If
+
+        If (Not bResult) Then
+            Try
+                Methode = "Methode3 (getView avec identification Credential)"
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                uri = New Uri("http://admin-pp.crodip.fr/admin/diagnostic/get-pdf-view?id=" & oDiag.id)
+                My.Computer.Network.DownloadFile(uri, filePath, Credential, False, 100000, True)
+                If File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+                    If (oFi.Length <> nOriginalLength) Then
+                        Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
+                    Else
+                        Trace.WriteLine(Methode & " : download file OK, FILE OK !!!!!!")
+                        bResult = True
+                    End If
+
+                End If
+            Catch ex As Exception
+                Trace.WriteLine(Methode & " : download ERR " & ex.Message)
+
+            End Try
+
+        End If
+        If (Not bResult) Then
+            Try
+                Methode = "Methode4 (pdf sans identification)"
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                uri = New Uri("http://admin-pp.crodip.fr/pdf/" & oDiag.RIFileName)
+                My.Computer.Network.DownloadFile(uri, filePath)
+                If File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+                    If (oFi.Length <> nOriginalLength) Then
+                        Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
+                    Else
+                        Trace.WriteLine(Methode & " : download file OK, FILE OK !!!!!!")
+                        bResult = True
+                    End If
+
+                End If
+            Catch ex As Exception
+                Trace.WriteLine(Methode & " : download ERR " & ex.Message)
+
+            End Try
+        End If
+
+        If (Not bResult) Then
+            Try
+                Methode = "Methode5 (pdf avec identification en ligne)"
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                uri = New Uri("http://admin-pp.crodip.fr/pdf/" & oDiag.RIFileName)
+                My.Computer.Network.DownloadFile(uri, filePath, "crodip", "crodip35")
+                If File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+                    If (oFi.Length <> nOriginalLength) Then
+                        Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
+                    Else
+                        Trace.WriteLine(Methode & " : download file OK, FILE OK !!!!!!")
+                        bResult = True
+                    End If
+
+                End If
+            Catch ex As Exception
+                Trace.WriteLine(Methode & " : download ERR " & ex.Message)
+
+            End Try
+
+        End If
+
+        If (Not bResult) Then
+            Try
+                Methode = "Methode6 (getView avec identification Credential)"
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                uri = New Uri("http://admin-pp.crodip.fr/pdf/" & oDiag.RIFileName)
+                My.Computer.Network.DownloadFile(uri, filePath, Credential, False, 100000, True)
+                If File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+                    If (oFi.Length <> nOriginalLength) Then
+                        Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
+                    Else
+                        Trace.WriteLine(Methode & " : download file OK, FILE OK !!!!!!")
+                        bResult = True
+                    End If
+
+                End If
+            Catch ex As Exception
+                Trace.WriteLine(Methode & " : download ERR " & ex.Message)
+
+            End Try
+
+        End If
+
+        If (Not bResult) Then
+            Try
+                Methode = "Methode7 WebClient (pdf avec identification Credential)"
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                uri = New Uri("http://admin-pp.crodip.fr/pdf/" & oDiag.RIFileName)
+                Dim MyWebClient As New System.Net.WebClient()
+                MyWebClient.Credentials = Credential
+                MyWebClient.DownloadFile(uri, filePath)
+                If File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+                    If (oFi.Length <> nOriginalLength) Then
+                        Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
+                    Else
+                        Trace.WriteLine(Methode & " : download file OK, FILE OK !!!!!!")
+                        bResult = True
+                    End If
+
+                End If
+            Catch ex As Exception
+                Trace.WriteLine(Methode & " : download ERR " & ex.Message)
+
+            End Try
+
+        End If
+        If (Not bResult) Then
+            Try
+                Methode = "Methode8 WebClient (pdf Sans identification )"
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                uri = New Uri("http://admin-pp.crodip.fr/pdf/" & oDiag.RIFileName)
+                Dim MyWebClient As New System.Net.WebClient()
+                'MyWebClient.Credentials = Credential
+                MyWebClient.DownloadFile(uri, filePath)
+                If File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+                    If (oFi.Length <> nOriginalLength) Then
+                        Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
+                    Else
+                        Trace.WriteLine(Methode & " : download file OK, FILE OK !!!!!!")
+                        bResult = True
+                    End If
+
+                End If
+            Catch ex As Exception
+                Trace.WriteLine(Methode & " : download ERR " & ex.Message)
+
+            End Try
+
+        End If
+        If (Not bResult) Then
+            Try
+                Methode = "Methode9 WebClient (getView Sans identification )"
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                uri = New Uri("http://admin-pp.crodip.fr/admin/diagnostic/get-pdf-view?id=" & oDiag.id)
+                Dim MyWebClient As New System.Net.WebClient()
+                'MyWebClient.Credentials = Credential
+                MyWebClient.DownloadFile(uri, filePath)
+                If File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+                    If (oFi.Length <> nOriginalLength) Then
+                        Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
+                    Else
+                        Trace.WriteLine(Methode & " : download file OK, FILE OK !!!!!!")
+                        bResult = True
+                    End If
+
+                End If
+            Catch ex As Exception
+                Trace.WriteLine(Methode & " : download ERR " & ex.Message)
+
+            End Try
+
+        End If
+
+        If (Not bResult) Then
+            Try
+                Methode = "Methode10 WebClient (getView avec identification Credential)"
+                If System.IO.File.Exists(filePath) Then
+                    System.IO.File.Delete(filePath)
+                End If
+                uri = New Uri("http://admin-pp.crodip.fr/admin/diagnostic/get-pdf-view?id=" & oDiag.id)
+                Dim MyWebClient As New System.Net.WebClient()
+                MyWebClient.Credentials = Credential
+                MyWebClient.DownloadFile(uri, filePath)
+                If File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+                    If (oFi.Length <> nOriginalLength) Then
+                        Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
+                    Else
+                        Trace.WriteLine(Methode & " : download file OK, FILE OK !!!!!!")
+                        bResult = True
+                    End If
+
+                End If
+            Catch ex As Exception
+                Trace.WriteLine(Methode & " : download ERR " & ex.Message)
+
+            End Try
+
+        End If
+
+        Assert.IsTrue(bResult, "Aucun transfert n'a fonctionné, =>>regarder la trace")
+    End Sub
 End Class

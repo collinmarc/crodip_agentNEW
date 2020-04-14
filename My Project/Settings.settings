@@ -107,23 +107,44 @@
     <Setting Name="AutoSync" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20200302150000</Value>
-    </Setting>
-    <Setting Name="SynchroEtatUrl" Type="System.String" Scope="Application">
+    <Setting Name="SynchroEtatDiagUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/index/envoi-diagnostic-pdf</Value>
     </Setting>
-    <Setting Name="SynchroEtatUser" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">crodip</Value>
+    <Setting Name="SynchroEtatDiagUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé pour l'instant</Value>
     </Setting>
-    <Setting Name="SynhcroEtatPwd" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">crodip</Value>
+    <Setting Name="SynhcroEtatDiagPwd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé pour l'instant</Value>
     </Setting>
     <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
       <Value Profile="(Default)">V2.6.3</Value>
     </Setting>
     <Setting Name="SynchroDescGetEtat" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/admin/diagnostic/get-pdf-view</Value>
+      <Value Profile="(Default)">../pdf/</Value>
+    </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20200407170000</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVBancUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/index/envoi-fv-banc-pdf</Value>
+    </Setting>
+    <Setting Name="SynchroEtatTVManoUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/index/envoi-fv-mano-controle-pdf</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVBancUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé pour l'instant</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVManoUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé pour l'instant</Value>
+    </Setting>
+    <Setting Name="SynhcroEtatFVBancPwd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé pour l'instant</Value>
+    </Setting>
+    <Setting Name="SynhcroEtatFVManoPwd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé pour l'instant</Value>
+    </Setting>
+    <Setting Name="SynchroEtatMode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">HTTP</Value>
     </Setting>
   </Settings>
 </SettingsFile>

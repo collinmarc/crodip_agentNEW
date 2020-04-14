@@ -40,6 +40,15 @@ Public Class FVManometreControleManager
             Return -1
         End Try
     End Function
+    Public Shared Function SendEtats(pFV As FVManometreControle) As Boolean
+        Dim bReturn As Boolean
+        If My.Settings.SynchroEtatMode = "FTP" Then
+            bReturn = SendFTPEtats(pFV)
+        Else
+            bReturn = SendHTTPEtats(pFV)
+        End If
+        Return bReturn
+    End Function
 
     ''' <summary>
     ''' Envoie par FTP des Etats relatid à la fiche de fiche
@@ -47,7 +56,7 @@ Public Class FVManometreControleManager
     ''' <param name="pDiag"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function SendFTPEtats(pFV As FVManometreControle) As Boolean
+    Private Shared Function SendFTPEtats(pFV As FVManometreControle) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = False
@@ -65,6 +74,29 @@ Public Class FVManometreControleManager
         End Try
         Return bReturn
     End Function
+    Friend Shared Function SendHTTPEtats(pFV As FVManometreControle) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
+            Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatTVManoUrl)
+            'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur
+            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVManoUser, My.Settings.SynhcroEtatFVManoPwd)
+            Dim filePath As String
+            If Not String.IsNullOrEmpty(pFV.FVFileName) Then
+                filePath = Globals.CONST_PATH_EXP & "/" & pFV.FVFileName
+                If System.IO.File.Exists(filePath) Then
+                    My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
+                    SynchronisationManager.LogSynchroElmt(filePath)
+                End If
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("FvManometreControleManager.SendHTTPEtats ERR : " & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
 
 #End Region
 

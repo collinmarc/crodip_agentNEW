@@ -195,14 +195,14 @@ Public Class FVManometreControleManagerTest
 
         Assert.AreEqual(3, FVManometreControleManager.getUpdates(m_oAgent).Length)
         Dim oSynchro As New Synchronisation(m_oAgent)
-        oSynchro.runascSynchroFVManoControle()
+        Assert.IsTrue(oSynchro.runascSynchroFVManoControle())
 
         'Por Véfifier que le Fichier est bien sur le FTP
         'On le télécharge et on vérifie qu'il existe
-        System.IO.Directory.CreateDirectory("tmp/FV/MC")
-        Dim oFTP As New CSFTP()
-        oFTP.DownLoad("FV/MC/" & strFVFileName, "tmp/")
-        Assert.IsTrue(System.IO.File.Exists("tmp/FV/MC/" & strFVFileName))
+        'System.IO.Directory.CreateDirectory("tmp/FV/MC")
+        'Dim oFTP As New CSFTP()
+        'oFTP.DownLoad("FV/MC/" & strFVFileName, "tmp/")
+        'Assert.IsTrue(System.IO.File.Exists("tmp/FV/MC/" & strFVFileName))
 
 
         Assert.AreEqual(0, FVManometreControleManager.getUpdates(m_oAgent).Length)

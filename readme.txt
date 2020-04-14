@@ -1,5 +1,9 @@
 TRUNK
 MASTER
+BUILD : 202004XX
+----------------------
+0001195: Champs à ajouter dans l'import (controleetat et dateControle)
+
 BUILD : 20200407170000
 ----------------------
 0001106: Ajout d'une acquisistion AAMS

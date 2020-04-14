@@ -669,7 +669,9 @@ Public Class Synchronisation
     '''
     ''' Synchronisation des Fiches de vies Banc vers le Serveur
 
-    Friend Sub runascSynchroFVBanc()
+    Friend Function runascSynchroFVBanc() As Boolean
+        Dim bReturn As Boolean
+        bReturn = False
         ' Synchro d'un FVBanc
         Dim arrUpdatesFVBanc() As FVBanc = FVBancManager.getUpdates(m_Agent)
         For Each oFVBanc As FVBanc In arrUpdatesFVBanc
@@ -682,7 +684,7 @@ Public Class Synchronisation
                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVBanc) - Erreur Locale")
                     Case 0, 2 ' OK
                         FVBancManager.setSynchro(oFVBanc)
-                        FVBancManager.SendFTPEtats(oFVBanc)
+                        bReturn = FVBancManager.SendEtats(oFVBanc)
                     Case 1 ' NOK
                         CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSFVBanc) - Le web service a répondu : Non-Ok")
                     Case 9 ' BADREQUEST
@@ -690,10 +692,11 @@ Public Class Synchronisation
                 End Select
             Catch ex As Exception
                 CSDebug.dispFatal("Synchronisation::runAscSynchro(FVBanc) : " & ex.Message.ToString)
+
             End Try
         Next
-
-    End Sub
+        Return bReturn
+    End Function
     Friend Function runascSynchroDiag(ByVal pAgent As Agent, ByVal pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
@@ -1129,20 +1132,23 @@ Public Class Synchronisation
     '''
     ''' Synchronisation des Fiches de vies ManoControle vers le Serveur
 
-    Public Sub runascSynchroFVManoControle()
+    Public Function runascSynchroFVManoControle() As Boolean
+        Dim bReturn As Boolean
+        bReturn = False
+
         ' On récupère les mises à jours
         Dim arrUpdatesFVManometreControle() As FVManometreControle = FVManometreControleManager.getUpdates(m_Agent)
         For Each tmpUpdateFVManometreControle As FVManometreControle In arrUpdatesFVManometreControle
             Try
                 Dim UpdatedObject As New Object
                 Notice("Fiche de Vie Manometre de Controle n°" & tmpUpdateFVManometreControle.id)
-                Dim response As integer = FVManometreControleManager.sendWSFVManometreControle(tmpUpdateFVManometreControle, updatedObject)
+                Dim response As Integer = FVManometreControleManager.sendWSFVManometreControle(tmpUpdateFVManometreControle, UpdatedObject)
                 Select Case response
                     Case -1 ' ERROR
                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreControle) - Erreur Locale")
                     Case 0, 2
                         FVManometreControleManager.setSynchro(tmpUpdateFVManometreControle)
-                        FVManometreControleManager.SendFTPEtats(tmpUpdateFVManometreControle)
+                        bReturn = FVManometreControleManager.SendEtats(tmpUpdateFVManometreControle)
 
                     Case 1 ' NOK
                         CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSFVManometreControle) - Le web service a répondu : Non-Ok")
@@ -1153,7 +1159,8 @@ Public Class Synchronisation
                 CSDebug.dispFatal("Synchronisation::runAscSynchro(FVManoControle) : " & ex.Message.ToString)
             End Try
         Next
-    End Sub
+        Return bReturn
+    End Function
     Public Sub runascSynchroFVManoEtalon()
 
         ' On récupère les mises à jours

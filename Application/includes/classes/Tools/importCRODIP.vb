@@ -98,9 +98,13 @@ Public Class importCRODIP
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
     Public Property manometrePressionTravail As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+    <importCrodipAtt(importCrodipAtt.enumCRODIPClass.DIAGNOSTIC)>
     Public Property controleEtat As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
     Public Property dateProchainControle As String
+    <importCrodipAtt(importCrodipAtt.enumCRODIPClass.DIAGNOSTIC, "controleDateDebut")>
+    <importCrodipAtt(importCrodipAtt.enumCRODIPClass.DIAGNOSTIC, "controleDateFin")>
+    Public Property dateControle As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
     Public Property emplacementIdentification As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
@@ -196,6 +200,18 @@ Public Class importCRODIP
         For Each oProp As Reflection.PropertyInfo In oTabProp
 
             Dim otab As Attribute() = System.Attribute.GetCustomAttributes(oProp, GetType(importCrodipAtt))
+            For Each obj As Attribute In otab
+                Dim oAtt As importCrodipAtt
+                oAtt = CType(obj, importCrodipAtt)
+                oAtt.sourceProperty = oProp.Name
+                'Si la Propriété destination n'est pas définie => on prend la source
+                If oAtt.targetProperty = "" Then
+                    oAtt.targetProperty = oProp.Name
+                End If
+                olstCrodipAtt.Add(oAtt)
+
+            Next
+
             If otab.Length > 0 Then
                 Dim oAtt As importCrodipAtt
                 oAtt = CType(otab(0), importCrodipAtt)
@@ -231,7 +247,7 @@ Public Class importCRODIP
                         oPulve = New Pulverisateur()
                         oPulve.numeroNational = ""
                         'Parcours de la liste des propriétés
-                        'on fait un premier parcours pour remplir les Pulvérisateurs et les exploitations
+                        'on fait un premier parcours pour remplir les Pulvérisateurs et les exploitations car il faut les avoir pour construire un diag
                         For Each oAtt As importCrodipAtt In olstCrodipAtt
                             'Récupération de la valeur
                             strValue = CStr(GetType(importCRODIP).GetProperty(oAtt.sourceProperty).GetValue(obj))

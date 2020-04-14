@@ -1,5 +1,5 @@
 ﻿
-<System.AttributeUsage(System.AttributeTargets.Property)>
+<System.AttributeUsage(System.AttributeTargets.Property, AllowMultiple:=True)>
 Public Class importCrodipAtt
     Inherits System.Attribute
     Public Enum enumCRODIPClass As Integer

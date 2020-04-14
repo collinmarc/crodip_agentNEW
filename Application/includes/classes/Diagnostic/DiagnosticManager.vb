@@ -53,8 +53,9 @@ Public Class DiagnosticManager
     ''' <returns></returns>
     Public Shared Function SendEtats(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
-        bReturn = SendFTPEtats(pDiag)
-        If Not bReturn Then
+        If My.Settings.SynchroEtatMode = "FTP" Then
+            bReturn = SendFTPEtats(pDiag)
+        Else
             bReturn = SendHTTPEtats(pDiag)
         End If
         Return bReturn
@@ -107,8 +108,8 @@ Public Class DiagnosticManager
         Try
             bReturn = True
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatUrl)
-            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatUser, My.Settings.SynhcroEtatPwd)
+            Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatDiagUrl)
+            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatDiagUser, My.Settings.SynhcroEtatDiagPwd)
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
                 filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
@@ -183,14 +184,16 @@ Public Class DiagnosticManager
             bReturn = True
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Dim url As String = objWSCrodip.Url
+            Dim Credential As New System.Net.NetworkCredential("crodip", "crodip35")
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
                 filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If
-                Dim uri As New Uri(url & My.Settings.SynchroDescGetEtat & "?id=" & pDiag.id)
-                My.Computer.Network.DownloadFile(uri, filePath)
+                Dim uri As New Uri("http://admin-pp.crodip.fr/admin/diagnostic/get-pdf-view?id=" & pDiag.id)
+                'My.Computer.Network.DownloadFile(uri, filePath, Credential, False, 100000, True)
+                My.Computer.Network.DownloadFile(uri, filePath, "crodip", "crodip35")
             End If
             'If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
             '    filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName

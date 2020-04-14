@@ -293,14 +293,14 @@ Public Class FVBancManagerTest
 
         Assert.AreEqual(4, FVBancManager.getUpdates(m_oAgent).Length)
         Dim oSynchro As New Synchronisation(m_oAgent)
-        oSynchro.runascSynchroFVBanc()
+        Assert.IsTrue(oSynchro.runascSynchroFVBanc())
 
-        'Por Véfifier que le Fichier est bien sur le FTP
-        'On le télécharge et on vérifie qu'il existe
-        System.IO.Directory.CreateDirectory("tmp/FV/BC")
-        Dim oFTP As New CSFTP()
-        oFTP.DownLoad("FV/BC/" & strFVFileName, "tmp/")
-        Assert.IsTrue(System.IO.File.Exists("tmp/FV/BC/" & strFVFileName))
+        ''Por Véfifier que le Fichier est bien sur le FTP
+        ''On le télécharge et on vérifie qu'il existe
+        'System.IO.Directory.CreateDirectory("tmp/FV/BC")
+        'Dim oFTP As New CSFTP()
+        'oFTP.DownLoad("FV/BC/" & strFVFileName, "tmp/")
+        'Assert.IsTrue(System.IO.File.Exists("tmp/FV/BC/" & strFVFileName))
 
         Assert.AreEqual(0, FVBancManager.getUpdates(m_oAgent).Length)
 

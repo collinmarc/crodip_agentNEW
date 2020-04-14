@@ -377,7 +377,10 @@ Public Class ImportCRODIPTest
         obj.controleIsComplet = "FAUX"
         obj.typeDiagnostic = "EQUIPEMENT"
         obj.telephoneFixe = "0201020304"
-        obj.numchassis = "11111"
+        obj.numChassis = "11111"
+        obj.controleEtat = "0"
+        obj.dateControle = "01/01/2020"
+        obj.dateProchainControle = "01/01/2025"
         olstin.Add(obj)
         obj = New importCRODIP()
         obj.nomExploitant = "TEST2"
@@ -390,6 +393,9 @@ Public Class ImportCRODIPTest
         obj.typeDiagnostic = "TEST"
         obj.telephoneFixe = "0301020304"
         obj.numchassis = "22222"
+        obj.controleEtat = "1"
+        obj.dateControle = "01/01/2021"
+        obj.dateProchainControle = "01/01/2026"
         olstin.Add(obj)
 
         Dim sw As New StreamWriter("./TEST.CSV")
@@ -431,11 +437,17 @@ Public Class ImportCRODIPTest
         Assert.AreEqual("EQUIPEMENT", odiag.typeDiagnostic)
         Assert.AreEqual("0201020304", odiag.proprietaireTelephoneFixe)
         Assert.AreEqual("GIP", odiag.origineDiag)
+        Assert.AreEqual("0", odiag.controleEtat)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateDebut)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateDebutS)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateFin)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateFinS)
 
         nId = lstImport(0).lstPulveImport(0).id
         oPulve = PulverisateurManager.getPulverisateurById(nId)
         Assert.AreEqual("E001001", oPulve.numeroNational)
         Assert.AreEqual("11111", oPulve.numChassis)
+        Assert.AreEqual("2025-01-01 00:00:00", oPulve.dateProchainControle)
 
         nId = lstImport(1).lstDiagImport(0).id
         odiag = DiagnosticManager.getDiagnosticById(nId)
@@ -449,11 +461,17 @@ Public Class ImportCRODIPTest
         Assert.AreEqual("TEST", odiag.typeDiagnostic)
         Assert.AreEqual("0301020304", odiag.proprietaireTelephoneFixe)
         Assert.AreEqual("TST", odiag.origineDiag)
+        Assert.AreEqual("1", odiag.controleEtat)
+        Assert.AreEqual("2021-01-01 00:00:00", odiag.controleDateDebut)
+        Assert.AreEqual("2021-01-01 00:00:00", odiag.controleDateDebutS)
+        Assert.AreEqual("2021-01-01 00:00:00", odiag.controleDateFin)
+        Assert.AreEqual("2021-01-01 00:00:00", odiag.controleDateFinS)
 
         nId = lstImport(1).lstPulveImport(0).id
         oPulve = PulverisateurManager.getPulverisateurById(nId)
         Assert.AreEqual("E001002", oPulve.numeroNational)
         Assert.AreEqual("22222", oPulve.numChassis)
+        Assert.AreEqual("2026-01-01 00:00:00", oPulve.dateProchainControle)
 
 
     End Sub

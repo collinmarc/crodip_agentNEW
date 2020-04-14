@@ -540,13 +540,24 @@ Public Class FVBancManager
     End Function
 
 #End Region
+
+    Public Shared Function SendEtats(pFV As FVBanc) As Boolean
+        Dim bReturn As Boolean
+        If My.Settings.SynchroEtatMode = "FTP" Then
+            bReturn = SendFTPEtats(pFV)
+        Else
+            bReturn = SendHTTPEtats(pFV)
+        End If
+        Return bReturn
+    End Function
+
     ''' <summary>
     ''' Envoie par FTP des Etats relatid à la fiche de fiche
     ''' </summary>
     ''' <param name="pDiag"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function SendFTPEtats(pFV As FVBanc) As Boolean
+    Private Shared Function SendFTPEtats(pFV As FVBanc) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = False
@@ -564,5 +575,29 @@ Public Class FVBancManager
         End Try
         Return bReturn
     End Function
+
+    Friend Shared Function SendHTTPEtats(pFV As FVBanc) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
+            Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatFVBancUrl)
+            'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur
+            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVBancUser, My.Settings.SynhcroEtatFVBancPwd)
+            Dim filePath As String
+            If Not String.IsNullOrEmpty(pFV.FVFileName) Then
+                filePath = Globals.CONST_PATH_EXP & "/" & pFV.FVFileName
+                If System.IO.File.Exists(filePath) Then
+                    My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
+                    SynchronisationManager.LogSynchroElmt(filePath)
+                End If
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("FVBancManager.SendHTTPEtats ERR : " & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
 
 End Class

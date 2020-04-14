@@ -400,37 +400,28 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20200302150000")>  _
-    Public ReadOnly Property NumBuild() As String
-        Get
-            Return CType(Me("NumBuild"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-diagnostic-pdf")>  _
-    Public ReadOnly Property SynchroEtatUrl() As String
+    Public ReadOnly Property SynchroEtatDiagUrl() As String
         Get
-            Return CType(Me("SynchroEtatUrl"),String)
+            Return CType(Me("SynchroEtatDiagUrl"),String)
         End Get
     End Property
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("crodip")>  _
-    Public ReadOnly Property SynchroEtatUser() As String
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
+    Public ReadOnly Property SynchroEtatDiagUser() As String
         Get
-            Return CType(Me("SynchroEtatUser"),String)
+            Return CType(Me("SynchroEtatDiagUser"),String)
         End Get
     End Property
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("crodip")>  _
-    Public ReadOnly Property SynhcroEtatPwd() As String
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
+    Public ReadOnly Property SynhcroEtatDiagPwd() As String
         Get
-            Return CType(Me("SynhcroEtatPwd"),String)
+            Return CType(Me("SynhcroEtatDiagPwd"),String)
         End Get
     End Property
     
@@ -445,10 +436,82 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("/admin/diagnostic/get-pdf-view")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("../pdf/")>  _
     Public ReadOnly Property SynchroDescGetEtat() As String
         Get
             Return CType(Me("SynchroDescGetEtat"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20200407170000")>  _
+    Public ReadOnly Property NumBuild() As String
+        Get
+            Return CType(Me("NumBuild"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-fv-banc-pdf")>  _
+    Public ReadOnly Property SynchroEtatFVBancUrl() As String
+        Get
+            Return CType(Me("SynchroEtatFVBancUrl"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-fv-mano-controle-pdf")>  _
+    Public ReadOnly Property SynchroEtatTVManoUrl() As String
+        Get
+            Return CType(Me("SynchroEtatTVManoUrl"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
+    Public ReadOnly Property SynchroEtatFVBancUser() As String
+        Get
+            Return CType(Me("SynchroEtatFVBancUser"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
+    Public ReadOnly Property SynchroEtatFVManoUser() As String
+        Get
+            Return CType(Me("SynchroEtatFVManoUser"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
+    Public ReadOnly Property SynhcroEtatFVBancPwd() As String
+        Get
+            Return CType(Me("SynhcroEtatFVBancPwd"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
+    Public ReadOnly Property SynhcroEtatFVManoPwd() As String
+        Get
+            Return CType(Me("SynhcroEtatFVManoPwd"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("HTTP")>  _
+    Public ReadOnly Property SynchroEtatMode() As String
+        Get
+            Return CType(Me("SynchroEtatMode"),String)
         End Get
     End Property
 End Class
