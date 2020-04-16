@@ -186,7 +186,6 @@ Public Class Diagnostic
 
     Private _isContreVisiteImmediate As Boolean
     Private _typeDiagnostic As String
-    Private _OrigineDiag As String
 
     Protected m_buseDebitMoyenPM As Decimal 'utilisé pour le Reglage Pulve
 
@@ -2227,13 +2226,6 @@ Public Class Diagnostic
     ''' <returns></returns>
     <XmlElement("typeDiag")>
     Public Property origineDiag() As String
-        Get
-            Return _OrigineDiag
-        End Get
-        Set(ByVal Value As String)
-            _OrigineDiag = Value
-        End Set
-    End Property
     Public Property typeDiagnostic() As String
         Get
             Return _typeDiagnostic
@@ -2695,6 +2687,7 @@ Public Class Diagnostic
                     Me.pulverisateurNumNational = pcolValue.ToString()
                 Case "pulverisateurNumchassis".ToUpper().Trim()
                     Me.pulverisateurNumChassis = pcolValue.ToString()
+                    'le typeDiag est le nom du champ dans le WS
                 Case "typeDiag".ToUpper().Trim(), "origineDiag".ToUpper().Trim()
                     Me.origineDiag = pcolValue.ToString()
             End Select

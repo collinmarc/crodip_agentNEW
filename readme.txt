@@ -1,8 +1,8 @@
 TRUNK
 MASTER
-BUILD : 202004XX
+BUILD : 20200416170000
 ----------------------
-0001195: Champs à ajouter dans l'import (controleetat et dateControle)
+0001195: Champs à ajouter dans l'import (controleetat et dateControle) + AjoutPulve Numchassis
 
 BUILD : 20200407170000
 ----------------------
