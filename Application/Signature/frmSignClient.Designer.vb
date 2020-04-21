@@ -26,13 +26,14 @@ Partial Class frmSignClient
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.dtpDateSignature = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.pctSignature, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pctSignature
         '
+        Me.pctSignature.BackColor = System.Drawing.Color.White
         Me.pctSignature.Location = New System.Drawing.Point(11, 6)
         Me.pctSignature.Name = "pctSignature"
         Me.pctSignature.Size = New System.Drawing.Size(450, 214)
@@ -69,14 +70,14 @@ Partial Class frmSignClient
         Me.btnClear.Text = "Effacer"
         Me.btnClear.UseVisualStyleBackColor = True
         '
-        'DateTimePicker1
+        'dtpDateSignature
         '
-        Me.DateTimePicker1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker1.Location = New System.Drawing.Point(151, 227)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(89, 20)
-        Me.DateTimePicker1.TabIndex = 4
+        Me.dtpDateSignature.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.dtpDateSignature.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpDateSignature.Location = New System.Drawing.Point(151, 227)
+        Me.dtpDateSignature.Name = "dtpDateSignature"
+        Me.dtpDateSignature.Size = New System.Drawing.Size(89, 20)
+        Me.dtpDateSignature.TabIndex = 4
         '
         'Label1
         '
@@ -94,7 +95,7 @@ Partial Class frmSignClient
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(478, 312)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.DateTimePicker1)
+        Me.Controls.Add(Me.dtpDateSignature)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnValider)
         Me.Controls.Add(Me.Button1)
@@ -121,6 +122,6 @@ Partial Class frmSignClient
 
     End Sub
 
-    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents dtpDateSignature As DateTimePicker
     Friend WithEvents Label1 As Label
 End Class

@@ -1,15 +1,20 @@
 ﻿Imports System.IO
-
+Public Enum SignMode As Integer
+    CLIENT
+    AGENT
+End Enum
 Public Class frmSignClient
     Dim _previous As Point = Nothing
     Dim _pen As Pen = New Pen(Color.Black)
     Dim drawing As Boolean = False
 
     Dim m_odiag As Diagnostic
+    Dim m_Mode As SignMode
 
-    Public Sub New(pDiag As Diagnostic)
+    Public Sub New(pDiag As Diagnostic, pSignMode As SignMode)
         Me.New()
         m_odiag = pDiag
+        m_Mode = pSignMode
     End Sub
 
     ''' <summary>
@@ -71,19 +76,51 @@ Public Class frmSignClient
             Me.Location = System.Windows.Forms.Screen.AllScreens(My.Settings.NumEcranSignature - 1).WorkingArea.Location
         End If
 
-        Dim bmp As Bitmap = New Bitmap(pctSignature.Width, pctSignature.Height)
+        Dim img As Image = New Bitmap(pctSignature.Width, pctSignature.Height)
+        Dim ms As MemoryStream
+        If m_Mode = SignMode.AGENT Then
+            Me.Text = "Signature AGENT"
+            If m_odiag.SignAgent IsNot Nothing Then
+                Try
+                    ms = New MemoryStream(m_odiag.SignAgent)
+                    img = Image.FromStream(ms)
 
-        Using g As Graphics = Graphics.FromImage(bmp)
-            g.Clear(Color.White)
-        End Using
+                Catch ex As Exception
+                    img = New Bitmap(pctSignature.Width, pctSignature.Height)
+                End Try
+            End If
+        Else
+            Me.Text = "Signature CLIENT"
+            If m_odiag.SignClient IsNot Nothing Then
+                Try
+                    ms = New MemoryStream(m_odiag.SignClient)
+                    img = Image.FromStream(ms)
+                Catch ex As Exception
+                    img = New Bitmap(pctSignature.Width, pctSignature.Height)
+                End Try
+            End If
+        End If
+        'Using g As Graphics = Graphics.FromImage(img)
+        '    g.Clear(Color.White)
+        'End Using
 
-        pctSignature.Image = bmp
+        pctSignature.Image = img
     End Sub
 
     Private Sub Valider_Click(sender As Object, e As EventArgs) Handles btnValider.Click
         Dim ms As New MemoryStream
-        pctSignature.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp)
-        m_odiag.SignClient = ms.ToArray()
+        pctSignature.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
+        If m_Mode = SignMode.CLIENT Then
+            m_odiag.SignClient = ms.ToArray()
+            m_odiag.bSignClient = True
+            m_odiag.dateSignClient = dtpDateSignature.Value
+        Else
+            m_odiag.SignAgent = ms.ToArray()
+            m_odiag.bSignAgent = True
+            m_odiag.dateSignAgent = dtpDateSignature.Value
+        End If
+
+        Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub
 
@@ -92,5 +129,11 @@ Public Class frmSignClient
             g.Clear(Color.White)
         End Using
         pctSignature.Invalidate()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        m_odiag.SignClient = Nothing
+        Me.DialogResult = DialogResult.OK
+        Me.Close()
     End Sub
 End Class

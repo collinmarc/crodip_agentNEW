@@ -1077,7 +1077,7 @@ Public Class login
     Private Sub btnTSTSignature_Click(sender As Object, e As EventArgs) Handles btnTSTSignature.Click
         Dim oFrm As frmSignClient
         Dim oDiag As New Diagnostic()
-        oFrm = New frmSignClient(oDiag)
+        oFrm = New frmSignClient(oDiag, SignMode.AGENT)
         oFrm.Show()
     End Sub
 End Class

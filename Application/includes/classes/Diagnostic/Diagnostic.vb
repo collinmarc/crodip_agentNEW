@@ -3187,5 +3187,49 @@ Public Class Diagnostic
             _Signclient = value
         End Set
     End Property
-
+    Private _DateSignClient As String
+    Public Property dateSignClient() As String
+        Get
+            Return _DateSignClient
+        End Get
+        Set(ByVal value As String)
+            _DateSignClient = value
+        End Set
+    End Property
+    Private _bSignClient As Boolean
+    Public Property bSignClient() As Boolean
+        Get
+            Return _bSignClient
+        End Get
+        Set(ByVal value As Boolean)
+            _bSignClient = value
+        End Set
+    End Property
+    Private _SignAgent As Byte()
+    Public Property SignAgent() As Byte()
+        Get
+            Return _SignAgent
+        End Get
+        Set(ByVal value As Byte())
+            _SignAgent = value
+        End Set
+    End Property
+    Private _DateSignAgent As String
+    Public Property dateSignAgent() As String
+        Get
+            Return _DateSignAgent
+        End Get
+        Set(ByVal value As String)
+            _DateSignAgent = value
+        End Set
+    End Property
+    Private _bSignAgent As Boolean
+    Public Property bSignAgent() As Boolean
+        Get
+            Return _bSignClient
+        End Get
+        Set(ByVal value As Boolean)
+            _bSignClient = value
+        End Set
+    End Property
 End Class

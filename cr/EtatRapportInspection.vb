@@ -1,4 +1,5 @@
-﻿Imports CrystalDecisions.CrystalReports.Engine
+﻿Imports System.IO
+Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 
 Public Class EtatRapportInspection
@@ -38,15 +39,15 @@ Public Class EtatRapportInspection
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                     m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                    CrExportOptions = m_oReportdocument.ExportOptions
+                    CrExportOptions = m_oReportDocument.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile
                         .ExportFormatType = ExportFormatType.PortableDocFormat
                         .DestinationOptions = CrDiskFileDestinationOptions
                         .FormatOptions = CrFormatTypeOptions
                     End With
-                    m_oReportdocument.Export()
-                    m_oReportdocument.Close()
+                    m_oReportDocument.Export()
+                    m_oReportDocument.Close()
                 End If
             End If
         Catch ex As Exception
@@ -277,8 +278,15 @@ Public Class EtatRapportInspection
             Else
                 dateLimiteControle = CDate(m_oDiag.pulverisateurDateProchainControle)
             End If
-            oDiagRow = m_ods.Diagnostic.AddDiagnosticRow(m_oDiag.id, m_oDiag.organismeInspAgrement, CDate(m_oDiag.controleDateDebut), m_oDiag.controleLieu, CDate(m_oDiag.controleDateDebut).ToShortTimeString(), CDate(m_oDiag.controleDateFin).ToShortTimeString(), m_oDiag.controleIsPreControleProfessionel, m_oDiag.controleIsComplet, m_oDiag.controleInitialId, oMaterielRow, Conclusion:=m_oDiag.controleEtat, dateLimiteControle:=dateLimiteControle, DateEmission:=Date.Now, _
-                                                         DateControleInitial:=m_oDiag.getDateDernierControleDate(), OrganismeInitial:=m_oDiag.organismeOriginePresNom, InspecteurInitial:=m_oDiag.inspecteurOrigineNom & " " & m_oDiag.inspecteurOriginePrenom, NbPageRFinal:=nbPagefinal, Commentaire:=m_oDiag.Commentaire)
+
+
+            Dim ms As New MemoryStream(m_oDiag.SignAgent)
+            Dim img As Image = Image.FromStream(ms)
+            ms = New MemoryStream
+            img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+
+            oDiagRow = m_ods.Diagnostic.AddDiagnosticRow(m_oDiag.id, m_oDiag.organismeInspAgrement, CDate(m_oDiag.controleDateDebut), m_oDiag.controleLieu, CDate(m_oDiag.controleDateDebut).ToShortTimeString(), CDate(m_oDiag.controleDateFin).ToShortTimeString(), m_oDiag.controleIsPreControleProfessionel, m_oDiag.controleIsComplet, m_oDiag.controleInitialId, oMaterielRow, Conclusion:=m_oDiag.controleEtat, dateLimiteControle:=dateLimiteControle, DateEmission:=Date.Now,
+                                                         DateControleInitial:=m_oDiag.getDateDernierControleDate(), OrganismeInitial:=m_oDiag.organismeOriginePresNom, InspecteurInitial:=m_oDiag.inspecteurOrigineNom & " " & m_oDiag.inspecteurOriginePrenom, NbPageRFinal:=nbPagefinal, Commentaire:=m_oDiag.Commentaire, bSignAgent:=m_oDiag.bSignAgent, DateSignAgent:=m_oDiag.dateSignAgent, SignAgent:=ms.ToArray(), bSignClient:=m_oDiag.bSignClient, DateSignClient:=m_oDiag.dateSignClient, SignClient:=m_oDiag.SignClient)
 
             Dim strPrestataire As String = ""
             Dim oStructure As Structuree

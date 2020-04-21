@@ -585,7 +585,6 @@ Public Class frmdiagnostic_recap
         'Propriété a mettre obligatoirement par programme
         Me.WindowState = FormWindowState.Maximized
         Me.ControlBox = False
-        m_oAgent = agentCourant
         CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
 
         '###########################################################################
@@ -1165,10 +1164,12 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Public Sub Signatureclient()
-        Dim ofrm As New frmSignClient(m_diagnostic)
-        ofrm.Show()
+        Dim ofrm As New frmSignClient(m_diagnostic, SignMode.CLIENT)
+        ofrm.ShowDialog()
     End Sub
     Public Sub SignatureAgent()
+        Dim ofrm As New frmSignClient(m_diagnostic, SignMode.AGENT)
+        ofrm.ShowDialog()
 
     End Sub
 End Class
