@@ -75,6 +75,7 @@ Public Class login
     Friend WithEvents bntGetWSDiag As System.Windows.Forms.Button
     Friend WithEvents btn_dlgAcquisition As Button
     Friend WithEvents lblMode As Label
+    Friend WithEvents btnTSTSignature As Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -91,6 +92,7 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.btnTSTSignature = New System.Windows.Forms.Button()
         Me.btn_dlgAcquisition = New System.Windows.Forms.Button()
         Me.bntGetWSDiag = New System.Windows.Forms.Button()
         Me.btnTesttrtSemences = New System.Windows.Forms.Button()
@@ -271,6 +273,7 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.btnTSTSignature)
         Me.GroupBox_test.Controls.Add(Me.btn_dlgAcquisition)
         Me.GroupBox_test.Controls.Add(Me.bntGetWSDiag)
         Me.GroupBox_test.Controls.Add(Me.btnTesttrtSemences)
@@ -288,6 +291,15 @@ Public Class login
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
+        '
+        'btnTSTSignature
+        '
+        Me.btnTSTSignature.Location = New System.Drawing.Point(396, 77)
+        Me.btnTSTSignature.Name = "btnTSTSignature"
+        Me.btnTSTSignature.Size = New System.Drawing.Size(128, 23)
+        Me.btnTSTSignature.TabIndex = 37
+        Me.btnTSTSignature.Text = "Signature"
+        Me.btnTSTSignature.UseVisualStyleBackColor = True
         '
         'btn_dlgAcquisition
         '
@@ -775,8 +787,8 @@ Public Class login
         If oPulve IsNot Nothing Then
             oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
             oDiag = New Diagnostic(agentCourant, oPulve, oExploit)
-            Dim oFrm As New frmDiagnostique()
-            oFrm.setContexte(oDiag, Globals.DiagMode.CTRL_COMPLET, oPulve, oExploit)
+            Dim oFrm As New FrmDiagnostique()
+            oFrm.SetContexte(oDiag, Globals.DiagMode.CTRL_COMPLET, oPulve, oExploit)
 
             Dim oDiag12123 As New DiagnosticHelp12123()
             oFrm.ShowDialog()
@@ -1036,22 +1048,22 @@ Public Class login
             Dim lstElementsASynchroniser As New List(Of SynchronisationElmt)
             Dim oElmt As SynchronisationElmt
             oElmt = New SynchronisationElmtDiag(oSynchro.m_SynchroBoolean)
-            oElmt.identifiantChaine = idDiag
+            oElmt.IdentifiantChaine = idDiag
             lstElementsASynchroniser.Add(oElmt)
             oElmt = New SynchronisationElmtDiagItem(oSynchro.m_SynchroBoolean)
-            oElmt.identifiantChaine = idDiag
+            oElmt.IdentifiantChaine = idDiag
             lstElementsASynchroniser.Add(oElmt)
             oElmt = New SynchronisationElmtDiagBuses(oSynchro.m_SynchroBoolean)
-            oElmt.identifiantChaine = idDiag
+            oElmt.IdentifiantChaine = idDiag
             lstElementsASynchroniser.Add(oElmt)
             oElmt = New SynchronisationElmtDiagBusesDetail(oSynchro.m_SynchroBoolean)
-            oElmt.identifiantChaine = idDiag
+            oElmt.IdentifiantChaine = idDiag
             lstElementsASynchroniser.Add(oElmt)
             oElmt = New SynchronisationElmtDiagMano542(oSynchro.m_SynchroBoolean)
-            oElmt.identifiantChaine = idDiag
+            oElmt.IdentifiantChaine = idDiag
             lstElementsASynchroniser.Add(oElmt)
             oElmt = New SynchronisationElmtDiagMano833(oSynchro.m_SynchroBoolean)
-            oElmt.identifiantChaine = idDiag
+            oElmt.IdentifiantChaine = idDiag
             lstElementsASynchroniser.Add(oElmt)
             oSynchro.runDescSynchro(lstElementsASynchroniser)
         End If
@@ -1060,5 +1072,12 @@ Public Class login
     Private Sub btn_dlgAcquisition_Click(sender As Object, e As EventArgs) Handles btn_dlgAcquisition.Click
         Dim odlg As Form = New dlgAquisition()
         odlg.Show()
+    End Sub
+
+    Private Sub btnTSTSignature_Click(sender As Object, e As EventArgs) Handles btnTSTSignature.Click
+        Dim oFrm As frmSignClient
+        Dim oDiag As New Diagnostic()
+        oFrm = New frmSignClient(oDiag)
+        oFrm.Show()
     End Sub
 End Class

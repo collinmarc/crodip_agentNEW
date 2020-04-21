@@ -26,6 +26,8 @@ Partial Class frmSignClient
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.pctSignature, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -39,7 +41,8 @@ Partial Class frmSignClient
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 241)
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(13, 258)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(112, 48)
         Me.Button1.TabIndex = 1
@@ -48,7 +51,8 @@ Partial Class frmSignClient
         '
         'btnValider
         '
-        Me.btnValider.Location = New System.Drawing.Point(338, 242)
+        Me.btnValider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnValider.Location = New System.Drawing.Point(339, 259)
         Me.btnValider.Name = "btnValider"
         Me.btnValider.Size = New System.Drawing.Size(122, 46)
         Me.btnValider.TabIndex = 2
@@ -57,18 +61,40 @@ Partial Class frmSignClient
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(150, 242)
+        Me.btnClear.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.Location = New System.Drawing.Point(151, 259)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(169, 48)
         Me.btnClear.TabIndex = 3
         Me.btnClear.Text = "Effacer"
         Me.btnClear.UseVisualStyleBackColor = True
         '
+        'DateTimePicker1
+        '
+        Me.DateTimePicker1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePicker1.Location = New System.Drawing.Point(151, 227)
+        Me.DateTimePicker1.Name = "DateTimePicker1"
+        Me.DateTimePicker1.Size = New System.Drawing.Size(89, 20)
+        Me.DateTimePicker1.TabIndex = 4
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(13, 227)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Date : "
+        '
         'frmSignClient
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(474, 295)
+        Me.ClientSize = New System.Drawing.Size(478, 312)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnValider)
         Me.Controls.Add(Me.Button1)
@@ -77,6 +103,7 @@ Partial Class frmSignClient
         Me.Text = "Signature Client"
         CType(Me.pctSignature, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -93,4 +120,7 @@ Partial Class frmSignClient
         ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
 
     End Sub
+
+    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents Label1 As Label
 End Class

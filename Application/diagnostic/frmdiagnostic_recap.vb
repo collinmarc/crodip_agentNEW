@@ -1165,7 +1165,8 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Public Sub Signatureclient()
-
+        Dim ofrm As New frmSignClient(m_diagnostic)
+        ofrm.Show()
     End Sub
     Public Sub SignatureAgent()
 

@@ -912,14 +912,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsSign.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Application\Signature\frmsignature.vb" />
     <Compile Include="Application\Signature\frmSignClient.Designer.vb">
       <DependentUpon>frmSignClient.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\Signature\frmSignClient.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\Signature\frmTestSignature.vb" />
     <Compile Include="Application\splash.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2180,11 +2178,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crTestSignature.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\Signature\frmsignature.resx" />
     <EmbeddedResource Include="Application\Signature\frmSignClient.resx">
       <DependentUpon>frmSignClient.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\Signature\frmTestSignature.resx" />
     <EmbeddedResource Include="Application\splash.resx">
       <DependentUpon>splash.vb</DependentUpon>
     </EmbeddedResource>

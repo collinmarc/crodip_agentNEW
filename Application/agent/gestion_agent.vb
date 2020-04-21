@@ -45,12 +45,16 @@ Public Class gestion_agent
     Friend WithEvents btn_ficheInspecteur_annuler As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents ckSignature As CheckBox
+    Friend WithEvents Label3 As Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gestion_agent))
         Me.panel_clientele_ficheClient_fichePulve = New System.Windows.Forms.Panel()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.grp_fichePulve_classe = New System.Windows.Forms.GroupBox()
+        Me.ckSignature = New System.Windows.Forms.CheckBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.ficheAgent_prenom = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.ficheAgent_nom = New System.Windows.Forms.TextBox()
@@ -80,7 +84,7 @@ Public Class gestion_agent
         Me.panel_clientele_ficheClient_fichePulve.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panel_clientele_ficheClient_fichePulve.Location = New System.Drawing.Point(0, 0)
         Me.panel_clientele_ficheClient_fichePulve.Name = "panel_clientele_ficheClient_fichePulve"
-        Me.panel_clientele_ficheClient_fichePulve.Size = New System.Drawing.Size(536, 288)
+        Me.panel_clientele_ficheClient_fichePulve.Size = New System.Drawing.Size(536, 318)
         Me.panel_clientele_ficheClient_fichePulve.TabIndex = 4
         '
         'Label10
@@ -100,6 +104,8 @@ Public Class gestion_agent
         '
         Me.grp_fichePulve_classe.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grp_fichePulve_classe.Controls.Add(Me.ckSignature)
+        Me.grp_fichePulve_classe.Controls.Add(Me.Label3)
         Me.grp_fichePulve_classe.Controls.Add(Me.ficheAgent_prenom)
         Me.grp_fichePulve_classe.Controls.Add(Me.Label16)
         Me.grp_fichePulve_classe.Controls.Add(Me.ficheAgent_nom)
@@ -114,10 +120,30 @@ Public Class gestion_agent
         Me.grp_fichePulve_classe.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.grp_fichePulve_classe.Location = New System.Drawing.Point(8, 80)
         Me.grp_fichePulve_classe.Name = "grp_fichePulve_classe"
-        Me.grp_fichePulve_classe.Size = New System.Drawing.Size(520, 152)
+        Me.grp_fichePulve_classe.Size = New System.Drawing.Size(520, 175)
         Me.grp_fichePulve_classe.TabIndex = 11
         Me.grp_fichePulve_classe.TabStop = False
         Me.grp_fichePulve_classe.Text = "Inspecteur"
+        '
+        'ckSignature
+        '
+        Me.ckSignature.AutoSize = True
+        Me.ckSignature.Location = New System.Drawing.Point(167, 147)
+        Me.ckSignature.Name = "ckSignature"
+        Me.ckSignature.Size = New System.Drawing.Size(15, 14)
+        Me.ckSignature.TabIndex = 22
+        Me.ckSignature.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.Label3.Location = New System.Drawing.Point(11, 147)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(149, 14)
+        Me.Label3.TabIndex = 21
+        Me.Label3.Text = "Signature életronique :"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'ficheAgent_prenom
         '
@@ -263,7 +289,7 @@ Public Class gestion_agent
         Me.btn_ficheInspecteur_annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheInspecteur_annuler.ForeColor = System.Drawing.Color.White
         Me.btn_ficheInspecteur_annuler.Image = CType(resources.GetObject("btn_ficheInspecteur_annuler.Image"), System.Drawing.Image)
-        Me.btn_ficheInspecteur_annuler.Location = New System.Drawing.Point(204, 248)
+        Me.btn_ficheInspecteur_annuler.Location = New System.Drawing.Point(204, 278)
         Me.btn_ficheInspecteur_annuler.Name = "btn_ficheInspecteur_annuler"
         Me.btn_ficheInspecteur_annuler.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheInspecteur_annuler.TabIndex = 27
@@ -273,9 +299,10 @@ Public Class gestion_agent
         'gestion_agent
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(536, 288)
+        Me.ClientSize = New System.Drawing.Size(536, 318)
         Me.Controls.Add(Me.panel_clientele_ficheClient_fichePulve)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MinimizeBox = False
         Me.Name = "gestion_agent"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Coordonnées de l’inspecteur"
@@ -298,6 +325,7 @@ Public Class gestion_agent
         ficheAgent_prenom.Text = agentCourant.prenom
         ficheAgent_telephonePortable.Text = agentCourant.telephonePortable
         ficheAgent_email.Text = agentCourant.eMail
+        ckSignature.Checked = agentCourant.isSignElecActive
     End Sub
 
 #Region "controls de saisie"
@@ -312,37 +340,26 @@ Public Class gestion_agent
 #End Region
 
     ' Annulation
-    Private Sub btn_ficheInspecteur_annuler_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheInspecteur_annuler.Click
-        Statusbar.clear()
-        TryCast(MdiParent, parentContener).ReturnToAccueil()
+
+    Private Sub CheckBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles ckSignature.MouseDown
+        If e.Button = MouseButtons.Right Then
+            ckSignature.Checked = Not ckSignature.Checked
+        Else
+            ckSignature.Checked = agentCourant.isSignElecActive
+        End If
     End Sub
 
-    ' Validation
-    Private Sub btn_ficheInspecteur_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Statusbar.display(Globals.CONST_STATUTMSG_FICHEAGENT_ENCOURS, True)
-        Try
-            ' On enregistre les données de l'agent
+    Private Sub btn_ficheInspecteur_annuler_MouseClick(sender As Object, e As MouseEventArgs) Handles btn_ficheInspecteur_annuler.MouseClick
+        If e.Button = MouseButtons.Right Then
             agentCourant.numeroNational = ficheAgent_numeroNational.Text
             agentCourant.nom = ficheAgent_nom.Text
             agentCourant.prenom = ficheAgent_prenom.Text
             agentCourant.telephonePortable = ficheAgent_telephonePortable.Text
             agentCourant.eMail = ficheAgent_email.Text
-            ' On met à jour en base
-            AgentManager.save(agentCourant)
+            agentCourant.isSignElecActive = ckSignature.Checked
 
-            ' On enregistre les données SMTP
-            'globalConfig.createRoot("root")
-            'globalConfig.addElement("/root", "smtp", 0)
-            'globalConfig.addElement("/root/smtp", "smtpHost", agent_smtp_host.Text)
-            'globalConfig.addElement("/root/smtp", "smtpPort", agent_smtp_port.Text)
-            'globalConfig.addElement("/root/smtp", "smtpUser", agent_smtp_user.Text)
-            'globalConfig.addElement("/root/smtp", "smtpPass", agent_smtp_pass.Text)
-            Statusbar.display(Globals.CONST_STATUTMSG_FICHEAGENT_OK, False)
-
-            ' On ferme le formulaire
-            Me.Close()
-        Catch ex As Exception
-            Statusbar.display(Globals.CONST_STATUTMSG_FICHEAGENT_FAILED, False)
-        End Try
+        End If
+        Statusbar.clear()
+        TryCast(MdiParent, parentContener).ReturnToAccueil()
     End Sub
 End Class

@@ -122,9 +122,6 @@
     <Setting Name="SynchroDescGetEtat" Type="System.String" Scope="Application">
       <Value Profile="(Default)">../pdf/</Value>
     </Setting>
-    <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20200407170000</Value>
-    </Setting>
     <Setting Name="SynchroEtatFVBancUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/index/envoi-fv-banc-pdf</Value>
     </Setting>
@@ -145,6 +142,12 @@
     </Setting>
     <Setting Name="SynchroEtatMode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">HTTP</Value>
+    </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20200421120000</Value>
+    </Setting>
+    <Setting Name="NumEcranSignature" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
     </Setting>
   </Settings>
 </SettingsFile>

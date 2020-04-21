@@ -65,8 +65,11 @@ Public Class frmSignClient
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Me.Location = System.Windows.Forms.Screen.AllScreens(2).WorkingArea.Location
-
+        If My.Settings.NumEcranSignature > Screen.AllScreens.Length Then
+            Me.Location = Screen.PrimaryScreen.WorkingArea.Location
+        Else
+            Me.Location = System.Windows.Forms.Screen.AllScreens(My.Settings.NumEcranSignature - 1).WorkingArea.Location
+        End If
 
         Dim bmp As Bitmap = New Bitmap(pctSignature.Width, pctSignature.Height)
 
