@@ -1,5 +1,10 @@
 TRUNK
 MASTER
+
+BUILD : 20200416170000
+----------------------
+0001055: Ajout de N° chassis sur la fiche pulvé
+
 BUILD : 20200416170000
 ----------------------
 0001195: Champs à ajouter dans l'import (controleetat et dateControle) + AjoutPulve Numchassis
