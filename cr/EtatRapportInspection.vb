@@ -279,26 +279,24 @@ Public Class EtatRapportInspection
                 dateLimiteControle = CDate(m_oDiag.pulverisateurDateProchainControle)
             End If
 
-            'Dim ms As MemoryStream
-            'Dim img As Image
-
-            If (m_oDiag.bSignAgent) Then
-                'ms = New MemoryStream(m_oDiag.SignAgent)
-                'img = Image.FromStream(ms)
-            End If
-            ' On ajoute le logo
 
             Dim msCL As New MemoryStream
-            msCL = New MemoryStream(m_oDiag.SignClient)
-            Dim img1 As Image = Image.FromStream(msCL)
-            Dim img2 As Image = New Bitmap(img1, New Size(151, 37))
-            img2.Save(msCL, Imaging.ImageFormat.Bmp)
+            Dim img1 As Image = Nothing
+            Dim img2 As Image = Nothing
+            If (m_oDiag.SignClient IsNot Nothing) Then
+                msCL = New MemoryStream(m_oDiag.SignClient)
+                img1 = Image.FromStream(msCL)
+                img2 = New Bitmap(img1, New Size(151, 37))
+                img2.Save(msCL, Imaging.ImageFormat.Bmp)
+            End If
 
-            Dim msAG As New MemoryStream(m_oDiag.SignAgent)
-            img1 = Image.FromStream(msAG)
-            img2 = New Bitmap(img1, New Size(151, 37))
-            img2.Save(msAG, Imaging.ImageFormat.Bmp)
-
+            Dim msAG As New MemoryStream
+            If (m_oDiag.SignClient IsNot Nothing) Then
+                msAG = New MemoryStream(m_oDiag.SignAgent)
+                img1 = Image.FromStream(msAG)
+                img2 = New Bitmap(img1, New Size(151, 37))
+                img2.Save(msAG, Imaging.ImageFormat.Bmp)
+            End If
 
 
             ''            img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
@@ -315,8 +313,12 @@ Public Class EtatRapportInspection
                                                          bSignClient:=m_oDiag.bSignClient,
                                                          DateSignClient:=m_oDiag.dateSignClient,
                                                          SignClient:=msCL.ToArray())
-
-            img2.Dispose()
+            If img1 IsNot Nothing Then
+                img1.Dispose()
+            End If
+            If img2 IsNot Nothing Then
+                img2.Dispose()
+            End If
 
             Dim strPrestataire As String = ""
             Dim oStructure As Structuree

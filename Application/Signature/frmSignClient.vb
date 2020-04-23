@@ -5,7 +5,7 @@ Public Enum SignMode As Integer
 End Enum
 Public Class frmSignClient
     Dim _previous As Point = Nothing
-    Dim _pen As Pen = New Pen(Color.Black)
+    Dim _pen As Pen = New Pen(Color.Black, 5)
     Dim drawing As Boolean = False
 
     Dim m_odiag As Diagnostic
