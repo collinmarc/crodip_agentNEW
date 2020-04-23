@@ -36,14 +36,14 @@ Partial Class frmSignClient
         Me.pctSignature.BackColor = System.Drawing.Color.White
         Me.pctSignature.Location = New System.Drawing.Point(11, 6)
         Me.pctSignature.Name = "pctSignature"
-        Me.pctSignature.Size = New System.Drawing.Size(450, 214)
+        Me.pctSignature.Size = New System.Drawing.Size(604, 148)
         Me.pctSignature.TabIndex = 0
         Me.pctSignature.TabStop = False
         '
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(13, 258)
+        Me.Button1.Location = New System.Drawing.Point(16, 195)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(112, 48)
         Me.Button1.TabIndex = 1
@@ -53,9 +53,9 @@ Partial Class frmSignClient
         'btnValider
         '
         Me.btnValider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnValider.Location = New System.Drawing.Point(339, 259)
+        Me.btnValider.Location = New System.Drawing.Point(484, 197)
         Me.btnValider.Name = "btnValider"
-        Me.btnValider.Size = New System.Drawing.Size(122, 46)
+        Me.btnValider.Size = New System.Drawing.Size(112, 46)
         Me.btnValider.TabIndex = 2
         Me.btnValider.Text = "Valider"
         Me.btnValider.UseVisualStyleBackColor = True
@@ -63,9 +63,9 @@ Partial Class frmSignClient
         'btnClear
         '
         Me.btnClear.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClear.Location = New System.Drawing.Point(151, 259)
+        Me.btnClear.Location = New System.Drawing.Point(256, 196)
         Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(169, 48)
+        Me.btnClear.Size = New System.Drawing.Size(112, 48)
         Me.btnClear.TabIndex = 3
         Me.btnClear.Text = "Effacer"
         Me.btnClear.UseVisualStyleBackColor = True
@@ -74,7 +74,7 @@ Partial Class frmSignClient
         '
         Me.dtpDateSignature.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.dtpDateSignature.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpDateSignature.Location = New System.Drawing.Point(151, 227)
+        Me.dtpDateSignature.Location = New System.Drawing.Point(151, 165)
         Me.dtpDateSignature.Name = "dtpDateSignature"
         Me.dtpDateSignature.Size = New System.Drawing.Size(89, 20)
         Me.dtpDateSignature.TabIndex = 4
@@ -83,7 +83,7 @@ Partial Class frmSignClient
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 227)
+        Me.Label1.Location = New System.Drawing.Point(13, 165)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(39, 13)
         Me.Label1.TabIndex = 5
@@ -93,7 +93,7 @@ Partial Class frmSignClient
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(478, 312)
+        Me.ClientSize = New System.Drawing.Size(623, 250)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.dtpDateSignature)
         Me.Controls.Add(Me.btnClear)

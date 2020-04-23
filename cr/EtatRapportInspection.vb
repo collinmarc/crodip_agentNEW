@@ -24,7 +24,7 @@ Public Class EtatRapportInspection
             bReturn = genereDS()
             If (bReturn) Then
 
-                Using r1 As New cr_RapportInspection()
+                Using r1 As New cr_RapportInspection
                     strReportName = r1.ResourceName
                     r1.Close()
                 End Using
@@ -279,14 +279,44 @@ Public Class EtatRapportInspection
                 dateLimiteControle = CDate(m_oDiag.pulverisateurDateProchainControle)
             End If
 
+            'Dim ms As MemoryStream
+            'Dim img As Image
 
-            Dim ms As New MemoryStream(m_oDiag.SignAgent)
-            Dim img As Image = Image.FromStream(ms)
-            ms = New MemoryStream
-            img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+            If (m_oDiag.bSignAgent) Then
+                'ms = New MemoryStream(m_oDiag.SignAgent)
+                'img = Image.FromStream(ms)
+            End If
+            ' On ajoute le logo
+
+            Dim msCL As New MemoryStream
+            msCL = New MemoryStream(m_oDiag.SignClient)
+            Dim img1 As Image = Image.FromStream(msCL)
+            Dim img2 As Image = New Bitmap(img1, New Size(151, 37))
+            img2.Save(msCL, Imaging.ImageFormat.Bmp)
+
+            Dim msAG As New MemoryStream(m_oDiag.SignAgent)
+            img1 = Image.FromStream(msAG)
+            img2 = New Bitmap(img1, New Size(151, 37))
+            img2.Save(msAG, Imaging.ImageFormat.Bmp)
+
+
+
+            ''            img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
 
             oDiagRow = m_ods.Diagnostic.AddDiagnosticRow(m_oDiag.id, m_oDiag.organismeInspAgrement, CDate(m_oDiag.controleDateDebut), m_oDiag.controleLieu, CDate(m_oDiag.controleDateDebut).ToShortTimeString(), CDate(m_oDiag.controleDateFin).ToShortTimeString(), m_oDiag.controleIsPreControleProfessionel, m_oDiag.controleIsComplet, m_oDiag.controleInitialId, oMaterielRow, Conclusion:=m_oDiag.controleEtat, dateLimiteControle:=dateLimiteControle, DateEmission:=Date.Now,
-                                                         DateControleInitial:=m_oDiag.getDateDernierControleDate(), OrganismeInitial:=m_oDiag.organismeOriginePresNom, InspecteurInitial:=m_oDiag.inspecteurOrigineNom & " " & m_oDiag.inspecteurOriginePrenom, NbPageRFinal:=nbPagefinal, Commentaire:=m_oDiag.Commentaire, bSignAgent:=m_oDiag.bSignAgent, DateSignAgent:=m_oDiag.dateSignAgent, SignAgent:=ms.ToArray(), bSignClient:=m_oDiag.bSignClient, DateSignClient:=m_oDiag.dateSignClient, SignClient:=m_oDiag.SignClient)
+                                                         DateControleInitial:=m_oDiag.getDateDernierControleDate(),
+                                                         OrganismeInitial:=m_oDiag.organismeOriginePresNom,
+                                                         InspecteurInitial:=m_oDiag.inspecteurOrigineNom & " " & m_oDiag.inspecteurOriginePrenom,
+                                                         NbPageRFinal:=nbPagefinal,
+                                                         Commentaire:=m_oDiag.Commentaire,
+                                                         bSignAgent:=m_oDiag.bSignAgent,
+                                                         DateSignAgent:=m_oDiag.dateSignAgent,
+                                                         SignAgent:=msAG.ToArray(),
+                                                         bSignClient:=m_oDiag.bSignClient,
+                                                         DateSignClient:=m_oDiag.dateSignClient,
+                                                         SignClient:=msCL.ToArray())
+
+            img2.Dispose()
 
             Dim strPrestataire As String = ""
             Dim oStructure As Structuree

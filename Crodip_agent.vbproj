@@ -1281,6 +1281,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
     </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\TESTSIGN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TESTSIGN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
@@ -2201,8 +2208,8 @@
     </EmbeddedResource>
     <Content Include="moduleDocumentaire\_parametres\cr_RapportInspection.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>cr_RapportInspection.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <LastGenOutput>cr_RapportInspection1.vb</LastGenOutput>
     </Content>
     <Content Include="moduleDocumentaire\_parametres\cr_BL.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2375,6 +2382,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMAJVersion.resx">
       <DependentUpon>frmMAJVersion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="moduleDocumentaire\_parametres\TESTSIGN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TESTSIGN.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <SubType>Designer</SubType>

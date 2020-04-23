@@ -544,6 +544,7 @@ Public Class frmdiagnostic_recap
         'frmdiagnostic_recap
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
+        Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1008, 679)
         Me.ControlBox = False
         Me.Controls.Add(Me.btnSignAgent)

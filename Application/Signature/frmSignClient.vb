@@ -76,21 +76,33 @@ Public Class frmSignClient
             Me.Location = System.Windows.Forms.Screen.AllScreens(My.Settings.NumEcranSignature - 1).WorkingArea.Location
         End If
 
-        Dim img As Image = New Bitmap(pctSignature.Width, pctSignature.Height)
+        Dim img As Image
         Dim ms As MemoryStream
         If m_Mode = SignMode.AGENT Then
             Me.Text = "Signature AGENT"
             If m_odiag.SignAgent IsNot Nothing Then
                 Try
+                    '' On ajoute le logo
+                    ''Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo_tn")
+                    'Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+                    'Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo")
+                    'If Not File.Exists(logoFilename) Then
+                    '    logoFilename = Globals.CONST_PATH_IMG & Globals.CR_LOGO_DEFAULT_TN_NAME
+                    'End If
+                    ''m_ods.Facture(0).LogoFileName = logoFilename
+                    'Dim newImage As Image = Image.FromFile(logoFilename)
+                    'ms = New MemoryStream
+                    'newImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+
                     ms = New MemoryStream(m_odiag.SignAgent)
                     img = Image.FromStream(ms)
-
+                    img.Save("img/signAgentLoad.bmp", Imaging.ImageFormat.Bmp)
                 Catch ex As Exception
-                    img = New Bitmap(pctSignature.Width, pctSignature.Height)
+                    '' img = New bitMap(pctSignature.Width, pctSignature.Height)
                 End Try
             End If
         Else
-            Me.Text = "Signature CLIENT"
+                Me.Text = "Signature CLIENT"
             If m_odiag.SignClient IsNot Nothing Then
                 Try
                     ms = New MemoryStream(m_odiag.SignClient)
@@ -108,16 +120,26 @@ Public Class frmSignClient
     End Sub
 
     Private Sub Valider_Click(sender As Object, e As EventArgs) Handles btnValider.Click
-        Dim ms As New MemoryStream
-        pctSignature.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
+        Dim ms2 As New MemoryStream
+        Dim img2 As Image = Nothing
+
+        'Redimensionnement de l'image 
         If m_Mode = SignMode.CLIENT Then
-            m_odiag.SignClient = ms.ToArray()
+            '         img2 = New Bitmap(pctSignature.Image, New Size(151, 37))
+            pctSignature.Image.Save(ms2, Imaging.ImageFormat.Bmp)
+            m_odiag.SignClient = ms2.ToArray()
             m_odiag.bSignClient = True
             m_odiag.dateSignClient = dtpDateSignature.Value
         Else
-            m_odiag.SignAgent = ms.ToArray()
+            '        img2 = New Bitmap(pctSignature.Image, New Size(151, 37))
+            pctSignature.Image.Save(ms2, Imaging.ImageFormat.Bmp)
+            m_odiag.SignAgent = ms2.ToArray()
             m_odiag.bSignAgent = True
             m_odiag.dateSignAgent = dtpDateSignature.Value
+        End If
+        If (img2 IsNot Nothing) Then
+            img2.Dispose()
+
         End If
 
         Me.DialogResult = DialogResult.OK
