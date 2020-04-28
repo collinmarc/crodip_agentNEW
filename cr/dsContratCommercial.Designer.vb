@@ -309,7 +309,17 @@ Partial Public Class dsContratCommercial
         
         Private columnNomPrenomExploit As Global.System.Data.DataColumn
         
-        Private columnDataColumn1 As Global.System.Data.DataColumn
+        Private columnbSignClient As Global.System.Data.DataColumn
+        
+        Private columnSignClient As Global.System.Data.DataColumn
+        
+        Private columnDateSignclient As Global.System.Data.DataColumn
+        
+        Private columnbSignAgent As Global.System.Data.DataColumn
+        
+        Private columnSignAgent As Global.System.Data.DataColumn
+        
+        Private columnDateSignAgent As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -452,9 +462,49 @@ Partial Public Class dsContratCommercial
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DataColumn1Column() As Global.System.Data.DataColumn
+        Public ReadOnly Property bSignClientColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDataColumn1
+                Return Me.columnbSignClient
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SignClientColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSignClient
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DateSignclientColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDateSignclient
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property bSignAgentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnbSignAgent
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SignAgentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSignAgent
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DateSignAgentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDateSignAgent
             End Get
         End Property
         
@@ -495,9 +545,28 @@ Partial Public Class dsContratCommercial
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddContratCommercialRow(ByVal dateControle As Date, ByVal RSExploitant As String, ByVal adresse1Exploit As String, ByVal cpExploit As String, ByVal villeExploit As String, ByVal numStruct As String, ByVal NomPrenomInspecteur As String, ByVal NumInspecteur As String, ByVal NomRepresentant As String, ByVal MarquePulve As String, ByVal NumnatPulve As String, ByVal MontantHT As Decimal, ByVal NomPrenomExploit As String, ByVal DataColumn1 As String) As ContratCommercialRow
+        Public Overloads Function AddContratCommercialRow( _
+                    ByVal dateControle As Date,  _
+                    ByVal RSExploitant As String,  _
+                    ByVal adresse1Exploit As String,  _
+                    ByVal cpExploit As String,  _
+                    ByVal villeExploit As String,  _
+                    ByVal numStruct As String,  _
+                    ByVal NomPrenomInspecteur As String,  _
+                    ByVal NumInspecteur As String,  _
+                    ByVal NomRepresentant As String,  _
+                    ByVal MarquePulve As String,  _
+                    ByVal NumnatPulve As String,  _
+                    ByVal MontantHT As Decimal,  _
+                    ByVal NomPrenomExploit As String,  _
+                    ByVal bSignClient As Boolean,  _
+                    ByVal SignClient() As Byte,  _
+                    ByVal DateSignclient As String,  _
+                    ByVal bSignAgent As Boolean,  _
+                    ByVal SignAgent() As Byte,  _
+                    ByVal DateSignAgent As String) As ContratCommercialRow
             Dim rowContratCommercialRow As ContratCommercialRow = CType(Me.NewRow,ContratCommercialRow)
-            Dim columnValuesArray() As Object = New Object() {dateControle, RSExploitant, adresse1Exploit, cpExploit, villeExploit, numStruct, NomPrenomInspecteur, NumInspecteur, NomRepresentant, MarquePulve, NumnatPulve, MontantHT, NomPrenomExploit, DataColumn1}
+            Dim columnValuesArray() As Object = New Object() {dateControle, RSExploitant, adresse1Exploit, cpExploit, villeExploit, numStruct, NomPrenomInspecteur, NumInspecteur, NomRepresentant, MarquePulve, NumnatPulve, MontantHT, NomPrenomExploit, bSignClient, SignClient, DateSignclient, bSignAgent, SignAgent, DateSignAgent}
             rowContratCommercialRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowContratCommercialRow)
             Return rowContratCommercialRow
@@ -533,7 +602,12 @@ Partial Public Class dsContratCommercial
             Me.columnNumnatPulve = MyBase.Columns("NumnatPulve")
             Me.columnMontantHT = MyBase.Columns("MontantHT")
             Me.columnNomPrenomExploit = MyBase.Columns("NomPrenomExploit")
-            Me.columnDataColumn1 = MyBase.Columns("DataColumn1")
+            Me.columnbSignClient = MyBase.Columns("bSignClient")
+            Me.columnSignClient = MyBase.Columns("SignClient")
+            Me.columnDateSignclient = MyBase.Columns("DateSignclient")
+            Me.columnbSignAgent = MyBase.Columns("bSignAgent")
+            Me.columnSignAgent = MyBase.Columns("SignAgent")
+            Me.columnDateSignAgent = MyBase.Columns("DateSignAgent")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -565,8 +639,18 @@ Partial Public Class dsContratCommercial
             MyBase.Columns.Add(Me.columnMontantHT)
             Me.columnNomPrenomExploit = New Global.System.Data.DataColumn("NomPrenomExploit", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNomPrenomExploit)
-            Me.columnDataColumn1 = New Global.System.Data.DataColumn("DataColumn1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDataColumn1)
+            Me.columnbSignClient = New Global.System.Data.DataColumn("bSignClient", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnbSignClient)
+            Me.columnSignClient = New Global.System.Data.DataColumn("SignClient", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSignClient)
+            Me.columnDateSignclient = New Global.System.Data.DataColumn("DateSignclient", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDateSignclient)
+            Me.columnbSignAgent = New Global.System.Data.DataColumn("bSignAgent", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnbSignAgent)
+            Me.columnSignAgent = New Global.System.Data.DataColumn("SignAgent", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSignAgent)
+            Me.columnDateSignAgent = New Global.System.Data.DataColumn("DateSignAgent", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDateSignAgent)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -921,17 +1005,97 @@ Partial Public Class dsContratCommercial
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DataColumn1() As String
+        Public Property bSignClient() As Boolean
             Get
                 Try 
-                    Return CType(Me(Me.tableContratCommercial.DataColumn1Column),String)
+                    Return CType(Me(Me.tableContratCommercial.bSignClientColumn),Boolean)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'DataColumn1' dans la table 'ContratCommercial' est DBN"& _ 
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'bSignClient' dans la table 'ContratCommercial' est DBN"& _ 
                             "ull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableContratCommercial.DataColumn1Column) = value
+                Me(Me.tableContratCommercial.bSignClientColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SignClient() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tableContratCommercial.SignClientColumn),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'SignClient' dans la table 'ContratCommercial' est DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableContratCommercial.SignClientColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DateSignclient() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableContratCommercial.DateSignclientColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'DateSignclient' dans la table 'ContratCommercial' est "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableContratCommercial.DateSignclientColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property bSignAgent() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableContratCommercial.bSignAgentColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'bSignAgent' dans la table 'ContratCommercial' est DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableContratCommercial.bSignAgentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SignAgent() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tableContratCommercial.SignAgentColumn),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'SignAgent' dans la table 'ContratCommercial' est DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableContratCommercial.SignAgentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DateSignAgent() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableContratCommercial.DateSignAgentColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'DateSignAgent' dans la table 'ContratCommercial' est D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableContratCommercial.DateSignAgentColumn) = value
             End Set
         End Property
         
@@ -1093,14 +1257,74 @@ Partial Public Class dsContratCommercial
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDataColumn1Null() As Boolean
-            Return Me.IsNull(Me.tableContratCommercial.DataColumn1Column)
+        Public Function IsbSignClientNull() As Boolean
+            Return Me.IsNull(Me.tableContratCommercial.bSignClientColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDataColumn1Null()
-            Me(Me.tableContratCommercial.DataColumn1Column) = Global.System.Convert.DBNull
+        Public Sub SetbSignClientNull()
+            Me(Me.tableContratCommercial.bSignClientColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSignClientNull() As Boolean
+            Return Me.IsNull(Me.tableContratCommercial.SignClientColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSignClientNull()
+            Me(Me.tableContratCommercial.SignClientColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDateSignclientNull() As Boolean
+            Return Me.IsNull(Me.tableContratCommercial.DateSignclientColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDateSignclientNull()
+            Me(Me.tableContratCommercial.DateSignclientColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsbSignAgentNull() As Boolean
+            Return Me.IsNull(Me.tableContratCommercial.bSignAgentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetbSignAgentNull()
+            Me(Me.tableContratCommercial.bSignAgentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSignAgentNull() As Boolean
+            Return Me.IsNull(Me.tableContratCommercial.SignAgentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSignAgentNull()
+            Me(Me.tableContratCommercial.SignAgentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDateSignAgentNull() As Boolean
+            Return Me.IsNull(Me.tableContratCommercial.DateSignAgentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDateSignAgentNull()
+            Me(Me.tableContratCommercial.DateSignAgentColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

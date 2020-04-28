@@ -122,6 +122,8 @@
  Les données importées sont les données Clients et Pulvés uniquement.
 Elles seront ensuite synhronisées avec le serveur.
 Le fichier d'import doit être au format CRPODIP CSV.
+Si votre fichier CSV dépasse les 1000 lignes, l'import peut être long, 
+il est alors conseillé de l'éclater en plusieurs fichiers en utilisant le lien ci-dessous.
 </value>
   </data>
   <metadata name="m_opfdlg.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -129,5 +131,8 @@ Le fichier d'import doit être au format CRPODIP CSV.
   </metadata>
   <metadata name="m_bsImportResult.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>120, 17</value>
+  </metadata>
+  <metadata name="BackgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>270, 17</value>
   </metadata>
 </root>

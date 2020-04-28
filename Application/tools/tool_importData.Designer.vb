@@ -40,6 +40,10 @@ Partial Class tool_importData
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.btnImport = New System.Windows.Forms.Button()
         Me.OK_Button = New System.Windows.Forms.Button()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.btn_AnnulerImport = New System.Windows.Forms.Button()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         CType(Me.m_bsImportResult, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -49,7 +53,7 @@ Partial Class tool_importData
         Me.Label1.ForeColor = System.Drawing.Color.Red
         Me.Label1.Location = New System.Drawing.Point(22, 13)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(431, 57)
+        Me.Label1.Size = New System.Drawing.Size(431, 93)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = resources.GetString("Label1.Text")
         '
@@ -68,7 +72,7 @@ Partial Class tool_importData
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBox1.Location = New System.Drawing.Point(122, 119)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(357, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(441, 20)
         Me.TextBox1.TabIndex = 3
         '
         'cbBrowse
@@ -80,9 +84,9 @@ Partial Class tool_importData
         Me.cbBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbBrowse.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbBrowse.ForeColor = System.Drawing.Color.White
-        Me.cbBrowse.Location = New System.Drawing.Point(490, 115)
+        Me.cbBrowse.Location = New System.Drawing.Point(569, 115)
         Me.cbBrowse.Name = "cbBrowse"
-        Me.cbBrowse.Size = New System.Drawing.Size(71, 24)
+        Me.cbBrowse.Size = New System.Drawing.Size(99, 24)
         Me.cbBrowse.TabIndex = 4
         Me.cbBrowse.Text = "Parcourir"
         Me.cbBrowse.UseVisualStyleBackColor = False
@@ -181,9 +185,9 @@ Partial Class tool_importData
         Me.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnImport.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnImport.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnImport.Location = New System.Drawing.Point(175, 157)
+        Me.btnImport.Location = New System.Drawing.Point(122, 174)
         Me.btnImport.Name = "btnImport"
-        Me.btnImport.Size = New System.Drawing.Size(247, 36)
+        Me.btnImport.Size = New System.Drawing.Size(258, 36)
         Me.btnImport.TabIndex = 5
         Me.btnImport.Text = "Importer"
         Me.btnImport.UseVisualStyleBackColor = False
@@ -200,19 +204,66 @@ Partial Class tool_importData
         Me.OK_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.OK_Button.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.OK_Button.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.OK_Button.Location = New System.Drawing.Point(412, 358)
+        Me.OK_Button.Location = New System.Drawing.Point(519, 358)
         Me.OK_Button.Name = "OK_Button"
         Me.OK_Button.Size = New System.Drawing.Size(143, 32)
         Me.OK_Button.TabIndex = 14
         Me.OK_Button.Text = "OK"
         Me.OK_Button.UseVisualStyleBackColor = True
         '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(25, 145)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(643, 23)
+        Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.ProgressBar1.TabIndex = 15
+        '
+        'BackgroundWorker1
+        '
+        Me.BackgroundWorker1.WorkerReportsProgress = True
+        Me.BackgroundWorker1.WorkerSupportsCancellation = True
+        '
+        'btn_AnnulerImport
+        '
+        Me.btn_AnnulerImport.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_AnnulerImport.AutoEllipsis = True
+        Me.btn_AnnulerImport.BackgroundImage = Global.Crodip_agent.Resources.btn_annuler
+        Me.btn_AnnulerImport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btn_AnnulerImport.FlatAppearance.BorderSize = 0
+        Me.btn_AnnulerImport.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control
+        Me.btn_AnnulerImport.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control
+        Me.btn_AnnulerImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_AnnulerImport.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_AnnulerImport.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.btn_AnnulerImport.Location = New System.Drawing.Point(364, 174)
+        Me.btn_AnnulerImport.Name = "btn_AnnulerImport"
+        Me.btn_AnnulerImport.Size = New System.Drawing.Size(199, 36)
+        Me.btn_AnnulerImport.TabIndex = 16
+        Me.btn_AnnulerImport.Text = "Annuler"
+        Me.btn_AnnulerImport.UseVisualStyleBackColor = False
+        '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.LinkVisited = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(95, 93)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(97, 13)
+        Me.LinkLabel1.TabIndex = 17
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "https://filesplit.org/"
+        '
         'tool_importData
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(567, 402)
+        Me.ClientSize = New System.Drawing.Size(674, 402)
+        Me.Controls.Add(Me.LinkLabel1)
+        Me.Controls.Add(Me.btn_AnnulerImport)
+        Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.OK_Button)
         Me.Controls.Add(Me.TextBox5)
         Me.Controls.Add(Me.TextBox4)
@@ -254,4 +305,8 @@ Partial Class tool_importData
     Friend WithEvents TextBox5 As TextBox
     Friend WithEvents btnImport As Button
     Friend WithEvents OK_Button As Button
+    Friend WithEvents ProgressBar1 As ProgressBar
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents btn_AnnulerImport As Button
+    Friend WithEvents LinkLabel1 As LinkLabel
 End Class

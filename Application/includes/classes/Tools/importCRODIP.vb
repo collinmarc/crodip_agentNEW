@@ -190,7 +190,7 @@ Public Class importCRODIP
 
 
 
-    Public Shared Function import(pfileName As String, pAgent As Agent) As ImportCrodipResult
+    Public Shared Function import(pfileName As String, pAgent As Agent, Optional pBgwrk As System.ComponentModel.BackgroundWorker = Nothing) As ImportCrodipResult
         Dim oresult As New ImportCrodipResult()
         Dim olstCrodipAtt As New List(Of importCrodipAtt)()
 
@@ -227,7 +227,8 @@ Public Class importCRODIP
 
 
         Try
-
+            Dim nMax As Integer
+            Dim nNum As Integer
             Dim olstExploit As New List(Of Exploitation)
             Using reader As StreamReader = New StreamReader(pfileName, System.Text.Encoding.GetEncoding(1252))
                 Using csv As CsvReader = New CsvReader(reader, Globalization.CultureInfo.CurrentCulture)
@@ -235,17 +236,27 @@ Public Class importCRODIP
                     csv.Configuration.MissingFieldFound = Nothing
                     csv.Configuration.PrepareHeaderForMatch = Function(h As String, n As Integer) h.ToLower()
                     Dim lst As IEnumerable(Of importCRODIP)
-                    lst = csv.GetRecords(Of importCRODIP)()
+                    lst = csv.GetRecords(Of importCRODIP).ToList()
+
                     Dim oExploitation As Exploitation = Nothing
                     Dim oPulve As Pulverisateur = Nothing
                     Dim oDiag As Diagnostic = Nothing
                     Dim strValue As String
                     Dim strValueLargeurNbreRangs As String = ""
                     Dim bValueLargeurNbreRangs As Boolean
+                    nNum = 0
+                    nMax = lst.Count
                     For Each obj As importCRODIP In lst
+                        nNum = nNum + 1
                         oExploitation = New Exploitation()
                         oPulve = New Pulverisateur()
                         oPulve.numeroNational = ""
+                        If (pBgwrk IsNot Nothing) Then
+                            pBgwrk.ReportProgress((nNum / nMax) * 100)
+                            If pBgwrk.CancellationPending = True Then
+                                Exit For
+                            End If
+                        End If
                         'Parcours de la liste des propriétés
                         'on fait un premier parcours pour remplir les Pulvérisateurs et les exploitations car il faut les avoir pour construire un diag
                         For Each oAtt As importCrodipAtt In olstCrodipAtt
@@ -317,7 +328,15 @@ Public Class importCRODIP
                 End Using
             End Using
             Dim bReturn As Boolean
+            nNum = 0
+            nMax = olstExploit.Count
             For Each oExploit As Exploitation In olstExploit
+                If (pBgwrk IsNot Nothing) Then
+                    pBgwrk.ReportProgress((nNum / nMax) * 100)
+                    If pBgwrk.CancellationPending = True Then
+                        Exit For
+                    End If
+                End If
 
                 bReturn = ExploitationManager.save(oExploit, pAgent)
                 If bReturn Then

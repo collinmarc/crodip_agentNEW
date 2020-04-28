@@ -21,7 +21,7 @@ Public Class AcquisitionITEQ
             Try
 
                 strline = oReader.ReadLine() ' 1ere ligne =  l'entete
-                If Not strline.StartsWith("Ref.,") Then
+                If Not strline.StartsWith("Ref.") Then
                     oReader.Close()
                     Trace.WriteLine("AcquisistionITEQ.getValues ERR : L'enete ne commence pas par Ref.")
                     Return oReturn

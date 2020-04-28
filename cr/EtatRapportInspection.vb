@@ -283,16 +283,16 @@ Public Class EtatRapportInspection
             Dim msCL As New MemoryStream
             Dim img1 As Image = Nothing
             Dim img2 As Image = Nothing
-            If (m_oDiag.SignClient IsNot Nothing) Then
-                msCL = New MemoryStream(m_oDiag.SignClient)
+            If (m_oDiag.SignRIClient IsNot Nothing) Then
+                msCL = New MemoryStream(m_oDiag.SignRIClient)
                 img1 = Image.FromStream(msCL)
                 img2 = New Bitmap(img1, New Size(151, 37))
                 img2.Save(msCL, Imaging.ImageFormat.Bmp)
             End If
 
             Dim msAG As New MemoryStream
-            If (m_oDiag.SignClient IsNot Nothing) Then
-                msAG = New MemoryStream(m_oDiag.SignAgent)
+            If (m_oDiag.SignRIClient IsNot Nothing) Then
+                msAG = New MemoryStream(m_oDiag.SignRIAgent)
                 img1 = Image.FromStream(msAG)
                 img2 = New Bitmap(img1, New Size(151, 37))
                 img2.Save(msAG, Imaging.ImageFormat.Bmp)
@@ -307,11 +307,11 @@ Public Class EtatRapportInspection
                                                          InspecteurInitial:=m_oDiag.inspecteurOrigineNom & " " & m_oDiag.inspecteurOriginePrenom,
                                                          NbPageRFinal:=nbPagefinal,
                                                          Commentaire:=m_oDiag.Commentaire,
-                                                         bSignAgent:=m_oDiag.bSignAgent,
-                                                         DateSignAgent:=m_oDiag.dateSignAgent,
+                                                         bSignAgent:=m_oDiag.bSignRIAgent,
+                                                         DateSignAgent:=m_oDiag.dateSignRIAgent,
                                                          SignAgent:=msAG.ToArray(),
-                                                         bSignClient:=m_oDiag.bSignClient,
-                                                         DateSignClient:=m_oDiag.dateSignClient,
+                                                         bSignClient:=m_oDiag.bSignRIClient,
+                                                         DateSignClient:=m_oDiag.dateSignRIClient,
                                                          SignClient:=msCL.ToArray())
             If img1 IsNot Nothing Then
                 img1.Dispose()

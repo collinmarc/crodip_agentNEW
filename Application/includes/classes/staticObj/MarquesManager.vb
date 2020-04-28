@@ -138,12 +138,6 @@ Public Class MarquesManager
     ''' <param name="pTypeBuse"></param>
     ''' <param name="bClear"></param>
     ''' <remarks></remarks>
-    Public Shared Sub populateCombobox_fonctionnement_Buses(ByVal pControl As ComboBox, pTypeBuse As String, Optional bClear As Boolean = True)
-        ' Selection des noeuds
-        Dim xpath As String = "//type[libelle=""%TYPEBUSES%""]/fonctionnement/item/text"
-        xpath = xpath.Replace("%TYPEBUSES%", pTypeBuse)
-        populateCombobox_xpath(Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES, pControl, xpath, True)
-    End Sub
     Public Shared Sub populateCombobox_xpath(ByVal xmlFile As CSXml, ByVal pControl As Object, pXPath As String, Optional bClear As Boolean = True)
 
         '#################################################################################

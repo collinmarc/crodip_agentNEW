@@ -1,6 +1,15 @@
 TRUNK
 MASTER
 
+BUILD : 202005XXXXXXXX
+----------------------
+0001211: Fiche Pulve : La Liste des marques de Manomètres est vide
+
+BUILD : 20200424120000
+----------------------
+0001050: Signature électronique (Version image)
+0001195: Progressbar dans l'import
+
 BUILD : 20200416170000
 ----------------------
 0001055: Ajout de N° chassis sur la fiche pulvé

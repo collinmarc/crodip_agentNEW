@@ -64,6 +64,23 @@ Public Class EtatContratCommercial
             rsProp = m_oDiag.proprietaireNom & "  " & m_oDiag.proprietairePrenom
             m_ods = New dsContratCommercial()
 
+            Dim msCL As New MemoryStream
+            Dim img1 As Image = Nothing
+            Dim img2 As Image = Nothing
+            If (m_oDiag.SignRIClient IsNot Nothing) Then
+                msCL = New MemoryStream(m_oDiag.SignRIClient)
+                img1 = Image.FromStream(msCL)
+                img2 = New Bitmap(img1, New Size(151, 37))
+                img2.Save(msCL, Imaging.ImageFormat.Bmp)
+            End If
+
+            Dim msAG As New MemoryStream
+            If (m_oDiag.SignRIClient IsNot Nothing) Then
+                msAG = New MemoryStream(m_oDiag.SignRIAgent)
+                img1 = Image.FromStream(msAG)
+                img2 = New Bitmap(img1, New Size(151, 37))
+                img2.Save(msAG, Imaging.ImageFormat.Bmp)
+            End If
 
             m_ods.ContratCommercial.AddContratCommercialRow(dateControle:=m_oDiag.controleDateDebut,
                                                             adresse1Exploit:=m_oDiag.proprietaireAdresse,
@@ -77,7 +94,13 @@ Public Class EtatContratCommercial
                                                              MontantHT:=m_oDiag.TotalHT,
                                                              RSExploitant:=m_oDiag.proprietaireRaisonSociale,
                                                              villeExploit:=m_oDiag.proprietaireCommune,
-                                                             NomPrenomExploit:=rsProp, DataColumn1:="")
+                                                             NomPrenomExploit:=rsProp,
+                                                             bSignClient:=m_oDiag.bSignCCClient,
+                                                        SignClient:=m_oDiag.SignCCClient,
+                                                        DateSignclient:=m_oDiag.DateSignCCClient,
+                                                        bSignAgent:=m_oDiag.bSignCCAgent,
+                                                        SignAgent:=m_oDiag.SignCCAgent,
+                                                        DateSignAgent:=m_oDiag.DateSignCCAgent)
 
 
             bReturn = True

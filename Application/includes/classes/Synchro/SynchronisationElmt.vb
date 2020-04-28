@@ -267,18 +267,18 @@ Public Class SynchronisationElmt
                         bReturn = False
                     End Try
                 End If
-            Case "GetReferentielTerritoire".ToUpper().Trim()
-                If (m_SynchroBoolean.m_bSynchDescReferentiel) Then
+            'Case "GetReferentielTerritoire".ToUpper().Trim()
+            '    If (m_SynchroBoolean.m_bSynchDescReferentiel) Then
 
-                    Try
-                        setStatus("Réception MAJ référentiel des territoires...")
-                        ReferentielTerritoireManager.getWSReferentielTerritoire()
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetReferentielTerritoire) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
+            '        Try
+            '            setStatus("Réception MAJ référentiel des territoires...")
+            '            ReferentielTerritoireManager.getWSReferentielTerritoire()
+            '            bReturn = True
+            '        Catch ex As Exception
+            '            CSDebug.dispFatal("Synchronisation::runDescSynchro(GetReferentielTerritoire) : " & ex.Message.ToString)
+            '            bReturn = False
+            '        End Try
+            '    End If
 
             Case "GetVersionLogicielAgent".ToUpper().Trim()
                 'If CSEnvironnement.checkVersion = False Then

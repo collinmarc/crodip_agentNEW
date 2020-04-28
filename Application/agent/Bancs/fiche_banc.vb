@@ -343,7 +343,7 @@ Public Class fiche_banc
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
-        MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_BANC, ficheBanc_marque)
+        'MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_BANC, ficheBanc_marque)
         'Chargement des modules d'acquisisition
         Dim olstModules As New List(Of CRODIPAcquisition.ModuleAcq)
 

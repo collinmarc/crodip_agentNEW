@@ -1,7 +1,9 @@
 ﻿Imports System.IO
 Public Enum SignMode As Integer
-    CLIENT
-    AGENT
+    RICLIENT
+    RIAGENT
+    CCCLIENT
+    CCAGENT
 End Enum
 Public Class frmSignClient
     Dim _previous As Point = Nothing
@@ -70,48 +72,53 @@ Public Class frmSignClient
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        If My.Settings.NumEcranSignature > Screen.AllScreens.Length Then
-            Me.Location = Screen.PrimaryScreen.WorkingArea.Location
-        Else
-            Me.Location = System.Windows.Forms.Screen.AllScreens(My.Settings.NumEcranSignature - 1).WorkingArea.Location
-        End If
+        ''On prend le servier écran comme ecran de signature
+        Me.Location = System.Windows.Forms.Screen.AllScreens(Screen.AllScreens.Length - 1).WorkingArea.Location
 
         Dim img As Image
         Dim ms As MemoryStream
-        If m_Mode = SignMode.AGENT Then
-            Me.Text = "Signature AGENT"
-            If m_odiag.SignAgent IsNot Nothing Then
-                Try
-                    '' On ajoute le logo
-                    ''Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo_tn")
-                    'Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-                    'Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo")
-                    'If Not File.Exists(logoFilename) Then
-                    '    logoFilename = Globals.CONST_PATH_IMG & Globals.CR_LOGO_DEFAULT_TN_NAME
-                    'End If
-                    ''m_ods.Facture(0).LogoFileName = logoFilename
-                    'Dim newImage As Image = Image.FromFile(logoFilename)
-                    'ms = New MemoryStream
-                    'newImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
-
-                    ms = New MemoryStream(m_odiag.SignAgent)
-                    img = Image.FromStream(ms)
-                    img.Save("img/signAgentLoad.bmp", Imaging.ImageFormat.Bmp)
-                Catch ex As Exception
-                    '' img = New bitMap(pctSignature.Width, pctSignature.Height)
-                End Try
-            End If
-        Else
-                Me.Text = "Signature CLIENT"
-            If m_odiag.SignClient IsNot Nothing Then
-                Try
-                    ms = New MemoryStream(m_odiag.SignClient)
-                    img = Image.FromStream(ms)
-                Catch ex As Exception
-                    img = New Bitmap(pctSignature.Width, pctSignature.Height)
-                End Try
-            End If
-        End If
+        Select Case m_Mode
+            Case SignMode.RIAGENT
+                Me.Text = "Signature Rapport AGENT"
+                If m_odiag.SignRIAgent IsNot Nothing Then
+                    Try
+                        ms = New MemoryStream(m_odiag.SignRIAgent)
+                        img = Image.FromStream(ms)
+                    Catch ex As Exception
+                        img = New Bitmap(pctSignature.Width, pctSignature.Height)
+                    End Try
+                End If
+            Case SignMode.RICLIENT
+                Me.Text = "Signature Rapport CLIENT"
+                If m_odiag.SignRIClient IsNot Nothing Then
+                    Try
+                        ms = New MemoryStream(m_odiag.SignRIClient)
+                        img = Image.FromStream(ms)
+                    Catch ex As Exception
+                        img = New Bitmap(pctSignature.Width, pctSignature.Height)
+                    End Try
+                End If
+            Case SignMode.CCAGENT
+                Me.Text = "Signature Contrat AGENT"
+                If m_odiag.SignRIAgent IsNot Nothing Then
+                    Try
+                        ms = New MemoryStream(m_odiag.SignCCAgent)
+                        img = Image.FromStream(ms)
+                    Catch ex As Exception
+                        img = New Bitmap(pctSignature.Width, pctSignature.Height)
+                    End Try
+                End If
+            Case SignMode.CCCLIENT
+                Me.Text = "Signature Contrat CLIENT"
+                If m_odiag.SignRIClient IsNot Nothing Then
+                    Try
+                        ms = New MemoryStream(m_odiag.SignCCClient)
+                        img = Image.FromStream(ms)
+                    Catch ex As Exception
+                        img = New Bitmap(pctSignature.Width, pctSignature.Height)
+                    End Try
+                End If
+        End Select
         'Using g As Graphics = Graphics.FromImage(img)
         '    g.Clear(Color.White)
         'End Using
@@ -123,25 +130,28 @@ Public Class frmSignClient
         Dim ms2 As New MemoryStream
         Dim img2 As Image = Nothing
 
-        'Redimensionnement de l'image 
-        If m_Mode = SignMode.CLIENT Then
-            '         img2 = New Bitmap(pctSignature.Image, New Size(151, 37))
-            pctSignature.Image.Save(ms2, Imaging.ImageFormat.Bmp)
-            m_odiag.SignClient = ms2.ToArray()
-            m_odiag.bSignClient = True
-            m_odiag.dateSignClient = dtpDateSignature.Value
-        Else
-            '        img2 = New Bitmap(pctSignature.Image, New Size(151, 37))
-            pctSignature.Image.Save(ms2, Imaging.ImageFormat.Bmp)
-            m_odiag.SignAgent = ms2.ToArray()
-            m_odiag.bSignAgent = True
-            m_odiag.dateSignAgent = dtpDateSignature.Value
-        End If
+        pctSignature.Image.Save(ms2, Imaging.ImageFormat.Bmp)
+        Select Case m_Mode
+            Case SignMode.RICLIENT
+                m_odiag.SignRIClient = ms2.ToArray()
+                m_odiag.bSignRIClient = True
+                m_odiag.dateSignRIClient = dtpDateSignature.Value
+            Case SignMode.RIAGENT
+                m_odiag.SignRIAgent = ms2.ToArray()
+                m_odiag.bSignRIAgent = True
+                m_odiag.dateSignRIAgent = dtpDateSignature.Value
+            Case SignMode.CCCLIENT
+                m_odiag.SignCCClient = ms2.ToArray()
+                m_odiag.bSignCCClient = True
+                m_odiag.DateSignCCClient = dtpDateSignature.Value
+            Case SignMode.CCAGENT
+                m_odiag.SignCCAgent = ms2.ToArray()
+                m_odiag.bSignCCAgent = True
+                m_odiag.DateSignCCAgent = dtpDateSignature.Value
+        End Select
         If (img2 IsNot Nothing) Then
             img2.Dispose()
-
         End If
-
         Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub
@@ -154,8 +164,26 @@ Public Class frmSignClient
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        m_odiag.SignClient = Nothing
-        Me.DialogResult = DialogResult.OK
+        m_odiag.SignRIClient = Nothing
+        Select Case m_Mode
+            Case SignMode.RICLIENT
+                m_odiag.SignRIClient = Nothing
+                m_odiag.bSignRIClient = False
+                m_odiag.dateSignRIClient = ""
+            Case SignMode.RIAGENT
+                m_odiag.SignRIAgent = Nothing
+                m_odiag.bSignRIAgent = False
+                m_odiag.dateSignRIAgent = ""
+            Case SignMode.CCCLIENT
+                m_odiag.SignCCClient = Nothing
+                m_odiag.bSignCCClient = False
+                m_odiag.DateSignCCClient = ""
+            Case SignMode.CCAGENT
+                m_odiag.SignCCAgent = Nothing
+                m_odiag.bSignCCAgent = False
+                m_odiag.DateSignCCAgent = ""
+        End Select
+        Me.DialogResult = DialogResult.Cancel
         Me.Close()
     End Sub
 End Class

@@ -1001,11 +1001,7 @@ Public Class test
 
 #Region " Referentiel "
 
-    Private Sub btnReferentiel_territoire_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReferentiel_territoire.Click
-        ReferentielTerritoireManager.getWSReferentielTerritoire()
-    End Sub
 
- 
     Private Sub btnReferentiel_pulverisateur_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReferentiel_pulverisateur.Click
         ReferentielPulverisateurManager.getWSReferentielPulverisateur()
     End Sub

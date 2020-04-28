@@ -3178,58 +3178,112 @@ Public Class Diagnostic
 
     End Sub
 
-    Private _Signclient As Byte()
-    Public Property SignClient() As Byte()
+    Private _SignRIclient As Byte()
+    Public Property SignRIClient() As Byte()
         Get
-            Return _Signclient
+            Return _SignRIclient
         End Get
         Set(ByVal value As Byte())
-            _Signclient = value
+            _SignRIclient = value
         End Set
     End Property
-    Private _DateSignClient As String
-    Public Property dateSignClient() As String
+    Private _DateSignRIClient As String
+    Public Property dateSignRIClient() As String
         Get
-            Return _DateSignClient
+            Return _DateSignRIClient
         End Get
         Set(ByVal value As String)
-            _DateSignClient = value
+            _DateSignRIClient = value
         End Set
     End Property
-    Private _bSignClient As Boolean
-    Public Property bSignClient() As Boolean
+    Private _bSignRIClient As Boolean
+    Public Property bSignRIClient() As Boolean
         Get
-            Return _bSignClient
+            Return _bSignRIClient
         End Get
         Set(ByVal value As Boolean)
-            _bSignClient = value
+            _bSignRIClient = value
         End Set
     End Property
-    Private _SignAgent As Byte()
-    Public Property SignAgent() As Byte()
+    Private _SignRIAgent As Byte()
+    Public Property SignRIAgent() As Byte()
         Get
-            Return _SignAgent
+            Return _SignRIAgent
         End Get
         Set(ByVal value As Byte())
-            _SignAgent = value
+            _SignRIAgent = value
         End Set
     End Property
-    Private _DateSignAgent As String
-    Public Property dateSignAgent() As String
+    Private _DateSignRIAgent As String
+    Public Property dateSignRIAgent() As String
         Get
-            Return _DateSignAgent
+            Return _DateSignRIAgent
         End Get
         Set(ByVal value As String)
-            _DateSignAgent = value
+            _DateSignRIAgent = value
         End Set
     End Property
-    Private _bSignAgent As Boolean
-    Public Property bSignAgent() As Boolean
+    Private _bSignRIAgent As Boolean
+    Public Property bSignRIAgent() As Boolean
         Get
-            Return _bSignClient
+            Return _bSignRIClient
         End Get
         Set(ByVal value As Boolean)
-            _bSignClient = value
+            _bSignRIClient = value
+        End Set
+    End Property
+    Private _SignCCAgent As Byte()
+    Public Property SignCCAgent() As Byte()
+        Get
+            Return _SignCCAgent
+        End Get
+        Set(ByVal value As Byte())
+            _SignCCAgent = value
+        End Set
+    End Property
+    Private _bSignCCAgent As Boolean
+    Public Property bSignCCAgent() As Boolean
+        Get
+            Return _bSignCCAgent
+        End Get
+        Set(ByVal value As Boolean)
+            _bSignCCAgent = value
+        End Set
+    End Property
+    Private _DateSignCCAgent As String
+    Public Property DateSignCCAgent() As String
+        Get
+            Return _DateSignCCAgent
+        End Get
+        Set(ByVal value As String)
+            _DateSignCCAgent = value
+        End Set
+    End Property
+    Private _SignCCClient As Byte()
+    Public Property SignCCClient() As Byte()
+        Get
+            Return _SignCCClient
+        End Get
+        Set(ByVal value As Byte())
+            _SignCCClient = value
+        End Set
+    End Property
+    Private _bSignCCClient As Boolean
+    Public Property bSignCCClient() As Boolean
+        Get
+            Return _bSignCCClient
+        End Get
+        Set(ByVal value As Boolean)
+            _bSignCCClient = value
+        End Set
+    End Property
+    Private _DateSignCCClient As String
+    Public Property DateSignCCClient() As String
+        Get
+            Return _DateSignCCClient
+        End Get
+        Set(ByVal value As String)
+            _DateSignCCClient = value
         End Set
     End Property
 End Class

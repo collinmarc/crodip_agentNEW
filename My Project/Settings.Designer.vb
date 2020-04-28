@@ -514,15 +514,6 @@ Partial Friend NotInheritable Class MySettings
             Return CType(Me("NumBuild"),String)
         End Get
     End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("3")>  _
-    Public ReadOnly Property NumEcranSignature() As Integer
-        Get
-            Return CType(Me("NumEcranSignature"),Integer)
-        End Get
-    End Property
 End Class
 
 Namespace My

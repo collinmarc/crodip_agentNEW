@@ -70,51 +70,10 @@ Public Class Globals
 
 #Region " Marques / Modèles "
 
-    ' Bancs
-    Public Shared GLOB_XML_MARQUES_BANC As CSXml
-    ' Buses
-    Private Shared _GLOB_XML_MARQUES_BUSES As CSXml
-    Public Shared Property GLOB_XML_MARQUES_BUSES() As CSXml
-        Get
-            Return _GLOB_XML_MARQUES_BUSES
-        End Get
-        Set(ByVal value As CSXml)
-            _GLOB_XML_MARQUES_BUSES = value
-        End Set
-    End Property
-    Public Shared GLOB_XML_MODELES_BUSES As CSXml
-    Public Shared GLOB_XML_GENRES_BUSES As CSXml
-    Public Shared GLOB_XML_COULEURS_BUSES As CSXml
-    Public Shared GLOB_XML_TYPES_BUSES As CSXml
-    Public Shared GLOB_XML_ANGLES_BUSES As CSXml
-    Public Shared GLOB_XML_REFER_BUSES As CSXml
-    Public Shared GLOB_XML_FONCTIONNEMENTBUSES_BUSES As CSXml
-    Public Shared GLOB_ARR_MARQUES_BUSES() As String
-    Public Shared GLOB_ARR_MODELES_BUSES() As String
-    Public Shared GLOB_ARR_TYPES_BUSES() As String
 
     ' Manometres
     Public Shared GLOB_XML_MARQUES_MANO As CSXml
-    Public Shared GLOB_XML_MODELES_MANO As CSXml
-    Public Shared GLOB_XML_CLASSES_MANO As CSXml
     Public Shared GLOB_XML_FONDECHELLE_MANO As CSXml
-    Public Shared GLOB_ARR_MARQUES_MANO() As String
-    Public Shared GLOB_ARR_MODELES_MANO() As String
-
-    ' Manometres de contrôle
-    Public Shared GLOB_XML_MARQUES_MANOCONT As CSXml
-    Public Shared GLOB_XML_MODELES_MANOCONT As CSXml
-    Public Shared GLOB_XML_CLASSES_MANOCONT As CSXml
-    Public Shared GLOB_XML_FONDECHELLE_MANOCONT As CSXml
-    Public Shared GLOB_ARR_MARQUES_MANOCONT() As String
-    Public Shared GLOB_ARR_MODELES_MANOCONT() As String
-    ' Manometres étalon
-    Public Shared GLOB_XML_MARQUES_MANOETA As CSXml
-    Public Shared GLOB_XML_MODELES_MANOETA As CSXml
-    Public Shared GLOB_XML_CLASSES_MANOETA As CSXml
-    Public Shared GLOB_XML_FONDECHELLE_MANOETA As CSXml
-    Public Shared GLOB_ARR_MARQUES_MANOETA() As String
-    Public Shared GLOB_ARR_MODELES_MANOETA() As String
 
     ' Pulvérisateurs
     Public Shared GLOB_XML_MARQUES_MODELES_PULVE As CSXml
@@ -125,15 +84,11 @@ Public Class Globals
     Public Shared GLOB_XML_EMPLACEMENTIDENTIFICATION As CSXml
     Public Shared GLOB_XML_MODEUTILISATION As CSXml
 
-    Public Shared GLOB_ARR_MARQUES_PULVE() As String
-    Public Shared GLOB_ARR_MODELES_PULVE() As String
-    Public Shared GLOB_ARR_TYPES_PULVE() As String
-    Public Shared GLOB_ARR_CLASSES_PULVE() As String
     Public Shared GLOB_STR_REFERENTIELBUSES_FILENAME As String = My.Settings.RepertoireParametres & "\referentiel_buse.csv"
     Public Shared GLOB_STR_COMMUNES_FILENAME As String = My.Settings.RepertoireParametres & "\base_officielle_codes_postaux.csv"
     Public Shared GLOB_STR_FACTURATIONCONFIG_FILENAME As String = "./config/facturation.xml"
     ' Territoires
-    Public Shared GLOB_XML_TERRITOIRES As CSXml
+    'Public Shared GLOB_XML_TERRITOIRES As CSXml
     Public Shared GLOB_XML_CODESAPE As CSXml
 
 #End Region
@@ -360,23 +315,10 @@ Public Class Globals
         CSDebug.dispInfo("Globals.Init App My.Settings.NumVersion:" & My.Settings.NumVersion)
         CSDebug.dispInfo("Globals.Init App My.Settings.NumVersion:" & My.Settings.NumBuild)
         CSDebug.dispInfo("Globals.Init App NETWORK:" & GLOB_NETWORKAVAILABLE)
-        ' Bancs
-        'Globals.GLOB_XML_MARQUES_BANC = New CSXml("." & "\config\bancs\marques.xml")
-        ' Buses
-        'Globals.GLOB_XML_MARQUES_BUSES = New CSXml("." & "\config\buses\marques.xml")
-        'Globals.GLOB_XML_MODELES_BUSES = New CSXml("." & "\config\buses\modeles.xml")
-        'Globals.GLOB_XML_GENRES_BUSES = New CSXml("." & "\config\buses\genres.xml")
-        'Globals.GLOB_XML_COULEURS_BUSES = New CSXml("." & "\config\buses\couleurs.xml")
-        'Globals.GLOB_XML_TYPES_BUSES = New CSXml("." & "\config\buses\types.xml")
-        'Globals.GLOB_XML_ANGLES_BUSES = New CSXml("." & "\config\buses\angles.xml")
-        'Globals.GLOB_XML_REFER_BUSES = New CSXml("." & "\config\buses\buses.xml")
-        'Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES = New CSXml("." & "\config\buses\fonctionnement.xml")
 
         ' Manometres
-        'Globals.GLOB_XML_MARQUES_MANO = New CSXml("." & "\config\manometres\marques.xml")
-        'Globals.GLOB_XML_MODELES_MANO = New CSXml("." & "\config\manometres\modeles.xml")
-        'Globals.GLOB_XML_CLASSES_MANO = New CSXml("." & "\config\manometres\classes.xml")
-        'Globals.GLOB_XML_FONDECHELLE_MANO = New CSXml("." & "\config\manometres\fondEchelle.xml")
+        Globals.GLOB_XML_MARQUES_MANO = New CSXml("." & "\config\marques.xml")
+        Globals.GLOB_XML_FONDECHELLE_MANO = New CSXml("." & "\config\fondEchelle.xml")
 
         ' Manometres de contrôle
         'Globals.GLOB_XML_MARQUES_MANOCONT = New CSXml("." & "\config\manometres-controle\marques.xml")

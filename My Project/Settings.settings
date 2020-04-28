@@ -146,8 +146,5 @@
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
       <Value Profile="(Default)">20200421120000</Value>
     </Setting>
-    <Setting Name="NumEcranSignature" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">3</Value>
-    </Setting>
   </Settings>
 </SettingsFile>
