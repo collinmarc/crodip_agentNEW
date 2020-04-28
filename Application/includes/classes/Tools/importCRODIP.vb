@@ -236,7 +236,7 @@ Public Class importCRODIP
                     csv.Configuration.MissingFieldFound = Nothing
                     csv.Configuration.PrepareHeaderForMatch = Function(h As String, n As Integer) h.ToLower()
                     Dim lst As IEnumerable(Of importCRODIP)
-                    lst = csv.GetRecords(Of importCRODIP).ToList()
+                    lst = csv.GetRecords(Of importCRODIP).Where(Function(i) i.raisonSociale <> "").ToList()
 
                     Dim oExploitation As Exploitation = Nothing
                     Dim oPulve As Pulverisateur = Nothing
@@ -331,6 +331,7 @@ Public Class importCRODIP
             nNum = 0
             nMax = olstExploit.Count
             For Each oExploit As Exploitation In olstExploit
+                nNum = nNum + 1
                 If (pBgwrk IsNot Nothing) Then
                     pBgwrk.ReportProgress((nNum / nMax) * 100)
                     If pBgwrk.CancellationPending = True Then

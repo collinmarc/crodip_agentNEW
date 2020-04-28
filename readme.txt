@@ -4,6 +4,7 @@ MASTER
 BUILD : 202005XXXXXXXX
 ----------------------
 0001211: Fiche Pulve : La Liste des marques de Manomètres est vide
+0001212: Import CRODIP : Non traitement des Lignes Vides
 
 BUILD : 20200424120000
 ----------------------
