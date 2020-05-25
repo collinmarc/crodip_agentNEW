@@ -1,6 +1,11 @@
 TRUNK
 MASTER
 
+BUILD : 20200525
+----------------------
+	0001228: Import CSV : import de la date de prochain controle et Nombre de Rangs
+	0001218: [synchro] Message d'erreur
+	
 BUILD : 202005XXXXXXXX
 ----------------------
 0001211: Fiche Pulve : La Liste des marques de Manomètres est vide

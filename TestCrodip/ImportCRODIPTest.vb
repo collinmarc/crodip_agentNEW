@@ -204,124 +204,124 @@ Public Class ImportCRODIPTest
     '''Test pour D'init de l'objet + properties
     '''</summary>
     <TestMethod()>
-        Public Sub TST_Object()
+    Public Sub TST_Object()
 
-            Dim obj As importCRODIP
-            Dim olstin = New List(Of importCRODIP)
+        Dim obj As importCRODIP
+        Dim olstin = New List(Of importCRODIP)
 
-            obj = New importCRODIP()
-            obj.nomExploitant = "TEST1"
-            obj.numeroSiren = "1235467"
-            obj.numeroNational = "E001001"
-            olstin.Add(obj)
-            obj = New importCRODIP()
-            obj.nomExploitant = "TEST2"
-            obj.numeroSiren = "789456123"
-            obj.numeroNational = "E001002"
-            olstin.Add(obj)
+        obj = New importCRODIP()
+        obj.nomExploitant = "TEST1"
+        obj.numeroSiren = "1235467"
+        obj.numeroNational = "E001001"
+        olstin.Add(obj)
+        obj = New importCRODIP()
+        obj.nomExploitant = "TEST2"
+        obj.numeroSiren = "789456123"
+        obj.numeroNational = "E001002"
+        olstin.Add(obj)
 
-            Dim sw As New StreamWriter("./TEST.CSV")
-            Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
-                csv.WriteRecords(olstin)
-
-
-            End Using
-            Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-            Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
-
-            Dim oResult As importCRODIP.ImportCrodipResult
-            oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
-
-            Assert.AreEqual(2, oResult.nClientimport)
-            Assert.AreEqual(2, oResult.nPulveimport)
-            Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-            Assert.AreEqual(nExploitapres, nExploitAvant + 2)
-
-            Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
-            Assert.AreEqual(nPulveApres, nPulveAvant + 2)
-
-        End Sub
-
-        <TestMethod()>
-        Public Sub TST_ImportPulveSansNumNat()
-
-            Dim obj As importCRODIP
-            Dim olstin = New List(Of importCRODIP)
-
-            obj = New importCRODIP()
-            obj.nomExploitant = "TEST1"
-            obj.numeroSiren = "1235467"
-            obj.numeroNational = "E001001"
-            olstin.Add(obj)
-            obj = New importCRODIP()
-            obj.nomExploitant = "TEST2"
-            obj.numeroSiren = "789456123"
-            'obj.numeroNational = "E001002" 'Pas de numéro national pour le second Pulvé
-            olstin.Add(obj)
-
-            Dim sw As New StreamWriter("./TEST.CSV")
-            Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
-                csv.WriteRecords(olstin)
+        Dim sw As New StreamWriter("./TEST.CSV")
+        Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
+            csv.WriteRecords(olstin)
 
 
-            End Using
-            Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-            Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+        End Using
+        Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
 
-            Dim oResult As importCRODIP.ImportCrodipResult
-            oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
+        Dim oResult As importCRODIP.ImportCrodipResult
+        oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
 
-            Assert.AreEqual(2, oResult.nClientimport)
-            Assert.AreEqual(1, oResult.nPulveimport)
-            Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-            Assert.AreEqual(nExploitapres, nExploitAvant + 2)
+        Assert.AreEqual(2, oResult.nClientimport)
+        Assert.AreEqual(2, oResult.nPulveimport)
+        Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Assert.AreEqual(nExploitapres, nExploitAvant + 2)
 
-            Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
-            Assert.AreEqual(nPulveApres, nPulveAvant + 1)
+        Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+        Assert.AreEqual(nPulveApres, nPulveAvant + 2)
 
-        End Sub
+    End Sub
 
-        <TestMethod()>
-        Public Sub TST_Import2Pulve1Client()
+    <TestMethod()>
+    Public Sub TST_ImportPulveSansNumNat()
 
-            Dim obj As importCRODIP
-            Dim olstin = New List(Of importCRODIP)
+        Dim obj As importCRODIP
+        Dim olstin = New List(Of importCRODIP)
 
-            obj = New importCRODIP()
-            obj.nomExploitant = "TEST1"
-            obj.numeroSiren = "1235467"
-            obj.numeroNational = "E001001"
-            olstin.Add(obj)
-            obj = New importCRODIP()
-            obj.nomExploitant = "TEST1"
-            obj.numeroSiren = "1235467"
-            obj.numeroNational = "E001002"
-            olstin.Add(obj)
+        obj = New importCRODIP()
+        obj.nomExploitant = "TEST1"
+        obj.numeroSiren = "1235467"
+        obj.numeroNational = "E001001"
+        olstin.Add(obj)
+        obj = New importCRODIP()
+        obj.nomExploitant = "TEST2"
+        obj.numeroSiren = "789456123"
+        'obj.numeroNational = "E001002" 'Pas de numéro national pour le second Pulvé
+        olstin.Add(obj)
 
-            Dim sw As New StreamWriter("./TEST.CSV")
-            Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
-                csv.WriteRecords(olstin)
+        Dim sw As New StreamWriter("./TEST.CSV")
+        Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
+            csv.WriteRecords(olstin)
 
 
-            End Using
-            Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-            Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+        End Using
+        Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
 
-            Dim oResult As importCRODIP.ImportCrodipResult
-            oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
+        Dim oResult As importCRODIP.ImportCrodipResult
+        oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
 
-            Assert.AreEqual(1, oResult.nClientimport)
-            Assert.AreEqual(2, oResult.nPulveimport)
-            Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
-            Assert.AreEqual(nExploitapres, nExploitAvant + 1)
+        Assert.AreEqual(2, oResult.nClientimport)
+        Assert.AreEqual(1, oResult.nPulveimport)
+        Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Assert.AreEqual(nExploitapres, nExploitAvant + 2)
 
-            Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
-            Assert.AreEqual(nPulveApres, nPulveAvant + 2)
+        Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+        Assert.AreEqual(nPulveApres, nPulveAvant + 1)
 
-        End Sub
+    End Sub
 
-        <TestMethod()>
-        Public Sub TST_OrdreCols()
+    <TestMethod()>
+    Public Sub TST_Import2Pulve1Client()
+
+        Dim obj As importCRODIP
+        Dim olstin = New List(Of importCRODIP)
+
+        obj = New importCRODIP()
+        obj.nomExploitant = "TEST1"
+        obj.numeroSiren = "1235467"
+        obj.numeroNational = "E001001"
+        olstin.Add(obj)
+        obj = New importCRODIP()
+        obj.nomExploitant = "TEST1"
+        obj.numeroSiren = "1235467"
+        obj.numeroNational = "E001002"
+        olstin.Add(obj)
+
+        Dim sw As New StreamWriter("./TEST.CSV")
+        Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
+            csv.WriteRecords(olstin)
+
+
+        End Using
+        Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+
+        Dim oResult As importCRODIP.ImportCrodipResult
+        oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
+
+        Assert.AreEqual(1, oResult.nClientimport)
+        Assert.AreEqual(2, oResult.nPulveimport)
+        Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Assert.AreEqual(nExploitapres, nExploitAvant + 1)
+
+        Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+        Assert.AreEqual(nPulveApres, nPulveAvant + 2)
+
+    End Sub
+
+    <TestMethod()>
+    Public Sub TST_OrdreCols()
 
         Dim obj As importCRODIPcolsinversée
         Dim olstin = New List(Of importCRODIPcolsinversée)
@@ -339,14 +339,14 @@ Public Class ImportCRODIPTest
         obj.codeApe = "POIUY"
         obj.numeroSiren = "789456123"
         obj.numeroNational = "E001002"
-            olstin.Add(obj)
+        olstin.Add(obj)
 
         Dim sw As New StreamWriter("./TESTcolInvers.CSV")
         Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
-                csv.WriteRecords(olstin)
+            csv.WriteRecords(olstin)
 
 
-            End Using
+        End Using
 
         Dim oResult As importCRODIP.ImportCrodipResult
         oResult = importCRODIP.import("./TESTcolInvers.CSV", m_oAgent)
@@ -368,6 +368,7 @@ Public Class ImportCRODIPTest
         Dim olstin = New List(Of importCRODIP)
 
         obj = New importCRODIP()
+        obj.raisonSociale = "TEST1"
         obj.nomExploitant = "TEST1"
         obj.numeroSiren = "1235467"
         obj.numeroNational = "E001001"
@@ -380,9 +381,10 @@ Public Class ImportCRODIPTest
         obj.numChassis = "11111"
         obj.controleEtat = "0"
         obj.dateControle = "01/01/2020"
-        obj.dateProchainControle = "01/01/2025"
+        'obj.dateProchainControle = "01/01/2025"
         olstin.Add(obj)
         obj = New importCRODIP()
+        obj.raisonSociale = "TEST2"
         obj.nomExploitant = "TEST2"
         obj.numeroSiren = "789456123"
         obj.numeroNational = "E001002"
@@ -395,7 +397,7 @@ Public Class ImportCRODIPTest
         obj.numchassis = "22222"
         obj.controleEtat = "1"
         obj.dateControle = "01/01/2021"
-        obj.dateProchainControle = "01/01/2026"
+        'obj.dateProchainControle = "01/01/2026"
         olstin.Add(obj)
 
         Dim sw As New StreamWriter("./TEST.CSV")
@@ -447,7 +449,7 @@ Public Class ImportCRODIPTest
         oPulve = PulverisateurManager.getPulverisateurById(nId)
         Assert.AreEqual("E001001", oPulve.numeroNational)
         Assert.AreEqual("11111", oPulve.numChassis)
-        Assert.AreEqual("2025-01-01 00:00:00", oPulve.dateProchainControle)
+        Assert.AreEqual(Now.ToShortDateString, oPulve.dateProchainControleAsDate.Value.ToShortDateString())
 
         nId = lstImport(1).lstDiagImport(0).id
         odiag = DiagnosticManager.getDiagnosticById(nId)
@@ -473,6 +475,178 @@ Public Class ImportCRODIPTest
         Assert.AreEqual("22222", oPulve.numChassis)
         Assert.AreEqual("2026-01-01 00:00:00", oPulve.dateProchainControle)
 
+
+    End Sub
+
+
+    <TestMethod()>
+    Public Sub TST_ImportDiagCalcDateProchaincontrole()
+
+        Dim obj As importCRODIP
+        Dim olstin = New List(Of importCRODIP)
+
+        obj = New importCRODIP()
+        obj.raisonSociale = "TEST1"
+        obj.nomExploitant = "TEST1"
+        obj.numeroSiren = "1235467"
+        obj.numeroNational = "E001001"
+        obj.OrigineDiag = "GIP"
+        obj.isATGIP = "VRAI"
+        obj.isFacture = "VRAI"
+        obj.controleIsComplet = "FAUX"
+        obj.typeDiagnostic = "EQUIPEMENT"
+        obj.telephoneFixe = "0201020304"
+        obj.numChassis = "11111"
+        obj.controleEtat = "0" ' PULVE EN ATTENTE DE CV
+        obj.dateControle = "01/01/2020" ' => Date prochain controle = Ajourjourdhui 
+        olstin.Add(obj)
+        obj = New importCRODIP()
+        obj.raisonSociale = "TEST2"
+        obj.nomExploitant = "TEST2"
+        obj.numeroSiren = "789456123"
+        obj.numeroNational = "E001002"
+        obj.OrigineDiag = "TST"
+        obj.isATGIP = "FAUX"
+        obj.isFacture = "FAUX"
+        obj.controleIsComplet = "VRAI"
+        obj.typeDiagnostic = "TEST"
+        obj.telephoneFixe = "0301020304"
+        obj.numChassis = "22222"
+        obj.controleEtat = "1"   ' CONTROLE OK
+        obj.dateControle = "01/01/2020" '=> Date de Prochain controle = 01/01/2025
+        olstin.Add(obj)
+
+        Dim sw As New StreamWriter("./TEST.CSV")
+        Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
+            csv.WriteRecords(olstin)
+        End Using
+        Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+        Dim nDiagAvant As Integer = DiagnosticManager.getCount(m_oAgent)
+
+        Dim oResult As importCRODIP.ImportCrodipResult
+        oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
+
+        Assert.AreEqual(2, oResult.nClientimport)
+        Assert.AreEqual(2, oResult.nPulveimport)
+        Assert.AreEqual(2, oResult.nDiagimport)
+        Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Assert.AreEqual(nExploitAvant + 2, nExploitapres)
+
+        Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+        Assert.AreEqual(nPulveAvant + 2, nPulveApres)
+
+        Dim nDiagAPres As Integer = DiagnosticManager.getCount(m_oAgent)
+        Assert.AreEqual(nDiagAvant + 2, nDiagAPres)
+        Dim lstImport As List(Of Exploitation) = oResult.lstExploitationimport
+        Dim nId As String
+        Dim odiag As Diagnostic
+        Dim oPulve As Pulverisateur
+
+        nId = lstImport(0).lstDiagImport(0).id
+        odiag = DiagnosticManager.getDiagnosticById(nId)
+        Assert.AreEqual("TEST1", odiag.proprietaireNom)
+        Assert.AreNotEqual("", odiag.proprietaireId)
+        Assert.AreNotEqual("", odiag.pulverisateurId)
+        Assert.AreEqual("E001001", odiag.pulverisateurNumNational)
+        Assert.AreEqual(True, odiag.isATGIP)
+        Assert.AreEqual(True, odiag.isFacture)
+        Assert.AreEqual(False, odiag.controleIsComplet)
+        Assert.AreEqual("EQUIPEMENT", odiag.typeDiagnostic)
+        Assert.AreEqual("0201020304", odiag.proprietaireTelephoneFixe)
+        Assert.AreEqual("GIP", odiag.origineDiag)
+        Assert.AreEqual("0", odiag.controleEtat)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateDebut)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateDebutS)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateFin)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateFinS)
+
+        nId = lstImport(0).lstPulveImport(0).id
+        oPulve = PulverisateurManager.getPulverisateurById(nId)
+        Assert.AreEqual("E001001", oPulve.numeroNational)
+        Assert.AreEqual("11111", oPulve.numChassis)
+        Assert.AreEqual(Now.ToShortDateString(), oPulve.dateProchainControleAsDate.Value.ToShortDateString())
+
+        nId = lstImport(1).lstDiagImport(0).id
+        odiag = DiagnosticManager.getDiagnosticById(nId)
+        Assert.AreNotEqual("", odiag.proprietaireId)
+        Assert.AreNotEqual("", odiag.pulverisateurId)
+        Assert.AreEqual("TEST2", odiag.proprietaireNom)
+        Assert.AreEqual("E001002", odiag.pulverisateurNumNational)
+        Assert.AreEqual(False, odiag.isATGIP)
+        Assert.AreEqual(False, odiag.isFacture)
+        Assert.AreEqual(True, odiag.controleIsComplet)
+        Assert.AreEqual("TEST", odiag.typeDiagnostic)
+        Assert.AreEqual("0301020304", odiag.proprietaireTelephoneFixe)
+        Assert.AreEqual("TST", odiag.origineDiag)
+        Assert.AreEqual("1", odiag.controleEtat)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateDebut)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateDebutS)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateFin)
+        Assert.AreEqual("2020-01-01 00:00:00", odiag.controleDateFinS)
+
+        nId = lstImport(1).lstPulveImport(0).id
+        oPulve = PulverisateurManager.getPulverisateurById(nId)
+        Assert.AreEqual("E001002", oPulve.numeroNational)
+        Assert.AreEqual("22222", oPulve.numChassis)
+        Assert.AreEqual("2025-01-01 00:00:00", oPulve.dateProchainControle)
+
+
+    End Sub
+    <TestMethod()>
+    Public Sub TST_ImportPulveNbreRang()
+
+        Dim obj As importCRODIP
+        Dim olstin = New List(Of importCRODIP)
+
+        obj = New importCRODIP()
+        obj.nomExploitant = "TEST1"
+        obj.numeroSiren = "1235467"
+        obj.numeroNational = "E001001"
+        obj.type = "Vigne"
+        obj.categorie = "Voute"
+        obj.nombrerangs = "3"
+        olstin.Add(obj)
+        obj = New importCRODIP()
+        obj.nomExploitant = "TEST2"
+        obj.numeroSiren = "789456123"
+        obj.numeroNational = "E001002"
+        obj.type = "Arbres"
+        obj.categorie = "Jet dirigé"
+        obj.nombrerangs = "4"
+        olstin.Add(obj)
+
+        Dim sw As New StreamWriter("./TEST.CSV", False, System.Text.Encoding.UTF8)
+        Using csv As New CsvWriter(sw, Globalization.CultureInfo.CurrentCulture)
+            csv.WriteRecords(olstin)
+        End Using
+        Dim nExploitAvant = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Dim nPulveAvant = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+
+        Dim oResult As importCRODIP.ImportCrodipResult
+        oResult = importCRODIP.import("./TEST.CSV", m_oAgent)
+
+        Assert.AreEqual(2, oResult.nClientimport)
+        Assert.AreEqual(2, oResult.nPulveimport)
+        Dim nExploitapres = ExploitationManager.getListeExploitation(m_oAgent, Now).Count
+        Assert.AreEqual(nExploitapres, nExploitAvant + 2)
+
+        Dim nPulveApres = PulverisateurManager.getPulverisateurList(m_oAgent, "").Count
+        Assert.AreEqual(nPulveApres, nPulveAvant + 2)
+        Dim lstImport As List(Of Exploitation) = oResult.lstExploitationimport
+        Dim nId As String
+        Dim oPulve As Pulverisateur
+        nId = lstImport(0).lstPulveImport(0).id
+        oPulve = PulverisateurManager.getPulverisateurById(nId)
+        Assert.AreEqual("E001001", oPulve.numeroNational)
+        Assert.AreEqual("3", oPulve.nombreRangs)
+
+        nId = lstImport(1).lstPulveImport(0).id
+        oPulve = PulverisateurManager.getPulverisateurById(nId)
+        Assert.AreEqual("E001002", oPulve.numeroNational)
+        Assert.AreEqual("Arbres", oPulve.type)
+        Assert.AreEqual("Jet dirigé", oPulve.categorie)
+        Assert.AreEqual("4", oPulve.nombreRangs)
 
     End Sub
 End Class

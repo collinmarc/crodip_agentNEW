@@ -47,7 +47,7 @@ Public Class importCRODIP
     Public Property capacite As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
     Public Property largeur As String
-    <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
+    <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR, "nombreRangs")>
     Public Property nombrerangs As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
     Public Property largeurPlantation As String
@@ -102,6 +102,7 @@ Public Class importCRODIP
     Public Property controleEtat As String
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.PULVERISATEUR)>
     Public Property dateProchainControle As String
+
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.DIAGNOSTIC, "controleDateDebut")>
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.DIAGNOSTIC, "controleDateFin")>
     Public Property dateControle As String
@@ -236,7 +237,7 @@ Public Class importCRODIP
                     csv.Configuration.MissingFieldFound = Nothing
                     csv.Configuration.PrepareHeaderForMatch = Function(h As String, n As Integer) h.ToLower()
                     Dim lst As IEnumerable(Of importCRODIP)
-                    lst = csv.GetRecords(Of importCRODIP).Where(Function(i) i.raisonSociale <> "").ToList()
+                    lst = csv.GetRecords(Of importCRODIP).Where(Function(i) i.raisonSociale <> "" Or i.nomExploitant <> "").ToList()
 
                     Dim oExploitation As Exploitation = Nothing
                     Dim oPulve As Pulverisateur = Nothing
@@ -281,7 +282,7 @@ Public Class importCRODIP
                                                 strValueLargeurNbreRangs = strValue
                                                 bValueLargeurNbreRangs = True
                                             End If
-                                            If oProperty.Name = "nombrerangs" And strValue <> "0" Then
+                                            If oProperty.Name.ToUpper() = "NOMBRERANGS" And strValue <> "0" Then
                                                 strValueLargeurNbreRangs = strValue
                                                 bValueLargeurNbreRangs = True
                                             End If
@@ -309,7 +310,8 @@ Public Class importCRODIP
                                     SetProperty(oAtt, obj, oDiag, oProperty)
                             End Select
                         Next
-
+                        oDiag.CalculDateProchainControle()
+                        oPulve.dateProchainControle = oDiag.pulverisateurDateProchainControle
 
                         '1er Est-ce une nouvelle exploitation
                         Dim nExploita As Integer = olstExploit.Where(Function(o) o.nomExploitant = oExploitation.nomExploitant And o.numeroSiren = oExploitation.numeroSiren).Count()

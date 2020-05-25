@@ -12,11 +12,14 @@ Public Class frmSignClient
 
     Dim m_odiag As Diagnostic
     Dim m_Mode As SignMode
+    Dim m_Agent As Agent
 
-    Public Sub New(pDiag As Diagnostic, pSignMode As SignMode)
+    Public Sub New(pDiag As Diagnostic, pSignMode As SignMode, pAgent As Agent)
         Me.New()
+        Debug.Assert(pAgent IsNot Nothing)
         m_odiag = pDiag
         m_Mode = pSignMode
+        m_Agent = pAgent
     End Sub
 
     ''' <summary>
@@ -87,8 +90,12 @@ Public Class frmSignClient
                     Catch ex As Exception
                         img = New Bitmap(pctSignature.Width, pctSignature.Height)
                     End Try
+                Else
+                    If System.IO.File.Exists("config/" & m_Agent.nom & ".sign") Then
+                        img = Image.FromFile("config/" & m_Agent.nom & ".sign")
+                    End If
                 End If
-            Case SignMode.RICLIENT
+                    Case SignMode.RICLIENT
                 Me.Text = "Signature Rapport CLIENT"
                 If m_odiag.SignRIClient IsNot Nothing Then
                     Try
@@ -107,6 +114,10 @@ Public Class frmSignClient
                     Catch ex As Exception
                         img = New Bitmap(pctSignature.Width, pctSignature.Height)
                     End Try
+                Else
+                    If System.IO.File.Exists("config/" & m_Agent.nom & ".sign") Then
+                        img = Image.FromFile("config/" & m_Agent.nom & ".sign")
+                    End If
                 End If
             Case SignMode.CCCLIENT
                 Me.Text = "Signature Contrat CLIENT"
@@ -149,6 +160,14 @@ Public Class frmSignClient
                 m_odiag.bSignCCAgent = True
                 m_odiag.DateSignCCAgent = dtpDateSignature.Value
         End Select
+        If (m_Mode = SignMode.RIAGENT Or m_Mode = SignMode.CCAGENT) Then
+            If MessageBox.Show("Voulez-vous conserver votre signature?", "Signature Agent", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                If File.Exists("config/" & m_Agent.nom & ".sign") Then
+                    File.Delete("config/" & m_Agent.nom & ".sign")
+                End If
+                pctSignature.Image.Save("config/" & m_Agent.nom & ".sign")
+                End If
+            End If
         If (img2 IsNot Nothing) Then
             img2.Dispose()
         End If

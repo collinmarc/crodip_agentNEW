@@ -1165,11 +1165,11 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Public Sub Signatureclient()
-        Dim ofrm As New frmSignClient(m_diagnostic, SignMode.RICLIENT)
+        Dim ofrm As New frmSignClient(m_diagnostic, SignMode.RICLIENT, m_oAgent)
         ofrm.ShowDialog()
     End Sub
     Public Sub SignatureAgent()
-        Dim ofrm As New frmSignClient(m_diagnostic, SignMode.RIAGENT)
+        Dim ofrm As New frmSignClient(m_diagnostic, SignMode.RIAGENT, m_oAgent)
         ofrm.ShowDialog()
 
     End Sub

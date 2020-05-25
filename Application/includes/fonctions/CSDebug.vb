@@ -36,6 +36,56 @@ Public Class CSDebug
         ' End If
     End Sub
 
+    Public Shared Sub dispFatal(ByVal pErrorMsg As String, ex As Exception)
+        Dim errorMessage As String
+        errorMessage = pErrorMsg + ex.Message
+        If ex.InnerException IsNot Nothing Then
+            errorMessage = pErrorMsg + "," + ex.InnerException.Message
+        End If
+        logger.Fatal(errorMessage)
+
+        displayMsg("[Fatal] - " & errorMessage)
+        ' Dim curVersion As String = Globals.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        'CSDebug.saveLog("fatal", agentCourant.id, errorMsg, curVersion)
+        'MsgBox(errorMsg, MsgBoxStyle.Critical, "FATAL ERROR")
+    End Sub
+    Public Shared Sub dispError(ByVal pErrorMsg As String, ex As Exception)
+        Dim errorMessage As String
+        errorMessage = pErrorMsg + ex.Message
+        If ex.InnerException IsNot Nothing Then
+            errorMessage = pErrorMsg + "," + ex.InnerException.Message
+        End If
+        logger.Error(pErrorMsg)
+        If Globals.GLOB_ENV_DEBUGLVL >= 1 Then
+            displayMsg("[Error] - " & pErrorMsg)
+            '   Dim curVersion As String = Globals.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+            '  CSDebug.saveLog("Error", agentCourant.id, errorMsg, curVersion)
+        End If
+    End Sub
+    Public Shared Sub dispWarn(ByVal warnMsg As String, ex As Exception)
+        Dim errorMessage As String
+        errorMessage = warnMsg + ex.Message
+        If ex.InnerException IsNot Nothing Then
+            errorMessage = warnMsg + "," + ex.InnerException.Message
+        End If
+        logger.Warn(errorMessage)
+        If Globals.GLOB_ENV_DEBUGLVL >= 2 Then
+            displayMsg("[Warning] - " & errorMessage)
+            ' Dim curVersion As String = Globals.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+            'CSDebug.saveLog("Warning", agentCourant.id, warnMsg, curVersion)
+        End If
+    End Sub
+    Public Shared Sub dispInfo(ByVal infoMsg As String, ex As Exception)
+        Dim errorMessage As String
+        errorMessage = infoMsg + ex.Message
+        If ex.InnerException IsNot Nothing Then
+            errorMessage = infoMsg + "," + ex.InnerException.Message
+        End If
+        logger.Info(errorMessage)
+        'If GLOB_ENV_DEBUGLVL >= 3 Then
+        ' displayMsg("[Info] - " & infoMsg)
+        ' End If
+    End Sub
 
 #End Region
 
