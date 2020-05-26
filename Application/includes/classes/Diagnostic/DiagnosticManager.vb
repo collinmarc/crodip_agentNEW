@@ -538,6 +538,39 @@ Public Class DiagnosticManager
         'on retourne la liste des diagnostic
         Return lstDiag
     End Function
+    Public Shared Function getlstDiagnostic() As List(Of Diagnostic)
+        ' déclarations
+        Dim lstDiag As New List(Of Diagnostic)
+        Dim bddCommande As New OleDb.OleDbCommand
+        Dim oCSDb As New CSDb(True)
+        bddCommande = oCSDb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT ID,dateModificationAgent,dateModificationCrodip,dateSynchro, RIFileName,SMFileName,CCFileName FROM Diagnostic"
+        Try
+            ' On récupère les résultats
+            Dim oDR As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            While oDR.Read()
+                ' On initialise un diag
+                Dim oDiagnostic As New Diagnostic
+                Dim tmpColId As Integer = 0
+                While tmpColId < oDR.FieldCount()
+                    If Not oDR.IsDBNull(tmpColId) Then
+                        oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+                    End If
+                    tmpColId = tmpColId + 1
+                End While
+                'On l'ajoute à la liste
+                lstDiag.Add(oDiagnostic)
+            End While
+            oDR.Close()
+        Catch ex As Exception ' On intercepte l'erreur
+            CSDebug.dispError("DiagnosticManager.getlstDiagnostic ERR:" & ex.Message)
+        End Try
+        ' Test pour fermeture de connection BDD
+        oCSDb.free()
+        'on retourne la liste des diagnostic
+        Return lstDiag
+    End Function
     ''' <summary>
     ''' Rend une liste de Diagnostic par exploitation triée par date de début de controle descendant
     ''' </summary>

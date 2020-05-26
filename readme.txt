@@ -3,6 +3,7 @@ MASTER
 
 BUILD : 20200525
 ----------------------
+	0001233: PDFS manquants : suite à synhcro
 	0001232: Erreur sur cumul d'erreur en Pression
 	0001231: Retour Signature
 	0001230: Affiche de la liste des exploitations trop longue
