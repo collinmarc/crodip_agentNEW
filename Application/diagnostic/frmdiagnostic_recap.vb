@@ -519,11 +519,11 @@ Public Class frmdiagnostic_recap
         Me.btnSignClient.ForeColor = System.Drawing.Color.White
         Me.btnSignClient.Image = CType(resources.GetObject("btnSignClient.Image"), System.Drawing.Image)
         Me.btnSignClient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSignClient.Location = New System.Drawing.Point(571, 629)
+        Me.btnSignClient.Location = New System.Drawing.Point(715, 629)
         Me.btnSignClient.Name = "btnSignClient"
         Me.btnSignClient.Size = New System.Drawing.Size(134, 24)
         Me.btnSignClient.TabIndex = 17
-        Me.btnSignClient.Text = "   Signature Client"
+        Me.btnSignClient.Text = "   Signature client"
         Me.btnSignClient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnSignAgent
@@ -534,12 +534,12 @@ Public Class frmdiagnostic_recap
         Me.btnSignAgent.ForeColor = System.Drawing.Color.White
         Me.btnSignAgent.Image = CType(resources.GetObject("btnSignAgent.Image"), System.Drawing.Image)
         Me.btnSignAgent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSignAgent.Location = New System.Drawing.Point(711, 629)
+        Me.btnSignAgent.Location = New System.Drawing.Point(571, 629)
         Me.btnSignAgent.Name = "btnSignAgent"
-        Me.btnSignAgent.Size = New System.Drawing.Size(134, 24)
+        Me.btnSignAgent.Size = New System.Drawing.Size(129, 24)
         Me.btnSignAgent.TabIndex = 18
-        Me.btnSignAgent.Text = "    Signature Agent"
-        Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btnSignAgent.Text = "    Signature inspecteur"
+        Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'frmdiagnostic_recap
         '
@@ -1118,7 +1118,7 @@ Public Class frmdiagnostic_recap
                 ofrm.Close()
             Else
                 ofrmAccueil = ofrm
-                ofrmAccueil.LoadListeExploitation()
+                ofrmAccueil.RefreshLVIExploitation(m_Exploit.id)
                 ofrmAccueil.loadListPulveExploitation(False)
                 ofrmAccueil.WindowState = FormWindowState.Maximized
             End If

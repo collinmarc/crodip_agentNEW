@@ -874,8 +874,6 @@ Public Class diagnostic_infosInspecteur
                 ofrm.Close()
             Else
                 ofrmAccueil = ofrm
-                ofrmAccueil.LoadListeExploitation()
-                ofrmAccueil.loadListPulveExploitation(False)
                 ofrmAccueil.WindowState = FormWindowState.Maximized
             End If
         Next

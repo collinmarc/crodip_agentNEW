@@ -108,7 +108,7 @@ Public Class DiagnosticManager
         Try
             bReturn = True
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatDiagUrl)
+            Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & My.Settings.SynchroEtatDiagUrl)
             Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatDiagUser, My.Settings.SynhcroEtatDiagPwd)
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then

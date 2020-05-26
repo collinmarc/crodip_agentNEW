@@ -9,6 +9,16 @@ Public Class frmSignClient
     Dim _previous As Point = Nothing
     Dim _pen As Pen = New Pen(Color.Black, 5)
     Dim drawing As Boolean = False
+    Private _bSignVide As Boolean
+    Public Property bSignVide() As Boolean
+        Get
+            Return _bSignVide
+        End Get
+        Set(ByVal value As Boolean)
+            _bSignVide = value
+            btnValider.Enabled = Not bSignVide
+        End Set
+    End Property
 
     Dim m_odiag As Diagnostic
     Dim m_Mode As SignMode
@@ -20,6 +30,7 @@ Public Class frmSignClient
         m_odiag = pDiag
         m_Mode = pSignMode
         m_Agent = pAgent
+        bSignVide = True
     End Sub
 
     ''' <summary>
@@ -57,6 +68,7 @@ Public Class frmSignClient
     Private Sub signature_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pctSignature.MouseDown
         _previous = New Point(e.X, e.Y)
         drawing = True
+        bSignVide = False
         signature_MouseMove(sender, e)
 
     End Sub
@@ -75,7 +87,7 @@ Public Class frmSignClient
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        ''On prend le servier écran comme ecran de signature
+        ''On prend le dernier écran comme ecran de signature
         Me.Location = System.Windows.Forms.Screen.AllScreens(Screen.AllScreens.Length - 1).WorkingArea.Location
 
         Dim img As Image
@@ -87,44 +99,50 @@ Public Class frmSignClient
                     Try
                         ms = New MemoryStream(m_odiag.SignRIAgent)
                         img = Image.FromStream(ms)
+                        bSignVide = False
                     Catch ex As Exception
                         img = New Bitmap(pctSignature.Width, pctSignature.Height)
                     End Try
                 Else
                     If System.IO.File.Exists("config/" & m_Agent.nom & ".sign") Then
                         img = Image.FromFile("config/" & m_Agent.nom & ".sign")
+                        bSignVide = False
                     End If
                 End If
-                    Case SignMode.RICLIENT
+            Case SignMode.RICLIENT
                 Me.Text = "Signature Rapport CLIENT"
                 If m_odiag.SignRIClient IsNot Nothing Then
                     Try
                         ms = New MemoryStream(m_odiag.SignRIClient)
                         img = Image.FromStream(ms)
+                        bSignVide = False
                     Catch ex As Exception
                         img = New Bitmap(pctSignature.Width, pctSignature.Height)
                     End Try
                 End If
             Case SignMode.CCAGENT
                 Me.Text = "Signature Contrat AGENT"
-                If m_odiag.SignRIAgent IsNot Nothing Then
+                If m_odiag.SignCCAgent IsNot Nothing Then
                     Try
                         ms = New MemoryStream(m_odiag.SignCCAgent)
                         img = Image.FromStream(ms)
+                        bSignVide = False
                     Catch ex As Exception
                         img = New Bitmap(pctSignature.Width, pctSignature.Height)
                     End Try
                 Else
                     If System.IO.File.Exists("config/" & m_Agent.nom & ".sign") Then
                         img = Image.FromFile("config/" & m_Agent.nom & ".sign")
+                        bSignVide = False
                     End If
                 End If
             Case SignMode.CCCLIENT
                 Me.Text = "Signature Contrat CLIENT"
-                If m_odiag.SignRIClient IsNot Nothing Then
+                If m_odiag.SignCCClient IsNot Nothing Then
                     Try
                         ms = New MemoryStream(m_odiag.SignCCClient)
                         img = Image.FromStream(ms)
+                        bSignVide = False
                     Catch ex As Exception
                         img = New Bitmap(pctSignature.Width, pctSignature.Height)
                     End Try
@@ -140,7 +158,6 @@ Public Class frmSignClient
     Private Sub Valider_Click(sender As Object, e As EventArgs) Handles btnValider.Click
         Dim ms2 As New MemoryStream
         Dim img2 As Image = Nothing
-
         pctSignature.Image.Save(ms2, Imaging.ImageFormat.Bmp)
         Select Case m_Mode
             Case SignMode.RICLIENT
@@ -180,6 +197,7 @@ Public Class frmSignClient
             g.Clear(Color.White)
         End Using
         pctSignature.Invalidate()
+        bSignVide = True
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

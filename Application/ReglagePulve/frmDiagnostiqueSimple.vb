@@ -4900,8 +4900,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 ofrm.Close()
             Else
                 ofrmAccueil = ofrm
-                ofrmAccueil.LoadListeExploitation()
-                ofrmAccueil.loadListPulveExploitation(False)
                 ofrmAccueil.WindowState = FormWindowState.Maximized
             End If
         Next

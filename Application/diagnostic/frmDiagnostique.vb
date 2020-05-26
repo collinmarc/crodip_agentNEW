@@ -5067,7 +5067,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 ofrm.Close()
             Else
                 ofrmAccueil = ofrm
-                ofrmAccueil.LoadListeExploitation()
                 ofrmAccueil.loadListPulveExploitation(False)
                 ofrmAccueil.WindowState = FormWindowState.Maximized
             End If
@@ -10442,8 +10441,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
     Private Sub ini571()
-        If Not String.IsNullOrEmpty(tbDebitMoyen3bars.Text) Then
-            m_diagnostic.diagnosticHelp571.DebitMesurePRS = tbDebitMoyen3bars.Text
+        If Not String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Then
+            m_diagnostic.diagnosticHelp571.DebitMesurePRS = diagBuses_debitMoyen.Text
         End If
         '        m_diagnosticCourant.diagnosticHelp571.DebitMesureVTS = diagBuses_debitMoyen.Text
         If Not String.IsNullOrEmpty(tbPressionMesure.Text) Then

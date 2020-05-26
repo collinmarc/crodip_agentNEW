@@ -286,10 +286,10 @@ Public Class accueil
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(accueil))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImageList_synchro = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_Docs = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
@@ -795,14 +795,14 @@ Public Class accueil
         Me.dgv_ControleRegulier.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgv_ControleRegulier.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.dgv_ControleRegulier.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_ControleRegulier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TypeDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.isOK, Me.isNOK, Me.isNonEffectue})
         Me.dgv_ControleRegulier.DataSource = Me.bsControleQuotidien
@@ -1088,9 +1088,9 @@ Public Class accueil
         Me.panel_clientele_ficheClient.Controls.Add(Me.Label1)
         Me.panel_clientele_ficheClient.Controls.Add(Me.GroupBox2)
         Me.panel_clientele_ficheClient.Controls.Add(Me.btn_ficheClient_retour)
-        Me.panel_clientele_ficheClient.Location = New System.Drawing.Point(-4, 0)
+        Me.panel_clientele_ficheClient.Location = New System.Drawing.Point(-4, 6)
         Me.panel_clientele_ficheClient.Name = "panel_clientele_ficheClient"
-        Me.panel_clientele_ficheClient.Size = New System.Drawing.Size(1004, 656)
+        Me.panel_clientele_ficheClient.Size = New System.Drawing.Size(1004, 650)
         Me.panel_clientele_ficheClient.TabIndex = 8
         Me.panel_clientele_ficheClient.Visible = False
         '
@@ -1111,7 +1111,7 @@ Public Class accueil
         Me.grp_ficheClient_ListePulve.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.grp_ficheClient_ListePulve.Location = New System.Drawing.Point(8, 147)
         Me.grp_ficheClient_ListePulve.Name = "grp_ficheClient_ListePulve"
-        Me.grp_ficheClient_ListePulve.Size = New System.Drawing.Size(984, 488)
+        Me.grp_ficheClient_ListePulve.Size = New System.Drawing.Size(984, 482)
         Me.grp_ficheClient_ListePulve.TabIndex = 10
         Me.grp_ficheClient_ListePulve.TabStop = False
         Me.grp_ficheClient_ListePulve.Text = "Liste des pulvérisateurs"
@@ -1128,25 +1128,25 @@ Public Class accueil
         Me.dgvPulveExploit.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvPulveExploit.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvPulveExploit.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.ControlLight
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlLight
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvPulveExploit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPulveExploit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IconPulveCol, Me.NumeroNationalDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn1, Me.MarqueDataGridViewTextBoxColumn, Me.ModeleDataGridViewTextBoxColumn, Me.NombreBusesDataGridViewTextBoxColumn, Me.CapaciteDataGridViewTextBoxColumn, Me.AttelageDataGridViewTextBoxColumn, Me.AnneeAchatDataGridViewTextBoxColumn, Me.DateProchainControleDataGridViewTextBoxColumn, Me.IconPulveColumn, Me.PulvePrincipalNumNatDataGridViewTextBoxColumn})
         Me.dgvPulveExploit.DataSource = Me.m_bsrcPulverisateurTMP
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvPulveExploit.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvPulveExploit.DefaultCellStyle = DataGridViewCellStyle4
         Me.dgvPulveExploit.GridColor = System.Drawing.Color.Black
         Me.dgvPulveExploit.Location = New System.Drawing.Point(11, 62)
         Me.dgvPulveExploit.MultiSelect = False
@@ -1156,7 +1156,7 @@ Public Class accueil
         Me.dgvPulveExploit.RowHeadersWidth = 20
         Me.dgvPulveExploit.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgvPulveExploit.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvPulveExploit.Size = New System.Drawing.Size(965, 420)
+        Me.dgvPulveExploit.Size = New System.Drawing.Size(965, 414)
         Me.dgvPulveExploit.TabIndex = 32
         Me.dgvPulveExploit.VirtualMode = True
         '
@@ -1234,9 +1234,9 @@ Public Class accueil
         'DateProchainControleDataGridViewTextBoxColumn
         '
         Me.DateProchainControleDataGridViewTextBoxColumn.DataPropertyName = "dateProchainControleAsDate"
-        DataGridViewCellStyle7.Format = "d"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Format = "d"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
         Me.DateProchainControleDataGridViewTextBoxColumn.FillWeight = 9.0!
         Me.DateProchainControleDataGridViewTextBoxColumn.HeaderText = "Prochain contrôle"
         Me.DateProchainControleDataGridViewTextBoxColumn.Name = "DateProchainControleDataGridViewTextBoxColumn"
@@ -3402,7 +3402,7 @@ Public Class accueil
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Sub LoadListeExploitation()
+    Private Sub LoadListeExploitation()
         Dim statusbarOldMessage As String = Statusbar.getLibelle
 
         Dim pisAlerte As Boolean = Not m_Exploitation_isShowAll
@@ -3426,7 +3426,7 @@ Public Class accueil
         ' On récupère la liste des profils locaux
         Dim intCount As Decimal = 0
         Dim oExploit As Exploitation
-        'Mémorisation des elements Sél"edctionné
+        'Mémorisation des elements Sélectionné
         Dim lstStringSelected As New List(Of String)
         If list_clients.SelectedItems.Count > 0 Then
             For Each obj As ListViewItem In list_clients.SelectedItems
@@ -3447,33 +3447,14 @@ Public Class accueil
                 'On n'affiche pas ces exploitations
             Else
                 If Not oExploit.isSupprime Then
-                    list_clients.Items.Add(oExploit.numeroSiren) ' SIREN
-                    list_clients.Items(CInt(intCount)).Tag = oExploit.id
-                    list_clients.Items(CInt(intCount)).SubItems.Add(oExploit.raisonSociale) 'RS
-                    list_clients.Items(CInt(intCount)).SubItems.Add(oExploit.prenomExploitant) ' Prénom
-                    list_clients.Items(CInt(intCount)).SubItems.Add(oExploit.nomExploitant) ' Nom
-                    list_clients.Items(CInt(intCount)).SubItems.Add(oExploit.adresse) ' Adresse
-                    list_clients.Items(CInt(intCount)).SubItems.Add(oExploit.codePostal) ' Code postal
-                    list_clients.Items(CInt(intCount)).SubItems.Add(oExploit.commune) ' Commune
-                    If oExploit.dateDernierControle <> "" And oExploit.dateDernierControle <> "30/12/1899 00:00:00" Then
-                        Dim tmpDateNextDiag As Date = oExploit.dateDernierControle
-                        list_clients.Items(CInt(intCount)).SubItems.Add(tmpDateNextDiag.ToShortDateString)  ' Dernier contrôle
-                    Else
-                        list_clients.Items(CInt(intCount)).SubItems.Add("")  ' Dernier contrôle
-                    End If
-                    list_clients.Items(CInt(intCount)).SubItems.Add(oExploit.nPulvesAlerte) ' Nbre de pulvé en alerte
-                    '                list_clients.Items(CInt(intCount)).SubItems.Add(oExploit.id) ' IDExploitation
+                    Dim oItem As ListViewItem
+                    oItem = list_clients.Items.Add("")
 
-                    ' Détection des alertes
-                    If oExploit.nPulvesAlerte > 0 Then
-                        list_clients.Items(CInt(intCount)).BackColor = System.Drawing.Color.LightBlue
-                        list_clients.Items(CInt(intCount)).ForeColor = System.Drawing.Color.Black
-                    End If
-
+                    InitLVItem(oItem, oExploit)
 
                     'Sélection des Items Précédement Selectionnés
                     If lstStringSelected.Contains(oExploit.id) Then
-                        list_clients.Items(CInt(intCount)).Selected = True
+                        oItem.Selected = True
                     End If
 
 
@@ -3484,6 +3465,41 @@ Public Class accueil
         Next oExploit
 
     End Sub
+    Private Function InitLVItem(oItem As ListViewItem, oExploit As Exploitation)
+        Dim breturn As Boolean
+        Try
+
+            oItem.SubItems.Clear()
+            oItem.Name = oExploit.id
+            oItem.Tag = oExploit.id
+            oItem.Text = oExploit.numeroSiren
+            oItem.SubItems.Add(oExploit.raisonSociale) 'RS
+            oItem.SubItems.Add(oExploit.prenomExploitant) ' Prénom
+            oItem.SubItems.Add(oExploit.nomExploitant) ' Nom
+            oItem.SubItems.Add(oExploit.adresse) ' Adresse
+            oItem.SubItems.Add(oExploit.codePostal) ' Code postal
+            oItem.SubItems.Add(oExploit.commune) ' Commune
+            If oExploit.dateDernierControle <> "" And oExploit.dateDernierControle <> "30/12/1899 00:00:00" Then
+                Dim tmpDateNextDiag As Date = oExploit.dateDernierControle
+                oItem.SubItems.Add(tmpDateNextDiag.ToShortDateString)  ' Dernier contrôle
+            Else
+                oItem.SubItems.Add("")  ' Dernier contrôle
+            End If
+            oItem.SubItems.Add(oExploit.nPulvesAlerte) ' Nbre de pulvé en alerte
+            '                list_clients.Items(CInt(intCount)).SubItems.Add(oExploit.id) ' IDExploitation
+
+            ' Détection des alertes
+            If oExploit.nPulvesAlerte > 0 Then
+                oItem.BackColor = System.Drawing.Color.LightBlue
+                oItem.ForeColor = System.Drawing.Color.Black
+            End If
+            breturn = True
+        Catch ex As Exception
+            CSDebug.dispWarn("Accueil:InitLVItem ERR: ", ex)
+            breturn = False
+        End Try
+        Return breturn
+    End Function
     ''' <summary>
     ''' Chargement de la liste des pulvé d'un client en fonction des droits de l'agent
     ''' </summary>
@@ -3512,6 +3528,31 @@ Public Class accueil
         Else
             ' Mise à jour de la barre de status
             Statusbar.display("Client inconnu.")
+        End If
+    End Sub
+    Public Sub RefreshLVIExploitation(pIdExploit As String)
+        Debug.Assert(Not String.IsNullOrEmpty(pIdExploit), "IdExploi doit être renseigné")
+        Dim tabItem As ListViewItem()
+        Dim oItem As ListViewItem
+        Dim oExploit As Exploitation
+        tabItem = list_clients.Items.Find(pIdExploit, False)
+        If tabItem.Length > 0 Then
+            oItem = tabItem(0)
+            oExploit = ExploitationManager.getExploitationById(pIdExploit)
+            InitLVItem(oItem, oExploit)
+            list_clients.Refresh()
+        End If
+    End Sub
+    Public Sub RemoveLVIExploitation(pIdExploit As String)
+        Debug.Assert(Not String.IsNullOrEmpty(pIdExploit), "IdExploi doit être renseigné")
+        Dim tabItem As ListViewItem()
+        Dim oItem As ListViewItem
+        Dim oExploit As Exploitation
+        tabItem = list_clients.Items.Find(pIdExploit, False)
+        If tabItem.Length > 0 Then
+            oItem = tabItem(0)
+            oItem.Remove()
+            list_clients.Refresh()
         End If
     End Sub
 

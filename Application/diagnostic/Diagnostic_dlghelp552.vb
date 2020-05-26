@@ -43,7 +43,7 @@ Public Class Diagnostic_dlghelp552
 
 
 
-    Public Sub setContexte(pMode As Help552Mode, pDiag As Diagnostic, debitMoyen As String, PressionMesure As String, pbVisu As Boolean)
+    Public Sub setContexte(pMode As Help552Mode, pDiag As Diagnostic, pDdebitMoyen As String, pPressionMesure As String, pbVisu As Boolean)
         m_oDiag = pDiag
         m_Mode = pMode
         m_bVisu = pbVisu
@@ -57,8 +57,8 @@ Public Class Diagnostic_dlghelp552
                 SetControls(Help552Mode.Mode5622)
                 TabControl1.TabPages.RemoveByKey(tpHelp552.Name)
         End Select
-        help552_debitMoyen0bar.Text = debitMoyen
-        help552_pressionMesure.Text = PressionMesure
+        help552_debitMoyen0bar.Text = pDdebitMoyen
+        help552_pressionMesure.Text = pPressionMesure
         Popuphelp552_init(m_oHelp)
     End Sub
 

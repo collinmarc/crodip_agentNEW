@@ -97,6 +97,8 @@ Public Class diagnostic_facturation
         Me.listTarif_prestations = New System.Windows.Forms.ComboBox()
         Me.img_Add = New System.Windows.Forms.PictureBox()
         Me.panelFooter = New System.Windows.Forms.Panel()
+        Me.btnSignAgent = New System.Windows.Forms.Label()
+        Me.btnSignClient = New System.Windows.Forms.Label()
         Me.tbCommentaire = New System.Windows.Forms.TextBox()
         Me.lblCommentaire = New System.Windows.Forms.Label()
         Me.btn_imprimerFactureCoProp = New System.Windows.Forms.Label()
@@ -119,14 +121,12 @@ Public Class diagnostic_facturation
         Me.Label17 = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.btnSignClient = New System.Windows.Forms.Label()
-        Me.btnSignAgent = New System.Windows.Forms.Label()
         Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrixUnitaireDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TvaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrixTotalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
@@ -220,6 +220,34 @@ Public Class diagnostic_facturation
         Me.panelFooter.Name = "panelFooter"
         Me.panelFooter.Size = New System.Drawing.Size(926, 206)
         Me.panelFooter.TabIndex = 2
+        '
+        'btnSignAgent
+        '
+        Me.btnSignAgent.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnSignAgent.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSignAgent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSignAgent.ForeColor = System.Drawing.Color.White
+        Me.btnSignAgent.Image = CType(resources.GetObject("btnSignAgent.Image"), System.Drawing.Image)
+        Me.btnSignAgent.Location = New System.Drawing.Point(523, 168)
+        Me.btnSignAgent.Name = "btnSignAgent"
+        Me.btnSignAgent.Size = New System.Drawing.Size(135, 24)
+        Me.btnSignAgent.TabIndex = 47
+        Me.btnSignAgent.Text = "      Signature inspecteur"
+        Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'btnSignClient
+        '
+        Me.btnSignClient.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnSignClient.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSignClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSignClient.ForeColor = System.Drawing.Color.White
+        Me.btnSignClient.Image = CType(resources.GetObject("btnSignClient.Image"), System.Drawing.Image)
+        Me.btnSignClient.Location = New System.Drawing.Point(657, 168)
+        Me.btnSignClient.Name = "btnSignClient"
+        Me.btnSignClient.Size = New System.Drawing.Size(130, 24)
+        Me.btnSignClient.TabIndex = 46
+        Me.btnSignClient.Text = "      Signature client"
+        Me.btnSignClient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'tbCommentaire
         '
@@ -498,43 +526,6 @@ Public Class diagnostic_facturation
         Me.DataGridView1.Size = New System.Drawing.Size(908, 331)
         Me.DataGridView1.TabIndex = 30
         '
-        'columnDelete
-        '
-        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.columnDelete.HeaderText = "Suppr"
-        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
-        Me.columnDelete.Name = "columnDelete"
-        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.columnDelete.Width = 40
-        '
-        'btnSignClient
-        '
-        Me.btnSignClient.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSignClient.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSignClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSignClient.ForeColor = System.Drawing.Color.White
-        Me.btnSignClient.Image = CType(resources.GetObject("btnSignClient.Image"), System.Drawing.Image)
-        Me.btnSignClient.Location = New System.Drawing.Point(657, 168)
-        Me.btnSignClient.Name = "btnSignClient"
-        Me.btnSignClient.Size = New System.Drawing.Size(130, 24)
-        Me.btnSignClient.TabIndex = 46
-        Me.btnSignClient.Text = "      Signature client"
-        Me.btnSignClient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btnSignAgent
-        '
-        Me.btnSignAgent.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSignAgent.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSignAgent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSignAgent.ForeColor = System.Drawing.Color.White
-        Me.btnSignAgent.Image = CType(resources.GetObject("btnSignAgent.Image"), System.Drawing.Image)
-        Me.btnSignAgent.Location = New System.Drawing.Point(523, 168)
-        Me.btnSignAgent.Name = "btnSignAgent"
-        Me.btnSignAgent.Size = New System.Drawing.Size(135, 24)
-        Me.btnSignAgent.TabIndex = 47
-        Me.btnSignAgent.Text = "      Signature agent"
-        Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'LibelleDataGridViewTextBoxColumn
         '
         Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -588,6 +579,15 @@ Public Class diagnostic_facturation
         Me.PrixTotalDataGridViewTextBoxColumn.Name = "PrixTotalDataGridViewTextBoxColumn"
         Me.PrixTotalDataGridViewTextBoxColumn.ReadOnly = True
         Me.PrixTotalDataGridViewTextBoxColumn.Width = 143
+        '
+        'columnDelete
+        '
+        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.columnDelete.HeaderText = "Suppr"
+        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
+        Me.columnDelete.Name = "columnDelete"
+        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.columnDelete.Width = 40
         '
         'm_bsLignes
         '
