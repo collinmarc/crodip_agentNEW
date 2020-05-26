@@ -3,6 +3,7 @@ MASTER
 
 BUILD : 20200525
 ----------------------
+	0001232: Erreur sur cumul d'erreur en Pression
 	0001231: Retour Signature
 	0001230: Affiche de la liste des exploitations trop longue
 	0001228: Import CSV : import de la date de prochain controle et Nombre de Rangs
