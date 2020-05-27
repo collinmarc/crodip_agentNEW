@@ -144,7 +144,7 @@
       <Value Profile="(Default)">HTTP</Value>
     </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20200421120000</Value>
+      <Value Profile="(Default)">20200424120000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

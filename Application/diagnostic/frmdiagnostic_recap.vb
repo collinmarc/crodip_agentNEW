@@ -174,7 +174,7 @@ Public Class frmdiagnostic_recap
         Me.btn_finalisationDiag_valider.ForeColor = System.Drawing.Color.White
         Me.btn_finalisationDiag_valider.Image = CType(resources.GetObject("btn_finalisationDiag_valider.Image"), System.Drawing.Image)
         Me.btn_finalisationDiag_valider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_finalisationDiag_valider.Location = New System.Drawing.Point(862, 629)
+        Me.btn_finalisationDiag_valider.Location = New System.Drawing.Point(872, 629)
         Me.btn_finalisationDiag_valider.Name = "btn_finalisationDiag_valider"
         Me.btn_finalisationDiag_valider.Size = New System.Drawing.Size(134, 24)
         Me.btn_finalisationDiag_valider.TabIndex = 9
@@ -517,13 +517,13 @@ Public Class frmdiagnostic_recap
         Me.btnSignClient.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSignClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSignClient.ForeColor = System.Drawing.Color.White
-        Me.btnSignClient.Image = CType(resources.GetObject("btnSignClient.Image"), System.Drawing.Image)
+        Me.btnSignClient.Image = Global.Crodip_agent.Resources.btn_Signture
         Me.btnSignClient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSignClient.Location = New System.Drawing.Point(715, 629)
+        Me.btnSignClient.Location = New System.Drawing.Point(718, 629)
         Me.btnSignClient.Name = "btnSignClient"
-        Me.btnSignClient.Size = New System.Drawing.Size(134, 24)
+        Me.btnSignClient.Size = New System.Drawing.Size(148, 24)
         Me.btnSignClient.TabIndex = 17
-        Me.btnSignClient.Text = "   Signature client"
+        Me.btnSignClient.Text = "    Signature client"
         Me.btnSignClient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnSignAgent
@@ -536,10 +536,10 @@ Public Class frmdiagnostic_recap
         Me.btnSignAgent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSignAgent.Location = New System.Drawing.Point(571, 629)
         Me.btnSignAgent.Name = "btnSignAgent"
-        Me.btnSignAgent.Size = New System.Drawing.Size(129, 24)
+        Me.btnSignAgent.Size = New System.Drawing.Size(141, 24)
         Me.btnSignAgent.TabIndex = 18
-        Me.btnSignAgent.Text = "    Signature inspecteur"
-        Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnSignAgent.Text = "        Signature inspecteur"
+        Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmdiagnostic_recap
         '

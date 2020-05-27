@@ -176,6 +176,16 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property btn_Signture() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("btn_Signture", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property btn_suivant() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("btn_suivant", resourceCulture)

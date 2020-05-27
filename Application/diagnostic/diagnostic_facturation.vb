@@ -227,13 +227,13 @@ Public Class diagnostic_facturation
         Me.btnSignAgent.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSignAgent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSignAgent.ForeColor = System.Drawing.Color.White
-        Me.btnSignAgent.Image = CType(resources.GetObject("btnSignAgent.Image"), System.Drawing.Image)
-        Me.btnSignAgent.Location = New System.Drawing.Point(523, 168)
+        Me.btnSignAgent.Image = Global.Crodip_agent.Resources.btn_Signture
+        Me.btnSignAgent.Location = New System.Drawing.Point(527, 132)
         Me.btnSignAgent.Name = "btnSignAgent"
-        Me.btnSignAgent.Size = New System.Drawing.Size(135, 24)
+        Me.btnSignAgent.Size = New System.Drawing.Size(144, 24)
         Me.btnSignAgent.TabIndex = 47
         Me.btnSignAgent.Text = "      Signature inspecteur"
-        Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnSignClient
         '
@@ -241,10 +241,10 @@ Public Class diagnostic_facturation
         Me.btnSignClient.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSignClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSignClient.ForeColor = System.Drawing.Color.White
-        Me.btnSignClient.Image = CType(resources.GetObject("btnSignClient.Image"), System.Drawing.Image)
-        Me.btnSignClient.Location = New System.Drawing.Point(657, 168)
+        Me.btnSignClient.Image = Global.Crodip_agent.Resources.btn_Signture
+        Me.btnSignClient.Location = New System.Drawing.Point(522, 168)
         Me.btnSignClient.Name = "btnSignClient"
-        Me.btnSignClient.Size = New System.Drawing.Size(130, 24)
+        Me.btnSignClient.Size = New System.Drawing.Size(155, 24)
         Me.btnSignClient.TabIndex = 46
         Me.btnSignClient.Text = "      Signature client"
         Me.btnSignClient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1269,12 +1269,9 @@ Public Class diagnostic_facturation
     End Sub
 
     Private Sub desactiverModificationSisigne()
-        If m_oDiag.SignCCAgent Is Nothing Or m_oDiag.SignCCClient Is Nothing Then
+        If m_oDiag.SignCCAgent IsNot Nothing Or m_oDiag.SignCCClient IsNot Nothing Then
             desactiveModifications()
         End If
-
-
-
     End Sub
 
     Private Sub desactiveModifications()

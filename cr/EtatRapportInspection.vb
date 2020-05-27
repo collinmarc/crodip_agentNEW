@@ -10,6 +10,9 @@ Public Class EtatRapportInspection
     Private m_oPulve As Pulverisateur
     Private m_ods As ds_Etat_RI
 
+    Public Sub New()
+        m_oPulve = PulverisateurManager.getPulverisateurById(m_oDiag.pulverisateurId)
+    End Sub
     Public Sub New(pDiag As Diagnostic)
         m_oDiag = pDiag
         m_oPulve = PulverisateurManager.getPulverisateurById(m_oDiag.pulverisateurId)
@@ -280,23 +283,23 @@ Public Class EtatRapportInspection
             End If
 
 
-            Dim msCL As New MemoryStream
-            Dim img1 As Image = Nothing
-            Dim img2 As Image = Nothing
-            If (m_oDiag.SignRIClient IsNot Nothing) Then
-                msCL = New MemoryStream(m_oDiag.SignRIClient)
-                img1 = Image.FromStream(msCL)
-                img2 = New Bitmap(img1, New Size(151, 37))
-                img2.Save(msCL, Imaging.ImageFormat.Bmp)
-            End If
+            'Dim msCL As New MemoryStream
+            'Dim img1 As Image = Nothing
+            'Dim img2 As Image = Nothing
+            'If (m_oDiag.SignRIClient IsNot Nothing) Then
+            '    msCL = New MemoryStream(m_oDiag.SignRIClient)
+            '    img1 = Image.FromStream(msCL)
+            '    img2 = New Bitmap(img1, New Size(151, 37))
+            '    img2.Save(msCL, Imaging.ImageFormat.Bmp)
+            'End If
 
-            Dim msAG As New MemoryStream
-            If (m_oDiag.SignRIClient IsNot Nothing) Then
-                msAG = New MemoryStream(m_oDiag.SignRIAgent)
-                img1 = Image.FromStream(msAG)
-                img2 = New Bitmap(img1, New Size(151, 37))
-                img2.Save(msAG, Imaging.ImageFormat.Bmp)
-            End If
+            'Dim msAG As New MemoryStream
+            'If (m_oDiag.SignRIAgent IsNot Nothing) Then
+            '    msAG = New MemoryStream(m_oDiag.SignRIAgent)
+            '    img1 = Image.FromStream(msAG)
+            '    img2 = New Bitmap(img1, New Size(151, 37))
+            '    img2.Save(msAG, Imaging.ImageFormat.Bmp)
+            'End If
 
 
             ''            img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
@@ -309,16 +312,16 @@ Public Class EtatRapportInspection
                                                          Commentaire:=m_oDiag.Commentaire,
                                                          bSignAgent:=m_oDiag.bSignRIAgent,
                                                          DateSignAgent:=m_oDiag.dateSignRIAgent,
-                                                         SignAgent:=msAG.ToArray(),
+                                                         SignAgent:=m_oDiag.SignRIAgent,
                                                          bSignClient:=m_oDiag.bSignRIClient,
                                                          DateSignClient:=m_oDiag.dateSignRIClient,
-                                                         SignClient:=msCL.ToArray())
-            If img1 IsNot Nothing Then
-                img1.Dispose()
-            End If
-            If img2 IsNot Nothing Then
-                img2.Dispose()
-            End If
+                                                         SignClient:=m_oDiag.SignRIClient)
+            'If img1 IsNot Nothing Then
+            '    img1.Dispose()
+            'End If
+            'If img2 IsNot Nothing Then
+            '    img2.Dispose()
+            'End If
 
             Dim strPrestataire As String = ""
             Dim oStructure As Structuree

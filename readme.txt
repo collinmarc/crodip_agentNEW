@@ -3,6 +3,7 @@ MASTER
 
 BUILD : 20200525
 ----------------------
+	0001229: Bouton Signature inspecteur Trop Petit
 	0001234: Signature : Bloquer les modifications après signatures
 	0001233: PDFS manquants : suite à synhcro
 	0001232: Erreur sur cumul d'erreur en Pression
