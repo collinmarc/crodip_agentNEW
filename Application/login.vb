@@ -956,6 +956,7 @@ Public Class login
         '        oPulve = PulverisateurManager.getPulverisateurById("2-81-50") 'Cultures basses
         oPulve = PulverisateurManager.getPulverisateurById("2-1083-7") 'Vigne
         oAgent = AgentManager.getAgentById("1110")
+        oAgent.isSignElecActive = True
         oDiag = New Diagnostic(oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
         oDiag.controleIsPreControleProfessionel = True

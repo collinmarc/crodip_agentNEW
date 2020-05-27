@@ -1080,17 +1080,14 @@ Public Class accueil
         '
         'panel_clientele_ficheClient
         '
-        Me.panel_clientele_ficheClient.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panel_clientele_ficheClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.panel_clientele_ficheClient.Controls.Add(Me.grp_ficheClient_ListePulve)
         Me.panel_clientele_ficheClient.Controls.Add(Me.Label1)
         Me.panel_clientele_ficheClient.Controls.Add(Me.GroupBox2)
         Me.panel_clientele_ficheClient.Controls.Add(Me.btn_ficheClient_retour)
-        Me.panel_clientele_ficheClient.Location = New System.Drawing.Point(-4, 6)
+        Me.panel_clientele_ficheClient.Location = New System.Drawing.Point(0, 210)
         Me.panel_clientele_ficheClient.Name = "panel_clientele_ficheClient"
-        Me.panel_clientele_ficheClient.Size = New System.Drawing.Size(1004, 650)
+        Me.panel_clientele_ficheClient.Size = New System.Drawing.Size(1000, 443)
         Me.panel_clientele_ficheClient.TabIndex = 8
         Me.panel_clientele_ficheClient.Visible = False
         '
@@ -1111,7 +1108,7 @@ Public Class accueil
         Me.grp_ficheClient_ListePulve.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.grp_ficheClient_ListePulve.Location = New System.Drawing.Point(8, 147)
         Me.grp_ficheClient_ListePulve.Name = "grp_ficheClient_ListePulve"
-        Me.grp_ficheClient_ListePulve.Size = New System.Drawing.Size(984, 482)
+        Me.grp_ficheClient_ListePulve.Size = New System.Drawing.Size(980, 275)
         Me.grp_ficheClient_ListePulve.TabIndex = 10
         Me.grp_ficheClient_ListePulve.TabStop = False
         Me.grp_ficheClient_ListePulve.Text = "Liste des pulvérisateurs"
@@ -1156,7 +1153,7 @@ Public Class accueil
         Me.dgvPulveExploit.RowHeadersWidth = 20
         Me.dgvPulveExploit.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgvPulveExploit.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvPulveExploit.Size = New System.Drawing.Size(965, 414)
+        Me.dgvPulveExploit.Size = New System.Drawing.Size(961, 207)
         Me.dgvPulveExploit.TabIndex = 32
         Me.dgvPulveExploit.VirtualMode = True
         '
@@ -3252,6 +3249,10 @@ Public Class accueil
             btnParamModeSimplifie.Visible = False
             btnMAJsynchroAgent.Visible = False
 
+            panel_clientele_ficheClient.Visible = False
+            panel_ListeDesControles.Visible = True
+            panel_ListeDesControles.Dock = DockStyle.Fill
+
         Else
             btn_controleQuotdien_Exporter.Enabled = False
             btn_controleQuotdien_Valider.Enabled = False
@@ -3511,6 +3512,7 @@ Public Class accueil
         panel_clientele_LstCtrlCtriteres.Visible = False
         panel_ListeDesControles.Visible = False
         panel_clientele_ficheClient.Visible = True
+        panel_clientele_ficheClient.Dock = DockStyle.Fill
 
         ' On vérifie qu'il y a bien une ligne de sélectionnée
         If list_clients.SelectedItems().Count > 0 Then
@@ -4774,6 +4776,7 @@ Public Class accueil
         ' Affichage de la liste des clients
         panel_clientele_LstCtrlCtriteres.Visible = True
         panel_ListeDesControles.Visible = True
+        panel_ListeDesControles.Dock = DockStyle.Fill
         panel_clientele_ficheClient.Visible = False
     End Sub
 

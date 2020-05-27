@@ -754,10 +754,7 @@ Public Class diagnostic_facturation
                     m_oDiag.TotalTTC = CDec(facturation_totalTTC.Text)
                 End If
 
-                listTarif_categories.Enabled = False
-                listTarif_prestations.Enabled = False
-                DataGridView1.Enabled = False
-                img_Add.Enabled = False
+                desactiveModifications()
                 createContrat()
                 createBl_CR()
                 ' Changement d'état du bouton
@@ -1263,15 +1260,37 @@ Public Class diagnostic_facturation
     Public Sub Signatureclient()
         Dim ofrm As New frmSignClient(m_oDiag, SignMode.CCCLIENT, m_oAgent)
         ofrm.ShowDialog()
+        desactiverModificationSisigne()
     End Sub
     Public Sub SignatureAgent()
         Dim ofrm As New frmSignClient(m_oDiag, SignMode.CCAGENT, m_oAgent)
         ofrm.ShowDialog()
+        desactiverModificationSisigne()
+    End Sub
 
+    Private Sub desactiverModificationSisigne()
+        If m_oDiag.SignCCAgent Is Nothing Or m_oDiag.SignCCClient Is Nothing Then
+            desactiveModifications()
+        End If
+
+
+
+    End Sub
+
+    Private Sub desactiveModifications()
+        img_Add.Enabled = False
+        facturation_totalHT.Enabled = False
+        tb_txTVA.Enabled = False
+        tbCommentaire.Enabled = False
+        DataGridView1.Enabled = False
+        listTarif_categories.Enabled = False
+        listTarif_prestations.Enabled = False
     End Sub
 
     Private Sub m_bsLignes_ListChanged(sender As Object, e As ListChangedEventArgs) Handles m_bsLignes.ListChanged
         btnSignClient.Enabled = m_bsLignes.Count > 0
         btnSignAgent.Enabled = m_bsLignes.Count > 0
     End Sub
+
+
 End Class

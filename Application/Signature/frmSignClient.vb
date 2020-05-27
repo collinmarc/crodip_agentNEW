@@ -94,7 +94,7 @@ Public Class frmSignClient
         Dim ms As MemoryStream
         Select Case m_Mode
             Case SignMode.RIAGENT
-                Me.Text = "Signature Rapport AGENT"
+                Me.Text = "Signature Rapport Inspecteur"
                 If m_odiag.SignRIAgent IsNot Nothing Then
                     Try
                         ms = New MemoryStream(m_odiag.SignRIAgent)
@@ -105,7 +105,9 @@ Public Class frmSignClient
                     End Try
                 Else
                     If System.IO.File.Exists("config/" & m_Agent.nom & ".sign") Then
-                        img = Image.FromFile("config/" & m_Agent.nom & ".sign")
+                        Using bmpTemp As New Bitmap("config/" & m_Agent.nom & ".sign")
+                            img = New Bitmap(bmpTemp)
+                        End Using
                         bSignVide = False
                     End If
                 End If
@@ -132,7 +134,9 @@ Public Class frmSignClient
                     End Try
                 Else
                     If System.IO.File.Exists("config/" & m_Agent.nom & ".sign") Then
-                        img = Image.FromFile("config/" & m_Agent.nom & ".sign")
+                        Using bmpTemp As New Bitmap("config/" & m_Agent.nom & ".sign")
+                            img = New Bitmap(bmpTemp)
+                        End Using
                         bSignVide = False
                     End If
                 End If

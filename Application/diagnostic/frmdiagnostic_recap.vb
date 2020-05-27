@@ -774,10 +774,9 @@ Public Class frmdiagnostic_recap
         Else
             If checkForm() Then
                 If MsgBox("Attention, la validation du contrôle est définitive, vous ne pourrez plus revenir en arrière. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Validation du contrôle") = MsgBoxResult.Yes Then
-                    diagnosticRecap_organisme_heureDebut.Enabled = False
-                    diagnosticRecap_organisme_heureFin.Enabled = False
-                    cbx_diagnosticRecap_materiel_EmplacementIdentification.Enabled = False
-                    diagnosticRecap_organisme_dateControle.Enabled = False
+                    desactiveModifications()
+                    btnSignAgent.Enabled = False
+                    btnSignClient.Enabled = False
                     SauvegarderDiagnostic()
                     MsgBox("Vous pouvez maintenant imprimer le rapport.", MsgBoxStyle.Information)
                 End If
@@ -787,6 +786,14 @@ Public Class frmdiagnostic_recap
             sender.Enabled = True
         End If
     End Sub
+
+    Private Sub desactiveModifications()
+        diagnosticRecap_organisme_heureDebut.Enabled = False
+        diagnosticRecap_organisme_heureFin.Enabled = False
+        cbx_diagnosticRecap_materiel_EmplacementIdentification.Enabled = False
+        diagnosticRecap_organisme_dateControle.Enabled = False
+    End Sub
+
     Private Function SauvegarderDiagnostic() As Boolean
         Dim bReturn As Boolean
         Try
@@ -1167,10 +1174,15 @@ Public Class frmdiagnostic_recap
     Public Sub Signatureclient()
         Dim ofrm As New frmSignClient(m_diagnostic, SignMode.RICLIENT, m_oAgent)
         ofrm.ShowDialog()
+        If m_diagnostic.SignRIAgent IsNot Nothing Or m_diagnostic.SignRIClient IsNot Nothing Then
+            desactiveModifications()
+        End If
     End Sub
     Public Sub SignatureAgent()
         Dim ofrm As New frmSignClient(m_diagnostic, SignMode.RIAGENT, m_oAgent)
         ofrm.ShowDialog()
-
+        If m_diagnostic.SignRIAgent IsNot Nothing Or m_diagnostic.SignRIClient IsNot Nothing Then
+            desactiveModifications()
+        End If
     End Sub
 End Class
