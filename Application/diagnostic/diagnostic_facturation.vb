@@ -982,8 +982,11 @@ Public Class diagnostic_facturation
         Try
 
             Dim oEtat As New EtatContratCommercial(m_oDiag)
-            If oEtat.GenereEtat() Then
+            If oEtat.GenereEtat(True) Then
                 pathContrat = Globals.CONST_PATH_EXP & oEtat.getFileName()
+                If File.Exists(Globals.CONST_PATH_EXP & m_oDiag.CCFileName) Then
+                    File.Delete(Globals.CONST_PATH_EXP & m_oDiag.CCFileName)
+                End If
                 m_oDiag.CCFileName = oEtat.getFileName()
             End If
         Catch ex As Exception

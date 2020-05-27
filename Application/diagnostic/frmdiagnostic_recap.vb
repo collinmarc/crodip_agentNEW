@@ -42,6 +42,8 @@ Public Class frmdiagnostic_recap
     Friend WithEvents conclusion_pictoEtat As PictureBox
     Private WithEvents btnSignClient As Label
     Private WithEvents btnSignAgent As Label
+    Friend WithEvents rbEtatCC As RadioButton
+    Friend WithEvents btn_ContratCommercial As Label
     Friend WithEvents btn_finalisationDiag_imprimerSynthese As System.Windows.Forms.Label
     'Private objInfos(15) As Object
 
@@ -112,6 +114,7 @@ Public Class frmdiagnostic_recap
         Me.btn_finalisationDiag_modifierDiag = New System.Windows.Forms.Label()
         Me.btn_finalisationDiag_imprimerSynthese = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.rbEtatCC = New System.Windows.Forms.RadioButton()
         Me.rbEtatSM = New System.Windows.Forms.RadioButton()
         Me.rbEtatRI = New System.Windows.Forms.RadioButton()
         Me.btnAppercu = New System.Windows.Forms.Label()
@@ -136,6 +139,7 @@ Public Class frmdiagnostic_recap
         Me.conclusion_pictoEtat = New System.Windows.Forms.PictureBox()
         Me.btnSignClient = New System.Windows.Forms.Label()
         Me.btnSignAgent = New System.Windows.Forms.Label()
+        Me.btn_ContratCommercial = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -174,7 +178,7 @@ Public Class frmdiagnostic_recap
         Me.btn_finalisationDiag_valider.ForeColor = System.Drawing.Color.White
         Me.btn_finalisationDiag_valider.Image = CType(resources.GetObject("btn_finalisationDiag_valider.Image"), System.Drawing.Image)
         Me.btn_finalisationDiag_valider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_finalisationDiag_valider.Location = New System.Drawing.Point(872, 629)
+        Me.btn_finalisationDiag_valider.Location = New System.Drawing.Point(862, 619)
         Me.btn_finalisationDiag_valider.Name = "btn_finalisationDiag_valider"
         Me.btn_finalisationDiag_valider.Size = New System.Drawing.Size(134, 24)
         Me.btn_finalisationDiag_valider.TabIndex = 9
@@ -189,7 +193,7 @@ Public Class frmdiagnostic_recap
         Me.btn_finalisationDiag_imprimerRapport.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_finalisationDiag_imprimerRapport.ForeColor = System.Drawing.Color.White
         Me.btn_finalisationDiag_imprimerRapport.Image = CType(resources.GetObject("btn_finalisationDiag_imprimerRapport.Image"), System.Drawing.Image)
-        Me.btn_finalisationDiag_imprimerRapport.Location = New System.Drawing.Point(194, 629)
+        Me.btn_finalisationDiag_imprimerRapport.Location = New System.Drawing.Point(195, 619)
         Me.btn_finalisationDiag_imprimerRapport.Name = "btn_finalisationDiag_imprimerRapport"
         Me.btn_finalisationDiag_imprimerRapport.Size = New System.Drawing.Size(184, 24)
         Me.btn_finalisationDiag_imprimerRapport.TabIndex = 7
@@ -203,7 +207,7 @@ Public Class frmdiagnostic_recap
         Me.btn_finalisationDiag_modifierDiag.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_finalisationDiag_modifierDiag.ForeColor = System.Drawing.Color.White
         Me.btn_finalisationDiag_modifierDiag.Image = CType(resources.GetObject("btn_finalisationDiag_modifierDiag.Image"), System.Drawing.Image)
-        Me.btn_finalisationDiag_modifierDiag.Location = New System.Drawing.Point(5, 629)
+        Me.btn_finalisationDiag_modifierDiag.Location = New System.Drawing.Point(5, 619)
         Me.btn_finalisationDiag_modifierDiag.Name = "btn_finalisationDiag_modifierDiag"
         Me.btn_finalisationDiag_modifierDiag.Size = New System.Drawing.Size(184, 24)
         Me.btn_finalisationDiag_modifierDiag.TabIndex = 6
@@ -218,7 +222,7 @@ Public Class frmdiagnostic_recap
         Me.btn_finalisationDiag_imprimerSynthese.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_finalisationDiag_imprimerSynthese.ForeColor = System.Drawing.Color.White
         Me.btn_finalisationDiag_imprimerSynthese.Image = CType(resources.GetObject("btn_finalisationDiag_imprimerSynthese.Image"), System.Drawing.Image)
-        Me.btn_finalisationDiag_imprimerSynthese.Location = New System.Drawing.Point(381, 629)
+        Me.btn_finalisationDiag_imprimerSynthese.Location = New System.Drawing.Point(194, 653)
         Me.btn_finalisationDiag_imprimerSynthese.Name = "btn_finalisationDiag_imprimerSynthese"
         Me.btn_finalisationDiag_imprimerSynthese.Size = New System.Drawing.Size(184, 24)
         Me.btn_finalisationDiag_imprimerSynthese.TabIndex = 8
@@ -235,6 +239,7 @@ Public Class frmdiagnostic_recap
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.rbEtatCC)
         Me.SplitContainer1.Panel1.Controls.Add(Me.rbEtatSM)
         Me.SplitContainer1.Panel1.Controls.Add(Me.rbEtatRI)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnAppercu)
@@ -252,10 +257,21 @@ Public Class frmdiagnostic_recap
         Me.SplitContainer1.SplitterDistance = 626
         Me.SplitContainer1.TabIndex = 14
         '
+        'rbEtatCC
+        '
+        Me.rbEtatCC.AutoSize = True
+        Me.rbEtatCC.Location = New System.Drawing.Point(289, 12)
+        Me.rbEtatCC.Name = "rbEtatCC"
+        Me.rbEtatCC.Size = New System.Drawing.Size(115, 17)
+        Me.rbEtatCC.TabIndex = 6
+        Me.rbEtatCC.TabStop = True
+        Me.rbEtatCC.Text = "Contrat commercial"
+        Me.rbEtatCC.UseVisualStyleBackColor = True
+        '
         'rbEtatSM
         '
         Me.rbEtatSM.AutoSize = True
-        Me.rbEtatSM.Location = New System.Drawing.Point(175, 12)
+        Me.rbEtatSM.Location = New System.Drawing.Point(152, 12)
         Me.rbEtatSM.Name = "rbEtatSM"
         Me.rbEtatSM.Size = New System.Drawing.Size(131, 17)
         Me.rbEtatSM.TabIndex = 2
@@ -519,7 +535,7 @@ Public Class frmdiagnostic_recap
         Me.btnSignClient.ForeColor = System.Drawing.Color.White
         Me.btnSignClient.Image = Global.Crodip_agent.Resources.btn_Signture
         Me.btnSignClient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSignClient.Location = New System.Drawing.Point(718, 629)
+        Me.btnSignClient.Location = New System.Drawing.Point(611, 653)
         Me.btnSignClient.Name = "btnSignClient"
         Me.btnSignClient.Size = New System.Drawing.Size(148, 24)
         Me.btnSignClient.TabIndex = 17
@@ -534,12 +550,27 @@ Public Class frmdiagnostic_recap
         Me.btnSignAgent.ForeColor = System.Drawing.Color.White
         Me.btnSignAgent.Image = CType(resources.GetObject("btnSignAgent.Image"), System.Drawing.Image)
         Me.btnSignAgent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSignAgent.Location = New System.Drawing.Point(571, 629)
+        Me.btnSignAgent.Location = New System.Drawing.Point(611, 619)
         Me.btnSignAgent.Name = "btnSignAgent"
         Me.btnSignAgent.Size = New System.Drawing.Size(141, 24)
         Me.btnSignAgent.TabIndex = 18
         Me.btnSignAgent.Text = "        Signature inspecteur"
         Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btn_ContratCommercial
+        '
+        Me.btn_ContratCommercial.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_ContratCommercial.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_ContratCommercial.Enabled = False
+        Me.btn_ContratCommercial.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_ContratCommercial.ForeColor = System.Drawing.Color.White
+        Me.btn_ContratCommercial.Image = CType(resources.GetObject("btn_ContratCommercial.Image"), System.Drawing.Image)
+        Me.btn_ContratCommercial.Location = New System.Drawing.Point(381, 619)
+        Me.btn_ContratCommercial.Name = "btn_ContratCommercial"
+        Me.btn_ContratCommercial.Size = New System.Drawing.Size(184, 24)
+        Me.btn_ContratCommercial.TabIndex = 19
+        Me.btn_ContratCommercial.Text = "      Contrat commercial"
+        Me.btn_ContratCommercial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmdiagnostic_recap
         '
@@ -547,6 +578,7 @@ Public Class frmdiagnostic_recap
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1008, 679)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btn_ContratCommercial)
         Me.Controls.Add(Me.btnSignAgent)
         Me.Controls.Add(Me.btnSignClient)
         Me.Controls.Add(Me.label_pulveBonEtat)
@@ -680,7 +712,7 @@ Public Class frmdiagnostic_recap
         'Generation de l'apperçu du rapport
         '###################
 
-        createRapportInspection_cr(False)
+        createEtatRapportInspection(False)
 
         '======================
         ' Boutons de Signatures
@@ -773,6 +805,14 @@ Public Class frmdiagnostic_recap
 
         Else
             If checkForm() Then
+                If (m_oAgent.isSignElecActive) Then
+                    If Not (m_diagnostic.bSignCCAgent And m_diagnostic.bSignCCClient And m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient) Then
+                        If MsgBox("Attention, Vos documents ne sont pas signés, voulez-vous continuer", MsgBoxStyle.YesNo, "Validation du contrôle") = MsgBoxResult.No Then
+                            Exit Sub
+                        End If
+
+                    End If
+                End If
                 If MsgBox("Attention, la validation du contrôle est définitive, vous ne pourrez plus revenir en arrière. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Validation du contrôle") = MsgBoxResult.Yes Then
                     desactiveModifications()
                     btnSignAgent.Enabled = False
@@ -827,10 +867,14 @@ Public Class frmdiagnostic_recap
                 m_diagnostic.id = tmpNewDiagId
 
                 Statusbar.display("Génération du rapport d'inspection", True)
-                If createRapportInspection_cr(True) Then
+                If createEtatRapportInspection(True) Then
                     Statusbar.display("Génération du rapport de synthèse des mesures", True)
                     If Not createEtatSyntheseDesMesures(True) Then
                         CSDebug.dispError("Erreur en génération de l'état de synthèse des mesures")
+                    End If
+                    Statusbar.display("Génération du Contrat Commercial", True)
+                    If Not createEtatContratCommercial(True) Then
+                        CSDebug.dispError("Erreur en génération du Contrat Commercial")
                     End If
 
                     'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
@@ -862,11 +906,13 @@ Public Class frmdiagnostic_recap
                     btn_finalisationDiag_imprimerRapport.Enabled = True
                     btn_finalisationDiag_modifierDiag.Enabled = False
                     btn_finalisationDiag_imprimerSynthese.Enabled = True
+                    btn_ContratCommercial.Enabled = True
 
                     'Désactivation de l'apperçu
                     btnAppercu.Enabled = False
                     rbEtatRI.Enabled = False
                     rbEtatSM.Enabled = False
+                    rbEtatCC.Enabled = False
                     CrystalReportViewer1.Enabled = False
                     isValider = True
 
@@ -948,7 +994,7 @@ Public Class frmdiagnostic_recap
         Return bReturn
     End Function
     ' rapport D'inspection
-    Private Function createRapportInspection_cr(pExportDPF As Boolean) As Boolean
+    Private Function createEtatRapportInspection(pExportDPF As Boolean) As Boolean
         Dim bReturn As Boolean
         Dim pathRapport As String
         Try
@@ -962,11 +1008,37 @@ Public Class frmdiagnostic_recap
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
             End If
         Catch ex As Exception
-            CSDebug.dispError("createRapportInspection_cr ERR : " & ex.Message.ToString)
+            CSDebug.dispError("createEtatRapportInspection ERR : " & ex.Message.ToString)
             bReturn = False
         End Try
         Return bReturn
-    End Function 'createRapportInspection_cr
+    End Function 'createEtatRapportInspection
+    ''' <summary>
+    ''' Affichage du contrat Commercial
+    ''' </summary>
+    ''' <param name="pExportDPF"></param>
+    ''' <returns></returns>
+    Private Function createEtatContratCommercial(pExportDPF As Boolean) As Boolean
+        Dim bReturn As Boolean
+        Try
+            Dim oEtat As New EtatContratCommercial(m_diagnostic)
+            oEtat.GenereEtat(pExportDPF)
+            If pExportDPF Then
+                If File.Exists(Globals.CONST_PATH_EXP & m_diagnostic.CCFileName) Then
+                    File.Delete(Globals.CONST_PATH_EXP & m_diagnostic.CCFileName)
+                End If
+                m_diagnostic.CCFileName = oEtat.getFileName()
+                bReturn = File.Exists(Globals.CONST_PATH_EXP & oEtat.getFileName())
+            Else
+                CrystalReportViewer1.ReportSource = oEtat.getReportdocument
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("createEtatContratCommercial ERR : " & ex.Message.ToString)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function 'createContratCommercial
+
     Private Sub btn_finalisationDiag_imprimerRapport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_imprimerRapport.Click
         Try
             ' On affiche le PDF rempli
@@ -1142,9 +1214,13 @@ Public Class frmdiagnostic_recap
 
     Private Sub btnAppercu_Click(sender As Object, e As EventArgs) Handles btnAppercu.Click
         If rbEtatRI.Checked Then
-            createRapportInspection_cr(False)
-        Else
+            createEtatRapportInspection(False)
+        End If
+        If rbEtatSM.Checked Then
             createEtatSyntheseDesMesures(False)
+        End If
+        If rbEtatCC.Checked Then
+            createEtatContratCommercial(False)
         End If
     End Sub
 
@@ -1164,25 +1240,77 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Private Sub btnSignClient_Click(sender As Object, e As EventArgs) Handles btnSignClient.Click
-        Signatureclient()
+        If checkForm() Then
+            Signatureclient()
+        End If
     End Sub
 
     Private Sub btnSignAgent_Click(sender As Object, e As EventArgs) Handles btnSignAgent.Click
-        SignatureAgent()
+        If checkForm() Then
+
+            SignatureAgent()
+        End If
     End Sub
 
     Public Sub Signatureclient()
-        Dim ofrm As New frmSignClient(m_diagnostic, SignMode.RICLIENT, m_oAgent)
-        ofrm.ShowDialog()
-        If m_diagnostic.SignRIAgent IsNot Nothing Or m_diagnostic.SignRIClient IsNot Nothing Then
-            desactiveModifications()
+        Dim ofrm As frmSignClient = Nothing
+        If rbEtatRI.Checked Then
+            ofrm = New frmSignClient(m_diagnostic, SignMode.RICLIENT, m_oAgent)
+        End If
+        If rbEtatCC.Checked Then
+            ofrm = New frmSignClient(m_diagnostic, SignMode.CCCLIENT, m_oAgent)
+        End If
+        If ofrm IsNot Nothing Then
+            ofrm.ShowDialog()
+            If m_diagnostic.SignRIAgent IsNot Nothing Or m_diagnostic.SignRIClient IsNot Nothing Then
+                desactiveModifications()
+            End If
         End If
     End Sub
     Public Sub SignatureAgent()
-        Dim ofrm As New frmSignClient(m_diagnostic, SignMode.RIAGENT, m_oAgent)
-        ofrm.ShowDialog()
-        If m_diagnostic.SignRIAgent IsNot Nothing Or m_diagnostic.SignRIClient IsNot Nothing Then
-            desactiveModifications()
+        Dim ofrm As frmSignClient = Nothing
+        If rbEtatRI.Checked Then
+            ofrm = New frmSignClient(m_diagnostic, SignMode.RIAGENT, m_oAgent)
         End If
+        If rbEtatCC.Checked Then
+            ofrm = New frmSignClient(m_diagnostic, SignMode.CCAGENT, m_oAgent)
+        End If
+        If ofrm IsNot Nothing Then
+            ofrm.ShowDialog()
+            If m_diagnostic.SignRIAgent IsNot Nothing Or m_diagnostic.SignRIClient IsNot Nothing Then
+                desactiveModifications()
+            End If
+        End If
+    End Sub
+
+    Private Sub rbEtatRI_CheckedChanged(sender As Object, e As EventArgs) Handles rbEtatRI.CheckedChanged
+        If m_oAgent.isSignElecActive Then
+            If rbEtatRI.Checked Then
+                btnSignAgent.Visible = True
+                btnSignClient.Visible = True
+            End If
+            If rbEtatSM.Checked Then
+                btnSignAgent.Visible = False
+                btnSignClient.Visible = False
+
+            End If
+            If rbEtatCC.Checked Then
+                btnSignAgent.Visible = True
+                btnSignClient.Visible = True
+
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_ContratCommercial_Click(sender As Object, e As EventArgs) Handles btn_ContratCommercial.Click
+        Try
+            Statusbar.display("Affichage du contrat commercial", True)
+            ' On affiche le PDF rempli
+            CSFile.open(Globals.CONST_PATH_EXP & m_diagnostic.CCFileName)
+            Statusbar.display("", True)
+        Catch ex As Exception
+            CSDebug.dispError("Erreur lors de l'affichage du contrat commercial " & ex.Message)
+        End Try
+
     End Sub
 End Class

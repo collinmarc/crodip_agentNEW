@@ -19,37 +19,45 @@ Public Class EtatContratCommercial
         End Using
     End Sub
 
-    Public Function GenereEtat() As Boolean
+    Public Function GenereEtat(pExportPDF As Boolean) As Boolean
         Dim bReturn As Boolean
+        Dim strReportName As String
         Try
             bReturn = genereDS()
             If (bReturn) Then
-                Using objReport As New ReportDocument()
+                Using r1 As New cr_RapportInspection
+                    strReportName = r1.ResourceName
+                    r1.Close()
+                End Using
 
-                    If System.IO.File.Exists(MySettings.Default.RepertoireParametres & "/" & m_ReportName) Then
-                        objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
-                    Else
+                m_oReportDocument = New ReportDocument()
+
+                If System.IO.File.Exists(MySettings.Default.RepertoireParametres & "/" & m_ReportName) Then
+                    m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
+                Else
                         CSDebug.dispFatal(MySettings.Default.RepertoireParametres & "/" & m_ReportName & " n'existe pas")
                     End If
 
-                    objReport.SetDataSource(m_ods)
-                    Dim CrExportOptions As ExportOptions
-                    Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
-                    Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
-                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                    CrExportOptions = objReport.ExportOptions
+                m_oReportDocument.SetDataSource(m_ods)
+                If (pExportPDF) Then
+                        Dim CrExportOptions As ExportOptions
+                        Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
+                        Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
+                        m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
+                        CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrExportOptions = m_oReportDocument.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile
                         .ExportFormatType = ExportFormatType.PortableDocFormat
                         .DestinationOptions = CrDiskFileDestinationOptions
                         .FormatOptions = CrFormatTypeOptions
                     End With
-                    objReport.Export()
-                    objReport.Close()
-                End Using
 
-            End If
+                    m_oReportDocument.Export()
+                    m_oReportDocument.Close()
+                End If
+
+                    End If
         Catch ex As Exception
             CSDebug.dispError("EtatContratCommercial.GenereEtat ERR" & ex.Message)
             bReturn = False

@@ -3,11 +3,11 @@ MASTER
 
 BUILD : 20200525
 ----------------------
-	0001229: Bouton Signature inspecteur Trop Petit
+0001231: Retour Signature
+0001229: Bouton Signature inspecteur Trop Petit
 	0001234: Signature : Bloquer les modifications après signatures
 	0001233: PDFS manquants : suite à synhcro
 	0001232: Erreur sur cumul d'erreur en Pression
-	0001231: Retour Signature
 	0001230: Affiche de la liste des exploitations trop longue
 	0001228: Import CSV : import de la date de prochain controle et Nombre de Rangs
 	0001218: [synchro] Message d'erreur
