@@ -27,7 +27,7 @@ Imports System.IO
 
 
         oEtat = New EtatContratCommercial(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.GenereEtat(True))
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
 
@@ -102,7 +102,7 @@ Imports System.IO
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         DiagnosticManager.save(oDiag)
         oEtat = New EtatContratCommercial(oDiag)
-        oEtat.GenereEtat()
+        oEtat.GenereEtat(True)
         oDiag.CCFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
         Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.CCFileName))

@@ -5,13 +5,13 @@ Imports System
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Crodip_agent
-
-
+Imports System.Drawing
+Imports System.IO
 
 '''<summary>
 '''Classe de test pour Diagnostic et DiagnosticManager
 '''</summary>
-<TestClass()> _
+<TestClass()>
 Public Class DiagnosticManagerTest
     Inherits CRODIPTest
 
@@ -46,7 +46,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test pour D'init de l'objet + properties
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_Object()
         Dim oDiag As Diagnostic
         oDiag = New Diagnostic()
@@ -72,7 +72,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test pour D'init de l'objet à partir des données Client
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SetProprietaire()
         Dim oDiag As Diagnostic
         Dim pClient As New Exploitation
@@ -123,7 +123,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test pour D'init de l'objet à partir des données Client
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SetPulverisateur()
         Dim oDiag As Diagnostic
         Dim poPulve As New Pulverisateur
@@ -256,7 +256,7 @@ Public Class DiagnosticManagerTest
     '''Test pour D'init de l'objet à partir des données Pulveristeur
     ''' CoupureAutotroncon et ReglageHauteur
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SetPulverisateurV4L4()
         Dim oDiag As Diagnostic
         Dim poPulve As New Pulverisateur
@@ -304,7 +304,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test pour D'init de l'objet à partir des données Client
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SetPulverisateurDateDernierControle()
         Dim oDiag As Diagnostic
         Dim poPulve As Pulverisateur
@@ -345,7 +345,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test pour D'init de l'objet + properties
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_Create_Save_Update()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -456,7 +456,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test pour D'init de l'objet + properties
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_GetByID()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -524,7 +524,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test pour D'init de l'objet + properties
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_GetUpdates()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -568,7 +568,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test du chargemet des diagnostique pour une contre visite
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_GetDiagPourcontreVisite()
         Dim oDiag As Diagnostic
         Dim bReturn As Boolean
@@ -677,7 +677,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test du Du controle des 4 mois pour les Diag en contre visite
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_GetDiagPourcontreVisite4mois()
         Dim oDiag As Diagnostic
         Dim bReturn As Boolean
@@ -746,7 +746,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test du getUpdate pour Diagnostic > 4 mois
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_GetDiagUpdates()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -911,7 +911,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test du SetOrganisme, Organisme d'origine
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_GetOrganismeOrigine()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -1416,7 +1416,7 @@ Public Class DiagnosticManagerTest
     '''Test pour pour les propeties Lot3
     '''ControleBancMesureId ,controleUseCalibrateur ,controleNbreNiveaux ,controleNbreTroncons ,controleManoControleNumNational 
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_PropertiesLot3()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -1482,7 +1482,7 @@ Public Class DiagnosticManagerTest
     '''ControleInitialId
     ''' PulverisateurAncienId
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_PropertiesV4L1b()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -1559,7 +1559,7 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_GetWSIncrement()
         Dim curIncrement As String = ""
         DiagnosticManager.getWSDiagnosticIncrement(m_oAgent, curIncrement)
@@ -1580,7 +1580,7 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SaveDiagnosticBuses()
         Dim oDiag As Diagnostic
         Dim oDiagBuses As DiagnosticBuses
@@ -1682,7 +1682,7 @@ Public Class DiagnosticManagerTest
 
         DiagnosticManager.delete(oDiag.id)
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SaveDiagnosticMano542()
         Dim oDiag As Diagnostic
         Dim oDiagMano542 As DiagnosticMano542
@@ -1739,7 +1739,7 @@ Public Class DiagnosticManagerTest
         DiagnosticManager.delete(oDiag.id)
 
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SaveDiagnosticTroncons833()
         Dim oDiag As Diagnostic
         Dim oDiagTroncons833 As DiagnosticTroncons833
@@ -1849,7 +1849,7 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SaveDiagnosticItem()
         Dim oDiag As Diagnostic
         Dim oDiagItem As DiagnosticItem
@@ -1944,7 +1944,7 @@ Public Class DiagnosticManagerTest
     ''' Ce test vérifie la sauvegarde de tous les SubItems du diagnostic
     ''' </summary>
     ''' <remarks></remarks>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SaveDiagnosticAll()
         Dim oDiag As Diagnostic
         Dim oDiagBuses As DiagnosticBuses
@@ -2272,7 +2272,7 @@ Public Class DiagnosticManagerTest
         DiagnosticManager.delete(oDiag.id)
 
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SendDiagWSAll()
         Dim oDiag As Diagnostic
         Dim oDiagBuses As DiagnosticBuses
@@ -2460,7 +2460,7 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SendDiagWSBuses()
         Dim oDiag As Diagnostic
         Dim oDiagBuses As DiagnosticBuses
@@ -2533,7 +2533,7 @@ Public Class DiagnosticManagerTest
         DiagnosticManager.delete(oDiag.id)
 
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SendDiagWSMano542()
         Dim oDiag As Diagnostic
         Dim idDiag As String
@@ -2582,7 +2582,7 @@ Public Class DiagnosticManagerTest
         DiagnosticManager.delete(oDiag.id)
 
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SendDiagWSTroncons833()
         Dim oDiag As Diagnostic
         Dim idDiag As String
@@ -2659,7 +2659,7 @@ Public Class DiagnosticManagerTest
         DiagnosticManager.delete(oDiag.id)
 
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SendDiagWSDiagItems()
         Dim oDiag As Diagnostic
         Dim idDiag As String
@@ -2726,7 +2726,7 @@ Public Class DiagnosticManagerTest
         DiagnosticManager.delete(oDiag.id)
 
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SendDiagWS1DiagItem()
         Dim oDiag As Diagnostic
         Dim idDiag As String
@@ -2761,7 +2761,7 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_AddDiagItem()
 
         Dim oDiag As New Diagnostic()
@@ -2942,7 +2942,7 @@ Public Class DiagnosticManagerTest
     'End Sub
     'Test la fonctionnalité de génération de l'état de synthèse
     'Première phase : Génération de du dataset
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_CreateEtatsynthes_Buse()
         Dim oDiag As Diagnostic
         Dim oDiagBuses As DiagnosticBuses
@@ -3117,7 +3117,7 @@ Public Class DiagnosticManagerTest
 
     'Test la fonctionnalité de génération de l'état de synthèse
     'Première phase : Génération de du dataset
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_CreateEtatsynthes_542()
         Dim oDiag As Diagnostic
         Dim idDiag As String
@@ -3174,10 +3174,10 @@ Public Class DiagnosticManagerTest
 
         'II - génération du dataset
         '===========================
-        Dim ods As ds_etat_SM
+        Dim ods As ds_Etat_SM
         Dim oEtat As New EtatSyntheseMesures(oDiag)
         oEtat.GenereEtat()
-        ods = DirectCast(oEtat.getDs(), ds_etat_SM)
+        ods = DirectCast(oEtat.getDs(), ds_Etat_SM)
 
         'III- Vérification du dataset généré
         '====================================
@@ -3220,13 +3220,13 @@ Public Class DiagnosticManagerTest
         'oDiag.syntheseErreurMoyenneMano = "0,5"
 
         Assert.AreEqual(1, ods.Mano542.Count)
-        Dim oRow542 As ds_etat_SM.Mano542Row
+        Dim oRow542 As ds_Etat_SM.Mano542Row
         oRow542 = CType(ods.Mano542.Rows(0), ds_Etat_SM.Mano542Row)
         Assert.AreEqual(oRow542.EcartMaxi, 0.4D)
         Assert.AreEqual(oRow542.EcartMoyen, 0.5D)
 
         Assert.AreEqual(4, ods.Mano542Detail.Count)
-        Dim oRow542D As ds_etat_SM.Mano542DetailRow
+        Dim oRow542D As ds_Etat_SM.Mano542DetailRow
         oRow542D = CType(ods.Mano542Detail.Rows(0), ds_Etat_SM.Mano542DetailRow)
         Assert.AreEqual(oRow542D.pressionControle, 1.6D)
         Assert.AreEqual(oRow542D.PressionPulve, 1.7D)
@@ -3256,7 +3256,7 @@ Public Class DiagnosticManagerTest
 
     'Test la fonctionnalité de génération de l'état de synthèse
     'Première phase : Génération de du dataset
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_CreateEtatsynthes_833()
         Dim oDiag As Diagnostic
         Dim idDiag As String
@@ -3378,7 +3378,7 @@ Public Class DiagnosticManagerTest
 
         'II - génération du dataset
         '===========================
-        Dim ods As ds_etat_SM
+        Dim ods As ds_Etat_SM
         Dim oEtat As New EtatSyntheseMesures(oDiag)
         Assert.IsTrue(oEtat.GenereEtat())
         ods = DirectCast(oEtat.getDs(), ds_Etat_SM)
@@ -3388,13 +3388,13 @@ Public Class DiagnosticManagerTest
         '====================================
 
         Assert.AreEqual(1, ods.Synthese833.Rows.Count)
-        Dim oRow833 As ds_etat_SM.Synthese833Row
+        Dim oRow833 As ds_Etat_SM.Synthese833Row
         oRow833 = CType(ods.Synthese833.Rows(0), ds_Etat_SM.Synthese833Row)
         Assert.AreEqual(oRow833.NbreNiveaux, 1)
         Assert.AreEqual(oRow833.NbreTroncons, 2)
 
         Assert.AreEqual(4, ods.synthese833Pression.Rows.Count)
-        Dim oRow833P As ds_etat_SM.synthese833PressionRow
+        Dim oRow833P As ds_Etat_SM.synthese833PressionRow
         oRow833P = CType(ods.synthese833Pression.Rows(0), ds_Etat_SM.synthese833PressionRow)
         Assert.AreEqual(oRow833P.PressionMesure, 5.1D)
         Assert.AreEqual(oRow833P.MoyennePression, 0D)
@@ -3416,7 +3416,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(oRow833P.EcartBars, 20.1D)
 
         Assert.AreEqual(8, ods.synthese833Detail.Rows.Count)
-        Dim oRow833D As ds_etat_SM.synthese833DetailRow
+        Dim oRow833D As ds_Etat_SM.synthese833DetailRow
 
         oRow833D = CType(ods.synthese833Detail.Rows(0), ds_Etat_SM.synthese833DetailRow)
         Assert.AreEqual(oRow833D.nPression, 1)
@@ -3568,7 +3568,7 @@ Public Class DiagnosticManagerTest
 
     'Test la fonctionnalité de génération de l'état de synthèse
     'Première phase : Génération de du dataset
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_CreateEtatsynthes551()
         Dim oDiag As Diagnostic
         Dim idDiag As String
@@ -3614,16 +3614,16 @@ Public Class DiagnosticManagerTest
 
         'II - génération du dataset
         '===========================
-        Dim ods As ds_etat_SM
+        Dim ods As ds_Etat_SM
         Dim oEtat As New EtatSyntheseMesures(oDiag)
         oEtat.GenereEtat()
-        ods = DirectCast(oEtat.getDs(), ds_etat_SM)
+        ods = DirectCast(oEtat.getDs(), ds_Etat_SM)
 
         'III- Vérification du dataset généré
         '====================================
 
         Assert.AreEqual(2, ods.SyntheseCapteurVitesse.Rows.Count)
-        Dim oRowCV As ds_etat_SM.SyntheseCapteurVitesseRow
+        Dim oRowCV As ds_Etat_SM.SyntheseCapteurVitesseRow
         oRowCV = CType(ods.SyntheseCapteurVitesse.Rows(0), ds_Etat_SM.SyntheseCapteurVitesseRow)
         Assert.AreEqual(oRowCV.type, "help551")
         Assert.AreEqual(oRowCV.Distance1, 10.5D)
@@ -3656,7 +3656,7 @@ Public Class DiagnosticManagerTest
 
     'Test la fonctionnalité de génération de l'état de synthèse
     'Première phase : Génération de du dataset
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_CreateEtatsynthes552()
         Dim oDiag As Diagnostic
         Dim idDiag As String
@@ -3714,16 +3714,16 @@ Public Class DiagnosticManagerTest
 
         'II - génération du dataset
         '===========================
-        Dim ods As ds_etat_SM
+        Dim ods As ds_Etat_SM
         Dim oEtat As New EtatSyntheseMesures(oDiag)
         oEtat.GenereEtat()
-        ods = DirectCast(oEtat.getDs(), ds_etat_SM)
+        ods = DirectCast(oEtat.getDs(), ds_Etat_SM)
 
         'III- Vérification du dataset généré
         '====================================
 
         Assert.AreEqual(2, ods.SyntheseDebitmetre.Rows.Count)
-        Dim oRowDM As ds_etat_SM.SyntheseDebitmetreRow
+        Dim oRowDM As ds_Etat_SM.SyntheseDebitmetreRow
         oRowDM = CType(ods.SyntheseDebitmetre.Rows(0), ds_Etat_SM.SyntheseDebitmetreRow)
         Assert.AreEqual(oRowDM.type, "help552")
         Assert.AreEqual(oRowDM.ErreurDebitMetre, 40.5D)
@@ -3784,7 +3784,7 @@ Public Class DiagnosticManagerTest
 
     End Sub
     'Test de la fonction de récupération d'un nouveau Numéro de diag
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_GetNewId()
         Dim odiag As Diagnostic
         Dim strId As String
@@ -3816,7 +3816,7 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_Clone()
         Dim oDiag As Diagnostic
         Dim oDiagBuses As DiagnosticBuses
@@ -4201,7 +4201,7 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SetContreVisite()
         Dim oDiag As Diagnostic
         Dim oDiagBuses As DiagnosticBuses
@@ -4439,7 +4439,7 @@ Public Class DiagnosticManagerTest
 
 
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_SetPulverisateurModeleBuse()
         Dim oDiag As Diagnostic
         Dim poPulve As New Pulverisateur
@@ -4608,8 +4608,8 @@ Public Class DiagnosticManagerTest
         Assert.AreNotEqual(0, oLstSynchro.Count)
 
         For Each oSynchroElmt In oLstSynchro
-            Console.WriteLine(oSynchroElmt.type & "(" & oSynchroElmt.identifiantChaine & "," & oSynchroElmt.identifiantEntier & ")")
-            oSynchroElmt.synchroDesc(m_oAgent)
+            Console.WriteLine(oSynchroElmt.Type & "(" & oSynchroElmt.IdentifiantChaine & "," & oSynchroElmt.IdentifiantEntier & ")")
+            oSynchroElmt.SynchroDesc(m_oAgent)
         Next oSynchroElmt
 
         'Vérification des Objets
@@ -4657,7 +4657,7 @@ Public Class DiagnosticManagerTest
     ''' RIFileName
     ''' SMFileName
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_PropertiesV4L3()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -4788,7 +4788,7 @@ Public Class DiagnosticManagerTest
     ''' Test du calcul de la date de prochain controle
     ''' </summary>
     ''' <remarks></remarks>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_DateProchainControle()
         Dim oDiag As Diagnostic
         Dim poPulve As Pulverisateur
@@ -5021,7 +5021,7 @@ Public Class DiagnosticManagerTest
         oDiag.CalculDateProchainControle()
         Assert.AreEqual("2016-04-17 00:00:00", oDiag.pulverisateurDateProchainControle)
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_BuseFonctionnement()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -5070,7 +5070,7 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_BuseFonctionnementEncodage()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -5114,7 +5114,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test du de la liste des Diag par Pulve_id
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_GetLstDiagByPulveId()
         Dim bReturn As Boolean
         Dim id As String
@@ -5221,7 +5221,7 @@ Public Class DiagnosticManagerTest
     ''' Test l'utilisation du Banc de mesures et du manodeControle Utilise
     ''' </summary>
     ''' <remarks></remarks>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TestUtilisationBancEtMano()
 
         Dim id As String
@@ -5315,7 +5315,7 @@ Public Class DiagnosticManagerTest
     '''Test pour les properties du ticket 17700 (Nvx Equipements
     ''' ccFileName, CoupureAutoTroncons, ReglageAutoHauteur
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_Properties17700()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -5407,7 +5407,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test pour les properties typeEquiement etCodeInsee
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_typeDiagnosticetCodeInsee()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
@@ -5496,7 +5496,7 @@ Public Class DiagnosticManagerTest
     '''<summary>
     '''Test des date de prochain controle
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_getDiagPourCV()
         Dim oDiag As Diagnostic
         Dim id As String
@@ -5655,5 +5655,125 @@ Public Class DiagnosticManagerTest
             Assert.AreNotEqual("", oDiagItem.LibelleLong)
         Next
     End Sub
+    ''' <summary>
+    ''' Test des CRUD des propriétés de signature
+    ''' </summary>
+    <TestMethod()> Public Sub TST_PropertiesSignature()
+        Dim oDiag As Diagnostic
+        Dim oDiag2 As Diagnostic
+        Dim bReturn As Boolean
+        Dim id As String
+        Dim img As System.Drawing.Image
+        img = New Bitmap(800, 600)
+        Dim ms2 As New MemoryStream
+        img.Save(ms2, Imaging.ImageFormat.Bmp)
+
+        oDiag = New Diagnostic()
+        oDiag.setOrganisme(m_oAgent)
+        id = "DIAG" & Now.Hour & Now.Minute & Now.Second
+        oDiag.id = id
+
+
+
+        'V2.6.4
+        oDiag.bSignRIAgent = True
+        oDiag.bSignRIClient = True
+        oDiag.bSignCCAgent = True
+        oDiag.bSignCCClient = True
+        oDiag.dateSignRIAgent = CDate("31/12/2019")
+        oDiag.dateSignRIClient = CDate("30/12/2019")
+        oDiag.dateSignCCAgent = CDate("29/12/2019")
+        oDiag.dateSignCCClient = CDate("28/12/2019")
+        oDiag.SignRIAgent = ms2.ToArray()
+
+        Assert.IsTrue(oDiag.bSignRIAgent)
+        Assert.IsTrue(oDiag.bSignRIClient)
+        Assert.IsTrue(oDiag.bSignCCAgent)
+        Assert.IsTrue(oDiag.bSignCCClient)
+        Assert.AreEqual(CDate("31/12/2019"), oDiag.dateSignRIAgent)
+        Assert.AreEqual(CDate("30/12/2019"), oDiag.dateSignRIClient)
+        Assert.AreEqual(CDate("29/12/2019"), oDiag.dateSignCCAgent)
+        Assert.AreEqual(CDate("28/12/2019"), oDiag.dateSignCCClient)
+
+
+        bReturn = DiagnosticManager.save(oDiag)
+        Assert.IsTrue(bReturn)
+
+        oDiag2 = New Diagnostic()
+        oDiag2 = DiagnosticManager.getDiagnosticById(id)
+
+        Assert.IsTrue(oDiag2.bSignRIAgent)
+        Assert.IsTrue(oDiag2.bSignRIClient)
+        Assert.IsTrue(oDiag2.bSignCCAgent)
+        Assert.IsTrue(oDiag2.bSignCCClient)
+        Assert.AreEqual(CDate("31/12/2019"), oDiag2.dateSignRIAgent)
+        Assert.AreEqual(CDate("30/12/2019"), oDiag2.dateSignRIClient)
+        Assert.AreEqual(CDate("29/12/2019"), oDiag2.dateSignCCAgent)
+        Assert.AreEqual(CDate("28/12/2019"), oDiag2.dateSignCCClient)
+
+        oDiag2.bSignRIAgent = False
+        oDiag2.bSignRIClient = False
+        oDiag2.bSignCCAgent = False
+        oDiag2.bSignCCClient = False
+        oDiag2.dateSignRIAgent = CDate("31/12/2018")
+        oDiag2.dateSignRIClient = CDate("30/12/2018")
+        oDiag2.dateSignCCAgent = CDate("29/12/2018")
+        oDiag2.dateSignCCClient = CDate("28/12/2018")
+
+        Assert.IsTrue(DiagnosticManager.save(oDiag2))
+        oDiag = DiagnosticManager.getDiagnosticById(id)
+        Assert.IsFalse(oDiag2.bSignRIAgent)
+        Assert.IsFalse(oDiag2.bSignRIClient)
+        Assert.IsFalse(oDiag2.bSignCCAgent)
+        Assert.IsFalse(oDiag2.bSignCCClient)
+        Assert.AreEqual(CDate("31/12/2018"), oDiag2.dateSignRIAgent)
+        Assert.AreEqual(CDate("30/12/2018"), oDiag2.dateSignRIClient)
+        Assert.AreEqual(CDate("29/12/2018"), oDiag2.dateSignCCAgent)
+        Assert.AreEqual(CDate("28/12/2018"), oDiag2.dateSignCCClient)
+
+        'Dim UpdatedObject As New Object
+        'DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
+
+        'oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        'Assert.IsFalse(oDiag2.bSignRIAgent)
+        'Assert.IsFalse(oDiag2.bSignRIClient)
+        'Assert.IsFalse(oDiag2.bSignCCAgent)
+        'Assert.IsFalse(oDiag2.bSignCCClient)
+        'Assert.AreEqual(CDate("31/12/2018"), oDiag2.dateSignRIAgent)
+        'Assert.AreEqual(CDate("30/12/2018"), oDiag2.dateSignRIClient)
+        'Assert.AreEqual(CDate("29/12/2018"), oDiag2.dateSignCCAgent)
+        'Assert.AreEqual(CDate("28/12/2018"), oDiag2.dateSignCCClient)
+
+        'pause(2000)
+
+        'oDiag2.bSignRIAgent = True
+        'oDiag2.bSignRIClient = True
+        'oDiag2.bSignCCAgent = True
+        'oDiag2.bSignCCClient = True
+        'oDiag.dateSignRIAgent = CDate("31/12/2017")
+        'oDiag.dateSignRIClient = CDate("30/12/2017")
+        'oDiag.dateSignCCAgent = CDate("29/12/2017")
+        'oDiag.dateSignCCClient = CDate("28/12/2017")
+        'DiagnosticManager.save(oDiag2)
+        'oDiag2 = DiagnosticManager.getDiagnosticById(oDiag2.id)
+
+        'DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
+
+        'oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+
+        'Assert.IsTrue(oDiag2.bSignRIAgent)
+        'Assert.IsTrue(oDiag2.bSignRIClient)
+        'Assert.IsTrue(oDiag2.bSignCCAgent)
+        'Assert.IsTrue(oDiag2.bSignCCClient)
+        'Assert.AreEqual(CDate("31/12/2017"), oDiag2.dateSignRIAgent)
+        'Assert.AreEqual(CDate("30/12/2017"), oDiag2.dateSignRIClient)
+        'Assert.AreEqual(CDate("29/12/2017"), oDiag2.dateSignCCAgent)
+        'Assert.AreEqual(CDate("28/12/2017"), oDiag2.dateSignCCClient)
+
+
+        bReturn = DiagnosticManager.delete(id)
+
+    End Sub
+
 
 End Class

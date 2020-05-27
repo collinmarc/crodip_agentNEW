@@ -98,7 +98,7 @@ Public Class frmdiagnostic_recap
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée en utilisant le Concepteur Windows Form.  
     'Ne la modifiez pas en utilisant l'éditeur de code.
-    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents laTitre As System.Windows.Forms.Label
     Friend WithEvents ImageList_Etat As System.Windows.Forms.ImageList
     Private WithEvents btn_finalisationDiag_valider As System.Windows.Forms.Label
     Friend WithEvents btn_finalisationDiag_imprimerRapport As System.Windows.Forms.Label
@@ -107,7 +107,7 @@ Public Class frmdiagnostic_recap
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmdiagnostic_recap))
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.laTitre = New System.Windows.Forms.Label()
         Me.ImageList_Etat = New System.Windows.Forms.ImageList(Me.components)
         Me.btn_finalisationDiag_valider = New System.Windows.Forms.Label()
         Me.btn_finalisationDiag_imprimerRapport = New System.Windows.Forms.Label()
@@ -151,17 +151,17 @@ Public Class frmdiagnostic_recap
         CType(Me.conclusion_pictoEtat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label3
+        'laTitre
         '
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label3.Image = CType(resources.GetObject("Label3.Image"), System.Drawing.Image)
-        Me.Label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label3.Location = New System.Drawing.Point(8, 8)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(344, 24)
-        Me.Label3.TabIndex = 3
-        Me.Label3.Text = "     Visualisation du contrôle"
+        Me.laTitre.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.laTitre.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.laTitre.Image = CType(resources.GetObject("laTitre.Image"), System.Drawing.Image)
+        Me.laTitre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.laTitre.Location = New System.Drawing.Point(8, 8)
+        Me.laTitre.Name = "laTitre"
+        Me.laTitre.Size = New System.Drawing.Size(344, 24)
+        Me.laTitre.TabIndex = 3
+        Me.laTitre.Text = "     Visualisation du contrôle"
         '
         'ImageList_Etat
         '
@@ -535,7 +535,7 @@ Public Class frmdiagnostic_recap
         Me.btnSignClient.ForeColor = System.Drawing.Color.White
         Me.btnSignClient.Image = Global.Crodip_agent.Resources.btn_Signture
         Me.btnSignClient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSignClient.Location = New System.Drawing.Point(611, 653)
+        Me.btnSignClient.Location = New System.Drawing.Point(716, 653)
         Me.btnSignClient.Name = "btnSignClient"
         Me.btnSignClient.Size = New System.Drawing.Size(148, 24)
         Me.btnSignClient.TabIndex = 17
@@ -550,7 +550,7 @@ Public Class frmdiagnostic_recap
         Me.btnSignAgent.ForeColor = System.Drawing.Color.White
         Me.btnSignAgent.Image = CType(resources.GetObject("btnSignAgent.Image"), System.Drawing.Image)
         Me.btnSignAgent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSignAgent.Location = New System.Drawing.Point(611, 619)
+        Me.btnSignAgent.Location = New System.Drawing.Point(716, 619)
         Me.btnSignAgent.Name = "btnSignAgent"
         Me.btnSignAgent.Size = New System.Drawing.Size(141, 24)
         Me.btnSignAgent.TabIndex = 18
@@ -588,7 +588,7 @@ Public Class frmdiagnostic_recap
         Me.Controls.Add(Me.btn_finalisationDiag_imprimerSynthese)
         Me.Controls.Add(Me.btn_finalisationDiag_modifierDiag)
         Me.Controls.Add(Me.btn_finalisationDiag_imprimerRapport)
-        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.laTitre)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmdiagnostic_recap"
@@ -615,18 +615,34 @@ Public Class frmdiagnostic_recap
 #End Region
 
     Private Sub diagnostic_recap_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'Propriété a mettre obligatoirement par programme
-        Me.WindowState = FormWindowState.Maximized
-        Me.ControlBox = False
-        CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
+        If m_DiagMode <> Globals.DiagMode.CTRL_SIGNATURE Then
+            'Propriété a mettre obligatoirement par programme
+            Me.WindowState = FormWindowState.Maximized
+            Me.ControlBox = False
+            CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
+            Me.laTitre.Text = "     Visualisation du contrôle"
 
+        Else
+            Me.WindowState = FormWindowState.Normal
+            Me.FormBorderStyle = FormBorderStyle.Sizable
+            Me.AutoSize = False
+            Me.Width = 800
+            Me.Height = 600
+            Me.ControlBox = True
+            Me.MaximizeBox = True
+            Me.MinimizeBox = True
+            Me.laTitre.Text = "     Signature du contrôle"
+            Me.StartPosition = FormStartPosition.CenterParent
+        End If
         '###########################################################################
         '########               Chargement Organisme d'inspection           ########
         '###########################################################################
         Try
             diagnosticRecap_organisme_dateControle.Text = CDate(m_diagnostic.controleDateDebut).ToShortDateString()
             diagnosticRecap_organisme_heureDebut.Text = CDate(m_diagnostic.controleDateDebut).ToShortTimeString
-            m_diagnostic.controleDateFin = CSDate.mysql2access(Date.Now)
+            If m_DiagMode <> Globals.DiagMode.CTRL_SIGNATURE And m_DiagMode <> Globals.DiagMode.CTRL_VISU Then
+                m_diagnostic.controleDateFin = CSDate.mysql2access(Date.Now)
+            End If
             diagnosticRecap_organisme_heureFin.Text = CDate(m_diagnostic.controleDateFin).ToShortTimeString
         Catch ex As Exception
             CSDebug.dispError("Contrôle Récap - Chargement Organisme d'inspection : " & ex.Message.ToString)
@@ -720,6 +736,11 @@ Public Class frmdiagnostic_recap
         btnSignClient.Visible = m_oAgent.isSignElecActive
         btnSignAgent.Visible = m_oAgent.isSignElecActive
 
+        If (m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE) Then
+            btn_finalisationDiag_modifierDiag.Visible = False
+            desactiveModifications()
+        End If
+
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
             Me.Text = Me.Text & " - Mode Simplifié - "
         End If
@@ -791,6 +812,11 @@ Public Class frmdiagnostic_recap
             CloseDiagnostic()
             Exit Sub
         End If
+        If m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE Then
+            SauvegarderDiagnostic()
+            Close()
+            Exit Sub
+        End If
         If isValider Then
 
 
@@ -808,6 +834,7 @@ Public Class frmdiagnostic_recap
                 If (m_oAgent.isSignElecActive) Then
                     If Not (m_diagnostic.bSignCCAgent And m_diagnostic.bSignCCClient And m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient) Then
                         If MsgBox("Attention, Vos documents ne sont pas signés, voulez-vous continuer", MsgBoxStyle.YesNo, "Validation du contrôle") = MsgBoxResult.No Then
+                            sender.Enabled = True
                             Exit Sub
                         End If
 
@@ -832,6 +859,8 @@ Public Class frmdiagnostic_recap
         diagnosticRecap_organisme_heureFin.Enabled = False
         cbx_diagnosticRecap_materiel_EmplacementIdentification.Enabled = False
         diagnosticRecap_organisme_dateControle.Enabled = False
+        btn_voirFicheExploitant.Enabled = False
+        btn_voirFiche_Pulve.Enabled = False
     End Sub
 
     Private Function SauvegarderDiagnostic() As Boolean
@@ -839,33 +868,44 @@ Public Class frmdiagnostic_recap
         Try
             Try
                 Statusbar.display(Globals.CONST_STATUTMSG_DIAG_SAVING, True)
-                'Lecture de la fenêtre
-                GetInfos()
-                '
-                'Calcul de la date de prochain controle
-                m_diagnostic.CalculDateProchainControle()
+                If m_DiagMode <> Globals.DiagMode.CTRL_SIGNATURE Then
+                    'Lecture de la fenêtre
+                    GetInfos()
+                    '
+                    'Calcul de la date de prochain controle
+                    m_diagnostic.CalculDateProchainControle()
 
-                Statusbar.display("Mise à jour de l'exploitant", True)
-                m_Exploit.numeroSiren = m_diagnostic.proprietaireNumeroSiren
-                m_Exploit.dateDernierControle = m_diagnostic.controleDateDebut
-                ExploitationManager.save(m_Exploit, m_oAgent)
-                globFormAccueil.RefreshLVIExploitation(m_Exploit.id)
+                    Statusbar.display("Mise à jour de l'exploitant", True)
+                    m_Exploit.numeroSiren = m_diagnostic.proprietaireNumeroSiren
+                    m_Exploit.dateDernierControle = m_diagnostic.controleDateDebut
+                    ExploitationManager.save(m_Exploit, m_oAgent)
+                    globFormAccueil.RefreshLVIExploitation(m_Exploit.id)
 
-                Statusbar.display("Mise à jour du pulvérisateur", True)
-                'Calcul de la date de prochain controle
-                m_Pulverisateur.dateProchainControle = m_diagnostic.pulverisateurDateProchainControle
-                m_Pulverisateur.emplacementIdentification = m_diagnostic.pulverisateurEmplacementIdentification
-                m_Pulverisateur.SetControleEtat(m_diagnostic)
-                m_Pulverisateur.DecodageAutomatiqueDefauts(m_diagnostic.diagnosticItemsLst.Values)
-                PulverisateurManager.save(m_Pulverisateur, m_Exploit.id, m_oAgent)
+                    Statusbar.display("Mise à jour du pulvérisateur", True)
+                    'Calcul de la date de prochain controle
+                    m_Pulverisateur.dateProchainControle = m_diagnostic.pulverisateurDateProchainControle
+                    m_Pulverisateur.emplacementIdentification = m_diagnostic.pulverisateurEmplacementIdentification
+                    m_Pulverisateur.SetControleEtat(m_diagnostic)
+                    m_Pulverisateur.DecodageAutomatiqueDefauts(m_diagnostic.diagnosticItemsLst.Values)
+                    PulverisateurManager.save(m_Pulverisateur, m_Exploit.id, m_oAgent)
 
 
-                ' Enregistrement du diag
-                Statusbar.display("Récupération d'un nouvel ID", True)
-                Dim tmpNewDiagId As String
-                'tmpNewDiagId = InputBox("DiagID", "Entrez le numéro du diag", m_oagent.idStructure & "-" & m_oagent.id & "-")
-                tmpNewDiagId = DiagnosticManager.getNewId(m_oAgent)
-                m_diagnostic.id = tmpNewDiagId
+                    ' Enregistrement du diag
+                    Statusbar.display("Récupération d'un nouvel ID", True)
+                    Dim tmpNewDiagId As String
+                    'tmpNewDiagId = InputBox("DiagID", "Entrez le numéro du diag", m_oagent.idStructure & "-" & m_oagent.id & "-")
+                    tmpNewDiagId = DiagnosticManager.getNewId(m_oAgent)
+                    m_diagnostic.id = tmpNewDiagId
+
+                    Statusbar.display("Mise à jour du manomètre et banc de mesures", True)
+                    m_diagnostic.setUtiliseBancEtMano(m_oAgent)
+
+                    'Incrément du nombre de diag réalisé
+                    My.Settings.nbControlesAvantAlerte = My.Settings.nbControlesAvantAlerte + 1
+                    My.Settings.Save()
+
+
+                End If
 
                 Statusbar.display("Génération du rapport d'inspection", True)
                 If createEtatRapportInspection(True) Then
@@ -898,8 +938,6 @@ Public Class frmdiagnostic_recap
                         Application.Exit()
                     End If
 
-                    Statusbar.display("Mise à jour du manomètre et banc de mesures", True)
-                    m_diagnostic.setUtiliseBancEtMano(m_oAgent)
 
 
                     ' On met en place les boutons
@@ -916,12 +954,6 @@ Public Class frmdiagnostic_recap
                     rbEtatCC.Enabled = False
                     CrystalReportViewer1.Enabled = False
                     isValider = True
-
-
-                    'Incrément du nombre de diag réalisé
-                    My.Settings.nbControlesAvantAlerte = My.Settings.nbControlesAvantAlerte + 1
-                    My.Settings.Save()
-
                     Statusbar.display("", False)
                     bReturn = True
                 Else
@@ -1284,7 +1316,7 @@ Public Class frmdiagnostic_recap
         End If
     End Sub
 
-    Private Sub rbEtatRI_CheckedChanged(sender As Object, e As EventArgs) Handles rbEtatRI.CheckedChanged
+    Private Sub rbEtatRI_CheckedChanged(sender As Object, e As EventArgs) Handles rbEtatRI.CheckedChanged, rbEtatSM.CheckedChanged, rbEtatCC.CheckedChanged
         If m_oAgent.isSignElecActive Then
             If rbEtatRI.Checked Then
                 btnSignAgent.Visible = True

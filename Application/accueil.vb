@@ -4746,8 +4746,10 @@ Public Class accueil
                 Statusbar.display("Visualisation d’un contrôle pour le pulvérisateur " & pulverisateurCourant.id)
 
                 Dim formListDiagnostique As New liste_diagnosticPulve
+                formListDiagnostique.setcontexte(pulverisateurCourant, clientCourant, agentCourant)
                 formListDiagnostique.StartPosition = FormStartPosition.CenterParent
-                If (formListDiagnostique.ShowDialog(MdiParent) = Windows.Forms.DialogResult.OK) Then
+                formListDiagnostique.ShowDialog(myFormParentContener)
+                If (formListDiagnostique.DialogResult = Windows.Forms.DialogResult.OK) Then
                     diagnosticCourant = formListDiagnostique.getDiagnostic()
                     VoirDiagnostique()
                 End If

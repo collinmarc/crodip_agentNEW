@@ -199,10 +199,30 @@
 --INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.1", #08/12/2019# , "Modules Acquisition") 
 --INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.2", #10/14/2019# , "Signature Electronique") 
 
-ALTER TABLE DIAGNOSTIC ADD pulverisateurNumNational varchar(255)
-UPDATE DIAGNOSTIC, pulverisateur SET DIAGNOSTIC.pulverisateurNumNational = pulverisateur.numeroNational WHERE pulverisateur.id = diagnostic.pulverisateurid
-ALTER TABLE DIAGNOSTIC ADD pulverisateurNumchassis varchar(255)
-ALTER TABLE PULVERISATEUR ADD numchassis varchar(255)
-ALTER TABLE DIAGNOSTIC ADD origineDiag varchar(255)
-INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.3", #04/07/2020# , "NumChassis,diag.pulveNumnat") 
+--ALTER TABLE DIAGNOSTIC ADD pulverisateurNumNational varchar(255)
+--UPDATE DIAGNOSTIC, pulverisateur SET DIAGNOSTIC.pulverisateurNumNational = pulverisateur.numeroNational WHERE pulverisateur.id = diagnostic.pulverisateurid
+--ALTER TABLE DIAGNOSTIC ADD pulverisateurNumchassis varchar(255)
+--ALTER TABLE PULVERISATEUR ADD numchassis varchar(255)
+--ALTER TABLE DIAGNOSTIC ADD origineDiag varchar(255)
+--INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.3", #04/07/2020# , "NumChassis,diag.pulveNumnat") 
 
+ALTER TABLE DIAGNOSTIC ADD isSignRIAgent YESNO
+ALTER TABLE DIAGNOSTIC ADD isSignRIClient YESNO
+ALTER TABLE DIAGNOSTIC ADD isSignCCAgent YESNO
+ALTER TABLE DIAGNOSTIC ADD isSignCCClient YESNO
+
+ALTER TABLE DIAGNOSTIC ADD dateSignRIAgent DATE
+ALTER TABLE DIAGNOSTIC ADD dateSignRIClient DATE
+ALTER TABLE DIAGNOSTIC ADD dateSignCCAgent DATE
+ALTER TABLE DIAGNOSTIC ADD dateSignCCClient DATE
+
+--ALTER TABLE DIAGNOSTIC ADD signRIAgent  LONGBINARY
+--ALTER TABLE DIAGNOSTIC ADD signRIClient  LONGBINARY
+--ALTER TABLE DIAGNOSTIC ADD signCCAgent  LONGBINARY
+--ALTER TABLE DIAGNOSTIC ADD signCCClient  LONGBINARY
+
+UPDATE DIAGNOSTIC SET isSignRIAgent = False,isSignRIClient = False, isSignCCAgent = False,isSignCCClient = False
+UPDATE DIAGNOSTIC SET dateSignRIAgent = null,dateSignRIClient = null, dateSignCCAgent = null,dateSignCCClient = null
+--UPDATE DIAGNOSTIC SET signRIAgent = null,signRIClient = null, signCCAgent = null, signCCClient = null
+
+INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.6.4", #05/25/2020# , "Signatureelec diag") 

@@ -1239,12 +1239,35 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurNumNational='" & CSDb.secureString(objDiagnostic.pulverisateurNumNational) & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurNumChassis='" & CSDb.secureString(objDiagnostic.pulverisateurNumChassis) & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.OrigineDiag='" & CSDb.secureString(objDiagnostic.origineDiag) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignRIAgent=" & objDiagnostic.bSignRIAgent & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignRIClient=" & objDiagnostic.bSignRIClient & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignCCAgent=" & objDiagnostic.bSignCCAgent & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignCCClient=" & objDiagnostic.bSignCCClient & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignRIAgent=#" & objDiagnostic.dateSignRIAgent & "#"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignRIClient=#" & objDiagnostic.dateSignRIClient & "#"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignCCAgent=#" & objDiagnostic.dateSignCCAgent & "#"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignCCClient=#" & objDiagnostic.dateSignCCClient & "#"
+
+                'paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIAgent=@signRIAgent"
+                'paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIClient=@signRIClient"
+                'paramsQuery2 = paramsQuery2 & " , Diagnostic.signCCAgent=@signCCAgent"
+                'paramsQuery2 = paramsQuery2 & " , Diagnostic.signCCClient=@signCCClient"
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
                 'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
                 bddCommande.ExecuteNonQuery()
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
+                'Dim oParam As OleDbParameter
+                'oParam = bddCommande.Parameters.Add("@signRIAgent", System.Data.OleDb.OleDbType.Binary)
+                'oParam.Value = objDiagnostic.SignRIAgent
+                'oParam = bddCommande.Parameters.Add("@signRIClient", System.Data.OleDb.OleDbType.Binary)
+                'oParam.Value = objDiagnostic.SignRIClient
+                'oParam = bddCommande.Parameters.Add("@signCCAgent", System.Data.OleDb.OleDbType.Binary)
+                'oParam.Value = objDiagnostic.SignCCAgent
+                'oParam = bddCommande.Parameters.Add("@signCCClient", System.Data.OleDb.OleDbType.Binary)
+                'oParam.Value = objDiagnostic.SignCCClient
+
                 'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
                 bddCommande.ExecuteNonQuery()
 

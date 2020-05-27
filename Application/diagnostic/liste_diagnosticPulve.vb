@@ -2,10 +2,40 @@ Public Class liste_diagnosticPulve
     Inherits System.Windows.Forms.Form
 
     Private m_oDiag As Diagnostic = Nothing
-
+    Private _Puverisateur As Pulverisateur
+    Public Property oPulve() As Pulverisateur
+        Get
+            Return _Puverisateur
+        End Get
+        Set(ByVal value As Pulverisateur)
+            _Puverisateur = value
+        End Set
+    End Property
+    Private _Exploit As Exploitation
+    Public Property oExploit() As Exploitation
+        Get
+            Return _Exploit
+        End Get
+        Set(ByVal value As Exploitation)
+            _Exploit = value
+        End Set
+    End Property
+    Private _Agent As Agent
+    Public Property oAgent() As Agent
+        Get
+            Return _Agent
+        End Get
+        Set(ByVal value As Agent)
+            _Agent = value
+        End Set
+    End Property
 
 #Region " Code généré par le Concepteur Windows Form "
-
+    Public Sub setcontexte(pPulve As Pulverisateur, pExploit As Exploitation, pagent As Agent)
+        oPulve = pPulve
+        oExploit = pExploit
+        oAgent = pagent
+    End Sub
     Public Sub New()
         MyBase.New()
 
@@ -40,6 +70,7 @@ Public Class liste_diagnosticPulve
     Friend WithEvents listDiagnostic_col_dateDiagnotic As System.Windows.Forms.ColumnHeader
     Friend WithEvents btn_selectDiagnostic_VisuDiag As System.Windows.Forms.Label
     Friend WithEvents btn_selectDiagnostic_annuler As System.Windows.Forms.Label
+    Friend WithEvents btnSignature As Label
     Friend WithEvents listControle_search As System.Windows.Forms.TextBox
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(liste_diagnosticPulve))
@@ -52,6 +83,7 @@ Public Class liste_diagnosticPulve
         Me.listDiagnostic_col_dateDiagnotic = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.btn_selectDiagnostic_VisuDiag = New System.Windows.Forms.Label()
         Me.btn_selectDiagnostic_annuler = New System.Windows.Forms.Label()
+        Me.btnSignature = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'listDiagnostic_col_resultat
@@ -139,10 +171,24 @@ Public Class liste_diagnosticPulve
         Me.btn_selectDiagnostic_annuler.Text = "    Annuler"
         Me.btn_selectDiagnostic_annuler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'btnSignature
+        '
+        Me.btnSignature.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSignature.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSignature.ForeColor = System.Drawing.Color.White
+        Me.btnSignature.Image = Global.Crodip_agent.Resources.btn_Signture
+        Me.btnSignature.Location = New System.Drawing.Point(174, 392)
+        Me.btnSignature.Name = "btnSignature"
+        Me.btnSignature.Size = New System.Drawing.Size(160, 24)
+        Me.btnSignature.TabIndex = 52
+        Me.btnSignature.Text = "         Signature"
+        Me.btnSignature.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'liste_diagnosticPulve
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(570, 424)
+        Me.Controls.Add(Me.btnSignature)
         Me.Controls.Add(Me.btn_selectDiagnostic_VisuDiag)
         Me.Controls.Add(Me.btn_selectDiagnostic_annuler)
         Me.Controls.Add(Me.listControle_search)
@@ -176,25 +222,26 @@ Public Class liste_diagnosticPulve
             query = query & " ORDER BY Diagnostic.controleDateFin DESC"
             Dim bdd As New CSDb(True)
             Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
-            Dim i As Integer = 0
             listPulveDiagnostic.Items.Clear()
             While dataResults.Read()
-                listPulveDiagnostic.Items.Add(Trim(dataResults.Item(0).ToString))  ' num 
-                listPulveDiagnostic.Items(i).Tag = Trim(dataResults.Item(0).ToString)
-                listPulveDiagnostic.Items(i).SubItems.Add(CSDate.mysql2access(Trim(dataResults.Item(1).ToString))) ' date
+                Dim oItem As ListViewItem
+                oItem = listPulveDiagnostic.Items.Add(Trim(dataResults.Item(0).ToString))  ' num 
+                oItem.Tag = Trim(dataResults.Item(0).ToString)
+                oItem.SubItems.Add(CSDate.mysql2access(Trim(dataResults.Item(1).ToString))) ' date
                 Select Case Trim(dataResults.Item(2).ToString)
                     Case "-1"
-                        listPulveDiagnostic.Items(i).SubItems.Add("NOK")
-                        listPulveDiagnostic.Items(i).ForeColor = System.Drawing.Color.Red
+                        oItem.SubItems.Add("NOK")
+                        oItem.ForeColor = System.Drawing.Color.Red
                     Case "0"
-                        listPulveDiagnostic.Items(i).SubItems.Add("CV")
-                        listPulveDiagnostic.Items(i).ForeColor = System.Drawing.Color.Orange
+                        oItem.SubItems.Add("CV")
+                        oItem.ForeColor = System.Drawing.Color.Orange
                     Case "1"
-                        listPulveDiagnostic.Items(i).SubItems.Add("OK")
-                        listPulveDiagnostic.Items(i).ForeColor = System.Drawing.Color.Green
+                        oItem.SubItems.Add("OK")
+                        oItem.ForeColor = System.Drawing.Color.Green
                 End Select
-                i = i + 1
             End While
+            dataResults.Close()
+            bdd.free()
             bdd = Nothing
         Catch ex As Exception
             CSDebug.dispError("liste_diagnosticPulve::searchDiagnostic : " & ex.Message.ToString)
@@ -203,6 +250,7 @@ Public Class liste_diagnosticPulve
 
     Private Sub liste_diagnosticPulve_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' On récupère la liste des diagnostic du pulvé par notre agent
+        btnSignature.Visible = oAgent.isSignElecActive
         searchDiagnostic("")
     End Sub
 
@@ -237,5 +285,29 @@ Public Class liste_diagnosticPulve
 
     Private Sub listControle_search_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles listControle_search.TextChanged
         searchDiagnostic(Trim(listControle_search.Text.Replace(" ", "")))
+    End Sub
+
+    Private Sub btnSignature_Click(sender As Object, e As EventArgs) Handles btnSignature.Click
+        Dim idDiag As String
+        Dim oDiag As Diagnostic
+
+        idDiag = listPulveDiagnostic.SelectedItems().Item(0).Tag.ToString
+        oDiag = DiagnosticManager.getDiagnosticById(idDiag)
+        Dim oFrm As New frmdiagnostic_recap(Globals.DiagMode.CTRL_SIGNATURE, oDiag, oPulve, oExploit, oAgent, Me)
+        oFrm.ShowDialog(Me)
+    End Sub
+
+    Private Sub listPulveDiagnostic_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listPulveDiagnostic.SelectedIndexChanged
+        Dim idDiag As String
+        Dim oDiag As Diagnostic
+
+        If listPulveDiagnostic.SelectedItems.Count() > 0 Then
+            idDiag = listPulveDiagnostic.SelectedItems().Item(0).Tag.ToString
+            oDiag = DiagnosticManager.getDiagnosticById(idDiag)
+            If oDiag.id = idDiag Then
+                btnSignature.Enabled = Not (oDiag.bSignCCAgent And oDiag.bSignCCClient And oDiag.bSignRIAgent And oDiag.bSignRIClient)
+            End If
+        End If
+
     End Sub
 End Class

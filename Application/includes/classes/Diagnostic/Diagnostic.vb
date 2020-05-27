@@ -2690,7 +2690,46 @@ Public Class Diagnostic
                     'le typeDiag est le nom du champ dans le WS
                 Case "typeDiag".ToUpper().Trim(), "origineDiag".ToUpper().Trim()
                     Me.origineDiag = pcolValue.ToString()
+                Case "isSignRIAgent".ToUpper().Trim()
+                    Me.bSignRIAgent = pcolValue
+                Case "isSignRIClient".ToUpper().Trim()
+                    Me.bSignRIClient = pcolValue
+                Case "isSignCCAgent".ToUpper().Trim()
+                    Me.bSignCCAgent = pcolValue
+                Case "isSignCCClient".ToUpper().Trim()
+                    Me.bSignCCClient = pcolValue
+                Case "dateSignRIAgent".ToUpper().Trim()
+                    Me.dateSignRIAgent = pcolValue
+                Case "dateSignRIClient".ToUpper().Trim()
+                    Me.dateSignRIClient = pcolValue
+                Case "dateSignCCAgent".ToUpper().Trim()
+                    Me.DateSignCCAgent = pcolValue
+                Case "dateSignCCClient".ToUpper().Trim()
+                    Me.DateSignCCClient = pcolValue
+                Case "SignRIAgent".ToUpper().Trim()
+                    ''champs non Sauvegardé
+                Case "SignRIClient".ToUpper().Trim()
+                    ''champs non Sauvegardé
+                Case "SignCCAgent".ToUpper().Trim()
+                    ''champs non Sauvegardé
+                Case "SignCCClient".ToUpper().Trim()
+                    ''champs non Sauvegardé
+
             End Select
+            '            ALTER TABLE DIAGNOSTIC ADD isSignRIAgent YESNO
+            'ALTER TABLE DIAGNOSTIC ADD isSignRIClient YESNO
+            'ALTER TABLE DIAGNOSTIC ADD isSignCCAgent YESNO
+            'ALTER TABLE DIAGNOSTIC ADD isSignCCClient YESNO
+
+            'ALTER TABLE DIAGNOSTIC ADD dateSignRIAgent DATE
+            'ALTER TABLE DIAGNOSTIC ADD dateSignRIClient DATE
+            'ALTER TABLE DIAGNOSTIC ADD dateSignCCAgent DATE
+            'ALTER TABLE DIAGNOSTIC ADD dateSignCCClient DATE
+
+            'ALTER TABLE DIAGNOSTIC ADD signRIAgent  LONGBINARY
+            'ALTER TABLE DIAGNOSTIC ADD signRIClient  LONGBINARY
+            'ALTER TABLE DIAGNOSTIC ADD signCCAgent  LONGBINARY
+            'ALTER TABLE DIAGNOSTIC ADD signCCClient  LONGBINARY
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Diagnostique.Fill (" & pColName & "," & pcolValue.ToString() & ") ERR" + ex.Message.ToString())
@@ -3187,12 +3226,12 @@ Public Class Diagnostic
             _SignRIclient = value
         End Set
     End Property
-    Private _DateSignRIClient As String
-    Public Property dateSignRIClient() As String
+    Private _DateSignRIClient As Date
+    Public Property dateSignRIClient() As Date
         Get
             Return _DateSignRIClient
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Date)
             _DateSignRIClient = value
         End Set
     End Property
@@ -3214,12 +3253,12 @@ Public Class Diagnostic
             _SignRIAgent = value
         End Set
     End Property
-    Private _DateSignRIAgent As String
-    Public Property dateSignRIAgent() As String
+    Private _DateSignRIAgent As Date
+    Public Property dateSignRIAgent() As Date
         Get
             Return _DateSignRIAgent
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Date)
             _DateSignRIAgent = value
         End Set
     End Property
@@ -3250,12 +3289,12 @@ Public Class Diagnostic
             _bSignCCAgent = value
         End Set
     End Property
-    Private _DateSignCCAgent As String
-    Public Property DateSignCCAgent() As String
+    Private _DateSignCCAgent As Date
+    Public Property dateSignCCAgent() As Date
         Get
             Return _DateSignCCAgent
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Date)
             _DateSignCCAgent = value
         End Set
     End Property
@@ -3277,12 +3316,12 @@ Public Class Diagnostic
             _bSignCCClient = value
         End Set
     End Property
-    Private _DateSignCCClient As String
-    Public Property DateSignCCClient() As String
+    Private _DateSignCCClient As Date
+    Public Property dateSignCCClient() As Date
         Get
             Return _DateSignCCClient
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Date)
             _DateSignCCClient = value
         End Set
     End Property
