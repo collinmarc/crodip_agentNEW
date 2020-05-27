@@ -849,6 +849,7 @@ Public Class frmdiagnostic_recap
                 m_Exploit.numeroSiren = m_diagnostic.proprietaireNumeroSiren
                 m_Exploit.dateDernierControle = m_diagnostic.controleDateDebut
                 ExploitationManager.save(m_Exploit, m_oAgent)
+                globFormAccueil.RefreshLVIExploitation(m_Exploit.id)
 
                 Statusbar.display("Mise à jour du pulvérisateur", True)
                 'Calcul de la date de prochain controle
