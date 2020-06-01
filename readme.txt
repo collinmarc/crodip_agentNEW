@@ -3,8 +3,10 @@ MASTER
 
 BUILD : 20200525
 ----------------------
-0001231: Retour Signature
-0001229: Bouton Signature inspecteur Trop Petit
+	0001053: Signature électronique à postériori des contrôles
+	0001237: Suppression des fichiers inutiles dans public/docs
+	0001231: Retour Signature
+	0001229: Bouton Signature inspecteur Trop Petit
 	0001234: Signature : Bloquer les modifications après signatures
 	0001233: PDFS manquants : suite à synhcro
 	0001232: Erreur sur cumul d'erreur en Pression

@@ -4517,15 +4517,6 @@ Public Class accueil
         formFiche_exploitant.ShowDialog()
     End Sub
 
-    ' Impression contrat
-    Private Sub btn_ficheClient_imprimerContrat_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim monProcess As New Process
-        monProcess.StartInfo.FileName = Globals.CONST_PATH_DOCS & "contratCommercial.doc"
-        'monProcess.StartInfo.Verb = "Print"
-        monProcess.StartInfo.Verb = "Open"
-        monProcess.StartInfo.CreateNoWindow = False
-        monProcess.Start()
-    End Sub
 
     ' Edition d'une fiche pulvé à partir de la liste des pulvé
     Private Sub VoirFichePulve()
@@ -4724,6 +4715,13 @@ Public Class accueil
         End If
 
     End Sub
+    Private Sub SignerDiagnostique()
+        If diagnosticCourant IsNot Nothing Then
+            Dim frmDiagRecap As New frmdiagnostic_recap(Globals.DiagMode.CTRL_SIGNATURE, diagnosticCourant, pulverisateurCourant, clientCourant, agentCourant, Nothing)
+            TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagRecap)
+        End If
+
+    End Sub
     ' Faire une contre visite
     Private Sub btn_ficheClient_diagnostic_nouvelleCV_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheClient_diagnostic_nouvelleCV.Click
 
@@ -4751,9 +4749,13 @@ Public Class accueil
                 formListDiagnostique.ShowDialog(myFormParentContener)
                 If (formListDiagnostique.DialogResult = Windows.Forms.DialogResult.OK) Then
                     diagnosticCourant = formListDiagnostique.getDiagnostic()
-                    VoirDiagnostique()
+                    If formListDiagnostique.DiagMode = Globals.DiagMode.CTRL_VISU Then
+                        VoirDiagnostique()
+                    End If
+                    If formListDiagnostique.DiagMode = Globals.DiagMode.CTRL_SIGNATURE Then
+                        SignerDiagnostique()
+                    End If
                 End If
-
             Catch ex As Exception
                 Statusbar.clear()
                 MsgBox("Erreur - Visualisation Diagnostic - getPulverisateurById" & ex.Message.ToString)
@@ -4976,19 +4978,6 @@ Public Class accueil
 #Region " Outils complémentaires "
 
     ' Documents à imprimer
-    Private Sub btn_print_contratCommercial_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If System.IO.File.Exists(Globals.CONST_PATH_DOCS & "contratCommercial.doc") Then
-            Dim monProcess As New Process
-            monProcess.StartInfo.FileName = Globals.CONST_PATH_DOCS & "contratCommercial.doc"
-            'monProcess.StartInfo.Verb = "Print"
-            monProcess.StartInfo.Verb = "Open"
-            monProcess.StartInfo.CreateNoWindow = True
-            monProcess.Start()
-        Else
-            MsgBox("Désolé, le fichier demandé est introuvable.", MsgBoxStyle.Critical, "Fichier introuvable !")
-            Statusbar.display("[ Erreur ] - Fichier introuvable !")
-        End If
-    End Sub
     ' Outils de calcul
     Private Sub btn_outilsComplementaires_calcVolumeHectare_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_outilsComplementaires_calcVolumeHectare.Click
         Dim formCalcVolHa As New tool_calcVolHa

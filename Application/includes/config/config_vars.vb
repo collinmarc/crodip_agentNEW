@@ -100,8 +100,6 @@ Public Class Globals
 
     ' Public
     Public Shared CONST_PATH_PUBLIC As String = "." & "\public\"
-    ' Documents
-    Public Shared CONST_PATH_DOCS As String = CONST_PATH_PUBLIC & "docs\"
     ' Exports
     Public Shared CONST_PATH_EXP As String = CONST_PATH_PUBLIC & "exports\"
 

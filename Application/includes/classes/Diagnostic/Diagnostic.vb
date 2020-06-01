@@ -3218,6 +3218,7 @@ Public Class Diagnostic
     End Sub
 
     Private _SignRIclient As Byte()
+    <XmlIgnore()>
     Public Property SignRIClient() As Byte()
         Get
             Return _SignRIclient
@@ -3227,12 +3228,22 @@ Public Class Diagnostic
         End Set
     End Property
     Private _DateSignRIClient As Date
+    <XmlIgnore()>
     Public Property dateSignRIClient() As Date
         Get
             Return _DateSignRIClient
         End Get
         Set(ByVal value As Date)
             _DateSignRIClient = value
+        End Set
+    End Property
+    <XmlElement("dateSignRIClient")>
+    Public Property dateSignRIClientS() As String
+        Get
+            Return CSDate.GetDateForWS(dateSignRIClient)
+        End Get
+        Set(ByVal Value As String)
+            dateSignRIClient = CSDate.FromCrodipString(Value)
         End Set
     End Property
     Private _bSignRIClient As Boolean
@@ -3245,6 +3256,7 @@ Public Class Diagnostic
         End Set
     End Property
     Private _SignRIAgent As Byte()
+    <XmlIgnore()>
     Public Property SignRIAgent() As Byte()
         Get
             Return _SignRIAgent
@@ -3254,12 +3266,22 @@ Public Class Diagnostic
         End Set
     End Property
     Private _DateSignRIAgent As Date
+    <XmlIgnore()>
     Public Property dateSignRIAgent() As Date
         Get
             Return _DateSignRIAgent
         End Get
         Set(ByVal value As Date)
             _DateSignRIAgent = value
+        End Set
+    End Property
+    <XmlElement("dateSignRIAgent")>
+    Public Property dateSignRIAgentS() As String
+        Get
+            Return CSDate.GetDateForWS(dateSignRIAgent)
+        End Get
+        Set(ByVal Value As String)
+            dateSignRIAgent = CSDate.FromCrodipString(Value)
         End Set
     End Property
     Private _bSignRIAgent As Boolean
@@ -3272,6 +3294,7 @@ Public Class Diagnostic
         End Set
     End Property
     Private _SignCCAgent As Byte()
+    <XmlIgnore()>
     Public Property SignCCAgent() As Byte()
         Get
             Return _SignCCAgent
@@ -3290,6 +3313,7 @@ Public Class Diagnostic
         End Set
     End Property
     Private _DateSignCCAgent As Date
+    <XmlIgnore()>
     Public Property dateSignCCAgent() As Date
         Get
             Return _DateSignCCAgent
@@ -3298,7 +3322,17 @@ Public Class Diagnostic
             _DateSignCCAgent = value
         End Set
     End Property
+    <XmlElement("dateSignCCAgent")>
+    Public Property dateSignCCAgentS() As String
+        Get
+            Return CSDate.GetDateForWS(_DateSignCCAgent)
+        End Get
+        Set(ByVal Value As String)
+            _DateSignCCAgent = CSDate.FromCrodipString(Value)
+        End Set
+    End Property
     Private _SignCCClient As Byte()
+    <XmlIgnore()>
     Public Property SignCCClient() As Byte()
         Get
             Return _SignCCClient
@@ -3317,12 +3351,22 @@ Public Class Diagnostic
         End Set
     End Property
     Private _DateSignCCClient As Date
+    <XmlIgnore()>
     Public Property dateSignCCClient() As Date
         Get
             Return _DateSignCCClient
         End Get
         Set(ByVal value As Date)
             _DateSignCCClient = value
+        End Set
+    End Property
+    <XmlElement("dateSignCCClient")>
+    Public Property dateSignCCClientS() As String
+        Get
+            Return CSDate.GetDateForWS(_DateSignCCClient)
+        End Get
+        Set(ByVal Value As String)
+            _DateSignCCClient = CSDate.FromCrodipString(Value)
         End Set
     End Property
 End Class

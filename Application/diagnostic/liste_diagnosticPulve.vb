@@ -3,6 +3,15 @@ Public Class liste_diagnosticPulve
 
     Private m_oDiag As Diagnostic = Nothing
     Private _Puverisateur As Pulverisateur
+    Private _DiagMode As Globals.DiagMode
+    Public Property DiagMode() As Globals.DiagMode
+        Get
+            Return _DiagMode
+        End Get
+        Set(ByVal value As Globals.DiagMode)
+            _DiagMode = value
+        End Set
+    End Property
     Public Property oPulve() As Pulverisateur
         Get
             Return _Puverisateur
@@ -181,7 +190,7 @@ Public Class liste_diagnosticPulve
         Me.btnSignature.Name = "btnSignature"
         Me.btnSignature.Size = New System.Drawing.Size(160, 24)
         Me.btnSignature.TabIndex = 52
-        Me.btnSignature.Text = "         Signature"
+        Me.btnSignature.Text = "         Signatures"
         Me.btnSignature.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'liste_diagnosticPulve
@@ -250,6 +259,8 @@ Public Class liste_diagnosticPulve
 
     Private Sub liste_diagnosticPulve_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' On récupère la liste des diagnostic du pulvé par notre agent
+        btnSignature.Enabled = False
+        btn_selectDiagnostic_VisuDiag.Enabled = False
         btnSignature.Visible = oAgent.isSignElecActive
         searchDiagnostic("")
     End Sub
@@ -261,19 +272,12 @@ Public Class liste_diagnosticPulve
     End Sub
 
     Private Sub btn_selectDiagnostic_VisuDiag_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_selectDiagnostic_VisuDiag.Click
-        ' On récupère le formulaire contener
-        Dim myFormParentContener As Form = Me.MdiParent
 
-        ' Mise à jour de la barre de status
-        'Statusbar.display("Nouveau diagnostic (Contre-Visite)")
-        m_oDiag = Nothing
         DialogResult = Windows.Forms.DialogResult.Cancel
         If listPulveDiagnostic.SelectedItems().Count > 0 Then
             Try
-                ' On récupère le pulvé selectionné
-                Dim idDiag As String
-                idDiag = listPulveDiagnostic.SelectedItems().Item(0).Tag.ToString
-                m_oDiag = DiagnosticManager.getDiagnosticById(idDiag)
+                ' On récupère le Diagnostic selectionné
+                Me.DiagMode = Globals.DiagMode.CTRL_VISU
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()
 
@@ -288,25 +292,34 @@ Public Class liste_diagnosticPulve
     End Sub
 
     Private Sub btnSignature_Click(sender As Object, e As EventArgs) Handles btnSignature.Click
-        Dim idDiag As String
-        Dim oDiag As Diagnostic
+        DialogResult = Windows.Forms.DialogResult.Cancel
+        If listPulveDiagnostic.SelectedItems().Count > 0 Then
+            Try
+                ' On récupère le Diagnostic selectionné
+                Me.DiagMode = Globals.DiagMode.CTRL_SIGNATURE
+                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Me.Close()
 
-        idDiag = listPulveDiagnostic.SelectedItems().Item(0).Tag.ToString
-        oDiag = DiagnosticManager.getDiagnosticById(idDiag)
-        Dim oFrm As New frmdiagnostic_recap(Globals.DiagMode.CTRL_SIGNATURE, oDiag, oPulve, oExploit, oAgent, Me)
-        oFrm.ShowDialog(Me)
+            Catch ex As Exception
+                CSDebug.dispError("Visualisation Diagnostic - getDiagnosticById" & ex.Message.ToString)
+            End Try
+        End If
     End Sub
 
     Private Sub listPulveDiagnostic_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listPulveDiagnostic.SelectedIndexChanged
         Dim idDiag As String
-        Dim oDiag As Diagnostic
 
         If listPulveDiagnostic.SelectedItems.Count() > 0 Then
             idDiag = listPulveDiagnostic.SelectedItems().Item(0).Tag.ToString
-            oDiag = DiagnosticManager.getDiagnosticById(idDiag)
-            If oDiag.id = idDiag Then
-                btnSignature.Enabled = Not (oDiag.bSignCCAgent And oDiag.bSignCCClient And oDiag.bSignRIAgent And oDiag.bSignRIClient)
+            m_oDiag = DiagnosticManager.getDiagnosticById(idDiag)
+            If m_oDiag.id = idDiag Then
+                btnSignature.Enabled = Not (m_oDiag.bSignCCAgent And m_oDiag.bSignCCClient And m_oDiag.bSignRIAgent And m_oDiag.bSignRIClient)
+                btn_selectDiagnostic_VisuDiag.Enabled = True
             End If
+        Else
+            btnSignature.Enabled = False
+            btn_selectDiagnostic_VisuDiag.Enabled = False
+
         End If
 
     End Sub

@@ -44,6 +44,7 @@ Public Class frmdiagnostic_recap
     Private WithEvents btnSignAgent As Label
     Friend WithEvents rbEtatCC As RadioButton
     Friend WithEvents btn_ContratCommercial As Label
+    Friend WithEvents btn_Annuler As Label
     Friend WithEvents btn_finalisationDiag_imprimerSynthese As System.Windows.Forms.Label
     'Private objInfos(15) As Object
 
@@ -140,6 +141,7 @@ Public Class frmdiagnostic_recap
         Me.btnSignClient = New System.Windows.Forms.Label()
         Me.btnSignAgent = New System.Windows.Forms.Label()
         Me.btn_ContratCommercial = New System.Windows.Forms.Label()
+        Me.btn_Annuler = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -572,12 +574,26 @@ Public Class frmdiagnostic_recap
         Me.btn_ContratCommercial.Text = "      Contrat commercial"
         Me.btn_ContratCommercial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'btn_Annuler
+        '
+        Me.btn_Annuler.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_Annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Annuler.ForeColor = System.Drawing.Color.White
+        Me.btn_Annuler.Image = CType(resources.GetObject("btn_Annuler.Image"), System.Drawing.Image)
+        Me.btn_Annuler.Location = New System.Drawing.Point(865, 653)
+        Me.btn_Annuler.Name = "btn_Annuler"
+        Me.btn_Annuler.Size = New System.Drawing.Size(128, 24)
+        Me.btn_Annuler.TabIndex = 51
+        Me.btn_Annuler.Text = "    Annuler"
+        Me.btn_Annuler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'frmdiagnostic_recap
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1008, 679)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btn_Annuler)
         Me.Controls.Add(Me.btn_ContratCommercial)
         Me.Controls.Add(Me.btnSignAgent)
         Me.Controls.Add(Me.btnSignClient)
@@ -615,24 +631,16 @@ Public Class frmdiagnostic_recap
 #End Region
 
     Private Sub diagnostic_recap_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Me.WindowState = FormWindowState.Maximized
+        Me.ControlBox = False
+        CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
         If m_DiagMode <> Globals.DiagMode.CTRL_SIGNATURE Then
             'Propriété a mettre obligatoirement par programme
-            Me.WindowState = FormWindowState.Maximized
-            Me.ControlBox = False
-            CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
             Me.laTitre.Text = "     Visualisation du contrôle"
-
+            Me.btn_Annuler.Visible = False
         Else
-            Me.WindowState = FormWindowState.Normal
-            Me.FormBorderStyle = FormBorderStyle.Sizable
-            Me.AutoSize = False
-            Me.Width = 800
-            Me.Height = 600
-            Me.ControlBox = True
-            Me.MaximizeBox = True
-            Me.MinimizeBox = True
             Me.laTitre.Text = "     Signature du contrôle"
-            Me.StartPosition = FormStartPosition.CenterParent
+            Me.btn_Annuler.Visible = True
         End If
         '###########################################################################
         '########               Chargement Organisme d'inspection           ########
@@ -812,15 +820,8 @@ Public Class frmdiagnostic_recap
             CloseDiagnostic()
             Exit Sub
         End If
-        If m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE Then
-            SauvegarderDiagnostic()
-            Close()
-            Exit Sub
-        End If
         If isValider Then
-
-
-            If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
+            If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
                 ' On ouvre la fen^petre de l'enquete
                 Dim ofrm As New diagnostic_satisfaction(m_diagnostic)
                 TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
@@ -837,20 +838,24 @@ Public Class frmdiagnostic_recap
                             sender.Enabled = True
                             Exit Sub
                         End If
-
                     End If
                 End If
-                If MsgBox("Attention, la validation du contrôle est définitive, vous ne pourrez plus revenir en arrière. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Validation du contrôle") = MsgBoxResult.Yes Then
+                Dim oResult As MsgBoxResult = MsgBoxResult.Ok
+                If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
+                    oResult = MsgBox("Attention, la validation du contrôle est définitive, vous ne pourrez plus revenir en arrière. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Validation du contrôle")
+                End If
+                If oResult = MsgBoxResult.Ok Then
                     desactiveModifications()
                     btnSignAgent.Enabled = False
                     btnSignClient.Enabled = False
                     SauvegarderDiagnostic()
-                    MsgBox("Vous pouvez maintenant imprimer le rapport.", MsgBoxStyle.Information)
+                    btn_Annuler.Enabled = False
+                    MsgBox("Vous pouvez maintenant imprimer vos documents.", MsgBoxStyle.Information)
                 End If
             End If
 
 
-            sender.Enabled = True
+                sender.Enabled = True
         End If
     End Sub
 
@@ -1246,6 +1251,10 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Private Sub btnAppercu_Click(sender As Object, e As EventArgs) Handles btnAppercu.Click
+        AppercuDocument()
+    End Sub
+
+    Private Sub AppercuDocument()
         If rbEtatRI.Checked Then
             createEtatRapportInspection(False)
         End If
@@ -1333,6 +1342,7 @@ Public Class frmdiagnostic_recap
 
             End If
         End If
+        AppercuDocument()
     End Sub
 
     Private Sub btn_ContratCommercial_Click(sender As Object, e As EventArgs) Handles btn_ContratCommercial.Click
@@ -1344,6 +1354,11 @@ Public Class frmdiagnostic_recap
         Catch ex As Exception
             CSDebug.dispError("Erreur lors de l'affichage du contrat commercial " & ex.Message)
         End Try
+
+    End Sub
+
+    Private Sub btn_Annuler_Click(sender As Object, e As EventArgs) Handles btn_Annuler.Click
+        CloseDiagnostic()
 
     End Sub
 End Class

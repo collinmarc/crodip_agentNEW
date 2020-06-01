@@ -1,1 +1,4 @@
 ﻿-- msiexec /i CRRuntime_32bit_13_0_25.msi
+
+del /F public\docs\*.pdf
+rd /Q public\docs
