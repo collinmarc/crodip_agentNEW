@@ -3287,10 +3287,10 @@ Public Class Diagnostic
     Private _bSignRIAgent As Boolean
     Public Property bSignRIAgent() As Boolean
         Get
-            Return _bSignRIClient
+            Return _bSignRIAgent
         End Get
         Set(ByVal value As Boolean)
-            _bSignRIClient = value
+            _bSignRIAgent = value
         End Set
     End Property
     Private _SignCCAgent As Byte()

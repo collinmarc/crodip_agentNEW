@@ -833,14 +833,28 @@ Public Class frmdiagnostic_recap
         Else
             If checkForm() Then
                 If (m_oAgent.isSignElecActive) Then
-                    If Not (m_diagnostic.bSignCCAgent And m_diagnostic.bSignCCClient And m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient) Then
-                        If MsgBox("Attention, Vos documents ne sont pas signés, voulez-vous continuer", MsgBoxStyle.YesNo, "Validation du contrôle") = MsgBoxResult.No Then
+                    Dim bsign As Boolean = False
+                    bsign = (m_diagnostic.bSignCCAgent And m_diagnostic.bSignCCClient And m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient)
+
+                    If Not (bsign) Then
+                        Dim Message As String = ""
+                        If Not (m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient) Then
+                            Message = "Attention, le rapport d'inspection n'est pas signé"
+                        End If
+                        If Not (m_diagnostic.bSignCCAgent And m_diagnostic.bSignCCClient) Then
+                            Message = "Attention, le contrat commercial n'est pas signé"
+                        End If
+                        If Not (m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient) And Not (m_diagnostic.bSignCCAgent And m_diagnostic.bSignCCClient) Then
+                            Message = "Attention, vos documents ne sont pas signés"
+                        End If
+                        SendKeys.Send("{TAB}")
+                        If MsgBox(Message + ",voulez-vous continuer ?", MsgBoxStyle.YesNo, "Validation du contrôle") = MsgBoxResult.No Then
                             sender.Enabled = True
                             Exit Sub
                         End If
                     End If
                 End If
-                Dim oResult As MsgBoxResult = MsgBoxResult.Ok
+                    Dim oResult As MsgBoxResult = MsgBoxResult.Ok
                 If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
                     oResult = MsgBox("Attention, la validation du contrôle est définitive, vous ne pourrez plus revenir en arrière. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Validation du contrôle")
                 End If
