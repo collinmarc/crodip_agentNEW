@@ -1,6 +1,11 @@
 TRUNK
 MASTER
 
+BUILD : 20200612
+----------------------
+0001241: Pas de validation du controle
+0001239: Validation d'un controle dans Numero de SIREN
+
 BUILD : 20200525
 ----------------------
 	0001053: Signature électronique à postériori des contrôles

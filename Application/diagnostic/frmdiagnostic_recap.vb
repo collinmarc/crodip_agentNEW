@@ -844,7 +844,7 @@ Public Class frmdiagnostic_recap
                 If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
                     oResult = MsgBox("Attention, la validation du contrôle est définitive, vous ne pourrez plus revenir en arrière. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Validation du contrôle")
                 End If
-                If oResult = MsgBoxResult.Ok Then
+                If oResult = MsgBoxResult.Yes Then
                     desactiveModifications()
                     btnSignAgent.Enabled = False
                     btnSignClient.Enabled = False
@@ -1016,17 +1016,19 @@ Public Class frmdiagnostic_recap
         Dim _PathToSynthesePDF As String
         Dim bReturn As Boolean = False
         Try
+            CSDebug.dispInfo("TBD : createEtatSyntheseDesMesures")
             Dim oEtat As New EtatSyntheseMesures(m_diagnostic)
             oEtat.GenereEtat(pExportPDF)
             If pExportPDF Then
                 _PathToSynthesePDF = oEtat.getFileName()
                 m_diagnostic.SMFileName = _PathToSynthesePDF
             Else
+                CSDebug.dispInfo("TBD : Set  To VIEWER")
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
             End If
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("createEtatSyntheseDesMesures ERR : " & ex.Message.ToString)
+            CSDebug.dispError("createEtatSyntheseDesMesures ERR : ", ex)
             bReturn = False
         End Try
         Return bReturn
@@ -1108,26 +1110,17 @@ Public Class frmdiagnostic_recap
             cbx_diagnosticRecap_materiel_EmplacementIdentification.Focus()
             bReturn = False
         End If
-        'If diagnosticRecap_proprietaire_numSiren.Text = "" Then
-        '    MsgBox("Vous devez renseigner le numéro de SIREN du propriétaire")
-        '    diagnosticRecap_proprietaire_numSiren.Focus()
-        '    bReturn = False
-        'Else
-        '    If Not CSCheck.numSIREN(diagnosticRecap_proprietaire_numSiren.Text) Then
-        '        MsgBox("Vous devez entrer un numéro de SIREN valide.")
-        '        diagnosticRecap_proprietaire_numSiren.Focus()
-        '        bReturn = False
-
-        '    End If
-
-        'End If
+        If m_diagnostic.proprietaireNumeroSiren = "" Then
+            MsgBox("Vous devez renseigner le numéro de SIREN du propriétaire")
+            bReturn = False
+        End If
         'Vérification des heures de controle
         If Not CSDate.CheckHours(diagnosticRecap_organisme_heureDebut.Text) Then
 
-            MsgBox("Format heure début incorrect : HH:MM")
-            bReturn = False
-        End If
-        If Not CSDate.CheckHours(diagnosticRecap_organisme_heureFin.Text) Then
+                MsgBox("Format heure début incorrect : HH:MM")
+                bReturn = False
+            End If
+            If Not CSDate.CheckHours(diagnosticRecap_organisme_heureFin.Text) Then
 
             MsgBox("Format heure fin incorrect : HH:MM")
             bReturn = False
@@ -1255,6 +1248,7 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Private Sub AppercuDocument()
+        CSDebug.dispInfo("TBD : Appercu document")
         If rbEtatRI.Checked Then
             createEtatRapportInspection(False)
         End If
@@ -1325,7 +1319,8 @@ Public Class frmdiagnostic_recap
         End If
     End Sub
 
-    Private Sub rbEtatRI_CheckedChanged(sender As Object, e As EventArgs) Handles rbEtatRI.CheckedChanged, rbEtatSM.CheckedChanged, rbEtatCC.CheckedChanged
+    Private Sub rbEtatRISMCC_CheckedChanged(sender As Object, e As EventArgs) Handles rbEtatRI.CheckedChanged, rbEtatSM.CheckedChanged, rbEtatCC.CheckedChanged
+        Dim oRB As RadioButton = CType(sender, RadioButton)
         If m_oAgent.isSignElecActive Then
             If rbEtatRI.Checked Then
                 btnSignAgent.Visible = True
@@ -1342,7 +1337,10 @@ Public Class frmdiagnostic_recap
 
             End If
         End If
-        AppercuDocument()
+        '' ne déclenccher l'apperçu que sur le checked
+        If oRB.Checked Then
+            AppercuDocument()
+        End If
     End Sub
 
     Private Sub btn_ContratCommercial_Click(sender As Object, e As EventArgs) Handles btn_ContratCommercial.Click
