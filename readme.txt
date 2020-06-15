@@ -4,7 +4,9 @@ MASTER
 BUILD : 20200612
 ----------------------
 0001241: Pas de validation du controle
+0001247: signature en recap de controle
 0001239: Validation d'un controle dans Numero de SIREN
+0001245: Sur la signature: Une fois la signature utilisé, il faudrait griser la case
 
 BUILD : 20200525
 ----------------------

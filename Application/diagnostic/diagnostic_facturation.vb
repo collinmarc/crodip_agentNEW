@@ -1264,13 +1264,19 @@ Public Class diagnostic_facturation
         Dim ofrm As New frmSignClient(m_oDiag, SignMode.CCCLIENT, m_oAgent)
         ofrm.ShowDialog()
         desactiverModificationSisigne()
+        ActiveDesactiveBtnSignature()
     End Sub
     Public Sub SignatureAgent()
         Dim ofrm As New frmSignClient(m_oDiag, SignMode.CCAGENT, m_oAgent)
         ofrm.ShowDialog()
         desactiverModificationSisigne()
+        ActiveDesactiveBtnSignature()
     End Sub
 
+    Private Sub ActiveDesactiveBtnSignature()
+        btnSignAgent.Enabled = Not m_oDiag.bSignCCAgent
+        btnSignClient.Enabled = Not m_oDiag.bSignCCClient
+    End Sub
     Private Sub desactiverModificationSisigne()
         If m_oDiag.SignCCAgent IsNot Nothing Or m_oDiag.SignCCClient IsNot Nothing Then
             desactiveModifications()
@@ -1292,5 +1298,7 @@ Public Class diagnostic_facturation
         btnSignAgent.Enabled = m_bsLignes.Count > 0
     End Sub
 
+    Private Sub diagnostic_facturation_DpiChangedAfterParent(sender As Object, e As EventArgs) Handles Me.DpiChangedAfterParent
 
+    End Sub
 End Class

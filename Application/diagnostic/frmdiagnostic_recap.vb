@@ -744,6 +744,8 @@ Public Class frmdiagnostic_recap
         btnSignClient.Visible = m_oAgent.isSignElecActive
         btnSignAgent.Visible = m_oAgent.isSignElecActive
 
+        ActiveDesactiveBtnsignature()
+
         If (m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE) Then
             btn_finalisationDiag_modifierDiag.Visible = False
             desactiveModifications()
@@ -1316,7 +1318,22 @@ Public Class frmdiagnostic_recap
                 desactiveModifications()
             End If
         End If
+
+        ActiveDesactiveBtnsignature()
+
     End Sub
+    Private Sub ActiveDesactiveBtnsignature()
+        If rbEtatRI.Checked Then
+            btnSignAgent.Enabled = Not m_diagnostic.bSignRIAgent
+            btnSignClient.Enabled = Not m_diagnostic.bSignRIClient
+        End If
+        If rbEtatCC.Checked Then
+            btnSignAgent.Enabled = Not m_diagnostic.bSignCCAgent
+            btnSignClient.Enabled = Not m_diagnostic.bSignCCClient
+        End If
+
+    End Sub
+
     Public Sub SignatureAgent()
         Dim ofrm As frmSignClient = Nothing
         If rbEtatRI.Checked Then
@@ -1330,6 +1347,9 @@ Public Class frmdiagnostic_recap
             If m_diagnostic.SignRIAgent IsNot Nothing Or m_diagnostic.SignRIClient IsNot Nothing Then
                 desactiveModifications()
             End If
+
+            ActiveDesactiveBtnsignature()
+
         End If
     End Sub
 
@@ -1350,11 +1370,16 @@ Public Class frmdiagnostic_recap
                 btnSignClient.Visible = True
 
             End If
+
+            ActiveDesactiveBtnsignature()
+
         End If
         '' ne déclenccher l'apperçu que sur le checked
         If oRB.Checked Then
             AppercuDocument()
         End If
+
+
     End Sub
 
     Private Sub btn_ContratCommercial_Click(sender As Object, e As EventArgs) Handles btn_ContratCommercial.Click
