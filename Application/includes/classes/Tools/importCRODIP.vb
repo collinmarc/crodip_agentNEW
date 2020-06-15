@@ -310,7 +310,7 @@ Public Class importCRODIP
                                     SetProperty(oAtt, obj, oDiag, oProperty)
                             End Select
                         Next
-                        oDiag.CalculDateProchainControle()
+                        oDiag.CalculDateProchainControle(True)
                         oPulve.dateProchainControle = oDiag.pulverisateurDateProchainControle
 
                         '1er Est-ce une nouvelle exploitation
@@ -325,6 +325,13 @@ Public Class importCRODIP
                         End If
                         If isDiagOK(oDiag) Then
                             oExploitation.lstDiagImport.Add(oDiag)
+                        End If
+                        If oExploitation.dateDernierControle = "" Then
+                            oExploitation.dateDernierControle = oDiag.controleDateDebut
+                        Else
+                            If CDate(oDiag.controleDateDebut) > CDate(oExploitation.dateDernierControle) Then
+                                oExploitation.dateDernierControle = oDiag.controleDateDebut
+                            End If
                         End If
                     Next
                 End Using
@@ -368,7 +375,8 @@ Public Class importCRODIP
                     If oPulve IsNot Nothing Then
                         oDiag.pulverisateurId = oPulve.id
                     End If
-
+                    oDiag.isTGIP = True
+                    oDiag.isFacture = True
                     bReturn = DiagnosticManager.save(oDiag)
                     If bReturn Then
                         oresult.nDiagimport = oresult.nDiagimport + 1

@@ -3103,7 +3103,7 @@ Public Class Diagnostic
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function CalculDateProchainControle() As String
+    Public Function CalculDateProchainControle(Optional pImport As Boolean = False) As String
         Dim dReturn As String
         dReturn = pulverisateurDateProchainControle
         If String.IsNullOrEmpty(dReturn) Then
@@ -3134,16 +3134,24 @@ Public Class Diagnostic
                     Case Diagnostic.controleEtatOK
                         dReturn = CSDate.ToCRODIPString(CDate(controleDateDebut).AddYears(5))
                     Case Diagnostic.controleEtatNOKCV
-                        If CDate(controleDateDebut) <= dReturn Then
-                            dReturn = dReturn
-                        Else
+                        If pImport Then
                             dReturn = CSDate.ToCRODIPString(CDate(controleDateDebut).AddMonths(4))
+                        Else
+                            If CDate(controleDateDebut) <= dReturn Then
+                                dReturn = dReturn
+                            Else
+                                dReturn = CSDate.ToCRODIPString(CDate(controleDateDebut).AddMonths(4))
+                            End If
                         End If
                     Case Diagnostic.controleEtatNOKCC
-                        If CDate(controleDateDebut) <= dReturn Then
-                            dReturn = dReturn
-                        Else
+                        If pImport Then
                             dReturn = CSDate.ToCRODIPString(CDate(controleDateDebut).AddMonths(4))
+                        Else
+                            If CDate(controleDateDebut) <= dReturn Then
+                                dReturn = dReturn
+                            Else
+                                dReturn = CSDate.ToCRODIPString(CDate(controleDateDebut).AddMonths(4))
+                            End If
                         End If
                 End Select
             Case Pulverisateur.controleEtatNOKCC 'Etat Attente de Controle Complet

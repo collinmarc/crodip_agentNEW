@@ -35,12 +35,9 @@ Public Class tool_importData
         End If
 
     End Sub
-
+    Private oResult As importCRODIP.ImportCrodipResult
     Public Sub importer(pfileNAme As String)
-        Dim oResult As importCRODIP.ImportCrodipResult
         oResult = importCRODIP.import(pfileNAme, m_oAgent, BackgroundWorker1)
-        m_bsImportResult.Clear()
-        m_bsImportResult.Add(oResult)
     End Sub
 
     Private Sub OK_Button_Click_1(sender As Object, e As EventArgs) Handles OK_Button.Click
@@ -60,8 +57,11 @@ Public Class tool_importData
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         MsgBox("Import terminé")
+        m_bsImportResult.Clear()
+        m_bsImportResult.Add(oResult)
         TextBox1.Text = ""
         Cursor = Cursors.Default
+        OK_Button.Enabled = True
     End Sub
 
     Private Sub btn_AnnulerImport_Click(sender As Object, e As EventArgs) Handles btn_AnnulerImport.Click
