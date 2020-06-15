@@ -856,7 +856,7 @@ Public Class frmdiagnostic_recap
                         End If
                     End If
                 End If
-                    Dim oResult As MsgBoxResult = MsgBoxResult.Ok
+                Dim oResult As MsgBoxResult = MsgBoxResult.Yes
                 If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
                     oResult = MsgBox("Attention, la validation du contrôle est définitive, vous ne pourrez plus revenir en arrière. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Validation du contrôle")
                 End If

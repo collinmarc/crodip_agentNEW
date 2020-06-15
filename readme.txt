@@ -1,6 +1,10 @@
 TRUNK
 MASTER
 
+BUILD : 20200615180000
+----------------------
+0001248: Acquisition AAMS : Prendre le champ Ref pour Debit
+	
 BUILD : 20200612100000
 ----------------------
 0001241: Pas de validation du controle

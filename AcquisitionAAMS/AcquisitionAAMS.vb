@@ -90,8 +90,10 @@ Public Class AcquisitionAAMS
             tmpResponse.Niveau = calcNiveau(nNum)
             tmpResponse.NumBuse = calcNumBuse(nNum)
 
-            tmpResponse.Debit = oValueAAMS.Debit.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+            'tmpResponse.Debit = oValueAAMS.Debit.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+            tmpResponse.Debit = oValueAAMS.Ref.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
             tmpResponse.Pression = oValueAAMS.Pression.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+            'tmpResponse.Pression = oValueAAMS.Ref.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
             tmpResponse.Ref = oValueAAMS.Ref
             oReturn.Add(tmpResponse)
 
