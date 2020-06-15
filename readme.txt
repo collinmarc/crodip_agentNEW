@@ -1,7 +1,7 @@
 TRUNK
 MASTER
 
-BUILD : 20200612
+BUILD : 20200612100000
 ----------------------
 0001241: Pas de validation du controle
 0001247: signature en recap de controle
