@@ -1,10 +1,20 @@
 TRUNK
 MASTER
 
+BUILD : 20200622180000
+----------------------
+0001255: inversion des boutons dans DiagRecap
+0001254: Erreur en Validation de la clé de débitmètre sans valeur
+0001253: Erreur en Acquisition de buses
+
+
 BUILD : 20200615180000
 ----------------------
 0001248: Acquisition AAMS : Prendre le champ Ref pour Debit
-	
+0001249: Import : Date prochain controle = 2juin, Couleur Orange
+0001211: Fiche Pulve : La Liste des marques de Manomètres est vide
+0001251: Livraison d'une base Vide pour import
+
 BUILD : 20200612100000
 ----------------------
 0001241: Pas de validation du controle

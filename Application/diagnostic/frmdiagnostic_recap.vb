@@ -195,7 +195,7 @@ Public Class frmdiagnostic_recap
         Me.btn_finalisationDiag_imprimerRapport.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_finalisationDiag_imprimerRapport.ForeColor = System.Drawing.Color.White
         Me.btn_finalisationDiag_imprimerRapport.Image = CType(resources.GetObject("btn_finalisationDiag_imprimerRapport.Image"), System.Drawing.Image)
-        Me.btn_finalisationDiag_imprimerRapport.Location = New System.Drawing.Point(195, 619)
+        Me.btn_finalisationDiag_imprimerRapport.Location = New System.Drawing.Point(384, 619)
         Me.btn_finalisationDiag_imprimerRapport.Name = "btn_finalisationDiag_imprimerRapport"
         Me.btn_finalisationDiag_imprimerRapport.Size = New System.Drawing.Size(184, 24)
         Me.btn_finalisationDiag_imprimerRapport.TabIndex = 7
@@ -209,9 +209,9 @@ Public Class frmdiagnostic_recap
         Me.btn_finalisationDiag_modifierDiag.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_finalisationDiag_modifierDiag.ForeColor = System.Drawing.Color.White
         Me.btn_finalisationDiag_modifierDiag.Image = CType(resources.GetObject("btn_finalisationDiag_modifierDiag.Image"), System.Drawing.Image)
-        Me.btn_finalisationDiag_modifierDiag.Location = New System.Drawing.Point(5, 619)
+        Me.btn_finalisationDiag_modifierDiag.Location = New System.Drawing.Point(12, 619)
         Me.btn_finalisationDiag_modifierDiag.Name = "btn_finalisationDiag_modifierDiag"
-        Me.btn_finalisationDiag_modifierDiag.Size = New System.Drawing.Size(184, 24)
+        Me.btn_finalisationDiag_modifierDiag.Size = New System.Drawing.Size(136, 24)
         Me.btn_finalisationDiag_modifierDiag.TabIndex = 6
         Me.btn_finalisationDiag_modifierDiag.Text = "       Modifier le contrôle"
         Me.btn_finalisationDiag_modifierDiag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -567,7 +567,7 @@ Public Class frmdiagnostic_recap
         Me.btn_ContratCommercial.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ContratCommercial.ForeColor = System.Drawing.Color.White
         Me.btn_ContratCommercial.Image = CType(resources.GetObject("btn_ContratCommercial.Image"), System.Drawing.Image)
-        Me.btn_ContratCommercial.Location = New System.Drawing.Point(381, 619)
+        Me.btn_ContratCommercial.Location = New System.Drawing.Point(194, 619)
         Me.btn_ContratCommercial.Name = "btn_ContratCommercial"
         Me.btn_ContratCommercial.Size = New System.Drawing.Size(184, 24)
         Me.btn_ContratCommercial.TabIndex = 19

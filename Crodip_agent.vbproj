@@ -1312,6 +1312,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Content Include="bdd\crodip_agent.mdb" />
+    <Content Include="bdd\crodip_agentBasePourImport.mdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="bdd\crodip_dasylab.mdb" />
     <Content Include="bdd\crodip_etats.mdb" />
     <Content Include="cmd.txt">

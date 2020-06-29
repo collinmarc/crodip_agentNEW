@@ -523,6 +523,7 @@ Public Class frmRPparentContener
         formLoad()
     End Sub
     Private Sub formLoad()
+        Globals.Init()
 
         'Test pour Vérifier si on est dans une configuation Agent
         Dim oCSdb As New CSDb(False)
@@ -694,6 +695,9 @@ Public Class frmRPparentContener
             For Each oForm As Form In MdiChildren
                 oForm.Close()
             Next
+            clientCourant = New Exploitation()
+            pulverisateurCourant = New Pulverisateur()
+            agentCourant = Me.m_oAgent
             m_nStep = 0
             m_RPDiagnostic = New RPDiagnostic()
             m_RPDiagnostic.oClientCourant = clientCourant
@@ -1201,5 +1205,13 @@ Public Class frmRPparentContener
 
     Private Sub mnuLoadCRODIP_Click(sender As Object, e As EventArgs) Handles mnuLoadCRODIP.Click
         loadFile(CtrlLoad.CRODIP)
+    End Sub
+
+    Private Sub frmRPparentContener_DockChanged(sender As Object, e As EventArgs) Handles Me.DockChanged
+
+    End Sub
+
+    Private Sub frmRPparentContener_Invalidated(sender As Object, e As InvalidateEventArgs) Handles Me.Invalidated
+
     End Sub
 End Class

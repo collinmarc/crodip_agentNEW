@@ -401,7 +401,7 @@ Public Class Agent
                     Me.DroitsPulves = pValue
                 Case "isGestionnaire".Trim().ToUpper()
                     Me.isGestionnaire = pValue
-                Case "SignatureElect".Trim().ToUpper()
+                Case "isSignElecActive".Trim().ToUpper()
                     Me.isSignElecActive = pValue
             End Select
 

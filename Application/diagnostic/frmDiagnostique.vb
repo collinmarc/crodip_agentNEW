@@ -10441,12 +10441,20 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
     Private Sub ini571()
-        If Not String.IsNullOrEmpty(diagBuses_debitMoyen.Text) Then
-            m_diagnostic.diagnosticHelp571.DebitMesurePRS = diagBuses_debitMoyen.Text
+        If Not String.IsNullOrEmpty(diagBuses_debitMoyen.Text) And IsNumeric(diagBuses_debitMoyen.Text) Then
+            Try
+                m_diagnostic.diagnosticHelp571.DebitMesurePRS = diagBuses_debitMoyen.Text
+            Catch ex As Exception
+                m_diagnostic.diagnosticHelp571.DebitMesurePRS = 0
+            End Try
         End If
         '        m_diagnosticCourant.diagnosticHelp571.DebitMesureVTS = diagBuses_debitMoyen.Text
-        If Not String.IsNullOrEmpty(tbPressionMesure.Text) Then
-            m_diagnostic.diagnosticHelp571.PressionMesurePRS = tbPressionMesure.Text
+        If Not String.IsNullOrEmpty(tbPressionMesure.Text) And IsNumeric(diagBuses_debitMoyen.Text) Then
+            Try
+                m_diagnostic.diagnosticHelp571.PressionMesurePRS = tbPressionMesure.Text
+            Catch ex As Exception
+                m_diagnostic.diagnosticHelp571.PressionMesurePRS = 0
+            End Try
         End If
         If m_diagnostic.diagnosticHelp551.ErreurMoyenneSigned.HasValue Then
             m_diagnostic.diagnosticHelp571.ErreurVitessePRS = m_diagnostic.diagnosticHelp551.ErreurMoyenneSigned

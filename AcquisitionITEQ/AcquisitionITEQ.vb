@@ -1,6 +1,8 @@
 ﻿Imports CRODIPAcquisition
+Imports CsvHelper
 Imports NLog
 Imports System.Data.OleDb
+Imports System.IO
 Imports System.Linq
 
 Public Class AcquisitionITEQ
@@ -69,22 +71,21 @@ Public Class AcquisitionITEQ
             'System.IO.File.WriteAllLines(System.IO.Path.GetDirectoryName(m_fichierITEQ) & "/Schema.ini", tabString)
         End If
 
+        If bConvert Then
+            Dim oConn As OleDb.OleDbConnection
+            oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Extended Properties=Text;Data Source=" & System.IO.Path.GetDirectoryName(m_fichierITEQ))
+            oConn.Open()
+            ' Initialisation de la DB
+            Dim ocmd As OleDbCommand
+            ocmd = oConn.CreateCommand()
+            ocmd.CommandText = "SELECT *   FROM [" & System.IO.Path.GetFileName(m_fichierITEQ) & "]"
+            Dim dataResults As System.Data.OleDb.OleDbDataReader = ocmd.ExecuteReader()
 
-        Dim oConn As OleDb.OleDbConnection
-        oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Extended Properties=Text;Data Source=" & System.IO.Path.GetDirectoryName(m_fichierITEQ))
-        oConn.Open()
-        ' Initialisation de la DB
-        Dim ocmd As OleDbCommand
-        ocmd = oConn.CreateCommand()
-        ocmd.CommandText = "SELECT *   FROM [" & System.IO.Path.GetFileName(m_fichierITEQ) & "]"
-        Dim dataResults As System.Data.OleDb.OleDbDataReader = ocmd.ExecuteReader()
+            ' Parcourt des résultats
+            Dim i As Integer = 0
+            While dataResults.Read()
 
-        ' Parcourt des résultats
-        Dim i As Integer = 0
-        While dataResults.Read()
-
-            Dim tmpResponse As New CRODIPAcquisition.AcquisitionValue()
-            If bConvert Then
+                Dim tmpResponse As New CRODIPAcquisition.AcquisitionValue()
                 'Comme on a des problème de conversion d'encodage
                 'on prend les champs fixes dans le fichier convertit
                 'Jeu N°'
@@ -103,28 +104,37 @@ Public Class AcquisitionITEQ
                 If Not dataResults.IsDBNull(9) Then
                     tmpResponse.Pression = dataResults.GetValue(9)
                 End If
-            Else
+                oReturn.Add(tmpResponse)
+            End While
+            dataResults.Close()
+            oConn.Close()
+        Else
+            Dim olstValueITEQ As New List(Of ValueITEQ)
+            Using sr As New StreamReader(m_fichierITEQ)
+
+                Using csvR As New CsvReader(sr, Globalization.CultureInfo.CurrentCulture)
+                    olstValueITEQ = csvR.GetRecords(Of ValueITEQ)().ToList()
+                End Using
+            End Using
+            ' Parcourt des résultats
+            Dim i As Integer = 0
+            For Each oValueITEQ As ValueITEQ In olstValueITEQ
+                Dim tmpResponse As New CRODIPAcquisition.AcquisitionValue()
                 Dim tmpColId As Integer = 0
-                While tmpColId < dataResults.FieldCount()
-                    If Not dataResults.IsDBNull(tmpColId) Then
-                        Select Case dataResults.GetName(tmpColId).ToUpper().Trim()
-                            Case "Jeu N°".ToUpper().Trim()
-                                tmpResponse.Niveau = dataResults.GetValue(tmpColId)
-                            Case "N° buse".ToUpper().Trim()
-                                tmpResponse.NumBuse = dataResults.GetValue(tmpColId)
-                            Case "Débit mesuré (l/min)".ToUpper().Trim()
-                                tmpResponse.Debit = dataResults.GetValue(tmpColId)
-                            Case "Pression mesurée (bar)".ToUpper().Trim()
-                                tmpResponse.Pression = dataResults.GetValue(tmpColId)
-                        End Select
-                    End If
-                    tmpColId = tmpColId + 1
-                End While
-            End If
-            oReturn.Add(tmpResponse)
-        End While
-        dataResults.Close()
-        oConn.Close()
+                tmpResponse.Niveau = oValueITEQ.Jeu
+                tmpResponse.NumBuse = oValueITEQ.NumeroBuse
+
+                tmpResponse.Debit = oValueITEQ.Debit.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                If Not String.IsNullOrEmpty(oValueITEQ.Pression) Then
+                    tmpResponse.Pression = oValueITEQ.Pression.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                End If
+                tmpResponse.Ref = oValueITEQ.Ref
+                oReturn.Add(tmpResponse)
+
+            Next
+
+        End If
+
         logger.Info("AcquisitionITEQ.GetValues Return " & oReturn.Count & "elements")
         Return oReturn
 

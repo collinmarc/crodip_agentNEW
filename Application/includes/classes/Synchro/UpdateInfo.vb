@@ -23,7 +23,7 @@ Public Class UpdateInfo
                 Case "message"
                     Me._message = wsResponseItem.InnerText()
                 Case "baseUrl"
-                    Me._baseUrl = wsResponseItem.InnerText()
+                    Me._baseUrl = wsResponseItem.InnerText().Replace("http:", "https:")
                 Case "files"
                     Dim nbFiles As Integer = wsResponseItem.ChildNodes.Count
                     If nbFiles > 0 Then
@@ -31,7 +31,7 @@ Public Class UpdateInfo
                         Dim wsFilesItem As System.Xml.XmlNode
                         Dim i As Integer = 0
                         For Each wsFilesItem In wsResponseItem.ChildNodes
-                            Me._files(i) = wsFilesItem.InnerText
+                            Me._files(i) = wsFilesItem.InnerText.Replace("http:", "https:")
                             i += 1
                         Next
                     End If

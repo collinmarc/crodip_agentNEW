@@ -320,8 +320,14 @@ Public Class EtatSyntheseMesures
 
                         End If
                         Dim NumPompe As String = oPompe.Nom
-                        Dim PeseeMoyennePompe As String = oPompe.PeseeMoyenne
-                        Dim EcartMoyen As String = oPompe.EcartReglageMoyen
+                        Dim PeseeMoyennePompe As String = ""
+                        If (oPompe.PeseeMoyenne.HasValue) Then
+                            PeseeMoyennePompe = oPompe.PeseeMoyenne
+                        End If
+                        Dim EcartMoyen As String = ""
+                        If (oPompe.EcartReglageMoyen.HasValue) Then
+                            EcartMoyen = oPompe.EcartReglageMoyen
+                        End If
                         Dim NumMesure As String = oMesure.numeroMesurestr
                         Dim QteGains As String = oMesure.qteGrains
                         Dim DebitSouhaite As String = oMesure.DebitSouhaite

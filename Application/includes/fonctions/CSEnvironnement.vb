@@ -131,7 +131,8 @@ Public Class CSEnvironnement
         Dim requete As HttpWebRequest = Nothing
         Dim reponse As HttpWebResponse = Nothing
         Dim url As String
-        url = ChangeProtocol(pProtocol, My.Settings.urlCRODIP)
+
+        url = ChangeProtocol(pProtocol, WSCrodip.URL)
 
         '--- Suivi des erreurs rencontrées
         Try
