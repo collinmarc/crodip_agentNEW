@@ -21,3 +21,5 @@ TestCrodop/obj
 TestResults
 *.zip
 /.vs
+/SetupAgent/Release
+/SetupAgent/Debug

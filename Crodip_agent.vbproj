@@ -202,11 +202,6 @@
     <Reference Include="CsvHelper, Version=14.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>packages\CsvHelper.14.0.0\lib\net47\CsvHelper.dll</HintPath>
     </Reference>
-    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
-    <Reference Include="itextsharp">
-      <Name>itextsharp</Name>
-      <HintPath>bin\itextsharp.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -2367,11 +2362,11 @@
     <EmbeddedResource Include="frmMAJVersion.resx">
       <DependentUpon>frmMAJVersion.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="moduleDocumentaire\_parametres\TESTSIGN.rpt">
+    <Content Include="moduleDocumentaire\_parametres\TESTSIGN.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>TESTSIGN.vb</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
     <EmbeddedResource Include="My Project\Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>

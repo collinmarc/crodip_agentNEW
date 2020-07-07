@@ -4419,20 +4419,14 @@ Namespace WSCrodip_prod
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
-        Public Overloads ReadOnly Property Result() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Object)
-            End Get
-        End Property
-        
+
         '''<remarks/>
-        Public Overloads ReadOnly Property result() As Integer
+        Public ReadOnly Property result() As Integer
             Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Integer)
+                Me.RaiseExceptionIfNecessary()
+                Return CType(Me.results(1), Integer)
             End Get
         End Property
     End Class
