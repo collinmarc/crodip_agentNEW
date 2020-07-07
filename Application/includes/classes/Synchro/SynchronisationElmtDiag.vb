@@ -53,7 +53,7 @@ Public Class SynchronisationElmtDiag
                 'Récupération des etats du diagnostic s'ils n'existent pas
                 If Not String.IsNullOrEmpty(oDiag.RIFileName) Then
                     If Not File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName) Then
-                        DiagnosticManager.getFTPEtats(oDiag)
+                        DiagnosticManager.GetEtats(oDiag)
                     End If
                 End If
 

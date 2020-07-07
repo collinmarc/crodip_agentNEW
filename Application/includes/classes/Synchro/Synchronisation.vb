@@ -240,15 +240,20 @@ Public Class Synchronisation
                 Next
             End If
             If System.IO.File.Exists("./synchroPDF") Then
-                Notice("Synchronisation des PDFs manquants")
-                ' Récupération de la liste des diags qui ont un nom de PDF 
-                Dim lstDiag As List(Of Diagnostic) = DiagnosticManager.getlstDiagnostic().Where(Function(d) d.RIFileName <> "").ToList()
-                For Each odiag As Diagnostic In lstDiag
-                    Notice("PDFs [" & odiag.id & "]")
-                    DiagnosticManager.SendEtats(odiag)
-                Next
+                Try
 
-                System.IO.File.Delete("./synchroPDF")
+                    Notice("Synchronisation des PDFs manquants")
+                    ' Récupération de la liste des diags de moins d'un an qui ont un nom de PDF 
+                    Dim lstDiag As List(Of Diagnostic) = DiagnosticManager.getlstDiagnostic().Where(Function(d) d.RIFileName <> "" And CDate(d.controleDateDebut) > Now.AddYears(-1)).ToList()
+                    For Each odiag As Diagnostic In lstDiag
+                        Notice("PDFs [" & odiag.id & "]")
+                        DiagnosticManager.SendEtats(odiag)
+                    Next
+
+                    System.IO.File.Delete("./synchroPDF")
+                Catch ex As Exception
+                    CSDebug.dispWarn("Synchronisation.runascSynhcro ERREUR en synhcro des pDFS manquants" & ex.Message)
+                End Try
             End If
 
             ' Synchro d'un agent

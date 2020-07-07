@@ -1,5 +1,15 @@
 TRUNK
 MASTER
+BUILD : 20200706180000
+----------------------
+0001258: Acquisition ITEQ ne fonctionne pas en PROD
+
+BUILD : 20200702180000
+----------------------
+	0001257: Synhcronisation des PDFs manquants de moins d'un an
+BUILD : 20200629180000
+----------------------
+0001256: Erreur en génération du rapport de SM sur un pulve de type Fixe ou Semi Mobile
 
 BUILD : 20200622180000
 ----------------------

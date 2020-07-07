@@ -60,6 +60,15 @@ Public Class DiagnosticManager
         End If
         Return bReturn
     End Function
+    Public Shared Function GetEtats(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        If My.Settings.SynchroEtatMode = "FTP" Then
+            bReturn = getFTPEtats(pDiag)
+        Else
+            bReturn = getHTTPEtats(pDiag)
+        End If
+        Return bReturn
+    End Function
 
     ''' <summary>
     ''' Envoie par FTP des Etats relatid au diag
@@ -184,17 +193,18 @@ Public Class DiagnosticManager
             bReturn = True
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Dim url As String = objWSCrodip.Url
-            Dim Credential As New System.Net.NetworkCredential("crodip", "crodip35")
+            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatDiagUser, My.Settings.SynhcroEtatDiagPwd)
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
                 filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If
-                Dim uri As New Uri("http://admin-pp.crodip.fr/admin/diagnostic/get-pdf-view?id=" & pDiag.id)
-                'My.Computer.Network.DownloadFile(uri, filePath, Credential, False, 100000, True)
-                My.Computer.Network.DownloadFile(uri, filePath, "crodip", "crodip35")
+                Dim uri As New Uri(WSCrodip.URL & "/../admin/diagnostic/get-pdf-view?id=" & pDiag.id)
+                My.Computer.Network.DownloadFile(uri, filePath, Credential, False, 100000, True)
+                'My.Computer.Network.DownloadFile(uri, filePath, My.Settings.SynchroEtatDiagUser, My.Settings.SynhcroEtatDiagPwd)
             End If
+            'L'appli ne permet pas de redescendre les SM et CC
             'If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
             '    filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
             '    If System.IO.File.Exists(filePath) Then
@@ -210,7 +220,7 @@ Public Class DiagnosticManager
             '    My.Computer.Network.DownloadFile(objWSCrodip.Url + "/pdf/" & pDiag.RIFileName, filePath, "crodip", "crodip35")
             'End If
         Catch ex As Exception
-            CSDebug.dispError("DiagnosticManager.GetHTTPEtats ERR : " & ex.Message)
+            CSDebug.dispError("DiagnosticManager.GetHTTPEtats ERR : (" & WSCrodip.URL & "/../admin/diagnostic/get-pdf-view?id=" & pDiag.id & ")" & ex.Message)
             bReturn = False
         End Try
         Return bReturn
@@ -544,7 +554,7 @@ Public Class DiagnosticManager
         Dim bddCommande As New OleDb.OleDbCommand
         Dim oCSDb As New CSDb(True)
         bddCommande = oCSDb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT ID,dateModificationAgent,dateModificationCrodip,dateSynchro, RIFileName,SMFileName,CCFileName FROM Diagnostic"
+        bddCommande.CommandText = "SELECT ID,dateModificationAgent,dateModificationCrodip,dateSynchro, RIFileName,SMFileName,CCFileName, controleDateDebut FROM Diagnostic"
         Try
             ' On récupère les résultats
             Dim oDR As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
