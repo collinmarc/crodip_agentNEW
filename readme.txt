@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+
+0001232: Erreur sur cumul d'erreur en Pression
+
 BUILD : 20200706180000
 ----------------------
 0001258: Acquisition ITEQ ne fonctionne pas en PROD

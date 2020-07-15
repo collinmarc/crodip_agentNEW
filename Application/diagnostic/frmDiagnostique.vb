@@ -4725,7 +4725,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub calc552()
         If diagBuses_debitMoyen.Text <> "" And tbPressionMesure.Text <> "" Then
             Dim oDlg552 As New Diagnostic_dlghelp552()
-            oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode552, m_diagnostic, diagBuses_debitMoyen.Text, tbPressionMesure.Text, (Globals.DiagMode.CTRL_VISU = m_modeAffichage))
+            oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode552, m_diagnostic, tbDebitMoyen3bars.Text, tbPressionMesure.Text, (Globals.DiagMode.CTRL_VISU = m_modeAffichage))
             oDlg552.ShowDialog(Me)
             If oDlg552.DialogResult = Windows.Forms.DialogResult.OK Then
                 m_diagnostic.syntheseErreurDebitmetre = m_diagnostic.diagnosticHelp552.ErreurDebitMetre
@@ -9168,7 +9168,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
             If diagBuses_debitMoyen.Text <> "" And tbPressionMesure.Text <> "" Then
                 Dim oDlg552 As New Diagnostic_dlghelp552()
-                oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode5622, m_diagnostic, diagBuses_debitMoyen.Text, tbPressionMesure.Text, (Globals.DiagMode.CTRL_VISU = m_modeAffichage))
+                oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode5622, m_diagnostic, tbDebitMoyen3bars.Text, tbPressionMesure.Text, (Globals.DiagMode.CTRL_VISU = m_modeAffichage))
                 oDlg552.ShowDialog(Me)
                 If oDlg552.DialogResult = Windows.Forms.DialogResult.OK Then
                     m_diagnostic.syntheseErreurDebitmetre = m_diagnostic.diagnosticHelp5622.ErreurDebitMetre
