@@ -3466,7 +3466,7 @@ Public Class accueil
         Next oExploit
 
     End Sub
-    Private Function InitLVItem(oItem As ListViewItem, oExploit As Exploitation)
+    Private Function InitLVItem(oItem As ListViewItem, oExploit As Exploitation) As Boolean
         Dim breturn As Boolean
         Try
 
@@ -3553,7 +3553,6 @@ Public Class accueil
         Debug.Assert(Not String.IsNullOrEmpty(pIdExploit), "IdExploi doit être renseigné")
         Dim tabItem As ListViewItem()
         Dim oItem As ListViewItem
-        Dim oExploit As Exploitation
         tabItem = list_clients.Items.Find(pIdExploit, False)
         If tabItem.Length > 0 Then
             oItem = tabItem(0)

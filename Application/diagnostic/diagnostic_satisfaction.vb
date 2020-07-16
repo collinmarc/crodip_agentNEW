@@ -1,8 +1,4 @@
 Imports System.Threading
-Imports iTextSharp
-Imports iTextSharp.text
-Imports iTextSharp.text.pdf
-Imports iTextSharp.text.xml
 Imports System.IO
 Imports System.Collections.Generic
 

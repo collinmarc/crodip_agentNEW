@@ -5,10 +5,6 @@ Imports System.Data
 Imports System.Drawing
 Imports System.Text
 Imports System.Windows.Forms
-Imports iTextSharp
-Imports iTextSharp.text
-Imports iTextSharp.text.pdf
-Imports iTextSharp.text.xml
 Imports System.IO
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared

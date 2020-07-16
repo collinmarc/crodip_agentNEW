@@ -106,7 +106,6 @@ Global
 		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.Release|Mixed Platforms.Build.0 = Release|x86
 		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.Release|PHP 5.5.ActiveCfg = Release|Any CPU
 		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.Release|x86.ActiveCfg = Release|x86
-		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.Release|x86.Build.0 = Release|x86
 		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.ReleaseReglagePulve|Any CPU.ActiveCfg = ReleaseReglagePulve|Any CPU
 		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.ReleaseReglagePulve|Any CPU.Build.0 = ReleaseReglagePulve|Any CPU
 		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.ReleaseReglagePulve|Mixed Platforms.ActiveCfg = ReleaseReglagePulve|x86
@@ -141,7 +140,6 @@ Global
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.Release|PHP 5.5.ActiveCfg = Release|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.Release|x86.ActiveCfg = Release|x86
-		{65815FF1-9AC8-4D74-A001-3069EA510506}.Release|x86.Build.0 = Release|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.ReleaseReglagePulve|Any CPU.ActiveCfg = ReleaseReglagePulve|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.ReleaseReglagePulve|Mixed Platforms.ActiveCfg = ReleaseReglagePulve|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.ReleaseReglagePulve|PHP 5.5.ActiveCfg = ReleaseReglagePulve|x86
@@ -512,7 +510,6 @@ Global
 		{61B6F1F1-01A4-4450-8B8C-0DBC76214DD3}.Release|PHP 5.5.ActiveCfg = Release|Any CPU
 		{61B6F1F1-01A4-4450-8B8C-0DBC76214DD3}.Release|PHP 5.5.Build.0 = Release|Any CPU
 		{61B6F1F1-01A4-4450-8B8C-0DBC76214DD3}.Release|x86.ActiveCfg = Release|Any CPU
-		{61B6F1F1-01A4-4450-8B8C-0DBC76214DD3}.Release|x86.Build.0 = Release|Any CPU
 		{61B6F1F1-01A4-4450-8B8C-0DBC76214DD3}.ReleaseReglagePulve|Any CPU.ActiveCfg = Release|Any CPU
 		{61B6F1F1-01A4-4450-8B8C-0DBC76214DD3}.ReleaseReglagePulve|Any CPU.Build.0 = Release|Any CPU
 		{61B6F1F1-01A4-4450-8B8C-0DBC76214DD3}.ReleaseReglagePulve|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -640,7 +637,6 @@ Global
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.Debug|PHP 5.5.ActiveCfg = Debug
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.Debug|PHP 5.5.Build.0 = Debug
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.Debug|x86.ActiveCfg = Debug
-		{49258497-1A03-42AF-A50E-EDDFC444EA96}.Debug|x86.Build.0 = Debug
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.DebugReglagePulve|Any CPU.ActiveCfg = Debug
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.DebugReglagePulve|Any CPU.Build.0 = Debug
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.DebugReglagePulve|Mixed Platforms.ActiveCfg = Debug
@@ -680,7 +676,6 @@ Global
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.Release|PHP 5.5.ActiveCfg = Release
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.Release|PHP 5.5.Build.0 = Release
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.Release|x86.ActiveCfg = Release
-		{49258497-1A03-42AF-A50E-EDDFC444EA96}.Release|x86.Build.0 = Release
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.ReleaseReglagePulve|Any CPU.ActiveCfg = Release
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.ReleaseReglagePulve|Any CPU.Build.0 = Release
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.ReleaseReglagePulve|Mixed Platforms.ActiveCfg = Release
