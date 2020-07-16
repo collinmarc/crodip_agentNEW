@@ -3538,11 +3538,15 @@ Public Class accueil
         Dim oItem As ListViewItem
         Dim oExploit As Exploitation
         tabItem = list_clients.Items.Find(pIdExploit, False)
+        oExploit = ExploitationManager.getExploitationById(pIdExploit)
         If tabItem.Length > 0 Then
             oItem = tabItem(0)
-            oExploit = ExploitationManager.getExploitationById(pIdExploit)
             InitLVItem(oItem, oExploit)
             list_clients.Refresh()
+        Else
+            oItem = New ListViewItem()
+            InitLVItem(oItem, oExploit)
+            list_clients.Items.Insert(0, oItem)
         End If
     End Sub
     Public Sub RemoveLVIExploitation(pIdExploit As String)
