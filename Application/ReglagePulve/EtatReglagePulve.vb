@@ -266,7 +266,11 @@ Public Class EtatReglagePulve
             Dim pctBusesUsees As Decimal
             For Each oLot As DiagnosticBuses In m_oDiag.diagnosticBusesList.Liste
                 If oLot.nombre <> 0 Then
-                    pctBusesUsees = Math.Round((oLot.nombrebusesusees / oLot.nombre) * 100, 2)
+                    Try
+                        pctBusesUsees = Math.Round((oLot.nombrebusesusees / oLot.nombre) * 100, 2)
+                    Catch
+                        pctBusesUsees = 100%
+                    End Try
                 Else
                     pctBusesUsees = 100%
                 End If

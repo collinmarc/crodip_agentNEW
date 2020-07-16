@@ -63,7 +63,9 @@ Public Class ParamReglagePulve
         Dim oParamReglagePulve As New ParamReglagePulve
 
         Try
-            Decompress(pFolder & "/" & XMLFileName & "z")
+            If (System.IO.File.Exists(pFolder & "/" & XMLFileName & "z")) Then
+                Decompress(pFolder & "/" & XMLFileName & "z")
+            End If
             If (System.IO.File.Exists(pFolder & "/" & XMLFileName)) Then
                 'Création du reader du fichier XML
                 Dim oStR As New System.IO.StreamReader(XMLFileName)
@@ -76,7 +78,9 @@ Public Class ParamReglagePulve
                 oStR.Close()
 
                 bReturn = True
-                File.Delete(pFolder & "/" & XMLFileName)
+                If (System.IO.File.Exists(pFolder & "/" & XMLFileName & "z")) Then
+                    File.Delete(pFolder & "/" & XMLFileName)
+                End If
             Else
                 'Le fichier XML n'existe pas
                 bReturn = False

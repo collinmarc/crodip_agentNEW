@@ -1,9 +1,12 @@
 TRUNK
 MASTER
 
+BUILD : 20200716180000
+----------------------
 0001232: Erreur sur cumul d'erreur en Pression
 0001263: fiche Verif Mano : Les indication du mano de references ne sont pas reprises
 0001262: Mode simplifié , pas d'enquête et pas de contrat commercial
+0001264: [RP] : Affichage du rapport dans le reglage Pulve
 
 BUILD : 20200706180000
 ----------------------
