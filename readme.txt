@@ -2,7 +2,8 @@ TRUNK
 MASTER
 
 0001232: Erreur sur cumul d'erreur en Pression
-0001263: fiche Verif Mano : Les indication du mano de references ne sont pas Reprises
+0001263: fiche Verif Mano : Les indication du mano de references ne sont pas reprises
+0001262: Mode simplifié , pas d'enquête et pas de contrat commercial
 
 BUILD : 20200706180000
 ----------------------

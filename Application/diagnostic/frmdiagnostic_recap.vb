@@ -735,7 +735,12 @@ Public Class frmdiagnostic_recap
         '##################
         'Generation de l'apperçu du rapport
         '###################
-
+        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            rbEtatCC.Visible = False
+            btn_ContratCommercial.Visible = False
+            btn_finalisationDiag_imprimerRapport.Top = btn_ContratCommercial.Top
+            btn_finalisationDiag_imprimerRapport.Left = btn_ContratCommercial.Left
+        End If
         createEtatRapportInspection(False)
 
         '======================
@@ -823,6 +828,10 @@ Public Class frmdiagnostic_recap
             Exit Sub
         End If
         If isValider Then
+            If Globals.GLOB_ENV_MODESIMPLIFIE Then
+                CloseDiagnostic()
+                Exit Sub
+            End If
             If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
                 ' On ouvre la fen^petre de l'enquete
                 Dim ofrm As New diagnostic_satisfaction(m_diagnostic)
@@ -836,17 +845,26 @@ Public Class frmdiagnostic_recap
             If checkForm() Then
                 If (m_oAgent.isSignElecActive) Then
                     Dim bsign As Boolean = False
-                    bsign = (m_diagnostic.bSignCCAgent And m_diagnostic.bSignCCClient And m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient)
-
-                    If Not (bsign) Then
-                        Dim Message As String = ""
-                        If Not (m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient) Then
-                            Message = "Attention, le rapport d'inspection n'est pas signé"
-                        End If
+                    Dim bSignRI As Boolean = True
+                    Dim bSignCC As Boolean = True
+                    Dim Message As String = ""
+                    If Not (m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient) Then
+                        Message = "Attention, le rapport d'inspection n'est pas signé"
+                        bSignRI = False
+                    End If
+                    If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
                         If Not (m_diagnostic.bSignCCAgent And m_diagnostic.bSignCCClient) Then
                             Message = "Attention, le contrat commercial n'est pas signé"
+                            bSignCC = False
                         End If
-                        If Not (m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient) And Not (m_diagnostic.bSignCCAgent And m_diagnostic.bSignCCClient) Then
+                    Else
+                        'En mode simplifié, pas de contrat commercial
+                        bSignCC = True
+                    End If
+                    bsign = (bSignRI And bSignCC)
+
+                    If Not bsign Then
+                        If Not bSignRI And Not bSignCC Then
                             Message = "Attention, vos documents ne sont pas signés"
                         End If
                         SendKeys.Send("{TAB}")
@@ -934,51 +952,53 @@ Public Class frmdiagnostic_recap
                     If Not createEtatSyntheseDesMesures(True) Then
                         CSDebug.dispError("Erreur en génération de l'état de synthèse des mesures")
                     End If
-                    Statusbar.display("Génération du Contrat Commercial", True)
-                    If Not createEtatContratCommercial(True) Then
-                        CSDebug.dispError("Erreur en génération du Contrat Commercial")
+                    If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
+                        Statusbar.display("Génération du Contrat Commercial", True)
+                        If Not createEtatContratCommercial(True) Then
+                            CSDebug.dispError("Erreur en génération du Contrat Commercial")
+                        End If
                     End If
 
                     'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
                     m_diagnostic.dateModificationAgent = CSDate.mysql2access(Date.Now)
-                    m_diagnostic.dateModificationCrodip = "01/01/1900"
-                    Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
-                    'on remet les Id à "" pour forcer la création d'un nouvel ID
-                    m_diagnostic.diagnosticHelp551.id = ""
-                    m_diagnostic.diagnosticHelp5621.id = ""
-                    m_diagnostic.diagnosticHelp552.id = ""
-                    m_diagnostic.diagnosticHelp5622.id = ""
-                    m_diagnostic.diagnosticHelp811.id = ""
-                    m_diagnostic.diagnosticHelp8312.id = ""
-                    m_diagnostic.diagnosticInfosComplementaires.id = ""
-                    Dim bSave As Boolean
-                    bSave = DiagnosticManager.save(m_diagnostic)
-                    If Not bSave Then
-                        CSDebug.dispFatal("Diagnostic-recap.btn_finalisationDiag_valider_Click ERR : ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE=> FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
-                        MsgBox("ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE => FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
-                        Application.Exit()
-                    End If
+                        m_diagnostic.dateModificationCrodip = "01/01/1900"
+                        Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
+                        'on remet les Id à "" pour forcer la création d'un nouvel ID
+                        m_diagnostic.diagnosticHelp551.id = ""
+                        m_diagnostic.diagnosticHelp5621.id = ""
+                        m_diagnostic.diagnosticHelp552.id = ""
+                        m_diagnostic.diagnosticHelp5622.id = ""
+                        m_diagnostic.diagnosticHelp811.id = ""
+                        m_diagnostic.diagnosticHelp8312.id = ""
+                        m_diagnostic.diagnosticInfosComplementaires.id = ""
+                        Dim bSave As Boolean
+                        bSave = DiagnosticManager.save(m_diagnostic)
+                        If Not bSave Then
+                            CSDebug.dispFatal("Diagnostic-recap.btn_finalisationDiag_valider_Click ERR : ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE=> FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
+                            MsgBox("ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE => FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
+                            Application.Exit()
+                        End If
 
 
 
-                    ' On met en place les boutons
-                    btn_finalisationDiag_valider.Text = "Poursuivre"
-                    btn_finalisationDiag_imprimerRapport.Enabled = True
-                    btn_finalisationDiag_modifierDiag.Enabled = False
-                    btn_finalisationDiag_imprimerSynthese.Enabled = True
-                    btn_ContratCommercial.Enabled = True
+                        ' On met en place les boutons
+                        btn_finalisationDiag_valider.Text = "Poursuivre"
+                        btn_finalisationDiag_imprimerRapport.Enabled = True
+                        btn_finalisationDiag_modifierDiag.Enabled = False
+                        btn_finalisationDiag_imprimerSynthese.Enabled = True
+                        btn_ContratCommercial.Enabled = True
 
-                    'Désactivation de l'apperçu
-                    btnAppercu.Enabled = False
-                    rbEtatRI.Enabled = False
-                    rbEtatSM.Enabled = False
-                    rbEtatCC.Enabled = False
-                    CrystalReportViewer1.Enabled = False
-                    isValider = True
-                    Statusbar.display("", False)
-                    bReturn = True
-                Else
-                    CSDebug.dispFatal("Erreur en génération de rapport, recommencez. En cas de récidive, prevenez le CRODIP")
+                        'Désactivation de l'apperçu
+                        btnAppercu.Enabled = False
+                        rbEtatRI.Enabled = False
+                        rbEtatSM.Enabled = False
+                        rbEtatCC.Enabled = False
+                        CrystalReportViewer1.Enabled = False
+                        isValider = True
+                        Statusbar.display("", False)
+                        bReturn = True
+                    Else
+                        CSDebug.dispFatal("Erreur en génération de rapport, recommencez. En cas de récidive, prevenez le CRODIP")
                 End If
             Catch ex As Exception
                 CSDebug.dispFatal("Erreur lors de l'enregistrement du diag : " & ex.Message.ToString)
