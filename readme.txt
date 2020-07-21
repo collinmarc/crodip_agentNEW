@@ -1,6 +1,10 @@
 TRUNK
 MASTER
 
+BUILD : 20200721100000
+----------------------
+0001266: synhcronisation des fiches de Vies de Mano
+
 BUILD : 20200716180000
 ----------------------
 0001232: Erreur sur cumul d'erreur en Pression

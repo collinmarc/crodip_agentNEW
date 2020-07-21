@@ -79,7 +79,7 @@ Public Class FVManometreControleManager
         Try
             bReturn = True
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatTVManoUrl)
+            Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & My.Settings.SynchroEtatTVManoUrl)
             'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur
             Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVManoUser, My.Settings.SynhcroEtatFVManoPwd)
             Dim filePath As String
@@ -500,6 +500,41 @@ Public Class FVManometreControleManager
         Return lstResponse
     End Function
 
+    Public Shared Function getLstFVManometreControle() As List(Of FVManometreControle)
+        Dim lstResponse As New List(Of FVManometreControle)
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As OleDb.OleDbCommand
+
+        oCsdb = New CSDb(True)
+        bddCommande = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT * FROM FichevieManometreControle Where dateModif is not null"
+        Try
+
+                ' On récupère les résultats
+                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                ' Puis on les parcours
+                While tmpListProfils.Read()
+
+                    ' On rempli notre tableau
+                    Dim tmpFVManometreControle As New FVManometreControle(New Agent())
+                    Dim tmpColId As Integer = 0
+                    While tmpColId < tmpListProfils.FieldCount()
+                        tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        tmpColId = tmpColId + 1
+                    End While
+                    lstResponse.Add(tmpFVManometreControle)
+                End While
+                tmpListProfils.Close()
+            Catch ex As Exception
+            CSDebug.dispError("FVManometreControleManager - getlstFVManometreControle ERR : " & ex.Message)
+        End Try
+
+            If oCsdb IsNot Nothing Then
+                oCsdb.free()
+            End If
+
+        Return lstResponse
+    End Function
 #End Region
     Public Shared Function delete(ByVal pId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pId), " le paramètre ID doit être initialisé")

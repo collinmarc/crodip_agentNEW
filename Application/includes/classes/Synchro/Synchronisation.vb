@@ -252,7 +252,26 @@ Public Class Synchronisation
 
                     System.IO.File.Delete("./synchroPDF")
                 Catch ex As Exception
-                    CSDebug.dispWarn("Synchronisation.runascSynhcro ERREUR en synhcro des pDFS manquants" & ex.Message)
+                    CSDebug.dispWarn("Synchronisation.runascSynhcro ERREUR en synhcro des pDFS manquants DIAG" & ex.Message)
+                End Try
+            End If
+
+            If System.IO.File.Exists("./synchroFVMano") Then
+                Try
+
+                    Notice("Synchronisation des PDFs manquants")
+                    ' Récupération de la liste des FV des manos de moins d'un an qui ont un nom de PDF 
+                    Dim lst As List(Of FVManometreControle) = FVManometreControleManager.getLstFVManometreControle().Where(Function(d) d.FVFileName <> "" And d.dateModif <> "" And CDate(d.dateModif) > Now.AddMonths(-6)).ToList()
+                    For Each oFV As FVManometreControle In lst
+                        If File.Exists(Globals.CONST_PATH_EXP & oFV.FVFileName) Then
+                            Notice("PDFs [" & oFV.id & "]")
+                            FVManometreControleManager.SendEtats(oFV)
+                        End If
+                    Next
+
+                    System.IO.File.Delete("./synchroFVMano")
+                Catch ex As Exception
+                    CSDebug.dispWarn("Synchronisation.runascSynchro ERREUR en synchro des pDFS manquants FV Mano" & ex.Message)
                 End Try
             End If
 

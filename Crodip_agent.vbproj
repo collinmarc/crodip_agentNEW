@@ -1366,6 +1366,7 @@
     <None Include="Resources\LogoCRODIPIMG.bmp" />
     <None Include="Resources\puce_h1.jpg" />
     <None Include="Resources\btn_Signture.jpg" />
+    <None Include="SynchroFVMano" />
     <Content Include="toleranceBuses.xml" />
     <None Include="readme.md" />
     <None Include="Resources\PuceVerteT.png" />
