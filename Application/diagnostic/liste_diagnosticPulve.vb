@@ -313,7 +313,7 @@ Public Class liste_diagnosticPulve
             idDiag = listPulveDiagnostic.SelectedItems().Item(0).Tag.ToString
             m_oDiag = DiagnosticManager.getDiagnosticById(idDiag)
             If m_oDiag.id = idDiag Then
-                btnSignature.Enabled = Not (m_oDiag.bSignCCAgent And m_oDiag.bSignCCClient And m_oDiag.bSignRIAgent And m_oDiag.bSignRIClient)
+                btnSignature.Enabled = Not (m_oDiag.isSignCCAgent And m_oDiag.isSignCCClient And m_oDiag.isSignRIAgent And m_oDiag.isSignRIClient)
                 btn_selectDiagnostic_VisuDiag.Enabled = True
             End If
         Else

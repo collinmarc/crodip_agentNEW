@@ -735,7 +735,7 @@ Public Class diagnostic_facturation
         Else
             Dim oResult As MsgBoxResult = MsgBoxResult.Yes
             If m_oAgent.isSignElecActive Then
-                If Not m_oDiag.bSignCCClient Or Not m_oDiag.bSignCCAgent Then
+                If Not m_oDiag.isSignCCClient Or Not m_oDiag.isSignCCAgent Then
                     oResult = MsgBox("Attention, le contrat commercial n'est pas signé, vous ne pourrez plus revenir en arrière. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Validation du contrôle")
                 End If
             End If
@@ -1277,8 +1277,8 @@ Public Class diagnostic_facturation
     End Sub
 
     Private Sub ActiveDesactiveBtnSignature()
-        btnSignAgent.Enabled = Not m_oDiag.bSignCCAgent
-        btnSignClient.Enabled = Not m_oDiag.bSignCCClient
+        btnSignAgent.Enabled = Not m_oDiag.isSignCCAgent
+        btnSignClient.Enabled = Not m_oDiag.isSignCCClient
     End Sub
     Private Sub desactiverModificationSisigne()
         If m_oDiag.SignCCAgent IsNot Nothing Or m_oDiag.SignCCClient IsNot Nothing Then

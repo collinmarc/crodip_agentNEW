@@ -1,6 +1,10 @@
 TRUNK
 MASTER
 
+BUILD : 20200728150000
+----------------------
+	0001269: WS : Date de signature par defaut à la date du jour
+
 BUILD : 20200721100000
 ----------------------
 0001266: synhcronisation des fiches de Vies de Mano

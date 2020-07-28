@@ -11,7 +11,7 @@ Public Class UpdateInfo
     '###########################################
     '## CONSTRUCTEUR
 
-    Public Sub New(ByVal wsResponse)
+    Public Sub New(ByVal wsResponse As Object)
 
         Dim wsResponseItem As System.Xml.XmlNode
         For Each wsResponseItem In wsResponse

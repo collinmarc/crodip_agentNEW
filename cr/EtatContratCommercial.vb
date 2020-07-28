@@ -103,10 +103,10 @@ Public Class EtatContratCommercial
                                                              RSExploitant:=m_oDiag.proprietaireRaisonSociale,
                                                              villeExploit:=m_oDiag.proprietaireCommune,
                                                              NomPrenomExploit:=rsProp,
-                                                             bSignClient:=m_oDiag.bSignCCClient,
+                                                             bSignClient:=m_oDiag.isSignCCClient,
                                                         SignClient:=m_oDiag.SignCCClient,
                                                         DateSignclient:=m_oDiag.DateSignCCClient,
-                                                        bSignAgent:=m_oDiag.bSignCCAgent,
+                                                        bSignAgent:=m_oDiag.isSignCCAgent,
                                                         SignAgent:=m_oDiag.SignCCAgent,
                                                         DateSignAgent:=m_oDiag.DateSignCCAgent)
 

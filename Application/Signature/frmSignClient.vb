@@ -90,7 +90,7 @@ Public Class frmSignClient
         ''On prend le dernier écran comme ecran de signature
         Me.Location = System.Windows.Forms.Screen.AllScreens(Screen.AllScreens.Length - 1).WorkingArea.Location
 
-        Dim img As Image
+        Dim img As Image = Nothing
         Dim ms As MemoryStream
         Select Case m_Mode
             Case SignMode.RIAGENT
@@ -166,19 +166,19 @@ Public Class frmSignClient
         Select Case m_Mode
             Case SignMode.RICLIENT
                 m_odiag.SignRIClient = ms2.ToArray()
-                m_odiag.bSignRIClient = True
+                m_odiag.isSignRIClient = True
                 m_odiag.dateSignRIClient = dtpDateSignature.Value
             Case SignMode.RIAGENT
                 m_odiag.SignRIAgent = ms2.ToArray()
-                m_odiag.bSignRIAgent = True
+                m_odiag.isSignRIAgent = True
                 m_odiag.dateSignRIAgent = dtpDateSignature.Value
             Case SignMode.CCCLIENT
                 m_odiag.SignCCClient = ms2.ToArray()
-                m_odiag.bSignCCClient = True
+                m_odiag.isSignCCClient = True
                 m_odiag.DateSignCCClient = dtpDateSignature.Value
             Case SignMode.CCAGENT
                 m_odiag.SignCCAgent = ms2.ToArray()
-                m_odiag.bSignCCAgent = True
+                m_odiag.isSignCCAgent = True
                 m_odiag.DateSignCCAgent = dtpDateSignature.Value
         End Select
         If (m_Mode = SignMode.RIAGENT Or m_Mode = SignMode.CCAGENT) Then
@@ -209,19 +209,19 @@ Public Class frmSignClient
         Select Case m_Mode
             Case SignMode.RICLIENT
                 m_odiag.SignRIClient = Nothing
-                m_odiag.bSignRIClient = False
+                m_odiag.isSignRIClient = False
                 m_odiag.dateSignRIClient = ""
             Case SignMode.RIAGENT
                 m_odiag.SignRIAgent = Nothing
-                m_odiag.bSignRIAgent = False
+                m_odiag.isSignRIAgent = False
                 m_odiag.dateSignRIAgent = ""
             Case SignMode.CCCLIENT
                 m_odiag.SignCCClient = Nothing
-                m_odiag.bSignCCClient = False
+                m_odiag.isSignCCClient = False
                 m_odiag.DateSignCCClient = ""
             Case SignMode.CCAGENT
                 m_odiag.SignCCAgent = Nothing
-                m_odiag.bSignCCAgent = False
+                m_odiag.isSignCCAgent = False
                 m_odiag.DateSignCCAgent = ""
         End Select
         Me.DialogResult = DialogResult.Cancel

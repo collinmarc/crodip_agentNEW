@@ -310,11 +310,11 @@ Public Class EtatRapportInspection
                                                          InspecteurInitial:=m_oDiag.inspecteurOrigineNom & " " & m_oDiag.inspecteurOriginePrenom,
                                                          NbPageRFinal:=nbPagefinal,
                                                          Commentaire:=m_oDiag.Commentaire,
-                                                         bSignAgent:=m_oDiag.bSignRIAgent,
-                                                         DateSignAgent:=m_oDiag.dateSignRIAgent,
+                                                         bSignAgent:=m_oDiag.isSignRIAgent,
+                                                         DateSignAgent:=m_oDiag.dateSignRIAgentS,
                                                          SignAgent:=m_oDiag.SignRIAgent,
-                                                         bSignClient:=m_oDiag.bSignRIClient,
-                                                         DateSignClient:=m_oDiag.dateSignRIClient,
+                                                         bSignClient:=m_oDiag.isSignRIClient,
+                                                         DateSignClient:=m_oDiag.dateSignRIClientS,
                                                          SignClient:=m_oDiag.SignRIClient)
             'If img1 IsNot Nothing Then
             '    img1.Dispose()

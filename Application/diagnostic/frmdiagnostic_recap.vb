@@ -848,12 +848,12 @@ Public Class frmdiagnostic_recap
                     Dim bSignRI As Boolean = True
                     Dim bSignCC As Boolean = True
                     Dim Message As String = ""
-                    If Not (m_diagnostic.bSignRIAgent And m_diagnostic.bSignRIClient) Then
+                    If Not (m_diagnostic.isSignRIAgent And m_diagnostic.isSignRIClient) Then
                         Message = "Attention, le rapport d'inspection n'est pas signé"
                         bSignRI = False
                     End If
                     If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
-                        If Not (m_diagnostic.bSignCCAgent And m_diagnostic.bSignCCClient) Then
+                        If Not (m_diagnostic.isSignCCAgent And m_diagnostic.isSignCCClient) Then
                             Message = "Attention, le contrat commercial n'est pas signé"
                             bSignCC = False
                         End If
@@ -1344,12 +1344,12 @@ Public Class frmdiagnostic_recap
     End Sub
     Private Sub ActiveDesactiveBtnsignature()
         If rbEtatRI.Checked Then
-            btnSignAgent.Enabled = Not m_diagnostic.bSignRIAgent
-            btnSignClient.Enabled = Not m_diagnostic.bSignRIClient
+            btnSignAgent.Enabled = Not m_diagnostic.isSignRIAgent
+            btnSignClient.Enabled = Not m_diagnostic.isSignRIClient
         End If
         If rbEtatCC.Checked Then
-            btnSignAgent.Enabled = Not m_diagnostic.bSignCCAgent
-            btnSignClient.Enabled = Not m_diagnostic.bSignCCClient
+            btnSignAgent.Enabled = Not m_diagnostic.isSignCCAgent
+            btnSignClient.Enabled = Not m_diagnostic.isSignCCClient
         End If
 
     End Sub

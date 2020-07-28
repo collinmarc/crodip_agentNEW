@@ -39,7 +39,7 @@ Public Class mainForm
     Dim majFileSuffix_orig As String = ".updated.old"
     Dim majFileSuffix As String = majFileSuffix_orig
 
-    Public _wsdl As Object
+    Private _wsdl As Object
     Public infosUpdate As UpdateInfo
     Public returnCode As Integer
 
@@ -342,7 +342,7 @@ Public Class mainForm
         Try
             If My.Settings.chekUpdates = "WS" Then
                 'Si le paramètre est à WS on demande la réponse par WebServices
-                Dim wsResponse As Object
+                Dim wsResponse As Object = Nothing
                 ' Appel au WS
                 Me.returnCode = Me._wsdl.GetSoftwareUpdate(Me.m_curVersion, wsResponse)
 

@@ -2691,21 +2691,29 @@ Public Class Diagnostic
                 Case "typeDiag".ToUpper().Trim(), "origineDiag".ToUpper().Trim()
                     Me.origineDiag = pcolValue.ToString()
                 Case "isSignRIAgent".ToUpper().Trim()
-                    Me.bSignRIAgent = pcolValue
+                    Me.isSignRIAgent = pcolValue
                 Case "isSignRIClient".ToUpper().Trim()
-                    Me.bSignRIClient = pcolValue
+                    Me.isSignRIClient = pcolValue
                 Case "isSignCCAgent".ToUpper().Trim()
-                    Me.bSignCCAgent = pcolValue
+                    Me.isSignCCAgent = pcolValue
                 Case "isSignCCClient".ToUpper().Trim()
-                    Me.bSignCCClient = pcolValue
+                    Me.isSignCCClient = pcolValue
                 Case "dateSignRIAgent".ToUpper().Trim()
-                    Me.dateSignRIAgent = pcolValue
+                    If pcolValue.ToString() <> "" Then
+                        Me.dateSignRIAgent = CDate(pcolValue)
+                    End If
                 Case "dateSignRIClient".ToUpper().Trim()
-                    Me.dateSignRIClient = pcolValue
+                    If pcolValue.ToString() <> "" Then
+                        Me.dateSignRIClient = CDate(pcolValue)
+                    End If
                 Case "dateSignCCAgent".ToUpper().Trim()
-                    Me.DateSignCCAgent = pcolValue
+                    If pcolValue.ToString() <> "" Then
+                        Me.dateSignCCAgent = CDate(pcolValue)
+                    End If
                 Case "dateSignCCClient".ToUpper().Trim()
-                    Me.DateSignCCClient = pcolValue
+                    If pcolValue.ToString <> "" Then
+                        Me.dateSignCCClient = CDate(pcolValue)
+                    End If
                 Case "SignRIAgent".ToUpper().Trim()
                     ''champs non Sauvegardé
                 Case "SignRIClient".ToUpper().Trim()
@@ -3235,32 +3243,36 @@ Public Class Diagnostic
             _SignRIclient = value
         End Set
     End Property
-    Private _DateSignRIClient As Date
+    Private _DateSignRIClient As Date?
     <XmlIgnore()>
-    Public Property dateSignRIClient() As Date
+    Public Property dateSignRIClient() As Date?
         Get
             Return _DateSignRIClient
         End Get
-        Set(ByVal value As Date)
+        Set(ByVal value As Date?)
             _DateSignRIClient = value
         End Set
     End Property
     <XmlElement("dateSignRIClient")>
     Public Property dateSignRIClientS() As String
         Get
-            Return CSDate.GetDateForWS(dateSignRIClient)
+            If dateSignRIClient.HasValue Then
+                Return CSDate.GetDateForWS(dateSignRIClient)
+            Else
+                Return ""
+            End If
         End Get
         Set(ByVal Value As String)
             dateSignRIClient = CSDate.FromCrodipString(Value)
         End Set
     End Property
-    Private _bSignRIClient As Boolean
-    Public Property bSignRIClient() As Boolean
+    Private _isSignRIClient As Boolean
+    Public Property isSignRIClient() As Boolean
         Get
-            Return _bSignRIClient
+            Return _isSignRIClient
         End Get
         Set(ByVal value As Boolean)
-            _bSignRIClient = value
+            _isSignRIClient = value
         End Set
     End Property
     Private _SignRIAgent As Byte()
@@ -3273,32 +3285,36 @@ Public Class Diagnostic
             _SignRIAgent = value
         End Set
     End Property
-    Private _DateSignRIAgent As Date
+    Private _DateSignRIAgent As Date?
     <XmlIgnore()>
-    Public Property dateSignRIAgent() As Date
+    Public Property dateSignRIAgent() As Date?
         Get
             Return _DateSignRIAgent
         End Get
-        Set(ByVal value As Date)
+        Set(ByVal value As Date?)
             _DateSignRIAgent = value
         End Set
     End Property
     <XmlElement("dateSignRIAgent")>
     Public Property dateSignRIAgentS() As String
         Get
-            Return CSDate.GetDateForWS(dateSignRIAgent)
+            If dateSignRIAgent.HasValue Then
+                Return CSDate.GetDateForWS(dateSignRIAgent)
+            Else
+                Return ""
+            End If
         End Get
         Set(ByVal Value As String)
             dateSignRIAgent = CSDate.FromCrodipString(Value)
         End Set
     End Property
-    Private _bSignRIAgent As Boolean
-    Public Property bSignRIAgent() As Boolean
+    Private _isSignRIAgent As Boolean
+    Public Property isSignRIAgent() As Boolean
         Get
-            Return _bSignRIAgent
+            Return _isSignRIAgent
         End Get
         Set(ByVal value As Boolean)
-            _bSignRIAgent = value
+            _isSignRIAgent = value
         End Set
     End Property
     Private _SignCCAgent As Byte()
@@ -3311,29 +3327,33 @@ Public Class Diagnostic
             _SignCCAgent = value
         End Set
     End Property
-    Private _bSignCCAgent As Boolean
-    Public Property bSignCCAgent() As Boolean
+    Private _isSignCCAgent As Boolean
+    Public Property isSignCCAgent() As Boolean
         Get
-            Return _bSignCCAgent
+            Return _isSignCCAgent
         End Get
         Set(ByVal value As Boolean)
-            _bSignCCAgent = value
+            _isSignCCAgent = value
         End Set
     End Property
-    Private _DateSignCCAgent As Date
+    Private _DateSignCCAgent As Date?
     <XmlIgnore()>
-    Public Property dateSignCCAgent() As Date
+    Public Property dateSignCCAgent() As Date?
         Get
             Return _DateSignCCAgent
         End Get
-        Set(ByVal value As Date)
+        Set(ByVal value As Date?)
             _DateSignCCAgent = value
         End Set
     End Property
     <XmlElement("dateSignCCAgent")>
     Public Property dateSignCCAgentS() As String
         Get
-            Return CSDate.GetDateForWS(_DateSignCCAgent)
+            If dateSignCCAgent.HasValue Then
+                Return CSDate.GetDateForWS(_DateSignCCAgent)
+            Else
+                Return ""
+            End If
         End Get
         Set(ByVal Value As String)
             _DateSignCCAgent = CSDate.FromCrodipString(Value)
@@ -3349,29 +3369,33 @@ Public Class Diagnostic
             _SignCCClient = value
         End Set
     End Property
-    Private _bSignCCClient As Boolean
-    Public Property bSignCCClient() As Boolean
+    Private _isSignCCClient As Boolean
+    Public Property isSignCCClient() As Boolean
         Get
-            Return _bSignCCClient
+            Return _isSignCCClient
         End Get
         Set(ByVal value As Boolean)
-            _bSignCCClient = value
+            _isSignCCClient = value
         End Set
     End Property
-    Private _DateSignCCClient As Date
+    Private _DateSignCCClient As Date?
     <XmlIgnore()>
-    Public Property dateSignCCClient() As Date
+    Public Property dateSignCCClient() As Date?
         Get
             Return _DateSignCCClient
         End Get
-        Set(ByVal value As Date)
+        Set(ByVal value As Date?)
             _DateSignCCClient = value
         End Set
     End Property
     <XmlElement("dateSignCCClient")>
     Public Property dateSignCCClientS() As String
         Get
-            Return CSDate.GetDateForWS(_DateSignCCClient)
+            If dateSignCCClient.HasValue Then
+                Return CSDate.GetDateForWS(_DateSignCCClient)
+            Else
+                Return ""
+            End If
         End Get
         Set(ByVal Value As String)
             _DateSignCCClient = CSDate.FromCrodipString(Value)

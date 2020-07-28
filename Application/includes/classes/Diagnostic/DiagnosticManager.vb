@@ -1249,14 +1249,22 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurNumNational='" & CSDb.secureString(objDiagnostic.pulverisateurNumNational) & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurNumChassis='" & CSDb.secureString(objDiagnostic.pulverisateurNumChassis) & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.OrigineDiag='" & CSDb.secureString(objDiagnostic.origineDiag) & "'"
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignRIAgent=" & objDiagnostic.bSignRIAgent & ""
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignRIClient=" & objDiagnostic.bSignRIClient & ""
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignCCAgent=" & objDiagnostic.bSignCCAgent & ""
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignCCClient=" & objDiagnostic.bSignCCClient & ""
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignRIAgent=#" & objDiagnostic.dateSignRIAgent & "#"
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignRIClient=#" & objDiagnostic.dateSignRIClient & "#"
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignCCAgent=#" & objDiagnostic.dateSignCCAgent & "#"
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignCCClient=#" & objDiagnostic.dateSignCCClient & "#"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignRIAgent=" & objDiagnostic.isSignRIAgent & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignRIClient=" & objDiagnostic.isSignRIClient & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignCCAgent=" & objDiagnostic.isSignCCAgent & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSignCCClient=" & objDiagnostic.isSignCCClient & ""
+                If objDiagnostic.dateSignRIAgent.HasValue Then
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignRIAgent=#" & objDiagnostic.dateSignRIAgent & "#"
+                End If
+                If objDiagnostic.dateSignRIClient.HasValue Then
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignRIClient=#" & objDiagnostic.dateSignRIClient & "#"
+                End If
+                If objDiagnostic.dateSignCCAgent.HasValue Then
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignCCAgent=#" & objDiagnostic.dateSignCCAgent & "#"
+                End If
+                If objDiagnostic.dateSignCCClient.HasValue Then
+                    paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignCCClient=#" & objDiagnostic.dateSignCCClient & "#"
+                End If
 
                 'paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIAgent=@signRIAgent"
                 'paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIClient=@signRIClient"
@@ -1265,139 +1273,139 @@ Public Class DiagnosticManager
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
-                'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
-                bddCommande.ExecuteNonQuery()
-                bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
-                'Dim oParam As OleDbParameter
-                'oParam = bddCommande.Parameters.Add("@signRIAgent", System.Data.OleDb.OleDbType.Binary)
-                'oParam.Value = objDiagnostic.SignRIAgent
-                'oParam = bddCommande.Parameters.Add("@signRIClient", System.Data.OleDb.OleDbType.Binary)
-                'oParam.Value = objDiagnostic.SignRIClient
-                'oParam = bddCommande.Parameters.Add("@signCCAgent", System.Data.OleDb.OleDbType.Binary)
-                'oParam.Value = objDiagnostic.SignCCAgent
-                'oParam = bddCommande.Parameters.Add("@signCCClient", System.Data.OleDb.OleDbType.Binary)
-                'oParam.Value = objDiagnostic.SignCCClient
+                    'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
+                    bddCommande.ExecuteNonQuery()
+                    bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
+                    'Dim oParam As OleDbParameter
+                    'oParam = bddCommande.Parameters.Add("@signRIAgent", System.Data.OleDb.OleDbType.Binary)
+                    'oParam.Value = objDiagnostic.SignRIAgent
+                    'oParam = bddCommande.Parameters.Add("@signRIClient", System.Data.OleDb.OleDbType.Binary)
+                    'oParam.Value = objDiagnostic.SignRIClient
+                    'oParam = bddCommande.Parameters.Add("@signCCAgent", System.Data.OleDb.OleDbType.Binary)
+                    'oParam.Value = objDiagnostic.SignCCAgent
+                    'oParam = bddCommande.Parameters.Add("@signCCClient", System.Data.OleDb.OleDbType.Binary)
+                    'oParam.Value = objDiagnostic.SignCCClient
 
-                'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
-                bddCommande.ExecuteNonQuery()
+                    'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
+                    bddCommande.ExecuteNonQuery()
 
-                CSDb.free()
+                    CSDb.free()
 
-                ' On enregistre les items du diag
-                '                CSDebug.dispInfo("Sauvegarde des DiagItem")
+                    ' On enregistre les items du diag
+                    '                CSDebug.dispInfo("Sauvegarde des DiagItem")
 
-                SaveDiagItems(objDiagnostic, bcreationDiag)
+                    SaveDiagItems(objDiagnostic, bcreationDiag)
 
 
-                'Sauvegarde des Help 551 (Si on a des valeurs pertinentes)
-                If objDiagnostic.diagnosticHelp551.HasValue() Then
-                    objDiagnostic.diagnosticHelp551.idDiag = objDiagnostic.id
-                    DiagnosticHelp551Manager.save(objDiagnostic.diagnosticHelp551, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-                'Sauvegarde des Help 12323 (Si on a des valeurs pertinentes)
-                If objDiagnostic.diagnosticHelp12323.HasValue() Then
-                    objDiagnostic.diagnosticHelp12323.idDiag = objDiagnostic.id
-                    DiagnosticHelp551Manager.save(objDiagnostic.diagnosticHelp12323, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-
-                'Sauvegarde des Help 5621 (Si on a des valeurs pertinentes)
-                If objDiagnostic.diagnosticHelp5621.HasValue() Then
-                    objDiagnostic.diagnosticHelp5621.idDiag = objDiagnostic.id
-                    DiagnosticHelp5621Manager.save(objDiagnostic.diagnosticHelp5621, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-
-                'Sauvegarde des Help 552 (Si on a des valeurs pertinentes)
-                If objDiagnostic.diagnosticHelp552.hasValue() Then
-                    objDiagnostic.diagnosticHelp552.idDiag = objDiagnostic.id
-                    DiagnosticHelp552Manager.save(objDiagnostic.diagnosticHelp552, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-
-                'Sauvegarde des Help 5622 (Si on a des valeurs pertinentes)
-                If objDiagnostic.diagnosticHelp5622.hasValue() Then
-                    objDiagnostic.diagnosticHelp5622.idDiag = objDiagnostic.id
-                    DiagnosticHelp5622Manager.save(objDiagnostic.diagnosticHelp5622, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-
-                'Sauvegarde des Help 811 (Si on a des valeurs pertinentes)
-                If objDiagnostic.diagnosticHelp811.hasValue() Then
-                    objDiagnostic.diagnosticHelp811.idDiag = objDiagnostic.id
-                    DiagnosticHelp811Manager.save(objDiagnostic.diagnosticHelp811, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-
-                'Sauvegarde des Help 831 (Si on a des valeurs pertinentes)
-                If objDiagnostic.diagnosticHelp8312.hasValue() Then
-                    objDiagnostic.diagnosticHelp8312.idDiag = objDiagnostic.id
-                    DiagnosticHelp831Manager.save(objDiagnostic.diagnosticHelp8312, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-                If objDiagnostic.diagnosticHelp8314.hasValue() Then
-                    objDiagnostic.diagnosticHelp8314.idDiag = objDiagnostic.id
-                    DiagnosticHelp831Manager.save(objDiagnostic.diagnosticHelp8314, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-
-                'Sauvegarde des Help 571 (Si on a des valeurs pertinentes)
-                If objDiagnostic.diagnosticHelp571.hasValue() Then
-                    objDiagnostic.diagnosticHelp571.idDiag = objDiagnostic.id
-                    DiagnosticHelp571Manager.save(objDiagnostic.diagnosticHelp571, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-                'Sauvegarde des Help 12123 (Si on a des valeurs pertinentes)
-                If objDiagnostic.diagnosticHelp12123.hasValue() Then
-                    objDiagnostic.diagnosticHelp12123.idDiag = objDiagnostic.id
-                    DiagnosticHelp12123Manager.save(objDiagnostic.diagnosticHelp12123, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-                'Sauvegarde des InfosComplementaires (Si on a des valeurs pertinentes)
-                If objDiagnostic.diagnosticInfosComplementaires.hasValue() Then
-                    objDiagnostic.diagnosticInfosComplementaires.idDiag = objDiagnostic.id
-                    DiagnosticInfosComplementaireManager.save(objDiagnostic.diagnosticInfosComplementaires, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
-                End If
-
-                ' On enregistre les buses
-                'CSDebug.dispInfo("Sauvegarde des buses")
-                If Not objDiagnostic.diagnosticBusesList Is Nothing Then
-                    If Not objDiagnostic.diagnosticBusesList.Liste Is Nothing Then
-                        For Each tmpItemCheck As DiagnosticBuses In objDiagnostic.diagnosticBusesList.Liste
-                            If Not tmpItemCheck Is Nothing Then
-                                tmpItemCheck.idDiagnostic = objDiagnostic.id
-                                DiagnosticBusesManager.save(tmpItemCheck)
-                            End If
-                        Next
+                    'Sauvegarde des Help 551 (Si on a des valeurs pertinentes)
+                    If objDiagnostic.diagnosticHelp551.HasValue() Then
+                        objDiagnostic.diagnosticHelp551.idDiag = objDiagnostic.id
+                        DiagnosticHelp551Manager.save(objDiagnostic.diagnosticHelp551, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
                     End If
-                End If
-
-                ' On enregistre les mano 5.4.2
-                'CSDebug.dispInfo("Sauvegarde des Mano542")
-                If Not objDiagnostic.diagnosticMano542List Is Nothing Then
-                    If Not objDiagnostic.diagnosticMano542List.Liste Is Nothing Then
-                        For Each tmpItemCheck As DiagnosticMano542 In objDiagnostic.diagnosticMano542List.Liste
-                            If Not tmpItemCheck Is Nothing Then
-                                tmpItemCheck.idDiagnostic = objDiagnostic.id
-                                DiagnosticMano542Manager.save(tmpItemCheck)
-                            End If
-                        Next
+                    'Sauvegarde des Help 12323 (Si on a des valeurs pertinentes)
+                    If objDiagnostic.diagnosticHelp12323.HasValue() Then
+                        objDiagnostic.diagnosticHelp12323.idDiag = objDiagnostic.id
+                        DiagnosticHelp551Manager.save(objDiagnostic.diagnosticHelp12323, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
                     End If
-                End If
 
-                ' On enregistre les tronçons 8.3.3
-                'CSDebug.dispInfo("Sauvegarde des Tronçons833")
-                If Not objDiagnostic.diagnosticTroncons833 Is Nothing Then
-                    If Not objDiagnostic.diagnosticTroncons833.Liste Is Nothing Then
-                        For Each tmpItemCheck As DiagnosticTroncons833 In objDiagnostic.diagnosticTroncons833.Liste
-                            If Not tmpItemCheck Is Nothing Then
-                                tmpItemCheck.idDiagnostic = objDiagnostic.id
-                                'Par sécurité on recalcule les idPressions car certains diag on des id = 5,6,7,8
-                                If tmpItemCheck.idPression > 4 Then
-                                    tmpItemCheck.idPression = (tmpItemCheck.idPression Mod 4)
-                                    If tmpItemCheck.idPression = 0 Then
-                                        tmpItemCheck.idPression = 4
-                                    End If
+                    'Sauvegarde des Help 5621 (Si on a des valeurs pertinentes)
+                    If objDiagnostic.diagnosticHelp5621.HasValue() Then
+                        objDiagnostic.diagnosticHelp5621.idDiag = objDiagnostic.id
+                        DiagnosticHelp5621Manager.save(objDiagnostic.diagnosticHelp5621, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
+                    End If
+
+                    'Sauvegarde des Help 552 (Si on a des valeurs pertinentes)
+                    If objDiagnostic.diagnosticHelp552.hasValue() Then
+                        objDiagnostic.diagnosticHelp552.idDiag = objDiagnostic.id
+                        DiagnosticHelp552Manager.save(objDiagnostic.diagnosticHelp552, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
+                    End If
+
+                    'Sauvegarde des Help 5622 (Si on a des valeurs pertinentes)
+                    If objDiagnostic.diagnosticHelp5622.hasValue() Then
+                        objDiagnostic.diagnosticHelp5622.idDiag = objDiagnostic.id
+                        DiagnosticHelp5622Manager.save(objDiagnostic.diagnosticHelp5622, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
+                    End If
+
+                    'Sauvegarde des Help 811 (Si on a des valeurs pertinentes)
+                    If objDiagnostic.diagnosticHelp811.hasValue() Then
+                        objDiagnostic.diagnosticHelp811.idDiag = objDiagnostic.id
+                        DiagnosticHelp811Manager.save(objDiagnostic.diagnosticHelp811, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
+                    End If
+
+                    'Sauvegarde des Help 831 (Si on a des valeurs pertinentes)
+                    If objDiagnostic.diagnosticHelp8312.hasValue() Then
+                        objDiagnostic.diagnosticHelp8312.idDiag = objDiagnostic.id
+                        DiagnosticHelp831Manager.save(objDiagnostic.diagnosticHelp8312, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
+                    End If
+                    If objDiagnostic.diagnosticHelp8314.hasValue() Then
+                        objDiagnostic.diagnosticHelp8314.idDiag = objDiagnostic.id
+                        DiagnosticHelp831Manager.save(objDiagnostic.diagnosticHelp8314, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
+                    End If
+
+                    'Sauvegarde des Help 571 (Si on a des valeurs pertinentes)
+                    If objDiagnostic.diagnosticHelp571.hasValue() Then
+                        objDiagnostic.diagnosticHelp571.idDiag = objDiagnostic.id
+                        DiagnosticHelp571Manager.save(objDiagnostic.diagnosticHelp571, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
+                    End If
+                    'Sauvegarde des Help 12123 (Si on a des valeurs pertinentes)
+                    If objDiagnostic.diagnosticHelp12123.hasValue() Then
+                        objDiagnostic.diagnosticHelp12123.idDiag = objDiagnostic.id
+                        DiagnosticHelp12123Manager.save(objDiagnostic.diagnosticHelp12123, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
+                    End If
+                    'Sauvegarde des InfosComplementaires (Si on a des valeurs pertinentes)
+                    If objDiagnostic.diagnosticInfosComplementaires.hasValue() Then
+                        objDiagnostic.diagnosticInfosComplementaires.idDiag = objDiagnostic.id
+                        DiagnosticInfosComplementaireManager.save(objDiagnostic.diagnosticInfosComplementaires, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
+                    End If
+
+                    ' On enregistre les buses
+                    'CSDebug.dispInfo("Sauvegarde des buses")
+                    If Not objDiagnostic.diagnosticBusesList Is Nothing Then
+                        If Not objDiagnostic.diagnosticBusesList.Liste Is Nothing Then
+                            For Each tmpItemCheck As DiagnosticBuses In objDiagnostic.diagnosticBusesList.Liste
+                                If Not tmpItemCheck Is Nothing Then
+                                    tmpItemCheck.idDiagnostic = objDiagnostic.id
+                                    DiagnosticBusesManager.save(tmpItemCheck)
                                 End If
-                                DiagnosticTroncons833Manager.save(tmpItemCheck, bsyncro)
-                            End If
-                        Next
+                            Next
+                        End If
                     End If
-                End If
 
-            End If
-            bReturn = True
+                    ' On enregistre les mano 5.4.2
+                    'CSDebug.dispInfo("Sauvegarde des Mano542")
+                    If Not objDiagnostic.diagnosticMano542List Is Nothing Then
+                        If Not objDiagnostic.diagnosticMano542List.Liste Is Nothing Then
+                            For Each tmpItemCheck As DiagnosticMano542 In objDiagnostic.diagnosticMano542List.Liste
+                                If Not tmpItemCheck Is Nothing Then
+                                    tmpItemCheck.idDiagnostic = objDiagnostic.id
+                                    DiagnosticMano542Manager.save(tmpItemCheck)
+                                End If
+                            Next
+                        End If
+                    End If
+
+                    ' On enregistre les tronçons 8.3.3
+                    'CSDebug.dispInfo("Sauvegarde des Tronçons833")
+                    If Not objDiagnostic.diagnosticTroncons833 Is Nothing Then
+                        If Not objDiagnostic.diagnosticTroncons833.Liste Is Nothing Then
+                            For Each tmpItemCheck As DiagnosticTroncons833 In objDiagnostic.diagnosticTroncons833.Liste
+                                If Not tmpItemCheck Is Nothing Then
+                                    tmpItemCheck.idDiagnostic = objDiagnostic.id
+                                    'Par sécurité on recalcule les idPressions car certains diag on des id = 5,6,7,8
+                                    If tmpItemCheck.idPression > 4 Then
+                                        tmpItemCheck.idPression = (tmpItemCheck.idPression Mod 4)
+                                        If tmpItemCheck.idPression = 0 Then
+                                            tmpItemCheck.idPression = 4
+                                        End If
+                                    End If
+                                    DiagnosticTroncons833Manager.save(tmpItemCheck, bsyncro)
+                                End If
+                            Next
+                        End If
+                    End If
+
+                End If
+                bReturn = True
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticManager(" & objDiagnostic.id & ")::save : " & ex.Message.ToString)
             bReturn = False

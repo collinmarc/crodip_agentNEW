@@ -96,7 +96,7 @@ Public Class DownloadManager
                 End If
 
                 ' Récupération du fichier sous forme de tableau de bytes
-                Dim returnArray() As Byte
+                Dim returnArray() As Byte = Nothing
                 Dim bOk As Boolean
                 bOk = False
                 For nEssai As Integer = 1 To 100
@@ -150,8 +150,8 @@ Public Class DownloadManager
     ' Fonction de téléchargement du fichier
     Private Function GetURLDataBin(ByVal URL As String, Optional ByRef UserName As String = "", Optional ByRef Password As String = "") As Byte()
         Dim Req As HttpWebRequest
-        Dim SourceStream As System.IO.Stream
-        Dim Response As HttpWebResponse
+        Dim SourceStream As System.IO.Stream = Nothing
+        Dim Response As HttpWebResponse = Nothing
 
         Try
             ' Création de la requete HTTP
@@ -211,11 +211,5 @@ Public Class DownloadManager
         Return errStream.ToArray()
     End Function
 
-    ' Fonction permettant de vérifier que la configuration du proxy est OK
-    Private Function checkProxyConf()
-
-        '@TODO : PINg | telnet pour tester les parametres
-
-    End Function
 
 End Class

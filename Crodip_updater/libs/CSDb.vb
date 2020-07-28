@@ -70,7 +70,7 @@ Public Class CSDb
         Me.free()
         MyBase.Finalize()
     End Sub
-    Public Function free()
+    Public Sub free()
         Try
             ' Test pour fermeture de connection BDD
             If _dbConnection.State() <> 0 Then
@@ -80,7 +80,7 @@ Public Class CSDb
         Catch ex As Exception
 
         End Try
-    End Function
+    End Sub
 
     '############################################################
     '####################### Accesseurs #########################
@@ -124,7 +124,7 @@ Public Class CSDb
     '############################################################
     '################### Methodes publiques #####################
     '############################################################
-    Public Function getInstance()
+    Public Sub getInstance()
         Try
             ' Test pour fermeture de connection BDD
             If _dbConnection.State() <> 0 Then
@@ -142,7 +142,7 @@ Public Class CSDb
             _dbConnection.Open()
         End If
         _dbCommande.Connection = _dbConnection
-    End Function
+    End Sub
     Public Function getConnection() As OleDb.OleDbConnection
         Return _dbConnection
     End Function
@@ -168,7 +168,7 @@ Public Class CSDb
     '############################################################
     '######################## Securite ##########################
     '############################################################
-    Public Function secureQuery(ByVal query As String)
+    Public Function secureQuery(ByVal query As String) As String
         Dim _secureQuery As String
 
         _secureQuery = query.Replace("'", "''")
@@ -177,11 +177,12 @@ Public Class CSDb
 
     End Function
 
-    Public Function secureString(ByVal query As String)
+    Public Function secureString(ByVal query As String) As String
         Dim _secureQuery As String
         Try
             _secureQuery = query.Replace("'", "''")
         Catch ex As Exception
+            _secureQuery = ""
             CSDebug.dispFatal("Err 0x000015 : " & ex.Message.ToString)
         End Try
         Return _secureQuery

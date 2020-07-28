@@ -5676,21 +5676,21 @@ Public Class DiagnosticManagerTest
 
 
         'V2.6.4
-        oDiag.bSignRIAgent = True
-        oDiag.bSignRIClient = True
-        oDiag.bSignCCAgent = True
-        oDiag.bSignCCClient = True
-        oDiag.dateSignRIAgent = CDate("31/12/2019")
+        oDiag.isSignRIAgent = True
+        oDiag.isSignRIClient = True
+        oDiag.isSignCCAgent = True
+        oDiag.isSignCCClient = True
+        '        oDiag.dateSignRIAgent = CDate("31/12/2019")
         oDiag.dateSignRIClient = CDate("30/12/2019")
         oDiag.dateSignCCAgent = CDate("29/12/2019")
         oDiag.dateSignCCClient = CDate("28/12/2019")
         oDiag.SignRIAgent = ms2.ToArray()
 
-        Assert.IsTrue(oDiag.bSignRIAgent)
-        Assert.IsTrue(oDiag.bSignRIClient)
-        Assert.IsTrue(oDiag.bSignCCAgent)
-        Assert.IsTrue(oDiag.bSignCCClient)
-        Assert.AreEqual(CDate("31/12/2019"), oDiag.dateSignRIAgent)
+        Assert.IsTrue(oDiag.isSignRIAgent)
+        Assert.IsTrue(oDiag.isSignRIClient)
+        Assert.IsTrue(oDiag.isSignCCAgent)
+        Assert.IsTrue(oDiag.isSignCCClient)
+        Assert.IsNull(oDiag.dateSignRIAgent)
         Assert.AreEqual(CDate("30/12/2019"), oDiag.dateSignRIClient)
         Assert.AreEqual(CDate("29/12/2019"), oDiag.dateSignCCAgent)
         Assert.AreEqual(CDate("28/12/2019"), oDiag.dateSignCCClient)
@@ -5702,19 +5702,19 @@ Public Class DiagnosticManagerTest
         oDiag2 = New Diagnostic()
         oDiag2 = DiagnosticManager.getDiagnosticById(id)
 
-        Assert.IsTrue(oDiag2.bSignRIAgent)
-        Assert.IsTrue(oDiag2.bSignRIClient)
-        Assert.IsTrue(oDiag2.bSignCCAgent)
-        Assert.IsTrue(oDiag2.bSignCCClient)
-        Assert.AreEqual(CDate("31/12/2019"), oDiag2.dateSignRIAgent)
+        Assert.IsTrue(oDiag2.isSignRIAgent)
+        Assert.IsTrue(oDiag2.isSignRIClient)
+        Assert.IsTrue(oDiag2.isSignCCAgent)
+        Assert.IsTrue(oDiag2.isSignCCClient)
+        Assert.IsNull(oDiag2.dateSignRIAgent)
         Assert.AreEqual(CDate("30/12/2019"), oDiag2.dateSignRIClient)
         Assert.AreEqual(CDate("29/12/2019"), oDiag2.dateSignCCAgent)
         Assert.AreEqual(CDate("28/12/2019"), oDiag2.dateSignCCClient)
 
-        oDiag2.bSignRIAgent = False
-        oDiag2.bSignRIClient = False
-        oDiag2.bSignCCAgent = False
-        oDiag2.bSignCCClient = False
+        oDiag2.isSignRIAgent = False
+        oDiag2.isSignRIClient = False
+        oDiag2.isSignCCAgent = False
+        oDiag2.isSignCCClient = False
         oDiag2.dateSignRIAgent = CDate("31/12/2018")
         oDiag2.dateSignRIClient = CDate("30/12/2018")
         oDiag2.dateSignCCAgent = CDate("29/12/2018")
@@ -5722,53 +5722,74 @@ Public Class DiagnosticManagerTest
 
         Assert.IsTrue(DiagnosticManager.save(oDiag2))
         oDiag = DiagnosticManager.getDiagnosticById(id)
-        Assert.IsFalse(oDiag2.bSignRIAgent)
-        Assert.IsFalse(oDiag2.bSignRIClient)
-        Assert.IsFalse(oDiag2.bSignCCAgent)
-        Assert.IsFalse(oDiag2.bSignCCClient)
+        Assert.IsFalse(oDiag2.isSignRIAgent)
+        Assert.IsFalse(oDiag2.isSignRIClient)
+        Assert.IsFalse(oDiag2.isSignCCAgent)
+        Assert.IsFalse(oDiag2.isSignCCClient)
         Assert.AreEqual(CDate("31/12/2018"), oDiag2.dateSignRIAgent)
         Assert.AreEqual(CDate("30/12/2018"), oDiag2.dateSignRIClient)
         Assert.AreEqual(CDate("29/12/2018"), oDiag2.dateSignCCAgent)
         Assert.AreEqual(CDate("28/12/2018"), oDiag2.dateSignCCClient)
 
-        'Dim UpdatedObject As New Object
-        'DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
 
-        'oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
-        'Assert.IsFalse(oDiag2.bSignRIAgent)
-        'Assert.IsFalse(oDiag2.bSignRIClient)
-        'Assert.IsFalse(oDiag2.bSignCCAgent)
-        'Assert.IsFalse(oDiag2.bSignCCClient)
-        'Assert.AreEqual(CDate("31/12/2018"), oDiag2.dateSignRIAgent)
-        'Assert.AreEqual(CDate("30/12/2018"), oDiag2.dateSignRIClient)
-        'Assert.AreEqual(CDate("29/12/2018"), oDiag2.dateSignCCAgent)
-        'Assert.AreEqual(CDate("28/12/2018"), oDiag2.dateSignCCClient)
+        '' Test des WS 
+        Dim UpdatedObject As New Object
+        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
 
-        'pause(2000)
+        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        Assert.IsFalse(oDiag2.isSignRIAgent)
+        Assert.IsFalse(oDiag2.isSignRIClient)
+        Assert.IsFalse(oDiag2.isSignCCAgent)
+        Assert.IsFalse(oDiag2.isSignCCClient)
+        Assert.AreEqual(CDate("31/12/2018"), oDiag2.dateSignRIAgent)
+        Assert.AreEqual(CDate("30/12/2018"), oDiag2.dateSignRIClient)
+        Assert.AreEqual(CDate("29/12/2018"), oDiag2.dateSignCCAgent)
+        Assert.AreEqual(CDate("28/12/2018"), oDiag2.dateSignCCClient)
 
-        'oDiag2.bSignRIAgent = True
-        'oDiag2.bSignRIClient = True
-        'oDiag2.bSignCCAgent = True
-        'oDiag2.bSignCCClient = True
-        'oDiag.dateSignRIAgent = CDate("31/12/2017")
-        'oDiag.dateSignRIClient = CDate("30/12/2017")
-        'oDiag.dateSignCCAgent = CDate("29/12/2017")
-        'oDiag.dateSignCCClient = CDate("28/12/2017")
-        'DiagnosticManager.save(oDiag2)
-        'oDiag2 = DiagnosticManager.getDiagnosticById(oDiag2.id)
+        pause(2000)
 
-        'DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
+        oDiag2.isSignRIAgent = True
+        oDiag2.isSignRIClient = True
+        oDiag2.isSignCCAgent = True
+        oDiag2.isSignCCClient = True
+        oDiag2.dateSignRIAgent = CDate("31/12/2017")
+        oDiag2.dateSignRIClient = CDate("30/12/2017")
+        oDiag2.dateSignCCAgent = CDate("29/12/2017")
+        oDiag2.dateSignCCClient = CDate("28/12/2017")
+        DiagnosticManager.save(oDiag2)
+        oDiag2 = DiagnosticManager.getDiagnosticById(oDiag2.id)
+        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
 
-        'oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
 
-        'Assert.IsTrue(oDiag2.bSignRIAgent)
-        'Assert.IsTrue(oDiag2.bSignRIClient)
-        'Assert.IsTrue(oDiag2.bSignCCAgent)
-        'Assert.IsTrue(oDiag2.bSignCCClient)
-        'Assert.AreEqual(CDate("31/12/2017"), oDiag2.dateSignRIAgent)
-        'Assert.AreEqual(CDate("30/12/2017"), oDiag2.dateSignRIClient)
-        'Assert.AreEqual(CDate("29/12/2017"), oDiag2.dateSignCCAgent)
-        'Assert.AreEqual(CDate("28/12/2017"), oDiag2.dateSignCCClient)
+        Assert.IsTrue(oDiag2.isSignRIAgent)
+        Assert.IsTrue(oDiag2.isSignRIClient)
+        Assert.IsTrue(oDiag2.isSignCCAgent)
+        Assert.IsTrue(oDiag2.isSignCCClient)
+        Assert.AreEqual(CDate("31/12/2017"), oDiag2.dateSignRIAgent)
+        Assert.AreEqual(CDate("30/12/2017"), oDiag2.dateSignRIClient)
+        Assert.AreEqual(CDate("29/12/2017"), oDiag2.dateSignCCAgent)
+        Assert.AreEqual(CDate("28/12/2017"), oDiag2.dateSignCCClient)
+
+        'on crée un second Diag pour tester les date de signatures à vides
+
+        oDiag = New Diagnostic()
+        oDiag.setOrganisme(m_oAgent)
+        id = "DIAGWS" & Now.Hour & Now.Minute & Now.Second
+        oDiag.id = id
+        bReturn = DiagnosticManager.save(oDiag)
+        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
+
+        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        Assert.IsFalse(oDiag2.isSignRIAgent)
+        Assert.IsFalse(oDiag2.isSignRIClient)
+        Assert.IsFalse(oDiag2.isSignCCAgent)
+        Assert.IsFalse(oDiag2.isSignCCClient)
+        Assert.IsNull(oDiag2.dateSignRIAgent)
+        '        Assert.AreEqual(CDate("30/12/2017"), oDiag2.dateSignRIClient)
+        '        Assert.AreEqual(CDate("29/12/2017"), oDiag2.dateSignCCAgent)
+        '       Assert.AreEqual(CDate("28/12/2017"), oDiag2.dateSignCCClient)
+
 
 
         bReturn = DiagnosticManager.delete(id)

@@ -45,8 +45,8 @@ Public Class CSDebug
 
 #Region " Divers "
 
-    Public Shared Function var_dump(ByVal ar As Array)
-        Dim rm As String
+    Public Shared Function var_dump(ByVal ar As Array) As String
+        Dim rm As String = ""
         Dim i As Integer = 0
         If ar.GetType.IsArray = True Then
             rm &= "array(" & ar.Length & ") {" & vbCrLf
