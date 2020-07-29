@@ -3,7 +3,8 @@ MASTER
 
 BUILD : 20200728150000
 ----------------------
-	0001269: WS : Date de signature par defaut à la date du jour
+0001269: WS : Date de signature par defaut à la date du jour
+0001270: Le Contrat commercial ne se génére plus
 
 BUILD : 20200721100000
 ----------------------

@@ -105,10 +105,10 @@ Public Class EtatContratCommercial
                                                              NomPrenomExploit:=rsProp,
                                                              bSignClient:=m_oDiag.isSignCCClient,
                                                         SignClient:=m_oDiag.SignCCClient,
-                                                        DateSignclient:=m_oDiag.DateSignCCClient,
+                                                        DateSignclient:=m_oDiag.dateSignCCClientS,
                                                         bSignAgent:=m_oDiag.isSignCCAgent,
                                                         SignAgent:=m_oDiag.SignCCAgent,
-                                                        DateSignAgent:=m_oDiag.DateSignCCAgent)
+                                                        DateSignAgent:=m_oDiag.dateSignCCAgentS)
 
 
             bReturn = True
