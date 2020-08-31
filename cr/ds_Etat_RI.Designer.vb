@@ -606,6 +606,10 @@ Partial Public Class ds_Etat_RI
         
         Private columnDateSignAgent As Global.System.Data.DataColumn
         
+        Private columnDelaiValidite As Global.System.Data.DataColumn
+        
+        Private columnDelaiValiditeCV As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -834,6 +838,22 @@ Partial Public Class ds_Etat_RI
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DelaiValiditeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDelaiValidite
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DelaiValiditeCVColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDelaiValiditeCV
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -894,9 +914,11 @@ Partial Public Class ds_Etat_RI
                     ByVal DateSignClient As String,  _
                     ByVal SignAgent() As Byte,  _
                     ByVal bSignAgent As Boolean,  _
-                    ByVal DateSignAgent As String) As DiagnosticRow
+                    ByVal DateSignAgent As String,  _
+                    ByVal DelaiValidite As Integer,  _
+                    ByVal DelaiValiditeCV As Integer) As DiagnosticRow
             Dim rowDiagnosticRow As DiagnosticRow = CType(Me.NewRow,DiagnosticRow)
-            Dim columnValuesArray() As Object = New Object() {NumeroControle, NumeroAgrement, dateControle, lieuControle, HeureDebutControle, HeureFinControle, Precontrole, ControleComplet, ControleOrigine, Nothing, Conclusion, dateLimiteControle, DateEmission, DateControleInitial, OrganismeInitial, InspecteurInitial, NbPageRFinal, Commentaire, SignClient, bSignClient, DateSignClient, SignAgent, bSignAgent, DateSignAgent}
+            Dim columnValuesArray() As Object = New Object() {NumeroControle, NumeroAgrement, dateControle, lieuControle, HeureDebutControle, HeureFinControle, Precontrole, ControleComplet, ControleOrigine, Nothing, Conclusion, dateLimiteControle, DateEmission, DateControleInitial, OrganismeInitial, InspecteurInitial, NbPageRFinal, Commentaire, SignClient, bSignClient, DateSignClient, SignAgent, bSignAgent, DateSignAgent, DelaiValidite, DelaiValiditeCV}
             If (Not (parentMaterielRowByMateriel_Diagnostic) Is Nothing) Then
                 columnValuesArray(9) = parentMaterielRowByMateriel_Diagnostic(0)
             End If
@@ -952,6 +974,8 @@ Partial Public Class ds_Etat_RI
             Me.columnSignAgent = MyBase.Columns("SignAgent")
             Me.columnbSignAgent = MyBase.Columns("bSignAgent")
             Me.columnDateSignAgent = MyBase.Columns("DateSignAgent")
+            Me.columnDelaiValidite = MyBase.Columns("DelaiValidite")
+            Me.columnDelaiValiditeCV = MyBase.Columns("DelaiValiditeCV")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1005,6 +1029,10 @@ Partial Public Class ds_Etat_RI
             MyBase.Columns.Add(Me.columnbSignAgent)
             Me.columnDateSignAgent = New Global.System.Data.DataColumn("DateSignAgent", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDateSignAgent)
+            Me.columnDelaiValidite = New Global.System.Data.DataColumn("DelaiValidite", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDelaiValidite)
+            Me.columnDelaiValiditeCV = New Global.System.Data.DataColumn("DelaiValiditeCV", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDelaiValiditeCV)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("CONSTraint1", New Global.System.Data.DataColumn() {Me.columnNumeroControle}, true))
             Me.columnNumeroControle.AllowDBNull = false
             Me.columnNumeroControle.Unique = true
@@ -4119,6 +4147,37 @@ Partial Public Class ds_Etat_RI
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DelaiValidite() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDiagnostic.DelaiValiditeColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'DelaiValidite' dans la table 'Diagnostic' est DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDiagnostic.DelaiValiditeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DelaiValiditeCV() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDiagnostic.DelaiValiditeCVColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'DelaiValiditeCV' dans la table 'Diagnostic' est DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDiagnostic.DelaiValiditeCVColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property MaterielRow() As MaterielRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("Materiel_Diagnostic")),MaterielRow)
@@ -4402,6 +4461,30 @@ Partial Public Class ds_Etat_RI
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetDateSignAgentNull()
             Me(Me.tableDiagnostic.DateSignAgentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDelaiValiditeNull() As Boolean
+            Return Me.IsNull(Me.tableDiagnostic.DelaiValiditeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDelaiValiditeNull()
+            Me(Me.tableDiagnostic.DelaiValiditeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDelaiValiditeCVNull() As Boolean
+            Return Me.IsNull(Me.tableDiagnostic.DelaiValiditeCVColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDelaiValiditeCVNull()
+            Me(Me.tableDiagnostic.DelaiValiditeCVColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

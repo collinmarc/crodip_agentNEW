@@ -72,39 +72,39 @@ Public Class NiveauAlerte
         End Set
     End Property
 
-    Public Shared Function readXML(Optional pstrFile As String = "Alertes.xml") As List(Of NiveauAlerte)
-        Dim strFileName As String = My.Settings.RepertoireParametres & "/" & pstrFile
-        Dim olst As New List(Of NiveauAlerte)
-        Using objStreamReader As New StreamReader(strFileName)
-            Dim root As XmlRootAttribute = New XmlRootAttribute("NiveauxAlertes")
-            Dim x As New XmlSerializer(GetType(List(Of NiveauAlerte)), root)
-            olst = x.Deserialize(objStreamReader)
-        End Using
+    'Public Shared Function readXML(Optional pstrFile As String = "Alertes.xml") As List(Of NiveauAlerte)
+    '    Dim strFileName As String = My.Settings.RepertoireParametres & "/" & pstrFile
+    '    Dim olst As New List(Of NiveauAlerte)
+    '    Using objStreamReader As New StreamReader(strFileName)
+    '        Dim root As XmlRootAttribute = New XmlRootAttribute("NiveauxAlertes")
+    '        Dim x As New XmlSerializer(GetType(List(Of NiveauAlerte)), root)
+    '        olst = x.Deserialize(objStreamReader)
+    '    End Using
 
-        Return olst
-    End Function
+    '    Return olst
+    'End Function
 
-    Public Shared Function FTO_writeXml(pList As List(Of NiveauAlerte), Optional ByVal pstrFile As String = "Alertes.xml") As Boolean
-        Dim bReturn As Boolean
-        Try
-            Dim strFileName As String = My.Settings.RepertoireParametres & "/" & pstrFile
-            Dim ns As New System.Xml.Serialization.XmlSerializerNamespaces()
-            ns.Add("", "") 'No namespaces needed.
-            Dim root As XmlRootAttribute = New XmlRootAttribute("NiveauxAlertes")
-            Dim objStreamWriter As New StreamWriter(strFileName)
-            Dim x As New XmlSerializer(GetType(List(Of NiveauAlerte)), root)
-            x.Serialize(objStreamWriter, pList, ns)
-            objStreamWriter.Close()
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError(ex.Message)
-            If ex.InnerException IsNot Nothing Then
-                CSDebug.dispError(ex.InnerException.Message)
-            End If
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
+    'Public Shared Function FTO_writeXml(pList As List(Of NiveauAlerte), Optional ByVal pstrFile As String = "Alertes.xml") As Boolean
+    '    Dim bReturn As Boolean
+    '    Try
+    '        Dim strFileName As String = My.Settings.RepertoireParametres & "/" & pstrFile
+    '        Dim ns As New System.Xml.Serialization.XmlSerializerNamespaces()
+    '        ns.Add("", "") 'No namespaces needed.
+    '        Dim root As XmlRootAttribute = New XmlRootAttribute("NiveauxAlertes")
+    '        Dim objStreamWriter As New StreamWriter(strFileName)
+    '        Dim x As New XmlSerializer(GetType(List(Of NiveauAlerte)), root)
+    '        x.Serialize(objStreamWriter, pList, ns)
+    '        objStreamWriter.Close()
+    '        bReturn = True
+    '    Catch ex As Exception
+    '        CSDebug.dispError(ex.Message)
+    '        If ex.InnerException IsNot Nothing Then
+    '            CSDebug.dispError(ex.InnerException.Message)
+    '        End If
+    '        bReturn = False
+    '    End Try
+    '    Return bReturn
+    'End Function
 
 
 End Class

@@ -386,7 +386,7 @@ Public Class ManometreControle
                 oFV.valeursMesurees = pControleMano.ValeursMesurees
                 ' Contrôle OK ou NOK
                 oFV.blocage = Not Me.etat
-
+                oFV.dateModif = pControleMano.DateVerif
                 ' On Globals.CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
                 Dim sFileName As String = pControleMano.buildPDF()
                 oFV.FVFileName = sFileName

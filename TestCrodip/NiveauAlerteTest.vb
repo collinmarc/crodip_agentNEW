@@ -7,7 +7,11 @@ Imports System.Collections.Generic
     Inherits CRODIPTest
 
     <TestMethod()> Public Sub ToXml()
-        Dim oLst As New List(Of NiveauAlerte)
+        Dim oAlertes As New Alertes()
+
+        oAlertes.oAlerteDiagnostic.Valide = "36"
+        oAlertes.oAlerteDiagnostic.Contrevisite = "4"
+
         Dim oNiveau As NiveauAlerte
         oNiveau = New NiveauAlerte
         oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Banc
@@ -16,7 +20,7 @@ Imports System.Collections.Generic
         oNiveau.Orange = 10
         oNiveau.Jaune = 5
         oNiveau.EcartTolere = 7.5D
-        oLst.Add(oNiveau)
+        oAlertes.NiveauxAlertes.Add(oNiveau)
 
         oNiveau = New NiveauAlerte
         oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.ManometreControle
@@ -25,14 +29,14 @@ Imports System.Collections.Generic
         oNiveau.Orange = 110
         oNiveau.Jaune = 15
         oNiveau.EcartTolere = 17.5D
-        oLst.Add(oNiveau)
+        oAlertes.NiveauxAlertes.Add(oNiveau)
 
-        Assert.IsTrue(NiveauAlerte.FTO_writeXml(oLst, "Test.xml"))
+        Assert.IsTrue(Alertes.FTO_writeXml(oAlertes, "Test.xml"))
         CSFile.open(MySettings.Default.RepertoireParametres & "/" & "Test.xml")
     End Sub
 
     <TestMethod()> Public Sub LoadFromXml()
-        Dim oLst As New List(Of NiveauAlerte)
+        Dim oAlertes As New Alertes
         Dim oNiveau As NiveauAlerte
         oNiveau = New NiveauAlerte
         oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Banc
@@ -41,7 +45,7 @@ Imports System.Collections.Generic
         oNiveau.Orange = 10
         oNiveau.Jaune = 5
         oNiveau.EcartTolere = 7.5D
-        oLst.Add(oNiveau)
+        oAlertes.NiveauxAlertes.Add(oNiveau)
         oNiveau = New NiveauAlerte
         oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.ManometreControle
         oNiveau.Noire = 147
@@ -49,23 +53,23 @@ Imports System.Collections.Generic
         oNiveau.Orange = 110
         oNiveau.Jaune = 15
         oNiveau.EcartTolere = 17.5D
-        oLst.Add(oNiveau)
+        oAlertes.NiveauxAlertes.Add(oNiveau)
 
-        Assert.IsTrue(NiveauAlerte.FTO_writeXml(oLst, "Test.xml"))
+        Assert.IsTrue(Alertes.FTO_writeXml(oAlertes, "Test.xml"))
 
 
-        Dim olst2 As List(Of NiveauAlerte)
+        Dim oAlertes2 As Alertes
 
-        olst2 = NiveauAlerte.readXML("Test.xml")
-        Assert.AreEqual(2, olst2.Count)
-        oNiveau = olst2(0)
+        oAlertes2 = Alertes.readXML("Test.xml")
+        Assert.AreEqual(2, oAlertes2.NiveauxAlertes.Count)
+        oNiveau = oAlertes2.NiveauxAlertes(0)
         Assert.AreEqual(NiveauAlerte.Enum_typeMateriel.Banc, oNiveau.materiel)
         Assert.AreEqual(47, oNiveau.Noire)
         Assert.AreEqual(20, oNiveau.Rouge)
         Assert.AreEqual(10, oNiveau.Orange)
         Assert.AreEqual(5, oNiveau.Jaune)
         Assert.AreEqual(7.5D, oNiveau.EcartTolere)
-        oNiveau = olst2(1)
+        oNiveau = oAlertes2.NiveauxAlertes(1)
         Assert.AreEqual(NiveauAlerte.Enum_typeMateriel.ManometreControle, oNiveau.materiel)
         Assert.AreEqual(147, oNiveau.Noire)
         Assert.AreEqual(120, oNiveau.Rouge)

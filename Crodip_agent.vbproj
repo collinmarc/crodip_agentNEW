@@ -253,6 +253,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Application\includes\classes\Agent\Materiel\Alertes.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtPulverisateur.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitation.vb" />
@@ -1066,12 +1067,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="moduleDocumentaire\_parametres\cr_RapportInspection.vb">
-      <SubType>Component</SubType>
+    <Compile Include="moduleDocumentaire\_parametres\cr_RapportInspection1.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>cr_RapportInspection.rpt</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulve.vb">
       <AutoGen>True</AutoGen>

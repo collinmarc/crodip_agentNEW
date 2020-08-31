@@ -39,6 +39,8 @@
               <xs:element name="SignAgent" msprop:Generator_ColumnVarNameInTable="columnSignAgent" msprop:Generator_ColumnPropNameInRow="SignAgent" msprop:Generator_ColumnPropNameInTable="SignAgentColumn" msprop:Generator_UserColumnName="SignAgent" type="xs:base64Binary" minOccurs="0" />
               <xs:element name="bSignAgent" msprop:Generator_ColumnVarNameInTable="columnbSignAgent" msprop:Generator_ColumnPropNameInRow="bSignAgent" msprop:Generator_ColumnPropNameInTable="bSignAgentColumn" msprop:Generator_UserColumnName="bSignAgent" type="xs:boolean" minOccurs="0" />
               <xs:element name="DateSignAgent" msprop:Generator_ColumnVarNameInTable="columnDateSignAgent" msprop:Generator_ColumnPropNameInRow="DateSignAgent" msprop:Generator_ColumnPropNameInTable="DateSignAgentColumn" msprop:Generator_UserColumnName="DateSignAgent" type="xs:string" minOccurs="0" />
+              <xs:element name="DelaiValidite" msprop:Generator_ColumnVarNameInTable="columnDelaiValidite" msprop:Generator_ColumnPropNameInRow="DelaiValidite" msprop:Generator_ColumnPropNameInTable="DelaiValiditeColumn" msprop:Generator_UserColumnName="DelaiValidite" type="xs:int" minOccurs="0" />
+              <xs:element name="DelaiValiditeCV" msprop:Generator_ColumnVarNameInTable="columnDelaiValiditeCV" msprop:Generator_ColumnPropNameInRow="DelaiValiditeCV" msprop:Generator_ColumnPropNameInTable="DelaiValiditeCVColumn" msprop:Generator_UserColumnName="DelaiValiditeCV" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

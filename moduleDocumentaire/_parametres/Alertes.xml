@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<Alertes>
+  <AlerteDiagnostic Valide="36" ContreVisite="4"/>
 <!--Noire= désactivation-->
 <!--Rouge= alerte à 10j avant désactivation-->
 <!--Orange= alerte à 10j+7?-->
-<NiveauxAlertes>
-  <NiveauAlerte Materiel="Banc" Noire="68" Rouge="61" Orange="46" Jaune="0" EcartTolere="1"></NiveauAlerte>
-  <NiveauAlerte Materiel="ManometreControle" Noire="68" Rouge="61" Orange="46" Jaune="0" EcartTolere="7.5"></NiveauAlerte>
-  <NiveauAlerte Materiel="Buse" Noire="1832" Rouge="1735" Orange="0" Jaune="0" EcartTolere="7.5"></NiveauAlerte>
-</NiveauxAlertes>
+  <NiveauxAlertes>
+    <NiveauAlerte Materiel="Banc" Noire="68" Rouge="61" Orange="46" Jaune="0" EcartTolere="1"></NiveauAlerte>
+    <NiveauAlerte Materiel="ManometreControle" Noire="68" Rouge="61" Orange="46" Jaune="0" EcartTolere="7.5"></NiveauAlerte>
+    <NiveauAlerte Materiel="Buse" Noire="1832" Rouge="1735" Orange="0" Jaune="0" EcartTolere="7.5"></NiveauAlerte>
+  </NiveauxAlertes>
+</Alertes>

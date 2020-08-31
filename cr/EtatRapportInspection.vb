@@ -281,6 +281,13 @@ Public Class EtatRapportInspection
             Else
                 dateLimiteControle = CDate(m_oDiag.pulverisateurDateProchainControle)
             End If
+            Dim delaiValidite As Int32 'Delai de validité du Diagnostic
+            Dim delaiValiditeCV As Int32 'Delai de Contrevisite
+            delaiValidite = Alertes.readXML.oAlerteDiagnostic.Valide
+            If m_oDiag.controleEtat <> "1" Then
+                delaiValidite = Alertes.readXML.oAlerteDiagnostic.Contrevisite
+            End If
+            delaiValiditeCV = Alertes.readXML.oAlerteDiagnostic.Contrevisite
 
 
             'Dim msCL As New MemoryStream
@@ -315,7 +322,8 @@ Public Class EtatRapportInspection
                                                          SignAgent:=m_oDiag.SignRIAgent,
                                                          bSignClient:=m_oDiag.isSignRIClient,
                                                          DateSignClient:=m_oDiag.dateSignRIClientS,
-                                                         SignClient:=m_oDiag.SignRIClient)
+                                                         SignClient:=m_oDiag.SignRIClient,
+                                                            DelaiValidite:=delaiValidite, DelaiValiditeCV:=delaiValiditeCV)
             'If img1 IsNot Nothing Then
             '    img1.Dispose()
             'End If

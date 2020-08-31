@@ -451,7 +451,7 @@ Public Class BancManagerTest
     <TestMethod()>
     Public Sub getAlerte_banc()
         'Generation du fichier de paramétrage
-        Dim oLst As New List(Of NiveauAlerte)
+        Dim oAlertes As New Alertes
         Dim oNiveau As NiveauAlerte
         oNiveau = New NiveauAlerte
         oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Banc
@@ -460,7 +460,7 @@ Public Class BancManagerTest
         oNiveau.Orange = 10
         oNiveau.Jaune = 5
         oNiveau.EcartTolere = 7.5D
-        oLst.Add(oNiveau)
+        oAlertes.NiveauxAlertes.Add(oNiveau)
         oNiveau = New NiveauAlerte
         oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.ManometreControle
         oNiveau.Noire = 147
@@ -468,9 +468,9 @@ Public Class BancManagerTest
         oNiveau.Orange = 110
         oNiveau.Jaune = 15
         oNiveau.EcartTolere = 17.5D
-        oLst.Add(oNiveau)
+        oAlertes.NiveauxAlertes.Add(oNiveau)
 
-        Assert.IsTrue(NiveauAlerte.FTO_writeXml(oLst))
+        Assert.IsTrue(Alertes.FTO_writeXml(oAlertes))
 
 
         Dim obanc As Banc

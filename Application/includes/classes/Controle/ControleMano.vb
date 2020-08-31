@@ -26,7 +26,6 @@ Public Class ControleMano
 
     Sub New()
         _lst = New Dictionary(Of String, ControleManoDetail)
-
         _lst.Add("UP1", New ControleManoDetail("UP", "1"))
         _lst.Add("UP2", New ControleManoDetail("UP", "2"))
         _lst.Add("UP3", New ControleManoDetail("UP", "3"))
