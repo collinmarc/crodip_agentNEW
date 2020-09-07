@@ -124,7 +124,7 @@ Public Class accueil
     Friend WithEvents listClients_col_rs As System.Windows.Forms.ColumnHeader
     Friend WithEvents listClients_col_prenom As System.Windows.Forms.ColumnHeader
     Friend WithEvents listClients_col_nom As System.Windows.Forms.ColumnHeader
-    Friend WithEvents listClients_col_prochainControle As System.Windows.Forms.ColumnHeader
+    Friend WithEvents listClients_col_ProchainControle As System.Windows.Forms.ColumnHeader
     Friend WithEvents ColumnHeader1 As System.Windows.Forms.ColumnHeader
     Friend WithEvents ColumnHeader2 As System.Windows.Forms.ColumnHeader
     Friend WithEvents ColumnHeader3 As System.Windows.Forms.ColumnHeader
@@ -384,7 +384,7 @@ Public Class accueil
         Me.listClients_col_adresse = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.listClients_col_codePostal = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.listClients_col_commune = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.listClients_col_prochainControle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.listClients_col_ProchainControle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.panel_clientele_LstCtrlCtriteres = New System.Windows.Forms.Panel()
         Me.pnl_SearchDates = New System.Windows.Forms.Panel()
         Me.dtpSearchCrit2 = New System.Windows.Forms.DateTimePicker()
@@ -1446,11 +1446,11 @@ Public Class accueil
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.list_clients.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.list_clients.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.listClients_col_siren, Me.listClients_col_rs, Me.listClients_col_prenom, Me.listClients_col_nom, Me.listClients_col_adresse, Me.listClients_col_codePostal, Me.listClients_col_commune, Me.listClients_col_prochainControle})
+        Me.list_clients.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.listClients_col_siren, Me.listClients_col_rs, Me.listClients_col_prenom, Me.listClients_col_nom, Me.listClients_col_adresse, Me.listClients_col_codePostal, Me.listClients_col_commune, Me.listClients_col_ProchainControle})
         Me.list_clients.FullRowSelect = True
         Me.list_clients.GridLines = True
         Me.list_clients.HideSelection = False
-        Me.list_clients.Location = New System.Drawing.Point(0, 112)
+        Me.list_clients.Location = New System.Drawing.Point(1, 112)
         Me.list_clients.MultiSelect = False
         Me.list_clients.Name = "list_clients"
         Me.list_clients.Size = New System.Drawing.Size(1001, 541)
@@ -1493,10 +1493,10 @@ Public Class accueil
         Me.listClients_col_commune.Text = "Commune"
         Me.listClients_col_commune.Width = 84
         '
-        'listClients_col_prochainControle
+        'listClients_col_ProchainControle
         '
-        Me.listClients_col_prochainControle.Text = "Dernier contrôle"
-        Me.listClients_col_prochainControle.Width = 95
+        Me.listClients_col_ProchainControle.Text = "Prochain contrôle"
+        Me.listClients_col_ProchainControle.Width = 95
         '
         'panel_clientele_LstCtrlCtriteres
         '
@@ -3464,7 +3464,9 @@ Public Class accueil
             End If
 
         Next oExploit
-
+        list_clients_ColumnClick(list_clients, New ColumnClickEventArgs(7))
+        '        list_clients.ListViewItemSorter = New CSListViewItemComparer(7, 1, "date")
+        '       list_clients.Sort()
     End Sub
     Private Function InitLVItem(oItem As ListViewItem, oExploit As Exploitation) As Boolean
         Dim breturn As Boolean
@@ -3480,15 +3482,13 @@ Public Class accueil
             oItem.SubItems.Add(oExploit.adresse) ' Adresse
             oItem.SubItems.Add(oExploit.codePostal) ' Code postal
             oItem.SubItems.Add(oExploit.commune) ' Commune
-            If oExploit.dateDernierControle <> "" And oExploit.dateDernierControle <> "30/12/1899 00:00:00" Then
-                Dim tmpDateNextDiag As Date = oExploit.dateDernierControle
-                oItem.SubItems.Add(tmpDateNextDiag.ToShortDateString)  ' Dernier contrôle
+            Console.WriteLine(oExploit.dateProchainControle)
+            If oExploit.dateProchainControle <> "" And oExploit.dateProchainControle <> "2001-01-01 00:00:00" And oExploit.dateProchainControle <> "1899-12-30 00:00:00" Then
+                Dim tmpDateNextDiag As Date = oExploit.dateProchainControle
+                oItem.SubItems.Add(tmpDateNextDiag.ToShortDateString)  ' Prochain controle
             Else
-                oItem.SubItems.Add("")  ' Dernier contrôle
+                oItem.SubItems.Add("")  ' Pas de prochain  contrôle
             End If
-            oItem.SubItems.Add(oExploit.nPulvesAlerte) ' Nbre de pulvé en alerte
-            '                list_clients.Items(CInt(intCount)).SubItems.Add(oExploit.id) ' IDExploitation
-
             ' Détection des alertes
             If oExploit.nPulvesAlerte > 0 Then
                 oItem.BackColor = System.Drawing.Color.LightBlue

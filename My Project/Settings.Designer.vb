@@ -55,24 +55,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("http://admin.crodip.fr/server")>  _
-    Public ReadOnly Property WSCrodipURL() As String
-        Get
-            Return CType(Me("WSCrodipURL"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("http://admin-pp.crodip.fr/server")>  _
-    Public ReadOnly Property WSCrodipURLTEST() As String
-        Get
-            Return CType(Me("WSCrodipURLTEST"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("public/Exports/AutoTest.csv")>  _
     Public ReadOnly Property AutoTestDefaultFileName() As String
         Get
@@ -427,15 +409,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("V2.6.3")>  _
-    Public ReadOnly Property DBVersionExpected() As String
-        Get
-            Return CType(Me("DBVersionExpected"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("../pdf/")>  _
     Public ReadOnly Property SynchroDescGetEtat() As String
         Get
@@ -508,10 +481,37 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20200424120000")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20200728150000")>  _
     Public ReadOnly Property NumBuild() As String
         Get
             Return CType(Me("NumBuild"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("https://admin.crodip.fr/server")>  _
+    Public ReadOnly Property WSCrodipURL() As String
+        Get
+            Return CType(Me("WSCrodipURL"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("https://admin-pp.crodip.fr/server")>  _
+    Public ReadOnly Property WSCrodipURLTEST() As String
+        Get
+            Return CType(Me("WSCrodipURLTEST"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("V2.6.4")>  _
+    Public ReadOnly Property DBVersionExpected() As String
+        Get
+            Return CType(Me("DBVersionExpected"),String)
         End Get
     End Property
 End Class

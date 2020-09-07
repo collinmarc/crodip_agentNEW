@@ -1,0 +1,156 @@
+Marque;Modèle;Type;Fonctionnement;ISO;Angle;Couleur;calibre;Débit à 2 bar;Débit à 3 bar;Débit à 5 bar;TOLERANCE
+Albuz;AXI;FENTE;STANDARD;oui;110;orange;10;;0.4;;15
+;;;;;;verte;15;;0.6;;15
+;;;;;;jaune;2;;0.8;;15
+;;;;;;lilas;25;;1;;10
+;;;;;;bleu;3;;1.2;;10
+;;;;;;rouge;4;;1.6;;10
+;;;;;;marron;5;;2;;10
+;;;;;;GRIS;6;;2.4;;10
+;;;;;;blanche;8;;3.2;;10
+;FASTCAP AXI;FENTE;STANDARD;oui;110;orange;10;;0.4;;15
+;;;;;;verte;15;;0.6;;15
+;;;;;;jaune;2;;0.8;;15
+;;;;;;lilas;25;;1;;10
+;;;;;;bleu;3;;1.2;;10
+;;;;;;rouge;4;;1.6;;10
+;;;;;;marron;5;;2;;10
+;;;;;;GRIS;6;;2.4;;10
+;;;;;;blanche;8;;3.2;;10
+;APE;FENTE;STANDARD;non;110;jaune;;;0.61;;15
+;;;;;;ORANGE;;;0.85;;15
+;;;;;;ROUGE;;;1.21;;10
+;;;;;;VERT;;;1.71;;10
+;;;;;;TURQUOISE;;;2.07;;10
+;;;;;;BLEU;;;2.42;;10
+;;;;;;GRIS;;;3.41;;10
+;;;;;;NOIR;;;4.83;;10
+;;;;;;IVOIRE;;;6.88;;10
+;;;;;;BLANC;;;9.7;;10
+;API;FENTE;STANDARD;oui;110;;;;;;
+;ADE;FENTE;PASTILLE / CHAMBRE;oui;110;marron;;;0.43;;15
+;;;;;;JAUNE;;;0.61;;15
+;;;;;;ORANGE;;;0.85;;15
+;;;;;;ROUGE;;;1.21;;10
+;;;;;;VERT;;;1.71;;10
+;ADI;FENTE;PASTILLE / CHAMBRE;oui;110;ORANGE;10;;0.4;;15
+;;;;;;VERT;15;;0.6;;15
+;;;;;;JAUNE;2;;0.8;;15
+;;;;;;LILAS;25;;1;;10
+;;;;;;BLEU;3;;1.2;;10
+;;;;;;ROUGE;4;;1.6;;10
+;CVI;FENTE;INJECTION D'AIR LIBRE;oui;110;VERT;15;;0.6;;15
+;;;;;;JAUNE;2;;0.8;;15
+;;;;;;LILAS;25;;1;;10
+;;;;;;BLEU;3;;1.2;;10
+;;;;;;ROUGE;4;;1.6;;10
+;;;;;;MARRON;5;;2;;10
+;AVI 110;FENTE;INJECTION D'AIR LIBRE;oui;110;ORANGE;10;;0.4;;15
+;;;;;;VERT;15;;0.6;;15
+;;;;;;JAUNE;2;;0.8;;10
+;;;;;;LILAS;25;;1;;10
+;;;;;;BLEU;3;;1.2;;10
+;;;;;;ROUGE;4;;1.6;;10
+;;;;;;MARRON;5;;2;;10
+;;;;;;GRIS;6;;2.4;;10
+;;;;;;BLANC;8;;3.2;;10
+;;;;;;BLEU CLAIR /NOIR;10;;4;;10
+;AVI TWIN;DOUBLE FENTE;INJECTION D'AIR LIBRE;oui;110;ORANGE;10;;0.4;;15
+;;;;;;VERT;15;;0.6;;15
+;;;;;;JAUNE;2;;0.8;;10
+;;;;;;LILAS;25;;1;;10
+;;;;;;BLEU;3;;1.2;;10
+;;;;;;ROUGE;4;;1.6;;10
+;;;;;;MARRON;5;;2;;10
+;;;;;;GRIS;6;;2.4;;10
+;CVI TWIN;DOUBLE FENTE;INJECTION D'AIR LIBRE;oui;110;VERT;15;;0.6;;15
+;;;;;;JAUNE;2;;0.8;;15
+;;;;;;LILAS;25;;1;;10
+;;;;;;BLEU;3;;1.2;;10
+;;;;;;ROUGE;4;;1.6;;10
+;;;;;;MARRON;5;;2;;10
+;ATR 80;TURBULENCE;STANDARD;non;80;BLANC;;;;0.27;15
+;;;;;;LILAS;;;;0.36;15
+;;;;;;MARRON;;;;0.48;15
+;;;;;;JAUNE;;;;0.73;15
+;;;;;;ORANGE;;;;0.99;15
+;;;;;;ROUGE;;;;1.38;15
+;;;;;;GRIS;;;;1.5;15
+;;;;;;VERT;;;;1.78;15
+;;;;;;NOIR;;;;2;15
+;;;;;;BLEU;;;;2.45;15
+;ATR 60;TURBULENCE;STANDARD;non;60;LILAS;;;;0.36;15
+;;;;;;MARRON;;;;0.48;15
+;;;;;;JAUNE;;;;0.73;15
+;;;;;;ORANGE;;;;0.99;15
+;;;;;;ROUGE;;;;1.38;15
+;;;;;;GRIS;;;;1.5;15
+;;;;;;VERT;;;;1.78;15
+;;;;;;NOIR;;;;2;15
+;;;;;;BLEU;;;;2.45;15
+;ATI 80;TURBULENCE;STANDARD;OUI;80;ROSE;75;;;0.32;15
+;;;;;;ORANGE;1;;;0.52;15
+;;;;;;VERT;15;;;0.77;15
+;;;;;;JAUNE;2;;;1.03;15
+;;;;;;LILAS;25;;;1.29;15
+;;;;;;BLEU;3;;;1.55;15
+;;;;;;ROUGE;4;;;2.07;15
+;ATI 60;TURBULENCE;STANDARD;oui;60;ROSE;75;;;0.32;15
+;;;;;;ORANGE;1;;;0.52;15
+;;;;;;VERT;15;;;0.77;15
+;;;;;;JAUNE;2;;;1.03;15
+;;;;;;LILAS;25;;;1.29;15
+;;;;;;BLEU;3;;;1.55;15
+;;;;;;ROUGE;4;;;2.07;15
+;TVI;TURBULENCE;INJECTION D'AIR LIBRE;oui;80;VIOLET;50;;;;
+;;;;;;ROSE;75;;;0.39;15
+;;;;;;ORANGE;1;;;0.52;15
+;;;;;;VERT;15;;;0.77;15
+;;;;;;JAUNE;2;;;1.03;15
+;;;;;;LILAS;25;;;1.29;15
+;;;;;;BLEU;3;;;1.55;15
+;;;;;;ROUGE;4;;;2.07;15
+;AVI 80;FENTE;INJECTION D'AIR LIBRE;oui;80;ORANGE;1;;;;
+;;;;;;VERT;15;;;;
+;;;;;;JAUNE;2;;;;
+;;;;;;LILAS;25;;;;
+;;;;;;BLEU;3;;;;
+;;;;;;ROUGE;4;;;;
+;CVI 80;FENTE;INJECTION D'AIR LIBRE;oui;80;ORANGE;1;;;;
+;;;;;;VERT;15;;;;
+;;;;;;JAUNE;2;;;;
+;;;;;;LILAS;25;;;;
+;AMT;PASTILLE;STANDARD;non;;G-P 007;;;0.51;;15
+;;;;;;G-P 008;;;0.66;;15
+;;;;;;G-P 010;;;1.1;;15
+;;;;;;G-P 012;;;1.39;;15
+;;;;;;G-P 015;;;2.27;;15
+;;;;;;G-P 018;;;3.12;;15
+;;;;;;G-P 020;;;3.77;;15
+;;;;;;G-P 023;;;4.91;;15
+;;;;;;G-P 040;;;15.06;;15
+;;;;;;P-G 007;;;0.5;;15
+;;;;;;P-G 008;;;0.53;;15
+;;;;;;P-G 010;;;0.79;;15
+;;;;;;P-G 012;;;1.15;;15
+;;;;;;P-G 015;;;1.73;;15
+;;;;;;P-G 018;;;2.42;;15
+;;;;;;P-G 020;;;3.02;;15
+;;;;;;P-G 023;;;3.9;;15
+;;;;;;P-G 040;;;12.41;;15
+;APM;MIROIR;standard;non;;JAUNE;;;0.95;;10
+;;;;;;ORANGE;;;1.58;;10
+;;;;;;ROUGE;;;2.38;;10
+;;;;;;VERT;;;3.18;;10
+;;;;;;BLEU;;;3.96;;10
+;;;;;;GRISE;;;5.63;;10
+;;;;;;NOIRE;;;7.35;;10
+;MVI;MIROIR;INJECTION D'AIR LIBRE;oui;;VERT;15;;0.6;;15
+;;;;;;JAUNE;2;;0.8;;15
+;;;;;;LILAS;25;;1;;10
+;;;;;;BLEU;3;;1.2;;10
+;;;;;;ROUGE;4;;1.6;;10
+;;;;;;MARRON;5;;2;;10
+;;;;;;GRIS;6;;2.4;;10
+;;;;;;BLANC;8;;3.2;;10
+;;;;;;BLEU CLAIR;10;;4;;10

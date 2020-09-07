@@ -1,7 +1,6 @@
 ﻿Imports System.Reflection
 Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports TestCrodip
 Imports CRODIPAcquisition
 Imports Crodip_agent
 Imports System.IO

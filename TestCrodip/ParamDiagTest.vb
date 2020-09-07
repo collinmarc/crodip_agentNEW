@@ -3,6 +3,7 @@ Imports Crodip_agent
 Imports System.Xml.Serialization
 Imports System.IO
 Imports CRODIP_ControlLibrary
+Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 ''' <summary>
 ''' Classe de tests pour les paramètres de diagnostic

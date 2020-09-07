@@ -16,10 +16,6 @@ Public Class RelevePression833Test
 
     Private testContextInstance As TestContext
 
-    '''<summary>
-    '''Obtient ou définit le contexte de test qui fournit
-    '''des informations sur la série de tests active ainsi que ses fonctionnalités.
-    '''</summary>
 
 #Region "Attributs de tests supplémentaires"
     '

@@ -697,7 +697,7 @@ Imports System.IO
         oDiag.SMFileName = oEtatSM.getFileName()
         DiagnosticManager.save(oDiag)
 
-        Dim response As Object
+        Dim response As Object = ""
         DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, response)
         ''Synchronisation des etats
         Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))

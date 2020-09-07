@@ -2,16 +2,13 @@
 Imports Crodip_agent
 Imports System.Xml.Serialization
 Imports System.IO
+Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 <TestClass()>
 Public Class AutoTestTest
     Inherits CRODIPTest
     Private testContextInstance As TestContext
 
-    '''<summary>
-    '''Obtient ou définit le contexte de test qui fournit
-    '''des informations sur la série de tests active ainsi que ses fonctionnalités.
-    '''</summary>
     'Public Property TestContext() As TestContext
     '    Get
     '        Return testContextInstance

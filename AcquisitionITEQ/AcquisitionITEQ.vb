@@ -18,6 +18,7 @@ Public Class AcquisitionITEQ
 
         Dim oReturn As New List(Of AcquisitionValue)
         Dim bConvert As Boolean = False 'conversion de Format (OUI /NON)
+        Dim delimiter As String
         Using oReader As System.IO.TextReader = System.IO.File.OpenText(m_fichierITEQ)
             Dim strline As String
             Try
@@ -28,6 +29,7 @@ Public Class AcquisitionITEQ
                     Trace.WriteLine("AcquisistionITEQ.getValues ERR : L'enete ne commence pas par Ref.")
                     Return oReturn
                 End If
+                delimiter = strline(4)
                 strline = oReader.ReadLine() ' 2eme ligne =  Data
                 If strline.StartsWith("""") Then
                     'Si la Deuxoème ligne commence par un " => conversion de format
@@ -113,6 +115,7 @@ Public Class AcquisitionITEQ
             Using sr As New StreamReader(m_fichierITEQ)
 
                 Using csvR As New CsvReader(sr, Globalization.CultureInfo.CurrentCulture)
+                    csvR.Configuration.Delimiter = delimiter
                     olstValueITEQ = csvR.GetRecords(Of ValueITEQ)().ToList()
                 End Using
             End Using

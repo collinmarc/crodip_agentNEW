@@ -79,7 +79,7 @@ Public Class WSCrodipTest
 
         Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
 
-        Dim wsResponse As Object
+        Dim wsResponse As Object = ""
         Dim codeResponse As Integer
         ' Appel au WS
         Debug.Print("Appel du serveur :" & objWSCrodip.Url)

@@ -146,9 +146,6 @@ Public Class DiagnosticMano542Test
     Public Sub TST_GetByID()
 
     End Sub
-    '''<summary>
-    '''Test le calcul de l'imprecision
-    '''</summary>
     '<TestMethod()> _
     'Public Sub TST_CalcImprecision1Mano()
 

@@ -7,6 +7,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports Crodip_agent
 Imports System.Drawing
 Imports System.IO
+Imports System.Data
 
 '''<summary>
 '''Classe de test pour Diagnostic et DiagnosticManager
@@ -2768,7 +2769,6 @@ Public Class DiagnosticManagerTest
         oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         Dim oDiagItem As DiagnosticItem
 
-        '''
         'Assert.AreEqual(1, oDiag.diagnosticItemsLst.Count)
         Assert.AreEqual(0, oDiag.diagnosticItemsLst.Count)
 
@@ -4803,10 +4803,10 @@ Public Class DiagnosticManagerTest
         oDiag.controleDateDebut = CSDate.ToCRODIPString("15/12/2015")
         'Controle Complet
         oDiag.controleIsComplet = True
-        'Result OK => + 5 ans
+        'Result OK => + 3 ans
         oDiag.controleEtat = Diagnostic.controleEtatOK
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2020-12-15 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2018-12-15 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
         poPulve = New Pulverisateur()
@@ -4848,16 +4848,16 @@ Public Class DiagnosticManagerTest
         oDiag.controleDateDebut = CSDate.ToCRODIPString("16/12/2015")
         'Controle Complet
         oDiag.controleIsComplet = True
-        'Result OK => + 5 ans
+        'Result OK => + 3 ans
         oDiag.controleEtat = Diagnostic.controleEtatOK
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2020-12-16 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2018-12-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
         poPulve = New Pulverisateur()
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
         poPulve.id = "E001-1"
-        poPulve.controleEtat = "1"
+        poPulve.controleEtat = Pulverisateur.controleEtatOK
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("16/12/2015")
@@ -4883,6 +4883,7 @@ Public Class DiagnosticManagerTest
         oDiag.CalculDateProchainControle()
         Assert.AreEqual("2016-04-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
+
         'Etat Pulvé = En attente de CComplet -1
         '======================
         poPulve = New Pulverisateur()
@@ -4897,7 +4898,7 @@ Public Class DiagnosticManagerTest
         'Result OK => + 5 ans
         oDiag.controleEtat = Diagnostic.controleEtatOK
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2020-12-17 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2018-12-17 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
         poPulve = New Pulverisateur()
@@ -4927,7 +4928,7 @@ Public Class DiagnosticManagerTest
         'Result CC => + 4 mois
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2015-12-20 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2016-04-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Etat Pulvé = En attente de CV 0
         '======================
@@ -4940,10 +4941,10 @@ Public Class DiagnosticManagerTest
         oDiag.controleDateDebut = CSDate.ToCRODIPString("17/12/2015")
         'Controle Complet
         oDiag.controleIsComplet = True
-        'Result OK => + 5 ans
+        'Result OK => + 3 ans
         oDiag.controleEtat = Diagnostic.controleEtatOK
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2020-12-17 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2018-12-17 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
         poPulve = New Pulverisateur()
@@ -4989,7 +4990,7 @@ Public Class DiagnosticManagerTest
         'Result OK => + 5 ans
         oDiag.controleEtat = Diagnostic.controleEtatOK
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2020-12-17 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2018-12-17 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
         poPulve = New Pulverisateur()
@@ -5020,6 +5021,48 @@ Public Class DiagnosticManagerTest
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         oDiag.CalculDateProchainControle()
         Assert.AreEqual("2016-04-17 00:00:00", oDiag.pulverisateurDateProchainControle)
+
+        'Pulve ERR DateProchctrl = 01/08/2020, CTRL au 01/09/2020 resulat = ErrPrelim => DateProchainCtrl = 01/08/2020
+        poPulve = New Pulverisateur()
+        poPulve.dateProchainControle = CSDate.ToCRODIPString("01/08/2020")
+        poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
+        poPulve.id = "E001-1"
+        oDiag = New Diagnostic()
+        oDiag.setPulverisateur(poPulve)
+        oDiag.controleDateDebut = CSDate.ToCRODIPString("01/09/2020")
+        'Controle Complet
+        oDiag.controleIsComplet = True
+        'Result CC => + 4 mois
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCC
+        oDiag.CalculDateProchainControle()
+        Assert.AreEqual("2020-08-01 00:00:00", oDiag.pulverisateurDateProchainControle)
+
+
+    End Sub
+    <DataTestMethod()>
+    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/08/2020", Diagnostic.controleEtatOK, "01/08/2023", Pulverisateur.controleEtatOK, "Pulve OK , Ctrl OK , Date Ctrl Avant => DateCrl+3 ans")>
+    Public Sub TST_DateProchainControleDT(pEtatPulveAvant As String, pDateProchainCtrlavant As String, pDateCtrl As String, presultatCtrl As String, pDateProchainCtrlApres As String, petatPulveapres As String)
+        Dim oDiag As Diagnostic
+        Dim poPulve As Pulverisateur
+
+        'Etat Pulvé = nouveau
+        '======================
+        poPulve = New Pulverisateur()
+        poPulve.id = "E001-1"
+        poPulve.controleEtat = pEtatPulveAvant
+        poPulve.dateProchainControle = pDateProchainCtrlavant
+        oDiag = New Diagnostic()
+        oDiag.setPulverisateur(poPulve)
+        oDiag.controleDateDebut = CSDate.ToCRODIPString(pDateCtrl)
+        'Controle Complet
+        oDiag.controleIsComplet = True
+        'Result OK => + 3 ans
+        oDiag.controleEtat = presultatCtrl
+        oDiag.CalculDateProchainControle()
+        Assert.AreEqual(pDateProchainCtrlApres, oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual(petatPulveapres, oDiag.pulverisateurControleEtat)
+
+
     End Sub
     <TestMethod()>
     Public Sub TST_BuseFonctionnement()

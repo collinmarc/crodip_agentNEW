@@ -1,0 +1,28 @@
+Marque;Modèle;Type;Fonctionnement;ISO;Angle;Couleur;calibre;Débit à 2 bar;Débit à 3 bar;Débit à 5 bar;TOLERANCE
+Albuz;AXI;FENTE;STANDARD;oui;110;orange;10;;0.4;;15
+;;;;;;verte;15;;0.6;;15
+;;;;;;jaune;2;;0.8;;15
+;;;;;;lilas;25;;1;;10
+;;;;;;bleu;3;;1.2;;10
+;;;;;;rouge;4;;1.6;;10
+;;;;;;marron;5;;2;;10
+;;;;;;GRIS;6;;2.4;;10
+;;;;;;blanche;8;;3.2;;10
+;FASTCAP AXI;FENTE;STANDARD;oui;110-120;orange;10;;0.4;;15
+;;;;;;verte;15;;0.6;;15
+;;;;;;jaune;2;;0.8;;15
+;;;;;;lilas;25;;1;;10
+;;;;;;bleu;3;;1.2;;10
+;;;;;;rouge;4;;1.6;;10
+;;;;;;marron;5;;2;;10
+;;;;;;GRIS;6;;2.4;;10
+;;;;;;blanche;8;;3.2;;10
+;FASTCAP AXI2;FENTE;STANDARD;oui;110-120-150;orange;10;;0.4;;15
+;;;;;;verte;15;;0.6;;15
+;;;;;;jaune;2;;0.8;;15
+;;;;;;lilas;25;;1;;10
+;;;;;;bleu;3;;1.2;;10
+;;;;;;rouge;4;;1.6;;10
+;;;;;;marron;5;;2;;10
+;;;;;;GRIS;6;;2.4;;10
+;;;;;;blanche;8;;3.2;;10

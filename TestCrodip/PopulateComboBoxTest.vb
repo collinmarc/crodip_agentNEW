@@ -2,6 +2,7 @@
 Imports Crodip_agent
 Imports System.Xml.Serialization
 Imports System.IO
+Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 <TestClass()>
 Public Class PopulateComboTest
@@ -27,13 +28,13 @@ Public Class PopulateComboTest
     ''' <remarks></remarks>
     <TestMethod(), Ignore()>
     Public Sub CbxMarqueTest()
-        Dim ocbx As New Windows.Forms.ComboBox
-        MarquesManager.populateCombobox_MarquesPulve(ocbx)
-        Assert.AreEqual(142, ocbx.Items.Count)
+        'Dim ocbx As New Windows.Forms.ComboBox
+        'MarquesManager.populateCombobox_MarquesPulve(ocbx)
+        'Assert.AreEqual(142, ocbx.Items.Count)
 
-        ocbx.Items.Clear()
-        MarquesManager.populateCombobox_ModelesPulve(ocbx, "ARLAND")
-        Assert.AreEqual(6, ocbx.Items.Count)
+        'ocbx.Items.Clear()
+        'MarquesManager.populateCombobox_ModelesPulve(ocbx, "ARLAND")
+        'Assert.AreEqual(6, ocbx.Items.Count)
 
     End Sub
 End Class
