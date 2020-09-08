@@ -283,11 +283,11 @@ Public Class EtatRapportInspection
             End If
             Dim delaiValidite As Int32 'Delai de validité du Diagnostic
             Dim delaiValiditeCV As Int32 'Delai de Contrevisite
-            delaiValidite = Alertes.readXML.oAlerteDiagnostic.Valide
+            delaiValidite = Pulverisateur.getNiveauAlerte().Jaune
             If m_oDiag.controleEtat <> "1" Then
-                delaiValidite = Alertes.readXML.oAlerteDiagnostic.Contrevisite
+                delaiValidite = Pulverisateur.getNiveauAlerte().Rouge
             End If
-            delaiValiditeCV = Alertes.readXML.oAlerteDiagnostic.Contrevisite
+            delaiValiditeCV = Pulverisateur.getNiveauAlerte().Rouge
 
 
             'Dim msCL As New MemoryStream

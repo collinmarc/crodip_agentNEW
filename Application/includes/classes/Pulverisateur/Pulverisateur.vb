@@ -1,8 +1,9 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
+Imports System.Linq
 
-<Serializable(), XmlInclude(GetType(Pulverisateur))> _
+<Serializable(), XmlInclude(GetType(Pulverisateur))>
 Public Class Pulverisateur
 
     Public Shared TYPEPULVE_ARBRES As String = "Arbres"
@@ -1684,6 +1685,25 @@ Public Class Pulverisateur
     End Function
     Public Function isTraitementdesSemences() As Boolean
         Return isTRTSPE("TRTSEM")
+    End Function
+
+    Public Shared Function getNiveauAlerte() As NiveauAlerte
+        Dim bReturn As Globals.ALERTE
+        bReturn = Globals.ALERTE.NONE
+        Dim lstNiveauAlerte As List(Of NiveauAlerte)
+        lstNiveauAlerte = Alertes.readXML().NiveauxAlertes
+        Dim oNiveau As NiveauAlerte = Nothing
+        oNiveau = lstNiveauAlerte.Where(Function(m) m.Materiel = NiveauAlerte.Enum_typeMateriel.Pulverisateur).First()
+
+        Dim AlerteRouge As Integer = 4 ' Validité en mois pour une CV
+        Dim AlerteJaune As Integer = 48 'Validité en  mois pour un Ctrl OK
+
+        If oNiveau Is Nothing Then
+            oNiveau = New NiveauAlerte()
+            oNiveau.Rouge = AlerteRouge
+            oNiveau.Jaune = AlerteJaune
+        End If
+        Return oNiveau
     End Function
 
 

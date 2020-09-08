@@ -3,14 +3,14 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports Crodip_agent
 Imports System.Collections.Generic
 
-<TestClass()> Public Class AlertesTest
+<TestClass()>
+Public Class Alertes2Test
     Inherits CRODIPTest
 
-    <TestMethod()> Public Sub ToXml()
+    <TestMethod()>
+    Public Sub ToXml()
         Dim oAlertes As New Alertes()
 
-        oAlertes.oAlerteDiagnostic.Valide = "36"
-        oAlertes.oAlerteDiagnostic.Contrevisite = "4"
 
         Dim oNiveau As NiveauAlerte
         oNiveau = New NiveauAlerte
@@ -31,6 +31,12 @@ Imports System.Collections.Generic
         oNiveau.EcartTolere = 17.5D
         oAlertes.NiveauxAlertes.Add(oNiveau)
 
+        oNiveau = New NiveauAlerte
+        oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Pulverisateur
+        oNiveau.Rouge = 4
+        oNiveau.Jaune = 36
+
+        oAlertes.NiveauxAlertes.Add(oNiveau)
         Assert.IsTrue(Alertes.FTO_writeXml(oAlertes, "Test.xml"))
         CSFile.open(MySettings.Default.RepertoireParametres & "/" & "Test.xml")
     End Sub
@@ -55,27 +61,37 @@ Imports System.Collections.Generic
         oNiveau.EcartTolere = 17.5D
         oAlertes.NiveauxAlertes.Add(oNiveau)
 
+        oNiveau = New NiveauAlerte
+        oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Pulverisateur
+        oNiveau.Rouge = 4
+        oNiveau.Jaune = 36
+        oAlertes.NiveauxAlertes.Add(oNiveau)
+
         Assert.IsTrue(Alertes.FTO_writeXml(oAlertes, "Test.xml"))
 
 
         Dim oAlertes2 As Alertes
 
         oAlertes2 = Alertes.readXML("Test.xml")
-        Assert.AreEqual(2, oAlertes2.NiveauxAlertes.Count)
+        Assert.AreEqual(3, oAlertes2.NiveauxAlertes.Count)
         oNiveau = oAlertes2.NiveauxAlertes(0)
-        Assert.AreEqual(NiveauAlerte.Enum_typeMateriel.Banc, oNiveau.materiel)
+        Assert.AreEqual(NiveauAlerte.Enum_typeMateriel.Banc, oNiveau.Materiel)
         Assert.AreEqual(47, oNiveau.Noire)
         Assert.AreEqual(20, oNiveau.Rouge)
         Assert.AreEqual(10, oNiveau.Orange)
         Assert.AreEqual(5, oNiveau.Jaune)
         Assert.AreEqual(7.5D, oNiveau.EcartTolere)
         oNiveau = oAlertes2.NiveauxAlertes(1)
-        Assert.AreEqual(NiveauAlerte.Enum_typeMateriel.ManometreControle, oNiveau.materiel)
+        Assert.AreEqual(NiveauAlerte.Enum_typeMateriel.ManometreControle, oNiveau.Materiel)
         Assert.AreEqual(147, oNiveau.Noire)
         Assert.AreEqual(120, oNiveau.Rouge)
         Assert.AreEqual(110, oNiveau.Orange)
         Assert.AreEqual(15, oNiveau.Jaune)
         Assert.AreEqual(17.5D, oNiveau.EcartTolere)
 
+        oNiveau = oAlertes2.NiveauxAlertes(2)
+        Assert.AreEqual(NiveauAlerte.Enum_typeMateriel.Pulverisateur, oNiveau.Materiel)
+        Assert.AreEqual(4, oNiveau.Rouge)
+        Assert.AreEqual(36, oNiveau.Jaune)
     End Sub
 End Class

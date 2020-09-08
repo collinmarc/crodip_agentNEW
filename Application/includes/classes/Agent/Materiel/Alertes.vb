@@ -6,7 +6,6 @@ Imports System.Xml.Serialization
 Public Class Alertes
     Public Sub New()
         NiveauxAlertes = New List(Of NiveauAlerte)
-        oAlerteDiagnostic = New AlerteDiagnostic
     End Sub
 
     Public Class AlerteDiagnostic
@@ -15,8 +14,6 @@ Public Class Alertes
         <XmlAttribute("ContreVisite")>
         Public Property Contrevisite As String
     End Class
-    <XmlElement("AlerteDiagnostic")>
-    Public Property oAlerteDiagnostic As AlerteDiagnostic
     Public Property NiveauxAlertes As List(Of NiveauAlerte)
 
     Public Shared Function readXML(Optional pstrFile As String = "Alertes.xml") As Alertes

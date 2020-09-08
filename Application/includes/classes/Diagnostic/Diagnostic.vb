@@ -3122,8 +3122,9 @@ Public Class Diagnostic
         End If
         Dim oAlertes As Alertes
         oAlertes = Alertes.readXML()
-        Dim nMoisValideOK As String = oAlertes.oAlerteDiagnostic.Valide
-        Dim nMoisValideCV As String = oAlertes.oAlerteDiagnostic.Contrevisite
+        Dim nMoisValideOK As String = Pulverisateur.getNiveauAlerte().Jaune
+        Dim nMoisValideCV As String = Pulverisateur.getNiveauAlerte().Rouge
+
 
         Dim pulverisateurControleEtatApres As String = pulverisateurControleEtat
 

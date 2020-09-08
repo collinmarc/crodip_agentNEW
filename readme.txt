@@ -1,6 +1,9 @@
 TRUNK
 MASTER
 
+0001150 : la Durée de validité des controles passe à 3 ans à partir de 01/01/2
+0001067: Modules de Vérification : Modifier la date de Contrôle.
+
 BUILD : 20200728150000
 ----------------------
 0001269: WS : Date de signature par defaut à la date du jour
