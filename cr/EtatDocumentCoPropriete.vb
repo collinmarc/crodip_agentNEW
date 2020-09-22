@@ -36,7 +36,7 @@ Public Class EtatDocumentCoPropriete
     End Function
 
 
-    Public Function GenereEtat() As Boolean
+    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()

@@ -13,7 +13,7 @@ Public Class EtatFVBanc
 
 
 
-    Public Function GenereEtat() As Boolean
+    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Dim strReportName As String
         Try
@@ -31,20 +31,20 @@ Public Class EtatFVBanc
                     objReport.SetParameterValue("ModeSimplifie", Globals.GLOB_ENV_MODESIMPLIFIE)
 
                     Dim CrExportOptions As ExportOptions
-                        Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
-                        Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                        m_FileName = CSDiagPdf.makeFilename(m_oControle.idBanc, CSDiagPdf.TYPE_FV_BANCMESURE) & ".pdf"
-                        CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                        CrExportOptions = objReport.ExportOptions
-                        With CrExportOptions
-                            .ExportDestinationType = ExportDestinationType.DiskFile
-                            .ExportFormatType = ExportFormatType.PortableDocFormat
-                            .DestinationOptions = CrDiskFileDestinationOptions
-                            .FormatOptions = CrFormatTypeOptions
-                        End With
-                        objReport.Export()
-                        objReport.Close()
-                    End Using
+                    Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
+                    Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
+                    m_FileName = CSDiagPdf.makeFilename(m_oControle.idBanc, CSDiagPdf.TYPE_FV_BANCMESURE) & ".pdf"
+                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrExportOptions = objReport.ExportOptions
+                    With CrExportOptions
+                        .ExportDestinationType = ExportDestinationType.DiskFile
+                        .ExportFormatType = ExportFormatType.PortableDocFormat
+                        .DestinationOptions = CrDiskFileDestinationOptions
+                        .FormatOptions = CrFormatTypeOptions
+                    End With
+                    objReport.Export()
+                    objReport.Close()
+                End Using
 
 
             End If

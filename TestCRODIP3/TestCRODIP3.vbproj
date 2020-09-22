@@ -55,6 +55,9 @@
     <Reference Include="CsvHelper, Version=15.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.15.0.5\lib\net47\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetZip, Version=1.13.8.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>C:\Users\COLLIN\Documents\NEWCO\CRODIP\crodip_agentNEW\packages\DotNetZip.1.13.8\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -177,6 +180,8 @@
     <Compile Include="testBDASCAR.vb" />
     <Compile Include="ToleranceBuseTest.vb" />
     <Compile Include="UnitTest1.vb" />
+    <Compile Include="DiagnosticFilesTest.vb" />
+    <Compile Include="ZIPTest.vb" />
     <Compile Include="UpdateInfoTest.vb" />
     <Compile Include="WSCrodipTest.vb" />
     <Compile Include="XMLTest.vb" />
@@ -220,6 +225,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\test15b.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\test\test.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

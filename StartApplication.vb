@@ -1,6 +1,9 @@
 ﻿Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
+Imports System.IO
 Imports System.Windows.Forms
+Imports System.IO.Compression
+Imports Ionic.Zip
 
 Module StartApplication
 #Region "Variables de SESSION"
@@ -26,9 +29,9 @@ Module StartApplication
     ' Form principal "Accueil"
     ' Diagnostic - Contrôle préliminaire
     Public globFormControlePreliminaire As controle_preliminaire
-    Public globFormAccueil As Accueil
+    Public globFormAccueil As accueil
     ' Diagnostic - Contrôle préliminaire
-    Public globFormDiagnostic As frmDiagnostique
+    Public globFormDiagnostic As FrmDiagnostique
     Public globFormToolBuses As tool_diagBuses
     ' Flag de connexion
     Public globConnectFlagOk As Object
@@ -48,7 +51,7 @@ Module StartApplication
         '        If TestCrystalReport() Then
 
         Dim ofrm As Form
-            Dim bLoginFailed As Boolean = True
+        Dim bLoginFailed As Boolean = True
 
 #If REGLAGEPULVE Then
             Dim args As String()
@@ -91,8 +94,8 @@ Module StartApplication
 
         ofrm = New parentContener()
 #End If
-            CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
-            If Not bLoginFailed Then
+        CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
+        If Not bLoginFailed Then
             ofrm.ShowDialog()
         End If
         ''        Else

@@ -1,6 +1,8 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
+Imports System.IO
+Imports Ionic.Zip
 
 <Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemsList)), XmlInclude(GetType(DiagnosticItem))> _
 Public Class Diagnostic
@@ -3414,4 +3416,50 @@ Public Class Diagnostic
             _DateSignCCClient = CSDate.FromCrodipString(Value)
         End Set
     End Property
+
+    Public Function getPDFs(pFileName As String) As String
+        Dim FileName As String = Globals.CONST_PATH_EXP & "/" & pFileName
+        Try
+            If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
+                FileName = ""
+            Else
+                Using z As ZipFile = ZipFile.Read(Globals.CONST_PDFS_DIAG)
+                    z.Password = Globals.CONST_PDFS_DIAG_PWD
+                    z.ExtractSelectedEntries(pFileName, Globals.CONST_PATH_EXP, "", ExtractExistingFileAction.OverwriteSilently)
+                End Using
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("Diagnostic.getPFS ERR", ex)
+            FileName = ""
+        End Try
+        Return FileName
+    End Function
+    Public Function AddPDFs(pFileName As String) As Boolean
+        Dim FileName As String = Globals.CONST_PATH_EXP & "/" & pFileName
+        Dim bReturn As Boolean = False
+        Try
+            If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
+                Using z As New ZipFile()
+                    z.Password = Globals.CONST_PDFS_DIAG_PWD
+                    z.Save(Globals.CONST_PDFS_DIAG)
+                End Using
+
+            End If
+            If File.Exists(FileName) Then
+                Using z As ZipFile = ZipFile.Read(Globals.CONST_PDFS_DIAG)
+                    z.Password = Globals.CONST_PDFS_DIAG_PWD
+                    z.AddFile(FileName, Globals.CONST_PATH_EXP)
+                    z.Save()
+                End Using
+                bReturn = True
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("Diagnostic.AddPFS ERR", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
+
+
 End Class

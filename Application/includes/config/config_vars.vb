@@ -99,15 +99,19 @@ Public Class Globals
 #Region " PATHS "
 
     ' Public
-    Public Shared CONST_PATH_PUBLIC As String = "." & "\public\"
+    Public Shared CONST_PATH_PUBLIC As String = "public/"
     ' Exports
-    Public Shared CONST_PATH_EXP As String = CONST_PATH_PUBLIC & "exports\"
+    Public Shared CONST_PATH_EXP As String = CONST_PATH_PUBLIC & "exports/"
 
     ' Images
-    Public Shared CONST_PATH_IMG As String = "." & "\img\"
+    Public Shared CONST_PATH_IMG As String = "." & "/img/"
 
     ' Temp
-    Public Shared CONST_PATH_TMP As String = "." & "\tmp\"
+    Public Shared CONST_PATH_TMP As String = "." & "/tmp/"
+
+    'PdfsDiags
+    Public Shared CONST_PDFS_DIAG As String = "systemD.pdf"
+    Public Shared CONST_PDFS_DIAG_PWD As String = "crodip"
 
 
 #End Region

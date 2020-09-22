@@ -5,7 +5,7 @@ Public Class CSFile
     Public Shared Sub open(ByVal fileName As String)
         Try
             Dim monProcess As New Process
-            monProcess.StartInfo.FileName = fileName
+            monProcess.StartInfo.FileName = fileName.Replace("/", "\\")
             monProcess.StartInfo.Verb = "Open"
             monProcess.StartInfo.CreateNoWindow = True
             monProcess.Start()

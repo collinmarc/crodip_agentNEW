@@ -274,6 +274,16 @@ Friend Class Resources
     End Property
     
     '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property ico_pdf() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("ico_pdf", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Icon semblable à (Icône).
     '''</summary>
     Friend Shared ReadOnly Property Icon1() As System.Drawing.Icon

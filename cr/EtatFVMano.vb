@@ -11,7 +11,7 @@ Public Class EtatFVMano
         m_oControle = pControle
     End Sub
 
-    Public Function GenereEtat() As Boolean
+    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Dim strReportName As String
         Try
@@ -25,25 +25,25 @@ Public Class EtatFVMano
 
                     objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
 
-                        objReport.SetDataSource(m_ods)
+                    objReport.SetDataSource(m_ods)
                     objReport.SetParameterValue("ModeSimplifie", Globals.GLOB_ENV_MODESIMPLIFIE)
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
-                        Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                        Dim oMano As ManometreControle
-                        oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)
-                        m_FileName = CSDiagPdf.makeFilename(oMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
-                        CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                        CrExportOptions = objReport.ExportOptions
-                        With CrExportOptions
-                            .ExportDestinationType = ExportDestinationType.DiskFile
-                            .ExportFormatType = ExportFormatType.PortableDocFormat
-                            .DestinationOptions = CrDiskFileDestinationOptions
-                            .FormatOptions = CrFormatTypeOptions
-                        End With
-                        objReport.Export()
-                        objReport.Close()
-                    End Using
+                    Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
+                    Dim oMano As ManometreControle
+                    oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)
+                    m_FileName = CSDiagPdf.makeFilename(oMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
+                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrExportOptions = objReport.ExportOptions
+                    With CrExportOptions
+                        .ExportDestinationType = ExportDestinationType.DiskFile
+                        .ExportFormatType = ExportFormatType.PortableDocFormat
+                        .DestinationOptions = CrDiskFileDestinationOptions
+                        .FormatOptions = CrFormatTypeOptions
+                    End With
+                    objReport.Export()
+                    objReport.Close()
+                End Using
 
             End If
         Catch ex As Exception

@@ -29,5 +29,8 @@ Public Class EtatCrodip
         End If
         Return bReturn
     End Function
+    Public Overridable Function genereEtat(Optional pExportPDF As Boolean = True) As Boolean
+        Return False
+    End Function
 
 End Class

@@ -53,6 +53,10 @@ Public Class DiagnosticManager
     ''' <returns></returns>
     Public Shared Function SendEtats(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
+        ''Récupération des PDFS avant Synhcro
+        '        pDiag.getPDFs(pDiag.RIFileName)
+        '       pDiag.getPDFs(pDiag.SMFileName)
+        '      pDiag.getPDFs(pDiag.CCFileName)
         If My.Settings.SynchroEtatMode = "FTP" Then
             bReturn = SendFTPEtats(pDiag)
         Else

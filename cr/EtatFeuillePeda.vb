@@ -20,7 +20,7 @@ Public Class EtatFeuillePeda
         m_ods = New dsEnquete
     End Sub
 
-    Public Function GenereEtat() As Boolean
+    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()
@@ -28,20 +28,20 @@ Public Class EtatFeuillePeda
                 Using objReport As New ReportDocument
                     objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
 
-                objReport.SetDataSource(m_ods)
-                Dim CrExportOptions As ExportOptions
-                Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
-                Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                m_FileName = CSDiagPdf.makeFilename(m_oFeuille.oDiag.pulverisateurId, CSDiagPdf.TYPE_FEUILLE_PEDAGOGIQUE) & ".pdf"
-                CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                CrExportOptions = objReport.ExportOptions
-                With CrExportOptions
-                    .ExportDestinationType = ExportDestinationType.DiskFile
-                    .ExportFormatType = ExportFormatType.PortableDocFormat
-                    .DestinationOptions = CrDiskFileDestinationOptions
-                    .FormatOptions = CrFormatTypeOptions
-                End With
-                objReport.Export()
+                    objReport.SetDataSource(m_ods)
+                    Dim CrExportOptions As ExportOptions
+                    Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
+                    Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
+                    m_FileName = CSDiagPdf.makeFilename(m_oFeuille.oDiag.pulverisateurId, CSDiagPdf.TYPE_FEUILLE_PEDAGOGIQUE) & ".pdf"
+                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrExportOptions = objReport.ExportOptions
+                    With CrExportOptions
+                        .ExportDestinationType = ExportDestinationType.DiskFile
+                        .ExportFormatType = ExportFormatType.PortableDocFormat
+                        .DestinationOptions = CrDiskFileDestinationOptions
+                        .FormatOptions = CrFormatTypeOptions
+                    End With
+                    objReport.Export()
                     objReport.Close()
                 End Using
 

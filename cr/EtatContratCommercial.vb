@@ -19,7 +19,7 @@ Public Class EtatContratCommercial
         End Using
     End Sub
 
-    Public Function GenereEtat(pExportPDF As Boolean) As Boolean
+    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Dim strReportName As String
         Try
@@ -35,16 +35,20 @@ Public Class EtatContratCommercial
                 If System.IO.File.Exists(MySettings.Default.RepertoireParametres & "/" & m_ReportName) Then
                     m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
                 Else
-                        CSDebug.dispFatal(MySettings.Default.RepertoireParametres & "/" & m_ReportName & " n'existe pas")
-                    End If
+                    CSDebug.dispFatal(MySettings.Default.RepertoireParametres & "/" & m_ReportName & " n'existe pas")
+                End If
 
                 m_oReportDocument.SetDataSource(m_ods)
                 If (pExportPDF) Then
-                        Dim CrExportOptions As ExportOptions
-                        Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
-                        Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                        m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
-                        CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    Dim CrExportOptions As ExportOptions
+                    Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
+                    Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
+                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
+                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    If File.Exists(Globals.CONST_PATH_EXP & m_FileName) Then
+                        File.Delete(Globals.CONST_PATH_EXP & m_FileName)
+                    End If
+
                     CrExportOptions = m_oReportDocument.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile
@@ -57,7 +61,7 @@ Public Class EtatContratCommercial
                     m_oReportDocument.Close()
                 End If
 
-                    End If
+            End If
         Catch ex As Exception
             CSDebug.dispError("EtatContratCommercial.GenereEtat ERR" & ex.Message)
             bReturn = False

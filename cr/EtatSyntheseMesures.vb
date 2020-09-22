@@ -23,7 +23,7 @@ Public Class EtatSyntheseMesures
     End Function
 
 
-    Public Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Dim strReportName As String
         Try

@@ -441,7 +441,7 @@ Public Class SynchronisationTest
 
     End Sub
     <TestMethod()> Public Sub TestGetHTTPEtat()
-        Dim oEtat As EtatRapportInspection
+        Dim oEtat As EtatCrodip
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
@@ -477,6 +477,17 @@ Public Class SynchronisationTest
         Dim oFi1 As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
         Dim nOriginalLength As Long
         nOriginalLength = oFi1.Length
+
+        oEtat = New EtatSyntheseMesures(oDiag)
+        oEtat.GenereEtat()
+        oDiag.SMFileName = oEtat.getFileName()
+        oDiag.AddPDFs(oEtat.getFileName())
+
+        oEtat = New EtatContratCommercial(oDiag)
+        oEtat.GenereEtat()
+        oDiag.CCFileName = oEtat.getFileName()
+        oDiag.AddPDFs(oEtat.getFileName())
+
 
         DiagnosticManager.save(oDiag)
 

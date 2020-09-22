@@ -758,6 +758,7 @@ Public Class frmdiagnostic_recap
 
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
             Me.Text = Me.Text & " - Mode Simplifié - "
+            Me.btn_ContratCommercial.Visible = False
         End If
 
 
@@ -1058,8 +1059,8 @@ Public Class frmdiagnostic_recap
             If pExportPDF Then
                 _PathToSynthesePDF = oEtat.getFileName()
                 m_diagnostic.SMFileName = _PathToSynthesePDF
+                'm_diagnostic.AddPDFs(_PathToSynthesePDF)
             Else
-                CSDebug.dispInfo("TBD : Set  To VIEWER")
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
             End If
             bReturn = True
@@ -1079,6 +1080,7 @@ Public Class frmdiagnostic_recap
             If pExportDPF Then
                 pathRapport = oEtat.getFileName()
                 m_diagnostic.RIFileName = pathRapport
+                m_diagnostic.AddPDFs(pathRapport)
                 bReturn = File.Exists(Globals.CONST_PATH_EXP & pathRapport)
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
@@ -1104,6 +1106,7 @@ Public Class frmdiagnostic_recap
                     File.Delete(Globals.CONST_PATH_EXP & m_diagnostic.CCFileName)
                 End If
                 m_diagnostic.CCFileName = oEtat.getFileName()
+                ' m_diagnostic.AddPDFs(oEtat.getFileName())
                 bReturn = File.Exists(Globals.CONST_PATH_EXP & oEtat.getFileName())
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
