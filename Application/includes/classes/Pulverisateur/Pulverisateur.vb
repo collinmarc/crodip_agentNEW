@@ -1644,15 +1644,29 @@ Public Class Pulverisateur
         Dim bReturn As Boolean
 
         Try
-            Select Case pdiagnostic.controleEtat
-                Case Diagnostic.controleEtatOK
-                    controleEtat = Pulverisateur.controleEtatOK
-                Case Diagnostic.controleEtatNOKCV
-                    controleEtat = Pulverisateur.controleEtatNOKCV
-                Case Diagnostic.controleEtatNOKCC
-                    controleEtat = Pulverisateur.controleEtatNOKCC
+            Select Case controleEtat
+                Case Pulverisateur.controleEtatNOKCC
+                    'Si le pulve était en att de Controle complet
+                    'il y reste sauf pour un controle OK
+                    Select Case pdiagnostic.controleEtat
+                        Case Diagnostic.controleEtatOK
+                            controleEtat = Pulverisateur.controleEtatOK
+                        Case Diagnostic.controleEtatNOKCV
+                        Case Diagnostic.controleEtatNOKCC
+                        Case Else
+                    End Select
                 Case Else
-                    controleEtat = Pulverisateur.controleEtatOK
+
+                    Select Case pdiagnostic.controleEtat
+                        Case Diagnostic.controleEtatOK
+                            controleEtat = Pulverisateur.controleEtatOK
+                        Case Diagnostic.controleEtatNOKCV
+                            controleEtat = Pulverisateur.controleEtatNOKCV
+                        Case Diagnostic.controleEtatNOKCC
+                            controleEtat = Pulverisateur.controleEtatNOKCC
+                        Case Else
+                            controleEtat = Pulverisateur.controleEtatOK
+                    End Select
             End Select
 
             bReturn = True
@@ -1687,21 +1701,26 @@ Public Class Pulverisateur
         Return isTRTSPE("TRTSEM")
     End Function
 
-    Public Shared Function getNiveauAlerte() As NiveauAlerte
+    Public Shared Function getNiveauAlerte(Optional pDate As Date? = Nothing) As NiveauAlerte
         Dim bReturn As Globals.ALERTE
         bReturn = Globals.ALERTE.NONE
+
+        If pDate Is Nothing Then
+            pDate = DateTime.Now
+        End If
+
         Dim lstNiveauAlerte As List(Of NiveauAlerte)
         lstNiveauAlerte = Alertes.readXML().NiveauxAlertes
         Dim oNiveau As NiveauAlerte = Nothing
-        oNiveau = lstNiveauAlerte.Where(Function(m) m.Materiel = NiveauAlerte.Enum_typeMateriel.Pulverisateur).First()
+        oNiveau = lstNiveauAlerte.Where(Function(m) m.Materiel = NiveauAlerte.Enum_typeMateriel.Pulverisateur) _
+                            .Where(Function(m) m.DateEffet <= pDate) _
+                            .OrderByDescending(Function(m) m.DateEffet).First()
 
-        Dim AlerteRouge As Integer = 4 ' Validité en mois pour une CV
-        Dim AlerteJaune As Integer = 48 'Validité en  mois pour un Ctrl OK
 
         If oNiveau Is Nothing Then
             oNiveau = New NiveauAlerte()
-            oNiveau.Rouge = AlerteRouge
-            oNiveau.Jaune = AlerteJaune
+            oNiveau.Rouge = 4
+            oNiveau.Jaune = 60
         End If
         Return oNiveau
     End Function

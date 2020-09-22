@@ -64,7 +64,15 @@ Public Class Alertes2Test
         oNiveau = New NiveauAlerte
         oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Pulverisateur
         oNiveau.Rouge = 4
+        oNiveau.Jaune = 60
+        oNiveau.DateEffet = #1/1/2020#
+        oAlertes.NiveauxAlertes.Add(oNiveau)
+
+        oNiveau = New NiveauAlerte
+        oNiveau.Materiel = NiveauAlerte.Enum_typeMateriel.Pulverisateur
+        oNiveau.Rouge = 4
         oNiveau.Jaune = 36
+        oNiveau.DateEffet = #1/1/2021#
         oAlertes.NiveauxAlertes.Add(oNiveau)
 
         Assert.IsTrue(Alertes.FTO_writeXml(oAlertes, "Test.xml"))
@@ -73,7 +81,7 @@ Public Class Alertes2Test
         Dim oAlertes2 As Alertes
 
         oAlertes2 = Alertes.readXML("Test.xml")
-        Assert.AreEqual(3, oAlertes2.NiveauxAlertes.Count)
+        Assert.AreEqual(4, oAlertes2.NiveauxAlertes.Count)
         oNiveau = oAlertes2.NiveauxAlertes(0)
         Assert.AreEqual(NiveauAlerte.Enum_typeMateriel.Banc, oNiveau.Materiel)
         Assert.AreEqual(47, oNiveau.Noire)
@@ -92,6 +100,13 @@ Public Class Alertes2Test
         oNiveau = oAlertes2.NiveauxAlertes(2)
         Assert.AreEqual(NiveauAlerte.Enum_typeMateriel.Pulverisateur, oNiveau.Materiel)
         Assert.AreEqual(4, oNiveau.Rouge)
+        Assert.AreEqual(60, oNiveau.Jaune)
+        Assert.AreEqual(#01/01/2020#, oNiveau.DateEffet)
+        oNiveau = oAlertes2.NiveauxAlertes(3)
+        Assert.AreEqual(NiveauAlerte.Enum_typeMateriel.Pulverisateur, oNiveau.Materiel)
+        Assert.AreEqual(4, oNiveau.Rouge)
         Assert.AreEqual(36, oNiveau.Jaune)
+        Assert.AreEqual(#01/01/2021#, oNiveau.DateEffet)
+
     End Sub
 End Class

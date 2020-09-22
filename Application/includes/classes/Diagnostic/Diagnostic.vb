@@ -3138,7 +3138,7 @@ Public Class Diagnostic
                     Case Diagnostic.controleEtatNOKCV
                         dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
                     Case Diagnostic.controleEtatNOKCC
-                        dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                        'dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
                 End Select
             Case Pulverisateur.controleEtatOK
                 'Etat OK
@@ -3148,7 +3148,7 @@ Public Class Diagnostic
                     Case Diagnostic.controleEtatNOKCV
                         dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
                     Case Diagnostic.controleEtatNOKCC
-                        dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                        'dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
                 End Select
             Case Pulverisateur.controleEtatNOKCV 'En attente de CV
                 Select Case controleEtat
@@ -3158,39 +3158,39 @@ Public Class Diagnostic
                         If pImport Then
                             dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
                         Else
-                            If CDate(controleDateDebut) <= dReturn Then
-                                dReturn = dReturn
-                            Else
-                                dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
-                            End If
+                            'If CDate(controleDateDebut) <= dReturn Then
+                            'dReturn = dReturn
+                            'Else
+                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                            'End If
                         End If
                     Case Diagnostic.controleEtatNOKCC
-                        If pImport Then
-                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
-                        Else
-                            If CDate(controleDateDebut) <= dReturn Then
-                                dReturn = dReturn
-                            Else
-                                dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
-                            End If
-                        End If
+                        '        If pImport Then
+                        '            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                        '        Else
+                        '            If CDate(controleDateDebut) <= dReturn Then
+                        '                dReturn = dReturn
+                        '            Else
+                        '                dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                        '            End If
+                        '        End If
                 End Select
             Case Pulverisateur.controleEtatNOKCC 'Etat Attente de Controle Complet
                 Select Case controleEtat
                     Case Diagnostic.controleEtatOK
                         dReturn = CDate(controleDateDebut).AddMonths(nMoisValideOK)
                     Case Diagnostic.controleEtatNOKCV
-                        If CDate(controleDateDebut) <= dReturn Then
-                            dReturn = dReturn
-                        Else
-                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
-                        End If
+                        'If CDate(controleDateDebut) <= dReturn Then
+                        '    dReturn = dReturn
+                        'Else
+                        '    dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                        'End If
                     Case Diagnostic.controleEtatNOKCC
-                        If CDate(controleDateDebut) > dReturn Then
-                            dReturn = dReturn
-                        Else
-                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
-                        End If
+                        '        If CDate(controleDateDebut) > dReturn Then
+                        '            dReturn = dReturn
+                        '        Else
+                        '            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                        '        End If
                 End Select
         End Select
 

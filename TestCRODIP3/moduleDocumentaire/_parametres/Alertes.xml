@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Alertes>
-  <AlerteDiagnostic Valide="36" ContreVisite="4"/>
   <!--Noire= désactivation-->
   <!--Rouge= alerte à 10j avant désactivation-->
   <!--Orange= alerte à 10j+7?-->

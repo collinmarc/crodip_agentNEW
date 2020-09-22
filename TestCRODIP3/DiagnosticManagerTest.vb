@@ -5065,53 +5065,24 @@ Public Class DiagnosticManagerTest
     '<DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCC, "01/12/2020", Pulverisateur.controleEtatNOKCC, "12-Pulve OK , Ctrl OK , Date Ctrl Avant => DateCrl+3 ans")>
 
     <DataTestMethod()>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/08/2020", Diagnostic.controleEtatOK, "01/08/2023", Pulverisateur.controleEtatOK, "1-Pulve OK , Ctrl OK , => Pulve = OK, Date ProchCtrl = DateCrl+3 ans")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCV, "01/12/2020", Pulverisateur.controleEtatNOKCV, "2-Pulve OK , Ctrl NOKCV , => Pulve = CV, Date ProchCtrl =Date Ctrl 3mois")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCC, "01/12/2020", Pulverisateur.controleEtatNOKCC, "3-Pulve OK , Ctrl NOKCC , => Pulve = CC, Date ProchCtrl =Date Ctrl 3mois")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/10/2020", Diagnostic.controleEtatOK, "01/09/2023", Pulverisateur.controleEtatOK, "4-Pulve OK , Ctrl OK , Date Ctrl Avant => DateCrl+3 ans")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCV, "01/12/2020", Pulverisateur.controleEtatNOKCV, "5-Pulve OK , Ctrl OK , Date Ctrl Avant => DateCrl+3 ans")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCC, "01/12/2020", Pulverisateur.controleEtatNOKCC, "6-Pulve OK , Ctrl OK , Date Ctrl Avant => DateCrl+3 ans")>
-    <DataRow(Pulverisateur.controleEtatNOKCV,
-             "01/09/2020",
-             "01/08/2020",
-             Diagnostic.controleEtatOK,
-             "01/08/2023",
-             Pulverisateur.controleEtatOK,
-             "7-Pulve AttCV, dateProchainCtrl = 01/09 , Ctrl OK au 01/08 , PulveOK Date = DateCrl+3ans")>
-    <DataRow(Pulverisateur.controleEtatNOKCV,
-             "01/09/2020",
-             "01/08/2020",
-             Diagnostic.controleEtatNOKCV,
-             "01/09/2020",
-             Pulverisateur.controleEtatNOKCV,
-             "8-Pulve AttCV au 01/09 , Ctrl CV au 01/08, => Pulve CV  Date => DatePulve+4 mois")>
-    <DataRow(Pulverisateur.controleEtatNOKCV,
-             "01/09/2020",
-             "01/08/2020",
-             Diagnostic.controleEtatNOKCC,
-             "01/09/2020",
-             Pulverisateur.controleEtatNOKCC,
-             "9-Pulve AttCV au 01/09 , Ctrl NOK CC au 01/08, Pulve = NOKCC Date => Date Ctrl+4 mois")>
-    <DataRow(Pulverisateur.controleEtatNOKCV,
-             "01/09/2020",
-             "01/10/2020",
-             Diagnostic.controleEtatOK,
-             "01/09/2023",
-             Pulverisateur.controleEtatOK,
-             "10-Pulve AttCV au 01/09 , Ctrl OK au 01/10, Pulve = OK Date => Date Pulve+3ans mois")>
-    <DataRow(Pulverisateur.controleEtatNOKCV,
-             "01/09/2020",
-             "01/10/2020",
-             Diagnostic.controleEtatNOKCV,
-             "01/09/2020",
-             Pulverisateur.controleEtatNOKCC,
-             "11-Pulve AttCV au 01/09/2020 , Ctrl NOK CV au 01/10/2020 , Pulve = NOK au Date Ctrl Avant ")>
-    <DataRow(Pulverisateur.controleEtatNOKCV,
-             "01/09/2020",
-             "01/10/2020",
-             Diagnostic.controleEtatNOKCC,
-             "01/09/2020",
-             Pulverisateur.controleEtatNOKCC, "12-Pulve AttDV ai 01/09 , Ctrl NOKCC au 01/10 , Pulve = NOKCC au 01/09/2020")>
+    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/08/2020", Diagnostic.controleEtatOK, "01/08/2023", Pulverisateur.controleEtatOK, "1-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCV, "01/12/2020", Pulverisateur.controleEtatNOKCV, "2-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CV  => DateCtrl + 4 mois")>
+    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "3-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CC  => Pas de Chgmt")>
+    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/10/2020", Diagnostic.controleEtatOK, "01/10/2023", Pulverisateur.controleEtatOK, "4-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCV, "01/02/2021", Pulverisateur.controleEtatNOKCV, "5-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CV  => DateCtrl + 4 mois")>
+    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "6-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CV  => Pas de Changement")>
+    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/08/2020", Diagnostic.controleEtatOK, "01/08/2023", Pulverisateur.controleEtatOK, "7-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCV, "01/12/2020", Pulverisateur.controleEtatNOKCV, "8-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CV  => DateCtrl + 4 mois")>
+    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "9-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CC  => Pas de Chgmt")>
+    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/10/2020", Diagnostic.controleEtatOK, "01/10/2023", Pulverisateur.controleEtatOK, "10-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCV, "01/02/2021", Pulverisateur.controleEtatNOKCV, "11-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CV  => DateCtrl + 4 mois")>
+    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "12-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CV  => Pas de Changement")>
+    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/08/2020", Diagnostic.controleEtatOK, "01/08/2023", Pulverisateur.controleEtatOK, "13-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCV, "01/09/2020", Pulverisateur.controleEtatNOKCC, "14-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CV  => Pas de Chgmt")>
+    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "15-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CC  => Pas de Chgmt")>
+    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/10/2020", Diagnostic.controleEtatOK, "01/10/2023", Pulverisateur.controleEtatOK, "16-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCV, "01/09/2020", Pulverisateur.controleEtatNOKCC, "17-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CV  => Pas de Changement")>
+    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "18-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CC  => Pas de Changement")>
     Public Sub TST_DateProchainControleDT(pEtatPulveAvant As String, pDateProchainCtrlavant As String, pDateCtrl As String, presultatCtrl As String, pDateProchainCtrlApres As String, petatPulveapres As String, pMesg As String)
         Dim oDiag As Diagnostic
         Dim poPulve As Pulverisateur

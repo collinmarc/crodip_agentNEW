@@ -67,12 +67,17 @@ Public Class CSDate
                     Dim dy As String = accessDate.Substring(8, 2)
                     Dim mo As String = accessDate.Substring(5, 2)
                     Dim yr As String = accessDate.Substring(0, 4)
-                    Dim hr As String = accessDate.Substring(11, 2)
-                    Dim mi As String = accessDate.Substring(14, 2)
-                    Dim se As String = accessDate.Substring(17, 2)
+                    Dim hr As String = "00"
+                    Dim mi As String = "00"
+                    Dim se As String = "00"
+                    If accessDate.Length >= 19 Then
+                        hr = accessDate.Substring(11, 2)
+                        mi = accessDate.Substring(14, 2)
+                        se = accessDate.Substring(17, 2)
+                    End If
                     vbDate = New Date(CType(yr, Double), CType(mo, Double), CType(dy, Double), CType(hr, Double), CType(mi, Double), CType(se, Double))
                 Else
-                    vbDate = Date.MinValue
+                        vbDate = Date.MinValue
                 End If
             Else
                 vbDate = Date.MinValue

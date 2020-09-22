@@ -72,6 +72,25 @@ Public Class NiveauAlerte
             _EcartTolere = value
         End Set
     End Property
+    Private _DateEffet As Date
+    <XmlAttribute("DateEffet")>
+    Public Property DateEffetStr() As String
+        Get
+            Return CSDate.ToCRODIPString(_DateEffet)
+        End Get
+        Set(ByVal value As String)
+            _DateEffet = CSDate.FromCrodipString(value)
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property DateEffet() As Date
+        Get
+            Return _DateEffet
+        End Get
+        Set(ByVal value As Date)
+            _DateEffet = value
+        End Set
+    End Property
 
     'Public Shared Function readXML(Optional pstrFile As String = "Alertes.xml") As List(Of NiveauAlerte)
     '    Dim strFileName As String = My.Settings.RepertoireParametres & "/" & pstrFile

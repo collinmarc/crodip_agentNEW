@@ -8,12 +8,6 @@ Public Class Alertes
         NiveauxAlertes = New List(Of NiveauAlerte)
     End Sub
 
-    Public Class AlerteDiagnostic
-        <XmlAttribute("Valide")>
-        Public Property Valide As String
-        <XmlAttribute("ContreVisite")>
-        Public Property Contrevisite As String
-    End Class
     Public Property NiveauxAlertes As List(Of NiveauAlerte)
 
     Public Shared Function readXML(Optional pstrFile As String = "Alertes.xml") As Alertes
