@@ -5,6 +5,7 @@ BUILD 20200922100000
 ---------------------
 0001150 : la Durée de validité des controles passe à 3 ans à partir de 01/01/2
 0001067: Modules de Vérification : Modifier la date de Contrôle.
+0001274: Mode Simplifié : bouton 'Contrat Commercial' et Enquete de satisfaction Actifs
 
 BUILD : 20200728150000
 ----------------------

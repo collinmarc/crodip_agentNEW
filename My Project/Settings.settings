@@ -83,9 +83,6 @@
     <Setting Name="NumVersion" Type="System.String" Scope="Application">
       <Value Profile="(Default)">2.6</Value>
     </Setting>
-    <Setting Name="Mode" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">NORMAL</Value>
-    </Setting>
     <Setting Name="urlCRODIP" Type="System.String" Scope="Application">
       <Value Profile="(Default)">admin.crodip.fr</Value>
     </Setting>
@@ -145,6 +142,9 @@
     </Setting>
     <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
       <Value Profile="(Default)">V2.6.4</Value>
+    </Setting>
+    <Setting Name="Mode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SIMPLIFIE</Value>
     </Setting>
   </Settings>
 </SettingsFile>
