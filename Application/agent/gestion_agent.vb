@@ -47,12 +47,19 @@ Public Class gestion_agent
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents ckSignature As CheckBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents pnlSignature As Panel
+    Friend WithEvents cbxModeSignature As ComboBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents btnTestsignature As Button
     Friend WithEvents Label10 As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gestion_agent))
         Me.panel_clientele_ficheClient_fichePulve = New System.Windows.Forms.Panel()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.grp_fichePulve_classe = New System.Windows.Forms.GroupBox()
+        Me.pnlSignature = New System.Windows.Forms.Panel()
+        Me.cbxModeSignature = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.ckSignature = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ficheAgent_prenom = New System.Windows.Forms.TextBox()
@@ -69,8 +76,10 @@ Public Class gestion_agent
         Me.lbl_fichePulve_idCrodip = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btn_ficheInspecteur_annuler = New System.Windows.Forms.Label()
+        Me.btnTestsignature = New System.Windows.Forms.Button()
         Me.panel_clientele_ficheClient_fichePulve.SuspendLayout()
         Me.grp_fichePulve_classe.SuspendLayout()
+        Me.pnlSignature.SuspendLayout()
         Me.SuspendLayout()
         '
         'panel_clientele_ficheClient_fichePulve
@@ -84,7 +93,7 @@ Public Class gestion_agent
         Me.panel_clientele_ficheClient_fichePulve.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panel_clientele_ficheClient_fichePulve.Location = New System.Drawing.Point(0, 0)
         Me.panel_clientele_ficheClient_fichePulve.Name = "panel_clientele_ficheClient_fichePulve"
-        Me.panel_clientele_ficheClient_fichePulve.Size = New System.Drawing.Size(536, 318)
+        Me.panel_clientele_ficheClient_fichePulve.Size = New System.Drawing.Size(551, 364)
         Me.panel_clientele_ficheClient_fichePulve.TabIndex = 4
         '
         'Label10
@@ -93,7 +102,7 @@ Public Class gestion_agent
         Me.Label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Red
-        Me.Label10.Location = New System.Drawing.Point(312, 16)
+        Me.Label10.Location = New System.Drawing.Point(327, 16)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(208, 48)
         Me.Label10.TabIndex = 28
@@ -104,6 +113,7 @@ Public Class gestion_agent
         '
         Me.grp_fichePulve_classe.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grp_fichePulve_classe.Controls.Add(Me.pnlSignature)
         Me.grp_fichePulve_classe.Controls.Add(Me.ckSignature)
         Me.grp_fichePulve_classe.Controls.Add(Me.Label3)
         Me.grp_fichePulve_classe.Controls.Add(Me.ficheAgent_prenom)
@@ -120,10 +130,42 @@ Public Class gestion_agent
         Me.grp_fichePulve_classe.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.grp_fichePulve_classe.Location = New System.Drawing.Point(8, 80)
         Me.grp_fichePulve_classe.Name = "grp_fichePulve_classe"
-        Me.grp_fichePulve_classe.Size = New System.Drawing.Size(520, 175)
+        Me.grp_fichePulve_classe.Size = New System.Drawing.Size(535, 238)
         Me.grp_fichePulve_classe.TabIndex = 11
         Me.grp_fichePulve_classe.TabStop = False
         Me.grp_fichePulve_classe.Text = "Inspecteur"
+        '
+        'pnlSignature
+        '
+        Me.pnlSignature.Controls.Add(Me.btnTestsignature)
+        Me.pnlSignature.Controls.Add(Me.cbxModeSignature)
+        Me.pnlSignature.Controls.Add(Me.Label4)
+        Me.pnlSignature.Location = New System.Drawing.Point(3, 164)
+        Me.pnlSignature.Name = "pnlSignature"
+        Me.pnlSignature.Size = New System.Drawing.Size(507, 49)
+        Me.pnlSignature.TabIndex = 23
+        '
+        'cbxModeSignature
+        '
+        Me.cbxModeSignature.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.Crodip_agent.MySettings.Default, "ModeSignature", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.cbxModeSignature.FormattingEnabled = True
+        Me.cbxModeSignature.Items.AddRange(New Object() {"Tablette graphique", "Téléphone"})
+        Me.cbxModeSignature.Location = New System.Drawing.Point(165, 7)
+        Me.cbxModeSignature.Name = "cbxModeSignature"
+        Me.cbxModeSignature.Size = New System.Drawing.Size(165, 21)
+        Me.cbxModeSignature.TabIndex = 24
+        Me.cbxModeSignature.Text = Global.Crodip_agent.MySettings.Default.ModeSignature
+        '
+        'Label4
+        '
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(8, 9)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(149, 14)
+        Me.Label4.TabIndex = 23
+        Me.Label4.Text = "Mode de signature :"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'ckSignature
         '
@@ -138,11 +180,11 @@ Public Class gestion_agent
         '
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(11, 147)
+        Me.Label3.Location = New System.Drawing.Point(8, 147)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(149, 14)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "Signature életronique :"
+        Me.Label3.Text = "Signature électronique :"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'ficheAgent_prenom
@@ -152,7 +194,7 @@ Public Class gestion_agent
         Me.ficheAgent_prenom.Location = New System.Drawing.Point(353, 24)
         Me.ficheAgent_prenom.Name = "ficheAgent_prenom"
         Me.ficheAgent_prenom.ReadOnly = True
-        Me.ficheAgent_prenom.Size = New System.Drawing.Size(144, 20)
+        Me.ficheAgent_prenom.Size = New System.Drawing.Size(159, 20)
         Me.ficheAgent_prenom.TabIndex = 14
         '
         'Label16
@@ -194,7 +236,7 @@ Public Class gestion_agent
         Me.Label9.Size = New System.Drawing.Size(152, 16)
         Me.Label9.TabIndex = 19
         Me.Label9.Text = "Tel. fixe et/ou portable :"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'ficheAgent_telephonePortable
         '
@@ -203,7 +245,7 @@ Public Class gestion_agent
         Me.ficheAgent_telephonePortable.Location = New System.Drawing.Point(168, 120)
         Me.ficheAgent_telephonePortable.Name = "ficheAgent_telephonePortable"
         Me.ficheAgent_telephonePortable.ReadOnly = True
-        Me.ficheAgent_telephonePortable.Size = New System.Drawing.Size(328, 20)
+        Me.ficheAgent_telephonePortable.Size = New System.Drawing.Size(343, 20)
         Me.ficheAgent_telephonePortable.TabIndex = 20
         '
         'ficheAgent_email
@@ -213,7 +255,7 @@ Public Class gestion_agent
         Me.ficheAgent_email.Location = New System.Drawing.Point(104, 88)
         Me.ficheAgent_email.Name = "ficheAgent_email"
         Me.ficheAgent_email.ReadOnly = True
-        Me.ficheAgent_email.Size = New System.Drawing.Size(392, 20)
+        Me.ficheAgent_email.Size = New System.Drawing.Size(407, 20)
         Me.ficheAgent_email.TabIndex = 13
         '
         'Label11
@@ -245,7 +287,7 @@ Public Class gestion_agent
         Me.TextBox1.Location = New System.Drawing.Point(200, 56)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(296, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(311, 20)
         Me.TextBox1.TabIndex = 14
         '
         'ficheAgent_numeroNational
@@ -255,7 +297,7 @@ Public Class gestion_agent
         Me.ficheAgent_numeroNational.Location = New System.Drawing.Point(144, 46)
         Me.ficheAgent_numeroNational.Name = "ficheAgent_numeroNational"
         Me.ficheAgent_numeroNational.ReadOnly = True
-        Me.ficheAgent_numeroNational.Size = New System.Drawing.Size(144, 20)
+        Me.ficheAgent_numeroNational.Size = New System.Drawing.Size(159, 20)
         Me.ficheAgent_numeroNational.TabIndex = 4
         '
         'lbl_fichePulve_idCrodip
@@ -289,17 +331,26 @@ Public Class gestion_agent
         Me.btn_ficheInspecteur_annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheInspecteur_annuler.ForeColor = System.Drawing.Color.White
         Me.btn_ficheInspecteur_annuler.Image = CType(resources.GetObject("btn_ficheInspecteur_annuler.Image"), System.Drawing.Image)
-        Me.btn_ficheInspecteur_annuler.Location = New System.Drawing.Point(204, 278)
+        Me.btn_ficheInspecteur_annuler.Location = New System.Drawing.Point(204, 324)
         Me.btn_ficheInspecteur_annuler.Name = "btn_ficheInspecteur_annuler"
-        Me.btn_ficheInspecteur_annuler.Size = New System.Drawing.Size(128, 24)
+        Me.btn_ficheInspecteur_annuler.Size = New System.Drawing.Size(143, 24)
         Me.btn_ficheInspecteur_annuler.TabIndex = 27
         Me.btn_ficheInspecteur_annuler.Text = "    Fermer"
         Me.btn_ficheInspecteur_annuler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'btnTestsignature
+        '
+        Me.btnTestsignature.Location = New System.Drawing.Point(334, 5)
+        Me.btnTestsignature.Name = "btnTestsignature"
+        Me.btnTestsignature.Size = New System.Drawing.Size(75, 23)
+        Me.btnTestsignature.TabIndex = 25
+        Me.btnTestsignature.Text = "Test"
+        Me.btnTestsignature.UseVisualStyleBackColor = True
+        '
         'gestion_agent
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(536, 318)
+        Me.ClientSize = New System.Drawing.Size(551, 364)
         Me.Controls.Add(Me.panel_clientele_ficheClient_fichePulve)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MinimizeBox = False
@@ -311,6 +362,7 @@ Public Class gestion_agent
         Me.panel_clientele_ficheClient_fichePulve.PerformLayout()
         Me.grp_fichePulve_classe.ResumeLayout(False)
         Me.grp_fichePulve_classe.PerformLayout()
+        Me.pnlSignature.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -326,6 +378,7 @@ Public Class gestion_agent
         ficheAgent_telephonePortable.Text = agentCourant.telephonePortable
         ficheAgent_email.Text = agentCourant.eMail
         ckSignature.Checked = agentCourant.isSignElecActive
+        pnlSignature.Visible = ckSignature.Checked
     End Sub
 
 #Region "controls de saisie"
@@ -357,9 +410,22 @@ Public Class gestion_agent
             agentCourant.telephonePortable = ficheAgent_telephonePortable.Text
             agentCourant.eMail = ficheAgent_email.Text
             agentCourant.isSignElecActive = ckSignature.Checked
-
+            My.Settings.ModeSignature = cbxModeSignature.Text
+            My.Settings.Save()
         End If
         Statusbar.clear()
         TryCast(MdiParent, parentContener).ReturnToAccueil()
+    End Sub
+
+    Private Sub ckSignature_CheckedChanged(sender As Object, e As EventArgs) Handles ckSignature.CheckedChanged
+        pnlSignature.Visible = ckSignature.Checked
+    End Sub
+
+    Private Sub btnTestsignature_Click(sender As Object, e As EventArgs) Handles btnTestsignature.Click
+        Dim oFrm As frmSignClient
+        Dim oDiag As New Diagnostic()
+        oFrm = frmSignClient.getfrmSignature(oDiag, SignMode.RICLIENT, agentCourant)
+        oFrm.Show()
+        System.Windows.Forms.Cursor.Position = Me.PointToScreen(btnTestsignature.Location)
     End Sub
 End Class

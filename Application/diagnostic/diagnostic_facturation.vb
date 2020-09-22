@@ -1264,13 +1264,15 @@ Public Class diagnostic_facturation
         Signatureclient()
     End Sub
     Public Sub Signatureclient()
-        Dim ofrm As New frmSignClient(m_oDiag, SignMode.CCCLIENT, m_oAgent)
+        Dim ofrm As frmSignClient
+        ofrm = frmSignClient.getfrmSignature(m_oDiag, SignMode.CCCLIENT, m_oAgent)
         ofrm.ShowDialog()
         desactiverModificationSisigne()
         ActiveDesactiveBtnSignature()
     End Sub
     Public Sub SignatureAgent()
-        Dim ofrm As New frmSignClient(m_oDiag, SignMode.CCAGENT, m_oAgent)
+        Dim ofrm As frmSignClient
+        ofrm = frmSignClient.getfrmSignature(m_oDiag, SignMode.CCAGENT, m_oAgent)
         ofrm.ShowDialog()
         desactiverModificationSisigne()
         ActiveDesactiveBtnSignature()

@@ -1330,10 +1330,10 @@ Public Class frmdiagnostic_recap
     Public Sub Signatureclient()
         Dim ofrm As frmSignClient = Nothing
         If rbEtatRI.Checked Then
-            ofrm = New frmSignClient(m_diagnostic, SignMode.RICLIENT, m_oAgent)
+            ofrm = frmSignClient.getfrmSignature(m_diagnostic, SignMode.RICLIENT, m_oAgent)
         End If
         If rbEtatCC.Checked Then
-            ofrm = New frmSignClient(m_diagnostic, SignMode.CCCLIENT, m_oAgent)
+            ofrm = frmSignClient.getfrmSignature(m_diagnostic, SignMode.CCCLIENT, m_oAgent)
         End If
         If ofrm IsNot Nothing Then
             ofrm.ShowDialog()
@@ -1360,10 +1360,10 @@ Public Class frmdiagnostic_recap
     Public Sub SignatureAgent()
         Dim ofrm As frmSignClient = Nothing
         If rbEtatRI.Checked Then
-            ofrm = New frmSignClient(m_diagnostic, SignMode.RIAGENT, m_oAgent)
+            ofrm = frmSignClient.getfrmSignature(m_diagnostic, SignMode.RIAGENT, m_oAgent)
         End If
         If rbEtatCC.Checked Then
-            ofrm = New frmSignClient(m_diagnostic, SignMode.CCAGENT, m_oAgent)
+            ofrm = frmSignClient.getfrmSignature(m_diagnostic, SignMode.CCAGENT, m_oAgent)
         End If
         If ofrm IsNot Nothing Then
             ofrm.ShowDialog()

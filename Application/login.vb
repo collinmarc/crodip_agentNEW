@@ -1079,7 +1079,7 @@ Public Class login
         Dim oFrm As frmSignClient
         Dim oDiag As New Diagnostic()
         Dim oAgent As Agent = AgentManager.getAgentById("1110")
-        oFrm = New frmSignClient(oDiag, SignMode.RIAGENT, oAgent)
+        oFrm = frmSignClient.getfrmSignature(oDiag, SignMode.RIAGENT, oAgent)
         oFrm.Show()
     End Sub
 End Class

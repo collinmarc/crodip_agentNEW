@@ -13,14 +13,14 @@ Option Explicit On
 
 
 
-<Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),
- Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0"),
- Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>
+<Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
+ Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0"),  _
+ Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
 Partial Friend NotInheritable Class MySettings
     Inherits Global.System.Configuration.ApplicationSettingsBase
-
-    Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()), MySettings)
-
+    
+    Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()),MySettings)
+    
 #Region "Fonctionnalité Enregistrement automatique My.Settings"
 #If _MyType = "WindowsForms" Then
     Private Shared addedHandler As Boolean
@@ -35,10 +35,10 @@ Partial Friend NotInheritable Class MySettings
     End Sub
 #End If
 #End Region
-
+    
     Public Shared ReadOnly Property [Default]() As MySettings
         Get
-
+            
 #If _MyType = "WindowsForms" Then
                If Not addedHandler Then
                     SyncLock addedHandlerLockObject
@@ -52,467 +52,479 @@ Partial Friend NotInheritable Class MySettings
             Return defaultInstance
         End Get
     End Property
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("20200728150000")>
-    Public ReadOnly Property NumBuild() As String
-        Get
-            Return CType(Me("NumBuild"), String)
-        End Get
-    End Property
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>
-    Public ReadOnly Property WSCrodipProduction() As Boolean
-        Get
-            Return CType(Me("WSCrodipProduction"), Boolean)
-        End Get
-    End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("SIMPLIFIE")>
-    Public ReadOnly Property Mode() As String
-        Get
-            Return CType(Me("Mode"), String)
-        End Get
-    End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("public/Exports/AutoTest.csv")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("public/Exports/AutoTest.csv")>  _
     Public ReadOnly Property AutoTestDefaultFileName() As String
         Get
-            Return CType(Me("AutoTestDefaultFileName"), String)
+            Return CType(Me("AutoTestDefaultFileName"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
     Public ReadOnly Property Expect100Continue() As Boolean
         Get
-            Return CType(Me("Expect100Continue"), Boolean)
+            Return CType(Me("Expect100Continue"),Boolean)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("moduledocumentaire")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("moduledocumentaire")>  _
     Public ReadOnly Property ModuleDocumentaire() As String
         Get
-            Return CType(Me("ModuleDocumentaire"), String)
+            Return CType(Me("ModuleDocumentaire"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("moduleDocumentaire/_parametres/ParamdiagRampe.xml")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("moduleDocumentaire/_parametres/ParamdiagRampe.xml")>  _
     Public ReadOnly Property ParamDiagRampe() As String
         Get
-            Return CType(Me("ParamDiagRampe"), String)
+            Return CType(Me("ParamDiagRampe"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("moduleDocumentaire/_parametres/ParamdiagArboViti.xml")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("moduleDocumentaire/_parametres/ParamdiagArboViti.xml")>  _
     Public ReadOnly Property ParamDiagArboviti() As String
         Get
-            Return CType(Me("ParamDiagArboviti"), String)
+            Return CType(Me("ParamDiagArboviti"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("")>
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property DernierControleCodePostal() As String
         Get
-            Return CType(Me("DernierControleCodePostal"), String)
+            Return CType(Me("DernierControleCodePostal"),String)
         End Get
         Set
             Me("DernierControleCodePostal") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("")>
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property DernierControleCommune() As String
         Get
-            Return CType(Me("DernierControleCommune"), String)
+            Return CType(Me("DernierControleCommune"),String)
         End Get
         Set
             Me("DernierControleCommune") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("")>
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property DernierControleSite() As String
         Get
-            Return CType(Me("DernierControleSite"), String)
+            Return CType(Me("DernierControleSite"),String)
         End Get
         Set
             Me("DernierControleSite") = value
         End Set
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("moduledocumentaire/_parametres")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("moduledocumentaire/_parametres")>  _
     Public ReadOnly Property RepertoireParametres() As String
         Get
-            Return CType(Me("RepertoireParametres"), String)
+            Return CType(Me("RepertoireParametres"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("")>
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property DernierControleNomDuSite() As String
         Get
-            Return CType(Me("DernierControleNomDuSite"), String)
+            Return CType(Me("DernierControleNomDuSite"),String)
         End Get
         Set
             Me("DernierControleNomDuSite") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("")>
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property DernierControleTerritoire() As String
         Get
-            Return CType(Me("DernierControleTerritoire"), String)
+            Return CType(Me("DernierControleTerritoire"),String)
         End Get
         Set
             Me("DernierControleTerritoire") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("")>
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public Property DernierControleNomRepresentant() As String
         Get
-            Return CType(Me("DernierControleNomRepresentant"), String)
+            Return CType(Me("DernierControleNomRepresentant"),String)
         End Get
         Set
             Me("DernierControleNomRepresentant") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
     Public Property DernierControleSiteSecurise() As Boolean
         Get
-            Return CType(Me("DernierControleSiteSecurise"), Boolean)
+            Return CType(Me("DernierControleSiteSecurise"),Boolean)
         End Get
         Set
             Me("DernierControleSiteSecurise") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
     Public Property DernierControleRecupResidus() As Boolean
         Get
-            Return CType(Me("DernierControleRecupResidus"), Boolean)
+            Return CType(Me("DernierControleRecupResidus"),Boolean)
         End Get
         Set
             Me("DernierControleRecupResidus") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
     Public Property DernierControleInfosChezProp() As Boolean
         Get
-            Return CType(Me("DernierControleInfosChezProp"), Boolean)
+            Return CType(Me("DernierControleInfosChezProp"),Boolean)
         End Get
         Set
             Me("DernierControleInfosChezProp") = value
         End Set
     End Property
-
-    <Global.System.Configuration.UserScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("0")>
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
     Public Property nbControlesAvantAlerte() As Integer
         Get
-            Return CType(Me("nbControlesAvantAlerte"), Integer)
+            Return CType(Me("nbControlesAvantAlerte"),Integer)
         End Get
         Set
             Me("nbControlesAvantAlerte") = value
         End Set
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("10")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
     Public ReadOnly Property nbControlesAvantAlerteMax() As Integer
         Get
-            Return CType(Me("nbControlesAvantAlerteMax"), Integer)
+            Return CType(Me("nbControlesAvantAlerteMax"),Integer)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("20")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20")>  _
     Public ReadOnly Property TxTVADefaut() As Double
         Get
-            Return CType(Me("TxTVADefaut"), Double)
+            Return CType(Me("TxTVADefaut"),Double)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("crodip-pdf")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("crodip-pdf")>  _
     Public ReadOnly Property FTPuser() As String
         Get
-            Return CType(Me("FTPuser"), String)
+            Return CType(Me("FTPuser"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("bvdkEn5xnQx")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("bvdkEn5xnQx")>  _
     Public ReadOnly Property FTPPassword() As String
         Get
-            Return CType(Me("FTPPassword"), String)
+            Return CType(Me("FTPPassword"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("crodip-pp-pdf")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("crodip-pp-pdf")>  _
     Public ReadOnly Property FTPUserTest() As String
         Get
-            Return CType(Me("FTPUserTest"), String)
+            Return CType(Me("FTPUserTest"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("3xnF9fTxWqL")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("3xnF9fTxWqL")>  _
     Public ReadOnly Property FTPPasswordTest() As String
         Get
-            Return CType(Me("FTPPasswordTest"), String)
+            Return CType(Me("FTPPasswordTest"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("20")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20")>  _
     Public ReadOnly Property NbIdentifiantPulveMini() As Integer
         Get
-            Return CType(Me("NbIdentifiantPulveMini"), Integer)
+            Return CType(Me("NbIdentifiantPulveMini"),Integer)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("True")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
     Public ReadOnly Property FTPUsePassiveMode() As Boolean
         Get
-            Return CType(Me("FTPUsePassiveMode"), Boolean)
+            Return CType(Me("FTPUsePassiveMode"),Boolean)
         End Get
     End Property
-
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("True")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+    Public ReadOnly Property WSCrodipProduction() As Boolean
+        Get
+            Return CType(Me("WSCrodipProduction"),Boolean)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
     Public ReadOnly Property DesacMat() As Boolean
         Get
-            Return CType(Me("DesacMat"), Boolean)
+            Return CType(Me("DesacMat"),Boolean)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("2.6")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("2.6")>  _
     Public ReadOnly Property NumVersion() As String
         Get
-            Return CType(Me("NumVersion"), String)
+            Return CType(Me("NumVersion"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("admin.crodip.fr")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("admin.crodip.fr")>  _
     Public ReadOnly Property urlCRODIP() As String
         Get
-            Return CType(Me("urlCRODIP"), String)
+            Return CType(Me("urlCRODIP"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("4080")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("4080")>  _
     Public ReadOnly Property SecurityProtocol() As Integer
         Get
-            Return CType(Me("SecurityProtocol"), Integer)
+            Return CType(Me("SecurityProtocol"),Integer)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("admin.crodip.fr")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("admin.crodip.fr")>  _
     Public ReadOnly Property FTPHost() As String
         Get
-            Return CType(Me("FTPHost"), String)
+            Return CType(Me("FTPHost"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("admin-pp.crodip.fr")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("admin-pp.crodip.fr")>  _
     Public ReadOnly Property FTPHostTest() As String
         Get
-            Return CType(Me("FTPHostTest"), String)
+            Return CType(Me("FTPHostTest"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
     Public ReadOnly Property AutoSync() As Boolean
         Get
-            Return CType(Me("AutoSync"), Boolean)
+            Return CType(Me("AutoSync"),Boolean)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-diagnostic-pdf")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-diagnostic-pdf")>  _
     Public ReadOnly Property SynchroEtatDiagUrl() As String
         Get
-            Return CType(Me("SynchroEtatDiagUrl"), String)
+            Return CType(Me("SynchroEtatDiagUrl"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
     Public ReadOnly Property SynchroEtatDiagUser() As String
         Get
-            Return CType(Me("SynchroEtatDiagUser"), String)
+            Return CType(Me("SynchroEtatDiagUser"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
     Public ReadOnly Property SynhcroEtatDiagPwd() As String
         Get
-            Return CType(Me("SynhcroEtatDiagPwd"), String)
+            Return CType(Me("SynhcroEtatDiagPwd"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("../pdf/")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("../pdf/")>  _
     Public ReadOnly Property SynchroDescGetEtat() As String
         Get
-            Return CType(Me("SynchroDescGetEtat"), String)
+            Return CType(Me("SynchroDescGetEtat"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-fv-banc-pdf")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-fv-banc-pdf")>  _
     Public ReadOnly Property SynchroEtatFVBancUrl() As String
         Get
-            Return CType(Me("SynchroEtatFVBancUrl"), String)
+            Return CType(Me("SynchroEtatFVBancUrl"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-fv-mano-controle-pdf")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-fv-mano-controle-pdf")>  _
     Public ReadOnly Property SynchroEtatTVManoUrl() As String
         Get
-            Return CType(Me("SynchroEtatTVManoUrl"), String)
+            Return CType(Me("SynchroEtatTVManoUrl"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
     Public ReadOnly Property SynchroEtatFVBancUser() As String
         Get
-            Return CType(Me("SynchroEtatFVBancUser"), String)
+            Return CType(Me("SynchroEtatFVBancUser"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
     Public ReadOnly Property SynchroEtatFVManoUser() As String
         Get
-            Return CType(Me("SynchroEtatFVManoUser"), String)
+            Return CType(Me("SynchroEtatFVManoUser"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
     Public ReadOnly Property SynhcroEtatFVBancPwd() As String
         Get
-            Return CType(Me("SynhcroEtatFVBancPwd"), String)
+            Return CType(Me("SynhcroEtatFVBancPwd"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("inutilisé pour l'instant")>  _
     Public ReadOnly Property SynhcroEtatFVManoPwd() As String
         Get
-            Return CType(Me("SynhcroEtatFVManoPwd"), String)
+            Return CType(Me("SynhcroEtatFVManoPwd"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("HTTP")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("HTTP")>  _
     Public ReadOnly Property SynchroEtatMode() As String
         Get
-            Return CType(Me("SynchroEtatMode"), String)
+            Return CType(Me("SynchroEtatMode"),String)
         End Get
     End Property
-
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("https://admin.crodip.fr/server")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("https://admin.crodip.fr/server")>  _
     Public ReadOnly Property WSCrodipURL() As String
         Get
-            Return CType(Me("WSCrodipURL"), String)
+            Return CType(Me("WSCrodipURL"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("https://admin-pp.crodip.fr/server")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("https://admin-pp.crodip.fr/server")>  _
     Public ReadOnly Property WSCrodipURLTEST() As String
         Get
-            Return CType(Me("WSCrodipURLTEST"), String)
+            Return CType(Me("WSCrodipURLTEST"),String)
         End Get
     End Property
-
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("V2.6.4")>
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("V2.6.4")>  _
     Public ReadOnly Property DBVersionExpected() As String
         Get
-            Return CType(Me("DBVersionExpected"), String)
+            Return CType(Me("DBVersionExpected"),String)
         End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20200922100000")>  _
+    Public ReadOnly Property NumBuild() As String
+        Get
+            Return CType(Me("NumBuild"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("NORMAL")>  _
+    Public ReadOnly Property Mode() As String
+        Get
+            Return CType(Me("Mode"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("Tablette graphique")>  _
+    Public Property ModeSignature() As String
+        Get
+            Return CType(Me("ModeSignature"),String)
+        End Get
+        Set
+            Me("ModeSignature") = value
+        End Set
     End Property
 End Class
 

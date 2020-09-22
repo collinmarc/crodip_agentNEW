@@ -267,6 +267,15 @@
     <Compile Include="Application\includes\classes\Tools\AttributesCrodip.vb" />
     <Compile Include="Application\includes\classes\Tools\FacturationConfig.vb" />
     <Compile Include="Application\includes\classes\Tools\importCRODIP.vb" />
+    <Compile Include="Application\Signature\frmSignClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\Signature\frmSignClientTablette.designer.vb">
+      <DependentUpon>frmSignClientTablette.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Signature\frmSignClientTablette.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\tools\tool_importData.Designer.vb">
       <DependentUpon>tool_importData.vb</DependentUpon>
     </Compile>
@@ -903,10 +912,10 @@
     <Compile Include="Application\ReglagePulve\RPParamUser.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\Signature\frmSignClient.Designer.vb">
-      <DependentUpon>frmSignClient.vb</DependentUpon>
+    <Compile Include="Application\Signature\frmSignClientTelephone.Designer.vb">
+      <DependentUpon>frmSignClientTelephone.vb</DependentUpon>
     </Compile>
-    <Compile Include="Application\Signature\frmSignClient.vb">
+    <Compile Include="Application\Signature\frmSignClientTelephone.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\splash.vb">
@@ -1965,6 +1974,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Service References\WSCrodip2\crodip.wsdl" />
+    <EmbeddedResource Include="Application\Signature\frmSignClientTablette.resx">
+      <DependentUpon>frmSignClientTablette.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\tools\tool_importData.resx">
       <DependentUpon>tool_importData.vb</DependentUpon>
     </EmbeddedResource>
@@ -2172,8 +2184,8 @@
     <EmbeddedResource Include="Application\ReglagePulve\RPParamUser.resx">
       <DependentUpon>RPParamUser.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\Signature\frmSignClient.resx">
-      <DependentUpon>frmSignClient.vb</DependentUpon>
+    <EmbeddedResource Include="Application\Signature\frmSignClientTelephone.resx">
+      <DependentUpon>frmSignClientTelephone.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\splash.resx">
       <DependentUpon>splash.vb</DependentUpon>
