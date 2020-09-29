@@ -1020,9 +1020,8 @@ Public Class ControleBanc
     ''' construction du PDF de Fiche de Vie Controle 
     ''' </summary>
     ''' <param name="curBanc"></param>
-    ''' <param name="pTempEau"></param>
-    ''' <param name="pTempAir"></param>
-    ''' <returns>le Nom du Fichier PDF Généré</returns>
+    ''' <param name="pAgent"></param>
+    ''' <returns>le Nom du Fichier PDF Généré ou Vide</returns>
     ''' <remarks></remarks>
     Public Function buildPDF(ByVal curBanc As Banc, pAgent As Agent) As String
         Dim sReturn As String

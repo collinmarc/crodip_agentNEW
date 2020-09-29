@@ -8,12 +8,13 @@ Public Class EtatFVBanc
     Private m_ods As dsFvBanc
 
     Public Sub New(pControle As ControleBanc)
+        m_Path = Globals.CONST_PATH_EXP_BANCMESURE
         m_oControle = pControle
     End Sub
 
 
 
-    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    Protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Dim strReportName As String
         Try
@@ -34,7 +35,7 @@ Public Class EtatFVBanc
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                     m_FileName = CSDiagPdf.makeFilename(m_oControle.idBanc, CSDiagPdf.TYPE_FV_BANCMESURE) & ".pdf"
-                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile

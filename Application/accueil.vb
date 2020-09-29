@@ -1,5 +1,7 @@
 Imports System.Collections.Generic
 Imports System.IO
+Imports Ionic.Zip
+
 Public Class accueil
     Inherits frmCRODIP
     Implements IObservateur
@@ -3191,6 +3193,27 @@ Public Class accueil
         CSEnvironnement.checkDateTimePicker(dtpSearchCrit1)
         CSEnvironnement.checkDateTimePicker(dtpSearchCrit2)
         CSEnvironnement.checkDateTimePicker(dtp_ControleRegulier)
+        'Création du Fichier ZIP des PDFs
+        If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
+            Using z As New ZipFile()
+                z.Password = Globals.CONST_PDFS_DIAG_PWD
+                Dim l As String() = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP, "*.pdf")
+                For Each f As String In l
+                    If f.Contains("MANOMETRECONTROLE") Then
+                        z.AddFile(f, Globals.CONST_PATH_EXP & "MANOMETRECONTROLE/")
+                    Else
+                        If f.Contains("BANCMESURE") Then
+                            z.AddFile(f, Globals.CONST_PATH_EXP & "BANCMESURE/")
+                        Else
+                            z.AddFile(f, Globals.CONST_PATH_EXP & "DIAGNOSTIC/")
+                        End If
+
+                    End If
+                Next
+                z.Save(Globals.CONST_PDFS_DIAG)
+            End Using
+
+        End If
         ' Informations sur l'agent courant
         m_bDuringLoad = True
         lbl_infosAgent_IdCrodip.Text = agentCourant.numeroNational

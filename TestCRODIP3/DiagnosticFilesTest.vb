@@ -22,23 +22,20 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
 
+        If File.Exists("systemPDF1.zip") Then
+            File.Delete("SystemPDF1.zip")
+        End If
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oEtat.getFileName()))
 
-        If File.Exists("systemPDF1.zip") Then
-            File.Delete("SystemPDF1.zip")
-        End If
-
-
-        Assert.IsTrue(oDiag.AddPDFs(oEtat.getFileName()))
         'Suppression du Fichier
 
         File.Delete(Globals.CONST_PATH_EXP & "/" & oEtat.getFileName())
 
         'Extraction du fichier
-        oDiag.getPDFs(oEtat.getFileName())
+        EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, oEtat.getFileName())
         Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oEtat.getFileName()))
 
         CSFile.open(Globals.CONST_PATH_EXP & "/" & oEtat.getFileName())

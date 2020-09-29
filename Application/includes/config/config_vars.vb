@@ -102,6 +102,9 @@ Public Class Globals
     Public Shared CONST_PATH_PUBLIC As String = "public/"
     ' Exports
     Public Shared CONST_PATH_EXP As String = CONST_PATH_PUBLIC & "exports/"
+    Public Shared CONST_PATH_EXP_MANOCONTROLE As String = CONST_PATH_PUBLIC & "exports/MANOMETRECONTROLE/"
+    Public Shared CONST_PATH_EXP_BANCMESURE As String = CONST_PATH_PUBLIC & "exports/BANCMESURE/"
+    Public Shared CONST_PATH_EXP_DIAGNOSTIC As String = CONST_PATH_PUBLIC & "exports/DIAGNOSTIC/"
 
     ' Images
     Public Shared CONST_PATH_IMG As String = "." & "/img/"

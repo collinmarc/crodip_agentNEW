@@ -43,6 +43,7 @@ Public Class EtatFacture
     Private m_communeClient As String
     Private m_Commentaire As String
     Public Sub New(pDiag As Diagnostic, pReference As String, pCommentaire As String, Optional pExploitation As Exploitation = Nothing)
+        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
         If pExploitation Is Nothing Then
             'Par Défaut les Coordonnées sont celle prises dans le Diag
@@ -82,7 +83,7 @@ Public Class EtatFacture
     End Function
 
 
-    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()
@@ -94,8 +95,8 @@ Public Class EtatFacture
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                    m_FileName = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_FACTURE) & ".pdf"
-                    CrDiskFileDestinationOptions.DiskFileName = m_FileName
+                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_FACTURE) & ".pdf"
+                    CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile

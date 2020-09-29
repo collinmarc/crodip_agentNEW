@@ -481,12 +481,10 @@ Public Class SynchronisationTest
         oEtat = New EtatSyntheseMesures(oDiag)
         oEtat.GenereEtat()
         oDiag.SMFileName = oEtat.getFileName()
-        oDiag.AddPDFs(oEtat.getFileName())
 
         oEtat = New EtatContratCommercial(oDiag)
         oEtat.GenereEtat()
         oDiag.CCFileName = oEtat.getFileName()
-        oDiag.AddPDFs(oEtat.getFileName())
 
 
         DiagnosticManager.save(oDiag)

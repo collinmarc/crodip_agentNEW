@@ -8,10 +8,11 @@ Public Class EtatFVMano
     Private m_ods As dsFvMano
 
     Public Sub New(pControle As ControleMano)
+        m_Path = Globals.CONST_PATH_EXP_MANOCONTROLE
         m_oControle = pControle
     End Sub
 
-    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    Protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Dim strReportName As String
         Try
@@ -33,7 +34,7 @@ Public Class EtatFVMano
                     Dim oMano As ManometreControle
                     oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)
                     m_FileName = CSDiagPdf.makeFilename(oMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
-                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile

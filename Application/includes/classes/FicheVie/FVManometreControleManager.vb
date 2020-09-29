@@ -42,10 +42,15 @@ Public Class FVManometreControleManager
     End Function
     Public Shared Function SendEtats(pFV As FVManometreControle) As Boolean
         Dim bReturn As Boolean
-        If My.Settings.SynchroEtatMode = "FTP" Then
-            bReturn = SendFTPEtats(pFV)
-        Else
-            bReturn = SendHTTPEtats(pFV)
+        Dim filePath As String
+        If Not String.IsNullOrEmpty(pFV.FVFileName) Then
+            filePath = Globals.CONST_PATH_EXP_MANOCONTROLE & "/" & pFV.FVFileName
+            EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_MANOCONTROLE, pFV.FVFileName)
+            If My.Settings.SynchroEtatMode = "FTP" Then
+                bReturn = SendFTPEtats(filePath)
+            Else
+                bReturn = SendHTTPEtats(filePath)
+            End If
         End If
         Return bReturn
     End Function
@@ -56,17 +61,13 @@ Public Class FVManometreControleManager
     ''' <param name="pDiag"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Shared Function SendFTPEtats(pFV As FVManometreControle) As Boolean
+    Private Shared Function SendFTPEtats(filePath As String) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = False
             Dim oCSftp As CSFTP = New CSFTP()
-            Dim filePath As String
-            If Not String.IsNullOrEmpty(pFV.FVFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pFV.FVFileName
-                If System.IO.File.Exists(filePath) Then
-                    bReturn = oCSftp.Upload(filePath, "FV/MC")
-                End If
+            If System.IO.File.Exists(filePath) Then
+                bReturn = oCSftp.Upload(filePath, "FV/MC")
             End If
         Catch ex As Exception
             CSDebug.dispError("FvManometreControleManager.SendFTPEtats ERR : " & ex.Message)
@@ -74,7 +75,7 @@ Public Class FVManometreControleManager
         End Try
         Return bReturn
     End Function
-    Friend Shared Function SendHTTPEtats(pFV As FVManometreControle) As Boolean
+    Friend Shared Function SendHTTPEtats(filePath As String) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -82,13 +83,9 @@ Public Class FVManometreControleManager
             Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & My.Settings.SynchroEtatTVManoUrl)
             'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur
             Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVManoUser, My.Settings.SynhcroEtatFVManoPwd)
-            Dim filePath As String
-            If Not String.IsNullOrEmpty(pFV.FVFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pFV.FVFileName
-                If System.IO.File.Exists(filePath) Then
-                    My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
-                    SynchronisationManager.LogSynchroElmt(filePath)
-                End If
+            If System.IO.File.Exists(filePath) Then
+                My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
+                SynchronisationManager.LogSynchroElmt(filePath)
             End If
         Catch ex As Exception
             CSDebug.dispError("FvManometreControleManager.SendHTTPEtats ERR : " & ex.Message)

@@ -10,17 +10,15 @@ Public Class EtatRapportInspection
     Private m_oPulve As Pulverisateur
     Private m_ods As ds_Etat_RI
 
-    Public Sub New()
-        m_oPulve = PulverisateurManager.getPulverisateurById(m_oDiag.pulverisateurId)
-    End Sub
     Public Sub New(pDiag As Diagnostic)
+        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
         m_oPulve = PulverisateurManager.getPulverisateurById(m_oDiag.pulverisateurId)
     End Sub
 
 
 
-    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    Protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Dim strReportName As String
         Try
@@ -41,7 +39,7 @@ Public Class EtatRapportInspection
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                     m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
-                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = m_oReportDocument.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile

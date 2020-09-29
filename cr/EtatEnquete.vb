@@ -11,6 +11,7 @@ Public Class EtatEnquete
     Private m_ReportName As String
 
     Public Sub New(pDiag As Diagnostic)
+        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
         'Récupération du nom du modème Crystal pour un chargement ultérieur
         Using r1 As New cr_EnqueteSatisfaction()
@@ -19,7 +20,7 @@ Public Class EtatEnquete
         End Using
     End Sub
 
-    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()
@@ -32,7 +33,7 @@ Public Class EtatEnquete
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                     m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_FEUILLE_ENQSAT) & ".pdf"
-                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile

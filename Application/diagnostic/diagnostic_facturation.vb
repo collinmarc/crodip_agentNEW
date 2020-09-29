@@ -866,7 +866,7 @@ Public Class diagnostic_facturation
 
                 Next
                 oEtat.GenereEtat()
-                m_pathFacture = oEtat.getFileName()
+                m_pathFacture = oEtat.getFileNameFullPath()
             End If
         Catch ex As Exception
             CSDebug.dispError("diagnostic_finalisation::createFacture_CR : " & ex.Message)
@@ -1028,7 +1028,7 @@ Public Class diagnostic_facturation
             Next
 
             oEtat.GenereEtat()
-            m_pathBl = oEtat.getFileName()
+            m_pathBl = oEtat.getFileNameFullPath()
         Catch ex As Exception
             CSDebug.dispError("diagnostic_finalisation::createBL_CR : " & ex.Message)
         End Try

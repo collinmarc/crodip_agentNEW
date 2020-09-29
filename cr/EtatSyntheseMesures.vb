@@ -9,6 +9,7 @@ Public Class EtatSyntheseMesures
     Private m_oDiag As Diagnostic
     Private m_ods As ds_Etat_SM
     Public Sub New(pDiag As Diagnostic)
+        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
     End Sub
 
@@ -23,7 +24,7 @@ Public Class EtatSyntheseMesures
     End Function
 
 
-    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Dim strReportName As String
         Try
@@ -68,7 +69,7 @@ Public Class EtatSyntheseMesures
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                     m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_SYNTHESE_MESURES) & "_" & m_oDiag.id & ".pdf"
-                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = m_oReportDocument.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile

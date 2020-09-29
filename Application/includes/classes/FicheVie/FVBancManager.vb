@@ -543,10 +543,16 @@ Public Class FVBancManager
 
     Public Shared Function SendEtats(pFV As FVBanc) As Boolean
         Dim bReturn As Boolean
-        If My.Settings.SynchroEtatMode = "FTP" Then
-            bReturn = SendFTPEtats(pFV)
-        Else
-            bReturn = SendHTTPEtats(pFV)
+        Dim filePath As String
+        If Not String.IsNullOrEmpty(pFV.FVFileName) Then
+            filePath = Globals.CONST_PATH_EXP_BANCMESURE & "/" & pFV.FVFileName
+            EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_BANCMESURE, pFV.FVFileName)
+
+            If My.Settings.SynchroEtatMode = "FTP" Then
+                bReturn = SendFTPEtats(filePath)
+            Else
+                bReturn = SendHTTPEtats(filePath)
+            End If
         End If
         Return bReturn
     End Function
@@ -557,17 +563,13 @@ Public Class FVBancManager
     ''' <param name="pDiag"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Shared Function SendFTPEtats(pFV As FVBanc) As Boolean
+    Private Shared Function SendFTPEtats(pFilePath As String) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = False
             Dim oCSftp As CSFTP = New CSFTP()
-            Dim filePath As String
-            If Not String.IsNullOrEmpty(pFV.FVFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pFV.FVFileName
-                If System.IO.File.Exists(filePath) Then
-                    bReturn = oCSftp.Upload(filePath, "FV/BC")
-                End If
+            If System.IO.File.Exists(pFilePath) Then
+                bReturn = oCSftp.Upload(pFilePath, "FV/BC")
             End If
         Catch ex As Exception
             CSDebug.dispError("FVBancManager.SendFTPEtats ERR : " & ex.Message)
@@ -576,7 +578,7 @@ Public Class FVBancManager
         Return bReturn
     End Function
 
-    Friend Shared Function SendHTTPEtats(pFV As FVBanc) As Boolean
+    Friend Shared Function SendHTTPEtats(pFilePath As String) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -584,13 +586,9 @@ Public Class FVBancManager
             Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatFVBancUrl)
             'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur
             Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVBancUser, My.Settings.SynhcroEtatFVBancPwd)
-            Dim filePath As String
-            If Not String.IsNullOrEmpty(pFV.FVFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pFV.FVFileName
-                If System.IO.File.Exists(filePath) Then
-                    My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
-                    SynchronisationManager.LogSynchroElmt(filePath)
-                End If
+            If System.IO.File.Exists(pFilePath) Then
+                My.Computer.Network.UploadFile(pFilePath, uri, Credential, False, 100000)
+                SynchronisationManager.LogSynchroElmt(pFilePath)
             End If
         Catch ex As Exception
             CSDebug.dispError("FVBancManager.SendHTTPEtats ERR : " & ex.Message)

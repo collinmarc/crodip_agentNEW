@@ -1080,7 +1080,6 @@ Public Class frmdiagnostic_recap
             If pExportDPF Then
                 pathRapport = oEtat.getFileName()
                 m_diagnostic.RIFileName = pathRapport
-                m_diagnostic.AddPDFs(pathRapport)
                 bReturn = File.Exists(Globals.CONST_PATH_EXP & pathRapport)
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument

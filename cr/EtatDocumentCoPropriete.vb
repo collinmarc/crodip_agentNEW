@@ -12,6 +12,7 @@ Public Class EtatDocumentCoPropriete
     Private m_ReportName As String
 
     Public Sub New(pDiag As Diagnostic)
+        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
         m_lstCoProp = New List(Of String)
         'Récupération du nom du modème Crystal pour un chargement ultérieur
@@ -36,7 +37,7 @@ Public Class EtatDocumentCoPropriete
     End Function
 
 
-    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()
@@ -49,7 +50,7 @@ Public Class EtatDocumentCoPropriete
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                     m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_DOC_COPROP) & ".pdf"
-                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile

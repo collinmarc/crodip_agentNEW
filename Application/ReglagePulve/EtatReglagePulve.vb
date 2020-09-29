@@ -29,7 +29,7 @@ Public Class EtatReglagePulve
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    Protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()

@@ -11,6 +11,7 @@ Public Class EtatContratCommercial
     Private m_ReportName As String
 
     Public Sub New(pDiag As Diagnostic)
+        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
         'Récupération du nom du modème Crystal pour un chargement ultérieur
         Using r1 As New cr_ContratCommercial()
@@ -19,7 +20,7 @@ Public Class EtatContratCommercial
         End Using
     End Sub
 
-    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Dim strReportName As String
         Try
@@ -44,9 +45,9 @@ Public Class EtatContratCommercial
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                     m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
-                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
-                    If File.Exists(Globals.CONST_PATH_EXP & m_FileName) Then
-                        File.Delete(Globals.CONST_PATH_EXP & m_FileName)
+                    CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
+                    If File.Exists(m_Path & m_FileName) Then
+                        File.Delete(m_Path & m_FileName)
                     End If
 
                     CrExportOptions = m_oReportDocument.ExportOptions

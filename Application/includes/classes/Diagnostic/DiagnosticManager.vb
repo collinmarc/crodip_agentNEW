@@ -54,9 +54,9 @@ Public Class DiagnosticManager
     Public Shared Function SendEtats(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         ''Récupération des PDFS avant Synhcro
-        '        pDiag.getPDFs(pDiag.RIFileName)
-        '       pDiag.getPDFs(pDiag.SMFileName)
-        '      pDiag.getPDFs(pDiag.CCFileName)
+        EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, pDiag.RIFileName)
+        EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, pDiag.SMFileName)
+        EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, pDiag.CCFileName)
         If My.Settings.SynchroEtatMode = "FTP" Then
             bReturn = SendFTPEtats(pDiag)
         Else
@@ -125,21 +125,21 @@ Public Class DiagnosticManager
             Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatDiagUser, My.Settings.SynhcroEtatDiagPwd)
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
+                filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
                     My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
                     SynchronisationManager.LogSynchroElmt(filePath)
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
+                filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.SMFileName
                 If System.IO.File.Exists(filePath) Then
                     My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
                     SynchronisationManager.LogSynchroElmt(filePath)
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.CCFileName
+                filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.CCFileName
                 If System.IO.File.Exists(filePath) Then
                     My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
                     SynchronisationManager.LogSynchroElmt(filePath)

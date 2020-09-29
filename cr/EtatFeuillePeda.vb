@@ -11,6 +11,7 @@ Public Class EtatFeuillePeda
     Private m_ReportName As String
 
     Public Sub New(pDiag As FeuillePeda)
+        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
         m_oFeuille = pDiag
         'Récupération du nom du modème Crystal pour un chargement ultérieur
         Using r1 As New cr_FeuillePedagogique()
@@ -20,7 +21,7 @@ Public Class EtatFeuillePeda
         m_ods = New dsEnquete
     End Sub
 
-    Public Overrides Function GenereEtat(Optional pExportPDF As Boolean = True) As Boolean
+    protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()
@@ -33,7 +34,7 @@ Public Class EtatFeuillePeda
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                     m_FileName = CSDiagPdf.makeFilename(m_oFeuille.oDiag.pulverisateurId, CSDiagPdf.TYPE_FEUILLE_PEDAGOGIQUE) & ".pdf"
-                    CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP & m_FileName
+                    CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions
                         .ExportDestinationType = ExportDestinationType.DiskFile
