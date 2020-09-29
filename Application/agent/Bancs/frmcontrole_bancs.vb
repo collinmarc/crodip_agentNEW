@@ -76,6 +76,8 @@ Public Class frmcontrole_bancs
     Friend WithEvents TextBox6 As System.Windows.Forms.TextBox
     Friend WithEvents Panel8 As System.Windows.Forms.Panel
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents dtpDateVerif As DateTimePicker
+    Friend WithEvents Label3 As Label
     Public CONST_COLOR_CELL_OK As Drawing.Color = System.Drawing.Color.LightGreen
 
 
@@ -164,6 +166,8 @@ Public Class frmcontrole_bancs
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmcontrole_bancs))
         Me.Label82 = New System.Windows.Forms.Label()
         Me.grp_infoGenerales = New System.Windows.Forms.GroupBox()
+        Me.dtpDateVerif = New System.Windows.Forms.DateTimePicker()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.controleBanc_numBanc = New System.Windows.Forms.ComboBox()
         Me.lbl_numBanc = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -343,6 +347,8 @@ Public Class frmcontrole_bancs
         '
         'grp_infoGenerales
         '
+        Me.grp_infoGenerales.Controls.Add(Me.dtpDateVerif)
+        Me.grp_infoGenerales.Controls.Add(Me.Label3)
         Me.grp_infoGenerales.Controls.Add(Me.controleBanc_numBanc)
         Me.grp_infoGenerales.Controls.Add(Me.lbl_numBanc)
         Me.grp_infoGenerales.Controls.Add(Me.Label4)
@@ -360,14 +366,33 @@ Public Class frmcontrole_bancs
         Me.grp_infoGenerales.Location = New System.Drawing.Point(8, 48)
         Me.grp_infoGenerales.Name = "grp_infoGenerales"
         Me.grp_infoGenerales.Size = New System.Drawing.Size(992, 104)
-        Me.grp_infoGenerales.TabIndex = 0
+        Me.grp_infoGenerales.TabIndex = 1
         Me.grp_infoGenerales.TabStop = False
         Me.grp_infoGenerales.Text = "Informations générales"
+        '
+        'dtpDateVerif
+        '
+        Me.dtpDateVerif.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpDateVerif.Location = New System.Drawing.Point(178, 24)
+        Me.dtpDateVerif.Name = "dtpDateVerif"
+        Me.dtpDateVerif.Size = New System.Drawing.Size(128, 20)
+        Me.dtpDateVerif.TabIndex = 0
+        '
+        'Label3
+        '
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.Label3.Location = New System.Drawing.Point(6, 24)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(164, 16)
+        Me.Label3.TabIndex = 18
+        Me.Label3.Text = "Date de vérification :"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'controleBanc_numBanc
         '
         Me.controleBanc_numBanc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.controleBanc_numBanc.Location = New System.Drawing.Point(180, 24)
+        Me.controleBanc_numBanc.Location = New System.Drawing.Point(178, 56)
         Me.controleBanc_numBanc.Name = "controleBanc_numBanc"
         Me.controleBanc_numBanc.Size = New System.Drawing.Size(128, 21)
         Me.controleBanc_numBanc.TabIndex = 0
@@ -376,7 +401,7 @@ Public Class frmcontrole_bancs
         '
         Me.lbl_numBanc.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_numBanc.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.lbl_numBanc.Location = New System.Drawing.Point(60, 24)
+        Me.lbl_numBanc.Location = New System.Drawing.Point(58, 56)
         Me.lbl_numBanc.Name = "lbl_numBanc"
         Me.lbl_numBanc.Size = New System.Drawing.Size(112, 16)
         Me.lbl_numBanc.TabIndex = 17
@@ -1818,6 +1843,8 @@ Public Class frmcontrole_bancs
         labelVerifBuse5.Text = ""
         labelVerifBuse6.Text = ""
 
+        dtpDateVerif.Value = Date.Now
+
         '###########################################################
         '################ Chargement des buses etalon ##############
         '###########################################################
@@ -1920,7 +1947,7 @@ Public Class frmcontrole_bancs
         ' Mise a jour de l'objet Banc
         Try
             curBanc.etat = m_oControleBanc.bResultat
-            curBanc.dateDernierControleS = CSDate.ToCRODIPString(Date.Now).ToString
+            curBanc.dateDernierControleS = dtpDateVerif.Value
             BancManager.save(curBanc)
         Catch ex As Exception
             CSDebug.dispFatal("controle_banc::btn_controleBanc_valider_Click : " & ex.Message)
