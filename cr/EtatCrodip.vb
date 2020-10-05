@@ -36,9 +36,10 @@ Public Class EtatCrodip
         Return bReturn
     End Function
     Public Function genereEtat(Optional pExportPDF As Boolean = True) As Boolean
-        genereEtatLocal(pExportPDF)
+        Dim bReturn As Boolean = False
+        bReturn = genereEtatLocal(pExportPDF)
         If (pExportPDF) Then
-            AddPDFs()
+            bReturn = bReturn And AddPDFs()
         End If
     End Function
     Protected Overridable Function genereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
@@ -78,7 +79,7 @@ Public Class EtatCrodip
             Else
                 Using z As ZipFile = ZipFile.Read(Globals.CONST_PDFS_DIAG)
                     z.Password = Globals.CONST_PDFS_DIAG_PWD
-                    z.ExtractSelectedEntries(pFileName, Globals.CONST_PATH_EXP, "", ExtractExistingFileAction.OverwriteSilently)
+                    z.ExtractSelectedEntries(pFileName, pPath, "", ExtractExistingFileAction.OverwriteSilently)
                 End Using
             End If
         Catch ex As Exception

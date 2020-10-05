@@ -1,8 +1,10 @@
 TRUNK
 MASTER
 
-BUILD : 
+BUILD : 20201005100000
+----------------------
 0001276: Ajout de la date de vérification du banc
+0001280: Retour version
 
 BUILD 20200922100000
 ---------------------

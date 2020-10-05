@@ -211,7 +211,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.4.7.4\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -259,6 +261,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Application\diagnostic\liste_diagnosticPulve.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\includes\classes\Agent\Materiel\Alertes.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtPulverisateur.vb" />
@@ -431,9 +436,6 @@
       <DependentUpon>frmSaisieNumFact.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\diagnostic\frmSaisieNumFact.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\diagnostic\liste_diagnosticPulve.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\dlgToleranceBuses.Designer.vb">
@@ -1974,6 +1976,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Service References\WSCrodip2\crodip.wsdl" />
+    <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve.resx">
+      <DependentUpon>liste_diagnosticPulve.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\Signature\frmSignClientTablette.resx">
       <DependentUpon>frmSignClientTablette.vb</DependentUpon>
     </EmbeddedResource>
@@ -2102,9 +2107,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmSaisieNumFact.resx">
       <DependentUpon>frmSaisieNumFact.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve.resx">
-      <DependentUpon>liste_diagnosticPulve.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\dlgExportAutoTest.resx">
       <DependentUpon>dlgExportAutoTest.vb</DependentUpon>

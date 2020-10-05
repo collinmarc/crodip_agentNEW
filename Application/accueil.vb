@@ -3214,6 +3214,15 @@ Public Class accueil
             End Using
 
         End If
+        If Not Directory.Exists(Globals.CONST_PATH_EXP_MANOCONTROLE) Then
+            Directory.CreateDirectory(Globals.CONST_PATH_EXP_MANOCONTROLE)
+        End If
+        If Not Directory.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC) Then
+            Directory.CreateDirectory(Globals.CONST_PATH_EXP_DIAGNOSTIC)
+        End If
+        If Not Directory.Exists(Globals.CONST_PATH_EXP_BANCMESURE) Then
+            Directory.CreateDirectory(Globals.CONST_PATH_EXP_BANCMESURE)
+        End If
         ' Informations sur l'agent courant
         m_bDuringLoad = True
         lbl_infosAgent_IdCrodip.Text = agentCourant.numeroNational

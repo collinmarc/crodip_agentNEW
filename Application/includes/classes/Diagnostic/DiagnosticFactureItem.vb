@@ -55,7 +55,7 @@ Public Class DiagnosticFactureItem
                 Dim strValue As String = Value
                 strValue = strValue.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
                 strValue = strValue.Replace(",", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
-                If Convert.ToDecimal(strValue) Then
+                If Convert.ToDecimal(strValue) Or strValue = "0" Or strValue = "0,0" Then
                     _prixUnitaire = strValue
                     calcultTotal()
                 End If

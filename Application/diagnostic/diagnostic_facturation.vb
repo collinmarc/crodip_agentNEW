@@ -775,7 +775,7 @@ Public Class diagnostic_facturation
                         Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
                         If CType(FACTURATION_XML_CONFIG.getElementValue("/root/isActive"), Boolean) Then
                             If Trim(m_oDiag.pulverisateurNbreExploitants) <> "" Then
-                                If m_oDiag.pulverisateurNbreExploitants > 1 Then
+                                If m_oDiag.pulverisateurNbreExploitants > 1 And m_oDiag.pulverisateurModeUtilisation <> "Entrepreneur" Then
                                     btn_imprimerFactureCoProp.Visible = True
                                     btn_ImprimerFacture.Visible = False
                                     btn_imprimerFactureCoProp.Location = btn_ImprimerFacture.Location

@@ -1080,7 +1080,7 @@ Public Class frmdiagnostic_recap
             If pExportDPF Then
                 pathRapport = oEtat.getFileName()
                 m_diagnostic.RIFileName = pathRapport
-                bReturn = File.Exists(Globals.CONST_PATH_EXP & pathRapport)
+                bReturn = File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & pathRapport)
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
             End If
@@ -1106,7 +1106,7 @@ Public Class frmdiagnostic_recap
                 End If
                 m_diagnostic.CCFileName = oEtat.getFileName()
                 ' m_diagnostic.AddPDFs(oEtat.getFileName())
-                bReturn = File.Exists(Globals.CONST_PATH_EXP & oEtat.getFileName())
+                bReturn = File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & oEtat.getFileName())
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
             End If
