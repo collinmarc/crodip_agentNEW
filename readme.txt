@@ -5,6 +5,7 @@ BUILD : 20201005100000
 ----------------------
 0001276: Ajout de la date de vérification du banc
 0001280: Retour version
+0001285: Dans l'aperçu du Rapport d'inspection , la date de prochain controle n'est pas correcte
 
 BUILD 20200922100000
 ---------------------

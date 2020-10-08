@@ -87,7 +87,7 @@ Public Class DiagnosticManager
             Dim oCSftp As CSFTP = New CSFTP()
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
+                filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
                     bReturn = oCSftp.Upload(filePath)
                     bReturn = oCSftp.FileExists(pDiag.RIFileName)
@@ -95,7 +95,7 @@ Public Class DiagnosticManager
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
+                filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.SMFileName
                 If System.IO.File.Exists(filePath) Then
                     SynchronisationManager.LogSynchroElmt(filePath)
                     bReturn = bReturn And oCSftp.Upload(filePath)
@@ -103,7 +103,7 @@ Public Class DiagnosticManager
                 End If
             End If
             If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.CCFileName
+                filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.CCFileName
                 If System.IO.File.Exists(filePath) Then
                     SynchronisationManager.LogSynchroElmt(filePath)
                     bReturn = bReturn And oCSftp.Upload(filePath)
@@ -165,25 +165,25 @@ Public Class DiagnosticManager
             Dim oCSftp As CSFTP = New CSFTP()
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
+                filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If
-                bReturn = oCSftp.DownLoad(pDiag.RIFileName, Globals.CONST_PATH_EXP & "/")
+                bReturn = oCSftp.DownLoad(pDiag.RIFileName, Globals.CONST_PATH_EXP_DIAGNOSTIC & "/")
             End If
             If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.SMFileName
+                filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.SMFileName
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If
-                bReturn = bReturn And oCSftp.DownLoad(pDiag.SMFileName, Globals.CONST_PATH_EXP & "/")
+                bReturn = bReturn And oCSftp.DownLoad(pDiag.SMFileName, Globals.CONST_PATH_EXP_DIAGNOSTIC & "/")
             End If
             If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.CCFileName
+                filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.CCFileName
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If
-                bReturn = bReturn And oCSftp.DownLoad(pDiag.CCFileName, Globals.CONST_PATH_EXP & "/")
+                bReturn = bReturn And oCSftp.DownLoad(pDiag.CCFileName, Globals.CONST_PATH_EXP_DIAGNOSTIC & "/")
             End If
         Catch ex As Exception
             CSDebug.dispError("DiagnosticManager.GetFTPEtats ERR : " & ex.Message)
@@ -200,7 +200,7 @@ Public Class DiagnosticManager
             Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatDiagUser, My.Settings.SynhcroEtatDiagPwd)
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
-                filePath = Globals.CONST_PATH_EXP & "/" & pDiag.RIFileName
+                filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.RIFileName
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If

@@ -263,7 +263,7 @@ Public Class Synchronisation
                     ' Récupération de la liste des FV des manos de moins d'un an qui ont un nom de PDF 
                     Dim lst As List(Of FVManometreControle) = FVManometreControleManager.getLstFVManometreControle().Where(Function(d) d.FVFileName <> "" And d.dateModif <> "" And CDate(d.dateModif) > Now.AddMonths(-6)).ToList()
                     For Each oFV As FVManometreControle In lst
-                        If File.Exists(Globals.CONST_PATH_EXP & oFV.FVFileName) Then
+                        If File.Exists(Globals.CONST_PATH_EXP_MANOCONTROLE & oFV.FVFileName) Then
                             Notice("PDFs [" & oFV.id & "]")
                             FVManometreControleManager.SendEtats(oFV)
                         End If

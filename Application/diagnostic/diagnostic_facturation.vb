@@ -986,10 +986,7 @@ Public Class diagnostic_facturation
 
             Dim oEtat As New EtatContratCommercial(m_oDiag)
             If oEtat.GenereEtat(True) Then
-                pathContrat = Globals.CONST_PATH_EXP & oEtat.getFileName()
-                If File.Exists(Globals.CONST_PATH_EXP & m_oDiag.CCFileName) Then
-                    File.Delete(Globals.CONST_PATH_EXP & m_oDiag.CCFileName)
-                End If
+                pathContrat = Globals.CONST_PATH_EXP_DIAGNOSTIC & oEtat.getFileName()
                 m_oDiag.CCFileName = oEtat.getFileName()
             End If
         Catch ex As Exception
@@ -1002,10 +999,10 @@ Public Class diagnostic_facturation
         Try
 
             ' On affiche le PDF rempli
-            CSFile.open(pathContrat)
+            CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)
 
         Catch ex As Exception
-            CSDebug.dispError("Génération contrat commercial : " & ex.Message)
+            CSDebug.dispError("Affichage du contrat commercial: " & ex.Message)
         End Try
     End Sub
 

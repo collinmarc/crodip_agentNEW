@@ -41,6 +41,7 @@ Public Class EtatCrodip
         If (pExportPDF) Then
             bReturn = bReturn And AddPDFs()
         End If
+        Return bReturn
     End Function
     Protected Overridable Function genereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Return False

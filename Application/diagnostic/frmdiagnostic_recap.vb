@@ -1101,8 +1101,8 @@ Public Class frmdiagnostic_recap
             Dim oEtat As New EtatContratCommercial(m_diagnostic)
             oEtat.GenereEtat(pExportDPF)
             If pExportDPF Then
-                If File.Exists(Globals.CONST_PATH_EXP & m_diagnostic.CCFileName) Then
-                    File.Delete(Globals.CONST_PATH_EXP & m_diagnostic.CCFileName)
+                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName) Then
+                    File.Delete(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName)
                 End If
                 m_diagnostic.CCFileName = oEtat.getFileName()
                 ' m_diagnostic.AddPDFs(oEtat.getFileName())
@@ -1120,7 +1120,7 @@ Public Class frmdiagnostic_recap
     Private Sub btn_finalisationDiag_imprimerRapport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_imprimerRapport.Click
         Try
             ' On affiche le PDF rempli
-            CSFile.open(Globals.CONST_PATH_EXP & m_diagnostic.RIFileName)
+            CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.RIFileName)
         Catch ex As Exception
             Console.Write("[Erreur] - Génération Rapport d'Inspection : " & ex.Message.ToString & vbNewLine)
         End Try
@@ -1133,7 +1133,7 @@ Public Class frmdiagnostic_recap
         Try
             Statusbar.display("Affichage du rapport de synthèse", True)
             ' On affiche le PDF rempli
-            CSFile.open(Globals.CONST_PATH_EXP & m_diagnostic.SMFileName)
+            CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.SMFileName)
             Statusbar.display("", True)
         Catch ex As Exception
             CSDebug.dispError("Erreur lors de la génération de l'état des Debit de buses : " & ex.Message.ToString)
@@ -1408,7 +1408,7 @@ Public Class frmdiagnostic_recap
         Try
             Statusbar.display("Affichage du contrat commercial", True)
             ' On affiche le PDF rempli
-            CSFile.open(Globals.CONST_PATH_EXP & m_diagnostic.CCFileName)
+            CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName)
             Statusbar.display("", True)
         Catch ex As Exception
             CSDebug.dispError("Erreur lors de l'affichage du contrat commercial " & ex.Message)

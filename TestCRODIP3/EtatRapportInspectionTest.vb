@@ -687,12 +687,12 @@ Imports System.IO
         oEtat.GenereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
 
         Dim oEtatSM As New EtatSyntheseMesures(oDiag)
-        oEtatSM.GenereEtat()
+        oEtatSM.genereEtat()
         oDiag.SMFileName = oEtat.getFileName()
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         oDiag.SMFileName = oEtatSM.getFileName()
         DiagnosticManager.save(oDiag)
@@ -703,16 +703,16 @@ Imports System.IO
         Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
         'Suppression des etats générés en local
-        File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
-        File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName)
-        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
-        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
+        File.Delete(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        File.Delete(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
+        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         'Récupération des fichiers par FTP
         Assert.IsTrue(DiagnosticManager.getFTPEtats(oDiag))
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
-        CSFile.open(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
 
     End Sub
     <TestMethod()> Public Sub TestSynhcroHTTPEtat()
@@ -745,15 +745,15 @@ Imports System.IO
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         DiagnosticManager.save(oDiag)
         oEtat = New EtatRapportInspection(oDiag)
-        oEtat.GenereEtat()
+        oEtat.genereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
 
         Dim oEtatSM As New EtatSyntheseMesures(oDiag)
-        oEtatSM.GenereEtat()
+        oEtatSM.genereEtat()
         oDiag.SMFileName = oEtat.getFileName()
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         oDiag.SMFileName = oEtatSM.getFileName()
         DiagnosticManager.save(oDiag)
@@ -762,19 +762,19 @@ Imports System.IO
         Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
         'Suppression des etats générés en local
-        File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
-        File.Delete(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName)
-        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
-        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
+        File.Delete(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        File.Delete(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
+        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         'Récupération des fichiers par HTTP
         Assert.IsTrue(DiagnosticManager.getHTTPEtats(oDiag))
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
-        Dim oFi As New FileInfo(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
         Assert.AreNotEqual(0L, oFi.Length)
         'L'api ne permet pas de récupérer la synthèses des mesures ou le contrat commercial
-        'Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
-        CSFile.open(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName)
+        'Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
 
     End Sub
     <TestMethod()> Public Sub TestOrdredesDiagItems()
@@ -848,7 +848,7 @@ Imports System.IO
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -961,7 +961,7 @@ Imports System.IO
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsFalse(oEtat.getFileName().Contains("'"))
         Assert.IsFalse(oEtat.getFileName().Contains("/"))
@@ -1078,7 +1078,7 @@ Imports System.IO
 
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -1190,7 +1190,7 @@ Imports System.IO
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -1318,7 +1318,7 @@ Imports System.IO
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -1428,7 +1428,7 @@ Imports System.IO
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat())
+        Assert.IsTrue(oEtat.genereEtat())
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -1536,7 +1536,7 @@ Imports System.IO
         'oDiag.AddDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat())
+        Assert.IsTrue(oEtat.genereEtat())
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -1644,7 +1644,7 @@ Imports System.IO
         'oDiag.AddDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat())
+        Assert.IsTrue(oEtat.genereEtat())
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -1721,7 +1721,7 @@ Imports System.IO
         Next
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -1837,7 +1837,7 @@ Imports System.IO
 
         DiagnosticManager.save(oDiag)
         oEtat = New EtatSyntheseMesures(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -1928,7 +1928,7 @@ Imports System.IO
 
         DiagnosticManager.save(oDiag)
         oEtat = New EtatSyntheseMesures(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -1990,7 +1990,7 @@ Imports System.IO
 
         DiagnosticManager.save(oDiag)
         oEtat = New EtatSyntheseMesures(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -2029,15 +2029,15 @@ Imports System.IO
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         DiagnosticManager.save(oDiag)
         oEtat = New EtatRapportInspection(oDiag)
-        oEtat.GenereEtat()
+        oEtat.genereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
 
         Dim oEtatSM As New EtatSyntheseMesures(oDiag)
-        oEtatSM.GenereEtat()
+        oEtatSM.genereEtat()
         oDiag.SMFileName = oEtat.getFileName()
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         oDiag.SMFileName = oEtatSM.getFileName()
         DiagnosticManager.save(oDiag)

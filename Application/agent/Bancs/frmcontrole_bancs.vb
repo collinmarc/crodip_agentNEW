@@ -1957,7 +1957,7 @@ Public Class frmcontrole_bancs
         Dim oFV As FVBanc
         oFV = curBanc.creerfFicheVieControle(agentCourant, m_oControleBanc)
         If oFV.FVFileName <> "" Then
-            CSFile.open(Globals.CONST_PATH_EXP & oFV.FVFileName)
+            CSFile.open(Globals.CONST_PATH_EXP_BANCMESURE & oFV.FVFileName)
         End If
 
         ' On marque les buses comme etant utilisées

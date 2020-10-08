@@ -683,7 +683,10 @@ Public Class Diagnostic
             Return _controleEtat
         End Get
         Set(ByVal Value As String)
-            _controleEtat = Value
+            If (Value <> _controleEtat) Then
+                _controleEtat = Value
+                CalculDateProchainControle()
+            End If
         End Set
     End Property
 

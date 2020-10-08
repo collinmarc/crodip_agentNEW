@@ -28,17 +28,17 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)
         Assert.IsNotNull(oEtat.getFileName())
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oEtat.getFileName()))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName()))
 
         'Suppression du Fichier
 
-        File.Delete(Globals.CONST_PATH_EXP & "/" & oEtat.getFileName())
+        File.Delete(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName())
 
         'Extraction du fichier
         EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, oEtat.getFileName())
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP & "/" & oEtat.getFileName()))
+        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName()))
 
-        CSFile.open(Globals.CONST_PATH_EXP & "/" & oEtat.getFileName())
+        CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName())
 
     End Sub
 
