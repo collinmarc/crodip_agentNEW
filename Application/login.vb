@@ -1087,15 +1087,18 @@ Public Class login
         '        oPulve = PulverisateurManager.getPulverisateurById("2-81-50") 'Cultures basses
         oPulve = PulverisateurManager.getPulverisateurById("2-1083-7") 'Vigne
         oDiag = New Diagnostic(oAgent, oPulve, oExploit)
-
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCV
+        oDiag.controleDateDebut = Now()
+        oDiag.CalculDateProchainControle()
 
         oFrm = frmSignClient.getfrmSignature(oDiag, SignMode.RIAGENT, oAgent)
         oFrm.ShowDialog()
-        oFrm.Disconnect()
+        oFrm = frmSignClient.getfrmSignature(oDiag, SignMode.RICLIENT, oAgent)
+        oFrm.ShowDialog()
         If oFrm.DialogResult = DialogResult.OK Then
             Dim oEtat As EtatRapportInspection
             oEtat = New EtatRapportInspection(oDiag)
-            oEtat.GenereEtat()
+            oEtat.genereEtat()
             oEtat.Open()
         End If
 

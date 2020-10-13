@@ -1,6 +1,11 @@
 TRUNK
 MASTER
 
+BUILD 20201013120000
+--------------------
+0001286: Signature WACOM
+
+
 BUILD : 20201005100000
 ----------------------
 0001276: Ajout de la date de vérification du banc

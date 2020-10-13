@@ -22,6 +22,7 @@ Partial Class frmSignClientTablette
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Public Overrides Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSignClientTablette))
         Me.pctSignature = New System.Windows.Forms.PictureBox()
         Me.btnQuitter = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
@@ -116,6 +117,7 @@ Partial Class frmSignClientTablette
         Me.Controls.Add(Me.btnValider)
         Me.Controls.Add(Me.btnQuitter)
         Me.Controls.Add(Me.pctSignature)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmSignClientTablette"
         Me.Text = "[TG] Signature Client"
         CType(Me.pctSignature, System.ComponentModel.ISupportInitialize).EndInit()

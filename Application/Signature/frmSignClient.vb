@@ -212,16 +212,21 @@ Public Class frmSignClient
     End Function
 
     Public Overridable Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSignClient))
         Me.SuspendLayout()
         '
         'frmSignClient
         '
         Me.ClientSize = New System.Drawing.Size(284, 261)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmSignClient"
         Me.ResumeLayout(False)
 
     End Sub
 
     Private Sub frmSignClient_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+    End Sub
+
+    Private Sub frmSignClient_Load(sender As Object, e As EventArgs) Handles Me.Load
     End Sub
 End Class

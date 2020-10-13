@@ -82,7 +82,7 @@ Partial Public Class frmSignClientWacom
         img = GetImage(New Drawing.Rectangle(0, 0, m_capability.screenWidth, m_capability.screenHeight))
         img.Save("config/imgOK.bmp")
 
-        RecupereSignature(img, Now)
+        RecupereSignature(img, DateTimePicker1.Value)
         penDataType = m_penDataOptionMode
         If ckConserverSignature.Checked Then
             Me.Conserverlasignature()
@@ -712,6 +712,7 @@ Partial Public Class frmSignClientWacom
     End Class
 
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSignClientWacom))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.btn_ok = New System.Windows.Forms.Button()
@@ -791,6 +792,7 @@ Partial Public Class frmSignClientWacom
         Me.Controls.Add(Me.btn_ok)
         Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.Label1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmSignClientWacom"
         Me.ResumeLayout(False)
         Me.PerformLayout()
