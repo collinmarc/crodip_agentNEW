@@ -208,6 +208,11 @@
     <Reference Include="Gma.System.MouseKeyHook, Version=5.6.130.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MouseKeyHook.5.6.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
     </Reference>
+    <Reference Include="Interop.wgssSTU, Version=2.13.5.0, Culture=neutral, PublicKeyToken=20000022810869de, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Wacom STU SDK\COM\bin\Win32\Interop.wgssSTU.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -281,6 +286,10 @@
     <Compile Include="Application\Signature\frmSignClientTablette.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\Signature\SignatureForm.Designer.vb">
+      <DependentUpon>SignatureForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Signature\SignatureForm.vb" />
     <Compile Include="Application\tools\tool_importData.Designer.vb">
       <DependentUpon>tool_importData.vb</DependentUpon>
     </Compile>
@@ -1323,6 +1332,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Application\Signature\frmSignClientWacom.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Content Include="bdd\crodip_agent.mdb" />
     <Content Include="bdd\crodip_agentBasePourImport.mdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1981,6 +1993,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\Signature\frmSignClientTablette.resx">
       <DependentUpon>frmSignClientTablette.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\Signature\frmSignClientWacom.resx">
+      <DependentUpon>frmSignClientWacom.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\tools\tool_importData.resx">
       <DependentUpon>tool_importData.vb</DependentUpon>

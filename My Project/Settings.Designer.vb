@@ -499,15 +499,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20200922100000")>  _
-    Public ReadOnly Property NumBuild() As String
-        Get
-            Return CType(Me("NumBuild"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("NORMAL")>  _
     Public ReadOnly Property Mode() As String
         Get
@@ -515,9 +506,18 @@ Partial Friend NotInheritable Class MySettings
         End Get
     End Property
     
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20201005100000")>  _
+    Public ReadOnly Property NumBuild() As String
+        Get
+            Return CType(Me("NumBuild"),String)
+        End Get
+    End Property
+    
     <Global.System.Configuration.UserScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("Tablette graphique")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("wacom")>  _
     Public Property ModeSignature() As String
         Get
             Return CType(Me("ModeSignature"),String)

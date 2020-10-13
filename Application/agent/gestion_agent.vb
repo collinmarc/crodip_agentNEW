@@ -58,6 +58,7 @@ Public Class gestion_agent
         Me.Label10 = New System.Windows.Forms.Label()
         Me.grp_fichePulve_classe = New System.Windows.Forms.GroupBox()
         Me.pnlSignature = New System.Windows.Forms.Panel()
+        Me.btnTestsignature = New System.Windows.Forms.Button()
         Me.cbxModeSignature = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ckSignature = New System.Windows.Forms.CheckBox()
@@ -76,7 +77,6 @@ Public Class gestion_agent
         Me.lbl_fichePulve_idCrodip = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btn_ficheInspecteur_annuler = New System.Windows.Forms.Label()
-        Me.btnTestsignature = New System.Windows.Forms.Button()
         Me.panel_clientele_ficheClient_fichePulve.SuspendLayout()
         Me.grp_fichePulve_classe.SuspendLayout()
         Me.pnlSignature.SuspendLayout()
@@ -145,11 +145,20 @@ Public Class gestion_agent
         Me.pnlSignature.Size = New System.Drawing.Size(507, 49)
         Me.pnlSignature.TabIndex = 23
         '
+        'btnTestsignature
+        '
+        Me.btnTestsignature.Location = New System.Drawing.Point(334, 5)
+        Me.btnTestsignature.Name = "btnTestsignature"
+        Me.btnTestsignature.Size = New System.Drawing.Size(75, 23)
+        Me.btnTestsignature.TabIndex = 25
+        Me.btnTestsignature.Text = "Test"
+        Me.btnTestsignature.UseVisualStyleBackColor = True
+        '
         'cbxModeSignature
         '
         Me.cbxModeSignature.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.Crodip_agent.MySettings.Default, "ModeSignature", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.cbxModeSignature.FormattingEnabled = True
-        Me.cbxModeSignature.Items.AddRange(New Object() {"Tablette graphique", "Téléphone"})
+        Me.cbxModeSignature.Items.AddRange(New Object() {"Tablette", "Téléphone", "wacom"})
         Me.cbxModeSignature.Location = New System.Drawing.Point(165, 7)
         Me.cbxModeSignature.Name = "cbxModeSignature"
         Me.cbxModeSignature.Size = New System.Drawing.Size(165, 21)
@@ -337,15 +346,6 @@ Public Class gestion_agent
         Me.btn_ficheInspecteur_annuler.TabIndex = 27
         Me.btn_ficheInspecteur_annuler.Text = "    Fermer"
         Me.btn_ficheInspecteur_annuler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btnTestsignature
-        '
-        Me.btnTestsignature.Location = New System.Drawing.Point(334, 5)
-        Me.btnTestsignature.Name = "btnTestsignature"
-        Me.btnTestsignature.Size = New System.Drawing.Size(75, 23)
-        Me.btnTestsignature.TabIndex = 25
-        Me.btnTestsignature.Text = "Test"
-        Me.btnTestsignature.UseVisualStyleBackColor = True
         '
         'gestion_agent
         '

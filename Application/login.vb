@@ -1079,7 +1079,19 @@ Public Class login
         Dim oFrm As frmSignClient
         Dim oDiag As New Diagnostic()
         Dim oAgent As Agent = AgentManager.getAgentById("1110")
+
+
         oFrm = frmSignClient.getfrmSignature(oDiag, SignMode.RIAGENT, oAgent)
-        oFrm.Show()
+        oFrm.ShowDialog()
+        oFrm.Disconnect()
+        If oFrm.DialogResult = DialogResult.OK Then
+            oFrm.Conserverlasignature()
+        End If
+
+        'Dim usbDevices As wgssSTU.UsbDevices = New wgssSTU.UsbDevices()
+        'Dim usbDevice As wgssSTU.IUsbDevice = usbDevices(0)
+
+        'Dim demo As SignatureForm = New SignatureForm(usbDevice, False)
+        'demo.ShowDialog()
     End Sub
 End Class

@@ -23,7 +23,7 @@ Partial Class frmSignClientTablette
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.pctSignature = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnQuitter = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.dtpDateSignature = New System.Windows.Forms.DateTimePicker()
@@ -44,14 +44,14 @@ Partial Class frmSignClientTablette
         Me.pctSignature.TabIndex = 0
         Me.pctSignature.TabStop = False
         '
-        'Button1
+        'btnQuitter
         '
-        Me.Button1.Location = New System.Drawing.Point(11, 100)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(112, 48)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Quitter"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnQuitter.Location = New System.Drawing.Point(11, 100)
+        Me.btnQuitter.Name = "btnQuitter"
+        Me.btnQuitter.Size = New System.Drawing.Size(112, 48)
+        Me.btnQuitter.TabIndex = 1
+        Me.btnQuitter.Text = "Quitter"
+        Me.btnQuitter.UseVisualStyleBackColor = True
         '
         'btnValider
         '
@@ -99,7 +99,7 @@ Partial Class frmSignClientTablette
         Me.Controls.Add(Me.dtpDateSignature)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnValider)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnQuitter)
         Me.Controls.Add(Me.pctSignature)
         Me.Name = "frmSignClientTablette"
         Me.Text = "[TG] Signature Client"
@@ -110,7 +110,7 @@ Partial Class frmSignClientTablette
     End Sub
 
     Friend WithEvents pctSignature As PictureBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnQuitter As Button
     Friend WithEvents btnValider As Button
     Friend WithEvents btnClear As Button
 

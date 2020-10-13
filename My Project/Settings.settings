@@ -140,14 +140,14 @@
     <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
       <Value Profile="(Default)">V2.6.4</Value>
     </Setting>
-    <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20200922100000</Value>
-    </Setting>
     <Setting Name="Mode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">NORMAL</Value>
     </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20201005100000</Value>
+    </Setting>
     <Setting Name="ModeSignature" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Tablette graphique</Value>
+      <Value Profile="(Default)">wacom</Value>
     </Setting>
   </Settings>
 </SettingsFile>
