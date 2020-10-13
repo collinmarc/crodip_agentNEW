@@ -287,6 +287,9 @@ Partial Public Class frmSignClientWacom
             AfficheTablet()
             m_tablet.setInkingMode(&H1)
 
+
+
+
         End If
     End Sub
 
@@ -653,40 +656,41 @@ Partial Public Class frmSignClientWacom
 
         Try
             bitmap = imgSansBoutons
-            Dim graphics As Graphics = Graphics.FromImage(bitmap)
-            graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality
-            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High
-            graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality
-            graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality
-            'brush = New SolidBrush(Color.White)
-            'graphics.FillRectangle(brush, 0, 0, rect.Width, rect.Height)
-            bitmap.Save("config/ImageOrigine2.bmp", ImageFormat.Bmp)
+            Using graphics As Graphics = Graphics.FromImage(bitmap)
+                graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High
+                graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality
+                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality
+                'brush = New SolidBrush(Color.White)
+                'graphics.FillRectangle(brush, 0, 0, rect.Width, rect.Height)
 
-            If m_penDataOptionMode = CInt(penDataOptionMode.PenDataOptionMode_TimeCountSequence) Then
+                If m_penDataOptionMode = CInt(penDataOptionMode.PenDataOptionMode_TimeCountSequence) Then
 
-                For i As Integer = 1 To m_penTimeData.Count - 1
-                    Dim p1 As PointF = tabletToScreen(m_penTimeData(i - 1))
-                    Dim p2 As PointF = tabletToScreen(m_penTimeData(i))
+                    For i As Integer = 1 To m_penTimeData.Count - 1
+                        Dim p1 As PointF = tabletToScreen(m_penTimeData(i - 1))
+                        Dim p2 As PointF = tabletToScreen(m_penTimeData(i))
 
-                    If m_penTimeData(i - 1).sw > 0 OrElse m_penTimeData(i).sw > 0 Then
-                        graphics.DrawLine(m_penInk, p1, p2)
-                    End If
-                Next
-            Else
+                        If m_penTimeData(i - 1).sw > 0 OrElse m_penTimeData(i).sw > 0 Then
+                            graphics.DrawLine(m_penInk, p1, p2)
+                        End If
+                    Next
+                Else
 
-                For i As Integer = 1 To m_penData.Count - 1
-                    Dim p1 As PointF = tabletToScreen(m_penData(i - 1))
-                    Dim p2 As PointF = tabletToScreen(m_penData(i))
+                    For i As Integer = 1 To m_penData.Count - 1
+                        Dim p1 As PointF = tabletToScreen(m_penData(i - 1))
+                        Dim p2 As PointF = tabletToScreen(m_penData(i))
 
-                    If m_penData(i - 1).sw > 0 OrElse m_penData(i).sw > 0 Then
-                        graphics.DrawLine(m_penInk, p1, p2)
-                    End If
-                Next
-            End If
-            bitmap.Save("config/ImageOrigine3.bmp", ImageFormat.Bmp)
+                        If m_penData(i - 1).sw > 0 OrElse m_penData(i).sw > 0 Then
+                            graphics.DrawLine(m_penInk, p1, p2)
+                        End If
+                    Next
+                End If
+                bitmap.Save("config/ImageOrigine3.bmp", ImageFormat.Bmp)
 
-            retVal = bitmap
-            bitmap = Nothing
+                retVal = bitmap
+                bitmap = Nothing
+            End Using
+
         Finally
             If brush IsNot Nothing Then brush.Dispose()
             If bitmap IsNot Nothing Then bitmap.Dispose()
@@ -696,7 +700,7 @@ Partial Public Class frmSignClientWacom
     End Function
 
     Private Sub frmSignWacom_Load(sender As Object, e As EventArgs) Handles Me.Load
-
+        Me.ckConserverSignature.Visible = (m_Mode = SignMode.RIAGENT Or m_Mode = SignMode.CCAGENT)
     End Sub
 
     Private Class CSharpImpl
@@ -777,7 +781,6 @@ Partial Public Class frmSignClientWacom
         Me.ckConserverSignature.TabIndex = 6
         Me.ckConserverSignature.Text = "Conserver la signature"
         Me.ckConserverSignature.UseVisualStyleBackColor = True
-        Me.ckConserverSignature.Visible = (m_Mode = SignMode.RIAGENT Or m_Mode = SignMode.CCAGENT)
         '
         'frmSignClientWacom
         '

@@ -40,6 +40,18 @@ Public Class frmSignClient
 
 
     Protected Sub SetImgSignature()
+        img = New Bitmap(pctSignatureWidth, pctSignatureHeight)
+        Using graphics As Graphics = Graphics.FromImage(img)
+            graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality
+            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High
+            graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality
+            graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality
+            Using Brush As New SolidBrush(Color.White)
+
+                graphics.FillRectangle(Brush, 0, 0, pctSignatureWidth, pctSignatureHeight)
+            End Using
+        End Using
+
         Select Case m_Mode
             Case SignMode.RIAGENT
                 Me.Text = "Signature Rapport Inspecteur"
@@ -49,7 +61,6 @@ Public Class frmSignClient
                         img = Image.FromStream(ms)
                         bSignVide = False
                     Catch ex As Exception
-                        img = New Bitmap(pctSignatureWidth, pctSignatureHeight)
                     End Try
                 Else
                     If System.IO.File.Exists("config/" & m_Agent.nom & ".sign") Then
@@ -58,7 +69,6 @@ Public Class frmSignClient
                         End Using
                         bSignVide = False
                     Else
-                        img = New Bitmap(pctSignatureWidth, pctSignatureHeight)
                     End If
                 End If
             Case SignMode.RICLIENT
@@ -69,7 +79,6 @@ Public Class frmSignClient
                         img = Image.FromStream(ms)
                         bSignVide = False
                     Catch ex As Exception
-                        img = New Bitmap(pctSignatureWidth, pctSignatureHeight)
                     End Try
                 End If
             Case SignMode.CCAGENT
@@ -80,7 +89,6 @@ Public Class frmSignClient
                         img = Image.FromStream(ms)
                         bSignVide = False
                     Catch ex As Exception
-                        img = New Bitmap(pctSignatureWidth, pctSignatureHeight)
                     End Try
                 Else
                     If System.IO.File.Exists("config/" & m_Agent.nom & ".sign") Then
@@ -88,8 +96,6 @@ Public Class frmSignClient
                             img = New Bitmap(bmpTemp)
                         End Using
                         bSignVide = False
-                    Else
-                        img = New Bitmap(pctSignatureWidth, pctSignatureHeight)
                     End If
                 End If
             Case SignMode.CCCLIENT
@@ -100,7 +106,6 @@ Public Class frmSignClient
                         img = Image.FromStream(ms)
                         bSignVide = False
                     Catch ex As Exception
-                        img = New Bitmap(pctSignatureWidth, pctSignatureHeight)
                     End Try
                 End If
         End Select
@@ -206,7 +211,7 @@ Public Class frmSignClient
         Return ofrm
     End Function
 
-    Private Sub InitializeComponent()
+    Public Overridable Sub InitializeComponent()
         Me.SuspendLayout()
         '
         'frmSignClient

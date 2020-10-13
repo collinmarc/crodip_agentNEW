@@ -21,13 +21,14 @@ Partial Class frmSignClientTelephone
     'Elle peut être modifiée à l'aide du Concepteur Windows Form.  
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
-    Private Sub InitializeComponent()
+    Public Overrides Sub InitializeComponent()
         Me.pctSignature = New System.Windows.Forms.PictureBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.dtpDateSignature = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.ckConserverSignature = New System.Windows.Forms.CheckBox()
         CType(Me.pctSignature, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -78,7 +79,7 @@ Partial Class frmSignClientTelephone
         '
         Me.dtpDateSignature.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.dtpDateSignature.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpDateSignature.Location = New System.Drawing.Point(151, 165)
+        Me.dtpDateSignature.Location = New System.Drawing.Point(152, 160)
         Me.dtpDateSignature.Name = "dtpDateSignature"
         Me.dtpDateSignature.Size = New System.Drawing.Size(89, 20)
         Me.dtpDateSignature.TabIndex = 4
@@ -87,17 +88,30 @@ Partial Class frmSignClientTelephone
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 165)
+        Me.Label1.Location = New System.Drawing.Point(14, 166)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.Size = New System.Drawing.Size(97, 13)
         Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Date : "
+        Me.Label1.Text = "Date de signature :"
+        '
+        'ckConserverSignature
+        '
+        Me.ckConserverSignature.AutoSize = True
+        Me.ckConserverSignature.Checked = True
+        Me.ckConserverSignature.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ckConserverSignature.Location = New System.Drawing.Point(271, 162)
+        Me.ckConserverSignature.Name = "ckConserverSignature"
+        Me.ckConserverSignature.Size = New System.Drawing.Size(131, 17)
+        Me.ckConserverSignature.TabIndex = 7
+        Me.ckConserverSignature.Text = "Conserver la signature"
+        Me.ckConserverSignature.UseVisualStyleBackColor = True
         '
         'frmSignClientTelephone
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(623, 250)
+        Me.Controls.Add(Me.ckConserverSignature)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.dtpDateSignature)
         Me.Controls.Add(Me.btnClear)
@@ -128,4 +142,5 @@ Partial Class frmSignClientTelephone
 
     Friend WithEvents dtpDateSignature As DateTimePicker
     Friend WithEvents Label1 As Label
+    Friend WithEvents ckConserverSignature As CheckBox
 End Class

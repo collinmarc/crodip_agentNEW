@@ -14,6 +14,7 @@ Public Class frmSignClientTablette
     Public Sub New(pDiag As Diagnostic, pSignMode As SignMode, pAgent As Agent)
         MyBase.New(pDiag, pSignMode, pAgent)
         Debug.Assert(pAgent IsNot Nothing)
+        InitializeComponent()
         bSignVide = True
     End Sub
 
@@ -96,17 +97,22 @@ Public Class frmSignClientTablette
         Me.TopMost = True
 
         pctSignatureWidth = pctSignature.Width
-        pctSignatureHeight = pctSignatureHeight
+        pctSignatureHeight = pctSignature.Height
         SetImgSignature()
 
         pctSignature.Image = img
         m_GlobalHook = Gma.System.MouseKeyHook.Hook.GlobalEvents()
+
+        ckConserverSignature.Visible = (m_Mode = SignMode.RIAGENT Or m_Mode = SignMode.CCAGENT)
 
     End Sub
 
     Private Sub Valider_Click(sender As Object, e As EventArgs) Handles btnValider.Click
 
         RecupereSignature(pctSignature.Image, dtpDateSignature.Value)
+        If ckConserverSignature.Checked Then
+            Me.Conserverlasignature()
+        End If
 
         Me.DialogResult = DialogResult.OK
         Me.Close()
