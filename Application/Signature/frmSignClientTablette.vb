@@ -97,7 +97,7 @@ Public Class frmSignClientTablette
 
         pctSignatureWidth = pctSignature.Width
         pctSignatureHeight = pctSignatureHeight
-        AfficheSignature()
+        SetImgSignature()
 
         pctSignature.Image = img
         m_GlobalHook = Gma.System.MouseKeyHook.Hook.GlobalEvents()

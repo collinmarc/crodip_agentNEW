@@ -1991,6 +1991,9 @@
     <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve.resx">
       <DependentUpon>liste_diagnosticPulve.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\Signature\frmSignClient.resx">
+      <DependentUpon>frmSignClient.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\Signature\frmSignClientTablette.resx">
       <DependentUpon>frmSignClientTablette.vb</DependentUpon>
     </EmbeddedResource>

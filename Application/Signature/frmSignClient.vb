@@ -3,7 +3,7 @@
 Public Class frmSignClient
     Inherits System.Windows.Forms.Form
     Private m_odiag As Diagnostic
-    Private m_Mode As SignMode
+    Protected m_Mode As SignMode
     Private m_Agent As Agent
     Protected img As Image = Nothing
     Protected ms As MemoryStream
@@ -39,7 +39,7 @@ Public Class frmSignClient
     End Property
 
 
-    Protected Sub AfficheSignature()
+    Protected Sub SetImgSignature()
         Select Case m_Mode
             Case SignMode.RIAGENT
                 Me.Text = "Signature Rapport Inspecteur"
@@ -57,6 +57,8 @@ Public Class frmSignClient
                             img = New Bitmap(bmpTemp)
                         End Using
                         bSignVide = False
+                    Else
+                        img = New Bitmap(pctSignatureWidth, pctSignatureHeight)
                     End If
                 End If
             Case SignMode.RICLIENT
@@ -86,6 +88,8 @@ Public Class frmSignClient
                             img = New Bitmap(bmpTemp)
                         End Using
                         bSignVide = False
+                    Else
+                        img = New Bitmap(pctSignatureWidth, pctSignatureHeight)
                     End If
                 End If
             Case SignMode.CCCLIENT
@@ -172,12 +176,10 @@ Public Class frmSignClient
 
     Public Sub Conserverlasignature()
         If (m_Mode = SignMode.RIAGENT Or m_Mode = SignMode.CCAGENT) Then
-            If MessageBox.Show("Voulez-vous conserver votre signature?", "Signature Agent", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                If File.Exists("config/" & m_Agent.nom & ".sign") Then
-                    File.Delete("config/" & m_Agent.nom & ".sign")
-                End If
-                img.Save("config/" & m_Agent.nom & ".sign")
+            If File.Exists("config/" & m_Agent.nom & ".sign") Then
+                File.Delete("config/" & m_Agent.nom & ".sign")
             End If
+            img.Save("config/" & m_Agent.nom & ".sign")
         End If
     End Sub
 
@@ -203,4 +205,18 @@ Public Class frmSignClient
 
         Return ofrm
     End Function
+
+    Private Sub InitializeComponent()
+        Me.SuspendLayout()
+        '
+        'frmSignClient
+        '
+        Me.ClientSize = New System.Drawing.Size(284, 261)
+        Me.Name = "frmSignClient"
+        Me.ResumeLayout(False)
+
+    End Sub
+
+    Private Sub frmSignClient_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+    End Sub
 End Class

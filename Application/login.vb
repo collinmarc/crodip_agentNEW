@@ -1079,19 +1079,26 @@ Public Class login
         Dim oFrm As frmSignClient
         Dim oDiag As New Diagnostic()
         Dim oAgent As Agent = AgentManager.getAgentById("1110")
+        Dim oPulve As New Pulverisateur()
+        Dim oExploit As New Exploitation()
+        oExploit = ExploitationManager.getExploitationById("2-81-32")
+        '        oPulve = PulverisateurManager.getPulverisateurById("2-1-51") 'Culture maraîchères palissées
+        'oPulve = PulverisateurManager.getPulverisateurById("2-81-63") 'Pulvérisateurs combinés
+        '        oPulve = PulverisateurManager.getPulverisateurById("2-81-50") 'Cultures basses
+        oPulve = PulverisateurManager.getPulverisateurById("2-1083-7") 'Vigne
+        oDiag = New Diagnostic(oAgent, oPulve, oExploit)
 
 
         oFrm = frmSignClient.getfrmSignature(oDiag, SignMode.RIAGENT, oAgent)
         oFrm.ShowDialog()
         oFrm.Disconnect()
         If oFrm.DialogResult = DialogResult.OK Then
-            oFrm.Conserverlasignature()
+            Dim oEtat As EtatRapportInspection
+            oEtat = New EtatRapportInspection(oDiag)
+            oEtat.GenereEtat()
+            oEtat.Open()
         End If
 
-        'Dim usbDevices As wgssSTU.UsbDevices = New wgssSTU.UsbDevices()
-        'Dim usbDevice As wgssSTU.IUsbDevice = usbDevices(0)
 
-        'Dim demo As SignatureForm = New SignatureForm(usbDevice, False)
-        'demo.ShowDialog()
     End Sub
 End Class

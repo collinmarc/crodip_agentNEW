@@ -78,7 +78,7 @@ Public Class frmSignClientTelephone
         pctSignatureWidth = pctSignature.Width
         pctSignatureHeight = pctSignatureHeight
 
-        AfficheSignature()
+        SetImgSignature()
 
         pctSignature.Image = img
     End Sub

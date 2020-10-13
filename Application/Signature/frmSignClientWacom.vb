@@ -19,6 +19,7 @@ Partial Public Class frmSignClientWacom
     Private Delegate Sub ButtonClick()
     Private m_usbDevice As wgssSTU.IUsbDevice
     Private imgVide As Image
+    Private imgSansBoutons As Image
 
     Private Structure Button
         Public Bounds As Drawing.Rectangle
@@ -37,6 +38,14 @@ Partial Public Class frmSignClientWacom
     Private m_btns As Button()
     Private m_encodingMode As wgssSTU.encodingMode
     Private m_bitmapData As Byte()
+    Private m_bitmapDataVide As Byte()
+    '    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label1 As Label
+    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents btn_ok As Windows.Forms.Button
+    Friend WithEvents btn_clear As Windows.Forms.Button
+    Friend WithEvents btn_Quitter As Windows.Forms.Button
+    Friend WithEvents ckConserverSignature As CheckBox
     Private m_penDataOptionMode As Integer
 
     Private Function tabletToClient(ByVal penData As wgssSTU.IPenData) As PointF
@@ -55,7 +64,7 @@ Partial Public Class frmSignClientWacom
         Return Point.Round(New PointF(CSng(pt.X) * m_capability.screenWidth / Me.ClientSize.Width, CSng(pt.Y) * m_capability.screenHeight / Me.ClientSize.Height))
     End Function
 
-    Private Sub clearScreen()
+    Private Sub AfficheTablet()
         m_tablet.writeImage(CByte(m_encodingMode), m_bitmapData)
 
         If m_penDataOptionMode = CInt(penDataOptionMode.PenDataOptionMode_TimeCountSequence) Then
@@ -68,18 +77,21 @@ Partial Public Class frmSignClientWacom
         Me.Invalidate()
     End Sub
 
-    Private Sub btnOk_Click(ByVal sender As Object, ByVal e As EventArgs)
-        Dim ms2 As New MemoryStream
+    Private Sub btnOk_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_ok.Click
+        'Dim ms2 As New MemoryStream
         img = GetImage(New Drawing.Rectangle(0, 0, m_capability.screenWidth, m_capability.screenHeight))
-        img.Save(ms2, Imaging.ImageFormat.Bmp)
+        img.Save("config/imgOK.bmp")
 
         RecupereSignature(img, Now)
         penDataType = m_penDataOptionMode
+        If ckConserverSignature.Checked Then
+            Me.Conserverlasignature()
+        End If
         Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub
 
-    Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_Quitter.Click
         If m_penDataOptionMode = CInt(penDataOptionMode.PenDataOptionMode_TimeCountSequence) Then
             Me.m_penTimeData = Nothing
         Else
@@ -90,56 +102,26 @@ Partial Public Class frmSignClientWacom
         Me.Close()
     End Sub
 
-    Private Sub btnClear_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub btnClear_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_clear.Click
+        m_bitmapData = m_bitmapDataVide
+        'Reconstruction de l'image vide (Sert d'image de base à la récup)
+        imgSansBoutons = New Bitmap(m_capability.screenWidth, m_capability.screenHeight)
+        Using graphics As Graphics = Graphics.FromImage(imgSansBoutons)
+            graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality
+            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High
+            graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality
+            graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality
+            Using Brush As New SolidBrush(Color.White)
+                graphics.FillRectangle(Brush, 0, 0, imgSansBoutons.Width, imgSansBoutons.Height)
+            End Using
+        End Using
 
-        Dim protocolHelper As wgssSTU.ProtocolHelper = New wgssSTU.ProtocolHelper()
+        'Nettoyage de l'écran de la tablette
+        AfficheTablet()
+        'Nettoyage de l'écran
+        Me.BackgroundImage = Nothing
+        Me.BackgroundImageLayout = ImageLayout.Stretch
 
-        img = New Bitmap(m_capability.screenWidth, m_capability.screenHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
-        If True Then
-            Dim gfx As Graphics = Graphics.FromImage(img)
-            gfx.Clear(Color.White)
-            Dim font As Font = New Font(FontFamily.GenericSansSerif, m_btns(0).Bounds.Height / 2.0F, GraphicsUnit.Pixel)
-            Dim sf As StringFormat = New StringFormat()
-            sf.Alignment = StringAlignment.Center
-            sf.LineAlignment = StringAlignment.Center
-
-            gfx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
-
-            For i As Integer = 0 To m_btns.Length - 1
-                gfx.DrawRectangle(Pens.Black, m_btns(i).Bounds)
-                gfx.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
-            Next
-
-            gfx.Dispose()
-            font.Dispose()
-            Me.BackgroundImage = img
-            Me.BackgroundImageLayout = ImageLayout.Stretch
-        End If
-
-        If True Then
-            Dim stream As System.IO.MemoryStream = New System.IO.MemoryStream()
-            img.Save(stream, System.Drawing.Imaging.ImageFormat.Png)
-            m_bitmapData = CType(ProtocolHelper.resizeAndFlatten(stream.ToArray(), 0, 0, CUInt(img.Width), CUInt(img.Height), m_capability.screenWidth, m_capability.screenHeight, CByte(m_encodingMode), wgssSTU.Scale.Scale_Fit, 0, 0), Byte())
-            ProtocolHelper = Nothing
-            stream.Dispose()
-        End If
-
-        Dim useZlibCompression As Boolean = False
-
-        'If Not useColor AndAlso useZlibCompression Then
-        '    m_encodingMode = m_encodingMode Or wgssSTU.encodingMode.EncodingMode_Zlib
-        'End If
-
-        Dim s As SizeF = Me.AutoScaleDimensions
-        Dim inkWidthMM As Single = 0.7F
-        m_penInk = New Pen(Color.DarkBlue, inkWidthMM / 25.4F * ((s.Width + s.Height) / 2.0F))
-        m_penInk.StartCap = CSharpImpl.__Assign(m_penInk.EndCap, System.Drawing.Drawing2D.LineCap.Round)
-        m_penInk.LineJoin = System.Drawing.Drawing2D.LineJoin.Round
-        addDelegates()
-        clearScreen()
-
-
-        m_tablet.setInkingMode(&H1)
 
     End Sub
 
@@ -176,11 +158,14 @@ Partial Public Class frmSignClientWacom
                 Throw New Exception(ec.message)
             End If
 
+            'Définition de la taille de la fenêtre
             Me.SuspendLayout()
             Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-            Dim clientSize As Size = New Size(CInt((m_capability.tabletMaxX / 2540.0F * 96.0F)), CInt((m_capability.tabletMaxY / 2540.0F * 96.0F)))
-            Me.ClientSize = clientSize
+            Dim clientSizePanel As Size = New Size(CInt((m_capability.tabletMaxX / 2540.0F * 96.0F)), CInt((m_capability.tabletMaxY / 2540.0F * 96.0F)))
+            Dim clientSizeFenetre As Size = New Size(clientSizePanel.Width + 28, clientSizePanel.Height + 50)
+            Me.ClientSize = clientSizeFenetre
+            'Me.Panel1.ClientSize = clientSizePanel
             Me.ResumeLayout()
             m_btns = New Button(2) {}
 
@@ -226,51 +211,72 @@ Partial Public Class frmSignClientWacom
                 m_encodingMode = wgssSTU.encodingMode.EncodingMode_1bit
             End If
 
-            img = New Bitmap(m_capability.screenWidth, m_capability.screenHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
-            AfficheSignature()
+            'Définition de l'image 
+            'img = New Bitmap(m_capability.screenWidth, m_capability.screenHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+            pctSignatureHeight = m_capability.screenHeight
+            pctSignatureWidth = m_capability.screenWidth
+            SetImgSignature()
+            imgSansBoutons = img.Clone()
+            imgVide = New Bitmap(m_capability.screenWidth, m_capability.screenHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
             If True Then
-                Dim gfx As Graphics = Graphics.FromImage(img)
-                gfx.Clear(Color.White)
+                Dim gfx_tablet As Graphics = Graphics.FromImage(img)
+                Dim gfx_tabletVide As Graphics = Graphics.FromImage(imgVide)
+                Dim gfx_Ecran As Graphics = Graphics.FromImage(imgSansBoutons)
+
+                gfx_tabletVide.Clear(Color.White)
+
                 Dim font As Font = New Font(FontFamily.GenericSansSerif, m_btns(0).Bounds.Height / 2.0F, GraphicsUnit.Pixel)
                 Dim sf As StringFormat = New StringFormat()
                 sf.Alignment = StringAlignment.Center
                 sf.LineAlignment = StringAlignment.Center
 
                 If useColor Then
-                    gfx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+                    gfx_tablet.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+                    gfx_tabletVide.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+                    gfx_Ecran.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
                 Else
-                    gfx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+                    gfx_tablet.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+                    gfx_tabletVide.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+                    gfx_Ecran.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
                 End If
 
+                'Dessin des boutons (uniquement sur la tablette)
                 For i As Integer = 0 To m_btns.Length - 1
 
                     If useColor Then
-                        gfx.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
+                        gfx_tablet.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
+                        gfx_tabletVide.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
                     End If
 
-                    gfx.DrawRectangle(Pens.Black, m_btns(i).Bounds)
-                    gfx.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
+                    gfx_tablet.DrawRectangle(Pens.Black, m_btns(i).Bounds)
+                    gfx_tablet.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
+                    gfx_tabletVide.DrawRectangle(Pens.Black, m_btns(i).Bounds)
+                    gfx_tabletVide.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
                 Next
 
-                gfx.Dispose()
+                gfx_tablet.Dispose()
+                gfx_tabletVide.Dispose()
+                gfx_Ecran.Dispose()
                 font.Dispose()
-                Me.BackgroundImage = img
+                'Affichage de l'image sans les boutons sur l'écran
+                Me.BackgroundImage = imgSansBoutons
                 Me.BackgroundImageLayout = ImageLayout.Stretch
             End If
 
-            If True Then
-                Dim stream As System.IO.MemoryStream = New System.IO.MemoryStream()
+            'Sauvegarde de l'image Avec Signature (si Agent) pour Mémoire
+            Using stream As New System.IO.MemoryStream()
+                'Dim protocolHelper As wgssSTU.ProtocolHelper = New wgssSTU.ProtocolHelper()
                 img.Save(stream, System.Drawing.Imaging.ImageFormat.Png)
                 m_bitmapData = CType(protocolHelper.resizeAndFlatten(stream.ToArray(), 0, 0, CUInt(img.Width), CUInt(img.Height), m_capability.screenWidth, m_capability.screenHeight, CByte(m_encodingMode), wgssSTU.Scale.Scale_Fit, 0, 0), Byte())
-                protocolHelper = Nothing
-                stream.Dispose()
-            End If
 
-            Dim useZlibCompression As Boolean = False
+            End Using
+            'Sauvegarde de l'image Sans Signature pour Mémoire
+            Using stream As New System.IO.MemoryStream()
+                'Dim protocolHelper As wgssSTU.ProtocolHelper = New wgssSTU.ProtocolHelper()
+                imgVide.Save(stream, System.Drawing.Imaging.ImageFormat.Png)
+                m_bitmapDataVide = CType(protocolHelper.resizeAndFlatten(stream.ToArray(), 0, 0, CUInt(img.Width), CUInt(img.Height), m_capability.screenWidth, m_capability.screenHeight, CByte(m_encodingMode), wgssSTU.Scale.Scale_Fit, 0, 0), Byte())
+            End Using
 
-            If Not useColor AndAlso useZlibCompression Then
-                m_encodingMode = m_encodingMode Or wgssSTU.encodingMode.EncodingMode_Zlib
-            End If
 
             Dim s As SizeF = Me.AutoScaleDimensions
             Dim inkWidthMM As Single = 0.7F
@@ -278,10 +284,9 @@ Partial Public Class frmSignClientWacom
             m_penInk.StartCap = CSharpImpl.__Assign(m_penInk.EndCap, System.Drawing.Drawing2D.LineCap.Round)
             m_penInk.LineJoin = System.Drawing.Drawing2D.LineJoin.Round
             addDelegates()
-            clearScreen()
-
-
+            AfficheTablet()
             m_tablet.setInkingMode(&H1)
+
         End If
     End Sub
 
@@ -349,7 +354,7 @@ Partial Public Class frmSignClientWacom
 
     End Sub
 
-    Private Sub Form2_FormClosed(ByVal sender As Object, ByVal e As FormClosedEventArgs)
+    Private Sub Form2_FormClosed(ByVal sender As Object, ByVal e As FormClosedEventArgs) Handles MyBase.FormClosed
         If m_tablet IsNot Nothing Then
             RemoveHandler m_tablet.onGetReportException, AddressOf onGetReportException
             RemoveHandler m_tablet.onPenData, AddressOf onPenData
@@ -358,14 +363,16 @@ Partial Public Class frmSignClientWacom
             RemoveHandler m_tablet.onPenDataTimeCountSequenceEncrypted, AddressOf onPenDataTimeCountSequenceEncrypted
             m_tablet.setInkingMode(&H0)
             m_tablet.setClearScreen()
+            Disconnect()
         End If
 
         m_penInk.Dispose()
     End Sub
     Public Overrides Sub Disconnect()
         If m_tablet IsNot Nothing Then
-            m_tablet.disconnect()
-
+            If m_tablet.isConnected Then
+                m_tablet.disconnect()
+            End If
         End If
     End Sub
 
@@ -531,7 +538,7 @@ Partial Public Class frmSignClientWacom
         Return btn
     End Function
 
-    Private Sub Form2_Paint(ByVal sender As Object, ByVal e As PaintEventArgs)
+    Private Sub Form2_Paint(ByVal sender As Object, ByVal e As PaintEventArgs) Handles MyBase.Paint
         If m_penDataOptionMode = CInt(penDataOptionMode.PenDataOptionMode_TimeCountSequence) Then
             renderPenTimeData(e)
         Else
@@ -645,14 +652,15 @@ Partial Public Class frmSignClientWacom
         Dim brush As SolidBrush = Nothing
 
         Try
-            bitmap = New Bitmap(rect.Width, rect.Height)
+            bitmap = imgSansBoutons
             Dim graphics As Graphics = Graphics.FromImage(bitmap)
             graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality
             graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High
             graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality
             graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality
-            brush = New SolidBrush(Color.White)
-            graphics.FillRectangle(brush, 0, 0, rect.Width, rect.Height)
+            'brush = New SolidBrush(Color.White)
+            'graphics.FillRectangle(brush, 0, 0, rect.Width, rect.Height)
+            bitmap.Save("config/ImageOrigine2.bmp", ImageFormat.Bmp)
 
             If m_penDataOptionMode = CInt(penDataOptionMode.PenDataOptionMode_TimeCountSequence) Then
 
@@ -675,6 +683,7 @@ Partial Public Class frmSignClientWacom
                     End If
                 Next
             End If
+            bitmap.Save("config/ImageOrigine3.bmp", ImageFormat.Bmp)
 
             retVal = bitmap
             bitmap = Nothing
@@ -699,18 +708,90 @@ Partial Public Class frmSignClientWacom
     End Class
 
     Private Sub InitializeComponent()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.btn_ok = New System.Windows.Forms.Button()
+        Me.btn_clear = New System.Windows.Forms.Button()
+        Me.btn_Quitter = New System.Windows.Forms.Button()
+        Me.ckConserverSignature = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 224)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(97, 13)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Date de signature :"
+        '
+        'DateTimePicker1
+        '
+        Me.DateTimePicker1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePicker1.Location = New System.Drawing.Point(112, 217)
+        Me.DateTimePicker1.Name = "DateTimePicker1"
+        Me.DateTimePicker1.Size = New System.Drawing.Size(101, 20)
+        Me.DateTimePicker1.TabIndex = 2
+        '
+        'btn_ok
+        '
+        Me.btn_ok.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_ok.Location = New System.Drawing.Point(290, 184)
+        Me.btn_ok.Name = "btn_ok"
+        Me.btn_ok.Size = New System.Drawing.Size(84, 25)
+        Me.btn_ok.TabIndex = 3
+        Me.btn_ok.Text = "Valider"
+        Me.btn_ok.UseVisualStyleBackColor = True
+        '
+        'btn_clear
+        '
+        Me.btn_clear.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_clear.Location = New System.Drawing.Point(290, 215)
+        Me.btn_clear.Name = "btn_clear"
+        Me.btn_clear.Size = New System.Drawing.Size(84, 22)
+        Me.btn_clear.TabIndex = 4
+        Me.btn_clear.Text = "Effacer"
+        Me.btn_clear.UseVisualStyleBackColor = True
+        '
+        'btn_Quitter
+        '
+        Me.btn_Quitter.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_Quitter.Location = New System.Drawing.Point(290, 243)
+        Me.btn_Quitter.Name = "btn_Quitter"
+        Me.btn_Quitter.Size = New System.Drawing.Size(84, 24)
+        Me.btn_Quitter.TabIndex = 5
+        Me.btn_Quitter.Text = "Quitter"
+        Me.btn_Quitter.UseVisualStyleBackColor = True
+        '
+        'ckConserverSignature
+        '
+        Me.ckConserverSignature.AutoSize = True
+        Me.ckConserverSignature.Checked = True
+        Me.ckConserverSignature.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ckConserverSignature.Location = New System.Drawing.Point(12, 250)
+        Me.ckConserverSignature.Name = "ckConserverSignature"
+        Me.ckConserverSignature.Size = New System.Drawing.Size(131, 17)
+        Me.ckConserverSignature.TabIndex = 6
+        Me.ckConserverSignature.Text = "Conserver la signature"
+        Me.ckConserverSignature.UseVisualStyleBackColor = True
+        Me.ckConserverSignature.Visible = (m_Mode = SignMode.RIAGENT Or m_Mode = SignMode.CCAGENT)
         '
         'frmSignClientWacom
         '
-        Me.ClientSize = New System.Drawing.Size(590, 309)
+        Me.ClientSize = New System.Drawing.Size(375, 275)
+        Me.Controls.Add(Me.ckConserverSignature)
+        Me.Controls.Add(Me.btn_Quitter)
+        Me.Controls.Add(Me.btn_clear)
+        Me.Controls.Add(Me.btn_ok)
+        Me.Controls.Add(Me.DateTimePicker1)
+        Me.Controls.Add(Me.Label1)
         Me.Name = "frmSignClientWacom"
-        AddHandler FormClosed, AddressOf Me.Form2_FormClosed
-        AddHandler Paint, AddressOf Me.Form2_Paint
-        AddHandler MouseClick, AddressOf Me.Form2_MouseClick
-
         Me.ResumeLayout(False)
-
+        Me.PerformLayout()
 
     End Sub
+
 End Class
