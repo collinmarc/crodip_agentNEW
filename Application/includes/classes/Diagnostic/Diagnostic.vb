@@ -689,6 +689,22 @@ Public Class Diagnostic
             End If
         End Set
     End Property
+    <XmlIgnore>
+    Public ReadOnly Property controleEtatLibelle() As String
+        Get
+            Dim bReturn As String = ""
+
+            Select Case controleEtat
+                Case controleEtatOK
+                    bReturn = "OK"
+                Case controleEtatNOKCV
+                    bReturn = "CV"
+                Case controleEtatNOKCC
+                    bReturn = "NOK"
+            End Select
+            Return bReturn
+        End Get
+    End Property
 
     Public Property controleInfosConseils() As String
         Get
@@ -3285,6 +3301,12 @@ Public Class Diagnostic
         End Set
     End Property
     Private _isSignRIClient As Boolean
+    <XmlIgnore()>
+    Public ReadOnly Property isSign() As Boolean
+        Get
+            Return isSignRIAgent And isSignRIClient And isSignCCAgent And isSignCCClient
+        End Get
+    End Property
     Public Property isSignRIClient() As Boolean
         Get
             Return _isSignRIClient

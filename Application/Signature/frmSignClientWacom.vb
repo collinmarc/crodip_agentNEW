@@ -219,45 +219,44 @@ Partial Public Class frmSignClientWacom
             imgSansBoutons = img.Clone()
             imgVide = New Bitmap(m_capability.screenWidth, m_capability.screenHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
             If True Then
-                Dim gfx_tablet As Graphics = Graphics.FromImage(img)
-                Dim gfx_tabletVide As Graphics = Graphics.FromImage(imgVide)
-                Dim gfx_Ecran As Graphics = Graphics.FromImage(imgSansBoutons)
+                Using gfx_tablet As Graphics = Graphics.FromImage(img)
+                    Using gfx_tabletVide As Graphics = Graphics.FromImage(imgVide)
+                        Using gfx_Ecran As Graphics = Graphics.FromImage(imgSansBoutons)
+                            Using font As Font = New Font(FontFamily.GenericSansSerif, m_btns(0).Bounds.Height / 2.0F, GraphicsUnit.Pixel)
 
-                gfx_tabletVide.Clear(Color.White)
+                                gfx_tabletVide.Clear(Color.White)
 
-                Dim font As Font = New Font(FontFamily.GenericSansSerif, m_btns(0).Bounds.Height / 2.0F, GraphicsUnit.Pixel)
-                Dim sf As StringFormat = New StringFormat()
-                sf.Alignment = StringAlignment.Center
-                sf.LineAlignment = StringAlignment.Center
+                                Dim sf As StringFormat = New StringFormat()
+                                sf.Alignment = StringAlignment.Center
+                                sf.LineAlignment = StringAlignment.Center
 
-                If useColor Then
-                    gfx_tablet.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-                    gfx_tabletVide.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-                    gfx_Ecran.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-                Else
-                    gfx_tablet.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
-                    gfx_tabletVide.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
-                    gfx_Ecran.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
-                End If
+                                If useColor Then
+                                    gfx_tablet.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+                                    gfx_tabletVide.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+                                    gfx_Ecran.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+                                Else
+                                    gfx_tablet.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+                                    gfx_tabletVide.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+                                    gfx_Ecran.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+                                End If
 
-                'Dessin des boutons (uniquement sur la tablette)
-                For i As Integer = 0 To m_btns.Length - 1
+                                'Dessin des boutons (uniquement sur la tablette)
+                                For i As Integer = 0 To m_btns.Length - 1
 
-                    If useColor Then
-                        gfx_tablet.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
-                        gfx_tabletVide.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
-                    End If
+                                    If useColor Then
+                                        gfx_tablet.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
+                                        gfx_tabletVide.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
+                                    End If
 
-                    gfx_tablet.DrawRectangle(Pens.Black, m_btns(i).Bounds)
-                    gfx_tablet.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
-                    gfx_tabletVide.DrawRectangle(Pens.Black, m_btns(i).Bounds)
-                    gfx_tabletVide.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
-                Next
-
-                gfx_tablet.Dispose()
-                gfx_tabletVide.Dispose()
-                gfx_Ecran.Dispose()
-                font.Dispose()
+                                    gfx_tablet.DrawRectangle(Pens.Black, m_btns(i).Bounds)
+                                    gfx_tablet.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
+                                    gfx_tabletVide.DrawRectangle(Pens.Black, m_btns(i).Bounds)
+                                    gfx_tabletVide.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
+                                Next
+                            End Using
+                        End Using
+                    End Using
+                End Using
                 'Affichage de l'image sans les boutons sur l'écran
                 Me.BackgroundImage = imgSansBoutons
                 Me.BackgroundImageLayout = ImageLayout.Stretch

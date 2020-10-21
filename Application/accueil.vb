@@ -4764,6 +4764,13 @@ Public Class accueil
         End If
 
     End Sub
+    Private Sub VisuPDFSDiagnostique()
+        If diagnosticCourant IsNot Nothing Then
+            Dim frmDiagRecap As New frmdiagnostic_recap(Globals.DiagMode.CTRL_VISUPDFS, diagnosticCourant, pulverisateurCourant, clientCourant, agentCourant, Nothing)
+            TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagRecap)
+        End If
+
+    End Sub
     ' Faire une contre visite
     Private Sub btn_ficheClient_diagnostic_nouvelleCV_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheClient_diagnostic_nouvelleCV.Click
 
@@ -4785,18 +4792,20 @@ Public Class accueil
                 pulverisateurCourant = m_BindingListOfPulve(oRowIndex)
                 Statusbar.display("Visualisation d’un contrôle pour le pulvérisateur " & pulverisateurCourant.id)
 
-                Dim formListDiagnostique As New liste_diagnosticPulve
+                Dim formListDiagnostique As New liste_diagnosticPulve2()
                 formListDiagnostique.setcontexte(pulverisateurCourant, clientCourant, agentCourant)
                 formListDiagnostique.StartPosition = FormStartPosition.CenterParent
                 formListDiagnostique.ShowDialog(myFormParentContener)
                 If (formListDiagnostique.DialogResult = Windows.Forms.DialogResult.OK) Then
                     diagnosticCourant = formListDiagnostique.getDiagnostic()
-                    If formListDiagnostique.DiagMode = Globals.DiagMode.CTRL_VISU Then
-                        VoirDiagnostique()
-                    End If
-                    If formListDiagnostique.DiagMode = Globals.DiagMode.CTRL_SIGNATURE Then
-                        SignerDiagnostique()
-                    End If
+                    Select Case formListDiagnostique.DiagMode
+                        Case Globals.DiagMode.CTRL_VISUPDFS
+                            VisuPDFSDiagnostique()
+                        Case Globals.DiagMode.CTRL_SIGNATURE
+                            SignerDiagnostique()
+                        Case Globals.DiagMode.CTRL_VISU
+                            VoirDiagnostique()
+                    End Select
                 End If
             Catch ex As Exception
                 Statusbar.clear()

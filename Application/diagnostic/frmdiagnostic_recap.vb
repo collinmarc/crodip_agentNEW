@@ -648,7 +648,7 @@ Public Class frmdiagnostic_recap
         Try
             diagnosticRecap_organisme_dateControle.Text = CDate(m_diagnostic.controleDateDebut).ToShortDateString()
             diagnosticRecap_organisme_heureDebut.Text = CDate(m_diagnostic.controleDateDebut).ToShortTimeString
-            If m_DiagMode <> Globals.DiagMode.CTRL_SIGNATURE And m_DiagMode <> Globals.DiagMode.CTRL_VISU Then
+            If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
                 m_diagnostic.controleDateFin = CSDate.mysql2access(Date.Now)
             End If
             diagnosticRecap_organisme_heureFin.Text = CDate(m_diagnostic.controleDateFin).ToShortTimeString
@@ -751,7 +751,7 @@ Public Class frmdiagnostic_recap
 
         ActiveDesactiveBtnsignature()
 
-        If (m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE) Then
+        If (m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE Or m_DiagMode = Globals.DiagMode.CTRL_VISUPDFS) Then
             btn_finalisationDiag_modifierDiag.Visible = False
             desactiveModifications()
         End If
@@ -908,7 +908,7 @@ Public Class frmdiagnostic_recap
         Try
             Try
                 Statusbar.display(Globals.CONST_STATUTMSG_DIAG_SAVING, True)
-                If m_DiagMode <> Globals.DiagMode.CTRL_SIGNATURE Then
+                If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
                     'Lecture de la fenêtre
                     GetInfos()
                     '
@@ -1059,7 +1059,6 @@ Public Class frmdiagnostic_recap
             If pExportPDF Then
                 _PathToSynthesePDF = oEtat.getFileName()
                 m_diagnostic.SMFileName = _PathToSynthesePDF
-                'm_diagnostic.AddPDFs(_PathToSynthesePDF)
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
             End If
@@ -1105,7 +1104,6 @@ Public Class frmdiagnostic_recap
                     File.Delete(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName)
                 End If
                 m_diagnostic.CCFileName = oEtat.getFileName()
-                ' m_diagnostic.AddPDFs(oEtat.getFileName())
                 bReturn = File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & oEtat.getFileName())
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument

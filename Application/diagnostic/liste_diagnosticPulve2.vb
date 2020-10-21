@@ -1,4 +1,4 @@
-Public Class liste_diagnosticPulve
+Public Class liste_diagnosticPulve2
     Inherits System.Windows.Forms.Form
 
     Private m_oDiag As Diagnostic = Nothing
@@ -31,11 +31,15 @@ Public Class liste_diagnosticPulve
 
     Friend WithEvents controleEtat As DataGridViewTextBoxColumn
 
-    Friend WithEvents Col_RI As DataGridViewImageColumn
+    Friend WithEvents Col_Rapports As DataGridViewDisableButtonColumn
 
-    Friend WithEvents col_SM As DataGridViewImageColumn
+    Friend WithEvents col_SM As DataGridViewDisableButtonColumn
 
-    Friend WithEvents col_Contrat As DataGridViewImageColumn
+    Friend WithEvents col_contrat As DataGridViewDisableButtonColumn
+
+    Friend WithEvents col_Signatures As DataGridViewDisableButtonColumn
+
+    Friend WithEvents col_Details As DataGridViewDisableButtonColumn
 
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 
@@ -474,6 +478,9 @@ Public Class liste_diagnosticPulve
         InitializeComponent()
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
+        For n As Integer = DataGridView1.Columns.GetColumnCount(DataGridViewElementStates.None) - 1 To 8 Step -1
+            DataGridView1.Columns.RemoveAt(n)
+        Next
 
     End Sub
 
@@ -495,11 +502,15 @@ Public Class liste_diagnosticPulve
     Friend WithEvents btn_selectDiagnostic_annuler As System.Windows.Forms.Label
     Friend WithEvents btnSignature As Label
     Friend WithEvents listControle_search As System.Windows.Forms.TextBox
-    <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
+    Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(liste_diagnosticPulve))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(liste_diagnosticPulve2))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.listControle_search = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -512,9 +523,11 @@ Public Class liste_diagnosticPulve
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.controleDateDebut = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.controleEtat = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Col_RI = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.col_SM = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.col_Contrat = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Col_Rapports = New Crodip_agent.DataGridViewDisableButtonColumn()
+        Me.col_SM = New Crodip_agent.DataGridViewDisableButtonColumn()
+        Me.col_contrat = New Crodip_agent.DataGridViewDisableButtonColumn()
+        Me.col_Signatures = New Crodip_agent.DataGridViewDisableButtonColumn()
+        Me.col_Details = New Crodip_agent.DataGridViewDisableButtonColumn()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrganismePresIdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrganismePresNumeroDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -806,15 +819,13 @@ Public Class liste_diagnosticPulve
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.controleDateDebut, Me.controleEtat, Me.Col_RI, Me.col_SM, Me.col_Contrat, Me.IdDataGridViewTextBoxColumn, Me.OrganismePresIdDataGridViewTextBoxColumn, Me.OrganismePresNumeroDataGridViewTextBoxColumn, Me.OrganismePresNomDataGridViewTextBoxColumn, Me.OrganismePresAdresseDataGridViewTextBoxColumn, Me.OrganismePresCodePostalDataGridViewTextBoxColumn, Me.OrganismePresCommuneDataGridViewTextBoxColumn, Me.OrganismeInspNomDataGridViewTextBoxColumn, Me.OrganismeInspAgrementDataGridViewTextBoxColumn, Me.InspecteurIdDataGridViewTextBoxColumn, Me.InspecteurNumeroNationalDataGridViewTextBoxColumn, Me.InspecteurNomDataGridViewTextBoxColumn, Me.InspecteurPrenomDataGridViewTextBoxColumn, Me.OrganismeOriginePresIdDataGridViewTextBoxColumn, Me.OrganismeOriginePresNumeroDataGridViewTextBoxColumn, Me.OrganismeOriginePresNomDataGridViewTextBoxColumn, Me.OrganismeOrigineInspNomDataGridViewTextBoxColumn, Me.OrganismeOrigineInspAgrementDataGridViewTextBoxColumn, Me.InspecteurOrigineIdDataGridViewTextBoxColumn, Me.InspecteurOrigineNomDataGridViewTextBoxColumn, Me.InspecteurOriginePrenomDataGridViewTextBoxColumn, Me.ControleDateDebutDataGridViewTextBoxColumn, Me.ControleDateDebutSDataGridViewTextBoxColumn, Me.ControleDateFinDataGridViewTextBoxColumn, Me.ControleDateFinSDataGridViewTextBoxColumn, Me.ControleDateDernierControleDataGridViewTextBoxColumn, Me.ControleDateDernierControleSDataGridViewTextBoxColumn, Me.ControleCommuneDataGridViewTextBoxColumn, Me.ControleCodePostalDataGridViewTextBoxColumn, Me.ControleLieuDataGridViewTextBoxColumn, Me.ControleTerritoireDataGridViewTextBoxColumn, Me.ControleSiteDataGridViewTextBoxColumn, Me.ControleNomSiteDataGridViewTextBoxColumn, Me.ControleIsCompletDataGridViewCheckBoxColumn, Me.ControleIsPremierControleDataGridViewCheckBoxColumn, Me.ControleIsSiteSecuriseDataGridViewCheckBoxColumn, Me.ControleIsRecupResidusDataGridViewCheckBoxColumn, Me.ControleEtatDataGridViewTextBoxColumn, Me.ControleInfosConseilsDataGridViewTextBoxColumn, Me.ControleTarifDataGridViewTextBoxColumn, Me.ControleIsPulveRepareDataGridViewCheckBoxColumn, Me.ControleIsPreControleProfessionelDataGridViewCheckBoxColumn, Me.ControleIsAutoControleDataGridViewCheckBoxColumn, Me.ProprietaireIdDataGridViewTextBoxColumn, Me.ProprietaireRaisonSocialeDataGridViewTextBoxColumn, Me.ProprietaireRepresentantDataGridViewTextBoxColumn, Me.ProprietairePrenomDataGridViewTextBoxColumn, Me.ProprietaireNomDataGridViewTextBoxColumn, Me.ProprietaireCodeApeDataGridViewTextBoxColumn, Me.ProprietaireNumeroSirenDataGridViewTextBoxColumn, Me.ProprietaireCommuneDataGridViewTextBoxColumn, Me.ProprietaireCodePostalDataGridViewTextBoxColumn, Me.ProprietaireAdresseDataGridViewTextBoxColumn, Me.ProprietaireEmailDataGridViewTextBoxColumn, Me.ProprietaireTelephonePortableDataGridViewTextBoxColumn, Me.ProprietaireTelephoneFixeDataGridViewTextBoxColumn, Me.PulverisateurIdDataGridViewTextBoxColumn, Me.PulverisateurAncienIdDataGridViewTextBoxColumn, Me.PulverisateurNumNationalDataGridViewTextBoxColumn, Me.PulverisateurNumChassisDataGridViewTextBoxColumn, Me.PulverisateurMarqueDataGridViewTextBoxColumn, Me.PulverisateurModeleDataGridViewTextBoxColumn, Me.PulverisateurTypeDataGridViewTextBoxColumn, Me.PulverisateurCapaciteDataGridViewTextBoxColumn, Me.PulverisateurLargeurDataGridViewTextBoxColumn, Me.PulverisateurNbRangsDataGridViewTextBoxColumn, Me.PulverisateurLargeurPlantationDataGridViewTextBoxColumn, Me.PulverisateurIsVentilateurDataGridViewCheckBoxColumn, Me.PulverisateurIsDebrayageDataGridViewCheckBoxColumn, Me.PulverisateurAnneeAchatDataGridViewTextBoxColumn, Me.PulverisateurSurfaceDataGridViewTextBoxColumn, Me.PulverisateurNbUtilisateursDataGridViewTextBoxColumn, Me.PulverisateurIsCuveRincageDataGridViewCheckBoxColumn, Me.PulverisateurCapaciteCuveRincageDataGridViewTextBoxColumn, Me.PulverisateurIsRotobuseDataGridViewCheckBoxColumn, Me.PulverisateurIsRinceBidonDataGridViewCheckBoxColumn, Me.PulverisateurIsBidonLaveMainDataGridViewCheckBoxColumn, Me.PulverisateurIsLanceLavageExterieurDataGridViewCheckBoxColumn, Me.PulverisateurIsCuveIncorporationDataGridViewCheckBoxColumn, Me.PulverisateurCategorieDataGridViewTextBoxColumn, Me.PulverisateurAttelageDataGridViewTextBoxColumn, Me.PulverisateurPulverisationDataGridViewTextBoxColumn, Me.PulverisateurAutresAccessoiresDataGridViewTextBoxColumn, Me.PulverisateurEmplacementIdentificationDataGridViewTextBoxColumn, Me.PulverisateurDateProchainControleDataGridViewTextBoxColumn, Me.PulverisateurControleEtatDataGridViewTextBoxColumn, Me.BuseMarqueDataGridViewTextBoxColumn, Me.BuseModeleDataGridViewTextBoxColumn, Me.BuseCouleurDataGridViewTextBoxColumn, Me.BuseGenreDataGridViewTextBoxColumn, Me.BuseCalibreDataGridViewTextBoxColumn, Me.BuseDebitDataGridViewTextBoxColumn, Me.BuseDebitDDataGridViewTextBoxColumn, Me.BuseDebit2barsDataGridViewTextBoxColumn, Me.BuseDebit3barsDataGridViewTextBoxColumn, Me.BuseAgeDataGridViewTextBoxColumn, Me.BuseNbBusesDataGridViewTextBoxColumn, Me.BuseTypeDataGridViewTextBoxColumn, Me.BuseAngleDataGridViewTextBoxColumn, Me.BuseFonctionnementDataGridViewTextBoxColumn, Me.BuseIsISODataGridViewCheckBoxColumn, Me.ManometreMarqueDataGridViewTextBoxColumn, Me.ManometreDiametreDataGridViewTextBoxColumn, Me.ManometreTypeDataGridViewTextBoxColumn, Me.ManometreFondEchelleDataGridViewTextBoxColumn, Me.ManometrePressionTravailDataGridViewTextBoxColumn, Me.ManometrePressionTravailDDataGridViewTextBoxColumn, Me.ExploitationTypeCultureIsGrandeCultureDataGridViewCheckBoxColumn, Me.ExploitationTypeCultureIsLegumeDataGridViewCheckBoxColumn, Me.ExploitationTypeCultureIsElevageDataGridViewCheckBoxColumn, Me.ExploitationTypeCultureIsArboricultureDataGridViewCheckBoxColumn, Me.ExploitationTypeCultureIsViticultureDataGridViewCheckBoxColumn, Me.ExploitationTypeCultureIsAutresDataGridViewCheckBoxColumn, Me.ExploitationSauDataGridViewTextBoxColumn, Me.DateModificationAgentDataGridViewTextBoxColumn, Me.DateModificationAgentSDataGridViewTextBoxColumn, Me.DateModificationCrodipDataGridViewTextBoxColumn, Me.DateModificationCrodipSDataGridViewTextBoxColumn, Me.DateSynchroDataGridViewTextBoxColumn, Me.DateSynchroSDataGridViewTextBoxColumn, Me.IsSynchroDataGridViewCheckBoxColumn, Me.IsATGIPDataGridViewCheckBoxColumn, Me.IsTGIPDataGridViewCheckBoxColumn, Me.IsFactureDataGridViewCheckBoxColumn, Me.SyntheseErreurMoyenneManoDataGridViewTextBoxColumn, Me.SyntheseErreurMaxiManoDataGridViewTextBoxColumn, Me.SyntheseErreurDebitmetreDataGridViewTextBoxColumn, Me.SyntheseErreurMoyenneCinemometreDataGridViewTextBoxColumn, Me.SyntheseUsureMoyenneBusesDataGridViewTextBoxColumn, Me.SyntheseNbBusesUseesDataGridViewTextBoxColumn, Me.SynthesePerteChargeMoyenneDataGridViewTextBoxColumn, Me.SynthesePerteChargeMaxiDataGridViewTextBoxColumn, Me.SyntheseErreurMoyenneManoDDataGridViewTextBoxColumn, Me.SyntheseErreurMaxiManoDDataGridViewTextBoxColumn, Me.SyntheseErreurDebitmetreDDataGridViewTextBoxColumn, Me.SyntheseErreurMoyenneCinemometreDDataGridViewTextBoxColumn, Me.SyntheseUsureMoyenneBusesDDataGridViewTextBoxColumn, Me.SyntheseNbBusesUseesDDataGridViewTextBoxColumn, Me.SynthesePerteChargeMoyenneDDataGridViewTextBoxColumn, Me.SynthesePerteChargeMaxiDDataGridViewTextBoxColumn, Me.SyntheseImprecision542DataGridViewTextBoxColumn, Me.DiagnosticItemsLstDataGridViewTextBoxColumn, Me.DiagnosticBusesListDataGridViewTextBoxColumn, Me.NbreLotsBusesDataGridViewTextBoxColumn, Me.DiagnosticMano542ListDataGridViewTextBoxColumn, Me.DiagnosticTroncons833DataGridViewTextBoxColumn, Me.ControleBancMesureIdDataGridViewTextBoxColumn, Me.ControleNbreNiveauxDataGridViewTextBoxColumn, Me.ControleNbreTronconsDataGridViewTextBoxColumn, Me.ControleUseCalibrateurDataGridViewCheckBoxColumn, Me.ControleManoControleNumNationalDataGridViewTextBoxColumn, Me.DiagnosticHelp551DataGridViewTextBoxColumn, Me.DiagnosticHelp12323DataGridViewTextBoxColumn, Me.DiagnosticHelp5621DataGridViewTextBoxColumn, Me.DiagnosticHelp552DataGridViewTextBoxColumn, Me.DiagnosticHelp5622DataGridViewTextBoxColumn, Me.DiagnosticHelp811DataGridViewTextBoxColumn, Me.DiagnosticHelp8312DataGridViewTextBoxColumn, Me.DiagnosticHelp8314DataGridViewTextBoxColumn, Me.DiagnosticHelp571DataGridViewTextBoxColumn, Me.DiagnosticHelp12123DataGridViewTextBoxColumn, Me.DiagnosticInfosComplementairesDataGridViewTextBoxColumn, Me.RelevePression8331DataGridViewTextBoxColumn, Me.RelevePression8332DataGridViewTextBoxColumn, Me.RelevePression8333DataGridViewTextBoxColumn, Me.RelevePression8334DataGridViewTextBoxColumn, Me.ControleInitialIdDataGridViewTextBoxColumn, Me.RIFileNameDataGridViewTextBoxColumn, Me.SMFileNameDataGridViewTextBoxColumn, Me.CCFileNameDataGridViewTextBoxColumn, Me.ParamDiagDataGridViewTextBoxColumn, Me.TotalHTDataGridViewTextBoxColumn, Me.TotalTVADataGridViewTextBoxColumn, Me.TotalTTCDataGridViewTextBoxColumn, Me.PulverisateurRegulationDataGridViewTextBoxColumn, Me.PulverisateurRegulationOptionsDataGridViewTextBoxColumn, Me.PulverisateurModeUtilisationDataGridViewTextBoxColumn, Me.PulverisateurNbreExploitantsDataGridViewTextBoxColumn, Me.PulverisateurCoupureAutoTronconsDataGridViewTextBoxColumn, Me.PulverisateurReglageAutoHauteurDataGridViewTextBoxColumn, Me.PulverisateurRincagecircuitDataGridViewTextBoxColumn, Me.IsContrevisiteImmediateDataGridViewCheckBoxColumn, Me.OrigineDiagDataGridViewTextBoxColumn, Me.TypeDiagnosticDataGridViewTextBoxColumn, Me.CodeInseeDataGridViewTextBoxColumn, Me.BuseDebitMoyenPMDataGridViewTextBoxColumn, Me.CommentaireDataGridViewTextBoxColumn, Me.SignRIClientDataGridViewImageColumn, Me.DateSignRIClientDataGridViewTextBoxColumn, Me.DateSignRIClientSDataGridViewTextBoxColumn, Me.IsSignRIClientDataGridViewCheckBoxColumn, Me.SignRIAgentDataGridViewImageColumn, Me.DateSignRIAgentDataGridViewTextBoxColumn, Me.DateSignRIAgentSDataGridViewTextBoxColumn, Me.IsSignRIAgentDataGridViewCheckBoxColumn, Me.SignCCAgentDataGridViewImageColumn, Me.IsSignCCAgentDataGridViewCheckBoxColumn, Me.DateSignCCAgentDataGridViewTextBoxColumn, Me.DateSignCCAgentSDataGridViewTextBoxColumn, Me.SignCCClientDataGridViewImageColumn, Me.IsSignCCClientDataGridViewCheckBoxColumn, Me.DateSignCCClientDataGridViewTextBoxColumn, Me.DateSignCCClientSDataGridViewTextBoxColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.controleDateDebut, Me.controleEtat, Me.Col_Rapports, Me.col_SM, Me.col_contrat, Me.col_Signatures, Me.col_Details, Me.IdDataGridViewTextBoxColumn, Me.OrganismePresIdDataGridViewTextBoxColumn, Me.OrganismePresNumeroDataGridViewTextBoxColumn, Me.OrganismePresNomDataGridViewTextBoxColumn, Me.OrganismePresAdresseDataGridViewTextBoxColumn, Me.OrganismePresCodePostalDataGridViewTextBoxColumn, Me.OrganismePresCommuneDataGridViewTextBoxColumn, Me.OrganismeInspNomDataGridViewTextBoxColumn, Me.OrganismeInspAgrementDataGridViewTextBoxColumn, Me.InspecteurIdDataGridViewTextBoxColumn, Me.InspecteurNumeroNationalDataGridViewTextBoxColumn, Me.InspecteurNomDataGridViewTextBoxColumn, Me.InspecteurPrenomDataGridViewTextBoxColumn, Me.OrganismeOriginePresIdDataGridViewTextBoxColumn, Me.OrganismeOriginePresNumeroDataGridViewTextBoxColumn, Me.OrganismeOriginePresNomDataGridViewTextBoxColumn, Me.OrganismeOrigineInspNomDataGridViewTextBoxColumn, Me.OrganismeOrigineInspAgrementDataGridViewTextBoxColumn, Me.InspecteurOrigineIdDataGridViewTextBoxColumn, Me.InspecteurOrigineNomDataGridViewTextBoxColumn, Me.InspecteurOriginePrenomDataGridViewTextBoxColumn, Me.ControleDateDebutDataGridViewTextBoxColumn, Me.ControleDateDebutSDataGridViewTextBoxColumn, Me.ControleDateFinDataGridViewTextBoxColumn, Me.ControleDateFinSDataGridViewTextBoxColumn, Me.ControleDateDernierControleDataGridViewTextBoxColumn, Me.ControleDateDernierControleSDataGridViewTextBoxColumn, Me.ControleCommuneDataGridViewTextBoxColumn, Me.ControleCodePostalDataGridViewTextBoxColumn, Me.ControleLieuDataGridViewTextBoxColumn, Me.ControleTerritoireDataGridViewTextBoxColumn, Me.ControleSiteDataGridViewTextBoxColumn, Me.ControleNomSiteDataGridViewTextBoxColumn, Me.ControleIsCompletDataGridViewCheckBoxColumn, Me.ControleIsPremierControleDataGridViewCheckBoxColumn, Me.ControleIsSiteSecuriseDataGridViewCheckBoxColumn, Me.ControleIsRecupResidusDataGridViewCheckBoxColumn, Me.ControleEtatDataGridViewTextBoxColumn, Me.ControleInfosConseilsDataGridViewTextBoxColumn, Me.ControleTarifDataGridViewTextBoxColumn, Me.ControleIsPulveRepareDataGridViewCheckBoxColumn, Me.ControleIsPreControleProfessionelDataGridViewCheckBoxColumn, Me.ControleIsAutoControleDataGridViewCheckBoxColumn, Me.ProprietaireIdDataGridViewTextBoxColumn, Me.ProprietaireRaisonSocialeDataGridViewTextBoxColumn, Me.ProprietaireRepresentantDataGridViewTextBoxColumn, Me.ProprietairePrenomDataGridViewTextBoxColumn, Me.ProprietaireNomDataGridViewTextBoxColumn, Me.ProprietaireCodeApeDataGridViewTextBoxColumn, Me.ProprietaireNumeroSirenDataGridViewTextBoxColumn, Me.ProprietaireCommuneDataGridViewTextBoxColumn, Me.ProprietaireCodePostalDataGridViewTextBoxColumn, Me.ProprietaireAdresseDataGridViewTextBoxColumn, Me.ProprietaireEmailDataGridViewTextBoxColumn, Me.ProprietaireTelephonePortableDataGridViewTextBoxColumn, Me.ProprietaireTelephoneFixeDataGridViewTextBoxColumn, Me.PulverisateurIdDataGridViewTextBoxColumn, Me.PulverisateurAncienIdDataGridViewTextBoxColumn, Me.PulverisateurNumNationalDataGridViewTextBoxColumn, Me.PulverisateurNumChassisDataGridViewTextBoxColumn, Me.PulverisateurMarqueDataGridViewTextBoxColumn, Me.PulverisateurModeleDataGridViewTextBoxColumn, Me.PulverisateurTypeDataGridViewTextBoxColumn, Me.PulverisateurCapaciteDataGridViewTextBoxColumn, Me.PulverisateurLargeurDataGridViewTextBoxColumn, Me.PulverisateurNbRangsDataGridViewTextBoxColumn, Me.PulverisateurLargeurPlantationDataGridViewTextBoxColumn, Me.PulverisateurIsVentilateurDataGridViewCheckBoxColumn, Me.PulverisateurIsDebrayageDataGridViewCheckBoxColumn, Me.PulverisateurAnneeAchatDataGridViewTextBoxColumn, Me.PulverisateurSurfaceDataGridViewTextBoxColumn, Me.PulverisateurNbUtilisateursDataGridViewTextBoxColumn, Me.PulverisateurIsCuveRincageDataGridViewCheckBoxColumn, Me.PulverisateurCapaciteCuveRincageDataGridViewTextBoxColumn, Me.PulverisateurIsRotobuseDataGridViewCheckBoxColumn, Me.PulverisateurIsRinceBidonDataGridViewCheckBoxColumn, Me.PulverisateurIsBidonLaveMainDataGridViewCheckBoxColumn, Me.PulverisateurIsLanceLavageExterieurDataGridViewCheckBoxColumn, Me.PulverisateurIsCuveIncorporationDataGridViewCheckBoxColumn, Me.PulverisateurCategorieDataGridViewTextBoxColumn, Me.PulverisateurAttelageDataGridViewTextBoxColumn, Me.PulverisateurPulverisationDataGridViewTextBoxColumn, Me.PulverisateurAutresAccessoiresDataGridViewTextBoxColumn, Me.PulverisateurEmplacementIdentificationDataGridViewTextBoxColumn, Me.PulverisateurDateProchainControleDataGridViewTextBoxColumn, Me.PulverisateurControleEtatDataGridViewTextBoxColumn, Me.BuseMarqueDataGridViewTextBoxColumn, Me.BuseModeleDataGridViewTextBoxColumn, Me.BuseCouleurDataGridViewTextBoxColumn, Me.BuseGenreDataGridViewTextBoxColumn, Me.BuseCalibreDataGridViewTextBoxColumn, Me.BuseDebitDataGridViewTextBoxColumn, Me.BuseDebitDDataGridViewTextBoxColumn, Me.BuseDebit2barsDataGridViewTextBoxColumn, Me.BuseDebit3barsDataGridViewTextBoxColumn, Me.BuseAgeDataGridViewTextBoxColumn, Me.BuseNbBusesDataGridViewTextBoxColumn, Me.BuseTypeDataGridViewTextBoxColumn, Me.BuseAngleDataGridViewTextBoxColumn, Me.BuseFonctionnementDataGridViewTextBoxColumn, Me.BuseIsISODataGridViewCheckBoxColumn, Me.ManometreMarqueDataGridViewTextBoxColumn, Me.ManometreDiametreDataGridViewTextBoxColumn, Me.ManometreTypeDataGridViewTextBoxColumn, Me.ManometreFondEchelleDataGridViewTextBoxColumn, Me.ManometrePressionTravailDataGridViewTextBoxColumn, Me.ManometrePressionTravailDDataGridViewTextBoxColumn, Me.ExploitationTypeCultureIsGrandeCultureDataGridViewCheckBoxColumn, Me.ExploitationTypeCultureIsLegumeDataGridViewCheckBoxColumn, Me.ExploitationTypeCultureIsElevageDataGridViewCheckBoxColumn, Me.ExploitationTypeCultureIsArboricultureDataGridViewCheckBoxColumn, Me.ExploitationTypeCultureIsViticultureDataGridViewCheckBoxColumn, Me.ExploitationTypeCultureIsAutresDataGridViewCheckBoxColumn, Me.ExploitationSauDataGridViewTextBoxColumn, Me.DateModificationAgentDataGridViewTextBoxColumn, Me.DateModificationAgentSDataGridViewTextBoxColumn, Me.DateModificationCrodipDataGridViewTextBoxColumn, Me.DateModificationCrodipSDataGridViewTextBoxColumn, Me.DateSynchroDataGridViewTextBoxColumn, Me.DateSynchroSDataGridViewTextBoxColumn, Me.IsSynchroDataGridViewCheckBoxColumn, Me.IsATGIPDataGridViewCheckBoxColumn, Me.IsTGIPDataGridViewCheckBoxColumn, Me.IsFactureDataGridViewCheckBoxColumn, Me.SyntheseErreurMoyenneManoDataGridViewTextBoxColumn, Me.SyntheseErreurMaxiManoDataGridViewTextBoxColumn, Me.SyntheseErreurDebitmetreDataGridViewTextBoxColumn, Me.SyntheseErreurMoyenneCinemometreDataGridViewTextBoxColumn, Me.SyntheseUsureMoyenneBusesDataGridViewTextBoxColumn, Me.SyntheseNbBusesUseesDataGridViewTextBoxColumn, Me.SynthesePerteChargeMoyenneDataGridViewTextBoxColumn, Me.SynthesePerteChargeMaxiDataGridViewTextBoxColumn, Me.SyntheseErreurMoyenneManoDDataGridViewTextBoxColumn, Me.SyntheseErreurMaxiManoDDataGridViewTextBoxColumn, Me.SyntheseErreurDebitmetreDDataGridViewTextBoxColumn, Me.SyntheseErreurMoyenneCinemometreDDataGridViewTextBoxColumn, Me.SyntheseUsureMoyenneBusesDDataGridViewTextBoxColumn, Me.SyntheseNbBusesUseesDDataGridViewTextBoxColumn, Me.SynthesePerteChargeMoyenneDDataGridViewTextBoxColumn, Me.SynthesePerteChargeMaxiDDataGridViewTextBoxColumn, Me.SyntheseImprecision542DataGridViewTextBoxColumn, Me.DiagnosticItemsLstDataGridViewTextBoxColumn, Me.DiagnosticBusesListDataGridViewTextBoxColumn, Me.NbreLotsBusesDataGridViewTextBoxColumn, Me.DiagnosticMano542ListDataGridViewTextBoxColumn, Me.DiagnosticTroncons833DataGridViewTextBoxColumn, Me.ControleBancMesureIdDataGridViewTextBoxColumn, Me.ControleNbreNiveauxDataGridViewTextBoxColumn, Me.ControleNbreTronconsDataGridViewTextBoxColumn, Me.ControleUseCalibrateurDataGridViewCheckBoxColumn, Me.ControleManoControleNumNationalDataGridViewTextBoxColumn, Me.DiagnosticHelp551DataGridViewTextBoxColumn, Me.DiagnosticHelp12323DataGridViewTextBoxColumn, Me.DiagnosticHelp5621DataGridViewTextBoxColumn, Me.DiagnosticHelp552DataGridViewTextBoxColumn, Me.DiagnosticHelp5622DataGridViewTextBoxColumn, Me.DiagnosticHelp811DataGridViewTextBoxColumn, Me.DiagnosticHelp8312DataGridViewTextBoxColumn, Me.DiagnosticHelp8314DataGridViewTextBoxColumn, Me.DiagnosticHelp571DataGridViewTextBoxColumn, Me.DiagnosticHelp12123DataGridViewTextBoxColumn, Me.DiagnosticInfosComplementairesDataGridViewTextBoxColumn, Me.RelevePression8331DataGridViewTextBoxColumn, Me.RelevePression8332DataGridViewTextBoxColumn, Me.RelevePression8333DataGridViewTextBoxColumn, Me.RelevePression8334DataGridViewTextBoxColumn, Me.ControleInitialIdDataGridViewTextBoxColumn, Me.RIFileNameDataGridViewTextBoxColumn, Me.SMFileNameDataGridViewTextBoxColumn, Me.CCFileNameDataGridViewTextBoxColumn, Me.ParamDiagDataGridViewTextBoxColumn, Me.TotalHTDataGridViewTextBoxColumn, Me.TotalTVADataGridViewTextBoxColumn, Me.TotalTTCDataGridViewTextBoxColumn, Me.PulverisateurRegulationDataGridViewTextBoxColumn, Me.PulverisateurRegulationOptionsDataGridViewTextBoxColumn, Me.PulverisateurModeUtilisationDataGridViewTextBoxColumn, Me.PulverisateurNbreExploitantsDataGridViewTextBoxColumn, Me.PulverisateurCoupureAutoTronconsDataGridViewTextBoxColumn, Me.PulverisateurReglageAutoHauteurDataGridViewTextBoxColumn, Me.PulverisateurRincagecircuitDataGridViewTextBoxColumn, Me.IsContrevisiteImmediateDataGridViewCheckBoxColumn, Me.OrigineDiagDataGridViewTextBoxColumn, Me.TypeDiagnosticDataGridViewTextBoxColumn, Me.CodeInseeDataGridViewTextBoxColumn, Me.BuseDebitMoyenPMDataGridViewTextBoxColumn, Me.CommentaireDataGridViewTextBoxColumn, Me.SignRIClientDataGridViewImageColumn, Me.DateSignRIClientDataGridViewTextBoxColumn, Me.DateSignRIClientSDataGridViewTextBoxColumn, Me.IsSignRIClientDataGridViewCheckBoxColumn, Me.SignRIAgentDataGridViewImageColumn, Me.DateSignRIAgentDataGridViewTextBoxColumn, Me.DateSignRIAgentSDataGridViewTextBoxColumn, Me.IsSignRIAgentDataGridViewCheckBoxColumn, Me.SignCCAgentDataGridViewImageColumn, Me.IsSignCCAgentDataGridViewCheckBoxColumn, Me.DateSignCCAgentDataGridViewTextBoxColumn, Me.DateSignCCAgentSDataGridViewTextBoxColumn, Me.SignCCClientDataGridViewImageColumn, Me.IsSignCCClientDataGridViewCheckBoxColumn, Me.DateSignCCClientDataGridViewTextBoxColumn, Me.DateSignCCClientSDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.m_bsrcDiag
         Me.DataGridView1.Location = New System.Drawing.Point(6, 42)
         Me.DataGridView1.MultiSelect = False
@@ -840,9 +851,9 @@ Public Class liste_diagnosticPulve
         '
         Me.controleDateDebut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.controleDateDebut.DataPropertyName = "controleDateDebut"
-        DataGridViewCellStyle2.Format = "d"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.controleDateDebut.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Format = "d"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.controleDateDebut.DefaultCellStyle = DataGridViewCellStyle1
         Me.controleDateDebut.FillWeight = 200.0!
         Me.controleDateDebut.HeaderText = "Date"
         Me.controleDateDebut.Name = "controleDateDebut"
@@ -852,36 +863,90 @@ Public Class liste_diagnosticPulve
         'controleEtat
         '
         Me.controleEtat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.controleEtat.DataPropertyName = "controleEtat"
+        Me.controleEtat.DataPropertyName = "controleEtatLibelle"
         Me.controleEtat.HeaderText = "Résultat"
         Me.controleEtat.Name = "controleEtat"
         Me.controleEtat.ReadOnly = True
         Me.controleEtat.Width = 71
         '
-        'Col_RI
+        'Col_Rapports
         '
-        Me.Col_RI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Col_RI.HeaderText = "Rapport"
-        Me.Col_RI.Name = "Col_RI"
-        Me.Col_RI.ReadOnly = True
-        Me.Col_RI.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Col_RI.Width = 51
+        Me.Col_Rapports.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        Me.Col_Rapports.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Col_Rapports.HeaderText = "Rapport"
+        Me.Col_Rapports.Name = "Col_Rapports"
+        Me.Col_Rapports.ReadOnly = True
+        Me.Col_Rapports.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Col_Rapports.Text = "Visualiser"
+        Me.Col_Rapports.ToolTipText = "Visualiser le rapport d'inspection"
+        Me.Col_Rapports.UseColumnTextForButtonValue = True
+        Me.Col_Rapports.Width = 51
         '
         'col_SM
         '
-        Me.col_SM.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.col_SM.HeaderText = "Synthèse"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        Me.col_SM.DefaultCellStyle = DataGridViewCellStyle3
+        Me.col_SM.HeaderText = "Synthèse des mesures"
         Me.col_SM.Name = "col_SM"
         Me.col_SM.ReadOnly = True
-        Me.col_SM.Width = 57
+        Me.col_SM.Text = "Visualiser"
+        Me.col_SM.ToolTipText = "Visualiser la synhtèse des mesures"
+        Me.col_SM.UseColumnTextForButtonValue = True
+        Me.col_SM.Width = 72
         '
-        'col_Contrat
+        'col_contrat
         '
-        Me.col_Contrat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.col_Contrat.HeaderText = "Contrat"
-        Me.col_Contrat.Name = "col_Contrat"
-        Me.col_Contrat.ReadOnly = True
-        Me.col_Contrat.Width = 47
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
+        Me.col_contrat.DefaultCellStyle = DataGridViewCellStyle4
+        Me.col_contrat.HeaderText = "Contrat"
+        Me.col_contrat.Name = "col_contrat"
+        Me.col_contrat.ReadOnly = True
+        Me.col_contrat.Text = "Visualiser"
+        Me.col_contrat.ToolTipText = "Visualiser le contrat commercial"
+        Me.col_contrat.UseColumnTextForButtonValue = True
+        Me.col_contrat.Width = 47
+        '
+        'col_Signatures
+        '
+        Me.col_Signatures.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
+        Me.col_Signatures.DefaultCellStyle = DataGridViewCellStyle5
+        Me.col_Signatures.HeaderText = "Signatures"
+        Me.col_Signatures.Name = "col_Signatures"
+        Me.col_Signatures.ReadOnly = True
+        Me.col_Signatures.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.col_Signatures.Text = "Signer"
+        Me.col_Signatures.UseColumnTextForButtonValue = True
+        Me.col_Signatures.Width = 63
+        '
+        'col_Details
+        '
+        Me.col_Details.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.White
+        Me.col_Details.DefaultCellStyle = DataGridViewCellStyle6
+        Me.col_Details.HeaderText = "Détails"
+        Me.col_Details.Name = "col_Details"
+        Me.col_Details.ReadOnly = True
+        Me.col_Details.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.col_Details.Text = "Détail"
+        Me.col_Details.UseColumnTextForButtonValue = True
+        Me.col_Details.Width = 45
         '
         'IdDataGridViewTextBoxColumn
         '
@@ -2507,7 +2572,7 @@ Public Class liste_diagnosticPulve
         Me.DateSignCCClientSDataGridViewTextBoxColumn.ReadOnly = True
         Me.DateSignCCClientSDataGridViewTextBoxColumn.Width = 121
         '
-        'liste_diagnosticPulve
+        'liste_diagnosticPulve2
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(641, 424)
@@ -2519,7 +2584,7 @@ Public Class liste_diagnosticPulve
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label5)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Name = "liste_diagnosticPulve"
+        Me.Name = "liste_diagnosticPulve2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Crodip .::. Liste des contrôles"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2539,31 +2604,18 @@ Public Class liste_diagnosticPulve
         Try
             Dim query As String
             If param = "" Then
-                query = "SELECT Diagnostic.id,Diagnostic.controleDateFin,Diagnostic.controleEtat, RIFileName, SMFileName, CCFileName FROM Diagnostic WHERE Diagnostic.pulverisateurId='" & pulverisateurCourant.id & "' AND Diagnostic.organismePresId =" & agentCourant.idStructure
+                query = "SELECT Diagnostic.id,Diagnostic.controleDateFin,Diagnostic.controleEtat, RIFileName, SMFileName, CCFileName, IsSignRIAgent, ISSignRIClient, ISSignCCAgent, IsSignCCClient FROM Diagnostic WHERE Diagnostic.pulverisateurId='" & oPulve.id & "' AND Diagnostic.organismePresId =" & oAgent.idStructure
             Else
-                query = "SELECT Diagnostic.id,Diagnostic.controleDateFin,Diagnostic.controleEtat, RIFileName, SMFileName, CCFileName FROM Diagnostic WHERE Diagnostic.pulverisateurId='" & pulverisateurCourant.id & "' AND Diagnostic.organismePresId=" & agentCourant.idStructure & " AND Diagnostic.id LIKE '" & param & "%'"
+                query = "SELECT Diagnostic.id,Diagnostic.controleDateFin,Diagnostic.controleEtat, RIFileName, SMFileName, CCFileName, ISSignRIClient, ISSignCCAgent, IsSignCCClient FROM Diagnostic WHERE Diagnostic.pulverisateurId='" & oPulve.id & "' AND Diagnostic.organismePresId=" & oAgent.idStructure & " AND Diagnostic.id LIKE '%" & param & "%'"
             End If
             query = query & " ORDER BY Diagnostic.controleDateFin DESC"
             Dim bdd As New CSDb(True)
             Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
             '            listPulveDiagnostic.Items.Clear()
+            m_bsrcDiag.Clear()
+
             While dataResults.Read()
                 Dim oDiag As New Diagnostic()
-                '               Dim oItem As ListViewItem
-                '               oItem = listPulveDiagnostic.Items.Add(Trim(dataResults.Item(0).ToString))  ' num 
-                '              oItem.Tag = Trim(dataResults.Item(0).ToString)
-                '             oItem.SubItems.Add(CSDate.mysql2access(Trim(dataResults.Item(1).ToString))) ' date
-                'Select Case Trim(dataResults.Item(2).ToString)
-                '    Case "-1"
-                '        oItem.SubItems.Add("NOK")
-                '        oItem.ForeColor = System.Drawing.Color.Red
-                '    Case "0"
-                '        oItem.SubItems.Add("CV")
-                '        oItem.ForeColor = System.Drawing.Color.Orange
-                '    Case "1"
-                '        oItem.SubItems.Add("OK")
-                '        oItem.ForeColor = System.Drawing.Color.Green
-                'End Select
 
                 For i As Int32 = 0 To dataResults.FieldCount - 1
                     oDiag.Fill(dataResults.GetName(i), dataResults.GetValue(i))
@@ -2573,10 +2625,34 @@ Public Class liste_diagnosticPulve
             dataResults.Close()
             bdd.free()
             bdd = Nothing
-            For Each oRow As DataGridViewRow In DataGridView1.Rows
-                oRow.Cells(3).Value = New Bitmap("R:\crodip_agentNEW\img\ico\pdf.png")
-                oRow.Cells(4).Value = New Bitmap("R:\crodip_agentNEW\img\ico\pdf.png")
-                oRow.Cells(5).Value = New Bitmap("R:\crodip_agentNEW\img\ico\pdf.png")
+            Dim nRow As Integer = 0
+            For Each oDiag As Diagnostic In m_bsrcDiag.List
+                Select Case Trim(oDiag.controleEtat)
+                    Case "-1"
+                        DataGridView1.Rows(nRow).DefaultCellStyle.ForeColor = System.Drawing.Color.Red
+                    Case "0"
+
+                        DataGridView1.Rows(nRow).DefaultCellStyle.ForeColor = System.Drawing.Color.Orange
+                    Case "1"
+                        DataGridView1.Rows(nRow).DefaultCellStyle.ForeColor = System.Drawing.Color.Green
+                End Select
+                Dim oCell As DataGridViewDisableButtonCell
+                oCell = DataGridView1.Rows(nRow).Cells(Col_Rapports.Index)
+                oCell.Enabled = Not String.IsNullOrEmpty(oDiag.RIFileName)
+                oCell.Style.ForeColor = System.Drawing.Color.White
+                oCell = DataGridView1.Rows(nRow).Cells(col_SM.Index)
+                oCell.Enabled = Not String.IsNullOrEmpty(oDiag.SMFileName)
+                oCell.Style.ForeColor = System.Drawing.Color.White
+                oCell = DataGridView1.Rows(nRow).Cells(col_contrat.Index)
+                oCell.Enabled = Not String.IsNullOrEmpty(oDiag.CCFileName)
+                oCell.Style.ForeColor = System.Drawing.Color.White
+                oCell = DataGridView1.Rows(nRow).Cells(col_Signatures.Index)
+                oCell.Enabled = Not oDiag.isSign
+                oCell.Style.ForeColor = System.Drawing.Color.White
+                oCell = DataGridView1.Rows(nRow).Cells(col_Details.Index)
+                oCell.Style.ForeColor = System.Drawing.Color.White
+
+                nRow = nRow + 1
             Next
         Catch ex As Exception
             CSDebug.dispError("liste_diagnosticPulve::searchDiagnostic : " & ex.Message.ToString)
@@ -2584,15 +2660,9 @@ Public Class liste_diagnosticPulve
     End Sub
 
     Private Sub liste_diagnosticPulve_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ' On récupère la liste des diagnostic du pulvé par notre agent
-        btnSignature.Enabled = False
-        btn_selectDiagnostic_VisuDiag.Enabled = False
-        btnSignature.Visible = oAgent.isSignElecActive
+        col_Signatures.Visible = oAgent.isSignElecActive
         searchDiagnostic("")
-        For n As Integer = DataGridView1.Columns.GetColumnCount(DataGridViewElementStates.None) - 1 To 6 Step -1
-            DataGridView1.Columns.RemoveAt(n)
-        Next
-        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         DataGridView1.Refresh()
     End Sub
 
@@ -2643,18 +2713,85 @@ Public Class liste_diagnosticPulve
         m_oDiag = m_bsrcDiag.Current
         If m_oDiag IsNot Nothing Then
             Select Case e.ColumnIndex
-                Case 3
-                    File = m_oDiag.RIFileName
-                Case 4
-                    File = m_oDiag.SMFileName
-                Case 5
-                    File = m_oDiag.CCFileName
+                Case Col_Rapports.Index
+                    VisualisationRI()
+                Case Col_SM.Index
+                    VisualisationSM()
+                Case col_contrat.Index
+                    VisualisationCC()
+                Case col_Signatures.Index
+                    Signatures()
+                Case col_Details.Index
+                    DetailsRapports()
             End Select
-            If Not String.IsNullOrEmpty(File) Then
-                Dim oDiag As Diagnostic = m_bsrcDiag.Item(e.RowIndex)
-                EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, File)
-                CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & "\" & File)
-            End If
+        End If
+    End Sub
+
+    Private Sub DetailsRapports()
+        If m_oDiag IsNot Nothing Then
+            Try
+                m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
+
+                ' On récupère le Diagnostic selectionné
+                Me.DiagMode = Globals.DiagMode.CTRL_VISU
+                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Me.Close()
+
+            Catch ex As Exception
+                CSDebug.dispError("Visualisation Diagnostic - getDiagnosticById" & ex.Message.ToString)
+            End Try
+        End If
+    End Sub
+
+    Private Sub Signatures()
+        If m_oDiag IsNot Nothing Then
+            Try
+                m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
+                ' On récupère le Diagnostic selectionné
+                Me.DiagMode = Globals.DiagMode.CTRL_SIGNATURE
+                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Me.Close()
+
+            Catch ex As Exception
+                CSDebug.dispError("Visualisation Diagnostic - getDiagnosticById" & ex.Message.ToString)
+            End Try
+        End If
+    End Sub
+
+    Private Sub VisualisationRI()
+        If m_oDiag IsNot Nothing Then
+            Try
+                If Not String.IsNullOrEmpty(m_oDiag.RIFileName) Then
+                    EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.RIFileName)
+                    CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.RIFileName)                ' On récupère le Diagnostic selectionné
+                End If
+            Catch ex As Exception
+                CSDebug.dispError("liste_DiagnosticPulve2.VisualisationRI  ERR :" & ex.Message.ToString)
+            End Try
+        End If
+    End Sub
+    Private Sub VisualisationSM()
+        If m_oDiag IsNot Nothing Then
+            Try
+                If Not String.IsNullOrEmpty(m_oDiag.SMFileName) Then
+                    EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.SMFileName)
+                    CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.SMFileName)                ' On récupère le Diagnostic selectionné
+                End If
+            Catch ex As Exception
+                CSDebug.dispError("liste_DiagnosticPulve2.VisualisationSM  ERR :" & ex.Message.ToString)
+            End Try
+        End If
+    End Sub
+    Private Sub VisualisationCC()
+        If m_oDiag IsNot Nothing Then
+            Try
+                If Not String.IsNullOrEmpty(m_oDiag.CCFileName) Then
+                    EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.CCFileName)
+                    CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)                ' On récupère le Diagnostic selectionné
+                End If
+            Catch ex As Exception
+                CSDebug.dispError("liste_DiagnosticPulve2.VisualisationCC  ERR :" & ex.Message.ToString)
+            End Try
         End If
     End Sub
 
@@ -2669,4 +2806,5 @@ Public Class liste_diagnosticPulve
             End Select
         End If
     End Sub
+
 End Class

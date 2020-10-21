@@ -316,7 +316,7 @@ Public Class login
         Me.bntGetWSDiag.Name = "bntGetWSDiag"
         Me.bntGetWSDiag.Size = New System.Drawing.Size(128, 23)
         Me.bntGetWSDiag.TabIndex = 35
-        Me.bntGetWSDiag.Text = "GetWSDiag"
+        Me.bntGetWSDiag.Text = "ListeDiags"
         Me.bntGetWSDiag.UseVisualStyleBackColor = True
         '
         'btnTesttrtSemences
@@ -1038,36 +1038,20 @@ Public Class login
     End Sub
 
     Private Sub bntGetWSDiag_Click(sender As Object, e As EventArgs) Handles bntGetWSDiag.Click
-        Dim idDiag As String
-        Dim oAgent As Agent
+        Dim oDiag As New Diagnostic()
+        Dim oAgent As Agent = AgentManager.getAgentById("1110")
+        Dim oPulve As New Pulverisateur()
+        Dim oExploit As New Exploitation()
+        oExploit = ExploitationManager.getExploitationById("2-81-17") 'QUEZADA NICOLE
+        '        oPulve = PulverisateurManager.getPulverisateurById("2-1-51") 'Culture maraîchères palissées
+        'oPulve = PulverisateurManager.getPulverisateurById("2-81-63") 'Pulvérisateurs combinés
+        '        oPulve = PulverisateurManager.getPulverisateurById("2-81-50") 'Cultures basses
+        oPulve = PulverisateurManager.getPulverisateurById("2-81-25") '
 
-        idDiag = InputBox("ID Diag : ", "Indiquer le numéro de diag à récupérer")
+        Dim ofrm As New liste_diagnosticPulve2()
+        ofrm.setcontexte(oPulve, oExploit, oAgent)
+        ofrm.Show()
 
-        oAgent = AgentManager.getAgentList().items(0)
-        If Not String.IsNullOrEmpty(idDiag) Then
-            Dim oSynchro As New Synchronisation(oAgent)
-            Dim lstElementsASynchroniser As New List(Of SynchronisationElmt)
-            Dim oElmt As SynchronisationElmt
-            oElmt = New SynchronisationElmtDiag(oSynchro.m_SynchroBoolean)
-            oElmt.IdentifiantChaine = idDiag
-            lstElementsASynchroniser.Add(oElmt)
-            oElmt = New SynchronisationElmtDiagItem(oSynchro.m_SynchroBoolean)
-            oElmt.IdentifiantChaine = idDiag
-            lstElementsASynchroniser.Add(oElmt)
-            oElmt = New SynchronisationElmtDiagBuses(oSynchro.m_SynchroBoolean)
-            oElmt.IdentifiantChaine = idDiag
-            lstElementsASynchroniser.Add(oElmt)
-            oElmt = New SynchronisationElmtDiagBusesDetail(oSynchro.m_SynchroBoolean)
-            oElmt.IdentifiantChaine = idDiag
-            lstElementsASynchroniser.Add(oElmt)
-            oElmt = New SynchronisationElmtDiagMano542(oSynchro.m_SynchroBoolean)
-            oElmt.IdentifiantChaine = idDiag
-            lstElementsASynchroniser.Add(oElmt)
-            oElmt = New SynchronisationElmtDiagMano833(oSynchro.m_SynchroBoolean)
-            oElmt.IdentifiantChaine = idDiag
-            lstElementsASynchroniser.Add(oElmt)
-            oSynchro.runDescSynchro(lstElementsASynchroniser)
-        End If
     End Sub
 
     Private Sub btn_dlgAcquisition_Click(sender As Object, e As EventArgs) Handles btn_dlgAcquisition.Click
@@ -1081,7 +1065,7 @@ Public Class login
         Dim oAgent As Agent = AgentManager.getAgentById("1110")
         Dim oPulve As New Pulverisateur()
         Dim oExploit As New Exploitation()
-        oExploit = ExploitationManager.getExploitationById("2-81-32")
+        oExploit = ExploitationManager.getExploitationById("2-81-17") 'QUEZADA NICOLE
         '        oPulve = PulverisateurManager.getPulverisateurById("2-1-51") 'Culture maraîchères palissées
         'oPulve = PulverisateurManager.getPulverisateurById("2-81-63") 'Pulvérisateurs combinés
         '        oPulve = PulverisateurManager.getPulverisateurById("2-81-50") 'Cultures basses

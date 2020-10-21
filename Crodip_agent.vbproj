@@ -211,7 +211,7 @@
     <Reference Include="Interop.wgssSTU, Version=2.13.5.0, Culture=neutral, PublicKeyToken=20000022810869de, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Wacom STU SDK\COM\bin\Win32\Interop.wgssSTU.dll</HintPath>
+      <HintPath>R:\crodip_agentNEW\Interop.wgssSTU.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -269,12 +269,16 @@
     <Compile Include="Application\diagnostic\liste_diagnosticPulve.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\liste_diagnosticPulve2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\includes\classes\Agent\Materiel\Alertes.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtPulverisateur.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitation.vb" />
     <Compile Include="Application\includes\classes\Synchro\UpdateInfo.vb" />
     <Compile Include="Application\includes\classes\Tools\AttributesCrodip.vb" />
+    <Compile Include="Application\includes\classes\Tools\DataGridViewDisableButtonCell.vb" />
     <Compile Include="Application\includes\classes\Tools\FacturationConfig.vb" />
     <Compile Include="Application\includes\classes\Tools\importCRODIP.vb" />
     <Compile Include="Application\Signature\frmSignClient.vb">
@@ -1383,6 +1387,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="img\login_bgReglagePulve.jpg" />
+    <Content Include="Interop.wgssSTU.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="moduleDocumentaire\_parametres\Alertes.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1990,6 +1997,9 @@
     <None Include="Service References\WSCrodip2\crodip.wsdl" />
     <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve.resx">
       <DependentUpon>liste_diagnosticPulve.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve2.resx">
+      <DependentUpon>liste_diagnosticPulve2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\Signature\frmSignClient.resx">
       <DependentUpon>frmSignClient.vb</DependentUpon>

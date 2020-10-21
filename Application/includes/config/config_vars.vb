@@ -13,6 +13,7 @@ Public Class Globals
         CTRL_CV = 1
         CTRL_VISU = 2
         CTRL_SIGNATURE = 3
+        CTRL_VISUPDFS = 4
     End Enum
     Public Enum enumConclusionDiag
         OK
