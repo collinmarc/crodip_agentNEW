@@ -33,7 +33,7 @@ Public Class gestion_bancs
     'Ne la modifiez pas en utilisant l'éditeur de code.
     Friend WithEvents Panel64 As System.Windows.Forms.Panel
     Friend WithEvents Panel13 As System.Windows.Forms.Panel
-    Friend WithEvents Panel65 As System.Windows.Forms.Panel
+    Friend WithEvents pnlFondBleu As System.Windows.Forms.Panel
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Panel68 As System.Windows.Forms.Panel
@@ -55,13 +55,16 @@ Public Class gestion_bancs
     Friend WithEvents Panel67 As System.Windows.Forms.Panel
     Friend WithEvents Label80 As System.Windows.Forms.Label
     Friend WithEvents gestionBanc_panel_etat As System.Windows.Forms.Panel
+    Friend WithEvents pnlHeaderHisto As Panel
+    Friend WithEvents lblHisto As Label
+    Friend WithEvents pnlHisto As Panel
     Friend WithEvents imagesEtatMateriel As System.Windows.Forms.ImageList
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gestion_bancs))
         Me.Panel64 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
-        Me.Panel65 = New System.Windows.Forms.Panel()
+        Me.pnlFondBleu = New System.Windows.Forms.Panel()
         Me.Panel67 = New System.Windows.Forms.Panel()
         Me.Label80 = New System.Windows.Forms.Label()
         Me.gestionBanc_panel_etat = New System.Windows.Forms.Panel()
@@ -84,25 +87,30 @@ Public Class gestion_bancs
         Me.imagesPictos = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolTipShowFichevie = New System.Windows.Forms.ToolTip(Me.components)
         Me.imagesEtatMateriel = New System.Windows.Forms.ImageList(Me.components)
+        Me.pnlHeaderHisto = New System.Windows.Forms.Panel()
+        Me.lblHisto = New System.Windows.Forms.Label()
+        Me.pnlHisto = New System.Windows.Forms.Panel()
         Me.Panel64.SuspendLayout()
-        Me.Panel65.SuspendLayout()
+        Me.pnlFondBleu.SuspendLayout()
         Me.Panel67.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel68.SuspendLayout()
+        Me.pnlHeaderHisto.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel64
         '
         Me.Panel64.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel64.Controls.Add(Me.pnlHeaderHisto)
         Me.Panel64.Controls.Add(Me.Panel13)
-        Me.Panel64.Controls.Add(Me.Panel65)
+        Me.Panel64.Controls.Add(Me.pnlFondBleu)
         Me.Panel64.Controls.Add(Me.Label7)
         Me.Panel64.Controls.Add(Me.btn_gestionBanc_valider)
         Me.Panel64.Location = New System.Drawing.Point(0, -1)
         Me.Panel64.Name = "Panel64"
-        Me.Panel64.Size = New System.Drawing.Size(1008, 680)
+        Me.Panel64.Size = New System.Drawing.Size(1025, 680)
         Me.Panel64.TabIndex = 20
         '
         'Panel13
@@ -113,26 +121,27 @@ Public Class gestion_bancs
         Me.Panel13.Size = New System.Drawing.Size(992, 3)
         Me.Panel13.TabIndex = 18
         '
-        'Panel65
+        'pnlFondBleu
         '
-        Me.Panel65.AutoScroll = True
-        Me.Panel65.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.Panel65.Controls.Add(Me.Panel67)
-        Me.Panel65.Controls.Add(Me.gestionBanc_panel_etat)
-        Me.Panel65.Controls.Add(Me.Panel6)
-        Me.Panel65.Controls.Add(Me.gestionBanc_panel_showFV)
-        Me.Panel65.Controls.Add(Me.Panel5)
-        Me.Panel65.Controls.Add(Me.gestionBanc_panel_dateAchat)
-        Me.Panel65.Controls.Add(Me.Panel3)
-        Me.Panel65.Controls.Add(Me.gestionBanc_panel_modele)
-        Me.Panel65.Controls.Add(Me.Panel1)
-        Me.Panel65.Controls.Add(Me.gestionBanc_panel_marque)
-        Me.Panel65.Controls.Add(Me.Panel68)
-        Me.Panel65.Controls.Add(Me.gestionBanc_panel_id)
-        Me.Panel65.Location = New System.Drawing.Point(100, 48)
-        Me.Panel65.Name = "Panel65"
-        Me.Panel65.Size = New System.Drawing.Size(809, 528)
-        Me.Panel65.TabIndex = 10
+        Me.pnlFondBleu.AutoScroll = True
+        Me.pnlFondBleu.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.pnlFondBleu.Controls.Add(Me.pnlHisto)
+        Me.pnlFondBleu.Controls.Add(Me.Panel67)
+        Me.pnlFondBleu.Controls.Add(Me.gestionBanc_panel_etat)
+        Me.pnlFondBleu.Controls.Add(Me.Panel6)
+        Me.pnlFondBleu.Controls.Add(Me.gestionBanc_panel_showFV)
+        Me.pnlFondBleu.Controls.Add(Me.Panel5)
+        Me.pnlFondBleu.Controls.Add(Me.gestionBanc_panel_dateAchat)
+        Me.pnlFondBleu.Controls.Add(Me.Panel3)
+        Me.pnlFondBleu.Controls.Add(Me.gestionBanc_panel_modele)
+        Me.pnlFondBleu.Controls.Add(Me.Panel1)
+        Me.pnlFondBleu.Controls.Add(Me.gestionBanc_panel_marque)
+        Me.pnlFondBleu.Controls.Add(Me.Panel68)
+        Me.pnlFondBleu.Controls.Add(Me.gestionBanc_panel_id)
+        Me.pnlFondBleu.Location = New System.Drawing.Point(100, 48)
+        Me.pnlFondBleu.Name = "pnlFondBleu"
+        Me.pnlFondBleu.Size = New System.Drawing.Size(900, 528)
+        Me.pnlFondBleu.TabIndex = 10
         '
         'Panel67
         '
@@ -149,7 +158,7 @@ Public Class gestion_bancs
         Me.Label80.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label80.Location = New System.Drawing.Point(8, 8)
         Me.Label80.Name = "Label80"
-        Me.Label80.Size = New System.Drawing.Size(72, 24)
+        Me.Label80.Size = New System.Drawing.Size(71, 24)
         Me.Label80.TabIndex = 8
         Me.Label80.Text = "Etat après vérification"
         Me.Label80.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -322,6 +331,7 @@ Public Class gestion_bancs
         Me.imagesPictos.Images.SetKeyName(0, "")
         Me.imagesPictos.Images.SetKeyName(1, "")
         Me.imagesPictos.Images.SetKeyName(2, "eyeSupprime.png")
+        Me.imagesPictos.Images.SetKeyName(3, "PDF.png")
         '
         'imagesEtatMateriel
         '
@@ -331,10 +341,38 @@ Public Class gestion_bancs
         Me.imagesEtatMateriel.Images.SetKeyName(1, "")
         Me.imagesEtatMateriel.Images.SetKeyName(2, "g.jpg")
         '
+        'pnlHeaderHisto
+        '
+        Me.pnlHeaderHisto.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.pnlHeaderHisto.Controls.Add(Me.lblHisto)
+        Me.pnlHeaderHisto.Location = New System.Drawing.Point(910, 48)
+        Me.pnlHeaderHisto.Name = "pnlHeaderHisto"
+        Me.pnlHeaderHisto.Size = New System.Drawing.Size(88, 40)
+        Me.pnlHeaderHisto.TabIndex = 39
+        '
+        'lblHisto
+        '
+        Me.lblHisto.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHisto.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblHisto.Location = New System.Drawing.Point(8, 8)
+        Me.lblHisto.Name = "lblHisto"
+        Me.lblHisto.Size = New System.Drawing.Size(72, 24)
+        Me.lblHisto.TabIndex = 8
+        Me.lblHisto.Text = "Historique"
+        Me.lblHisto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pnlHisto
+        '
+        Me.pnlHisto.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.pnlHisto.Location = New System.Drawing.Point(810, 41)
+        Me.pnlHisto.Name = "pnlHisto"
+        Me.pnlHisto.Size = New System.Drawing.Size(88, 487)
+        Me.pnlHisto.TabIndex = 39
+        '
         'gestion_bancs
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(1008, 679)
+        Me.ClientSize = New System.Drawing.Size(1025, 679)
         Me.Controls.Add(Me.Panel64)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -345,12 +383,13 @@ Public Class gestion_bancs
         Me.Text = "Gestion des bancs"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel64.ResumeLayout(False)
-        Me.Panel65.ResumeLayout(False)
+        Me.pnlFondBleu.ResumeLayout(False)
         Me.Panel67.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel68.ResumeLayout(False)
+        Me.pnlHeaderHisto.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -416,6 +455,8 @@ Public Class gestion_bancs
                 tmpShowFV.Left = 8
                 tmpShowFV.Top = positionTop
                 AddHandler tmpShowFV.Click, AddressOf EditBanc
+                AddHandler tmpShowFV.MouseHover, AddressOf setCursorHand
+                AddHandler tmpShowFV.MouseLeave, AddressOf setCursorDefault
                 ToolTipShowFichevie.SetToolTip(tmpShowFV, "Voir la fiche de ce banc de mesure.")
                 ToolTipShowFichevie.Active = True
 
@@ -504,6 +545,23 @@ Public Class gestion_bancs
                 tmpState.Height = 16
                 tmpState.Left = 36
                 tmpState.Top = positionTop
+
+                '## Show FV
+                Dim tmpShowHisto As New PictureBox
+                tmpShowHisto.Name = "banc_" & tmpBanc.id & "_showHisto"
+                tmpShowHisto.Image = imagesPictos.Images(3)
+                Controls.Add(tmpShowHisto)
+                tmpShowHisto.Parent = pnlHisto
+                tmpShowHisto.Width = 16
+                tmpShowHisto.Height = 16
+                tmpShowHisto.Left = 36
+                tmpShowHisto.Top = positionTop
+                AddHandler tmpShowHisto.Click, AddressOf HistoBanc
+                AddHandler tmpShowHisto.MouseHover, AddressOf setCursorHand
+                AddHandler tmpShowHisto.MouseLeave, AddressOf setCursorDefault
+                ToolTipShowFichevie.SetToolTip(tmpShowHisto, "Voir l'historique de vérification de ce banc de mesure.")
+                ToolTipShowFichevie.Active = True
+
             Next
             bReturn = True
         Catch ex As Exception
@@ -522,6 +580,33 @@ Public Class gestion_bancs
             If formFicheBanc.ShowDialog(Me) <> Windows.Forms.DialogResult.Cancel Then
                 DisplayListe()
             End If
+        Catch ex As Exception
+            CSDebug.dispError("Gestion_banc.EditBanc ERR : " & ex.Message)
+        End Try
+    End Sub
+    Private Sub HistoBanc(ByVal sender As Object, ByVal e As System.EventArgs)
+        Try
+            Dim bancId As String = sender.name.ToString.Replace("banc_", "").Replace("_showHisto", "")
+            Dim frmHistoBanc As New HistoBanc(BancManager.getBancById(bancId))
+            '            formFicheBanc.MdiParent = Me.MdiParent
+            '            formFicheBanc.setSendersForm(Me)
+            If frmHistoBanc.ShowDialog(Me) <> Windows.Forms.DialogResult.Cancel Then
+                DisplayListe()
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("Gestion_banc.HistoBanc ERR : " & ex.Message)
+        End Try
+    End Sub
+    Private Sub setCursorHand(ByVal sender As Object, ByVal e As System.EventArgs)
+        Try
+            Me.Cursor = Cursors.Hand
+        Catch ex As Exception
+            CSDebug.dispError("Gestion_banc.EditBanc ERR : " & ex.Message)
+        End Try
+    End Sub
+    Private Sub setCursorDefault(ByVal sender As Object, ByVal e As System.EventArgs)
+        Try
+            Me.Cursor = Cursors.Default
         Catch ex As Exception
             CSDebug.dispError("Gestion_banc.EditBanc ERR : " & ex.Message)
         End Try

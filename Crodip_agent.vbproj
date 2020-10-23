@@ -266,6 +266,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Application\agent\Bancs\HistoBanc.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\liste_diagnosticPulve.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -1368,6 +1371,7 @@
     <None Include="My Project\DataSources\ControleMano.datasource" />
     <None Include="My Project\DataSources\CRODIPAcquisition.AcquisitionValue.datasource" />
     <None Include="My Project\DataSources\DiagnosticFactureItem.datasource" />
+    <None Include="My Project\DataSources\FVBanc.datasource" />
     <None Include="My Project\DataSources\importCRODIP.ImportCrodipResult.datasource" />
     <None Include="My Project\DataSources\UpdateInfo.datasource" />
     <None Include="NLog.xsd">
@@ -1995,6 +1999,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Service References\WSCrodip2\crodip.wsdl" />
+    <EmbeddedResource Include="Application\agent\Bancs\HistoBanc.resx">
+      <DependentUpon>HistoBanc.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve.resx">
       <DependentUpon>liste_diagnosticPulve.vb</DependentUpon>
     </EmbeddedResource>

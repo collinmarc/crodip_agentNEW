@@ -4,11 +4,15 @@ Public Class CSFile
 
     Public Shared Sub open(ByVal fileName As String)
         Try
-            Dim monProcess As New Process
-            monProcess.StartInfo.FileName = fileName.Replace("/", "\\")
-            monProcess.StartInfo.Verb = "Open"
-            monProcess.StartInfo.CreateNoWindow = True
-            monProcess.Start()
+            If System.IO.File.Exists(fileName) Then
+
+                Using monProcess As New Process
+                    monProcess.StartInfo.FileName = fileName.Replace("/", "\\")
+                    monProcess.StartInfo.Verb = "Open"
+                    monProcess.StartInfo.CreateNoWindow = True
+                    monProcess.Start()
+                End Using
+            End If
         Catch ex As Exception
             CSDebug.dispWarn("CSFile::open : " & ex.Message)
         End Try

@@ -83,6 +83,8 @@ Public Class FVBanc
                     Me.idManometreControle = pColValue.ToString
                 Case "idBuseEtalon".ToUpper().Trim()
                     Me.idBuseEtalon = pColValue.ToString
+                Case "FVFileName".ToUpper().Trim()
+                    Me.FVFileName = pColValue.ToString
             End Select
             bReturn = True
         Catch ex As Exception
