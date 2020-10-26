@@ -436,6 +436,16 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property PDF() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("PDF", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property previous36() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("previous36", resourceCulture)

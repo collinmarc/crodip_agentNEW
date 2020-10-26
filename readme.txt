@@ -1,6 +1,11 @@
 TRUNK
 MASTER
 
+BUILD 
+--------------------
+0001259: Espace de stockage des PDFs Centralisés
+
+
 BUILD 20201013120000
 --------------------
 0001286: Signature WACOM

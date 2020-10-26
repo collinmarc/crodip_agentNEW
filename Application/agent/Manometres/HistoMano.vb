@@ -1,22 +1,19 @@
 Imports System.Collections.Generic
 Imports System.Linq
-Public Class HistoBanc
+Public Class HistoMano
     Inherits System.Windows.Forms.Form
 
 #Region " Code généré par le Concepteur Windows Form "
 
-    Dim BancCourant As Banc
-    Friend WithEvents m_bsrcFVBanc As BindingSource
+    Dim ManoCourant As ManometreControle
+    Friend WithEvents m_bsrcFVMano As BindingSource
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents DataGridViewDisableButtonColumn1 As DataGridViewDisableButtonColumn
     Friend WithEvents col_Blocage As DataGridViewImageColumn
     Friend WithEvents col_dateModifS As DataGridViewTextBoxColumn
     Friend WithEvents col_FVFileName As DataGridViewDisableButtonColumn
-    Friend WithEvents IdBancMesureDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PressionControleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ValeursMesureesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents IdManometreControleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents IdBuseEtalonDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents TypeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents AuteurDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
@@ -33,11 +30,11 @@ Public Class HistoBanc
     Friend WithEvents imagesEtatMateriel As System.Windows.Forms.ImageList
 
 
-    Public Sub New(ByVal _BancCourant As Banc)
+    Public Sub New(ByVal _ManoCourant As ManometreControle)
         MyBase.New()
 
         ' On load le mano
-        BancCourant = _BancCourant
+        ManoCourant = _ManoCourant
 
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
@@ -69,42 +66,33 @@ Public Class HistoBanc
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents btn_ficheMano_valider As System.Windows.Forms.Label
     Friend WithEvents ficheBanc_id As System.Windows.Forms.TextBox
     Friend WithEvents ficheBanc_marque As System.Windows.Forms.ComboBox
     Friend WithEvents ficheBanc_dateActivation As System.Windows.Forms.Label
     Friend WithEvents ficheBanc_dateControle As System.Windows.Forms.Label
-    Friend WithEvents ficheBanc_modele As System.Windows.Forms.TextBox
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HistoMano))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ficheBanc_id = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.ficheBanc_marque = New System.Windows.Forms.ComboBox()
         Me.ficheBanc_dateActivation = New System.Windows.Forms.Label()
         Me.ficheBanc_dateControle = New System.Windows.Forms.Label()
         Me.btn_ficheMano_valider = New System.Windows.Forms.Label()
-        Me.ficheBanc_modele = New System.Windows.Forms.TextBox()
         Me.imagesEtatMateriel = New System.Windows.Forms.ImageList(Me.components)
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.m_bsrcFVBanc = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataGridViewDisableButtonColumn1 = New Crodip_agent.DataGridViewDisableButtonColumn()
         Me.col_Blocage = New System.Windows.Forms.DataGridViewImageColumn()
         Me.col_dateModifS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.col_FVFileName = New Crodip_agent.DataGridViewDisableButtonColumn()
-        Me.IdBancMesureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PressionControleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ValeursMesureesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdManometreControleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdBuseEtalonDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AuteurDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -118,8 +106,10 @@ Public Class HistoBanc
         Me.DateModificationAgentSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DateModificationCrodipSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FVFileNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.m_bsrcFVMano = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataGridViewDisableButtonColumn1 = New Crodip_agent.DataGridViewDisableButtonColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcFVBanc, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcFVMano, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -132,7 +122,7 @@ Public Class HistoBanc
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(336, 24)
         Me.Label1.TabIndex = 3
-        Me.Label1.Text = "     Fiche banc de mesure"
+        Me.Label1.Text = "     Manomètre de contrôle"
         '
         'ficheBanc_id
         '
@@ -164,17 +154,6 @@ Public Class HistoBanc
         Me.Label2.TabIndex = 14
         Me.Label2.Text = "Marque :"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'Label3
-        '
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(32, 96)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(104, 16)
-        Me.Label3.TabIndex = 14
-        Me.Label3.Text = "Modèle :"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'ficheBanc_marque
         '
@@ -218,15 +197,6 @@ Public Class HistoBanc
         Me.btn_ficheMano_valider.Text = "    Valider/Quitter"
         Me.btn_ficheMano_valider.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'ficheBanc_modele
-        '
-        Me.ficheBanc_modele.Enabled = False
-        Me.ficheBanc_modele.Location = New System.Drawing.Point(160, 96)
-        Me.ficheBanc_modele.MaxLength = 100
-        Me.ficheBanc_modele.Name = "ficheBanc_modele"
-        Me.ficheBanc_modele.Size = New System.Drawing.Size(256, 20)
-        Me.ficheBanc_modele.TabIndex = 3
-        '
         'imagesEtatMateriel
         '
         Me.imagesEtatMateriel.ImageStream = CType(resources.GetObject("imagesEtatMateriel.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -252,8 +222,8 @@ Public Class HistoBanc
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.col_Blocage, Me.col_dateModifS, Me.col_FVFileName, Me.IdBancMesureDataGridViewTextBoxColumn, Me.PressionControleDataGridViewTextBoxColumn, Me.ValeursMesureesDataGridViewTextBoxColumn, Me.IdManometreControleDataGridViewTextBoxColumn, Me.IdBuseEtalonDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn, Me.AuteurDataGridViewTextBoxColumn, Me.IdAgentControleurDataGridViewTextBoxColumn, Me.CaracteristiquesDataGridViewTextBoxColumn, Me.DateModifDataGridViewTextBoxColumn, Me.DateModifSDataGridViewTextBoxColumn, Me.BlocageDataGridViewCheckBoxColumn, Me.DateModificationAgentDataGridViewTextBoxColumn, Me.DateModificationCrodipDataGridViewTextBoxColumn, Me.DateModificationAgentSDataGridViewTextBoxColumn, Me.DateModificationCrodipSDataGridViewTextBoxColumn, Me.FVFileNameDataGridViewTextBoxColumn})
-        Me.DataGridView1.DataSource = Me.m_bsrcFVBanc
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.col_Blocage, Me.col_dateModifS, Me.col_FVFileName, Me.PressionControleDataGridViewTextBoxColumn, Me.ValeursMesureesDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn, Me.AuteurDataGridViewTextBoxColumn, Me.IdAgentControleurDataGridViewTextBoxColumn, Me.CaracteristiquesDataGridViewTextBoxColumn, Me.DateModifDataGridViewTextBoxColumn, Me.DateModifSDataGridViewTextBoxColumn, Me.BlocageDataGridViewCheckBoxColumn, Me.DateModificationAgentDataGridViewTextBoxColumn, Me.DateModificationCrodipDataGridViewTextBoxColumn, Me.DateModificationAgentSDataGridViewTextBoxColumn, Me.DateModificationCrodipSDataGridViewTextBoxColumn, Me.FVFileNameDataGridViewTextBoxColumn})
+        Me.DataGridView1.DataSource = Me.m_bsrcFVMano
         Me.DataGridView1.Location = New System.Drawing.Point(13, 126)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
@@ -262,26 +232,6 @@ Public Class HistoBanc
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.DataGridView1.Size = New System.Drawing.Size(403, 131)
         Me.DataGridView1.TabIndex = 15
-        '
-        'm_bsrcFVBanc
-        '
-        Me.m_bsrcFVBanc.DataSource = GetType(Crodip_agent.FVBanc)
-        '
-        'DataGridViewDisableButtonColumn1
-        '
-        Me.DataGridViewDisableButtonColumn1.DataPropertyName = "FVFileName"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.DodgerBlue
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
-        Me.DataGridViewDisableButtonColumn1.DefaultCellStyle = DataGridViewCellStyle4
-        Me.DataGridViewDisableButtonColumn1.HeaderText = "FVFileName"
-        Me.DataGridViewDisableButtonColumn1.Name = "DataGridViewDisableButtonColumn1"
-        Me.DataGridViewDisableButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewDisableButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.DataGridViewDisableButtonColumn1.Text = "Visualiser"
-        Me.DataGridViewDisableButtonColumn1.ToolTipText = "Visualiser la fiche de vérification"
-        Me.DataGridViewDisableButtonColumn1.UseColumnTextForButtonValue = True
         '
         'col_Blocage
         '
@@ -323,13 +273,6 @@ Public Class HistoBanc
         Me.col_FVFileName.UseColumnTextForButtonValue = True
         Me.col_FVFileName.Width = 17
         '
-        'IdBancMesureDataGridViewTextBoxColumn
-        '
-        Me.IdBancMesureDataGridViewTextBoxColumn.DataPropertyName = "idBancMesure"
-        Me.IdBancMesureDataGridViewTextBoxColumn.HeaderText = "idBancMesure"
-        Me.IdBancMesureDataGridViewTextBoxColumn.Name = "IdBancMesureDataGridViewTextBoxColumn"
-        Me.IdBancMesureDataGridViewTextBoxColumn.ReadOnly = True
-        '
         'PressionControleDataGridViewTextBoxColumn
         '
         Me.PressionControleDataGridViewTextBoxColumn.DataPropertyName = "pressionControle"
@@ -343,20 +286,6 @@ Public Class HistoBanc
         Me.ValeursMesureesDataGridViewTextBoxColumn.HeaderText = "valeursMesurees"
         Me.ValeursMesureesDataGridViewTextBoxColumn.Name = "ValeursMesureesDataGridViewTextBoxColumn"
         Me.ValeursMesureesDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'IdManometreControleDataGridViewTextBoxColumn
-        '
-        Me.IdManometreControleDataGridViewTextBoxColumn.DataPropertyName = "idManometreControle"
-        Me.IdManometreControleDataGridViewTextBoxColumn.HeaderText = "idManometreControle"
-        Me.IdManometreControleDataGridViewTextBoxColumn.Name = "IdManometreControleDataGridViewTextBoxColumn"
-        Me.IdManometreControleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'IdBuseEtalonDataGridViewTextBoxColumn
-        '
-        Me.IdBuseEtalonDataGridViewTextBoxColumn.DataPropertyName = "idBuseEtalon"
-        Me.IdBuseEtalonDataGridViewTextBoxColumn.HeaderText = "idBuseEtalon"
-        Me.IdBuseEtalonDataGridViewTextBoxColumn.Name = "IdBuseEtalonDataGridViewTextBoxColumn"
-        Me.IdBuseEtalonDataGridViewTextBoxColumn.ReadOnly = True
         '
         'IdDataGridViewTextBoxColumn
         '
@@ -449,7 +378,27 @@ Public Class HistoBanc
         Me.FVFileNameDataGridViewTextBoxColumn.Name = "FVFileNameDataGridViewTextBoxColumn"
         Me.FVFileNameDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'HistoBanc
+        'm_bsrcFVMano
+        '
+        Me.m_bsrcFVMano.DataSource = GetType(Crodip_agent.FVManometreControle)
+        '
+        'DataGridViewDisableButtonColumn1
+        '
+        Me.DataGridViewDisableButtonColumn1.DataPropertyName = "FVFileName"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.DodgerBlue
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
+        Me.DataGridViewDisableButtonColumn1.DefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridViewDisableButtonColumn1.HeaderText = "FVFileName"
+        Me.DataGridViewDisableButtonColumn1.Name = "DataGridViewDisableButtonColumn1"
+        Me.DataGridViewDisableButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewDisableButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.DataGridViewDisableButtonColumn1.Text = "Visualiser"
+        Me.DataGridViewDisableButtonColumn1.ToolTipText = "Visualiser la fiche de vérification"
+        Me.DataGridViewDisableButtonColumn1.UseColumnTextForButtonValue = True
+        '
+        'HistoMano
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(441, 326)
@@ -460,17 +409,15 @@ Public Class HistoBanc
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.ficheBanc_dateActivation)
         Me.Controls.Add(Me.ficheBanc_dateControle)
-        Me.Controls.Add(Me.ficheBanc_modele)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Name = "HistoBanc"
+        Me.Name = "HistoMano"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Crodip .::. Historique de vérification du Banc"
+        Me.Text = "Crodip .::. Historique de vérification du Manomètre de controle"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcFVBanc, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcFVMano, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -487,19 +434,18 @@ Public Class HistoBanc
         'MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_BANC, ficheBanc_marque)
         'Chargement des modules d'acquisisition
 
-        dispBancCourant()
+        dispManoCourant()
     End Sub
-    Private Sub dispBancCourant()
+    Private Sub dispManoCourant()
         Try
 
-            ficheBanc_id.Text = BancCourant.id
-            ficheBanc_marque.Text = BancCourant.marque
-            ficheBanc_modele.Text = BancCourant.modele
+            ficheBanc_id.Text = ManoCourant.idCrodip
+            ficheBanc_marque.Text = ManoCourant.marque
 
-            m_bsrcFVBanc.Clear()
-            Dim olst As List(Of FVBanc) = FVBancManager.getlstFVBancByBancId(BancCourant.id)
-            For Each oFV As FVBanc In olst
-                m_bsrcFVBanc.Add(oFV)
+            m_bsrcFVMano.Clear()
+            Dim olst As List(Of FVManometreControle) = FVManometreControleManager.getLstFVManometreControle(ManoCourant.idCrodip)
+            For Each oFV As FVManometreControle In olst
+                m_bsrcFVMano.Add(oFV)
                 Dim oCell As DataGridViewDisableButtonCell = DataGridView1.Rows(DataGridView1.Rows.Count - 1).Cells(col_FVFileName.Index)
                 oCell.Enabled = Not String.IsNullOrEmpty(oFV.FVFileName)
                 Dim oCell2 As DataGridViewImageCell = DataGridView1.Rows(DataGridView1.Rows.Count - 1).Cells(col_Blocage.Index)
@@ -512,7 +458,7 @@ Public Class HistoBanc
             Next
 
         Catch ex As Exception
-            CSDebug.dispError("fiche_banc.dispBancCourant ERR" & ex.Message)
+            CSDebug.dispError("HistoMano.dispManoCourant ERR" & ex.Message)
         End Try
     End Sub
 
@@ -524,9 +470,9 @@ Public Class HistoBanc
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
         If e.ColumnIndex = col_FVFileName.Index Then
-            Dim oFV As FVBanc = m_bsrcFVBanc.Current
-            EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_BANCMESURE, oFV.FVFileName)
-            CSFile.open(Globals.CONST_PATH_EXP_BANCMESURE & "/" & oFV.FVFileName)
+            Dim oFV As FVManometreControle = m_bsrcFVMano.Current
+            EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_MANOCONTROLE, oFV.FVFileName)
+            CSFile.open(Globals.CONST_PATH_EXP_MANOCONTROLE & "/" & oFV.FVFileName)
         End If
     End Sub
 End Class
