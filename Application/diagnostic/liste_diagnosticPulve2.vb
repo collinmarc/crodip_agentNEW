@@ -2664,6 +2664,7 @@ Public Class liste_diagnosticPulve2
         searchDiagnostic("")
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         DataGridView1.Refresh()
+        btnSignature.Visible = oAgent.isSignElecActive
     End Sub
 
     Private Sub btn_selectDiagnostic_annuler_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_selectDiagnostic_annuler.Click

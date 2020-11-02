@@ -131,10 +131,13 @@ Public Class BuseManager
 
                 If Not bSynchro Then
                     objBuseEtalon.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                Else
+                    objBuseEtalon.dateModificationAgent = objBuseEtalon.dateModificationCrodip
                 End If
 
                 If Not objBuseEtalon.idCrodip Is Nothing Then
                     paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`idCrodip`='" & objBuseEtalon.idCrodip & "'"
+
                 End If
                 paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`idStructure`=" & objBuseEtalon.idStructure & ""
                 If Not objBuseEtalon.couleur Is Nothing Then
