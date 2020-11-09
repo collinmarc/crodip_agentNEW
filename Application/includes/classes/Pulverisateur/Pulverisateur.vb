@@ -1712,10 +1712,15 @@ Public Class Pulverisateur
         Dim lstNiveauAlerte As List(Of NiveauAlerte)
         lstNiveauAlerte = Alertes.readXML().NiveauxAlertes
         Dim oNiveau As NiveauAlerte = Nothing
-        oNiveau = lstNiveauAlerte.Where(Function(m) m.Materiel = NiveauAlerte.Enum_typeMateriel.Pulverisateur) _
-                            .Where(Function(m) m.DateEffet <= pDate) _
-                            .OrderByDescending(Function(m) m.DateEffet).First()
+        Try
 
+            oNiveau = lstNiveauAlerte.Where(Function(m) m.Materiel = NiveauAlerte.Enum_typeMateriel.Pulverisateur) _
+                                .Where(Function(m) m.DateEffet <= pDate) _
+                                .OrderByDescending(Function(m) m.DateEffet).First()
+
+        Catch ex As Exception
+
+        End Try
 
         If oNiveau Is Nothing Then
             oNiveau = New NiveauAlerte()

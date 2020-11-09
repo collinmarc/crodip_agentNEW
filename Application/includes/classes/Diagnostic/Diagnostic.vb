@@ -2459,6 +2459,11 @@ Public Class Diagnostic
                     Me.inspecteurOrigineNom = pcolValue.ToString()
                 Case "inspecteurOriginePrenom".ToUpper().Trim()
                     Me.inspecteurOriginePrenom = pcolValue.ToString()
+                Case "controleEtat".ToUpper().Trim()
+                    'On mémorise la date de prochain controle avant de mettre à jour l'état
+                    Dim DateProchainCtrl As String = pulverisateurDateProchainControle
+                    Me.controleEtat = pcolValue
+                    pulverisateurDateProchainControle = DateProchainCtrl
 
                 Case "controleDateDebut".ToUpper().Trim()
                     Me.controleDateDebut = CSDate.ToCRODIPString(pcolValue.ToString())
@@ -3143,8 +3148,8 @@ Public Class Diagnostic
         End If
         Dim oAlertes As Alertes
         oAlertes = Alertes.readXML()
-        Dim nMoisValideOK As String = Pulverisateur.getNiveauAlerte().Jaune
-        Dim nMoisValideCV As String = Pulverisateur.getNiveauAlerte().Rouge
+        Dim nMoisValideOK As String = Pulverisateur.getNiveauAlerte(CDate(controleDateDebut)).Jaune
+        Dim nMoisValideCV As String = Pulverisateur.getNiveauAlerte(CDate(controleDateDebut)).Rouge
 
 
         Dim pulverisateurControleEtatApres As String = pulverisateurControleEtat
@@ -3157,7 +3162,7 @@ Public Class Diagnostic
                     Case Diagnostic.controleEtatNOKCV
                         dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
                     Case Diagnostic.controleEtatNOKCC
-                        'dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                        dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
                 End Select
             Case Pulverisateur.controleEtatOK
                 'Etat OK

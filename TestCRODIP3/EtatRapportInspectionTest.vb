@@ -175,8 +175,6 @@ Imports System.IO
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
         oDiag.controleEtat = Diagnostic.controleEtatOK ' Pas Défauts sur le Pulvé
-        'Assert.AreEqual(CSDate.ToCRODIPString("06/02/1964"), oDiag.CalculDateProchainControle)
-        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(36)), oDiag.CalculDateProchainControle)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
         oDiagItem.LibelleCourt = "LIBCourt2562"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"

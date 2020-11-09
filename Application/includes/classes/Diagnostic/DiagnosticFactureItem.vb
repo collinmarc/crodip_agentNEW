@@ -55,12 +55,10 @@ Public Class DiagnosticFactureItem
                 Dim strValue As String = Value
                 strValue = strValue.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
                 strValue = strValue.Replace(",", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
-                If Convert.ToDecimal(strValue) Or strValue = "0" Or strValue = "0,0" Then
-                    _prixUnitaire = strValue
-                    calcultTotal()
-                End If
-
-
+                Dim nValue As Decimal
+                nValue = Convert.ToDecimal(strValue)
+                _prixUnitaire = String.Format("{0:0.00}", nValue)
+                calcultTotal()
             Catch ex As Exception
 
             End Try
@@ -76,10 +74,10 @@ Public Class DiagnosticFactureItem
                 Dim strValue As String = Value
                 strValue = strValue.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
                 strValue = strValue.Replace(",", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
-                If Convert.ToDecimal(strValue) Then
-                    _qte = strValue
-                    calcultTotal()
-                End If
+                Dim nValue As Decimal
+                nValue = Convert.ToDecimal(strValue)
+                _qte = strValue
+                calcultTotal()
 
             Catch ex As Exception
 
@@ -93,12 +91,13 @@ Public Class DiagnosticFactureItem
         End Get
         Set(ByVal Value As String)
             Try
-                Value.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
-                Value.Replace(",", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
-                If Convert.ToDecimal(Value) Then
-                    _tva = Value
-                    calcultTotal()
-                End If
+                Dim strValue As String = Value
+                strValue = strValue.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                strValue = Value.Replace(",", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                Dim nValue As Decimal
+                nValue = Convert.ToDecimal(strValue)
+                _tva = strValue
+                calcultTotal()
 
             Catch ex As Exception
 
@@ -111,7 +110,17 @@ Public Class DiagnosticFactureItem
             Return _prixTotal
         End Get
         Set(ByVal Value As String)
-            _prixTotal = Value
+            Try
+
+                Dim strValue As String = Value
+                strValue = strValue.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                strValue = Value.Replace(",", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                Dim nValue As Decimal
+                nValue = Convert.ToDecimal(strValue)
+                _prixTotal = String.Format("{0:0.00}", nValue)
+            Catch ex As Exception
+
+            End Try
         End Set
     End Property
 
@@ -135,6 +144,17 @@ Public Class DiagnosticFactureItem
 
 
     Private Sub calcultTotal()
-        prixTotal = qte * prixUnitaire * (1 + (tva / 100))
+        Try
+            Dim nqte As Decimal = Convert.ToDecimal(qte)
+            Dim nPU As Decimal = Convert.ToDecimal(prixUnitaire)
+            Dim ntva As Decimal = Convert.ToDecimal(tva)
+            Dim nPrixtotal As Decimal
+
+            nPrixtotal = nqte * nPU * (1 + (ntva / 100))
+            prixTotal = String.Format("{0:0.00}", nPrixtotal)
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

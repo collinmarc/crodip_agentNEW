@@ -37,7 +37,12 @@ Public Class EtatCrodip
     End Function
     Public Function genereEtat(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean = False
-        bReturn = genereEtatLocal(pExportPDF)
+        If Not String.IsNullOrEmpty(m_Path) Then
+            If Not Directory.Exists(m_Path) Then
+                Directory.CreateDirectory(m_Path)
+            End If
+        End If
+            bReturn = genereEtatLocal(pExportPDF)
         If (pExportPDF) Then
             bReturn = bReturn And AddPDFs()
         End If

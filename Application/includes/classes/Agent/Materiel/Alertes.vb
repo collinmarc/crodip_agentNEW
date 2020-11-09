@@ -13,11 +13,20 @@ Public Class Alertes
     Public Shared Function readXML(Optional pstrFile As String = "Alertes.xml") As Alertes
         Dim strFileName As String = My.Settings.RepertoireParametres & "/" & pstrFile
         Dim oReturn As Alertes
-        Using objStreamReader As New StreamReader(strFileName)
-            Dim x As New XmlSerializer(GetType(Alertes))
-            oReturn = x.Deserialize(objStreamReader)
-        End Using
+        Try
 
+            Using objStreamReader As New StreamReader(strFileName)
+                Dim x As New XmlSerializer(GetType(Alertes))
+                oReturn = x.Deserialize(objStreamReader)
+            End Using
+
+        Catch ex As Exception
+            CSDebug.dispError("Alertes.ReadXML ERR" & ex.Message)
+            If ex.InnerException IsNot Nothing Then
+                CSDebug.dispError("Alertes.ReadXML ERR2" & ex.InnerException.Message)
+            End If
+            oReturn = Nothing
+        End Try
         Return oReturn
     End Function
 

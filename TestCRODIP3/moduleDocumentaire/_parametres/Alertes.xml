@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Alertes>
-  <!--Noire= désactivation-->
-  <!--Rouge= alerte à 10j avant désactivation-->
-  <!--Orange= alerte à 10j+7?-->
+<!--Noire= désactivation-->
+<!--Rouge= alerte à 10j avant désactivation-->
+<!--Orange= alerte à 10j+7?-->
   <NiveauxAlertes>
     <NiveauAlerte Materiel="Banc" Noire="68" Rouge="61" Orange="46" Jaune="0" EcartTolere="1"></NiveauAlerte>
     <NiveauAlerte Materiel="ManometreControle" Noire="68" Rouge="61" Orange="46" Jaune="0" EcartTolere="7.5"></NiveauAlerte>
     <NiveauAlerte Materiel="Buse" Noire="1832" Rouge="1735" Orange="0" Jaune="0" EcartTolere="7.5"></NiveauAlerte>
     <!-- Niveau D'alerte pour les pulvé(Mois)  Rouge = Durée attente CV, Jaune = "Durée validité Diag OK" = -->
-    <NiveauAlerte Materiel="Pulverisateur" Rouge="4" Jaune="36"></NiveauAlerte>
+    <!-- Date d'effet Date D'entrée en application des mesures -->
+    <NiveauAlerte Materiel="Pulverisateur" Rouge="4" Jaune="36" DateEffet ="2021-01-01" ></NiveauAlerte>
+    <NiveauAlerte Materiel="Pulverisateur" Rouge="4" Jaune="60" DateEffet ="2000-01-01" ></NiveauAlerte>
   </NiveauxAlertes>
 </Alertes>

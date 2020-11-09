@@ -4,7 +4,7 @@ Imports Crodip_agent
 
 <TestClass()> Public Class CSReglagePulveTest
     Inherits CRODIPTest
-    <TestMethod()> Public Sub TestExecute()
+    <TestMethod(), Ignore()> Public Sub TestExecute()
         Dim oExploit As Exploitation
         Dim oPulverisateur As Pulverisateur
         Dim oDiag As Diagnostic

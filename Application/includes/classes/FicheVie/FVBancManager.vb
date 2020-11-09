@@ -505,7 +505,7 @@ Public Class FVBancManager
         Try
             oCSDB = New CSDb(True)
             bddCommande = oCSDB.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM FichevieBancMesure WHERE FichevieBancMesure.idBancMesure='" & pBancId & "' ORDER BY dateModif DESC"
+            bddCommande.CommandText = "SELECT * FROM FichevieBancMesure WHERE FichevieBancMesure.idBancMesure='" & pBancId & "' ORDER BY dateModif ASC"
             Try
 
                 ' On récupère les résultats

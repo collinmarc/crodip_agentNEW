@@ -109,7 +109,7 @@ Public Class FVManometreControleManagerTest
 
 
 
-
+        Threading.Thread.Sleep(2000)
         'Désactivation du Mano
         Assert.IsTrue(oMano.etat)
         oMano.Desactiver(m_oAgent)
@@ -195,7 +195,7 @@ Public Class FVManometreControleManagerTest
 
         Assert.AreEqual(3, FVManometreControleManager.getUpdates(m_oAgent).Length)
         Dim oSynchro As New Synchronisation(m_oAgent)
-        Assert.IsTrue(oSynchro.runascSynchroFVManoControle())
+        oSynchro.runascSynchroFVManoControle()
 
         'Por Véfifier que le Fichier est bien sur le FTP
         'On le télécharge et on vérifie qu'il existe
