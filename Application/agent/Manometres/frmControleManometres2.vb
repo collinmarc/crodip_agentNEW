@@ -196,6 +196,8 @@ Public Class frmControleManometres2
         Me.Label8 = New System.Windows.Forms.Label()
         Me.cbx_manometresEtalon = New System.Windows.Forms.ComboBox()
         Me.m_bsManoEtalon = New System.Windows.Forms.BindingSource(Me.components)
+        Me.m_bsControle = New System.Windows.Forms.BindingSource(Me.components)
+        Me.m_bsManoControle = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label82 = New System.Windows.Forms.Label()
         Me.Panel64 = New System.Windows.Forms.Panel()
         Me.dtpDateControle = New System.Windows.Forms.DateTimePicker()
@@ -203,8 +205,6 @@ Public Class frmControleManometres2
         Me.btn_controleManos_valider = New System.Windows.Forms.Label()
         Me.btn_controleManos_suivant = New System.Windows.Forms.Label()
         Me.lblResultat = New System.Windows.Forms.Label()
-        Me.m_bsControle = New System.Windows.Forms.BindingSource(Me.components)
-        Me.m_bsManoControle = New System.Windows.Forms.BindingSource(Me.components)
         Me.labelInfoEtalon_classe = New System.Windows.Forms.Label()
         Me.labelInfoEtalon_fondEchelle = New System.Windows.Forms.Label()
         Me.labelInfoEtalon_marque = New System.Windows.Forms.Label()
@@ -334,9 +334,9 @@ Public Class frmControleManometres2
         Me.Label9 = New System.Windows.Forms.Label()
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
         CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel64.SuspendLayout()
         CType(Me.m_bsControle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel64.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -351,6 +351,7 @@ Public Class frmControleManometres2
         '
         'Label8
         '
+        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -363,6 +364,7 @@ Public Class frmControleManometres2
         '
         'cbx_manometresEtalon
         '
+        Me.cbx_manometresEtalon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbx_manometresEtalon.DataSource = Me.m_bsManoEtalon
         Me.cbx_manometresEtalon.DisplayMember = "idCrodip"
         Me.cbx_manometresEtalon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -376,6 +378,15 @@ Public Class frmControleManometres2
         'm_bsManoEtalon
         '
         Me.m_bsManoEtalon.DataSource = GetType(Crodip_agent.ManometreEtalon)
+        '
+        'm_bsControle
+        '
+        Me.m_bsControle.DataMember = "controle"
+        Me.m_bsControle.DataSource = Me.m_bsManoControle
+        '
+        'm_bsManoControle
+        '
+        Me.m_bsManoControle.DataSource = GetType(Crodip_agent.ManometreControle)
         '
         'Label82
         '
@@ -434,6 +445,7 @@ Public Class frmControleManometres2
         '
         'dtpDateControle
         '
+        Me.dtpDateControle.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDateControle.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDateControle.Location = New System.Drawing.Point(641, 31)
         Me.dtpDateControle.Name = "dtpDateControle"
@@ -442,6 +454,7 @@ Public Class frmControleManometres2
         '
         'Label39
         '
+        Me.Label39.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label39.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label39.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -454,7 +467,7 @@ Public Class frmControleManometres2
         '
         'btn_controleManos_valider
         '
-        Me.btn_controleManos_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_controleManos_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_controleManos_valider.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_controleManos_valider.Enabled = False
         Me.btn_controleManos_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -469,7 +482,7 @@ Public Class frmControleManometres2
         '
         'btn_controleManos_suivant
         '
-        Me.btn_controleManos_suivant.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_controleManos_suivant.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_controleManos_suivant.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_controleManos_suivant.Enabled = False
         Me.btn_controleManos_suivant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -494,15 +507,6 @@ Public Class frmControleManometres2
         Me.lblResultat.TabIndex = 52
         Me.lblResultat.Text = "Votre manomètre est fiable : il répond à sa classe de précision."
         Me.lblResultat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'm_bsControle
-        '
-        Me.m_bsControle.DataMember = "controle"
-        Me.m_bsControle.DataSource = Me.m_bsManoControle
-        '
-        'm_bsManoControle
-        '
-        Me.m_bsManoControle.DataSource = GetType(Crodip_agent.ManometreControle)
         '
         'labelInfoEtalon_classe
         '
@@ -787,7 +791,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox1, 7, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox2, 6, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox3, 7, 4)
@@ -852,7 +856,7 @@ Public Class frmControleManometres2
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(109, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(119, 20)
         Me.TextBox1.TabIndex = 60
         Me.TextBox1.TabStop = False
         '
@@ -875,7 +879,7 @@ Public Class frmControleManometres2
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(109, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(119, 20)
         Me.TextBox3.TabIndex = 58
         Me.TextBox3.TabStop = False
         '
@@ -898,7 +902,7 @@ Public Class frmControleManometres2
         Me.TextBox5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(109, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(119, 20)
         Me.TextBox5.TabIndex = 56
         Me.TextBox5.TabStop = False
         '
@@ -921,7 +925,7 @@ Public Class frmControleManometres2
         Me.TextBox7.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(109, 20)
+        Me.TextBox7.Size = New System.Drawing.Size(119, 20)
         Me.TextBox7.TabIndex = 54
         Me.TextBox7.TabStop = False
         '
@@ -944,7 +948,7 @@ Public Class frmControleManometres2
         Me.TextBox9.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(109, 20)
+        Me.TextBox9.Size = New System.Drawing.Size(119, 20)
         Me.TextBox9.TabIndex = 52
         Me.TextBox9.TabStop = False
         '
@@ -967,7 +971,7 @@ Public Class frmControleManometres2
         Me.TextBox11.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.ReadOnly = True
-        Me.TextBox11.Size = New System.Drawing.Size(109, 20)
+        Me.TextBox11.Size = New System.Drawing.Size(119, 20)
         Me.TextBox11.TabIndex = 50
         Me.TextBox11.TabStop = False
         '
@@ -1328,7 +1332,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC6, 7, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbErrAbsPC6, 6, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC5, 7, 4)
@@ -1393,7 +1397,7 @@ Public Class frmControleManometres2
         Me.tbFondPC6.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC6.Name = "tbFondPC6"
         Me.tbFondPC6.ReadOnly = True
-        Me.tbFondPC6.Size = New System.Drawing.Size(109, 20)
+        Me.tbFondPC6.Size = New System.Drawing.Size(119, 20)
         Me.tbFondPC6.TabIndex = 60
         Me.tbFondPC6.TabStop = False
         '
@@ -1416,7 +1420,7 @@ Public Class frmControleManometres2
         Me.tbFondPC5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC5.Name = "tbFondPC5"
         Me.tbFondPC5.ReadOnly = True
-        Me.tbFondPC5.Size = New System.Drawing.Size(109, 20)
+        Me.tbFondPC5.Size = New System.Drawing.Size(119, 20)
         Me.tbFondPC5.TabIndex = 58
         Me.tbFondPC5.TabStop = False
         '
@@ -1439,7 +1443,7 @@ Public Class frmControleManometres2
         Me.tbFondPC4.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC4.Name = "tbFondPC4"
         Me.tbFondPC4.ReadOnly = True
-        Me.tbFondPC4.Size = New System.Drawing.Size(109, 20)
+        Me.tbFondPC4.Size = New System.Drawing.Size(119, 20)
         Me.tbFondPC4.TabIndex = 56
         Me.tbFondPC4.TabStop = False
         '
@@ -1462,7 +1466,7 @@ Public Class frmControleManometres2
         Me.tbFondPC3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC3.Name = "tbFondPC3"
         Me.tbFondPC3.ReadOnly = True
-        Me.tbFondPC3.Size = New System.Drawing.Size(109, 20)
+        Me.tbFondPC3.Size = New System.Drawing.Size(119, 20)
         Me.tbFondPC3.TabIndex = 54
         Me.tbFondPC3.TabStop = False
         '
@@ -1485,7 +1489,7 @@ Public Class frmControleManometres2
         Me.tbFondPC2.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC2.Name = "tbFondPC2"
         Me.tbFondPC2.ReadOnly = True
-        Me.tbFondPC2.Size = New System.Drawing.Size(109, 20)
+        Me.tbFondPC2.Size = New System.Drawing.Size(119, 20)
         Me.tbFondPC2.TabIndex = 52
         Me.tbFondPC2.TabStop = False
         '
@@ -1508,7 +1512,7 @@ Public Class frmControleManometres2
         Me.tbFondPC1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC1.Name = "tbFondPC1"
         Me.tbFondPC1.ReadOnly = True
-        Me.tbFondPC1.Size = New System.Drawing.Size(109, 20)
+        Me.tbFondPC1.Size = New System.Drawing.Size(119, 20)
         Me.tbFondPC1.TabIndex = 50
         Me.tbFondPC1.TabStop = False
         '
@@ -1869,7 +1873,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label5, 4, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label6, 5, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label7, 6, 0)
@@ -1925,7 +1929,7 @@ Public Class frmControleManometres2
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(425, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(172, 48)
+        Me.Label7.Size = New System.Drawing.Size(182, 48)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1937,7 +1941,7 @@ Public Class frmControleManometres2
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(486, 50)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(111, 49)
+        Me.Label11.Size = New System.Drawing.Size(121, 49)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2055,6 +2059,7 @@ Public Class frmControleManometres2
         '
         'btn_controleBanc_annuler
         '
+        Me.btn_controleBanc_annuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_controleBanc_annuler.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_controleBanc_annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_controleBanc_annuler.ForeColor = System.Drawing.Color.White
@@ -2068,7 +2073,7 @@ Public Class frmControleManometres2
         '
         'Label36
         '
-        Me.Label36.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label36.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label36.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label36.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label36.ForeColor = System.Drawing.Color.Red
@@ -2117,10 +2122,10 @@ Public Class frmControleManometres2
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Contrôle des manomètres de l'agent"
         CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel64.ResumeLayout(False)
-        Me.Panel64.PerformLayout()
         CType(Me.m_bsControle, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel64.ResumeLayout(False)
+        Me.Panel64.PerformLayout()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2176,6 +2181,7 @@ Public Class frmControleManometres2
         ' On récupère la liste des manos de la structure de l'agent
         Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure, True)
         For Each oManoC As ManometreControle In arrManoControle
+            oManoC.controle = New ControleMano(oManoC, m_oAgent)
             m_bsManoControle.Add(oManoC)
         Next
         'm_bsManoControle.AddNew()
@@ -2307,8 +2313,8 @@ Public Class frmControleManometres2
                                                         oCtrlMano.down_pt4_pres_manoEtalon & "|" &
                                                         oCtrlMano.down_pt5_pres_manoEtalon & "|" &
                                                         oCtrlMano.down_pt6_pres_manoEtalon
-
-
+                        oCtrlMano.DateVerif = dtpDateControle.Value
+                        curManoControle.dateDernierControle = dtpDateControle.Value
                         ' On construit notre nouvelle fiche de vie
                         curManoControle.creerfFicheVieControle(m_oAgent, oCtrlMano)
 
@@ -2352,7 +2358,7 @@ Public Class frmControleManometres2
 
     ' Bouton "Valider"
     Private Sub btn_controleManos_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_valider.Click
-        If tbTemperature.Text <> "" Then
+        If tbTemperature.Text <> "" And cbx_manometresEtalon.Text <> "" Then
             If isSaisieComplete() Then
                 EnregistrerLesControles()
                 TryCast(MdiParent, parentContener).ReturnToAccueil()
@@ -2375,9 +2381,12 @@ Public Class frmControleManometres2
 
     ' Selection du manometre étalon
     Private Sub list_manometresEtalon_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbx_manometresEtalon.SelectedIndexChanged
-        If cbx_manometresEtalon.SelectedIndex <> (m_bsManoEtalon.Count - 1) And tbTemperature.Text <> "" Then
+        If cbx_manometresEtalon.Text <> "" And tbTemperature.Text <> "" Then
             IsOK = True
             m_bsManoControle.MoveFirst()
+            If m_bsManoControle.Count = 1 Then
+                SelectionManoControle()
+            End If
             SplitContainer1.Enabled = True
         Else
             IsOK = False
@@ -2385,10 +2394,13 @@ Public Class frmControleManometres2
         End If
     End Sub
 
-    Private Sub tbTemperature_TextChanged(sender As Object, e As EventArgs) Handles tbTemperature.TextChanged
-        If cbx_manometresEtalon.SelectedIndex <> (m_bsManoEtalon.Count - 1) And tbTemperature.Text <> "" Then
+    Private Sub tbTemperature_ValidatedChanged(sender As Object, e As EventArgs) Handles tbTemperature.Validated
+        If cbx_manometresEtalon.Text <> "" And tbTemperature.Text <> "" Then
             IsOK = True
             m_bsManoControle.MoveFirst()
+            If m_bsManoControle.Count = 1 Then
+                SelectionManoControle()
+            End If
             SplitContainer1.Enabled = True
         Else
             IsOK = False
@@ -2803,17 +2815,6 @@ Public Class frmControleManometres2
         lblResultat.Refresh()
 
     End Sub
-    Private Function calcIncertitude(pResolution As Double, pIncertitudeEtalon As Double) As Double
-        Dim dReturn As Double
-        Try
-
-            dReturn = CDbl(Math.Round(2 * Math.Sqrt((pResolution / (2 * Math.Sqrt(3))) ^ 2 + (pIncertitudeEtalon / 2) ^ 2), 2))
-        Catch ex As Exception
-            dReturn = 0
-        End Try
-
-        Return dReturn
-    End Function
     Private Function calcEMT(pMano As ManometreControle) As Double
         '''TODO : Mettre cette méthode dans la classe ManomètreControle
         Dim dReturn As Double
@@ -3005,159 +3006,82 @@ Public Class frmControleManometres2
         oManoEtalon = m_bsManoEtalon.Current
         Dim oControle As ControleMano
 
-        If oMano.controle Is Nothing Then
-            oControle = New ControleMano(m_oAgent)
-            oControle.idStructure = oMano.idStructure
-            oControle.idMano = oMano.numeroNational
-            oControle.manoEtalon = oMano.idCrodip
-            oControle.tempAir = tbTemperature.Text
-            oControle.resultat = oMano.etat
-            oControle.DateVerif = CSDate.ToCRODIPString(dtpDateControle.Value)
-
-            oControle.up_pt1_pres_manoCtrl = oMano.Pression1Ctrl
-            oControle.up_pt2_pres_manoCtrl = oMano.Pression2Ctrl
-            oControle.up_pt3_pres_manoCtrl = oMano.Pression3Ctrl
-            oControle.up_pt4_pres_manoCtrl = oMano.Pression4Ctrl
-            oControle.up_pt5_pres_manoCtrl = oMano.Pression5Ctrl
-            oControle.up_pt6_pres_manoCtrl = oMano.Pression6Ctrl
-
-            oControle.down_pt1_pres_manoCtrl = oMano.Pression1Ctrl
-            oControle.down_pt2_pres_manoCtrl = oMano.Pression2Ctrl
-            oControle.down_pt3_pres_manoCtrl = oMano.Pression3Ctrl
-            oControle.down_pt4_pres_manoCtrl = oMano.Pression4Ctrl
-            oControle.down_pt5_pres_manoCtrl = oMano.Pression5Ctrl
-            oControle.down_pt6_pres_manoCtrl = oMano.Pression6Ctrl
-
-            Dim valueIncertitude As Double
-            valueIncertitude = calcIncertitude(oMano.resolution_d, oManoEtalon.incertitudeEtalon_d)
-
-            oControle.up_pt1_incertitude = valueIncertitude
-            oControle.up_pt2_incertitude = valueIncertitude
-            oControle.up_pt3_incertitude = valueIncertitude
-            oControle.up_pt4_incertitude = valueIncertitude
-            oControle.up_pt5_incertitude = valueIncertitude
-            oControle.up_pt6_incertitude = valueIncertitude
-
-            oControle.down_pt1_incertitude = valueIncertitude
-            oControle.down_pt2_incertitude = valueIncertitude
-            oControle.down_pt3_incertitude = valueIncertitude
-            oControle.down_pt4_incertitude = valueIncertitude
-            oControle.down_pt5_incertitude = valueIncertitude
-            oControle.down_pt6_incertitude = valueIncertitude
-
-            oControle.up_pt1_EMT = oMano.calcEMT()
-            oControle.up_pt2_EMT = oMano.calcEMT()
-            oControle.up_pt3_EMT = oMano.calcEMT()
-            oControle.up_pt4_EMT = oMano.calcEMT()
-            oControle.up_pt5_EMT = oMano.calcEMT()
-            oControle.up_pt6_EMT = oMano.calcEMT()
-
-            oControle.down_pt1_EMT = oMano.calcEMT()
-            oControle.down_pt2_EMT = oMano.calcEMT()
-            oControle.down_pt3_EMT = oMano.calcEMT()
-            oControle.down_pt4_EMT = oMano.calcEMT()
-            oControle.down_pt5_EMT = oMano.calcEMT()
-            oControle.down_pt6_EMT = oMano.calcEMT()
-
-            oControle.up_pt1_err_abs = ""
-            oControle.up_pt2_err_abs = ""
-            oControle.up_pt3_err_abs = ""
-            oControle.up_pt4_err_abs = ""
-            oControle.up_pt5_err_abs = ""
-            oControle.up_pt6_err_abs = ""
-
-            oControle.down_pt1_err_abs = ""
-            oControle.down_pt2_err_abs = ""
-            oControle.down_pt3_err_abs = ""
-            oControle.down_pt4_err_abs = ""
-            oControle.down_pt5_err_abs = ""
-            oControle.down_pt6_err_abs = ""
-
-            oControle.up_pt1_err_fondEchelle = ""
-            oControle.up_pt2_err_fondEchelle = ""
-            oControle.up_pt3_err_fondEchelle = ""
-            oControle.up_pt4_err_fondEchelle = ""
-            oControle.up_pt5_err_fondEchelle = ""
-            oControle.up_pt6_err_fondEchelle = ""
-
-            oControle.down_pt1_err_fondEchelle = ""
-            oControle.down_pt2_err_fondEchelle = ""
-            oControle.down_pt3_err_fondEchelle = ""
-            oControle.down_pt4_err_fondEchelle = ""
-            oControle.down_pt5_err_fondEchelle = ""
-            oControle.down_pt6_err_fondEchelle = ""
-
-            oMano.controle = oControle
+        oControle = oMano.controle
+        'La Température, Date de vérification et le Mano de controle ne sont pas liés avec le controle
+        ' car il doivent être mes même pour TOUS les controle
+        oControle.tempAir = tbTemperature.Text
+        oControle.DateVerif = dtpDateControle.Value
+        oControle.manoEtalon = m_bsManoEtalon.Current.Numeronational
+        oControle.idStructure = oMano.idStructure
+        oControle.idMano = oMano.numeroNational
+        oControle.resultat = oMano.etat
+        oControle.DateVerif = CSDate.ToCRODIPString(dtpDateControle.Value)
+        oControle.setIncertitude(oMano, m_bsManoEtalon.Current)
+        ' ValiderSaisie(oControle)
+        If oControle.up_pt1_conformite = "1" Then
+            tbUpMR1.ForeColor = System.Drawing.Color.Green
         Else
-            oControle = oMano.controle
-            tbTemperature.Text = oControle.tempAir
-            dtpDateControle.Value = CDate(oControle.DateVerif)
-            If oControle.up_pt1_conformite = "1" Then
-                tbUpMR1.ForeColor = System.Drawing.Color.Green
-            Else
-                tbUpMR1.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.up_pt2_conformite = "1" Then
-                tbUpMR2.ForeColor = System.Drawing.Color.Green
-            Else
-                tbUpMR2.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.up_pt3_conformite = "1" Then
-                tbUpMR3.ForeColor = System.Drawing.Color.Green
-            Else
-                tbUpMR3.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.up_pt4_conformite = "1" Then
-                tbUpMR4.ForeColor = System.Drawing.Color.Green
-            Else
-                tbUpMR4.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.up_pt5_conformite = "1" Then
-                tbUpMR5.ForeColor = System.Drawing.Color.Green
-            Else
-                tbUpMR5.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.up_pt6_conformite = "1" Then
-                tbUpMR6.ForeColor = System.Drawing.Color.Green
-            Else
-                tbUpMR6.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.down_pt1_conformite = "1" Then
-                tbDownMR1.ForeColor = System.Drawing.Color.Green
-            Else
-                tbDownMR1.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.down_pt2_conformite = "1" Then
-                tbDownMR2.ForeColor = System.Drawing.Color.Green
-            Else
-                tbDownMR2.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.down_pt3_conformite = "1" Then
-                tbDownMR3.ForeColor = System.Drawing.Color.Green
-            Else
-                tbDownMR3.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.down_pt4_conformite = "1" Then
-                tbDownMR4.ForeColor = System.Drawing.Color.Green
-            Else
-                tbDownMR4.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.down_pt5_conformite = "1" Then
-                tbDownMR5.ForeColor = System.Drawing.Color.Green
-            Else
-                tbDownMR5.ForeColor = System.Drawing.Color.Red
-            End If
-            If oControle.down_pt6_conformite = "1" Then
-                tbDownMR6.ForeColor = System.Drawing.Color.Green
-            Else
-                tbDownMR6.ForeColor = System.Drawing.Color.Red
-            End If
-
-            ValiderSaisie(oControle)
-
-
-
+            tbUpMR1.ForeColor = System.Drawing.Color.Red
         End If
+        If oControle.up_pt2_conformite = "1" Then
+            tbUpMR2.ForeColor = System.Drawing.Color.Green
+        Else
+            tbUpMR2.ForeColor = System.Drawing.Color.Red
+        End If
+        If oControle.up_pt3_conformite = "1" Then
+            tbUpMR3.ForeColor = System.Drawing.Color.Green
+        Else
+            tbUpMR3.ForeColor = System.Drawing.Color.Red
+        End If
+        If oControle.up_pt4_conformite = "1" Then
+            tbUpMR4.ForeColor = System.Drawing.Color.Green
+        Else
+            tbUpMR4.ForeColor = System.Drawing.Color.Red
+        End If
+        If oControle.up_pt5_conformite = "1" Then
+            tbUpMR5.ForeColor = System.Drawing.Color.Green
+        Else
+            tbUpMR5.ForeColor = System.Drawing.Color.Red
+        End If
+        If oControle.up_pt6_conformite = "1" Then
+            tbUpMR6.ForeColor = System.Drawing.Color.Green
+        Else
+            tbUpMR6.ForeColor = System.Drawing.Color.Red
+        End If
+        If oControle.down_pt1_conformite = "1" Then
+            tbDownMR1.ForeColor = System.Drawing.Color.Green
+        Else
+            tbDownMR1.ForeColor = System.Drawing.Color.Red
+        End If
+        If oControle.down_pt2_conformite = "1" Then
+            tbDownMR2.ForeColor = System.Drawing.Color.Green
+        Else
+            tbDownMR2.ForeColor = System.Drawing.Color.Red
+        End If
+        If oControle.down_pt3_conformite = "1" Then
+            tbDownMR3.ForeColor = System.Drawing.Color.Green
+        Else
+            tbDownMR3.ForeColor = System.Drawing.Color.Red
+        End If
+        If oControle.down_pt4_conformite = "1" Then
+            tbDownMR4.ForeColor = System.Drawing.Color.Green
+        Else
+            tbDownMR4.ForeColor = System.Drawing.Color.Red
+        End If
+        If oControle.down_pt5_conformite = "1" Then
+            tbDownMR5.ForeColor = System.Drawing.Color.Green
+        Else
+            tbDownMR5.ForeColor = System.Drawing.Color.Red
+        End If
+        If oControle.down_pt6_conformite = "1" Then
+            tbDownMR6.ForeColor = System.Drawing.Color.Green
+        Else
+            tbDownMR6.ForeColor = System.Drawing.Color.Red
+        End If
+
+        ValiderSaisie(oControle)
+
+
     End Sub
 
     Private Sub dtpDateControle_Validated(sender As Object, e As EventArgs) Handles dtpDateControle.Validated
@@ -3170,4 +3094,5 @@ Public Class frmControleManometres2
         End If
 
     End Sub
+
 End Class

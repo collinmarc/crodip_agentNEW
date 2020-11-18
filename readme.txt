@@ -4,7 +4,7 @@ MASTER
 BUILD 
 --------------------
 0001259: Espace de stockage des PDFs Centralisés
-
+0001300: Saisie des Vérifications Mano : Les valeurs ne s'affichent pas si 1 seul Mano
 
 BUILD 20201013120000
 --------------------

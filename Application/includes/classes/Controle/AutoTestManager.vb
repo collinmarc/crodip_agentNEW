@@ -231,7 +231,7 @@ Public Class AutoTestManager
                 Dim i As Integer = 0
                 While oDBReader.Read()
                     '# construction de l'objet
-                    Dim tmpObject As New ControleMano(pAgent)
+                    'Dim tmpObject As New ControleMano(pAgent)
                     Dim tmpColId As Integer = 0
                     Dim oDBCtrl As New AutoTest(pAgent)
                     oDBCtrl.Fill(oDBReader)

@@ -40,10 +40,114 @@ Public Class ControleMano
         _lst.Add("DOWN6", New ControleManoDetail("DOWN", "6"))
 
     End Sub
-    Sub New(pAgent As Agent)
+    Sub New(oMano As ManometreControle, pAgent As Agent)
         Me.New()
+        Me.up_pt1_pres_manoCtrl = oMano.Pression1Ctrl
+        Me.up_pt2_pres_manoCtrl = oMano.Pression2Ctrl
+        Me.up_pt3_pres_manoCtrl = oMano.Pression3Ctrl
+        Me.up_pt4_pres_manoCtrl = oMano.Pression4Ctrl
+        Me.up_pt5_pres_manoCtrl = oMano.Pression5Ctrl
+        Me.up_pt6_pres_manoCtrl = oMano.Pression6Ctrl
+
+        Me.down_pt1_pres_manoCtrl = oMano.Pression1Ctrl
+        Me.down_pt2_pres_manoCtrl = oMano.Pression2Ctrl
+        Me.down_pt3_pres_manoCtrl = oMano.Pression3Ctrl
+        Me.down_pt4_pres_manoCtrl = oMano.Pression4Ctrl
+        Me.down_pt5_pres_manoCtrl = oMano.Pression5Ctrl
+        Me.down_pt6_pres_manoCtrl = oMano.Pression6Ctrl
+
+        'l 'incertitude sera calculée lors de l'affectation du ManoEtalon
+        'Dim valueIncertitude As Double
+        'valueIncertitude = calcIncertitude(oMano.resolution_d, oManoEtalon.incertitudeEtalon_d)
+
+        'Me.up_pt1_incertitude = valueIncertitude
+        'Me.up_pt2_incertitude = valueIncertitude
+        'Me.up_pt3_incertitude = valueIncertitude
+        'Me.up_pt4_incertitude = valueIncertitude
+        'Me.up_pt5_incertitude = valueIncertitude
+        'Me.up_pt6_incertitude = valueIncertitude
+
+        'Me.down_pt1_incertitude = valueIncertitude
+        'Me.down_pt2_incertitude = valueIncertitude
+        'Me.down_pt3_incertitude = valueIncertitude
+        'Me.down_pt4_incertitude = valueIncertitude
+        'Me.down_pt5_incertitude = valueIncertitude
+        'Me.down_pt6_incertitude = valueIncertitude
+
+        Me.up_pt1_EMT = oMano.calcEMT()
+        Me.up_pt2_EMT = oMano.calcEMT()
+        Me.up_pt3_EMT = oMano.calcEMT()
+        Me.up_pt4_EMT = oMano.calcEMT()
+        Me.up_pt5_EMT = oMano.calcEMT()
+        Me.up_pt6_EMT = oMano.calcEMT()
+
+        Me.down_pt1_EMT = oMano.calcEMT()
+        Me.down_pt2_EMT = oMano.calcEMT()
+        Me.down_pt3_EMT = oMano.calcEMT()
+        Me.down_pt4_EMT = oMano.calcEMT()
+        Me.down_pt5_EMT = oMano.calcEMT()
+        Me.down_pt6_EMT = oMano.calcEMT()
+
+        Me.up_pt1_err_abs = ""
+        Me.up_pt2_err_abs = ""
+        Me.up_pt3_err_abs = ""
+        Me.up_pt4_err_abs = ""
+        Me.up_pt5_err_abs = ""
+        Me.up_pt6_err_abs = ""
+
+        Me.down_pt1_err_abs = ""
+        Me.down_pt2_err_abs = ""
+        Me.down_pt3_err_abs = ""
+        Me.down_pt4_err_abs = ""
+        Me.down_pt5_err_abs = ""
+        Me.down_pt6_err_abs = ""
+
+        Me.up_pt1_err_fondEchelle = ""
+        Me.up_pt2_err_fondEchelle = ""
+        Me.up_pt3_err_fondEchelle = ""
+        Me.up_pt4_err_fondEchelle = ""
+        Me.up_pt5_err_fondEchelle = ""
+        Me.up_pt6_err_fondEchelle = ""
+
+        Me.down_pt1_err_fondEchelle = ""
+        Me.down_pt2_err_fondEchelle = ""
+        Me.down_pt3_err_fondEchelle = ""
+        Me.down_pt4_err_fondEchelle = ""
+        Me.down_pt5_err_fondEchelle = ""
+        Me.down_pt6_err_fondEchelle = ""
+
+
         AgentVerif = pAgent.nom & " " & pAgent.prenom
     End Sub
+
+    Public Function setIncertitude(pManoC As ManometreControle, pManoE As ManometreEtalon) As Double
+        '    Public Function calcIncertitude(pResolution As Double, pIncertitudeEtalon As Double) As Double
+        Dim dReturn As Double
+        Try
+            Dim pResolution As Double = pManoC.resolution_d
+            Dim pIncertitude As Double = pManoE.incertitudeEtalon_d
+            dReturn = CDbl(Math.Round(2 * Math.Sqrt((pResolution / (2 * Math.Sqrt(3))) ^ 2 + (pIncertitude / 2) ^ 2), 2))
+
+        Catch ex As Exception
+            dReturn = 0
+        End Try
+        Me.up_pt1_incertitude = dReturn
+        Me.up_pt2_incertitude = dReturn
+        Me.up_pt3_incertitude = dReturn
+        Me.up_pt4_incertitude = dReturn
+        Me.up_pt5_incertitude = dReturn
+        Me.up_pt6_incertitude = dReturn
+
+        Me.down_pt1_incertitude = dReturn
+        Me.down_pt2_incertitude = dReturn
+        Me.down_pt3_incertitude = dReturn
+        Me.down_pt4_incertitude = dReturn
+        Me.down_pt5_incertitude = dReturn
+        Me.down_pt6_incertitude = dReturn
+
+
+        Return dReturn
+    End Function
 
     Public Property id() As String
         Get
