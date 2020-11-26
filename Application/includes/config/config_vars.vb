@@ -320,7 +320,8 @@ Public Class Globals
         GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
         CSDebug.dispInfo("Globals.Init user LocalUserAppDataPath :" & Application.LocalUserAppDataPath)
         CSDebug.dispInfo("Globals.Init App My.Settings.NumVersion:" & My.Settings.NumVersion)
-        CSDebug.dispInfo("Globals.Init App My.Settings.NumVersion:" & My.Settings.NumBuild)
+        CSDebug.dispInfo("Globals.Init App My.Settings.NumBuild:" & My.Settings.NumBuild)
+        CSDebug.dispInfo("Globals.Init App My.Settings.DB:" & My.Settings.DB)
         CSDebug.dispInfo("Globals.Init App NETWORK:" & GLOB_NETWORKAVAILABLE)
 
         ' Manometres

@@ -905,6 +905,7 @@ Public Class frmdiagnostic_recap
 
     Private Function SauvegarderDiagnostic() As Boolean
         Dim bReturn As Boolean
+        CSDebug.dispInfo("frmDiagnostic_recap.SauvegarderDiagnostic : debut")
         Try
             Try
                 Statusbar.display(Globals.CONST_STATUTMSG_DIAG_SAVING, True)
@@ -1012,6 +1013,7 @@ Public Class frmdiagnostic_recap
             bReturn = False
 
         End Try
+        CSDebug.dispInfo("frmDiagnostic_recap.SauvegarderDiagnostic : Fin")
     End Function
     Private Function GetInfos() As Boolean
         Dim bReturn As Boolean

@@ -37,6 +37,7 @@ Public Class apropos
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents lblDBVersion As System.Windows.Forms.Label
     Friend WithEvents btn_RAZBase As System.Windows.Forms.Button
+    Friend WithEvents lblDB As Label
     Friend WithEvents label_dateVersion As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(apropos))
@@ -49,6 +50,7 @@ Public Class apropos
         Me.btn_RAZBase = New System.Windows.Forms.Button()
         Me.lblDBVersion = New System.Windows.Forms.Label()
         Me.label_dateVersion = New System.Windows.Forms.Label()
+        Me.lblDB = New System.Windows.Forms.Label()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -109,6 +111,7 @@ Public Class apropos
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.lblDB)
         Me.Panel1.Controls.Add(Me.btn_RAZBase)
         Me.Panel1.Controls.Add(Me.lblDBVersion)
         Me.Panel1.Controls.Add(Me.label_dateVersion)
@@ -156,6 +159,17 @@ Public Class apropos
         Me.label_dateVersion.TabIndex = 26
         Me.label_dateVersion.Text = "dateVersion"
         '
+        'lblDB
+        '
+        Me.lblDB.AutoSize = True
+        Me.lblDB.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDB.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.lblDB.Location = New System.Drawing.Point(8, 99)
+        Me.lblDB.Name = "lblDB"
+        Me.lblDB.Size = New System.Drawing.Size(56, 13)
+        Me.lblDB.TabIndex = 29
+        Me.lblDB.Text = "DBName"
+        '
         'apropos
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -168,6 +182,7 @@ Public Class apropos
         Me.Text = "Crodip .::. A Propos"
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -186,6 +201,7 @@ Public Class apropos
             label_numVersion.Text = "N° de version : " & Globals.GLOB_APPLI_VERSION
             label_dateVersion.Text = "Build: " & Globals.GLOB_APPLI_BUILD
             lblDBVersion.Text = "DB : " & DBVersionManagerManager.getDBVersion().NUM
+            lblDB.Text = New CSDb(False).getbddPathName()
             ' On récupère le copyright
 
             ' On récupère la description

@@ -6,6 +6,7 @@ BUILD
 0001259: Espace de stockage des PDFs Centralisés
 0001300: Saisie des Vérifications Mano : Les valeurs ne s'affichent pas si 1 seul Mano
 0001301: Création d'une appli MAJDB
+0001302: Changement de version de base de données
 
 BUILD 20201013120000
 --------------------

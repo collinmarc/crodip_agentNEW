@@ -25,9 +25,25 @@ Public Class frmMAJDB
     Private Sub frmMAJDB_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim oCSDB As New CSDb()
         Me.Text = Me.Text & "[" & oCSDB.getbddPathName() & "]"
+        oCSDB.free()
     End Sub
 
     Private Sub dgvResult_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles dgvResult.DataError
+
+    End Sub
+
+    Private Sub btnCompact_Click(sender As Object, e As EventArgs) Handles btnCompact.Click
+        Dim ocsDB As CSDb
+        Try
+            Me.Cursor = Cursors.WaitCursor
+            ocsDB = New CSDb()
+            ocsDB.CompacteDataBase()
+            Me.Cursor = Cursors.Default
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+
+        End Try
 
     End Sub
 End Class

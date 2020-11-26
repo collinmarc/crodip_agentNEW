@@ -76,6 +76,7 @@ Public Class login
     Friend WithEvents btn_dlgAcquisition As Button
     Friend WithEvents lblMode As Label
     Friend WithEvents btnTSTSignature As Button
+    Friend WithEvents lblBaseDonnee As Label
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -113,6 +114,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
+        Me.lblBaseDonnee = New System.Windows.Forms.Label()
         Me.pnlPrincipal.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
@@ -137,6 +139,7 @@ Public Class login
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlPrincipal.BackgroundImage = Global.Crodip_agent.Resources.Login_bgcrodipIndigo
         Me.pnlPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pnlPrincipal.Controls.Add(Me.lblBaseDonnee)
         Me.pnlPrincipal.Controls.Add(Me.lblMode)
         Me.pnlPrincipal.Controls.Add(Me.pnlLoginControls)
         Me.pnlPrincipal.Controls.Add(Me.Lbl_Version)
@@ -523,6 +526,20 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'lblBaseDonnee
+        '
+        Me.lblBaseDonnee.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblBaseDonnee.AutoSize = True
+        Me.lblBaseDonnee.BackColor = System.Drawing.Color.Transparent
+        Me.lblBaseDonnee.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblBaseDonnee.ForeColor = System.Drawing.Color.Silver
+        Me.lblBaseDonnee.Location = New System.Drawing.Point(189, 656)
+        Me.lblBaseDonnee.Name = "lblBaseDonnee"
+        Me.lblBaseDonnee.Size = New System.Drawing.Size(112, 15)
+        Me.lblBaseDonnee.TabIndex = 34
+        Me.lblBaseDonnee.Text = "Mode : Simplifié"
+        Me.lblBaseDonnee.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'login
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -692,6 +709,13 @@ Public Class login
         Else
             Lbl_Version.Text = Lbl_Version.Text & " SYNC ON"
         End If
+        If Globals.GLOB_ENV_DEBUG Then
+            Dim oCSDB As New CSDb(False)
+            lblBaseDonnee.Text = oCSDB.getbddPathName()
+        Else
+            lblBaseDonnee.Text = ""
+        End If
+
         ' On récupère le formulaire contener
         CSDebug.dispInfo("Login.Load: GO")
 

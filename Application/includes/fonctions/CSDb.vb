@@ -19,6 +19,7 @@ Public Class CSDb
     Public conf_bddEtatPath As String = "crodip_etats"
     Public conf_bddEtatPath_dev As String = "crodip_etats_dev"
 
+    Private DBextension As String = ".mdb"
     ' Parametres de connexion
     ' Connexion
     Private _dbConnection As OleDb.OleDbConnection
@@ -30,6 +31,7 @@ Public Class CSDb
     Sub New(Optional ByVal doConnect As Boolean = False, Optional pDBType As DBTYPE = DBTYPE.AGENT)
         _queryString = ""
         conf_bddPath = My.Settings.DB
+        DBextension = My.Settings.DBExtension
         If conf_bddPath = "" Then
             conf_bddPath = "cropdip_agent"
         End If
@@ -45,10 +47,10 @@ Public Class CSDb
                 _bddConnectString = getConnectString(_dbName)
             Case DBTYPE.ETAT
                 _dbName = conf_bddEtatPath
-                _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & _dbName & ".mdb"
+                _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & _dbName & DBextension
             Case DBTYPE.DAISY
                 _dbName = conf_bddDLPath
-                _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & _dbName & ".mdb"
+                _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & _dbName & DBextension
         End Select
 
 
@@ -70,15 +72,20 @@ Public Class CSDb
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function getbddPathName() As String
-        Return ".\bdd\" & _dbName & ".mdb"
+        Return ".\bdd\" & _dbName & DBextension
     End Function
     Public Function getConnectString(pDBName As String) As String
         Dim bReturn As String
         If Globals.GLOB_ENV_DEBUG = True Then
-            bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & ".mdb;Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password="
+            If DBextension = ".accdb" Then
+                bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password="
+            Else
+                bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password="
+            End If
+
         Else
-            bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & ".mdb;Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password=" & conf_bddPass & ""
-        End If
+                bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password=" & conf_bddPass & ""
+            End If
         Return bReturn
     End Function
 
@@ -308,7 +315,7 @@ Public Class CSDb
     '############################################################
     '######################## Securite ##########################
     '############################################################
- 
+
     Public Shared Function secureString(ByVal pString As String) As String
         Dim _secureString As String
         Try
@@ -329,15 +336,14 @@ Public Class CSDb
             Dim jro As JRO.JetEngine
             jro = New JRO.JetEngine()
             Dim bdd2 As String = getConnectString(_dbName & "2")
-            If System.IO.File.Exists("./bdd/" & _dbName & "2.mdb") Then
-                System.IO.File.Delete("./bdd/" & _dbName & "2.mdb")
+            If System.IO.File.Exists("./bdd/" & _dbName & "2" & DBextension) Then
+                System.IO.File.Delete("./bdd/" & _dbName & "2" & DBextension)
             End If
             jro.CompactDatabase(_bddConnectString, bdd2)
-            If System.IO.File.Exists("./bdd/" & _dbName & ".mdb") Then
-                System.IO.File.Delete("./bdd/" & _dbName & ".mdb")
+            If System.IO.File.Exists("./bdd/" & _dbName & DBextension) Then
+                System.IO.File.Delete("./bdd/" & _dbName & DBextension)
             End If
-            System.IO.File.Move("./bdd/" & _dbName & "2.mdb", "./bdd/" & _dbName & ".mdb")
-            '            jro.CompactDatabase(bdd2, _bddConnectString)
+            System.IO.File.Move("./bdd/" & _dbName & "2" & DBextension, "./bdd/" & _dbName & DBextension)
             bReturn = True
         Catch ex As Exception
             CSDebug.dispWarn("CSDB.CompateDatabase ERR" & ex.Message)

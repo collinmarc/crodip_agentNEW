@@ -535,6 +535,15 @@ Partial Friend NotInheritable Class MySettings
             Return CType(Me("DB"),String)
         End Get
     End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute(".mdb")>  _
+    Public ReadOnly Property DBExtension() As String
+        Get
+            Return CType(Me("DBExtension"),String)
+        End Get
+    End Property
 End Class
 
 Namespace My
