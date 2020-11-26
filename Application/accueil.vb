@@ -4511,6 +4511,7 @@ Public Class accueil
         ExportToCSV()
     End Sub
     Private Sub ExportToCSV()
+        Me.Cursor = Cursors.WaitCursor
         Try
             Dim SFile As String = Globals.CONST_PATH_EXP & "Export_clients_" & Date.Now.ToString("yyyyMMdd") & ".csv"
             Dim searchId As Integer
@@ -4535,16 +4536,29 @@ Public Class accueil
             Next
 
             If MsgBox("Fichier correctement enregistré dans : " & vbNewLine & SFile & vbNewLine & "Voulez-vous ouvrir ce fichier ?", MsgBoxStyle.YesNo, "Export CSV") = MsgBoxResult.Yes Then
-                Dim monProcess As New Process
-                monProcess.StartInfo.FileName = SFile
-                monProcess.StartInfo.Verb = "Open"
-                monProcess.StartInfo.CreateNoWindow = True
-                monProcess.Start()
+                CSFile.open(SFile)
             End If
         Catch ex As Exception
             MsgBox("Une erreur est survenue pendant l'export CSV." & vbNewLine & "Peut-être avez-vous déjà ouvert le fichier ?")
             CSDebug.dispError("ExportToCSV ERR : " & ex.Message.ToString)
         End Try
+        Me.Cursor = Cursors.Default
+
+    End Sub
+    Private Sub ExportToCSVPulve()
+        Me.Cursor = Cursors.WaitCursor
+        Try
+            Dim SFile As String = Globals.CONST_PATH_EXP & "Export_pulve_" & Date.Now.ToString("yyyyMMdd") & ".csv"
+            PulverisateurManager.exportToCSV(SFile)
+
+            If MsgBox("Fichier correctement enregistré dans : " & vbNewLine & SFile & vbNewLine & "Voulez-vous ouvrir ce fichier ?", MsgBoxStyle.YesNo, "Export CSV") = MsgBoxResult.Yes Then
+                CSFile.open(SFile)
+            End If
+        Catch ex As Exception
+            MsgBox("Une erreur est survenue pendant l'export CSV." & vbNewLine & "Peut-être avez-vous déjà ouvert le fichier ?")
+            CSDebug.dispError("ExportToCSVPulve ERR : " & ex.Message.ToString)
+        End Try
+        Me.Cursor = Cursors.Default
 
     End Sub
 
@@ -4916,7 +4930,7 @@ Public Class accueil
 
     ' Export CSV de la liste des pulvés
     Private Sub listPulve_btn_exportCsv_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles listPulve_btn_exportCsv.Click
-        ExportToCSV()
+        ExportToCSVPulve()
     End Sub
 
     ' Ouverture de la fiche d'un pulvé
