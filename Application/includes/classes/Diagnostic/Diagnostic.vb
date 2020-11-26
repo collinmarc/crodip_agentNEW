@@ -2726,19 +2726,37 @@ Public Class Diagnostic
                     Me.isSignCCClient = pcolValue
                 Case "dateSignRIAgent".ToUpper().Trim()
                     If pcolValue.ToString() <> "" Then
-                        Me.dateSignRIAgent = CDate(pcolValue)
+                        Try
+                            Me.dateSignRIAgent = CDate(pcolValue)
+                        Catch
+
+                        End Try
+
                     End If
                 Case "dateSignRIClient".ToUpper().Trim()
                     If pcolValue.ToString() <> "" Then
-                        Me.dateSignRIClient = CDate(pcolValue)
+                        Try
+
+                            Me.dateSignRIClient = CDate(pcolValue)
+                        Catch
+
+                        End Try
                     End If
                 Case "dateSignCCAgent".ToUpper().Trim()
                     If pcolValue.ToString() <> "" Then
-                        Me.dateSignCCAgent = CDate(pcolValue)
+                        Try
+                            Me.dateSignCCAgent = CDate(pcolValue)
+                        Catch
+
+                        End Try
                     End If
                 Case "dateSignCCClient".ToUpper().Trim()
                     If pcolValue.ToString <> "" Then
-                        Me.dateSignCCClient = CDate(pcolValue)
+                        Try
+                            Me.dateSignCCClient = CDate(pcolValue)
+                        Catch
+
+                        End Try
                     End If
                 Case "SignRIAgent".ToUpper().Trim()
                     ''champs non Sauvegardé

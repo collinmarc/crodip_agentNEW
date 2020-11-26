@@ -7,6 +7,10 @@ BUILD
 0001300: Saisie des Vérifications Mano : Les valeurs ne s'affichent pas si 1 seul Mano
 0001301: Création d'une appli MAJDB
 0001302: Changement de version de base de données
+0001291: Erreur en chargement de diagnsostic sans signature
+0001297: Message d'erreur lors des exports client et pulvé
+0001289: contrat commercial (Faute d'orthographe sur propriétaire)
+0001291: Erreur en chargement de diagnsostic sans signature
 
 BUILD 20201013120000
 --------------------
