@@ -13,8 +13,8 @@ Public Class CSDb
     Public conf_bddPass As String = "UmtU8Scb"
     Public conf_bddDLPath As String = "crodip_dasylab"
     ' Public conf_bddDLPass = "tRyQe8se"
-    Public conf_bddPath As String = "crodip_agent"
-    Public conf_bddPath_dev As String = "crodip_agent_dev"
+    Public conf_bddPath As String = ""
+    Public conf_bddPath_dev As String = ""
 
     Public conf_bddEtatPath As String = "crodip_etats"
     Public conf_bddEtatPath_dev As String = "crodip_etats_dev"
@@ -29,6 +29,12 @@ Public Class CSDb
 
     Sub New(Optional ByVal doConnect As Boolean = False, Optional pDBType As DBTYPE = DBTYPE.AGENT)
         _queryString = ""
+        conf_bddPath = My.Settings.DB
+        If conf_bddPath = "" Then
+            conf_bddPath = "cropdip_agent"
+        End If
+        conf_bddPath_dev = conf_bddPath & "_dev"
+
         Select Case pDBType
             Case DBTYPE.AGENT
                 If Globals.GLOB_ENV_DEBUG = True Then
