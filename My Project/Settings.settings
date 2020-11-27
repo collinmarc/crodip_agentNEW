@@ -155,5 +155,11 @@
     <Setting Name="DBExtension" Type="System.String" Scope="Application">
       <Value Profile="(Default)">.mdb</Value>
     </Setting>
+    <Setting Name="StockPDF" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DOSSIERCACHE</Value>
+    </Setting>
+    <Setting Name="TypeStockPDF" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DIR</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

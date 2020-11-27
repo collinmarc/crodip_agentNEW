@@ -544,6 +544,24 @@ Partial Friend NotInheritable Class MySettings
             Return CType(Me("DBExtension"),String)
         End Get
     End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("DOSSIERCACHE")>  _
+    Public ReadOnly Property StockPDF() As String
+        Get
+            Return CType(Me("StockPDF"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("DIR")>  _
+    Public ReadOnly Property TypeStockPDF() As String
+        Get
+            Return CType(Me("TypeStockPDF"),String)
+        End Get
+    End Property
 End Class
 
 Namespace My

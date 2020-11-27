@@ -65,6 +65,24 @@ Namespace My
                 Me("a") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("DOSSIERCACHE")>  _
+        Public ReadOnly Property StockPDF() As String
+            Get
+                Return CType(Me("StockPDF"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("DIR")>  _
+        Public ReadOnly Property TypeStockPDF() As String
+            Get
+                Return CType(Me("TypeStockPDF"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 
@@ -74,8 +92,8 @@ Namespace My
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Module MySettingsProperty
-
-        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>
+        
+        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
         Friend ReadOnly Property Settings() As Global.TestCRODIP3.My.MySettings
             Get
                 Return Global.TestCRODIP3.My.MySettings.Default

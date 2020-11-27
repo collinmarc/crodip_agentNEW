@@ -3194,25 +3194,26 @@ Public Class accueil
         CSEnvironnement.checkDateTimePicker(dtpSearchCrit2)
         CSEnvironnement.checkDateTimePicker(dtp_ControleRegulier)
         'Création du Fichier ZIP des PDFs
-        If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
-            Using z As New ZipFile()
-                z.Password = Globals.CONST_PDFS_DIAG_PWD
-                Dim l As String() = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP, "*.pdf")
-                For Each f As String In l
-                    If f.Contains("MANOMETRECONTROLE") Then
-                        z.AddFile(f, Globals.CONST_PATH_EXP & "MANOMETRECONTROLE/")
-                    Else
-                        If f.Contains("BANCMESURE") Then
-                            z.AddFile(f, Globals.CONST_PATH_EXP & "BANCMESURE/")
+        If My.Settings.TypeStockPDF = "ZIP" Then
+            If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
+                Using z As New ZipFile()
+                    z.Password = Globals.CONST_PDFS_DIAG_PWD
+                    Dim l As String() = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP, "*.pdf")
+                    For Each f As String In l
+                        If f.Contains("MANOMETRECONTROLE") Then
+                            z.AddFile(f, Globals.CONST_PATH_EXP & "MANOMETRECONTROLE/")
                         Else
-                            z.AddFile(f, Globals.CONST_PATH_EXP & "DIAGNOSTIC/")
+                            If f.Contains("BANCMESURE") Then
+                                z.AddFile(f, Globals.CONST_PATH_EXP & "BANCMESURE/")
+                            Else
+                                z.AddFile(f, Globals.CONST_PATH_EXP & "DIAGNOSTIC/")
+                            End If
+
                         End If
-
-                    End If
-                Next
-                z.Save(Globals.CONST_PDFS_DIAG)
-            End Using
-
+                    Next
+                    z.Save(Globals.CONST_PDFS_DIAG)
+                End Using
+            End If
         End If
         If Not Directory.Exists(Globals.CONST_PATH_EXP_MANOCONTROLE) Then
             Directory.CreateDirectory(Globals.CONST_PATH_EXP_MANOCONTROLE)

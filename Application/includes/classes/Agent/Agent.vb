@@ -283,6 +283,7 @@ Public Class Agent
             _IsGestionnaire = value
         End Set
     End Property
+    <XmlElement("SignatureElect")>
     Public Property isSignElecActive As Boolean
         Get
             Return _IsSignElecActive
@@ -401,7 +402,7 @@ Public Class Agent
                     Me.DroitsPulves = pValue
                 Case "isGestionnaire".Trim().ToUpper()
                     Me.isGestionnaire = pValue
-                Case "isSignElecActive".Trim().ToUpper()
+                Case "SignatureElect".Trim().ToUpper()
                     Me.isSignElecActive = pValue
             End Select
 

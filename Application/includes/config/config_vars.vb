@@ -353,6 +353,7 @@ Public Class Globals
         'Globals.GLOB_XML_TERRITOIRES = New CSXml("." & "\config\territoire.xml")
         Globals.GLOB_XML_CODESAPE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielCodesAPE.xml")
 
+        Globals.CONST_PDFS_DIAG = My.Settings.StockPDF
     End Sub
     Public Shared Function StringToDouble(pInputString As String) As Double
         Dim dReturn As Double

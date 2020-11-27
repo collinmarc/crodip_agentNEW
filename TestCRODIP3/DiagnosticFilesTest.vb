@@ -22,9 +22,6 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
 
-        If File.Exists("systemPDF1.zip") Then
-            File.Delete("SystemPDF1.zip")
-        End If
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)
         Assert.IsNotNull(oEtat.getFileName())

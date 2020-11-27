@@ -32,7 +32,7 @@ Imports System.IO
         oManoCtrl.resolution = ""
         ManometreControleManager.save(oManoCtrl)
 
-        oCtrl = New ControleMano(m_oAgent)
+        oCtrl = New ControleMano(oManoCtrl, m_oAgent)
         oCtrl.idStructure = m_oAgent.idStructure.ToString
         oCtrl.manoEtalon = oManoRef.numeroNational
         oCtrl.idMano = oManoCtrl.numeroNational

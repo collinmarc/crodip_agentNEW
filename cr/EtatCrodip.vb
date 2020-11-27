@@ -56,20 +56,37 @@ Public Class EtatCrodip
         Dim FileName As String = m_Path & getFileName()
         Dim bReturn As Boolean = False
         Try
-            If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
-                Using z As New ZipFile()
-                    z.Password = Globals.CONST_PDFS_DIAG_PWD
-                    z.Save(Globals.CONST_PDFS_DIAG)
-                End Using
-
+            If My.Settings.TypeStockPDF = "ZIP" Then
+                If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
+                    Using z As New ZipFile()
+                        z.Password = Globals.CONST_PDFS_DIAG_PWD
+                        z.Save(Globals.CONST_PDFS_DIAG)
+                    End Using
+                End If
+                If File.Exists(FileName) Then
+                    Using z As ZipFile = ZipFile.Read(Globals.CONST_PDFS_DIAG)
+                        z.Password = Globals.CONST_PDFS_DIAG_PWD
+                        z.AddFile(FileName, m_Path)
+                        z.Save()
+                    End Using
+                    bReturn = True
+                End If
             End If
-            If File.Exists(FileName) Then
-                Using z As ZipFile = ZipFile.Read(Globals.CONST_PDFS_DIAG)
-                    z.Password = Globals.CONST_PDFS_DIAG_PWD
-                    z.AddFile(FileName, m_Path)
-                    z.Save()
-                End Using
-                bReturn = True
+            If My.Settings.TypeStockPDF = "DIR" Then
+                If Not Directory.Exists(Globals.CONST_PDFS_DIAG) Then
+                    Dim oDI As New DirectoryInfo(Globals.CONST_PDFS_DIAG)
+                    oDI.Create()
+                    oDI.Attributes = FileAttributes.Hidden
+
+                    oDI.CreateSubdirectory("public\exports\MANOMETRECONTROLE")
+                    oDI.CreateSubdirectory("public\exports\BANCMESURE")
+                    oDI.CreateSubdirectory("public\exports\DIAGNOSTIC")
+                End If
+
+                If File.Exists(FileName) Then
+                    System.IO.File.Copy(FileName, Globals.CONST_PDFS_DIAG & "\" & FileName)
+                    bReturn = True
+                End If
             End If
         Catch ex As Exception
             CSDebug.dispError("EtatCrodip.AddPFS ERR", ex)
@@ -80,13 +97,20 @@ Public Class EtatCrodip
     Public Shared Function getPDFs(pPath As String, pFileName As String) As String
         Dim FileName As String = pPath & pFileName
         Try
-            If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
-                FileName = ""
-            Else
-                Using z As ZipFile = ZipFile.Read(Globals.CONST_PDFS_DIAG)
-                    z.Password = Globals.CONST_PDFS_DIAG_PWD
-                    z.ExtractSelectedEntries(pFileName, pPath, "", ExtractExistingFileAction.OverwriteSilently)
-                End Using
+            If My.Settings.TypeStockPDF = "ZIP" Then
+                If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
+                    FileName = ""
+                Else
+                    Using z As ZipFile = ZipFile.Read(Globals.CONST_PDFS_DIAG)
+                        z.Password = Globals.CONST_PDFS_DIAG_PWD
+                        z.ExtractSelectedEntries(pFileName, pPath, "", ExtractExistingFileAction.OverwriteSilently)
+                    End Using
+                End If
+            End If
+            If My.Settings.TypeStockPDF = "DIR" Then
+                If File.Exists(Globals.CONST_PDFS_DIAG & "\" & FileName) Then
+                    System.IO.File.Copy(Globals.CONST_PDFS_DIAG & "\" & FileName, FileName)
+                End If
             End If
         Catch ex As Exception
             CSDebug.dispError("Diagnostic.getPFS ERR", ex)
