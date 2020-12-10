@@ -63,16 +63,19 @@ Imports Crodip_agent
         'on retourne les objet non synchro
         Return oLst
     End Function
-    <TestMethod(), Ignore()>
+    <TestMethod()>
     Public Sub TestGetManoControle()
 
         WSCrodip.Init("http://admin.crodip.fr/server")
         Dim oagent = New Agent
-        oagent.id = 1144
-        oagent.numeroNational = "128"
-        oagent.nom = "CHAPON"
-        oagent.prenom = "KEVIN"
-        oagent.dateDerniereSynchro = "2018-05-17 14:51:00"
+        oagent.id = 1165
+        oagent.numeroNational = "138"
+        oagent.nom = "MICKAEL"
+        oagent.prenom = "PIERRE"
+        oagent.dateDerniereSynchro = "2020-11-25 16:39:00"
+        oagent.idStructure = 515
+        oagent.isActif = True
+        oagent.dateDerniereConnexion = "2020-03-03 09:32:00"
         Dim oSynchro As New Synchronisation(oagent)
         Dim oLst As List(Of SynchronisationElmt) = oSynchro.getListeElementsASynchroniserDESC()
         For Each oElem In oLst

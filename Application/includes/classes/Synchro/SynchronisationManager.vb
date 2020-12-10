@@ -79,7 +79,7 @@ Public Class SynchronisationManager
     Private Shared Function GetDateDernSynchro() As DateTime
         Dim lst As AgentList = AgentManager.getAgentList()
 
-        Dim oReturn As DateTime = lst.items.Max(Function(a) CDate(a.dateDerniereSynchro))
+        Dim oReturn As DateTime = lst.items.Min(Function(a) CDate(a.dateDerniereSynchro))
         Return oReturn
     End Function
     Public Shared Function getWSlstElementsASynchroniser(ByVal pAgent As Agent, pSynchroBoolean As SynchroBooleans) As List(Of SynchronisationElmt)
@@ -95,8 +95,16 @@ Public Class SynchronisationManager
 
         Dim DateDernSynhcro As DateTime
         DateDernSynhcro = GetDateDernSynchro()
+        If CSDate.FromCrodipString(pAgent.dateDerniereSynchro) < DateDernSynhcro Then
+            DateDernSynhcro = CSDate.FromCrodipString(pAgent.dateDerniereSynchro)
+        End If
         logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
-        objWSCrodip.UpdatesAvailable(pAgent.numeroNational, CSDate.GetDateForWS(pAgent.dateDerniereSynchro), isUpdateAvailable, isComplete, objWSUpdates)
+        Try
+
+            objWSCrodip.UpdatesAvailable(pAgent.numeroNational, CSDate.GetDateForWS(pAgent.dateDerniereSynchro), isUpdateAvailable, isComplete, objWSUpdates)
+        Catch ex As Exception
+            CSDebug.dispError("SynchronisationManager.getWSlstElementsASynchroniser ERR" & ex.Message)
+        End Try
         'l'obejt objWSupdates est en fait un tableau de XMLNode
         'Dim oTabXml As List(Of XmlNode())
         'oTabXml = (From obj In objWSUpdates Select CType(obj, XmlNode())).ToList()

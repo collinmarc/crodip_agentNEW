@@ -150,6 +150,39 @@ Public Class ManometreControleManagerTest
         Assert.IsTrue(bReturn)
 
     End Sub
+    'test l'echange par WS
+    <TestMethod()>
+    Public Sub Get_WS_TestPRD()
+        Dim oManometreControle As ManometreControle
+        Dim oManometreControle2 As ManometreControle
+        Dim bReturn As Boolean
+        Dim idManometreControle As String
+        Dim UpdatedObject As New Object
+
+
+
+        oManometreControle2 = ManometreControleManager.getWSManometreControleById(m_oAgent, oManometreControle.numeroNational)
+        Assert.AreEqual(oManometreControle.numeroNational, oManometreControle2.numeroNational)
+        Assert.AreEqual(oManometreControle.idCrodip, oManometreControle2.idCrodip)
+        Assert.AreEqual(oManometreControle2.isSupprime, False)
+        Assert.AreEqual(oManometreControle.etat, oManometreControle2.etat)
+
+        Assert.AreEqual(oManometreControle.AgentSuppression, oManometreControle2.AgentSuppression)
+        Assert.AreEqual(oManometreControle.RaisonSuppression, oManometreControle2.RaisonSuppression)
+        Assert.AreEqual(oManometreControle.DateSuppression, oManometreControle2.DateSuppression)
+        Assert.AreEqual(oManometreControle.type, oManometreControle2.type)
+        Assert.AreEqual(oManometreControle.fondEchelle, oManometreControle2.fondEchelle)
+        Assert.AreEqual(oManometreControle.resolution, oManometreControle2.resolution)
+        Assert.AreEqual(oManometreControle.dateDernierControleS, oManometreControle2.dateDernierControleS)
+        'Assert.AreEqual(oManometreControle2.nbControles, 5)
+        'Assert.AreEqual(oManometreControle2.nbControlesTotal, 15)
+
+
+
+        bReturn = ManometreControleManager.delete(idManometreControle)
+        Assert.IsTrue(bReturn)
+
+    End Sub
     <TestMethod()>
     Public Sub DeleteMaterielTest()
         Dim objManometreControle As ManometreControle
@@ -176,7 +209,7 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(objManometreControle.isSupprime, True)
         Assert.AreEqual(objManometreControle.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objManometreControle.RaisonSuppression, "MaRaison")
-        Assert.IsNotNull(objManometreControle.dateSuppression)
+        Assert.IsNotNull(objManometreControle.DateSuppression)
 
 
 

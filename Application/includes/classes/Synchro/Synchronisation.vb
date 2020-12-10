@@ -946,23 +946,28 @@ Public Class Synchronisation
     Public Function getListeElementsASynchroniserDESC() As List(Of SynchronisationElmt)
         Dim lstElementsASynchronisertotal As New List(Of SynchronisationElmt)
         Dim lstElementsASynchroniserAgent As New List(Of SynchronisationElmt)
+
+        lstElementsASynchronisertotal = getListeElementsASynchroniserDESC(m_Agent)
+
         Dim oList As AgentList
         oList = AgentManager.getAgentList()
 
         'On récupère les éléments à synchroniser de chaque Agent
         For Each oAgent As Agent In oList.items
-            lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
+            If oAgent.id <> m_Agent.id Then
+                lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
 
-            'et on les fusionne dans la liste Globale
-            For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
-                Dim n As Integer = (From o In lstElementsASynchronisertotal
-                                    Where o.type = oelmt.type And o.identifiantChaine = oelmt.identifiantChaine And o.identifiantEntier = oelmt.identifiantEntier
-                                    Select o) _
-                                        .Count()
-                If n = 0 Then
-                    lstElementsASynchroniserTotal.Add(oelmt)
-                End If
-            Next
+                'et on les fusionne dans la liste Globale
+                For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
+                    Dim n As Integer = (From o In lstElementsASynchronisertotal
+                                        Where o.Type = oelmt.Type And o.IdentifiantChaine = oelmt.IdentifiantChaine And o.IdentifiantEntier = oelmt.IdentifiantEntier
+                                        Select o) _
+                                            .Count()
+                    If n = 0 Then
+                        lstElementsASynchronisertotal.Add(oelmt)
+                    End If
+                Next
+            End If
         Next
         Return lstElementsASynchronisertotal
     End Function

@@ -328,7 +328,7 @@ Public Class ManometreControleManager
         Dim oCSDB As New CSDb(True)
         Dim bddCommande As OleDb.OleDbCommand
         bddCommande = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM `AgentManoControle` WHERE `AgentManoControle`.`dateModificationAgent`<>`AgentManoControle`.`dateModificationCrodip` AND `AgentManoControle`.`idStructure`=" & agent.idStructure
+        bddCommande.CommandText = "SELECT * FROM `AgentManoControle` WHERE `AgentManoControle`.`dateModificationAgent`>`AgentManoControle`.`dateModificationCrodip` AND `AgentManoControle`.`idStructure`=" & agent.idStructure
 
         Try
             ' On récupère les résultats

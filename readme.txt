@@ -1,6 +1,7 @@
 TRUNK
 MASTER
 
+
 BUILD 
 --------------------
 0001259: Espace de stockage des PDFs Centralisés
@@ -11,6 +12,7 @@ BUILD
 0001297: Message d'erreur lors des exports client et pulvé
 0001289: contrat commercial (Faute d'orthographe sur propriétaire)
 0001291: Erreur en chargement de diagnsostic sans signature
+0001305: Contrat Commercial V5
 
 BUILD 20201013120000
 --------------------

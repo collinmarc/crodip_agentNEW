@@ -111,7 +111,7 @@ Public Class AgentManagerTest
         agentLu = AgentManager.getWSAgentById(agent.numeroNational)
         'Assert.AreEqual(agent.id, agentLu.id)
         'TODO : Controle de l'objet lu a reactiver !!!
-        Assert.AreEqual(agentLu.numeroNational, agent.numeroNational)
+        Assert.AreEqual(agent.numeroNational, agentLu.numeroNational)
         '        Assert.AreEqual(agentLu.nom, agent.nom)
         'Assert.AreEqual(agentLu.prenom, agent.prenom)
         'Assert.AreEqual(agentLu.cleActivation, "cle")
@@ -129,7 +129,7 @@ Public Class AgentManagerTest
         'Assert.AreEqual(agentLu.telephonePortable, "0680667189")
         'Assert.AreEqual(agentLu.versionLogiciel, "VERSION")
         'Assert.AreEqual(agentLu.DroitsPulves, "Rampes|Voute")
-        Assert.AreEqual(agentLu.isSignElecActive, True)
+        Assert.AreEqual(True, agentLu.isSignElecActive)
 
     End Sub
 

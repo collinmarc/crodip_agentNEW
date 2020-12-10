@@ -10,6 +10,7 @@ Public Class fiche_manometre
     Friend WithEvents btnActiver As System.Windows.Forms.Button
     Friend WithEvents imagesEtatMateriel As System.Windows.Forms.ImageList
     Dim isAjout As Boolean
+    Dim bManoMAJ As Boolean
 
     Public Sub New(ByVal _manometreCourant As Manometre)
         MyBase.New()
@@ -65,7 +66,6 @@ Public Class fiche_manometre
     Friend WithEvents btn_ficheMano_valider As System.Windows.Forms.Label
     Friend WithEvents btn_ficheMano_supprimer As System.Windows.Forms.Label
     Friend WithEvents ficheMano_fondEchelle As System.Windows.Forms.TextBox
-    Friend WithEvents btn_ficheMano_ficheVie As System.Windows.Forms.Label
     Friend WithEvents ficheMano_classe As System.Windows.Forms.TextBox
     Friend WithEvents ficheMano_idCrodip As System.Windows.Forms.TextBox
     Friend WithEvents lblResolution As System.Windows.Forms.Label
@@ -88,7 +88,6 @@ Public Class fiche_manometre
         Me.btn_ficheMano_valider = New System.Windows.Forms.Label()
         Me.btn_ficheMano_supprimer = New System.Windows.Forms.Label()
         Me.ficheMano_fondEchelle = New System.Windows.Forms.TextBox()
-        Me.btn_ficheMano_ficheVie = New System.Windows.Forms.Label()
         Me.ficheMano_classe = New System.Windows.Forms.TextBox()
         Me.ficheMano_idCrodip = New System.Windows.Forms.TextBox()
         Me.lblResolution = New System.Windows.Forms.Label()
@@ -265,20 +264,6 @@ Public Class fiche_manometre
         Me.ficheMano_fondEchelle.Size = New System.Drawing.Size(48, 20)
         Me.ficheMano_fondEchelle.TabIndex = 5
         '
-        'btn_ficheMano_ficheVie
-        '
-        Me.btn_ficheMano_ficheVie.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_ficheMano_ficheVie.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_ficheMano_ficheVie.ForeColor = System.Drawing.Color.White
-        Me.btn_ficheMano_ficheVie.Image = CType(resources.GetObject("btn_ficheMano_ficheVie.Image"), System.Drawing.Image)
-        Me.btn_ficheMano_ficheVie.Location = New System.Drawing.Point(16, 299)
-        Me.btn_ficheMano_ficheVie.Name = "btn_ficheMano_ficheVie"
-        Me.btn_ficheMano_ficheVie.Size = New System.Drawing.Size(128, 24)
-        Me.btn_ficheMano_ficheVie.TabIndex = 7
-        Me.btn_ficheMano_ficheVie.Text = "    Fiche de vie"
-        Me.btn_ficheMano_ficheVie.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btn_ficheMano_ficheVie.Visible = False
-        '
         'ficheMano_classe
         '
         Me.ficheMano_classe.Enabled = False
@@ -403,7 +388,6 @@ Public Class fiche_manometre
         Me.Controls.Add(Me.ficheMano_dateActivation)
         Me.Controls.Add(Me.ficheMano_dateControle)
         Me.Controls.Add(Me.ficheMano_fondEchelle)
-        Me.Controls.Add(Me.btn_ficheMano_ficheVie)
         Me.Controls.Add(Me.ficheMano_classe)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "fiche_manometre"
@@ -464,7 +448,7 @@ Public Class fiche_manometre
             '    End If
         End If
         DisplayManoCourant()
-
+        bManoMAJ = False
 
 
     End Sub
@@ -482,7 +466,7 @@ Public Class fiche_manometre
             ficheMano_resolution.Text = oMano.resolution
         End If
 
-        If manometreCourant.jamaisServi Then
+        If manometreCourant.JamaisServi Then
             pbEtat.Image = imagesEtatMateriel.Images(2)
         Else
             If manometreCourant.etat Then
@@ -492,7 +476,7 @@ Public Class fiche_manometre
             End If
         End If
 
-        btnActiver.Visible = manometreCourant.jamaisServi
+        btnActiver.Visible = manometreCourant.JamaisServi
         If Not CSDate.isDateNull(manometreCourant.DateActivation) Then
             ficheMano_dateActivation.Text = CSDate.mysql2access(manometreCourant.DateActivation)
         End If
@@ -505,30 +489,31 @@ Public Class fiche_manometre
     Private Sub btn_ficheMano_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheMano_valider.Click
 
         ' On enregistre les infos
-
-        Try
-            '                    manometreCourant.numeroNational = ficheMano_numeroNational.Text
-            '                   manometreCourant.idCrodip = ficheMano_idCrodip.Text
-            manometreCourant.marque = ficheMano_marque.Text
-            manometreCourant.classe = ficheMano_classe.Text
-            manometreCourant.type = ficheMano_type.Text
-            manometreCourant.fondEchelle = ficheMano_fondEchelle.Text
-            If m_TypeMano = TYPEMANO.MANOCONTROLE Then
-                CType(manometreCourant, ManometreControle).resolution = ficheMano_resolution.Text
-            Else
-                CType(manometreCourant, ManometreEtalon).incertitudeEtalon = ficheMano_resolution.Text
-            End If
-            manometreCourant.dateModificationAgent = CSDate.mysql2access(Date.Now)
-            If m_TypeMano = TYPEMANO.MANOCONTROLE Then
-                ManometreControleManager.save(manometreCourant)
-            Else
-                ManometreEtalonManager.save(manometreCourant)
-            End If
-            Me.DialogResult = Windows.Forms.DialogResult.OK
-            Me.Close()
-        Catch ex As Exception
-            CSDebug.dispFatal("Fiche Mano Controle - Enregistrement : " & ex.Message.ToString)
-        End Try
+        If bManoMAJ Then
+            Try
+                '                    manometreCourant.numeroNational = ficheMano_numeroNational.Text
+                '                   manometreCourant.idCrodip = ficheMano_idCrodip.Text
+                manometreCourant.marque = ficheMano_marque.Text
+                manometreCourant.classe = ficheMano_classe.Text
+                manometreCourant.type = ficheMano_type.Text
+                manometreCourant.fondEchelle = ficheMano_fondEchelle.Text
+                If m_TypeMano = TYPEMANO.MANOCONTROLE Then
+                    CType(manometreCourant, ManometreControle).resolution = ficheMano_resolution.Text
+                Else
+                    CType(manometreCourant, ManometreEtalon).incertitudeEtalon = ficheMano_resolution.Text
+                End If
+                manometreCourant.dateModificationAgent = CSDate.mysql2access(Date.Now)
+                If m_TypeMano = TYPEMANO.MANOCONTROLE Then
+                    ManometreControleManager.save(manometreCourant)
+                Else
+                    ManometreEtalonManager.save(manometreCourant)
+                End If
+            Catch ex As Exception
+                CSDebug.dispFatal("Fiche Mano Controle - Enregistrement : " & ex.Message.ToString)
+            End Try
+        End If
+        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.Close()
 
     End Sub
 
@@ -575,6 +560,7 @@ Public Class fiche_manometre
     Private Sub btnActiver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnActiver.Click
         If MsgBox("Etes-vous sur de vouloir activer ce matériel ?", MsgBoxStyle.YesNo, "Activation de matériel") = MsgBoxResult.Yes Then
             manometreCourant.ActiverMateriel(Now, agentCourant)
+            bManoMAJ = True
             DisplayManoCourant()
         End If
     End Sub
@@ -585,6 +571,7 @@ Public Class fiche_manometre
 #If DEBUG Then
         If e.Button = Windows.Forms.MouseButtons.Right Then
             manometreCourant.etat = Not manometreCourant.etat
+            bManoMAJ = True
             DisplayManoCourant()
         End If
 #End If

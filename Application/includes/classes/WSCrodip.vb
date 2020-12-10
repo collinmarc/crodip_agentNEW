@@ -23,8 +23,8 @@ Public Class WSCrodip
             If Not String.IsNullOrEmpty(URL) Then
                 m_WS.Url = URL
             End If
-            m_WS2 = New WSCrodip2.CrodipServerClient
-            m_WS2.Endpoint.Address = New System.ServiceModel.EndpointAddress(URL)
+            'm_WS2 = New WSCrodip2.CrodipServerClient
+            'm_WS2.Endpoint.Address = New System.ServiceModel.EndpointAddress(URL)
             m_bInit = True
         Catch ex As Exception
             CSDebug.dispError("WSCrodip.Init() Error " & ex.Message)
@@ -39,8 +39,8 @@ Public Class WSCrodip
             If Not String.IsNullOrEmpty(pUrl) Then
                 m_WS.Url = pUrl
             End If
-            m_WS2 = New WSCrodip2.CrodipServerClient
-            m_WS2.Endpoint.Address = New System.ServiceModel.EndpointAddress(pUrl)
+            'm_WS2 = New WSCrodip2.CrodipServerClient
+            'm_WS2.Endpoint.Address = New System.ServiceModel.EndpointAddress(pUrl)
             m_bInit = True
         Catch ex As Exception
             CSDebug.dispFatal("WSCrodip.Init() Error " & ex.Message)
