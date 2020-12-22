@@ -930,11 +930,11 @@ Public Class frmDiagnostiqueSimple
             m_diagnostic.diagnosticHelp551.calc(5.0)
             m_diagnostic.diagnosticHelp5621.calc(5.0)
             'Calcul du help 552 et 5622 (Débitmetre)
-            m_diagnostic.diagnosticHelp552.DebitMoyen0Bar = m_diagnostic.buseDebitD
+            m_diagnostic.diagnosticHelp552.DebitMoyen3bar = m_diagnostic.buseDebitD
             m_diagnostic.diagnosticHelp552.PressionMesure = m_diagnostic.manometrePressionTravailD
             m_diagnostic.diagnosticHelp552.calc()
 
-            m_diagnostic.diagnosticHelp5622.DebitMoyen0Bar = m_diagnostic.buseDebitD
+            m_diagnostic.diagnosticHelp5622.DebitMoyen3bar = m_diagnostic.buseDebitD
             m_diagnostic.diagnosticHelp5622.PressionMesure = m_diagnostic.manometrePressionTravailD
             m_diagnostic.diagnosticHelp5622.calc()
 

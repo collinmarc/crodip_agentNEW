@@ -13,6 +13,9 @@ BUILD
 0001289: contrat commercial (Faute d'orthographe sur propriétaire)
 0001291: Erreur en chargement de diagnsostic sans signature
 0001305: Contrat Commercial V5
+0001315: Le WS SendIdentifiantPulveristateur ne fonctionne pas
+0001311: PB de Calcul
+0001309: Erreur en Testant la Signature electronique
 
 BUILD 20201013120000
 --------------------

@@ -425,7 +425,9 @@ Public Class gestion_agent
         Dim oFrm As frmSignClient
         Dim oDiag As New Diagnostic()
         oFrm = frmSignClient.getfrmSignature(oDiag, SignMode.RICLIENT, agentCourant)
-        oFrm.Show()
-        System.Windows.Forms.Cursor.Position = Me.PointToScreen(btnTestsignature.Location)
+        If oFrm IsNot Nothing Then
+            oFrm.Show()
+            System.Windows.Forms.Cursor.Position = Me.PointToScreen(btnTestsignature.Location)
+        End If
     End Sub
 End Class

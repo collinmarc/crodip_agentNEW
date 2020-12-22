@@ -198,13 +198,18 @@ Public Class frmSignClient
             ofrm = New frmSignClientTablette(pDiag, psignMode, pAgent)
         End If
         If My.Settings.ModeSignature = "wacom" Then
-            Dim usbDevices As wgssSTU.UsbDevices = New wgssSTU.UsbDevices()
-            Dim usbDevice As wgssSTU.IUsbDevice
+            Try
 
-            If usbDevices.Count <> 0 Then
-                usbDevice = usbDevices(0)
-                ofrm = New frmSignClientWacom(pDiag, psignMode, pAgent, usbDevice)
-            End If
+                Dim usbDevices As wgssSTU.UsbDevices = New wgssSTU.UsbDevices()
+                Dim usbDevice As wgssSTU.IUsbDevice
+
+                If usbDevices.Count <> 0 Then
+                    usbDevice = usbDevices(0)
+                    ofrm = New frmSignClientWacom(pDiag, psignMode, pAgent, usbDevice)
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, "frmSignClient.getFrmSignature")
+            End Try
 
         End If
 

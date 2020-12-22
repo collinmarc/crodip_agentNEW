@@ -182,7 +182,10 @@ Namespace WSCrodip_prod
 
         '<remarks/>
         <XmlInclude(GetType(Banc)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendBanc", RequestElementName:="SendBancRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendBanc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal BancRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Banc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function SendBanc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String,
+                                 <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal BancRequest As Object,
+                                 <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Banc As Object
+                                 ) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             SynchronisationManager.LogSynchroElmt(BancRequest)
             Dim results() As Object = Me.Invoke("SendBanc", New Object() {agentId, BancRequest})
             Banc = CType(results(1), Object)
@@ -435,7 +438,10 @@ Namespace WSCrodip_prod
         End Function
         '<remarks/>
         <XmlInclude(GetType(Pulverisateur)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendPulverisateur", RequestElementName:="SendPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PulverisateurRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function SendPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String,
+                                          <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PulverisateurRequest As Object,
+                                          <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pulverisateur As Object
+                                          ) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             SynchronisationManager.LogSynchroElmt(PulverisateurRequest)
             Dim results() As Object = Me.Invoke("SendPulverisateur", New Object() {agentId, PulverisateurRequest})
             Pulverisateur = CType(results(1), Object)

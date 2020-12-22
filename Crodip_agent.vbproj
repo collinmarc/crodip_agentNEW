@@ -1329,11 +1329,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>ReglagePulve.settings</DependentUpon>
     </Compile>
-    <Compile Include="Service References\WSCrodip2\Reference.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Settings.vb" />
     <Compile Include="StartApplication.vb" />
     <Compile Include="Web References\WSCrodip_prod\Reference.vb">
@@ -1955,15 +1950,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>ReglagePulve.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Service References\WSCrodip2\configuration91.svcinfo" />
-    <None Include="Service References\WSCrodip2\configuration.svcinfo" />
-    <None Include="Service References\WSCrodip2\Crodip_agent.WSCrodip2.IdentifiantPulverisateur.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\WSCrodip2\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.vb</LastGenOutput>
-    </None>
     <None Include="updates.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -2003,7 +1989,6 @@
     <Content Include="public\docs\fiche_terrain_rampe.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Service References\WSCrodip2\crodip.wsdl" />
     <EmbeddedResource Include="Application\agent\Bancs\HistoBanc.resx">
       <DependentUpon>HistoBanc.vb</DependentUpon>
     </EmbeddedResource>
@@ -2490,9 +2475,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\WSCrodip2\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\exploitant\fichevie\" />

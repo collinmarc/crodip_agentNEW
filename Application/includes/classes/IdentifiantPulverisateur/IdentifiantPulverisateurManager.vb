@@ -237,27 +237,27 @@ Public Class IdentifiantPulverisateurManager
         Try
 
             ' déclarations
-            'Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS(True)
-            'objWSCrodip.Timeout = 10000
-            Dim objWSCrodip2 As WSCrodip2.CrodipServer = WSCrodip.getWS2(True)
+            'Dim objWSCrodip2 As WSCRODIP2.CrodipServer = WSCrodip.getWS2(True)
+            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS(True)
+            objWSCrodip.Timeout = 10000
             Dim objWSCrodip_response As New Object
             ' Appel au WS
-            Dim rq As WSCrodip2.SendIdentifiantPulverisateurRequest
-            Dim oWSIdentificateurPulve As New WSCrodip2.IdentifiantPulverisateur()
-            oWSIdentificateurPulve.id = pIdentPulve.id
-            oWSIdentificateurPulve.idStructure = pIdentPulve.idStructure
-            oWSIdentificateurPulve.libelle = pIdentPulve.libelle
-            oWSIdentificateurPulve.numeroNational = pIdentPulve.numeroNational
-            oWSIdentificateurPulve.etat = pIdentPulve.etat
-            oWSIdentificateurPulve.dateUtilisation = pIdentPulve.dateUtilisation
-            oWSIdentificateurPulve.dateModificationCrodip = pIdentPulve.dateModificationCrodip
-            oWSIdentificateurPulve.dateModificationAgent = pIdentPulve.dateModificationAgent
-            SynchronisationManager.LogSynchroElmt(oWSIdentificateurPulve)
+            'Dim rq As WSCrodip2.SendIdentifiantPulverisateurRequest
+            'Dim oWSIdentificateurPulve As New WSCrodip2.IdentifiantPulverisateur()
+            'oWSIdentificateurPulve.id = pIdentPulve.id
+            'oWSIdentificateurPulve.idStructure = pIdentPulve.idStructure
+            'oWSIdentificateurPulve.libelle = pIdentPulve.libelle
+            'oWSIdentificateurPulve.numeroNational = pIdentPulve.numeroNational
+            'oWSIdentificateurPulve.etat = pIdentPulve.etat
+            'oWSIdentificateurPulve.dateUtilisation = pIdentPulve.dateUtilisation
+            'oWSIdentificateurPulve.dateModificationCrodip = pIdentPulve.dateModificationCrodip
+            'oWSIdentificateurPulve.dateModificationAgent = pIdentPulve.dateModificationAgent
+            'SynchronisationManager.LogSynchroElmt(oWSIdentificateurPulve)
 
-            rq = New WSCrodip2.SendIdentifiantPulverisateurRequest(pAgent.id, oWSIdentificateurPulve)
-            Dim codeResponse2 As Integer = objWSCrodip2.SendIdentifiantPulverisateur(rq).result
-            'Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve, objWSCrodip_response)
-            Select Case codeResponse2
+            'rq = New WSCrodip2.SendIdentifiantPulverisateurRequest(pAgent.id, oWSIdentificateurPulve)
+            'Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve)
+            Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve, objWSCrodip_response)
+            Select Case codeResponse
                 Case 0 ' OK
                 Case 1 ' NOK
                     CSDebug.dispError("sendWSIdentifiantPulverisateurr - Code 1 : Non-Trouvée")

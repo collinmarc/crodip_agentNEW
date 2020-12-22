@@ -41,7 +41,14 @@ Public Class Diagnostic_dlghelp552
     Private M_erreurDebimetre As CRODIP_ControlLibrary.TBNumeric
     Private m_result As Label
 
+    Public Sub New()
 
+        ' Cet appel est requis par le concepteur.
+        InitializeComponent()
+
+        ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
+
+    End Sub
 
     Public Sub setContexte(pMode As Help552Mode, pDiag As Diagnostic, pDdebitMoyen As String, pPressionMesure As String, pbVisu As Boolean)
         m_oDiag = pDiag
@@ -57,7 +64,7 @@ Public Class Diagnostic_dlghelp552
                 SetControls(Help552Mode.Mode5622)
                 TabControl1.TabPages.RemoveByKey(tpHelp552.Name)
         End Select
-        help552_debitMoyen0bar.Text = pDdebitMoyen
+        help552_debitMoyen3bar.Text = pDdebitMoyen
         help552_pressionMesure.Text = pPressionMesure
         Popuphelp552_init(m_oHelp)
     End Sub
@@ -117,8 +124,10 @@ Public Class Diagnostic_dlghelp552
         End If
 
         If tab552_isAllFilled() Then
-            oHelp.DebitMoyen0Bar = help552_debitMoyen0bar.DecimalValue
-            oHelp.PressionMesure = help552_pressionMesure.DecimalValue
+            'si on prend le débit Ramené à 3 bar, alors on prend la pression = 3
+            oHelp.DebitMoyen3bar = help552_debitMoyen3bar.DecimalValue
+            'oHelp.PressionMesure = help552_pressionMesure.DecimalValue
+            oHelp.PressionMesure = 3
 
             oHelp.NbBuses_m1 = m_calculs_m1_nbBuses.DecimalValue
             oHelp.Pression_m1 = m_calculs_m1_pression.DecimalValue

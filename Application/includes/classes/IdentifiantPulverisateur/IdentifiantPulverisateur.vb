@@ -7,8 +7,8 @@ Public Class IdentifiantPulverisateur
     Private m_id As Long
     Private m_idStructure As Long
     Private m_numeroNational As String
-    Private m_etat As String
-    Private m_dateUtilisation As String
+    Private m_etat As String = ""
+    Private m_dateUtilisation As String = ""
     Private m_libelle As String
     Private m_dateModificationAgent As String
     Private m_dateModificationCrodip As String
@@ -21,14 +21,14 @@ Public Class IdentifiantPulverisateur
             m_id = value
         End Set
     End Property
-    Public Property IdentifiantPulverisateur As String
-        Get
-            Return m_id
-        End Get
-        Set(value As String)
+    'Public Property IdentifiantPulverisateur As String
+    '    Get
+    '        Return m_id
+    '    End Get
+    '    Set(value As String)
 
-        End Set
-    End Property
+    '    End Set
+    'End Property
     Public Property idStructure As Long
         Get
             Return m_idStructure
