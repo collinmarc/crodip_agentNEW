@@ -133,6 +133,9 @@
       <Name>CRODIPAcquisition</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReleaseNotes.css" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y $(TargetPath) $(SolutionDir)TestCrodip\$(OutDir)

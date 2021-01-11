@@ -118,6 +118,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AcquisitionAAMS\AcquisitionAAMS.vbproj">
@@ -141,6 +142,7 @@
     <Content Include="moduleDocumentaire\_parametres\ModulesAcquisision.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ReleaseNotes.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

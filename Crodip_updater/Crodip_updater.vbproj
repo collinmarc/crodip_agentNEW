@@ -224,6 +224,7 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Content Include="favicon.ico" />
+    <Content Include="ReleaseNotes.css" />
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.vb</DependentUpon>
     </EmbeddedResource>

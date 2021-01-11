@@ -141,6 +141,7 @@
     <Content Include="bdd\crodip_dasylab.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ReleaseNotes.css" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CRODIPAcquisition\CRODIPAcquisition.vbproj">

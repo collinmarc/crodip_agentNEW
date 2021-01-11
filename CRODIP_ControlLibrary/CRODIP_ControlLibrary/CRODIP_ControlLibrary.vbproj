@@ -257,6 +257,7 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ReleaseNotes.css" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
