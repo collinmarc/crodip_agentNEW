@@ -19,6 +19,11 @@ BUILD
 0001315: Le WS SendIdentifiantPulveristateur ne fonctionne pas
 0001311: PB de Calcul
 0001309: Erreur en Testant la Signature electronique
+0001316: Version Formation
+ 0001321: Création automatique du répertoire caché des PDFs
+ 0001320: La Signature ne s'active pas avec la synchro
+0001326: La BDD livrée dans le Setup ne contient pas les champs de signature
+
 
 BUILD 20201013120000
 --------------------

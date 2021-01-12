@@ -57,14 +57,14 @@ Public Class EtatCrodip
         Dim bReturn As Boolean = False
         Try
             If My.Settings.TypeStockPDF = "ZIP" Then
-                If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
+                If Not File.Exists(Globals.CONST_STOCK_PDFS) Then
                     Using z As New ZipFile()
                         z.Password = Globals.CONST_PDFS_DIAG_PWD
-                        z.Save(Globals.CONST_PDFS_DIAG)
+                        z.Save(Globals.CONST_STOCK_PDFS)
                     End Using
                 End If
                 If File.Exists(FileName) Then
-                    Using z As ZipFile = ZipFile.Read(Globals.CONST_PDFS_DIAG)
+                    Using z As ZipFile = ZipFile.Read(Globals.CONST_STOCK_PDFS)
                         z.Password = Globals.CONST_PDFS_DIAG_PWD
                         z.AddFile(FileName, m_Path)
                         z.Save()
@@ -73,8 +73,8 @@ Public Class EtatCrodip
                 End If
             End If
             If My.Settings.TypeStockPDF = "DIR" Then
-                If Not Directory.Exists(Globals.CONST_PDFS_DIAG) Then
-                    Dim oDI As New DirectoryInfo(Globals.CONST_PDFS_DIAG)
+                If Not Directory.Exists(Globals.CONST_STOCK_PDFS) Then
+                    Dim oDI As New DirectoryInfo(Globals.CONST_STOCK_PDFS)
                     oDI.Create()
                     oDI.Attributes = FileAttributes.Hidden
 
@@ -84,7 +84,7 @@ Public Class EtatCrodip
                 End If
 
                 If File.Exists(FileName) Then
-                    System.IO.File.Copy(FileName, Globals.CONST_PDFS_DIAG & "\" & FileName)
+                    System.IO.File.Copy(FileName, Globals.CONST_STOCK_PDFS & "\" & FileName)
                     bReturn = True
                 End If
             End If
@@ -98,18 +98,18 @@ Public Class EtatCrodip
         Dim FileName As String = pPath & pFileName
         Try
             If My.Settings.TypeStockPDF = "ZIP" Then
-                If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
+                If Not File.Exists(Globals.CONST_STOCK_PDFS) Then
                     FileName = ""
                 Else
-                    Using z As ZipFile = ZipFile.Read(Globals.CONST_PDFS_DIAG)
+                    Using z As ZipFile = ZipFile.Read(Globals.CONST_STOCK_PDFS)
                         z.Password = Globals.CONST_PDFS_DIAG_PWD
                         z.ExtractSelectedEntries(pFileName, pPath, "", ExtractExistingFileAction.OverwriteSilently)
                     End Using
                 End If
             End If
             If My.Settings.TypeStockPDF = "DIR" Then
-                If File.Exists(Globals.CONST_PDFS_DIAG & "\" & FileName) Then
-                    System.IO.File.Copy(Globals.CONST_PDFS_DIAG & "\" & FileName, FileName)
+                If File.Exists(Globals.CONST_STOCK_PDFS & "\" & FileName) Then
+                    System.IO.File.Copy(Globals.CONST_STOCK_PDFS & "\" & FileName, FileName)
                 End If
             End If
         Catch ex As Exception
