@@ -107,6 +107,9 @@ Public Class splash
 
         ' Always on top
         Me.TopMost = True
+        If Globals.GLOB_ENV_MODEFORMATION Then
+            Me.PictureBox1.Visible = False
+        End If
     End Sub
 
 End Class

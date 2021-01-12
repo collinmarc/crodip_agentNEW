@@ -520,15 +520,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20201102120000")>  _
-    Public ReadOnly Property NumBuild() As String
-        Get
-            Return CType(Me("NumBuild"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("crodip_agent")>  _
     Public ReadOnly Property DB() As String
         Get
@@ -560,6 +551,15 @@ Partial Friend NotInheritable Class MySettings
     Public ReadOnly Property TypeStockPDF() As String
         Get
             Return CType(Me("TypeStockPDF"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20201222180000")>  _
+    Public ReadOnly Property NumBuild() As String
+        Get
+            Return CType(Me("NumBuild"),String)
         End Get
     End Property
 End Class

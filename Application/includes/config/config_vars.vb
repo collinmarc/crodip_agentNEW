@@ -55,7 +55,8 @@ Public Class Globals
 
     ' Comportement
     Public Shared GLOB_ENV_AUTOSYNC As Boolean = My.Settings.AutoSync
-    Public Shared GLOB_ENV_MODESIMPLIFIE As Boolean = (My.Settings.Mode = "Simplifié")
+    Public Shared GLOB_ENV_MODESIMPLIFIE As Boolean = (My.Settings.Mode = "SIMPLIFIE")
+    Public Shared GLOB_ENV_MODEFORMATION As Boolean = (My.Settings.Mode = "FORMATION")
 
     ' Conf
     Public Shared GLOB_XML_CONFIG As CSXml
@@ -114,7 +115,7 @@ Public Class Globals
     Public Shared CONST_PATH_TMP As String = "." & "/tmp/"
 
     'PdfsDiags
-    Public Shared CONST_PDFS_DIAG As String = "systemD.pdf"
+    Public Shared CONST_STOCK_PDFS As String = "DOSSIERCACHE" 'Nom du dossier cache contenant les PDFS
     Public Shared CONST_PDFS_DIAG_PWD As String = "crodip"
 
 
@@ -314,6 +315,10 @@ Public Class Globals
         My.Settings.Reload()
         GLOB_ENV_AUTOSYNC = My.Settings.AutoSync
         GLOB_ENV_MODESIMPLIFIE = (My.Settings.Mode = "SIMPLIFIE")
+        GLOB_ENV_MODEFORMATION = (My.Settings.Mode = "FORMATION")
+        If GLOB_ENV_MODEFORMATION Then
+            GLOB_ENV_MODESIMPLIFIE = True
+        End If
         GLOB_APPLI_VERSION = My.Settings.NumVersion
         GLOB_APPLI_BUILD = My.Settings.NumBuild
 
@@ -353,7 +358,7 @@ Public Class Globals
         'Globals.GLOB_XML_TERRITOIRES = New CSXml("." & "\config\territoire.xml")
         Globals.GLOB_XML_CODESAPE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielCodesAPE.xml")
 
-        Globals.CONST_PDFS_DIAG = My.Settings.StockPDF
+        Globals.CONST_STOCK_PDFS = My.Settings.StockPDF
     End Sub
     Public Shared Function StringToDouble(pInputString As String) As Double
         Dim dReturn As Double

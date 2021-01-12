@@ -10341,18 +10341,25 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub frmDiagnostique_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Not DesignMode Then
+            If Globals.GLOB_ENV_MODEFORMATION Then
+                Me.Text = "Crodip .::. Diagnostique"
+                Me.pctLogo.Visible = False
+            Else
+                If Globals.GLOB_ENV_MODESIMPLIFIE Then
+                    Me.Text = "Crodip .::. Diagnostique" & " - Mode Simplifié - "
+                    pctLogo.Image = Crodip_agent.Resources.logoCRODIPIMG
+                Else
+                    Me.Text = "Crodip .::. Diagnostique"
+                    pctLogo.Image = Crodip_agent.Resources.logo_crodipIndigo
+                End If
+            End If
+
             If m_diagnostic IsNot Nothing Then
                 m_bDuringLoad = True
                 Formload()
                 m_bDuringLoad = False
                 checkAllIsOk()
             End If
-        End If
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
-            Me.Text = Me.Text & " - Mode Simplifié - "
-            pctLogo.Image = Crodip_agent.Resources.logoCRODIPIMG
-        Else
-            pctLogo.Image = Crodip_agent.Resources.logo_crodipIndigo
         End If
 
     End Sub

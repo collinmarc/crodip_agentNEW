@@ -756,9 +756,23 @@ Public Class frmdiagnostic_recap
             desactiveModifications()
         End If
 
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
-            Me.Text = Me.Text & " - Mode Simplifié - "
+        If Globals.GLOB_ENV_MODEFORMATION Then
+            Me.Text = "Récapitulatif du diagnostique "
             Me.btn_ContratCommercial.Visible = False
+            Me.btn_finalisationDiag_imprimerSynthese.Visible = False
+            rbEtatCC.Visible = False
+            rbEtatSM.Visible = False
+            btnAppercu.Visible = False
+        Else
+            If Globals.GLOB_ENV_MODESIMPLIFIE Then
+                Me.Text = "Récapitulatif du diagnostique " & " - Mode Simplifié - "
+                Me.btn_ContratCommercial.Visible = False
+            Else
+                Me.Text = "Crodip .::. Récapitulatif du diagnostique "
+                Me.btn_ContratCommercial.Visible = True
+
+            End If
+
         End If
 
 
@@ -834,7 +848,7 @@ Public Class frmdiagnostic_recap
                 Exit Sub
             End If
             If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
-                ' On ouvre la fen^petre de l'enquete
+                ' On ouvre la fenetre de l'enquete
                 Dim ofrm As New diagnostic_satisfaction(m_diagnostic)
                 TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
                 Statusbar.clear()

@@ -50,24 +50,27 @@ Public Class parentContener
         CSDebug.dispInfo("ParentContainer.unloadSplash")
         unloadSplash()
 
-        ' Mises a jour
-        If CSSoftwareUpdate.checkMAJ Then
-            If CSSoftwareUpdate.MyUpdateInfo IsNot Nothing Then
-                Dim ofrm As New frmMAJVersion()
-                ofrm.Setcontexte(CSSoftwareUpdate.MyUpdateInfo)
-                ofrm.ShowDialog()
-            Else
-                MsgBox("Une mise à jour est disponible.", MsgBoxStyle.OkOnly, "Mise à jour disponible !")
+        If Globals.GLOB_ENV_MODEFORMATION Then
+            Me.Text = ""
+        Else
+            ' Mises a jour
+            If CSSoftwareUpdate.checkMAJ Then
+                If CSSoftwareUpdate.MyUpdateInfo IsNot Nothing Then
+                    Dim ofrm As New frmMAJVersion()
+                    ofrm.Setcontexte(CSSoftwareUpdate.MyUpdateInfo)
+                    ofrm.ShowDialog()
+                Else
+                    MsgBox("Une mise à jour est disponible.", MsgBoxStyle.OkOnly, "Mise à jour disponible !")
+                End If
+                CSSoftwareUpdate.runUpdater(False)
+                m_bCloseByUpdate = True
+                CSEnvironnement.delPid()
+                Close()
+                Exit Sub
             End If
-            CSSoftwareUpdate.runUpdater(False)
-            m_bCloseByUpdate = True
-            CSEnvironnement.delPid()
-            Close()
-            Exit Sub
+            ' Initialisation du boot
+            CSDebug.dispInfo("ParentContainer.CheckVersion")
         End If
-        ' Initialisation du boot
-        CSDebug.dispInfo("ParentContainer.CheckVersion")
-
         Try
             CSBoot.init()
             Statusbar.display("Démarrage en cours...", True)
@@ -189,11 +192,20 @@ Public Class parentContener
         oFrm.ControlBox = False
         oFrm.MaximizeBox = False
         oFrm.MinimizeBox = False
-        oFrm.ShowIcon = True
+
+        If Globals.GLOB_ENV_MODEFORMATION Then
+            Me.Icon = Nothing
+            Me.ShowIcon = False
+            oFrm.Icon = Nothing
+            oFrm.ShowIcon = False
+        Else
+            oFrm.Icon = Crodip_agent.Resources.Transparent
+            oFrm.ShowIcon = Not Globals.GLOB_ENV_MODEFORMATION
+
+        End If
         oFrm.ShowInTaskbar = True
-        oFrm.Icon = Crodip_agent.Resources.Transparent
-        oFrm.WindowState = FormWindowState.Maximized
-        oFrm.MdiParent = Me
+            oFrm.WindowState = FormWindowState.Maximized
+            oFrm.MdiParent = Me
         oFrm.Show()
     End Sub
 

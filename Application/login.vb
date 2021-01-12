@@ -82,6 +82,7 @@ Public Class login
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
         Me.Button3 = New System.Windows.Forms.Button()
         Me.pnlPrincipal = New System.Windows.Forms.Panel()
+        Me.lblBaseDonnee = New System.Windows.Forms.Label()
         Me.lblMode = New System.Windows.Forms.Label()
         Me.pnlLoginControls = New System.Windows.Forms.Panel()
         Me.btn_login_seConnecter = New System.Windows.Forms.Label()
@@ -114,7 +115,6 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.lblBaseDonnee = New System.Windows.Forms.Label()
         Me.pnlPrincipal.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
@@ -137,7 +137,7 @@ Public Class login
         Me.pnlPrincipal.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pnlPrincipal.BackgroundImage = Global.Crodip_agent.Resources.Login_bgcrodipIndigo
+        Me.pnlPrincipal.BackgroundImage = Global.Crodip_agent.Resources.login_bgVide
         Me.pnlPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pnlPrincipal.Controls.Add(Me.lblBaseDonnee)
         Me.pnlPrincipal.Controls.Add(Me.lblMode)
@@ -156,6 +156,20 @@ Public Class login
         Me.pnlPrincipal.Name = "pnlPrincipal"
         Me.pnlPrincipal.Size = New System.Drawing.Size(1008, 680)
         Me.pnlPrincipal.TabIndex = 0
+        '
+        'lblBaseDonnee
+        '
+        Me.lblBaseDonnee.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblBaseDonnee.AutoSize = True
+        Me.lblBaseDonnee.BackColor = System.Drawing.Color.Transparent
+        Me.lblBaseDonnee.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblBaseDonnee.ForeColor = System.Drawing.Color.Silver
+        Me.lblBaseDonnee.Location = New System.Drawing.Point(189, 656)
+        Me.lblBaseDonnee.Name = "lblBaseDonnee"
+        Me.lblBaseDonnee.Size = New System.Drawing.Size(112, 15)
+        Me.lblBaseDonnee.TabIndex = 34
+        Me.lblBaseDonnee.Text = "Mode : Simplifié"
+        Me.lblBaseDonnee.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'lblMode
         '
@@ -526,20 +540,6 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'lblBaseDonnee
-        '
-        Me.lblBaseDonnee.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblBaseDonnee.AutoSize = True
-        Me.lblBaseDonnee.BackColor = System.Drawing.Color.Transparent
-        Me.lblBaseDonnee.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.lblBaseDonnee.ForeColor = System.Drawing.Color.Silver
-        Me.lblBaseDonnee.Location = New System.Drawing.Point(189, 656)
-        Me.lblBaseDonnee.Name = "lblBaseDonnee"
-        Me.lblBaseDonnee.Size = New System.Drawing.Size(112, 15)
-        Me.lblBaseDonnee.TabIndex = 34
-        Me.lblBaseDonnee.Text = "Mode : Simplifié"
-        Me.lblBaseDonnee.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'login
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -687,27 +687,32 @@ Public Class login
         lbl_environnement_debugType.Text = "Type de sortie debug..................: " & Globals.GLOB_ENV_DEBUGTYPE
         lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & Globals.GLOB_ENV_DEBUGLVL
         lbl_WS.Text = WSCrodip.getWS().Url
+        lblMode.Visible = False
+        pnlPrincipal.BackgroundImage = Crodip_agent.Resources.Login_bgcrodipIndigo
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
             lblMode.Visible = True
             pnlPrincipal.BackgroundImage = Crodip_agent.Resources.login_bgcrodip
-
-        Else
-            lblMode.Visible = False
-            pnlPrincipal.BackgroundImage = Crodip_agent.Resources.Login_bgcrodipIndigo
+        End If
+        If Globals.GLOB_ENV_MODEFORMATION Then
+            lblMode.Visible = True
+            lblMode.Text = "Mode : Formation"
+            pnlPrincipal.BackgroundImage = Crodip_agent.Resources.login_bgVide
+            lbl_WS.Visible = False
         End If
 
 
-
-        CSDebug.dispInfo("Login.Load: CheckWS()")
-        If Not CSEnvironnement.checkWebService() Then
-            lbl_WS.Text = WSCrodip.getWS().Url
-            lbl_WS.ForeColor = Drawing.Color.Red
-        End If
-        Lbl_Version.Text = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
-        If Not My.Settings.AutoSync Then
-            Lbl_Version.Text = Lbl_Version.Text & " SYNC OFF"
-        Else
-            Lbl_Version.Text = Lbl_Version.Text & " SYNC ON"
+        If Not Globals.GLOB_ENV_MODEFORMATION Then
+            CSDebug.dispInfo("Login.Load: CheckWS()")
+            If Not CSEnvironnement.checkWebService() Then
+                lbl_WS.Text = WSCrodip.getWS().Url
+                lbl_WS.ForeColor = Drawing.Color.Red
+            End If
+            Lbl_Version.Text = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
+            If Not My.Settings.AutoSync Then
+                Lbl_Version.Text = Lbl_Version.Text & " SYNC OFF"
+            Else
+                Lbl_Version.Text = Lbl_Version.Text & " SYNC ON"
+            End If
         End If
         If Globals.GLOB_ENV_DEBUG Then
             Dim oCSDB As New CSDb(False)
@@ -715,9 +720,6 @@ Public Class login
         Else
             lblBaseDonnee.Text = ""
         End If
-
-        ' On récupère le formulaire contener
-        CSDebug.dispInfo("Login.Load: GO")
 
         ' Chargement de la statusbar
         Statusbardisplay("Chargement de la liste de profils...", True)

@@ -207,7 +207,6 @@ Public Class liste_diagnosticPulve
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "liste_diagnosticPulve"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Crodip .::. Liste des contrôles"
         Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -259,6 +258,11 @@ Public Class liste_diagnosticPulve
 
     Private Sub liste_diagnosticPulve_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' On récupère la liste des diagnostic du pulvé par notre agent
+        If Not Globals.GLOB_ENV_MODEFORMATION Then
+            Me.Text = "Crodip .::. Liste des contrôles"
+        Else
+            Me.Text = "Liste des contrôles"
+        End If
         btnSignature.Enabled = False
         btn_selectDiagnostic_VisuDiag.Enabled = False
         btnSignature.Visible = oAgent.isSignElecActive

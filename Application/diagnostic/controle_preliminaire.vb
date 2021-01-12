@@ -1572,13 +1572,18 @@ Public Class controle_preliminaire
                 btn_controlePreliminaire_poursuivre.Visible = True
                 CSForm.disableAllCheckBox(Me)
         End Select
+        If Globals.GLOB_ENV_MODEFORMATION Then
+            Me.Text = "Contrôle préliminaire"
+            pctLogo.Visible = False
 
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
-            Me.Text = Me.Text & " - Mode Simplifié - "
-            pctLogo.Image = Crodip_agent.Resources.logoCRODIPIMG
         Else
-            pctLogo.Image = Crodip_agent.Resources.logo_crodipIndigo
+            If Globals.GLOB_ENV_MODESIMPLIFIE Then
+                Me.Text = Me.Text & " - Mode Simplifié - "
+                pctLogo.Image = Crodip_agent.Resources.logoCRODIPIMG
+            Else
+                pctLogo.Image = Crodip_agent.Resources.logo_crodipIndigo
 
+            End If
         End If
 
         Me.Cursor = Cursors.Default

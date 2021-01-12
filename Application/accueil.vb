@@ -1621,6 +1621,7 @@ Public Class accueil
         Me.pct_LogoControle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pct_LogoControle.TabIndex = 6
         Me.pct_LogoControle.TabStop = False
+        Me.pct_LogoControle.Visible = False
         '
         'title_alertes
         '
@@ -3193,28 +3194,7 @@ Public Class accueil
         CSEnvironnement.checkDateTimePicker(dtpSearchCrit1)
         CSEnvironnement.checkDateTimePicker(dtpSearchCrit2)
         CSEnvironnement.checkDateTimePicker(dtp_ControleRegulier)
-        'Création du Fichier ZIP des PDFs
-        If My.Settings.TypeStockPDF = "ZIP" Then
-            If Not File.Exists(Globals.CONST_PDFS_DIAG) Then
-                Using z As New ZipFile()
-                    z.Password = Globals.CONST_PDFS_DIAG_PWD
-                    Dim l As String() = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP, "*.pdf")
-                    For Each f As String In l
-                        If f.Contains("MANOMETRECONTROLE") Then
-                            z.AddFile(f, Globals.CONST_PATH_EXP & "MANOMETRECONTROLE/")
-                        Else
-                            If f.Contains("BANCMESURE") Then
-                                z.AddFile(f, Globals.CONST_PATH_EXP & "BANCMESURE/")
-                            Else
-                                z.AddFile(f, Globals.CONST_PATH_EXP & "DIAGNOSTIC/")
-                            End If
 
-                        End If
-                    Next
-                    z.Save(Globals.CONST_PDFS_DIAG)
-                End Using
-            End If
-        End If
         If Not Directory.Exists(Globals.CONST_PATH_EXP_MANOCONTROLE) Then
             Directory.CreateDirectory(Globals.CONST_PATH_EXP_MANOCONTROLE)
         End If
@@ -3224,6 +3204,76 @@ Public Class accueil
         If Not Directory.Exists(Globals.CONST_PATH_EXP_BANCMESURE) Then
             Directory.CreateDirectory(Globals.CONST_PATH_EXP_BANCMESURE)
         End If
+
+        Try
+
+            'Création du Fichier ZIP des PDFs
+            If My.Settings.TypeStockPDF = "ZIP" Then
+                If Not File.Exists(Globals.CONST_STOCK_PDFS) Then
+                    Using z As New ZipFile()
+                        z.Password = Globals.CONST_PDFS_DIAG_PWD
+                        Dim l As String() = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP, "*.pdf")
+                        For Each f As String In l
+                            If f.Contains("MANOMETRECONTROLE") Then
+                                z.AddFile(f, Globals.CONST_PATH_EXP & "MANOMETRECONTROLE/")
+                            Else
+                                If f.Contains("BANCMESURE") Then
+                                    z.AddFile(f, Globals.CONST_PATH_EXP & "BANCMESURE/")
+                                Else
+                                    z.AddFile(f, Globals.CONST_PATH_EXP & "DIAGNOSTIC/")
+                                End If
+
+                            End If
+                        Next
+                        z.Save(Globals.CONST_STOCK_PDFS)
+                    End Using
+                End If
+            End If
+            If My.Settings.TypeStockPDF = "DIR" Then
+                If Not Directory.Exists(Globals.CONST_STOCK_PDFS) Then
+                    Dim oDI As New DirectoryInfo(Globals.CONST_STOCK_PDFS)
+                    oDI.Create()
+                    oDI.Attributes = FileAttributes.Hidden
+
+                    oDI.CreateSubdirectory("public\exports\MANOMETRECONTROLE")
+                    oDI.CreateSubdirectory("public\exports\BANCMESURE")
+                    oDI.CreateSubdirectory("public\exports\DIAGNOSTIC")
+
+                    'Transfert des fichiers depuis le publicExport dans le dossier Caché
+                    Dim l As String()
+                    l = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP_MANOCONTROLE, "*.pdf")
+                    For Each f As String In l
+                        Try
+                            System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+                    l = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP_BANCMESURE, "*.pdf")
+                    For Each f As String In l
+                        Try
+                            System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+                    l = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP_DIAGNOSTIC, "*.pdf")
+                    For Each f As String In l
+                        Try
+                            System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+
+
+
+
         ' Informations sur l'agent courant
         m_bDuringLoad = True
         lbl_infosAgent_IdCrodip.Text = agentCourant.numeroNational
@@ -3357,6 +3407,14 @@ Public Class accueil
             'on ne peut rendre invisible ou inactive une page, il faut la supprimer de la tabPages
             tabControl.TabPages.RemoveByKey(tabControl_outilscomp.Name)
         End If
+        If Globals.GLOB_ENV_MODEFORMATION Then
+            'on ne peut rendre invisible ou inactive une page, il faut la supprimer de la tabPages
+            tabControl.TabPages.RemoveByKey(tabControl_accueil.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_pulverisateurs.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_synchro.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_parametrage.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_Statistiques.Name)
+        End If
         '        tabControl_outilscomp.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
         pctbx_Docs_refresh.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
         lblModuledocumentaire.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
@@ -3392,7 +3450,10 @@ Public Class accueil
         End If
 
         m_bDuringLoad = False
-        Statusbar.display("Bienvenu(e) sur le logiciel Crodip Agent v" & Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD, False)
+        If Not Globals.GLOB_ENV_MODEFORMATION Then
+            pct_LogoControle.Visible = True
+            Statusbar.display("Bienvenu(e) sur le logiciel Crodip Agent v" & Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD, False)
+        End If
     End Sub
 
     ''' <summary>
@@ -3406,6 +3467,9 @@ Public Class accueil
         Me.Text = agentCourant.nom & " " & agentCourant.prenom & " / " & agentCourant.NomStructure
         If Globals.GLOB_ENV_MODESIMPLIFIE Then
             Me.Text = Me.Text & " - Mode Simplifié - "
+        End If
+        If Globals.GLOB_ENV_MODEFORMATION Then
+            Me.Text = agentCourant.nom & " " & agentCourant.prenom & " / " & agentCourant.NomStructure & " - Mode Formation - "
         End If
         loadAccueilAlerts()
 
@@ -4207,55 +4271,56 @@ Public Class accueil
     ' Chargement des alertes de la page d'accueil
     Public Sub loadAccueilAlerts()
 
-        Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
-        Dim positionTopAlertes As Integer = 8
-        accueil_panelAlertes.Controls.Clear()
+        If Not Globals.GLOB_ENV_MODEFORMATION Then
+            Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
+            Dim positionTopAlertes As Integer = 8
+            accueil_panelAlertes.Controls.Clear()
 
-        ' Vérification des alertes sur les manomètre étalon
-        'Dim isVerifManoEtalon As Boolean = False
-        'If isVerifManoEtalon Then
-        '    loadAccueilAlertsManoEtalon(positionTopAlertes)
-        'End If
-        CSDebug.dispInfo("LoadAccueilAlerts : Debut")
-        loadAccueilAlertsManoControle(positionTopAlertes)
-        loadAccueilAlertsBuseEtalon(positionTopAlertes)
-        LoadAccueilAlertsBancsMesures(positionTopAlertes)
-        If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
-            loadAccueilAlertsIdentifiantsPulvérisateurs(positionTopAlertes)
-            loadAccueilAlertsSynchro(positionTopAlertes)
+            ' Vérification des alertes sur les manomètre étalon
+            'Dim isVerifManoEtalon As Boolean = False
+            'If isVerifManoEtalon Then
+            '    loadAccueilAlertsManoEtalon(positionTopAlertes)
+            'End If
+            CSDebug.dispInfo("LoadAccueilAlerts : Debut")
+            loadAccueilAlertsManoControle(positionTopAlertes)
+            loadAccueilAlertsBuseEtalon(positionTopAlertes)
+            LoadAccueilAlertsBancsMesures(positionTopAlertes)
+            If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
+                loadAccueilAlertsIdentifiantsPulvérisateurs(positionTopAlertes)
+                loadAccueilAlertsSynchro(positionTopAlertes)
+            End If
+
+            'Vérification du nombre de controles effectuées depuis le dernier controle Regulier
+            loadAccueilAlertsNbControle(positionTopAlertes)
+            CSDebug.dispInfo("LoadAccueilAlerts : Fin")
+
+            ' Si aucune alerte à afficher, alors on affiche un message
+            If positionTopAlertes = 8 Then
+                Dim tmpAlerte As New Label
+                tmpAlerte.Name = "noAlerte"
+                tmpAlerte.Text = "       Aucune alerte à afficher."
+                Controls.Add(tmpAlerte)
+                ' Position
+                tmpAlerte.Parent = accueil_panelAlertes
+                tmpAlerte.Left = 16
+                tmpAlerte.Top = positionTopAlertes
+                tmpAlerte.TextAlign = ContentAlignment.TopLeft
+                ' Taille
+                tmpAlerte.Width = 960
+                tmpAlerte.Height = 16
+                ' Couleur
+                tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(141, Byte), CType(135, Byte), CType(15, Byte))
+                tmpAlerte.Image = CType(resources.GetObject("Label10.Image"), System.Drawing.Image)
+                tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+                ' Apparence texte
+                Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+                tmpAlerte.Font = tmpFontLabelCategorie
+            End If
+
+            ' Loader OFF
+            Statusbar.display(" ", True)
+            Statusbar.hideLoader()
         End If
-
-        'Vérification du nombre de controles effectuées depuis le dernier controle Regulier
-        loadAccueilAlertsNbControle(positionTopAlertes)
-        CSDebug.dispInfo("LoadAccueilAlerts : Fin")
-
-        ' Si aucune alerte à afficher, alors on affiche un message
-        If positionTopAlertes = 8 Then
-            Dim tmpAlerte As New Label
-            tmpAlerte.Name = "noAlerte"
-            tmpAlerte.Text = "       Aucune alerte à afficher."
-            Controls.Add(tmpAlerte)
-            ' Position
-            tmpAlerte.Parent = accueil_panelAlertes
-            tmpAlerte.Left = 16
-            tmpAlerte.Top = positionTopAlertes
-            tmpAlerte.TextAlign = ContentAlignment.TopLeft
-            ' Taille
-            tmpAlerte.Width = 960
-            tmpAlerte.Height = 16
-            ' Couleur
-            tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(141, Byte), CType(135, Byte), CType(15, Byte))
-            tmpAlerte.Image = CType(resources.GetObject("Label10.Image"), System.Drawing.Image)
-            tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-            ' Apparence texte
-            Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpAlerte.Font = tmpFontLabelCategorie
-        End If
-
-        ' Loader OFF
-        Statusbar.display(" ", True)
-        Statusbar.hideLoader()
-
     End Sub
 
     ' Chargement de l'historique des synchro
@@ -4728,37 +4793,39 @@ Public Class accueil
     ''' <remarks></remarks>
     Public Sub NouveauDiagnosticPhase2(pDiagMode As Globals.DiagMode)
         Statusbar.clear()
-        Me.Cursor = Cursors.WaitCursor
-        Dim formDiagnostic_Contexte As New diagnostic_contexte(pDiagMode, diagnosticCourant, pulverisateurCourant, clientCourant, False)
-        formDiagnostic_Contexte.ShowDialog()
-        Me.Cursor = Cursors.Default
         Dim bOK As Boolean = True
-        bOK = (formDiagnostic_Contexte.DialogResult = Windows.Forms.DialogResult.OK)
-        If bOK Then
-            formDiagnostic_Contexte.Close()
-            Dim isContreVisiteGratuite As Boolean
-            isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
-            If (diagnosticCourant.isContrevisiteImmediate And isContreVisiteGratuite) Or Globals.GLOB_ENV_MODESIMPLIFIE Then
-                'Mise à jour du tarif du Diagnostique
-                diagnosticCourant.controleTarif = CType(0, Double)
-            Else
-                'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
-                Statusbar.clear()
-                Me.Cursor = Cursors.WaitCursor
-                Dim frmFact As diagnostic_facturation = New diagnostic_facturation()
-                frmFact.setContexte(diagnosticCourant, clientCourant, agentCourant)
-                frmFact.ShowDialog()
-                Me.Cursor = Cursors.Default
-                bOK = (frmFact.DialogResult = Windows.Forms.DialogResult.OK)
-            End If
-            Statusbar.clear()
+        If Not Globals.GLOB_ENV_MODEFORMATION Then
+            Me.Cursor = Cursors.WaitCursor
+            Dim formDiagnostic_Contexte As New diagnostic_contexte(pDiagMode, diagnosticCourant, pulverisateurCourant, clientCourant, False)
+            formDiagnostic_Contexte.ShowDialog()
+            Me.Cursor = Cursors.Default
+            bOK = (formDiagnostic_Contexte.DialogResult = Windows.Forms.DialogResult.OK)
             If bOK Then
-                Dim frmDiagPreliminaires As New controle_preliminaire(pDiagMode, diagnosticCourant, pulverisateurCourant, clientCourant)
-                globFormControlePreliminaire = frmDiagPreliminaires
-                Me.Cursor = Cursors.WaitCursor
-                TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagPreliminaires)
-                Me.Cursor = Cursors.Default
+                formDiagnostic_Contexte.Close()
+                Dim isContreVisiteGratuite As Boolean
+                isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
+                If (diagnosticCourant.isContrevisiteImmediate And isContreVisiteGratuite) Or Globals.GLOB_ENV_MODESIMPLIFIE Then
+                    'Mise à jour du tarif du Diagnostique
+                    diagnosticCourant.controleTarif = CType(0, Double)
+                Else
+                    'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
+                    Statusbar.clear()
+                    Me.Cursor = Cursors.WaitCursor
+                    Dim frmFact As diagnostic_facturation = New diagnostic_facturation()
+                    frmFact.setContexte(diagnosticCourant, clientCourant, agentCourant)
+                    frmFact.ShowDialog()
+                    Me.Cursor = Cursors.Default
+                    bOK = (frmFact.DialogResult = Windows.Forms.DialogResult.OK)
+                End If
+                Statusbar.clear()
             End If
+        End If
+        If bOK Then
+            Dim frmDiagPreliminaires As New controle_preliminaire(pDiagMode, diagnosticCourant, pulverisateurCourant, clientCourant)
+            globFormControlePreliminaire = frmDiagPreliminaires
+            Me.Cursor = Cursors.WaitCursor
+            TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagPreliminaires)
+            Me.Cursor = Cursors.Default
         End If
 
 

@@ -163,7 +163,6 @@ Public Class diagnostic_nouvelle_contrevisite
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "diagnostic_nouvelle_contrevisite"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Crodip .::. Contrôle"
         Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -250,6 +249,11 @@ Public Class diagnostic_nouvelle_contrevisite
     End Sub
 
     Private Sub diagnostic_nouvelle_contrevisite_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        If Not Globals.GLOB_ENV_MODEFORMATION Then
+            Me.Text = "Crodip .::. Contrôle"
+        Else
+            Me.Text = "Contrôle"
+        End If
         ' On récupère la liste des diagnostic du pulvé par notre agent
         searchDiagnostic("")
         btn_selectDiagnostic_reprendreDiag.Enabled = False

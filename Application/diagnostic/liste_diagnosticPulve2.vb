@@ -2670,6 +2670,11 @@ Public Class liste_diagnosticPulve2
     End Sub
 
     Private Sub liste_diagnosticPulve_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        If Globals.GLOB_ENV_MODEFORMATION Then
+            Me.Text = "Liste des contrôles"
+        Else
+            Me.Text = "Crodip .::. Liste des contrôles"
+        End If
         col_Signatures.Visible = oAgent.isSignElecActive
         searchDiagnostic("")
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
