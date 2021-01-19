@@ -15,7 +15,12 @@
     <Assembly>AcquisitionAAMS.dll</Assembly>
     <Main>AcquisitionAAMS.Main</Main>
   </ModuleAcq>
-    <ModuleAcq>
+  <ModuleAcq>
+    <Nom>ERECA</Nom>
+    <Assembly>AcquisitionERECA.dll</Assembly>
+    <Main>AcquisitionERECA.Main</Main>
+  </ModuleAcq>
+  <ModuleAcq>
       <Nom>MANUEL</Nom>
       <Assembly></Assembly>
       <Main></Main>

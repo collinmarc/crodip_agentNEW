@@ -44,6 +44,7 @@ Partial Class Form1
         Me.Label2 = New System.Windows.Forms.Label()
         Me.FlowPanelAAMS = New System.Windows.Forms.FlowLayoutPanel()
         Me.tbNbreBuseParNiveauAAMS = New System.Windows.Forms.TextBox()
+        Me.rbERECA = New System.Windows.Forms.RadioButton()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AcquisitionValueBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowPanelAAMS.SuspendLayout()
@@ -63,7 +64,7 @@ Partial Class Form1
         'rbITEQ
         '
         Me.rbITEQ.AutoSize = True
-        Me.rbITEQ.Location = New System.Drawing.Point(93, 17)
+        Me.rbITEQ.Location = New System.Drawing.Point(66, 17)
         Me.rbITEQ.Name = "rbITEQ"
         Me.rbITEQ.Size = New System.Drawing.Size(50, 17)
         Me.rbITEQ.TabIndex = 1
@@ -73,7 +74,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(454, 14)
+        Me.Button1.Location = New System.Drawing.Point(551, 12)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(146, 23)
         Me.Button1.TabIndex = 2
@@ -183,7 +184,7 @@ Partial Class Form1
         'rbAAMS
         '
         Me.rbAAMS.AutoSize = True
-        Me.rbAAMS.Location = New System.Drawing.Point(179, 17)
+        Me.rbAAMS.Location = New System.Drawing.Point(122, 17)
         Me.rbAAMS.Name = "rbAAMS"
         Me.rbAAMS.Size = New System.Drawing.Size(55, 17)
         Me.rbAAMS.TabIndex = 6
@@ -205,7 +206,7 @@ Partial Class Form1
         '
         Me.FlowPanelAAMS.Controls.Add(Me.Label2)
         Me.FlowPanelAAMS.Controls.Add(Me.tbNbreBuseParNiveauAAMS)
-        Me.FlowPanelAAMS.Location = New System.Drawing.Point(237, 12)
+        Me.FlowPanelAAMS.Location = New System.Drawing.Point(295, 12)
         Me.FlowPanelAAMS.Name = "FlowPanelAAMS"
         Me.FlowPanelAAMS.Size = New System.Drawing.Size(211, 26)
         Me.FlowPanelAAMS.TabIndex = 9
@@ -219,11 +220,23 @@ Partial Class Form1
         Me.tbNbreBuseParNiveauAAMS.Size = New System.Drawing.Size(39, 20)
         Me.tbNbreBuseParNiveauAAMS.TabIndex = 8
         '
+        'rbERECA
+        '
+        Me.rbERECA.AutoSize = True
+        Me.rbERECA.Location = New System.Drawing.Point(179, 17)
+        Me.rbERECA.Name = "rbERECA"
+        Me.rbERECA.Size = New System.Drawing.Size(61, 17)
+        Me.rbERECA.TabIndex = 10
+        Me.rbERECA.TabStop = True
+        Me.rbERECA.Text = "ERECA"
+        Me.rbERECA.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(902, 338)
+        Me.Controls.Add(Me.rbERECA)
         Me.Controls.Add(Me.FlowPanelAAMS)
         Me.Controls.Add(Me.rbAAMS)
         Me.Controls.Add(Me.tbNiveaux)
@@ -264,4 +277,5 @@ Partial Class Form1
     Friend WithEvents Label2 As Label
     Friend WithEvents FlowPanelAAMS As FlowLayoutPanel
     Friend WithEvents tbNbreBuseParNiveauAAMS As TextBox
+    Friend WithEvents rbERECA As RadioButton
 End Class

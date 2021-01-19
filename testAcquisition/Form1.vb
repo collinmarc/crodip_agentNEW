@@ -13,6 +13,10 @@ Public Class Form1
             oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule("AAMS")
 
         End If
+        If rbERECA.Checked Then
+            oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule("ERECA")
+
+        End If
         If (oModuleAcquisition Is Nothing) Then
             MessageBox.Show("Impossible de charger le Module d'acquisition")
             Exit Sub
