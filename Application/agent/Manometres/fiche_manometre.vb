@@ -10,11 +10,16 @@ Public Class fiche_manometre
     Friend WithEvents btnActiver As System.Windows.Forms.Button
     Friend WithEvents imagesEtatMateriel As System.Windows.Forms.ImageList
     Dim isAjout As Boolean
+    Friend WithEvents ficheMano_type As TextBox
     Dim bManoMAJ As Boolean
 
     Public Sub New(ByVal _manometreCourant As Manometre)
         MyBase.New()
 
+        'Cet appel est requis par le Concepteur Windows Form.
+        InitializeComponent()
+
+        'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         ' On load le mano
         manometreCourant = _manometreCourant
         If TypeOf (manometreCourant) Is ManometreControle Then
@@ -22,10 +27,6 @@ Public Class fiche_manometre
         Else
             m_TypeMano = TYPEMANO.MANOETALON
         End If
-        'Cet appel est requis par le Concepteur Windows Form.
-        InitializeComponent()
-
-        'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
 
     End Sub
     Public Sub New(ByVal _manometreCourant As Manometre, ByVal _isAjout As Boolean)
@@ -60,7 +61,6 @@ Public Class fiche_manometre
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents ficheMano_marque As System.Windows.Forms.ComboBox
-    Friend WithEvents ficheMano_type As System.Windows.Forms.ComboBox
     Friend WithEvents ficheMano_dateActivation As System.Windows.Forms.Label
     Friend WithEvents ficheMano_dateControle As System.Windows.Forms.Label
     Friend WithEvents btn_ficheMano_valider As System.Windows.Forms.Label
@@ -80,7 +80,6 @@ Public Class fiche_manometre
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ficheMano_marque = New System.Windows.Forms.ComboBox()
-        Me.ficheMano_type = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ficheMano_dateActivation = New System.Windows.Forms.Label()
@@ -98,6 +97,7 @@ Public Class fiche_manometre
         Me.pbEtat = New System.Windows.Forms.PictureBox()
         Me.btnActiver = New System.Windows.Forms.Button()
         Me.imagesEtatMateriel = New System.Windows.Forms.ImageList(Me.components)
+        Me.ficheMano_type = New System.Windows.Forms.TextBox()
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -176,16 +176,6 @@ Public Class fiche_manometre
         Me.ficheMano_marque.Size = New System.Drawing.Size(256, 21)
         Me.ficheMano_marque.Sorted = True
         Me.ficheMano_marque.TabIndex = 2
-        '
-        'ficheMano_type
-        '
-        Me.ficheMano_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ficheMano_type.Enabled = False
-        Me.ficheMano_type.Location = New System.Drawing.Point(128, 125)
-        Me.ficheMano_type.Name = "ficheMano_type"
-        Me.ficheMano_type.Size = New System.Drawing.Size(256, 21)
-        Me.ficheMano_type.Sorted = True
-        Me.ficheMano_type.TabIndex = 4
         '
         'Label7
         '
@@ -361,10 +351,19 @@ Public Class fiche_manometre
         Me.imagesEtatMateriel.Images.SetKeyName(1, "")
         Me.imagesEtatMateriel.Images.SetKeyName(2, "g.jpg")
         '
+        'ficheMano_type
+        '
+        Me.ficheMano_type.Enabled = False
+        Me.ficheMano_type.Location = New System.Drawing.Point(128, 126)
+        Me.ficheMano_type.Name = "ficheMano_type"
+        Me.ficheMano_type.Size = New System.Drawing.Size(256, 20)
+        Me.ficheMano_type.TabIndex = 36
+        '
         'fiche_manometre
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(501, 353)
+        Me.Controls.Add(Me.ficheMano_type)
         Me.Controls.Add(Me.btnActiver)
         Me.Controls.Add(Me.pbEtat)
         Me.Controls.Add(Me.Label1)
@@ -382,7 +381,6 @@ Public Class fiche_manometre
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.ficheMano_type)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.ficheMano_dateActivation)

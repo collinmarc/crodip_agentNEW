@@ -3,9 +3,12 @@ MASTER
 Github2-bis
 17:57 08:34 08:39
 
+BUILD 20210106180000
+--------------------
+0001325: Ajout d'une acquisistion ERECA (PULVEAUBE)
+0001328: Le type de Mano n'est pas affiché dans la fenêtre d'édition de Manomètres
 
-
-BUILD 
+BUILD 20210106180000
 --------------------
 0001259: Espace de stockage des PDFs Centralisés
 0001300: Saisie des Vérifications Mano : Les valeurs ne s'affichent pas si 1 seul Mano
