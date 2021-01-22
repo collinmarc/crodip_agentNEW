@@ -91,8 +91,18 @@ Public Class ValueERECA
             _Niveau = value
         End Set
     End Property
-    Private _NumeroBuse As String
+    Private _NumeroBuseTroncon As String
     <Index(9)>
+    Public Property NumeroBuseTroncon() As String
+        Get
+            Return _NumeroBuseTroncon
+        End Get
+        Set(ByVal value As String)
+            _NumeroBuseTroncon = value
+        End Set
+    End Property
+    Private _NumeroBuse As String
+    <Index(10)>
     Public Property NumeroBuse() As String
         Get
             Return _NumeroBuse
@@ -102,7 +112,7 @@ Public Class ValueERECA
         End Set
     End Property
     Private _DebitMesure As String
-    <Index(10)>
+    <Index(11)>
     Public Property DebitMesure() As String
         Get
             Return _DebitMesure
@@ -112,7 +122,7 @@ Public Class ValueERECA
         End Set
     End Property
     Private _PressionMesuree As String
-    <Index(11)>
+    <Index(12)>
     Public Property PressionMesuree() As String
         Get
             Return _PressionMesuree
@@ -122,6 +132,27 @@ Public Class ValueERECA
         End Set
     End Property
 
+    Private _LR As String
+    <Index(13)>
+    Public Property LR() As String
+        Get
+            Return _LR
+        End Get
+        Set(ByVal value As String)
+            _LR = value
+        End Set
+    End Property
+
+    Private _DebEq3b As String
+    <Index(14)>
+    Public Property DebEq3b() As String
+        Get
+            Return _DebEq3b
+        End Get
+        Set(ByVal value As String)
+            _DebEq3b = value
+        End Set
+    End Property
 
 
 

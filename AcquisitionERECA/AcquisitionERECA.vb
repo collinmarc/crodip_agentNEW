@@ -78,8 +78,9 @@ Public Class AcquisitionERECA
 
             Using csvR As New CsvReader(sr, Globalization.CultureInfo.CurrentCulture)
                 csvR.Configuration.MissingFieldFound = Nothing
-                csvR.Configuration.Delimiter = ","
+                csvR.Configuration.Delimiter = ";"
                 csvR.Configuration.HasHeaderRecord = False
+                csvR.Configuration.IgnoreBlankLines = True
                 olstValueERECA = csvR.GetRecords(Of ValueERECA)().ToList()
             End Using
         End Using
@@ -112,30 +113,28 @@ Public Class AcquisitionERECA
 
         Dim i As Integer = 0
         For Each oValueERECA As ValueERECA In olstValueERECAControleBuses
-            If oValueERECA.Troncon = "1" Then
-                Dim oValueCRODIP As New CRODIPAcquisition.AcquisitionValue()
+            Dim oValueCRODIP As New CRODIPAcquisition.AcquisitionValue()
 
-                oValueCRODIP.Niveau = oValueERECA.Niveau
-                oValueCRODIP.NumBuse = oValueERECA.NumeroBuse
-                oValueCRODIP.Ref = oValueERECA.Ref
-                oValueCRODIP.HV = oValueERECA.HV
-                oValueCRODIP.MarqueTypeFonctionement = oValueERECA.MarqueType
-                oValueCRODIP.Calibre = oValueERECA.Calibre
-                If Not String.IsNullOrEmpty(oValueERECA.PressionControle) Then
-                    oValueCRODIP.PressionCtrl = oValueERECA.PressionControle
-                End If
-                If Not String.IsNullOrEmpty(oValueERECA.DebitNominal) Then
-                    oValueCRODIP.DebitNominal = oValueERECA.DebitNominal.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
-                End If
-
-                If Not String.IsNullOrEmpty(oValueERECA.DebitMesure) Then
-                    oValueCRODIP.Debit = oValueERECA.DebitMesure.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
-                End If
-                If Not String.IsNullOrEmpty(oValueERECA.PressionMesuree) Then
-                    oValueCRODIP.Pression = oValueERECA.PressionMesuree.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
-                End If
-                oReturn.Add(oValueCRODIP)
+            oValueCRODIP.Niveau = oValueERECA.Niveau
+            oValueCRODIP.NumBuse = oValueERECA.NumeroBuse
+            oValueCRODIP.Ref = oValueERECA.Ref
+            oValueCRODIP.HV = oValueERECA.HV
+            oValueCRODIP.MarqueTypeFonctionement = oValueERECA.MarqueType
+            oValueCRODIP.Calibre = oValueERECA.Calibre
+            If Not String.IsNullOrEmpty(oValueERECA.PressionControle) Then
+                oValueCRODIP.PressionCtrl = oValueERECA.PressionControle
             End If
+            If Not String.IsNullOrEmpty(oValueERECA.DebitNominal) Then
+                oValueCRODIP.DebitNominal = oValueERECA.DebitNominal.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+            End If
+
+            If Not String.IsNullOrEmpty(oValueERECA.DebitMesure) Then
+                oValueCRODIP.Debit = oValueERECA.DebitMesure.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+            End If
+            If Not String.IsNullOrEmpty(oValueERECA.PressionMesuree) Then
+                oValueCRODIP.Pression = oValueERECA.PressionMesuree.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+            End If
+            oReturn.Add(oValueCRODIP)
         Next
 
         logger.Info("AcquisitionERECA.GetValues Return " & oReturn.Count & "elements")
