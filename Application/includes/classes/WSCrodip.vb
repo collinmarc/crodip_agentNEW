@@ -54,10 +54,8 @@ Public Class WSCrodip
         Return m_WS
     End Function
 
-    Public Shared Function getWS(pUrl As String, Optional pbForce As Boolean = False) As WSCrodip_prod.CrodipServer
-        If (Not m_bInit) Or (pbForce) Then
-            Init(pUrl)
-        End If
+    Public Shared Function getWS(pUrl As String) As WSCrodip_prod.CrodipServer
+        Init(pUrl)
         Return m_WS
     End Function
     '    Public Shared Function getWS2(Optional pbForce As Boolean = False) As WSCRODIP2.CrodipServer

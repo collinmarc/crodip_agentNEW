@@ -199,7 +199,7 @@ Public Class IdentifiantPulverisateurManager
         Try
 
             ' déclarations
-            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS(True)
+            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             objWSCrodip.Timeout = 10000
             Dim objWSCrodip_response As new Object
             ' Appel au WS
@@ -238,7 +238,7 @@ Public Class IdentifiantPulverisateurManager
 
             ' déclarations
             'Dim objWSCrodip2 As WSCRODIP2.CrodipServer = WSCrodip.getWS2(True)
-            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS(True)
+            Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             objWSCrodip.Timeout = 10000
             Dim objWSCrodip_response As New Object
             ' Appel au WS
