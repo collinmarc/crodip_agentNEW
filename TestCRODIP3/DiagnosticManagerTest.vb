@@ -57,6 +57,8 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(String.IsNullOrEmpty(oDiag.proprietaireRepresentant))
         Assert.AreEqual(0, oDiag.diagnosticItemsLst.Count)
         Assert.AreEqual("", oDiag.controleInitialId)
+        Assert.IsFalse(oDiag.isSupprime)
+        Assert.AreEqual("", oDiag.diagRemplacementId)
 
         oDiag.controleIsPulveRepare = True
         Assert.AreEqual(True, oDiag.controleIsPulveRepare)
@@ -68,6 +70,10 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(oDiag.proprietaireRepresentant, "MonRepresentant")
         oDiag.controleInitialId = "004563"
         Assert.AreEqual("004563", oDiag.controleInitialId)
+        oDiag.isSupprime = True
+        Assert.IsTrue(oDiag.isSupprime)
+        oDiag.diagRemplacementId = "123"
+        Assert.AreEqual("123", oDiag.diagRemplacementId)
     End Sub
 
     '''<summary>
@@ -385,7 +391,11 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("TEST", oDiag.controleManoControleNumNational)
 
         'V2.6
-        oDiag.Commentaire = "Commm de test"
+        oDiag.commentaire = "Commm de test"
+        '#1060
+        oDiag.isSupprime = True
+        oDiag.diagRemplacementId = "1234"
+
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
@@ -402,7 +412,9 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(4, oDiag2.controleNbreTroncons)
         Assert.AreEqual(True, oDiag2.controleUseCalibrateur)
         Assert.AreEqual("TEST", oDiag2.controleManoControleNumNational)
-        Assert.AreEqual("Commm de test", oDiag2.Commentaire)
+        Assert.AreEqual("Commm de test", oDiag2.commentaire)
+        Assert.IsTrue(oDiag2.isSupprime)
+        Assert.AreEqual("1234", oDiag2.diagRemplacementId)
 
         oDiag2.controleNomSite = "Mon Site updated"
         oDiag2.controleIsAutoControle = False
@@ -415,7 +427,9 @@ Public Class DiagnosticManagerTest
         oDiag2.controleUseCalibrateur = False
         oDiag2.controleManoControleNumNational = "TEST2"
 
-        oDiag2.Commentaire = "COM2"
+        oDiag2.commentaire = "COM2"
+        oDiag2.isSupprime = False
+        oDiag2.diagRemplacementId = ""
 
         Assert.IsTrue(DiagnosticManager.save(oDiag2))
         oDiag = DiagnosticManager.getDiagnosticById(id)
@@ -430,7 +444,9 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(False, oDiag.controleUseCalibrateur)
         Assert.AreEqual("TEST2", oDiag.controleManoControleNumNational)
 
-        Assert.AreEqual("COM2", oDiag.Commentaire)
+        Assert.AreEqual("COM2", oDiag.commentaire)
+        Assert.IsFalse(oDiag.isSupprime)
+        Assert.AreEqual("", oDiag.diagRemplacementId)
 
         oDiag2.controleNomSite = "Mon Site updated2"
         oDiag2.controleIsPreControleProfessionel = False
@@ -1036,6 +1052,8 @@ Public Class DiagnosticManagerTest
         oDiag.controleNbreTroncons = 5
         oDiag.controleUseCalibrateur = True
         oDiag.controleBancMesureId = "IDBANC"
+        oDiag.isSupprime = True
+        oDiag.diagRemplacementId = "1234"
 
         'Ajout des Buses et Buses Détail 
         '=================================
@@ -1269,6 +1287,8 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(oDiag.controleNbreTroncons, oDiag2.controleNbreTroncons)
         Assert.AreEqual(oDiag.controleUseCalibrateur, oDiag2.controleUseCalibrateur)
         Assert.AreEqual(oDiag.controleBancMesureId, oDiag2.controleBancMesureId)
+        Assert.IsTrue(oDiag2.isSupprime)
+        Assert.AreEqual("1234", oDiag2.diagRemplacementId)
 
         Assert.AreEqual(2, oDiag2.diagnosticBusesList.Liste.Count)
         oDiagBuses = oDiag2.diagnosticBusesList.Liste(0)

@@ -1335,7 +1335,7 @@ Public Class accueil
         Me.btn_ficheClient_diagnostic_nouveau.Name = "btn_ficheClient_diagnostic_nouveau"
         Me.btn_ficheClient_diagnostic_nouveau.Size = New System.Drawing.Size(176, 24)
         Me.btn_ficheClient_diagnostic_nouveau.TabIndex = 26
-        Me.btn_ficheClient_diagnostic_nouveau.Text = "       Réaliser un contrôle"
+        Me.btn_ficheClient_diagnostic_nouveau.Text = "       Réaliser un contrôle complet"
         Me.btn_ficheClient_diagnostic_nouveau.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btn_ficheClient_diagnostic_nouvelleCV
@@ -1359,7 +1359,7 @@ Public Class accueil
         Me.btn_ficheClient_diagnostic_voir.Name = "btn_ficheClient_diagnostic_voir"
         Me.btn_ficheClient_diagnostic_voir.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheClient_diagnostic_voir.TabIndex = 26
-        Me.btn_ficheClient_diagnostic_voir.Text = "       Voir un contrôle"
+        Me.btn_ficheClient_diagnostic_voir.Text = "       Les contrôles"
         Me.btn_ficheClient_diagnostic_voir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label1
@@ -1944,6 +1944,7 @@ Public Class accueil
         Me.list_dernieresSynchro.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.synchroSens, Me.synchroDate, Me.synchroLog})
         Me.list_dernieresSynchro.Dock = System.Windows.Forms.DockStyle.Fill
         Me.list_dernieresSynchro.GridLines = True
+        Me.list_dernieresSynchro.HideSelection = False
         Me.list_dernieresSynchro.Location = New System.Drawing.Point(0, 0)
         Me.list_dernieresSynchro.MultiSelect = False
         Me.list_dernieresSynchro.Name = "list_dernieresSynchro"
@@ -2203,6 +2204,7 @@ Public Class accueil
         Me.lv_Docs.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lv_Docs.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader7})
+        Me.lv_Docs.HideSelection = False
         Me.lv_Docs.LargeImageList = Me.ImageList_Docs
         Me.lv_Docs.Location = New System.Drawing.Point(0, 0)
         Me.lv_Docs.Name = "lv_Docs"
@@ -3664,6 +3666,7 @@ Public Class accueil
             lstPulves_client_proprioSiren.Text = "M. " & pExploit.nomExploitant & " " & pExploit.prenomExploitant & " - N° SIREN : " & pExploit.numeroSiren
             btn_ficheClient_diagnostic_nouveau.Enabled = False
             btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
+            btn_ficheClient_diagnostic_voir.Enabled = False
 
             'list_ficheClient_puverisateur.Items.Clear()
             Dim lstPulverisateurs As New List(Of Pulverisateur)
@@ -4734,9 +4737,10 @@ Public Class accueil
                 Dim bContinue As Boolean = True
                 If pDiagMode = Globals.DiagMode.CTRL_CV Then
                     ' Rechercge du diagnostique initial
-                    Dim formDiagnostic_nouvelleContreVisite As New diagnostic_nouvelle_contrevisite
-                    formDiagnostic_nouvelleContreVisite.ShowDialog()
-                    bContinue = (formDiagnostic_nouvelleContreVisite.DialogResult = Windows.Forms.DialogResult.OK)
+                    Dim frmLstDiag As New liste_diagnosticPulve2()
+                    frmLstDiag.setcontexte(Globals.DiagMode.CTRL_CV, pulverisateurCourant, clientCourant, agentCourant)
+                    frmLstDiag.ShowDialog()
+                    bContinue = (frmLstDiag.DialogResult = Windows.Forms.DialogResult.OK)
                 End If
                 If bContinue Then
                     'Vérification des clients et Pulvés au préalable
@@ -4770,7 +4774,7 @@ Public Class accueil
                         ofrmEditPulve.ShowDialog()
                         If ofrmEditPulve.DialogResult = Windows.Forms.DialogResult.OK Then
                             diagnosticCourant.setPulverisateur(pulverisateurCourant)
-                            NouveauDiagnosticPhase2(pDiagMode)
+                            NouveauDiagnosticPhase2(pDiagMode, diagnosticCourant)
                         End If
                     End If
                 End If
@@ -4791,12 +4795,13 @@ Public Class accueil
     ''' </summary>
     ''' <param name="bisContreVisite"></param>
     ''' <remarks></remarks>
-    Public Sub NouveauDiagnosticPhase2(pDiagMode As Globals.DiagMode)
+    Public Sub NouveauDiagnosticPhase2(pDiagMode As Globals.DiagMode, pDiag As Diagnostic)
         Statusbar.clear()
+        diagnosticCourant = pDiag ''Par Sécurité
         Dim bOK As Boolean = True
         If Not Globals.GLOB_ENV_MODEFORMATION Then
             Me.Cursor = Cursors.WaitCursor
-            Dim formDiagnostic_Contexte As New diagnostic_contexte(pDiagMode, diagnosticCourant, pulverisateurCourant, clientCourant, False)
+            Dim formDiagnostic_Contexte As New diagnostic_contexte(pDiagMode, pDiag, pulverisateurCourant, clientCourant, False)
             formDiagnostic_Contexte.ShowDialog()
             Me.Cursor = Cursors.Default
             bOK = (formDiagnostic_Contexte.DialogResult = Windows.Forms.DialogResult.OK)
@@ -4806,13 +4811,13 @@ Public Class accueil
                 isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
                 If (diagnosticCourant.isContrevisiteImmediate And isContreVisiteGratuite) Or Globals.GLOB_ENV_MODESIMPLIFIE Then
                     'Mise à jour du tarif du Diagnostique
-                    diagnosticCourant.controleTarif = CType(0, Double)
+                    pDiag.controleTarif = CType(0, Double)
                 Else
                     'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
                     Statusbar.clear()
                     Me.Cursor = Cursors.WaitCursor
                     Dim frmFact As diagnostic_facturation = New diagnostic_facturation()
-                    frmFact.setContexte(diagnosticCourant, clientCourant, agentCourant)
+                    frmFact.setContexte(pDiag, clientCourant, agentCourant)
                     frmFact.ShowDialog()
                     Me.Cursor = Cursors.Default
                     bOK = (frmFact.DialogResult = Windows.Forms.DialogResult.OK)
@@ -4821,7 +4826,7 @@ Public Class accueil
             End If
         End If
         If bOK Then
-            Dim frmDiagPreliminaires As New controle_preliminaire(pDiagMode, diagnosticCourant, pulverisateurCourant, clientCourant)
+            Dim frmDiagPreliminaires As New controle_preliminaire(pDiagMode, pDiag, pulverisateurCourant, clientCourant)
             globFormControlePreliminaire = frmDiagPreliminaires
             Me.Cursor = Cursors.WaitCursor
             TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagPreliminaires)
@@ -4875,7 +4880,7 @@ Public Class accueil
                 Statusbar.display("Visualisation d’un contrôle pour le pulvérisateur " & pulverisateurCourant.id)
 
                 Dim formListDiagnostique As New liste_diagnosticPulve2()
-                formListDiagnostique.setcontexte(pulverisateurCourant, clientCourant, agentCourant)
+                formListDiagnostique.setcontexte(Globals.DiagMode.CTRL_VISU, pulverisateurCourant, clientCourant, agentCourant)
                 formListDiagnostique.StartPosition = FormStartPosition.CenterParent
                 formListDiagnostique.ShowDialog(myFormParentContener)
                 If (formListDiagnostique.DialogResult = Windows.Forms.DialogResult.OK) Then
@@ -4887,6 +4892,8 @@ Public Class accueil
                             SignerDiagnostique()
                         Case Globals.DiagMode.CTRL_VISU
                             VoirDiagnostique()
+                        Case Globals.DiagMode.CTRL_CV, Globals.DiagMode.CTRL_COMPLET
+                            NouveauDiagnosticPhase2(formListDiagnostique.DiagMode, formListDiagnostique.getDiagnostic())
                     End Select
                 End If
             Catch ex As Exception
@@ -5527,23 +5534,25 @@ Public Class accueil
         End If
     End Sub
 
-    Private Sub list_ficheClient_puverisateur_SelectedIndexChanged(sender As Object, e As EventArgs)
-        If dgvPulveExploit.SelectedRows.Count >= 1 Then
-            Dim oRowIndex As Integer = dgvPulveExploit.SelectedRows(0).Index
-            pulverisateurCourant = m_BindingListOfPulve(oRowIndex)
-            If Not pulverisateurCourant Is Nothing Then
-                If Not agentCourant.AleDroit(pulverisateurCourant) Then
-                    btn_ficheClient_diagnostic_nouveau.Enabled = False
-                    btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
-                    btnSupprPulve.Enabled = False
-                Else
-                    btn_ficheClient_diagnostic_nouveau.Enabled = Not agentCourant.isGestionnaire
-                    btn_ficheClient_diagnostic_nouvelleCV.Enabled = Not agentCourant.isGestionnaire
-                    btnSupprPulve.Enabled = Not agentCourant.isGestionnaire
-                End If
-            End If
-        End If
-    End Sub
+    'Private Sub list_ficheClient_puverisateur_SelectedIndexChanged(sender As Object, e As EventArgs)
+    '    If dgvPulveExploit.SelectedRows.Count >= 1 Then
+    '        Dim oRowIndex As Integer = dgvPulveExploit.SelectedRows(0).Index
+    '        pulverisateurCourant = m_BindingListOfPulve(oRowIndex)
+    '        If Not pulverisateurCourant Is Nothing Then
+    '            If Not agentCourant.AleDroit(pulverisateurCourant) Then
+    '                btn_ficheClient_diagnostic_nouveau.Enabled = False
+    '                btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
+    '                btn_ficheClient_diagnostic_voir.Enabled = False
+    '                btnSupprPulve.Enabled = False
+    '            Else
+    '                btn_ficheClient_diagnostic_nouveau.Enabled = Not agentCourant.isGestionnaire
+    '                btn_ficheClient_diagnostic_nouvelleCV.Enabled = Not agentCourant.isGestionnaire
+    '                btn_ficheClient_diagnostic_voir.Enabled = Not agentCourant.isGestionnaire
+    '                btnSupprPulve.Enabled = Not agentCourant.isGestionnaire
+    '            End If
+    '        End If
+    '    End If
+    'End Sub
 
 
     Private Sub LaChrgmtSynhcro_Click(sender As Object, e As EventArgs) Handles LaChrgmtSynhcro.Click
@@ -5617,14 +5626,17 @@ Public Class accueil
                 If agentCourant.AleDroit(opulve) Then
                     btn_ficheClient_diagnostic_nouveau.Enabled = Not agentCourant.isGestionnaire
                     btn_ficheClient_diagnostic_nouvelleCV.Enabled = Not agentCourant.isGestionnaire
+                    btn_ficheClient_diagnostic_voir.Enabled = Not agentCourant.isGestionnaire
                     btnSupprPulve.Enabled = Not agentCourant.isGestionnaire
                 Else
                     btn_ficheClient_diagnostic_nouveau.Enabled = False
                     btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
+                    btn_ficheClient_diagnostic_voir.Enabled = False
                 End If
             Else
                 btn_ficheClient_diagnostic_nouveau.Enabled = False
                 btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
+                btn_ficheClient_diagnostic_voir.Enabled = False
 
             End If
         Catch

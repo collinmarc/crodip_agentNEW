@@ -1,12 +1,11 @@
 TRUNK
 MASTER
-Github2-bis
-17:57 08:34 08:39
 
-BUILD 20210106180000
+BUILD 20210125180000
 --------------------
 0001325: Ajout d'une acquisistion ERECA (PULVEAUBE)
 0001328: Le type de Mano n'est pas affiché dans la fenêtre d'édition de Manomètres
+0001096: Accélération de la saisie des contrôles : Validation par blocs
 
 BUILD 20210106180000
 --------------------

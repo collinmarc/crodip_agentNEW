@@ -272,9 +272,6 @@
     <Compile Include="Application\agent\Manometres\HistoMano.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\liste_diagnosticPulve.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\diagnostic\liste_diagnosticPulve2.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -416,9 +413,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\diagnostic_infosInspecteur.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\diagnostic\diagnostic_nouvelle_contrevisite.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\diagnostic_satisfaction.vb">
@@ -1996,9 +1990,6 @@
     <EmbeddedResource Include="Application\agent\Manometres\HistoMano.resx">
       <DependentUpon>HistoMano.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve.resx">
-      <DependentUpon>liste_diagnosticPulve.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve2.resx">
       <DependentUpon>liste_diagnosticPulve2.vb</DependentUpon>
     </EmbeddedResource>
@@ -2112,9 +2103,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_infosInspecteur.resx">
       <DependentUpon>diagnostic_infosInspecteur.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\diagnostic_nouvelle_contrevisite.resx">
-      <DependentUpon>diagnostic_nouvelle_contrevisite.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_satisfaction.resx">
       <DependentUpon>diagnostic_satisfaction.vb</DependentUpon>

@@ -1708,7 +1708,7 @@ Imports System.IO
         oDiag.organismeOriginePresNom = "CRODIP"
 
         'MAJ DU COMMENTAIRE
-        oDiag.Commentaire = "Ceci estun commentaire"
+        oDiag.commentaire = "Ceci estun commentaire"
 
         For i As Integer = 0 To 20
             oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")

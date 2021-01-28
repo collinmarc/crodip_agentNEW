@@ -845,6 +845,29 @@ Public Class DiagnosticManager
         Return bReturn
     End Function
 
+    Public Shared Function ExistDiagnostic(pdiagId As String) As Boolean
+        Dim oCsDB As New CSDb(True)
+        Dim bddCommande As New OleDb.OleDbCommand
+        Dim bReturn As Boolean
+        Try
+            bddCommande.Connection = oCsDB.getConnection()
+
+            ' Création
+            bddCommande.CommandText = "SELECT Count(*) FROM DIAGNOSTIC WHERE id= '" & pdiagId & "'"
+            Dim nResult As Integer = bddCommande.ExecuteScalar()
+            bReturn = (nResult > 0)
+        Catch ex As Exception
+            MsgBox("DiagnosticManager error : " & ex.Message)
+            bReturn = False
+        End Try
+        If Not oCsDB Is Nothing Then
+            oCsDB.free()
+        End If
+        Return bReturn
+
+    End Function
+
+
     Public Shared Function getNewId(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
@@ -925,17 +948,17 @@ Public Class DiagnosticManager
                 Dim CSDb As New CSDb(True)
 
                 ' On test si le Diagnostic existe ou non
-                Dim existsDiagnostic As Object
-                existsDiagnostic = DiagnosticManager.getDiagnosticById(objDiagnostic.id)
-                If existsDiagnostic.id = "" Then
+                Dim existsDiagnostic As Boolean
+                existsDiagnostic = DiagnosticManager.ExistDiagnostic(objDiagnostic.id)
+                If Not existsDiagnostic Then
                     ' Si il n'existe pas, on le crée
                     createDiagnostic(objDiagnostic.id)
                     bcreationDiag = True
                 End If
 
-                Dim bddCommande As New OleDb.OleDbCommand
+                Dim bddCommande As OleDb.OleDbCommand
                 ' On test si la connexion est déjà ouverte ou non
-                bddCommande.Connection = CSDb.getConnection()
+                bddCommande = CSDb.getConnection().CreateCommand
 
                 ' Initialisation de la requete
                 Dim paramsQuery As String = "Diagnostic.id='" & objDiagnostic.id & "'"
@@ -1249,7 +1272,7 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurRincagecircuit='" & CSDb.secureString(objDiagnostic.pulverisateurRincagecircuit) & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.typeDiagnostic='" & CSDb.secureString(objDiagnostic.typeDiagnostic) & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.codeInsee='" & CSDb.secureString(objDiagnostic.codeInsee) & "'"
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.commentaire='" & CSDb.secureString(objDiagnostic.Commentaire) & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.commentaire='" & CSDb.secureString(objDiagnostic.commentaire) & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurNumNational='" & CSDb.secureString(objDiagnostic.pulverisateurNumNational) & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.pulverisateurNumChassis='" & CSDb.secureString(objDiagnostic.pulverisateurNumChassis) & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.OrigineDiag='" & CSDb.secureString(objDiagnostic.origineDiag) & "'"
@@ -1269,6 +1292,8 @@ Public Class DiagnosticManager
                 If objDiagnostic.dateSignCCClient.HasValue Then
                     paramsQuery2 = paramsQuery2 & " , Diagnostic.dateSignCCClient=#" & objDiagnostic.dateSignCCClient & "#"
                 End If
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isSupprime=" & objDiagnostic.isSupprime & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.diagRemplacementId='" & objDiagnostic.diagRemplacementId & "'"
 
                 'paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIAgent=@signRIAgent"
                 'paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIClient=@signRIClient"

@@ -1075,7 +1075,7 @@ Public Class login
         oPulve = PulverisateurManager.getPulverisateurById("2-81-25") '
 
         Dim ofrm As New liste_diagnosticPulve2()
-        ofrm.setcontexte(oPulve, oExploit, oAgent)
+        ofrm.setcontexte(Globals.DiagMode.CTRL_VISU, oPulve, oExploit, oAgent)
         ofrm.Show()
 
     End Sub

@@ -1,5 +1,7 @@
 ﻿Imports System.Collections.Generic
 Imports System.IO
+Imports System.Linq
+
 Public Class FrmDiagnostique
     Inherits frmCRODIP
     Implements IfrmCRODIP
@@ -781,7 +783,7 @@ Public Class FrmDiagnostique
             'Initialisation des Tab 5621 et 5622
             RadioButton_diagnostic_5621.Tag = "NOK"
             RadioButton_diagnostic_5622.Tag = "NOK"
-            If m_diagnostic.id <> "" Then
+            If m_diagnostic.id <> "" Or m_diagnostic.diagRemplacementId <> "" Then
                 ' Chargement du diagnostic
                 loadExistingDiag()
                 RadioButton_diagnostic_5621.Tag = "OK"
@@ -854,10 +856,10 @@ Public Class FrmDiagnostique
     Private Function encodageAutomatique() As Boolean
         Dim bReturn As Boolean
         Try
-            '============
-            ' Defaut activé par défaut F(Pulvé)
-            '============
-            m_diagnostic.EncodageAuto()
+            'on ne fait l'encodage auto en fonction du Pulve que si on n'est pas en remplacement
+            If m_diagnostic.diagRemplacementId = "" Then
+                m_diagnostic.EncodageAuto()
+            End If
             AfficheDiagnosticItems()
 
             '================================
@@ -1100,7 +1102,7 @@ Public Class FrmDiagnostique
             '###############################################
 
 
-            If m_modeAffichage <> Globals.DiagMode.CTRL_CV Then
+            If m_modeAffichage = Globals.DiagMode.CTRL_VISU Then
                 DisableControls()
             End If
 
@@ -4828,17 +4830,22 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim bReturn As Boolean = False
         'CSDebug.dispInfo("Diagnostique.btn_diagnostic_valider_Click")
         ' On commence par vérifier que tout a été rempli (Normalement OK car sinon le bouton n'est pas Enabled)
-        If checkIsAllFilled() Then
-            'Valider
-            If validerDiagnostique() Then
-                'Passage à la fenêtre suivante
-                NextForm()
-                bReturn = True
-            End If
+        If m_modeAffichage = Globals.DiagMode.CTRL_VISU Then
+            NextForm()
+            bReturn = True
         Else
-            MsgBox("Vous n'avez pas rempli la totalité du contrôle :" & vbNewLine)
+            If checkIsAllFilled() Then
+                'Valider
+                If validerDiagnostique() Then
+                    'Passage à la fenêtre suivante
+                    NextForm()
+                    bReturn = True
+                End If
+            Else
+                MsgBox("Vous n'avez pas rempli la totalité du contrôle :" & vbNewLine)
+            End If
+            btn_Valider.Enabled = True
         End If
-        btn_Valider.Enabled = True
         Return bReturn
     End Function
     ''' <summary>
@@ -4852,6 +4859,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim nPression As Integer
         bOK = False
         Try
+
             '============================
             'Récupération de la Perte de charge Moyenne et Maxi dans le Tab833 (S'il est actif)
             'il faudrait trouver un moyerde déterminer si la saisie a été effectuée sans passer par le test du panel
@@ -9568,10 +9576,18 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                                     Else
                                         oLbl.Text = "     " & oParam.Code & " " & oParam.Libelle 'Décalage à cause de l'image !!!!
                                     End If
+                                    Dim strCtrlName As String
+                                    strCtrlName = "ckBloc_" & strCode
+                                    Dim oCtrl As CheckBox
+                                    oCtrl = CSForm.getControlByName(strCtrlName, Me)
+                                    If oCtrl IsNot Nothing Then
+                                        oCtrl.Tag = strCode
+                                        AddHandler oCtrl.CheckedChanged, AddressOf ckBlocCheckedChanged
+                                    End If
                                 End If
                             Else
-                                'Si ce n'est pas Label c'est peut-être un groupe
-                                oCtrl1 = CSForm.getControlByName("GroupBox_diagnostic_" & strCode, Me)
+            'Si ce n'est pas Label c'est peut-être un groupe
+            oCtrl1 = CSForm.getControlByName("GroupBox_diagnostic_" & strCode, Me)
                                 If oCtrl1 IsNot Nothing Then
                                     Dim ogrp As GroupBox = TryCast(oCtrl1, GroupBox)
                                     If ogrp IsNot Nothing Then
@@ -10629,6 +10645,64 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
 
     Private Sub diagBuses_mesureDebit_1_debit_KeyDown(sender As Object, e As KeyEventArgs) Handles diagBuses_mesureDebit_1_debit.KeyDown
+
+    End Sub
+
+    Private Sub ckBloc_2_1_CheckStateChanged(sender As Object, e As EventArgs)
+        RadioButton_diagnostic_2110.Checked = True
+        RadioButton_diagnostic_2120.Checked = True
+        RadioButton_diagnostic_2130.Checked = True
+    End Sub
+
+    Private Sub ckBlocCheckedChanged(sender As Object, e As EventArgs)
+        Dim oCtrl As CheckBox = sender
+        Dim strCode As String = oCtrl.Tag
+        Dim tGrpBox As Control()
+        Dim tRadio
+        'Recherche de tous les groupBox contenant le Code dans la fenêtre
+        For n As Integer = 1 To 9
+            '1°) Existe-t-il un niveau en dessous
+            tGrpBox = Me.Controls.Find("GroupBox_diagnostic_" & strCode & n, True)
+            If tGrpBox.Count() > 0 Then
+
+
+                'Pour Chaque GroupBox, Recherche des RadioButton se terminant par 0
+                For Each oGrp As GroupBox In tGrpBox
+                    tRadio = oGrp.Controls.OfType(Of CRODIP_ControlLibrary.CtrlDiag2).Where(Function(o) o.Name.EndsWith("0"))
+                    For Each oRb As CRODIP_ControlLibrary.CtrlDiag2 In tRadio
+                        oRb.Checked = oCtrl.Checked
+                    Next
+                Next
+            Else
+                'Il n'y  pas de group Box à ce niveau , on Descent d'un niveau
+                For n1 As Integer = 1 To 9
+                    tGrpBox = Me.Controls.Find("ckBloc_" & strCode & n1, True)
+                    If tGrpBox.Count() = 0 Then
+                        For n2 As Integer = 1 To 9
+                            '1°) Existe-t-il un niveau en dessous
+                            tGrpBox = Me.Controls.Find("GroupBox_diagnostic_" & strCode & n1 & n2, True)
+                            If tGrpBox.Count() > 0 Then
+
+
+                                'Pour Chaque GroupBox, Recherche des RadioButton se terminant par 0
+                                For Each oGrp As GroupBox In tGrpBox
+                                    tRadio = oGrp.Controls.OfType(Of CRODIP_ControlLibrary.CtrlDiag2).Where(Function(o) o.Name.EndsWith("0"))
+                                    For Each oRb As CRODIP_ControlLibrary.CtrlDiag2 In tRadio
+                                        oRb.Checked = oCtrl.Checked
+                                    Next
+                                Next
+                            End If
+                        Next
+                    End If
+
+                Next
+
+            End If
+        Next
+
+    End Sub
+
+    Private Sub FrmDiagnostique_ForeColorChanged(sender As Object, e As EventArgs) Handles Me.ForeColorChanged
 
     End Sub
 End Class

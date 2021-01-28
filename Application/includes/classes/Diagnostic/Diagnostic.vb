@@ -274,6 +274,9 @@ Public Class Diagnostic
         typeDiagnostic = "pulverisateur"
 
         m_buseDebitMoyenPM = 0
+
+        diagRemplacementId = ""
+        isSupprime = False
     End Sub
 
     Public Sub New(ByVal pAgent As Agent, ByVal pPulve As Pulverisateur, ByVal pClient As Exploitation)
@@ -694,14 +697,18 @@ Public Class Diagnostic
         Get
             Dim bReturn As String = ""
 
-            Select Case controleEtat
-                Case controleEtatOK
-                    bReturn = "OK"
-                Case controleEtatNOKCV
-                    bReturn = "CV"
-                Case controleEtatNOKCC
-                    bReturn = "NOK"
-            End Select
+            If isSupprime Then
+                bReturn = "Rmpl(" & diagRemplacementId & ")"
+            Else
+                Select Case controleEtat
+                    Case controleEtatOK
+                        bReturn = "OK"
+                    Case controleEtatNOKCV
+                        bReturn = "CV"
+                    Case controleEtatNOKCC
+                        bReturn = "NOK"
+                End Select
+            End If
             Return bReturn
         End Get
     End Property
@@ -2285,7 +2292,7 @@ Public Class Diagnostic
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Property Commentaire() As String
+    Public Property commentaire() As String
         Get
             Return _Commentaire
         End Get
@@ -2412,6 +2419,8 @@ Public Class Diagnostic
             Me.isTGIP = False
             Me.isFacture = False
             Me.isSynchro = False
+            Me.id = ""
+            Me.diagRemplacementId = ""
 
             bReturn = True
         Catch ex As Exception
@@ -2708,7 +2717,7 @@ Public Class Diagnostic
                 Case "codeInsee".ToUpper().Trim()
                     Me.codeInsee = pcolValue.ToString
                 Case "commentaire".ToUpper().Trim()
-                    Me.Commentaire = pcolValue.ToString
+                    Me.commentaire = pcolValue.ToString
                 Case "pulverisateurNumNational".ToUpper().Trim()
                     Me.pulverisateurNumNational = pcolValue.ToString()
                 Case "pulverisateurNumchassis".ToUpper().Trim()
@@ -2767,6 +2776,10 @@ Public Class Diagnostic
                 Case "SignCCClient".ToUpper().Trim()
                     ''champs non Sauvegardé
 
+                Case "isSupprime".ToUpper().Trim()
+                    Me.isSupprime = pcolValue
+                Case "diagRemplacementId".ToUpper().Trim()
+                    Me.diagRemplacementId = pcolValue
             End Select
             '            ALTER TABLE DIAGNOSTIC ADD isSignRIAgent YESNO
             'ALTER TABLE DIAGNOSTIC ADD isSignRIClient YESNO
@@ -3462,6 +3475,25 @@ Public Class Diagnostic
         End Get
         Set(ByVal Value As String)
             _DateSignCCClient = CSDate.FromCrodipString(Value)
+        End Set
+    End Property
+    Private _isSupprime As Boolean
+    Public Property isSupprime() As Boolean
+        Get
+            Return _isSupprime
+        End Get
+        Set(ByVal value As Boolean)
+            _isSupprime = value
+        End Set
+    End Property
+
+    Private _diagRemplacementId As String
+    Public Property diagRemplacementId() As String
+        Get
+            Return _diagRemplacementId
+        End Get
+        Set(ByVal value As String)
+            _diagRemplacementId = value
         End Set
     End Property
 

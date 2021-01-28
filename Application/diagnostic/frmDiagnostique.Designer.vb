@@ -26,10 +26,10 @@ Partial Class FrmDiagnostique
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmDiagnostique))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -68,6 +68,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2411 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.Label_diagnostic_24 = New System.Windows.Forms.Label()
         Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.ckBloc_23 = New System.Windows.Forms.CheckBox()
         Me.GroupBox_diagnostic_231 = New System.Windows.Forms.GroupBox()
         Me.RadioButton_diagnostic_2319 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.RadioButton_diagnostic_2317 = New CRODIP_ControlLibrary.CtrlDiag2()
@@ -101,6 +102,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2511 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.Label_diagnostic_25 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.ckBloc_21 = New System.Windows.Forms.CheckBox()
         Me.Label_diagnostic_21 = New System.Windows.Forms.Label()
         Me.GroupBox_diagnostic_211 = New System.Windows.Forms.GroupBox()
         Me.RadioButton_diagnostic_2110 = New CRODIP_ControlLibrary.CtrlDiag2()
@@ -115,6 +117,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2132 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.RadioButton_diagnostic_2131 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.ckBloc_22 = New System.Windows.Forms.CheckBox()
         Me.GroupBox_diagnostic_225 = New System.Windows.Forms.GroupBox()
         Me.RadioButton_diagnostic_2250 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.RadioButton_diagnostic_2252 = New CRODIP_ControlLibrary.CtrlDiag2()
@@ -833,234 +836,247 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_12310 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.RadioButton_diagnostic_12312 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.Label_diagnostic_12 = New System.Windows.Forms.Label()
-        Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pctb_calc, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
-        CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.tab_diagnostique.SuspendLayout()
-        Me.tabPage_diagnostique_etatGeneral.SuspendLayout()
-        Me.Panel129.SuspendLayout()
-        Me.Panel5.SuspendLayout()
-        Me.GroupBox_diagnostic_241.SuspendLayout()
-        Me.Panel7.SuspendLayout()
-        Me.GroupBox_diagnostic_231.SuspendLayout()
-        Me.GroupBox_diagnostic_232.SuspendLayout()
-        Me.Panel6.SuspendLayout()
-        Me.GroupBox_diagnostic_252.SuspendLayout()
-        Me.GroupBox_diagnostic_251.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        Me.GroupBox_diagnostic_211.SuspendLayout()
-        Me.GroupBox_diagnostic_212.SuspendLayout()
-        Me.GroupBox_diagnostic_213.SuspendLayout()
-        Me.Panel4.SuspendLayout()
-        Me.GroupBox_diagnostic_225.SuspendLayout()
-        Me.GroupBox_diagnostic_224.SuspendLayout()
-        Me.GroupBox_diagnostic_223.SuspendLayout()
-        Me.GroupBox_diagnostic_222.SuspendLayout()
-        Me.GroupBox_diagnostic_221.SuspendLayout()
-        Me.tabPage_diagnostique_pompeCuve.SuspendLayout()
-        Me.Panel15.SuspendLayout()
-        Me.pnl_46.SuspendLayout()
-        Me.GroupBox_diagnostic_464.SuspendLayout()
-        Me.GroupBox_diagnostic_463.SuspendLayout()
-        Me.GroupBox_diagnostic_462.SuspendLayout()
-        Me.GroupBox_diagnostic_461.SuspendLayout()
-        Me.pnl_45.SuspendLayout()
-        Me.GroupBox_diagnostic_452.SuspendLayout()
-        Me.GroupBox_diagnostic_451.SuspendLayout()
-        Me.pnl_44.SuspendLayout()
-        Me.GroupBox_diagnostic_441.SuspendLayout()
-        Me.GroupBox_diagnostic_442.SuspendLayout()
-        Me.pnl_42.SuspendLayout()
-        Me.GroupBox_diagnostic_421.SuspendLayout()
-        Me.pnl_41.SuspendLayout()
-        Me.GroupBox_diagnostic_411.SuspendLayout()
-        Me.GroupBox_diagnostic_412.SuspendLayout()
-        Me.pnl_43.SuspendLayout()
-        Me.GroupBox_diagnostic_432.SuspendLayout()
-        Me.GroupBox_diagnostic_431.SuspendLayout()
-        Me.Panel130.SuspendLayout()
-        Me.Panel132.SuspendLayout()
-        Me.GroupBox_diagnostic_311.SuspendLayout()
-        Me.Panel133.SuspendLayout()
-        Me.GroupBox_diagnostic_323.SuspendLayout()
-        Me.GroupBox_diagnostic_322.SuspendLayout()
-        Me.GroupBox_diagnostic_321.SuspendLayout()
-        Me.tabPage_diagnostique_flexiblesFiltres.SuspendLayout()
-        Me.Panel33.SuspendLayout()
-        Me.GroupBox_diagnostic_611.SuspendLayout()
-        Me.Panel27.SuspendLayout()
-        Me.Panel28.SuspendLayout()
-        Me.Panel32.SuspendLayout()
-        Me.GroupBox_diagnostic_741.SuspendLayout()
-        Me.Panel31.SuspendLayout()
-        Me.GroupBox_diagnostic_731.SuspendLayout()
-        Me.Panel29.SuspendLayout()
-        Me.GroupBox_diagnostic_721.SuspendLayout()
-        Me.Panel30.SuspendLayout()
-        Me.GroupBox_diagnostic_711.SuspendLayout()
-        Me.tabPage_diagnostique_jetsSoufflerie.SuspendLayout()
-        Me.Panel42.SuspendLayout()
-        Me.Panel43.SuspendLayout()
-        Me.Panel44.SuspendLayout()
-        Me.GroupBox_diagnostic_1021.SuspendLayout()
-        Me.GroupBox_diagnostic_1022.SuspendLayout()
-        Me.Panel45.SuspendLayout()
-        Me.GroupBox_diagnostic_1011.SuspendLayout()
-        Me.GroupBox_diagnostic_1012.SuspendLayout()
-        Me.Panel37.SuspendLayout()
-        Me.Panel39.SuspendLayout()
-        Me.Panel40.SuspendLayout()
-        Me.GroupBox_diagnostic_921.SuspendLayout()
-        Me.GroupBox_diagnostic_922.SuspendLayout()
-        Me.Panel41.SuspendLayout()
-        Me.GroupBox_diagnostic_911.SuspendLayout()
-        Me.GroupBox_diagnostic_912.SuspendLayout()
-        Me.tabPage_diagnostique_mesureCommandesRegulation.SuspendLayout()
-        Me.Panel127.SuspendLayout()
-        Me.Panel26.SuspendLayout()
-        Me.GroupBox_diagnostic_571.SuspendLayout()
-        CType(Me.ico_oeil571, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ico_help_571, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox_diagnostic_562.SuspendLayout()
-        CType(Me.ico_help_5622, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ico_help_5621, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox_diagnostic_561.SuspendLayout()
-        Me.Panel24.SuspendLayout()
-        Me.GroupBox_diagnostic_542.SuspendLayout()
-        Me.GroupBox_diagnostic_541.SuspendLayout()
-        Me.Panel21.SuspendLayout()
-        Me.GroupBox_diagnostic_511.SuspendLayout()
-        Me.Panel23.SuspendLayout()
-        Me.GroupBox_diagnostic_532.SuspendLayout()
-        Me.GroupBox_diagnostic_531.SuspendLayout()
-        Me.Panel22.SuspendLayout()
-        Me.GroupBox_diagnostic_522.SuspendLayout()
-        Me.GroupBox_diagnostic_521.SuspendLayout()
-        Me.Panel25.SuspendLayout()
-        Me.GroupBox_diagnostic_552.SuspendLayout()
-        CType(Me.ico_help_552, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox_diagnostic_551.SuspendLayout()
-        CType(Me.ico_help_551, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.tabPage_diagnostique_rampes.SuspendLayout()
-        Me.Panel128.SuspendLayout()
-        Me.Panel36.SuspendLayout()
-        Me.popup_help_831.SuspendLayout()
-        Me.Panel125.SuspendLayout()
-        Me.GroupBox_diagnostic_833.SuspendLayout()
-        Me.GroupBox_diagnostic_832.SuspendLayout()
-        Me.GroupBox_diagnostic_831.SuspendLayout()
-        CType(Me.ico_help_8314, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ico_help_8312, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.popup_help_811.SuspendLayout()
-        Me.Panel123.SuspendLayout()
-        Me.Panel34.SuspendLayout()
-        Me.GroupBox_diagnostic_817.SuspendLayout()
-        Me.GroupBox_diagnostic_813.SuspendLayout()
-        Me.GroupBox_diagnostic_816.SuspendLayout()
-        Me.Panel35.SuspendLayout()
-        Me.GroupBox_diagnostic_823.SuspendLayout()
-        Me.GroupBox_diagnostic_822.SuspendLayout()
-        Me.GroupBox_diagnostic_821.SuspendLayout()
-        Me.GroupBox_diagnostic_812.SuspendLayout()
-        Me.GroupBox_diagnostic_811.SuspendLayout()
-        CType(Me.ico_help_811, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox_diagnostic_814.SuspendLayout()
-        Me.GroupBox_diagnostic_815.SuspendLayout()
-        Me.tabPage_diagnostique_manoTroncon.SuspendLayout()
-        Me.pnl_833.SuspendLayout()
-        CType(Me.nupTroncons, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.nup_niveaux, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.tab_833.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
-        Me.GroupBox6.SuspendLayout()
-        CType(Me.gdvPressions1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
-        Me.GroupBox7.SuspendLayout()
-        CType(Me.gdvPressions2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage8.SuspendLayout()
-        Me.GroupBox8.SuspendLayout()
-        CType(Me.gdvPressions3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage9.SuspendLayout()
-        Me.GroupBox9.SuspendLayout()
-        CType(Me.gdvPressions4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnl542.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
-        Me.Panel48.SuspendLayout()
-        Me.Panel54.SuspendLayout()
-        Me.Panel53.SuspendLayout()
-        Me.Panel52.SuspendLayout()
-        Me.manopulvePression_panel_erreur.SuspendLayout()
-        Me.manopulvePression_panel_manoPulve.SuspendLayout()
-        Me.manopulvePression_panel_manoAgent.SuspendLayout()
-        Me.Panel46.SuspendLayout()
-        Me.Panel292.SuspendLayout()
-        Me.tabPage_diagnostique_buses.SuspendLayout()
-        Me.Panel922.SuspendLayout()
-        Me.Panel11.SuspendLayout()
-        Me.diagBuses_tab_categories.SuspendLayout()
-        Me.TabPage3.SuspendLayout()
-        Me.pblModele_tabMesuresBuses.SuspendLayout()
-        Me.Panel68.SuspendLayout()
-        Me.Panel70.SuspendLayout()
-        Me.Panel12.SuspendLayout()
-        Me.pnlModele_tabMesureSecondaire.SuspendLayout()
-        Me.Panel69.SuspendLayout()
-        Me.Panel71.SuspendLayout()
-        Me.Panel38.SuspendLayout()
-        Me.Panel49.SuspendLayout()
-        Me.Panel66.SuspendLayout()
-        Me.Panel67.SuspendLayout()
-        Me.Panel97.SuspendLayout()
-        Me.Panel98.SuspendLayout()
-        Me.Panel99.SuspendLayout()
-        Me.Panel100.SuspendLayout()
-        Me.Panel101.SuspendLayout()
-        Me.Panel102.SuspendLayout()
-        Me.Panel103.SuspendLayout()
-        Me.Panel104.SuspendLayout()
-        Me.Panel105.SuspendLayout()
-        Me.Panel106.SuspendLayout()
-        Me.Panel107.SuspendLayout()
-        Me.Panel108.SuspendLayout()
-        Me.Panel109.SuspendLayout()
-        Me.Panel110.SuspendLayout()
-        Me.Panel111.SuspendLayout()
-        Me.Panel112.SuspendLayout()
-        Me.Panel113.SuspendLayout()
-        Me.Panel114.SuspendLayout()
-        Me.Panel115.SuspendLayout()
-        Me.Panel116.SuspendLayout()
-        Me.Panel117.SuspendLayout()
-        Me.Panel118.SuspendLayout()
-        Me.Panel119.SuspendLayout()
-        Me.Panel120.SuspendLayout()
-        Me.Panel63.SuspendLayout()
-        Me.tabPage_diagnostique_accessoires.SuspendLayout()
-        Me.Panel8.SuspendLayout()
-        Me.Panel9.SuspendLayout()
-        Me.GroupBox_diagnostic_1213.SuspendLayout()
-        Me.GroupBox_diagnostic_1212.SuspendLayout()
-        CType(Me.ico_help_12123, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox_diagnostic_1211.SuspendLayout()
-        Me.Panel14.SuspendLayout()
-        Me.GroupBox_diagnostic_1114.SuspendLayout()
-        Me.GroupBox_diagnostic_1113.SuspendLayout()
-        Me.GroupBox_diagnostic_1112.SuspendLayout()
-        Me.GroupBox_diagnostic_1111.SuspendLayout()
-        Me.Panel16.SuspendLayout()
-        Me.GroupBox_diagnostic_1241.SuspendLayout()
-        Me.GroupBox_diagnostic_1222.SuspendLayout()
-        Me.GroupBox_diagnostic_1221.SuspendLayout()
-        Me.Panel10.SuspendLayout()
-        Me.GroupBox_diagnostic_1232.SuspendLayout()
-        CType(Me.ico_help12323, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox_diagnostic_1231.SuspendLayout()
-        Me.SuspendLayout()
+        Me.ckbloc_3 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_4 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_7 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_9 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_10 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_5 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_55 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_56 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_81 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_82 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_83 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_11 = New System.Windows.Forms.CheckBox()
+        Me.ckbloc_12 = New System.Windows.Forms.CheckBox()
+        Me.ContextMenuStrip1.SuspendLayout
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.Pctb_calc, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.Panel2.SuspendLayout
+        CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox1.SuspendLayout
+        Me.GroupBox2.SuspendLayout
+        Me.Panel1.SuspendLayout
+        Me.tab_diagnostique.SuspendLayout
+        Me.tabPage_diagnostique_etatGeneral.SuspendLayout
+        Me.Panel129.SuspendLayout
+        Me.Panel5.SuspendLayout
+        Me.GroupBox_diagnostic_241.SuspendLayout
+        Me.Panel7.SuspendLayout
+        Me.GroupBox_diagnostic_231.SuspendLayout
+        Me.GroupBox_diagnostic_232.SuspendLayout
+        Me.Panel6.SuspendLayout
+        Me.GroupBox_diagnostic_252.SuspendLayout
+        Me.GroupBox_diagnostic_251.SuspendLayout
+        Me.Panel3.SuspendLayout
+        Me.GroupBox_diagnostic_211.SuspendLayout
+        Me.GroupBox_diagnostic_212.SuspendLayout
+        Me.GroupBox_diagnostic_213.SuspendLayout
+        Me.Panel4.SuspendLayout
+        Me.GroupBox_diagnostic_225.SuspendLayout
+        Me.GroupBox_diagnostic_224.SuspendLayout
+        Me.GroupBox_diagnostic_223.SuspendLayout
+        Me.GroupBox_diagnostic_222.SuspendLayout
+        Me.GroupBox_diagnostic_221.SuspendLayout
+        Me.tabPage_diagnostique_pompeCuve.SuspendLayout
+        Me.Panel15.SuspendLayout
+        Me.pnl_46.SuspendLayout
+        Me.GroupBox_diagnostic_464.SuspendLayout
+        Me.GroupBox_diagnostic_463.SuspendLayout
+        Me.GroupBox_diagnostic_462.SuspendLayout
+        Me.GroupBox_diagnostic_461.SuspendLayout
+        Me.pnl_45.SuspendLayout
+        Me.GroupBox_diagnostic_452.SuspendLayout
+        Me.GroupBox_diagnostic_451.SuspendLayout
+        Me.pnl_44.SuspendLayout
+        Me.GroupBox_diagnostic_441.SuspendLayout
+        Me.GroupBox_diagnostic_442.SuspendLayout
+        Me.pnl_42.SuspendLayout
+        Me.GroupBox_diagnostic_421.SuspendLayout
+        Me.pnl_41.SuspendLayout
+        Me.GroupBox_diagnostic_411.SuspendLayout
+        Me.GroupBox_diagnostic_412.SuspendLayout
+        Me.pnl_43.SuspendLayout
+        Me.GroupBox_diagnostic_432.SuspendLayout
+        Me.GroupBox_diagnostic_431.SuspendLayout
+        Me.Panel130.SuspendLayout
+        Me.Panel132.SuspendLayout
+        Me.GroupBox_diagnostic_311.SuspendLayout
+        Me.Panel133.SuspendLayout
+        Me.GroupBox_diagnostic_323.SuspendLayout
+        Me.GroupBox_diagnostic_322.SuspendLayout
+        Me.GroupBox_diagnostic_321.SuspendLayout
+        Me.tabPage_diagnostique_flexiblesFiltres.SuspendLayout
+        Me.Panel33.SuspendLayout
+        Me.GroupBox_diagnostic_611.SuspendLayout
+        Me.Panel27.SuspendLayout
+        Me.Panel28.SuspendLayout
+        Me.Panel32.SuspendLayout
+        Me.GroupBox_diagnostic_741.SuspendLayout
+        Me.Panel31.SuspendLayout
+        Me.GroupBox_diagnostic_731.SuspendLayout
+        Me.Panel29.SuspendLayout
+        Me.GroupBox_diagnostic_721.SuspendLayout
+        Me.Panel30.SuspendLayout
+        Me.GroupBox_diagnostic_711.SuspendLayout
+        Me.tabPage_diagnostique_jetsSoufflerie.SuspendLayout
+        Me.Panel42.SuspendLayout
+        Me.Panel43.SuspendLayout
+        Me.Panel44.SuspendLayout
+        Me.GroupBox_diagnostic_1021.SuspendLayout
+        Me.GroupBox_diagnostic_1022.SuspendLayout
+        Me.Panel45.SuspendLayout
+        Me.GroupBox_diagnostic_1011.SuspendLayout
+        Me.GroupBox_diagnostic_1012.SuspendLayout
+        Me.Panel37.SuspendLayout
+        Me.Panel39.SuspendLayout
+        Me.Panel40.SuspendLayout
+        Me.GroupBox_diagnostic_921.SuspendLayout
+        Me.GroupBox_diagnostic_922.SuspendLayout
+        Me.Panel41.SuspendLayout
+        Me.GroupBox_diagnostic_911.SuspendLayout
+        Me.GroupBox_diagnostic_912.SuspendLayout
+        Me.tabPage_diagnostique_mesureCommandesRegulation.SuspendLayout
+        Me.Panel127.SuspendLayout
+        Me.Panel26.SuspendLayout
+        Me.GroupBox_diagnostic_571.SuspendLayout
+        CType(Me.ico_oeil571, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.ico_help_571, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox_diagnostic_562.SuspendLayout
+        CType(Me.ico_help_5622, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.ico_help_5621, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox_diagnostic_561.SuspendLayout
+        Me.Panel24.SuspendLayout
+        Me.GroupBox_diagnostic_542.SuspendLayout
+        Me.GroupBox_diagnostic_541.SuspendLayout
+        Me.Panel21.SuspendLayout
+        Me.GroupBox_diagnostic_511.SuspendLayout
+        Me.Panel23.SuspendLayout
+        Me.GroupBox_diagnostic_532.SuspendLayout
+        Me.GroupBox_diagnostic_531.SuspendLayout
+        Me.Panel22.SuspendLayout
+        Me.GroupBox_diagnostic_522.SuspendLayout
+        Me.GroupBox_diagnostic_521.SuspendLayout
+        Me.Panel25.SuspendLayout
+        Me.GroupBox_diagnostic_552.SuspendLayout
+        CType(Me.ico_help_552, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox_diagnostic_551.SuspendLayout
+        CType(Me.ico_help_551, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.tabPage_diagnostique_rampes.SuspendLayout
+        Me.Panel128.SuspendLayout
+        Me.Panel36.SuspendLayout
+        Me.popup_help_831.SuspendLayout
+        Me.Panel125.SuspendLayout
+        Me.GroupBox_diagnostic_833.SuspendLayout
+        Me.GroupBox_diagnostic_832.SuspendLayout
+        Me.GroupBox_diagnostic_831.SuspendLayout
+        CType(Me.ico_help_8314, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.ico_help_8312, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.popup_help_811.SuspendLayout
+        Me.Panel123.SuspendLayout
+        Me.Panel34.SuspendLayout
+        Me.GroupBox_diagnostic_817.SuspendLayout
+        Me.GroupBox_diagnostic_813.SuspendLayout
+        Me.GroupBox_diagnostic_816.SuspendLayout
+        Me.Panel35.SuspendLayout
+        Me.GroupBox_diagnostic_823.SuspendLayout
+        Me.GroupBox_diagnostic_822.SuspendLayout
+        Me.GroupBox_diagnostic_821.SuspendLayout
+        Me.GroupBox_diagnostic_812.SuspendLayout
+        Me.GroupBox_diagnostic_811.SuspendLayout
+        CType(Me.ico_help_811, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox_diagnostic_814.SuspendLayout
+        Me.GroupBox_diagnostic_815.SuspendLayout
+        Me.tabPage_diagnostique_manoTroncon.SuspendLayout
+        Me.pnl_833.SuspendLayout
+        CType(Me.nupTroncons, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.nup_niveaux, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.tab_833.SuspendLayout
+        Me.TabPage1.SuspendLayout
+        Me.GroupBox6.SuspendLayout
+        CType(Me.gdvPressions1, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage2.SuspendLayout
+        Me.GroupBox7.SuspendLayout
+        CType(Me.gdvPressions2, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage8.SuspendLayout
+        Me.GroupBox8.SuspendLayout
+        CType(Me.gdvPressions3, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage9.SuspendLayout
+        Me.GroupBox9.SuspendLayout
+        CType(Me.gdvPressions4, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.pnl542.SuspendLayout
+        Me.GroupBox3.SuspendLayout
+        Me.Panel48.SuspendLayout
+        Me.Panel54.SuspendLayout
+        Me.Panel53.SuspendLayout
+        Me.Panel52.SuspendLayout
+        Me.manopulvePression_panel_erreur.SuspendLayout
+        Me.manopulvePression_panel_manoPulve.SuspendLayout
+        Me.manopulvePression_panel_manoAgent.SuspendLayout
+        Me.Panel46.SuspendLayout
+        Me.Panel292.SuspendLayout
+        Me.tabPage_diagnostique_buses.SuspendLayout
+        Me.Panel922.SuspendLayout
+        Me.Panel11.SuspendLayout
+        Me.diagBuses_tab_categories.SuspendLayout
+        Me.TabPage3.SuspendLayout
+        Me.pblModele_tabMesuresBuses.SuspendLayout
+        Me.Panel68.SuspendLayout
+        Me.Panel70.SuspendLayout
+        Me.Panel12.SuspendLayout
+        Me.pnlModele_tabMesureSecondaire.SuspendLayout
+        Me.Panel69.SuspendLayout
+        Me.Panel71.SuspendLayout
+        Me.Panel38.SuspendLayout
+        Me.Panel49.SuspendLayout
+        Me.Panel66.SuspendLayout
+        Me.Panel67.SuspendLayout
+        Me.Panel97.SuspendLayout
+        Me.Panel98.SuspendLayout
+        Me.Panel99.SuspendLayout
+        Me.Panel100.SuspendLayout
+        Me.Panel101.SuspendLayout
+        Me.Panel102.SuspendLayout
+        Me.Panel103.SuspendLayout
+        Me.Panel104.SuspendLayout
+        Me.Panel105.SuspendLayout
+        Me.Panel106.SuspendLayout
+        Me.Panel107.SuspendLayout
+        Me.Panel108.SuspendLayout
+        Me.Panel109.SuspendLayout
+        Me.Panel110.SuspendLayout
+        Me.Panel111.SuspendLayout
+        Me.Panel112.SuspendLayout
+        Me.Panel113.SuspendLayout
+        Me.Panel114.SuspendLayout
+        Me.Panel115.SuspendLayout
+        Me.Panel116.SuspendLayout
+        Me.Panel117.SuspendLayout
+        Me.Panel118.SuspendLayout
+        Me.Panel119.SuspendLayout
+        Me.Panel120.SuspendLayout
+        Me.Panel63.SuspendLayout
+        Me.tabPage_diagnostique_accessoires.SuspendLayout
+        Me.Panel8.SuspendLayout
+        Me.Panel9.SuspendLayout
+        Me.GroupBox_diagnostic_1213.SuspendLayout
+        Me.GroupBox_diagnostic_1212.SuspendLayout
+        CType(Me.ico_help_12123, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox_diagnostic_1211.SuspendLayout
+        Me.Panel14.SuspendLayout
+        Me.GroupBox_diagnostic_1114.SuspendLayout
+        Me.GroupBox_diagnostic_1113.SuspendLayout
+        Me.GroupBox_diagnostic_1112.SuspendLayout
+        Me.GroupBox_diagnostic_1111.SuspendLayout
+        Me.Panel16.SuspendLayout
+        Me.GroupBox_diagnostic_1241.SuspendLayout
+        Me.GroupBox_diagnostic_1222.SuspendLayout
+        Me.GroupBox_diagnostic_1221.SuspendLayout
+        Me.Panel10.SuspendLayout
+        Me.GroupBox_diagnostic_1232.SuspendLayout
+        CType(Me.ico_help12323, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox_diagnostic_1231.SuspendLayout
+        Me.SuspendLayout
         '
         'ImageList_onglets
         '
@@ -1532,6 +1548,7 @@ Partial Class FrmDiagnostique
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel7.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel7.Controls.Add(Me.ckBloc_23)
         Me.Panel7.Controls.Add(Me.GroupBox_diagnostic_231)
         Me.Panel7.Controls.Add(Me.GroupBox_diagnostic_232)
         Me.Panel7.Controls.Add(Me.Label_diagnostic_23)
@@ -1539,6 +1556,15 @@ Partial Class FrmDiagnostique
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Size = New System.Drawing.Size(280, 502)
         Me.Panel7.TabIndex = 11
+        '
+        'ckBloc_23
+        '
+        Me.ckBloc_23.AutoSize = True
+        Me.ckBloc_23.Location = New System.Drawing.Point(248, 10)
+        Me.ckBloc_23.Name = "ckBloc_23"
+        Me.ckBloc_23.Size = New System.Drawing.Size(15, 14)
+        Me.ckBloc_23.TabIndex = 17
+        Me.ckBloc_23.UseVisualStyleBackColor = True
         '
         'GroupBox_diagnostic_231
         '
@@ -2007,7 +2033,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_23.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_23.Location = New System.Drawing.Point(16, 8)
         Me.Label_diagnostic_23.Name = "Label_diagnostic_23"
-        Me.Label_diagnostic_23.Size = New System.Drawing.Size(260, 29)
+        Me.Label_diagnostic_23.Size = New System.Drawing.Size(202, 29)
         Me.Label_diagnostic_23.TabIndex = 14
         Me.Label_diagnostic_23.Text = "     Fuite de bouillie"
         '
@@ -2201,6 +2227,7 @@ Partial Class FrmDiagnostique
         Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.ckBloc_21)
         Me.Panel3.Controls.Add(Me.Label_diagnostic_21)
         Me.Panel3.Controls.Add(Me.GroupBox_diagnostic_211)
         Me.Panel3.Controls.Add(Me.GroupBox_diagnostic_212)
@@ -2210,6 +2237,15 @@ Partial Class FrmDiagnostique
         Me.Panel3.Size = New System.Drawing.Size(248, 502)
         Me.Panel3.TabIndex = 2
         '
+        'ckBloc_21
+        '
+        Me.ckBloc_21.AutoSize = True
+        Me.ckBloc_21.Location = New System.Drawing.Point(217, 10)
+        Me.ckBloc_21.Name = "ckBloc_21"
+        Me.ckBloc_21.Size = New System.Drawing.Size(15, 14)
+        Me.ckBloc_21.TabIndex = 15
+        Me.ckBloc_21.UseVisualStyleBackColor = True
+        '
         'Label_diagnostic_21
         '
         Me.Label_diagnostic_21.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2218,7 +2254,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_21.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_21.Location = New System.Drawing.Point(16, 8)
         Me.Label_diagnostic_21.Name = "Label_diagnostic_21"
-        Me.Label_diagnostic_21.Size = New System.Drawing.Size(224, 16)
+        Me.Label_diagnostic_21.Size = New System.Drawing.Size(184, 16)
         Me.Label_diagnostic_21.TabIndex = 14
         Me.Label_diagnostic_21.Text = "     Dispositif d'attelage"
         '
@@ -2465,6 +2501,7 @@ Partial Class FrmDiagnostique
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel4.Controls.Add(Me.ckBloc_22)
         Me.Panel4.Controls.Add(Me.GroupBox_diagnostic_225)
         Me.Panel4.Controls.Add(Me.GroupBox_diagnostic_224)
         Me.Panel4.Controls.Add(Me.GroupBox_diagnostic_223)
@@ -2475,6 +2512,15 @@ Partial Class FrmDiagnostique
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(487, 247)
         Me.Panel4.TabIndex = 3
+        '
+        'ckBloc_22
+        '
+        Me.ckBloc_22.AutoSize = True
+        Me.ckBloc_22.Location = New System.Drawing.Point(457, 10)
+        Me.ckBloc_22.Name = "ckBloc_22"
+        Me.ckBloc_22.Size = New System.Drawing.Size(15, 14)
+        Me.ckBloc_22.TabIndex = 16
+        Me.ckBloc_22.UseVisualStyleBackColor = True
         '
         'GroupBox_diagnostic_225
         '
@@ -2907,7 +2953,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_22.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_22.Location = New System.Drawing.Point(16, 8)
         Me.Label_diagnostic_22.Name = "Label_diagnostic_22"
-        Me.Label_diagnostic_22.Size = New System.Drawing.Size(464, 16)
+        Me.Label_diagnostic_22.Size = New System.Drawing.Size(423, 16)
         Me.Label_diagnostic_22.TabIndex = 14
         Me.Label_diagnostic_22.Text = "     Châssis et pièces de structures"
         '
@@ -2929,6 +2975,8 @@ Partial Class FrmDiagnostique
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel15.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel15.Controls.Add(Me.ckbloc_4)
+        Me.Panel15.Controls.Add(Me.ckbloc_3)
         Me.Panel15.Controls.Add(Me.Panel18)
         Me.Panel15.Controls.Add(Me.pnl_46)
         Me.Panel15.Controls.Add(Me.pnl_45)
@@ -3005,7 +3053,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_4641.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_4641.Name = "RadioButton_diagnostic_4641"
         Me.RadioButton_diagnostic_4641.NombreCauses = 0
-        Me.RadioButton_diagnostic_4641.Size = New System.Drawing.Size(259, 16)
+        Me.RadioButton_diagnostic_4641.Size = New System.Drawing.Size(254, 16)
         Me.RadioButton_diagnostic_4641.TabIndex = 0
         '
         'RadioButton_diagnostic_4640
@@ -3029,7 +3077,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_4640.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_4640.Name = "RadioButton_diagnostic_4640"
         Me.RadioButton_diagnostic_4640.NombreCauses = 0
-        Me.RadioButton_diagnostic_4640.Size = New System.Drawing.Size(259, 16)
+        Me.RadioButton_diagnostic_4640.Size = New System.Drawing.Size(254, 16)
         Me.RadioButton_diagnostic_4640.TabIndex = 2
         '
         'RadioButton_diagnostic_4642
@@ -3049,7 +3097,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_4642.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_4642.Libelle = "4.6.4.2 - Non fonctionel"
         Me.RadioButton_diagnostic_4642.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_4642.Location = New System.Drawing.Point(8, 39)
+        Me.RadioButton_diagnostic_4642.Location = New System.Drawing.Point(3, 39)
         Me.RadioButton_diagnostic_4642.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_4642.Name = "RadioButton_diagnostic_4642"
         Me.RadioButton_diagnostic_4642.NombreCauses = 0
@@ -3091,7 +3139,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_4631.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_4631.Name = "RadioButton_diagnostic_4631"
         Me.RadioButton_diagnostic_4631.NombreCauses = 0
-        Me.RadioButton_diagnostic_4631.Size = New System.Drawing.Size(259, 16)
+        Me.RadioButton_diagnostic_4631.Size = New System.Drawing.Size(254, 16)
         Me.RadioButton_diagnostic_4631.TabIndex = 0
         '
         'RadioButton_diagnostic_4630
@@ -3115,7 +3163,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_4630.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_4630.Name = "RadioButton_diagnostic_4630"
         Me.RadioButton_diagnostic_4630.NombreCauses = 0
-        Me.RadioButton_diagnostic_4630.Size = New System.Drawing.Size(259, 16)
+        Me.RadioButton_diagnostic_4630.Size = New System.Drawing.Size(254, 16)
         Me.RadioButton_diagnostic_4630.TabIndex = 2
         '
         'RadioButton_diagnostic_4632
@@ -3139,7 +3187,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_4632.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_4632.Name = "RadioButton_diagnostic_4632"
         Me.RadioButton_diagnostic_4632.NombreCauses = 0
-        Me.RadioButton_diagnostic_4632.Size = New System.Drawing.Size(259, 16)
+        Me.RadioButton_diagnostic_4632.Size = New System.Drawing.Size(254, 16)
         Me.RadioButton_diagnostic_4632.TabIndex = 1
         '
         'GroupBox_diagnostic_462
@@ -3598,7 +3646,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_44.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_44.Location = New System.Drawing.Point(5, 8)
         Me.Label_diagnostic_44.Name = "Label_diagnostic_44"
-        Me.Label_diagnostic_44.Size = New System.Drawing.Size(231, 16)
+        Me.Label_diagnostic_44.Size = New System.Drawing.Size(133, 16)
         Me.Label_diagnostic_44.TabIndex = 11
         Me.Label_diagnostic_44.Text = "     Remplissage"
         '
@@ -3637,7 +3685,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_4411.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_4411.Name = "RadioButton_diagnostic_4411"
         Me.RadioButton_diagnostic_4411.NombreCauses = 0
-        Me.RadioButton_diagnostic_4411.Size = New System.Drawing.Size(213, 16)
+        Me.RadioButton_diagnostic_4411.Size = New System.Drawing.Size(208, 16)
         Me.RadioButton_diagnostic_4411.TabIndex = 0
         '
         'RadioButton_diagnostic_4410
@@ -3661,7 +3709,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_4410.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_4410.Name = "RadioButton_diagnostic_4410"
         Me.RadioButton_diagnostic_4410.NombreCauses = 0
-        Me.RadioButton_diagnostic_4410.Size = New System.Drawing.Size(213, 16)
+        Me.RadioButton_diagnostic_4410.Size = New System.Drawing.Size(208, 16)
         Me.RadioButton_diagnostic_4410.TabIndex = 2
         '
         'RadioButton_diagnostic_4412
@@ -3685,7 +3733,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_4412.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_4412.Name = "RadioButton_diagnostic_4412"
         Me.RadioButton_diagnostic_4412.NombreCauses = 0
-        Me.RadioButton_diagnostic_4412.Size = New System.Drawing.Size(213, 16)
+        Me.RadioButton_diagnostic_4412.Size = New System.Drawing.Size(208, 16)
         Me.RadioButton_diagnostic_4412.TabIndex = 1
         '
         'GroupBox_diagnostic_442
@@ -4364,7 +4412,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Label_diagnostic_4.Location = New System.Drawing.Point(3, 149)
         Me.Label_diagnostic_4.Name = "Label_diagnostic_4"
-        Me.Label_diagnostic_4.Size = New System.Drawing.Size(997, 25)
+        Me.Label_diagnostic_4.Size = New System.Drawing.Size(452, 25)
         Me.Label_diagnostic_4.TabIndex = 16
         Me.Label_diagnostic_4.Text = "     4. Cuve recevant les bouillies phytosanitaires"
         '
@@ -4421,7 +4469,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_3110.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_3110.Name = "RadioButton_diagnostic_3110"
         Me.RadioButton_diagnostic_3110.NombreCauses = 0
-        Me.RadioButton_diagnostic_3110.Size = New System.Drawing.Size(216, 16)
+        Me.RadioButton_diagnostic_3110.Size = New System.Drawing.Size(213, 16)
         Me.RadioButton_diagnostic_3110.TabIndex = 2
         '
         'RadioButton_diagnostic_3112
@@ -4758,7 +4806,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Label_diagnostic_3.Location = New System.Drawing.Point(8, 2)
         Me.Label_diagnostic_3.Name = "Label_diagnostic_3"
-        Me.Label_diagnostic_3.Size = New System.Drawing.Size(994, 31)
+        Me.Label_diagnostic_3.Size = New System.Drawing.Size(146, 31)
         Me.Label_diagnostic_3.TabIndex = 4
         Me.Label_diagnostic_3.Text = "     3. Pompe"
         '
@@ -4923,6 +4971,7 @@ Partial Class FrmDiagnostique
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel27.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel27.Controls.Add(Me.ckbloc_7)
         Me.Panel27.Controls.Add(Me.Panel28)
         Me.Panel27.Controls.Add(Me.Label_diagnostic_7)
         Me.Panel27.Location = New System.Drawing.Point(368, 114)
@@ -5615,7 +5664,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Label_diagnostic_7.Location = New System.Drawing.Point(8, 8)
         Me.Label_diagnostic_7.Name = "Label_diagnostic_7"
-        Me.Label_diagnostic_7.Size = New System.Drawing.Size(616, 25)
+        Me.Label_diagnostic_7.Size = New System.Drawing.Size(116, 25)
         Me.Label_diagnostic_7.TabIndex = 4
         Me.Label_diagnostic_7.Text = "     7. Filtres"
         '
@@ -5638,6 +5687,7 @@ Partial Class FrmDiagnostique
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel42.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel42.Controls.Add(Me.ckbloc_10)
         Me.Panel42.Controls.Add(Me.Panel43)
         Me.Panel42.Controls.Add(Me.Label_diagnostic_10)
         Me.Panel42.Location = New System.Drawing.Point(505, 114)
@@ -6196,7 +6246,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Label_diagnostic_10.Location = New System.Drawing.Point(8, 8)
         Me.Label_diagnostic_10.Name = "Label_diagnostic_10"
-        Me.Label_diagnostic_10.Size = New System.Drawing.Size(479, 25)
+        Me.Label_diagnostic_10.Size = New System.Drawing.Size(243, 25)
         Me.Label_diagnostic_10.TabIndex = 4
         Me.Label_diagnostic_10.Text = "     10. Soufflerie"
         '
@@ -6205,6 +6255,7 @@ Partial Class FrmDiagnostique
         Me.Panel37.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel37.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel37.Controls.Add(Me.ckbloc_9)
         Me.Panel37.Controls.Add(Me.Panel39)
         Me.Panel37.Controls.Add(Me.Label_diagnostic_9)
         Me.Panel37.Location = New System.Drawing.Point(0, 114)
@@ -6638,7 +6689,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_9120.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9120.Name = "RadioButton_diagnostic_9120"
         Me.RadioButton_diagnostic_9120.NombreCauses = 0
-        Me.RadioButton_diagnostic_9120.Size = New System.Drawing.Size(408, 16)
+        Me.RadioButton_diagnostic_9120.Size = New System.Drawing.Size(405, 16)
         Me.RadioButton_diagnostic_9120.TabIndex = 6
         '
         'RadioButton_diagnostic_9122
@@ -6660,7 +6711,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_9122.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9122.Name = "RadioButton_diagnostic_9122"
         Me.RadioButton_diagnostic_9122.NombreCauses = 0
-        Me.RadioButton_diagnostic_9122.Size = New System.Drawing.Size(408, 16)
+        Me.RadioButton_diagnostic_9122.Size = New System.Drawing.Size(405, 16)
         Me.RadioButton_diagnostic_9122.TabIndex = 5
         '
         'RadioButton_diagnostic_9121
@@ -6682,7 +6733,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_9121.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_9121.Name = "RadioButton_diagnostic_9121"
         Me.RadioButton_diagnostic_9121.NombreCauses = 0
-        Me.RadioButton_diagnostic_9121.Size = New System.Drawing.Size(408, 16)
+        Me.RadioButton_diagnostic_9121.Size = New System.Drawing.Size(405, 16)
         Me.RadioButton_diagnostic_9121.TabIndex = 4
         '
         'Label_diagnostic_9
@@ -6695,7 +6746,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Label_diagnostic_9.Location = New System.Drawing.Point(8, 8)
         Me.Label_diagnostic_9.Name = "Label_diagnostic_9"
-        Me.Label_diagnostic_9.Size = New System.Drawing.Size(488, 25)
+        Me.Label_diagnostic_9.Size = New System.Drawing.Size(261, 25)
         Me.Label_diagnostic_9.TabIndex = 4
         Me.Label_diagnostic_9.Text = "     9. Buses de pulvérisation"
         '
@@ -6722,6 +6773,7 @@ Partial Class FrmDiagnostique
         Me.Panel127.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel127.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel127.Controls.Add(Me.ckbloc_5)
         Me.Panel127.Controls.Add(Me.Label_diagnostic_5)
         Me.Panel127.Location = New System.Drawing.Point(0, 112)
         Me.Panel127.Name = "Panel127"
@@ -6738,7 +6790,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_5.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_5.Location = New System.Drawing.Point(8, 8)
         Me.Label_diagnostic_5.Name = "Label_diagnostic_5"
-        Me.Label_diagnostic_5.Size = New System.Drawing.Size(993, 24)
+        Me.Label_diagnostic_5.Size = New System.Drawing.Size(624, 24)
         Me.Label_diagnostic_5.TabIndex = 20
         Me.Label_diagnostic_5.Text = "     5. Appareillage de mesure, commande et systèmes de régulation"
         '
@@ -6748,6 +6800,7 @@ Partial Class FrmDiagnostique
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel26.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel26.Controls.Add(Me.ckbloc_56)
         Me.Panel26.Controls.Add(Me.Label_diagnostic_57)
         Me.Panel26.Controls.Add(Me.GroupBox_diagnostic_571)
         Me.Panel26.Controls.Add(Me.GroupBox_diagnostic_562)
@@ -7877,6 +7930,7 @@ Partial Class FrmDiagnostique
         Me.Panel25.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel25.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel25.Controls.Add(Me.ckbloc_55)
         Me.Panel25.Controls.Add(Me.GroupBox_diagnostic_552)
         Me.Panel25.Controls.Add(Me.GroupBox_diagnostic_551)
         Me.Panel25.Controls.Add(Me.Label_diagnostic_55)
@@ -8092,7 +8146,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_55.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_55.Location = New System.Drawing.Point(8, 8)
         Me.Label_diagnostic_55.Name = "Label_diagnostic_55"
-        Me.Label_diagnostic_55.Size = New System.Drawing.Size(314, 34)
+        Me.Label_diagnostic_55.Size = New System.Drawing.Size(314, 29)
         Me.Label_diagnostic_55.TabIndex = 12
         Me.Label_diagnostic_55.Text = "     Indicateurs utilisés pour la régulation"
         '
@@ -8142,6 +8196,7 @@ Partial Class FrmDiagnostique
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel36.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Panel36.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel36.Controls.Add(Me.ckbloc_83)
         Me.Panel36.Controls.Add(Me.popup_help_831)
         Me.Panel36.Controls.Add(Me.GroupBox_diagnostic_833)
         Me.Panel36.Controls.Add(Me.GroupBox_diagnostic_832)
@@ -8691,7 +8746,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_83.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_83.Location = New System.Drawing.Point(8, 8)
         Me.Label_diagnostic_83.Name = "Label_diagnostic_83"
-        Me.Label_diagnostic_83.Size = New System.Drawing.Size(331, 16)
+        Me.Label_diagnostic_83.Size = New System.Drawing.Size(194, 16)
         Me.Label_diagnostic_83.TabIndex = 13
         Me.Label_diagnostic_83.Text = "     Porte-jets / Diffuseurs"
         '
@@ -8799,6 +8854,7 @@ Partial Class FrmDiagnostique
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel34.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Panel34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel34.Controls.Add(Me.ckbloc_81)
         Me.Panel34.Controls.Add(Me.GroupBox_diagnostic_817)
         Me.Panel34.Controls.Add(Me.GroupBox_diagnostic_813)
         Me.Panel34.Controls.Add(Me.GroupBox_diagnostic_816)
@@ -8822,7 +8878,7 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_817.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GroupBox_diagnostic_817.Location = New System.Drawing.Point(339, 112)
         Me.GroupBox_diagnostic_817.Name = "GroupBox_diagnostic_817"
-        Me.GroupBox_diagnostic_817.Size = New System.Drawing.Size(309, 70)
+        Me.GroupBox_diagnostic_817.Size = New System.Drawing.Size(321, 70)
         Me.GroupBox_diagnostic_817.TabIndex = 16
         Me.GroupBox_diagnostic_817.TabStop = False
         Me.GroupBox_diagnostic_817.Text = "8.1.7 - Lésion sur pièces métalliques"
@@ -8846,7 +8902,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_8172.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8172.Name = "RadioButton_diagnostic_8172"
         Me.RadioButton_diagnostic_8172.NombreCauses = 0
-        Me.RadioButton_diagnostic_8172.Size = New System.Drawing.Size(296, 16)
+        Me.RadioButton_diagnostic_8172.Size = New System.Drawing.Size(301, 16)
         Me.RadioButton_diagnostic_8172.TabIndex = 8
         '
         'RadioButton_diagnostic_8170
@@ -8868,7 +8924,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_8170.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8170.Name = "RadioButton_diagnostic_8170"
         Me.RadioButton_diagnostic_8170.NombreCauses = 0
-        Me.RadioButton_diagnostic_8170.Size = New System.Drawing.Size(296, 16)
+        Me.RadioButton_diagnostic_8170.Size = New System.Drawing.Size(301, 16)
         Me.RadioButton_diagnostic_8170.TabIndex = 7
         '
         'RadioButton_diagnostic_8171
@@ -8890,7 +8946,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_8171.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8171.Name = "RadioButton_diagnostic_8171"
         Me.RadioButton_diagnostic_8171.NombreCauses = 0
-        Me.RadioButton_diagnostic_8171.Size = New System.Drawing.Size(296, 16)
+        Me.RadioButton_diagnostic_8171.Size = New System.Drawing.Size(301, 16)
         Me.RadioButton_diagnostic_8171.TabIndex = 4
         '
         'GroupBox_diagnostic_813
@@ -8982,7 +9038,7 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_816.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GroupBox_diagnostic_816.Location = New System.Drawing.Point(338, 32)
         Me.GroupBox_diagnostic_816.Name = "GroupBox_diagnostic_816"
-        Me.GroupBox_diagnostic_816.Size = New System.Drawing.Size(309, 74)
+        Me.GroupBox_diagnostic_816.Size = New System.Drawing.Size(321, 74)
         Me.GroupBox_diagnostic_816.TabIndex = 15
         Me.GroupBox_diagnostic_816.TabStop = False
         Me.GroupBox_diagnostic_816.Text = "8.1.6 - Corrosion de la rampe"
@@ -9006,7 +9062,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_8162.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8162.Name = "RadioButton_diagnostic_8162"
         Me.RadioButton_diagnostic_8162.NombreCauses = 0
-        Me.RadioButton_diagnostic_8162.Size = New System.Drawing.Size(296, 16)
+        Me.RadioButton_diagnostic_8162.Size = New System.Drawing.Size(302, 16)
         Me.RadioButton_diagnostic_8162.TabIndex = 8
         '
         'RadioButton_diagnostic_8160
@@ -9028,7 +9084,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_8160.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8160.Name = "RadioButton_diagnostic_8160"
         Me.RadioButton_diagnostic_8160.NombreCauses = 0
-        Me.RadioButton_diagnostic_8160.Size = New System.Drawing.Size(296, 16)
+        Me.RadioButton_diagnostic_8160.Size = New System.Drawing.Size(302, 16)
         Me.RadioButton_diagnostic_8160.TabIndex = 7
         '
         'RadioButton_diagnostic_8161
@@ -9050,13 +9106,14 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_8161.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_8161.Name = "RadioButton_diagnostic_8161"
         Me.RadioButton_diagnostic_8161.NombreCauses = 0
-        Me.RadioButton_diagnostic_8161.Size = New System.Drawing.Size(296, 16)
+        Me.RadioButton_diagnostic_8161.Size = New System.Drawing.Size(302, 16)
         Me.RadioButton_diagnostic_8161.TabIndex = 4
         '
         'Panel35
         '
         Me.Panel35.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Panel35.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel35.Controls.Add(Me.ckbloc_82)
         Me.Panel35.Controls.Add(Me.GroupBox_diagnostic_823)
         Me.Panel35.Controls.Add(Me.GroupBox_diagnostic_822)
         Me.Panel35.Controls.Add(Me.GroupBox_diagnostic_821)
@@ -9337,7 +9394,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_82.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_82.Location = New System.Drawing.Point(3, 7)
         Me.Label_diagnostic_82.Name = "Label_diagnostic_82"
-        Me.Label_diagnostic_82.Size = New System.Drawing.Size(320, 16)
+        Me.Label_diagnostic_82.Size = New System.Drawing.Size(241, 16)
         Me.Label_diagnostic_82.TabIndex = 13
         Me.Label_diagnostic_82.Text = "     Comportement de la rampe"
         '
@@ -9773,7 +9830,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_81.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_81.Location = New System.Drawing.Point(8, 8)
         Me.Label_diagnostic_81.Name = "Label_diagnostic_81"
-        Me.Label_diagnostic_81.Size = New System.Drawing.Size(639, 16)
+        Me.Label_diagnostic_81.Size = New System.Drawing.Size(197, 16)
         Me.Label_diagnostic_81.TabIndex = 13
         Me.Label_diagnostic_81.Text = "     Structure de rampe"
         '
@@ -10145,14 +10202,14 @@ Partial Class FrmDiagnostique
         Me.gdvPressions1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions1.ColumnHeadersVisible = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gdvPressions1.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gdvPressions1.DefaultCellStyle = DataGridViewCellStyle9
         Me.gdvPressions1.Location = New System.Drawing.Point(4, 38)
         Me.gdvPressions1.Name = "gdvPressions1"
         Me.gdvPressions1.RowHeadersVisible = False
@@ -10316,14 +10373,14 @@ Partial Class FrmDiagnostique
         Me.gdvPressions2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions2.ColumnHeadersVisible = False
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gdvPressions2.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gdvPressions2.DefaultCellStyle = DataGridViewCellStyle10
         Me.gdvPressions2.Location = New System.Drawing.Point(4, 37)
         Me.gdvPressions2.Name = "gdvPressions2"
         Me.gdvPressions2.RowHeadersVisible = False
@@ -10510,14 +10567,14 @@ Partial Class FrmDiagnostique
         Me.gdvPressions3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions3.ColumnHeadersVisible = False
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gdvPressions3.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gdvPressions3.DefaultCellStyle = DataGridViewCellStyle11
         Me.gdvPressions3.Location = New System.Drawing.Point(4, 37)
         Me.gdvPressions3.Name = "gdvPressions3"
         Me.gdvPressions3.RowHeadersVisible = False
@@ -10703,14 +10760,14 @@ Partial Class FrmDiagnostique
         Me.gdvPressions4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions4.ColumnHeadersVisible = False
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gdvPressions4.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gdvPressions4.DefaultCellStyle = DataGridViewCellStyle12
         Me.gdvPressions4.Location = New System.Drawing.Point(4, 37)
         Me.gdvPressions4.Name = "gdvPressions4"
         Me.gdvPressions4.RowHeadersVisible = False
@@ -12599,6 +12656,8 @@ Partial Class FrmDiagnostique
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel8.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel8.Controls.Add(Me.ckbloc_12)
+        Me.Panel8.Controls.Add(Me.ckbloc_11)
         Me.Panel8.Controls.Add(Me.Panel9)
         Me.Panel8.Controls.Add(Me.Panel14)
         Me.Panel8.Controls.Add(Me.Panel16)
@@ -13475,7 +13534,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_12412.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_12412.Name = "RadioButton_diagnostic_12412"
         Me.RadioButton_diagnostic_12412.NombreCauses = 0
-        Me.RadioButton_diagnostic_12412.Size = New System.Drawing.Size(293, 22)
+        Me.RadioButton_diagnostic_12412.Size = New System.Drawing.Size(294, 22)
         Me.RadioButton_diagnostic_12412.TabIndex = 2
         '
         'RadioButton_diagnostic_12410
@@ -13726,7 +13785,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_11.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_11.Location = New System.Drawing.Point(6, 16)
         Me.Label_diagnostic_11.Name = "Label_diagnostic_11"
-        Me.Label_diagnostic_11.Size = New System.Drawing.Size(994, 24)
+        Me.Label_diagnostic_11.Size = New System.Drawing.Size(356, 24)
         Me.Label_diagnostic_11.TabIndex = 23
         Me.Label_diagnostic_11.Text = "     11. Sécurité routière"
         '
@@ -14156,9 +14215,126 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_12.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label_diagnostic_12.Location = New System.Drawing.Point(6, 167)
         Me.Label_diagnostic_12.Name = "Label_diagnostic_12"
-        Me.Label_diagnostic_12.Size = New System.Drawing.Size(996, 24)
+        Me.Label_diagnostic_12.Size = New System.Drawing.Size(236, 24)
         Me.Label_diagnostic_12.TabIndex = 20
         Me.Label_diagnostic_12.Text = "     12. Accessoires"
+        '
+        'ckbloc_3
+        '
+        Me.ckbloc_3.AutoSize = True
+        Me.ckbloc_3.Location = New System.Drawing.Point(131, 11)
+        Me.ckbloc_3.Name = "ckbloc_3"
+        Me.ckbloc_3.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_3.TabIndex = 27
+        Me.ckbloc_3.UseVisualStyleBackColor = True
+        '
+        'ckbloc_4
+        '
+        Me.ckbloc_4.AutoSize = True
+        Me.ckbloc_4.Location = New System.Drawing.Point(440, 158)
+        Me.ckbloc_4.Name = "ckbloc_4"
+        Me.ckbloc_4.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_4.TabIndex = 28
+        Me.ckbloc_4.UseVisualStyleBackColor = True
+        '
+        'ckbloc_7
+        '
+        Me.ckbloc_7.AutoSize = True
+        Me.ckbloc_7.Location = New System.Drawing.Point(130, 17)
+        Me.ckbloc_7.Name = "ckbloc_7"
+        Me.ckbloc_7.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_7.TabIndex = 30
+        Me.ckbloc_7.UseVisualStyleBackColor = True
+        '
+        'ckbloc_9
+        '
+        Me.ckbloc_9.AutoSize = True
+        Me.ckbloc_9.Location = New System.Drawing.Point(410, 17)
+        Me.ckbloc_9.Name = "ckbloc_9"
+        Me.ckbloc_9.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_9.TabIndex = 31
+        Me.ckbloc_9.UseVisualStyleBackColor = True
+        '
+        'ckbloc_10
+        '
+        Me.ckbloc_10.AutoSize = True
+        Me.ckbloc_10.Location = New System.Drawing.Point(460, 17)
+        Me.ckbloc_10.Name = "ckbloc_10"
+        Me.ckbloc_10.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_10.TabIndex = 32
+        Me.ckbloc_10.UseVisualStyleBackColor = True
+        '
+        'ckbloc_5
+        '
+        Me.ckbloc_5.AutoSize = True
+        Me.ckbloc_5.Location = New System.Drawing.Point(633, 17)
+        Me.ckbloc_5.Name = "ckbloc_5"
+        Me.ckbloc_5.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_5.TabIndex = 32
+        Me.ckbloc_5.UseVisualStyleBackColor = True
+        '
+        'ckbloc_55
+        '
+        Me.ckbloc_55.AutoSize = True
+        Me.ckbloc_55.Location = New System.Drawing.Point(296, 27)
+        Me.ckbloc_55.Name = "ckbloc_55"
+        Me.ckbloc_55.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_55.TabIndex = 33
+        Me.ckbloc_55.UseVisualStyleBackColor = True
+        '
+        'ckbloc_56
+        '
+        Me.ckbloc_56.AutoSize = True
+        Me.ckbloc_56.Location = New System.Drawing.Point(275, 10)
+        Me.ckbloc_56.Name = "ckbloc_56"
+        Me.ckbloc_56.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_56.TabIndex = 34
+        Me.ckbloc_56.UseVisualStyleBackColor = True
+        '
+        'ckbloc_81
+        '
+        Me.ckbloc_81.AutoSize = True
+        Me.ckbloc_81.Location = New System.Drawing.Point(300, 12)
+        Me.ckbloc_81.Name = "ckbloc_81"
+        Me.ckbloc_81.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_81.TabIndex = 34
+        Me.ckbloc_81.UseVisualStyleBackColor = True
+        '
+        'ckbloc_82
+        '
+        Me.ckbloc_82.AutoSize = True
+        Me.ckbloc_82.Location = New System.Drawing.Point(308, 9)
+        Me.ckbloc_82.Name = "ckbloc_82"
+        Me.ckbloc_82.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_82.TabIndex = 35
+        Me.ckbloc_82.UseVisualStyleBackColor = True
+        '
+        'ckbloc_83
+        '
+        Me.ckbloc_83.AutoSize = True
+        Me.ckbloc_83.Location = New System.Drawing.Point(318, 8)
+        Me.ckbloc_83.Name = "ckbloc_83"
+        Me.ckbloc_83.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_83.TabIndex = 35
+        Me.ckbloc_83.UseVisualStyleBackColor = True
+        '
+        'ckbloc_11
+        '
+        Me.ckbloc_11.AutoSize = True
+        Me.ckbloc_11.Location = New System.Drawing.Point(274, 25)
+        Me.ckbloc_11.Name = "ckbloc_11"
+        Me.ckbloc_11.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_11.TabIndex = 35
+        Me.ckbloc_11.UseVisualStyleBackColor = True
+        '
+        'ckbloc_12
+        '
+        Me.ckbloc_12.AutoSize = True
+        Me.ckbloc_12.Location = New System.Drawing.Point(274, 176)
+        Me.ckbloc_12.Name = "ckbloc_12"
+        Me.ckbloc_12.Size = New System.Drawing.Size(15, 14)
+        Me.ckbloc_12.TabIndex = 36
+        Me.ckbloc_12.UseVisualStyleBackColor = True
         '
         'FrmDiagnostique
         '
@@ -14171,258 +14347,272 @@ Partial Class FrmDiagnostique
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FrmDiagnostique"
-        Me.ShowIcon = false
-        Me.ShowInTaskbar = false
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Diagnostique"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.ContextMenuStrip1.ResumeLayout(false)
-        CType(Me.PictureBox2,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Pctb_calc,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel2.ResumeLayout(false)
-        CType(Me.pctLogo,System.ComponentModel.ISupportInitialize).EndInit
-        Me.GroupBox1.ResumeLayout(false)
-        Me.GroupBox2.ResumeLayout(false)
-        Me.Panel1.ResumeLayout(false)
-        Me.tab_diagnostique.ResumeLayout(false)
-        Me.tabPage_diagnostique_etatGeneral.ResumeLayout(false)
-        Me.Panel129.ResumeLayout(false)
-        Me.Panel5.ResumeLayout(false)
-        Me.GroupBox_diagnostic_241.ResumeLayout(false)
-        Me.Panel7.ResumeLayout(false)
-        Me.GroupBox_diagnostic_231.ResumeLayout(false)
-        Me.GroupBox_diagnostic_232.ResumeLayout(false)
-        Me.Panel6.ResumeLayout(false)
-        Me.GroupBox_diagnostic_252.ResumeLayout(false)
-        Me.GroupBox_diagnostic_251.ResumeLayout(false)
-        Me.Panel3.ResumeLayout(false)
-        Me.GroupBox_diagnostic_211.ResumeLayout(false)
-        Me.GroupBox_diagnostic_212.ResumeLayout(false)
-        Me.GroupBox_diagnostic_213.ResumeLayout(false)
-        Me.Panel4.ResumeLayout(false)
-        Me.GroupBox_diagnostic_225.ResumeLayout(false)
-        Me.GroupBox_diagnostic_224.ResumeLayout(false)
-        Me.GroupBox_diagnostic_223.ResumeLayout(false)
-        Me.GroupBox_diagnostic_222.ResumeLayout(false)
-        Me.GroupBox_diagnostic_221.ResumeLayout(false)
-        Me.tabPage_diagnostique_pompeCuve.ResumeLayout(false)
-        Me.Panel15.ResumeLayout(false)
-        Me.pnl_46.ResumeLayout(false)
-        Me.GroupBox_diagnostic_464.ResumeLayout(false)
-        Me.GroupBox_diagnostic_463.ResumeLayout(false)
-        Me.GroupBox_diagnostic_462.ResumeLayout(false)
-        Me.GroupBox_diagnostic_461.ResumeLayout(false)
-        Me.pnl_45.ResumeLayout(false)
-        Me.GroupBox_diagnostic_452.ResumeLayout(false)
-        Me.GroupBox_diagnostic_451.ResumeLayout(false)
-        Me.pnl_44.ResumeLayout(false)
-        Me.GroupBox_diagnostic_441.ResumeLayout(false)
-        Me.GroupBox_diagnostic_442.ResumeLayout(false)
-        Me.pnl_42.ResumeLayout(false)
-        Me.GroupBox_diagnostic_421.ResumeLayout(false)
-        Me.pnl_41.ResumeLayout(false)
-        Me.GroupBox_diagnostic_411.ResumeLayout(false)
-        Me.GroupBox_diagnostic_412.ResumeLayout(false)
-        Me.pnl_43.ResumeLayout(false)
-        Me.GroupBox_diagnostic_432.ResumeLayout(false)
-        Me.GroupBox_diagnostic_431.ResumeLayout(false)
-        Me.Panel130.ResumeLayout(false)
-        Me.Panel132.ResumeLayout(false)
-        Me.GroupBox_diagnostic_311.ResumeLayout(false)
-        Me.Panel133.ResumeLayout(false)
-        Me.GroupBox_diagnostic_323.ResumeLayout(false)
-        Me.GroupBox_diagnostic_322.ResumeLayout(false)
-        Me.GroupBox_diagnostic_321.ResumeLayout(false)
-        Me.tabPage_diagnostique_flexiblesFiltres.ResumeLayout(false)
-        Me.Panel33.ResumeLayout(false)
-        Me.GroupBox_diagnostic_611.ResumeLayout(false)
-        Me.Panel27.ResumeLayout(false)
-        Me.Panel28.ResumeLayout(false)
-        Me.Panel32.ResumeLayout(false)
-        Me.GroupBox_diagnostic_741.ResumeLayout(false)
-        Me.Panel31.ResumeLayout(false)
-        Me.GroupBox_diagnostic_731.ResumeLayout(false)
-        Me.Panel29.ResumeLayout(false)
-        Me.GroupBox_diagnostic_721.ResumeLayout(false)
-        Me.Panel30.ResumeLayout(false)
-        Me.GroupBox_diagnostic_711.ResumeLayout(false)
-        Me.tabPage_diagnostique_jetsSoufflerie.ResumeLayout(false)
-        Me.Panel42.ResumeLayout(false)
-        Me.Panel43.ResumeLayout(false)
-        Me.Panel44.ResumeLayout(false)
-        Me.GroupBox_diagnostic_1021.ResumeLayout(false)
-        Me.GroupBox_diagnostic_1022.ResumeLayout(false)
-        Me.Panel45.ResumeLayout(false)
-        Me.GroupBox_diagnostic_1011.ResumeLayout(false)
-        Me.GroupBox_diagnostic_1012.ResumeLayout(false)
-        Me.Panel37.ResumeLayout(false)
-        Me.Panel39.ResumeLayout(false)
-        Me.Panel40.ResumeLayout(false)
-        Me.GroupBox_diagnostic_921.ResumeLayout(false)
-        Me.GroupBox_diagnostic_922.ResumeLayout(false)
-        Me.Panel41.ResumeLayout(false)
-        Me.GroupBox_diagnostic_911.ResumeLayout(false)
-        Me.GroupBox_diagnostic_912.ResumeLayout(false)
-        Me.tabPage_diagnostique_mesureCommandesRegulation.ResumeLayout(false)
-        Me.Panel127.ResumeLayout(false)
-        Me.Panel26.ResumeLayout(false)
-        Me.GroupBox_diagnostic_571.ResumeLayout(false)
-        CType(Me.ico_oeil571,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.ico_help_571,System.ComponentModel.ISupportInitialize).EndInit
-        Me.GroupBox_diagnostic_562.ResumeLayout(false)
-        CType(Me.ico_help_5622,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.ico_help_5621,System.ComponentModel.ISupportInitialize).EndInit
-        Me.GroupBox_diagnostic_561.ResumeLayout(false)
-        Me.Panel24.ResumeLayout(false)
-        Me.GroupBox_diagnostic_542.ResumeLayout(false)
-        Me.GroupBox_diagnostic_541.ResumeLayout(false)
-        Me.Panel21.ResumeLayout(false)
-        Me.GroupBox_diagnostic_511.ResumeLayout(false)
-        Me.Panel23.ResumeLayout(false)
-        Me.GroupBox_diagnostic_532.ResumeLayout(false)
-        Me.GroupBox_diagnostic_531.ResumeLayout(false)
-        Me.Panel22.ResumeLayout(false)
-        Me.GroupBox_diagnostic_522.ResumeLayout(false)
-        Me.GroupBox_diagnostic_521.ResumeLayout(false)
-        Me.Panel25.ResumeLayout(false)
-        Me.GroupBox_diagnostic_552.ResumeLayout(false)
-        CType(Me.ico_help_552,System.ComponentModel.ISupportInitialize).EndInit
-        Me.GroupBox_diagnostic_551.ResumeLayout(false)
-        CType(Me.ico_help_551,System.ComponentModel.ISupportInitialize).EndInit
-        Me.tabPage_diagnostique_rampes.ResumeLayout(false)
-        Me.Panel128.ResumeLayout(false)
-        Me.Panel36.ResumeLayout(false)
-        Me.popup_help_831.ResumeLayout(false)
-        Me.Panel125.ResumeLayout(false)
+        Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.Pctb_calc, System.ComponentModel.ISupportInitialize).EndInit
+        Me.Panel2.ResumeLayout(False)
+        CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).EndInit
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
+        Me.tab_diagnostique.ResumeLayout(False)
+        Me.tabPage_diagnostique_etatGeneral.ResumeLayout(False)
+        Me.Panel129.ResumeLayout(False)
+        Me.Panel5.ResumeLayout(False)
+        Me.GroupBox_diagnostic_241.ResumeLayout(False)
+        Me.Panel7.ResumeLayout(False)
+        Me.Panel7.PerformLayout
+        Me.GroupBox_diagnostic_231.ResumeLayout(False)
+        Me.GroupBox_diagnostic_232.ResumeLayout(False)
+        Me.Panel6.ResumeLayout(False)
+        Me.GroupBox_diagnostic_252.ResumeLayout(False)
+        Me.GroupBox_diagnostic_251.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout
+        Me.GroupBox_diagnostic_211.ResumeLayout(False)
+        Me.GroupBox_diagnostic_212.ResumeLayout(False)
+        Me.GroupBox_diagnostic_213.ResumeLayout(False)
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout
+        Me.GroupBox_diagnostic_225.ResumeLayout(False)
+        Me.GroupBox_diagnostic_224.ResumeLayout(False)
+        Me.GroupBox_diagnostic_223.ResumeLayout(False)
+        Me.GroupBox_diagnostic_222.ResumeLayout(False)
+        Me.GroupBox_diagnostic_221.ResumeLayout(False)
+        Me.tabPage_diagnostique_pompeCuve.ResumeLayout(False)
+        Me.Panel15.ResumeLayout(False)
+        Me.Panel15.PerformLayout
+        Me.pnl_46.ResumeLayout(False)
+        Me.GroupBox_diagnostic_464.ResumeLayout(False)
+        Me.GroupBox_diagnostic_463.ResumeLayout(False)
+        Me.GroupBox_diagnostic_462.ResumeLayout(False)
+        Me.GroupBox_diagnostic_461.ResumeLayout(False)
+        Me.pnl_45.ResumeLayout(False)
+        Me.GroupBox_diagnostic_452.ResumeLayout(False)
+        Me.GroupBox_diagnostic_451.ResumeLayout(False)
+        Me.pnl_44.ResumeLayout(False)
+        Me.GroupBox_diagnostic_441.ResumeLayout(False)
+        Me.GroupBox_diagnostic_442.ResumeLayout(False)
+        Me.pnl_42.ResumeLayout(False)
+        Me.GroupBox_diagnostic_421.ResumeLayout(False)
+        Me.pnl_41.ResumeLayout(False)
+        Me.GroupBox_diagnostic_411.ResumeLayout(False)
+        Me.GroupBox_diagnostic_412.ResumeLayout(False)
+        Me.pnl_43.ResumeLayout(False)
+        Me.GroupBox_diagnostic_432.ResumeLayout(False)
+        Me.GroupBox_diagnostic_431.ResumeLayout(False)
+        Me.Panel130.ResumeLayout(False)
+        Me.Panel132.ResumeLayout(False)
+        Me.GroupBox_diagnostic_311.ResumeLayout(False)
+        Me.Panel133.ResumeLayout(False)
+        Me.GroupBox_diagnostic_323.ResumeLayout(False)
+        Me.GroupBox_diagnostic_322.ResumeLayout(False)
+        Me.GroupBox_diagnostic_321.ResumeLayout(False)
+        Me.tabPage_diagnostique_flexiblesFiltres.ResumeLayout(False)
+        Me.Panel33.ResumeLayout(False)
+        Me.GroupBox_diagnostic_611.ResumeLayout(False)
+        Me.Panel27.ResumeLayout(False)
+        Me.Panel27.PerformLayout
+        Me.Panel28.ResumeLayout(False)
+        Me.Panel32.ResumeLayout(False)
+        Me.GroupBox_diagnostic_741.ResumeLayout(False)
+        Me.Panel31.ResumeLayout(False)
+        Me.GroupBox_diagnostic_731.ResumeLayout(False)
+        Me.Panel29.ResumeLayout(False)
+        Me.GroupBox_diagnostic_721.ResumeLayout(False)
+        Me.Panel30.ResumeLayout(False)
+        Me.GroupBox_diagnostic_711.ResumeLayout(False)
+        Me.tabPage_diagnostique_jetsSoufflerie.ResumeLayout(False)
+        Me.Panel42.ResumeLayout(False)
+        Me.Panel42.PerformLayout
+        Me.Panel43.ResumeLayout(False)
+        Me.Panel44.ResumeLayout(False)
+        Me.GroupBox_diagnostic_1021.ResumeLayout(False)
+        Me.GroupBox_diagnostic_1022.ResumeLayout(False)
+        Me.Panel45.ResumeLayout(False)
+        Me.GroupBox_diagnostic_1011.ResumeLayout(False)
+        Me.GroupBox_diagnostic_1012.ResumeLayout(False)
+        Me.Panel37.ResumeLayout(False)
+        Me.Panel37.PerformLayout
+        Me.Panel39.ResumeLayout(False)
+        Me.Panel40.ResumeLayout(False)
+        Me.GroupBox_diagnostic_921.ResumeLayout(False)
+        Me.GroupBox_diagnostic_922.ResumeLayout(False)
+        Me.Panel41.ResumeLayout(False)
+        Me.GroupBox_diagnostic_911.ResumeLayout(False)
+        Me.GroupBox_diagnostic_912.ResumeLayout(False)
+        Me.tabPage_diagnostique_mesureCommandesRegulation.ResumeLayout(False)
+        Me.Panel127.ResumeLayout(False)
+        Me.Panel127.PerformLayout
+        Me.Panel26.ResumeLayout(False)
+        Me.Panel26.PerformLayout
+        Me.GroupBox_diagnostic_571.ResumeLayout(False)
+        CType(Me.ico_oeil571, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.ico_help_571, System.ComponentModel.ISupportInitialize).EndInit
+        Me.GroupBox_diagnostic_562.ResumeLayout(False)
+        CType(Me.ico_help_5622, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.ico_help_5621, System.ComponentModel.ISupportInitialize).EndInit
+        Me.GroupBox_diagnostic_561.ResumeLayout(False)
+        Me.Panel24.ResumeLayout(False)
+        Me.GroupBox_diagnostic_542.ResumeLayout(False)
+        Me.GroupBox_diagnostic_541.ResumeLayout(False)
+        Me.Panel21.ResumeLayout(False)
+        Me.GroupBox_diagnostic_511.ResumeLayout(False)
+        Me.Panel23.ResumeLayout(False)
+        Me.GroupBox_diagnostic_532.ResumeLayout(False)
+        Me.GroupBox_diagnostic_531.ResumeLayout(False)
+        Me.Panel22.ResumeLayout(False)
+        Me.GroupBox_diagnostic_522.ResumeLayout(False)
+        Me.GroupBox_diagnostic_521.ResumeLayout(False)
+        Me.Panel25.ResumeLayout(False)
+        Me.Panel25.PerformLayout
+        Me.GroupBox_diagnostic_552.ResumeLayout(False)
+        CType(Me.ico_help_552, System.ComponentModel.ISupportInitialize).EndInit
+        Me.GroupBox_diagnostic_551.ResumeLayout(False)
+        CType(Me.ico_help_551, System.ComponentModel.ISupportInitialize).EndInit
+        Me.tabPage_diagnostique_rampes.ResumeLayout(False)
+        Me.Panel128.ResumeLayout(False)
+        Me.Panel36.ResumeLayout(False)
+        Me.Panel36.PerformLayout
+        Me.popup_help_831.ResumeLayout(False)
+        Me.Panel125.ResumeLayout(False)
         Me.Panel125.PerformLayout
-        Me.GroupBox_diagnostic_833.ResumeLayout(false)
-        Me.GroupBox_diagnostic_832.ResumeLayout(false)
-        Me.GroupBox_diagnostic_831.ResumeLayout(false)
-        CType(Me.ico_help_8314,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.ico_help_8312,System.ComponentModel.ISupportInitialize).EndInit
-        Me.popup_help_811.ResumeLayout(false)
-        Me.Panel123.ResumeLayout(false)
+        Me.GroupBox_diagnostic_833.ResumeLayout(False)
+        Me.GroupBox_diagnostic_832.ResumeLayout(False)
+        Me.GroupBox_diagnostic_831.ResumeLayout(False)
+        CType(Me.ico_help_8314, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.ico_help_8312, System.ComponentModel.ISupportInitialize).EndInit
+        Me.popup_help_811.ResumeLayout(False)
+        Me.Panel123.ResumeLayout(False)
         Me.Panel123.PerformLayout
-        Me.Panel34.ResumeLayout(false)
-        Me.GroupBox_diagnostic_817.ResumeLayout(false)
-        Me.GroupBox_diagnostic_813.ResumeLayout(false)
-        Me.GroupBox_diagnostic_816.ResumeLayout(false)
-        Me.Panel35.ResumeLayout(false)
-        Me.GroupBox_diagnostic_823.ResumeLayout(false)
-        Me.GroupBox_diagnostic_822.ResumeLayout(false)
-        Me.GroupBox_diagnostic_821.ResumeLayout(false)
-        Me.GroupBox_diagnostic_812.ResumeLayout(false)
-        Me.GroupBox_diagnostic_811.ResumeLayout(false)
-        CType(Me.ico_help_811,System.ComponentModel.ISupportInitialize).EndInit
-        Me.GroupBox_diagnostic_814.ResumeLayout(false)
-        Me.GroupBox_diagnostic_815.ResumeLayout(false)
-        Me.tabPage_diagnostique_manoTroncon.ResumeLayout(false)
-        Me.pnl_833.ResumeLayout(false)
+        Me.Panel34.ResumeLayout(False)
+        Me.Panel34.PerformLayout
+        Me.GroupBox_diagnostic_817.ResumeLayout(False)
+        Me.GroupBox_diagnostic_813.ResumeLayout(False)
+        Me.GroupBox_diagnostic_816.ResumeLayout(False)
+        Me.Panel35.ResumeLayout(False)
+        Me.Panel35.PerformLayout
+        Me.GroupBox_diagnostic_823.ResumeLayout(False)
+        Me.GroupBox_diagnostic_822.ResumeLayout(False)
+        Me.GroupBox_diagnostic_821.ResumeLayout(False)
+        Me.GroupBox_diagnostic_812.ResumeLayout(False)
+        Me.GroupBox_diagnostic_811.ResumeLayout(False)
+        CType(Me.ico_help_811, System.ComponentModel.ISupportInitialize).EndInit
+        Me.GroupBox_diagnostic_814.ResumeLayout(False)
+        Me.GroupBox_diagnostic_815.ResumeLayout(False)
+        Me.tabPage_diagnostique_manoTroncon.ResumeLayout(False)
+        Me.pnl_833.ResumeLayout(False)
         Me.pnl_833.PerformLayout
-        CType(Me.nupTroncons,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.nup_niveaux,System.ComponentModel.ISupportInitialize).EndInit
-        Me.tab_833.ResumeLayout(false)
-        Me.TabPage1.ResumeLayout(false)
+        CType(Me.nupTroncons, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.nup_niveaux, System.ComponentModel.ISupportInitialize).EndInit
+        Me.tab_833.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout
-        Me.GroupBox6.ResumeLayout(false)
+        Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout
-        CType(Me.gdvPressions1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.TabPage2.ResumeLayout(false)
+        CType(Me.gdvPressions1, System.ComponentModel.ISupportInitialize).EndInit
+        Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout
-        Me.GroupBox7.ResumeLayout(false)
+        Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout
-        CType(Me.gdvPressions2,System.ComponentModel.ISupportInitialize).EndInit
-        Me.TabPage8.ResumeLayout(false)
+        CType(Me.gdvPressions2, System.ComponentModel.ISupportInitialize).EndInit
+        Me.TabPage8.ResumeLayout(False)
         Me.TabPage8.PerformLayout
-        Me.GroupBox8.ResumeLayout(false)
+        Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox8.PerformLayout
-        CType(Me.gdvPressions3,System.ComponentModel.ISupportInitialize).EndInit
-        Me.TabPage9.ResumeLayout(false)
+        CType(Me.gdvPressions3, System.ComponentModel.ISupportInitialize).EndInit
+        Me.TabPage9.ResumeLayout(False)
         Me.TabPage9.PerformLayout
-        Me.GroupBox9.ResumeLayout(false)
+        Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox9.PerformLayout
-        CType(Me.gdvPressions4,System.ComponentModel.ISupportInitialize).EndInit
-        Me.pnl542.ResumeLayout(false)
-        Me.GroupBox3.ResumeLayout(false)
+        CType(Me.gdvPressions4, System.ComponentModel.ISupportInitialize).EndInit
+        Me.pnl542.ResumeLayout(False)
+        Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout
-        Me.Panel48.ResumeLayout(false)
-        Me.Panel54.ResumeLayout(false)
-        Me.Panel53.ResumeLayout(false)
-        Me.Panel52.ResumeLayout(false)
-        Me.manopulvePression_panel_erreur.ResumeLayout(false)
+        Me.Panel48.ResumeLayout(False)
+        Me.Panel54.ResumeLayout(False)
+        Me.Panel53.ResumeLayout(False)
+        Me.Panel52.ResumeLayout(False)
+        Me.manopulvePression_panel_erreur.ResumeLayout(False)
         Me.manopulvePression_panel_erreur.PerformLayout
-        Me.manopulvePression_panel_manoPulve.ResumeLayout(false)
+        Me.manopulvePression_panel_manoPulve.ResumeLayout(False)
         Me.manopulvePression_panel_manoPulve.PerformLayout
-        Me.manopulvePression_panel_manoAgent.ResumeLayout(false)
+        Me.manopulvePression_panel_manoAgent.ResumeLayout(False)
         Me.manopulvePression_panel_manoAgent.PerformLayout
-        Me.Panel46.ResumeLayout(false)
-        Me.Panel292.ResumeLayout(false)
+        Me.Panel46.ResumeLayout(False)
+        Me.Panel292.ResumeLayout(False)
         Me.Panel292.PerformLayout
-        Me.tabPage_diagnostique_buses.ResumeLayout(false)
-        Me.Panel922.ResumeLayout(false)
-        Me.Panel11.ResumeLayout(false)
+        Me.tabPage_diagnostique_buses.ResumeLayout(False)
+        Me.Panel922.ResumeLayout(False)
+        Me.Panel11.ResumeLayout(False)
         Me.Panel11.PerformLayout
-        Me.diagBuses_tab_categories.ResumeLayout(false)
-        Me.TabPage3.ResumeLayout(false)
+        Me.diagBuses_tab_categories.ResumeLayout(False)
+        Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout
-        Me.pblModele_tabMesuresBuses.ResumeLayout(false)
-        Me.Panel68.ResumeLayout(false)
-        Me.Panel70.ResumeLayout(false)
-        Me.Panel12.ResumeLayout(false)
-        Me.pnlModele_tabMesureSecondaire.ResumeLayout(false)
-        Me.Panel69.ResumeLayout(false)
+        Me.pblModele_tabMesuresBuses.ResumeLayout(False)
+        Me.Panel68.ResumeLayout(False)
+        Me.Panel70.ResumeLayout(False)
+        Me.Panel12.ResumeLayout(False)
+        Me.pnlModele_tabMesureSecondaire.ResumeLayout(False)
+        Me.Panel69.ResumeLayout(False)
         Me.Panel69.PerformLayout
-        Me.Panel71.ResumeLayout(false)
+        Me.Panel71.ResumeLayout(False)
         Me.Panel71.PerformLayout
-        Me.Panel38.ResumeLayout(false)
+        Me.Panel38.ResumeLayout(False)
         Me.Panel38.PerformLayout
-        Me.Panel49.ResumeLayout(false)
+        Me.Panel49.ResumeLayout(False)
         Me.Panel49.PerformLayout
-        Me.Panel66.ResumeLayout(false)
-        Me.Panel67.ResumeLayout(false)
-        Me.Panel97.ResumeLayout(false)
+        Me.Panel66.ResumeLayout(False)
+        Me.Panel67.ResumeLayout(False)
+        Me.Panel97.ResumeLayout(False)
         Me.Panel97.PerformLayout
-        Me.Panel98.ResumeLayout(false)
+        Me.Panel98.ResumeLayout(False)
         Me.Panel98.PerformLayout
-        Me.Panel99.ResumeLayout(false)
-        Me.Panel100.ResumeLayout(false)
+        Me.Panel99.ResumeLayout(False)
+        Me.Panel100.ResumeLayout(False)
         Me.Panel100.PerformLayout
-        Me.Panel101.ResumeLayout(false)
+        Me.Panel101.ResumeLayout(False)
         Me.Panel101.PerformLayout
-        Me.Panel102.ResumeLayout(false)
-        Me.Panel103.ResumeLayout(false)
+        Me.Panel102.ResumeLayout(False)
+        Me.Panel103.ResumeLayout(False)
         Me.Panel103.PerformLayout
-        Me.Panel104.ResumeLayout(false)
+        Me.Panel104.ResumeLayout(False)
         Me.Panel104.PerformLayout
-        Me.Panel105.ResumeLayout(false)
-        Me.Panel106.ResumeLayout(false)
-        Me.Panel107.ResumeLayout(false)
+        Me.Panel105.ResumeLayout(False)
+        Me.Panel106.ResumeLayout(False)
+        Me.Panel107.ResumeLayout(False)
         Me.Panel107.PerformLayout
-        Me.Panel108.ResumeLayout(false)
+        Me.Panel108.ResumeLayout(False)
         Me.Panel108.PerformLayout
-        Me.Panel109.ResumeLayout(false)
+        Me.Panel109.ResumeLayout(False)
         Me.Panel109.PerformLayout
-        Me.Panel110.ResumeLayout(false)
-        Me.Panel111.ResumeLayout(false)
+        Me.Panel110.ResumeLayout(False)
+        Me.Panel111.ResumeLayout(False)
         Me.Panel111.PerformLayout
-        Me.Panel112.ResumeLayout(false)
+        Me.Panel112.ResumeLayout(False)
         Me.Panel112.PerformLayout
-        Me.Panel113.ResumeLayout(false)
+        Me.Panel113.ResumeLayout(False)
         Me.Panel113.PerformLayout
-        Me.Panel114.ResumeLayout(false)
-        Me.Panel115.ResumeLayout(false)
+        Me.Panel114.ResumeLayout(False)
+        Me.Panel115.ResumeLayout(False)
         Me.Panel115.PerformLayout
-        Me.Panel116.ResumeLayout(false)
+        Me.Panel116.ResumeLayout(False)
         Me.Panel116.PerformLayout
-        Me.Panel117.ResumeLayout(false)
-        Me.Panel118.ResumeLayout(false)
+        Me.Panel117.ResumeLayout(False)
+        Me.Panel118.ResumeLayout(False)
         Me.Panel118.PerformLayout
-        Me.Panel119.ResumeLayout(false)
-        Me.Panel120.ResumeLayout(false)
+        Me.Panel119.ResumeLayout(False)
+        Me.Panel120.ResumeLayout(False)
         Me.Panel120.PerformLayout
-        Me.Panel63.ResumeLayout(false)
-        Me.tabPage_diagnostique_accessoires.ResumeLayout(false)
-        Me.Panel8.ResumeLayout(false)
+        Me.Panel63.ResumeLayout(False)
+        Me.tabPage_diagnostique_accessoires.ResumeLayout(False)
+        Me.Panel8.ResumeLayout(False)
+        Me.Panel8.PerformLayout
         Me.Panel9.ResumeLayout(false)
         Me.GroupBox_diagnostic_1213.ResumeLayout(false)
         Me.GroupBox_diagnostic_1212.ResumeLayout(false)
@@ -15264,4 +15454,20 @@ End Sub
     End Sub
     Friend WithEvents ico_help12323 As System.Windows.Forms.PictureBox
     Friend WithEvents Label_diagnostic_124 As System.Windows.Forms.Label
+    Friend WithEvents ckBloc_21 As CheckBox
+    Friend WithEvents ckBloc_23 As CheckBox
+    Friend WithEvents ckBloc_22 As CheckBox
+    Friend WithEvents ckbloc_3 As CheckBox
+    Friend WithEvents ckbloc_4 As CheckBox
+    Friend WithEvents ckbloc_7 As CheckBox
+    Friend WithEvents ckbloc_10 As CheckBox
+    Friend WithEvents ckbloc_9 As CheckBox
+    Friend WithEvents ckbloc_5 As CheckBox
+    Friend WithEvents ckbloc_56 As CheckBox
+    Friend WithEvents ckbloc_55 As CheckBox
+    Friend WithEvents ckbloc_83 As CheckBox
+    Friend WithEvents ckbloc_81 As CheckBox
+    Friend WithEvents ckbloc_82 As CheckBox
+    Friend WithEvents ckbloc_12 As CheckBox
+    Friend WithEvents ckbloc_11 As CheckBox
 End Class
