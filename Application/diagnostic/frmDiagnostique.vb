@@ -9555,6 +9555,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     '''
     Private Function LectureParametresAffichage(ByVal pFichierParametrage As String) As Boolean
         Dim bReturn As Boolean
+        Dim nNiveau As Integer
         Try
             Dim oCtrl1 As Control
             Dim olst As New CRODIP_ControlLibrary.LstParamCtrlDiag()
@@ -9562,32 +9563,31 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 'Parours de la liste des params lus
                 For Each oParam As CRODIP_ControlLibrary.ParamCtrlDiag In olst.ListeParam
                     Dim strCode As String = oParam.Code
+                    'Exclusion des paramètes 'Préliminaires"
                     If Not strCode.StartsWith("1.") Then
-                        'Exclusion des paramètes 'Préliminaires"
+                        'Numéro de niveau = nbre de . dans le code +1
+                        nNiveau = Len(strCode) - Len(Replace(strCode, ".", "")) + 1
                         strCode = strCode.Replace(".", "") 'Remplace les codes par rien
                         If oParam.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_GROUPE Then
                             'C'est un Label ou un Group
                             oCtrl1 = CSForm.getControlByName("Label_diagnostic_" & strCode, Me)
                             If oCtrl1 IsNot Nothing Then
-                                Dim oLbl As Label = TryCast(oCtrl1, Label)
+                                Dim oLbl As CRODIP_ControlLibrary.CtrlParamNiveau = TryCast(oCtrl1, CRODIP_ControlLibrary.CtrlParamNiveau)
                                 If oLbl IsNot Nothing Then
-                                    If oLbl.Image Is Nothing Then
-                                        oLbl.Text = oParam.Code & " " & oParam.Libelle
+                                    'Il faut indiquer le Label en dernier car c'est ce qui permet de recalculer les tailles du controle
+                                    oLbl.Niveau = nNiveau
+                                    oLbl.bValidBloc = oParam.ValidBloc
+                                    oLbl.Tag = strCode
+                                    If nNiveau = 1 Then
+                                        oLbl.Label = oParam.Libelle
                                     Else
-                                        oLbl.Text = "     " & oParam.Code & " " & oParam.Libelle 'Décalage à cause de l'image !!!!
+                                        oLbl.Label = oParam.Code & " " & oParam.Libelle
                                     End If
-                                    Dim strCtrlName As String
-                                    strCtrlName = "ckBloc_" & strCode
-                                    Dim oCtrl As CheckBox
-                                    oCtrl = CSForm.getControlByName(strCtrlName, Me)
-                                    If oCtrl IsNot Nothing Then
-                                        oCtrl.Tag = strCode
-                                        AddHandler oCtrl.CheckedChanged, AddressOf ckBlocCheckedChanged
-                                    End If
+                                    AddHandler oLbl.CheckedChanged, AddressOf ckBlocCheckedChanged
                                 End If
                             Else
-            'Si ce n'est pas Label c'est peut-être un groupe
-            oCtrl1 = CSForm.getControlByName("GroupBox_diagnostic_" & strCode, Me)
+                                'Si ce n'est pas Label c'est peut-être un groupe
+                                oCtrl1 = CSForm.getControlByName("GroupBox_diagnostic_" & strCode, Me)
                                 If oCtrl1 IsNot Nothing Then
                                     Dim ogrp As GroupBox = TryCast(oCtrl1, GroupBox)
                                     If ogrp IsNot Nothing Then
@@ -10655,19 +10655,19 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
 
     Private Sub ckBlocCheckedChanged(sender As Object, e As EventArgs)
-        Dim oCtrl As CheckBox = sender
+        Dim oCtrl As CRODIP_ControlLibrary.CtrlParamNiveau = sender
         Dim strCode As String = oCtrl.Tag
-        Dim tGrpBox As Control()
+        Dim tCtrl As Control()
         Dim tRadio
         'Recherche de tous les groupBox contenant le Code dans la fenêtre
         For n As Integer = 1 To 9
             '1°) Existe-t-il un niveau en dessous
-            tGrpBox = Me.Controls.Find("GroupBox_diagnostic_" & strCode & n, True)
-            If tGrpBox.Count() > 0 Then
+            tCtrl = Me.Controls.Find("GroupBox_diagnostic_" & strCode & n, True)
+            If tCtrl.Count() > 0 Then
 
 
                 'Pour Chaque GroupBox, Recherche des RadioButton se terminant par 0
-                For Each oGrp As GroupBox In tGrpBox
+                For Each oGrp As GroupBox In tCtrl
                     tRadio = oGrp.Controls.OfType(Of CRODIP_ControlLibrary.CtrlDiag2).Where(Function(o) o.Name.EndsWith("0"))
                     For Each oRb As CRODIP_ControlLibrary.CtrlDiag2 In tRadio
                         oRb.Checked = oCtrl.Checked
@@ -10676,16 +10676,21 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Else
                 'Il n'y  pas de group Box à ce niveau , on Descent d'un niveau
                 For n1 As Integer = 1 To 9
-                    tGrpBox = Me.Controls.Find("ckBloc_" & strCode & n1, True)
-                    If tGrpBox.Count() = 0 Then
+                    '1°) on vérifie s'il y a un Label_Diag avec une checlBox
+                    Dim bPresenceCk As Boolean = False
+                    tCtrl = Me.Controls.Find("Label_diagnostic_" & strCode & n1, True)
+                    If tCtrl.Count() = 1 Then
+                        Dim oCtrl2 As CRODIP_ControlLibrary.CtrlParamNiveau
+                        oCtrl2 = tCtrl(0)
+                        bPresenceCk = oCtrl2.bValidBloc
+                    End If
+                    If Not bPresenceCk Then
                         For n2 As Integer = 1 To 9
                             '1°) Existe-t-il un niveau en dessous
-                            tGrpBox = Me.Controls.Find("GroupBox_diagnostic_" & strCode & n1 & n2, True)
-                            If tGrpBox.Count() > 0 Then
-
-
+                            tCtrl = Me.Controls.Find("GroupBox_diagnostic_" & strCode & n1 & n2, True)
+                            If tCtrl.Count() > 0 Then
                                 'Pour Chaque GroupBox, Recherche des RadioButton se terminant par 0
-                                For Each oGrp As GroupBox In tGrpBox
+                                For Each oGrp As GroupBox In tCtrl
                                     tRadio = oGrp.Controls.OfType(Of CRODIP_ControlLibrary.CtrlDiag2).Where(Function(o) o.Name.EndsWith("0"))
                                     For Each oRb As CRODIP_ControlLibrary.CtrlDiag2 In tRadio
                                         oRb.Checked = oCtrl.Checked

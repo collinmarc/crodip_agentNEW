@@ -117,17 +117,20 @@ Public Class LstParamCtrlDiag
         Dim bReturn As Boolean
         Try
             Dim olst As New LstParamCtrlDiag()
-            Dim objStreamReader As New StreamReader(strFileName)
-            Dim x As New XmlSerializer(Me.GetType)
-            olst = x.Deserialize(objStreamReader)
-            objStreamReader.Close()
-            ListeParam.Clear()
-            For Each oParam As ParamCtrlDiag In olst.ListeParam
-                If String.IsNullOrEmpty(oParam.LibelleLong) Then
-                    oParam.LibelleLong = oParam.Libelle
-                End If
-                ListeParam.Add(oParam)
-            Next
+            Using objStreamReader As New StreamReader(strFileName)
+
+                Dim x As New XmlSerializer(Me.GetType)
+
+                olst = x.Deserialize(objStreamReader)
+                objStreamReader.Close()
+                ListeParam.Clear()
+                For Each oParam As ParamCtrlDiag In olst.ListeParam
+                    If String.IsNullOrEmpty(oParam.LibelleLong) Then
+                        oParam.LibelleLong = oParam.Libelle
+                    End If
+                    ListeParam.Add(oParam)
+                Next
+            End Using
             bReturn = True
         Catch ex As Exception
             bReturn = False
@@ -248,6 +251,15 @@ Public Class ParamCtrlDiag
 
         End Set
     End Property
+    Private _bValidBoc As Boolean
+    Public Property ValidBloc() As Boolean
+        Get
+            Return _bValidBoc
+        End Get
+        Set(ByVal value As Boolean)
+            _bValidBoc = value
+        End Set
+    End Property
     ''' <summary>
     ''' Affecte les paramétre à un controle de diagnostique
     ''' </summary>
@@ -269,6 +281,7 @@ Public Class ParamCtrlDiag
             pCtrlDiag.Cause2 = Cause2
             pCtrlDiag.cause3 = Cause3
             pCtrlDiag.Enabled = Actif
+
             bReturn = True
         Catch ex As Exception
             bReturn = False
@@ -288,7 +301,9 @@ Public Class ParamCtrlDiag
         m_bCause2 = False
         m_bCause3 = False
         m_Actif = True
+
         m_Niveau = 4 'Niveau défaut par défaut
+        ValidBloc = False
     End Sub
 
     Public Shared Function ConvertCode(ByVal pOldCode As String) As String

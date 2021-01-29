@@ -1,6 +1,10 @@
 TRUNK
 MASTER
 
+BUILD 20210129180000
+--------------------
+0001096: Accélération de la saisie des contrôles : Validation par blocs
+
 BUILD 20210125180000
 --------------------
 0001325: Ajout d'une acquisistion ERECA (PULVEAUBE)

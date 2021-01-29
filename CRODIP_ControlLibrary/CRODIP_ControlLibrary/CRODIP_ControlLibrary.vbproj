@@ -179,6 +179,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CtrlParamNiveau.Designer.vb">
+      <DependentUpon>CtrlParamNiveau.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlParamNiveau.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ParamDiag\ParamDiag.vb" />
     <Compile Include="ParamDiag\ParamDiagCalc542Ecart.vb" />
     <Compile Include="ParamDiag\ParamDiagCalc542PlagePression.vb" />
@@ -230,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlDiag2.resx">
       <DependentUpon>CtrlDiag2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlParamNiveau.resx">
+      <DependentUpon>CtrlParamNiveau.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

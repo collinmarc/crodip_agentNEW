@@ -56,11 +56,13 @@
     <!-- Etat Général -->
     <ParamCtrlDiag>
       <Code>2</Code>
-      <Libelle>Etat Général</Libelle>
+      <Libelle>Etat général</Libelle>
+      <ValidBloc>true</ValidBloc>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.1</Code>
       <Libelle>Dispositif d'attelage</Libelle>
+      <ValidBloc>true</ValidBloc>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.1.1</Code>
@@ -109,6 +111,7 @@
     <ParamCtrlDiag>
       <Code>2.4</Code>
       <Libelle>Transmission au niveau du pulvé</Libelle>
+      <ValidBloc>true</ValidBloc>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.4.1</Code>
@@ -323,7 +326,15 @@
       <Code>5.6.2</Code>
       <Libelle>Fonctionnement</Libelle>
     </ParamCtrlDiag>
-	<!-- Flexibles canalisation filtres -->
+    <ParamCtrlDiag>
+      <Code>5.7</Code>
+      <Libelle>Réglage du volume par hectare</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.7.1</Code>
+      <Libelle>Intégration des erreurs individuelles</Libelle>
+    </ParamCtrlDiag>
+    <!-- Flexibles canalisation filtres -->
     <ParamCtrlDiag>
       <Code>6</Code>
       <Libelle>Flexibles et canalisations</Libelle>

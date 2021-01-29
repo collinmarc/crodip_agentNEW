@@ -127,9 +127,9 @@ Public Class AcquisitionERECA
             If Not String.IsNullOrEmpty(oValueERECA.DebitNominal) Then
                 oValueCRODIP.DebitNominal = oValueERECA.DebitNominal.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
             End If
-
-            If Not String.IsNullOrEmpty(oValueERECA.DebitMesure) Then
-                oValueCRODIP.Debit = oValueERECA.DebitMesure.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+            'Valeur récupérée dans le diag
+            If Not String.IsNullOrEmpty(oValueERECA.DebEq3b) Then
+                oValueCRODIP.Debit = oValueERECA.DebEq3b.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
             End If
             If Not String.IsNullOrEmpty(oValueERECA.PressionMesuree) Then
                 oValueCRODIP.Pression = oValueERECA.PressionMesuree.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)

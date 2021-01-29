@@ -802,7 +802,7 @@ Public Class login
         Dim oExploit As Exploitation
         Dim oDiag As Diagnostic
         oPulve = PulverisateurManager.getPulverisateurById("2-81-22")
-        oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
+        oPulve.type = "Cultures basses"
         'oPulve.categorie = "Traitement des semences"
         'oPulve.buseFonctionnement = "CUILLERE"
         oPulve.isPompesDoseuses = True
