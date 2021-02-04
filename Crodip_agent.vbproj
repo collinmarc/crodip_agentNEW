@@ -796,9 +796,6 @@
     <Compile Include="Application\includes\fonctions\CSListSorter.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Application\includes\fonctions\CSLocali.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Application\includes\fonctions\CSLogin.vb">
       <SubType>Code</SubType>
     </Compile>

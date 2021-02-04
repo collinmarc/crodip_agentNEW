@@ -58,6 +58,7 @@
       <Code>2</Code>
       <Libelle>Etat général</Libelle>
       <ValidBloc>true</ValidBloc>
+      <ValidBloc2>true</ValidBloc2>
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.1</Code>

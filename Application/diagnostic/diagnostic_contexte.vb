@@ -1,3 +1,5 @@
+Imports System.Collections.Generic
+
 Public Class diagnostic_contexte
     Inherits System.Windows.Forms.Form
 
@@ -48,6 +50,7 @@ Public Class diagnostic_contexte
 
     Protected m_diagnostic As Diagnostic
     Protected m_Pulverisateur As Pulverisateur
+    Friend WithEvents m_bsCommune As BindingSource
     Protected ClientCourant As Exploitation
 #End Region
 
@@ -109,6 +112,7 @@ Public Class diagnostic_contexte
     Friend WithEvents cbxSite As System.Windows.Forms.ComboBox
     Friend WithEvents cbxcommune As System.Windows.Forms.ComboBox
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_contexte))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.btnChezProp = New System.Windows.Forms.Button()
@@ -170,6 +174,7 @@ Public Class diagnostic_contexte
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.rbPrecontroleOui = New System.Windows.Forms.RadioButton()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.m_bsCommune = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -180,6 +185,7 @@ Public Class diagnostic_contexte
         Me.Panel4.SuspendLayout()
         Me.pnlprecontroleOuiNon.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        CType(Me.m_bsCommune, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -242,6 +248,8 @@ Public Class diagnostic_contexte
         '
         'cbxcommune
         '
+        Me.cbxcommune.DataSource = Me.m_bsCommune
+        Me.cbxcommune.DisplayMember = "Nom"
         Me.cbxcommune.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxcommune.Location = New System.Drawing.Point(193, 42)
         Me.cbxcommune.Name = "cbxcommune"
@@ -845,6 +853,10 @@ Public Class diagnostic_contexte
         Me.Label6.TabIndex = 15
         Me.Label6.Text = "Dans l’optique du contrôle,"
         '
+        'm_bsCommune
+        '
+        Me.m_bsCommune.DataSource = GetType(Crodip_agent.Commune)
+        '
         'diagnostic_contexte
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -878,6 +890,7 @@ Public Class diagnostic_contexte
         Me.pnlprecontroleOuiNon.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        CType(Me.m_bsCommune, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1117,24 +1130,6 @@ Public Class diagnostic_contexte
         End If
     End Sub
 
-    Private Sub codePostal_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbcodePostal.TextChanged
-        Try
-            ' Mise a jour de la liste des villes
-            cbxcommune.Items.Clear()
-            If sender.Text.Length > 4 Then
-                Dim arrVilles(,) As String = CSLocali.getVilleByCp(sender.text)
-                For i As Integer = 0 To arrVilles.GetLength(1) - 1
-                    If arrVilles(1, i) <> "" Then
-                        Dim objComboItem As New objComboItem(arrVilles(0, i), arrVilles(1, i))
-                        cbxcommune.Items.Add(objComboItem)
-                    End If
-                Next
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("diagnostic_context.loadVillesByCodePostal : " & ex.Message)
-        End Try
-    End Sub
-
     Private Sub isPrecontrolePro_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
     End Sub
@@ -1152,6 +1147,17 @@ Public Class diagnostic_contexte
 
     Private Sub RappelInfosDernierControle()
         tbcodePostal.Text = My.Settings.DernierControleCodePostal
+        m_bsCommune.Clear()
+        Dim oReferentiel As ReferentielCommunesCSV
+        Dim lstCommunes As List(Of Commune)
+        oReferentiel = New ReferentielCommunesCSV()
+        oReferentiel.load()
+        m_bsCommune.Clear()
+        lstCommunes = oReferentiel.getCommunes(My.Settings.DernierControleCodePostal)
+        For Each sCommune As Commune In lstCommunes
+            m_bsCommune.Add(sCommune)
+        Next
+
         cbxcommune.Text = My.Settings.DernierControleCommune
         cbxSite.Text = My.Settings.DernierControleSite
         tbnomSite.Text = My.Settings.DernierControleNomDuSite
@@ -1163,7 +1169,8 @@ Public Class diagnostic_contexte
     End Sub
     Private Sub RappelInfosChezProprietaire()
         tbcodePostal.Text = ClientCourant.codePostal
-        cbxcommune.Text = ClientCourant.commune
+        m_bsCommune.Clear()
+        m_bsCommune.Add(New Commune(ClientCourant.commune, "", ClientCourant.codePostal))
         cbxSite.Text = "Chez propriétaire"
         tbnomSite.Text = ""
         tbNomPrenomRepresentant.Text = ""
@@ -1212,17 +1219,33 @@ Public Class diagnostic_contexte
             End If
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("Diagnostique_contexte.FillNbreExploitants ERR:" & ex.Message)
+            CSDebug.dispError("Diagnostic_contexte.FillNbreExploitants ERR:" & ex.Message)
             bReturn = False
         End Try
         Return bReturn
     End Function
 
-    Private Sub cbxterritoire_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+    Private Sub tbcodePostal_Validated(sender As Object, e As EventArgs) Handles tbcodePostal.Validated
+        Try
+            If sender.text <> "" Then
+                LoadCommunes(sender.text)
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("Diagnostic_contexte.tbcodePostal_Validated ERR: " & ex.Message)
+        End Try
 
     End Sub
-
-    Private Sub Label5_Click(sender As Object, e As EventArgs)
-
+    Protected Sub LoadCommunes(pCodePostal As String)
+        Debug.Assert(Not String.IsNullOrEmpty(pCodePostal))
+        Dim oReferentiel As ReferentielCommunesCSV
+        Dim lstCommunes As List(Of Commune)
+        oReferentiel = New ReferentielCommunesCSV()
+        oReferentiel.load()
+        m_bsCommune.Clear()
+        lstCommunes = oReferentiel.getCommunes(pCodePostal)
+        For Each sCommune As Commune In lstCommunes
+            m_bsCommune.Add(sCommune)
+        Next
     End Sub
 End Class

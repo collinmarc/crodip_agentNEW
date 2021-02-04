@@ -1,6 +1,10 @@
 TRUNK
 MASTER
 
+BUILD : 20210204180000
+-----------------------
+0001329: Les communes chargées par CP ne sont pas les mêmes en fiche client et en fiche Contexte
+
 BUILD 20210129180000
 --------------------
 0001096: Accélération de la saisie des contrôles : Validation par blocs
