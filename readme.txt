@@ -4,6 +4,7 @@ MASTER
 BUILD : 20210204180000
 -----------------------
 0001329: Les communes chargées par CP ne sont pas les mêmes en fiche client et en fiche Contexte
+0001330: AncienIdentifiant en mode Gestionnaire
 
 BUILD 20210129180000
 --------------------
