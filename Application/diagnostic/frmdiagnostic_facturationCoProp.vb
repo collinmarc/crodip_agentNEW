@@ -726,7 +726,7 @@ Public Class frmdiagnostic_facturationCoProp
 
                 Next
                 oEtat.GenereEtat()
-                m_pathFacture = oEtat.getFileName()
+                m_pathFacture = oEtat.getFileNameFullPath()
             End If
         Catch ex As Exception
             CSDebug.dispError("diagnostic_finalisation::createFacture_CR : " & ex.Message)

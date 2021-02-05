@@ -5,6 +5,9 @@ BUILD : 20210204180000
 -----------------------
 0001329: Les communes chargées par CP ne sont pas les mêmes en fiche client et en fiche Contexte
 0001330: AncienIdentifiant en mode Gestionnaire
+0001331: Fenêtre diagnostic : Encadré sur le 9.2.2
+0001332: L'Aquisition ERECA met à jour le débit nominal
+0001333: La facture de co-propo ne s'affiche pas après génération
 
 BUILD 20210129180000
 --------------------

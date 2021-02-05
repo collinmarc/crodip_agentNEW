@@ -4332,57 +4332,57 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                             mutCalcUsure1Buse(oValue.Niveau, oValue.NumBuse)
                             mutCalcIs1BuseUsee(oValue.Niveau, oValue.NumBuse)
                         End If
-                        If oValue.DebitNominal <> -1 Then
-                            'Debit Nominal constructeur
-                            x = CSForm.getControlByName("TextBox_debitNominalCONSTructeur_" & oValue.Niveau, diagBuses_tab_categories)
-                            If x IsNot Nothing Then
-                                x.Text = oValue.DebitNominal
-                            End If
-                            'Debit Nominal pour Calcul
-                            x = CSForm.getControlByName("TextBox_debitNominal_" & oValue.Niveau, diagBuses_tab_categories)
-                            If x IsNot Nothing Then
-                                x.Text = oValue.DebitNominal
-                            End If
-                        End If
-                        If oValue.MarqueTypeFonctionement <> "" Then
-                            Try
-                                Dim tab As String() = oValue.MarqueTypeFonctionement.Split("-")
-                                Dim strMarque As String = tab(0).Trim
-                                Dim strModele As String = tab(1).Trim
-                                Dim strFonction As String = tab(2).Trim
+                        'If oValue.DebitNominal <> -1 Then
+                        '    'Debit Nominal constructeur
+                        '    x = CSForm.getControlByName("TextBox_debitNominalCONSTructeur_" & oValue.Niveau, diagBuses_tab_categories)
+                        '    If x IsNot Nothing Then
+                        '        x.Text = oValue.DebitNominal
+                        '    End If
+                        '    'Debit Nominal pour Calcul
+                        '    x = CSForm.getControlByName("TextBox_debitNominal_" & oValue.Niveau, diagBuses_tab_categories)
+                        '    If x IsNot Nothing Then
+                        '        x.Text = oValue.DebitNominal
+                        '    End If
+                        'End If
+                        'If oValue.MarqueTypeFonctionement <> "" Then
+                        '    Try
+                        '        Dim tab As String() = oValue.MarqueTypeFonctionement.Split("-")
+                        '        Dim strMarque As String = tab(0).Trim
+                        '        Dim strModele As String = tab(1).Trim
+                        '        Dim strFonction As String = tab(2).Trim
 
-                                x = CSForm.getControlByName("ComboBox_marque_" & oValue.Niveau, diagBuses_tab_categories)
-                                If x IsNot Nothing Then
-                                    x.Text = strMarque
-                                End If
-                                x = CSForm.getControlByName("ComboBox_modele_" & oValue.Niveau, diagBuses_tab_categories)
-                                If x IsNot Nothing Then
-                                    x.Text = strModele
-                                End If
+                        '        x = CSForm.getControlByName("ComboBox_marque_" & oValue.Niveau, diagBuses_tab_categories)
+                        '        If x IsNot Nothing Then
+                        '            x.Text = strMarque
+                        '        End If
+                        '        x = CSForm.getControlByName("ComboBox_modele_" & oValue.Niveau, diagBuses_tab_categories)
+                        '        If x IsNot Nothing Then
+                        '            x.Text = strModele
+                        '        End If
 
-                            Catch
+                        '    Catch
 
-                            End Try
-                        End If
-                        If oValue.Calibre <> "" Then
-                            Try
-                                Dim tab As String() = oValue.MarqueTypeFonctionement.Split("-")
-                                Dim strCouleur As String = tab(0).Trim
-                                Dim strCalibre As String = tab(1).Trim
+                        '    End Try
+                        'End If
+                        'If oValue.Calibre <> "" Then
+                        '    Try
+                        '        Dim tab As String() = oValue.MarqueTypeFonctionement.Split("-")
+                        '        Dim strCouleur As String = tab(0).Trim
+                        '        Dim strCalibre As String = tab(1).Trim
 
-                                x = CSForm.getControlByName("ComboBox_couleur_" & oValue.Niveau, diagBuses_tab_categories)
-                                If x IsNot Nothing Then
-                                    x.Text = strCouleur
-                                End If
-                                x = CSForm.getControlByName("TextBox_calibre_" & oValue.Niveau, diagBuses_tab_categories)
-                                If x IsNot Nothing Then
-                                    x.Text = strCalibre
-                                End If
+                        '        x = CSForm.getControlByName("ComboBox_couleur_" & oValue.Niveau, diagBuses_tab_categories)
+                        '        If x IsNot Nothing Then
+                        '            x.Text = strCouleur
+                        '        End If
+                        '        x = CSForm.getControlByName("TextBox_calibre_" & oValue.Niveau, diagBuses_tab_categories)
+                        '        If x IsNot Nothing Then
+                        '            x.Text = strCalibre
+                        '        End If
 
-                            Catch
+                        '    Catch
 
-                            End Try
-                        End If
+                        '    End Try
+                        'End If
 
 
                     Catch ex As Exception
