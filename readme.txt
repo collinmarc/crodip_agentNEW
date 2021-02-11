@@ -5,7 +5,8 @@ BUILD : XXXXXXXX
 -----------------------
 0001334: Erreur dans la partie Synthese des mesures su rapport d'inspection
 Paraméatrage synhcro
-0001338: Cacher le bouton 'Remplace' dans la liste des coontroles
+0001338: Cacher le bouton 'Remplacer' dans la liste des controles
+0001337: Signature à postériori : Blocage en Valider sur le Recap
 
 
 BUILD : 20210204180000

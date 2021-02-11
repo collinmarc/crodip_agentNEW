@@ -922,7 +922,7 @@ Public Class frmdiagnostic_recap
         Try
             Try
                 Statusbar.display(Globals.CONST_STATUTMSG_DIAG_SAVING, True)
-                If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
+                If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Or m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE Then
                     'Lecture de la fenêtre
                     GetInfos()
                     '
@@ -1010,22 +1010,22 @@ Public Class frmdiagnostic_recap
 
                         ' On met en place les boutons
                         btn_finalisationDiag_valider.Text = "Poursuivre"
-                            btn_finalisationDiag_imprimerRapport.Enabled = True
-                            btn_finalisationDiag_modifierDiag.Enabled = False
-                            btn_finalisationDiag_imprimerSynthese.Enabled = True
-                            btn_ContratCommercial.Enabled = True
+                        btn_finalisationDiag_imprimerRapport.Enabled = True
+                        btn_finalisationDiag_modifierDiag.Enabled = False
+                        btn_finalisationDiag_imprimerSynthese.Enabled = True
+                        btn_ContratCommercial.Enabled = True
 
-                            'Désactivation de l'apperçu
-                            btnAppercu.Enabled = False
-                            rbEtatRI.Enabled = False
-                            rbEtatSM.Enabled = False
-                            rbEtatCC.Enabled = False
-                            CrystalReportViewer1.Enabled = False
-                            isValider = True
-                            Statusbar.display("", False)
-                            bReturn = True
-                        Else
-                            CSDebug.dispFatal("Erreur en génération de rapport, recommencez. En cas de récidive, prevenez le CRODIP")
+                        'Désactivation de l'apperçu
+                        btnAppercu.Enabled = False
+                        rbEtatRI.Enabled = False
+                        rbEtatSM.Enabled = False
+                        rbEtatCC.Enabled = False
+                        CrystalReportViewer1.Enabled = False
+                        isValider = True
+                        Statusbar.display("", False)
+                        bReturn = True
+                    Else
+                        CSDebug.dispFatal("Erreur en génération de rapport, recommencez. En cas de récidive, prevenez le CRODIP")
                     End If
                 End If
             Catch ex As Exception
