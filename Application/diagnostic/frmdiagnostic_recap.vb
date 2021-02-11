@@ -1311,7 +1311,6 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Private Sub AppercuDocument()
-        CSDebug.dispInfo("TBD : Appercu document")
         If rbEtatRI.Checked Then
             createEtatRapportInspection(False)
         End If

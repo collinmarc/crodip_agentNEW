@@ -69,6 +69,9 @@ Public Class accueil
     Friend WithEvents btnParamModeSimplifie As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents btnMAJsynchroAgent As Button
+    Friend WithEvents grpParamSynhcro As GroupBox
+    Friend WithEvents ckSynchroDESC As CheckBox
+    Friend WithEvents ckSynchroASC As CheckBox
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -159,8 +162,8 @@ Public Class accueil
     Friend WithEvents lstPulves_client_proprioSiren As System.Windows.Forms.Label
     Friend WithEvents lstPulves_client_raisonSociale As System.Windows.Forms.Label
     Friend WithEvents synchroLog As System.Windows.Forms.ColumnHeader
-    Friend WithEvents lbl_infosAgent_dateLastUse As System.Windows.Forms.Label
-    Friend WithEvents lbl_infosAgent_dateLastConnexion As System.Windows.Forms.Label
+    Friend WithEvents lbl_infosAgent_dateDernCnx As System.Windows.Forms.Label
+    Friend WithEvents lbl_infosAgent_dateDernSynchro As System.Windows.Forms.Label
     Friend WithEvents listClients_col_commune As System.Windows.Forms.ColumnHeader
     Friend WithEvents ColumnHeader8 As System.Windows.Forms.ColumnHeader
     Friend WithEvents ColumnHeader9 As System.Windows.Forms.ColumnHeader
@@ -335,7 +338,7 @@ Public Class accueil
         Me.Label9 = New System.Windows.Forms.Label()
         Me.title_mesAlertes = New System.Windows.Forms.Label()
         Me.tabAccueil_mesinfos = New System.Windows.Forms.Panel()
-        Me.lbl_infosAgent_dateLastUse = New System.Windows.Forms.Label()
+        Me.lbl_infosAgent_dateDernCnx = New System.Windows.Forms.Label()
         Me.lbl_infosAgent_IdCrodip = New System.Windows.Forms.Label()
         Me.pctLogo = New System.Windows.Forms.PictureBox()
         Me.lbl_mesInfos_dateDernièreConnexion = New System.Windows.Forms.Label()
@@ -346,7 +349,7 @@ Public Class accueil
         Me.title_mesInfos = New System.Windows.Forms.Label()
         Me.lbl_infosAgent_Nom = New System.Windows.Forms.Label()
         Me.lbl_infosAgent_Prenom = New System.Windows.Forms.Label()
-        Me.lbl_infosAgent_dateLastConnexion = New System.Windows.Forms.Label()
+        Me.lbl_infosAgent_dateDernSynchro = New System.Windows.Forms.Label()
         Me.tabControl_clientele = New System.Windows.Forms.TabPage()
         Me.panel_clientele_ficheClient = New System.Windows.Forms.Panel()
         Me.grp_ficheClient_ListePulve = New System.Windows.Forms.GroupBox()
@@ -426,6 +429,9 @@ Public Class accueil
         Me.Label19 = New System.Windows.Forms.Label()
         Me.tabControl_synchro = New System.Windows.Forms.TabPage()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.grpParamSynhcro = New System.Windows.Forms.GroupBox()
+        Me.ckSynchroDESC = New System.Windows.Forms.CheckBox()
+        Me.ckSynchroASC = New System.Windows.Forms.CheckBox()
         Me.pnl_ListSynhcros = New System.Windows.Forms.Panel()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.lbSynhcroCourante = New System.Windows.Forms.ListBox()
@@ -547,6 +553,7 @@ Public Class accueil
         CType(Me.listPulve_btn_refreshList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_synchro.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        Me.grpParamSynhcro.SuspendLayout()
         Me.pnl_ListSynhcros.SuspendLayout()
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer2.Panel1.SuspendLayout()
@@ -944,7 +951,7 @@ Public Class accueil
         Me.tabAccueil_mesinfos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabAccueil_mesinfos.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_dateLastUse)
+        Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_dateDernCnx)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_IdCrodip)
         Me.tabAccueil_mesinfos.Controls.Add(Me.pctLogo)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_mesInfos_dateDernièreConnexion)
@@ -955,18 +962,18 @@ Public Class accueil
         Me.tabAccueil_mesinfos.Controls.Add(Me.title_mesInfos)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_Nom)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_Prenom)
-        Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_dateLastConnexion)
+        Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_dateDernSynchro)
         Me.tabAccueil_mesinfos.Location = New System.Drawing.Point(0, 0)
         Me.tabAccueil_mesinfos.Name = "tabAccueil_mesinfos"
         Me.tabAccueil_mesinfos.Size = New System.Drawing.Size(1000, 136)
         Me.tabAccueil_mesinfos.TabIndex = 0
         '
-        'lbl_infosAgent_dateLastUse
+        'lbl_infosAgent_dateDernCnx
         '
-        Me.lbl_infosAgent_dateLastUse.Location = New System.Drawing.Point(576, 56)
-        Me.lbl_infosAgent_dateLastUse.Name = "lbl_infosAgent_dateLastUse"
-        Me.lbl_infosAgent_dateLastUse.Size = New System.Drawing.Size(176, 16)
-        Me.lbl_infosAgent_dateLastUse.TabIndex = 8
+        Me.lbl_infosAgent_dateDernCnx.Location = New System.Drawing.Point(576, 56)
+        Me.lbl_infosAgent_dateDernCnx.Name = "lbl_infosAgent_dateDernCnx"
+        Me.lbl_infosAgent_dateDernCnx.Size = New System.Drawing.Size(176, 16)
+        Me.lbl_infosAgent_dateDernCnx.TabIndex = 8
         '
         'lbl_infosAgent_IdCrodip
         '
@@ -1061,12 +1068,12 @@ Public Class accueil
         Me.lbl_infosAgent_Prenom.Size = New System.Drawing.Size(176, 16)
         Me.lbl_infosAgent_Prenom.TabIndex = 7
         '
-        'lbl_infosAgent_dateLastConnexion
+        'lbl_infosAgent_dateDernSynchro
         '
-        Me.lbl_infosAgent_dateLastConnexion.Location = New System.Drawing.Point(576, 80)
-        Me.lbl_infosAgent_dateLastConnexion.Name = "lbl_infosAgent_dateLastConnexion"
-        Me.lbl_infosAgent_dateLastConnexion.Size = New System.Drawing.Size(176, 16)
-        Me.lbl_infosAgent_dateLastConnexion.TabIndex = 8
+        Me.lbl_infosAgent_dateDernSynchro.Location = New System.Drawing.Point(576, 80)
+        Me.lbl_infosAgent_dateDernSynchro.Name = "lbl_infosAgent_dateDernSynchro"
+        Me.lbl_infosAgent_dateDernSynchro.Size = New System.Drawing.Size(176, 16)
+        Me.lbl_infosAgent_dateDernSynchro.TabIndex = 8
         '
         'tabControl_clientele
         '
@@ -1885,6 +1892,7 @@ Public Class accueil
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel4.Controls.Add(Me.grpParamSynhcro)
         Me.Panel4.Controls.Add(Me.pnl_ListSynhcros)
         Me.Panel4.Controls.Add(Me.LaChrgmtSynhcro)
         Me.Panel4.Controls.Add(Me.btn_InitLog)
@@ -1899,6 +1907,41 @@ Public Class accueil
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1000, 656)
         Me.Panel4.TabIndex = 8
+        '
+        'grpParamSynhcro
+        '
+        Me.grpParamSynhcro.Controls.Add(Me.ckSynchroDESC)
+        Me.grpParamSynhcro.Controls.Add(Me.ckSynchroASC)
+        Me.grpParamSynhcro.Location = New System.Drawing.Point(605, 12)
+        Me.grpParamSynhcro.Name = "grpParamSynhcro"
+        Me.grpParamSynhcro.Size = New System.Drawing.Size(215, 44)
+        Me.grpParamSynhcro.TabIndex = 28
+        Me.grpParamSynhcro.TabStop = False
+        Me.grpParamSynhcro.Text = "Debug"
+        '
+        'ckSynchroDESC
+        '
+        Me.ckSynchroDESC.AutoSize = True
+        Me.ckSynchroDESC.Checked = True
+        Me.ckSynchroDESC.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ckSynchroDESC.Location = New System.Drawing.Point(111, 19)
+        Me.ckSynchroDESC.Name = "ckSynchroDESC"
+        Me.ckSynchroDESC.Size = New System.Drawing.Size(97, 17)
+        Me.ckSynchroDESC.TabIndex = 1
+        Me.ckSynchroDESC.Text = "Synchro DESC"
+        Me.ckSynchroDESC.UseVisualStyleBackColor = True
+        '
+        'ckSynchroASC
+        '
+        Me.ckSynchroASC.AutoSize = True
+        Me.ckSynchroASC.Checked = True
+        Me.ckSynchroASC.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ckSynchroASC.Location = New System.Drawing.Point(6, 19)
+        Me.ckSynchroASC.Name = "ckSynchroASC"
+        Me.ckSynchroASC.Size = New System.Drawing.Size(89, 17)
+        Me.ckSynchroASC.TabIndex = 0
+        Me.ckSynchroASC.Text = "Synchro ASC"
+        Me.ckSynchroASC.UseVisualStyleBackColor = True
         '
         'pnl_ListSynhcros
         '
@@ -3142,6 +3185,8 @@ Public Class accueil
         CType(Me.listPulve_btn_refreshList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_synchro.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
+        Me.grpParamSynhcro.ResumeLayout(False)
+        Me.grpParamSynhcro.PerformLayout()
         Me.pnl_ListSynhcros.ResumeLayout(False)
         Me.SplitContainer2.Panel1.ResumeLayout(False)
         Me.SplitContainer2.Panel2.ResumeLayout(False)
@@ -3281,16 +3326,19 @@ Public Class accueil
         lbl_infosAgent_IdCrodip.Text = agentCourant.numeroNational
         lbl_infosAgent_Nom.Text = agentCourant.nom
         lbl_infosAgent_Prenom.Text = agentCourant.prenom
-        lbl_infosAgent_dateLastUse.Text = CSDate.mysql2access(agentCourant.dateDerniereConnexion)
-        Dim dateLastLinkUp As String = CSDate.mysql2access(agentCourant.dateDerniereSynchro)
-        If dateLastLinkUp = "01/01/1970 00:00:00" Or dateLastLinkUp = "" Or dateLastLinkUp = "00/00/0000 00:00:00" Then
-            lbl_infosAgent_dateLastConnexion.Text = "--/--/-- --:--:--"
+        lbl_infosAgent_dateDernCnx.Text = CSDate.mysql2access(agentCourant.dateDerniereConnexion)
+        Dim dateDernSynhcro As String = CSDate.mysql2access(agentCourant.dateDerniereSynchro)
+        If dateDernSynhcro = "01/01/1970 00:00:00" Or dateDernSynhcro = "" Or dateDernSynhcro = "00/00/0000 00:00:00" Then
+            lbl_infosAgent_dateDernSynchro.Text = "--/--/-- --:--:--"
         Else
-            lbl_infosAgent_dateLastConnexion.Text = dateLastLinkUp
+            lbl_infosAgent_dateDernSynchro.Text = dateDernSynhcro
         End If
         'Affichage de la Liste des clients avec les alertes
         m_Exploitation_isShowAll = False
         btn_proprietaire_derniersControles_setLabel()
+
+        'Paramétrage de la synhchro (Affichage uniquement en mode debug)
+        grpParamSynhcro.Visible = Globals.GLOB_ENV_DEBUG
 
         ' Affichage des critères de tri
         pnl_SearchDates.Top = client_search_query.Top
@@ -5061,7 +5109,9 @@ Public Class accueil
                     oSynchro.ajouteObservateur(TryCast(MdiParent, parentContener))
                     oSynchro.ajouteObservateur(Me)
 
-                    oSynchro.Synchro(True, True)
+                    Dim bSynchroAsc As Boolean = ckSynchroASC.Checked
+                    Dim bSynchroDESC As Boolean = ckSynchroDESC.Checked
+                    oSynchro.Synchro(bSynchroAsc, bSynchroDESC)
                     Me.Cursor = Cursors.Default
 
                 Catch ex As Exception
