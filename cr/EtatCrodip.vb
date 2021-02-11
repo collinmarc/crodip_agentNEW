@@ -94,8 +94,8 @@ Public Class EtatCrodip
         End Try
         Return bReturn
     End Function
-    Public Shared Function getPDFs(pPath As String, pFileName As String) As String
-        Dim FileName As String = pPath & pFileName
+    Public Shared Function getPDFs(pPathDest As String, pFileName As String) As String
+        Dim FileName As String = pPathDest & pFileName
         Try
             If My.Settings.TypeStockPDF = "ZIP" Then
                 If Not File.Exists(Globals.CONST_STOCK_PDFS) Then
@@ -103,17 +103,19 @@ Public Class EtatCrodip
                 Else
                     Using z As ZipFile = ZipFile.Read(Globals.CONST_STOCK_PDFS)
                         z.Password = Globals.CONST_PDFS_DIAG_PWD
-                        z.ExtractSelectedEntries(pFileName, pPath, "", ExtractExistingFileAction.OverwriteSilently)
+                        z.ExtractSelectedEntries(pFileName, pPathDest, "", ExtractExistingFileAction.OverwriteSilently)
                     End Using
                 End If
             End If
             If My.Settings.TypeStockPDF = "DIR" Then
                 If File.Exists(Globals.CONST_STOCK_PDFS & "\" & FileName) Then
-                    System.IO.File.Copy(Globals.CONST_STOCK_PDFS & "\" & FileName, FileName)
+                    If Not File.Exists(pFileName) Then
+                        System.IO.File.Copy(Globals.CONST_STOCK_PDFS & "\" & FileName, FileName)
+                    End If
                 End If
-            End If
+                End If
         Catch ex As Exception
-            CSDebug.dispError("Diagnostic.getPFS ERR", ex)
+            CSDebug.dispError("etatCrodip.getPFS ERR", ex)
             FileName = ""
         End Try
         Return FileName

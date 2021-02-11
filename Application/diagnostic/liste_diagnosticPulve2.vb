@@ -2768,6 +2768,11 @@ Public Class liste_diagnosticPulve2
                 If String.IsNullOrEmpty(oDiag.RIFileName) Or oDiag.isSupprime Then
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
+                Else
+                    If Not oDiag.IsFichierRIExists() Then
+                        oCellI.Value = New Bitmap(1, 1)
+                        oCellI.Tag = ""
+                    End If
                 End If
 
                 oCellI = DataGridView1.Rows(nRow).Cells(col_SM.Index)
@@ -2776,6 +2781,11 @@ Public Class liste_diagnosticPulve2
                 If String.IsNullOrEmpty(oDiag.SMFileName) Or oDiag.isSupprime Then
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
+                Else
+                    If Not oDiag.IsFichierSMExists() Then
+                        oCellI.Value = New Bitmap(1, 1)
+                        oCellI.Tag = ""
+                    End If
                 End If
 
                 oCellI = DataGridView1.Rows(nRow).Cells(col_contrat.Index)
@@ -2784,6 +2794,11 @@ Public Class liste_diagnosticPulve2
                 If String.IsNullOrEmpty(oDiag.CCFileName) Or oDiag.isSupprime Then
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
+                Else
+                    If Not oDiag.IsFichierCCExists() Then
+                        oCellI.Value = New Bitmap(1, 1)
+                        oCellI.Tag = ""
+                    End If
                 End If
 
                 oCell = DataGridView1.Rows(nRow).Cells(col_Signatures.Index)

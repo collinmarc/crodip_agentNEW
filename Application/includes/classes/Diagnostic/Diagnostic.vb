@@ -3496,7 +3496,35 @@ Public Class Diagnostic
             _diagRemplacementId = value
         End Set
     End Property
-
+    Private Function IsFichierExists(pFileName As String) As Boolean
+        Dim bReturn As Boolean
+        bReturn = True
+        If Not System.IO.File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pFileName) Then
+            EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, pFileName)
+            If Not System.IO.File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pFileName) Then
+                bReturn = False
+            End If
+        End If
+        Return bReturn
+    End Function
+    Public Function IsFichierRIExists() As Boolean
+        Dim bReturn As Boolean
+        bReturn = True
+        bReturn = IsFichierExists(Me.RIFileName)
+        Return bReturn
+    End Function
+    Public Function IsFichierSMExists() As Boolean
+        Dim bReturn As Boolean
+        bReturn = True
+        bReturn = IsFichierExists(Me.SMFileName)
+        Return bReturn
+    End Function
+    Public Function IsFichierCCExists() As Boolean
+        Dim bReturn As Boolean
+        bReturn = True
+        bReturn = IsFichierExists(Me.CCFileName)
+        Return bReturn
+    End Function
 
 
 End Class
