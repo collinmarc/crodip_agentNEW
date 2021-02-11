@@ -1,6 +1,13 @@
 TRUNK
 MASTER
 
+BUILD : XXXXXXXX
+-----------------------
+0001334: Erreur dans la partie Synthese des mesures su rapport d'inspection
+Paraméatrage synhcro
+0001338: Cacher le bouton 'Remplace' dans la liste des coontroles
+
+
 BUILD : 20210204180000
 -----------------------
 0001329: Les communes chargées par CP ne sont pas les mêmes en fiche client et en fiche Contexte

@@ -897,8 +897,8 @@ Public Class liste_diagnosticPulve2
         Me.DataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
-        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White
         Me.DataGridViewButtonColumn1.DefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridViewButtonColumn1.HeaderText = "Remplacer"
@@ -912,9 +912,9 @@ Public Class liste_diagnosticPulve2
         Me.DataGridViewButtonColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle13.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DataGridViewButtonColumn2.DefaultCellStyle = DataGridViewCellStyle13
         Me.DataGridViewButtonColumn2.HeaderText = "Reprendre"
         Me.DataGridViewButtonColumn2.Name = "DataGridViewButtonColumn2"
@@ -1053,6 +1053,7 @@ Public Class liste_diagnosticPulve2
         Me.col_Remplacer.Text = "Remplacer"
         Me.col_Remplacer.ToolTipText = "Annule et remplace le contrôle"
         Me.col_Remplacer.UseColumnTextForButtonValue = True
+        Me.col_Remplacer.Visible = False
         Me.col_Remplacer.Width = 64
         '
         'col_ContreVisite
@@ -2817,6 +2818,9 @@ Public Class liste_diagnosticPulve2
         col_Details.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
         col_Remplacer.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
         col_ContreVisite.Visible = DiagMode = Globals.DiagMode.CTRL_CV
+
+        'Supprimer dans cette version
+        col_Remplacer.Visible = False
 
         If DiagMode = Globals.DiagMode.CTRL_CV Then
             col_Signatures.Visible = False
