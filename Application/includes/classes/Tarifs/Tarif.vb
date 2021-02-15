@@ -22,7 +22,7 @@ Public Class Tarif
 
     Public Sub New()
         m_description = ""
-        tva = My.Settings.TxTVADefaut
+        '        tva = My.Settings.TxTVADefaut
         tarifHT = 0
         tarifTTC = 0
         m_etat = BDEtat.ETATNEW

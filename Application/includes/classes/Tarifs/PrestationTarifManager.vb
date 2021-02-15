@@ -114,54 +114,56 @@ Public Class PrestationTarifManager
     Public Shared Function save(ByVal curObject As PrestationTarif, pAgent As Agent, Optional bSyncro As Boolean = False) As Boolean
         Dim bReturn As Boolean
         Try
+            Dim dbLink As New CSDb(True)
             If curObject.getEtat <> Tarif.BDEtat.ETATNONE Then
-                If curObject.id = 0 Then
-                    curObject.id = PrestationTarifManager.getNextId()
-                End If
                 If curObject.id <> 0 Then
-                    '####################################################
-                    If Not PrestationTarifManager.exists(curObject) Then
-                        PrestationTarifManager.create(curObject)
-                    End If
-                    '####################################################
-                    '## Préparation de la connexion
-                    Dim dbLink As New CSDb(True)
-                    '####################################################
+                    If curObject.getEtat = Tarif.BDEtat.ETATDELETED Then
+                        dbLink.Execute("DELETE FROM PrestationTarif  WHERE id= " & curObject.id)
+                    Else
+                        If curObject.id = 0 Then
+                            curObject.id = PrestationTarifManager.getNextId()
+                        End If
+                        '####################################################
+                        If Not PrestationTarifManager.exists(curObject) Then
+                            PrestationTarifManager.create(curObject)
+                        End If
+                        '####################################################
+                        '## Préparation de la connexion
+                        '####################################################
 
-                    ' Initialisation de la requete
+                        ' Initialisation de la requete
 
-                    ' Mise a jour de la date de derniere modification
-                    If Not bSyncro Then
-                        curObject.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-                    End If
+                        ' Mise a jour de la date de derniere modification
+                        If Not bSyncro Then
+                            curObject.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                        End If
 
-                    Dim paramsQuery As String = ""
-                    paramsQuery = paramsQuery & "`description`='" & CSDb.secureString(curObject.description) & "'"
-                    'If curObject.tarifHT <> 0 Then
-                    paramsQuery = paramsQuery & " , `tarifHT`='" & CSDb.secureString(curObject.tarifHT) & "'"
-                    'End If
-                    'If curObject.tarifTTC <> 0 Then
-                    paramsQuery = paramsQuery & " , `tarifTTC`='" & CSDb.secureString(curObject.tarifTTC) & "'"
-                    'End If
-                    If curObject.tva <> 0 Then
+                        Dim paramsQuery As String = ""
+                        paramsQuery = paramsQuery & "`description`='" & CSDb.secureString(curObject.description) & "'"
+                        'If curObject.tarifHT <> 0 Then
+                        paramsQuery = paramsQuery & " , `tarifHT`='" & CSDb.secureString(curObject.tarifHT) & "'"
+                        'End If
+                        'If curObject.tarifTTC <> 0 Then
+                        paramsQuery = paramsQuery & " , `tarifTTC`='" & CSDb.secureString(curObject.tarifTTC) & "'"
+                        'End If
                         paramsQuery = paramsQuery & " , `tva`='" & CSDb.secureString(curObject.tva) & "'"
-                    End If
-                    If Not curObject.dateModificationAgent Is Nothing Then
-                        paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(curObject.dateModificationAgent) & "'"
-                    End If
-                    If Not curObject.dateModificationCrodip Is Nothing Then
-                        paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.mysql2access(curObject.dateModificationCrodip) & "'"
-                    End If
+                        If Not curObject.dateModificationAgent Is Nothing Then
+                            paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(curObject.dateModificationAgent) & "'"
+                        End If
+                        If Not curObject.dateModificationCrodip Is Nothing Then
+                            paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.mysql2access(curObject.dateModificationCrodip) & "'"
+                        End If
 
-                    '####################################################
-                    '## Execution de la requete
-                    dbLink.Execute("UPDATE `PrestationTarif` SET " & paramsQuery & " WHERE id=" & curObject.id & " AND idStructure = " & curObject.idStructure & " and idCategorie = " & curObject.idCategorie & "")
+                        '####################################################
+                        '## Execution de la requete
+                        dbLink.Execute("UPDATE `PrestationTarif` SET " & paramsQuery & " WHERE id=" & curObject.id & " AND idStructure = " & curObject.idStructure & " and idCategorie = " & curObject.idCategorie & "")
 
-                    '' 110727 : arzur_c : On ferme la connexion
-                    dbLink.free()
-                    curObject.setEtat(Tarif.BDEtat.ETATNONE)
+                        '' 110727 : arzur_c : On ferme la connexion
+                        curObject.setEtat(Tarif.BDEtat.ETATNONE)
+                    End If
                 End If
             End If
+            dbLink.free()
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("PrestationTarifManager::save() : " & ex.Message.ToString)

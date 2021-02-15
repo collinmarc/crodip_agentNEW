@@ -190,7 +190,7 @@ Public Class gestion_tarifs
         'colDelete
         '
         Me.colDelete.HeaderText = ""
-        Me.colDelete.Image = Crodip_Agent.Resources.delete
+        Me.colDelete.Image = Crodip_agent.Resources.delete
         Me.colDelete.Name = "colDelete"
         Me.colDelete.Width = 20
         '
@@ -316,14 +316,17 @@ Public Class gestion_tarifs
             End If
             Dim formAddPresta As New gestion_tarifs_addPresta(categorieId)
             If formAddPresta.ShowDialog() = Windows.Forms.DialogResult.OK Then
-                FillForm()
+                m_bsTarif.Add(formAddPresta.Tarif)
             End If
         End If
     End Sub
 
     ' Validation
     Private Sub btn_gestionTarif_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_gestionTarif_valider.Click
+        Valider()
+    End Sub
 
+    Private Sub Valider()
         Dim oTarif As Tarif
         Dim oCategorie As PrestationCategorie
         Dim oPrestation As PrestationTarif
@@ -349,6 +352,7 @@ Public Class gestion_tarifs
         My.Settings.Save()
         Me.Cursor = Me.DefaultCursor
         TryCast(MdiParent, parentContener).ReturnToAccueil()
+
     End Sub
 
     ' Annulation
@@ -361,9 +365,7 @@ Public Class gestion_tarifs
         Dim formAddCategorie As New gestion_tarifs_addCategorie()
         formAddCategorie.SetContext(m_Agent)
         If formAddCategorie.ShowDialog() = Windows.Forms.DialogResult.OK Then
-
-            FillForm()
-            DataGridView1.CurrentCell = DataGridView1.Rows(DataGridView1.Rows.Count - 1).Cells(1)
+            m_bsTarif.Add(formAddCategorie.Categorie)
         End If
     End Sub
 
@@ -377,23 +379,29 @@ Public Class gestion_tarifs
         Rowindex = 0
         m_bsTarif.SuspendBinding()
         For Each oTarif In m_bsTarif
-            If oTarif.isCategorie Then
-                DataGridView1.Rows(Rowindex).Cells(0).Value = ImageList1.Images(0)
-                DataGridView1.Rows(Rowindex).Cells(2).ReadOnly = True
-                DataGridView1.Rows(Rowindex).Cells(3).ReadOnly = True
-                DataGridView1.Rows(Rowindex).Cells(4).ReadOnly = True
-                DataGridView1.Rows(Rowindex).Cells(2).Style.ForeColor = Color.Transparent
-                DataGridView1.Rows(Rowindex).Cells(2).Style.BackColor = Color.LightGray
-                DataGridView1.Rows(Rowindex).Cells(3).Style.ForeColor = Color.Transparent
-                DataGridView1.Rows(Rowindex).Cells(3).Style.BackColor = Color.LightGray
-                DataGridView1.Rows(Rowindex).Cells(4).Style.ForeColor = Color.Transparent
-                DataGridView1.Rows(Rowindex).Cells(4).Style.BackColor = Color.LightGray
+            If oTarif.getEtat() = Tarif.BDEtat.ETATDELETED Then
+                DataGridView1.Rows(Rowindex).Visible = False
             Else
-                DataGridView1.Rows(Rowindex).Cells(0) = New DataGridViewTextBoxCell()
-                DataGridView1.Rows(Rowindex).Cells(0).Value = ""
-                DataGridView1.Rows(Rowindex).Cells(0).ReadOnly = True
-                DataGridView1.Rows(Rowindex).Cells(0).Style.ForeColor = Color.Transparent
-                DataGridView1.Rows(Rowindex).Cells(0).Style.BackColor = Color.LightGray
+                If oTarif.isCategorie Then
+                    DataGridView1.Rows(Rowindex).Cells(0).Value = ImageList1.Images(0)
+                    DataGridView1.Rows(Rowindex).Cells(2).ReadOnly = True
+                    DataGridView1.Rows(Rowindex).Cells(3).ReadOnly = True
+                    DataGridView1.Rows(Rowindex).Cells(4).ReadOnly = True
+                    DataGridView1.Rows(Rowindex).Cells(2).Style.ForeColor = Color.Transparent
+                    DataGridView1.Rows(Rowindex).Cells(2).Style.BackColor = Color.LightGray
+                    DataGridView1.Rows(Rowindex).Cells(3).Style.ForeColor = Color.Transparent
+                    DataGridView1.Rows(Rowindex).Cells(3).Style.BackColor = Color.LightGray
+                    DataGridView1.Rows(Rowindex).Cells(4).Style.ForeColor = Color.Transparent
+                    DataGridView1.Rows(Rowindex).Cells(4).Style.BackColor = Color.LightGray
+                    DataGridView1.Rows(Rowindex).Tag = "Categorie"
+                Else
+                    DataGridView1.Rows(Rowindex).Cells(0) = New DataGridViewTextBoxCell()
+                    DataGridView1.Rows(Rowindex).Cells(0).Value = ""
+                    DataGridView1.Rows(Rowindex).Cells(0).ReadOnly = True
+                    DataGridView1.Rows(Rowindex).Cells(0).Style.ForeColor = Color.Transparent
+                    DataGridView1.Rows(Rowindex).Cells(0).Style.BackColor = Color.LightGray
+                    DataGridView1.Rows(Rowindex).Tag = "Prestation"
+                End If
             End If
             Rowindex = Rowindex + 1
         Next
@@ -437,27 +445,37 @@ Public Class gestion_tarifs
 
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
         If e.RowIndex >= 0 And e.ColumnIndex = 5 Then
-            Delete()
+            Delete(e.RowIndex)
+            'DataGridView1.Rows.RemoveAt(e.RowIndex)
+            DataGridView1.Rows(e.RowIndex).Visible = False
+            For n As Integer = e.RowIndex + 1 To DataGridView1.Rows.Count() - 1
+                If DataGridView1.Rows(n).Tag = "Categorie" Then
+                    Exit For
+                Else
+                    DataGridView1.Rows(n).Visible = False
+                End If
 
+            Next
         End If
     End Sub
 
-    Private Sub Delete()
+    Private Sub Delete(pRowindex As Integer)
         Dim oTarif As Tarif
         If Not m_bsTarif.Current Is Nothing Then
             oTarif = m_bsTarif.Current
+            oTarif.setEtat(Tarif.BDEtat.ETATDELETED)
             If oTarif.isCategorie Then
-                PrestationCategorieManager.delete(oTarif.id)
-            Else
-                PrestationTarifManager.delete(oTarif.id)
+                For Each oTarifPrest As Tarif In m_bsTarif
+                    If Not oTarifPrest.isCategorie Then
+                        Dim oPresta As PrestationTarif
+                        oPresta = oTarifPrest
+                        If oPresta.idCategorie = oTarif.id Then
+                            oPresta.setEtat(Tarif.BDEtat.ETATDELETED)
+                        End If
+                    End If
+                Next
             End If
-            Dim index As Integer = DataGridView1.CurrentRow.Index
-            FillForm()
-            If index > DataGridView1.Rows.Count - 1 Then
-                index = DataGridView1.Rows.Count - 1
-            End If
-            DataGridView1.CurrentCell = DataGridView1.Rows(index).Cells(5)
-
+            m_bsTarif.MovePrevious()
         End If
     End Sub
 End Class

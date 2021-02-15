@@ -4,6 +4,15 @@ Public Class gestion_tarifs_addPresta
     Public categorieId As String
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents lblCategorie As System.Windows.Forms.Label
+    Private _Tarif As PrestationTarif
+    Public Property Tarif() As PrestationTarif
+        Get
+            Return _Tarif
+        End Get
+        Set(ByVal value As PrestationTarif)
+            _Tarif = value
+        End Set
+    End Property
 
 #Region " Code généré par le Concepteur Windows Form "
 
@@ -305,15 +314,13 @@ Public Class gestion_tarifs_addPresta
         'erreur_montant.Text = "Montant incorrect"
         Me.Cursor = Cursors.WaitCursor
         If tb_description.Text <> "" And tb_tarifHT.Text <> "" And tb_TVA.Text <> "" Then
-            Dim newObject As PrestationTarif = New PrestationTarif
-            newObject.idCategorie = CType(categorieId, Integer)
-            newObject.idStructure = agentCourant.idStructure
-            newObject.description = tb_description.Text
-            newObject.tarifHT = tb_tarifHT.DecimalValue
-            newObject.tarifTTC = tb_tarifTTC.DecimalValue
-            newObject.tva = tb_TVA.DecimalValue
-            PrestationTarifManager.save(newObject, agentCourant)
-            CSTime.pause(1000)
+            Tarif = New PrestationTarif
+            Tarif.idCategorie = CType(categorieId, Integer)
+            Tarif.idStructure = agentCourant.idStructure
+            Tarif.description = tb_description.Text
+            Tarif.tarifHT = tb_tarifHT.DecimalValue
+            Tarif.tarifTTC = tb_tarifTTC.DecimalValue
+            Tarif.tva = tb_TVA.DecimalValue
             DialogResult = Windows.Forms.DialogResult.OK
             Me.Cursor = Cursors.Default
             Me.Close()

@@ -91,46 +91,47 @@ Public Class PrestationCategorieManager
         Dim bReturn As Boolean
         Dim dbLink As CSDb = Nothing
         '## Préparation de la connexion
-        Dim bddCommande As OleDb.OleDbCommand
         Try
+            dbLink = New CSDb(True)
             If curObject.getEtat() <> Tarif.BDEtat.ETATNONE Then
                 If curObject.id = 0 Then
                     curObject.id = PrestationCategorieManager.getNextId()
                 End If
                 If curObject.id <> 0 Then
-                    '####################################################
-                    If Not PrestationCategorieManager.exists(curObject) Then
-                        PrestationCategorieManager.create(curObject.id, pAgent)
-                    End If
-                    '####################################################
-                    '## Préparation de la connexion
-                    ' On test si la connexion est déjà ouverte ou non
-                    dbLink = New CSDb(True)
-                    bddCommande = dbLink.getConnection().CreateCommand()
-                    '####################################################
+                    If curObject.getEtat = Tarif.BDEtat.ETATDELETED Then
+                        dbLink.Execute("DELETE FROM PrestationTarif  WHERE idCategorie= " & curObject.id)
+                        dbLink.Execute("DELETE FROM PrestationCategorie  WHERE id= " & curObject.id)
+                    Else
+                        '####################################################
+                        If Not PrestationCategorieManager.exists(curObject) Then
+                            PrestationCategorieManager.create(curObject.id, pAgent)
+                        End If
+                        '####################################################
+                        '####################################################
 
-                    ' Initialisation de la requete
-                    ' Mise a jour de la date de derniere modification
-                    If Not bSyncro Then
-                        curObject.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-                    End If
+                        ' Initialisation de la requete
+                        ' Mise a jour de la date de derniere modification
+                        If Not bSyncro Then
+                            curObject.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                        End If
 
-                    Dim paramsQuery As String = ""
+                        Dim paramsQuery As String = ""
 
-                    If Not curObject.description Is Nothing Then
-                        paramsQuery = paramsQuery & " `libelle`='" & CSDb.secureString(curObject.description) & "'"
-                    End If
-                    If Not curObject.dateModificationAgent Is Nothing Then
-                        paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(curObject.dateModificationAgent) & "'"
-                    End If
-                    If Not curObject.dateModificationCrodip Is Nothing Then
-                        paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.mysql2access(curObject.dateModificationCrodip) & "'"
-                    End If
+                        If Not curObject.description Is Nothing Then
+                            paramsQuery = paramsQuery & " `libelle`='" & CSDb.secureString(curObject.description) & "'"
+                        End If
+                        If Not curObject.dateModificationAgent Is Nothing Then
+                            paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(curObject.dateModificationAgent) & "'"
+                        End If
+                        If Not curObject.dateModificationCrodip Is Nothing Then
+                            paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.mysql2access(curObject.dateModificationCrodip) & "'"
+                        End If
 
-                    '####################################################
-                    '## Execution de la requete
-                    bddCommande.CommandText = "UPDATE `PrestationCategorie` SET " & paramsQuery & " WHERE id=" & curObject.id & " AND idStructure = " & curObject.idStructure
-                    bddCommande.ExecuteNonQuery()
+                        '####################################################
+                        '## Execution de la requete
+                        dbLink.Execute("UPDATE `PrestationCategorie` SET " & paramsQuery & " WHERE id=" & curObject.id & " AND idStructure = " & curObject.idStructure)
+                        curObject.setEtat(Tarif.BDEtat.ETATNONE)
+                    End If
                 End If
                 bReturn = True
 
@@ -395,6 +396,7 @@ Public Class PrestationCategorieManager
                 Dim tmpObject As New PrestationCategorie
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpResults.FieldCount()
+
                     Select Case tmpResults.GetName(tmpColId)
                         Case "id"
                             tmpObject.id = tmpResults.Item(tmpColId)

@@ -8,6 +8,9 @@ Paraméatrage synhcro
 0001338: Cacher le bouton 'Remplacer' dans la liste des controles
 0001337: Signature à postériori : Blocage en Valider sur le Recap
 0001336: Liste des Contrôles : ne pas mettre d'icones PDF si les PDFs ne sont pas présents
+0001341: Prestation Tarif avec TVA à 0
+0001340: Les quantitées n'affichent en décimales sur les factures
+
 
 BUILD : 20210204180000
 -----------------------

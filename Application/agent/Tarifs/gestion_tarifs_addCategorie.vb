@@ -2,6 +2,16 @@ Public Class gestion_tarifs_addCategorie
     Inherits System.Windows.Forms.Form
 
     Private m_Agent As Agent
+    Private _Categorie As PrestationCategorie
+    Public Property Categorie() As PrestationCategorie
+        Get
+            Return _Categorie
+        End Get
+        Set(ByVal value As PrestationCategorie)
+            _Categorie = value
+        End Set
+    End Property
+
 
 #Region " Code généré par le Concepteur Windows Form "
 
@@ -138,11 +148,11 @@ Public Class gestion_tarifs_addCategorie
     Private Sub btn_gestionTarif_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_gestionTarif_valider.Click
         Debug.Assert(m_Agent IsNot Nothing, "L'agent doit être renseigné")
         If addPresta_description.Text <> "" Then
-            Dim newObject As PrestationCategorie = New PrestationCategorie
+            Categorie = New PrestationCategorie
 
-            newObject.idStructure = m_Agent.idStructure
-            newObject.description = addPresta_description.Text
-            PrestationCategorieManager.save(newObject, m_Agent)
+            Categorie.idStructure = m_Agent.idStructure
+            Categorie.description = addPresta_description.Text
+            'PrestationCategorieManager.save(newObject, m_Agent)
             Me.DialogResult = Windows.Forms.DialogResult.OK
             Me.Close()
         End If
