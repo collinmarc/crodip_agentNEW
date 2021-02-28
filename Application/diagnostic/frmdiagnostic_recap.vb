@@ -922,7 +922,7 @@ Public Class frmdiagnostic_recap
         Try
             Try
                 Statusbar.display(Globals.CONST_STATUTMSG_DIAG_SAVING, True)
-                If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Or m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE Then
+                If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
                     'Lecture de la fenêtre
                     GetInfos()
                     '
@@ -959,7 +959,18 @@ Public Class frmdiagnostic_recap
                     My.Settings.nbControlesAvantAlerte = My.Settings.nbControlesAvantAlerte + 1
                     My.Settings.Save()
 
+                    'on remet les Id à "" pour forcer la création d'un nouvel ID
+                    m_diagnostic.diagnosticHelp551.id = ""
+                    m_diagnostic.diagnosticHelp5621.id = ""
+                    m_diagnostic.diagnosticHelp552.id = ""
+                    m_diagnostic.diagnosticHelp5622.id = ""
+                    m_diagnostic.diagnosticHelp811.id = ""
+                    m_diagnostic.diagnosticHelp8312.id = ""
+                    m_diagnostic.diagnosticInfosComplementaires.id = ""
 
+                End If
+
+                If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Or m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE Then
 
                     Statusbar.display("Génération du rapport d'inspection", True)
                     If createEtatRapportInspection(True) Then
@@ -976,16 +987,7 @@ Public Class frmdiagnostic_recap
 
                         'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
                         m_diagnostic.dateModificationAgent = CSDate.mysql2access(Date.Now)
-                        m_diagnostic.dateModificationCrodip = "01/01/1900"
                         Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
-                        'on remet les Id à "" pour forcer la création d'un nouvel ID
-                        m_diagnostic.diagnosticHelp551.id = ""
-                        m_diagnostic.diagnosticHelp5621.id = ""
-                        m_diagnostic.diagnosticHelp552.id = ""
-                        m_diagnostic.diagnosticHelp5622.id = ""
-                        m_diagnostic.diagnosticHelp811.id = ""
-                        m_diagnostic.diagnosticHelp8312.id = ""
-                        m_diagnostic.diagnosticInfosComplementaires.id = ""
                         Dim bSave As Boolean
                         bSave = DiagnosticManager.save(m_diagnostic)
                         If Not bSave Then

@@ -2421,6 +2421,14 @@ Public Class Diagnostic
             Me.isSynchro = False
             Me.id = ""
             Me.diagRemplacementId = ""
+            Me.dateSignCCAgent = Nothing
+            Me.dateSignCCClient = Nothing
+            Me.dateSignRIAgent = Nothing
+            Me.dateSignRIClient = Nothing
+            Me.isSignCCAgent = False
+            Me.isSignCCClient = False
+            Me.isSignRIAgent = False
+            Me.isSignRIClient = False
 
             bReturn = True
         Catch ex As Exception
