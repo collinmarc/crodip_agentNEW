@@ -225,6 +225,9 @@
     <None Include="TestFiles\test.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\TEST.sign">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestFiles\test15b.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

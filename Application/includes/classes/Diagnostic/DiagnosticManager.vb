@@ -1295,7 +1295,7 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.isSupprime=" & objDiagnostic.isSupprime & ""
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.diagRemplacementId='" & objDiagnostic.diagRemplacementId & "'"
 
-                'paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIAgent=@signRIAgent"
+                '                paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIAgent=@signRIAgent"
                 'paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIClient=@signRIClient"
                 'paramsQuery2 = paramsQuery2 & " , Diagnostic.signCCAgent=@signCCAgent"
                 'paramsQuery2 = paramsQuery2 & " , Diagnostic.signCCClient=@signCCClient"
@@ -1305,20 +1305,50 @@ Public Class DiagnosticManager
                     'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
                     bddCommande.ExecuteNonQuery()
                     bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
-                    'Dim oParam As OleDbParameter
-                    'oParam = bddCommande.Parameters.Add("@signRIAgent", System.Data.OleDb.OleDbType.Binary)
-                    'oParam.Value = objDiagnostic.SignRIAgent
-                    'oParam = bddCommande.Parameters.Add("@signRIClient", System.Data.OleDb.OleDbType.Binary)
-                    'oParam.Value = objDiagnostic.SignRIClient
-                    'oParam = bddCommande.Parameters.Add("@signCCAgent", System.Data.OleDb.OleDbType.Binary)
-                    'oParam.Value = objDiagnostic.SignCCAgent
-                    'oParam = bddCommande.Parameters.Add("@signCCClient", System.Data.OleDb.OleDbType.Binary)
-                    'oParam.Value = objDiagnostic.SignCCClient
+                bddCommande.ExecuteNonQuery()
 
-                    'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
+                Dim oParam As OleDbParameter
+                If objDiagnostic.SignRIAgent IsNot Nothing Then
+                    bddCommande = CSDb.getConnection().CreateCommand
+                    bddCommande.CommandText = "UPDATE Diagnostic SET  Diagnostic.signRIAgent=@sign WHERE Diagnostic.id='" & objDiagnostic.id & "'"
+                    oParam = bddCommande.Parameters.Add("@sign", System.Data.OleDb.OleDbType.Binary)
+                    oParam.IsNullable = True
+                    oParam.Value = objDiagnostic.SignRIAgent
                     bddCommande.ExecuteNonQuery()
+                End If
 
-                    CSDb.free()
+                If objDiagnostic.SignRIClient IsNot Nothing Then
+                    bddCommande = CSDb.getConnection().CreateCommand
+                    bddCommande.CommandText = "UPDATE Diagnostic SET  Diagnostic.signRIClient=@sign2 WHERE Diagnostic.id='" & objDiagnostic.id & "'"
+                    oParam = bddCommande.Parameters.Add("@sign2", System.Data.OleDb.OleDbType.Binary)
+                    oParam.IsNullable = True
+                    oParam.Value = Nothing
+                    oParam.Value = objDiagnostic.SignRIClient
+                    bddCommande.ExecuteNonQuery()
+                End If
+
+                If objDiagnostic.SignCCAgent IsNot Nothing Then
+                    bddCommande = CSDb.getConnection().CreateCommand
+                    bddCommande.CommandText = "UPDATE Diagnostic SET  Diagnostic.signCCAgent=@sign3 WHERE Diagnostic.id='" & objDiagnostic.id & "'"
+                    oParam = bddCommande.Parameters.Add("@sign3", System.Data.OleDb.OleDbType.Binary)
+                    oParam.IsNullable = True
+                    oParam.Value = Nothing
+                    oParam.Value = objDiagnostic.SignCCAgent
+                    bddCommande.ExecuteNonQuery()
+                End If
+
+                If objDiagnostic.SignCCClient IsNot Nothing Then
+                    bddCommande = CSDb.getConnection().CreateCommand
+                    bddCommande.CommandText = "UPDATE Diagnostic SET  Diagnostic.signCCClient=@sign4 WHERE Diagnostic.id='" & objDiagnostic.id & "'"
+                    oParam = bddCommande.Parameters.Add("@sign4", System.Data.OleDb.OleDbType.Binary)
+                    oParam.IsNullable = True
+                    oParam.Value = Nothing
+                    oParam.Value = objDiagnostic.SignCCClient
+                    bddCommande.ExecuteNonQuery()
+                End If
+
+
+                CSDb.free()
 
                     ' On enregistre les items du diag
                     '                CSDebug.dispInfo("Sauvegarde des DiagItem")

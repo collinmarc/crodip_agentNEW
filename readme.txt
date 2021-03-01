@@ -1,7 +1,7 @@
 TRUNK
 MASTER
 
-BUILD : XXXXXXXX
+BUILD : 20210211120000
 -----------------------
 0001334: Erreur dans la partie Synthese des mesures su rapport d'inspection
 Paraméatrage synhcro
@@ -10,6 +10,7 @@ Paraméatrage synhcro
 0001336: Liste des Contrôles : ne pas mettre d'icones PDF si les PDFs ne sont pas présents
 0001341: Prestation Tarif avec TVA à 0
 0001340: Les quantitées n'affichent pas en décimales sur les factures
+0001343: Signature à postériori : Signature en 2 temps Inspecteur puis Client
 
 
 BUILD : 20210204180000

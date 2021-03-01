@@ -5774,7 +5774,7 @@ Public Class DiagnosticManagerTest
         Dim bReturn As Boolean
         Dim id As String
         Dim img As System.Drawing.Image
-        img = New Bitmap(800, 600)
+        img = New Bitmap("./testFiles/TEST.sign")
         Dim ms2 As New MemoryStream
         img.Save(ms2, Imaging.ImageFormat.Bmp)
 
@@ -5804,6 +5804,8 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(CDate("30/12/2019"), oDiag.dateSignRIClient)
         Assert.AreEqual(CDate("29/12/2019"), oDiag.dateSignCCAgent)
         Assert.AreEqual(CDate("28/12/2019"), oDiag.dateSignCCClient)
+        Assert.IsNotNull(oDiag.SignRIAgent)
+        Assert.IsNull(oDiag.SignRIClient)
 
 
         bReturn = DiagnosticManager.save(oDiag)
@@ -5820,6 +5822,12 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(CDate("30/12/2019"), oDiag2.dateSignRIClient)
         Assert.AreEqual(CDate("29/12/2019"), oDiag2.dateSignCCAgent)
         Assert.AreEqual(CDate("28/12/2019"), oDiag2.dateSignCCClient)
+        Assert.IsNotNull(oDiag2.SignRIAgent)
+        Assert.IsNull(oDiag2.SignRIClient)
+        ms2.Read(oDiag2.SignRIAgent, 0, oDiag2.SignRIAgent.Length)
+        img = Image.FromStream(ms2)
+        img.Save("./testFiles/Result.bmp")
+        CSFile.open("./testFiles/Result.bmp")
 
         oDiag2.isSignRIAgent = False
         oDiag2.isSignRIClient = False

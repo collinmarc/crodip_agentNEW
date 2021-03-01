@@ -2776,14 +2776,13 @@ Public Class Diagnostic
                         End Try
                     End If
                 Case "SignRIAgent".ToUpper().Trim()
-                    ''champs non Sauvegardé
+                    Me.SignRIAgent = pcolValue
                 Case "SignRIClient".ToUpper().Trim()
-                    ''champs non Sauvegardé
+                    Me.SignRIClient = pcolValue
                 Case "SignCCAgent".ToUpper().Trim()
-                    ''champs non Sauvegardé
+                    Me.SignCCAgent = pcolValue
                 Case "SignCCClient".ToUpper().Trim()
-                    ''champs non Sauvegardé
-
+                    Me.SignCCClient = pcolValue
                 Case "isSupprime".ToUpper().Trim()
                     Me.isSupprime = pcolValue
                 Case "diagRemplacementId".ToUpper().Trim()
