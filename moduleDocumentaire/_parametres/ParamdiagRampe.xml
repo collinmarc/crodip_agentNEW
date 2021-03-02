@@ -57,13 +57,12 @@
     <ParamCtrlDiag>
       <Code>2</Code>
       <Libelle>Etat général</Libelle>
-      <ValidBloc>true</ValidBloc>
-      <ValidBloc2>true</ValidBloc2>
+<!-- <ValidBloc>true</ValidBloc> -->
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.1</Code>
       <Libelle>Dispositif d'attelage</Libelle>
-      <ValidBloc>true</ValidBloc>
+     <!-- <ValidBloc>true</ValidBloc> -->
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.1.1</Code>
@@ -112,7 +111,7 @@
     <ParamCtrlDiag>
       <Code>2.4</Code>
       <Libelle>Transmission au niveau du pulvé</Libelle>
-      <ValidBloc>true</ValidBloc>
+     <!-- <ValidBloc>true</ValidBloc> -->
     </ParamCtrlDiag>
     <ParamCtrlDiag>
       <Code>2.4.1</Code>
