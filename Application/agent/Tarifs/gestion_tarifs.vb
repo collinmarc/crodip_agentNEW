@@ -99,8 +99,6 @@ Public Class gestion_tarifs
         Me.ckCVGratuite.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ckCVGratuite.AutoSize = True
         Me.ckCVGratuite.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        '        Me.ckCVGratuite.Checked = My.Settings.CVgratuite
-        '        Me.ckCVGratuite.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.Crodip_agent.MySettings.Default, "CVgratuite", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.ckCVGratuite.Location = New System.Drawing.Point(518, 410)
         Me.ckCVGratuite.Name = "ckCVGratuite"
         Me.ckCVGratuite.Size = New System.Drawing.Size(172, 17)
@@ -190,7 +188,7 @@ Public Class gestion_tarifs
         'colDelete
         '
         Me.colDelete.HeaderText = ""
-        Me.colDelete.Image = Crodip_agent.Resources.delete
+        Me.colDelete.Image = Global.Crodip_agent.Resources.delete
         Me.colDelete.Name = "colDelete"
         Me.colDelete.Width = 20
         '
@@ -274,6 +272,7 @@ Public Class gestion_tarifs
         Me.ControlBox = False
         Me.Controls.Add(Me.panel_clientele_ficheClient_fichePulve)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MinimizeBox = False
         Me.Name = "gestion_tarifs"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Gestion de mes tarifs"
@@ -308,15 +307,31 @@ Public Class gestion_tarifs
         If Not DataGridView1.CurrentRow Is Nothing Then
             Dim categorieId As Integer
             Dim oTarif As Tarif = m_bsTarif.Current
+            Dim nIndex As Integer = m_bsTarif.Position
             If oTarif.isCategorie Then
                 categorieId = oTarif.id
+                'Recherche du dernier tarif de la categorie
+                Dim bFin As Boolean = False
+                Dim obj As Tarif
+                While Not bFin
+                    nIndex = nIndex + 1
+                    If nIndex >= m_bsTarif.Count Then
+                        bFin = True
+                    Else
+                        obj = m_bsTarif(nIndex)
+                        If obj.isCategorie Then
+                            bFin = True
+                        End If
+                    End If
+                End While
             Else
                 Dim oPresta As PrestationTarif = m_bsTarif.Current
                 categorieId = oPresta.idCategorie
+                nIndex = nIndex + 1
             End If
             Dim formAddPresta As New gestion_tarifs_addPresta(categorieId)
             If formAddPresta.ShowDialog() = Windows.Forms.DialogResult.OK Then
-                m_bsTarif.Add(formAddPresta.Tarif)
+                m_bsTarif.Insert(nIndex, formAddPresta.Tarif)
             End If
         End If
     End Sub
@@ -332,22 +347,49 @@ Public Class gestion_tarifs
         Dim oPrestation As PrestationTarif
 
         Me.Cursor = Cursors.WaitCursor
+        Dim index As Integer = 0
         For Each oTarif In m_bsTarif
             If oTarif.isCategorie Then
                 oCategorie = oTarif
+                Dim bNew As Boolean = False
+                If oCategorie.id = 0 Then
+                    bNew = True
+                End If
                 PrestationCategorieManager.save(oCategorie, m_Agent)
+                If bNew Then
+                    'il Faut mettre l'id Categorie pour toutes les presta qui suivent
+                    For n As Integer = index + 1 To m_bsTarif.Count() - 1
+                        oTarif = m_bsTarif(n)
+                        If oTarif.isCategorie Then
+                            Exit For
+                        Else
+                            oPrestation = oTarif
+                            oPrestation.idCategorie = oCategorie.id
+
+                        End If
+                    Next
+                End If
             Else
-                oPrestation = oTarif
+                    oPrestation = oTarif
                 PrestationTarifManager.save(oPrestation, m_Agent)
             End If
+            index = index + 1
         Next
-        If ckCVGratuite.Checked Then
-            System.IO.File.CreateText("ContreVisiteGratuite")
-        Else
-            If System.IO.File.Exists("ContreVisiteGratuite") Then
-                System.IO.File.Delete("ContreVisiteGratuite")
+
+        Try
+            If ckCVGratuite.Checked Then
+                If Not System.IO.File.Exists("ContreVisiteGratuite") Then
+                    System.IO.File.CreateText("ContreVisiteGratuite").Close()
+                End If
+            Else
+                If System.IO.File.Exists("ContreVisiteGratuite") Then
+                    System.IO.File.Delete("ContreVisiteGratuite")
+                End If
             End If
-        End If
+        Catch ex As Exception
+            CSDebug.dispError("Gestion-tarifs.Valider ERR : " & ex.Message)
+        End Try
+
         'Remise à zéro des information de dernier controle
         My.Settings.Save()
         Me.Cursor = Me.DefaultCursor
@@ -448,14 +490,17 @@ Public Class gestion_tarifs
             Delete(e.RowIndex)
             'DataGridView1.Rows.RemoveAt(e.RowIndex)
             DataGridView1.Rows(e.RowIndex).Visible = False
-            For n As Integer = e.RowIndex + 1 To DataGridView1.Rows.Count() - 1
-                If DataGridView1.Rows(n).Tag = "Categorie" Then
-                    Exit For
-                Else
-                    DataGridView1.Rows(n).Visible = False
-                End If
+            If DataGridView1.Rows(e.RowIndex).Tag = "Categorie" Then
+                'on Rend les lignes suivantes invisibles
+                For n As Integer = e.RowIndex + 1 To DataGridView1.Rows.Count() - 1
+                    If DataGridView1.Rows(n).Tag = "Categorie" Then
+                        Exit For
+                    Else
+                        DataGridView1.Rows(n).Visible = False
+                    End If
 
-            Next
+                Next
+            End If
         End If
     End Sub
 
@@ -464,18 +509,26 @@ Public Class gestion_tarifs
         If Not m_bsTarif.Current Is Nothing Then
             oTarif = m_bsTarif.Current
             oTarif.setEtat(Tarif.BDEtat.ETATDELETED)
-            If oTarif.isCategorie Then
-                For Each oTarifPrest As Tarif In m_bsTarif
-                    If Not oTarifPrest.isCategorie Then
-                        Dim oPresta As PrestationTarif
-                        oPresta = oTarifPrest
-                        If oPresta.idCategorie = oTarif.id Then
-                            oPresta.setEtat(Tarif.BDEtat.ETATDELETED)
-                        End If
-                    End If
-                Next
-            End If
-            m_bsTarif.MovePrevious()
+            'If oTarif.isCategorie Then
+            '    For Each oTarifPrest As Tarif In m_bsTarif
+            '        If Not oTarifPrest.isCategorie Then
+            '            Dim oPresta As PrestationTarif
+            '            oPresta = oTarifPrest
+            '            If oPresta.idCategorie = oTarif.id Then
+            '                oPresta.setEtat(Tarif.BDEtat.ETATDELETED)
+            '            End If
+            '        End If
+            '    Next
+            'End If
+            Dim index As Integer = m_bsTarif.Position
+            For index = index - 1 To 1 Step -1
+                oTarif = m_bsTarif(index)
+                If oTarif.getEtat() <> Tarif.BDEtat.ETATDELETED Then
+                    Exit For
+                End If
+            Next
+            m_bsTarif.Position = index
         End If
     End Sub
+
 End Class

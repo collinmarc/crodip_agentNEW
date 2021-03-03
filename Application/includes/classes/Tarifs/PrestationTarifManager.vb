@@ -116,25 +116,19 @@ Public Class PrestationTarifManager
         Try
             Dim dbLink As New CSDb(True)
             If curObject.getEtat <> Tarif.BDEtat.ETATNONE Then
-                If curObject.id <> 0 Then
-                    If curObject.getEtat = Tarif.BDEtat.ETATDELETED Then
+                If curObject.getEtat = Tarif.BDEtat.ETATDELETED Then
+                    If curObject.id <> 0 Then
                         dbLink.Execute("DELETE FROM PrestationTarif  WHERE id= " & curObject.id)
-                    Else
-                        If curObject.id = 0 Then
-                            curObject.id = PrestationTarifManager.getNextId()
-                        End If
-                        '####################################################
-                        If Not PrestationTarifManager.exists(curObject) Then
-                            PrestationTarifManager.create(curObject)
-                        End If
-                        '####################################################
-                        '## Préparation de la connexion
-                        '####################################################
+                    End If
+                    curObject.setEtat(Tarif.BDEtat.ETATNONE)
+                Else
+                    If curObject.id = 0 Then
+                        curObject.id = PrestationTarifManager.getNextId()
+                        PrestationTarifManager.create(curObject)
+                    End If
 
-                        ' Initialisation de la requete
-
-                        ' Mise a jour de la date de derniere modification
-                        If Not bSyncro Then
+                    ' Mise a jour de la date de derniere modification
+                    If Not bSyncro Then
                             curObject.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                         End If
 
@@ -158,11 +152,9 @@ Public Class PrestationTarifManager
                         '## Execution de la requete
                         dbLink.Execute("UPDATE `PrestationTarif` SET " & paramsQuery & " WHERE id=" & curObject.id & " AND idStructure = " & curObject.idStructure & " and idCategorie = " & curObject.idCategorie & "")
 
-                        '' 110727 : arzur_c : On ferme la connexion
-                        curObject.setEtat(Tarif.BDEtat.ETATNONE)
-                    End If
+                    curObject.setEtat(Tarif.BDEtat.ETATNONE)
                 End If
-            End If
+                End If
             dbLink.free()
             bReturn = True
         Catch ex As Exception

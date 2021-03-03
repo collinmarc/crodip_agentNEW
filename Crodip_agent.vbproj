@@ -1340,6 +1340,12 @@
     <Content Include="cmd.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="wgssSTU.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="wgssSTU.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Application\ReglagePulve\ds_Etat_ReglagePulve.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ds_Etat_ReglagePulve.Designer.vb</LastGenOutput>

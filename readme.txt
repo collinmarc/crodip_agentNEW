@@ -11,6 +11,8 @@ Paraméatrage synhcro
 0001341: Prestation Tarif avec TVA à 0
 0001340: Les quantitées n'affichent pas en décimales sur les factures
 0001343: Signature à postériori : Signature en 2 temps Inspecteur puis Client
+Install auto des drivers WACOM 
+Correction de la gestion des tarifs
 
 
 BUILD : 20210204180000
