@@ -1100,6 +1100,7 @@ Public Class login
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
         oDiag.controleDateDebut = Now()
         oDiag.CalculDateProchainControle()
+        My.Settings.ModeSignature = "wacom"
 
         oFrm = frmSignClient.getfrmSignature(oDiag, SignMode.RIAGENT, oAgent)
         oFrm.ShowDialog()

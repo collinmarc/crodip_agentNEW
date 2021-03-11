@@ -1,4 +1,6 @@
-﻿Imports System.IO
+﻿Imports System.Drawing.Drawing2D
+Imports System.Drawing.Imaging
+Imports System.IO
 
 Public Class frmSignClient
     Inherits System.Windows.Forms.Form
@@ -110,7 +112,26 @@ Public Class frmSignClient
                 End If
         End Select
     End Sub
+    Public Function ResizeImage(image As Image, width As Integer, height As Integer) As Image
+        Dim destRect As New Rectangle(0, 0, width, height)
+        Dim destImage As New Bitmap(width, height)
 
+        destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution)
+
+        Using gr As Graphics = Graphics.FromImage(destImage)
+            gr.CompositingMode = CompositingMode.SourceCopy
+            gr.CompositingQuality = CompositingQuality.HighQuality
+            gr.InterpolationMode = InterpolationMode.HighQualityBicubic
+            gr.SmoothingMode = SmoothingMode.HighQuality
+            gr.PixelOffsetMode = PixelOffsetMode.HighQuality
+
+            Using wMo = New ImageAttributes()
+                wMo.SetWrapMode(WrapMode.TileFlipXY)
+                gr.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wMo)
+            End Using
+        End Using
+        Return destImage
+    End Function
     Protected Sub RecupereSignature(pImage As Image, pDateSign As Date)
         Dim ms2 As New MemoryStream
         pImage.Save(ms2, Imaging.ImageFormat.Bmp)
@@ -191,13 +212,13 @@ Public Class frmSignClient
     Shared Function getfrmSignature(pDiag As Diagnostic, psignMode As SignMode, pAgent As Agent) As frmSignClient
 
         Dim ofrm As frmSignClient = Nothing
-        If My.Settings.ModeSignature = "Téléphone" Then
+        If My.Settings.ModeSignature.ToUpper().Trim() = "Téléphone".ToUpper().Trim() Then
             ofrm = New frmSignClientTelephone(pDiag, psignMode, pAgent)
         End If
-        If My.Settings.ModeSignature = "Tablette" Then
+        If My.Settings.ModeSignature.ToUpper().Trim() = "Tablette".ToUpper().Trim() Then
             ofrm = New frmSignClientTablette(pDiag, psignMode, pAgent)
         End If
-        If My.Settings.ModeSignature = "wacom" Then
+        If My.Settings.ModeSignature.ToUpper().Trim() = "wacom".ToUpper().Trim() Then
             Try
 
                 Dim usbDevices As wgssSTU.UsbDevices = New wgssSTU.UsbDevices()

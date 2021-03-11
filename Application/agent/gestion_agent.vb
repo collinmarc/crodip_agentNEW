@@ -410,9 +410,9 @@ Public Class gestion_agent
             agentCourant.telephonePortable = ficheAgent_telephonePortable.Text
             agentCourant.eMail = ficheAgent_email.Text
             agentCourant.isSignElecActive = ckSignature.Checked
-            My.Settings.ModeSignature = cbxModeSignature.Text
-            My.Settings.Save()
         End If
+        My.Settings.ModeSignature = cbxModeSignature.Text
+        My.Settings.Save()
         Statusbar.clear()
         TryCast(MdiParent, parentContener).ReturnToAccueil()
     End Sub
@@ -429,5 +429,9 @@ Public Class gestion_agent
             oFrm.Show()
             System.Windows.Forms.Cursor.Position = Me.PointToScreen(btnTestsignature.Location)
         End If
+    End Sub
+
+    Private Sub btn_ficheInspecteur_annuler_Click(sender As Object, e As EventArgs) Handles btn_ficheInspecteur_annuler.Click
+
     End Sub
 End Class

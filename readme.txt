@@ -1,6 +1,11 @@
 TRUNK
 MASTER
 
+BUILD : 20210303170000
+-----------------------
+Mise à Jour Num Version dans la base => 2.7.0
+Synchronisation Agent (IsSigneActive)
+
 BUILD : 20210211120000
 -----------------------
 0001334: Erreur dans la partie Synthese des mesures su rapport d'inspection

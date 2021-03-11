@@ -764,6 +764,7 @@ Public Class Agent
             Me.isGestionnaire = pAgent.isGestionnaire
             Me.versionLogiciel = pAgent.versionLogiciel
             Me.commentaire = pAgent.commentaire
+            Me.isSignElecActive = pAgent.isSignElecActive
             bReturn = True
         Catch ex As Exception
 

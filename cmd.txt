@@ -1,1 +1,1 @@
-﻿wgssstu.exe /quiet
+﻿-- wgssstu.exe /quiet

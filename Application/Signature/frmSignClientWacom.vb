@@ -79,7 +79,8 @@ Partial Public Class frmSignClientWacom
 
     Private Sub btnOk_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_ok.Click
         'Dim ms2 As New MemoryStream
-        img = GetImage(New Drawing.Rectangle(0, 0, m_capability.screenWidth, m_capability.screenHeight))
+        img = GetImage(New Drawing.Rectangle(0, 0, 150, 90))
+        '        img = ResizeImage(img, 150, 90)
         img.Save("config/imgOK.bmp")
 
         RecupereSignature(img, DateTimePicker1.Value)
@@ -281,7 +282,7 @@ Partial Public Class frmSignClientWacom
 
                 Dim s As SizeF = Me.AutoScaleDimensions
                 Dim inkWidthMM As Single = 0.7F
-                m_penInk = New Pen(Color.DarkBlue, inkWidthMM / 25.4F * ((s.Width + s.Height) / 2.0F))
+                m_penInk = New Pen(Color.Black, inkWidthMM / 25.4F * ((s.Width + s.Height) / 2.0F))
                 m_penInk.StartCap = CSharpImpl.__Assign(m_penInk.EndCap, System.Drawing.Drawing2D.LineCap.Round)
                 m_penInk.LineJoin = System.Drawing.Drawing2D.LineJoin.Round
                 addDelegates()
@@ -362,17 +363,22 @@ Partial Public Class frmSignClientWacom
     End Sub
 
     Private Sub Form2_FormClosed(ByVal sender As Object, ByVal e As FormClosedEventArgs) Handles MyBase.FormClosed
-        If m_tablet IsNot Nothing Then
-            RemoveHandler m_tablet.onGetReportException, AddressOf onGetReportException
-            RemoveHandler m_tablet.onPenData, AddressOf onPenData
-            RemoveHandler m_tablet.onPenDataEncrypted, AddressOf onPenDataEncrypted
-            RemoveHandler m_tablet.onPenDataTimeCountSequence, AddressOf onPenDataTimeCountSequence
-            RemoveHandler m_tablet.onPenDataTimeCountSequenceEncrypted, AddressOf onPenDataTimeCountSequenceEncrypted
-            m_tablet.setInkingMode(&H0)
-            m_tablet.setClearScreen()
-            Disconnect()
-            m_penInk.Dispose()
-        End If
+        Try
+
+            If m_tablet IsNot Nothing Then
+                RemoveHandler m_tablet.onGetReportException, AddressOf onGetReportException
+                RemoveHandler m_tablet.onPenData, AddressOf onPenData
+                RemoveHandler m_tablet.onPenDataEncrypted, AddressOf onPenDataEncrypted
+                RemoveHandler m_tablet.onPenDataTimeCountSequence, AddressOf onPenDataTimeCountSequence
+                RemoveHandler m_tablet.onPenDataTimeCountSequenceEncrypted, AddressOf onPenDataTimeCountSequenceEncrypted
+                m_tablet.setInkingMode(&H0)
+                m_tablet.setClearScreen()
+                Disconnect()
+                m_penInk.Dispose()
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("frmSignClientWacom.FormClosed Err", ex)
+        End Try
 
     End Sub
     Public Overrides Sub Disconnect()
@@ -689,7 +695,6 @@ Partial Public Class frmSignClientWacom
                         End If
                     Next
                 End If
-                bitmap.Save("config/ImageOrigine3.bmp", ImageFormat.Bmp)
 
                 retVal = bitmap
                 bitmap = Nothing
