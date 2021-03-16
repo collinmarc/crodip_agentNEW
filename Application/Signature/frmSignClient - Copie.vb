@@ -218,18 +218,22 @@ Public Class frmSignClient
         If My.Settings.ModeSignature.ToUpper().Trim() = "Tablette".ToUpper().Trim() Then
             ofrm = New frmSignClientTablette(pDiag, psignMode, pAgent)
         End If
+<<<<<<< HEAD
         If My.Settings.ModeSignature.ToUpper().Trim() = "wacom".ToUpper().Trim() Then
             Try
 
                 Dim usbDevices As wgssSTU.UsbDevices = New wgssSTU.UsbDevices()
                 Dim usbDevice As wgssSTU.IUsbDevice
+=======
+        If My.Settings.ModeSignature = "wacom" Then
+            Dim usbDevices As wgssSTU.UsbDevices = New wgssSTU.UsbDevices()
+            Dim usbDevice As wgssSTU.IUsbDevice
+>>>>>>> parent of 7f79217b (0001305: Contrat Commercial V5)
 
-                If usbDevices.Count <> 0 Then
-                    usbDevice = usbDevices(0)
-                    ofrm = New frmSignClientWacom(pDiag, psignMode, pAgent, usbDevice)
-                End If
-            Catch
-            End Try
+            If usbDevices.Count <> 0 Then
+                usbDevice = usbDevices(0)
+                ofrm = New frmSignClientWacom(pDiag, psignMode, pAgent, usbDevice)
+            End If
 
         End If
 

@@ -79,10 +79,10 @@ Partial Public Class frmSignClientWacom
 
     Private Sub btnOk_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_ok.Click
         'Dim ms2 As New MemoryStream
-        'img = GetImage(New Drawing.Rectangle(0, 0, m_capability.screenWidth, m_capability.screenHeight))
-        img = GetImage(New Drawing.Rectangle(0, 0, 150, 90))
+        img = GetImage(New Drawing.Rectangle(0, 0, m_capability.screenWidth, m_capability.screenHeight))
+        '        img = GetImage(New Drawing.Rectangle(0, 0, 150, 90))
         'img = ResizeImage(img, 150, 90)
-        'img.Save("config/imgOK.bmp")
+        img.Save("config/imgOK.bmp")
 
         RecupereSignature(img, DateTimePicker1.Value)
         penDataType = m_penDataOptionMode
