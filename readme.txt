@@ -1,6 +1,11 @@
 TRUNK
 MASTER
 
+BUILD : XXXXX
+-----------------------
+0001348: Les signatures sont convervées en Contre Visite
+0001345: Erreur en contre visite
+
 BUILD : 20210303170000
 -----------------------
 Mise à Jour Num Version dans la base => 2.7.0

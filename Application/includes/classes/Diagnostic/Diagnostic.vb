@@ -2429,6 +2429,10 @@ Public Class Diagnostic
             Me.isSignCCClient = False
             Me.isSignRIAgent = False
             Me.isSignRIClient = False
+            Me.SignCCAgent = Nothing
+            Me.SignCCClient = Nothing
+            Me.SignRIAgent = Nothing
+            Me.SignRIClient = Nothing
 
             bReturn = True
         Catch ex As Exception

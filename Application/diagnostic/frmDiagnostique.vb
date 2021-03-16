@@ -783,8 +783,10 @@ Public Class FrmDiagnostique
             'Initialisation des Tab 5621 et 5622
             RadioButton_diagnostic_5621.Tag = "NOK"
             RadioButton_diagnostic_5622.Tag = "NOK"
-            If m_diagnostic.id <> "" Or m_diagnostic.diagRemplacementId <> "" Then
-                ' Chargement du diagnostic
+            If m_modeAffichage = Globals.DiagMode.CTRL_CV _
+                Or m_modeAffichage = Globals.DiagMode.CTRL_VISU _
+                Or m_diagnostic.diagRemplacementId <> "" Then
+                ' Chargement du diagnostic si on est en mode CV ou VISU OU EN MODE REMPLACEMENT
                 loadExistingDiag()
                 RadioButton_diagnostic_5621.Tag = "OK"
                 RadioButton_diagnostic_5622.Tag = "OK"
