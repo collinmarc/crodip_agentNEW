@@ -1,0 +1,1514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.example.org/crodip/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.example.org/crodip/" name="crodip" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/crodip/">
+      <xsd:element name="Update">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="identifiantEntier" type="xsd:int" />
+            <xsd:element name="identifiantChaine" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Agent">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int" />
+            <xsd:element name="numeroNational" type="xsd:string" />
+            <xsd:element name="motDePasse" type="xsd:string" />
+            <xsd:element name="nom" type="xsd:string" />
+            <xsd:element name="prenom" type="xsd:string" />
+            <xsd:element name="idStructure" type="xsd:int" />
+            <xsd:element name="telephonePortable" type="xsd:string" />
+            <xsd:element name="eMail" type="xsd:string" />
+            <xsd:element name="statut" type="xsd:string" />
+            <xsd:element name="dateCreation" type="xsd:string" />
+            <xsd:element name="dateDerniereConnexion" type="xsd:string" />
+            <xsd:element name="dateDerniereSynchro" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+            <xsd:element name="versionLogiciel" type="xsd:string" />
+            <xsd:element name="commentaire" type="xsd:string" />
+            <xsd:element name="cleActivation" type="xsd:string" />
+            <xsd:element name="isActif" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Buse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="numeroNational" type="xsd:string" />
+            <xsd:element name="isIso" type="xsd:boolean" />
+            <xsd:element name="marque" type="xsd:string" />
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="genre" type="xsd:string" />
+            <xsd:element name="pressionReference" type="xsd:int" />
+            <xsd:element name="debitReference" type="xsd:int" />
+            <xsd:element name="debitMoyenAccreditation" type="xsd:int" />
+            <xsd:element name="debitMoyenControle" type="xsd:int" />
+            <xsd:element name="idStructure" type="xsd:int" />
+            <xsd:element name="isSynchro" type="xsd:boolean" />
+            <xsd:element name="dateAchat" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ManometreControle">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="numeroNational" type="xsd:string" />
+            <xsd:element name="marque" type="xsd:string" />
+            <xsd:element name="classe" type="xsd:string" />
+            <xsd:element name="modele" type="xsd:string" />
+            <xsd:element name="fondEchelle" type="xsd:string" />
+            <xsd:element name="etat" type="xsd:int" />
+            <xsd:element name="idStructure" type="xsd:int" />
+            <xsd:element name="isSynchro" type="xsd:int" />
+            <xsd:element name="dateDernierControle" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ManometreEtalon">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="numeroNational" type="xsd:string" />
+            <xsd:element name="marque" type="xsd:string" />
+            <xsd:element name="classe" type="xsd:string" />
+            <xsd:element name="modele" type="xsd:string" />
+            <xsd:element name="diametre" type="xsd:int" />
+            <xsd:element name="fondEchelleDilate" type="xsd:string" />
+            <xsd:element name="fondEchelleMaximale" type="xsd:string" />
+            <xsd:element name="idStructure" type="xsd:int" />
+            <xsd:element name="isSynchro" type="xsd:boolean" />
+            <xsd:element name="dateDernierControle" type="xsd:string" />
+            <xsd:element name="etat" type="xsd:int" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Banc">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="marque" type="xsd:string" />
+            <xsd:element name="modele" type="xsd:string" />
+            <xsd:element name="dateAchat" type="xsd:string" />
+            <xsd:element name="idStructure" type="xsd:int" />
+            <xsd:element name="dateDernierControle" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Diagnostic">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="idAgent" type="xsd:int" />
+            <xsd:element name="nomAgent" type="xsd:string" />
+            <xsd:element name="idPulverisateur" type="xsd:string" />
+            <xsd:element name="dateDebut" type="xsd:string" />
+            <xsd:element name="dateFin" type="xsd:string" />
+            <xsd:element name="etat" type="xsd:string" />
+            <xsd:element name="dateDernierControle" type="xsd:string" />
+            <xsd:element name="structureId" type="xsd:int" />
+            <xsd:element name="structureNom" type="xsd:string" />
+            <xsd:element name="structureNumero" type="xsd:string" />
+            <xsd:element name="exploitationNom" type="xsd:string" />
+            <xsd:element name="exploitationNumeroSiren" type="xsd:string" />
+            <xsd:element name="exploitationRaisonSociale" type="xsd:string" />
+            <xsd:element name="exploitationCodeApe" type="xsd:string" />
+            <xsd:element name="exploitationAdresse" type="xsd:string" />
+            <xsd:element name="exploitationCommune" type="xsd:string" />
+            <xsd:element name="exploitationCodePostal" type="xsd:string" />
+            <xsd:element name="exploitationEmail" type="xsd:string" />
+            <xsd:element name="exploitationTelephoneFixe" type="xsd:string" />
+            <xsd:element name="exploitationTelephonePortable" type="xsd:string" />
+            <xsd:element name="pulverisateurType" type="xsd:string" />
+            <xsd:element name="pulverisateurMarque" type="xsd:string" />
+            <xsd:element name="pulverisateurModele" type="xsd:string" />
+            <xsd:element name="pulverisateurCapacite" type="xsd:string" />
+            <xsd:element name="pulverisateurLargeur" type="xsd:string" />
+            <xsd:element name="pulverisateurAge" type="xsd:string" />
+            <xsd:element name="pulverisateurSurface" type="xsd:string" />
+            <xsd:element name="pulverisateurNombreUtilisateurs" type="xsd:string" />
+            <xsd:element name="pulverisateurIsCuveRincage" type="xsd:boolean" />
+            <xsd:element name="pulverisateurCapaciteCuveRincage" type="xsd:string" />
+            <xsd:element name="pulverisateurIsCuveIncorporation" type="xsd:boolean" />
+            <xsd:element name="pulverisateurIsRinceBidon" type="xsd:boolean" />
+            <xsd:element name="pulverisateurIsBidonLaveMain" type="xsd:boolean" />
+            <xsd:element name="pulverisateurIsLanceLavageExterieur" type="xsd:boolean" />
+            <xsd:element name="pulverisateurIsRotobuse" type="xsd:boolean" />
+            <xsd:element name="pulverisateurRegulationIsPressionConstante" type="xsd:boolean" />
+            <xsd:element name="pulverisateurRegulationIsDpm" type="xsd:boolean" />
+            <xsd:element name="pulverisateurRegulationIsDpa" type="xsd:boolean" />
+            <xsd:element name="pulverisateurRegulationIsDpae" type="xsd:boolean" />
+            <xsd:element name="pulverisateurRegulationIsPression" type="xsd:boolean" />
+            <xsd:element name="pulverisateurRegulationIsDebit" type="xsd:boolean" />
+            <xsd:element name="pulverisateurAutresAccessoires" type="xsd:string" />
+            <xsd:element name="buseMarque" type="xsd:string" />
+            <xsd:element name="buseCouleur" type="xsd:string" />
+            <xsd:element name="buseGenre" type="xsd:string" />
+            <xsd:element name="buseTypeIsFente" type="xsd:boolean" />
+            <xsd:element name="buseTypeIsTurbulence" type="xsd:boolean" />
+            <xsd:element name="buseTypeIsBassePression" type="xsd:boolean" />
+            <xsd:element name="buseTypeIsInjectionAir" type="xsd:boolean" />
+            <xsd:element name="buseTypeIsAutre" type="xsd:string" />
+            <xsd:element name="buseIsIso" type="xsd:boolean" />
+            <xsd:element name="buseAge" type="xsd:string" />
+            <xsd:element name="buseAngleIs110" type="xsd:boolean" />
+            <xsd:element name="buseAngleIs80" type="xsd:boolean" />
+            <xsd:element name="buseAngleIsAutre" type="xsd:string" />
+            <xsd:element name="manometreMarque" type="xsd:string" />
+            <xsd:element name="manometreModele" type="xsd:string" />
+            <xsd:element name="manometreDiametre" type="xsd:string" />
+            <xsd:element name="manometreTypeIsAiguille" type="xsd:boolean" />
+            <xsd:element name="manometreTypeIsCapteur" type="xsd:boolean" />
+            <xsd:element name="manometreFondEchelle" type="xsd:string" />
+            <xsd:element name="manometrePressionTravail" type="xsd:string" />
+            <xsd:element name="exploitationTypeCultureIsGrandeCulture" type="xsd:boolean" />
+            <xsd:element name="exploitationTypeCultureIsLegume" type="xsd:boolean" />
+            <xsd:element name="exploitationTypeCultureIsElevage" type="xsd:boolean" />
+            <xsd:element name="exploitationTypeCultureIsArboriculture" type="xsd:boolean" />
+            <xsd:element name="exploitationTypeCultureIsViticulture" type="xsd:boolean" />
+            <xsd:element name="exploitationTypeCultureIsAutres" type="xsd:string" />
+            <xsd:element name="exploitationSau" type="xsd:string" />
+            <xsd:element name="isSynchro" type="xsd:boolean" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DiagnosticItem">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="idDiagnostic" type="xsd:string" />
+            <xsd:element name="idItem" type="xsd:string" />
+            <xsd:element name="itemValue" type="xsd:string" />
+            <xsd:element name="itemCodeEtat" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Exploitation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="idStructure" type="xsd:string" />
+            <xsd:element name="numeroSiren" type="xsd:string" />
+            <xsd:element name="numeroEde" type="xsd:string" />
+            <xsd:element name="raisonSociale" type="xsd:string" />
+            <xsd:element name="nom" type="xsd:string" />
+            <xsd:element name="nombreExploitant" type="xsd:string" />
+            <xsd:element name="civiliteExploitant" type="xsd:string" />
+            <xsd:element name="nomExploitant" type="xsd:string" />
+            <xsd:element name="prenomExploitant" type="xsd:string" />
+            <xsd:element name="adresse" type="xsd:string" />
+            <xsd:element name="codePostal" type="xsd:string" />
+            <xsd:element name="commune" type="xsd:string" />
+            <xsd:element name="codeInsee" type="xsd:string" />
+            <xsd:element name="telephoneFixe" type="xsd:string" />
+            <xsd:element name="telephonePortable" type="xsd:string" />
+            <xsd:element name="telephoneFax" type="xsd:string" />
+            <xsd:element name="eMail" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+            <xsd:element name="dateDernierControle" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExploitationTOPulverisateur">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="idPulverisateur" type="xsd:string" />
+            <xsd:element name="idExploitation" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="FVBanc">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="idBancMesure" type="xsd:string" />
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="auteur" type="xsd:string" />
+            <xsd:element name="idAgentControleur" type="xsd:int" />
+            <xsd:element name="caracteristiques" type="xsd:string" />
+            <xsd:element name="dateModif" type="xsd:string" />
+            <xsd:element name="blocage" type="xsd:int" />
+            <xsd:element name="pressionControle" type="xsd:string" />
+            <xsd:element name="valeursMesurees" type="xsd:string" />
+            <xsd:element name="idManometreControle" type="xsd:string" />
+            <xsd:element name="idBuseEtalon" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="FVManometreControle">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="idManometre" type="xsd:string" />
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="auteur" type="xsd:string" />
+            <xsd:element name="idAgentControleur" type="xsd:int" />
+            <xsd:element name="caracteristiques" type="xsd:string" />
+            <xsd:element name="date" type="xsd:string" />
+            <xsd:element name="blocage" type="xsd:int" />
+            <xsd:element name="idReetalonnage" type="xsd:string" />
+            <xsd:element name="nomLaboratoire" type="xsd:string" />
+            <xsd:element name="dateReetalonnage" type="xsd:string" />
+            <xsd:element name="pressionControle" type="xsd:string" />
+            <xsd:element name="valeursMesurees" type="xsd:string" />
+            <xsd:element name="idManometreControleur" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="FVManometreEtalon">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="idManometre" type="xsd:string" />
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="auteur" type="xsd:string" />
+            <xsd:element name="idAgentControleur" type="xsd:int" />
+            <xsd:element name="caracteristiques" type="xsd:string" />
+            <xsd:element name="dateModif" type="xsd:string" />
+            <xsd:element name="blocage" type="xsd:int" />
+            <xsd:element name="idReetalonnage" type="xsd:string" />
+            <xsd:element name="nomLaboratoire" type="xsd:string" />
+            <xsd:element name="dateReetalonnage" type="xsd:string" />
+            <xsd:element name="pressionControle" type="xsd:string" />
+            <xsd:element name="valeursMesurees" type="xsd:string" />
+            <xsd:element name="idManometreControleur" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Pulverisateur">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="numeroNational" type="xsd:string" />
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="marque" type="xsd:string" />
+            <xsd:element name="modele" type="xsd:string" />
+            <xsd:element name="nombreBuses" type="xsd:int" />
+            <xsd:element name="capacite" type="xsd:int" />
+            <xsd:element name="largeur" type="xsd:int" />
+            <xsd:element name="classe" type="xsd:string" />
+            <xsd:element name="isJetPorte" type="xsd:boolean" />
+            <xsd:element name="isJetProjete" type="xsd:boolean" />
+            <xsd:element name="isPneumatique" type="xsd:boolean" />
+            <xsd:element name="age" type="xsd:string" />
+            <xsd:element name="idAgent" type="xsd:int" />
+            <xsd:element name="idStructure" type="xsd:int" />
+            <xsd:element name="buseIsIso" type="xsd:boolean" />
+            <xsd:element name="buseMarque" type="xsd:string" />
+            <xsd:element name="buseType" type="xsd:string" />
+            <xsd:element name="buseGenre" type="xsd:string" />
+            <xsd:element name="busePressionReference" type="xsd:int" />
+            <xsd:element name="buseAge" type="xsd:int" />
+            <xsd:element name="buseAngle" type="xsd:string" />
+            <xsd:element name="buseDebitReference" type="xsd:int" />
+            <xsd:element name="manometreMarque" type="xsd:string" />
+            <xsd:element name="manometreModele" type="xsd:string" />
+            <xsd:element name="manometreClasse" type="xsd:string" />
+            <xsd:element name="manometreFondEchelle" type="xsd:string" />
+            <xsd:element name="isSynchro" type="xsd:boolean" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Structure">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int" />
+            <xsd:element name="nom" type="xsd:string" />
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="nomResponsable" type="xsd:string" />
+            <xsd:element name="adresse" type="xsd:string" />
+            <xsd:element name="codePostal" type="xsd:string" />
+            <xsd:element name="commune" type="xsd:string" />
+            <xsd:element name="codeInsee" type="xsd:string" />
+            <xsd:element name="telephoneFixe" type="xsd:string" />
+            <xsd:element name="telephonePortable" type="xsd:string" />
+            <xsd:element name="telephoneFax" type="xsd:string" />
+            <xsd:element name="eMail" type="xsd:string" />
+            <xsd:element name="commentaire" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAgentRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="numeroNational" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAgentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Agent" name="Agent" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendAgentRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:Agent" name="AgentRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendAgentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Agent" name="Agent" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetBuseRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="numeroNational" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetBuseResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Buse" name="Buse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendBuseRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:Buse" name="BuseRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendBuseResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Buse" name="Buse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetManometreControleRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="numeroNational" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetManometreControleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:ManometreControle" name="ManometreControle" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendManometreControleRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:ManometreControle" name="ManometreControleRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendManometreControleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:ManometreControle" name="ManometreControle" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetManometreEtalonRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="numeroNational" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetManometreEtalonResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:ManometreEtalon" name="ManometreEtalon" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendManometreEtalonRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:ManometreEtalon" name="ManometreEtalonRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendManometreEtalonResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:ManometreEtalon" name="ManometreEtalon" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetBancRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetBancResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Banc" name="Banc" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendBancRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:Banc" name="BancRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendBancResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Banc" name="Banc" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetDiagnosticRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetDiagnosticResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Diagnostic" name="Diagnostic" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendDiagnosticRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:Diagnostic" name="DiagnosticRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendDiagnosticResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Diagnostic" name="Diagnostic" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetDiagnosticItemsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="idDiagnostic" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetDiagnosticItemsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:DiagnosticItem" minOccurs="0" maxOccurs="500" name="DiagnosticItemsList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendDiagnosticItemsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:DiagnosticItem" minOccurs="0" maxOccurs="200" name="arrayItems" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendDiagnosticItemsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:DiagnosticItem" minOccurs="0" maxOccurs="500" name="DiagnosticItemsList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetExploitationRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetExploitationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Exploitation" name="Exploitation" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendExploitationRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:Exploitation" name="ExploitationRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendExploitationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Exploitation" name="Exploitation" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetExploitationTOPulverisateurRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetExploitationTOPulverisateurResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:ExploitationTOPulverisateur" name="ExploitationTOPulverisateur" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendExploitationTOPulverisateurRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:ExploitationTOPulverisateur" name="ExploitationTOPulverisateurRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendExploitationTOPulverisateurResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:ExploitationTOPulverisateur" name="ExploitationTOPulverisateur" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFVBancRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFVBancResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:FVBanc" name="FVBanc" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendFVBancRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:FVBanc" name="FVBancRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendFVBancResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:FVBanc" name="FVBanc" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFVManometreControleRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFVManometreControleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:FVManometreControle" name="FVManometreControle" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendFVManometreControleRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:FVManometreControle" name="FVManometreControleRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendFVManometreControleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:FVManometreControle" name="FVManometreControle" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFVManometreEtalonRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFVManometreEtalonResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:FVManometreEtalon" name="FVManometreEtalon" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendFVManometreEtalonRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:FVManometreEtalon" name="FVManometreEtalonRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendFVManometreEtalonResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:FVManometreEtalon" name="FVManometreEtalon" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetPulverisateurRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetPulverisateurResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Pulverisateur" name="Pulverisateur" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendPulverisateurRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:Pulverisateur" name="PulverisateurRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendPulverisateurResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Pulverisateur" name="Pulverisateur" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetStructureRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetStructureResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Structure" name="Structure" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendStructureRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:Structure" name="StructureRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendStructureResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Structure" name="Structure" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielBuseRequest">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielBuseResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="xsd:string" name="ReferentielBuse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielManometreRequest">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielManometreResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="xsd:string" name="ReferentielManometre" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielPulverisateurRequest">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielPulverisateurResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="xsd:string" name="ReferentielPulverisateur" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielTerritoireRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielTerritoireResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="xsd:string" name="ReferentielTerritoire" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdatesAvailableRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="agent" type="xsd:string" />
+            <xsd:element name="lastUpdateDateTime" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdatesAvailableResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="isUpdateAvailable" type="xsd:int" />
+            <xsd:element name="isComplete" type="xsd:int" />
+            <xsd:element element="tns:Update" minOccurs="0" maxOccurs="100" name="updatesList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielBuse">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielManometre">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielPulverisateur">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReferentielTerritoire">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAgentRequest">
+    <wsdl:part name="parameters" element="tns:GetAgentRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentResponse">
+    <wsdl:part name="parameters" element="tns:GetAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendAgentRequest">
+    <wsdl:part name="parameters" element="tns:SendAgentRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendAgentResponse">
+    <wsdl:part name="parameters" element="tns:SendAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBuseRequest">
+    <wsdl:part name="parameters" element="tns:GetBuseRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetBuseResponse">
+    <wsdl:part name="parameters" element="tns:GetBuseResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendBuseRequest">
+    <wsdl:part name="parameters" element="tns:SendBuseRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendBuseResponse">
+    <wsdl:part name="parameters" element="tns:SendBuseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetManometreControleRequest">
+    <wsdl:part name="parameters" element="tns:GetManometreControleRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetManometreControleResponse">
+    <wsdl:part name="parameters" element="tns:GetManometreControleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendManometreControleRequest">
+    <wsdl:part name="parameters" element="tns:SendManometreControleRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendManometreControleResponse">
+    <wsdl:part name="parameters" element="tns:SendManometreControleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetManometreEtalonRequest">
+    <wsdl:part name="parameters" element="tns:GetManometreEtalonRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetManometreEtalonResponse">
+    <wsdl:part name="parameters" element="tns:GetManometreEtalonResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendManometreEtalonRequest">
+    <wsdl:part name="parameters" element="tns:SendManometreEtalonRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendManometreEtalonResponse">
+    <wsdl:part name="parameters" element="tns:SendManometreEtalonResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBancRequest">
+    <wsdl:part name="parameters" element="tns:GetBancRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetBancResponse">
+    <wsdl:part name="parameters" element="tns:GetBancResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendBancRequest">
+    <wsdl:part name="parameters" element="tns:SendBancRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendBancResponse">
+    <wsdl:part name="parameters" element="tns:SendBancResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticRequest">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticResponse">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendDiagnosticRequest">
+    <wsdl:part name="parameters" element="tns:SendDiagnosticRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendDiagnosticResponse">
+    <wsdl:part name="parameters" element="tns:SendDiagnosticResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticItemsRequest">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticItemsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticItemsResponse">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendDiagnosticItemsRequest">
+    <wsdl:part name="parameters" element="tns:SendDiagnosticItemsRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendDiagnosticItemsResponse">
+    <wsdl:part name="parameters" element="tns:SendDiagnosticItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExploitationRequest">
+    <wsdl:part name="parameters" element="tns:GetExploitationRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetExploitationResponse">
+    <wsdl:part name="parameters" element="tns:GetExploitationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendExploitationRequest">
+    <wsdl:part name="parameters" element="tns:SendExploitationRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendExploitationResponse">
+    <wsdl:part name="parameters" element="tns:SendExploitationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExploitationTOPulverisateurRequest">
+    <wsdl:part name="parameters" element="tns:GetExploitationTOPulverisateurRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetExploitationTOPulverisateurResponse">
+    <wsdl:part name="parameters" element="tns:GetExploitationTOPulverisateurResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendExploitationTOPulverisateurRequest">
+    <wsdl:part name="parameters" element="tns:SendExploitationTOPulverisateurRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendExploitationTOPulverisateurResponse">
+    <wsdl:part name="parameters" element="tns:SendExploitationTOPulverisateurResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFVBancRequest">
+    <wsdl:part name="parameters" element="tns:GetFVBancRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetFVBancResponse">
+    <wsdl:part name="parameters" element="tns:GetFVBancResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendFVBancRequest">
+    <wsdl:part name="parameters" element="tns:SendFVBancRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendFVBancResponse">
+    <wsdl:part name="parameters" element="tns:SendFVBancResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFVManometreControleRequest">
+    <wsdl:part name="parameters" element="tns:GetFVManometreControleRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetFVManometreControleResponse">
+    <wsdl:part name="parameters" element="tns:GetFVManometreControleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendFVManometreControleRequest">
+    <wsdl:part name="parameters" element="tns:SendFVManometreControleRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendFVManometreControleResponse">
+    <wsdl:part name="parameters" element="tns:SendFVManometreControleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFVManometreEtalonRequest">
+    <wsdl:part name="parameters" element="tns:GetFVManometreEtalonRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetFVManometreEtalonResponse">
+    <wsdl:part name="parameters" element="tns:GetFVManometreEtalonResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendFVManometreEtalonRequest">
+    <wsdl:part name="parameters" element="tns:SendFVManometreEtalonRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendFVManometreEtalonResponse">
+    <wsdl:part name="parameters" element="tns:SendFVManometreEtalonResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPulverisateurRequest">
+    <wsdl:part name="parameters" element="tns:GetPulverisateurRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetPulverisateurResponse">
+    <wsdl:part name="parameters" element="tns:GetPulverisateurResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendPulverisateurRequest">
+    <wsdl:part name="parameters" element="tns:SendPulverisateurRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendPulverisateurResponse">
+    <wsdl:part name="parameters" element="tns:SendPulverisateurResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStructureRequest">
+    <wsdl:part name="parameters" element="tns:GetStructureRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetStructureResponse">
+    <wsdl:part name="parameters" element="tns:GetStructureResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendStructureRequest">
+    <wsdl:part name="parameters" element="tns:SendStructureRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendStructureResponse">
+    <wsdl:part name="parameters" element="tns:SendStructureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielBuseRequest" />
+  <wsdl:message name="GetReferentielBuseResponse">
+    <wsdl:part name="parameters" element="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielManometreRequest" />
+  <wsdl:message name="GetReferentielManometreResponse">
+    <wsdl:part name="parameters" element="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielPulverisateurRequest" />
+  <wsdl:message name="GetReferentielPulverisateurResponse">
+    <wsdl:part name="parameters" element="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielTerritoireRequest" />
+  <wsdl:message name="GetReferentielTerritoireResponse">
+    <wsdl:part name="parameters" element="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatesAvailableRequest">
+    <wsdl:part name="parameters" element="tns:UpdatesAvailableRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdatesAvailableResponse">
+    <wsdl:part name="parameters" element="tns:UpdatesAvailableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielBuseRequest1">
+    <wsdl:part name="parameters" element="tns:GetReferentielBuse" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielManometreRequest1">
+    <wsdl:part name="parameters" element="tns:GetReferentielManometre" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielPulverisateurRequest1">
+    <wsdl:part name="parameters" element="tns:GetReferentielPulverisateur" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielTerritoireRequest1">
+    <wsdl:part name="parameters" element="tns:GetReferentielTerritoire" />
+  </wsdl:message>
+  <wsdl:portType name="CrodipServer">
+    <wsdl:operation name="GetAgent">
+      <wsdl:input message="tns:GetAgentRequest" />
+      <wsdl:output message="tns:GetAgentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendAgent">
+      <wsdl:input message="tns:SendAgentRequest" />
+      <wsdl:output message="tns:SendAgentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBuse">
+      <wsdl:input message="tns:GetBuseRequest" />
+      <wsdl:output message="tns:GetBuseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendBuse">
+      <wsdl:input message="tns:SendBuseRequest" />
+      <wsdl:output message="tns:SendBuseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetManometreControle">
+      <wsdl:input message="tns:GetManometreControleRequest" />
+      <wsdl:output message="tns:GetManometreControleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendManometreControle">
+      <wsdl:input message="tns:SendManometreControleRequest" />
+      <wsdl:output message="tns:SendManometreControleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetManometreEtalon">
+      <wsdl:input message="tns:GetManometreEtalonRequest" />
+      <wsdl:output message="tns:GetManometreEtalonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendManometreEtalon">
+      <wsdl:input message="tns:SendManometreEtalonRequest" />
+      <wsdl:output message="tns:SendManometreEtalonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBanc">
+      <wsdl:input message="tns:GetBancRequest" />
+      <wsdl:output message="tns:GetBancResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendBanc">
+      <wsdl:input message="tns:SendBancRequest" />
+      <wsdl:output message="tns:SendBancResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnostic">
+      <wsdl:input message="tns:GetDiagnosticRequest" />
+      <wsdl:output message="tns:GetDiagnosticResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendDiagnostic">
+      <wsdl:input message="tns:SendDiagnosticRequest" />
+      <wsdl:output message="tns:SendDiagnosticResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticItems">
+      <wsdl:input message="tns:GetDiagnosticItemsRequest" />
+      <wsdl:output message="tns:GetDiagnosticItemsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendDiagnosticItems">
+      <wsdl:input message="tns:SendDiagnosticItemsRequest" />
+      <wsdl:output message="tns:SendDiagnosticItemsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExploitation">
+      <wsdl:input message="tns:GetExploitationRequest" />
+      <wsdl:output message="tns:GetExploitationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendExploitation">
+      <wsdl:input message="tns:SendExploitationRequest" />
+      <wsdl:output message="tns:SendExploitationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExploitationTOPulverisateur">
+      <wsdl:input message="tns:GetExploitationTOPulverisateurRequest" />
+      <wsdl:output message="tns:GetExploitationTOPulverisateurResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendExploitationTOPulverisateur">
+      <wsdl:input message="tns:SendExploitationTOPulverisateurRequest" />
+      <wsdl:output message="tns:SendExploitationTOPulverisateurResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFVBanc">
+      <wsdl:input message="tns:GetFVBancRequest" />
+      <wsdl:output message="tns:GetFVBancResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendFVBanc">
+      <wsdl:input message="tns:SendFVBancRequest" />
+      <wsdl:output message="tns:SendFVBancResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFVManometreControle">
+      <wsdl:input message="tns:GetFVManometreControleRequest" />
+      <wsdl:output message="tns:GetFVManometreControleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendFVManometreControle">
+      <wsdl:input message="tns:SendFVManometreControleRequest" />
+      <wsdl:output message="tns:SendFVManometreControleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFVManometreEtalon">
+      <wsdl:input message="tns:GetFVManometreEtalonRequest" />
+      <wsdl:output message="tns:GetFVManometreEtalonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendFVManometreEtalon">
+      <wsdl:input message="tns:SendFVManometreEtalonRequest" />
+      <wsdl:output message="tns:SendFVManometreEtalonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPulverisateur">
+      <wsdl:input message="tns:GetPulverisateurRequest" />
+      <wsdl:output message="tns:GetPulverisateurResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPulverisateur">
+      <wsdl:input message="tns:SendPulverisateurRequest" />
+      <wsdl:output message="tns:SendPulverisateurResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStructure">
+      <wsdl:input message="tns:GetStructureRequest" />
+      <wsdl:output message="tns:GetStructureResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendStructure">
+      <wsdl:input message="tns:SendStructureRequest" />
+      <wsdl:output message="tns:SendStructureResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielBuse">
+      <wsdl:input message="tns:GetReferentielBuseRequest1" />
+      <wsdl:output message="tns:GetReferentielBuseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielManometre">
+      <wsdl:input message="tns:GetReferentielManometreRequest1" />
+      <wsdl:output message="tns:GetReferentielManometreResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielPulverisateur">
+      <wsdl:input message="tns:GetReferentielPulverisateurRequest1" />
+      <wsdl:output message="tns:GetReferentielPulverisateurResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielTerritoire">
+      <wsdl:input message="tns:GetReferentielTerritoireRequest1" />
+      <wsdl:output message="tns:GetReferentielTerritoireResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatesAvailable">
+      <wsdl:input message="tns:UpdatesAvailableRequest" />
+      <wsdl:output message="tns:UpdatesAvailableResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CrodipBinding" type="tns:CrodipServer">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="GetAgent">
+      <soap:operation soapAction="http://www.example.org/crodip/getAgent" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendAgent">
+      <soap:operation soapAction="http://www.example.org/crodip/sendAgent" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBuse">
+      <soap:operation soapAction="http://www.example.org/crodip/GetBuse" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendBuse">
+      <soap:operation soapAction="http://www.example.org/crodip/SendBuse" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetManometreControle">
+      <soap:operation soapAction="http://www.example.org/crodip/GetManometre" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendManometreControle">
+      <soap:operation soapAction="http://www.example.org/crodip/SendManometre" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetManometreEtalon">
+      <soap:operation soapAction="http://www.example.org/crodip/GetManometre" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendManometreEtalon">
+      <soap:operation soapAction="http://www.example.org/crodip/SendManometre" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBanc">
+      <soap:operation soapAction="http://www.example.org/crodip/GetBanc" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendBanc">
+      <soap:operation soapAction="http://www.example.org/crodip/SendBanc" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnostic">
+      <soap:operation soapAction="http://www.example.org/crodip/GetDiagnostic" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendDiagnostic">
+      <soap:operation soapAction="http://www.example.org/crodip/SendDiagnostic" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticItems">
+      <soap:operation soapAction="http://www.example.org/crodip/GetDiagnosticItems" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendDiagnosticItems">
+      <soap:operation soapAction="http://www.example.org/crodip/SendDiagnosticItems" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExploitation">
+      <soap:operation soapAction="http://www.example.org/crodip/getExploitation" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendExploitation">
+      <soap:operation soapAction="http://www.example.org/crodip/sendExploitation" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExploitationTOPulverisateur">
+      <soap:operation soapAction="http://www.example.org/crodip/getExploitationTOPulverisateur" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendExploitationTOPulverisateur">
+      <soap:operation soapAction="http://www.example.org/crodip/sendExploitationTOPulverisateur" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFVBanc">
+      <soap:operation soapAction="http://www.example.org/crodip/GetFVBanc" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFVBanc">
+      <soap:operation soapAction="http://www.example.org/crodip/SendFVBanc" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFVManometreControle">
+      <soap:operation soapAction="http://www.example.org/crodip/GetFVManometreControle" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFVManometreControle">
+      <soap:operation soapAction="http://www.example.org/crodip/SendFVManometreControle" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFVManometreEtalon">
+      <soap:operation soapAction="http://www.example.org/crodip/GetFVManometreEtalon" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFVManometreEtalon">
+      <soap:operation soapAction="http://www.example.org/crodip/SendFVManometreEtalon" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPulverisateur">
+      <soap:operation soapAction="http://www.example.org/crodip/GetPulverisateur" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPulverisateur">
+      <soap:operation soapAction="http://www.example.org/crodip/SendPulverisateur" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStructure">
+      <soap:operation soapAction="http://www.example.org/crodip/GetStructure" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendStructure">
+      <soap:operation soapAction="http://www.example.org/crodip/SendStructure" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielBuse">
+      <soap:operation soapAction="http://www.example.org/crodip/GetReferentielBuse" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielManometre">
+      <soap:operation soapAction="http://www.example.org/crodip/GetReferentielManometre" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielPulverisateur">
+      <soap:operation soapAction="http://www.example.org/crodip/GetReferentielPulverisateur" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielTerritoire">
+      <soap:operation soapAction="http://www.example.org/crodip/GetReferentielTerritoire" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatesAvailable">
+      <soap:operation soapAction="http://www.example.org/crodip/UpdatesAvailable" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CrodipServer">
+    <wsdl:port name="CrodipServer" binding="tns:CrodipBinding">
+      <soap:address location="http://dev-php5.cognix-systems.com/crodip/www/server" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

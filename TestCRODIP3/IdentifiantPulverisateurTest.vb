@@ -80,30 +80,29 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 
     End Sub
-    <TestMethod()> Public Sub IdentifiantPulveristeurTestWS()
+    <TestMethod(), Ignore()> Public Sub IdentifiantPulveristeurTestWS()
         Dim oIdent As IdentifiantPulverisateur
         Dim oIdent2 As IdentifiantPulverisateur
         Dim nId As Long
 
         nId = 144
-        'Récupération des Idnentifiant Pulves
-        Dim oSynchro As New Synchronisation(m_oAgent)
-        Dim oLst As New List(Of SynchronisationElmt)()
-        oLst = oSynchro.getListeElementsASynchroniserDESC(m_oAgent)
-        For Each oelmt As SynchronisationElmt In oLst
-            If TypeOf oelmt Is SynchronisationElmtIdentifiantPulverisateur Then
-                oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oelmt.IdentifiantEntier)
-                '                IdentifiantPulverisateurManager.Save(oIdent)
-                'on mémorise le dernier Indetifiant
-                nId = oIdent.id
-            End If
-        Next
+        ''Récupération des Idnentifiant Pulves
+        'Dim oSynchro As New Synchronisation(m_oAgent)
+        'Dim oLst As New List(Of SynchronisationElmt)()
+        'oLst = oSynchro.getListeElementsASynchroniserDESC(m_oAgent)
+        'For Each oelmt As SynchronisationElmt In oLst
+        '    If TypeOf oelmt Is SynchronisationElmtIdentifiantPulverisateur Then
+        '        oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oelmt.IdentifiantEntier)
+        '        IdentifiantPulverisateurManager.Save(oIdent)
+        '        'on mémorise le dernier Indetifiant
+        '        nId = oIdent.id
+        '    End If
+        'Next
 
         'Rechargement du dernier Identifiant
         oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId.ToString())
-        oIdent2.SetEtatINUTILISE()
-        oIdent2.dateUtilisation = ""
-        oIdent2.libelle = "TEST0"
+        oIdent2.libelle = "TEST"
+        oIdent2.SetEtatINUTILISABLE()
         IdentifiantPulverisateurManager.Save(oIdent2)
         IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent2)
 
@@ -113,11 +112,10 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.AreEqual(oIdent2.numeroNational, oIdent.numeroNational)
         Assert.AreEqual(oIdent2.etat, oIdent.etat)
         Assert.AreEqual(oIdent2.dateUtilisation, oIdent.dateUtilisation)
-
-        oIdent.SetEtatUTILISE()
         oIdent.libelle = "TEST2"
         oIdent.SetEtatUTILISE()
-        oIdent.dateUtilisation = CSDate.ToCRODIPString(DateTime.Now, "yyyy-MM-dd")
+        oIdent.dateUtilisation = DateTime.Today.ToShortDateString()
+
         IdentifiantPulverisateurManager.Save(oIdent)
         IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent)
         oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oIdent2.id.ToString)

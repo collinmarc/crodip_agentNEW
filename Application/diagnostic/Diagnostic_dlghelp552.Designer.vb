@@ -29,7 +29,7 @@ Partial Class Diagnostic_dlghelp552
         Me.Label86 = New System.Windows.Forms.Label()
         Me.help552_pressionMesure = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label89 = New System.Windows.Forms.Label()
-        Me.help552_debitMoyen3bar = New CRODIP_ControlLibrary.TBNumeric()
+        Me.help552_debitMoyen0bar = New CRODIP_ControlLibrary.TBNumeric()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tpHelp552 = New System.Windows.Forms.TabPage()
         Me.Panel122 = New System.Windows.Forms.Panel()
@@ -292,7 +292,7 @@ Partial Class Diagnostic_dlghelp552
         Me.pnl552.Controls.Add(Me.Label86)
         Me.pnl552.Controls.Add(Me.help552_pressionMesure)
         Me.pnl552.Controls.Add(Me.Label89)
-        Me.pnl552.Controls.Add(Me.help552_debitMoyen3bar)
+        Me.pnl552.Controls.Add(Me.help552_debitMoyen0bar)
         Me.pnl552.Controls.Add(Me.TabControl1)
         Me.pnl552.Controls.Add(Me.TableLayoutPanel1)
         Me.pnl552.Location = New System.Drawing.Point(5, 5)
@@ -334,13 +334,13 @@ Partial Class Diagnostic_dlghelp552
         '
         'help552_debitMoyen0bar
         '
-        Me.help552_debitMoyen3bar.Enabled = False
-        Me.help552_debitMoyen3bar.ForceBindingOnTextChanged = False
-        Me.help552_debitMoyen3bar.Location = New System.Drawing.Point(261, 34)
-        Me.help552_debitMoyen3bar.Name = "help552_debitMoyen0bar"
-        Me.help552_debitMoyen3bar.ReadOnly = True
-        Me.help552_debitMoyen3bar.Size = New System.Drawing.Size(83, 20)
-        Me.help552_debitMoyen3bar.TabIndex = 45
+        Me.help552_debitMoyen0bar.Enabled = False
+        Me.help552_debitMoyen0bar.ForceBindingOnTextChanged = False
+        Me.help552_debitMoyen0bar.Location = New System.Drawing.Point(261, 34)
+        Me.help552_debitMoyen0bar.Name = "help552_debitMoyen0bar"
+        Me.help552_debitMoyen0bar.ReadOnly = True
+        Me.help552_debitMoyen0bar.Size = New System.Drawing.Size(83, 20)
+        Me.help552_debitMoyen0bar.TabIndex = 45
         '
         'TabControl1
         '
@@ -1703,7 +1703,7 @@ Partial Class Diagnostic_dlghelp552
     Friend WithEvents Label86 As System.Windows.Forms.Label
     Friend WithEvents help552_pressionMesure As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents Label89 As System.Windows.Forms.Label
-    Friend WithEvents help552_debitMoyen3bar As CRODIP_ControlLibrary.TBNumeric
+    Friend WithEvents help552_debitMoyen0bar As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents tpHelp552 As System.Windows.Forms.TabPage
     Friend WithEvents Panel122 As System.Windows.Forms.Panel

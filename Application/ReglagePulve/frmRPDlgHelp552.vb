@@ -92,7 +92,7 @@
 
     Private Sub frmRPDlgHelp552_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         System.Diagnostics.Trace.WriteLine("Load")
-        help552_debitMoyen3bar.Text = m_oDiag.buseDebit
+        help552_debitMoyen0bar.Text = m_oDiag.buseDebit
         help552_pressionMesure.Text = m_oDiag.manometrePressionTravail
         calc_help_552()
     End Sub

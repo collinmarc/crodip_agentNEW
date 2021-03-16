@@ -26,7 +26,7 @@ Public Class DiagnosticHelp552
     Protected m_ErreurDebitMetreSigned As Decimal?
     Protected m_idItem As String
     Protected m_PressionMesure As Decimal
-    Protected m_debitMoyen3Bar As Decimal
+    Protected m_debitMoyen0bar As Decimal
     Protected m_resultat As String
 
     Public Sub New()
@@ -216,17 +216,13 @@ Public Class DiagnosticHelp552
             m_PressionMesure = Value
         End Set
     End Property
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <returns></returns>
     <XmlIgnoreAttribute()>
-    Public Property DebitMoyen3bar As Decimal
+    Public Property DebitMoyen0Bar As Decimal
         Get
-            Return m_debitMoyen3Bar
+            Return m_debitMoyen0bar
         End Get
         Set(ByVal Value As Decimal)
-            m_debitMoyen3Bar = Value
+            m_debitMoyen0bar = Value
         End Set
     End Property
     <XmlIgnoreAttribute()>
@@ -349,46 +345,46 @@ Public Class DiagnosticHelp552
 
     Public Function calc() As Boolean
         Dim bReturn As Boolean
-        Dim nbBuses As Double = 0
-        Dim pression As Double = 0
-        Dim debitEtalon As Double = 0
-        Dim debitAfficheur As Double = 0
-        Dim ecart As Double = 0
-        Dim ErreurDebimetre As Double = 0
+        Dim tmpnbBuses As Double = 0
+        Dim tmppression As Double = 0
+        Dim tmpdebitEtalon As Double = 0
+        Dim tmpdebitAfficheur As Double = 0
+        Dim tmp_ecart As Double = 0
+        Dim tmpErreurDebimetre As Double = 0
         Try
             bReturn = True
             ' Ecart M1
             EcartPct_m1 = 0D
             If DebitAfficheur_m1 <> 0 Then
                 ' Récupération des données
-                nbBuses = NbBuses_m1
-                pression = Pression_m1
-                debitAfficheur = DebitAfficheur_m1
+                tmpnbBuses = NbBuses_m1
+                tmppression = Pression_m1
+                tmpdebitAfficheur = DebitAfficheur_m1
                 ' Calcul Ecart
-                debitEtalon = DebitEtalon_m1
-                EcartPct_m1 = calcEcart(debitEtalon, debitAfficheur, nbBuses, pression)
+                tmpdebitEtalon = DebitEtalon_m1
+                EcartPct_m1 = calcEcart(tmpdebitEtalon, tmpdebitAfficheur, tmpnbBuses, tmppression)
             End If
             ' Ecart M2
             EcartPct_m2 = 0D
             If DebitAfficheur_m2 <> 0 Then
                 ' Récupération des données
-                nbBuses = NbBuses_m2
-                pression = Pression_m2
-                debitAfficheur = DebitAfficheur_m2
+                tmpnbBuses = NbBuses_m2
+                tmppression = Pression_m2
+                tmpdebitAfficheur = DebitAfficheur_m2
                 ' Calcul Ecart
-                debitEtalon = DebitEtalon_m2
-                EcartPct_m2 = calcEcart(debitEtalon, debitAfficheur, nbBuses, pression)
+                tmpdebitEtalon = DebitEtalon_m2
+                EcartPct_m2 = calcEcart(tmpdebitEtalon, tmpdebitAfficheur, tmpnbBuses, tmppression)
             End If
             ' Ecart m3
             EcartPct_m3 = 0D
             If DebitAfficheur_m3 <> 0 Then
                 ' Récupération des données
-                nbBuses = NbBuses_m3
-                pression = Pression_m3
-                debitAfficheur = DebitAfficheur_m3
+                tmpnbBuses = NbBuses_m3
+                tmppression = Pression_m3
+                tmpdebitAfficheur = DebitAfficheur_m3
                 ' Calcul Ecart
-                debitEtalon = DebitEtalon_m3
-                EcartPct_m3 = calcEcart(debitEtalon, debitAfficheur, nbBuses, pression)
+                tmpdebitEtalon = DebitEtalon_m3
+                EcartPct_m3 = calcEcart(tmpdebitEtalon, tmpdebitAfficheur, tmpnbBuses, tmppression)
             End If
 
             CalcErreurDebitMetre()
@@ -406,7 +402,7 @@ Public Class DiagnosticHelp552
         End Try
         Return bReturn
     End Function
-    Friend Sub CalcErreurDebitMetre()
+        Friend Sub CalcErreurDebitMetre()
 
         ' Erreur Débitmètre (%)
         ErreurDebitMetre = Nothing
@@ -416,27 +412,24 @@ Public Class DiagnosticHelp552
         CSDebug.dispInfo("DiagHelp552.CalcErreurDebitMetre: ErreurDebitMetre=" & ErreurDebitMetre & " ,ErreurDebitMetreSigned =" & ErreurDebitMetreSigned)
     End Sub
 
-    Private Function calcEcart(ByVal pDebitEtalon As Decimal,
-                               ByVal pDebitAfficheur As Decimal,
-                               ByVal pNbBuses As Decimal,
-                               ByVal pPression As Decimal) As Decimal
-        Dim ecart As Decimal
-        Dim DebReel As Decimal
+    Private Function calcEcart(ByVal pDebitEtalon As Decimal, ByVal pDebitAfficheur As Decimal, ByVal pNbBuses As Decimal, ByVal pPression As Decimal) As Decimal
+        Dim tmp_ecart As Decimal
+        Dim tmp_DebReel As Decimal
         ' Calcul Ecart
         'If pDebitEtalon <> 0 Then
         'tmp_ecart = Math.Round(100 * (pDebitAfficheur - pDebitEtalon) / pDebitEtalon, 2)
         'Else
-        If (pNbBuses * DebitMoyen3bar * pPression) <> 0 Then
-            DebReel = DebitMoyen3bar * Math.Sqrt(pPression / PressionMesure) * pNbBuses
+        If (pNbBuses * DebitMoyen0Bar * pPression) <> 0 Then
+            tmp_DebReel = DebitMoyen0Bar * Math.Sqrt(pPression / PressionMesure) * pNbBuses
             'tmp_DebReel = Math.Round(tmp_DebReel, 2)
 
             'tmp_ecart = Math.Round(100 * (pDebitAfficheur - (pNbBuses * DebitMoyen0Bar * (pPression ^ 0.5 / PressionMesure ^ 0.5))) / (pNbBuses * DebitMoyen0Bar * (pPression ^ 0.5 / PressionMesure ^ 0.5)), 2)
-            ecart = 100 * (pDebitAfficheur - DebReel) / DebReel
-            ecart = Math.Round(ecart, 3)
+            tmp_ecart = 100 * (pDebitAfficheur - tmp_DebReel) / tmp_DebReel
+            tmp_ecart = Math.Round(tmp_ecart, 3)
             'End If
         End If
 
-        Return ecart
+        Return tmp_ecart
     End Function
 
     'Private Function calcEcartOLD(ByVal tmpdebitEtalon As Decimal, ByVal tmpdebitAfficheur As Decimal, ByVal tmpnbBuses As Decimal, ByVal tmppression As Decimal) As Decimal

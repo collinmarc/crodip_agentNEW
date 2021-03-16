@@ -79,8 +79,7 @@ Partial Public Class frmSignClientWacom
 
     Private Sub btnOk_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_ok.Click
         'Dim ms2 As New MemoryStream
-        img = GetImage(New Drawing.Rectangle(0, 0, 150, 90))
-        '        img = ResizeImage(img, 150, 90)
+        img = GetImage(New Drawing.Rectangle(0, 0, m_capability.screenWidth, m_capability.screenHeight))
         img.Save("config/imgOK.bmp")
 
         RecupereSignature(img, DateTimePicker1.Value)
@@ -140,159 +139,154 @@ Partial Public Class frmSignClientWacom
         m_usbDevice = pusbDevice
 
         If m_usbDevice IsNot Nothing Then
-            Try
+            Dim currentPenDataOptionMode As Integer
+            m_penDataOptionMode = -1
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
+            Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+            InitializeComponent()
+            m_penData = New List(Of wgssSTU.IPenData)()
+            m_tablet = New wgssSTU.Tablet()
+            Dim protocolHelper As wgssSTU.ProtocolHelper = New wgssSTU.ProtocolHelper()
+            Dim ec As wgssSTU.IErrorCode = m_tablet.usbConnect(m_usbDevice, True)
 
-                Dim currentPenDataOptionMode As Integer
-                m_penDataOptionMode = -1
-                Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
-                Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-                InitializeComponent()
-                m_penData = New List(Of wgssSTU.IPenData)()
-                m_tablet = New wgssSTU.Tablet()
-                Dim protocolHelper As wgssSTU.ProtocolHelper = New wgssSTU.ProtocolHelper()
-                Dim ec As wgssSTU.IErrorCode = m_tablet.usbConnect(m_usbDevice, True)
+            If ec.value = 0 Then
+                m_capability = m_tablet.getCapability()
+                m_information = m_tablet.getInformation()
+                currentPenDataOptionMode = getPenDataOptionMode()
+                setPenDataOptionMode(currentPenDataOptionMode)
+            Else
+                Throw New Exception(ec.message)
+            End If
 
-                If ec.value = 0 Then
-                    m_capability = m_tablet.getCapability()
-                    m_information = m_tablet.getInformation()
-                    currentPenDataOptionMode = getPenDataOptionMode()
-                    setPenDataOptionMode(currentPenDataOptionMode)
-                Else
-                    Throw New Exception(ec.message)
-                End If
+            'Définition de la taille de la fenêtre
+            Me.SuspendLayout()
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
+            Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+            Dim clientSizePanel As Size = New Size(CInt((m_capability.tabletMaxX / 2540.0F * 96.0F)), CInt((m_capability.tabletMaxY / 2540.0F * 96.0F)))
+            Dim clientSizeFenetre As Size = New Size(clientSizePanel.Width + 28, clientSizePanel.Height + 50)
+            Me.ClientSize = clientSizeFenetre
+            'Me.Panel1.ClientSize = clientSizePanel
+            Me.ResumeLayout()
+            m_btns = New Button(2) {}
 
-                'Définition de la taille de la fenêtre
-                Me.SuspendLayout()
-                Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0F, 96.0F)
-                Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-                Dim clientSizePanel As Size = New Size(CInt((m_capability.tabletMaxX / 2540.0F * 96.0F)), CInt((m_capability.tabletMaxY / 2540.0F * 96.0F)))
-                Dim clientSizeFenetre As Size = New Size(clientSizePanel.Width + 28, clientSizePanel.Height + 50)
-                Me.ClientSize = clientSizeFenetre
-                'Me.Panel1.ClientSize = clientSizePanel
-                Me.ResumeLayout()
-                m_btns = New Button(2) {}
+            If m_usbDevice.idProduct <> &HA2 Then
+                Dim w2 As Integer = m_capability.screenWidth / 3
+                Dim w3 As Integer = m_capability.screenWidth / 3
+                Dim w1 As Integer = m_capability.screenWidth - w2 - w3
+                Dim y As Integer = m_capability.screenHeight * 6 / 7
+                Dim h As Integer = m_capability.screenHeight - y
+                m_btns(0).Bounds = New Drawing.Rectangle(0, y, w1, h)
+                m_btns(1).Bounds = New Drawing.Rectangle(w1, y, w2, h)
+                m_btns(2).Bounds = New Drawing.Rectangle(w1 + w2, y, w3, h)
+            Else
+                Dim x As Integer = m_capability.screenWidth * 3 / 4
+                Dim w As Integer = m_capability.screenWidth - x
+                Dim h2 As Integer = m_capability.screenHeight / 3
+                Dim h3 As Integer = m_capability.screenHeight / 3
+                Dim h1 As Integer = m_capability.screenHeight - h2 - h3
+                m_btns(0).Bounds = New Drawing.Rectangle(x, 0, w, h1)
+                m_btns(1).Bounds = New Drawing.Rectangle(x, h1, w, h2)
+                m_btns(2).Bounds = New Drawing.Rectangle(x, h1 + h2, w, h3)
+            End If
 
-                If m_usbDevice.idProduct <> &HA2 Then
-                    Dim w2 As Integer = m_capability.screenWidth / 3
-                    Dim w3 As Integer = m_capability.screenWidth / 3
-                    Dim w1 As Integer = m_capability.screenWidth - w2 - w3
-                    Dim y As Integer = m_capability.screenHeight * 6 / 7
-                    Dim h As Integer = m_capability.screenHeight - y
-                    m_btns(0).Bounds = New Drawing.Rectangle(0, y, w1, h)
-                    m_btns(1).Bounds = New Drawing.Rectangle(w1, y, w2, h)
-                    m_btns(2).Bounds = New Drawing.Rectangle(w1 + w2, y, w3, h)
-                Else
-                    Dim x As Integer = m_capability.screenWidth * 3 / 4
-                    Dim w As Integer = m_capability.screenWidth - x
-                    Dim h2 As Integer = m_capability.screenHeight / 3
-                    Dim h3 As Integer = m_capability.screenHeight / 3
-                    Dim h1 As Integer = m_capability.screenHeight - h2 - h3
-                    m_btns(0).Bounds = New Drawing.Rectangle(x, 0, w, h1)
-                    m_btns(1).Bounds = New Drawing.Rectangle(x, h1, w, h2)
-                    m_btns(2).Bounds = New Drawing.Rectangle(x, h1 + h2, w, h3)
-                End If
+            m_btns(0).Text = "Valider"
+            m_btns(1).Text = "Effacer"
+            m_btns(2).Text = "Quitter"
+            m_btns(0).Click = New EventHandler(AddressOf btnOk_Click)
+            m_btns(1).Click = New EventHandler(AddressOf btnClear_Click)
+            m_btns(2).Click = New EventHandler(AddressOf btnCancel_Click)
+            Dim idP As UShort = m_tablet.getProductId()
+            Dim encodingFlag As wgssSTU.encodingFlag = CType(protocolHelper.simulateEncodingFlag(idP, 0), wgssSTU.encodingFlag)
+            Dim useColor As Boolean = False
 
-                m_btns(0).Text = "Valider"
-                m_btns(1).Text = "Effacer"
-                m_btns(2).Text = "Quitter"
-                m_btns(0).Click = New EventHandler(AddressOf btnOk_Click)
-                m_btns(1).Click = New EventHandler(AddressOf btnClear_Click)
-                m_btns(2).Click = New EventHandler(AddressOf btnCancel_Click)
-                Dim idP As UShort = m_tablet.getProductId()
-                Dim encodingFlag As wgssSTU.encodingFlag = CType(protocolHelper.simulateEncodingFlag(idP, 0), wgssSTU.encodingFlag)
-                Dim useColor As Boolean = False
+            If (encodingFlag And (wgssSTU.encodingFlag.EncodingFlag_16bit Or wgssSTU.encodingFlag.EncodingFlag_24bit)) <> 0 Then
+                If m_tablet.supportsWrite() Then useColor = True
+            End If
 
-                If (encodingFlag And (wgssSTU.encodingFlag.EncodingFlag_16bit Or wgssSTU.encodingFlag.EncodingFlag_24bit)) <> 0 Then
-                    If m_tablet.supportsWrite() Then useColor = True
-                End If
+            If (encodingFlag And wgssSTU.encodingFlag.EncodingFlag_24bit) <> 0 Then
+                m_encodingMode = If(m_tablet.supportsWrite(), wgssSTU.encodingMode.EncodingMode_24bit_Bulk, wgssSTU.encodingMode.EncodingMode_24bit)
+            ElseIf (encodingFlag And wgssSTU.encodingFlag.EncodingFlag_16bit) <> 0 Then
+                m_encodingMode = If(m_tablet.supportsWrite(), wgssSTU.encodingMode.EncodingMode_16bit_Bulk, wgssSTU.encodingMode.EncodingMode_16bit)
+            Else
+                m_encodingMode = wgssSTU.encodingMode.EncodingMode_1bit
+            End If
 
-                If (encodingFlag And wgssSTU.encodingFlag.EncodingFlag_24bit) <> 0 Then
-                    m_encodingMode = If(m_tablet.supportsWrite(), wgssSTU.encodingMode.EncodingMode_24bit_Bulk, wgssSTU.encodingMode.EncodingMode_24bit)
-                ElseIf (encodingFlag And wgssSTU.encodingFlag.EncodingFlag_16bit) <> 0 Then
-                    m_encodingMode = If(m_tablet.supportsWrite(), wgssSTU.encodingMode.EncodingMode_16bit_Bulk, wgssSTU.encodingMode.EncodingMode_16bit)
-                Else
-                    m_encodingMode = wgssSTU.encodingMode.EncodingMode_1bit
-                End If
+            'Définition de l'image 
+            'img = New Bitmap(m_capability.screenWidth, m_capability.screenHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+            pctSignatureHeight = m_capability.screenHeight
+            pctSignatureWidth = m_capability.screenWidth
+            SetImgSignature()
+            imgSansBoutons = img.Clone()
+            imgVide = New Bitmap(m_capability.screenWidth, m_capability.screenHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+            If True Then
+                Using gfx_tablet As Graphics = Graphics.FromImage(img)
+                    Using gfx_tabletVide As Graphics = Graphics.FromImage(imgVide)
+                        Using gfx_Ecran As Graphics = Graphics.FromImage(imgSansBoutons)
+                            Using font As Font = New Font(FontFamily.GenericSansSerif, m_btns(0).Bounds.Height / 2.0F, GraphicsUnit.Pixel)
 
-                'Définition de l'image 
-                'img = New Bitmap(m_capability.screenWidth, m_capability.screenHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
-                pctSignatureHeight = m_capability.screenHeight
-                pctSignatureWidth = m_capability.screenWidth
-                SetImgSignature()
-                imgSansBoutons = img.Clone()
-                imgVide = New Bitmap(m_capability.screenWidth, m_capability.screenHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
-                If True Then
-                    Using gfx_tablet As Graphics = Graphics.FromImage(img)
-                        Using gfx_tabletVide As Graphics = Graphics.FromImage(imgVide)
-                            Using gfx_Ecran As Graphics = Graphics.FromImage(imgSansBoutons)
-                                Using font As Font = New Font(FontFamily.GenericSansSerif, m_btns(0).Bounds.Height / 2.0F, GraphicsUnit.Pixel)
+                                gfx_tabletVide.Clear(Color.White)
 
-                                    gfx_tabletVide.Clear(Color.White)
+                                Dim sf As StringFormat = New StringFormat()
+                                sf.Alignment = StringAlignment.Center
+                                sf.LineAlignment = StringAlignment.Center
 
-                                    Dim sf As StringFormat = New StringFormat()
-                                    sf.Alignment = StringAlignment.Center
-                                    sf.LineAlignment = StringAlignment.Center
+                                If useColor Then
+                                    gfx_tablet.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+                                    gfx_tabletVide.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+                                    gfx_Ecran.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+                                Else
+                                    gfx_tablet.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+                                    gfx_tabletVide.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+                                    gfx_Ecran.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+                                End If
+
+                                'Dessin des boutons (uniquement sur la tablette)
+                                For i As Integer = 0 To m_btns.Length - 1
 
                                     If useColor Then
-                                        gfx_tablet.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-                                        gfx_tabletVide.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-                                        gfx_Ecran.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-                                    Else
-                                        gfx_tablet.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
-                                        gfx_tabletVide.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
-                                        gfx_Ecran.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+                                        gfx_tablet.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
+                                        gfx_tabletVide.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
                                     End If
 
-                                    'Dessin des boutons (uniquement sur la tablette)
-                                    For i As Integer = 0 To m_btns.Length - 1
-
-                                        If useColor Then
-                                            gfx_tablet.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
-                                            gfx_tabletVide.FillRectangle(Brushes.LightGray, m_btns(i).Bounds)
-                                        End If
-
-                                        gfx_tablet.DrawRectangle(Pens.Black, m_btns(i).Bounds)
-                                        gfx_tablet.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
-                                        gfx_tabletVide.DrawRectangle(Pens.Black, m_btns(i).Bounds)
-                                        gfx_tabletVide.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
-                                    Next
-                                End Using
+                                    gfx_tablet.DrawRectangle(Pens.Black, m_btns(i).Bounds)
+                                    gfx_tablet.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
+                                    gfx_tabletVide.DrawRectangle(Pens.Black, m_btns(i).Bounds)
+                                    gfx_tabletVide.DrawString(m_btns(i).Text, font, Brushes.Black, m_btns(i).Bounds, sf)
+                                Next
                             End Using
                         End Using
                     End Using
-                    'Affichage de l'image sans les boutons sur l'écran
-                    Me.BackgroundImage = imgSansBoutons
-                    Me.BackgroundImageLayout = ImageLayout.Stretch
-                End If
-
-                'Sauvegarde de l'image Avec Signature (si Agent) pour Mémoire
-                Using stream As New System.IO.MemoryStream()
-                    'Dim protocolHelper As wgssSTU.ProtocolHelper = New wgssSTU.ProtocolHelper()
-                    img.Save(stream, System.Drawing.Imaging.ImageFormat.Png)
-                    m_bitmapData = CType(protocolHelper.resizeAndFlatten(stream.ToArray(), 0, 0, CUInt(img.Width), CUInt(img.Height), m_capability.screenWidth, m_capability.screenHeight, CByte(m_encodingMode), wgssSTU.Scale.Scale_Fit, 0, 0), Byte())
-
                 End Using
-                'Sauvegarde de l'image Sans Signature pour Mémoire
-                Using stream As New System.IO.MemoryStream()
-                    'Dim protocolHelper As wgssSTU.ProtocolHelper = New wgssSTU.ProtocolHelper()
-                    imgVide.Save(stream, System.Drawing.Imaging.ImageFormat.Png)
-                    m_bitmapDataVide = CType(protocolHelper.resizeAndFlatten(stream.ToArray(), 0, 0, CUInt(img.Width), CUInt(img.Height), m_capability.screenWidth, m_capability.screenHeight, CByte(m_encodingMode), wgssSTU.Scale.Scale_Fit, 0, 0), Byte())
-                End Using
+                'Affichage de l'image sans les boutons sur l'écran
+                Me.BackgroundImage = imgSansBoutons
+                Me.BackgroundImageLayout = ImageLayout.Stretch
+            End If
+
+            'Sauvegarde de l'image Avec Signature (si Agent) pour Mémoire
+            Using stream As New System.IO.MemoryStream()
+                'Dim protocolHelper As wgssSTU.ProtocolHelper = New wgssSTU.ProtocolHelper()
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png)
+                m_bitmapData = CType(protocolHelper.resizeAndFlatten(stream.ToArray(), 0, 0, CUInt(img.Width), CUInt(img.Height), m_capability.screenWidth, m_capability.screenHeight, CByte(m_encodingMode), wgssSTU.Scale.Scale_Fit, 0, 0), Byte())
+
+            End Using
+            'Sauvegarde de l'image Sans Signature pour Mémoire
+            Using stream As New System.IO.MemoryStream()
+                'Dim protocolHelper As wgssSTU.ProtocolHelper = New wgssSTU.ProtocolHelper()
+                imgVide.Save(stream, System.Drawing.Imaging.ImageFormat.Png)
+                m_bitmapDataVide = CType(protocolHelper.resizeAndFlatten(stream.ToArray(), 0, 0, CUInt(img.Width), CUInt(img.Height), m_capability.screenWidth, m_capability.screenHeight, CByte(m_encodingMode), wgssSTU.Scale.Scale_Fit, 0, 0), Byte())
+            End Using
 
 
-                Dim s As SizeF = Me.AutoScaleDimensions
-                Dim inkWidthMM As Single = 0.7F
-                m_penInk = New Pen(Color.Black, inkWidthMM / 25.4F * ((s.Width + s.Height) / 2.0F))
-                m_penInk.StartCap = CSharpImpl.__Assign(m_penInk.EndCap, System.Drawing.Drawing2D.LineCap.Round)
-                m_penInk.LineJoin = System.Drawing.Drawing2D.LineJoin.Round
-                addDelegates()
-                AfficheTablet()
-                m_tablet.setInkingMode(&H1)
+            Dim s As SizeF = Me.AutoScaleDimensions
+            Dim inkWidthMM As Single = 0.7F
+            m_penInk = New Pen(Color.DarkBlue, inkWidthMM / 25.4F * ((s.Width + s.Height) / 2.0F))
+            m_penInk.StartCap = CSharpImpl.__Assign(m_penInk.EndCap, System.Drawing.Drawing2D.LineCap.Round)
+            m_penInk.LineJoin = System.Drawing.Drawing2D.LineJoin.Round
+            addDelegates()
+            AfficheTablet()
+            m_tablet.setInkingMode(&H1)
 
 
-            Catch ex As Exception
-                CSDebug.dispError("frmSignClientWacom.New ERR" & ex.Message)
-            End Try
 
 
         End If
@@ -363,23 +357,18 @@ Partial Public Class frmSignClientWacom
     End Sub
 
     Private Sub Form2_FormClosed(ByVal sender As Object, ByVal e As FormClosedEventArgs) Handles MyBase.FormClosed
-        Try
+        If m_tablet IsNot Nothing Then
+            RemoveHandler m_tablet.onGetReportException, AddressOf onGetReportException
+            RemoveHandler m_tablet.onPenData, AddressOf onPenData
+            RemoveHandler m_tablet.onPenDataEncrypted, AddressOf onPenDataEncrypted
+            RemoveHandler m_tablet.onPenDataTimeCountSequence, AddressOf onPenDataTimeCountSequence
+            RemoveHandler m_tablet.onPenDataTimeCountSequenceEncrypted, AddressOf onPenDataTimeCountSequenceEncrypted
+            m_tablet.setInkingMode(&H0)
+            m_tablet.setClearScreen()
+            Disconnect()
+        End If
 
-            If m_tablet IsNot Nothing Then
-                RemoveHandler m_tablet.onGetReportException, AddressOf onGetReportException
-                RemoveHandler m_tablet.onPenData, AddressOf onPenData
-                RemoveHandler m_tablet.onPenDataEncrypted, AddressOf onPenDataEncrypted
-                RemoveHandler m_tablet.onPenDataTimeCountSequence, AddressOf onPenDataTimeCountSequence
-                RemoveHandler m_tablet.onPenDataTimeCountSequenceEncrypted, AddressOf onPenDataTimeCountSequenceEncrypted
-                m_tablet.setInkingMode(&H0)
-                m_tablet.setClearScreen()
-                Disconnect()
-                m_penInk.Dispose()
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("frmSignClientWacom.FormClosed Err", ex)
-        End Try
-
+        m_penInk.Dispose()
     End Sub
     Public Overrides Sub Disconnect()
         If m_tablet IsNot Nothing Then
@@ -695,6 +684,7 @@ Partial Public Class frmSignClientWacom
                         End If
                     Next
                 End If
+                bitmap.Save("config/ImageOrigine3.bmp", ImageFormat.Bmp)
 
                 retVal = bitmap
                 bitmap = Nothing

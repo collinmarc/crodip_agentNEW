@@ -425,10 +425,8 @@ Public Class gestion_agent
         Dim oFrm As frmSignClient
         Dim oDiag As New Diagnostic()
         oFrm = frmSignClient.getfrmSignature(oDiag, SignMode.RICLIENT, agentCourant)
-        If oFrm IsNot Nothing Then
-            oFrm.Show()
-            System.Windows.Forms.Cursor.Position = Me.PointToScreen(btnTestsignature.Location)
-        End If
+        oFrm.Show()
+        System.Windows.Forms.Cursor.Position = Me.PointToScreen(btnTestsignature.Location)
     End Sub
 
     Private Sub btn_ficheInspecteur_annuler_Click(sender As Object, e As EventArgs) Handles btn_ficheInspecteur_annuler.Click

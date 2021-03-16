@@ -2,8 +2,8 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports Crodip_agent
 
-<TestClass()> Public Class testBD_PROD
-    Inherits CRODIPTest
+<TestClass()> Public Class testBDASCAR
+ Inherits CRODIPTest
     'Test uniquement pour MAJ base ASCAR
     'Mettre la base crodip_agent_dev(ASCAROK).mdb active avant l'executio du test
     <TestMethod(), Ignore()>
@@ -79,7 +79,7 @@ Imports Crodip_agent
         Dim oSynchro As New Synchronisation(oagent)
         Dim oLst As List(Of SynchronisationElmt) = oSynchro.getListeElementsASynchroniserDESC()
         For Each oElem In oLst
-            Console.WriteLine(oElem.IdentifiantChaine & oElem.Type)
+            Console.WriteLine(oElem.identifiantChaine & oElem.type)
         Next
 
 
@@ -123,7 +123,7 @@ Imports Crodip_agent
         Assert.AreEqual("5-1144-687", oDiag.id)
 
         Dim oEtat As New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.genereEtat())
+        Assert.IsTrue(oEtat.GenereEtat())
 
         oEtat.Open()
 

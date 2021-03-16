@@ -385,7 +385,7 @@ Public Class DiagnosticHelp552test
         oDiagHelp552.DebitAfficheur_m3 = 3.5D
 
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen3bar = 1
+        oDiagHelp552.DebitMoyen0Bar = 1
         Assert.IsTrue(oDiagHelp552.calc())
         Assert.AreEqual(CDec(-13.397), oDiagHelp552.EcartPct_m1)
         Assert.AreEqual(CDec(2.062), oDiagHelp552.EcartPct_m2)
@@ -404,7 +404,7 @@ Public Class DiagnosticHelp552test
         oDiagHelp552.DebitAfficheur_m3 = 11.5D
 
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen3bar = 0.99D
+        oDiagHelp552.DebitMoyen0Bar = 0.99D
 
         Assert.IsTrue(oDiagHelp552.calc())
         Assert.AreEqual(CDec(1.704), oDiagHelp552.EcartPct_m1)
@@ -426,7 +426,7 @@ Public Class DiagnosticHelp552test
         oDiagHelp552.DebitAfficheur_m3 = 11.5D
 
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen3bar = 0.99D
+        oDiagHelp552.DebitMoyen0Bar = 0.99D
 
         Assert.IsTrue(oDiagHelp552.calc())
         Assert.AreEqual(CDec(1.704), oDiagHelp552.EcartPct_m1)
@@ -449,7 +449,7 @@ Public Class DiagnosticHelp552test
         oDiagHelp552.DebitAfficheur_m3 = 11.5D
 
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen3bar = 0.99D
+        oDiagHelp552.DebitMoyen0Bar = 0.99D
 
         Assert.IsTrue(oDiagHelp552.calc())
         Assert.AreEqual(CDec(1.704), oDiagHelp552.EcartPct_m1)
@@ -469,7 +469,7 @@ Public Class DiagnosticHelp552test
     Public Sub TST_CalcMAR()
         Dim oDiagHelp552 As New DiagnosticHelp552()
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen3bar = 0.992D
+        oDiagHelp552.DebitMoyen0Bar = 0.992D
 
         oDiagHelp552.NbBuses_m1 = 10
         oDiagHelp552.NbBuses_m2 = 10
@@ -513,7 +513,7 @@ Public Class DiagnosticHelp552test
         Dim oDiagHelp552 As New DiagnosticHelp552()
 
         oDiagHelp552.PressionMesure = 3
-        oDiagHelp552.DebitMoyen3bar = 1.202D
+        oDiagHelp552.DebitMoyen0Bar = 1.202D
 
         oDiagHelp552.NbBuses_m1 = 48
         oDiagHelp552.NbBuses_m2 = 48
