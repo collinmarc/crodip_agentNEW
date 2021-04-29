@@ -274,6 +274,22 @@ Public Class Synchronisation
                     CSDebug.dispWarn("Synchronisation.runascSynchro ERREUR en synchro des pDFS manquants FV Mano" & ex.Message)
                 End Try
             End If
+            If System.IO.File.Exists("./synchroFVBanc") Then
+                Try
+
+                    Notice("Synchronisation des PDFs manquants FVBancs")
+                    ' Récupération de la liste des FV des Bancs de moins de 6 mois qui ont un nom de PDF 
+                    Dim lst As List(Of FVBanc) = FVBancManager.getLstFVBanc().Where(Function(d) d.FVFileName <> "" And d.dateModif <> "" And CDate(d.dateModif) > Now.AddMonths(-6)).ToList()
+                    For Each oFV As FVBanc In lst
+                        Notice("PDFs [" & oFV.id & "]")
+                        FVBancManager.SendEtats(oFV)
+                    Next
+
+                    System.IO.File.Delete("./synchroFVBanc")
+                Catch ex As Exception
+                    CSDebug.dispWarn("Synchronisation.runascSynchro ERREUR en synchro des pDFS manquants FV Mano" & ex.Message)
+                End Try
+            End If
 
             ' Synchro d'un agent
             ' On récupère les mises à jours

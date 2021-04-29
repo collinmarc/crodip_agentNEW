@@ -1,12 +1,15 @@
 TRUNK
 MASTER
+BUILD : XXXXXXX
+-----------------------
+0001353: Signature à postériori : Montant du Contrat Commercial = 0
 
 BUILD : 20210316130000
 -----------------------
 0001348: Les signatures sont convervées en Contre Visite
 0001345: Erreur en contre visite
 0001346: Agrandir les signatures sur les Rapports et Contrat Commercial
-
+0001350: Synchronisation des PDFs des Controle de Bancs
 
 BUILD : 20210303170000
 -----------------------

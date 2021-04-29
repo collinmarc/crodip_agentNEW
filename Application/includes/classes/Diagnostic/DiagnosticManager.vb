@@ -1294,11 +1294,9 @@ Public Class DiagnosticManager
                 End If
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.isSupprime=" & objDiagnostic.isSupprime & ""
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.diagRemplacementId='" & objDiagnostic.diagRemplacementId & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.totalHT='" & objDiagnostic.TotalHT & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.totalTTC='" & objDiagnostic.TotalTTC & "'"
 
-                '                paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIAgent=@signRIAgent"
-                'paramsQuery2 = paramsQuery2 & " , Diagnostic.signRIClient=@signRIClient"
-                'paramsQuery2 = paramsQuery2 & " , Diagnostic.signCCAgent=@signCCAgent"
-                'paramsQuery2 = paramsQuery2 & " , Diagnostic.signCCClient=@signCCClient"
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"

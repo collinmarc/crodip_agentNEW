@@ -2791,6 +2791,10 @@ Public Class Diagnostic
                     Me.isSupprime = pcolValue
                 Case "diagRemplacementId".ToUpper().Trim()
                     Me.diagRemplacementId = pcolValue
+                Case "TotalHT".ToUpper().Trim()
+                    Me.TotalHT = pcolValue
+                Case "totalTTC".ToUpper().Trim()
+                    Me.TotalTTC = pcolValue
             End Select
             '            ALTER TABLE DIAGNOSTIC ADD isSignRIAgent YESNO
             'ALTER TABLE DIAGNOSTIC ADD isSignRIClient YESNO

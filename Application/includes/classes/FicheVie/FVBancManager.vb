@@ -1,3 +1,5 @@
+Imports System.Collections.Generic
+
 Public Class FVBancManager
 
 #Region "Methodes Web Service"
@@ -9,7 +11,7 @@ Public Class FVBancManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As new Object
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetFVBanc(agentCourant.id, fvbanc_id, objWSCrodip_response)
             Select Case codeResponse
@@ -320,9 +322,9 @@ Public Class FVBancManager
         Dim nResult As Integer
         Dim bReturn As Boolean
         Try
-            oCSDb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            bddCommande = oCSDb.getConnection.CreateCommand()
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "DELETE FROM FicheVieBancMesure WHERE FicheVieBancMesure.id='" & pId & "'"
             nResult = bddCommande.ExecuteNonQuery()
             Debug.Assert(nResult = 1, "Erreur en Delete, plus d'une ligne supprimée")
@@ -331,8 +333,8 @@ Public Class FVBancManager
             CSDebug.dispFatal("FVBancManager.delete (" & pId.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'delete
@@ -455,8 +457,8 @@ Public Class FVBancManager
         Dim arrItems(0) As FVBanc
         Dim bddCommande As OleDb.OleDbCommand
         Dim oCsdb As CSDb = Nothing
-        oCSDb = New CSDb(True)
-        bddCommande = oCSDb.getConnection().CreateCommand()
+        oCsdb = New CSDb(True)
+        bddCommande = oCsdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT `FichevieBancMesure`.* FROM `FichevieBancMesure` INNER JOIN `BancMesure` ON `FichevieBancMesure`.`idBancMesure` = `BancMesure`.`id` WHERE `FichevieBancMesure`.`dateModificationAgent`<>`FichevieBancMesure`.`dateModificationCrodip` AND `BancMesure`.`idStructure`=" & pAgent.idStructure
 
         Try
@@ -483,8 +485,8 @@ Public Class FVBancManager
         End Try
 
         ' Test pour fermeture de connection BDD
-        If oCSDb IsNot Nothing Then
-            oCSDb.free()
+        If oCsdb IsNot Nothing Then
+            oCsdb.free()
         End If
 
         'on retourne les objet non synchro
@@ -503,8 +505,8 @@ Public Class FVBancManager
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
         Try
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection.CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "SELECT * FROM FichevieBancMesure WHERE FichevieBancMesure.idBancMesure='" & pBancId & "' ORDER BY dateModif ASC"
             Try
 
@@ -532,11 +534,46 @@ Public Class FVBancManager
         Catch ex As Exception
 
         End Try
-        If oCSDB IsNot Nothing Then
-            oCSDB.free()
+        If oCsdb IsNot Nothing Then
+            oCsdb.free()
         End If
 
         Return lstFVBanc
+    End Function
+    Public Shared Function getLstFVBanc() As List(Of FVBanc)
+        Dim lstResponse As New List(Of FVBanc)
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As OleDb.OleDbCommand
+
+        oCsdb = New CSDb(True)
+        bddCommande = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT * FROM FichevieBancMesure Where dateModif is not null"
+        Try
+
+            ' On récupère les résultats
+            Dim oDR As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            While oDR.Read()
+
+                ' On rempli notre tableau
+                Dim oFVBanc As New FVBanc(New Agent())
+                Dim tmpColId As Integer = 0
+                While tmpColId < oDR.FieldCount()
+                    oFVBanc.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+                    tmpColId = tmpColId + 1
+                End While
+                lstResponse.Add(oFVBanc)
+            End While
+            oDR.Close()
+        Catch ex As Exception
+            CSDebug.dispError("FVBancManager - getlstFVBanc ERR : " & ex.Message)
+        End Try
+
+        If oCsdb IsNot Nothing Then
+            oCsdb.free()
+        End If
+
+        Return lstResponse
     End Function
 
 #End Region
@@ -583,7 +620,8 @@ Public Class FVBancManager
         Try
             bReturn = True
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatFVBancUrl)
+            Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & My.Settings.SynchroEtatFVBancUrl)
+            ' Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatFVBancUrl)
             'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur
             Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVBancUser, My.Settings.SynhcroEtatFVBancPwd)
             If System.IO.File.Exists(pFilePath) Then

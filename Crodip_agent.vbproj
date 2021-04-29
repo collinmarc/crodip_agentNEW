@@ -1962,6 +1962,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>
     </None>
+    <None Include="SynchroFVBanc" />
     <None Include="updates.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
