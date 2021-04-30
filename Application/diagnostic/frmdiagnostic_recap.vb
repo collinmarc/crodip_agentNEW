@@ -976,7 +976,11 @@ Public Class frmdiagnostic_recap
                         If Not createEtatSyntheseDesMesures(True) Then
                             CSDebug.dispError("Erreur en génération de l'état de synthèse des mesures")
                         End If
-                        If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
+                        If Globals.GLOB_ENV_MODESIMPLIFIE Or
+                            Globals.GLOB_ENV_MODEFORMATION Or
+                            (m_diagnostic.isContrevisiteImmediate And m_diagnostic.TotalHT = 0) Then
+                            'Pas de génération du contrat commercial
+                        Else
                             Statusbar.display("Génération du Contrat Commercial", True)
                             If Not createEtatContratCommercial(True) Then
                                 CSDebug.dispError("Erreur en génération du Contrat Commercial")
