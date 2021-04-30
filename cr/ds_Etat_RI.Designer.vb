@@ -612,6 +612,8 @@ Partial Public Class ds_Etat_RI
         
         Private columndiagRemplacementId As Global.System.Data.DataColumn
         
+        Private columndateDiagRemplacement As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -864,6 +866,14 @@ Partial Public Class ds_Etat_RI
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property dateDiagRemplacementColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndateDiagRemplacement
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -927,9 +937,10 @@ Partial Public Class ds_Etat_RI
                     ByVal DateSignAgent As String,  _
                     ByVal DelaiValidite As Integer,  _
                     ByVal DelaiValiditeCV As Integer,  _
-                    ByVal diagRemplacementId As String) As DiagnosticRow
+                    ByVal diagRemplacementId As String,  _
+                    ByVal dateDiagRemplacement As String) As DiagnosticRow
             Dim rowDiagnosticRow As DiagnosticRow = CType(Me.NewRow,DiagnosticRow)
-            Dim columnValuesArray() As Object = New Object() {NumeroControle, NumeroAgrement, dateControle, lieuControle, HeureDebutControle, HeureFinControle, Precontrole, ControleComplet, ControleOrigine, Nothing, Conclusion, dateLimiteControle, DateEmission, DateControleInitial, OrganismeInitial, InspecteurInitial, NbPageRFinal, Commentaire, SignClient, bSignClient, DateSignClient, SignAgent, bSignAgent, DateSignAgent, DelaiValidite, DelaiValiditeCV, diagRemplacementId}
+            Dim columnValuesArray() As Object = New Object() {NumeroControle, NumeroAgrement, dateControle, lieuControle, HeureDebutControle, HeureFinControle, Precontrole, ControleComplet, ControleOrigine, Nothing, Conclusion, dateLimiteControle, DateEmission, DateControleInitial, OrganismeInitial, InspecteurInitial, NbPageRFinal, Commentaire, SignClient, bSignClient, DateSignClient, SignAgent, bSignAgent, DateSignAgent, DelaiValidite, DelaiValiditeCV, diagRemplacementId, dateDiagRemplacement}
             If (Not (parentMaterielRowByMateriel_Diagnostic) Is Nothing) Then
                 columnValuesArray(9) = parentMaterielRowByMateriel_Diagnostic(0)
             End If
@@ -988,6 +999,7 @@ Partial Public Class ds_Etat_RI
             Me.columnDelaiValidite = MyBase.Columns("DelaiValidite")
             Me.columnDelaiValiditeCV = MyBase.Columns("DelaiValiditeCV")
             Me.columndiagRemplacementId = MyBase.Columns("diagRemplacementId")
+            Me.columndateDiagRemplacement = MyBase.Columns("dateDiagRemplacement")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1047,6 +1059,8 @@ Partial Public Class ds_Etat_RI
             MyBase.Columns.Add(Me.columnDelaiValiditeCV)
             Me.columndiagRemplacementId = New Global.System.Data.DataColumn("diagRemplacementId", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndiagRemplacementId)
+            Me.columndateDiagRemplacement = New Global.System.Data.DataColumn("dateDiagRemplacement", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndateDiagRemplacement)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("CONSTraint1", New Global.System.Data.DataColumn() {Me.columnNumeroControle}, true))
             Me.columnNumeroControle.AllowDBNull = false
             Me.columnNumeroControle.Unique = true
@@ -4208,6 +4222,22 @@ Partial Public Class ds_Etat_RI
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property dateDiagRemplacement() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDiagnostic.dateDiagRemplacementColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'dateDiagRemplacement' dans la table 'Diagnostic' est D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDiagnostic.dateDiagRemplacementColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property MaterielRow() As MaterielRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("Materiel_Diagnostic")),MaterielRow)
@@ -4527,6 +4557,18 @@ Partial Public Class ds_Etat_RI
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetdiagRemplacementIdNull()
             Me(Me.tableDiagnostic.diagRemplacementIdColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsdateDiagRemplacementNull() As Boolean
+            Return Me.IsNull(Me.tableDiagnostic.dateDiagRemplacementColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetdateDiagRemplacementNull()
+            Me(Me.tableDiagnostic.dateDiagRemplacementColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

@@ -955,11 +955,14 @@ Public Class diagnostic_contexte
 
             cbxModeUtilisation.Text = m_diagnostic.pulverisateurModeUtilisation
             cbxNbreExploitants.Text = m_diagnostic.pulverisateurNbreExploitants
-            If m_Retour = False Then
-                Exit Try
-            End If
+            'If m_Retour = False Then
+            '    Exit Try
+            'End If
             ' Chargement des infos
             tbcodePostal.Text = m_diagnostic.controleCodePostal
+            If tbcodePostal.Text <> "" Then
+                LoadCommunes(tbcodePostal.Text)
+            End If
             cbxcommune.Text = m_diagnostic.controleCommune
             cbxSite.Text = m_diagnostic.controleSite
             tbnomSite.Text = m_diagnostic.controleNomSite

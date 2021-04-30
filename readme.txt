@@ -4,7 +4,8 @@ BUILD : XXXXXXX
 -----------------------
 0001353: Signature à postériori : Montant du Contrat Commercial = 0
 0001351: Reprise du contrat en de CV immédiate
-
+0001339: Fonction Annule et Remplace un diag
+0001060: Ajout d'une fonction Annule et remplace d'un DIAG
 
 BUILD : 20210316130000
 -----------------------

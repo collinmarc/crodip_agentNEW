@@ -1,3 +1,6 @@
+Imports System.Linq
+Imports System.Collections.Generic
+
 Public Class controle_preliminaire
     Inherits frmCRODIP
 
@@ -1555,10 +1558,7 @@ Public Class controle_preliminaire
 
         ' On charge les infos du diagnostic
         'Il faut désactiver le duringLoad , car ce sont les Click qui déclenche le bouton "poursuivre"
-        m_bDuringLoad = False
-        If m_Mode <> Globals.DiagMode.CTRL_COMPLET Then
-            loadExistingDiag()
-        End If
+
 
         btn_controlePreliminaire_poursuivre.Visible = False
         btn_toutCocher.Visible = False
@@ -1572,6 +1572,13 @@ Public Class controle_preliminaire
                 btn_controlePreliminaire_poursuivre.Visible = True
                 CSForm.disableAllCheckBox(Me)
         End Select
+        If m_Mode <> Globals.DiagMode.CTRL_COMPLET Or
+                (m_Mode = Globals.DiagMode.CTRL_COMPLET And m_Diagnostic.diagRemplacementId <> "") Then
+            'Chargement des infos existantes si on n'est pas sur un controle complet (CV ou VISU)
+            'ou si on est en CC en remplacement
+            loadExistingDiag()
+        End If
+
         If Globals.GLOB_ENV_MODEFORMATION Then
             Me.Text = "Contrôle préliminaire"
             pctLogo.Visible = False
@@ -1586,6 +1593,7 @@ Public Class controle_preliminaire
             End If
         End If
 
+        m_bDuringLoad = False
         Me.Cursor = Cursors.Default
     End Sub
 
@@ -1603,13 +1611,18 @@ Public Class controle_preliminaire
             If Not m_Diagnostic Is Nothing Then
                 If Not m_Diagnostic.diagnosticItemsLst Is Nothing Then
                     If Not m_Diagnostic.diagnosticItemsLst.items Is Nothing Then
-                        For Each tmpDiagnosticItem In m_Diagnostic.diagnosticItemsLst.items
+                        Dim lstDiagItem As New List(Of DiagnosticItem)
+                        'lstDiagItem.AddRange(m_Diagnostic.diagnosticItemsLst.items)
+                        'on ne parcours que les IdItem de niveau 1 (pas les 10,11,12) => Longueur = 3
+                        lstDiagItem = m_Diagnostic.diagnosticItemsLst.items.Where(Function(o) o.idItem.Length = 3 And o.idItem.StartsWith("1")).ToList()
+                        For Each tmpDiagnosticItem In lstDiagItem
                             If Not tmpDiagnosticItem Is Nothing Then
-                                Dim TestIdVar As String = tmpDiagnosticItem.idItem & "" & tmpDiagnosticItem.itemValue
+                                Dim TestIdVar As String = tmpDiagnosticItem.idItem & tmpDiagnosticItem.itemValue
                                 Dim TestNameVar As String = "RadioButton_diagnostic_" & TestIdVar
                                 isLoaded = True
                                 Try
                                     Dim tmpControl As CRODIP_ControlLibrary.CtrlDiag2 = CSForm.getControlByName(TestNameVar, Me)
+
                                     If Not tmpControl Is Nothing Then
                                         tmpControl.Checked = True
                                     End If
@@ -1622,6 +1635,7 @@ Public Class controle_preliminaire
                     End If
                 End If
             End If
+            checkIsOk()
         Catch ex As Exception
             CSDebug.dispError("Controle preliminaire - loadExistingDiag : " & ex.Message.ToString)
         End Try
@@ -1793,7 +1807,7 @@ Public Class controle_preliminaire
         ' Ouverture form diagnostic
         Statusbar.clear()
         Me.Cursor = Cursors.WaitCursor
-        globFormDiagnostic = New frmDiagnostique(m_Mode, m_Diagnostic, m_Pulverisateur, m_Exploit)
+        globFormDiagnostic = New FrmDiagnostique(m_Mode, m_Diagnostic, m_Pulverisateur, m_Exploit)
         TryCast(Me.MdiParent, parentContener).DisplayForm(globFormDiagnostic)
         Me.Cursor = Cursors.Default
 
@@ -1955,7 +1969,7 @@ Public Class controle_preliminaire
         '        diagnosticCourant.ChargeArrAnswers(arrAnswers)
         m_Diagnostic.ParamDiag = m_oParamdiag
         Dim ofrm As New frmdiagnostic_recap(m_Mode, m_Diagnostic, m_Pulverisateur, m_Exploit, agentCourant, Me)
-        TryCast(Me.MdiParent, parentContener).DisplayForm(oFrm)
+        TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
 
         Statusbar.clear()
     End Sub

@@ -2833,13 +2833,11 @@ Public Class liste_diagnosticPulve2
         col_Details.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
         col_Remplacer.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
         col_ContreVisite.Visible = DiagMode = Globals.DiagMode.CTRL_CV
+        col_Signatures.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
+        col_Remplacer.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
 
-        'Supprimer dans cette version
-        col_Remplacer.Visible = False
 
-        If DiagMode = Globals.DiagMode.CTRL_CV Then
-            col_Signatures.Visible = False
-        Else
+        If DiagMode <> Globals.DiagMode.CTRL_CV Then
             col_Signatures.Visible = oAgent.isSignElecActive
             ckisNonReference.Visible = False
             btn_reprendreDiag.Visible = False
@@ -2905,12 +2903,16 @@ Public Class liste_diagnosticPulve2
     Private Sub RemplacerDiag()
         If m_oDiag IsNot Nothing Then
             Try
+                'Chargement complet du diag
                 m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
+                Dim idDiagOrigine As String
+                idDiagOrigine = m_oDiag.id
+                m_oDiag = m_oDiag.Clone()
 
-                'On supprime l'Id du diag, comme cela il sera considéré comme nouveau
+
                 m_oDiag.isSupprime = False
-                m_oDiag.diagRemplacementId = m_oDiag.id
-                m_oDiag.id = ""
+                m_oDiag.diagRemplacementId = idDiagOrigine
+                m_oDiag.id = "" 'On supprime l'Id du diag, comme cela il sera considéré comme nouveau
                 m_oDiag.controleDateDebut = CSDate.mysql2access(Date.Now)
                 m_oDiag.controleDateFin = CSDate.mysql2access(Date.Now)
                 m_oDiag.setPulverisateur(oPulve)
@@ -2922,7 +2924,7 @@ Public Class liste_diagnosticPulve2
                 Me.Close()
 
             Catch ex As Exception
-                CSDebug.dispError("Visualisation Diagnostic - getDiagnosticById" & ex.Message.ToString)
+                CSDebug.dispError("lsy_diagnosticPulve2.RemplacerDiag" & ex.Message.ToString)
             End Try
         End If
     End Sub

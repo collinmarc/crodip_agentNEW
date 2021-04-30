@@ -42,6 +42,7 @@
               <xs:element name="DelaiValidite" msprop:Generator_ColumnVarNameInTable="columnDelaiValidite" msprop:Generator_ColumnPropNameInRow="DelaiValidite" msprop:Generator_ColumnPropNameInTable="DelaiValiditeColumn" msprop:Generator_UserColumnName="DelaiValidite" type="xs:int" minOccurs="0" />
               <xs:element name="DelaiValiditeCV" msprop:Generator_ColumnVarNameInTable="columnDelaiValiditeCV" msprop:Generator_ColumnPropNameInRow="DelaiValiditeCV" msprop:Generator_ColumnPropNameInTable="DelaiValiditeCVColumn" msprop:Generator_UserColumnName="DelaiValiditeCV" type="xs:int" minOccurs="0" />
               <xs:element name="diagRemplacementId" msprop:Generator_ColumnVarNameInTable="columndiagRemplacementId" msprop:Generator_ColumnPropNameInRow="diagRemplacementId" msprop:Generator_ColumnPropNameInTable="diagRemplacementIdColumn" msprop:Generator_UserColumnName="diagRemplacementId" type="xs:string" minOccurs="0" />
+              <xs:element name="dateDiagRemplacement" msprop:Generator_ColumnVarNameInTable="columndateDiagRemplacement" msprop:Generator_ColumnPropNameInRow="dateDiagRemplacement" msprop:Generator_ColumnPropNameInTable="dateDiagRemplacementColumn" msprop:Generator_UserColumnName="dateDiagRemplacement" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

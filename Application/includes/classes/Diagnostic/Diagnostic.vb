@@ -2792,7 +2792,11 @@ Public Class Diagnostic
                 Case "isSupprime".ToUpper().Trim()
                     Me.isSupprime = pcolValue
                 Case "diagRemplacementId".ToUpper().Trim()
-                    Me.diagRemplacementId = pcolValue
+                    If IsDBNull(pcolValue) Then
+                        Me.diagRemplacementId = ""
+                    Else
+                        Me.diagRemplacementId = pcolValue.ToString()
+                    End If
                 Case "TotalHT".ToUpper().Trim()
                     Me.TotalHT = pcolValue
                 Case "totalTTC".ToUpper().Trim()

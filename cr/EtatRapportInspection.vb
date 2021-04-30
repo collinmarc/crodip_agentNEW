@@ -309,6 +309,15 @@ Public Class EtatRapportInspection
 
             ''            img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
 
+            Dim dDateRemplacement As DateTime = DateTime.Now.ToShortDateString()
+            If m_oDiag.diagRemplacementId <> "" Then
+                Dim oDiagRemplace As Diagnostic
+                oDiagRemplace = DiagnosticManager.getDiagnosticById(m_oDiag.diagRemplacementId)
+                If oDiagRemplace Is Nothing Then
+                    dDateRemplacement = CDate(oDiagRemplace.controleDateDebut).ToShortDateString()
+                End If
+            End If
+
             oDiagRow = m_ods.Diagnostic.AddDiagnosticRow(m_oDiag.id, m_oDiag.organismeInspAgrement, CDate(m_oDiag.controleDateDebut), m_oDiag.controleLieu, CDate(m_oDiag.controleDateDebut).ToShortTimeString(), CDate(m_oDiag.controleDateFin).ToShortTimeString(), m_oDiag.controleIsPreControleProfessionel, m_oDiag.controleIsComplet, m_oDiag.controleInitialId, oMaterielRow, Conclusion:=m_oDiag.controleEtat, dateLimiteControle:=dateLimiteControle, DateEmission:=Date.Now,
                                                          DateControleInitial:=m_oDiag.getDateDernierControleDate().ToShortDateString(),
                                                          OrganismeInitial:=m_oDiag.organismeOriginePresNom,
@@ -321,7 +330,10 @@ Public Class EtatRapportInspection
                                                          bSignClient:=m_oDiag.isSignRIClient,
                                                          DateSignClient:=m_oDiag.dateSignRIClientS,
                                                          SignClient:=m_oDiag.SignRIClient,
-                                                            DelaiValidite:=delaiValidite, DelaiValiditeCV:=delaiValiditeCV, diagRemplacementId:=m_oDiag.diagRemplacementId)
+                                                            DelaiValidite:=delaiValidite, DelaiValiditeCV:=delaiValiditeCV,
+                                                         diagRemplacementId:=m_oDiag.diagRemplacementId,
+                                                         dateDiagRemplacement:=dDateRemplacement
+                                                         )
             'If img1 IsNot Nothing Then
             '    img1.Dispose()
             'End If
