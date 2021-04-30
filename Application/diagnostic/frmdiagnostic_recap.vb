@@ -735,7 +735,7 @@ Public Class frmdiagnostic_recap
         '##################
         'Generation de l'apperçu du rapport
         '###################
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+        If Globals.GLOB_ENV_MODESIMPLIFIE Or m_diagnostic.CCFileName = "" Then
             rbEtatCC.Visible = False
             btn_ContratCommercial.Visible = False
             btn_finalisationDiag_imprimerRapport.Top = btn_ContratCommercial.Top
@@ -766,10 +766,8 @@ Public Class frmdiagnostic_recap
         Else
             If Globals.GLOB_ENV_MODESIMPLIFIE Then
                 Me.Text = "Récapitulatif du diagnostique " & " - Mode Simplifié - "
-                Me.btn_ContratCommercial.Visible = False
             Else
                 Me.Text = "Crodip .::. Récapitulatif du diagnostique "
-                Me.btn_ContratCommercial.Visible = True
 
             End If
 

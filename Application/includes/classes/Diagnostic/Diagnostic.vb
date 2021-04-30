@@ -272,7 +272,9 @@ Public Class Diagnostic
         controleIsPremierControle = True
         controleDateDernierControle = ""
         typeDiagnostic = "pulverisateur"
-
+        RIFileName = ""
+        CCFileName = ""
+        SMFileName = ""
         m_buseDebitMoyenPM = 0
 
         diagRemplacementId = ""

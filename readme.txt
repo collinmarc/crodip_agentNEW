@@ -3,6 +3,8 @@ MASTER
 BUILD : XXXXXXX
 -----------------------
 0001353: Signature à postériori : Montant du Contrat Commercial = 0
+0001351: Reprise du contrat en de CV immédiate
+
 
 BUILD : 20210316130000
 -----------------------

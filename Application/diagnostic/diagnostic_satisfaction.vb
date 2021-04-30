@@ -706,6 +706,10 @@ Public Class diagnostic_satisfaction
         diagnosticCourant = m_Diagnostic.Clone()
         diagnosticCourant.SetAsContreVisite(agentCourant)
         diagnosticCourant.isContrevisiteImmediate = True
+        diagnosticCourant.RIFileName = ""
+        diagnosticCourant.SMFileName = ""
+        diagnosticCourant.CCFileName = ""
+
 
         Dim ofrmAccueil As accueil = globFormAccueil
         If ofrmAccueil IsNot Nothing Then
