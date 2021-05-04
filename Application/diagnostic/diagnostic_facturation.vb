@@ -25,8 +25,7 @@ Public Class diagnostic_facturation
     Friend WithEvents btn_imprimerFactureCoProp As System.Windows.Forms.Label
     Friend WithEvents tbCommentaire As System.Windows.Forms.TextBox
     Friend WithEvents lblCommentaire As System.Windows.Forms.Label
-    Friend WithEvents btnSignAgent As Label
-    Friend WithEvents btnSignClient As Label
+    Friend WithEvents btn_Signatures As Label
     Public prestaIncrement As Integer = 0
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -83,18 +82,16 @@ Public Class diagnostic_facturation
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_facturation))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label_diagnostic_61 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.listTarif_prestations = New System.Windows.Forms.ComboBox()
         Me.img_Add = New System.Windows.Forms.PictureBox()
         Me.panelFooter = New System.Windows.Forms.Panel()
-        Me.btnSignAgent = New System.Windows.Forms.Label()
-        Me.btnSignClient = New System.Windows.Forms.Label()
         Me.tbCommentaire = New System.Windows.Forms.TextBox()
         Me.lblCommentaire = New System.Windows.Forms.Label()
         Me.btn_imprimerFactureCoProp = New System.Windows.Forms.Label()
@@ -124,6 +121,7 @@ Public Class diagnostic_facturation
         Me.PrixTotalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btn_Signatures = New System.Windows.Forms.Label()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,8 +187,7 @@ Public Class diagnostic_facturation
         '
         Me.panelFooter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelFooter.Controls.Add(Me.btnSignAgent)
-        Me.panelFooter.Controls.Add(Me.btnSignClient)
+        Me.panelFooter.Controls.Add(Me.btn_Signatures)
         Me.panelFooter.Controls.Add(Me.tbCommentaire)
         Me.panelFooter.Controls.Add(Me.lblCommentaire)
         Me.panelFooter.Controls.Add(Me.btn_imprimerFactureCoProp)
@@ -216,34 +213,6 @@ Public Class diagnostic_facturation
         Me.panelFooter.Name = "panelFooter"
         Me.panelFooter.Size = New System.Drawing.Size(926, 206)
         Me.panelFooter.TabIndex = 2
-        '
-        'btnSignAgent
-        '
-        Me.btnSignAgent.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSignAgent.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSignAgent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSignAgent.ForeColor = System.Drawing.Color.White
-        Me.btnSignAgent.Image = Global.Crodip_agent.Resources.btn_Signture
-        Me.btnSignAgent.Location = New System.Drawing.Point(527, 132)
-        Me.btnSignAgent.Name = "btnSignAgent"
-        Me.btnSignAgent.Size = New System.Drawing.Size(144, 24)
-        Me.btnSignAgent.TabIndex = 47
-        Me.btnSignAgent.Text = "      Signature inspecteur"
-        Me.btnSignAgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btnSignClient
-        '
-        Me.btnSignClient.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSignClient.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSignClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSignClient.ForeColor = System.Drawing.Color.White
-        Me.btnSignClient.Image = Global.Crodip_agent.Resources.btn_Signture
-        Me.btnSignClient.Location = New System.Drawing.Point(522, 168)
-        Me.btnSignClient.Name = "btnSignClient"
-        Me.btnSignClient.Size = New System.Drawing.Size(155, 24)
-        Me.btnSignClient.TabIndex = 46
-        Me.btnSignClient.Text = "      Signature client"
-        Me.btnSignClient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'tbCommentaire
         '
@@ -511,14 +480,14 @@ Public Class diagnostic_facturation
         Me.DataGridView1.DataSource = Me.m_bsLignes
         Me.DataGridView1.Location = New System.Drawing.Point(12, 65)
         Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridView1.Size = New System.Drawing.Size(908, 331)
         Me.DataGridView1.TabIndex = 30
         '
@@ -526,10 +495,10 @@ Public Class diagnostic_facturation
         '
         Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.LibelleDataGridViewTextBoxColumn.DataPropertyName = "libelle"
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
-        Me.LibelleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
+        Me.LibelleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
         Me.LibelleDataGridViewTextBoxColumn.HeaderText = "Prestation"
         Me.LibelleDataGridViewTextBoxColumn.Name = "LibelleDataGridViewTextBoxColumn"
         Me.LibelleDataGridViewTextBoxColumn.ReadOnly = True
@@ -554,10 +523,10 @@ Public Class diagnostic_facturation
         '
         Me.TvaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.TvaDataGridViewTextBoxColumn.DataPropertyName = "tva"
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        Me.TvaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
+        Me.TvaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
         Me.TvaDataGridViewTextBoxColumn.HeaderText = "% TVA"
         Me.TvaDataGridViewTextBoxColumn.Name = "TvaDataGridViewTextBoxColumn"
         Me.TvaDataGridViewTextBoxColumn.ReadOnly = True
@@ -567,10 +536,10 @@ Public Class diagnostic_facturation
         '
         Me.PrixTotalDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.PrixTotalDataGridViewTextBoxColumn.DataPropertyName = "prixTotal"
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        Me.PrixTotalDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
+        Me.PrixTotalDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
         Me.PrixTotalDataGridViewTextBoxColumn.HeaderText = "Total TTC"
         Me.PrixTotalDataGridViewTextBoxColumn.Name = "PrixTotalDataGridViewTextBoxColumn"
         Me.PrixTotalDataGridViewTextBoxColumn.ReadOnly = True
@@ -588,6 +557,21 @@ Public Class diagnostic_facturation
         'm_bsLignes
         '
         Me.m_bsLignes.DataSource = GetType(Crodip_agent.DiagnosticFactureItem)
+        '
+        'btn_Signatures
+        '
+        Me.btn_Signatures.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btn_Signatures.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_Signatures.Enabled = False
+        Me.btn_Signatures.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Signatures.ForeColor = System.Drawing.Color.White
+        Me.btn_Signatures.Image = Global.Crodip_agent.Resources.btn_Signture
+        Me.btn_Signatures.Location = New System.Drawing.Point(537, 168)
+        Me.btn_Signatures.Name = "btn_Signatures"
+        Me.btn_Signatures.Size = New System.Drawing.Size(180, 24)
+        Me.btn_Signatures.TabIndex = 51
+        Me.btn_Signatures.Text = "      Signer"
+        Me.btn_Signatures.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'diagnostic_facturation
         '
@@ -676,11 +660,8 @@ Public Class diagnostic_facturation
         '======================
         ' Boutons de Signatures
         '=======================
-        btnSignClient.Visible = m_oAgent.isSignElecActive
-        btnSignAgent.Visible = m_oAgent.isSignElecActive
-        btnSignClient.Enabled = False
-        btnSignAgent.Enabled = False
-
+        btn_Signatures.Visible = m_oAgent.isSignElecActive
+        btn_Signatures.Enabled = False
 
         Me.Cursor = Cursors.Default
 
@@ -720,6 +701,8 @@ Public Class diagnostic_facturation
                 facturation_totalTVA.ReadOnly = True
                 facturation_totalTTC.ReadOnly = True
                 calcTotal()
+
+                btn_Signatures.Enabled = True
 
             End If
         End If
@@ -764,9 +747,8 @@ Public Class diagnostic_facturation
                     btn_facturation_suivant.Text = "Poursuivre"
                     btn_facturation_imprimerContrat.Enabled = True
                     btn_facturation_imprimerBL.Enabled = True
-                    btnSignAgent.Enabled = False
-                    btnSignClient.Enabled = False
                     isValider = True
+                    btn_Signatures.Enabled = False
 
                     'Facture
                     Try
@@ -811,7 +793,7 @@ Public Class diagnostic_facturation
                 End If
             End If
             sender.Enabled = True
-            End If
+        End If
 
     End Sub
     ' Retour au contexte
@@ -865,7 +847,7 @@ Public Class diagnostic_facturation
                     oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
 
                 Next
-                oEtat.GenereEtat()
+                oEtat.genereEtat()
                 m_pathFacture = oEtat.getFileNameFullPath()
             End If
         Catch ex As Exception
@@ -985,7 +967,7 @@ Public Class diagnostic_facturation
         Try
 
             Dim oEtat As New EtatContratCommercial(m_oDiag)
-            If oEtat.GenereEtat(True) Then
+            If oEtat.genereEtat(True) Then
                 pathContrat = Globals.CONST_PATH_EXP_DIAGNOSTIC & oEtat.getFileName()
                 m_oDiag.CCFileName = oEtat.getFileName()
             End If
@@ -997,13 +979,13 @@ Public Class diagnostic_facturation
     End Function
     Private Sub btn_facturation_imprimerContrat_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_facturation_imprimerContrat.Click
         Try
-
-            ' On affiche le PDF rempli
-            CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)
-
+            If Not String.IsNullOrEmpty(m_oDiag.CCFileName) Then
+                CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)                ' On récupère le Diagnostic selectionné
+            End If
         Catch ex As Exception
-            CSDebug.dispError("Affichage du contrat commercial: " & ex.Message)
+            CSDebug.dispError("btn_facturation_imprimerContrat_Click : " & ex.Message)
         End Try
+
     End Sub
 
     ''' <summary>
@@ -1024,7 +1006,7 @@ Public Class diagnostic_facturation
                 oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
             Next
 
-            oEtat.GenereEtat()
+            oEtat.genereEtat()
             m_pathBl = oEtat.getFileNameFullPath()
         Catch ex As Exception
             CSDebug.dispError("diagnostic_finalisation::createBL_CR : " & ex.Message)
@@ -1253,11 +1235,11 @@ Public Class diagnostic_facturation
 
     End Sub
 
-    Private Sub btnSignAgent_Click(sender As Object, e As EventArgs) Handles btnSignAgent.Click
+    Private Sub btnSignAgent_Click(sender As Object, e As EventArgs)
         SignatureAgent()
     End Sub
 
-    Private Sub btnSignClient_Click(sender As Object, e As EventArgs) Handles btnSignClient.Click
+    Private Sub btnSignClient_Click(sender As Object, e As EventArgs)
         Signatureclient()
     End Sub
     Public Sub Signatureclient()
@@ -1265,20 +1247,14 @@ Public Class diagnostic_facturation
         ofrm = frmSignClient.getfrmSignature(m_oDiag, SignMode.CCCLIENT, m_oAgent)
         ofrm.ShowDialog()
         desactiverModificationSisigne()
-        ActiveDesactiveBtnSignature()
     End Sub
     Public Sub SignatureAgent()
         Dim ofrm As frmSignClient
         ofrm = frmSignClient.getfrmSignature(m_oDiag, SignMode.CCAGENT, m_oAgent)
         ofrm.ShowDialog()
         desactiverModificationSisigne()
-        ActiveDesactiveBtnSignature()
     End Sub
 
-    Private Sub ActiveDesactiveBtnSignature()
-        btnSignAgent.Enabled = Not m_oDiag.isSignCCAgent
-        btnSignClient.Enabled = Not m_oDiag.isSignCCClient
-    End Sub
     Private Sub desactiverModificationSisigne()
         If m_oDiag.SignCCAgent IsNot Nothing Or m_oDiag.SignCCClient IsNot Nothing Then
             desactiveModifications()
@@ -1295,9 +1271,20 @@ Public Class diagnostic_facturation
         listTarif_prestations.Enabled = False
     End Sub
 
-    Private Sub m_bsLignes_ListChanged(sender As Object, e As ListChangedEventArgs) Handles m_bsLignes.ListChanged
-        btnSignClient.Enabled = m_bsLignes.Count > 0
-        btnSignAgent.Enabled = m_bsLignes.Count > 0
+    Private Sub m_bsLignes_ListChanged(sender As Object, e As ListChangedEventArgs)
+
     End Sub
 
+    Private Sub btn_Signatures_Click(sender As Object, e As EventArgs) Handles btn_Signatures.Click
+        Dim oFrm As New frmContratCommercial()
+        oFrm.setcontexte(m_oAgent, m_oDiag)
+        oFrm.ShowDialog()
+        If m_oDiag.isSignCCAgent Or m_oDiag.isSignCCClient Then
+            desactiveModifications()
+        End If
+    End Sub
+
+    Private Sub btn_facturation_suivant_Click(sender As Object, e As EventArgs) Handles btn_facturation_suivant.Click
+
+    End Sub
 End Class

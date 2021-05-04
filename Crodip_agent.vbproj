@@ -272,6 +272,12 @@
     <Compile Include="Application\agent\Manometres\HistoMano.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\frmContratCommercial.Designer.vb">
+      <DependentUpon>frmContratCommercial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmContratCommercial.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\liste_diagnosticPulve2.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -1368,6 +1374,7 @@
       <DependentUpon>dsTest.xsd</DependentUpon>
     </None>
     <None Include="img\Exit.jpg" />
+    <None Include="My Project\DataSources\Agent.datasource" />
     <None Include="My Project\DataSources\ControleMano.datasource" />
     <None Include="My Project\DataSources\CRODIPAcquisition.AcquisitionValue.datasource" />
     <None Include="My Project\DataSources\DiagnosticFactureItem.datasource" />
@@ -2008,6 +2015,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\agent\Manometres\HistoMano.resx">
       <DependentUpon>HistoMano.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmContratCommercial.resx">
+      <DependentUpon>frmContratCommercial.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve2.resx">
       <DependentUpon>liste_diagnosticPulve2.vb</DependentUpon>
