@@ -1,6 +1,6 @@
 TRUNK
 MASTER
-BUILD : XXXXXXX
+BUILD : 20210506120000
 -----------------------
 0001353: Signature à postériori : Montant du Contrat Commercial = 0
 0001351: Reprise du contrat en de CV immédiate
