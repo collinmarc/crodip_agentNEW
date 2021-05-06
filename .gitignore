@@ -24,3 +24,4 @@ TestResults
 /SetupAgent/Release
 /SetupAgent/Debug
 *.nupkg
+/RESYNCHRO

@@ -24,7 +24,6 @@ Public Class accueil
     Friend WithEvents btnFichePulve As System.Windows.Forms.Button
     Friend WithEvents btnAjoutPulve As System.Windows.Forms.Button
     Friend WithEvents btnTransfertPulve As System.Windows.Forms.Button
-    Friend WithEvents LaChrgmtSynhcro As System.Windows.Forms.Label
     Friend WithEvents lblIdentifiantPulve As System.Windows.Forms.Label
     Friend WithEvents ImageListPulve As System.Windows.Forms.ImageList
     Friend WithEvents m_bsrcPulverisateurTMP As System.Windows.Forms.BindingSource
@@ -63,15 +62,19 @@ Public Class accueil
     Friend WithEvents DateProchainControleDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents IconPulveColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PulvePrincipalNumNatDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents lbSynhcroCourante As System.Windows.Forms.ListBox
-    Friend WithEvents pnl_ListSynhcros As System.Windows.Forms.Panel
-    Friend WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
     Friend WithEvents btnParamModeSimplifie As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents btnMAJsynchroAgent As Button
     Friend WithEvents grpParamSynhcro As GroupBox
     Friend WithEvents ckSynchroDESC As CheckBox
     Friend WithEvents ckSynchroASC As CheckBox
+    Friend WithEvents btn_Synchro As Button
+    Friend WithEvents Btn_SynhcroDiag As Label
+    Friend WithEvents tbNumDiag As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents lbSynhcroCourante As ListBox
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel1 As Panel
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -150,7 +153,6 @@ Public Class accueil
     Friend WithEvents lbl_mesInfos_dateDerniereUtilisation As System.Windows.Forms.Label
     Friend WithEvents lbl_mesInfos_dateDernièreConnexion As System.Windows.Forms.Label
     Friend WithEvents list_clients As System.Windows.Forms.ListView
-    Friend WithEvents list_dernieresSynchro As System.Windows.Forms.ListView
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents panel_ListeDesControles As System.Windows.Forms.Panel
@@ -161,7 +163,6 @@ Public Class accueil
     Friend WithEvents lbl_infosAgent_Prenom As System.Windows.Forms.Label
     Friend WithEvents lstPulves_client_proprioSiren As System.Windows.Forms.Label
     Friend WithEvents lstPulves_client_raisonSociale As System.Windows.Forms.Label
-    Friend WithEvents synchroLog As System.Windows.Forms.ColumnHeader
     Friend WithEvents lbl_infosAgent_dateDernCnx As System.Windows.Forms.Label
     Friend WithEvents lbl_infosAgent_dateDernSynchro As System.Windows.Forms.Label
     Friend WithEvents listClients_col_commune As System.Windows.Forms.ColumnHeader
@@ -172,17 +173,10 @@ Public Class accueil
     Friend WithEvents ColumnHeader12 As System.Windows.Forms.ColumnHeader
     Friend WithEvents ColumnHeader13 As System.Windows.Forms.ColumnHeader
     Friend WithEvents ColumnHeader14 As System.Windows.Forms.ColumnHeader
-    Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents pctLogoOutilComp As System.Windows.Forms.PictureBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents lblModuledocumentaire As System.Windows.Forms.Label
-    Friend WithEvents synchroSens As System.Windows.Forms.ColumnHeader
-    Friend WithEvents synchroDate As System.Windows.Forms.ColumnHeader
     Friend WithEvents ImageList_synchro As System.Windows.Forms.ImageList
-    Friend WithEvents PictureBox6 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox7 As System.Windows.Forms.PictureBox
-    Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents accueil_panelAlertesContener As System.Windows.Forms.Panel
     Friend WithEvents accueil_panelAlertes As System.Windows.Forms.Panel
     Friend WithEvents btn_synchro_run As System.Windows.Forms.Label
@@ -249,7 +243,6 @@ Public Class accueil
     Friend WithEvents ColumnHeader7 As System.Windows.Forms.ColumnHeader
     Friend WithEvents pctbx_Docs_refresh As System.Windows.Forms.PictureBox
     Friend WithEvents tabControl_Statistiques As System.Windows.Forms.TabPage
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents PictureBox9 As System.Windows.Forms.PictureBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents pctLogoStat As System.Windows.Forms.PictureBox
@@ -291,10 +284,10 @@ Public Class accueil
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(accueil))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImageList_synchro = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_Docs = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
@@ -432,24 +425,13 @@ Public Class accueil
         Me.grpParamSynhcro = New System.Windows.Forms.GroupBox()
         Me.ckSynchroDESC = New System.Windows.Forms.CheckBox()
         Me.ckSynchroASC = New System.Windows.Forms.CheckBox()
-        Me.pnl_ListSynhcros = New System.Windows.Forms.Panel()
-        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.lbSynhcroCourante = New System.Windows.Forms.ListBox()
-        Me.list_dernieresSynchro = New System.Windows.Forms.ListView()
-        Me.synchroSens = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.synchroDate = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.synchroLog = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.LaChrgmtSynhcro = New System.Windows.Forms.Label()
         Me.btn_InitLog = New System.Windows.Forms.Label()
         Me.btn_synchro_run = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.pctLogoSynchro = New System.Windows.Forms.PictureBox()
         Me.title_listSynchro = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
         Me.tabControl_outilscomp = New System.Windows.Forms.TabPage()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.btn_Synchro = New System.Windows.Forms.Button()
         Me.btnMAJsynchroAgent = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btnParamModeSimplifie = New System.Windows.Forms.Button()
@@ -527,6 +509,10 @@ Public Class accueil
         Me.laNomAgent2 = New System.Windows.Forms.Label()
         Me.pctLogoStat = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.lbSynhcroCourante = New System.Windows.Forms.ListBox()
+        Me.Btn_SynhcroDiag = New System.Windows.Forms.Label()
+        Me.tbNumDiag = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
         Me.tabControl_accueil.SuspendLayout()
@@ -554,13 +540,6 @@ Public Class accueil
         Me.tabControl_synchro.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.grpParamSynhcro.SuspendLayout()
-        Me.pnl_ListSynhcros.SuspendLayout()
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer2.Panel1.SuspendLayout()
-        Me.SplitContainer2.Panel2.SuspendLayout()
-        Me.SplitContainer2.SuspendLayout()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pctLogoSynchro, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_outilscomp.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -804,14 +783,14 @@ Public Class accueil
         Me.dgv_ControleRegulier.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgv_ControleRegulier.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.dgv_ControleRegulier.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgv_ControleRegulier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TypeDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.isOK, Me.isNOK, Me.isNonEffectue})
         Me.dgv_ControleRegulier.DataSource = Me.bsControleQuotidien
@@ -1134,25 +1113,25 @@ Public Class accueil
         Me.dgvPulveExploit.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvPulveExploit.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvPulveExploit.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlLight
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.ControlLight
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.dgvPulveExploit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPulveExploit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IconPulveCol, Me.NumeroNationalDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn1, Me.MarqueDataGridViewTextBoxColumn, Me.ModeleDataGridViewTextBoxColumn, Me.NombreBusesDataGridViewTextBoxColumn, Me.CapaciteDataGridViewTextBoxColumn, Me.AttelageDataGridViewTextBoxColumn, Me.AnneeAchatDataGridViewTextBoxColumn, Me.DateProchainControleDataGridViewTextBoxColumn, Me.IconPulveColumn, Me.PulvePrincipalNumNatDataGridViewTextBoxColumn})
         Me.dgvPulveExploit.DataSource = Me.m_bsrcPulverisateurTMP
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvPulveExploit.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvPulveExploit.DefaultCellStyle = DataGridViewCellStyle8
         Me.dgvPulveExploit.GridColor = System.Drawing.Color.Black
         Me.dgvPulveExploit.Location = New System.Drawing.Point(11, 62)
         Me.dgvPulveExploit.MultiSelect = False
@@ -1240,9 +1219,9 @@ Public Class accueil
         'DateProchainControleDataGridViewTextBoxColumn
         '
         Me.DateProchainControleDataGridViewTextBoxColumn.DataPropertyName = "dateProchainControleAsDate"
-        DataGridViewCellStyle3.Format = "d"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Format = "d"
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
         Me.DateProchainControleDataGridViewTextBoxColumn.FillWeight = 9.0!
         Me.DateProchainControleDataGridViewTextBoxColumn.HeaderText = "Prochain contrôle"
         Me.DateProchainControleDataGridViewTextBoxColumn.Name = "DateProchainControleDataGridViewTextBoxColumn"
@@ -1892,17 +1871,14 @@ Public Class accueil
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel4.Controls.Add(Me.Btn_SynhcroDiag)
+        Me.Panel4.Controls.Add(Me.tbNumDiag)
+        Me.Panel4.Controls.Add(Me.Label3)
+        Me.Panel4.Controls.Add(Me.lbSynhcroCourante)
         Me.Panel4.Controls.Add(Me.grpParamSynhcro)
-        Me.Panel4.Controls.Add(Me.pnl_ListSynhcros)
-        Me.Panel4.Controls.Add(Me.LaChrgmtSynhcro)
-        Me.Panel4.Controls.Add(Me.btn_InitLog)
         Me.Panel4.Controls.Add(Me.btn_synchro_run)
-        Me.Panel4.Controls.Add(Me.Label13)
-        Me.Panel4.Controls.Add(Me.PictureBox7)
-        Me.Panel4.Controls.Add(Me.PictureBox6)
         Me.Panel4.Controls.Add(Me.pctLogoSynchro)
         Me.Panel4.Controls.Add(Me.title_listSynchro)
-        Me.Panel4.Controls.Add(Me.Label14)
         Me.Panel4.Location = New System.Drawing.Point(0, 0)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1000, 656)
@@ -1912,9 +1888,10 @@ Public Class accueil
         '
         Me.grpParamSynhcro.Controls.Add(Me.ckSynchroDESC)
         Me.grpParamSynhcro.Controls.Add(Me.ckSynchroASC)
-        Me.grpParamSynhcro.Location = New System.Drawing.Point(605, 12)
+        Me.grpParamSynhcro.Controls.Add(Me.btn_InitLog)
+        Me.grpParamSynhcro.Location = New System.Drawing.Point(500, 48)
         Me.grpParamSynhcro.Name = "grpParamSynhcro"
-        Me.grpParamSynhcro.Size = New System.Drawing.Size(215, 44)
+        Me.grpParamSynhcro.Size = New System.Drawing.Size(406, 44)
         Me.grpParamSynhcro.TabIndex = 28
         Me.grpParamSynhcro.TabStop = False
         Me.grpParamSynhcro.Text = "Debug"
@@ -1943,96 +1920,13 @@ Public Class accueil
         Me.ckSynchroASC.Text = "Synchro ASC"
         Me.ckSynchroASC.UseVisualStyleBackColor = True
         '
-        'pnl_ListSynhcros
-        '
-        Me.pnl_ListSynhcros.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pnl_ListSynhcros.Controls.Add(Me.SplitContainer2)
-        Me.pnl_ListSynhcros.Location = New System.Drawing.Point(8, 98)
-        Me.pnl_ListSynhcros.Name = "pnl_ListSynhcros"
-        Me.pnl_ListSynhcros.Size = New System.Drawing.Size(980, 547)
-        Me.pnl_ListSynhcros.TabIndex = 27
-        '
-        'SplitContainer2
-        '
-        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer2.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer2.Name = "SplitContainer2"
-        '
-        'SplitContainer2.Panel1
-        '
-        Me.SplitContainer2.Panel1.Controls.Add(Me.lbSynhcroCourante)
-        '
-        'SplitContainer2.Panel2
-        '
-        Me.SplitContainer2.Panel2.Controls.Add(Me.list_dernieresSynchro)
-        Me.SplitContainer2.Size = New System.Drawing.Size(980, 547)
-        Me.SplitContainer2.SplitterDistance = 254
-        Me.SplitContainer2.TabIndex = 0
-        '
-        'lbSynhcroCourante
-        '
-        Me.lbSynhcroCourante.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lbSynhcroCourante.FormattingEnabled = True
-        Me.lbSynhcroCourante.HorizontalScrollbar = True
-        Me.lbSynhcroCourante.Location = New System.Drawing.Point(0, 0)
-        Me.lbSynhcroCourante.Name = "lbSynhcroCourante"
-        Me.lbSynhcroCourante.Size = New System.Drawing.Size(254, 547)
-        Me.lbSynhcroCourante.TabIndex = 26
-        '
-        'list_dernieresSynchro
-        '
-        Me.list_dernieresSynchro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.list_dernieresSynchro.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.synchroSens, Me.synchroDate, Me.synchroLog})
-        Me.list_dernieresSynchro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.list_dernieresSynchro.GridLines = True
-        Me.list_dernieresSynchro.HideSelection = False
-        Me.list_dernieresSynchro.Location = New System.Drawing.Point(0, 0)
-        Me.list_dernieresSynchro.MultiSelect = False
-        Me.list_dernieresSynchro.Name = "list_dernieresSynchro"
-        Me.list_dernieresSynchro.Size = New System.Drawing.Size(722, 547)
-        Me.list_dernieresSynchro.SmallImageList = Me.ImageList_synchro
-        Me.list_dernieresSynchro.StateImageList = Me.ImageList_synchro
-        Me.list_dernieresSynchro.TabIndex = 8
-        Me.list_dernieresSynchro.UseCompatibleStateImageBehavior = False
-        Me.list_dernieresSynchro.View = System.Windows.Forms.View.Details
-        '
-        'synchroSens
-        '
-        Me.synchroSens.Text = ""
-        Me.synchroSens.Width = 27
-        '
-        'synchroDate
-        '
-        Me.synchroDate.Text = "Date"
-        Me.synchroDate.Width = 117
-        '
-        'synchroLog
-        '
-        Me.synchroLog.Text = "Eléments synchronisés"
-        Me.synchroLog.Width = 834
-        '
-        'LaChrgmtSynhcro
-        '
-        Me.LaChrgmtSynhcro.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LaChrgmtSynhcro.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LaChrgmtSynhcro.ForeColor = System.Drawing.Color.White
-        Me.LaChrgmtSynhcro.Image = CType(resources.GetObject("LaChrgmtSynhcro.Image"), System.Drawing.Image)
-        Me.LaChrgmtSynhcro.Location = New System.Drawing.Point(8, 32)
-        Me.LaChrgmtSynhcro.Name = "LaChrgmtSynhcro"
-        Me.LaChrgmtSynhcro.Size = New System.Drawing.Size(180, 24)
-        Me.LaChrgmtSynhcro.TabIndex = 25
-        Me.LaChrgmtSynhcro.Text = "      Chargement de l'historique"
-        Me.LaChrgmtSynhcro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'btn_InitLog
         '
         Me.btn_InitLog.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_InitLog.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_InitLog.ForeColor = System.Drawing.Color.White
         Me.btn_InitLog.Image = CType(resources.GetObject("btn_InitLog.Image"), System.Drawing.Image)
-        Me.btn_InitLog.Location = New System.Drawing.Point(713, 60)
+        Me.btn_InitLog.Location = New System.Drawing.Point(216, 14)
         Me.btn_InitLog.Name = "btn_InitLog"
         Me.btn_InitLog.Size = New System.Drawing.Size(184, 24)
         Me.btn_InitLog.TabIndex = 24
@@ -2045,40 +1939,12 @@ Public Class accueil
         Me.btn_synchro_run.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_synchro_run.ForeColor = System.Drawing.Color.White
         Me.btn_synchro_run.Image = CType(resources.GetObject("btn_synchro_run.Image"), System.Drawing.Image)
-        Me.btn_synchro_run.Location = New System.Drawing.Point(8, 64)
+        Me.btn_synchro_run.Location = New System.Drawing.Point(10, 48)
         Me.btn_synchro_run.Name = "btn_synchro_run"
-        Me.btn_synchro_run.Size = New System.Drawing.Size(180, 24)
+        Me.btn_synchro_run.Size = New System.Drawing.Size(182, 36)
         Me.btn_synchro_run.TabIndex = 23
         Me.btn_synchro_run.Text = "      Lancer une synchronisation"
         Me.btn_synchro_run.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label13
-        '
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label13.Location = New System.Drawing.Point(228, 42)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(266, 16)
-        Me.Label13.TabIndex = 14
-        Me.Label13.Text = "Synchronisation du CRODIP vers l’inspecteur"
-        '
-        'PictureBox7
-        '
-        Me.PictureBox7.Image = CType(resources.GetObject("PictureBox7.Image"), System.Drawing.Image)
-        Me.PictureBox7.Location = New System.Drawing.Point(206, 68)
-        Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(16, 16)
-        Me.PictureBox7.TabIndex = 13
-        Me.PictureBox7.TabStop = False
-        '
-        'PictureBox6
-        '
-        Me.PictureBox6.Image = CType(resources.GetObject("PictureBox6.Image"), System.Drawing.Image)
-        Me.PictureBox6.Location = New System.Drawing.Point(206, 42)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(16, 16)
-        Me.PictureBox6.TabIndex = 12
-        Me.PictureBox6.TabStop = False
         '
         'pctLogoSynchro
         '
@@ -2100,17 +1966,7 @@ Public Class accueil
         Me.title_listSynchro.Name = "title_listSynchro"
         Me.title_listSynchro.Size = New System.Drawing.Size(552, 24)
         Me.title_listSynchro.TabIndex = 9
-        Me.title_listSynchro.Text = "     Liste des dernières synchronisations avec le CRODIP"
-        '
-        'Label14
-        '
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label14.Location = New System.Drawing.Point(230, 68)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(278, 16)
-        Me.Label14.TabIndex = 14
-        Me.Label14.Text = "Synchronisation de l’inspecteur vers le CRODIP"
+        Me.title_listSynchro.Text = "     Synchronisation avec le CRODIP"
         '
         'tabControl_outilscomp
         '
@@ -2130,6 +1986,7 @@ Public Class accueil
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.btn_Synchro)
         Me.Panel2.Controls.Add(Me.btnMAJsynchroAgent)
         Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.btnParamModeSimplifie)
@@ -2147,6 +2004,21 @@ Public Class accueil
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1000, 656)
         Me.Panel2.TabIndex = 3
+        '
+        'btn_Synchro
+        '
+        Me.btn_Synchro.BackgroundImage = Global.Crodip_agent.Resources.btn_refresh
+        Me.btn_Synchro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btn_Synchro.FlatAppearance.BorderSize = 0
+        Me.btn_Synchro.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control
+        Me.btn_Synchro.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control
+        Me.btn_Synchro.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_Synchro.Location = New System.Drawing.Point(686, 182)
+        Me.btn_Synchro.Name = "btn_Synchro"
+        Me.btn_Synchro.Size = New System.Drawing.Size(194, 36)
+        Me.btn_Synchro.TabIndex = 40
+        Me.btn_Synchro.Text = "       Synchronisation d'un controle"
+        Me.btn_Synchro.UseVisualStyleBackColor = True
         '
         'btnMAJsynchroAgent
         '
@@ -3142,6 +3014,44 @@ Public Class accueil
         Me.Label7.TabIndex = 0
         Me.Label7.Text = "     Statistiques"
         '
+        'lbSynhcroCourante
+        '
+        Me.lbSynhcroCourante.FormattingEnabled = True
+        Me.lbSynhcroCourante.HorizontalScrollbar = True
+        Me.lbSynhcroCourante.Location = New System.Drawing.Point(8, 112)
+        Me.lbSynhcroCourante.Name = "lbSynhcroCourante"
+        Me.lbSynhcroCourante.Size = New System.Drawing.Size(980, 498)
+        Me.lbSynhcroCourante.TabIndex = 32
+        '
+        'Btn_SynhcroDiag
+        '
+        Me.Btn_SynhcroDiag.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Btn_SynhcroDiag.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btn_SynhcroDiag.ForeColor = System.Drawing.Color.White
+        Me.Btn_SynhcroDiag.Image = Global.Crodip_agent.Resources.btn_suivantGrd
+        Me.Btn_SynhcroDiag.Location = New System.Drawing.Point(233, 624)
+        Me.Btn_SynhcroDiag.Name = "Btn_SynhcroDiag"
+        Me.Btn_SynhcroDiag.Size = New System.Drawing.Size(246, 24)
+        Me.Btn_SynhcroDiag.TabIndex = 35
+        Me.Btn_SynhcroDiag.Text = "      Synchronisation d'un contrôle"
+        Me.Btn_SynhcroDiag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'tbNumDiag
+        '
+        Me.tbNumDiag.Location = New System.Drawing.Point(127, 627)
+        Me.tbNumDiag.Name = "tbNumDiag"
+        Me.tbNumDiag.Size = New System.Drawing.Size(100, 20)
+        Me.tbNumDiag.TabIndex = 34
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(7, 630)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(114, 13)
+        Me.Label3.TabIndex = 33
+        Me.Label3.Text = "Numéro d'un contrôle :"
+        '
         'accueil
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -3185,15 +3095,9 @@ Public Class accueil
         CType(Me.listPulve_btn_refreshList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_synchro.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
         Me.grpParamSynhcro.ResumeLayout(False)
         Me.grpParamSynhcro.PerformLayout()
-        Me.pnl_ListSynhcros.ResumeLayout(False)
-        Me.SplitContainer2.Panel1.ResumeLayout(False)
-        Me.SplitContainer2.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer2.ResumeLayout(False)
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pctLogoSynchro, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_outilscomp.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
@@ -4375,58 +4279,58 @@ Public Class accueil
     End Sub
 
     ' Chargement de l'historique des synchro
-    Public Sub loadListSynchro()
-        Dim oCSDB As New CSDb(True)
+    'Public Sub loadListSynchro()
+    '    Dim oCSDB As New CSDb(True)
 
-        Dim bddCommande As OleDb.OleDbCommand
-        bddCommande = oCSDB.getConnection.CreateCommand()
-        ' On test si la connexion est déjà ouverte ou non
-        bddCommande.CommandText = "SELECT * FROM `Synchronisation` WHERE `idAgent`=" & agentCourant.idStructure & " ORDER By id desc"
-        Try
-            ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
-            Dim i As Integer = 0
-            ' Puis on les parcours
-            While tmpListProfils.Read()
+    '    Dim bddCommande As OleDb.OleDbCommand
+    '    bddCommande = oCSDB.getConnection.CreateCommand()
+    '    ' On test si la connexion est déjà ouverte ou non
+    '    bddCommande.CommandText = "SELECT * FROM `Synchronisation` WHERE `idAgent`=" & agentCourant.idStructure & " ORDER By id desc"
+    '    Try
+    '        ' On récupère les résultats
+    '        Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+    '        Dim i As Integer = 0
+    '        ' Puis on les parcours
+    '        While tmpListProfils.Read()
 
-                ' On récupère nos logs de synchro
-                Dim tmpSens As String = ""
-                Dim tmpDate As String = ""
-                Dim tmpLog As String = ""
-                Dim tmpColId As Integer = 0
-                While tmpColId < tmpListProfils.FieldCount()
-                    Select Case tmpListProfils.GetName(tmpColId)
-                        Case "sensSynchronisation"
-                            tmpSens = tmpListProfils.Item(tmpColId).ToString()
-                        Case "dateSynchronisation"
-                            tmpDate = CSDate.mysql2access(tmpListProfils.Item(tmpColId).ToString())
-                        Case "logSynchronisation"
-                            tmpLog = tmpListProfils.Item(tmpColId).ToString()
-                    End Select
-                    tmpColId = tmpColId + 1
-                End While
+    '            ' On récupère nos logs de synchro
+    '            Dim tmpSens As String = ""
+    '            Dim tmpDate As String = ""
+    '            Dim tmpLog As String = ""
+    '            Dim tmpColId As Integer = 0
+    '            While tmpColId < tmpListProfils.FieldCount()
+    '                Select Case tmpListProfils.GetName(tmpColId)
+    '                    Case "sensSynchronisation"
+    '                        tmpSens = tmpListProfils.Item(tmpColId).ToString()
+    '                    Case "dateSynchronisation"
+    '                        tmpDate = CSDate.mysql2access(tmpListProfils.Item(tmpColId).ToString())
+    '                    Case "logSynchronisation"
+    '                        tmpLog = tmpListProfils.Item(tmpColId).ToString()
+    '                End Select
+    '                tmpColId = tmpColId + 1
+    '            End While
 
-                ' On alimente la liste
-                list_dernieresSynchro.Items.Add("")
-                If tmpSens = "asc" Then
-                    list_dernieresSynchro.Items(CInt(i)).StateImageIndex = 1
-                Else
-                    list_dernieresSynchro.Items(CInt(i)).StateImageIndex = 0
-                End If
-                list_dernieresSynchro.Items(CInt(i)).SubItems.Add(tmpDate)
-                list_dernieresSynchro.Items(CInt(i)).SubItems.Add(tmpLog)
+    '            ' On alimente la liste
+    '            list_dernieresSynchro.Items.Add("")
+    '            If tmpSens = "asc" Then
+    '                list_dernieresSynchro.Items(CInt(i)).StateImageIndex = 1
+    '            Else
+    '                list_dernieresSynchro.Items(CInt(i)).StateImageIndex = 0
+    '            End If
+    '            list_dernieresSynchro.Items(CInt(i)).SubItems.Add(tmpDate)
+    '            list_dernieresSynchro.Items(CInt(i)).SubItems.Add(tmpLog)
 
-                i = i + 1
-            End While
-        Catch ex As Exception ' On intercepte l'erreur
-            CSDebug.dispFatal("SynchronisationManager : " & ex.Message)
-        End Try
-        ' Test pour fermeture de connection BDD
-        If oCSDB IsNot Nothing Then
-            oCSDB.free()
-        End If
+    '            i = i + 1
+    '        End While
+    '    Catch ex As Exception ' On intercepte l'erreur
+    '        CSDebug.dispFatal("SynchronisationManager : " & ex.Message)
+    '    End Try
+    '    ' Test pour fermeture de connection BDD
+    '    If oCSDB IsNot Nothing Then
+    '        oCSDB.free()
+    '    End If
 
-    End Sub
+    'End Sub
 
     ' Chargement de l'historique des synchro
     Public Sub afficheSynchroCourante(pMsg As String)
@@ -5121,8 +5025,8 @@ Public Class accueil
                 Statusbar.hideLoader()
 
                 'On recharge la liste
-                list_dernieresSynchro.Items.Clear()
-                loadListSynchro()
+                'list_dernieresSynchro.Items.Clear()
+                'loadListSynchro()
                 MsgBox("Fin de la Synchronisation !", MsgBoxStyle.Information)
                 Statusbar.display("", False)
 
@@ -5605,11 +5509,11 @@ Public Class accueil
     'End Sub
 
 
-    Private Sub LaChrgmtSynhcro_Click(sender As Object, e As EventArgs) Handles LaChrgmtSynhcro.Click
-        ' Historique des synchro
-        loadListSynchro()
+    'Private Sub LaChrgmtSynhcro_Click(sender As Object, e As EventArgs)
+    '    ' Historique des synchro
+    '    'loadListSynchro()
 
-    End Sub
+    'End Sub
 
     Private Sub dgvPulveExploit_RowPrePaint(sender As Object, e As DataGridViewRowPrePaintEventArgs) Handles dgvPulveExploit.RowPrePaint
         Dim index As Integer = e.RowIndex
@@ -5747,4 +5651,31 @@ Public Class accueil
         frm.ShowDialog()
 
     End Sub
+
+    Private Sub Btn_SynhcroDiag_Click(sender As Object, e As EventArgs) Handles Btn_SynhcroDiag.Click
+        Dim oDiag As Diagnostic
+        Dim bReturn As Boolean
+
+        If tbNumDiag.Text <> "" Then
+            oDiag = DiagnosticManager.getDiagnosticById(tbNumDiag.Text)
+            If oDiag.id = tbNumDiag.Text Then
+                Me.Cursor = Cursors.WaitCursor
+                Dim oSynchro As New Synchronisation(agentCourant)
+                oSynchro.ajouteObservateur(TryCast(MdiParent, parentContener))
+                oSynchro.ajouteObservateur(Me)
+
+                bReturn = oSynchro.runascSynchroDiag(agentCourant, oDiag)
+                Me.Cursor = Cursors.Default
+                If Not bReturn Then
+                    oSynchro.Notice("Synchronisation de diagnostic [" & oDiag.id & "] ERREUR")
+                Else
+                    oSynchro.Notice("Synchronisation de diagnostic [" & oDiag.id & "] OK")
+
+                End If
+
+            End If
+        End If
+    End Sub
+
+
 End Class

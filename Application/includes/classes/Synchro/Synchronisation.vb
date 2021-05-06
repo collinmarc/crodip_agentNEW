@@ -749,7 +749,7 @@ Public Class Synchronisation
         Next
         Return bReturn
     End Function
-    Friend Function runascSynchroDiag(ByVal pAgent As Agent, ByVal pDiag As Diagnostic) As Boolean
+    Public Function runascSynchroDiag(ByVal pAgent As Agent, ByVal pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             Notice("Diagnostic " & pDiag.id)
@@ -759,7 +759,7 @@ Public Class Synchronisation
 
             'Synchro des Rapports d'inspection et Synthèse des mesures
             '=========================================================
-            Notice("Rapport Inspection et Synthese des mesures")
+            Notice("Rapport Inspection, Synthèse des mesures et contrat commercial")
             bReturn = DiagnosticManager.SendEtats(pDiag)
             If bReturn Then
                 'Transfère du diag ssi le transfert des fichier est correct
