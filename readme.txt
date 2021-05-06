@@ -6,7 +6,8 @@ BUILD : XXXXXXX
 0001351: Reprise du contrat en de CV immédiate
 0001339: Fonction Annule et Remplace un diag
 0001060: Ajout d'une fonction Annule et remplace d'un DIAG
-0001363: Affiche du contrat commercial avant signature
+0001363: Affichage du contrat commercial avant signature
+0001366: Ajout d'une synchronisation d'un Controle
 
 BUILD : 20210316130000
 -----------------------

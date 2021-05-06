@@ -518,10 +518,6 @@ Public Class liste_diagnosticPulve2
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(liste_diagnosticPulve2))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -530,19 +526,16 @@ Public Class liste_diagnosticPulve2
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.listControle_search = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.btn_selectDiagnostic_annuler = New System.Windows.Forms.Label()
         Me.m_ImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.m_bsrcDiag = New System.Windows.Forms.BindingSource(Me.components)
-        Me.btn_reprendreDiag = New System.Windows.Forms.Label()
-        Me.ckisNonReference = New System.Windows.Forms.CheckBox()
-        Me.DataGridViewDisableButtonColumn1 = New Crodip_agent.DataGridViewDisableButtonColumn()
-        Me.DataGridViewDisableButtonColumn2 = New Crodip_agent.DataGridViewDisableButtonColumn()
-        Me.DataGridViewButtonColumn1 = New Crodip_agent.DataGridViewDisableButtonColumn()
-        Me.DataGridViewButtonColumn2 = New Crodip_agent.DataGridViewDisableButtonColumn()
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.controleDateDebut = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.controleEtat = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -755,6 +748,13 @@ Public Class liste_diagnosticPulve2
         Me.IsSignCCClientDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.DateSignCCClientDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DateSignCCClientSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.m_bsrcDiag = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btn_reprendreDiag = New System.Windows.Forms.Label()
+        Me.ckisNonReference = New System.Windows.Forms.CheckBox()
+        Me.DataGridViewDisableButtonColumn1 = New Crodip_agent.DataGridViewDisableButtonColumn()
+        Me.DataGridViewDisableButtonColumn2 = New Crodip_agent.DataGridViewDisableButtonColumn()
+        Me.DataGridViewButtonColumn1 = New Crodip_agent.DataGridViewDisableButtonColumn()
+        Me.DataGridViewButtonColumn2 = New Crodip_agent.DataGridViewDisableButtonColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsrcDiag, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -791,6 +791,7 @@ Public Class liste_diagnosticPulve2
         '
         'btn_selectDiagnostic_annuler
         '
+        Me.btn_selectDiagnostic_annuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btn_selectDiagnostic_annuler.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_selectDiagnostic_annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_selectDiagnostic_annuler.ForeColor = System.Drawing.Color.White
@@ -835,100 +836,17 @@ Public Class liste_diagnosticPulve2
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersWidth = 10
-        Me.DataGridView1.Size = New System.Drawing.Size(634, 315)
+        Me.DataGridView1.Size = New System.Drawing.Size(766, 315)
         Me.DataGridView1.TabIndex = 53
-        '
-        'm_bsrcDiag
-        '
-        Me.m_bsrcDiag.DataSource = GetType(Crodip_agent.Diagnostic)
-        '
-        'btn_reprendreDiag
-        '
-        Me.btn_reprendreDiag.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_reprendreDiag.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_reprendreDiag.ForeColor = System.Drawing.Color.White
-        Me.btn_reprendreDiag.Image = CType(resources.GetObject("btn_reprendreDiag.Image"), System.Drawing.Image)
-        Me.btn_reprendreDiag.Location = New System.Drawing.Point(449, 392)
-        Me.btn_reprendreDiag.Name = "btn_reprendreDiag"
-        Me.btn_reprendreDiag.Size = New System.Drawing.Size(180, 24)
-        Me.btn_reprendreDiag.TabIndex = 54
-        Me.btn_reprendreDiag.Text = "       Reprendre le contrôle"
-        Me.btn_reprendreDiag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'ckisNonReference
-        '
-        Me.ckisNonReference.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.ckisNonReference.Location = New System.Drawing.Point(257, 393)
-        Me.ckisNonReference.Name = "ckisNonReference"
-        Me.ckisNonReference.Size = New System.Drawing.Size(144, 24)
-        Me.ckisNonReference.TabIndex = 55
-        Me.ckisNonReference.Text = "Contrôle non-référencé"
-        '
-        'DataGridViewDisableButtonColumn1
-        '
-        Me.DataGridViewDisableButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.White
-        Me.DataGridViewDisableButtonColumn1.DefaultCellStyle = DataGridViewCellStyle10
-        Me.DataGridViewDisableButtonColumn1.HeaderText = "Signatures"
-        Me.DataGridViewDisableButtonColumn1.Name = "DataGridViewDisableButtonColumn1"
-        Me.DataGridViewDisableButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewDisableButtonColumn1.Text = "Signer"
-        Me.DataGridViewDisableButtonColumn1.UseColumnTextForButtonValue = True
-        '
-        'DataGridViewDisableButtonColumn2
-        '
-        Me.DataGridViewDisableButtonColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
-        Me.DataGridViewDisableButtonColumn2.DefaultCellStyle = DataGridViewCellStyle11
-        Me.DataGridViewDisableButtonColumn2.HeaderText = "Détails"
-        Me.DataGridViewDisableButtonColumn2.Name = "DataGridViewDisableButtonColumn2"
-        Me.DataGridViewDisableButtonColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewDisableButtonColumn2.Text = "Détail"
-        Me.DataGridViewDisableButtonColumn2.UseColumnTextForButtonValue = True
-        '
-        'DataGridViewButtonColumn1
-        '
-        Me.DataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White
-        Me.DataGridViewButtonColumn1.DefaultCellStyle = DataGridViewCellStyle12
-        Me.DataGridViewButtonColumn1.HeaderText = "Remplacer"
-        Me.DataGridViewButtonColumn1.Name = "DataGridViewButtonColumn1"
-        Me.DataGridViewButtonColumn1.Text = "Remplacer"
-        Me.DataGridViewButtonColumn1.ToolTipText = "Annule et remplace le contrôle"
-        Me.DataGridViewButtonColumn1.UseColumnTextForButtonValue = True
-        '
-        'DataGridViewButtonColumn2
-        '
-        Me.DataGridViewButtonColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
-        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle13.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White
-        Me.DataGridViewButtonColumn2.DefaultCellStyle = DataGridViewCellStyle13
-        Me.DataGridViewButtonColumn2.HeaderText = "Reprendre"
-        Me.DataGridViewButtonColumn2.Name = "DataGridViewButtonColumn2"
-        Me.DataGridViewButtonColumn2.Text = "Reprendre"
-        Me.DataGridViewButtonColumn2.ToolTipText = "Reprendre le contrôle"
-        Me.DataGridViewButtonColumn2.UseColumnTextForButtonValue = True
         '
         'id
         '
         Me.id.DataPropertyName = "id"
         Me.id.HeaderText = "N°"
+        Me.id.MinimumWidth = 60
         Me.id.Name = "id"
         Me.id.ReadOnly = True
-        Me.id.Width = 44
+        Me.id.Width = 60
         '
         'controleDateDebut
         '
@@ -1054,7 +972,6 @@ Public Class liste_diagnosticPulve2
         Me.col_Remplacer.ToolTipText = "Annule et remplace le contrôle"
         Me.col_Remplacer.UseColumnTextForButtonValue = True
         Me.col_Remplacer.Visible = False
-        Me.col_Remplacer.Width = 64
         '
         'col_ContreVisite
         '
@@ -2690,10 +2607,97 @@ Public Class liste_diagnosticPulve2
         Me.DateSignCCClientSDataGridViewTextBoxColumn.ReadOnly = True
         Me.DateSignCCClientSDataGridViewTextBoxColumn.Width = 121
         '
+        'm_bsrcDiag
+        '
+        Me.m_bsrcDiag.DataSource = GetType(Crodip_agent.Diagnostic)
+        '
+        'btn_reprendreDiag
+        '
+        Me.btn_reprendreDiag.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_reprendreDiag.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_reprendreDiag.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_reprendreDiag.ForeColor = System.Drawing.Color.White
+        Me.btn_reprendreDiag.Image = CType(resources.GetObject("btn_reprendreDiag.Image"), System.Drawing.Image)
+        Me.btn_reprendreDiag.Location = New System.Drawing.Point(581, 391)
+        Me.btn_reprendreDiag.Name = "btn_reprendreDiag"
+        Me.btn_reprendreDiag.Size = New System.Drawing.Size(180, 24)
+        Me.btn_reprendreDiag.TabIndex = 54
+        Me.btn_reprendreDiag.Text = "       Reprendre le contrôle"
+        Me.btn_reprendreDiag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'ckisNonReference
+        '
+        Me.ckisNonReference.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ckisNonReference.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.ckisNonReference.Location = New System.Drawing.Point(257, 393)
+        Me.ckisNonReference.Name = "ckisNonReference"
+        Me.ckisNonReference.Size = New System.Drawing.Size(144, 24)
+        Me.ckisNonReference.TabIndex = 55
+        Me.ckisNonReference.Text = "Contrôle non-référencé"
+        '
+        'DataGridViewDisableButtonColumn1
+        '
+        Me.DataGridViewDisableButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.White
+        Me.DataGridViewDisableButtonColumn1.DefaultCellStyle = DataGridViewCellStyle10
+        Me.DataGridViewDisableButtonColumn1.HeaderText = "Signatures"
+        Me.DataGridViewDisableButtonColumn1.Name = "DataGridViewDisableButtonColumn1"
+        Me.DataGridViewDisableButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewDisableButtonColumn1.Text = "Signer"
+        Me.DataGridViewDisableButtonColumn1.UseColumnTextForButtonValue = True
+        '
+        'DataGridViewDisableButtonColumn2
+        '
+        Me.DataGridViewDisableButtonColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
+        Me.DataGridViewDisableButtonColumn2.DefaultCellStyle = DataGridViewCellStyle11
+        Me.DataGridViewDisableButtonColumn2.HeaderText = "Détails"
+        Me.DataGridViewDisableButtonColumn2.Name = "DataGridViewDisableButtonColumn2"
+        Me.DataGridViewDisableButtonColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewDisableButtonColumn2.Text = "Détail"
+        Me.DataGridViewDisableButtonColumn2.UseColumnTextForButtonValue = True
+        '
+        'DataGridViewButtonColumn1
+        '
+        Me.DataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White
+        Me.DataGridViewButtonColumn1.DefaultCellStyle = DataGridViewCellStyle12
+        Me.DataGridViewButtonColumn1.HeaderText = "Remplacer"
+        Me.DataGridViewButtonColumn1.Name = "DataGridViewButtonColumn1"
+        Me.DataGridViewButtonColumn1.Text = "Remplacer"
+        Me.DataGridViewButtonColumn1.ToolTipText = "Annule et remplace le contrôle"
+        Me.DataGridViewButtonColumn1.UseColumnTextForButtonValue = True
+        '
+        'DataGridViewButtonColumn2
+        '
+        Me.DataGridViewButtonColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White
+        Me.DataGridViewButtonColumn2.DefaultCellStyle = DataGridViewCellStyle13
+        Me.DataGridViewButtonColumn2.HeaderText = "Reprendre"
+        Me.DataGridViewButtonColumn2.Name = "DataGridViewButtonColumn2"
+        Me.DataGridViewButtonColumn2.Text = "Reprendre"
+        Me.DataGridViewButtonColumn2.ToolTipText = "Reprendre le contrôle"
+        Me.DataGridViewButtonColumn2.UseColumnTextForButtonValue = True
+        '
         'liste_diagnosticPulve2
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(641, 424)
+        Me.ClientSize = New System.Drawing.Size(773, 424)
         Me.Controls.Add(Me.ckisNonReference)
         Me.Controls.Add(Me.btn_reprendreDiag)
         Me.Controls.Add(Me.DataGridView1)
@@ -2701,7 +2705,7 @@ Public Class liste_diagnosticPulve2
         Me.Controls.Add(Me.listControle_search)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label5)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Name = "liste_diagnosticPulve2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Crodip .::. Liste des contrôles"

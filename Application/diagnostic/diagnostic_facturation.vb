@@ -727,19 +727,7 @@ Public Class diagnostic_facturation
                 If facturation_totalTTC.Text <> "" Then
                     ' Enregistrement des tarifs
                     'diagnosticCourantTarif = CType(facturation_totalTTC.Text, Double)
-                    If Not String.IsNullOrEmpty(facturation_totalTTC.Text) Then
-                        m_oDiag.controleTarif = CType(facturation_totalTTC.Text, Double)
-                    End If
-                    If Not String.IsNullOrEmpty(facturation_totalHT.Text) Then
-                        m_oDiag.TotalHT = CDec(facturation_totalHT.Text)
-                    End If
-                    If Not String.IsNullOrEmpty(facturation_totalTVA.Text) Then
-                        m_oDiag.TotalTVA = CDec(facturation_totalTVA.Text)
-                    End If
-                    If Not String.IsNullOrEmpty(facturation_totalTTC.Text) Then
-                        m_oDiag.TotalTTC = CDec(facturation_totalTTC.Text)
-                    End If
-
+                    majDiag()
                     desactiveModifications()
                     createContrat()
                     createBl_CR()
@@ -795,6 +783,21 @@ Public Class diagnostic_facturation
             sender.Enabled = True
         End If
 
+    End Sub
+
+    Private Sub majDiag()
+        If Not String.IsNullOrEmpty(facturation_totalTTC.Text) Then
+            m_oDiag.controleTarif = CType(facturation_totalTTC.Text, Double)
+        End If
+        If Not String.IsNullOrEmpty(facturation_totalHT.Text) Then
+            m_oDiag.TotalHT = CDec(facturation_totalHT.Text)
+        End If
+        If Not String.IsNullOrEmpty(facturation_totalTVA.Text) Then
+            m_oDiag.TotalTVA = CDec(facturation_totalTVA.Text)
+        End If
+        If Not String.IsNullOrEmpty(facturation_totalTTC.Text) Then
+            m_oDiag.TotalTTC = CDec(facturation_totalTTC.Text)
+        End If
     End Sub
     ' Retour au contexte
     Private Sub Label2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label2.Click
@@ -1277,8 +1280,9 @@ Public Class diagnostic_facturation
 
     Private Sub btn_Signatures_Click(sender As Object, e As EventArgs) Handles btn_Signatures.Click
         Dim oFrm As New frmContratCommercial()
+        majDiag()
         oFrm.setcontexte(m_oAgent, m_oDiag)
-        oFrm.ShowDialog()
+        oFrm.ShowDialog(Me)
         If m_oDiag.isSignCCAgent Or m_oDiag.isSignCCClient Then
             desactiveModifications()
         End If
