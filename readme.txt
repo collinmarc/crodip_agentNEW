@@ -2,6 +2,8 @@ TRUNK
 MASTER
 
 0001368: CV immédiate gratuite, demande de signature en recap
+0001369: en contre viste : la date du précédent controle n'est pas affichée
+
 
 BUILD : 20210506120000
 -----------------------
