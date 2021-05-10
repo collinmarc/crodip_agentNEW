@@ -4,6 +4,7 @@ MASTER
 0001368: CV immédiate gratuite, demande de signature en recap
 0001369: en contre viste : la date du précédent controle n'est pas affichée
 0001370: Annulle et remplace : Les dates de contrôles sont modifiées, il faut juste la date d'édition
+0001371: Anulle et remplace : Laisser l'accès au PDFs
 
 BUILD : 20210506120000
 -----------------------

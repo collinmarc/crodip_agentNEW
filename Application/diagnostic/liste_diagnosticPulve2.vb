@@ -2769,7 +2769,7 @@ Public Class liste_diagnosticPulve2
                 oCellI = DataGridView1.Rows(nRow).Cells(Col_Rapports.Index)
                 oCellI.Style.BackColor = System.Drawing.Color.White
                 oCellI.Tag = oDiag.RIFileName
-                If String.IsNullOrEmpty(oDiag.RIFileName) Or oDiag.isSupprime Then
+                If String.IsNullOrEmpty(oDiag.RIFileName) Then
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
                 Else
@@ -2782,7 +2782,7 @@ Public Class liste_diagnosticPulve2
                 oCellI = DataGridView1.Rows(nRow).Cells(col_SM.Index)
                 oCellI.Style.BackColor = System.Drawing.Color.White
                 oCellI.Tag = oDiag.SMFileName
-                If String.IsNullOrEmpty(oDiag.SMFileName) Or oDiag.isSupprime Then
+                If String.IsNullOrEmpty(oDiag.SMFileName) Then
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
                 Else
@@ -2795,7 +2795,7 @@ Public Class liste_diagnosticPulve2
                 oCellI = DataGridView1.Rows(nRow).Cells(col_contrat.Index)
                 oCellI.Style.BackColor = System.Drawing.Color.White
                 oCellI.Tag = oDiag.CCFileName
-                If String.IsNullOrEmpty(oDiag.CCFileName) Or oDiag.isSupprime Then
+                If String.IsNullOrEmpty(oDiag.CCFileName) Then
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
                 Else
@@ -2867,24 +2867,22 @@ Public Class liste_diagnosticPulve2
         Dim File As String = ""
         m_oDiag = m_bsrcDiag.Current
         If m_oDiag IsNot Nothing Then
-            If Not m_oDiag.isSupprime Then
-                Select Case e.ColumnIndex
-                    Case Col_Rapports.Index
-                        VisualisationRI()
-                    Case col_SM.Index
-                        VisualisationSM()
-                    Case col_contrat.Index
-                        VisualisationCC()
-                    Case col_Signatures.Index
-                        Signatures()
-                    Case col_Details.Index
-                        DetailsRapports()
-                    Case col_Remplacer.Index
-                        RemplacerDiag()
-                    Case col_ContreVisite.Index
-                        ReprendreDiag()
-                End Select
-            End If
+            Select Case e.ColumnIndex
+                Case Col_Rapports.Index
+                    VisualisationRI()
+                Case col_SM.Index
+                    VisualisationSM()
+                Case col_contrat.Index
+                    VisualisationCC()
+                Case col_Signatures.Index
+                    Signatures()
+                Case col_Details.Index
+                    DetailsRapports()
+                Case col_Remplacer.Index
+                    RemplacerDiag()
+                Case col_ContreVisite.Index
+                    ReprendreDiag()
+            End Select
         End If
     End Sub
 
@@ -2909,24 +2907,25 @@ Public Class liste_diagnosticPulve2
             Try
                 'Chargement complet du diag
                 m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
-                Dim idDiagOrigine As String
-                idDiagOrigine = m_oDiag.id
-                m_oDiag = m_oDiag.Clone()
+                If Not m_oDiag.isSupprime Then
+                    Dim idDiagOrigine As String
+                    idDiagOrigine = m_oDiag.id
+                    m_oDiag = m_oDiag.Clone()
 
 
-                m_oDiag.isSupprime = False
-                m_oDiag.diagRemplacementId = idDiagOrigine
-                m_oDiag.id = "" 'On supprime l'Id du diag, comme cela il sera considéré comme nouveau
-                '                m_oDiag.controleDateDebut = CSDate.mysql2access(Date.Now)
-                '                m_oDiag.controleDateFin = CSDate.mysql2access(Date.Now)
-                m_oDiag.setPulverisateur(oPulve)
+                    m_oDiag.isSupprime = False
+                    m_oDiag.diagRemplacementId = idDiagOrigine
+                    m_oDiag.id = "" 'On supprime l'Id du diag, comme cela il sera considéré comme nouveau
+                    '                m_oDiag.controleDateDebut = CSDate.mysql2access(Date.Now)
+                    '                m_oDiag.controleDateFin = CSDate.mysql2access(Date.Now)
+                    m_oDiag.setPulverisateur(oPulve)
 
-                ' On Modifi le Diag Sélectionné
-                Me.DiagMode = IIf(m_oDiag.controleIsComplet, Globals.DiagMode.CTRL_COMPLET, Globals.DiagMode.CTRL_CV)
+                    ' On Modifi le Diag Sélectionné
+                    Me.DiagMode = IIf(m_oDiag.controleIsComplet, Globals.DiagMode.CTRL_COMPLET, Globals.DiagMode.CTRL_CV)
 
-                Me.DialogResult = Windows.Forms.DialogResult.OK
-                Me.Close()
-
+                    Me.DialogResult = Windows.Forms.DialogResult.OK
+                    Me.Close()
+                End If
             Catch ex As Exception
                 CSDebug.dispError("lsy_diagnosticPulve2.RemplacerDiag" & ex.Message.ToString)
             End Try
@@ -2936,11 +2935,12 @@ Public Class liste_diagnosticPulve2
         If m_oDiag IsNot Nothing Then
             Try
                 m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
-                ' On récupère le Diagnostic selectionné
-                Me.DiagMode = Globals.DiagMode.CTRL_SIGNATURE
-                Me.DialogResult = Windows.Forms.DialogResult.OK
-                Me.Close()
-
+                If Not m_oDiag.isSupprime Then
+                    ' On récupère le Diagnostic selectionné
+                    Me.DiagMode = Globals.DiagMode.CTRL_SIGNATURE
+                    Me.DialogResult = Windows.Forms.DialogResult.OK
+                    Me.Close()
+                End If
             Catch ex As Exception
                 CSDebug.dispError("Visualisation Diagnostic - getDiagnosticById" & ex.Message.ToString)
             End Try
@@ -2988,16 +2988,18 @@ Public Class liste_diagnosticPulve2
         If m_oDiag IsNot Nothing Then
             ' On Recharge le diagnostic selectionné
             m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
-            'on le Clone
-            diagnosticCourant = m_oDiag.Clone()
-            'on le positionne comme une contrevisite
-            diagnosticCourant.SetAsContreVisite(agentCourant)
-            diagnosticCourant.isContrevisiteImmediate = False
-            ' Mise à jour de la barre de status
-            Statusbar.display("Nouveau contrôle (Contre Visite)")
-            Me.DialogResult = Windows.Forms.DialogResult.OK
-            Me.DiagMode = Globals.DiagMode.CTRL_CV
-            Me.Close()
+            If Not m_oDiag.isSupprime Then
+                'on le Clone
+                diagnosticCourant = m_oDiag.Clone()
+                'on le positionne comme une contrevisite
+                diagnosticCourant.SetAsContreVisite(agentCourant)
+                diagnosticCourant.isContrevisiteImmediate = False
+                ' Mise à jour de la barre de status
+                Statusbar.display("Nouveau contrôle (Contre Visite)")
+                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Me.DiagMode = Globals.DiagMode.CTRL_CV
+                Me.Close()
+            End If
         End If
 
     End Sub
@@ -3043,5 +3045,9 @@ Public Class liste_diagnosticPulve2
 
     Private Sub ckisNonReference_CheckedChanged(sender As Object, e As EventArgs) Handles ckisNonReference.CheckedChanged
         btn_reprendreDiag.Visible = ckisNonReference.Checked
+    End Sub
+
+    Private Sub liste_diagnosticPulve2_ImeModeChanged(sender As Object, e As EventArgs) Handles Me.ImeModeChanged
+
     End Sub
 End Class
