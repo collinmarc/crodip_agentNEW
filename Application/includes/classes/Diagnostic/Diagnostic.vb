@@ -187,6 +187,7 @@ Public Class Diagnostic
     Private _Commentaire As String
 
     Private _isContreVisiteImmediate As Boolean
+    Private _isGratuit As Boolean
     Private _typeDiagnostic As String
 
     Protected m_buseDebitMoyenPM As Decimal 'utilisé pour le Reglage Pulve
@@ -263,7 +264,8 @@ Public Class Diagnostic
         Me.buseDebit = ""
         Me.buseDebit2bars = ""
         Me.buseDebit3bars = ""
-        _isContreVisiteImmediate = False
+        isContrevisiteImmediate = False
+        isGratuit = False
         manometrePressionTravailD = 3
 
         controleIsComplet = True
@@ -2173,6 +2175,7 @@ Public Class Diagnostic
             _TotalTVA = Value
         End Set
     End Property
+    'le Total TTC du diag est transmis via le champ controleTarif
     <XmlIgnoreAttribute()>
     Public Property TotalTTC As Decimal
         Get
@@ -2248,6 +2251,14 @@ Public Class Diagnostic
         End Get
         Set(ByVal Value As Boolean)
             _isContreVisiteImmediate = Value
+        End Set
+    End Property
+    Public Property isGratuit() As Boolean
+        Get
+            Return _isGratuit
+        End Get
+        Set(ByVal Value As Boolean)
+            _isGratuit = Value
         End Set
     End Property
     ''' <summary>
@@ -2801,6 +2812,10 @@ Public Class Diagnostic
                     Me.TotalHT = pcolValue
                 Case "totalTTC".ToUpper().Trim()
                     Me.TotalTTC = pcolValue
+                Case "isCVImmediate".ToUpper().Trim()
+                    Me.isContrevisiteImmediate = pcolValue
+                Case "isGratuit".ToUpper().Trim()
+                    Me.isGratuit = pcolValue
             End Select
             '            ALTER TABLE DIAGNOSTIC ADD isSignRIAgent YESNO
             'ALTER TABLE DIAGNOSTIC ADD isSignRIClient YESNO
@@ -3361,7 +3376,13 @@ Public Class Diagnostic
     <XmlIgnore()>
     Public ReadOnly Property isSign() As Boolean
         Get
-            Return isSignRIAgent And isSignRIClient And isSignCCAgent And isSignCCClient
+            Dim bReturn As Boolean
+            bReturn = True
+            bReturn = isSignRIAgent And isSignRIClient
+            If CCFileName <> "" Then
+                bReturn = bReturn And (isSignCCAgent And isSignCCClient)
+            End If
+            Return bReturn
         End Get
     End Property
     Public Property isSignRIClient() As Boolean

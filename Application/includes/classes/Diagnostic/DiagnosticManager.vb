@@ -1296,6 +1296,8 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.diagRemplacementId='" & objDiagnostic.diagRemplacementId & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.totalHT='" & objDiagnostic.TotalHT & "'"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.totalTTC='" & objDiagnostic.TotalTTC & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isCVImmediate=" & objDiagnostic.isContrevisiteImmediate & ""
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.isGratuit=" & objDiagnostic.isGratuit & ""
 
 
                 ' On finalise la requete et en l'execute

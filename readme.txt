@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+
+0001368: CV immédiate gratuite, demande de signature en recap
+
 BUILD : 20210506120000
 -----------------------
 0001353: Signature à postériori : Montant du Contrat Commercial = 0

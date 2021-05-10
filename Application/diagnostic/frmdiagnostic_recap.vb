@@ -979,7 +979,7 @@ Public Class frmdiagnostic_recap
                         End If
                         If Globals.GLOB_ENV_MODESIMPLIFIE Or
                             Globals.GLOB_ENV_MODEFORMATION Or
-                            (m_diagnostic.isContrevisiteImmediate And m_diagnostic.TotalHT = 0) Then
+                            (m_diagnostic.isContrevisiteImmediate And m_diagnostic.isGratuit) Then
                             'Pas de génération du contrat commercial
                         Else
                             Statusbar.display("Génération du Contrat Commercial", True)

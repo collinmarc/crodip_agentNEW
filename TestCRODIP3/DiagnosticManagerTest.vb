@@ -395,6 +395,9 @@ Public Class DiagnosticManagerTest
         '#1060
         oDiag.isSupprime = True
         oDiag.diagRemplacementId = "1234"
+        '	0001368: CV immédiate gratuite, demande de signature en recap
+        oDiag.isContrevisiteImmediate = True
+        oDiag.isGratuit = True
 
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
@@ -416,6 +419,9 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oDiag2.isSupprime)
         Assert.AreEqual("1234", oDiag2.diagRemplacementId)
 
+        Assert.IsTrue(oDiag2.isContrevisiteImmediate)
+        Assert.IsTrue(oDiag2.isGratuit)
+
         oDiag2.controleNomSite = "Mon Site updated"
         oDiag2.controleIsAutoControle = False
         oDiag2.proprietaireRepresentant = "REP2"
@@ -430,8 +436,12 @@ Public Class DiagnosticManagerTest
         oDiag2.commentaire = "COM2"
         oDiag2.isSupprime = False
         oDiag2.diagRemplacementId = ""
+        oDiag2.isContrevisiteImmediate = False
+        oDiag2.isGratuit = False
+
 
         Assert.IsTrue(DiagnosticManager.save(oDiag2))
+
         oDiag = DiagnosticManager.getDiagnosticById(id)
 
         Assert.AreEqual(False, oDiag.controleIsAutoControle)
@@ -447,6 +457,9 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("COM2", oDiag.commentaire)
         Assert.IsFalse(oDiag.isSupprime)
         Assert.AreEqual("", oDiag.diagRemplacementId)
+
+        Assert.IsFalse(oDiag.isContrevisiteImmediate)
+        Assert.IsFalse(oDiag.isGratuit)
 
         oDiag2.controleNomSite = "Mon Site updated2"
         oDiag2.controleIsPreControleProfessionel = False

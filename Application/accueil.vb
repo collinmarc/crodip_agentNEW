@@ -4763,7 +4763,11 @@ Public Class accueil
                 isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
                 If (diagnosticCourant.isContrevisiteImmediate And isContreVisiteGratuite) Or Globals.GLOB_ENV_MODESIMPLIFIE Then
                     'Mise à jour du tarif du Diagnostique
-                    pDiag.controleTarif = CType(0, Double)
+                    diagnosticCourant.isGratuit = True
+                    diagnosticCourant.controleTarif = 0
+                    diagnosticCourant.TotalHT = 0
+                    diagnosticCourant.TotalTVA = 0
+                    diagnosticCourant.TotalTTC = 0
                 Else
                     'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
                     Statusbar.clear()
