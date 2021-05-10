@@ -4994,6 +4994,15 @@ Public Class accueil
 
     ' Synchro manuelle
     Private Sub btn_synchro_run_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_synchro_run.Click
+        ExecSynchro()
+    End Sub
+
+    Private Sub ExecSynchro()
+        If CSSoftwareUpdate.checkMAJ() Then
+            MsgBox("Une Mise à jour est disponible, vous devez l'installer avant de vous synchroniser")
+            Application.Exit()
+        End If
+
         If CSEnvironnement.checkNetwork() = True Then
             Globals.GLOB_NETWORKAVAILABLE = True
             If CSEnvironnement.checkWebService() = True Then
@@ -5647,6 +5656,12 @@ Public Class accueil
     Private Sub Btn_SynhcroDiag_Click(sender As Object, e As EventArgs) Handles Btn_SynhcroDiag.Click
         Dim oDiag As Diagnostic
         Dim bReturn As Boolean
+
+        If CSSoftwareUpdate.checkMAJ() Then
+            MsgBox("Une Mise à jour est disponible, vous devez l'installer avant de vous synchroniser")
+            Application.Exit()
+            Exit Sub
+        End If
 
         If tbNumDiag.Text <> "" Then
             oDiag = DiagnosticManager.getDiagnosticById(tbNumDiag.Text)
