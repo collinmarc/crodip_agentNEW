@@ -1283,12 +1283,9 @@ Public Class diagnostic_facturation
         majDiag()
         oFrm.setcontexte(m_oAgent, m_oDiag)
         oFrm.ShowDialog(Me)
-        If m_oDiag.isSignCCAgent Or m_oDiag.isSignCCClient Then
-            desactiveModifications()
+        If oFrm.DialogResult = DialogResult.OK Then
+            suivant(Me.btn_facturation_suivant)
         End If
     End Sub
 
-    Private Sub btn_facturation_suivant_Click(sender As Object, e As EventArgs) Handles btn_facturation_suivant.Click
-
-    End Sub
 End Class

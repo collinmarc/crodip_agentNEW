@@ -28,6 +28,7 @@ Partial Class frmContratCommercial
         Me.btnSignAgent = New System.Windows.Forms.Label()
         Me.btnSignClient = New System.Windows.Forms.Label()
         Me.btn_Quitter = New System.Windows.Forms.Label()
+        Me.btn_facturation_suivant = New System.Windows.Forms.Label()
         Me.m_bsrcAgent = New System.Windows.Forms.BindingSource(Me.components)
         Me.m_bsrcDiag = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.m_bsrcAgent, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,7 +56,7 @@ Partial Class frmContratCommercial
         Me.CrystalReportViewer1.ShowPageNavigateButtons = False
         Me.CrystalReportViewer1.ShowParameterPanelButton = False
         Me.CrystalReportViewer1.ShowTextSearchButton = False
-        Me.CrystalReportViewer1.Size = New System.Drawing.Size(585, 426)
+        Me.CrystalReportViewer1.Size = New System.Drawing.Size(591, 455)
         Me.CrystalReportViewer1.TabIndex = 0
         Me.CrystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         '
@@ -67,7 +68,7 @@ Partial Class frmContratCommercial
         Me.btnSignAgent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSignAgent.ForeColor = System.Drawing.Color.White
         Me.btnSignAgent.Image = Global.Crodip_agent.Resources.btn_Signture
-        Me.btnSignAgent.Location = New System.Drawing.Point(650, 302)
+        Me.btnSignAgent.Location = New System.Drawing.Point(154, 470)
         Me.btnSignAgent.Name = "btnSignAgent"
         Me.btnSignAgent.Size = New System.Drawing.Size(144, 24)
         Me.btnSignAgent.TabIndex = 49
@@ -76,13 +77,12 @@ Partial Class frmContratCommercial
         '
         'btnSignClient
         '
-        Me.btnSignClient.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnSignClient.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSignClient.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSignClient.DataBindings.Add(New System.Windows.Forms.Binding("Visible", Me.m_bsrcAgent, "isSignElecActive", True))
         Me.btnSignClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSignClient.ForeColor = System.Drawing.Color.White
         Me.btnSignClient.Image = Global.Crodip_agent.Resources.btn_Signture
-        Me.btnSignClient.Location = New System.Drawing.Point(653, 339)
+        Me.btnSignClient.Location = New System.Drawing.Point(316, 470)
         Me.btnSignClient.Name = "btnSignClient"
         Me.btnSignClient.Size = New System.Drawing.Size(141, 24)
         Me.btnSignClient.TabIndex = 48
@@ -96,12 +96,26 @@ Partial Class frmContratCommercial
         Me.btn_Quitter.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Quitter.ForeColor = System.Drawing.Color.White
         Me.btn_Quitter.Image = CType(resources.GetObject("btn_Quitter.Image"), System.Drawing.Image)
-        Me.btn_Quitter.Location = New System.Drawing.Point(666, 414)
+        Me.btn_Quitter.Location = New System.Drawing.Point(10, 470)
         Me.btn_Quitter.Name = "btn_Quitter"
         Me.btn_Quitter.Size = New System.Drawing.Size(128, 24)
         Me.btn_Quitter.TabIndex = 52
         Me.btn_Quitter.Text = "    Retour"
         Me.btn_Quitter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btn_facturation_suivant
+        '
+        Me.btn_facturation_suivant.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_facturation_suivant.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_facturation_suivant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_facturation_suivant.ForeColor = System.Drawing.Color.White
+        Me.btn_facturation_suivant.Image = CType(resources.GetObject("btn_facturation_suivant.Image"), System.Drawing.Image)
+        Me.btn_facturation_suivant.Location = New System.Drawing.Point(476, 470)
+        Me.btn_facturation_suivant.Name = "btn_facturation_suivant"
+        Me.btn_facturation_suivant.Size = New System.Drawing.Size(128, 24)
+        Me.btn_facturation_suivant.TabIndex = 53
+        Me.btn_facturation_suivant.Text = "    Valider"
+        Me.btn_facturation_suivant.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'm_bsrcAgent
         '
@@ -115,13 +129,15 @@ Partial Class frmContratCommercial
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(619, 500)
+        Me.Controls.Add(Me.btn_facturation_suivant)
         Me.Controls.Add(Me.btn_Quitter)
         Me.Controls.Add(Me.btnSignAgent)
         Me.Controls.Add(Me.btnSignClient)
         Me.Controls.Add(Me.CrystalReportViewer1)
         Me.Name = "frmContratCommercial"
         Me.Text = "Contrat Commercial"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.m_bsrcAgent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsrcDiag, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -134,4 +150,5 @@ Partial Class frmContratCommercial
     Friend WithEvents btn_Quitter As Label
     Friend WithEvents m_bsrcDiag As BindingSource
     Friend WithEvents m_bsrcAgent As BindingSource
+    Friend WithEvents btn_facturation_suivant As Label
 End Class

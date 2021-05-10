@@ -21,13 +21,13 @@ Public Class frmContratCommercial
         Debug.Assert(m_bsrcAgent.Count > 0, "L'agent doit être renseigné")
         Debug.Assert(m_bsrcDiag.Count > 0, "Le diagnostic doit être renseigné")
         AfficheContrat(False)
-        btnSignClient.Enabled = Not m_Diag.isSignCCClient
-        btnSignAgent.Enabled = Not m_Diag.isSignCCAgent
+        ActiveDesactiveBtnSignatures()
     End Sub
 
     Private Sub ActiveDesactiveBtnSignatures()
         btnSignClient.Enabled = Not m_Diag.isSignCCClient
         btnSignAgent.Enabled = Not m_Diag.isSignCCAgent
+        btn_facturation_suivant.Enabled = (m_Diag.isSignCCClient And m_Diag.isSignCCAgent)
     End Sub
 
     Private Function AfficheContrat(pExportDPF As Boolean) As Boolean
@@ -74,7 +74,19 @@ Public Class frmContratCommercial
 
 
     Private Sub btn_Quitter_Click(sender As Object, e As EventArgs) Handles btn_Quitter.Click
+        'Annulation de la signature
+        m_Diag.isSignCCAgent = False
+        m_Diag.isSignCCClient = False
+        m_Diag.SignCCAgent = Nothing
+        m_Diag.SignCCClient = Nothing
+        Me.DialogResult = DialogResult.Cancel
+
         Me.Close()
     End Sub
 
+    Private Sub btn_facturation_suivant_Click(sender As Object, e As EventArgs) Handles btn_facturation_suivant.Click
+        'La Génération des pdfs se fait dans la fenêtre appelante
+        Me.DialogResult = DialogResult.OK
+        Me.Close()
+    End Sub
 End Class
