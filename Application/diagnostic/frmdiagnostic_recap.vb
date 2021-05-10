@@ -865,7 +865,8 @@ Public Class frmdiagnostic_recap
                         Message = "Attention, le rapport d'inspection n'est pas signé"
                         bSignRI = False
                     End If
-                    If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
+                    If Not Globals.GLOB_ENV_MODESIMPLIFIE And m_diagnostic.CCFileName <> "" Then
+                        'PAs en mode simplifié et j'ai un contrat
                         If Not (m_diagnostic.isSignCCAgent And m_diagnostic.isSignCCClient) Then
                             Message = "Attention, le contrat commercial n'est pas signé"
                             bSignCC = False
