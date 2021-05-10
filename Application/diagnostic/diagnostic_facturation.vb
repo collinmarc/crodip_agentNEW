@@ -633,7 +633,6 @@ Public Class diagnostic_facturation
 
         Statusbar.display(Globals.CONST_STATUTMSG_DIAG_TARIFS, False)
         Me.Cursor = Cursors.WaitCursor
-        tb_txTVA.Text = My.Settings.TxTVADefaut
         ' Chargement des catégories de prestations
         Dim arrCategories() As PrestationCategorie = PrestationCategorieManager.getArrayByStructureId(m_oAgent.idStructure)
         For Each tmpCategorie As PrestationCategorie In arrCategories
@@ -643,6 +642,13 @@ Public Class diagnostic_facturation
             End If
         Next
         listTarif_categories.SelectedItem = 1
+
+        tb_txTVA.Text = My.Settings.TxTVADefaut
+        If m_oDiag.TotalHT <> 0 Then
+            facturation_totalHT.Text = m_oDiag.TotalHT
+            facturation_totalTTC.Text = m_oDiag.TotalTTC
+            facturation_totalTVA.Text = m_oDiag.TotalTTC - m_oDiag.TotalHT
+        End If
 
         ' Dans le cas d'une contre-visite
         'isContreVisite = False

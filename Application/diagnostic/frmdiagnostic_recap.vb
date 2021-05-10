@@ -648,7 +648,9 @@ Public Class frmdiagnostic_recap
         Try
             diagnosticRecap_organisme_dateControle.Text = CDate(m_diagnostic.controleDateDebut).ToShortDateString()
             diagnosticRecap_organisme_heureDebut.Text = CDate(m_diagnostic.controleDateDebut).ToShortTimeString
-            If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
+            If (m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV) And
+                m_diagnostic.diagRemplacementId = "" Then
+                'Remplacement de la date de fin si on n'est pas en remplacement
                 m_diagnostic.controleDateFin = CSDate.mysql2access(Date.Now)
             End If
             diagnosticRecap_organisme_heureFin.Text = CDate(m_diagnostic.controleDateFin).ToShortTimeString

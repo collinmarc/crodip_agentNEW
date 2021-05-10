@@ -14,6 +14,7 @@ Public Class Globals
         CTRL_VISU = 2
         CTRL_SIGNATURE = 3
         CTRL_VISUPDFS = 4
+        CTRL_REMPLACER = 5
     End Enum
     Public Enum enumConclusionDiag
         OK

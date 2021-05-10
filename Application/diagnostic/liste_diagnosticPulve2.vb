@@ -2917,8 +2917,8 @@ Public Class liste_diagnosticPulve2
                 m_oDiag.isSupprime = False
                 m_oDiag.diagRemplacementId = idDiagOrigine
                 m_oDiag.id = "" 'On supprime l'Id du diag, comme cela il sera considéré comme nouveau
-                m_oDiag.controleDateDebut = CSDate.mysql2access(Date.Now)
-                m_oDiag.controleDateFin = CSDate.mysql2access(Date.Now)
+                '                m_oDiag.controleDateDebut = CSDate.mysql2access(Date.Now)
+                '                m_oDiag.controleDateFin = CSDate.mysql2access(Date.Now)
                 m_oDiag.setPulverisateur(oPulve)
 
                 ' On Modifi le Diag Sélectionné
@@ -2992,6 +2992,7 @@ Public Class liste_diagnosticPulve2
             diagnosticCourant = m_oDiag.Clone()
             'on le positionne comme une contrevisite
             diagnosticCourant.SetAsContreVisite(agentCourant)
+            diagnosticCourant.isContrevisiteImmediate = False
             ' Mise à jour de la barre de status
             Statusbar.display("Nouveau contrôle (Contre Visite)")
             Me.DialogResult = Windows.Forms.DialogResult.OK

@@ -4695,40 +4695,7 @@ Public Class accueil
                     bContinue = (frmLstDiag.DialogResult = Windows.Forms.DialogResult.OK)
                 End If
                 If bContinue Then
-                    'Vérification des clients et Pulvés au préalable
-                    Dim ofrmExpl As New fiche_exploitant()
-                    ofrmExpl.setContexte(False, clientCourant)
-                    '                ofrm.MdiParent = Me.MdiParent
-                    ofrmExpl.ShowDialog()
-                    If ofrmExpl.DialogResult = Windows.Forms.DialogResult.OK Then
-                        'Affectation de exploitation au Diagnostic
-                        If Not diagnosticCourant Is Nothing Then
-                            diagnosticCourant.SetProprietaire(clientCourant)
-                            diagnosticCourant.proprietaireRepresentant = ofrmExpl.tbNomPrenomRepresentant.Text
-                        End If
-                        'End If
-                        'Vérification du Pulvérisateur
-                        'Si c'est un pulvé Additionnel => Affichage du pulvé principal puis du pulvé Additionnel
-                        Dim ofrmEditPulve As ajout_pulve2
-                        ofrmEditPulve = New ajout_pulve2()
-                        'If pulverisateurCourant.isPulveAdditionnel Then
-                        '    Dim oPulvePrincipal As Pulverisateur
-                        '    Dim oPulveAdditionnel As Pulverisateur
-                        '    oPulveAdditionnel = pulverisateurCourant
-                        '    oPulvePrincipal = PulverisateurManager.getPulverisateurByNumNat(pulverisateurCourant.pulvePrincipalNumNat)
-                        '    If oPulvePrincipal.id <> "" Then
-                        '        ofrmEditPulve.setContexte(ajout_pulve2.MODE.CONSULT, agentCourant, oPulvePrincipal, diagnosticCourant)
-                        '        ofrmEditPulve.ShowDialog()
-                        '    End If
-                        '    pulverisateurCourant = oPulveAdditionnel
-                        'End If
-                        ofrmEditPulve.setContexte(ajout_pulve2.MODE.VERIF, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
-                        ofrmEditPulve.ShowDialog()
-                        If ofrmEditPulve.DialogResult = Windows.Forms.DialogResult.OK Then
-                            diagnosticCourant.setPulverisateur(pulverisateurCourant)
-                            NouveauDiagnosticPhase2(pDiagMode, diagnosticCourant)
-                        End If
-                    End If
+                    NouveauDiagnosticPhase1(pDiagMode)
                 End If
             Catch ex As Exception
                 Statusbar.clear()
@@ -4736,6 +4703,44 @@ Public Class accueil
             End Try
         End If
 
+
+    End Sub
+
+    Public Sub NouveauDiagnosticPhase1(pDiagMode As Globals.DiagMode)
+        'Vérification des clients et Pulvés au préalable
+        Dim ofrmExpl As New fiche_exploitant()
+        ofrmExpl.setContexte(False, clientCourant)
+        '                ofrm.MdiParent = Me.MdiParent
+        ofrmExpl.ShowDialog()
+        If ofrmExpl.DialogResult = Windows.Forms.DialogResult.OK Then
+            'Affectation de exploitation au Diagnostic
+            If Not diagnosticCourant Is Nothing Then
+                diagnosticCourant.SetProprietaire(clientCourant)
+                diagnosticCourant.proprietaireRepresentant = ofrmExpl.tbNomPrenomRepresentant.Text
+            End If
+            'End If
+            'Vérification du Pulvérisateur
+            'Si c'est un pulvé Additionnel => Affichage du pulvé principal puis du pulvé Additionnel
+            Dim ofrmEditPulve As ajout_pulve2
+            ofrmEditPulve = New ajout_pulve2()
+            'If pulverisateurCourant.isPulveAdditionnel Then
+            '    Dim oPulvePrincipal As Pulverisateur
+            '    Dim oPulveAdditionnel As Pulverisateur
+            '    oPulveAdditionnel = pulverisateurCourant
+            '    oPulvePrincipal = PulverisateurManager.getPulverisateurByNumNat(pulverisateurCourant.pulvePrincipalNumNat)
+            '    If oPulvePrincipal.id <> "" Then
+            '        ofrmEditPulve.setContexte(ajout_pulve2.MODE.CONSULT, agentCourant, oPulvePrincipal, diagnosticCourant)
+            '        ofrmEditPulve.ShowDialog()
+            '    End If
+            '    pulverisateurCourant = oPulveAdditionnel
+            'End If
+            ofrmEditPulve.setContexte(ajout_pulve2.MODE.VERIF, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
+            ofrmEditPulve.ShowDialog()
+            If ofrmEditPulve.DialogResult = Windows.Forms.DialogResult.OK Then
+                diagnosticCourant.setPulverisateur(pulverisateurCourant)
+                NouveauDiagnosticPhase2(pDiagMode, diagnosticCourant)
+            End If
+        End If
 
     End Sub
     ''' <summary>
@@ -4849,7 +4854,8 @@ Public Class accueil
                         Case Globals.DiagMode.CTRL_VISU
                             VoirDiagnostique()
                         Case Globals.DiagMode.CTRL_CV, Globals.DiagMode.CTRL_COMPLET
-                            NouveauDiagnosticPhase2(formListDiagnostique.DiagMode, formListDiagnostique.getDiagnostic())
+                            diagnosticCourant = formListDiagnostique.getDiagnostic()
+                            NouveauDiagnosticPhase1(formListDiagnostique.DiagMode)
                     End Select
                 End If
             Catch ex As Exception
