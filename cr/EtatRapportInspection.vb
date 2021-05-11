@@ -313,7 +313,7 @@ Public Class EtatRapportInspection
             If m_oDiag.diagRemplacementId <> "" Then
                 Dim oDiagRemplace As Diagnostic
                 oDiagRemplace = DiagnosticManager.getDiagnosticById(m_oDiag.diagRemplacementId)
-                If oDiagRemplace Is Nothing Then
+                If oDiagRemplace.id <> "" Then
                     dDateRemplacement = CDate(oDiagRemplace.controleDateDebut).ToShortDateString()
                 End If
             End If

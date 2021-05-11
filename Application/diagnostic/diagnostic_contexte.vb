@@ -966,27 +966,30 @@ Public Class diagnostic_contexte
             cbxcommune.Text = m_diagnostic.controleCommune
             cbxSite.Text = m_diagnostic.controleSite
             tbnomSite.Text = m_diagnostic.controleNomSite
+            tbNomPrenomRepresentant.Text = m_diagnostic.proprietaireRepresentant
+
             '            cbxterritoire.Text = m_diagnostic.controleTerritoire
             ckisSiteSecurise.Checked = m_diagnostic.controleIsSiteSecurise
             ckisRecuperationResidus.Checked = m_diagnostic.controleIsRecupResidus
             isPremierControle.Checked = m_diagnostic.controleIsPremierControle
 
-            If m_diagnostic.controleIsPulveRepare Then
-                rbReparOui.Checked = CheckState.Checked
-            Else
-                rbReparNon.Checked = CheckState.Checked
+            If m_diagnostic.isContrevisiteImmediate Or m_diagnostic.diagRemplacementId <> "" Then
+                If m_diagnostic.controleIsPulveRepare Then
+                    rbReparOui.Checked = CheckState.Checked
+                Else
+                    rbReparNon.Checked = CheckState.Checked
+                End If
+                If m_diagnostic.controleIsPreControleProfessionel Then
+                    rbPrecontroleOui.Checked = CheckState.Checked
+                Else
+                    rbPrecontroleNon.Checked = CheckState.Checked
+                End If
+                If m_diagnostic.controleIsAutoControle Then
+                    rbAutoControleOui.Checked = CheckState.Checked
+                Else
+                    rbAutoControleNon.Checked = CheckState.Checked
+                End If
             End If
-            If m_diagnostic.controleIsPreControleProfessionel Then
-                rbPrecontroleOui.Checked = CheckState.Checked
-            Else
-                rbPrecontroleNon.Checked = CheckState.Checked
-            End If
-            If m_diagnostic.controleIsAutoControle Then
-                rbAutoControleOui.Checked = CheckState.Checked
-            Else
-                rbAutoControleNon.Checked = CheckState.Checked
-            End If
-            tbNomPrenomRepresentant.Text = m_diagnostic.proprietaireRepresentant
 
         Catch ex As Exception
             CSDebug.dispError("Diagnostic Contexte (loading data): " & ex.Message.ToString)

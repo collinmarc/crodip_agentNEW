@@ -2918,7 +2918,7 @@ Public Class liste_diagnosticPulve2
                     m_oDiag.id = "" 'On supprime l'Id du diag, comme cela il sera considéré comme nouveau
                     '                m_oDiag.controleDateDebut = CSDate.mysql2access(Date.Now)
                     '                m_oDiag.controleDateFin = CSDate.mysql2access(Date.Now)
-                    m_oDiag.setPulverisateur(oPulve)
+                    'm_oDiag.setPulverisateur(oPulve)
 
                     ' On Modifi le Diag Sélectionné
                     Me.DiagMode = IIf(m_oDiag.controleIsComplet, Globals.DiagMode.CTRL_COMPLET, Globals.DiagMode.CTRL_CV)
