@@ -2922,7 +2922,14 @@ Public Class liste_diagnosticPulve2
 
                     ' On Modifi le Diag Sélectionné
                     Me.DiagMode = IIf(m_oDiag.controleIsComplet, Globals.DiagMode.CTRL_COMPLET, Globals.DiagMode.CTRL_CV)
-
+                    m_oDiag.isSignCCAgent = False
+                    m_oDiag.isSignCCClient = False
+                    m_oDiag.isSignRIAgent = False
+                    m_oDiag.isSignRIClient = False
+                    m_oDiag.SignRIAgent = Nothing
+                    m_oDiag.SignRIClient = Nothing
+                    m_oDiag.SignCCAgent = Nothing
+                    m_oDiag.SignCCClient = Nothing
                     Me.DialogResult = Windows.Forms.DialogResult.OK
                     Me.Close()
                 End If
