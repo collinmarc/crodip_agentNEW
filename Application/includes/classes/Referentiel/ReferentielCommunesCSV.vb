@@ -72,7 +72,7 @@ Public Class ReferentielCommunesCSV
     Public Function getCommunes(pCodePostal As String) As List(Of Commune)
         Dim odt As DataTable
         Dim odv As New DataView(ods.Communes)
-        odv.RowFilter = " CodePostal = '" & pCodePostal & "'"
+        odv.RowFilter = " CodePostal like '" & pCodePostal & "%'"
         odt = odv.ToTable()
 
         Dim oReturn As New List(Of Commune)

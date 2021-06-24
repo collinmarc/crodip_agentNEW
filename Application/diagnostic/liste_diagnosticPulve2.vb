@@ -3043,7 +3043,9 @@ Public Class liste_diagnosticPulve2
         diagnosticCourant.controleIsPremierControle = False
         diagnosticCourant.controleDateDernierControle = ""
         diagnosticCourant.SetAsContreVisite(agentCourant)
-
+        diagnosticCourant.isContrevisiteImmediate = False
+        ' Mise à jour de la barre de status
+        Statusbar.display("Nouveau contrôle (Contre Visite)")
         Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.DiagMode = Globals.DiagMode.CTRL_CV
         Me.Close()

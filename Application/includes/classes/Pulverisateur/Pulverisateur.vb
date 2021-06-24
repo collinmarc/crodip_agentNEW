@@ -1206,20 +1206,15 @@ Public Class Pulverisateur
         oReturn = Date.MinValue
         If Not String.IsNullOrEmpty(id) Then
             Try
-                'Lecture des Diagnostic d'un pulve
+                'Lecture des Diagnostic d'un pulve triées par date de debut
                 Dim olst As List(Of Diagnostic)
                 olst = DiagnosticManager.getlstDiagnosticByPulveId(id)
-                'parcours de la liste pour rechercher la date de fin la plus grande
-                For Each oDiag As Diagnostic In olst
+                If olst.Count > 0 Then
+                    oReturn = olst(0).controleDateFin
+                End If
 
-                    Dim pDateLue As Date = CSDate.FromCrodipString(oDiag.controleDateFin)
-                    If pDateLue > oReturn Then
-                        oReturn = pDateLue
-                    End If
-                Next
             Catch ex As Exception
                 CSDebug.dispError("Pulverisateur.getdateDernierControle ERR : " & ex.Message)
-                oReturn = ""
             End Try
         End If
         'on retourne un date sous forme de chaine ou Vide

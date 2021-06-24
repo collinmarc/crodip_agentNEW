@@ -120,6 +120,7 @@ Public Class diagnostic_contexte
         Me.tbNomPrenomRepresentant = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.cbxcommune = New System.Windows.Forms.ComboBox()
+        Me.m_bsCommune = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -174,8 +175,8 @@ Public Class diagnostic_contexte
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.rbPrecontroleOui = New System.Windows.Forms.RadioButton()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.m_bsCommune = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox1.SuspendLayout()
+        CType(Me.m_bsCommune, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -185,7 +186,6 @@ Public Class diagnostic_contexte
         Me.Panel4.SuspendLayout()
         Me.pnlprecontroleOuiNon.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        CType(Me.m_bsCommune, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -248,6 +248,8 @@ Public Class diagnostic_contexte
         '
         'cbxcommune
         '
+        Me.cbxcommune.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbxcommune.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbxcommune.DataSource = Me.m_bsCommune
         Me.cbxcommune.DisplayMember = "Nom"
         Me.cbxcommune.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -255,6 +257,10 @@ Public Class diagnostic_contexte
         Me.cbxcommune.Name = "cbxcommune"
         Me.cbxcommune.Size = New System.Drawing.Size(160, 21)
         Me.cbxcommune.TabIndex = 1
+        '
+        'm_bsCommune
+        '
+        Me.m_bsCommune.DataSource = GetType(Crodip_agent.Commune)
         '
         'Label4
         '
@@ -853,10 +859,6 @@ Public Class diagnostic_contexte
         Me.Label6.TabIndex = 15
         Me.Label6.Text = "Dans l’optique du contrôle,"
         '
-        'm_bsCommune
-        '
-        Me.m_bsCommune.DataSource = GetType(Crodip_agent.Commune)
-        '
         'diagnostic_contexte
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -873,6 +875,7 @@ Public Class diagnostic_contexte
         Me.Text = "Crodip .::. Contexte du contrôle"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.m_bsCommune, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -890,7 +893,6 @@ Public Class diagnostic_contexte
         Me.pnlprecontroleOuiNon.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        CType(Me.m_bsCommune, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -938,7 +940,7 @@ Public Class diagnostic_contexte
                 tbCtrlPart_Inspecteur.Text = m_diagnostic.inspecteurOrigineNom
             End If
 
-            dateDernierControlePartiel.MinDate = DateAdd(DateInterval.Month, -4, Date.Today)
+            '            dateDernierControlePartiel.MinDate = DateAdd(DateInterval.Month, -4, Date.Today)
             'Rappel des derniers infos du contexte
             'If My.Settings.DernierControleInfosChezProp Then
             ' RappelInfosChezProprietaire()
