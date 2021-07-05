@@ -1,4 +1,8 @@
 Imports System.Collections.Generic
+Imports System.Globalization
+Imports System.IO
+Imports System.Linq
+Imports CsvHelper
 
 Public Class diagnostic_contexte
     Inherits System.Windows.Forms.Form
@@ -51,11 +55,14 @@ Public Class diagnostic_contexte
     Protected m_diagnostic As Diagnostic
     Protected m_Pulverisateur As Pulverisateur
     Friend WithEvents m_bsCommune As BindingSource
+    Friend WithEvents lbLieux As ListBox
+    Friend WithEvents btnAjoutLieu As Button
+    Friend WithEvents m_bsLieuxControle As BindingSource
     Protected ClientCourant As Exploitation
 #End Region
 
 #Region " Code généré par le Concepteur Windows Form "
-
+    Private _LstLieuxControle As List(Of LieuxControle)
     Public Sub New()
         MyBase.New()
 
@@ -63,7 +70,7 @@ Public Class diagnostic_contexte
         InitializeComponent()
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
-
+        _LstLieuxControle = New List(Of LieuxControle)()
     End Sub
     Public Sub New(ByVal pDiagMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation, ByVal pRetour As Boolean)
         Me.New()
@@ -115,6 +122,9 @@ Public Class diagnostic_contexte
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_contexte))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lbLieux = New System.Windows.Forms.ListBox()
+        Me.m_bsLieuxControle = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btnAjoutLieu = New System.Windows.Forms.Button()
         Me.btnChezProp = New System.Windows.Forms.Button()
         Me.btnDernControle = New System.Windows.Forms.Button()
         Me.tbNomPrenomRepresentant = New System.Windows.Forms.TextBox()
@@ -176,6 +186,7 @@ Public Class diagnostic_contexte
         Me.rbPrecontroleOui = New System.Windows.Forms.RadioButton()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.m_bsLieuxControle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsCommune, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -190,6 +201,11 @@ Public Class diagnostic_contexte
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.GroupBox1.Controls.Add(Me.lbLieux)
+        Me.GroupBox1.Controls.Add(Me.btnAjoutLieu)
         Me.GroupBox1.Controls.Add(Me.btnChezProp)
         Me.GroupBox1.Controls.Add(Me.btnDernControle)
         Me.GroupBox1.Controls.Add(Me.tbNomPrenomRepresentant)
@@ -208,10 +224,36 @@ Public Class diagnostic_contexte
         Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GroupBox1.Location = New System.Drawing.Point(8, 8)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(484, 198)
+        Me.GroupBox1.Size = New System.Drawing.Size(597, 198)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Lieu de contrôle"
+        '
+        'lbLieux
+        '
+        Me.lbLieux.DataSource = Me.m_bsLieuxControle
+        Me.lbLieux.DisplayMember = "Nom"
+        Me.lbLieux.FormattingEnabled = True
+        Me.lbLieux.Location = New System.Drawing.Point(405, 21)
+        Me.lbLieux.Name = "lbLieux"
+        Me.lbLieux.Size = New System.Drawing.Size(182, 95)
+        Me.lbLieux.TabIndex = 11
+        '
+        'm_bsLieuxControle
+        '
+        Me.m_bsLieuxControle.DataSource = GetType(Crodip_agent.LieuxControle)
+        '
+        'btnAjoutLieu
+        '
+        Me.btnAjoutLieu.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.btnAjoutLieu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnAjoutLieu.ForeColor = System.Drawing.Color.White
+        Me.btnAjoutLieu.Location = New System.Drawing.Point(359, 85)
+        Me.btnAjoutLieu.Name = "btnAjoutLieu"
+        Me.btnAjoutLieu.Size = New System.Drawing.Size(40, 31)
+        Me.btnAjoutLieu.TabIndex = 10
+        Me.btnAjoutLieu.Text = "->"
+        Me.btnAjoutLieu.UseVisualStyleBackColor = False
         '
         'btnChezProp
         '
@@ -376,6 +418,8 @@ Public Class diagnostic_contexte
         '
         'GroupBox2
         '
+        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.Controls.Add(Me.LabelInspecteurPrecedent)
         Me.GroupBox2.Controls.Add(Me.tbCtrlPart_Inspecteur)
         Me.GroupBox2.Controls.Add(Me.tbCtrlPart_Organisme)
@@ -391,7 +435,7 @@ Public Class diagnostic_contexte
         Me.GroupBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GroupBox2.Location = New System.Drawing.Point(7, 284)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(485, 173)
+        Me.GroupBox2.Size = New System.Drawing.Size(598, 173)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Type de contrôle"
@@ -475,13 +519,15 @@ Public Class diagnostic_contexte
         '
         'btn_poursuivre
         '
+        Me.btn_poursuivre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_poursuivre.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_poursuivre.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_poursuivre.ForeColor = System.Drawing.Color.White
         Me.btn_poursuivre.Image = CType(resources.GetObject("btn_poursuivre.Image"), System.Drawing.Image)
         Me.btn_poursuivre.Location = New System.Drawing.Point(364, 605)
         Me.btn_poursuivre.Name = "btn_poursuivre"
-        Me.btn_poursuivre.Size = New System.Drawing.Size(128, 24)
+        Me.btn_poursuivre.Size = New System.Drawing.Size(241, 24)
         Me.btn_poursuivre.TabIndex = 4
         Me.btn_poursuivre.Text = "    Poursuivre"
         Me.btn_poursuivre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -501,6 +547,8 @@ Public Class diagnostic_contexte
         '
         'GroupBox3
         '
+        Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox3.Controls.Add(Me.cbxNbreExploitants)
         Me.GroupBox3.Controls.Add(Me.lblNbreExploitants)
         Me.GroupBox3.Controls.Add(Me.cbxModeUtilisation)
@@ -509,7 +557,7 @@ Public Class diagnostic_contexte
         Me.GroupBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GroupBox3.Location = New System.Drawing.Point(8, 212)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(484, 66)
+        Me.GroupBox3.Size = New System.Drawing.Size(597, 66)
         Me.GroupBox3.TabIndex = 15
         Me.GroupBox3.TabStop = False
         '
@@ -551,6 +599,8 @@ Public Class diagnostic_contexte
         '
         'GroupBox4
         '
+        Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox4.Controls.Add(Me.pnlreparOuiNon)
         Me.GroupBox4.Controls.Add(Me.pnlAutoControleOuiNon)
         Me.GroupBox4.Controls.Add(Me.Label11)
@@ -560,17 +610,18 @@ Public Class diagnostic_contexte
         Me.GroupBox4.Controls.Add(Me.Label6)
         Me.GroupBox4.Location = New System.Drawing.Point(10, 463)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(482, 135)
+        Me.GroupBox4.Size = New System.Drawing.Size(595, 135)
         Me.GroupBox4.TabIndex = 16
         Me.GroupBox4.TabStop = False
         '
         'pnlreparOuiNon
         '
+        Me.pnlreparOuiNon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlreparOuiNon.Controls.Add(Me.Label13)
         Me.pnlreparOuiNon.Controls.Add(Me.rbReparNon)
         Me.pnlreparOuiNon.Controls.Add(Me.Panel6)
         Me.pnlreparOuiNon.Controls.Add(Me.rbReparOui)
-        Me.pnlreparOuiNon.Location = New System.Drawing.Point(382, 99)
+        Me.pnlreparOuiNon.Location = New System.Drawing.Point(495, 99)
         Me.pnlreparOuiNon.Name = "pnlreparOuiNon"
         Me.pnlreparOuiNon.Size = New System.Drawing.Size(91, 23)
         Me.pnlreparOuiNon.TabIndex = 21
@@ -588,6 +639,7 @@ Public Class diagnostic_contexte
         '
         'rbReparNon
         '
+        Me.rbReparNon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rbReparNon.AutoSize = True
         Me.rbReparNon.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbReparNon.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -636,6 +688,7 @@ Public Class diagnostic_contexte
         '
         'rbReparOui
         '
+        Me.rbReparOui.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rbReparOui.AutoSize = True
         Me.rbReparOui.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbReparOui.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -649,11 +702,12 @@ Public Class diagnostic_contexte
         '
         'pnlAutoControleOuiNon
         '
+        Me.pnlAutoControleOuiNon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlAutoControleOuiNon.Controls.Add(Me.Label12)
         Me.pnlAutoControleOuiNon.Controls.Add(Me.rbAutoControleNon)
         Me.pnlAutoControleOuiNon.Controls.Add(Me.Panel4)
         Me.pnlAutoControleOuiNon.Controls.Add(Me.rbAutoControleOui)
-        Me.pnlAutoControleOuiNon.Location = New System.Drawing.Point(381, 70)
+        Me.pnlAutoControleOuiNon.Location = New System.Drawing.Point(494, 70)
         Me.pnlAutoControleOuiNon.Name = "pnlAutoControleOuiNon"
         Me.pnlAutoControleOuiNon.Size = New System.Drawing.Size(91, 23)
         Me.pnlAutoControleOuiNon.TabIndex = 20
@@ -671,6 +725,7 @@ Public Class diagnostic_contexte
         '
         'rbAutoControleNon
         '
+        Me.rbAutoControleNon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rbAutoControleNon.AutoSize = True
         Me.rbAutoControleNon.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbAutoControleNon.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -719,6 +774,7 @@ Public Class diagnostic_contexte
         '
         'rbAutoControleOui
         '
+        Me.rbAutoControleOui.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rbAutoControleOui.AutoSize = True
         Me.rbAutoControleOui.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbAutoControleOui.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -732,10 +788,11 @@ Public Class diagnostic_contexte
         '
         'Label11
         '
+        Me.Label11.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(141, 102)
+        Me.Label11.Location = New System.Drawing.Point(254, 102)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(235, 17)
         Me.Label11.TabIndex = 19
@@ -744,10 +801,11 @@ Public Class diagnostic_contexte
         '
         'Label10
         '
+        Me.Label10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(45, 73)
+        Me.Label10.Location = New System.Drawing.Point(158, 73)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(333, 17)
         Me.Label10.TabIndex = 18
@@ -756,10 +814,11 @@ Public Class diagnostic_contexte
         '
         'Label8
         '
+        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(1, 44)
+        Me.Label8.Location = New System.Drawing.Point(114, 44)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(383, 17)
         Me.Label8.TabIndex = 17
@@ -767,11 +826,12 @@ Public Class diagnostic_contexte
         '
         'pnlprecontroleOuiNon
         '
+        Me.pnlprecontroleOuiNon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlprecontroleOuiNon.Controls.Add(Me.Label9)
         Me.pnlprecontroleOuiNon.Controls.Add(Me.rbPrecontroleNon)
         Me.pnlprecontroleOuiNon.Controls.Add(Me.Panel2)
         Me.pnlprecontroleOuiNon.Controls.Add(Me.rbPrecontroleOui)
-        Me.pnlprecontroleOuiNon.Location = New System.Drawing.Point(381, 41)
+        Me.pnlprecontroleOuiNon.Location = New System.Drawing.Point(494, 41)
         Me.pnlprecontroleOuiNon.Name = "pnlprecontroleOuiNon"
         Me.pnlprecontroleOuiNon.Size = New System.Drawing.Size(91, 23)
         Me.pnlprecontroleOuiNon.TabIndex = 16
@@ -789,6 +849,7 @@ Public Class diagnostic_contexte
         '
         'rbPrecontroleNon
         '
+        Me.rbPrecontroleNon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rbPrecontroleNon.AutoSize = True
         Me.rbPrecontroleNon.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbPrecontroleNon.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -837,6 +898,7 @@ Public Class diagnostic_contexte
         '
         'rbPrecontroleOui
         '
+        Me.rbPrecontroleOui.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rbPrecontroleOui.AutoSize = True
         Me.rbPrecontroleOui.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbPrecontroleOui.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -862,7 +924,7 @@ Public Class diagnostic_contexte
         'diagnostic_contexte
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(504, 635)
+        Me.ClientSize = New System.Drawing.Size(617, 635)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.btn_retour)
@@ -875,6 +937,7 @@ Public Class diagnostic_contexte
         Me.Text = "Crodip .::. Contexte du contrôle"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.m_bsLieuxControle, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsCommune, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
@@ -993,6 +1056,10 @@ Public Class diagnostic_contexte
                 End If
             End If
 
+            'chargement des Lieux de controle
+            chargerLieuxControle()
+
+
         Catch ex As Exception
             CSDebug.dispError("Diagnostic Contexte (loading data): " & ex.Message.ToString)
         End Try
@@ -1075,6 +1142,7 @@ Public Class diagnostic_contexte
             My.Settings.DernierControleSiteSecurise = ckisSiteSecurise.Checked
             My.Settings.DernierControleRecupResidus = ckisRecuperationResidus.Checked
             My.Settings.Save()
+            SauvegarderLieuxControle()
 
             Me.DialogResult = Windows.Forms.DialogResult.OK
             'Me.Close() elle sera fermée par la fenêtre appelante
@@ -1255,5 +1323,72 @@ Public Class diagnostic_contexte
         For Each sCommune As Commune In lstCommunes
             m_bsCommune.Add(sCommune)
         Next
+    End Sub
+
+    Private Sub btnAjoutLieu_Click(sender As Object, e As EventArgs) Handles btnAjoutLieu.Click
+        AjouterLieuxControle()
+
+    End Sub
+
+    Private Sub lbLieux_DoubleClick(sender As Object, e As EventArgs) Handles lbLieux.DoubleClick, lbLieux.Click
+        SelectionnerLieuControle()
+    End Sub
+
+    Private Sub AjouterLieuxControle()
+        Dim oLieu As New LieuxControle()
+        oLieu.Nom = tbnomSite.Text
+        oLieu.Site = cbxSite.Text
+        oLieu.Commune = cbxcommune.Text
+        oLieu.CodePostal = tbcodePostal.Text
+
+        m_bsLieuxControle.Add(oLieu)
+    End Sub
+    Private Sub SelectionnerLieuControle()
+
+        Dim oLieu As LieuxControle
+        oLieu = m_bsLieuxControle.Current
+        If oLieu IsNot Nothing Then
+            tbcodePostal.Text = oLieu.CodePostal
+            LoadCommunes(oLieu.CodePostal)
+            cbxcommune.Text = oLieu.Commune
+            cbxSite.Text = oLieu.Site
+            tbnomSite.Text = oLieu.Nom
+        End If
+
+
+    End Sub
+
+    Private Sub cbxcommune_Validated(sender As Object, e As EventArgs) Handles cbxcommune.Validated
+        Dim oCommune As Commune
+        oCommune = m_bsCommune.Current
+        tbcodePostal.Text = oCommune.CodePostal
+
+    End Sub
+
+    Private Sub SauvegarderLieuxControle()
+
+        Using wr As StreamWriter = New StreamWriter("./LieuxControle.csv")
+            Using csv As New CsvWriter(wr, Globalization.CultureInfo.InvariantCulture)
+
+                csv.WriteRecords(m_bsLieuxControle.List)
+
+            End Using
+        End Using
+
+    End Sub
+
+    Public Sub chargerLieuxControle()
+        Using reader As StreamReader = New StreamReader("./Lieuxcontrole.csv")
+            Using csv As CsvReader = New CsvReader(reader, CultureInfo.InvariantCulture)
+                csv.GetRecords(Of LieuxControle)().ToList().ForEach(Sub(l) m_bsLieuxControle.Add(l))
+            End Using
+        End Using
+
+    End Sub
+
+    Private Sub lbLieux_KeyDown(sender As Object, e As KeyEventArgs) Handles lbLieux.KeyDown
+        If e.KeyCode = 46 Then
+            m_bsLieuxControle.RemoveCurrent()
+        End If
     End Sub
 End Class

@@ -63,7 +63,7 @@ Public Class login
     Friend WithEvents GroupBox_test As System.Windows.Forms.GroupBox
     Friend WithEvents btnTest As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents btnTestDiagHelp12123 As System.Windows.Forms.Button
+    Friend WithEvents btnTestDiagContext As System.Windows.Forms.Button
     Friend WithEvents pnlLoginControls As System.Windows.Forms.Panel
     Friend WithEvents cbTestRIFin As Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
@@ -104,7 +104,7 @@ Public Class login
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.cbTestRIFin = New System.Windows.Forms.Button()
-        Me.btnTestDiagHelp12123 = New System.Windows.Forms.Button()
+        Me.btnTestDiagContext = New System.Windows.Forms.Button()
         Me.btnTest = New System.Windows.Forms.Button()
         Me.panel_splashSynchro = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -300,7 +300,7 @@ Public Class login
         Me.GroupBox_test.Controls.Add(Me.Button2)
         Me.GroupBox_test.Controls.Add(Me.Button1)
         Me.GroupBox_test.Controls.Add(Me.cbTestRIFin)
-        Me.GroupBox_test.Controls.Add(Me.btnTestDiagHelp12123)
+        Me.GroupBox_test.Controls.Add(Me.btnTestDiagContext)
         Me.GroupBox_test.Controls.Add(Me.btnTest)
         Me.GroupBox_test.Location = New System.Drawing.Point(192, 471)
         Me.GroupBox_test.Name = "GroupBox_test"
@@ -409,14 +409,14 @@ Public Class login
         Me.cbTestRIFin.Text = "RI (Fin)"
         Me.cbTestRIFin.UseVisualStyleBackColor = False
         '
-        'btnTestDiagHelp12123
+        'btnTestDiagContext
         '
-        Me.btnTestDiagHelp12123.Location = New System.Drawing.Point(135, 18)
-        Me.btnTestDiagHelp12123.Name = "btnTestDiagHelp12123"
-        Me.btnTestDiagHelp12123.Size = New System.Drawing.Size(128, 23)
-        Me.btnTestDiagHelp12123.TabIndex = 27
-        Me.btnTestDiagHelp12123.Text = "DiagHelp12123"
-        Me.btnTestDiagHelp12123.UseVisualStyleBackColor = True
+        Me.btnTestDiagContext.Location = New System.Drawing.Point(135, 18)
+        Me.btnTestDiagContext.Name = "btnTestDiagContext"
+        Me.btnTestDiagContext.Size = New System.Drawing.Size(128, 23)
+        Me.btnTestDiagContext.TabIndex = 27
+        Me.btnTestDiagContext.Text = "DiagContext"
+        Me.btnTestDiagContext.UseVisualStyleBackColor = True
         '
         'btnTest
         '
@@ -822,41 +822,27 @@ Public Class login
         End If
     End Sub
 
-    Private Sub btnTestDiagHelp12123_Click(sender As Object, e As EventArgs) Handles btnTestDiagHelp12123.Click
+    Private Sub btnTestDiagHelp12123_Click(sender As Object, e As EventArgs) Handles btnTestDiagContext.Click
 
-        Dim oFRM As diagnostic_dlghelp12123new
-        Dim oDiag12123 As New DiagnosticHelp12123()
-        Dim oP1 As DiagnosticHelp12123Pompe = oDiag12123.AjoutePompe()
-        oP1.debitMesure = 10
-        oP1.PressionMesure = 5
-        oP1.PressionMoyenne = 15
-        oP1.NbBuses = 5
-        Dim oMesure As DiagnosticHelp12123Mesure = oP1.lstMesures(0)
-        oMesure.ReglageDispositif = 23
-        oMesure.TempsMesure = 30
-        oMesure.MasseInitiale = 13
-        oMesure.MasseAspire = 3.492
-        oMesure = oP1.lstMesures(1)
-        oMesure.ReglageDispositif = 23
-        oMesure.TempsMesure = 30
-        oMesure.MasseInitiale = 3.756
-        oMesure.MasseAspire = 3.492
-        oMesure = oP1.lstMesures(2)
-        oMesure.ReglageDispositif = 23
-        oMesure.TempsMesure = 30
-        oMesure.MasseInitiale = 13
-        oMesure.MasseAspire = 3.492
-        Dim oP2 As DiagnosticHelp12123Pompe = oDiag12123.AjoutePompe()
-        oP2.debitMesure = 12
-        oP2.PressionMesure = 7
-        oP2.PressionMoyenne = 15
-        oP2.NbBuses = 5
-        oDiag12123.calcule()
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        Dim oDiag As Diagnostic
+        oPulve = PulverisateurManager.getPulverisateurById("2-81-22")
+        oPulve.type = "Cultures basses"
+        'oPulve.categorie = "Traitement des semences"
+        'oPulve.buseFonctionnement = "CUILLERE"
+        oPulve.isPompesDoseuses = True
+        oPulve.nbPompesDoseuses = 2
+        'oPulve.buseNbniveaux = 1
+        'oPulve.nombreBuses = 2
+        agentCourant = AgentManager.getAgentByNumeroNational("MCII")
+        If oPulve IsNot Nothing Then
+            oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
+            oDiag = New Diagnostic(agentCourant, oPulve, oExploit)
+        End If
 
-
-        oFRM = New diagnostic_dlghelp12123new()
-        oFRM.setContexte(oDiag12123, False)
-        oFRM.ShowDialog()
+        Dim oFrm As New diagnostic_contexte(Globals.DiagMode.CTRL_COMPLET, oDiag, oPulve, oExploit, False)
+        oFrm.Show()
 
 
     End Sub

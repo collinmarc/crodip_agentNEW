@@ -282,6 +282,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\includes\classes\Agent\Materiel\Alertes.vb" />
+    <Compile Include="Application\includes\classes\Referentiel\LieuxControle.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtPulverisateur.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitation.vb" />
@@ -1351,6 +1352,9 @@
     <Content Include="cmd.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\add_to_favorites_96px.png" />
+    <None Include="Resources\icons8_membership_card.ico" />
+    <None Include="Resources\Favorites.png" />
     <Content Include="wgssSTU.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1381,6 +1385,7 @@
     <None Include="My Project\DataSources\FVBanc.datasource" />
     <None Include="My Project\DataSources\FVManometreControle.datasource" />
     <None Include="My Project\DataSources\importCRODIP.ImportCrodipResult.datasource" />
+    <None Include="My Project\DataSources\LieuxControle.datasource" />
     <None Include="My Project\DataSources\UpdateInfo.datasource" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>

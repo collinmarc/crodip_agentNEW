@@ -118,8 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ico_pdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ico_pdf.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="puce_h2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\puce_h2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Open36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\ico\Open36.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btn_divers_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_divers_add.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,8 +136,8 @@
   <data name="login_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\login_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ClosePreviewHH" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ClosePreviewHH.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logoCRODIP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoCRODIP.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btn_divers_print" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\btn\btn_divers_print.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,17 +145,20 @@
   <data name="jumelles16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jumelles16x16.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PuceJauneT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PuceJauneT.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btn_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_delete.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_annuler" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_annuler.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PuceVerteT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PuceVerteT.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PuceRougeT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PuceRougeT.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OeilBleu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OeilBleu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_suivant" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_suivant.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow_refresh_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\arrow_refresh_small.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_membership_card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8_membership_card.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Button_Play_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Button_Play_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,17 +172,20 @@
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="login_bgcrodip" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\login_bgReglagePulve.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ico_pdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_pdf.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Start3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Start3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PuceVerteT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PuceVerteT.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="login_bgVide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\login_bgVide.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="calculator" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calculator.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_fiche_voir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_fiche_voir.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logoCRODIPIMG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,8 +199,14 @@
   <data name="btn_suivantGrd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_suivantGrd.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="login_bgcrodip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\login_bgReglagePulve.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="btn_valider" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_valider.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_annuler" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_annuler.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="puce_h1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\puce_h1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,20 +217,20 @@
   <data name="oeil16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\oeil16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Open36" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\ico\Open36.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btn_suivant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_suivant.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PuceGriseT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PuceGriseT.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_fiche_voir" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_fiche_voir.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PuceRougeT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PuceRougeT.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="puce_h2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\puce_h2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="add_to_favorites_96px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_to_favorites_96px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logoCRODIP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logoCRODIP.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ico_crodipIndigo36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_crodipIndigo36.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Transparent.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,23 +250,20 @@
   <data name="Login_bgcrodipIndigo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\login_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_empty_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_empty_big.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Next36" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\ico\Next36.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icon1.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow_refresh_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\arrow_refresh_small.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ClosePreviewHH" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ClosePreviewHH.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_delete.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btn_empty_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_empty_big.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OeilBleu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OeilBleu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PuceJauneT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PuceJauneT.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LogoMCII" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\LogoMCII.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,13 +271,10 @@
   <data name="Button_PREVIous_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Button_PREVIous_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ico_crodipIndigo36" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ico_crodipIndigo36.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PDF" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\ico\PDF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="login_bgVide" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\login_bgVide.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Favorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Favorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
