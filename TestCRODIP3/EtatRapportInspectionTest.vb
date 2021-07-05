@@ -6,7 +6,7 @@ Imports System.IO
 <TestClass()> Public Class EtatRapportInspectionTest
     Inherits CRODIPTest
 
-    <TestMethod()> Public Sub TestGenereEtatCV1P()
+    <TestMethod()> Public Sub TestGenereCCompletEtatCV1P()
         Dim oEtat As EtatRapportInspection
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur
@@ -110,7 +110,7 @@ Imports System.IO
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -2152,6 +2152,123 @@ Imports System.IO
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
+        Assert.IsTrue(oEtat.genereEtat)
+        Assert.IsNotNull(oEtat.getFileName())
+        Assert.IsTrue(oEtat.Open())
+    End Sub
+    <TestMethod()> Public Sub TestGenereCVEtatCV1P()
+        Dim oEtat As EtatRapportInspection
+        Dim oDiagOrigine As Diagnostic
+        Dim oDiagCV As Diagnostic
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        Dim oDiagItem As DiagnosticItem
+
+        oPulve = New Pulverisateur()
+        oExploit = New Exploitation()
+
+        m_oStructure.nom = "MA STRUCTURE"
+        StructureManager.save(m_oStructure)
+        m_oAgent.nom = "AGENT NOM"
+        AgentManager.save(m_oAgent)
+        oExploit.raisonSociale = "RS EXPLOITANT"
+        oExploit.numeroSiren = "123456"
+        oExploit.nomExploitant = "NOM EXPLOITANT"
+        oExploit.adresse = "23, la mettrie"
+        oExploit.codePostal = "35250"
+        oExploit.commune = "Chasné sur illet"
+        oExploit.codeApe = "987"
+        ExploitationManager.save(oExploit, m_oAgent)
+        oPulve.marque = "MA MARQUE"
+        oPulve.modele = "MON MODELE"
+        oPulve.numeroNational = "E001456789"
+        oPulve.capacite = 300
+        oPulve.setLargeurNbreRangs("5.5")
+        oPulve.largeurPlantation = "12"
+        oPulve.attelage = "3 POINTS"
+        oPulve.anneeAchat = "1974"
+        oPulve.type = "TYPE PULVE"
+        oPulve.categorie = "Canon"
+        oPulve.pulverisation = "Jet projeté"
+        '        oPulve.isDPAEDebit = True
+        oPulve.buseType = "TYPEBUSE"
+        oPulve.buseFonctionnement = "FCTBUSE"
+        oPulve.buseMarque = "MarqueBuse"
+        oPulve.buseModele = "ModeleBuse"
+        oPulve.emplacementIdentification = "SUR LA FLECHE"
+        oPulve.isCuveRincage = False
+        oPulve.isLanceLavage = True
+        oPulve.isRotobuse = True
+        oPulve.isCuveIncorporation = False
+        oPulve.regulation = "DPM"
+        oPulve.regulationOptions = "Opt1|Opt2"
+        oPulve.controleEtat = Pulverisateur.controleEtatOK ' pas de défaut sur le pulvé
+        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+
+        oDiagOrigine = New Diagnostic(m_oAgent, oPulve, oExploit)
+        oDiagOrigine.controleLieu = "DANS LA COUR"
+        oDiagOrigine.controleIsPreControleProfessionel = True
+        oDiagOrigine.proprietaireRepresentant = "Repésentant"
+        oDiagOrigine.id = "992-852-963"
+        oDiagOrigine.controleIsComplet = False
+        oDiagOrigine.buseDebitD = "2,5"
+        oDiagOrigine.controleInitialId = "010101"
+        oDiagOrigine.inspecteurOrigineNom = "RAULT"
+        oDiagOrigine.inspecteurOriginePrenom = "MA"
+        oDiagOrigine.organismeOriginePresNom = "CRODIP"
+        oDiagOrigine.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
+        'Assert.AreEqual(CSDate.ToCRODIPString("06/02/1964"), oDiag.CalculDateProchainControle)
+        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4)), oDiagOrigine.CalculDateProchainControle)
+        oDiagItem = New DiagnosticItem(oDiagOrigine.id, "256", "1", "2", "P")
+        oDiagItem.LibelleCourt = "LIBCourt2561"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
+        oDiagOrigine.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiagOrigine.id, "256", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+        oDiagOrigine.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiagOrigine.id, "256", "3", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
+        oDiagOrigine.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiagOrigine.id, "256", "4", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
+        oDiagOrigine.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiagOrigine.id, "256", "5", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
+        oDiagOrigine.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiagOrigine.id, "256", "6", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
+        oDiagOrigine.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiagOrigine.id, "256", "7", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
+        oDiagOrigine.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiagOrigine.id, "256", "8", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
+        oDiagOrigine.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiagOrigine.id, "256", "9", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
+        oDiagOrigine.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiagOrigine.id, "257", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
+        oDiagOrigine.AdOrReplaceDiagItem(oDiagItem)
+
+        DiagnosticManager.save(oDiagOrigine)
+
+        oDiagCV = oDiagOrigine.Clone()
+        oDiagCV.SetAsContreVisite(m_oAgent)
+        oDiagCV.id = "992-852-964"
+
+
+
+        oEtat = New EtatRapportInspection(oDiagCV)
         Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
