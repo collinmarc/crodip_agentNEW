@@ -5,6 +5,7 @@ BUILD : XXXXXX
 	0001380: Mauvaise date lors d'une contre visite
 	0001114: Sélection des communes
 	0001364: Gestion de lieux de contrôles
+	0001385: Taille du numéro de diag sur le Rapport d'inspection
 
 BUILD : 20210511120000
 BUILD : 20210510180000
