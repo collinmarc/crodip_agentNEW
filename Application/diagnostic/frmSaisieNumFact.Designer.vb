@@ -38,7 +38,7 @@ Partial Class frmSaisieNumFact
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Image = CType(resources.GetObject("Label2.Image"), System.Drawing.Image)
-        Me.Label2.Location = New System.Drawing.Point(0, 89)
+        Me.Label2.Location = New System.Drawing.Point(12, 89)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(128, 24)
         Me.Label2.TabIndex = 33
@@ -62,7 +62,7 @@ Partial Class frmSaisieNumFact
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(17, 22)
+        Me.Label1.Location = New System.Drawing.Point(12, 26)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(101, 13)
         Me.Label1.TabIndex = 35
@@ -78,7 +78,7 @@ Partial Class frmSaisieNumFact
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(17, 45)
+        Me.Label3.Location = New System.Drawing.Point(12, 48)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(159, 13)
         Me.Label3.TabIndex = 37

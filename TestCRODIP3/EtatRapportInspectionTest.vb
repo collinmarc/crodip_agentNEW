@@ -2099,7 +2099,7 @@ Imports System.IO
         oDiag.controleLieu = "DANS LA COUR"
         oDiag.controleIsPreControleProfessionel = True
         oDiag.proprietaireRepresentant = "Repésentant"
-        oDiag.id = "992-852-963"
+        oDiag.id = "9999-9999-99999"
         oDiag.controleIsComplet = True
         oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
