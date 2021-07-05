@@ -51,6 +51,10 @@ Public Class facturation
     Friend WithEvents facturation_isActivated As System.Windows.Forms.CheckBox
     Friend WithEvents btn_facturation_ajouterLogo As System.Windows.Forms.Label
     Friend WithEvents facturation_logo As System.Windows.Forms.PictureBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents tbRacineNumerotation As TextBox
+    Friend WithEvents tbDernNumero As TextBox
+    Friend WithEvents Label6 As Label
     Friend WithEvents lblError As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(facturation))
@@ -71,6 +75,10 @@ Public Class facturation
         Me.facturation_isActivated = New System.Windows.Forms.CheckBox()
         Me.btn_facturation_ajouterLogo = New System.Windows.Forms.Label()
         Me.lblError = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.tbRacineNumerotation = New System.Windows.Forms.TextBox()
+        Me.tbDernNumero = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.panel_logo_bg.SuspendLayout()
         CType(Me.facturation_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -89,7 +97,7 @@ Public Class facturation
         '
         'facturation_siren
         '
-        Me.facturation_siren.Location = New System.Drawing.Point(136, 88)
+        Me.facturation_siren.Location = New System.Drawing.Point(188, 128)
         Me.facturation_siren.Name = "facturation_siren"
         Me.facturation_siren.Size = New System.Drawing.Size(232, 20)
         Me.facturation_siren.TabIndex = 28
@@ -98,12 +106,12 @@ Public Class facturation
         '
         Me.Label104.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label104.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label104.Location = New System.Drawing.Point(32, 88)
+        Me.Label104.Location = New System.Drawing.Point(70, 129)
         Me.Label104.Name = "Label104"
-        Me.Label104.Size = New System.Drawing.Size(96, 16)
+        Me.Label104.Size = New System.Drawing.Size(68, 16)
         Me.Label104.TabIndex = 27
         Me.Label104.Text = "N°SIREN"
-        Me.Label104.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label104.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'btn_facturation_valider
         '
@@ -111,7 +119,7 @@ Public Class facturation
         Me.btn_facturation_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_facturation_valider.ForeColor = System.Drawing.Color.White
         Me.btn_facturation_valider.Image = CType(resources.GetObject("btn_facturation_valider.Image"), System.Drawing.Image)
-        Me.btn_facturation_valider.Location = New System.Drawing.Point(576, 440)
+        Me.btn_facturation_valider.Location = New System.Drawing.Point(574, 473)
         Me.btn_facturation_valider.Name = "btn_facturation_valider"
         Me.btn_facturation_valider.Size = New System.Drawing.Size(128, 24)
         Me.btn_facturation_valider.TabIndex = 32
@@ -124,7 +132,7 @@ Public Class facturation
         Me.btn_facturation_annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_facturation_annuler.ForeColor = System.Drawing.Color.White
         Me.btn_facturation_annuler.Image = CType(resources.GetObject("btn_facturation_annuler.Image"), System.Drawing.Image)
-        Me.btn_facturation_annuler.Location = New System.Drawing.Point(408, 440)
+        Me.btn_facturation_annuler.Location = New System.Drawing.Point(406, 473)
         Me.btn_facturation_annuler.Name = "btn_facturation_annuler"
         Me.btn_facturation_annuler.Size = New System.Drawing.Size(128, 24)
         Me.btn_facturation_annuler.TabIndex = 31
@@ -133,7 +141,7 @@ Public Class facturation
         '
         'facturation_tva
         '
-        Me.facturation_tva.Location = New System.Drawing.Point(136, 136)
+        Me.facturation_tva.Location = New System.Drawing.Point(188, 154)
         Me.facturation_tva.Name = "facturation_tva"
         Me.facturation_tva.Size = New System.Drawing.Size(232, 20)
         Me.facturation_tva.TabIndex = 28
@@ -142,27 +150,27 @@ Public Class facturation
         '
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(32, 136)
+        Me.Label2.Location = New System.Drawing.Point(70, 155)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(96, 16)
+        Me.Label2.Size = New System.Drawing.Size(68, 16)
         Me.Label2.TabIndex = 27
         Me.Label2.Text = "N°TVA"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label3
         '
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(32, 184)
+        Me.Label3.Location = New System.Drawing.Point(70, 181)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(96, 16)
+        Me.Label3.Size = New System.Drawing.Size(68, 16)
         Me.Label3.TabIndex = 27
         Me.Label3.Text = "RCS"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'facturation_rcs
         '
-        Me.facturation_rcs.Location = New System.Drawing.Point(136, 184)
+        Me.facturation_rcs.Location = New System.Drawing.Point(188, 180)
         Me.facturation_rcs.Name = "facturation_rcs"
         Me.facturation_rcs.Size = New System.Drawing.Size(232, 20)
         Me.facturation_rcs.TabIndex = 28
@@ -239,11 +247,51 @@ Public Class facturation
         Me.lblError.TabIndex = 73
         Me.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'Label5
+        '
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label5.Location = New System.Drawing.Point(10, 75)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(128, 16)
+        Me.Label5.TabIndex = 74
+        Me.Label5.Text = "Racine numérotation"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'tbRacineNumerotation
+        '
+        Me.tbRacineNumerotation.Location = New System.Drawing.Point(188, 74)
+        Me.tbRacineNumerotation.Name = "tbRacineNumerotation"
+        Me.tbRacineNumerotation.Size = New System.Drawing.Size(232, 20)
+        Me.tbRacineNumerotation.TabIndex = 75
+        '
+        'tbDernNumero
+        '
+        Me.tbDernNumero.Location = New System.Drawing.Point(188, 100)
+        Me.tbDernNumero.Name = "tbDernNumero"
+        Me.tbDernNumero.Size = New System.Drawing.Size(232, 20)
+        Me.tbDernNumero.TabIndex = 76
+        '
+        'Label6
+        '
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label6.Location = New System.Drawing.Point(12, 102)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(126, 16)
+        Me.Label6.TabIndex = 77
+        Me.Label6.Text = "Dernier Numéro"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'facturation
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(714, 472)
+        Me.ClientSize = New System.Drawing.Size(714, 506)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.tbDernNumero)
+        Me.Controls.Add(Me.tbRacineNumerotation)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.lblError)
         Me.Controls.Add(Me.btn_facturation_ajouterLogo)
         Me.Controls.Add(Me.facturation_isActivated)
@@ -402,6 +450,10 @@ Public Class facturation
                         facturation_rcs.Text = x.ChildNodes.Item(i).InnerText
                     Case "footer"
                         facturation_footer.Text = x.ChildNodes.Item(i).InnerText
+                    Case "racinenumerotation"
+                        tbRacineNumerotation.Text = x.ChildNodes.Item(i).InnerText
+                    Case "derniernumero"
+                        tbDernNumero.Text = x.ChildNodes.Item(i).InnerText
                 End Select
             Next
         End If
@@ -415,12 +467,21 @@ Public Class facturation
             lblError.Text = "Veuillez remplir tous les champs."
             Return False
         End If
-
+        Dim nElement As Integer
+        nElement = Me.FACTURATION_XML_CONFIG.countElements("/root/*")
+        If nElement = 7 Then
+            Me.FACTURATION_XML_CONFIG.addElement("/root", "racinenumerotation", tbRacineNumerotation.Text)
+            Me.FACTURATION_XML_CONFIG.addElement("/root", "derniernumero", tbDernNumero.Text)
+        End If
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/isActive", facturation_isActivated.Checked.ToString)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/siren", facturation_siren.Text)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/tva", facturation_tva.Text)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/rcs", facturation_rcs.Text)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/footer", facturation_footer.Text)
+        Me.FACTURATION_XML_CONFIG.setElementValue("/root/footer", facturation_footer.Text)
+        Me.FACTURATION_XML_CONFIG.setElementValue("/root/racinenumerotation", tbRacineNumerotation.Text)
+        Me.FACTURATION_XML_CONFIG.setElementValue("/root/derniernumero", tbDernNumero.Text)
+        Me.FACTURATION_XML_CONFIG.countElements("/root/")
 
         Return True
     End Function
@@ -440,6 +501,10 @@ Public Class facturation
         Dim picBox As PictureBox = facturation_logo
         picBox.Image.Dispose()
         picBox.Image = System.Drawing.Image.FromFile(logoFilename)
+    End Sub
+
+    Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
+
     End Sub
 
 #End Region

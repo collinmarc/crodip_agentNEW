@@ -29,6 +29,8 @@ Partial Class frmSaisieNumFact
         Me.tbNumFact = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.tbDernNumFact = New System.Windows.Forms.TextBox()
+        Me.tbRacineFacturation = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label2
@@ -38,7 +40,7 @@ Partial Class frmSaisieNumFact
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Image = CType(resources.GetObject("Label2.Image"), System.Drawing.Image)
-        Me.Label2.Location = New System.Drawing.Point(12, 89)
+        Me.Label2.Location = New System.Drawing.Point(12, 95)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(128, 24)
         Me.Label2.TabIndex = 33
@@ -52,7 +54,7 @@ Partial Class frmSaisieNumFact
         Me.btn_facturation_suivant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_facturation_suivant.ForeColor = System.Drawing.Color.White
         Me.btn_facturation_suivant.Image = CType(resources.GetObject("btn_facturation_suivant.Image"), System.Drawing.Image)
-        Me.btn_facturation_suivant.Location = New System.Drawing.Point(180, 89)
+        Me.btn_facturation_suivant.Location = New System.Drawing.Point(180, 95)
         Me.btn_facturation_suivant.Name = "btn_facturation_suivant"
         Me.btn_facturation_suivant.Size = New System.Drawing.Size(128, 24)
         Me.btn_facturation_suivant.TabIndex = 34
@@ -62,7 +64,7 @@ Partial Class frmSaisieNumFact
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 26)
+        Me.Label1.Location = New System.Drawing.Point(12, 63)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(101, 13)
         Me.Label1.TabIndex = 35
@@ -70,7 +72,7 @@ Partial Class frmSaisieNumFact
         '
         'tbNumFact
         '
-        Me.tbNumFact.Location = New System.Drawing.Point(200, 19)
+        Me.tbNumFact.Location = New System.Drawing.Point(200, 56)
         Me.tbNumFact.Name = "tbNumFact"
         Me.tbNumFact.Size = New System.Drawing.Size(108, 20)
         Me.tbNumFact.TabIndex = 36
@@ -78,7 +80,7 @@ Partial Class frmSaisieNumFact
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 48)
+        Me.Label3.Location = New System.Drawing.Point(12, 33)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(159, 13)
         Me.Label3.TabIndex = 37
@@ -87,17 +89,35 @@ Partial Class frmSaisieNumFact
         'tbDernNumFact
         '
         Me.tbDernNumFact.Enabled = False
-        Me.tbDernNumFact.Location = New System.Drawing.Point(200, 45)
+        Me.tbDernNumFact.Location = New System.Drawing.Point(200, 30)
         Me.tbDernNumFact.Name = "tbDernNumFact"
         Me.tbDernNumFact.ReadOnly = True
         Me.tbDernNumFact.Size = New System.Drawing.Size(108, 20)
         Me.tbDernNumFact.TabIndex = 38
         '
+        'tbRacineFacturation
+        '
+        Me.tbRacineFacturation.Location = New System.Drawing.Point(200, 4)
+        Me.tbRacineFacturation.Name = "tbRacineFacturation"
+        Me.tbRacineFacturation.Size = New System.Drawing.Size(108, 20)
+        Me.tbRacineFacturation.TabIndex = 39
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(15, 10)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(145, 13)
+        Me.Label4.TabIndex = 40
+        Me.Label4.Text = "Racine du numéro de facture"
+        '
         'frmSaisieNumFact
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(320, 122)
+        Me.ClientSize = New System.Drawing.Size(320, 141)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.tbRacineFacturation)
         Me.Controls.Add(Me.tbDernNumFact)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.tbNumFact)
@@ -116,4 +136,6 @@ Partial Class frmSaisieNumFact
     Friend WithEvents tbNumFact As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents tbDernNumFact As System.Windows.Forms.TextBox
+    Friend WithEvents tbRacineFacturation As TextBox
+    Friend WithEvents Label4 As Label
 End Class

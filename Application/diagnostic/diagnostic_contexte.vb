@@ -525,9 +525,9 @@ Public Class diagnostic_contexte
         Me.btn_poursuivre.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_poursuivre.ForeColor = System.Drawing.Color.White
         Me.btn_poursuivre.Image = CType(resources.GetObject("btn_poursuivre.Image"), System.Drawing.Image)
-        Me.btn_poursuivre.Location = New System.Drawing.Point(364, 605)
+        Me.btn_poursuivre.Location = New System.Drawing.Point(473, 605)
         Me.btn_poursuivre.Name = "btn_poursuivre"
-        Me.btn_poursuivre.Size = New System.Drawing.Size(241, 24)
+        Me.btn_poursuivre.Size = New System.Drawing.Size(132, 24)
         Me.btn_poursuivre.TabIndex = 4
         Me.btn_poursuivre.Text = "    Poursuivre"
         Me.btn_poursuivre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
