@@ -943,9 +943,6 @@
     <Compile Include="Application\structure\gestion_structures.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\tests.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\tools\tool_Calculettelha.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2245,9 +2242,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\structure\gestion_structures.resx">
       <DependentUpon>gestion_structures.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\tests.resx">
-      <DependentUpon>tests.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\tools\tool_Calculettelha.resx">
       <DependentUpon>tool_Calculettelha.vb</DependentUpon>

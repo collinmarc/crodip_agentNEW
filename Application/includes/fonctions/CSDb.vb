@@ -28,30 +28,39 @@ Public Class CSDb
     ' Query
     Private _queryString As String
 
-    Sub New(Optional ByVal doConnect As Boolean = False, Optional pDBType As DBTYPE = DBTYPE.AGENT)
+    Sub New(Optional ByVal doConnect As Boolean = False, Optional pdbPath As String = "", Optional pdbExtension As String = "")
         _queryString = ""
-        conf_bddPath = My.Settings.DB
-        DBextension = My.Settings.DBExtension
+
+        If pdbPath = "" Then
+            conf_bddPath = My.Settings.DB
+        Else
+            conf_bddPath = pdbPath
+        End If
+        If pdbExtension = "" Then
+            DBextension = My.Settings.DBExtension
+        Else
+            DBextension = pdbExtension
+        End If
         If conf_bddPath = "" Then
             conf_bddPath = "cropdip_agent"
         End If
         conf_bddPath_dev = conf_bddPath & "_dev"
 
-        Select Case pDBType
-            Case DBTYPE.AGENT
-                If Globals.GLOB_ENV_DEBUG = True Then
-                    _dbName = conf_bddPath_dev
-                Else
-                    _dbName = conf_bddPath
-                End If
-                _bddConnectString = getConnectString(_dbName)
-            Case DBTYPE.ETAT
-                _dbName = conf_bddEtatPath
-                _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & _dbName & DBextension
-            Case DBTYPE.DAISY
-                _dbName = conf_bddDLPath
-                _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & _dbName & DBextension
-        End Select
+        'Select Case pDBType
+        'Case DBTYPE.AGENT
+        If Globals.GLOB_ENV_DEBUG = True Then
+            _dbName = conf_bddPath_dev
+        Else
+            _dbName = conf_bddPath
+        End If
+        _bddConnectString = getConnectString(_dbName)
+        '    Case DBTYPE.ETAT
+        '_dbName = conf_bddEtatPath
+        '        _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & _dbName & DBextension
+        '    Case DBTYPE.DAISY
+        '        _dbName = conf_bddDLPath
+        '        _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & _dbName & DBextension
+        'End Select
 
 
         If _dbConnection Is Nothing Then
@@ -78,16 +87,16 @@ Public Class CSDb
         Dim bReturn As String
         If Globals.GLOB_ENV_DEBUG = True Then
             If DBextension = ".accdb" Then
-                bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password="
+                bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password="
             Else
                 bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password="
             End If
 
         Else
             If DBextension = ".accdb" Then
-                bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password=" & conf_bddPass & ""
+                bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
             Else
-                bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password=" & conf_bddPass & ""
+                bReturn = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
             End If
         End If
         Return bReturn
