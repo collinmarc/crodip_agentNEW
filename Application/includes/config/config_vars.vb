@@ -358,6 +358,7 @@ Public Class Globals
         ' Territoires
         'Globals.GLOB_XML_TERRITOIRES = New CSXml("." & "\config\territoire.xml")
         Globals.GLOB_XML_CODESAPE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielCodesAPE.xml")
+        Globals.GLOB_XML_CONFIG = New CSXml("config\config.xml")
 
         Globals.CONST_STOCK_PDFS = My.Settings.StockPDF
     End Sub

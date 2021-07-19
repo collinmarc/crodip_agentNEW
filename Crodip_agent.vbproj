@@ -278,6 +278,12 @@
     <Compile Include="Application\diagnostic\frmContratCommercial.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\frmlstLieuxControle.Designer.vb">
+      <DependentUpon>frmlstLieuxControle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmlstLieuxControle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\liste_diagnosticPulve2.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -291,6 +297,12 @@
     <Compile Include="Application\includes\classes\Tools\DataGridViewDisableButtonCell.vb" />
     <Compile Include="Application\includes\classes\Tools\FacturationConfig.vb" />
     <Compile Include="Application\includes\classes\Tools\importCRODIP.vb" />
+    <Compile Include="Application\parametrage\frmGestLieuxControle.Designer.vb">
+      <DependentUpon>frmGestLieuxControle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\parametrage\frmGestLieuxControle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\Signature\frmSignClient.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2021,8 +2033,14 @@
     <EmbeddedResource Include="Application\diagnostic\frmContratCommercial.resx">
       <DependentUpon>frmContratCommercial.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmlstLieuxControle.resx">
+      <DependentUpon>frmlstLieuxControle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve2.resx">
       <DependentUpon>liste_diagnosticPulve2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\parametrage\frmGestLieuxControle.resx">
+      <DependentUpon>frmGestLieuxControle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\Signature\frmSignClient.resx">
       <DependentUpon>frmSignClient.vb</DependentUpon>

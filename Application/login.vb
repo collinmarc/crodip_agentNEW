@@ -77,6 +77,8 @@ Public Class login
     Friend WithEvents lblMode As Label
     Friend WithEvents btnTSTSignature As Button
     Friend WithEvents lblBaseDonnee As Label
+    Friend WithEvents btnLieuxControles As Button
+    Friend WithEvents btnExploitant As Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -94,6 +96,7 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.btnLieuxControles = New System.Windows.Forms.Button()
         Me.btnTSTSignature = New System.Windows.Forms.Button()
         Me.btn_dlgAcquisition = New System.Windows.Forms.Button()
         Me.bntGetWSDiag = New System.Windows.Forms.Button()
@@ -115,6 +118,7 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
+        Me.btnExploitant = New System.Windows.Forms.Button()
         Me.pnlPrincipal.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
@@ -290,6 +294,8 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.btnExploitant)
+        Me.GroupBox_test.Controls.Add(Me.btnLieuxControles)
         Me.GroupBox_test.Controls.Add(Me.btnTSTSignature)
         Me.GroupBox_test.Controls.Add(Me.btn_dlgAcquisition)
         Me.GroupBox_test.Controls.Add(Me.bntGetWSDiag)
@@ -308,6 +314,15 @@ Public Class login
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
+        '
+        'btnLieuxControles
+        '
+        Me.btnLieuxControles.Location = New System.Drawing.Point(522, 19)
+        Me.btnLieuxControles.Name = "btnLieuxControles"
+        Me.btnLieuxControles.Size = New System.Drawing.Size(101, 23)
+        Me.btnLieuxControles.TabIndex = 38
+        Me.btnLieuxControles.Text = "LieuxControles"
+        Me.btnLieuxControles.UseVisualStyleBackColor = True
         '
         'btnTSTSignature
         '
@@ -539,6 +554,15 @@ Public Class login
         Me.lbl_WS.TabIndex = 31
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'btnExploitant
+        '
+        Me.btnExploitant.Location = New System.Drawing.Point(522, 46)
+        Me.btnExploitant.Name = "btnExploitant"
+        Me.btnExploitant.Size = New System.Drawing.Size(101, 23)
+        Me.btnExploitant.TabIndex = 39
+        Me.btnExploitant.Text = "Exploitant"
+        Me.btnExploitant.UseVisualStyleBackColor = True
         '
         'login
         '
@@ -885,7 +909,7 @@ Public Class login
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
-        oEtat.GenereEtat()
+        oEtat.genereEtat()
         oEtat.Open()
 
     End Sub
@@ -1100,5 +1124,18 @@ Public Class login
         End If
 
 
+    End Sub
+
+    Private Sub btnLieuxControles_Click(sender As Object, e As EventArgs) Handles btnLieuxControles.Click
+        Dim dlg As New frmGestLieuxControle()
+        Globals.GLOB_XML_CONFIG = New CSXml("config\config.xml")
+        dlg.ShowDialog(Me)
+    End Sub
+
+    Private Sub btnExploitant_Click(sender As Object, e As EventArgs) Handles btnExploitant.Click
+        Dim dlg As New fiche_exploitant()
+        agentCourant = AgentManager.getAgentById("1110")
+        dlg.setContexte(False, New Exploitation())
+        dlg.ShowDialog(Me)
     End Sub
 End Class

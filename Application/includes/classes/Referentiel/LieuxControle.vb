@@ -1,4 +1,5 @@
-﻿Public Class LieuxControle
+﻿Imports CsvHelper.Configuration.Attributes
+Public Class LieuxControle
     Private _Nom As String
     Public Property Nom() As String
         Get
@@ -35,5 +36,24 @@
             _Site = value
         End Set
     End Property
+    Private _SisteSecurise As Boolean
 
+    <[Optional]> Public Property SiteSecurise() As Boolean
+        Get
+            Return _SisteSecurise
+        End Get
+        Set(ByVal value As Boolean)
+            _SisteSecurise = value
+        End Set
+    End Property
+    Private _RecupDechets As Boolean
+    <[Optional]>
+    Public Property Recupdechets() As Boolean
+        Get
+            Return _RecupDechets
+        End Get
+        Set(ByVal value As Boolean)
+            _RecupDechets = value
+        End Set
+    End Property
 End Class

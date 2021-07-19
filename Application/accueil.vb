@@ -74,6 +74,7 @@ Public Class accueil
     Friend WithEvents lbSynhcroCourante As ListBox
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents btn_LieuxControle As Label
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -511,6 +512,7 @@ Public Class accueil
         Me.laNomAgent2 = New System.Windows.Forms.Label()
         Me.pctLogoStat = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.btn_LieuxControle = New System.Windows.Forms.Label()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
         Me.tabControl_accueil.SuspendLayout()
@@ -2243,6 +2245,7 @@ Public Class accueil
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel5.Controls.Add(Me.btn_LieuxControle)
         Me.Panel5.Controls.Add(Me.lblIdentifiantPulve)
         Me.Panel5.Controls.Add(Me.lblMaterielsSupprimes)
         Me.Panel5.Controls.Add(Me.btn_parametrage_facturation)
@@ -3033,6 +3036,19 @@ Public Class accueil
         Me.Label7.Size = New System.Drawing.Size(168, 24)
         Me.Label7.TabIndex = 0
         Me.Label7.Text = "     Statistiques"
+        '
+        'btn_LieuxControle
+        '
+        Me.btn_LieuxControle.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_LieuxControle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_LieuxControle.ForeColor = System.Drawing.Color.White
+        Me.btn_LieuxControle.Image = CType(resources.GetObject("btn_LieuxControle.Image"), System.Drawing.Image)
+        Me.btn_LieuxControle.Location = New System.Drawing.Point(48, 321)
+        Me.btn_LieuxControle.Name = "btn_LieuxControle"
+        Me.btn_LieuxControle.Size = New System.Drawing.Size(180, 24)
+        Me.btn_LieuxControle.TabIndex = 27
+        Me.btn_LieuxControle.Text = "    Lieux de contrôle"
+        Me.btn_LieuxControle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'accueil
         '
@@ -5699,5 +5715,8 @@ Public Class accueil
         End If
     End Sub
 
-
+    Private Sub btn_LieuxControle_Click(sender As Object, e As EventArgs) Handles btn_LieuxControle.Click
+        Dim odlg As New frmGestLieuxControle()
+        odlg.ShowDialog()
+    End Sub
 End Class
