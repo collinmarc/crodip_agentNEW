@@ -6,12 +6,12 @@ Public Class ManometreControle
     Inherits Manometre
 
     Private _resolution As String
-    Private arrPressions_6bar() As String = {0, 1.2, 2.4, 3.6, 4.8, 6}
-    Private arrPressions_10bar() As String = {0, 2, 4, 6, 8, 10}
-    Private arrPressions_20bar() As String = {0, 4, 8, 12, 16, 20}
-    Private arrPressions_25bar() As String = {0, 5, 10, 15, 20, 25}
-    Private arrPressions_default() As String = {0, 2, 4, 6, 8, 10}
-    Private arrPressions() As String
+    'Private arrPressions_6bar() As String = {0, 1.2, 2.4, 3.6, 4.8, 6}
+    'Private arrPressions_10bar() As String = {0, 2, 4, 6, 8, 10}
+    'Private arrPressions_20bar() As String = {0, 4, 8, 12, 16, 20}
+    'Private arrPressions_25bar() As String = {0, 5, 10, 15, 20, 25}
+    'Private arrPressions_default() As String = {0, 2, 4, 6, 8, 10}
+    'Private arrPressions() As String
 
     Private m_bIsUpdated As Boolean
     Sub New()
@@ -62,112 +62,61 @@ Public Class ManometreControle
             Return sLibelle
         End Get
     End Property
+    Private Function getPressionCtrl(pNum As Integer) As String
+        Try
+            Dim nFond As Integer = CInt(fondEchelle)
+            Return Math.Round(nFond * (0.2 * (pNum - 1)), 1).ToString()
+        Catch ex As Exception
+            Return ""
+        End Try
+        'Select Case fondEchelle
+        '    Case "6"
+        '        arrPressions = arrPressions_6bar
+        '    Case "10"
+        '        arrPressions = arrPressions_10bar
+        '    Case "20"
+        '        arrPressions = arrPressions_20bar
+        '    Case "25"
+        '        arrPressions = arrPressions_25bar
+        '    Case Else
+        '        arrPressions = arrPressions_default
+        'End Select
+        'Return arrPressions(0)
+    End Function
     <XmlIgnore>
     Public ReadOnly Property Pression1Ctrl() As String
         Get
-            Select Case fondEchelle
-                Case "6"
-                    arrPressions = arrPressions_6bar
-                Case "10"
-                    arrPressions = arrPressions_10bar
-                Case "20"
-                    arrPressions = arrPressions_20bar
-                Case "25"
-                    arrPressions = arrPressions_25bar
-                Case Else
-                    arrPressions = arrPressions_default
-            End Select
-            Return arrPressions(0)
+            Return getPressionCtrl(1)
         End Get
     End Property
     <XmlIgnore>
     Public ReadOnly Property Pression2Ctrl() As String
         Get
-            Select Case fondEchelle
-                Case "6"
-                    arrPressions = arrPressions_6bar
-                Case "10"
-                    arrPressions = arrPressions_10bar
-                Case "20"
-                    arrPressions = arrPressions_20bar
-                Case "25"
-                    arrPressions = arrPressions_25bar
-                Case Else
-                    arrPressions = arrPressions_default
-            End Select
-            Return arrPressions(1)
+            Return getPressionCtrl(2)
         End Get
     End Property
     <XmlIgnore>
     Public ReadOnly Property Pression3Ctrl() As String
         Get
-            Select Case fondEchelle
-                Case "6"
-                    arrPressions = arrPressions_6bar
-                Case "10"
-                    arrPressions = arrPressions_10bar
-                Case "20"
-                    arrPressions = arrPressions_20bar
-                Case "25"
-                    arrPressions = arrPressions_25bar
-                Case Else
-                    arrPressions = arrPressions_default
-            End Select
-            Return arrPressions(2)
+            Return getPressionCtrl(3)
         End Get
     End Property
     <XmlIgnore>
     Public ReadOnly Property Pression4Ctrl() As String
         Get
-            Select Case fondEchelle
-                Case "6"
-                    arrPressions = arrPressions_6bar
-                Case "10"
-                    arrPressions = arrPressions_10bar
-                Case "20"
-                    arrPressions = arrPressions_20bar
-                Case "25"
-                    arrPressions = arrPressions_25bar
-                Case Else
-                    arrPressions = arrPressions_default
-            End Select
-            Return arrPressions(3)
+            Return getPressionCtrl(4)
         End Get
     End Property
     <XmlIgnore>
     Public ReadOnly Property Pression5Ctrl() As String
         Get
-            Select Case fondEchelle
-                Case "6"
-                    arrPressions = arrPressions_6bar
-                Case "10"
-                    arrPressions = arrPressions_10bar
-                Case "20"
-                    arrPressions = arrPressions_20bar
-                Case "25"
-                    arrPressions = arrPressions_25bar
-                Case Else
-                    arrPressions = arrPressions_default
-            End Select
-            Return arrPressions(4)
+            Return getPressionCtrl(5)
         End Get
     End Property
     <XmlIgnore>
     Public ReadOnly Property Pression6Ctrl() As String
         Get
-            Select Case fondEchelle
-                Case "6"
-                    arrPressions = arrPressions_6bar
-                Case "10"
-                    arrPressions = arrPressions_10bar
-                Case "20"
-                    arrPressions = arrPressions_20bar
-                Case "25"
-                    arrPressions = arrPressions_25bar
-                Case Else
-                    arrPressions = arrPressions_default
-            End Select
-            Return arrPressions(5)
+            Return getPressionCtrl(6)
         End Get
     End Property
 

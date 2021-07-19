@@ -1,6 +1,9 @@
 TRUNK
 MASTER
 	
+BUILD : 20210719130000
+	0001223: [CtrlMano] : CONTROLE MATERIEL 16bar
+
 BUILD : 20210712130000
 	0001380: Mauvaise date lors d'une contre visite
 	0001114: Sélection des communes
