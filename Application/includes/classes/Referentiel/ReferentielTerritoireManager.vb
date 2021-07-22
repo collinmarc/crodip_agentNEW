@@ -12,7 +12,7 @@ Module ReferentielTerritoireManager
     '                ' construction de l'objet
     '                For Each tmpSerializeItem As System.Xml.XmlText In objWSCrodip_response
     '                    Dim tmpFileContent As String = "<?xml version=""1.0"" encoding=""ISO-8859-1""?>" & vbNewLine & "<root>" & vbNewLine & tmpSerializeItem.InnerText & vbNewLine & "</root>"
-    '                    CSFile.write(Globals.GLOB_XML_TERRITOIRES.Nomfichier, tmpFileContent)
+    '                    CSFile.write(GlobalsCRODIP.GLOB_XML_TERRITOIRES.Nomfichier, tmpFileContent)
     '                Next
     '                Return True
     '            Case 1 ' NOK

@@ -67,7 +67,7 @@ Class MyEncryptionHandler2
     End Sub
 
     Public Function decrypt(ByVal data As Array) As Array
-        Dim dec = aes.CreateDecryptor()
+        Dim dec As ICryptoTransform = aes.CreateDecryptor()
         Dim arr As Byte() = New Byte(data.Length - 1) {}
         dec.TransformBlock(CType(data, Byte()), 0, data.Length, arr, 0)
         Return arr

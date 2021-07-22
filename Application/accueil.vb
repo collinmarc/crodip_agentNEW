@@ -3144,43 +3144,43 @@ Public Class accueil
         CSEnvironnement.checkDateTimePicker(dtpSearchCrit2)
         CSEnvironnement.checkDateTimePicker(dtp_ControleRegulier)
 
-        If Not Directory.Exists(Globals.CONST_PATH_EXP_MANOCONTROLE) Then
-            Directory.CreateDirectory(Globals.CONST_PATH_EXP_MANOCONTROLE)
+        If Not Directory.Exists(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE) Then
+            Directory.CreateDirectory(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE)
         End If
-        If Not Directory.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC) Then
-            Directory.CreateDirectory(Globals.CONST_PATH_EXP_DIAGNOSTIC)
+        If Not Directory.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC) Then
+            Directory.CreateDirectory(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
         End If
-        If Not Directory.Exists(Globals.CONST_PATH_EXP_BANCMESURE) Then
-            Directory.CreateDirectory(Globals.CONST_PATH_EXP_BANCMESURE)
+        If Not Directory.Exists(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE) Then
+            Directory.CreateDirectory(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE)
         End If
 
         Try
 
             'Création du Fichier ZIP des PDFs
             If My.Settings.TypeStockPDF = "ZIP" Then
-                If Not File.Exists(Globals.CONST_STOCK_PDFS) Then
+                If Not File.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
                     Using z As New ZipFile()
-                        z.Password = Globals.CONST_PDFS_DIAG_PWD
-                        Dim l As String() = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP, "*.pdf")
+                        z.Password = GlobalsCRODIP.CONST_PDFS_DIAG_PWD
+                        Dim l As String() = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP, "*.pdf")
                         For Each f As String In l
                             If f.Contains("MANOMETRECONTROLE") Then
-                                z.AddFile(f, Globals.CONST_PATH_EXP & "MANOMETRECONTROLE/")
+                                z.AddFile(f, GlobalsCRODIP.CONST_PATH_EXP & "MANOMETRECONTROLE/")
                             Else
                                 If f.Contains("BANCMESURE") Then
-                                    z.AddFile(f, Globals.CONST_PATH_EXP & "BANCMESURE/")
+                                    z.AddFile(f, GlobalsCRODIP.CONST_PATH_EXP & "BANCMESURE/")
                                 Else
-                                    z.AddFile(f, Globals.CONST_PATH_EXP & "DIAGNOSTIC/")
+                                    z.AddFile(f, GlobalsCRODIP.CONST_PATH_EXP & "DIAGNOSTIC/")
                                 End If
 
                             End If
                         Next
-                        z.Save(Globals.CONST_STOCK_PDFS)
+                        z.Save(GlobalsCRODIP.CONST_STOCK_PDFS)
                     End Using
                 End If
             End If
             If My.Settings.TypeStockPDF = "DIR" Then
-                If Not Directory.Exists(Globals.CONST_STOCK_PDFS) Then
-                    Dim oDI As New DirectoryInfo(Globals.CONST_STOCK_PDFS)
+                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
+                    Dim oDI As New DirectoryInfo(GlobalsCRODIP.CONST_STOCK_PDFS)
                     oDI.Create()
                     oDI.Attributes = FileAttributes.Hidden
 
@@ -3190,7 +3190,7 @@ Public Class accueil
 
                     'Transfert des fichiers depuis le publicExport dans le dossier Caché
                     Dim l As String()
-                    l = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP_MANOCONTROLE, "*.pdf")
+                    l = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE, "*.pdf")
                     For Each f As String In l
                         Try
                             System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
@@ -3198,7 +3198,7 @@ Public Class accueil
 
                         End Try
                     Next
-                    l = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP_BANCMESURE, "*.pdf")
+                    l = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE, "*.pdf")
                     For Each f As String In l
                         Try
                             System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
@@ -3206,7 +3206,7 @@ Public Class accueil
 
                         End Try
                     Next
-                    l = System.IO.Directory.GetFiles(Globals.CONST_PATH_EXP_DIAGNOSTIC, "*.pdf")
+                    l = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, "*.pdf")
                     For Each f As String In l
                         Try
                             System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
@@ -3240,7 +3240,7 @@ Public Class accueil
         btn_proprietaire_derniersControles_setLabel()
 
         'Paramétrage de la synhchro (Affichage uniquement en mode debug)
-        grpParamSynhcro.Visible = Globals.GLOB_ENV_DEBUG
+        grpParamSynhcro.Visible = GlobalsCRODIP.GLOB_ENV_DEBUG
 
         ' Affichage des critères de tri
         pnl_SearchDates.Top = client_search_query.Top
@@ -3355,11 +3355,11 @@ Public Class accueil
 
         'Gestion du Mode Simplifié
         'Module Documentaire
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
             'on ne peut rendre invisible ou inactive une page, il faut la supprimer de la tabPages
             tabControl.TabPages.RemoveByKey(tabControl_outilscomp.Name)
         End If
-        If Globals.GLOB_ENV_MODEFORMATION Then
+        If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             'on ne peut rendre invisible ou inactive une page, il faut la supprimer de la tabPages
             tabControl.TabPages.RemoveByKey(tabControl_accueil.Name)
             tabControl.TabPages.RemoveByKey(tabControl_pulverisateurs.Name)
@@ -3367,24 +3367,24 @@ Public Class accueil
             tabControl.TabPages.RemoveByKey(tabControl_parametrage.Name)
             tabControl.TabPages.RemoveByKey(tabControl_Statistiques.Name)
         End If
-        '        tabControl_outilscomp.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        pctbx_Docs_refresh.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        lblModuledocumentaire.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        SplitContainer_ModuleDocumentaire.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        btn_imprimerDoc.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
+        '        tabControl_outilscomp.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        pctbx_Docs_refresh.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        lblModuledocumentaire.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        SplitContainer_ModuleDocumentaire.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        btn_imprimerDoc.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
         'Paramétrage
-        btn_parametrage_coordonneesOrganisme.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        btn_parametrage_coordonneesInspecteur.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        btn_parametrage_tarifs.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        btn_parametrage_facturation.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        lblParametresOrganisme.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        lblIdentifiantPulve.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        '        lblParametrageAppareilsMesures.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        'btn_parametrage_parametrageManometre.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        'btn_parametrage_parametrageBuses.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        'btn_parametrage_parametrageBancs.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        'lblMaterielsSupprimes.Visible = Not Globals.GLOB_ENV_MODESIMPLIFIE
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+        btn_parametrage_coordonneesOrganisme.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        btn_parametrage_coordonneesInspecteur.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        btn_parametrage_tarifs.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        btn_parametrage_facturation.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        lblParametresOrganisme.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        lblIdentifiantPulve.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        '        lblParametrageAppareilsMesures.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        'btn_parametrage_parametrageManometre.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        'btn_parametrage_parametrageBuses.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        'btn_parametrage_parametrageBancs.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        'lblMaterielsSupprimes.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
             pctLogo.Image = Crodip_agent.Resources.logoCRODIPIMG
             pct_LogoControle.Image = Crodip_agent.Resources.logoCRODIPIMG
             pctLogoOutilComp.Image = Crodip_agent.Resources.logoCRODIPIMG
@@ -3402,9 +3402,9 @@ Public Class accueil
         End If
 
         m_bDuringLoad = False
-        If Not Globals.GLOB_ENV_MODEFORMATION Then
+        If Not GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             pct_LogoControle.Visible = True
-            Statusbar.display("Bienvenu(e) sur le logiciel Crodip Agent v" & Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD, False)
+            Statusbar.display("Bienvenu(e) sur le logiciel Crodip Agent v" & GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD, False)
         End If
     End Sub
 
@@ -3417,10 +3417,10 @@ Public Class accueil
         agentCourant = AgentManager.getAgentById(pIdAgent)
         ' Affichage des alertes
         Me.Text = agentCourant.nom & " " & agentCourant.prenom & " / " & agentCourant.NomStructure
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
             Me.Text = Me.Text & " - Mode Simplifié - "
         End If
-        If Globals.GLOB_ENV_MODEFORMATION Then
+        If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Me.Text = agentCourant.nom & " " & agentCourant.prenom & " / " & agentCourant.NomStructure & " - Mode Formation - "
         End If
         loadAccueilAlerts()
@@ -3738,7 +3738,7 @@ Public Class accueil
         Dim nbAlertes_ManometreEtalon_20jr As Integer = 0
         Dim nbAlertes_ManometreEtalon_1mois As Integer = 0
         Dim nbAlertes_ManometreEtalon_1mois7jr As Integer = 0
-        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_MANOETALON_LOAD, True)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOETALON_LOAD, True)
         Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(agentCourant.idStructure, True)
         For Each tmpManoEtalon As ManometreEtalon In arrManoEtalon
             Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(tmpManoEtalon.dateDernierControleS)
@@ -3873,22 +3873,22 @@ Public Class accueil
         Dim nbAlertes_Controle As Integer = 0
 
 
-        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
 
         'Chargement de tous les manos
         Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(agentCourant.idStructure, True)
         Dim njours As Integer
         Dim nbManoOrange(3000) As Integer 'Nombre de manomètres devant être controler njours avant la Date Limite
         'Parcours de manos
-        Dim AlerteMano As Globals.ALERTE
+        Dim AlerteMano As GlobalsCRODIP.ALERTE
         For Each tmpManoControle As ManometreControle In arrManoControle
             AlerteMano = tmpManoControle.getAlerte()
 
-            If AlerteMano = Globals.ALERTE.CONTROLE Then ' Defaillant
+            If AlerteMano = GlobalsCRODIP.ALERTE.CONTROLE Then ' Defaillant
                 nbAlertes_Controle = nbAlertes_Controle + 1
             End If
 
-            If AlerteMano = Globals.ALERTE.NOIRE Then ' 1mois7jrs
+            If AlerteMano = GlobalsCRODIP.ALERTE.NOIRE Then ' 1mois7jrs
                 nbAlertes_ManometreControle_Noire = nbAlertes_ManometreControle_Noire + 1
                 If tmpManoControle.etat = True Then
                     If My.Settings.DesacMat Then
@@ -3897,10 +3897,10 @@ Public Class accueil
                 End If
             End If
 
-            If AlerteMano = Globals.ALERTE.ROUGE Then ' 1mois
+            If AlerteMano = GlobalsCRODIP.ALERTE.ROUGE Then ' 1mois
                 nbAlertes_ManometreControle_Rouge = nbAlertes_ManometreControle_Rouge + 1
             End If
-            If AlerteMano = Globals.ALERTE.ORANGE Then '15 jours
+            If AlerteMano = GlobalsCRODIP.ALERTE.ORANGE Then '15 jours
                 nbAlertes_ManometreControle_Orange = nbAlertes_ManometreControle_Orange + 1
                 njours = tmpManoControle.getNbJoursAvantAlerteRouge()
                 If njours < nbManoOrange.Length Then
@@ -3922,7 +3922,7 @@ Public Class accueil
                     Else
                         sTexte = "Attention, vous avez 1 manomètre de contrôle devant être vérifié dans " & n - 1 & " jours !"
                     End If
-                    AjouteUneAlerte(Globals.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
+                    AjouteUneAlerte(GlobalsCRODIP.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
                 End If
             Next n
         End If
@@ -3934,7 +3934,7 @@ Public Class accueil
             Else
                 sTexte = "Attention, vous venez de dépasser la date autorisée pour 1 manomètre de contrôle. Veuillez effectuer votre contrôle immédiatement !"
             End If
-            AjouteUneAlerte(Globals.ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
         End If
 
         If nbAlertes_ManometreControle_Noire > 0 Then
@@ -3944,7 +3944,7 @@ Public Class accueil
             Else
                 sTexte = "Vous avez trop attendu pour vérifier 1 manomètre de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             End If
-            AjouteUneAlerte(Globals.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
         End If
 
         If nbAlertes_Controle > 0 Then
@@ -3954,7 +3954,7 @@ Public Class accueil
             Else
                 sTexte = "Vous avez 1 manomètre de contrôle défectueux. Contactez le CRODIP."
             End If
-            AjouteUneAlerte(Globals.ALERTE.CONTROLE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.CONTROLE, sName, sTexte, positionTopAlertes)
         End If
     End Sub
     'Chargement des alertes
@@ -3968,16 +3968,16 @@ Public Class accueil
         'Alerte Rouge
         'Si le nbre est inférieure au nombre mini
         'Alerte Orange
-        Dim AlerteIdent As Globals.ALERTE
+        Dim AlerteIdent As GlobalsCRODIP.ALERTE
         Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(agentCourant.idStructure)
         If olst.Count < My.Settings.NbIdentifiantPulveMini Then
             If olst.Count < (My.Settings.NbIdentifiantPulveMini / 4) Then
-                AlerteIdent = Globals.ALERTE.NOIRE
+                AlerteIdent = GlobalsCRODIP.ALERTE.NOIRE
             Else
                 If olst.Count < (My.Settings.NbIdentifiantPulveMini / 2) Then
-                    AlerteIdent = Globals.ALERTE.ROUGE
+                    AlerteIdent = GlobalsCRODIP.ALERTE.ROUGE
                 Else
-                    AlerteIdent = Globals.ALERTE.JAUNE
+                    AlerteIdent = GlobalsCRODIP.ALERTE.JAUNE
                 End If
             End If
             Dim stext As String = ""
@@ -4003,7 +4003,7 @@ Public Class accueil
         CSDebug.dispInfo("loadAccueilAlertsSynchro : Debut")
 
         ' Vérification de la date de dernière synchro
-        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
         Dim tmpDateLastSynchro As Date
         Try
             tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
@@ -4014,12 +4014,12 @@ Public Class accueil
         If tmpCompareResponse < 1 Then
             Dim sText As String
             sText = "Vous devez connecter le logiciel à Internet pour effectuer une synchronisation des données."
-            AjouteUneAlerte(Globals.ALERTE.ORANGE, "alerte synhcro", sText, positionTopAlertes)
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.ORANGE, "alerte synhcro", sText, positionTopAlertes)
 
         End If
 
     End Sub
-    Private Sub AjouteUneAlerte(ByVal TypeAlerte As Globals.ALERTE, ByVal pName As String, ByVal ptext As String, ByRef positionTopAlertes As Integer)
+    Private Sub AjouteUneAlerte(ByVal TypeAlerte As GlobalsCRODIP.ALERTE, ByVal pName As String, ByVal ptext As String, ByRef positionTopAlertes As Integer)
         Dim tmpAlerte As New Label
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
         tmpAlerte.Name = pName
@@ -4037,19 +4037,19 @@ Public Class accueil
         tmpAlerte.Height = 16
         ' Couleur
         Select Case TypeAlerte
-            Case Globals.ALERTE.ORANGE
+            Case GlobalsCRODIP.ALERTE.ORANGE
                 tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte)) '=> Orange
                 tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
                 positionTopAlertes = positionTopAlertes + 24
-            Case Globals.ALERTE.ROUGE
+            Case GlobalsCRODIP.ALERTE.ROUGE
                 tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte)) '=> Orange
                 tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
                 positionTopAlertes = positionTopAlertes + 24
-            Case Globals.ALERTE.NOIRE
+            Case GlobalsCRODIP.ALERTE.NOIRE
                 tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(203, Byte), CType(19, Byte), CType(31, Byte)) ' => Rouge
                 tmpAlerte.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
                 positionTopAlertes = positionTopAlertes + 24
-            Case Globals.ALERTE.CONTROLE
+            Case GlobalsCRODIP.ALERTE.CONTROLE
                 tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(203, Byte), CType(19, Byte), CType(31, Byte)) ' => Rouge
                 tmpAlerte.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
                 positionTopAlertes = positionTopAlertes + 24
@@ -4067,14 +4067,14 @@ Public Class accueil
         Dim nbAlertes_Buse_alerte As Integer = 0
         Dim nbAlertes_Buse_out As Integer = 0
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
-        Dim alerte As Globals.ALERTE = Globals.ALERTE.NONE
+        Dim alerte As GlobalsCRODIP.ALERTE = GlobalsCRODIP.ALERTE.NONE
 
-        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_BUSESETALON_LOAD, True)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_BUSESETALON_LOAD, True)
         Dim arrBusesEtalon As List(Of Buse) = BuseManager.getBusesEtalonByStructureId(agentCourant.idStructure, True)
         For Each tmpBuseEtalon As Buse In arrBusesEtalon
             If Not String.IsNullOrEmpty(tmpBuseEtalon.dateAchat) Then
                 alerte = tmpBuseEtalon.getAlerte()
-                If alerte = Globals.ALERTE.NOIRE Then ' Plus valable
+                If alerte = GlobalsCRODIP.ALERTE.NOIRE Then ' Plus valable
                     nbAlertes_Buse_out = nbAlertes_Buse_out + 1
                     ' On bloque la buse
                     If tmpBuseEtalon.etat = True Then
@@ -4082,7 +4082,7 @@ Public Class accueil
                             tmpBuseEtalon.Desactiver()
                         End If
                     End If
-                ElseIf alerte = Globals.ALERTE.ROUGE Then ' Alerte
+                ElseIf alerte = GlobalsCRODIP.ALERTE.ROUGE Then ' Alerte
                     nbAlertes_Buse_alerte = nbAlertes_Buse_alerte + 1
                 End If
             End If
@@ -4095,7 +4095,7 @@ Public Class accueil
             Else
                 stext = "Il faut commander de nouvelles buses étalons car " & nbAlertes_Buse_alerte & " ne sera plus reconnue dans 3 mois."
             End If
-            AjouteUneAlerte(Globals.ALERTE.ORANGE, "alerteBuseEtalon_alerte", stext, positionTopAlertes)
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.ORANGE, "alerteBuseEtalon_alerte", stext, positionTopAlertes)
         End If
         If nbAlertes_Buse_out > 0 Then
             Dim sText As String
@@ -4104,7 +4104,7 @@ Public Class accueil
             Else
                 sText = "Il faut commander de nouvelles buses étalons car " & nbAlertes_Buse_out & " buse n'est plus reconnue."
             End If
-            AjouteUneAlerte(Globals.ALERTE.NOIRE, "alerteBuseEtalon_out", sText, positionTopAlertes)
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.NOIRE, "alerteBuseEtalon_out", sText, positionTopAlertes)
         End If
 
     End Sub
@@ -4124,7 +4124,7 @@ Public Class accueil
         Dim sTexte As String = ""
         If bAlerte Then
             sTexte = "Attention, vous avez effectué " & My.Settings.nbControlesAvantAlerte & " diagnostics sans effectuer de contrôles réguliers des instruments, veuillez vérifier vos instruments de mesures"
-            AjouteUneAlerte(Globals.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
         End If
 
 
@@ -4139,16 +4139,16 @@ Public Class accueil
         Dim nbAlertes_Banc_defaillant As Integer = 0
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
 
-        Statusbar.display(Globals.CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
         Dim arrBanc As List(Of Banc) = BancManager.getBancByStructureId(agentCourant.idStructure, True)
         Dim njours As Integer
         Dim nbBancAvantDL(3000) As Integer 'Nombre de banc devant être controler njours avant la Date Limite
-        Dim AlerteBanc As Globals.ALERTE
+        Dim AlerteBanc As GlobalsCRODIP.ALERTE
 
         For Each tmpBanc As Banc In arrBanc
             AlerteBanc = tmpBanc.getAlerte()
 
-            If AlerteBanc = Globals.ALERTE.NOIRE Then ' 1mois7jrs
+            If AlerteBanc = GlobalsCRODIP.ALERTE.NOIRE Then ' 1mois7jrs
                 nbAlertes_Banc_1mois7jr = nbAlertes_Banc_1mois7jr + 1
                 If tmpBanc.etat = True Then
                     If My.Settings.DesacMat Then
@@ -4157,17 +4157,17 @@ Public Class accueil
                 End If
             End If
 
-            If AlerteBanc = Globals.ALERTE.ROUGE Then ' 1mois
+            If AlerteBanc = GlobalsCRODIP.ALERTE.ROUGE Then ' 1mois
                 nbAlertes_Banc_1mois = nbAlertes_Banc_1mois + 1
             End If
-            If AlerteBanc = Globals.ALERTE.ORANGE Then '15 jours
+            If AlerteBanc = GlobalsCRODIP.ALERTE.ORANGE Then '15 jours
                 nbAlertes_Banc_Orange = nbAlertes_Banc_Orange + 1
                 njours = tmpBanc.getNbJoursAvantAlerteRouge()
                 If njours < nbBancAvantDL.Length Then
                     nbBancAvantDL(Math.Abs(njours)) = nbBancAvantDL(Math.Abs(njours)) + 1
                 End If
             End If
-            If AlerteBanc = Globals.ALERTE.CONTROLE Then 'Etat defaillant
+            If AlerteBanc = GlobalsCRODIP.ALERTE.CONTROLE Then 'Etat defaillant
                 nbAlertes_Banc_defaillant = nbAlertes_Banc_defaillant + 1
             End If
         Next
@@ -4184,7 +4184,7 @@ Public Class accueil
                     Else
                         sTexte = "Attention, vous avez 1 banc de mesure devant être vérifié dans " & n - 1 & " jours !"
                     End If
-                    AjouteUneAlerte(Globals.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
+                    AjouteUneAlerte(GlobalsCRODIP.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
                 End If
             Next n
         End If
@@ -4196,7 +4196,7 @@ Public Class accueil
             Else
                 sTexte = "Attention, vous venez de dépasser la date autorisée pour 1 banc de mesure. Veuillez effectuer votre contrôle immédiatement !"
             End If
-            AjouteUneAlerte(Globals.ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
         End If
 
         If nbAlertes_Banc_1mois7jr > 0 Then
@@ -4206,7 +4206,7 @@ Public Class accueil
             Else
                 sTexte = "Vous avez trop attendu pour vérifier 1 banc de mesure. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             End If
-            AjouteUneAlerte(Globals.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
         End If
 
         If nbAlertes_Banc_defaillant > 0 Then
@@ -4216,7 +4216,7 @@ Public Class accueil
             Else
                 sTexte = "Vous avez 1 banc de mesure défectueux. Contactez le CRODIP."
             End If
-            AjouteUneAlerte(Globals.ALERTE.CONTROLE, sName, sTexte, positionTopAlertes)
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.CONTROLE, sName, sTexte, positionTopAlertes)
         End If
 
     End Sub
@@ -4224,7 +4224,7 @@ Public Class accueil
     ' Chargement des alertes de la page d'accueil
     Public Sub loadAccueilAlerts()
 
-        If Not Globals.GLOB_ENV_MODEFORMATION Then
+        If Not GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
             Dim positionTopAlertes As Integer = 8
             accueil_panelAlertes.Controls.Clear()
@@ -4238,7 +4238,7 @@ Public Class accueil
             loadAccueilAlertsManoControle(positionTopAlertes)
             loadAccueilAlertsBuseEtalon(positionTopAlertes)
             LoadAccueilAlertsBancsMesures(positionTopAlertes)
-            If Not Globals.GLOB_ENV_MODESIMPLIFIE Then
+            If Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
                 loadAccueilAlertsIdentifiantsPulvérisateurs(positionTopAlertes)
                 loadAccueilAlertsSynchro(positionTopAlertes)
             End If
@@ -4397,9 +4397,9 @@ Public Class accueil
     Private Sub btn_proprietaire_derniersControles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_proprietaire_derniersControles.Click
         m_Exploitation_isShowAll = Not m_Exploitation_isShowAll
         btn_proprietaire_derniersControles_setLabel()
-        Statusbar.display(Globals.CONST_STATUTMSG_LISTCLIENT_ENCOURS)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_LISTCLIENT_ENCOURS)
         LoadListeExploitation()
-        Statusbar.display(list_clients.Items.Count & "" & Globals.CONST_STATUTMSG_LISTCLIENT_OK)
+        Statusbar.display(list_clients.Items.Count & "" & GlobalsCRODIP.CONST_STATUTMSG_LISTCLIENT_OK)
     End Sub
     Private Sub btn_proprietaire_derniersControles_setLabel()
         'Attention : le libellé est inversé !!!
@@ -4441,7 +4441,7 @@ Public Class accueil
 
     ' Suppression client
     Private Sub btn_proprietaire_supprimer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_proprietaire_supprimer.Click
-        Statusbar.display(Globals.CONST_STATUTMSG_DELETECLIENT_ENCOURS)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETECLIENT_ENCOURS)
 
         ' On récupère le client sélectionné
         Dim clientSelected_NumSIREN As String = "0"
@@ -4459,17 +4459,17 @@ Public Class accueil
                 clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
                 ' Si tout est ok, on le supprime
                 If ExploitationManager.SupprimerExploitation(clientCourant) Then
-                    Statusbar.display(Globals.CONST_STATUTMSG_DELETECLIENT_OK)
+                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETECLIENT_OK)
                     CSTime.pause(1000)
                     LoadListeExploitation()
                 Else
-                    Statusbar.display(Globals.CONST_STATUTMSG_DELETECLIENT_FAILED)
+                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETECLIENT_FAILED)
                 End If
             Else
-                Statusbar.display(Globals.CONST_STATUTMSG_DELETECLIENT_CANCEL)
+                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETECLIENT_CANCEL)
             End If
         Else
-            Statusbar.display(Globals.CONST_STATUTMSG_DELETECLIENT_NOSELECTED)
+            Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETECLIENT_NOSELECTED)
         End If
     End Sub
 
@@ -4532,7 +4532,7 @@ Public Class accueil
     Private Sub ExportToCSV()
         Me.Cursor = Cursors.WaitCursor
         Try
-            Dim SFile As String = Globals.CONST_PATH_EXP & "Export_clients_" & Date.Now.ToString("yyyyMMdd") & ".csv"
+            Dim SFile As String = GlobalsCRODIP.CONST_PATH_EXP & "Export_clients_" & Date.Now.ToString("yyyyMMdd") & ".csv"
             Dim searchId As Integer
             Dim searchCriteria As String
             Dim ocol As List(Of Exploitation)
@@ -4567,7 +4567,7 @@ Public Class accueil
     Private Sub ExportToCSVPulve()
         Me.Cursor = Cursors.WaitCursor
         Try
-            Dim SFile As String = Globals.CONST_PATH_EXP & "Export_pulve_" & Date.Now.ToString("yyyyMMdd") & ".csv"
+            Dim SFile As String = GlobalsCRODIP.CONST_PATH_EXP & "Export_pulve_" & Date.Now.ToString("yyyyMMdd") & ".csv"
             PulverisateurManager.exportToCSV(SFile)
 
             If MsgBox("Fichier correctement enregistré dans : " & vbNewLine & SFile & vbNewLine & "Voulez-vous ouvrir ce fichier ?", MsgBoxStyle.YesNo, "Export CSV") = MsgBoxResult.Yes Then
@@ -4652,11 +4652,11 @@ Public Class accueil
     ' Création d'un nouveau diagnostic
     Private Sub btn_ficheClient_diagnostic_nouveau_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheClient_diagnostic_nouveau.Click
         btn_ficheClient_diagnostic_nouveau.Enabled = False
-        NouveauDiagnostic(Globals.DiagMode.CTRL_COMPLET)
+        NouveauDiagnostic(GlobalsCRODIP.DiagMode.CTRL_COMPLET)
         btn_ficheClient_diagnostic_nouveau.Enabled = Not agentCourant.isGestionnaire
     End Sub
 
-    Private Sub NouveauDiagnostic(pDiagMode As Globals.DiagMode)
+    Private Sub NouveauDiagnostic(pDiagMode As GlobalsCRODIP.DiagMode)
 
         ' On récupère le formulaire contener
         ' Dim myFormParentContener As Form = Me.MdiParent
@@ -4670,7 +4670,7 @@ Public Class accueil
                 ' On récupère le pulvé selectionné
                 '                pulverisateurCourant = PulverisateurManager.getPulverisateurById(list_ficheClient_puverisateur.SelectedItems().Item(0).Tag)
                 ' Mise à jour de la barre de status
-                If pDiagMode = Globals.DiagMode.CTRL_CV Then
+                If pDiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
                     Statusbar.display("Nouvelle contre-visite")
                 Else
                     Statusbar.display("Nouveau Controle")
@@ -4685,10 +4685,10 @@ Public Class accueil
                 diagnosticCourant = New Diagnostic(agentCourant, pulverisateurCourant, clientCourant)
 
                 Dim bContinue As Boolean = True
-                If pDiagMode = Globals.DiagMode.CTRL_CV Then
+                If pDiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
                     ' Rechercge du diagnostique initial
                     Dim frmLstDiag As New liste_diagnosticPulve2()
-                    frmLstDiag.setcontexte(Globals.DiagMode.CTRL_CV, pulverisateurCourant, clientCourant, agentCourant)
+                    frmLstDiag.setcontexte(GlobalsCRODIP.DiagMode.CTRL_CV, pulverisateurCourant, clientCourant, agentCourant)
                     frmLstDiag.ShowDialog()
                     bContinue = (frmLstDiag.DialogResult = Windows.Forms.DialogResult.OK)
                 End If
@@ -4704,7 +4704,7 @@ Public Class accueil
 
     End Sub
 
-    Public Sub NouveauDiagnosticPhase1(pDiagMode As Globals.DiagMode)
+    Public Sub NouveauDiagnosticPhase1(pDiagMode As GlobalsCRODIP.DiagMode)
         'Vérification des clients et Pulvés au préalable
         Dim ofrmExpl As New fiche_exploitant()
         ofrmExpl.setContexte(False, clientCourant)
@@ -4750,11 +4750,11 @@ Public Class accueil
     ''' </summary>
     ''' <param name="bisContreVisite"></param>
     ''' <remarks></remarks>
-    Public Sub NouveauDiagnosticPhase2(pDiagMode As Globals.DiagMode, pDiag As Diagnostic)
+    Public Sub NouveauDiagnosticPhase2(pDiagMode As GlobalsCRODIP.DiagMode, pDiag As Diagnostic)
         Statusbar.clear()
         diagnosticCourant = pDiag ''Par Sécurité
         Dim bOK As Boolean = True
-        If Not Globals.GLOB_ENV_MODEFORMATION Then
+        If Not GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Me.Cursor = Cursors.WaitCursor
             Dim formDiagnostic_Contexte As New diagnostic_contexte(pDiagMode, pDiag, pulverisateurCourant, clientCourant, False)
             formDiagnostic_Contexte.ShowDialog()
@@ -4764,7 +4764,7 @@ Public Class accueil
                 formDiagnostic_Contexte.Close()
                 Dim isContreVisiteGratuite As Boolean
                 isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
-                If (diagnosticCourant.isContrevisiteImmediate And isContreVisiteGratuite) Or Globals.GLOB_ENV_MODESIMPLIFIE Then
+                If (diagnosticCourant.isContrevisiteImmediate And isContreVisiteGratuite) Or GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
                     'Mise à jour du tarif du Diagnostique
                     diagnosticCourant.isGratuit = True
                     diagnosticCourant.controleTarif = 0
@@ -4797,7 +4797,7 @@ Public Class accueil
 
     Private Sub VoirDiagnostique()
         If diagnosticCourant IsNot Nothing Then
-            Dim frmDiagPreliminaires As New controle_preliminaire(Globals.DiagMode.CTRL_VISU, diagnosticCourant, pulverisateurCourant, clientCourant)
+            Dim frmDiagPreliminaires As New controle_preliminaire(GlobalsCRODIP.DiagMode.CTRL_VISU, diagnosticCourant, pulverisateurCourant, clientCourant)
             globFormControlePreliminaire = frmDiagPreliminaires
             TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagPreliminaires)
         End If
@@ -4805,14 +4805,14 @@ Public Class accueil
     End Sub
     Private Sub SignerDiagnostique()
         If diagnosticCourant IsNot Nothing Then
-            Dim frmDiagRecap As New frmdiagnostic_recap(Globals.DiagMode.CTRL_SIGNATURE, diagnosticCourant, pulverisateurCourant, clientCourant, agentCourant, Nothing)
+            Dim frmDiagRecap As New frmdiagnostic_recap(GlobalsCRODIP.DiagMode.CTRL_SIGNATURE, diagnosticCourant, pulverisateurCourant, clientCourant, agentCourant, Nothing)
             TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagRecap)
         End If
 
     End Sub
     Private Sub VisuPDFSDiagnostique()
         If diagnosticCourant IsNot Nothing Then
-            Dim frmDiagRecap As New frmdiagnostic_recap(Globals.DiagMode.CTRL_VISUPDFS, diagnosticCourant, pulverisateurCourant, clientCourant, agentCourant, Nothing)
+            Dim frmDiagRecap As New frmdiagnostic_recap(GlobalsCRODIP.DiagMode.CTRL_VISUPDFS, diagnosticCourant, pulverisateurCourant, clientCourant, agentCourant, Nothing)
             TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagRecap)
         End If
 
@@ -4821,7 +4821,7 @@ Public Class accueil
     Private Sub btn_ficheClient_diagnostic_nouvelleCV_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheClient_diagnostic_nouvelleCV.Click
 
         btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
-        NouveauDiagnostic(Globals.DiagMode.CTRL_CV)
+        NouveauDiagnostic(GlobalsCRODIP.DiagMode.CTRL_CV)
         btn_ficheClient_diagnostic_nouvelleCV.Enabled = Not agentCourant.isGestionnaire
 
     End Sub
@@ -4839,19 +4839,19 @@ Public Class accueil
                 Statusbar.display("Visualisation d’un contrôle pour le pulvérisateur " & pulverisateurCourant.id)
 
                 Dim formListDiagnostique As New liste_diagnosticPulve2()
-                formListDiagnostique.setcontexte(Globals.DiagMode.CTRL_VISU, pulverisateurCourant, clientCourant, agentCourant)
+                formListDiagnostique.setcontexte(GlobalsCRODIP.DiagMode.CTRL_VISU, pulverisateurCourant, clientCourant, agentCourant)
                 formListDiagnostique.StartPosition = FormStartPosition.CenterParent
                 formListDiagnostique.ShowDialog(myFormParentContener)
                 If (formListDiagnostique.DialogResult = Windows.Forms.DialogResult.OK) Then
                     diagnosticCourant = formListDiagnostique.getDiagnostic()
                     Select Case formListDiagnostique.DiagMode
-                        Case Globals.DiagMode.CTRL_VISUPDFS
+                        Case GlobalsCRODIP.DiagMode.CTRL_VISUPDFS
                             VisuPDFSDiagnostique()
-                        Case Globals.DiagMode.CTRL_SIGNATURE
+                        Case GlobalsCRODIP.DiagMode.CTRL_SIGNATURE
                             SignerDiagnostique()
-                        Case Globals.DiagMode.CTRL_VISU
+                        Case GlobalsCRODIP.DiagMode.CTRL_VISU
                             VoirDiagnostique()
-                        Case Globals.DiagMode.CTRL_CV, Globals.DiagMode.CTRL_COMPLET
+                        Case GlobalsCRODIP.DiagMode.CTRL_CV, GlobalsCRODIP.DiagMode.CTRL_COMPLET
                             diagnosticCourant = formListDiagnostique.getDiagnostic()
                             NouveauDiagnosticPhase1(formListDiagnostique.DiagMode)
                     End Select
@@ -4889,16 +4889,16 @@ Public Class accueil
     'Private Sub btn_ficheClient_pulve_voirProchainsControles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     '    If pulverisateurs_isShowAll = True Then
     '        pulverisateurs_isShowAll = False
-    '        Statusbar.display(Globals.CONST_STATUTMSG_LISTPULVE_ENCOURS)
+    '        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_LISTPULVE_ENCOURS)
     '        btn_proprietaire_derniersControles.Text = "       Voir les prochains controles"
     '        loadListPulveExploitation(False)
-    '        Statusbar.display(dgvPulveExploit.Rows.Count & "" & Globals.CONST_STATUTMSG_LISTPULVE_OK)
+    '        Statusbar.display(dgvPulveExploit.Rows.Count & "" & GlobalsCRODIP.CONST_STATUTMSG_LISTPULVE_OK)
     '    Else
     '        pulverisateurs_isShowAll = True
-    '        Statusbar.display(Globals.CONST_STATUTMSG_LISTPULVE_ENCOURS)
+    '        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_LISTPULVE_ENCOURS)
     '        btn_proprietaire_derniersControles.Text = "       Voir tous les controles"
     '        loadListPulveExploitation(True)
-    '        Statusbar.display(dgvPulveExploit.Rows.Count & "" & Globals.CONST_STATUTMSG_LISTPULVE_OK)
+    '        Statusbar.display(dgvPulveExploit.Rows.Count & "" & GlobalsCRODIP.CONST_STATUTMSG_LISTPULVE_OK)
     '    End If
     'End Sub
 
@@ -4907,7 +4907,7 @@ Public Class accueil
         supprimerUnPulverisateur()
     End Sub
     Private Sub supprimerUnPulverisateur()
-        Statusbar.display(Globals.CONST_STATUTMSG_DELETEPULVE_ENCOURS)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETEPULVE_ENCOURS)
         ' On vérifie qu'il y a bien une ligne de sélectionnée
         If dgvPulveExploit.SelectedRows.Count > 0 Then
             ' On informe l'utilisateur et on lui demande confirmation
@@ -4917,17 +4917,17 @@ Public Class accueil
                 pulverisateurCourant = m_BindingListOfPulve(oRowIndex)
                 ' Si tout est ok, on le supprime
                 If PulverisateurManager.deletePulverisateur(pulverisateurCourant) Then
-                    Statusbar.display(Globals.CONST_STATUTMSG_DELETEPULVE_OK)
+                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETEPULVE_OK)
                     CSTime.pause(1000)
                     loadListPulveExploitation(False)
                 Else
-                    Statusbar.display(Globals.CONST_STATUTMSG_DELETEPULVE_FAILED)
+                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETEPULVE_FAILED)
                 End If
             Else
-                Statusbar.display(Globals.CONST_STATUTMSG_DELETEPULVE_CANCEL)
+                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETEPULVE_CANCEL)
             End If
         Else
-            Statusbar.display(Globals.CONST_STATUTMSG_DELETEPULVE_NOSELECTED)
+            Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETEPULVE_NOSELECTED)
         End If
     End Sub
 
@@ -5020,10 +5020,10 @@ Public Class accueil
         End If
 
         If CSEnvironnement.checkNetwork() = True Then
-            Globals.GLOB_NETWORKAVAILABLE = True
+            GlobalsCRODIP.GLOB_NETWORKAVAILABLE = True
             If CSEnvironnement.checkWebService() = True Then
                 ' On vérifie les mises à jour
-                Statusbar.display(Globals.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
+                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
                 Try
                     Me.Cursor = Cursors.WaitCursor
                     Dim oSynchro As New Synchronisation(agentCourant)
@@ -5037,7 +5037,7 @@ Public Class accueil
 
                 Catch ex As Exception
                     CSDebug.dispError("Accueil.btnsynchri_run Erreur synchroUp : " & ex.Message.ToString)
-                    Statusbar.display(Globals.CONST_STATUTMSG_SYNCHRO_FAILED, False)
+                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_SYNCHRO_FAILED, False)
                 End Try
                 Statusbar.hideLoader()
 
@@ -5196,7 +5196,7 @@ Public Class accueil
     ' Lecture d'un fichier de config XML (SMTP)
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         ' Lecture d'un fichier de config XML
-        'MsgBox(Globals.GLOBalConfig.getElementValue("/root/smtp/smtpHost"))
+        'MsgBox(GlobalsCRODIP.GLOBalConfig.getElementValue("/root/smtp/smtpHost"))
     End Sub
 #End Region
 
@@ -5541,13 +5541,13 @@ Public Class accueil
             dgvPulveExploit.Rows(index).DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             dgvPulveExploit.Rows(index).DefaultCellStyle.BackColor = System.Drawing.Color.LightBlue
             dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionForeColor = Color.Black
-            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = Globals.GLOB_BLUE_CROPDIP
+            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = GlobalsCRODIP.GLOB_BLUE_CROPDIP
 
         Else
             dgvPulveExploit.Rows(index).DefaultCellStyle.ForeColor = Color.Black
             dgvPulveExploit.Rows(index).DefaultCellStyle.BackColor = Color.White
             dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionForeColor = Color.White
-            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = Globals.GLOB_BLUE_CROPDIP
+            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = GlobalsCRODIP.GLOB_BLUE_CROPDIP
         End If
         'If opulve.dateProchainControleAsDate.HasValue And opulve.dateProchainControleAsDate < Date.Now Then
         '    dgvPulveExploit.Rows(index).DefaultCellStyle.ForeColor = Color.Red
@@ -5577,7 +5577,7 @@ Public Class accueil
 
     Private Sub dgvPulveExploit_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles dgvPulveExploit.MouseDoubleClick
 #If DEBUG Then
-        NouveauDiagnostic(Globals.DiagMode.CTRL_COMPLET)
+        NouveauDiagnostic(GlobalsCRODIP.DiagMode.CTRL_COMPLET)
 #End If
     End Sub
 

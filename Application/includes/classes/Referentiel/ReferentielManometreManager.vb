@@ -11,7 +11,7 @@ Module ReferentielManometreManager
                 Case 0 ' OK
                     ' construction de l'objet
                     For Each tmpSerializeItem As System.Xml.XmlText In objWSCrodip_response
-                        CSFile.write(Globals.GLOB_XML_MARQUES_MANO.Nomfichier, tmpSerializeItem.InnerText)
+                        CSFile.write(GlobalsCRODIP.GLOB_XML_MARQUES_MANO.Nomfichier, tmpSerializeItem.InnerText)
                     Next
                     Return True
                 Case 1 ' NOK

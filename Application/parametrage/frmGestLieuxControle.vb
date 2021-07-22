@@ -11,18 +11,20 @@ Public Class frmGestLieuxControle
         initFenetre()
     End Sub
     Private Sub initFenetre()
-        MarquesManager.populateCombobox(Globals.GLOB_XML_CONFIG, cbxSite2, "/root/sites_proprietaire")
+        MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_CONFIG, cbxSite2, "/root/sites_proprietaire")
         chargerLieuxControle()
         If m_bsLieuxControle.Current IsNot Nothing Then
             LoadCommunes(m_bsLieuxControle.Current.codePostal)
             cbxCommunes2.Text = m_bsLieuxControle.Current.Commune
+        Else
+            AjouterNouveauLieu()
         End If
 
     End Sub
     Public Sub chargerLieuxControle()
         m_bsLieuxControle.Clear()
-        If File.Exists("./Lieuxcontrole.csv") Then
-            Using reader As StreamReader = New StreamReader("./Lieuxcontrole.csv")
+        If File.Exists(GlobalsCRODIP.PATH_TO_LIEUXCONTROLE) Then
+            Using reader As StreamReader = New StreamReader(GlobalsCRODIP.PATH_TO_LIEUXCONTROLE)
                 Using csv As CsvReader = New CsvReader(reader, CultureInfo.InvariantCulture)
                     csv.GetRecords(Of LieuxControle)().ToList().ForEach(Sub(lieu) m_bsLieuxControle.Add(lieu))
                 End Using
@@ -47,7 +49,7 @@ Public Class frmGestLieuxControle
     End Sub
     Private Sub SauvegarderLieuxControle()
 
-        Using wr As StreamWriter = New StreamWriter("./LieuxControle.csv")
+        Using wr As StreamWriter = New StreamWriter(GlobalsCRODIP.PATH_TO_LIEUXCONTROLE)
             Using csv As New CsvWriter(wr, Globalization.CultureInfo.InvariantCulture)
 
                 csv.WriteRecords(m_bsLieuxControle.List)

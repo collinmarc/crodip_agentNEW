@@ -9,14 +9,14 @@ Public Class frmdiagnostic_recap
     Inherits frmCRODIP
 #Region " Variables "
     Private bTest As Boolean = False
-    Private m_DiagMode As Globals.DiagMode
+    Private m_DiagMode As GlobalsCRODIP.DiagMode
     Private m_diagnostic As Diagnostic
     Private m_Exploit As Exploitation
     Private m_Pulverisateur As Pulverisateur
     Private m_oAgent As Agent
     Private m_frmdiagnostic As Form
     Dim isValider As Boolean = False
-    Dim conclusionDiagnostique As Globals.enumConclusionDiag
+    Dim conclusionDiagnostique As GlobalsCRODIP.enumConclusionDiag
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
     Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
     Friend WithEvents grpOrganisme As System.Windows.Forms.GroupBox
@@ -64,7 +64,7 @@ Public Class frmdiagnostic_recap
 
     End Sub
 
-    Public Sub New(pDiagMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation, pAgent As Agent, pfrmDiagnostic As Form)
+    Public Sub New(pDiagMode As GlobalsCRODIP.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation, pAgent As Agent, pfrmDiagnostic As Form)
         MyBase.New()
         m_DiagMode = pDiagMode
 
@@ -634,7 +634,7 @@ Public Class frmdiagnostic_recap
         Me.WindowState = FormWindowState.Maximized
         Me.ControlBox = False
         CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
-        If m_DiagMode <> Globals.DiagMode.CTRL_SIGNATURE Then
+        If m_DiagMode <> GlobalsCRODIP.DiagMode.CTRL_SIGNATURE Then
             'Propriété a mettre obligatoirement par programme
             Me.laTitre.Text = "     Visualisation du contrôle"
             Me.btn_Annuler.Visible = False
@@ -648,7 +648,7 @@ Public Class frmdiagnostic_recap
         Try
             diagnosticRecap_organisme_dateControle.Text = CDate(m_diagnostic.controleDateDebut).ToShortDateString()
             diagnosticRecap_organisme_heureDebut.Text = CDate(m_diagnostic.controleDateDebut).ToShortTimeString
-            If (m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV) And
+            If (m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV) And
                 m_diagnostic.diagRemplacementId = "" Then
                 'Remplacement de la date de fin si on n'est pas en remplacement
                 m_diagnostic.controleDateFin = CSDate.mysql2access(Date.Now)
@@ -679,17 +679,17 @@ Public Class frmdiagnostic_recap
 
                         If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMINEUR Then
                             'Mineur
-                            If conclusionDiagnostique = Globals.enumConclusionDiag.OK Then
-                                conclusionDiagnostique = Globals.enumConclusionDiag.OK_AVECMINEEUR
+                            If conclusionDiagnostique = GlobalsCRODIP.enumConclusionDiag.OK Then
+                                conclusionDiagnostique = GlobalsCRODIP.enumConclusionDiag.OK_AVECMINEEUR
                             End If
                         End If
                         If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR Then
                             'Majeur
-                            conclusionDiagnostique = Globals.enumConclusionDiag.NOK
+                            conclusionDiagnostique = GlobalsCRODIP.enumConclusionDiag.NOK
                         End If
                         If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJPRELIM Then
                             'Majeur Prelim
-                            conclusionDiagnostique = Globals.enumConclusionDiag.NOK_PRELIM
+                            conclusionDiagnostique = GlobalsCRODIP.enumConclusionDiag.NOK_PRELIM
                         End If
                     End If
 
@@ -700,19 +700,19 @@ Public Class frmdiagnostic_recap
 
         ' Conclusion sur l'etat du controle
         Select Case conclusionDiagnostique
-            Case Globals.enumConclusionDiag.OK
+            Case GlobalsCRODIP.enumConclusionDiag.OK
                 m_diagnostic.controleEtat = Diagnostic.controleEtatOK
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(1)
                 label_pulveBonEtat.Text = "Pulvérisateur en bon état"
-            Case Globals.enumConclusionDiag.OK_AVECMINEEUR
+            Case GlobalsCRODIP.enumConclusionDiag.OK_AVECMINEEUR
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(1)
                 m_diagnostic.controleEtat = Diagnostic.controleEtatOK
                 label_pulveBonEtat.Text = "Pulvérisateur en bon état"
-            Case Globals.enumConclusionDiag.NOK
+            Case GlobalsCRODIP.enumConclusionDiag.NOK
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
                 m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
                 label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
-            Case Globals.enumConclusionDiag.NOK_PRELIM
+            Case GlobalsCRODIP.enumConclusionDiag.NOK_PRELIM
                 conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
                 m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCC
                 label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
@@ -725,19 +725,19 @@ Public Class frmdiagnostic_recap
         'Me.SelectNextControl(diagnosticRecap_organisme_lieuControle, True, True, True, True)
         btn_finalisationDiag_modifierDiag.Focus()
         btn_finalisationDiag_modifierDiag.Select()
-        If m_DiagMode = Globals.DiagMode.CTRL_VISU Then
+        If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_VISU Then
             grpOrganisme.Enabled = False
             grpProprio.Enabled = False
             grpMateriel.Enabled = False
             btn_finalisationDiag_modifierDiag.Enabled = False
             btn_finalisationDiag_valider.Text = "Retour"
         End If
-        btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> Globals.DiagMode.CTRL_VISU
+        btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> GlobalsCRODIP.DiagMode.CTRL_VISU
 
         '##################
         'Generation de l'apperçu du rapport
         '###################
-        If Globals.GLOB_ENV_MODESIMPLIFIE Or m_diagnostic.CCFileName = "" Then
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or m_diagnostic.CCFileName = "" Then
             rbEtatCC.Visible = False
             btn_ContratCommercial.Visible = False
             btn_finalisationDiag_imprimerRapport.Top = btn_ContratCommercial.Top
@@ -753,12 +753,12 @@ Public Class frmdiagnostic_recap
 
         ActiveDesactiveBtnsignature()
 
-        If (m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE Or m_DiagMode = Globals.DiagMode.CTRL_VISUPDFS) Then
+        If (m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_SIGNATURE Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_VISUPDFS) Then
             btn_finalisationDiag_modifierDiag.Visible = False
             desactiveModifications()
         End If
 
-        If Globals.GLOB_ENV_MODEFORMATION Then
+        If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Me.Text = "Récapitulatif du diagnostique "
             Me.btn_ContratCommercial.Visible = False
             Me.btn_finalisationDiag_imprimerSynthese.Visible = False
@@ -766,7 +766,7 @@ Public Class frmdiagnostic_recap
             rbEtatSM.Visible = False
             btnAppercu.Visible = False
         Else
-            If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
                 Me.Text = "Récapitulatif du diagnostique " & " - Mode Simplifié - "
             Else
                 Me.Text = "Crodip .::. Récapitulatif du diagnostique "
@@ -780,7 +780,7 @@ Public Class frmdiagnostic_recap
 
     Private Sub AffichePulverisateur()
         Try
-            MarquesManager.populateCombobox(Globals.GLOB_XML_EMPLACEMENTIDENTIFICATION, cbx_diagnosticRecap_materiel_EmplacementIdentification, "/root", True)
+            MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_EMPLACEMENTIDENTIFICATION, cbx_diagnosticRecap_materiel_EmplacementIdentification, "/root", True)
             'diagnosticRecap_materiel_identifiant.Text = m_Pulverisateur.numeroNational
             'diagnosticRecap_materiel_marque.Text = m_diagnostic.pulverisateurMarque
             'diagnosticRecap_materiel_modele.Text = m_diagnostic.pulverisateurModele
@@ -838,16 +838,16 @@ Public Class frmdiagnostic_recap
     ' Validation
     Private Sub btn_finalisationDiag_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_valider.Click
         sender.Enabled = False
-        If m_DiagMode = Globals.DiagMode.CTRL_VISU Then
+        If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_VISU Then
             CloseDiagnostic()
             Exit Sub
         End If
         If isValider Then
-            If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
                 CloseDiagnostic()
                 Exit Sub
             End If
-            If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
+            If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
                 ' On ouvre la fenetre de l'enquete
                 Dim ofrm As New diagnostic_satisfaction(m_diagnostic)
                 TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
@@ -867,7 +867,7 @@ Public Class frmdiagnostic_recap
                         Message = "Attention, le rapport d'inspection n'est pas signé"
                         bSignRI = False
                     End If
-                    If Not Globals.GLOB_ENV_MODESIMPLIFIE And m_diagnostic.CCFileName <> "" Then
+                    If Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE And m_diagnostic.CCFileName <> "" Then
                         'PAs en mode simplifié et j'ai un contrat
                         If Not (m_diagnostic.isSignCCAgent And m_diagnostic.isSignCCClient) Then
                             Message = "Attention, le contrat commercial n'est pas signé"
@@ -891,7 +891,7 @@ Public Class frmdiagnostic_recap
                     End If
                 End If
                 Dim oResult As MsgBoxResult = MsgBoxResult.Yes
-                If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
+                If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
                     oResult = MsgBox("Attention, la validation du contrôle est définitive, vous ne pourrez plus revenir en arrière. Etes-vous sûr ?", MsgBoxStyle.YesNo, "Validation du contrôle")
                 End If
                 If oResult = MsgBoxResult.Yes Then
@@ -922,8 +922,8 @@ Public Class frmdiagnostic_recap
         Dim bReturn As Boolean
         Try
             Try
-                Statusbar.display(Globals.CONST_STATUTMSG_DIAG_SAVING, True)
-                If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Then
+                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DIAG_SAVING, True)
+                If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
                     'Lecture de la fenêtre
                     GetInfos()
                     '
@@ -971,7 +971,7 @@ Public Class frmdiagnostic_recap
 
                 End If
 
-                If m_DiagMode = Globals.DiagMode.CTRL_COMPLET Or m_DiagMode = Globals.DiagMode.CTRL_CV Or m_DiagMode = Globals.DiagMode.CTRL_SIGNATURE Then
+                If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_SIGNATURE Then
 
                     Statusbar.display("Génération du rapport d'inspection", True)
                     If createEtatRapportInspection(True) Then
@@ -979,8 +979,8 @@ Public Class frmdiagnostic_recap
                         If Not createEtatSyntheseDesMesures(True) Then
                             CSDebug.dispError("Erreur en génération de l'état de synthèse des mesures")
                         End If
-                        If Globals.GLOB_ENV_MODESIMPLIFIE Or
-                            Globals.GLOB_ENV_MODEFORMATION Or
+                        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or
+                            GlobalsCRODIP.GLOB_ENV_MODEFORMATION Or
                             (m_diagnostic.isContrevisiteImmediate And m_diagnostic.isGratuit) Then
                             'Pas de génération du contrat commercial
                         Else
@@ -1113,7 +1113,7 @@ Public Class frmdiagnostic_recap
             If pExportDPF Then
                 pathRapport = oEtat.getFileName()
                 m_diagnostic.RIFileName = pathRapport
-                bReturn = File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & pathRapport)
+                bReturn = File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & pathRapport)
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
             End If
@@ -1134,11 +1134,11 @@ Public Class frmdiagnostic_recap
             Dim oEtat As New EtatContratCommercial(m_diagnostic)
             oEtat.GenereEtat(pExportDPF)
             If pExportDPF Then
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName) Then
-                    File.Delete(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName) Then
+                    File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName)
                 End If
                 m_diagnostic.CCFileName = oEtat.getFileName()
-                bReturn = File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & oEtat.getFileName())
+                bReturn = File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & oEtat.getFileName())
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
             End If
@@ -1152,7 +1152,7 @@ Public Class frmdiagnostic_recap
     Private Sub btn_finalisationDiag_imprimerRapport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_finalisationDiag_imprimerRapport.Click
         Try
             ' On affiche le PDF rempli
-            CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.RIFileName)
+            CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.RIFileName)
         Catch ex As Exception
             Console.Write("[Erreur] - Génération Rapport d'Inspection : " & ex.Message.ToString & vbNewLine)
         End Try
@@ -1165,7 +1165,7 @@ Public Class frmdiagnostic_recap
         Try
             Statusbar.display("Affichage du rapport de synthèse", True)
             ' On affiche le PDF rempli
-            CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.SMFileName)
+            CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.SMFileName)
             Statusbar.display("", True)
         Catch ex As Exception
             CSDebug.dispError("Erreur lors de la génération de l'état des Debit de buses : " & ex.Message.ToString)
@@ -1439,7 +1439,7 @@ Public Class frmdiagnostic_recap
         Try
             Statusbar.display("Affichage du contrat commercial", True)
             ' On affiche le PDF rempli
-            CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName)
+            CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName)
             Statusbar.display("", True)
         Catch ex As Exception
             CSDebug.dispError("Erreur lors de l'affichage du contrat commercial " & ex.Message)

@@ -114,7 +114,7 @@ Public Class Tarif
             Return tarifHT.ToString("C2")
         End Get
         Set(ByVal Value As String)
-            tarifHT = Globals.StringToDouble(Value)
+            tarifHT = GlobalsCRODIP.StringToDouble(Value)
         End Set
     End Property
     Public Property tarifTTC() As Decimal
@@ -135,7 +135,7 @@ Public Class Tarif
             Return tarifTTC.ToString("C2")
         End Get
         Set(ByVal Value As String)
-            tarifTTC = Globals.StringToDouble(Value)
+            tarifTTC = GlobalsCRODIP.StringToDouble(Value)
         End Set
     End Property
 
@@ -158,7 +158,7 @@ Public Class Tarif
             Return tva.ToString()
         End Get
         Set(ByVal Value As String)
-            tva = Globals.StringToDouble(Value)
+            tva = GlobalsCRODIP.StringToDouble(Value)
         End Set
     End Property
 

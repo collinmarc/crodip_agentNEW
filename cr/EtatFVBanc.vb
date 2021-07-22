@@ -8,7 +8,7 @@ Public Class EtatFVBanc
     Private m_ods As dsFvBanc
 
     Public Sub New(pControle As ControleBanc)
-        m_Path = Globals.CONST_PATH_EXP_BANCMESURE
+        m_Path = GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE
         m_oControle = pControle
     End Sub
 
@@ -29,7 +29,7 @@ Public Class EtatFVBanc
                     objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
 
                     objReport.SetDataSource(m_ods)
-                    objReport.SetParameterValue("ModeSimplifie", Globals.GLOB_ENV_MODESIMPLIFIE)
+                    objReport.SetParameterValue("ModeSimplifie", GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE)
 
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions

@@ -432,7 +432,7 @@ Public Class HistoMano
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
-        'MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_BANC, ficheBanc_marque)
+        'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MARQUES_BANC, ficheBanc_marque)
         'Chargement des modules d'acquisisition
 
         dispManoCourant()
@@ -472,8 +472,8 @@ Public Class HistoMano
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
         If e.ColumnIndex = col_FVFileName.Index Then
             Dim oFV As FVManometreControle = m_bsrcFVMano.Current
-            EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_MANOCONTROLE, oFV.FVFileName)
-            CSFile.open(Globals.CONST_PATH_EXP_MANOCONTROLE & "/" & oFV.FVFileName)
+            EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE, oFV.FVFileName)
+            CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE & "/" & oFV.FVFileName)
         End If
     End Sub
 End Class

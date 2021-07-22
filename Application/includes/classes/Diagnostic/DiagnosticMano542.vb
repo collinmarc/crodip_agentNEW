@@ -282,7 +282,7 @@ Public Class DiagnosticMano542
     Public ReadOnly Property pressionPulved() As Decimal
         Get
             Try
-                Return CDec(Globals.StringToDouble(_pressionPulve))
+                Return CDec(GlobalsCRODIP.StringToDouble(_pressionPulve))
 
             Catch ex As Exception
                 Return 0
@@ -293,7 +293,7 @@ Public Class DiagnosticMano542
     Public ReadOnly Property pressionControled() As Decimal
         Get
             Try
-                Return CDec(Globals.StringToDouble(_pressionControle))
+                Return CDec(GlobalsCRODIP.StringToDouble(_pressionControle))
             Catch ex As Exception
                 Return 0
             End Try

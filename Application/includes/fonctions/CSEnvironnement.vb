@@ -23,7 +23,7 @@ Public Class CSEnvironnement
     ' Fonction permettant de tester si la version de l'application est en accord avec la version mini. du crodip
     Public Shared Function checkVersion() As Boolean
         ' Init Vars
-        Dim curVersion() As String = Globals.GLOB_APPLI_VERSION.Split(".")
+        Dim curVersion() As String = GlobalsCRODIP.GLOB_APPLI_VERSION.Split(".")
         Dim csVersionResult() As String = CSVersion.getWSVersion()
         CSEnvironnement.versionMessage = csVersionResult(1)
         CSEnvironnement.versionUrl = csVersionResult(2)
@@ -58,15 +58,15 @@ Public Class CSEnvironnement
 
     Public Shared Sub setPid()
         Try
-            CSFile.create(Globals.GLOB_PID_FILE, Date.UtcNow.ToLongDateString)
+            CSFile.create(GlobalsCRODIP.GLOB_PID_FILE, Date.UtcNow.ToLongDateString)
         Catch ex As Exception
             CSDebug.dispFatal("CSEnvironnement::setPid : " & ex.Message)
         End Try
     End Sub
     Public Shared Sub delPid()
         Try
-            If System.IO.File.Exists(Globals.GLOB_PID_FILE) Then
-                CSFile.delete(Globals.GLOB_PID_FILE)
+            If System.IO.File.Exists(GlobalsCRODIP.GLOB_PID_FILE) Then
+                CSFile.delete(GlobalsCRODIP.GLOB_PID_FILE)
             End If
         Catch ex As Exception
             CSDebug.dispFatal("CSEnvironnement::delPid : " & ex.Message)
@@ -74,7 +74,7 @@ Public Class CSEnvironnement
     End Sub
     Public Shared Function existsPid() As Boolean
         Try
-            Return System.IO.File.Exists(Globals.GLOB_PID_FILE)
+            Return System.IO.File.Exists(GlobalsCRODIP.GLOB_PID_FILE)
         Catch ex As Exception
             CSDebug.dispFatal("CSEnvironnement::existsPid : " & ex.Message)
             Return False
@@ -140,7 +140,7 @@ Public Class CSEnvironnement
             reponse = CType(requete.GetResponse, HttpWebResponse)
             reponse.Close() '--- Déconnexion
             If reponse.StatusCode = HttpStatusCode.OK Then
-                Globals.GLOB_NETWORKAVAILABLE = True
+                GlobalsCRODIP.GLOB_NETWORKAVAILABLE = True
                 Return True
             Else
                 If requete IsNot Nothing Then
@@ -184,8 +184,8 @@ Public Class CSEnvironnement
         Dim bReturn As Boolean = False
         Dim webservice As WSCrodip_prod.CrodipServer
 
-        Globals.GLOB_NETWORKAVAILABLE = checkNetwork()
-        If Globals.GLOB_NETWORKAVAILABLE Then
+        GlobalsCRODIP.GLOB_NETWORKAVAILABLE = checkNetwork()
+        If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
             webservice = WSCrodip.getWS()
             webserviceUrl = webservice.Url
             webserviceUrl = ChangeProtocol(pProtocol, webserviceUrl)

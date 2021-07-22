@@ -8,7 +8,7 @@ Public Class diagnostic_contexte
     Inherits System.Windows.Forms.Form
 
 #Region " - Vars - "
-    Private m_DiagMode As Globals.DiagMode
+    Private m_DiagMode As GlobalsCRODIP.DiagMode
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents tbNomPrenomRepresentant As System.Windows.Forms.TextBox
     Friend WithEvents LabelInspecteurPrecedent As System.Windows.Forms.Label
@@ -70,7 +70,7 @@ Public Class diagnostic_contexte
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         _LstLieuxControle = New List(Of LieuxControle)()
     End Sub
-    Public Sub New(ByVal pDiagMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation, ByVal pRetour As Boolean)
+    Public Sub New(ByVal pDiagMode As GlobalsCRODIP.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pExploit As Exploitation, ByVal pRetour As Boolean)
         Me.New()
         Me.m_Retour = pRetour
         Me.m_DiagMode = pDiagMode
@@ -937,7 +937,7 @@ Public Class diagnostic_contexte
         CSEnvironnement.checkDateTimePicker(dateDernierControleComplet)
         CSEnvironnement.checkDateTimePicker(dateDernierControlePartiel)
 
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
             Me.Text = Me.Text & " - Mode Simplifié - "
         End If
 
@@ -946,10 +946,10 @@ Public Class diagnostic_contexte
         ' Chargement des comboBox
         Try
 
-            MarquesManager.populateCombobox(Globals.GLOB_XML_CONFIG, cbxSite, "/root/sites_proprietaire")
-            '            MarquesManager.populateCombobox(Globals.GLOB_XML_CONFIG, cbxterritoire, "/root/territoires_proprietaire")
+            MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_CONFIG, cbxSite, "/root/sites_proprietaire")
+            '            MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_CONFIG, cbxterritoire, "/root/territoires_proprietaire")
             'ModeUtilisation
-            MarquesManager.populateCombobox(Globals.GLOB_XML_MODEUTILISATION, cbxModeUtilisation, "/root", True)
+            MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MODEUTILISATION, cbxModeUtilisation, "/root", True)
         Catch ex As Exception
             CSDebug.dispError("[Diag. Contexte] - Erreur chargement comboBox : " & ex.Message.ToString)
         End Try
@@ -1238,7 +1238,7 @@ Public Class diagnostic_contexte
             strXPath = "//PulverisateurModeUtilisation[libelle=""%MODE%""]/Valeurs"
             strXPath = strXPath.Replace("%MODE%", cbxModeUtilisation.Text)
             cbxNbreExploitants.Items.Clear()
-            oLst = Globals.GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
+            oLst = GlobalsCRODIP.GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
             For Each oVal As String In oLst.InnerText.Split(",")
                 cbxNbreExploitants.Items.Add(oVal)
             Next
@@ -1248,7 +1248,7 @@ Public Class diagnostic_contexte
 
             strXPath = "//PulverisateurModeUtilisation[libelle=""%MODE%""]/saisieNbre"
             strXPath = strXPath.Replace("%MODE%", cbxModeUtilisation.Text)
-            oLst = Globals.GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
+            oLst = GlobalsCRODIP.GLOB_XML_MODEUTILISATION.getXmlNode(strXPath)
             If CBool(oLst.InnerText) Then
                 lblNbreExploitants.Visible = True
                 cbxNbreExploitants.Visible = True

@@ -796,11 +796,11 @@ Public Class diagnostic_infosInspecteur
         'Try
 
         '    ' Init
-        '    'Dim pdfTemplate As String = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_FPEDA
-        '    'Dim newFile As String = Globals.CONST_PATH_EXP & Globals.CONST_DOC_FPEDAv
-        '    Dim pdfTemplate As String = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_FPEDA & ".pdf"
-        '    'pathFichePedago = Globals.CONST_PATH_EXP & Globals.CONST_DOC_FPEDA & "_" & CSDate.getDateId(Date.Now) & "_" & diagnosticCourant.id & ".pdf"
-        '    pathFichePedago = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_FEUILLE_PEDAGOGIQUE) & ".pdf"
+        '    'Dim pdfTemplate As String = GlobalsCRODIP.CONST_PATH_DOCS & GlobalsCRODIP.CONST_DOC_FPEDA
+        '    'Dim newFile As String = GlobalsCRODIP.CONST_PATH_EXP & GlobalsCRODIP.CONST_DOC_FPEDAv
+        '    Dim pdfTemplate As String = GlobalsCRODIP.CONST_PATH_DOCS & GlobalsCRODIP.CONST_DOC_FPEDA & ".pdf"
+        '    'pathFichePedago = GlobalsCRODIP.CONST_PATH_EXP & GlobalsCRODIP.CONST_DOC_FPEDA & "_" & CSDate.getDateId(Date.Now) & "_" & diagnosticCourant.id & ".pdf"
+        '    pathFichePedago = GlobalsCRODIP.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_FEUILLE_PEDAGOGIQUE) & ".pdf"
         '    Dim newFile As String = pathFichePedago
         '    ' Ouverture des pdf
         '    pdfReader = New PdfReader(pdfTemplate)

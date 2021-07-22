@@ -771,7 +771,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Application\includes\classes\WSCrodip.vb" />
-    <Compile Include="Application\includes\config\config_vars.vb">
+    <Compile Include="Application\includes\config\Globals.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Application\includes\config\variables_globales.vb">

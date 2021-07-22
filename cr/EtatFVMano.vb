@@ -8,7 +8,7 @@ Public Class EtatFVMano
     Private m_ods As dsFvMano
 
     Public Sub New(pControle As ControleMano)
-        m_Path = Globals.CONST_PATH_EXP_MANOCONTROLE
+        m_Path = GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE
         m_oControle = pControle
     End Sub
 
@@ -27,7 +27,7 @@ Public Class EtatFVMano
                     objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
 
                     objReport.SetDataSource(m_ods)
-                    objReport.SetParameterValue("ModeSimplifie", Globals.GLOB_ENV_MODESIMPLIFIE)
+                    objReport.SetParameterValue("ModeSimplifie", GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE)
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
@@ -213,8 +213,8 @@ Public Class EtatFVMano
     'Public Function buildPDF(ByVal curMano As ManometreControle)
 
     '    ' Init
-    '    Dim pdfTemplate As String = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_FV_MANOCTRL & ".pdf"
-    '    Dim newFile As String = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(curMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
+    '    Dim pdfTemplate As String = GlobalsCRODIP.CONST_PATH_DOCS & GlobalsCRODIP.CONST_DOC_FV_MANOCTRL & ".pdf"
+    '    Dim newFile As String = GlobalsCRODIP.CONST_PATH_EXP & CSDiagPdf.makeFilename(curMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
 
 
     '    ' Récupère le mano étalon

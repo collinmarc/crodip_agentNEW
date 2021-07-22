@@ -44,8 +44,8 @@ Public Class FVManometreControleManager
         Dim bReturn As Boolean
         Dim filePath As String
         If Not String.IsNullOrEmpty(pFV.FVFileName) Then
-            filePath = Globals.CONST_PATH_EXP_MANOCONTROLE & "/" & pFV.FVFileName
-            EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_MANOCONTROLE, pFV.FVFileName)
+            filePath = GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE & "/" & pFV.FVFileName
+            EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE, pFV.FVFileName)
             If My.Settings.SynchroEtatMode = "FTP" Then
                 bReturn = SendFTPEtats(filePath)
             Else

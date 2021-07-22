@@ -14,7 +14,7 @@ Module ReferentielPulverisateurManager
         '        Case 0 ' OK
         '            ' construction de l'objet
         '            For Each tmpSerializeItem As System.Xml.XmlText In objWSCrodip_response
-        '                CSFile.write(Globals.GLOB_XML_MARQUES_PULVE.leFichier, tmpSerializeItem.InnerText)
+        '                CSFile.write(GlobalsCRODIP.GLOB_XML_MARQUES_PULVE.leFichier, tmpSerializeItem.InnerText)
         '            Next
         '            Return True
         '        Case 1 ' NOK
@@ -47,7 +47,7 @@ Module ReferentielPulverisateurManager
         '        Case 0 ' OK
         '            ' construction de l'objet
         '            For Each tmpSerializeItem As System.Xml.XmlText In objWSCrodip_response
-        '                CSFile.write(Globals.GLOB_XML_TYPES_CATEGORIES_PULVE.Nomfichier, tmpSerializeItem.InnerText)
+        '                CSFile.write(GlobalsCRODIP.GLOB_XML_TYPES_CATEGORIES_PULVE.Nomfichier, tmpSerializeItem.InnerText)
         '            Next
         '            bReturn = True
         '        Case 1 ' NOK
@@ -81,7 +81,7 @@ Module ReferentielPulverisateurManager
         '        Case 0 ' OK
         '            ' construction de l'objet
         '            For Each tmpSerializeItem As System.Xml.XmlText In objWSCrodip_response
-        '                CSFile.write(Globals.GLOB_XML_MARQUES_MODELES_PULVE.Nomfichier, tmpSerializeItem.InnerText)
+        '                CSFile.write(GlobalsCRODIP.GLOB_XML_MARQUES_MODELES_PULVE.Nomfichier, tmpSerializeItem.InnerText)
         '            Next
         '            bReturn = True
         '        Case 1 ' NOK

@@ -9,7 +9,7 @@ Public Class EtatSyntheseMesures
     Private m_oDiag As Diagnostic
     Private m_ods As ds_Etat_SM
     Public Sub New(pDiag As Diagnostic)
-        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
+        m_Path = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
     End Sub
 
@@ -63,7 +63,7 @@ Public Class EtatSyntheseMesures
                 CSDebug.dispInfo("TBD : setDataSource")
                 m_oReportDocument.SetDataSource(m_ods)
                 CSDebug.dispInfo("TBD : setParameter")
-                m_oReportDocument.SetParameterValue("ModeSimplifie", Globals.GLOB_ENV_MODESIMPLIFIE)
+                m_oReportDocument.SetParameterValue("ModeSimplifie", GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE)
                 If pExportPDF Then
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions

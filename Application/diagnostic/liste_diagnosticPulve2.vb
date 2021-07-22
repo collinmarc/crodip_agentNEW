@@ -3,12 +3,12 @@ Public Class liste_diagnosticPulve2
 
     Private m_oDiag As Diagnostic = Nothing
     Private _Puverisateur As Pulverisateur
-    Private _DiagMode As Globals.DiagMode
-    Public Property DiagMode() As Globals.DiagMode
+    Private _DiagMode As GlobalsCRODIP.DiagMode
+    Public Property DiagMode() As GlobalsCRODIP.DiagMode
         Get
             Return _DiagMode
         End Get
-        Set(ByVal value As Globals.DiagMode)
+        Set(ByVal value As GlobalsCRODIP.DiagMode)
             _DiagMode = value
         End Set
     End Property
@@ -478,7 +478,7 @@ Public Class liste_diagnosticPulve2
         End Set
     End Property
 #Region " Code généré par le Concepteur Windows Form "
-    Public Sub setcontexte(pDiagMod As Globals.DiagMode, pPulve As Pulverisateur, pExploit As Exploitation, pagent As Agent)
+    Public Sub setcontexte(pDiagMod As GlobalsCRODIP.DiagMode, pPulve As Pulverisateur, pExploit As Exploitation, pagent As Agent)
         oPulve = pPulve
         oExploit = pExploit
         oAgent = pagent
@@ -2730,7 +2730,7 @@ Public Class liste_diagnosticPulve2
             Else
                 query = "SELECT Diagnostic.id,Diagnostic.controleDateFin,Diagnostic.controleDateDebut,Diagnostic.controleEtat, RIFileName, SMFileName, CCFileName, ISSignRIClient, ISSignCCAgent, IsSignCCClient, isSupprime, diagRemplacementId FROM Diagnostic WHERE Diagnostic.pulverisateurId='" & oPulve.id & "' AND Diagnostic.organismePresId=" & oAgent.idStructure & " AND Diagnostic.id LIKE '%" & param & "%'"
             End If
-            If DiagMode = Globals.DiagMode.CTRL_CV Then
+            If DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
                 query = query & " and isSupprime=False "
             End If
             query = query & " ORDER BY Diagnostic.controleDateFin DESC"
@@ -2826,22 +2826,22 @@ Public Class liste_diagnosticPulve2
     End Sub
 
     Private Sub liste_diagnosticPulve_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        If Globals.GLOB_ENV_MODEFORMATION Then
+        If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Me.Text = "Liste des contrôles"
         Else
             Me.Text = "Crodip .::. Liste des contrôles"
         End If
-        col_contrat.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
-        Col_Rapports.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
-        col_SM.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
-        col_Details.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
-        col_Remplacer.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
-        col_ContreVisite.Visible = DiagMode = Globals.DiagMode.CTRL_CV
-        col_Signatures.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
-        col_Remplacer.Visible = DiagMode <> Globals.DiagMode.CTRL_CV
+        col_contrat.Visible = DiagMode <> GlobalsCRODIP.DiagMode.CTRL_CV
+        Col_Rapports.Visible = DiagMode <> GlobalsCRODIP.DiagMode.CTRL_CV
+        col_SM.Visible = DiagMode <> GlobalsCRODIP.DiagMode.CTRL_CV
+        col_Details.Visible = DiagMode <> GlobalsCRODIP.DiagMode.CTRL_CV
+        col_Remplacer.Visible = DiagMode <> GlobalsCRODIP.DiagMode.CTRL_CV
+        col_ContreVisite.Visible = DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV
+        col_Signatures.Visible = DiagMode <> GlobalsCRODIP.DiagMode.CTRL_CV
+        col_Remplacer.Visible = DiagMode <> GlobalsCRODIP.DiagMode.CTRL_CV
 
 
-        If DiagMode <> Globals.DiagMode.CTRL_CV Then
+        If DiagMode <> GlobalsCRODIP.DiagMode.CTRL_CV Then
             col_Signatures.Visible = oAgent.isSignElecActive
             ckisNonReference.Visible = False
             btn_reprendreDiag.Visible = False
@@ -2892,7 +2892,7 @@ Public Class liste_diagnosticPulve2
                 m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
 
                 ' On récupère le Diagnostic selectionné
-                Me.DiagMode = Globals.DiagMode.CTRL_VISU
+                Me.DiagMode = GlobalsCRODIP.DiagMode.CTRL_VISU
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()
 
@@ -2921,7 +2921,7 @@ Public Class liste_diagnosticPulve2
                     'm_oDiag.setPulverisateur(oPulve)
 
                     ' On Modifi le Diag Sélectionné
-                    Me.DiagMode = IIf(m_oDiag.controleIsComplet, Globals.DiagMode.CTRL_COMPLET, Globals.DiagMode.CTRL_CV)
+                    Me.DiagMode = IIf(m_oDiag.controleIsComplet, GlobalsCRODIP.DiagMode.CTRL_COMPLET, GlobalsCRODIP.DiagMode.CTRL_CV)
                     m_oDiag.isSignCCAgent = False
                     m_oDiag.isSignCCClient = False
                     m_oDiag.isSignRIAgent = False
@@ -2944,7 +2944,7 @@ Public Class liste_diagnosticPulve2
                 m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
                 If Not m_oDiag.isSupprime Then
                     ' On récupère le Diagnostic selectionné
-                    Me.DiagMode = Globals.DiagMode.CTRL_SIGNATURE
+                    Me.DiagMode = GlobalsCRODIP.DiagMode.CTRL_SIGNATURE
                     Me.DialogResult = Windows.Forms.DialogResult.OK
                     Me.Close()
                 End If
@@ -2958,8 +2958,8 @@ Public Class liste_diagnosticPulve2
         If m_oDiag IsNot Nothing Then
             Try
                 If Not String.IsNullOrEmpty(m_oDiag.RIFileName) Then
-                    EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.RIFileName)
-                    CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.RIFileName)                ' On récupère le Diagnostic selectionné
+                    EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.RIFileName)
+                    CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.RIFileName)                ' On récupère le Diagnostic selectionné
                 End If
             Catch ex As Exception
                 CSDebug.dispError("liste_DiagnosticPulve2.VisualisationRI  ERR :" & ex.Message.ToString)
@@ -2970,8 +2970,8 @@ Public Class liste_diagnosticPulve2
         If m_oDiag IsNot Nothing Then
             Try
                 If Not String.IsNullOrEmpty(m_oDiag.SMFileName) Then
-                    EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.SMFileName)
-                    CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.SMFileName)                ' On récupère le Diagnostic selectionné
+                    EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.SMFileName)
+                    CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.SMFileName)                ' On récupère le Diagnostic selectionné
                 End If
             Catch ex As Exception
                 CSDebug.dispError("liste_DiagnosticPulve2.VisualisationSM  ERR :" & ex.Message.ToString)
@@ -2982,8 +2982,8 @@ Public Class liste_diagnosticPulve2
         If m_oDiag IsNot Nothing Then
             Try
                 If Not String.IsNullOrEmpty(m_oDiag.CCFileName) Then
-                    EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.CCFileName)
-                    CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)                ' On récupère le Diagnostic selectionné
+                    EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.CCFileName)
+                    CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)                ' On récupère le Diagnostic selectionné
                 End If
             Catch ex As Exception
                 CSDebug.dispError("liste_DiagnosticPulve2.VisualisationCC  ERR :" & ex.Message.ToString)
@@ -3004,7 +3004,7 @@ Public Class liste_diagnosticPulve2
                 ' Mise à jour de la barre de status
                 Statusbar.display("Nouveau contrôle (Contre Visite)")
                 Me.DialogResult = Windows.Forms.DialogResult.OK
-                Me.DiagMode = Globals.DiagMode.CTRL_CV
+                Me.DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV
                 Me.Close()
             End If
         End If
@@ -3047,7 +3047,7 @@ Public Class liste_diagnosticPulve2
         ' Mise à jour de la barre de status
         Statusbar.display("Nouveau contrôle (Contre Visite)")
         Me.DialogResult = Windows.Forms.DialogResult.OK
-        Me.DiagMode = Globals.DiagMode.CTRL_CV
+        Me.DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV
         Me.Close()
 
     End Sub

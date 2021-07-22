@@ -13,7 +13,7 @@ Public Class CSSoftwareUpdate
         Else
             CSSoftwareUpdate.majSoftware()
         End If
-        Globals.Init()
+        GlobalsCRODIP.Init()
     End Sub
 
     Private Shared _thread_majSoftware As Thread
@@ -35,16 +35,16 @@ Public Class CSSoftwareUpdate
     Public Shared Function checkMAJ() As Boolean
         Dim bReturn As Boolean = False
         'En mode simplifié pas de Mise à jour
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
             Return False
         End If
         Try
-            If Globals.GLOB_NETWORKAVAILABLE And Not isXPorBefore() Then
+            If GlobalsCRODIP.GLOB_NETWORKAVAILABLE And Not isXPorBefore() Then
                 Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
 
                 Dim wsResponse As New Object
                 ' Appel au WS
-                Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(Globals.GLOB_APPLI_BUILD, wsResponse)
+                Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(GlobalsCRODIP.GLOB_APPLI_BUILD, wsResponse)
                 If codeResponse = 2 Then
                     Dim oUpdateInfo As UpdateInfo
                     oUpdateInfo = New UpdateInfo(wsResponse)

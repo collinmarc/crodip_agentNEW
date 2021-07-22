@@ -29,7 +29,7 @@ Module CSBoot
         Dim bReturn As Boolean
         Try
             bReturn = True
-            If Globals.GLOB_NETWORKAVAILABLE And Not Globals.GLOB_ENV_MODEFORMATION Then
+            If GlobalsCRODIP.GLOB_NETWORKAVAILABLE And Not GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
                 If CSEnvironnement.checkWebService Then
                     If CSEnvironnement.checkVersion = False Then
                         MsgBox(CSEnvironnement.versionMessage & vbNewLine & CSEnvironnement.versionUrl)

@@ -740,7 +740,7 @@ Public Class frmdiagnostic_facturationCoProp
         Dim facture As DiagnosticFacture = New DiagnosticFacture
         Try
             '####
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
             Dim oStructure As Structuree = StructureManager.getStructureById(m_oDiag.organismePresId)
             '####
 

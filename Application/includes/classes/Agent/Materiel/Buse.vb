@@ -90,9 +90,9 @@ Public Class Buse
             Case "couleur".Trim().ToUpper()
                 Me.couleur = pValue.ToString()
             Case "pressionEtalonnage".Trim().ToUpper()
-                Me.pressionEtalonnage = Globals.StringToDouble(pValue.ToString())
+                Me.pressionEtalonnage = GlobalsCRODIP.StringToDouble(pValue.ToString())
             Case "debitEtalonnage".Trim().ToUpper()
-                Me.debitEtalonnage = Globals.StringToDouble(pValue.ToString())
+                Me.debitEtalonnage = GlobalsCRODIP.StringToDouble(pValue.ToString())
             Case "isSynchro".Trim().ToUpper()
                 Me.isSynchro = pValue
             Case "dateAchat".Trim().ToUpper()
@@ -146,9 +146,9 @@ Public Class Buse
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Overloads Function getAlerte() As Globals.ALERTE
-        Dim bReturn As Globals.ALERTE
-        bReturn = Globals.ALERTE.NONE
+    Public Overloads Function getAlerte() As GlobalsCRODIP.ALERTE
+        Dim bReturn As GlobalsCRODIP.ALERTE
+        bReturn = GlobalsCRODIP.ALERTE.NONE
 
         Dim oNiveau As NiveauAlerte
 

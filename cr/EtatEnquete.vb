@@ -11,7 +11,7 @@ Public Class EtatEnquete
     Private m_ReportName As String
 
     Public Sub New(pDiag As Diagnostic)
-        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
+        m_Path = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
         'Récupération du nom du modème Crystal pour un chargement ultérieur
         Using r1 As New cr_EnqueteSatisfaction()

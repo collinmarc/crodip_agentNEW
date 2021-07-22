@@ -14,8 +14,8 @@ Public Class frmlstLieuxControle
     End Sub
 
     Public Sub chargerLieuxControle()
-        If File.Exists("./Lieuxcontrole.csv") Then
-            Using reader As StreamReader = New StreamReader("./Lieuxcontrole.csv")
+        If File.Exists(GlobalsCRODIP.PATH_TO_LIEUXCONTROLE) Then
+            Using reader As StreamReader = New StreamReader(GlobalsCRODIP.PATH_TO_LIEUXCONTROLE)
                 Using csv As CsvReader = New CsvReader(reader, Globalization.CultureInfo.InvariantCulture)
                     csv.GetRecords(Of LieuxControle)().ToList().ForEach(Sub(lieu) m_bsLieuxControle.Add(lieu))
                 End Using

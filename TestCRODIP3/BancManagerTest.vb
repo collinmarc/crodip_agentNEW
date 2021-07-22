@@ -476,19 +476,19 @@ Public Class BancManagerTest
         Dim obanc As Banc
         obanc = m_oBanc
         obanc.dateDernierControle = Now
-        Assert.AreEqual(Globals.ALERTE.NONE, obanc.getAlerte())
+        Assert.AreEqual(GlobalsCRODIP.ALERTE.NONE, obanc.getAlerte())
 
         obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -50, Now)
-        Assert.AreEqual(Globals.ALERTE.NOIRE, obanc.getAlerte())
+        Assert.AreEqual(GlobalsCRODIP.ALERTE.NOIRE, obanc.getAlerte())
 
         obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -21, Now)
-        Assert.AreEqual(Globals.ALERTE.ROUGE, obanc.getAlerte())
+        Assert.AreEqual(GlobalsCRODIP.ALERTE.ROUGE, obanc.getAlerte())
 
         obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -11, Now)
-        Assert.AreEqual(Globals.ALERTE.ORANGE, obanc.getAlerte())
+        Assert.AreEqual(GlobalsCRODIP.ALERTE.ORANGE, obanc.getAlerte())
 
         obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -6, Now)
-        Assert.AreEqual(Globals.ALERTE.JAUNE, obanc.getAlerte())
+        Assert.AreEqual(GlobalsCRODIP.ALERTE.JAUNE, obanc.getAlerte())
     End Sub
 
 

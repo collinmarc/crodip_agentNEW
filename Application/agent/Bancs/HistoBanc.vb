@@ -484,7 +484,7 @@ Public Class HistoBanc
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
-        'MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_BANC, ficheBanc_marque)
+        'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MARQUES_BANC, ficheBanc_marque)
         'Chargement des modules d'acquisisition
 
         dispBancCourant()
@@ -525,8 +525,8 @@ Public Class HistoBanc
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
         If e.ColumnIndex = col_FVFileName.Index Then
             Dim oFV As FVBanc = m_bsrcFVBanc.Current
-            EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_BANCMESURE, oFV.FVFileName)
-            CSFile.open(Globals.CONST_PATH_EXP_BANCMESURE & "/" & oFV.FVFileName)
+            EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE, oFV.FVFileName)
+            CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE & "/" & oFV.FVFileName)
         End If
     End Sub
 End Class

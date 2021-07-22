@@ -40,7 +40,7 @@ Public Class ManometreControle
     Public ReadOnly Property resolution_d() As Double
         Get
             Try
-                Return Globals.StringToDouble(_resolution)
+                Return GlobalsCRODIP.StringToDouble(_resolution)
             Catch ex As Exception
                 Return CDbl(0)
             End Try
@@ -132,7 +132,7 @@ Public Class ManometreControle
             Case "25"
                 dReturn = 0.25
             Case Else
-                dReturn = CDbl(Math.Round((Globals.StringToDouble(classe) * Globals.StringToDouble(fondEchelle) / 100), 2))
+                dReturn = CDbl(Math.Round((GlobalsCRODIP.StringToDouble(classe) * GlobalsCRODIP.StringToDouble(fondEchelle) / 100), 2))
         End Select
 
         Return dReturn
@@ -259,9 +259,9 @@ Public Class ManometreControle
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Overloads Function getAlerte() As Globals.ALERTE
-        Dim bReturn As Globals.ALERTE
-        bReturn = Globals.ALERTE.NONE
+    Public Overloads Function getAlerte() As GlobalsCRODIP.ALERTE
+        Dim bReturn As GlobalsCRODIP.ALERTE
+        bReturn = GlobalsCRODIP.ALERTE.NONE
 
         Dim oNiveau As NiveauAlerte
         If Not String.IsNullOrEmpty(dateDernierControleS) Then
@@ -269,8 +269,8 @@ Public Class ManometreControle
 
             bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
 
-            If bReturn = Globals.ALERTE.NONE And etat = False Then
-                bReturn = Globals.ALERTE.CONTROLE
+            If bReturn = GlobalsCRODIP.ALERTE.NONE And etat = False Then
+                bReturn = GlobalsCRODIP.ALERTE.CONTROLE
             End If
         End If
         Return bReturn
@@ -336,7 +336,7 @@ Public Class ManometreControle
                 ' Contrôle OK ou NOK
                 oFV.blocage = Not Me.etat
                 oFV.dateModif = pControleMano.DateVerif
-                ' On Globals.CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
+                ' On GlobalsCRODIP.CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
                 Dim sFileName As String = pControleMano.buildPDF()
                 oFV.FVFileName = sFileName
 

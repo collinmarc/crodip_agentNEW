@@ -28,7 +28,7 @@ Public Class Synchronisation
         m_bTraitee = False
         setAllSynchroTrue()
         m_Agent = pAgent
-        If Globals.GLOB_ENV_DEBUG Then
+        If GlobalsCRODIP.GLOB_ENV_DEBUG Then
             setAllSynchroToDBG()
         End If
     End Sub
@@ -263,7 +263,7 @@ Public Class Synchronisation
                     ' Récupération de la liste des FV des manos de moins d'un an qui ont un nom de PDF 
                     Dim lst As List(Of FVManometreControle) = FVManometreControleManager.getLstFVManometreControle().Where(Function(d) d.FVFileName <> "" And d.dateModif <> "" And CDate(d.dateModif) > Now.AddMonths(-6)).ToList()
                     For Each oFV As FVManometreControle In lst
-                        If File.Exists(Globals.CONST_PATH_EXP_MANOCONTROLE & oFV.FVFileName) Then
+                        If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE & oFV.FVFileName) Then
                             Notice("PDFs [" & oFV.id & "]")
                             FVManometreControleManager.SendEtats(oFV)
                         End If

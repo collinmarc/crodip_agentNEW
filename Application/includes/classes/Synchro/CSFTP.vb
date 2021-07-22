@@ -7,7 +7,7 @@ Public Class CSFTP
     Private m_host As String
 
     Public Sub New()
-        If Not Globals.GLOB_ENV_DEBUG And My.Settings.WSCrodipProduction Then
+        If Not GlobalsCRODIP.GLOB_ENV_DEBUG And My.Settings.WSCrodipProduction Then
             m_user = My.Settings.FTPuser
             m_password = My.Settings.FTPPassword
             m_host = My.Settings.FTPHost

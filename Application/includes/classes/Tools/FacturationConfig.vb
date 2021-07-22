@@ -88,7 +88,7 @@ Public Class FacturationConfig
 
     Public Shared Function WriteXml() As Boolean
         Dim bReturn As Boolean
-        Dim strXMLFile As String = Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME
+        Dim strXMLFile As String = GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME
 
         Try
             Dim oParam As New FacturationConfig()

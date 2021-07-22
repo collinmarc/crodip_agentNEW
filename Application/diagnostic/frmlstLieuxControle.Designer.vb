@@ -91,6 +91,7 @@ Partial Class frmlstLieuxControle
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.White
         Me.Name = "frmlstLieuxControle"
+        Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Liste des lieux de contrôle"
         CType(Me.m_bsLieuxControle, System.ComponentModel.ISupportInitialize).EndInit()

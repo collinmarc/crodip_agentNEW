@@ -582,8 +582,8 @@ Public Class FVBancManager
         Dim bReturn As Boolean
         Dim filePath As String
         If Not String.IsNullOrEmpty(pFV.FVFileName) Then
-            filePath = Globals.CONST_PATH_EXP_BANCMESURE & "/" & pFV.FVFileName
-            EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_BANCMESURE, pFV.FVFileName)
+            filePath = GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE & "/" & pFV.FVFileName
+            EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE, pFV.FVFileName)
 
             If My.Settings.SynchroEtatMode = "FTP" Then
                 bReturn = SendFTPEtats(filePath)

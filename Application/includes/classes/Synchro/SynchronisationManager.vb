@@ -63,8 +63,8 @@ Public Class SynchronisationManager
     Public Shared Function ReinitFichierLOGSynchro() As Boolean
         Dim bReturn As Boolean
         Try
-            If System.IO.File.Exists(Globals.GLOB_ENV_SYNCHROLOGFILE) Then
-                System.IO.File.Delete(Globals.GLOB_ENV_SYNCHROLOGFILE)
+            If System.IO.File.Exists(GlobalsCRODIP.GLOB_ENV_SYNCHROLOGFILE) Then
+                System.IO.File.Delete(GlobalsCRODIP.GLOB_ENV_SYNCHROLOGFILE)
 
             End If
 
@@ -131,7 +131,7 @@ Public Class SynchronisationManager
                 Next objWSUpdates_item
 
                 LogSynchroElmt(oSynchro, "WS.UpdateAvailable")
-                If Globals.GLOB_ENV_MODESIMPLIFIE Then
+                If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
                     'En mode simplifié on ne synchronise pas les Elements communs et Organisme du Module documentaire
                     If TypeOf oSynchro Is SynchronisationElmtDocument And oSynchro.Update Then
                         If oSynchro.IdentifiantChaine.Contains("/Commun/") Or oSynchro.IdentifiantChaine.Contains("/Organismes/") Then

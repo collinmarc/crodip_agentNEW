@@ -45,7 +45,7 @@ Public Class frmMAJsynchroAgent
     End Sub
 
     Private Sub frmAgent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Globals.Init()
+        GlobalsCRODIP.Init()
         grpAgent.Visible = False
         objWSCrodip = WSCrodip.getWS()
         lblURLServeur.Text = objWSCrodip.Url

@@ -17,7 +17,7 @@ Public Class FrmDiagnostique
     Protected Const CHK_DEFAUT_MINEUR As Integer = 2
     Protected Const CHK_DEFAUT_MAJEUR As Integer = 3
 
-    Protected m_modeAffichage As Globals.DiagMode
+    Protected m_modeAffichage As GlobalsCRODIP.DiagMode
     Protected typeControle As String = "Rampe"
     Protected typeJet As String = "Jet Porté"
 
@@ -78,7 +78,7 @@ Public Class FrmDiagnostique
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         OrganizeControls()
 
-        m_referentielBuses.load(Globals.GLOB_STR_REFERENTIELBUSES_FILENAME)
+        m_referentielBuses.load(GlobalsCRODIP.GLOB_STR_REFERENTIELBUSES_FILENAME)
         m_bDuringLoad = False
 
 
@@ -87,7 +87,7 @@ Public Class FrmDiagnostique
         Me.New()
         setContexte(pDiag, _modeAffichage, pPulverisateur, pExploit)
     End Sub
-    Public Sub SetContexte(pDiag As Diagnostic, ByVal _modeAffichage As Globals.DiagMode, pPulve As Pulverisateur, pExploit As Exploitation)
+    Public Sub SetContexte(pDiag As Diagnostic, ByVal _modeAffichage As GlobalsCRODIP.DiagMode, pPulve As Pulverisateur, pExploit As Exploitation)
         m_modeAffichage = _modeAffichage
         m_diagnostic = pDiag
         m_Pulverisateur = pPulve
@@ -721,7 +721,7 @@ Public Class FrmDiagnostique
         If m_diagnostic IsNot Nothing Then
             ''Debug
             '' Mise a jour de la barre de statut
-            'Statusbar.display(Globals.CONST_STATUTMSG_DIAG_ENCOURS, False)
+            'Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DIAG_ENCOURS, False)
             'Lecture du paramétrage associé au pulvérisateur
             m_Paramdiag = m_Pulverisateur.getParamDiag()
             If String.IsNullOrEmpty(m_Paramdiag.fichierConfig) Then
@@ -783,14 +783,14 @@ Public Class FrmDiagnostique
             'Initialisation des Tab 5621 et 5622
             RadioButton_diagnostic_5621.Tag = "NOK"
             RadioButton_diagnostic_5622.Tag = "NOK"
-            If m_modeAffichage = Globals.DiagMode.CTRL_CV _
-                Or m_modeAffichage = Globals.DiagMode.CTRL_VISU _
+            If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_CV _
+                Or m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU _
                 Or m_diagnostic.diagRemplacementId <> "" Then
                 ' Chargement du diagnostic si on est en mode CV ou VISU OU EN MODE REMPLACEMENT
                 loadExistingDiag()
                 RadioButton_diagnostic_5621.Tag = "OK"
                 RadioButton_diagnostic_5622.Tag = "OK"
-                If m_modeAffichage = Globals.DiagMode.CTRL_VISU Then
+                If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
                     ' Changement des boutons
                     btn_Poursuivre.Visible = False
                     btn_Valider.Visible = True
@@ -1104,7 +1104,7 @@ Public Class FrmDiagnostique
             '###############################################
 
 
-            If m_modeAffichage = Globals.DiagMode.CTRL_VISU Then
+            If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
                 DisableControls()
             End If
 
@@ -1898,7 +1898,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                             Dim pressionManoTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("pressionTronc_" & pressionId & "_pressionSortie_" & i, tabPage_diagnostique_manoTroncon)
                             If pressionManoTextBox.Text <> "" Then
                                 nbBusesEffect += 1
-                                Dim pressionManoValue As Double = Globals.StringToDouble(pressionManoTextBox.Text)
+                                Dim pressionManoValue As Double = GlobalsCRODIP.StringToDouble(pressionManoTextBox.Text)
                                 pressionMoyenne += pressionManoValue
                             End If
                         Catch ex As Exception
@@ -2234,7 +2234,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
                             troncons833.idColumn = nCol
                             troncons833.pressionSortie = oTroncon.PressionLue
-                            'Transfert des elements calculé dans le diagnostic pour Globals.CONSTruire le rapport de synthèse
+                            'Transfert des elements calculé dans le diagnostic pour GlobalsCRODIP.CONSTruire le rapport de synthèse
                             troncons833.EcartBar = oTroncon.EcartPression
                             troncons833.Ecartpct = oTroncon.EcartPressionpct
                             troncons833.MoyenneAutrePression = oTroncon.MoyenneAutresTroncons
@@ -2429,15 +2429,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             If tbdebitBuse.Text <> "" Then
                 tbdebitBuse.Text = tbdebitBuse.Text.Replace(".", ",")
                 If IsNumeric(tbdebitBuse.Text) And Not String.IsNullOrEmpty(tbdebitBuse.Text) Then
-                    debitValue = Globals.StringToDouble(tbdebitBuse.Text)
+                    debitValue = GlobalsCRODIP.StringToDouble(tbdebitBuse.Text)
                     'Recherche du débit Nominal
                     debitNominalTextBox = CSForm.getControlByName("TextBox_debitNominal_" & lotId, diagBuses_tab_categories)
                     If IsNumeric(tbdebitBuse.Text) And Not String.IsNullOrEmpty(tbdebitBuse.Text) Then
-                        debitNominalValue = Globals.StringToDouble(debitNominalTextBox.Text)
+                        debitNominalValue = GlobalsCRODIP.StringToDouble(debitNominalTextBox.Text)
                     Else
                         debitNominalTextBox = CSForm.getControlByName("TextBox_debitNominalCONSTructeur_" & lotId, diagBuses_tab_categories)
                         If IsNumeric(tbdebitBuse.Text) And Not String.IsNullOrEmpty(tbdebitBuse.Text) Then
-                            debitNominalValue = Globals.StringToDouble(debitNominalTextBox.Text)
+                            debitNominalValue = GlobalsCRODIP.StringToDouble(debitNominalTextBox.Text)
                         End If
                     End If
                 End If
@@ -2451,7 +2451,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     oBuse.debit = debitValue
                     oBuse.CalcEcart(debitNominalValue, 0)
                     tbusureBuse.Text = oBuse.ecart
-                    usurePourcent = Globals.StringToDouble(oBuse.ecart)
+                    usurePourcent = GlobalsCRODIP.StringToDouble(oBuse.ecart)
                 End If
             Else
                 tbusureBuse.Text = ""
@@ -3005,16 +3005,16 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                                     Dim debitTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("diagBuses_mesureDebit_" & lotId & "_" & buseId & "_debit", diagBuses_tab_categories)
                                     If Not debitTextBox Is Nothing Then
                                         If debitTextBox.Text <> "" Then
-                                            debitValue = Globals.StringToDouble(debitTextBox.Text)
+                                            debitValue = GlobalsCRODIP.StringToDouble(debitTextBox.Text)
                                             debitNominalTextBox = CSForm.getControlByName("TextBox_debitNominal_" & lotId, diagBuses_tab_categories)
 
                                             If Not debitNominalTextBox Is Nothing Then
-                                                debitNominalValue = Globals.StringToDouble(debitNominalTextBox.Text)
+                                                debitNominalValue = GlobalsCRODIP.StringToDouble(debitNominalTextBox.Text)
                                             End If
 
                                             ecartTolereTextBox = CSForm.getControlByName("ComboBox_ecartTolere_" & lotId, diagBuses_tab_categories)
                                             If Not ecartTolereTextBox Is Nothing Then
-                                                ecartTolereValue = Globals.StringToDouble(ecartTolereTextBox.Text)
+                                                ecartTolereValue = GlobalsCRODIP.StringToDouble(ecartTolereTextBox.Text)
                                             End If
                                             usureTextBox = CSForm.getControlByName("diagBuses_mesureDebit_" & lotId & "_" & buseId & "_usure", diagBuses_tab_categories)
                                             ' On Calcul
@@ -4060,7 +4060,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             '------------------------------------------------------
             'Récupération de la pression de mesure à 3 bars
             m_diagnostic.buseDebit = tbDebitMoyen3bars.Text
-            m_diagnostic.buseDebitMoyenPM = Globals.StringToDouble(diagBuses_debitMoyen.Text)
+            m_diagnostic.buseDebitMoyenPM = GlobalsCRODIP.StringToDouble(diagBuses_debitMoyen.Text)
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("diagnostique::ValiderDiagnostiqueBuses : " & ex.Message)
@@ -4423,7 +4423,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         popup_help_811.Visible = True
         popup_help_811.Top = (Me.Height / 2) - (popup_help_811.Height / 2)
         popup_help_811.Left = (Me.Width / 2) - (popup_help_811.Width / 2)
-        If m_modeAffichage = Globals.DiagMode.CTRL_VISU Then
+        If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
             help811_largeur.Enabled = False
             help811_fleche.Enabled = False
         End If
@@ -4460,8 +4460,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Sauvegarde des valeurs dans le Diagnostic
             m_diagnostic.diagnosticHelp811.LargeurRampe = help811_largeur.Text
             m_diagnostic.diagnosticHelp811.Fleche = help811_fleche.Text
-            tmpLargeur = Globals.StringToDouble(help811_largeur.Text)
-            tmpFleche = Globals.StringToDouble(help811_fleche.Text)
+            tmpLargeur = GlobalsCRODIP.StringToDouble(help811_largeur.Text)
+            tmpFleche = GlobalsCRODIP.StringToDouble(help811_fleche.Text)
 
             If tmpLargeur < 20 Then
                 If tmpFleche <= 5 Then
@@ -4517,7 +4517,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 #Region " Tableau 8.3.1 "
     Private Sub affichePopup831(pMode831 As DiagnosticHelp831.ModeHelp831)
         m_PopupHelp831Mode = pMode831
-        If m_modeAffichage = Globals.DiagMode.CTRL_VISU Then
+        If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
             help831_ecartementReference.Enabled = False
             help831_ecartementMax.Enabled = False
             help831_ecartementMin.Enabled = False
@@ -4564,7 +4564,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
     Private Sub help831_close_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help831_close.Click
         'Sauvegarde des valeurs dans le diag
-        If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
+        If m_modeAffichage <> GlobalsCRODIP.DiagMode.CTRL_VISU Then
             If m_PopupHelp831Mode = DiagnosticHelp831.ModeHelp831.Mode8312 Then
                 m_diagnostic.diagnosticHelp8312.Ecart_reference = help831_ecartementReference.Text
                 m_diagnostic.diagnosticHelp8312.Ecart_Maxi = help831_ecartementMax.Text
@@ -4678,7 +4678,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
     Private Sub calc551()
         Dim odlg As New diagnostic_dlghelp551()
-        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode551, m_diagnostic, "Vitesse d'avancement", m_modeAffichage = Globals.DiagMode.CTRL_VISU
+        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode551, m_diagnostic, "Vitesse d'avancement", m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU
                          )
         odlg.ShowDialog(Me)
         If odlg.DialogResult = Windows.Forms.DialogResult.OK Then
@@ -4703,7 +4703,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub Calc5621()
         Dim odlg As New diagnostic_dlghelp551()
-        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode5621, m_diagnostic, "Vitesse de fonctionnement", m_modeAffichage = Globals.DiagMode.CTRL_VISU)
+        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode5621, m_diagnostic, "Vitesse de fonctionnement", m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU)
         odlg.ShowDialog(Me)
         If odlg.DialogResult = Windows.Forms.DialogResult.OK Then
             'La Valeur ErreurMoyenne du Cinémomètre est soit 551 ou 5621
@@ -4729,7 +4729,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub calc552()
         If diagBuses_debitMoyen.Text <> "" And tbPressionMesure.Text <> "" Then
             Dim oDlg552 As New Diagnostic_dlghelp552()
-            oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode552, m_diagnostic, tbDebitMoyen3bars.Text, tbPressionMesure.Text, (Globals.DiagMode.CTRL_VISU = m_modeAffichage))
+            oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode552, m_diagnostic, tbDebitMoyen3bars.Text, tbPressionMesure.Text, (GlobalsCRODIP.DiagMode.CTRL_VISU = m_modeAffichage))
             oDlg552.ShowDialog(Me)
             If oDlg552.DialogResult = Windows.Forms.DialogResult.OK Then
                 m_diagnostic.syntheseErreurDebitmetre = m_diagnostic.diagnosticHelp552.ErreurDebitMetre
@@ -4832,7 +4832,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim bReturn As Boolean = False
         'CSDebug.dispInfo("Diagnostique.btn_diagnostic_valider_Click")
         ' On commence par vérifier que tout a été rempli (Normalement OK car sinon le bouton n'est pas Enabled)
-        If m_modeAffichage = Globals.DiagMode.CTRL_VISU Then
+        If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
             NextForm()
             bReturn = True
         Else
@@ -5160,7 +5160,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             '    answ_groupBoxId = ItemCode.Substring(2, 1)
             '    answ_itemId = ItemCode.Substring(3)
             'End If
-            ''On Globals.CONSTruit l'item
+            ''On GlobalsCRODIP.CONSTruit l'item
             'Dim curDiagnosticItem As New DiagnosticItem
             'curDiagnosticItem.idDiagnostic = _diagnosticCourant.id
             'curDiagnosticItem.idItem = answ_GroupeId & answ_titleId & answ_groupBoxId
@@ -9178,7 +9178,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
             If diagBuses_debitMoyen.Text <> "" And tbPressionMesure.Text <> "" Then
                 Dim oDlg552 As New Diagnostic_dlghelp552()
-                oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode5622, m_diagnostic, tbDebitMoyen3bars.Text, tbPressionMesure.Text, (Globals.DiagMode.CTRL_VISU = m_modeAffichage))
+                oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode5622, m_diagnostic, tbDebitMoyen3bars.Text, tbPressionMesure.Text, (GlobalsCRODIP.DiagMode.CTRL_VISU = m_modeAffichage))
                 oDlg552.ShowDialog(Me)
                 If oDlg552.DialogResult = Windows.Forms.DialogResult.OK Then
                     m_diagnostic.syntheseErreurDebitmetre = m_diagnostic.diagnosticHelp5622.ErreurDebitMetre
@@ -10359,11 +10359,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub frmDiagnostique_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Not DesignMode Then
-            If Globals.GLOB_ENV_MODEFORMATION Then
+            If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
                 Me.Text = "Crodip .::. Diagnostique"
                 Me.pctLogo.Visible = False
             Else
-                If Globals.GLOB_ENV_MODESIMPLIFIE Then
+                If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
                     Me.Text = "Crodip .::. Diagnostique" & " - Mode Simplifié - "
                     pctLogo.Image = Crodip_agent.Resources.logoCRODIPIMG
                 Else
@@ -10410,7 +10410,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Exit Sub
         End If
         ini571()
-        ofrm.setContexte(diagnostic_dlghelp571.Calc571Mode.ModePRS, m_diagnostic.diagnosticHelp571, Globals.DiagMode.CTRL_VISU = m_modeAffichage)
+        ofrm.setContexte(diagnostic_dlghelp571.Calc571Mode.ModePRS, m_diagnostic.diagnosticHelp571, GlobalsCRODIP.DiagMode.CTRL_VISU = m_modeAffichage)
         If (ofrm.ShowDialog() = DialogResult.OK) Then
             m_diagnostic.diagnosticHelp571 = ofrm.getContexte()
             Select Case m_diagnostic.diagnosticHelp571.getResult()
@@ -10443,7 +10443,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End If
         ini571()
         ofrm.setContexte(diagnostic_dlghelp571.Calc571Mode.ModeDEB,
-                         m_diagnostic.diagnosticHelp571, Globals.DiagMode.CTRL_VISU = m_modeAffichage)
+                         m_diagnostic.diagnosticHelp571, GlobalsCRODIP.DiagMode.CTRL_VISU = m_modeAffichage)
 
         If (ofrm.ShowDialog() = DialogResult.OK) Then
             m_diagnostic.diagnosticHelp571 = ofrm.getContexte()
@@ -10549,16 +10549,16 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     Exit Function
                 End If
             End If
-            If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
+            If m_modeAffichage <> GlobalsCRODIP.DiagMode.CTRL_VISU Then
                 ini12123()
             End If
 
             If Not bTrtSemence And m_diagnostic.diagnosticHelp12123.lstPompes.Count = 0 Then
                 Exit Function
             End If
-            ofrm.setContexte(m_diagnostic.diagnosticHelp12123, m_modeAffichage = Globals.DiagMode.CTRL_VISU)
+            ofrm.setContexte(m_diagnostic.diagnosticHelp12123, m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU)
             If (ofrm.ShowDialog() = DialogResult.OK) Then
-                If m_modeAffichage <> Globals.DiagMode.CTRL_VISU Then
+                If m_modeAffichage <> GlobalsCRODIP.DiagMode.CTRL_VISU Then
                     'Récupération des valeurs si on est en mode saie de controle
                     m_diagnostic.diagnosticHelp12123 = ofrm.getContexte()
                     'Mise à jour de la valeur de synthèse
@@ -10631,7 +10631,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub ico_help12323_Click(sender As Object, e As EventArgs) Handles ico_help12323.Click
         Dim odlg As New diagnostic_dlghelp551()
-        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode12323, m_diagnostic, "Programmation de la vitesse", m_modeAffichage = Globals.DiagMode.CTRL_VISU)
+        odlg.setContexte(DiagnosticHelp551.Help551Mode.Mode12323, m_diagnostic, "Programmation de la vitesse", m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU)
         odlg.ShowDialog(Me)
         If odlg.DialogResult = Windows.Forms.DialogResult.OK Then
             If m_diagnostic.diagnosticHelp12323.Resultat = "OK" Then
@@ -10660,7 +10660,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim oCtrl As CRODIP_ControlLibrary.CtrlParamNiveau = sender
         Dim strCode As String = oCtrl.Tag
         Dim tCtrl As Control()
-        Dim tRadio
+        Dim tRadio As IEnumerable
         'Recherche de tous les groupBox contenant le Code dans la fenêtre
         For n As Integer = 1 To 9
             '1°) Existe-t-il un niveau en dessous

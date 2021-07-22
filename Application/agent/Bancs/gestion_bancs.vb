@@ -416,8 +416,8 @@ Public Class gestion_bancs
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
-        'MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_BANC, arrMarquesControls)
-        'MarquesManager.populateCombobox(Globals.GLOB_XML_MODELES_BANC, arrModelesControls)
+        'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MARQUES_BANC, arrMarquesControls)
+        'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MODELES_BANC, arrModelesControls)
     End Sub
 
     Private Function DisplayListe() As Boolean

@@ -240,9 +240,9 @@ Public Class Banc
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Overloads Function getAlerte() As Globals.ALERTE
-        Dim bReturn As Globals.ALERTE
-        bReturn = Globals.ALERTE.NONE
+    Public Overloads Function getAlerte() As GlobalsCRODIP.ALERTE
+        Dim bReturn As GlobalsCRODIP.ALERTE
+        bReturn = GlobalsCRODIP.ALERTE.NONE
 
         Dim oNiveau As NiveauAlerte
 
@@ -250,9 +250,9 @@ Public Class Banc
         If IsDateControle() Then
             bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
         End If
-        If bReturn = Globals.ALERTE.NONE Then
+        If bReturn = GlobalsCRODIP.ALERTE.NONE Then
             If etat = False Then
-                bReturn = Globals.ALERTE.CONTROLE
+                bReturn = GlobalsCRODIP.ALERTE.CONTROLE
             End If
         End If
         Return bReturn
@@ -321,7 +321,7 @@ Public Class Banc
                     oFV.blocage = True
                 End If
 
-                ' On Globals.CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
+                ' On GlobalsCRODIP.CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
                 Dim sFileName As String = pControleBanc.buildPDF(Me, pAgent)
                 oFV.FVFileName = sFileName
 

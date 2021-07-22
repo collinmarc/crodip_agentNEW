@@ -335,7 +335,7 @@ Public Class RPloginAgent
         pnlLoginControls.Enabled = False
         ' On récupère le formulaire contener
         Dim myFormParentContener As Form = Me.MdiParent
-        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_ENCOURS, True)
+        Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_ENCOURS, True)
         Try
             ' On récupère l'agent sélèctionné
             Dim selectedAgent As Agent
@@ -365,14 +365,14 @@ Public Class RPloginAgent
                             ' On le met en "session"
                             AgentCourant = selectedAgent
                             ' On met à jour le numéro de version du logiciel agent
-                            If AgentCourant.versionLogiciel <> Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD Then
-                                AgentCourant.versionLogiciel = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
+                            If AgentCourant.versionLogiciel <> GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD Then
+                                AgentCourant.versionLogiciel = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD
                                 'CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & agentCourant.dateModificationAgent)
                                 'AgentManager.save(agentCourant)
                             End If
                             If AgentCourant.isActif And Not AgentCourant.isSupprime Then
                                 ' On met à jour la barre de status
-                                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_OK, False)
+                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_OK, False)
                                 CSDebug.dispInfo("Connexion réussie " & AgentCourant.nom)
                                 ' On met a jour la date de dernière connexion
                                 AgentCourant.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now).ToString
@@ -385,8 +385,8 @@ Public Class RPloginAgent
                             Else
 
                                 ' On met à jour la barre de status
-                                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
-                                MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
+                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
+                                MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
                                 'On recharge la Liste des profils 
                                 FillCbxAgent()
                                 login_password.Clear()
@@ -394,21 +394,21 @@ Public Class RPloginAgent
 
                         Else
                             ' On met à jour la barre de status
-                            Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
-                            MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
+                            Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
+                            MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
                         End If
                     Else
-                        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez renseigner un mot de passe.", False)
+                        Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez renseigner un mot de passe.", False)
                     End If
                 Else
-                    Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Aucun agent correspondant", False)
+                    Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Aucun agent correspondant", False)
                 End If
             Else
-                Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez sélectionner un profil.", False)
+                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Veuillez sélectionner un profil.", False)
             End If
         Catch ex As Exception
             ' On met à jour la barre de status
-            Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
+            Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
             CSDebug.dispError("login::doLogin : " & ex.Message)
         End Try
         'On réactive la fenêtre , si la procédure de Cnx a fonctionner, cette fenêtre est cachée
@@ -418,17 +418,17 @@ Public Class RPloginAgent
 #End Region
     Private Sub login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Debug
-        lbl_environnement_ws.Visible = Globals.GLOB_ENV_DEBUG
-        lbl_environnement_debugType.Visible = Globals.GLOB_ENV_DEBUG
-        lbl_environnement_debugLvl.Visible = Globals.GLOB_ENV_DEBUG
-        lbl_environnement_debugType.Text = "Type de sortie debug..................: " & Globals.GLOB_ENV_DEBUGTYPE
-        lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & Globals.GLOB_ENV_DEBUGLVL
+        lbl_environnement_ws.Visible = GlobalsCRODIP.GLOB_ENV_DEBUG
+        lbl_environnement_debugType.Visible = GlobalsCRODIP.GLOB_ENV_DEBUG
+        lbl_environnement_debugLvl.Visible = GlobalsCRODIP.GLOB_ENV_DEBUG
+        lbl_environnement_debugType.Text = "Type de sortie debug..................: " & GlobalsCRODIP.GLOB_ENV_DEBUGTYPE
+        lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & GlobalsCRODIP.GLOB_ENV_DEBUGLVL
         lbl_WS.Text = WSCrodip.getWS().Url
 
         If Not CSEnvironnement.checkWebService() Then
             lbl_WS.ForeColor = Drawing.Color.Red
         End If
-        Lbl_Version.Text = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
+        Lbl_Version.Text = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD
         ' On récupère le formulaire contener
         Dim myFormParentContener As Form = Me.MdiParent
         ' Initialisation des variables

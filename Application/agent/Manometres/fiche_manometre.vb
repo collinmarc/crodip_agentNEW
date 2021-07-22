@@ -423,8 +423,8 @@ Public Class fiche_manometre
             'C'est le libelle de résolution qui détient la bonne position
             '            lblResolution.Location = New Point(8, 177)
             Me.Text = "Crodip .::. Fiche Manomètre Contrôle"
-            'MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_MANOCONT, ficheMano_marque)
-            'MarquesManager.populateCombobox(Globals.GLOB_XML_MODELES_MANOCONT, ficheMano_type)
+            'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MARQUES_MANOCONT, ficheMano_marque)
+            'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MODELES_MANOCONT, ficheMano_type)
             ' On charge les infos
             '    If manometreCourant.numeroNational = "" Then
             '        manometreCourant.numeroNational = ManometreControleManager.getNewNumeroNational()
@@ -438,8 +438,8 @@ Public Class fiche_manometre
             'C'est le libelle de résolution qui détient la bonne position
             lblIncertitude.Location = lblResolution.Location
             Me.Text = "Crodip .::. Fiche Manomètre Etalon"
-            'MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_MANOETA, ficheMano_marque)
-            'MarquesManager.populateCombobox(Globals.GLOB_XML_MODELES_MANOETA, ficheMano_type)
+            'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MARQUES_MANOETA, ficheMano_marque)
+            'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MODELES_MANOETA, ficheMano_type)
             '    ' On charge les infos
             '    If manometreCourant.numeroNational = "" Then
             '        manometreCourant.numeroNational = ManometreEtalonManager.getNewNumeroNational()

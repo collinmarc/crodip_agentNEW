@@ -348,7 +348,7 @@ Public Class AutoTestManager
                         i = i + 1
                     Next
                     Dim response As Integer = objWSCrodip.SendAutoTest(ArrObject)
-                    If response = 0 Or response = 2 Or (Globals.GLOB_ENV_DEBUG And response = 9) Then
+                    If response = 0 Or response = 2 Or (GlobalsCRODIP.GLOB_ENV_DEBUG And response = 9) Then
                         'Mise à jour de la date de synchro (date Modification CRODIP)
                         For Each obj As AutoTest In oCol
                             obj.dateModificationCrodip = CSDate.ToCRODIPString(Now())

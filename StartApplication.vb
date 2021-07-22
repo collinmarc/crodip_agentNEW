@@ -69,11 +69,11 @@ Module StartApplication
             End If
             bLoginFailed = false
 #Else
-        If Not System.IO.File.Exists(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME) Then
+        If Not System.IO.File.Exists(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME) Then
             FacturationConfig.WriteXml()
         End If
 
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
 
             'Test de la validité 
             ParamReglagePulve.XMLFileName = "zsxedc.crodip"
@@ -85,7 +85,7 @@ Module StartApplication
                 End If
             End If
             If bLoginFailed Then
-                MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre version simplifiée a expirée , contactez le CRODIP")
+                MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre version simplifiée a expirée , contactez le CRODIP")
                 Application.Exit()
             End If
         Else

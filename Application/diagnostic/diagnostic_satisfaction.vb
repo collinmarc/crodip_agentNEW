@@ -713,7 +713,7 @@ Public Class diagnostic_satisfaction
 
         Dim ofrmAccueil As accueil = globFormAccueil
         If ofrmAccueil IsNot Nothing Then
-            ofrmAccueil.NouveauDiagnosticPhase2(Globals.DiagMode.CTRL_CV, diagnosticCourant)
+            ofrmAccueil.NouveauDiagnosticPhase2(GlobalsCRODIP.DiagMode.CTRL_CV, diagnosticCourant)
         End If
 
 

@@ -2411,7 +2411,7 @@ Public Class frmControleManometres2
     Private Function calcErrAbs(pPressManoctrl As String, pPressManoEtalon As String) As String
         Dim dErr As Double
         If Not String.IsNullOrEmpty(pPressManoctrl) And Not String.IsNullOrEmpty(pPressManoEtalon) Then
-            dErr = Math.Round(Math.Abs(Globals.StringToDouble(pPressManoctrl) - Globals.StringToDouble(pPressManoEtalon)), 3)
+            dErr = Math.Round(Math.Abs(GlobalsCRODIP.StringToDouble(pPressManoctrl) - GlobalsCRODIP.StringToDouble(pPressManoEtalon)), 3)
             Return dErr.ToString("####0.000")
         Else
             Return ""
@@ -2420,7 +2420,7 @@ Public Class frmControleManometres2
     Private Function calcErrFond(pPressManoctrl As String, pPressManoEtalon As String, pFond As String) As String
         Dim dErr As Double
         If Not String.IsNullOrEmpty(pPressManoctrl) And Not String.IsNullOrEmpty(pPressManoEtalon) And Not String.IsNullOrEmpty(pFond) Then
-            dErr = Math.Round(Math.Abs(Globals.StringToDouble(pPressManoctrl) - Globals.StringToDouble(pPressManoEtalon)) * 100 / Globals.StringToDouble(pFond), 3)
+            dErr = Math.Round(Math.Abs(GlobalsCRODIP.StringToDouble(pPressManoctrl) - GlobalsCRODIP.StringToDouble(pPressManoEtalon)) * 100 / GlobalsCRODIP.StringToDouble(pFond), 3)
             Return dErr.ToString("####0.000")
         Else
             Return ""
@@ -2428,7 +2428,7 @@ Public Class frmControleManometres2
     End Function
     Private Function calcConformite(pErrAbs As String, pEMT As String) As String
         If Not String.IsNullOrEmpty(pErrAbs) And Not String.IsNullOrEmpty(pEMT) Then
-            If Globals.StringToDouble(pErrAbs) > Globals.StringToDouble(pEMT) Then
+            If GlobalsCRODIP.StringToDouble(pErrAbs) > GlobalsCRODIP.StringToDouble(pEMT) Then
                 Return "0" ' NOK
             Else
                 Return "1" 'OK
@@ -2828,7 +2828,7 @@ Public Class frmControleManometres2
             Case "25"
                 dReturn = 0.25
             Case Else
-                dReturn = CDbl(Math.Round((Globals.StringToDouble(pMano.classe) * Globals.StringToDouble(pMano.fondEchelle) / 100), 2))
+                dReturn = CDbl(Math.Round((GlobalsCRODIP.StringToDouble(pMano.classe) * GlobalsCRODIP.StringToDouble(pMano.fondEchelle) / 100), 2))
         End Select
 
         Return dReturn

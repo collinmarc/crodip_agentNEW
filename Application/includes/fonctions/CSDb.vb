@@ -48,7 +48,7 @@ Public Class CSDb
 
         'Select Case pDBType
         'Case DBTYPE.AGENT
-        If Globals.GLOB_ENV_DEBUG = True Then
+        If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
             _dbName = conf_bddPath_dev
         Else
             _dbName = conf_bddPath
@@ -85,7 +85,7 @@ Public Class CSDb
     End Function
     Public Function getConnectString(pDBName As String) As String
         Dim bReturn As String
-        If Globals.GLOB_ENV_DEBUG = True Then
+        If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
             If DBextension = ".accdb" Then
                 bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password="
             Else

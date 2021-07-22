@@ -4,7 +4,7 @@ Module CSVersion
         Dim result(2) As String
 
         Try
-            If Globals.GLOB_NETWORKAVAILABLE Then
+            If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
                 ' déclarations
                 Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
                 Dim objWSCrodip_response As new Object 

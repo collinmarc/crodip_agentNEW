@@ -15,27 +15,27 @@ Public Class Pulverisateur
     Public Shared CATEGORIEPULVE_FACEPARFACE As String = "Face par face"
     Public Shared CATEGORIEPULVE_JETDIRIGE As String = "Jet dirigé"
     Public Shared CATEGORIEPULVE_RAMPE As String = "Rampe"
-    '    Public Shared CATEGORIEPULVE_ARBOVITI As String = Globals.GLOB_XML_CATEGORIES_PULVE.getXmlNode("//Categorie[id=6]/libelle").InnerText
+    '    Public Shared CATEGORIEPULVE_ARBOVITI As String = GlobalsCRODIP.GLOB_XML_CATEGORIES_PULVE.getXmlNode("//Categorie[id=6]/libelle").InnerText
     Public Shared CATEGORIEPULVE_ARBOVITI2 As String = "ArboViti"
     Public Shared CATEGORIEPULVE_VOUTE As String = "Voute"
 
     Public Const TYPEVALEURPULVE_LARGEUR As String = "LARGEUR"
     Public Const TYPEVALEURPULVE_RANG As String = "RANG"
 
-    Public Shared PULVERISATION_JETPORTE As String = Globals.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=1]/libelle").InnerText
-    Public Shared PULVERISATION_JETPROJETE As String = Globals.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=2]/libelle").InnerText
-    Public Shared PULVERISATION_PNEUMATIQUE As String = Globals.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=3]/libelle").InnerText
+    Public Shared PULVERISATION_JETPORTE As String = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=1]/libelle").InnerText
+    Public Shared PULVERISATION_JETPROJETE As String = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=2]/libelle").InnerText
+    Public Shared PULVERISATION_PNEUMATIQUE As String = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=3]/libelle").InnerText
 
-    Public Shared ATTELAGE_PORTE As String = Globals.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=1]/libelle").InnerText
-    Public Shared ATTELAGE_TRAINE As String = Globals.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=2]/libelle").InnerText
-    Public Shared ATTELAGE_AUTOMOTEUR As String = Globals.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=3]/libelle").InnerText
-    Public Shared ATTELAGE_SEMIPORTE As String = Globals.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=4]/libelle").InnerText
-    Public Shared ATTELAGE_INTEGRE As String = Globals.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=5]/libelle").InnerText
+    Public Shared ATTELAGE_PORTE As String = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=1]/libelle").InnerText
+    Public Shared ATTELAGE_TRAINE As String = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=2]/libelle").InnerText
+    Public Shared ATTELAGE_AUTOMOTEUR As String = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=3]/libelle").InnerText
+    Public Shared ATTELAGE_SEMIPORTE As String = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=4]/libelle").InnerText
+    Public Shared ATTELAGE_INTEGRE As String = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=5]/libelle").InnerText
 
-    'Public Shared FONCTIONNEMENT_BUSES_STANDARD As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=1]/text").InnerText
-    'Public Shared FONCTIONNEMENT_BUSES_PASTILLE As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=2]/text").InnerText
-    'Public Shared FONCTIONNEMENT_BUSES_AIRLIBRE As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=3]/text").InnerText
-    'Public Shared FONCTIONNEMENT_BUSES_AIRFORCE As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=4]/text").InnerText
+    'Public Shared FONCTIONNEMENT_BUSES_STANDARD As String = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=1]/text").InnerText
+    'Public Shared FONCTIONNEMENT_BUSES_PASTILLE As String = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=2]/text").InnerText
+    'Public Shared FONCTIONNEMENT_BUSES_AIRLIBRE As String = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=3]/text").InnerText
+    'Public Shared FONCTIONNEMENT_BUSES_AIRFORCE As String = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=4]/text").InnerText
 
     Private _id As String = ""
     Private _numeroNational As String = ""
@@ -130,11 +130,11 @@ Public Class Pulverisateur
     Private _numChassis As String
 
     Sub New()
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
             'En mod simplifié ce n'est pas un E001
             numeroNational = ""
         Else
-            numeroNational = Globals.GLOB_DIAG_NUMAGR
+            numeroNational = GlobalsCRODIP.GLOB_DIAG_NUMAGR
         End If
         _idStructure = -1
     End Sub
@@ -248,13 +248,13 @@ Public Class Pulverisateur
     ''' <remarks></remarks>
     Public Property largeur() As String
         Get
-            Return _largeur.Replace(Globals.CONST_DECIMAL_SYMBOL, ".")
+            Return _largeur.Replace(GlobalsCRODIP.CONST_DECIMAL_SYMBOL, ".")
         End Get
         Set(ByVal Value As String)
-            _largeur = Value.Replace(".", Globals.CONST_DECIMAL_SYMBOL)
+            _largeur = Value.Replace(".", GlobalsCRODIP.CONST_DECIMAL_SYMBOL)
             If IsNumeric(_largeur) Then
                 _largeur = CType(_largeur, Decimal).ToString("##0.##")
-                _largeur = _largeur.Replace(Globals.CONST_DECIMAL_SYMBOL, ".")
+                _largeur = _largeur.Replace(GlobalsCRODIP.CONST_DECIMAL_SYMBOL, ".")
             Else
                 _largeur = Value
             End If
@@ -267,7 +267,7 @@ Public Class Pulverisateur
         End Get
         Set(ByVal Value As String)
             m_nombreRangs = Value
-            m_nombreRangs = m_nombreRangs.Replace(Globals.CONST_DECIMAL_SYMBOL, ".")
+            m_nombreRangs = m_nombreRangs.Replace(GlobalsCRODIP.CONST_DECIMAL_SYMBOL, ".")
         End Set
     End Property
     ''' <summary>
@@ -1269,7 +1269,7 @@ Public Class Pulverisateur
         If bReturn = CheckResult.OK Then
             If olst.Count > 0 And bCheck Then
                 'S'il y a des identifiant Pulvés
-                If pNumNatPart1 = Globals.GLOB_DIAG_NUMAGR Then
+                If pNumNatPart1 = GlobalsCRODIP.GLOB_DIAG_NUMAGR Then
                     'Si on  test un numero CRODIP
                     If pNumNational <> olst(0).numeroNational Then
                         bReturn = CheckResult.NUMEROPASLEPREMIER
@@ -1684,7 +1684,7 @@ Public Class Pulverisateur
         Dim xpath As String
         bReturn = False
         xpath = MarquesManager.XPATH_VALEURS_TRTSPE.Replace("%type%", type).Replace("%categorie%", categorie)
-        Dim oNodesTrtSpe As Xml.XmlNodeList = Globals.GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
+        Dim oNodesTrtSpe As Xml.XmlNodeList = GlobalsCRODIP.GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
         For Each oAttCategorie As Xml.XmlNode In oNodesTrtSpe
             If oAttCategorie.InnerText = pTrt Then
                 bReturn = True
@@ -1697,8 +1697,8 @@ Public Class Pulverisateur
     End Function
 
     Public Shared Function getNiveauAlerte(Optional pDate As Date? = Nothing) As NiveauAlerte
-        Dim bReturn As Globals.ALERTE
-        bReturn = Globals.ALERTE.NONE
+        Dim bReturn As GlobalsCRODIP.ALERTE
+        bReturn = GlobalsCRODIP.ALERTE.NONE
 
         If pDate Is Nothing Then
             pDate = DateTime.Now

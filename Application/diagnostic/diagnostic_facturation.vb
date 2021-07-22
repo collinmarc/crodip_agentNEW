@@ -631,7 +631,7 @@ Public Class diagnostic_facturation
         Debug.Assert(m_oAgent IsNot Nothing, "Context must be set before")
         Debug.Assert(m_oPulverisateur IsNot Nothing, "Context must be set before")
 
-        Statusbar.display(Globals.CONST_STATUTMSG_DIAG_TARIFS, False)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DIAG_TARIFS, False)
         Me.Cursor = Cursors.WaitCursor
         ' Chargement des catégories de prestations
         Dim arrCategories() As PrestationCategorie = PrestationCategorieManager.getArrayByStructureId(m_oAgent.idStructure)
@@ -748,7 +748,7 @@ Public Class diagnostic_facturation
                     Try
                         btn_ImprimerFacture.Visible = False
                         btn_imprimerFactureCoProp.Visible = False
-                        Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+                        Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
                         If CType(FACTURATION_XML_CONFIG.getElementValue("/root/isActive"), Boolean) Then
                             If Trim(m_oDiag.pulverisateurNbreExploitants) <> "" Then
                                 If m_oDiag.pulverisateurNbreExploitants > 1 And m_oDiag.pulverisateurModeUtilisation <> "Entrepreneur" Then
@@ -871,7 +871,7 @@ Public Class diagnostic_facturation
         Dim facture As DiagnosticFacture = New DiagnosticFacture
         Try
             '####
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
             Dim organismePCourant As Structuree = StructureManager.getStructureById(m_oDiag.organismePresId)
             '####
             Dim champTotalTtc As Double = 0
@@ -920,9 +920,9 @@ Public Class diagnostic_facturation
     '    Try
 
     '        ' Init
-    '        Dim pdfTemplate As String = Globals.CONST_PATH_DOCS & Globals.CONST_DOC_CONTCOM & ".pdf"
-    '        'pathContrat = Globals.CONST_PATH_EXP & Globals.CONST_DOC_CONTCOM & "_" & CSDate.getDateId(Date.Now) & ".pdf"
-    '        pathContrat = Globals.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
+    '        Dim pdfTemplate As String = GlobalsCRODIP.CONST_PATH_DOCS & GlobalsCRODIP.CONST_DOC_CONTCOM & ".pdf"
+    '        'pathContrat = GlobalsCRODIP.CONST_PATH_EXP & GlobalsCRODIP.CONST_DOC_CONTCOM & "_" & CSDate.getDateId(Date.Now) & ".pdf"
+    '        pathContrat = GlobalsCRODIP.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
     '        Dim newFile As String = pathContrat
     '        ' Ouverture des pdf
     '        pdfReader = New PdfReader(pdfTemplate)
@@ -977,7 +977,7 @@ Public Class diagnostic_facturation
 
             Dim oEtat As New EtatContratCommercial(m_oDiag)
             If oEtat.genereEtat(True) Then
-                pathContrat = Globals.CONST_PATH_EXP_DIAGNOSTIC & oEtat.getFileName()
+                pathContrat = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & oEtat.getFileName()
                 m_oDiag.CCFileName = oEtat.getFileName()
             End If
         Catch ex As Exception
@@ -989,7 +989,7 @@ Public Class diagnostic_facturation
     Private Sub btn_facturation_imprimerContrat_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_facturation_imprimerContrat.Click
         Try
             If Not String.IsNullOrEmpty(m_oDiag.CCFileName) Then
-                CSFile.open(Globals.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)                ' On récupère le Diagnostic selectionné
+                CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)                ' On récupère le Diagnostic selectionné
             End If
         Catch ex As Exception
             CSDebug.dispError("btn_facturation_imprimerContrat_Click : " & ex.Message)
@@ -1086,7 +1086,7 @@ Public Class diagnostic_facturation
     '        'Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo_tn")
     '        Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo")
     '        If Not File.Exists(logoFilename) Then
-    '            logoFilename = Globals.CONST_PATH_IMG & CR_LOGO_DEFAULT_TN_NAME
+    '            logoFilename = GlobalsCRODIP.CONST_PATH_IMG & CR_LOGO_DEFAULT_TN_NAME
     '        End If
     '        ods.Facture(0).LogoFileName = logoFilename
     '        Dim newImage As System.Drawing.Image = System.Drawing.Image.FromFile(logoFilename)

@@ -233,13 +233,13 @@ Public Class BuseManagerTest
         Assert.AreEqual(objBuse2.pressionEtalonnage, 16.5)
 
         'Modification de la buse en utilisant Stringtodouble
-        Assert.AreEqual(objBuse.debitEtalonnage, Globals.StringToDouble("15.5"))
-        Assert.AreEqual(objBuse.pressionEtalonnage, Globals.StringToDouble("16.5"))
+        Assert.AreEqual(objBuse.debitEtalonnage, GlobalsCRODIP.StringToDouble("15.5"))
+        Assert.AreEqual(objBuse.pressionEtalonnage, GlobalsCRODIP.StringToDouble("16.5"))
         Assert.AreEqual(objBuse.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse.pressionEtalonnage, 16.5)
 
-        Assert.AreEqual(objBuse.debitEtalonnage, Globals.StringToDouble("15,5"))
-        Assert.AreEqual(objBuse.pressionEtalonnage, Globals.StringToDouble("16,5"))
+        Assert.AreEqual(objBuse.debitEtalonnage, GlobalsCRODIP.StringToDouble("15,5"))
+        Assert.AreEqual(objBuse.pressionEtalonnage, GlobalsCRODIP.StringToDouble("16,5"))
         Assert.AreEqual(objBuse.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse.pressionEtalonnage, 16.5)
 
@@ -453,17 +453,17 @@ Public Class BuseManagerTest
         Dim oBuse As Buse
         oBuse = New Buse
         oBuse.dateAchat = Now.ToShortDateString()
-        Assert.AreEqual(Globals.ALERTE.NONE, oBuse.getAlerte())
+        Assert.AreEqual(GlobalsCRODIP.ALERTE.NONE, oBuse.getAlerte())
 
         oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -37, Now).ToString()
-        Assert.AreEqual(Globals.ALERTE.NOIRE, oBuse.getAlerte())
+        Assert.AreEqual(GlobalsCRODIP.ALERTE.NOIRE, oBuse.getAlerte())
 
         oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -31, Now).ToShortDateString()
-        Assert.AreEqual(Globals.ALERTE.ROUGE, oBuse.getAlerte())
+        Assert.AreEqual(GlobalsCRODIP.ALERTE.ROUGE, oBuse.getAlerte())
 
 
         oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -29, Now).ToShortDateString()
-        Assert.AreEqual(Globals.ALERTE.NONE, oBuse.getAlerte())
+        Assert.AreEqual(GlobalsCRODIP.ALERTE.NONE, oBuse.getAlerte())
 
     End Sub
 

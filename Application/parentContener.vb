@@ -23,7 +23,7 @@ Public Class parentContener
     Private Sub parentContener_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Cursor = Cursors.WaitCursor
         loadSplash()
-        Globals.Init()
+        GlobalsCRODIP.Init()
 
         ExecuteCMD()
 
@@ -50,7 +50,7 @@ Public Class parentContener
         CSDebug.dispInfo("ParentContainer.unloadSplash")
         unloadSplash()
 
-        If Globals.GLOB_ENV_MODEFORMATION Then
+        If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Me.Text = ""
         Else
             ' Mises a jour
@@ -162,8 +162,8 @@ Public Class parentContener
 
     Private Sub MenuItem_aide_debug_exportLogs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuItem_aide_debug_exportLogs.Click
 
-        If System.IO.File.Exists(Globals.GLOB_ENV_DEBUGLOGFILE) Then
-            CSFile.open(Globals.GLOB_ENV_DEBUGLOGFILE)
+        If System.IO.File.Exists(GlobalsCRODIP.GLOB_ENV_DEBUGLOGFILE) Then
+            CSFile.open(GlobalsCRODIP.GLOB_ENV_DEBUGLOGFILE)
         Else
             MsgBox("Aucun log d'erreur n'a été enregistré pour le moment.")
         End If
@@ -193,14 +193,14 @@ Public Class parentContener
         oFrm.MaximizeBox = False
         oFrm.MinimizeBox = False
 
-        If Globals.GLOB_ENV_MODEFORMATION Then
+        If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Me.Icon = Nothing
             Me.ShowIcon = False
             oFrm.Icon = Nothing
             oFrm.ShowIcon = False
         Else
             oFrm.Icon = Crodip_agent.Resources.Transparent
-            oFrm.ShowIcon = Not Globals.GLOB_ENV_MODEFORMATION
+            oFrm.ShowIcon = Not GlobalsCRODIP.GLOB_ENV_MODEFORMATION
 
         End If
         oFrm.ShowInTaskbar = True
@@ -215,8 +215,8 @@ Public Class parentContener
     End Sub
 
     Private Sub MenuItem_aide_debug_exportSynchro_Click(sender As Object, e As EventArgs) Handles MenuItem_aide_debug_exportSynchro.Click
-        If System.IO.File.Exists(Globals.GLOB_ENV_SYNCHROLOGFILE) Then
-            CSFile.open(Globals.GLOB_ENV_SYNCHROLOGFILE)
+        If System.IO.File.Exists(GlobalsCRODIP.GLOB_ENV_SYNCHROLOGFILE) Then
+            CSFile.open(GlobalsCRODIP.GLOB_ENV_SYNCHROLOGFILE)
         Else
             MsgBox("Aucun trace de Synchronisationn'a été enregistrée pour le moment.")
         End If

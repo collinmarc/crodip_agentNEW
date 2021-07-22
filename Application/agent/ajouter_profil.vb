@@ -231,17 +231,17 @@ Public Class ajouter_profil
     ' Se Connecter
     Private Sub btn_ajouterProfil_seConnecter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ajouterProfil_seConnecter.Click
         Dim objAgent As New Agent
-        Statusbar.display(Globals.CONST_STATUTMSG_ADDAGENT_ENCOURS, True)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ENCOURS, True)
         If CSEnvironnement.checkNetwork() = True Then
             If addProfil_identifiant.Text <> "" And addProfil_password.Text <> "" Then
                 Try
                     ' on récupère notre agent via WS
-                    Statusbar.display(Globals.CONST_STATUTMSG_ADDAGENT_LINK_ENCOURS, True)
+                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_LINK_ENCOURS, True)
                     objAgent = AgentManager.getWSAgentById(addProfil_identifiant.Text)
-                    Statusbar.display(Globals.CONST_STATUTMSG_ADDAGENT_LOAD_ENCOURS, True)
+                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_LOAD_ENCOURS, True)
                     If objAgent.numeroNational <> "" Then
                         ' Ok, profil trouvé et chargé. On vérifie le password
-                        Statusbar.display(Globals.CONST_STATUTMSG_ADDAGENT_VERIF_ENCOURS, True)
+                        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_VERIF_ENCOURS, True)
                         If objAgent.motDePasse = CSCrypt.encode(addProfil_password.Text, "sha256") Then
                             ' On vérifie que l'agent n'existe pas déjà en base
                             Dim existsAgent As Agent
@@ -253,26 +253,26 @@ Public Class ajouter_profil
                                 'Update de cet agent avec l'agent recu pas WS
                                 AgentManager.save(objAgent)
                                 MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")
-                                Statusbar.display(Globals.CONST_STATUTMSG_ADDAGENT_OK, False)
+                                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
                             Else
-                                Statusbar.display(Globals.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
+                                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
                                 MsgBox("Erreur: Cet inspecteur est déjà présent en base." & existsAgent.numeroNational)
                             End If
                         Else
-                            Statusbar.display(Globals.CONST_STATUTMSG_ADDAGENT_ERROR_PASSNOTMATCH, False)
+                            Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_PASSNOTMATCH, False)
                             MsgBox("Erreur: Les mots de passe ne correspondent pas.")
                         End If
                     Else
-                        Statusbar.display(Globals.CONST_STATUTMSG_ADDAGENT_ERROR_NOPROFIL, False)
+                        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_NOPROFIL, False)
                         MsgBox("Aucun profil trouvé pour l'identifiant : " & addProfil_identifiant.Text)
                     End If
                 Catch ex As Exception
-                    Statusbar.display(Globals.CONST_STATUTMSG_ADDAGENT_ERROR_NOPROFIL, False)
+                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_NOPROFIL, False)
                     MsgBox("Erreur: Aucun profil trouvé pour l'identifiant : " & addProfil_identifiant.Text)
                 End Try
             End If
         Else
-            Statusbar.display(Globals.CONST_STATUTMSG_ADDAGENT_ERROR_NOTCONNECT, False)
+            Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_NOTCONNECT, False)
             MsgBox("Erreur: Vous devez être connecté à internet pour ajouter un nouveau profil.")
         End If
     End Sub

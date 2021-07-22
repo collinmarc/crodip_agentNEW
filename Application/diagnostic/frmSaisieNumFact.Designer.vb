@@ -125,6 +125,7 @@ Partial Class frmSaisieNumFact
         Me.Controls.Add(Me.btn_facturation_suivant)
         Me.Controls.Add(Me.Label2)
         Me.Name = "frmSaisieNumFact"
+        Me.ShowIcon = False
         Me.Text = "Saisie du numéro de facture"
         Me.ResumeLayout(False)
         Me.PerformLayout()

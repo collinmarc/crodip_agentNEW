@@ -571,7 +571,7 @@ Public Class gestion_structures
 
     ' Validation
     Private Sub btn_ficheStructure_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Statusbar.display(Globals.CONST_STATUTMSG_FICHESTRUCTURE_ENCOURS, True)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_FICHESTRUCTURE_ENCOURS, True)
         Try
             Dim objStructure As New Structuree
             ' On enregistre les données
@@ -593,13 +593,13 @@ Public Class gestion_structures
 
             StructureManager.save(objStructure)
 
-            Statusbar.display(Globals.CONST_STATUTMSG_FICHESTRUCTURE_OK, False)
+            Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_FICHESTRUCTURE_OK, False)
 
             ' On ferme le formulaire
             Me.Close()
         Catch ex As Exception
             CSDebug.dispError("Fiche structure - Save : " & ex.Message)
-            Statusbar.display(Globals.CONST_STATUTMSG_FICHESTRUCTURE_FAILED, False)
+            Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_FICHESTRUCTURE_FAILED, False)
         End Try
     End Sub
 

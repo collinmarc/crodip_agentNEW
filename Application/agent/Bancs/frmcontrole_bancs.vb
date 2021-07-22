@@ -1925,15 +1925,15 @@ Public Class frmcontrole_bancs
                 If nBuse >= 5 Then
                     valider()
                 Else
-                    MsgBox(Globals.CONST_INFO_CTRLBANC_ERR_5BUSES)
+                    MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_5BUSES)
 
                 End If
 
             Else
-                MsgBox(Globals.CONST_INFO_CTRLBANC_ERR_NOTEMP)
+                MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_NOTEMP)
             End If
         Else
-            MsgBox(Globals.CONST_INFO_CTRLBANC_ERR_NOBANCNUM)
+            MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_NOBANCNUM)
         End If
     End Sub
     Private Sub valider()
@@ -1957,7 +1957,7 @@ Public Class frmcontrole_bancs
         Dim oFV As FVBanc
         oFV = curBanc.creerfFicheVieControle(agentCourant, m_oControleBanc)
         If oFV.FVFileName <> "" Then
-            CSFile.open(Globals.CONST_PATH_EXP_BANCMESURE & oFV.FVFileName)
+            CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE & oFV.FVFileName)
         End If
 
         ' On marque les buses comme etant utilisées

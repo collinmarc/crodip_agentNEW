@@ -5,7 +5,7 @@ Imports System.Drawing.Imaging
 Public Class facturation
     Inherits frmCRODIP
 
-    Private FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+    Private FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
 
 #Region " Code généré par le Concepteur Windows Form "
 
@@ -367,8 +367,8 @@ Public Class facturation
         If filesBrowserDialogReturn = DialogResult.OK Or filesBrowserDialogReturn = DialogResult.Yes Then
             Dim selectedFile As String = filesBrowserDialog.FileName
             Dim selectedFileName As String = System.IO.Path.GetFileName(selectedFile)
-            Dim newFilepath As String = Globals.CONST_PATH_PUBLIC & "\" & selectedFileName
-            Dim logoFilepath As String = Globals.CONST_PATH_PUBLIC & "\" & Globals.CR_LOGO_NAME
+            Dim newFilepath As String = GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & selectedFileName
+            Dim logoFilepath As String = GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & GlobalsCRODIP.CR_LOGO_NAME
             If selectedFile <> Nothing Then
                 Me.loadLogo(True)
                 ' Copie du nouveau fichier
@@ -389,9 +389,9 @@ Public Class facturation
 
                 ' On save
                 Try
-                    newImage.Save(Globals.CONST_PATH_PUBLIC & "\" & Globals.CR_LOGO_NAME)
-                    'newImage_thumb.Save(Globals.CONST_PATH_PUBLIC & "\" & CR_LOGO_TN_NAME)
-                    'newImage_thumbTn.Save(Globals.CONST_PATH_PUBLIC & "\" & CR_LOGO_TN2_NAME)
+                    newImage.Save(GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & GlobalsCRODIP.CR_LOGO_NAME)
+                    'newImage_thumb.Save(GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & CR_LOGO_TN_NAME)
+                    'newImage_thumbTn.Save(GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & CR_LOGO_TN2_NAME)
                 Catch ex As Exception
                     CSDebug.dispError("Facturation.ajoutLogo.save() : " & ex.Message)
                 End Try
@@ -402,8 +402,8 @@ Public Class facturation
                 'newImage_thumbTn.Dispose()
 
                 ' Enregistrement en conf
-                Me.FACTURATION_XML_CONFIG.setElementValue("/root/logo", Globals.CONST_PATH_PUBLIC & Globals.CR_LOGO_NAME)
-                'Me.FACTURATION_XML_CONFIG.setElementValue("/root/logo_tn", Globals.CONST_PATH_PUBLIC & CR_LOGO_TN_NAME)
+                Me.FACTURATION_XML_CONFIG.setElementValue("/root/logo", GlobalsCRODIP.CONST_PATH_PUBLIC & GlobalsCRODIP.CR_LOGO_NAME)
+                'Me.FACTURATION_XML_CONFIG.setElementValue("/root/logo_tn", GlobalsCRODIP.CONST_PATH_PUBLIC & CR_LOGO_TN_NAME)
 
                 '######################################################################################
 
@@ -491,12 +491,12 @@ Public Class facturation
         Me.loadLogo(False)
     End Sub
     Private Sub loadLogo(ByVal isDefaultLogo As Boolean)
-        Dim logoFilename As String = Globals.CONST_PATH_IMG & Globals.CR_LOGO_DEFAULT_NAME
+        Dim logoFilename As String = GlobalsCRODIP.CONST_PATH_IMG & GlobalsCRODIP.CR_LOGO_DEFAULT_NAME
         If Not isDefaultLogo Then
             logoFilename = Me.FACTURATION_XML_CONFIG.getElementValue("/root/logo")
         End If
         If Not File.Exists(logoFilename) Then
-            logoFilename = Globals.CONST_PATH_IMG & Globals.CR_LOGO_DEFAULT_NAME
+            logoFilename = GlobalsCRODIP.CONST_PATH_IMG & GlobalsCRODIP.CR_LOGO_DEFAULT_NAME
         End If
         Dim picBox As PictureBox = facturation_logo
         picBox.Image.Dispose()

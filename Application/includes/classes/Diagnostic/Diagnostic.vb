@@ -1294,7 +1294,7 @@ Public Class Diagnostic
     '        _buseFonctionnementIsStandard = Value
     '        '' MAJ du libellé du fonctionnement di besoin (pour assurer la compat avec ancienne version"
     '        If (Value) And String.IsNullOrEmpty(_buseFonctionnement) Then
-    '            _buseFonctionnement = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=1]/text")(0).InnerText
+    '            _buseFonctionnement = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=1]/text")(0).InnerText
     '        End If
     '    End Set
     'End Property
@@ -1307,7 +1307,7 @@ Public Class Diagnostic
     '        _buseFonctionnementIsPastilleChambre = Value
     '        '' MAJ du libellé du fonctionnement di besoin (pour assurer la compat avec ancienne version"
     '        If (Value) And String.IsNullOrEmpty(_buseFonctionnement) Then
-    '            _buseFonctionnement = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=2]/text")(0).InnerText
+    '            _buseFonctionnement = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=2]/text")(0).InnerText
     '        End If
     '    End Set
     'End Property
@@ -1320,7 +1320,7 @@ Public Class Diagnostic
     '        _buseFonctionnementIsInjectionAirLibre = Value
     '        '' MAJ du libellé du fonctionnement di besoin (pour assurer la compat avec ancienne version"
     '        If (Value) And String.IsNullOrEmpty(_buseFonctionnement) Then
-    '            _buseFonctionnement = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=3]/text")(0).InnerText
+    '            _buseFonctionnement = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=3]/text")(0).InnerText
     '        End If
     '    End Set
     'End Property
@@ -1333,7 +1333,7 @@ Public Class Diagnostic
     '        _buseFonctionnementIsInjectionAirForce = Value
     '        '' MAJ du libellé du fonctionnement di besoin (pour assurer la compat avec ancienne version"
     '        If (Value) And String.IsNullOrEmpty(_buseFonctionnement) Then
-    '            _buseFonctionnement = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=4]/text")(0).InnerText
+    '            _buseFonctionnement = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=4]/text")(0).InnerText
     '        End If
     '    End Set
     'End Property
@@ -1361,10 +1361,10 @@ Public Class Diagnostic
     '    Me.buseFonctionnementIsInjectionAirLibre = False
     '    Me.buseFonctionnementIsInjectionAirForce = False
 
-    '    Dim sStandard As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=1]/text")(0).InnerText
-    '    Dim sPastille As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=2]/text")(0).InnerText
-    '    Dim sAirLibre As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=3]/text")(0).InnerText
-    '    Dim sAirForce As String = Globals.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=4]/text")(0).InnerText
+    '    Dim sStandard As String = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=1]/text")(0).InnerText
+    '    Dim sPastille As String = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=2]/text")(0).InnerText
+    '    Dim sAirLibre As String = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=3]/text")(0).InnerText
+    '    Dim sAirForce As String = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNodes("//type/fonctionnement/item[id=4]/text")(0).InnerText
     '    Select Case _buseFonctionnement.ToUpper.Trim()
     '        Case sStandard.ToUpper.Trim()
     '            Me.buseFonctionnementIsStandard = True
@@ -2390,8 +2390,8 @@ Public Class Diagnostic
             End Try
             organismePresNumero = structureCourante.idCrodip
             organismePresNom = structureCourante.nom
-            organismeInspNom = Globals.GLOB_DIAG_NOMAGR
-            organismeInspAgrement = Globals.GLOB_DIAG_NUMAGR
+            organismeInspNom = GlobalsCRODIP.GLOB_DIAG_NOMAGR
+            organismeInspAgrement = GlobalsCRODIP.GLOB_DIAG_NUMAGR
             organismePresAdresse = structureCourante.adresse
             organismePresCodePostal = structureCourante.codePostal
             organismePresCommune = structureCourante.commune
@@ -2418,7 +2418,7 @@ Public Class Diagnostic
         Try
             Me.duppliqueInfosOrganisme()
             'Organisme précédant = CRODIP/Indigo
-            Me.organismeOriginePresNom = Globals.GLOB_DIAG_NOMAGR
+            Me.organismeOriginePresNom = GlobalsCRODIP.GLOB_DIAG_NOMAGR
             Me.inspecteurOrigineNom = Me.inspecteurNom
             Me.inspecteurOriginePrenom = Me.inspecteurPrenom
             Me.setOrganisme(pAgent)
@@ -3541,9 +3541,9 @@ Public Class Diagnostic
     Private Function IsFichierExists(pFileName As String) As Boolean
         Dim bReturn As Boolean
         bReturn = True
-        If Not System.IO.File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pFileName) Then
-            EtatCrodip.getPDFs(Globals.CONST_PATH_EXP_DIAGNOSTIC, pFileName)
-            If Not System.IO.File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & pFileName) Then
+        If Not System.IO.File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & pFileName) Then
+            EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, pFileName)
+            If Not System.IO.File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & pFileName) Then
                 bReturn = False
             End If
         End If

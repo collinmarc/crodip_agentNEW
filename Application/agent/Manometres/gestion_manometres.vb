@@ -497,8 +497,8 @@ Public Class gestion_manometres
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
-        'MarquesManager.populateCombobox(Globals.GLOB_XML_MARQUES_MANO, arrMarquesControls)
-        'MarquesManager.populateCombobox(Globals.GLOB_XML_MODELES_MANO, arrTypesControls)
+        'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MARQUES_MANO, arrMarquesControls)
+        'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MODELES_MANO, arrTypesControls)
     End Sub
     Private Function displayListeManoEtalon() As Boolean
         Dim bReturn As Boolean

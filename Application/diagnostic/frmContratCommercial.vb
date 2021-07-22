@@ -5,7 +5,7 @@ Public Class frmContratCommercial
 
     Private m_Diag As Diagnostic
     Private m_Agent As Agent
-    Private m_bContexteOK
+    Private m_bContexteOK As Boolean
     Public Sub setcontexte(pAgent As Agent, pDiag As Diagnostic)
         m_Diag = pDiag
         m_Agent = pAgent
@@ -39,7 +39,7 @@ Public Class frmContratCommercial
             If pExportDPF Then
                 pathRapport = oEtat.getFileName()
                 m_Diag.CCFileName = pathRapport
-                bReturn = File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & pathRapport)
+                bReturn = File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & pathRapport)
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
             End If

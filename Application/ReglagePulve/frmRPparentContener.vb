@@ -523,7 +523,7 @@ Public Class frmRPparentContener
         formLoad()
     End Sub
     Private Sub formLoad()
-        Globals.Init()
+        GlobalsCRODIP.Init()
 
         'Test pour Vérifier si on est dans une configuation Agent
         Dim oCSdb As New CSDb(False)
@@ -797,7 +797,7 @@ Public Class frmRPparentContener
 
 
             ofrmdiag = New frmRPDiagnostique()
-            ofrmdiag.setContexte(m_RPDiagnostic, Globals.DiagMode.CTRL_COMPLET, pulverisateurCourant, clientCourant)
+            ofrmdiag.setContexte(m_RPDiagnostic, GlobalsCRODIP.DiagMode.CTRL_COMPLET, pulverisateurCourant, clientCourant)
             ofrmdiag.WindowState = FormWindowState.Maximized
             ofrmdiag.MdiParent = Me
             'ofrmdiag.Show()
@@ -1140,7 +1140,7 @@ Public Class frmRPparentContener
         CSDebug.dispInfo("frmDiagnostique New")
         ofrmdiag = New frmRPDiagnostique()
         CSDebug.dispInfo("frmDiagnostique SetContexte")
-        ofrmdiag.setContexte(m_RPDiagnostic, Globals.DiagMode.CTRL_COMPLET, pulverisateurCourant, clientCourant)
+        ofrmdiag.setContexte(m_RPDiagnostic, GlobalsCRODIP.DiagMode.CTRL_COMPLET, pulverisateurCourant, clientCourant)
         CSDebug.dispInfo("frmDiagnostique WindowsState")
         ofrmdiag.WindowState = FormWindowState.Maximized
         CSDebug.dispInfo("frmDiagnostique Parent")

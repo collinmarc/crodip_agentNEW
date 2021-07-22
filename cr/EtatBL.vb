@@ -31,7 +31,7 @@ Public Class EtatBL
     Private m_ReportName As String
 
     Public Sub New(pDiag As Diagnostic)
-        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
+        m_Path = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
         m_lstPresta = New List(Of LgPrestation)
         'Récupération du nom du modème Crystal pour un chargement ultérieur

@@ -206,8 +206,8 @@ Public Class RPapropos
         Try
 
             ' On récupère le numéro de version
-            label_numVersion.Text = "N° de version : " & Globals.GLOB_APPLI_VERSION
-            label_dateVersion.Text = "Build: " & Globals.GLOB_APPLI_BUILD
+            label_numVersion.Text = "N° de version : " & GlobalsCRODIP.GLOB_APPLI_VERSION
+            label_dateVersion.Text = "Build: " & GlobalsCRODIP.GLOB_APPLI_BUILD
             ' On récupère le copyright
 
             ' On récupère la description

@@ -42,7 +42,7 @@ Public Class CRODIPTest
     End Property
     '<AssemblyInitialize()> _
     'Public Shared Sub AssemblyInit(ByVal context As TestContext)
-    '    Globals.Init()
+    '    GlobalsCRODIP.Init()
     '    'System.Environment.CurrentDirectory = "C:\Newco\CRODIP\Crodip-Agent\TestCrodip\bin\x86\Debug"
     'End Sub 'AssemblyInit
 #Region "Attributs de tests supplémentaires"
@@ -62,7 +62,7 @@ Public Class CRODIPTest
     'Utilisez TestInitialize pour exécuter du code avant d'exécuter chaque test
     <TestInitialize()> _
     Public Sub MyTestInitialize()
-        Globals.Init()
+        GlobalsCRODIP.Init()
         Dim oCSDB As New CSDb(True)
         oCSDB.RAZ_BASE_DONNEES()
         oCSDB.free()
@@ -379,7 +379,7 @@ Public Class CRODIPTest
         obj = New IdentifiantPulverisateur
         obj.id = IdentifiantPulverisateurManager.getNextId()
         obj.idStructure = m_oAgent.idStructure
-        obj.numeroNational = Globals.GLOB_DIAG_NUMAGR & pNumNat
+        obj.numeroNational = GlobalsCRODIP.GLOB_DIAG_NUMAGR & pNumNat
         obj.SetEtatINUTILISE()
         obj.dateUtilisation = ""
         obj.libelle = ""

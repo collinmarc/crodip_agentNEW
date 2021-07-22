@@ -357,7 +357,7 @@ Public Class SynchronisationElmt
                         Dim bOld As Boolean = oBuseE.etat
                         'Modif du 6/12/2018
                         'Recalcul de l'état des buses après synhcro
-                        If oBuseE.getAlerte() = Globals.ALERTE.NOIRE Then
+                        If oBuseE.getAlerte() = GlobalsCRODIP.ALERTE.NOIRE Then
                             oBuseE.Desactiver()
                             BuseManager.sendWSBuse(oBuseE)
                         Else

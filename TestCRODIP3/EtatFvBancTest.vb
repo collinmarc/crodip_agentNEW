@@ -97,7 +97,7 @@ Imports System.IO
         Dim oEtat As New EtatFVBanc(oCtrl)
         Assert.IsTrue(oEtat.GenereEtat)
         Assert.IsNotNull(oEtat.getFileName())
-        CSFile.open(Globals.CONST_PATH_EXP_BANCMESURE & oEtat.getFileName())
+        CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE & oEtat.getFileName())
 
     End Sub
 

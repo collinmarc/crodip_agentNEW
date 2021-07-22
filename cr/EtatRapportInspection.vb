@@ -11,7 +11,7 @@ Public Class EtatRapportInspection
     Private m_ods As ds_Etat_RI
 
     Public Sub New(pDiag As Diagnostic)
-        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
+        m_Path = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
         m_oPulve = PulverisateurManager.getPulverisateurById(m_oDiag.pulverisateurId)
     End Sub
@@ -33,7 +33,7 @@ Public Class EtatRapportInspection
                 m_oReportDocument = New ReportDocument
                 m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
                 m_oReportDocument.SetDataSource(m_ods)
-                m_oReportDocument.SetParameterValue("ModeSimplifie", Globals.GLOB_ENV_MODESIMPLIFIE)
+                m_oReportDocument.SetParameterValue("ModeSimplifie", GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE)
                 If pExportPDF Then
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
@@ -80,7 +80,7 @@ Public Class EtatRapportInspection
                 Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                 Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                 m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
-                CrDiskFileDestinationOptions.DiskFileName = Globals.CONST_PATH_EXP_DIAGNOSTIC & m_FileName
+                CrDiskFileDestinationOptions.DiskFileName = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_FileName
                 CrExportOptions = objReport.ExportOptions
                 With CrExportOptions
                     .ExportDestinationType = ExportDestinationType.DiskFile

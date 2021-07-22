@@ -473,8 +473,8 @@ Public Class SynchronisationTest
         oEtat.GenereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
-        Dim oFi1 As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Dim oFi1 As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
         Dim nOriginalLength As Long
         nOriginalLength = oFi1.Length
 
@@ -493,13 +493,13 @@ Public Class SynchronisationTest
         Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
         'Suppression des etats générés en local
-        File.Delete(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
-        Assert.IsFalse(File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
 
         'Récupération des fichiers par HTTP
         Dim Credential As New System.Net.NetworkCredential("crodip", "crodip35")
         Dim filePath As String
-        filePath = Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName
+        filePath = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName
         If System.IO.File.Exists(filePath) Then
             System.IO.File.Delete(filePath)
         End If
@@ -514,8 +514,8 @@ Public Class SynchronisationTest
                 End If
                 uri = New Uri("http://admin-pp.crodip.fr/admin/diagnostic/get-pdf-view?id=" & oDiag.id)
                 My.Computer.Network.DownloadFile(uri, filePath)
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
                     If (oFi.Length <> nOriginalLength) Then
                         Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
                     Else
@@ -538,8 +538,8 @@ Public Class SynchronisationTest
                 End If
                 uri = New Uri("http://admin-pp.crodip.fr/admin/diagnostic/get-pdf-view?id=" & oDiag.id)
                 My.Computer.Network.DownloadFile(uri, filePath, "crodip", "crodip35")
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
                     If (oFi.Length <> nOriginalLength) Then
                         Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
                     Else
@@ -563,8 +563,8 @@ Public Class SynchronisationTest
                 End If
                 uri = New Uri("http://admin-pp.crodip.fr/admin/diagnostic/get-pdf-view?id=" & oDiag.id)
                 My.Computer.Network.DownloadFile(uri, filePath, Credential, False, 100000, True)
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
                     If (oFi.Length <> nOriginalLength) Then
                         Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
                     Else
@@ -587,8 +587,8 @@ Public Class SynchronisationTest
                 End If
                 uri = New Uri("http://admin-pp.crodip.fr/pdf/" & oDiag.RIFileName)
                 My.Computer.Network.DownloadFile(uri, filePath)
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
                     If (oFi.Length <> nOriginalLength) Then
                         Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
                     Else
@@ -611,8 +611,8 @@ Public Class SynchronisationTest
                 End If
                 uri = New Uri("http://admin-pp.crodip.fr/pdf/" & oDiag.RIFileName)
                 My.Computer.Network.DownloadFile(uri, filePath, "crodip", "crodip35")
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
                     If (oFi.Length <> nOriginalLength) Then
                         Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
                     Else
@@ -636,8 +636,8 @@ Public Class SynchronisationTest
                 End If
                 uri = New Uri("http://admin-pp.crodip.fr/pdf/" & oDiag.RIFileName)
                 My.Computer.Network.DownloadFile(uri, filePath, Credential, False, 100000, True)
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
                     If (oFi.Length <> nOriginalLength) Then
                         Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
                     Else
@@ -663,8 +663,8 @@ Public Class SynchronisationTest
                 Dim MyWebClient As New System.Net.WebClient()
                 MyWebClient.Credentials = Credential
                 MyWebClient.DownloadFile(uri, filePath)
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
                     If (oFi.Length <> nOriginalLength) Then
                         Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
                     Else
@@ -689,8 +689,8 @@ Public Class SynchronisationTest
                 Dim MyWebClient As New System.Net.WebClient()
                 'MyWebClient.Credentials = Credential
                 MyWebClient.DownloadFile(uri, filePath)
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
                     If (oFi.Length <> nOriginalLength) Then
                         Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
                     Else
@@ -715,8 +715,8 @@ Public Class SynchronisationTest
                 Dim MyWebClient As New System.Net.WebClient()
                 'MyWebClient.Credentials = Credential
                 MyWebClient.DownloadFile(uri, filePath)
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
                     If (oFi.Length <> nOriginalLength) Then
                         Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
                     Else
@@ -742,8 +742,8 @@ Public Class SynchronisationTest
                 Dim MyWebClient As New System.Net.WebClient()
                 MyWebClient.Credentials = Credential
                 MyWebClient.DownloadFile(uri, filePath)
-                If File.Exists(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                    Dim oFi As New FileInfo(Globals.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+                If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
+                    Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
                     If (oFi.Length <> nOriginalLength) Then
                         Trace.WriteLine(Methode & " : download file OK, mais fichier à " & oFi.Length.ToString())
                     Else

@@ -125,7 +125,7 @@ Public Class frmSignClient
             gr.SmoothingMode = SmoothingMode.HighQuality
             gr.PixelOffsetMode = PixelOffsetMode.HighQuality
 
-            Using wMo = New ImageAttributes()
+            Using wMo As ImageAttributes = New ImageAttributes()
                 wMo.SetWrapMode(WrapMode.TileFlipXY)
                 gr.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wMo)
             End Using

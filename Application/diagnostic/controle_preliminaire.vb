@@ -15,7 +15,7 @@ Public Class controle_preliminaire
     Private Const CHK_DEFAUT_MAJEURPRELIM As Integer = 4
     Private m_bDuringLoad As Boolean
     Private m_oParamdiag As CRODIP_ControlLibrary.ParamDiag
-    Private m_Mode As Globals.DiagMode
+    Private m_Mode As GlobalsCRODIP.DiagMode
     Private m_Diagnostic As Diagnostic
     Private m_Pulverisateur As Pulverisateur
     Private m_Exploit As Exploitation
@@ -31,11 +31,11 @@ Public Class controle_preliminaire
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
 
-        m_Mode = Globals.DiagMode.CTRL_COMPLET
+        m_Mode = GlobalsCRODIP.DiagMode.CTRL_COMPLET
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         m_bDuringLoad = False
     End Sub
-    Public Sub New(ByVal pMode As Globals.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pclient As Exploitation)
+    Public Sub New(ByVal pMode As GlobalsCRODIP.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pclient As Exploitation)
         Me.New()
         m_bDuringLoad = True
         m_Mode = pMode
@@ -1564,27 +1564,27 @@ Public Class controle_preliminaire
         btn_toutCocher.Visible = False
 
         Select Case m_Mode
-            Case Globals.DiagMode.CTRL_COMPLET
+            Case GlobalsCRODIP.DiagMode.CTRL_COMPLET
                 btn_toutCocher.Visible = True
-            Case Globals.DiagMode.CTRL_CV
+            Case GlobalsCRODIP.DiagMode.CTRL_CV
                 btn_controlePreliminaire_poursuivre.Visible = True
-            Case Globals.DiagMode.CTRL_VISU
+            Case GlobalsCRODIP.DiagMode.CTRL_VISU
                 btn_controlePreliminaire_poursuivre.Visible = True
                 CSForm.disableAllCheckBox(Me)
         End Select
-        If m_Mode <> Globals.DiagMode.CTRL_COMPLET Or
-                (m_Mode = Globals.DiagMode.CTRL_COMPLET And m_Diagnostic.diagRemplacementId <> "") Then
+        If m_Mode <> GlobalsCRODIP.DiagMode.CTRL_COMPLET Or
+                (m_Mode = GlobalsCRODIP.DiagMode.CTRL_COMPLET And m_Diagnostic.diagRemplacementId <> "") Then
             'Chargement des infos existantes si on n'est pas sur un controle complet (CV ou VISU)
             'ou si on est en CC en remplacement
             loadExistingDiag()
         End If
 
-        If Globals.GLOB_ENV_MODEFORMATION Then
+        If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Me.Text = "Contrôle préliminaire"
             pctLogo.Visible = False
 
         Else
-            If Globals.GLOB_ENV_MODESIMPLIFIE Then
+            If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
                 Me.Text = Me.Text & " - Mode Simplifié - "
                 pctLogo.Image = Crodip_agent.Resources.logoCRODIPIMG
             Else

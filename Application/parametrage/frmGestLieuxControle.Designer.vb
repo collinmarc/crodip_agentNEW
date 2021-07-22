@@ -23,6 +23,7 @@ Partial Class frmGestLieuxControle
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmGestLieuxControle))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.cbxSite2 = New System.Windows.Forms.ComboBox()
         Me.m_bsLieuxControle = New System.Windows.Forms.BindingSource(Me.components)
@@ -244,7 +245,7 @@ Partial Class frmGestLieuxControle
         Me.btn_Ajouter.ForeColor = System.Drawing.Color.White
         Me.btn_Ajouter.Location = New System.Drawing.Point(208, 66)
         Me.btn_Ajouter.Name = "btn_Ajouter"
-        Me.btn_Ajouter.Size = New System.Drawing.Size(133, 36)
+        Me.btn_Ajouter.Size = New System.Drawing.Size(146, 36)
         Me.btn_Ajouter.TabIndex = 18
         Me.btn_Ajouter.Text = "Ajouter"
         Me.btn_Ajouter.UseVisualStyleBackColor = True
@@ -260,7 +261,7 @@ Partial Class frmGestLieuxControle
         Me.btnSuppimer.ForeColor = System.Drawing.Color.White
         Me.btnSuppimer.Location = New System.Drawing.Point(208, 132)
         Me.btnSuppimer.Name = "btnSuppimer"
-        Me.btnSuppimer.Size = New System.Drawing.Size(133, 36)
+        Me.btnSuppimer.Size = New System.Drawing.Size(146, 36)
         Me.btnSuppimer.TabIndex = 19
         Me.btnSuppimer.Text = "Supprimer"
         Me.btnSuppimer.UseVisualStyleBackColor = True
@@ -279,6 +280,7 @@ Partial Class frmGestLieuxControle
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.lbLieux)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmGestLieuxControle"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Gestion des lieux de contrôle"

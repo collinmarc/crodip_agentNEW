@@ -600,7 +600,7 @@ Public Class login
         pnlLoginControls.Enabled = False
         ' On récupère le formulaire contener
         Dim myFormParentContener As Form = Me.MdiParent
-        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_ENCOURS, True)
+        Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_ENCOURS, True)
         Dim bAgentExistant As Boolean = False
         Dim idAgent As Integer
         Try
@@ -624,8 +624,8 @@ Public Class login
                                 'Suppression de l'agent en base
                                 AgentManager.save(tmpObject)
                             End If
-                            Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
-                            MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
+                            Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
+                            MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
                             'On recharge la Liste des profils 
                             FillCbxAgent()
                             login_password.Clear()
@@ -641,23 +641,23 @@ Public Class login
                     bAgentExistant = True
                 End If
                 If bAgentExistant Then
-                    If CSCrypt.encode(login_password.Text, "sha256") = selectedAgent.motDePasse Or Globals.GLOB_ENV_DEBUG Then
+                    If CSCrypt.encode(login_password.Text, "sha256") = selectedAgent.motDePasse Or GlobalsCRODIP.GLOB_ENV_DEBUG Then
                         ' Mot de passe correct => On le met en "session"
                         agentCourant = selectedAgent
                         ' On met à jour le numéro de version du logiciel agent
-                        If selectedAgent.versionLogiciel <> Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD Then
-                            selectedAgent.versionLogiciel = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
+                        If selectedAgent.versionLogiciel <> GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD Then
+                            selectedAgent.versionLogiciel = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD
                             CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & selectedAgent.dateModificationAgent)
                             AgentManager.save(selectedAgent)
                         End If
                         'Synchronisation 
-                        If Globals.GLOB_ENV_AUTOSYNC = True And Not selectedAgent.isGestionnaire Then
+                        If GlobalsCRODIP.GLOB_ENV_AUTOSYNC = True And Not selectedAgent.isGestionnaire Then
                             If CSEnvironnement.checkWebService() = True Then
                                 panel_splashSynchro.Visible = True
                                 CSTime.pause(500) ' Pause de 500ms
 
                                 ' On vérifie les mises à jour
-                                Statusbardisplay(Globals.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
+                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
                                 Me.Cursor = Cursors.WaitCursor
                                 Dim oSynchro As New Synchronisation(selectedAgent)
                                 oSynchro.ajouteObservateur(TryCast(Me.MdiParent, parentContener))
@@ -670,7 +670,7 @@ Public Class login
                         agentCourant = AgentManager.getAgentById(idAgent)
                         panel_splashSynchro.Visible = False
                         ' On met à jour la barre de status
-                        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_OK, False)
+                        Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_OK, False)
                         CSDebug.dispInfo("Connexion réussie " & selectedAgent.nom)
                         ' On met a jour la date de dernière connexion
                         selectedAgent.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now)
@@ -685,15 +685,15 @@ Public Class login
 
                     Else
                         ' On met à jour la barre de status
-                        Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
-                        MsgBox(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
+                        Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
+                        MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
                         login_password.Text = ""
                     End If 'Mot de passe
                 End If 'bAgentExistant
             End If 'bAgentOK
         Catch ex As Exception
             ' On met à jour la barre de status
-            Statusbardisplay(Globals.CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
+            Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
             CSDebug.dispError("login::doLogin : " & ex.Message)
         End Try
         'On réactive la fenêtre , si la procédure de Cnx a fonctionner, cette fenêtre est cachée
@@ -704,20 +704,20 @@ Public Class login
     Private Sub login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         CSDebug.dispInfo("login.Load: Start")
         ' Debug
-        GroupBox_test.Visible = Globals.GLOB_ENV_DEBUG
-        lbl_environnement_ws.Visible = Globals.GLOB_ENV_DEBUG
-        lbl_environnement_debugType.Visible = Globals.GLOB_ENV_DEBUG
-        lbl_environnement_debugLvl.Visible = Globals.GLOB_ENV_DEBUG
-        lbl_environnement_debugType.Text = "Type de sortie debug..................: " & Globals.GLOB_ENV_DEBUGTYPE
-        lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & Globals.GLOB_ENV_DEBUGLVL
+        GroupBox_test.Visible = GlobalsCRODIP.GLOB_ENV_DEBUG
+        lbl_environnement_ws.Visible = GlobalsCRODIP.GLOB_ENV_DEBUG
+        lbl_environnement_debugType.Visible = GlobalsCRODIP.GLOB_ENV_DEBUG
+        lbl_environnement_debugLvl.Visible = GlobalsCRODIP.GLOB_ENV_DEBUG
+        lbl_environnement_debugType.Text = "Type de sortie debug..................: " & GlobalsCRODIP.GLOB_ENV_DEBUGTYPE
+        lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & GlobalsCRODIP.GLOB_ENV_DEBUGLVL
         lbl_WS.Text = WSCrodip.getWS().Url
         lblMode.Visible = False
         pnlPrincipal.BackgroundImage = Crodip_agent.Resources.Login_bgcrodipIndigo
-        If Globals.GLOB_ENV_MODESIMPLIFIE Then
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
             lblMode.Visible = True
             pnlPrincipal.BackgroundImage = Crodip_agent.Resources.login_bgcrodip
         End If
-        If Globals.GLOB_ENV_MODEFORMATION Then
+        If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             lblMode.Visible = True
             lblMode.Text = "Mode : Formation"
             pnlPrincipal.BackgroundImage = Crodip_agent.Resources.login_bgVide
@@ -725,20 +725,20 @@ Public Class login
         End If
 
 
-        If Not Globals.GLOB_ENV_MODEFORMATION Then
+        If Not GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             CSDebug.dispInfo("Login.Load: CheckWS()")
             If Not CSEnvironnement.checkWebService() Then
                 lbl_WS.Text = WSCrodip.getWS().Url
                 lbl_WS.ForeColor = Drawing.Color.Red
             End If
-            Lbl_Version.Text = Globals.GLOB_APPLI_VERSION & "-" & Globals.GLOB_APPLI_BUILD
+            Lbl_Version.Text = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD
             If Not My.Settings.AutoSync Then
                 Lbl_Version.Text = Lbl_Version.Text & " SYNC OFF"
             Else
                 Lbl_Version.Text = Lbl_Version.Text & " SYNC ON"
             End If
         End If
-        If Globals.GLOB_ENV_DEBUG Then
+        If GlobalsCRODIP.GLOB_ENV_DEBUG Then
             Dim oCSDB As New CSDb(False)
             lblBaseDonnee.Text = oCSDB.getbddPathName()
         Else
@@ -838,7 +838,7 @@ Public Class login
             oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
             oDiag = New Diagnostic(agentCourant, oPulve, oExploit)
             Dim oFrm As New FrmDiagnostique()
-            oFrm.SetContexte(oDiag, Globals.DiagMode.CTRL_COMPLET, oPulve, oExploit)
+            oFrm.SetContexte(oDiag, GlobalsCRODIP.DiagMode.CTRL_COMPLET, oPulve, oExploit)
 
             Dim oDiag12123 As New DiagnosticHelp12123()
             oFrm.ShowDialog()
@@ -849,8 +849,8 @@ Public Class login
     Private Sub btnTestDiagHelp12123_Click(sender As Object, e As EventArgs) Handles btnTestDiagContext.Click
 
         Dim oPulve As Pulverisateur
-        Dim oExploit As Exploitation
-        Dim oDiag As Diagnostic
+        Dim oExploit As Exploitation = Nothing
+        Dim oDiag As Diagnostic = Nothing
         oPulve = PulverisateurManager.getPulverisateurById("2-81-22")
         oPulve.type = "Cultures basses"
         'oPulve.categorie = "Traitement des semences"
@@ -865,7 +865,7 @@ Public Class login
             oDiag = New Diagnostic(agentCourant, oPulve, oExploit)
         End If
 
-        Dim oFrm As New diagnostic_contexte(Globals.DiagMode.CTRL_COMPLET, oDiag, oPulve, oExploit, False)
+        Dim oFrm As New diagnostic_contexte(GlobalsCRODIP.DiagMode.CTRL_COMPLET, oDiag, oPulve, oExploit, False)
         oFrm.Show()
 
 
@@ -1047,7 +1047,7 @@ Public Class login
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         Dim ofrm As frmdiagnostic_recap
-        ofrm = New frmdiagnostic_recap(Globals.DiagMode.CTRL_COMPLET, oDiag, oPulve, oExploit, oAgent, Nothing)
+        ofrm = New frmdiagnostic_recap(GlobalsCRODIP.DiagMode.CTRL_COMPLET, oDiag, oPulve, oExploit, oAgent, Nothing)
         ofrm.setbTest(True)
         ofrm.Show()
 
@@ -1085,7 +1085,7 @@ Public Class login
         oPulve = PulverisateurManager.getPulverisateurById("2-81-25") '
 
         Dim ofrm As New liste_diagnosticPulve2()
-        ofrm.setcontexte(Globals.DiagMode.CTRL_VISU, oPulve, oExploit, oAgent)
+        ofrm.setcontexte(GlobalsCRODIP.DiagMode.CTRL_VISU, oPulve, oExploit, oAgent)
         ofrm.Show()
 
     End Sub
@@ -1128,7 +1128,7 @@ Public Class login
 
     Private Sub btnLieuxControles_Click(sender As Object, e As EventArgs) Handles btnLieuxControles.Click
         Dim dlg As New frmGestLieuxControle()
-        Globals.GLOB_XML_CONFIG = New CSXml("config\config.xml")
+        GlobalsCRODIP.GLOB_XML_CONFIG = New CSXml("config\config.xml")
         dlg.ShowDialog(Me)
     End Sub
 

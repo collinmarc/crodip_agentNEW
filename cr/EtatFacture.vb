@@ -43,7 +43,7 @@ Public Class EtatFacture
     Private m_communeClient As String
     Private m_Commentaire As String
     Public Sub New(pDiag As Diagnostic, pReference As String, pCommentaire As String, Optional pExploitation As Exploitation = Nothing)
-        m_Path = Globals.CONST_PATH_EXP_DIAGNOSTIC
+        m_Path = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC
         m_oDiag = pDiag
         If pExploitation Is Nothing Then
             'Par Défaut les Coordonnées sont celle prises dans le Diag
@@ -120,7 +120,7 @@ Public Class EtatFacture
         Dim bReturn As Boolean
         Try
 
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Globals.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
             Dim oStruct As Structuree
             oStruct = StructureManager.getStructureById(m_oDiag.organismePresId)
 
@@ -148,7 +148,7 @@ Public Class EtatFacture
             'Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo_tn")
             Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo")
             If Not File.Exists(logoFilename) Then
-                logoFilename = Globals.CONST_PATH_IMG & Globals.CR_LOGO_DEFAULT_TN_NAME
+                logoFilename = GlobalsCRODIP.CONST_PATH_IMG & GlobalsCRODIP.CR_LOGO_DEFAULT_TN_NAME
             End If
             m_ods.Facture(0).LogoFileName = logoFilename
             Dim newImage As System.Drawing.Image = System.Drawing.Image.FromFile(logoFilename)
