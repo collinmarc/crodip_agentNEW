@@ -5596,7 +5596,11 @@ Public Class accueil
                 Dim opulve As Pulverisateur = m_BindingListOfPulve(index)
                 If agentCourant.AleDroit(opulve) Then
                     btn_ficheClient_diagnostic_nouveau.Enabled = Not agentCourant.isGestionnaire
-                    btn_ficheClient_diagnostic_nouvelleCV.Enabled = Not agentCourant.isGestionnaire
+                    If opulve.controleEtat <> "0" Then
+                        btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
+                    Else
+                        btn_ficheClient_diagnostic_nouvelleCV.Enabled = Not agentCourant.isGestionnaire
+                    End If
                     btn_ficheClient_diagnostic_voir.Enabled = Not agentCourant.isGestionnaire
                     btnSupprPulve.Enabled = Not agentCourant.isGestionnaire
                 Else

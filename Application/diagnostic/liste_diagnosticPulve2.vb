@@ -2766,6 +2766,15 @@ Public Class liste_diagnosticPulve2
                 Dim oCellI As DataGridViewImageCell
                 Dim oCell As DataGridViewDisableButtonCell
 
+                'Désactivation du bouton 'Reprendre" selon l'état
+                Select Case Trim(oDiag.controleEtat)
+                    Case "-1", "1"
+                        oCell = DataGridView1.Rows(nRow).Cells(col_ContreVisite.Index)
+                        oCell.Enabled = False
+                End Select
+
+
+
                 oCellI = DataGridView1.Rows(nRow).Cells(Col_Rapports.Index)
                 oCellI.Style.BackColor = System.Drawing.Color.White
                 oCellI.Tag = oDiag.RIFileName
@@ -2881,7 +2890,11 @@ Public Class liste_diagnosticPulve2
                 Case col_Remplacer.Index
                     RemplacerDiag()
                 Case col_ContreVisite.Index
-                    ReprendreDiag()
+                    Dim oCell As DataGridViewDisableButtonCell
+                    oCell = DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex)
+                    If oCell.Enabled Then
+                        ReprendreDiag()
+                    End If
             End Select
         End If
     End Sub
