@@ -1,7 +1,7 @@
 TRUNK
 MASTER
 
-BUILD : XXXXXXXX
+BUILD : 20210906170000
 	0001406: Controle du bouton "Contre visite" (Evolution (0.5j))
 	0001408: Buse Etalon : Non modification de la date d'achat
 	#0001407: Synchronisation des Mano de reference 
