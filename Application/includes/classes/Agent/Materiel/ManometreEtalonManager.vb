@@ -275,9 +275,9 @@ Public Class ManometreEtalonManager
         Dim bddCommande As OleDb.OleDbCommand
         bddCommande = oCSDB.getConnection().CreateCommand()
         If isShowAll Then
-            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pidStructure & " AND isSupprime=" & False & " And jamaisServi = " & False & ""
+            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pidStructure & " AND isSupprime=" & False
         Else
-            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pidStructure & " AND isSupprime=" & False & " AND jamaisServi = " & False & " AND etat=" & True & ""
+            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pidStructure & " AND isSupprime=" & False & " AND etat=" & True & ""
         End If
         Try
             ' On récupère les résultats

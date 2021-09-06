@@ -541,7 +541,7 @@ Public Class gestion_manometres
             Dim index As Integer = e.RowIndex
             Dim oMano As ManometreControle = m_bsManoControle(index)
             e.Value = Crodip_agent.Resources.PuceGriseT
-            If oMano.IsDateControle() Then
+            If Not oMano.JamaisServi Then
                 If oMano.etat Then
                     e.Value = Crodip_agent.Resources.PuceVerteT
                 Else
@@ -563,7 +563,7 @@ Public Class gestion_manometres
             Dim index As Integer = e.RowIndex
             Dim oMano As ManometreEtalon = m_bsMAnoEtalon(index)
             e.Value = Crodip_agent.Resources.PuceGriseT
-            If oMano.IsDateControle() Then
+            If Not oMano.JamaisServi Then
 
                 If oMano.etat Then
                     e.Value = Crodip_agent.Resources.PuceVerteT
