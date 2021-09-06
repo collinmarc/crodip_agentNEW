@@ -136,7 +136,7 @@ Public Class Buse
     Public Overrides Function ActiverMateriel(ByVal pDateActivation As Date, ByVal pAgent As Agent) As Boolean
         Dim bReturn As Boolean
         bReturn = MyBase.ActiverMateriel(pDateActivation, pAgent)
-        dateAchat = DateActivation
+        DateActivation = DateActivation
         Return bReturn
     End Function
 

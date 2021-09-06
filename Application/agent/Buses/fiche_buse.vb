@@ -48,7 +48,6 @@ Public Class fiche_buse
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents btn_ficheMano_valider As System.Windows.Forms.Label
     Friend WithEvents btn_ficheMano_supprimer As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
@@ -58,7 +57,6 @@ Public Class fiche_buse
     Friend WithEvents ficheBuse_dateAchat As System.Windows.Forms.DateTimePicker
     Friend WithEvents ficheBuse_pressionReference As System.Windows.Forms.TextBox
     Friend WithEvents ficheBuse_debitReference As System.Windows.Forms.TextBox
-    Friend WithEvents ficheBuse_dateModification As System.Windows.Forms.Label
     Friend WithEvents ficheBuse_idCrodip As System.Windows.Forms.TextBox
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -66,8 +64,6 @@ Public Class fiche_buse
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.ficheBuse_dateModification = New System.Windows.Forms.Label()
         Me.btn_ficheMano_valider = New System.Windows.Forms.Label()
         Me.btn_ficheMano_supprimer = New System.Windows.Forms.Label()
         Me.ficheBuse_dateAchat = New System.Windows.Forms.DateTimePicker()
@@ -120,28 +116,6 @@ Public Class fiche_buse
         Me.Label4.TabIndex = 14
         Me.Label4.Text = "Date d'achat :"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'Label7
-        '
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(10, 216)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(151, 16)
-        Me.Label7.TabIndex = 14
-        Me.Label7.Text = "Dernière modification :"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'ficheBuse_dateModification
-        '
-        Me.ficheBuse_dateModification.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ficheBuse_dateModification.ForeColor = System.Drawing.Color.Black
-        Me.ficheBuse_dateModification.Location = New System.Drawing.Point(201, 216)
-        Me.ficheBuse_dateModification.Name = "ficheBuse_dateModification"
-        Me.ficheBuse_dateModification.Size = New System.Drawing.Size(200, 16)
-        Me.ficheBuse_dateModification.TabIndex = 14
-        Me.ficheBuse_dateModification.Text = "01/01/2011"
-        Me.ficheBuse_dateModification.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
         'btn_ficheMano_valider
         '
@@ -322,8 +296,6 @@ Public Class fiche_buse
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.ficheBuse_dateModification)
         Me.Controls.Add(Me.ficheBuse_pressionReference)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.ficheBuse_debitReference)
@@ -359,8 +331,7 @@ Public Class fiche_buse
         ficheBuse_debitReference.Text = BuseCourant.debitEtalonnage
 
         ficheBuse_dateAchat.Text = CSDate.mysql2access(BuseCourant.dateAchat)
-        ficheBuse_dateModification.Text = CSDate.mysql2access(BuseCourant.dateModificationAgent)
-        If BuseCourant.jamaisServi Then
+        If BuseCourant.JamaisServi Then
             pbEtat.Image = imagesEtatMateriel.Images(2) 'Gris
         Else
             If BuseCourant.etat Then
@@ -369,11 +340,11 @@ Public Class fiche_buse
                 pbEtat.Image = imagesEtatMateriel.Images(0) 'Rouge
             End If
         End If
-        btnActiver.Visible = BuseCourant.jamaisServi
-        If Not CSDate.isDateNull(BuseCourant.DateActivation) Then
-            ficheBuse_dateActivation.Text = CSDate.mysql2access(BuseCourant.DateActivation)
-        Else
+        btnActiver.Visible = BuseCourant.JamaisServi
+        If CSDate.isDateNull(BuseCourant.DateActivation) Or BuseCourant.JamaisServi Then
             ficheBuse_dateActivation.Text = ""
+        Else
+            ficheBuse_dateActivation.Text = CSDate.mysql2access(BuseCourant.DateActivation)
         End If
 
     End Sub
@@ -386,7 +357,6 @@ Public Class fiche_buse
                 BuseCourant.pressionEtalonnage = CType(ficheBuse_pressionReference.Text.Replace(".", ","), Double)
                 BuseCourant.debitEtalonnage = CType(ficheBuse_debitReference.Text.Replace(".", ","), Double)
                 BuseCourant.dateAchat = CSDate.mysql2access(ficheBuse_dateAchat.Value)
-                BuseCourant.dateModificationAgent = CSDate.mysql2access(Date.Now)
                 BuseManager.save(BuseCourant)
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()

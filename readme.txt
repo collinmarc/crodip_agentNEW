@@ -3,6 +3,7 @@ MASTER
 
 BUILD : XXXXXXXX
 	0001406: Controle du bouton "Contre visite" (Evolution (0.5j))
+	0001408: Buse Etalon : Non modification de la date d'achat
 	
 BUILD : 20210719130000
 	0001223: [CtrlMano] : CONTROLE MATERIEL 16bar
