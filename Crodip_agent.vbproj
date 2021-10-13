@@ -1358,6 +1358,9 @@
     </Content>
     <Content Include="bdd\crodip_dasylab.mdb" />
     <Content Include="bdd\crodip_etats.mdb" />
+    <Content Include="bdd\crodip_md2.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="cmd.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
