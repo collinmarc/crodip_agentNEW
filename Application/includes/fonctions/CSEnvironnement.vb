@@ -102,10 +102,12 @@ Public Class CSEnvironnement
             ServicePointManager.SecurityProtocol = My.Settings.SecurityProtocol
         End If
         Dim bReturn As Boolean = False
-        If checkNetwork(Protocol.https) Then
-            bReturn = True
-        Else
-            bReturn = checkNetwork(Protocol.http)
+        If My.Settings.checkNetwork Then
+            If checkNetwork(Protocol.https) Then
+                bReturn = True
+            Else
+                bReturn = checkNetwork(Protocol.http)
+            End If
         End If
         Return bReturn
 

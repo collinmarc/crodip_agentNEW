@@ -277,7 +277,7 @@ Imports System.IO
         oDiag.inspecteurOrigineNom = "RAULT"
         oDiag.inspecteurOriginePrenom = "MA"
         oDiag.organismeOriginePresNom = "CRODIP"
-
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         For i As Integer = 0 To 20
             oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
             oDiagItem.LibelleCourt = "LIBCourt2561"

@@ -45,6 +45,7 @@ Partial Class Form1
         Me.FlowPanelAAMS = New System.Windows.Forms.FlowLayoutPanel()
         Me.tbNbreBuseParNiveauAAMS = New System.Windows.Forms.TextBox()
         Me.rbERECA = New System.Windows.Forms.RadioButton()
+        Me.rbIteq2 = New System.Windows.Forms.RadioButton()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AcquisitionValueBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowPanelAAMS.SuspendLayout()
@@ -74,7 +75,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(551, 12)
+        Me.Button1.Location = New System.Drawing.Point(622, 8)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(146, 23)
         Me.Button1.TabIndex = 2
@@ -95,7 +96,7 @@ Partial Class Form1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NiveauDataGridViewTextBoxColumn, Me.NumBuseDataGridViewTextBoxColumn, Me.DebitDataGridViewTextBoxColumn, Me.PressionDataGridViewTextBoxColumn, Me.RefDataGridViewTextBoxColumn, Me.HVDataGridViewTextBoxColumn, Me.MarqueTypeFonctionementDataGridViewTextBoxColumn, Me.CalibreDataGridViewTextBoxColumn, Me.PressionCtrlDataGridViewTextBoxColumn, Me.DebitNominalDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.AcquisitionValueBindingSource
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 74)
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 71)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(887, 255)
         Me.DataGridView1.TabIndex = 3
@@ -206,7 +207,7 @@ Partial Class Form1
         '
         Me.FlowPanelAAMS.Controls.Add(Me.Label2)
         Me.FlowPanelAAMS.Controls.Add(Me.tbNbreBuseParNiveauAAMS)
-        Me.FlowPanelAAMS.Location = New System.Drawing.Point(295, 12)
+        Me.FlowPanelAAMS.Location = New System.Drawing.Point(376, 8)
         Me.FlowPanelAAMS.Name = "FlowPanelAAMS"
         Me.FlowPanelAAMS.Size = New System.Drawing.Size(211, 26)
         Me.FlowPanelAAMS.TabIndex = 9
@@ -231,11 +232,23 @@ Partial Class Form1
         Me.rbERECA.Text = "ERECA"
         Me.rbERECA.UseVisualStyleBackColor = True
         '
+        'rbIteq2
+        '
+        Me.rbIteq2.AutoSize = True
+        Me.rbIteq2.Location = New System.Drawing.Point(246, 16)
+        Me.rbIteq2.Name = "rbIteq2"
+        Me.rbIteq2.Size = New System.Drawing.Size(56, 17)
+        Me.rbIteq2.TabIndex = 11
+        Me.rbIteq2.TabStop = True
+        Me.rbIteq2.Text = "ITEQ2"
+        Me.rbIteq2.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(902, 338)
+        Me.Controls.Add(Me.rbIteq2)
         Me.Controls.Add(Me.rbERECA)
         Me.Controls.Add(Me.FlowPanelAAMS)
         Me.Controls.Add(Me.rbAAMS)
@@ -278,4 +291,5 @@ Partial Class Form1
     Friend WithEvents FlowPanelAAMS As FlowLayoutPanel
     Friend WithEvents tbNbreBuseParNiveauAAMS As TextBox
     Friend WithEvents rbERECA As RadioButton
+    Friend WithEvents rbIteq2 As RadioButton
 End Class

@@ -17,12 +17,16 @@ Public Class Form1
             oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule("ERECA")
 
         End If
+        If rbIteq2.Checked Then
+            oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule("ITEQ2")
+
+        End If
         If (oModuleAcquisition Is Nothing) Then
             MessageBox.Show("Impossible de charger le Module d'acquisition")
             Exit Sub
         End If
         Dim pModule As CRODIPAcquisition.ICRODIPAcquisition = oModuleAcquisition.Instance
-        If rbAAMS.Checked Then
+        If Not pModule.getGestionDesNiveaux Then
             pModule.setNbBusesParNiveau(tbNbreBuseParNiveauAAMS.Text)
         End If
         If Not System.IO.File.Exists(pModule.getFichier()) Then
@@ -59,5 +63,10 @@ Public Class Form1
 
     Private Sub rbAAMS_CheckedChanged(sender As Object, e As EventArgs) Handles rbAAMS.CheckedChanged
         FlowPanelAAMS.Visible = rbAAMS.Checked
+    End Sub
+
+    Private Sub rbIteq2_CheckedChanged(sender As Object, e As EventArgs) Handles rbIteq2.CheckedChanged
+        FlowPanelAAMS.Visible = rbIteq2.Checked
+
     End Sub
 End Class

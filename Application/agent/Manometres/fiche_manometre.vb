@@ -475,8 +475,10 @@ Public Class fiche_manometre
         End If
 
         btnActiver.Visible = manometreCourant.JamaisServi
-        If Not CSDate.isDateNull(manometreCourant.DateActivation) Then
-            ficheMano_dateActivation.Text = CSDate.mysql2access(manometreCourant.DateActivation)
+        If Not manometreCourant.JamaisServi Then
+            If Not CSDate.isDateNull(manometreCourant.DateActivation) Then
+                ficheMano_dateActivation.Text = CSDate.mysql2access(manometreCourant.DateActivation)
+            End If
         End If
         If Not CSDate.isDateNull(manometreCourant.dateDernierControleS) Then
             ficheMano_dateControle.Text = CSDate.mysql2access(manometreCourant.dateDernierControleS)

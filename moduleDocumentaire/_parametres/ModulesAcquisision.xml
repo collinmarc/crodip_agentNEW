@@ -25,4 +25,9 @@
       <Assembly></Assembly>
       <Main></Main>
     </ModuleAcq>
-  </ArrayOfModuleAcq>
+  <ModuleAcq>
+    <Nom>ITEQ2</Nom>
+    <Assembly>AcquisitionITEQ2.dll</Assembly>
+    <Main>AcquisitionITEQ2.Main</Main>
+  </ModuleAcq>
+</ArrayOfModuleAcq>

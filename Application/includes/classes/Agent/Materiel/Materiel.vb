@@ -213,7 +213,7 @@ Public MustInherit Class Materiel
             JamaisServi = False
             etat = True
             DateActivation = pDateActivation
-            dateDernierControleS = pDateActivation
+
 
             bReturn = creerFichevieActivation(pAgent)
         Catch ex As Exception

@@ -20,4 +20,9 @@
     <Assembly>AcquisitionERECA.dll</Assembly>
     <Main>AcquisitionERECA.Main</Main>
   </ModuleAcq>
+  <ModuleAcq>
+    <Nom>ITEQ2</Nom>
+    <Assembly>AcquisitionITEQ2.dll</Assembly>
+    <Main>AcquisitionITEQ2.Main</Main>
+  </ModuleAcq>
 </ArrayOfModuleAcq>
