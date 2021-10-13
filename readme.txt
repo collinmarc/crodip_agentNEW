@@ -1,6 +1,12 @@
 TRUNK
 MASTER
 
+BUILD : 20211013170000
+0001409: Creation d'un Mano (Status en Gris)
+0001413: Intégration ITEQ2
+0001422: Modification des mentions sur RI
+
+
 BUILD : 20210906170000
 	0001406: Controle du bouton "Contre visite" (Evolution (0.5j))
 	0001408: Buse Etalon : Non modification de la date d'achat

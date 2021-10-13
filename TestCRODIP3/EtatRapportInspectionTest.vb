@@ -217,7 +217,7 @@ Imports System.IO
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
-    <TestMethod()> Public Sub TestGenereEtatComplet1P()
+    <TestMethod()> Public Sub TestGenereEtatCC1P()
         Dim oEtat As EtatRapportInspection
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur
@@ -323,8 +323,10 @@ Imports System.IO
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
+        'Etat = Demande d'un controle complet
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
