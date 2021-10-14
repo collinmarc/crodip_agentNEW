@@ -5,7 +5,8 @@ BUILD : 20211013170000
 0001409: Creation d'un Mano (Status en Gris)
 0001413: Intégration ITEQ2
 0001422: Modification des mentions sur RI
-
+0001427: Erreur de calcul 552 : pour les buses à 2 bars
+0001428: Calcul de la date de prochain controle
 
 BUILD : 20210906170000
 	0001406: Controle du bouton "Contre visite" (Evolution (0.5j))

@@ -420,7 +420,7 @@ Public Class DiagnosticHelp552
         'tmp_ecart = Math.Round(100 * (pDebitAfficheur - pDebitEtalon) / pDebitEtalon, 2)
         'Else
         If (pNbBuses * DebitMoyen0Bar * pPression) <> 0 Then
-            tmp_DebReel = DebitMoyen0Bar * Math.Sqrt(pPression / PressionMesure) * pNbBuses
+            tmp_DebReel = DebitMoyen0Bar * Math.Sqrt(pPression / 3) * pNbBuses
             'tmp_DebReel = Math.Round(tmp_DebReel, 2)
 
             'tmp_ecart = Math.Round(100 * (pDebitAfficheur - (pNbBuses * DebitMoyen0Bar * (pPression ^ 0.5 / PressionMesure ^ 0.5))) / (pNbBuses * DebitMoyen0Bar * (pPression ^ 0.5 / PressionMesure ^ 0.5)), 2)

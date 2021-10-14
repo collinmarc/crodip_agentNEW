@@ -238,7 +238,7 @@ Public Class DiagnosticHelp552test
 
         'on Simule la date de dernière synchro de l'agent à -1 munites
         '======================================
-        m_oAgent.dateDerniereSynchro = CDate(oDiag.dateModificationAgent).AddMinutes(-1).ToShortDateString()
+        m_oAgent.dateDerniereSynchro = CSDate.ToCRODIPString(CDate(oDiag.dateModificationAgent).AddMinutes(-1).ToShortDateString())
 
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
@@ -534,6 +534,34 @@ Public Class DiagnosticHelp552test
 
         Assert.AreEqual(4.277D, oDiagHelp552.ErreurDebitMetre)
         Assert.AreEqual(-4.277D, oDiagHelp552.ErreurDebitMetreSigned)
+
+
+
+    End Sub
+    <TestMethod()>
+    Public Sub TST_PressionA2bars()
+        Dim oDiagHelp552 As New DiagnosticHelp552()
+
+        oDiagHelp552.PressionMesure = 2
+        oDiagHelp552.DebitMoyen0Bar = 1.225D
+
+        oDiagHelp552.NbBuses_m1 = 10
+        oDiagHelp552.NbBuses_m2 = 10
+        oDiagHelp552.NbBuses_m3 = 10
+
+        oDiagHelp552.Pression_m1 = 3D
+        oDiagHelp552.Pression_m2 = 2D
+        oDiagHelp552.Pression_m3 = 2D
+
+        oDiagHelp552.DebitAfficheur_m1 = 12.25D
+        oDiagHelp552.DebitAfficheur_m2 = 10D
+        oDiagHelp552.DebitAfficheur_m3 = 12.25D
+
+        oDiagHelp552.calc()
+        Assert.AreEqual(0D, oDiagHelp552.EcartPct_m1)
+        Assert.AreEqual(-0.021D, oDiagHelp552.EcartPct_m2)
+        Assert.AreEqual(22.474D, oDiagHelp552.EcartPct_m3)
+
 
 
 
