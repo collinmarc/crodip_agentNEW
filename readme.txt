@@ -1,6 +1,9 @@
 TRUNK
 MASTER
 
+	0001142: Synhcronisation d'un nouvel agent
+
+
 BUILD : 20211013170000
 0001409: Creation d'un Mano (Status en Gris)
 0001413: Intégration ITEQ2

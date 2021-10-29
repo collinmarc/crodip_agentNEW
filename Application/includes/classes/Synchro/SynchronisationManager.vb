@@ -79,7 +79,7 @@ Public Class SynchronisationManager
     Private Shared Function GetDateDernSynchro() As DateTime
         Dim lst As AgentList = AgentManager.getAgentList()
 
-        Dim oReturn As DateTime = lst.items.Min(Function(a) CDate(a.dateDerniereSynchro))
+        Dim oReturn As DateTime = lst.items.Max(Function(a) CDate(a.dateDerniereSynchro))
         Return oReturn
     End Function
     Public Shared Function getWSlstElementsASynchroniser(ByVal pAgent As Agent, pSynchroBoolean As SynchroBooleans) As List(Of SynchronisationElmt)
@@ -95,13 +95,13 @@ Public Class SynchronisationManager
 
         Dim DateDernSynhcro As DateTime
         DateDernSynhcro = GetDateDernSynchro()
-        If CSDate.FromCrodipString(pAgent.dateDerniereSynchro) < DateDernSynhcro Then
-            DateDernSynhcro = CSDate.FromCrodipString(pAgent.dateDerniereSynchro)
-        End If
+        'If CSDate.FromCrodipString(pAgent.dateDerniereSynchro) < DateDernSynhcro Then
+        '    DateDernSynhcro = CSDate.FromCrodipString(pAgent.dateDerniereSynchro)
+        'End If
         logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
         Try
 
-            objWSCrodip.UpdatesAvailable(pAgent.numeroNational, CSDate.GetDateForWS(pAgent.dateDerniereSynchro), isUpdateAvailable, isComplete, objWSUpdates)
+            objWSCrodip.UpdatesAvailable(pAgent.numeroNational, CSDate.GetDateForWS(DateDernSynhcro), isUpdateAvailable, isComplete, objWSUpdates)
         Catch ex As Exception
             CSDebug.dispError("SynchronisationManager.getWSlstElementsASynchroniser ERR" & ex.Message)
         End Try

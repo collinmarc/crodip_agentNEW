@@ -428,6 +428,39 @@ Public Class SynchronisationTest
 
     End Sub
 
+    <TestMethod()>
+    Public Sub SynchronisationDescNouvelAgent()
+
+        Dim oAgent1 As Agent
+        oAgent1 = m_oAgent
+        Dim osync As Synchronisation
+        Dim oList As List(Of SynchronisationElmt)
+
+        ' on déclare les agents crées comme étant déjà synchronisé
+        osync = New Synchronisation(oAgent1)
+        osync.MAJDateDerniereSynchro()
+        'on regarde combien on a d'éelements à synchroniser
+        oList = osync.getListeElementsASynchroniserDESC()
+        Assert.AreEqual(0, oList.Count, "La Liste devrait être à ZEro")
+
+
+        'Creation d'un agent
+        Dim oAgent2 As Agent
+        oAgent2 = AgentManager.createAgent(1125, "498002", "AGENT2 Test", m_oStructure.id)
+        oAgent2.prenom = "AGENT2 Test"
+        oAgent2.telephonePortable = "0606060606"
+        oAgent2.eMail = "a@a.com"
+        oAgent2.isActif = True
+        AgentManager.save(oAgent2)
+
+        osync = New Synchronisation(oAgent2)
+        oList = osync.getListeElementsASynchroniserDESC()
+        Assert.AreEqual(0, oList.Count, "La Liste devrait être à ZEro, même avec le nouvel agent")
+
+
+
+
+    End Sub
     <TestMethod, Ignore()>
     Public Sub GetDateDernSynchro()
 
