@@ -43,7 +43,9 @@ Public Class ReferentielCommunesCSV
                         NomCommune = tab(1).ToUpper()
                     End If
                     If Not String.IsNullOrEmpty(tab(2)) Then
-                        CodePostal = tab(2).ToUpper()
+                        Dim cp As String = tab(2).ToUpper()
+                        cp = Convert.ToInt32(cp).ToString("00000")
+                        CodePostal = cp
                     End If
                     If Not String.IsNullOrEmpty(tab(3)) Then
                         LibelleAcheminement = tab(3).ToUpper()
