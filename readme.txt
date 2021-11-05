@@ -1,8 +1,9 @@
 TRUNK
 MASTER
 
-	0001142: Synhcronisation d'un nouvel agent
-
+BUILD : XXXXXXXXXX
+0001142: Synhcronisation d'un nouvel agent
+0001416: MAJ de la liste des communes
 
 BUILD : 20211013170000
 0001409: Creation d'un Mano (Status en Gris)
