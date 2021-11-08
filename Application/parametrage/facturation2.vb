@@ -568,12 +568,6 @@ Public Class facturation2
             lblError.Text = "Veuillez remplir tous les champs."
             Return False
         End If
-        Dim nElement As Integer
-        nElement = Me.FACTURATION_XML_CONFIG.countElements("/root/*")
-        If nElement = 7 Then
-            Me.FACTURATION_XML_CONFIG.addElement("/root", "racinenumerotation", tbRacineNumerotation.Text)
-            Me.FACTURATION_XML_CONFIG.addElement("/root", "derniernumero", tbDernNumero.Text)
-        End If
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/isActive", facturation_isActivated.Checked.ToString)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/siren", facturation_siren.Text)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/tva", facturation_tva.Text)

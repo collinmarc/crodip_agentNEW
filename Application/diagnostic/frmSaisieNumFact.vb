@@ -40,15 +40,8 @@
             MsgBox("Numéro de facture incorrect")
         Else
             NUMFACT = Trim(tbRacineFacturation.Text) & Trim(tbNumFact.Text)
-            Dim nElement As Integer
-            nElement = Me.FACTURATION_XML_CONFIG.countElements("/root/*")
-            If nElement = 7 Then
-                Me.FACTURATION_XML_CONFIG.addElement("/root", "racinenumerotation", tbRacineFacturation.Text)
-                Me.FACTURATION_XML_CONFIG.addElement("/root", "derniernumero", tbNumFact.Text)
-            Else
-                Me.FACTURATION_XML_CONFIG.setElementValue("/root/racinenumerotation", tbRacineFacturation.Text)
-                Me.FACTURATION_XML_CONFIG.setElementValue("/root/derniernumero", tbNumFact.Text)
-            End If
+            Me.FACTURATION_XML_CONFIG.setElementValue("/root/racinenumerotation", tbRacineFacturation.Text)
+            Me.FACTURATION_XML_CONFIG.setElementValue("/root/derniernumero", tbNumFact.Text)
 
             Me.DialogResult = Windows.Forms.DialogResult.OK
             Me.Close()

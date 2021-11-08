@@ -728,10 +728,26 @@ Public Class Diagnostic
 
     Public Property controleTarif() As String
         Get
+#If VFACTURATION Then
+            If oContratCommercial IsNot Nothing Then
+                Return oContratCommercial.TotalTTC.ToString()
+            Else
+                Return 0
+            End If
+
+#Else
             Return _controleTarif
+#End If
         End Get
         Set(ByVal Value As String)
+#If VFACTURATION Then
+            If oContratCommercial IsNot Nothing Then
+                oContratCommercial.TotalTTC = CDec(Value)
+            End If
+
+#Else
             _controleTarif = Value
+#End If
         End Set
     End Property
 
@@ -2160,29 +2176,74 @@ Public Class Diagnostic
     <XmlIgnoreAttribute()>
     Public Property TotalHT As Decimal
         Get
+#If VFACTURATION Then
+            If oContratCommercial IsNot Nothing Then
+                Return oContratCommercial.TotalHT
+            Else
+                Return 0
+            End If
+
+#Else
             Return _TotalHT
+#End If
         End Get
         Set(ByVal Value As Decimal)
+#If VFACTURATION Then
+            If oContratCommercial IsNot Nothing Then
+                oContratCommercial.TotalHT = Value
+            End If
+#Else
             _TotalHT = Value
+#End If
         End Set
     End Property
     <XmlIgnoreAttribute()>
     Public Property TotalTVA As Decimal
         Get
+#If VFACTURATION Then
+            If oContratCommercial IsNot Nothing Then
+                Return oContratCommercial.TotalTVA
+            Else
+                Return 0
+            End If
+
+#Else
             Return _TotalTVA
+#End If
         End Get
         Set(ByVal Value As Decimal)
+#If VFACTURATION Then
+            If oContratCommercial IsNot Nothing Then
+                oContratCommercial.TotalTVA = Value
+            End If
+#Else
             _TotalTVA = Value
+#End If
         End Set
     End Property
     'le Total TTC du diag est transmis via le champ controleTarif
     <XmlIgnoreAttribute()>
     Public Property TotalTTC As Decimal
         Get
-            Return _TotalTTC
+#If VFACTURATION Then
+            If oContratCommercial IsNot Nothing Then
+                Return oContratCommercial.TotalTTC
+            Else
+                Return 0
+            End If
+
+#Else
+            Return _TotalHT
+#End If
         End Get
         Set(ByVal Value As Decimal)
+#If VFACTURATION Then
+            If oContratCommercial IsNot Nothing Then
+                oContratCommercial.TotalTTC = Value
+            End If
+#Else
             _TotalTTC = Value
+#End If
         End Set
     End Property
 
@@ -3567,6 +3628,14 @@ Public Class Diagnostic
         bReturn = IsFichierExists(Me.CCFileName)
         Return bReturn
     End Function
-
+    Private _ContratCommercial As ContratCommercial
+    Public Property oContratCommercial() As ContratCommercial
+        Get
+            Return _ContratCommercial
+        End Get
+        Set(ByVal value As ContratCommercial)
+            _ContratCommercial = value
+        End Set
+    End Property
 
 End Class

@@ -2,6 +2,7 @@ Imports System.Xml
 Imports System.Xml.XPath
 
 Public Class CSXml
+    Implements IDisposable
 
     'Le nom du fichier xml sur lequel on travaillera
     Private m_Nomfichier As String
@@ -132,44 +133,52 @@ Public Class CSXml
             Dim doc As New XmlDocument
             doc.Load(m_Nomfichier)
 
-            'definit la racine de l'element a modifier
-            Dim parent As XmlNode = doc.SelectSingleNode(path).ParentNode
-
             'définit la node
             Dim node As XmlNode = doc.SelectSingleNode(path)
+            If node Is Nothing Then
+                Dim parentPath As String
+                Dim nodeName As String
 
-            'Si le noeud a des enfants alors il faut sauver les enfants
-            If node.HasChildNodes Then
+                parentPath = Left(path, path.LastIndexOf("/"))
+                nodeName = path.Substring(path.LastIndexOf("/") + 1)
+                addElement(parentPath, nodeName, valeur)
+            Else
+                'definit la racine de l'element a modifier
+                Dim parent As XmlNode = doc.SelectSingleNode(path).ParentNode
 
-                'creation d'un nouvel element
-                Dim clone As XmlElement = doc.CreateElement(node.Name)
 
-                'on lui assigne la nouvelle valeur
-                clone.InnerText = valeur
+                'Si le noeud a des enfants alors il faut sauver les enfants
+                If node.HasChildNodes Then
 
-                'copie des enfants du noeud dans le nouvel element
-                Dim child As XmlNode
-                For Each child In node.ChildNodes
-                    If child.GetType.ToString <> "System.Xml.XmlText" Then
-                        clone.AppendChild(child.Clone())
-                    End If
-                    parent.ReplaceChild(clone, node)
-                    node = clone
-                Next
-            Else  'sinon on change juste la valeur
+                    'creation d'un nouvel element
+                    Dim clone As XmlElement = doc.CreateElement(node.Name)
 
-                'creation d'un nouvel element
-                Dim elem As XmlElement = doc.CreateElement(node.Name)
+                    'on lui assigne la nouvelle valeur
+                    clone.InnerText = valeur
 
-                'on lui assigne la nouvelle valeur
-                elem.InnerText = valeur
+                    'copie des enfants du noeud dans le nouvel element
+                    Dim child As XmlNode
+                    For Each child In node.ChildNodes
+                        If child.GetType.ToString <> "System.Xml.XmlText" Then
+                            clone.AppendChild(child.Clone())
+                        End If
+                        parent.ReplaceChild(clone, node)
+                        node = clone
+                    Next
+                Else  'sinon on change juste la valeur
 
-                'on remplace par la nouvelle node
-                parent.ReplaceChild(elem, node)
+                    'creation d'un nouvel element
+                    Dim elem As XmlElement = doc.CreateElement(node.Name)
+
+                    'on lui assigne la nouvelle valeur
+                    elem.InnerText = valeur
+
+                    'on remplace par la nouvelle node
+                    parent.ReplaceChild(elem, node)
+                End If
+                'Sauve les modifications
+                doc.Save(m_Nomfichier)
             End If
-
-            'Sauve les modifications
-            doc.Save(m_Nomfichier)
 
             doc = Nothing
 
@@ -238,7 +247,7 @@ Public Class CSXml
 
     End Sub
 
-    Public Sub addElement(ByVal path As String, ByVal nom As String, ByVal valeur As String)
+    Private Sub addElement(ByVal path As String, ByVal nom As String, ByVal valeur As String)
 
         Try
             'charge le fichier xml
@@ -500,8 +509,8 @@ Public Class CSXml
             Dim doc As New XmlDocument
 
             'lui ajoute son entête et la balise racine
-            doc.LoadXml("<?xml version='1.0' encoding='ISO-8859-1'?>" & _
-                         "<" & nom & ">" & _
+            doc.LoadXml("<?xml version='1.0' encoding='ISO-8859-1'?>" &
+                         "<" & nom & ">" &
                          "</" & nom & ">")
 
             'sauvegarde les modifications
@@ -586,5 +595,37 @@ Public Class CSXml
         Return nb
 
     End Function
+
+#Region "IDisposable Support"
+    Private disposedValue As Boolean ' Pour détecter les appels redondants
+
+    ' IDisposable
+    Protected Overridable Sub Dispose(disposing As Boolean)
+        If Not disposedValue Then
+            If disposing Then
+                ' TODO: supprimer l'état managé (objets managés).
+            End If
+
+            ' TODO: libérer les ressources non managées (objets non managés) et remplacer Finalize() ci-dessous.
+            ' TODO: définir les champs de grande taille avec la valeur Null.
+        End If
+        disposedValue = True
+    End Sub
+
+    ' TODO: remplacer Finalize() seulement si la fonction Dispose(disposing As Boolean) ci-dessus a du code pour libérer les ressources non managées.
+    'Protected Overrides Sub Finalize()
+    '    ' Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(disposing As Boolean) ci-dessus.
+    '    Dispose(False)
+    '    MyBase.Finalize()
+    'End Sub
+
+    ' Ce code est ajouté par Visual Basic pour implémenter correctement le modèle supprimable.
+    Public Sub Dispose() Implements IDisposable.Dispose
+        ' Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(disposing As Boolean) ci-dessus.
+        Dispose(True)
+        ' TODO: supprimer les marques de commentaire pour la ligne suivante si Finalize() est remplacé ci-dessus.
+        ' GC.SuppressFinalize(Me)
+    End Sub
+#End Region
 
 End Class

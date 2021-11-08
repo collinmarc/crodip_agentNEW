@@ -547,15 +547,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20210906170000")>  _
-    Public ReadOnly Property NumBuild() As String
-        Get
-            Return CType(Me("NumBuild"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
     Public ReadOnly Property checkNetwork() As Boolean
         Get
@@ -569,6 +560,15 @@ Partial Friend NotInheritable Class MySettings
     Public ReadOnly Property DB() As String
         Get
             Return CType(Me("DB"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20211013170000")>  _
+    Public ReadOnly Property NumBuild() As String
+        Get
+            Return CType(Me("NumBuild"),String)
         End Get
     End Property
 End Class

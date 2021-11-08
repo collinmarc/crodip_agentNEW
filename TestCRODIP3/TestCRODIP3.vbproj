@@ -179,8 +179,9 @@
     <Compile Include="SynchronisationTest.vb" />
     <Compile Include="testBDASCAR.vb" />
     <Compile Include="ToleranceBuseTest.vb" />
-    <Compile Include="UnitTest1.vb" />
+    <Compile Include="StructureTest.vb" />
     <Compile Include="DiagnosticFilesTest.vb" />
+    <Compile Include="ContatCommercialTest.vb" />
     <Compile Include="ZIPTest.vb" />
     <Compile Include="UpdateInfoTest.vb" />
     <Compile Include="WSCrodipTest.vb" />
