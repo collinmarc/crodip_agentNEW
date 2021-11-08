@@ -68,7 +68,6 @@ Public Class login
     Friend WithEvents cbTestRIFin As Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents btnTestFacturation As System.Windows.Forms.Button
     Friend WithEvents brnTestDiagRecap As System.Windows.Forms.Button
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents btnTesttrtSemences As System.Windows.Forms.Button
@@ -79,6 +78,7 @@ Public Class login
     Friend WithEvents lblBaseDonnee As Label
     Friend WithEvents btnLieuxControles As Button
     Friend WithEvents btnExploitant As Button
+    Friend WithEvents btnTestFacture As Button
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
@@ -96,6 +96,8 @@ Public Class login
         Me.Lbl_Version = New System.Windows.Forms.Label()
         Me.lbl_environnement_ws = New System.Windows.Forms.Label()
         Me.GroupBox_test = New System.Windows.Forms.GroupBox()
+        Me.btnTestFacture = New System.Windows.Forms.Button()
+        Me.btnExploitant = New System.Windows.Forms.Button()
         Me.btnLieuxControles = New System.Windows.Forms.Button()
         Me.btnTSTSignature = New System.Windows.Forms.Button()
         Me.btn_dlgAcquisition = New System.Windows.Forms.Button()
@@ -103,7 +105,6 @@ Public Class login
         Me.btnTesttrtSemences = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.brnTestDiagRecap = New System.Windows.Forms.Button()
-        Me.btnTestFacturation = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.cbTestRIFin = New System.Windows.Forms.Button()
@@ -118,7 +119,6 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.btnExploitant = New System.Windows.Forms.Button()
         Me.pnlPrincipal.SuspendLayout()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
@@ -294,6 +294,7 @@ Public Class login
         'GroupBox_test
         '
         Me.GroupBox_test.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox_test.Controls.Add(Me.btnTestFacture)
         Me.GroupBox_test.Controls.Add(Me.btnExploitant)
         Me.GroupBox_test.Controls.Add(Me.btnLieuxControles)
         Me.GroupBox_test.Controls.Add(Me.btnTSTSignature)
@@ -302,7 +303,6 @@ Public Class login
         Me.GroupBox_test.Controls.Add(Me.btnTesttrtSemences)
         Me.GroupBox_test.Controls.Add(Me.Button4)
         Me.GroupBox_test.Controls.Add(Me.brnTestDiagRecap)
-        Me.GroupBox_test.Controls.Add(Me.btnTestFacturation)
         Me.GroupBox_test.Controls.Add(Me.Button2)
         Me.GroupBox_test.Controls.Add(Me.Button1)
         Me.GroupBox_test.Controls.Add(Me.cbTestRIFin)
@@ -314,6 +314,26 @@ Public Class login
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
+        '
+        'btnTestFacture
+        '
+        Me.btnTestFacture.BackColor = System.Drawing.SystemColors.Control
+        Me.btnTestFacture.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTestFacture.Location = New System.Drawing.Point(522, 77)
+        Me.btnTestFacture.Name = "btnTestFacture"
+        Me.btnTestFacture.Size = New System.Drawing.Size(104, 23)
+        Me.btnTestFacture.TabIndex = 40
+        Me.btnTestFacture.Text = "Facture 2"
+        Me.btnTestFacture.UseVisualStyleBackColor = False
+        '
+        'btnExploitant
+        '
+        Me.btnExploitant.Location = New System.Drawing.Point(522, 46)
+        Me.btnExploitant.Name = "btnExploitant"
+        Me.btnExploitant.Size = New System.Drawing.Size(101, 23)
+        Me.btnExploitant.TabIndex = 39
+        Me.btnExploitant.Text = "Exploitant"
+        Me.btnExploitant.UseVisualStyleBackColor = True
         '
         'btnLieuxControles
         '
@@ -328,7 +348,7 @@ Public Class login
         '
         Me.btnTSTSignature.Location = New System.Drawing.Point(396, 77)
         Me.btnTSTSignature.Name = "btnTSTSignature"
-        Me.btnTSTSignature.Size = New System.Drawing.Size(128, 23)
+        Me.btnTSTSignature.Size = New System.Drawing.Size(107, 23)
         Me.btnTSTSignature.TabIndex = 37
         Me.btnTSTSignature.Text = "Signature"
         Me.btnTSTSignature.UseVisualStyleBackColor = True
@@ -379,17 +399,6 @@ Public Class login
         Me.brnTestDiagRecap.TabIndex = 32
         Me.brnTestDiagRecap.Text = "Diag Recap"
         Me.brnTestDiagRecap.UseVisualStyleBackColor = False
-        '
-        'btnTestFacturation
-        '
-        Me.btnTestFacturation.BackColor = System.Drawing.SystemColors.Control
-        Me.btnTestFacturation.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnTestFacturation.Location = New System.Drawing.Point(267, 19)
-        Me.btnTestFacturation.Name = "btnTestFacturation"
-        Me.btnTestFacturation.Size = New System.Drawing.Size(104, 23)
-        Me.btnTestFacturation.TabIndex = 31
-        Me.btnTestFacturation.Text = "Facturation"
-        Me.btnTestFacturation.UseVisualStyleBackColor = False
         '
         'Button2
         '
@@ -554,15 +563,6 @@ Public Class login
         Me.lbl_WS.TabIndex = 31
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'btnExploitant
-        '
-        Me.btnExploitant.Location = New System.Drawing.Point(522, 46)
-        Me.btnExploitant.Name = "btnExploitant"
-        Me.btnExploitant.Size = New System.Drawing.Size(101, 23)
-        Me.btnExploitant.TabIndex = 39
-        Me.btnExploitant.Text = "Exploitant"
-        Me.btnExploitant.UseVisualStyleBackColor = True
         '
         'login
         '
@@ -942,7 +942,7 @@ Public Class login
 
     End Sub
 
-    Private Sub btnTestFacturation_Click(sender As Object, e As EventArgs) Handles btnTestFacturation.Click
+    Private Sub btnTestFacturation_Click(sender As Object, e As EventArgs)
 
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
@@ -956,7 +956,8 @@ Public Class login
         If oPulve IsNot Nothing Then
             oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
             oDiag = New Diagnostic(oAgent, oPulve, oExploit)
-            Dim oFrm As New diagnostic_facturation()
+
+            Dim oFrm As New diagnostic_ContratCommercial2()
             oFrm.setContexte(oDiag, oExploit, oAgent)
 
             oFrm.ShowDialog()
@@ -1137,5 +1138,73 @@ Public Class login
         agentCourant = AgentManager.getAgentById("1110")
         dlg.setContexte(False, New Exploitation())
         dlg.ShowDialog(Me)
+    End Sub
+
+    Private Sub btnTestFacture_Click(sender As Object, e As EventArgs) Handles btnTestFacture.Click
+        Dim oDiag As Diagnostic
+        Dim oPulve As Pulverisateur
+        Dim oExploit As Exploitation
+        Dim oDiagItem As DiagnosticItem
+        Dim oAgent As Agent
+
+        oAgent = AgentManager.getAgentById("1110")
+        oAgent.isSignElecActive = True
+
+        Dim oStructure As Structuree
+        oStructure = StructureManager.getStructureById(oAgent.idStructure)
+        oStructure.SIREN = "44468160500010"
+        oStructure.RCS = "55 35 07828 35"
+        oStructure.TVA = "F444446811605"
+        oStructure.TxTVA = 20
+        oStructure.CoordBank = "IBAN FR76 1558 9351 4800 0951 6404 456 AQW 123
+        RIB : 15589 35348 000951640 44 56 123 456"
+        oStructure.Entete = ""
+        StructureManager.save(oStructure)
+        oPulve = New Pulverisateur()
+        oExploit = New Exploitation()
+        oExploit = ExploitationManager.getExploitationById("2-81-32")
+        oExploit.raisonSociale = "PERAN AGRI KLEG"
+        oExploit.telephoneFixe = "0297250827"
+        oExploit.telephonePortable = "0680667189"
+        oExploit.eMail = "marc.peran@cleguerec.fr"
+        ExploitationManager.save(oExploit, oAgent)
+        '        oPulve = PulverisateurManager.getPulverisateurById("2-1-51") 'Culture maraîchères palissées
+        'oPulve = PulverisateurManager.getPulverisateurById("2-81-63") 'Pulvérisateurs combinés
+        '        oPulve = PulverisateurManager.getPulverisateurById("2-81-50") 'Cultures basses
+        oPulve = PulverisateurManager.getPulverisateurById("2-1083-7") 'Vigne
+        oDiag = New Diagnostic(oAgent, oPulve, oExploit)
+        oDiag.id = ""
+        oDiag.controleLieu = "DANS LA COUR"
+        oDiag.controleIsPreControleProfessionel = True
+        oDiag.proprietaireRepresentant = "Repésentant"
+        oDiag.controleIsComplet = False
+        oDiag.buseDebitD = 2.5
+        oDiag.controleInitialId = "010101"
+        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
+        oDiag.inspecteurOrigineNom = "RAULT"
+        oDiag.inspecteurOriginePrenom = "MA"
+        oDiag.organismeOriginePresNom = "CRODIP"
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
+        oDiagItem.LibelleCourt = "LIBCourt2561"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
+        oDiag.AdOrReplaceDiagItem(oDiagItem)
+        oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
+        oDiagItem.LibelleCourt = "LIBCourt2562"
+        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
+
+        Dim oCC As New ContratCommercial()
+        oCC.oDiagnostic = oDiag
+        oCC.oExploit = oExploit
+        oCC.Lignes.Add(New lgContratCommercial("TEST", "test", 10, 10))
+        oDiag.oContratCommercial = oCC
+        oCC.Commentaire = "Commentaire de contrat"
+        oCC.TxTVA = 20
+
+        Dim ofrm As frmdiagnostic_facturationCoProp2
+        ofrm = New frmdiagnostic_facturationCoProp2()
+        ofrm.setContexte(oDiag, oAgent, oStructure)
+        ofrm.Show()
+
     End Sub
 End Class

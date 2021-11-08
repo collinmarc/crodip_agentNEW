@@ -112,6 +112,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <DefineConstants>VFACTURATION=1</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
@@ -272,6 +273,9 @@
     <Compile Include="Application\agent\Manometres\HistoMano.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_ContratCommercial2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\frmContratCommercial.Designer.vb">
       <DependentUpon>frmContratCommercial.vb</DependentUpon>
     </Compile>
@@ -291,6 +295,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\includes\classes\Agent\Materiel\Alertes.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\Facture.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\ContratCommercial.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\lgContratCommercial.vb" />
     <Compile Include="Application\includes\classes\Referentiel\LieuxControle.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtPulverisateur.vb" />
@@ -428,7 +435,7 @@
     <Compile Include="Application\diagnostic\frmdiagnostic_facturationCoProp.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\diagnostic_facturation.vb">
+    <Compile Include="Application\diagnostic\diagnostic_ContratCommercial.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\Diagnostic_dlghelp552.Designer.vb">
@@ -1015,8 +1022,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsTest.xsd</DependentUpon>
     </Compile>
+    <Compile Include="cr\ds_EtatFacture.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_EtatFacture.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="cr\ds_EtatFacture.vb">
+      <DependentUpon>ds_EtatFacture.xsd</DependentUpon>
+    </Compile>
     <Compile Include="cr\EtatCrodip.vb" />
     <Compile Include="cr\EtatContratCommercial.vb" />
+    <Compile Include="cr\EtatFacture2.vb" />
     <Compile Include="cr\EtatFeuillePeda.vb" />
     <Compile Include="cr\EtatEnquete.vb" />
     <Compile Include="cr\EtatDocumentCoPropriete.vb" />
@@ -1370,6 +1386,20 @@
     <Content Include="cmd.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="cr\ds_EtatFacture.xsc">
+      <DependentUpon>ds_EtatFacture.xsd</DependentUpon>
+    </None>
+    <None Include="cr\ds_EtatFacture.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_EtatFacture.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="cr\ds_EtatFacture.xss">
+      <DependentUpon>ds_EtatFacture.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\DataSources\ContratCommercial.datasource" />
+    <None Include="My Project\DataSources\Facture.datasource" />
+    <None Include="My Project\DataSources\Structuree.datasource" />
     <None Include="Resources\add_to_favorites_96px.png" />
     <None Include="Resources\icons8_membership_card.ico" />
     <None Include="Resources\Favorites.png" />
@@ -2039,6 +2069,9 @@
     <EmbeddedResource Include="Application\agent\Manometres\HistoMano.resx">
       <DependentUpon>HistoMano.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercial2.resx">
+      <DependentUpon>diagnostic_ContratCommercial2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmContratCommercial.resx">
       <DependentUpon>frmContratCommercial.vb</DependentUpon>
     </EmbeddedResource>
@@ -2156,8 +2189,8 @@
     <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_facturationCoProp.resx">
       <DependentUpon>frmdiagnostic_facturationCoProp.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\diagnostic_facturation.resx">
-      <DependentUpon>diagnostic_facturation.vb</DependentUpon>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercial.resx">
+      <DependentUpon>diagnostic_ContratCommercial.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp551.resx">
       <DependentUpon>diagnostic_dlghelp551.vb</DependentUpon>

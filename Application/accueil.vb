@@ -4775,7 +4775,11 @@ Public Class accueil
                     'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
                     Statusbar.clear()
                     Me.Cursor = Cursors.WaitCursor
-                    Dim frmFact As diagnostic_facturation = New diagnostic_facturation()
+#If VFACTURATION Then
+                    Dim frmFact As diagnostic_ContratCommercial2 = New diagnostic_ContratCommercial2()
+#Else
+                    Dim frmFact As diagnostic_ContratCommercial = New diagnostic_ContratCommercial()
+#End If
                     frmFact.setContexte(pDiag, clientCourant, agentCourant)
                     frmFact.ShowDialog()
                     Me.Cursor = Cursors.Default

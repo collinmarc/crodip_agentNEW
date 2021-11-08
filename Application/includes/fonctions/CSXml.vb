@@ -2,6 +2,7 @@ Imports System.Xml
 Imports System.Xml.XPath
 
 Public Class CSXml
+    Implements IDisposable
 
     'Le nom du fichier xml sur lequel on travaillera
     Private m_Nomfichier As String
@@ -500,8 +501,8 @@ Public Class CSXml
             Dim doc As New XmlDocument
 
             'lui ajoute son entête et la balise racine
-            doc.LoadXml("<?xml version='1.0' encoding='ISO-8859-1'?>" & _
-                         "<" & nom & ">" & _
+            doc.LoadXml("<?xml version='1.0' encoding='ISO-8859-1'?>" &
+                         "<" & nom & ">" &
                          "</" & nom & ">")
 
             'sauvegarde les modifications
@@ -586,5 +587,37 @@ Public Class CSXml
         Return nb
 
     End Function
+
+#Region "IDisposable Support"
+    Private disposedValue As Boolean ' Pour détecter les appels redondants
+
+    ' IDisposable
+    Protected Overridable Sub Dispose(disposing As Boolean)
+        If Not disposedValue Then
+            If disposing Then
+                ' TODO: supprimer l'état managé (objets managés).
+            End If
+
+            ' TODO: libérer les ressources non managées (objets non managés) et remplacer Finalize() ci-dessous.
+            ' TODO: définir les champs de grande taille avec la valeur Null.
+        End If
+        disposedValue = True
+    End Sub
+
+    ' TODO: remplacer Finalize() seulement si la fonction Dispose(disposing As Boolean) ci-dessus a du code pour libérer les ressources non managées.
+    'Protected Overrides Sub Finalize()
+    '    ' Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(disposing As Boolean) ci-dessus.
+    '    Dispose(False)
+    '    MyBase.Finalize()
+    'End Sub
+
+    ' Ce code est ajouté par Visual Basic pour implémenter correctement le modèle supprimable.
+    Public Sub Dispose() Implements IDisposable.Dispose
+        ' Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(disposing As Boolean) ci-dessus.
+        Dispose(True)
+        ' TODO: supprimer les marques de commentaire pour la ligne suivante si Finalize() est remplacé ci-dessus.
+        ' GC.SuppressFinalize(Me)
+    End Sub
+#End Region
 
 End Class

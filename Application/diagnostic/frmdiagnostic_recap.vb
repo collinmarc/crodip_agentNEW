@@ -848,7 +848,13 @@ Public Class frmdiagnostic_recap
                 Exit Sub
             End If
             If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
-                ' On ouvre la fenetre de l'enquete
+#If VFACTURATION Then
+                Dim ofrmFact As New frmdiagnostic_facturationCoProp2()
+                ofrmFact.setContexte(m_diagnostic, m_oAgent, Nothing)
+                TryCast(Me.MdiParent, parentContener).DisplayForm(ofrmFact)
+
+#End If
+                'On ouvre la fenetre de l'enquete
                 Dim ofrm As New diagnostic_satisfaction(m_diagnostic)
                 TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
                 Statusbar.clear()
