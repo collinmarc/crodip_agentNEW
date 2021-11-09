@@ -4,6 +4,7 @@ MASTER
 BUILD : XXXXXXXXXX
 0001142: Synhcronisation d'un nouvel agent
 0001416: MAJ de la liste des communes
+0001438: Prendre en compte Toutes les buses dans le calcul de la moyenne à 3 bars
 
 BUILD : 20211013170000
 0001409: Creation d'un Mano (Status en Gris)

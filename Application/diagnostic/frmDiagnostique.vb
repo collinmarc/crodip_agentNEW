@@ -2899,17 +2899,27 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     ' Calcul le debit moyen du jeu de buses
     Private Function mutCalcDebitMoy() As Double
         Try
-
+            'Nombre de lots
             Dim nbLots As Integer = CType(diagBuses_conf_nbCategories.Text, Integer)
+            'Nombre de buses totales
+            Dim nbBusesTot As Integer = 0
             Dim debitMoyBuses As Double = 0
             For i As Integer = 1 To nbLots
                 Try
-                    debitMoyBuses += mutCalcDebitMoy(i)
+                    'Récupération du nombre de buses d'un lots
+                    Dim nbBusesTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_nbBuses_" & i, diagBuses_tab_categories)
+                    If nbBusesTextBox.Text <> "" And IsNumeric(nbBusesTextBox.Text) Then
+                        Dim nbBusesValue As Double = CType(nbBusesTextBox.Text, Integer)
+                        nbBusesTot += nbBusesValue
+                        'Calcul du débit moyen d'un lot
+                        debitMoyBuses += (mutCalcDebitMoy(i) * nbBusesValue)
+                    End If
+
                 Catch ex As Exception
                     CSDebug.dispWarn("diagnostique::mutCalcDebitMoy : " & ex.Message)
                 End Try
             Next
-            debitMoyBuses = Math.Round(debitMoyBuses / nbLots, 3)
+            debitMoyBuses = Math.Round(debitMoyBuses / nbBusesTot, 3)
             diagBuses_debitMoyen.Text = debitMoyBuses
             'help552_debitMoyen0bar.Text = debitMoyBuses
             Return debitMoyBuses
