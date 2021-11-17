@@ -616,7 +616,7 @@ Public Class login
                         tmpObject = AgentManager.getWSAgentById(selectedAgent.numeroNational)
                         If tmpObject.id > 0 And tmpObject.isActif And Not tmpObject.isSupprime Then
                             selectedAgent.duppliqueInfosAgent(tmpObject, False)
-                            AgentManager.save(selectedAgent)
+                            AgentManager.save(selectedAgent, True)
                             bAgentExistant = True
                         Else
                             bAgentExistant = False

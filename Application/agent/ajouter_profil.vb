@@ -247,9 +247,9 @@ Public Class ajouter_profil
                             Dim existsAgent As Agent
                             existsAgent = AgentManager.getAgentByNumeroNational(objAgent.numeroNational)
                             If existsAgent.numeroNational = "" Then
-                                ' Création d'un agent avec l'Id et le numéro national
-                                AgentManager.createAgent(objAgent.id, objAgent.numeroNational, "Nouveau", 0)
-                                objAgent.dateDerniereSynchro = "01/01/1970"
+                                'Si l'agent n'esiste pas encore en base (normal)
+                                'La date de ernière synhcro est la plus petite date de synchro des agents en base.
+                                objAgent.dateDerniereSynchro = AgentManager.GetDateDernSynchro()
                                 'Update de cet agent avec l'agent recu pas WS
                                 AgentManager.save(objAgent)
                                 MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")

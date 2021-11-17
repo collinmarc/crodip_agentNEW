@@ -258,7 +258,7 @@ Public Class SynchronisationTest
     Public Sub getUpdatesOrganismeTest()
         'Creation d'un agent
         Dim oAgent2 As Agent
-        oAgent2 = AgentManager.createAgent(1125, "TESTUNITAgent2", "TEST", m_oStructure.id)
+        oAgent2 = New Agent(1125, "TESTUNITAgent2", "TEST", m_oStructure.id)
         oAgent2.nom = "Agent2 de test unitaires"
         oAgent2.prenom = "Agent2 de test unitaires"
         oAgent2.telephonePortable = "0606060606"
@@ -314,7 +314,7 @@ Public Class SynchronisationTest
     Public Sub SynchronisationAsc2AgentsTest()
         'Creation d'un agent
         Dim oAgent2 As Agent
-        oAgent2 = AgentManager.createAgent(1125, "TESTUNITAgent2", "TEST", m_oStructure.id)
+        oAgent2 = New Agent(1125, "TESTUNITAgent2", "TEST", m_oStructure.id)
         oAgent2.nom = "Agent2 de test unitaires"
         oAgent2.prenom = "Agent2 de test unitaires"
         oAgent2.telephonePortable = "0606060606"
@@ -365,7 +365,7 @@ Public Class SynchronisationTest
     Public Sub SynchronisationDesc2AgentsTest()
         'Creation d'un agent
         Dim oAgent2 As Agent
-        oAgent2 = AgentManager.createAgent(1125, "498002", "AGENT2 Test", m_oStructure.id)
+        oAgent2 = New Agent(1125, "498002", "AGENT2 Test", m_oStructure.id)
         oAgent2.prenom = "AGENT2 Test"
         oAgent2.telephonePortable = "0606060606"
         oAgent2.eMail = "a@a.com"
@@ -446,7 +446,7 @@ Public Class SynchronisationTest
 
         'Creation d'un agent
         Dim oAgent2 As Agent
-        oAgent2 = AgentManager.createAgent(1125, "498002", "AGENT2 Test", m_oStructure.id)
+        oAgent2 = New Agent(1125, "498002", "AGENT2 Test", m_oStructure.id)
         oAgent2.prenom = "AGENT2 Test"
         oAgent2.telephonePortable = "0606060606"
         oAgent2.eMail = "a@a.com"

@@ -71,6 +71,14 @@ Public Class Agent
         _IsGestionnaire = False
         _IsSignElecActive = False
     End Sub
+    Sub New(pId As Integer, pNumeroNational As String, pnom As String, pidStructure As Integer)
+        Me.New()
+        _id = pId
+        _numeroNational = pNumeroNational
+        _nom = pnom
+        _idStructure = pidStructure
+        dateDerniereSynchro = CSDate.ToCRODIPString(AgentManager.GetDateDernSynchro())
+    End Sub
 
     Public Property id() As Integer
         Get

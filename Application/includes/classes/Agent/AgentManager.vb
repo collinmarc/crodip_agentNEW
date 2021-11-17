@@ -1,3 +1,5 @@
+Imports System.Linq
+
 Public Class AgentManager
 
 #Region "Methodes acces Web Service"
@@ -265,12 +267,18 @@ Public Class AgentManager
         Return tmpAgent
     End Function
 
-    ' Methode OK
-    Public Shared Function createAgent(ByVal id As Integer, ByVal pNumeronational As String, ByVal pNom As String, pIdStructure As Integer) As Agent
+    ''' <summary>
+    ''' insertion d'un agent en base
+    ''' </summary>
+    ''' <param name="id"></param>
+    ''' <param name="pNumeronational"></param>
+    ''' <param name="pNom"></param>
+    ''' <param name="pIdStructure"></param>
+    ''' <returns></returns>
+    Private Shared Sub createAgent(ByVal id As Integer, ByVal pNumeronational As String, ByVal pNom As String, pIdStructure As Integer)
         Debug.Assert(Not String.IsNullOrEmpty(pNumeronational), " le paramètre NumeroNational doit être initialisé")
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As OleDb.OleDbCommand
-        Dim oAgent As Agent
 
         Try
             oCsdb = New CSDb(True)
@@ -282,18 +290,16 @@ Public Class AgentManager
             bddCommande.CommandText = "INSERT INTO Agent (id,numeroNational, nom, idStructure) VALUES (" & id & ",'" & pNumeronational & "', '" & pNom & "'," & pIdStructure & ")"
             bddCommande.ExecuteNonQuery()
             oCsdb.free()
-            oAgent = getAgentByNumeroNational(pNumeronational)
-            oAgent.nom = pNom
-
+            'oAgent = getAgentByNumeroNational(pNumeronational)
+            'oAgent.nom = pNom
+            'oAgent.dateDerniereSynchro = "01/01/1970"
         Catch ex As Exception
             CSDebug.dispFatal("AgentManager.createAgent() : " & ex.Message)
-            oAgent = Nothing
+            If Not oCsdb Is Nothing Then
+                oCsdb.free()
+            End If
         End Try
-        If Not oCsdb Is Nothing Then
-            oCsdb.free()
-        End If
-        Return oAgent
-    End Function
+    End Sub
     ''' <summary>
     ''' Suppression d'un agent et de TOUS les élements
     ''' </summary>
@@ -355,77 +361,83 @@ Public Class AgentManager
                 bReturn = delete(agent.id)
 
             Else
-                If agent.numeroNational <> "" Then
 
+                oCsdb = New CSDb(True)
+
+                bddCommande = oCsdb.getConnection.CreateCommand()
+                bddCommande.CommandText = "SELECT count(*) From Agent WHERE numeroNational = '" & agent.numeroNational & "'"
+                Dim nb As Integer = bddCommande.ExecuteScalar()
+                If nb = 0 Then
+                    oCsdb.free()
+                    createAgent(agent.id, agent.numeroNational, agent.nom, agent.idStructure)
                     oCsdb = New CSDb(True)
-
                     bddCommande = oCsdb.getConnection.CreateCommand()
-
-                    Dim paramsQuery As String
-                    paramsQuery = ""
-
-                    ' Mise a jour de la date de derniere modification
-                    If Not bSynchro Then
-                        agent.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-                    End If
-
-                    paramsQuery = paramsQuery & " `Agent`.`id`=" & agent.id
-                    If Not agent.numeroNational Is Nothing Then
-                        paramsQuery = paramsQuery & ", `Agent`.`numeroNational`='" & CSDb.secureString(agent.numeroNational) & "'"
-                    End If
-                    If Not agent.motDePasse Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`motDePasse`='" & CSDb.secureString(agent.motDePasse) & "'"
-                    End If
-                    If Not agent.nom Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`nom`='" & CSDb.secureString(agent.nom) & "'"
-                    End If
-                    If Not agent.prenom Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`prenom`='" & CSDb.secureString(agent.prenom) & "'"
-                    End If
-                    paramsQuery = paramsQuery & " , `Agent`.`idStructure`=" & agent.idStructure & ""
-                    If Not agent.telephonePortable Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`telephonePortable`='" & CSDb.secureString(agent.telephonePortable) & "'"
-                    End If
-                    If Not agent.eMail Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`eMail`='" & CSDb.secureString(agent.eMail) & "'"
-                    End If
-                    If Not agent.statut Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`statut`='" & CSDb.secureString(agent.statut) & "'"
-                    End If
-                    If Not agent.dateCreation Is Nothing And agent.dateCreation <> "0000-00-00 00:00:00" Then
-                        paramsQuery = paramsQuery & " , `Agent`.`dateCreation`='" & CSDate.mysql2access(agent.dateCreation) & "'"
-                    End If
-                    If Not agent.dateDerniereConnexion Is Nothing And agent.dateDerniereConnexion <> "0000-00-00 00:00:00" Then
-                        paramsQuery = paramsQuery & " , `Agent`.`dateDerniereConnexion`='" & CSDate.mysql2access(agent.dateDerniereConnexion) & "'"
-                    End If
-                    If Not agent.dateDerniereSynchro Is Nothing And agent.dateDerniereSynchro <> "0000-00-00 00:00:00" Then
-                        paramsQuery = paramsQuery & " , `Agent`.`dateDerniereSynchro`='" & CSDate.mysql2access(agent.dateDerniereSynchro) & "'"
-                    End If
-                    If Not agent.dateModificationAgent Is Nothing And agent.dateModificationAgent <> "0000-00-00 00:00:00" Then
-                        paramsQuery = paramsQuery & " , `Agent`.`dateModificationAgent`='" & CSDate.mysql2access(agent.dateModificationAgent) & "'"
-                    End If
-                    If Not agent.dateModificationCrodip Is Nothing And agent.dateModificationCrodip <> "0000-00-00 00:00:00" Then
-                        paramsQuery = paramsQuery & " , `Agent`.`dateModificationCrodip`='" & CSDate.mysql2access(agent.dateModificationCrodip) & "'"
-                    End If
-                    If Not agent.versionLogiciel Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`versionLogiciel`='" & CSDb.secureString(agent.versionLogiciel) & "'"
-                    End If
-                    If Not agent.commentaire Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`commentaire`='" & CSDb.secureString(agent.commentaire) & "'"
-                    End If
-                    If Not agent.cleActivation Is Nothing Then
-                        paramsQuery = paramsQuery & " , `Agent`.`cleActivation`='" & CSDb.secureString(agent.cleActivation) & "'"
-                    End If
-                    paramsQuery = paramsQuery & " , `Agent`.`isActif`=" & agent.isActif & ""
-                    paramsQuery = paramsQuery & " , `Agent`.`DroitsPulves`='" & agent.DroitsPulves & "'"
-                    paramsQuery = paramsQuery & " , `Agent`.`isGestionnaire`=" & agent.isGestionnaire & ""
-                    paramsQuery = paramsQuery & " , `Agent`.`SignatureElect`=" & agent.isSignElecActive & ""
-
-                    bddCommande.CommandText = "UPDATE `Agent` SET " & paramsQuery & " WHERE `Agent`.`numeroNational`='" & agent.numeroNational & "'"
-                    nResult = bddCommande.ExecuteNonQuery()
-                    Debug.Assert(nResult = 1, "AgentManager.save: Erreur en update 0 ou  plus d'une ligne concernée")
-                    bReturn = True
                 End If
+
+                Dim paramsQuery As String
+                paramsQuery = ""
+
+                ' Mise a jour de la date de derniere modification
+                If Not bSynchro Then
+                    agent.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                End If
+
+                paramsQuery = paramsQuery & " `Agent`.`id`=" & agent.id
+                If Not agent.numeroNational Is Nothing Then
+                    paramsQuery = paramsQuery & ", `Agent`.`numeroNational`='" & CSDb.secureString(agent.numeroNational) & "'"
+                End If
+                If Not agent.motDePasse Is Nothing Then
+                    paramsQuery = paramsQuery & " , `Agent`.`motDePasse`='" & CSDb.secureString(agent.motDePasse) & "'"
+                End If
+                If Not agent.nom Is Nothing Then
+                    paramsQuery = paramsQuery & " , `Agent`.`nom`='" & CSDb.secureString(agent.nom) & "'"
+                End If
+                If Not agent.prenom Is Nothing Then
+                    paramsQuery = paramsQuery & " , `Agent`.`prenom`='" & CSDb.secureString(agent.prenom) & "'"
+                End If
+                paramsQuery = paramsQuery & " , `Agent`.`idStructure`=" & agent.idStructure & ""
+                If Not agent.telephonePortable Is Nothing Then
+                    paramsQuery = paramsQuery & " , `Agent`.`telephonePortable`='" & CSDb.secureString(agent.telephonePortable) & "'"
+                End If
+                If Not agent.eMail Is Nothing Then
+                    paramsQuery = paramsQuery & " , `Agent`.`eMail`='" & CSDb.secureString(agent.eMail) & "'"
+                End If
+                If Not agent.statut Is Nothing Then
+                    paramsQuery = paramsQuery & " , `Agent`.`statut`='" & CSDb.secureString(agent.statut) & "'"
+                End If
+                If Not agent.dateCreation Is Nothing And agent.dateCreation <> "0000-00-00 00:00:00" Then
+                    paramsQuery = paramsQuery & " , `Agent`.`dateCreation`='" & CSDate.mysql2access(agent.dateCreation) & "'"
+                End If
+                If Not agent.dateDerniereConnexion Is Nothing And agent.dateDerniereConnexion <> "0000-00-00 00:00:00" Then
+                    paramsQuery = paramsQuery & " , `Agent`.`dateDerniereConnexion`='" & CSDate.mysql2access(agent.dateDerniereConnexion) & "'"
+                End If
+                If Not agent.dateDerniereSynchro Is Nothing And agent.dateDerniereSynchro <> "0000-00-00 00:00:00" Then
+                    paramsQuery = paramsQuery & " , `Agent`.`dateDerniereSynchro`='" & CSDate.mysql2access(agent.dateDerniereSynchro) & "'"
+                End If
+                If Not agent.dateModificationAgent Is Nothing And agent.dateModificationAgent <> "0000-00-00 00:00:00" Then
+                    paramsQuery = paramsQuery & " , `Agent`.`dateModificationAgent`='" & CSDate.mysql2access(agent.dateModificationAgent) & "'"
+                End If
+                If Not agent.dateModificationCrodip Is Nothing And agent.dateModificationCrodip <> "0000-00-00 00:00:00" Then
+                    paramsQuery = paramsQuery & " , `Agent`.`dateModificationCrodip`='" & CSDate.mysql2access(agent.dateModificationCrodip) & "'"
+                End If
+                If Not agent.versionLogiciel Is Nothing Then
+                    paramsQuery = paramsQuery & " , `Agent`.`versionLogiciel`='" & CSDb.secureString(agent.versionLogiciel) & "'"
+                End If
+                If Not agent.commentaire Is Nothing Then
+                    paramsQuery = paramsQuery & " , `Agent`.`commentaire`='" & CSDb.secureString(agent.commentaire) & "'"
+                End If
+                If Not agent.cleActivation Is Nothing Then
+                    paramsQuery = paramsQuery & " , `Agent`.`cleActivation`='" & CSDb.secureString(agent.cleActivation) & "'"
+                End If
+                paramsQuery = paramsQuery & " , `Agent`.`isActif`=" & agent.isActif & ""
+                paramsQuery = paramsQuery & " , `Agent`.`DroitsPulves`='" & agent.DroitsPulves & "'"
+                paramsQuery = paramsQuery & " , `Agent`.`isGestionnaire`=" & agent.isGestionnaire & ""
+                paramsQuery = paramsQuery & " , `Agent`.`SignatureElect`=" & agent.isSignElecActive & ""
+
+                bddCommande.CommandText = "UPDATE `Agent` SET " & paramsQuery & " WHERE `Agent`.`numeroNational`='" & agent.numeroNational & "'"
+                nResult = bddCommande.ExecuteNonQuery()
+                Debug.Assert(nResult = 1, "AgentManager.save: Erreur en update 0 ou  plus d'une ligne concernée")
+                bReturn = True
             End If
         Catch ex As Exception
             CSDebug.dispFatal("Err AgentManager - save : " & ex.Message.ToString)
@@ -461,8 +473,8 @@ Public Class AgentManager
         ' déclarations
         Dim arrItems(0) As Agent
 
-        oCSDB = New CSDb(True)
-        bddCommande = oCSDB.getConnection().CreateCommand()
+        oCsdb = New CSDb(True)
+        bddCommande = oCsdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM `Agent` WHERE `Agent`.`dateModificationAgent`<>`Agent`.`dateModificationCrodip` AND `Agent`.`idStructure`=" & agent.idStructure
 
         Try
@@ -490,8 +502,8 @@ Public Class AgentManager
             CSDebug.dispError("Erreur - AgentManager - getResult : " & ex.Message)
         End Try
 
-        If oCSDB IsNot Nothing Then
-            oCSDB.free()
+        If oCsdb IsNot Nothing Then
+            oCsdb.free()
         End If
 
         'on retourne les objet non synchro
@@ -500,6 +512,17 @@ Public Class AgentManager
     End Function
 
 #End Region
-
+    ''' <summary>
+    ''' Rend la Plus petite date de dernière synchro
+    ''' </summary>
+    ''' <returns></returns>
+    Friend Shared Function GetDateDernSynchro() As DateTime
+        Dim lst As AgentList = AgentManager.getAgentList()
+        Dim oReturn As DateTime = CSDate.FromCrodipString("1970-01-01")
+        If lst.items.Count > 0 Then
+            oReturn = lst.items.Where(Function(ag) ag.isActif And Not ag.isSupprime And Not ag.isGestionnaire).Min(Function(a) CDate(a.dateDerniereSynchro))
+        End If
+        Return oReturn
+    End Function
 
 End Class

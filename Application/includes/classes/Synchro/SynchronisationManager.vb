@@ -76,12 +76,7 @@ Public Class SynchronisationManager
         End Try
         Return bReturn
     End Function
-    Private Shared Function GetDateDernSynchro() As DateTime
-        Dim lst As AgentList = AgentManager.getAgentList()
 
-        Dim oReturn As DateTime = lst.items.Max(Function(a) CDate(a.dateDerniereSynchro))
-        Return oReturn
-    End Function
     Public Shared Function getWSlstElementsASynchroniser(ByVal pAgent As Agent, pSynchroBoolean As SynchroBooleans) As List(Of SynchronisationElmt)
         Dim oLst As New List(Of SynchronisationElmt)()
         Dim objWSUpdates As Object() = Nothing
@@ -94,7 +89,7 @@ Public Class SynchronisationManager
         Dim isComplete As Integer
 
         Dim DateDernSynhcro As DateTime
-        DateDernSynhcro = GetDateDernSynchro()
+        DateDernSynhcro = AgentManager.GetDateDernSynchro()
         'If CSDate.FromCrodipString(pAgent.dateDerniereSynchro) < DateDernSynhcro Then
         '    DateDernSynhcro = CSDate.FromCrodipString(pAgent.dateDerniereSynchro)
         'End If

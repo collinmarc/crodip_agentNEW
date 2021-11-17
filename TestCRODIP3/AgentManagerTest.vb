@@ -44,9 +44,10 @@ Public Class AgentManagerTest
 
     <TestMethod()>
     Public Sub CRUDTest()
-        Dim oAgent1 As Agent
+        Dim oAgent1 As New Agent
         Dim oAgent2 As Agent
-        oAgent1 = AgentManager.createAgent(99, "CRUDTest01", "CRUDTEST", m_oStructure.id)
+        oAgent1 = New Agent(99, "CRUDTest01", "CRUDTEST", m_oStructure.id)
+        AgentManager.save(oAgent1)
         oAgent1.prenom = "test"
         oAgent1.idStructure = m_oStructure.id
         Assert.IsFalse(oAgent1.isSignElecActive)
@@ -149,11 +150,13 @@ Public Class AgentManagerTest
         oCommand.ExecuteNonQuery()
 
         Dim oAgent As Agent
-        AgentManager.createAgent(1, "123456", "AgentTest", m_oStructure.id)
+        oAgent = New Agent(1, "123456", "AgentTest", m_oStructure.id)
+        AgentManager.save(oAgent)
         oAgent = AgentManager.getAgentByNumeroNational("123456")
 
         Assert.IsNotNull(oAgent)
         Assert.AreEqual("AgentTest", oAgent.nom)
+        Assert.AreEqual(New Date(1970, 1, 1), CSDate.FromCrodipString(oAgent.dateDerniereSynchro))
 
     End Sub
 
@@ -173,7 +176,7 @@ Public Class AgentManagerTest
         If oAgent.numeroNational = "9999" Then
             AgentManager.delete(oAgent.id)
         End If
-        oAgent = AgentManager.createAgent(9999, "9999", "AgentTest", m_oStructure.id)
+        oAgent = New Agent(9999, "9999", "AgentTest", m_oStructure.id)
         oAgent.prenom = "Moi"
         oAgent.idStructure = oStructure.id
         AgentManager.save(oAgent)
@@ -204,7 +207,7 @@ Public Class AgentManagerTest
         Dim oCSDB As CSDb = New CSDb(True)
         oCSDB.Execute("DELETE FROM AGENT")
 
-        oAgent = AgentManager.createAgent(999, "9999", "AgentTest", oStructure.id)
+        oAgent = New Agent(999, "9999", "AgentTest", oStructure.id)
         oAgent.prenom = "Moi"
         oAgent.idStructure = oStructure.id
         AgentManager.save(oAgent)
@@ -213,10 +216,48 @@ Public Class AgentManagerTest
         For Each oAgent2 In oList.items
             If oAgent2.id = oAgent.id Then
                 Assert.AreEqual(oStructure.nom, oAgent2.NomStructure)
+                Assert.AreEqual(New Date(1970, 1, 1), CSDate.FromCrodipString(oAgent.dateDerniereSynchro))
             End If
         Next
         '        AgentManager.delete(oAgent.id)
         '       StructureManager.delete(oStructure.id)
+    End Sub
+    <TestMethod()>
+    Public Sub CreateNouvelAgentDateSynchro()
+        Dim oAgent As Agent
+
+        Dim oCSDB As CSDb = New CSDb(True)
+        oCSDB.Execute("DELETE FROM AGENT")
+        oCSDB.free()
+
+        oAgent = New Agent(999, "9999", "AgentTest", m_oStructure.id)
+        oAgent.prenom = "Moi"
+        oAgent.idStructure = m_oStructure.id
+        AgentManager.save(oAgent)
+
+        Dim oList As AgentList = AgentManager.getAgentList()
+        Assert.AreEqual(1, oList.items.Count())
+        Dim oAgent2 As Agent = oList.items(0)
+        Assert.AreEqual(m_oStructure.nom, oAgent2.NomStructure)
+        Assert.AreEqual(New Date(1970, 1, 1), CSDate.FromCrodipString(oAgent2.dateDerniereSynchro))
+
+        'Modification de la date de dernière synhcro
+        oAgent2.dateDerniereSynchro = "2021-11-16 00:00:00"
+        AgentManager.save(oAgent2)
+        'Creation d'un nouvel agent
+        oAgent = New Agent(888, "NN888", "Second Agent", m_oStructure.id)
+        oAgent.prenom = "Moi"
+        oAgent.idStructure = m_oStructure.id
+        AgentManager.save(oAgent)
+
+        oList = AgentManager.getAgentList()
+        Assert.AreEqual(2, oList.items.Count())
+        oAgent = oList.items.Where(Function(a) a.id = 888)(0)
+        'Sa date de dernière synhcro est la plus petite date de la base
+        Assert.AreEqual(oAgent.dateDerniereSynchro, oAgent2.dateDerniereSynchro)
+
+        AgentManager.delete(oAgent.id)
+        AgentManager.delete(oAgent2.id)
     End Sub
 
 
@@ -260,7 +301,7 @@ Public Class AgentManagerTest
         'Création d'un second Agent
         Dim oAgent As Agent
         Dim idAgent As Integer = 777
-        oAgent = AgentManager.createAgent(idAgent, "TST1", "Agent de test", m_oStructure.id)
+        oAgent = New Agent(idAgent, "TST1", "Agent de test", m_oStructure.id)
         oAgent.prenom = "Pr"
         oAgent.idStructure = m_oAgent.idStructure
         AgentManager.save(oAgent)
