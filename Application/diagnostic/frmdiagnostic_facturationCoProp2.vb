@@ -18,7 +18,7 @@ Public Class frmdiagnostic_facturationCoProp2
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents tbCommentaire As System.Windows.Forms.TextBox
     Friend WithEvents btnNouvelleFacture As Button
-    Private WithEvents btnPoursuivre As Label
+    Private WithEvents btn_finalisationDiag_valider As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label27 As Label
     Friend WithEvents tbRacine As TextBox
@@ -148,7 +148,7 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.tbModeReglement = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.btnPoursuivre = New System.Windows.Forms.Label()
+        Me.btn_finalisationDiag_valider = New System.Windows.Forms.Label()
         Me.btnNouvelleFacture = New System.Windows.Forms.Button()
         Me.tbCommentaire = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -178,7 +178,6 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.tbRacine = New System.Windows.Forms.TextBox()
-        Me.m_bsrcStructure = New System.Windows.Forms.BindingSource(Me.components)
         Me.TextBox13 = New System.Windows.Forms.TextBox()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.tbNumFact = New System.Windows.Forms.TextBox()
@@ -215,6 +214,7 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
+        Me.m_bsrcStructure = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelFooter.SuspendLayout()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -222,12 +222,12 @@ Public Class frmdiagnostic_facturationCoProp2
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me.m_bsrcStructure, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlListCoProp.SuspendLayout()
         Me.pnlClient.SuspendLayout()
         CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcStructure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -270,7 +270,7 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.panelFooter.Controls.Add(Me.tbModeReglement)
         Me.panelFooter.Controls.Add(Me.Label9)
         Me.panelFooter.Controls.Add(Me.Label2)
-        Me.panelFooter.Controls.Add(Me.btnPoursuivre)
+        Me.panelFooter.Controls.Add(Me.btn_finalisationDiag_valider)
         Me.panelFooter.Controls.Add(Me.btnNouvelleFacture)
         Me.panelFooter.Controls.Add(Me.tbCommentaire)
         Me.panelFooter.Controls.Add(Me.Label18)
@@ -405,32 +405,28 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.Label2.TabIndex = 64
         Me.Label2.Text = "Mode de réglement :"
         '
-        'btnPoursuivre
+        'btn_finalisationDiag_valider
         '
-        Me.btnPoursuivre.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnPoursuivre.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnPoursuivre.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnPoursuivre.ForeColor = System.Drawing.Color.White
-        Me.btnPoursuivre.Image = Global.Crodip_agent.Resources.btn_suivant
-        Me.btnPoursuivre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnPoursuivre.Location = New System.Drawing.Point(769, 135)
-        Me.btnPoursuivre.Name = "btnPoursuivre"
-        Me.btnPoursuivre.Size = New System.Drawing.Size(134, 24)
-        Me.btnPoursuivre.TabIndex = 2
-        Me.btnPoursuivre.Text = "    Poursuivre"
-        Me.btnPoursuivre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btn_finalisationDiag_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_finalisationDiag_valider.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_finalisationDiag_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_finalisationDiag_valider.ForeColor = System.Drawing.Color.White
+        Me.btn_finalisationDiag_valider.Image = CType(resources.GetObject("btn_finalisationDiag_valider.Image"), System.Drawing.Image)
+        Me.btn_finalisationDiag_valider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btn_finalisationDiag_valider.Location = New System.Drawing.Point(769, 135)
+        Me.btn_finalisationDiag_valider.Name = "btn_finalisationDiag_valider"
+        Me.btn_finalisationDiag_valider.Size = New System.Drawing.Size(134, 24)
+        Me.btn_finalisationDiag_valider.TabIndex = 2
+        Me.btn_finalisationDiag_valider.Text = "    Valider"
+        Me.btn_finalisationDiag_valider.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnNouvelleFacture
         '
-        Me.btnNouvelleFacture.BackColor = System.Drawing.SystemColors.Control
-        Me.btnNouvelleFacture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btnNouvelleFacture.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNouvelleFacture.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.btnNouvelleFacture.ForeColor = System.Drawing.Color.White
-        Me.btnNouvelleFacture.Image = Global.Crodip_agent.Resources.btn_divers_add
-        Me.btnNouvelleFacture.Location = New System.Drawing.Point(278, 131)
-        Me.btnNouvelleFacture.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnNouvelleFacture.Location = New System.Drawing.Point(259, 132)
         Me.btnNouvelleFacture.Name = "btnNouvelleFacture"
-        Me.btnNouvelleFacture.Size = New System.Drawing.Size(186, 32)
+        Me.btnNouvelleFacture.Size = New System.Drawing.Size(134, 31)
         Me.btnNouvelleFacture.TabIndex = 0
         Me.btnNouvelleFacture.Text = "Nouvelle facture"
         Me.btnNouvelleFacture.UseVisualStyleBackColor = False
@@ -734,10 +730,6 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.tbRacine.Name = "tbRacine"
         Me.tbRacine.Size = New System.Drawing.Size(108, 20)
         Me.tbRacine.TabIndex = 0
-        '
-        'm_bsrcStructure
-        '
-        Me.m_bsrcStructure.DataSource = GetType(Crodip_agent.Structuree)
         '
         'TextBox13
         '
@@ -1100,10 +1092,15 @@ Public Class frmdiagnostic_facturationCoProp2
         '
         Me.m_bsDiag.DataSource = GetType(Crodip_agent.Diagnostic)
         '
+        'm_bsrcStructure
+        '
+        Me.m_bsrcStructure.DataSource = GetType(Crodip_agent.Structuree)
+        '
         'frmdiagnostic_facturationCoProp2
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(933, 728)
+        Me.ControlBox = False
         Me.Controls.Add(Me.dgvLignes)
         Me.Controls.Add(Me.pnlClient)
         Me.Controls.Add(Me.pnlListCoProp)
@@ -1111,6 +1108,7 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.Controls.Add(Me.panelFooter)
         Me.Controls.Add(Me.Label3)
         Me.Icon = Global.Crodip_agent.Resources.logoCRODIP
+        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmdiagnostic_facturationCoProp2"
         Me.ShowInTaskbar = False
@@ -1125,7 +1123,6 @@ Public Class frmdiagnostic_facturationCoProp2
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.m_bsrcStructure, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlListCoProp.ResumeLayout(False)
         Me.pnlListCoProp.PerformLayout()
@@ -1133,6 +1130,7 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.pnlClient.PerformLayout()
         CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcStructure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1142,6 +1140,7 @@ Public Class frmdiagnostic_facturationCoProp2
 #Region " - Vars - "
     Private isValider As Boolean = False
     Private m_pathBl As String
+    Private m_pathFacture As String
     Protected m_oDiag As Diagnostic
     Protected m_oExploit As Exploitation
     Protected m_oPulverisateur As Pulverisateur
@@ -1235,7 +1234,7 @@ Public Class frmdiagnostic_facturationCoProp2
             Dim oEtat As New EtatFacture2(oFacture, m_oAgent, m_oStructure)
 
             oEtat.genereEtat()
-            m_oFacture.PathPDF = oEtat.getFileNameFullPath()
+            m_pathFacture = oEtat.getFileNameFullPath()
         Catch ex As Exception
             CSDebug.dispError("diagnostic_FacturationCoPro2::createFacture_CR : " & ex.Message)
         End Try
@@ -1309,9 +1308,11 @@ Public Class frmdiagnostic_facturationCoProp2
 
         Me.ValidateChildren()
 
+        m_oFacture.RefFacture = m_oStructure.RacineNumFact & tbNumFact.Text
+        m_oStructure.DernierNumFact = tbNumFact.Text
         createFacture_CR()
 
-        CSFile.open(m_oFacture.PathPDF)
+        CSFile.open(m_pathFacture)
     End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs)
@@ -1326,12 +1327,7 @@ Public Class frmdiagnostic_facturationCoProp2
 
     End Sub
 
-    Private Sub btn_finalisationDiag_valider_Click(sender As Object, e As EventArgs) Handles btnPoursuivre.Click
-        Me.ValidateChildren()
-        'Sauvegarde des numéro de factures
-        m_oFacture.RefFacture = m_oStructure.RacineNumFact & tbNumFact.Text
-        m_oStructure.DernierNumFact = tbNumFact.Text
-        createFacture_CR()
+    Private Sub btn_finalisationDiag_valider_Click(sender As Object, e As EventArgs) Handles btn_finalisationDiag_valider.Click
         Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub
@@ -1373,7 +1369,7 @@ Public Class frmdiagnostic_facturationCoProp2
                 Dim PU As Decimal
                 PU = curPrestation.tarifHT
 
-                Dim oLig As New lgPrestation(listTarif_categories.SelectedItem.libelle.ToString, listTarif_prestations.SelectedItem.libelle.ToString, PU, 1, m_oDiag.id)
+                Dim oLig As New lgContratCommercial(listTarif_categories.SelectedItem.libelle.ToString, listTarif_prestations.SelectedItem.libelle.ToString, PU, 1)
 
                 Dim oCC As ContratCommercial = m_bsFacture.Current
                 oCC.Lignes.Add(oLig)
