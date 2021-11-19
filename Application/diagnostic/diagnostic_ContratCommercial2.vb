@@ -652,7 +652,7 @@ Public Class diagnostic_ContratCommercial2
                 Dim PU As Decimal
                 PU = curPrestation.tarifHT
 
-                Dim oLig As New lgContratCommercial(listTarif_categories.SelectedItem.libelle.ToString, listTarif_prestations.SelectedItem.libelle.ToString, PU, 1)
+                Dim oLig As New lgPrestation(listTarif_categories.SelectedItem.libelle.ToString, listTarif_prestations.SelectedItem.libelle.ToString, PU, 1, m_oDiag.id)
 
                 Dim oCC As ContratCommercial = m_bsContratCommercial.Current
                 oCC.Lignes.Add(oLig)
