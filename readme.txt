@@ -1,7 +1,7 @@
 TRUNK
 MASTER
 
-BUILD : XXXXXXXXXX
+BUILD : 20211119170000
 0001142: Synhcronisation d'un nouvel agent
 0001416: MAJ de la liste des communes
 0001438: Prendre en compte Toutes les buses dans le calcul de la moyenne à 3 bars
