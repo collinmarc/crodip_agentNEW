@@ -5259,6 +5259,7 @@ Public Class accueil
             AutoTestManager.save(obj)
         Next
         My.Settings.nbControlesAvantAlerte = 0
+        My.Settings.Save()
     End Sub
 
     Private Sub dtp_ControleRegulier_ValueChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtp_ControleRegulier.ValueChanged
