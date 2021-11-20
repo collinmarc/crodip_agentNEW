@@ -665,6 +665,7 @@ Public Class frmdiagnostic_facturationCoProp
 
         m_bsExploitant.Clear()
         m_bsExploitant.Add(m_oExploit)
+        calcTotal()
     End Sub
 
     ' Chargement de la page

@@ -1,7 +1,9 @@
 ﻿Imports System.Collections.Generic
 Imports System.Linq
-
+<Serializable()>
 Public Class ContratCommercial
+
+
     Private _DiagId As String
     Public Property DiagId() As String
         Get

@@ -2,6 +2,8 @@
 Imports System.Linq
 Imports System.Xml.Serialization
 
+
+<Serializable()>
 Public Class Facture
     Inherits ContratCommercial
 

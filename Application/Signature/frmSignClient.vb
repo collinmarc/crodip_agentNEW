@@ -227,8 +227,12 @@ Public Class frmSignClient
                 If usbDevices.Count <> 0 Then
                     usbDevice = usbDevices(0)
                     ofrm = New frmSignClientWacom(pDiag, psignMode, pAgent, usbDevice)
+                Else
+                    CSDebug.dispError("frmSignClient.getfrmSignature : usbDevices = 0 , Tablette introuvable")
+
                 End If
-            Catch
+            Catch Ex As Exception
+                CSDebug.dispError("frmSignClient.getfrmSignature ERR", Ex)
             End Try
 
         End If

@@ -138,6 +138,7 @@ Partial Public Class frmSignClientWacom
 
     Public Sub New(pDiag As Diagnostic, psignMode As SignMode, pAgent As Agent, pusbDevice As wgssSTU.IUsbDevice)
         MyBase.New(pDiag, psignMode, pAgent)
+        Debug.Assert(pusbDevice IsNot Nothing, "USBDevice doit être initialisé")
         m_usbDevice = pusbDevice
 
         If m_usbDevice IsNot Nothing Then
@@ -292,10 +293,11 @@ Partial Public Class frmSignClientWacom
 
 
             Catch ex As Exception
-                CSDebug.dispError("frmSignClientWacom.New ERR" & ex.Message)
+                CSDebug.dispError("frmSignClientWacom.New ERR", ex)
             End Try
 
-
+        Else
+            CSDebug.dispError("fromSignWacom.New ERR: Le Device n'est pas initialisé")
         End If
     End Sub
 
@@ -463,7 +465,7 @@ Partial Public Class frmSignClientWacom
                 End If
             End If
         Catch ex As Exception
-
+            CSDebug.dispError("frmSignWacom.onPenDataTimeCountSequence ERR", ex)
         End Try
     End Sub
 
@@ -700,7 +702,8 @@ Partial Public Class frmSignClientWacom
                 retVal = bitmap
                 bitmap = Nothing
             End Using
-
+        Catch ex As Exception
+            CSDebug.dispError("frmSignWacom.GetImage ERR", ex)
         Finally
             If brush IsNot Nothing Then brush.Dispose()
             If bitmap IsNot Nothing Then bitmap.Dispose()

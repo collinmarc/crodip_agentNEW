@@ -775,11 +775,13 @@ Public Class login
         oAgentList = AgentManager.getAgentList()
         login_profil.Items.Clear()
         For Each curAgent As Agent In oAgentList.items
-            ' On ajoute le profil à la liste déroulante
-            Dim libelleAccount As String = curAgent.nom & " " & curAgent.prenom
-            libelleAccount = libelleAccount & "(" & curAgent.NomStructure & ")"
-            Dim objComboItem As New objComboItem(curAgent.numeroNational, libelleAccount)
-            login_profil.Items.Add(objComboItem)
+            If Not curAgent.isSupprime Then
+                ' On ajoute le profil à la liste déroulante
+                Dim libelleAccount As String = curAgent.nom & " " & curAgent.prenom
+                libelleAccount = libelleAccount & "(" & curAgent.NomStructure & ")"
+                Dim objComboItem As New objComboItem(curAgent.numeroNational, libelleAccount)
+                login_profil.Items.Add(objComboItem)
+            End If
         Next
 
     End Sub

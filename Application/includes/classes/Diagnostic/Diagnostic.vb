@@ -4,7 +4,7 @@ Imports System.Collections.Generic
 Imports System.IO
 Imports Ionic.Zip
 
-<Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemsList)), XmlInclude(GetType(DiagnosticItem))> _
+<Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemsList)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(ContratCommercial)), XmlInclude(GetType(Facture)), XmlInclude(GetType(lgPrestation))>
 Public Class Diagnostic
     Implements ICloneable
     Private _id As String = ""
@@ -2233,7 +2233,7 @@ Public Class Diagnostic
             End If
 
 #Else
-            Return _TotalHT
+            Return _TotalTTC
 #End If
         End Get
         Set(ByVal Value As Decimal)
