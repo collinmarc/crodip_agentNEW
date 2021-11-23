@@ -9,6 +9,7 @@ Imports System.IO
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 Imports System.Collections.Generic
+Imports System.Linq
 
 Public Class frmdiagnostic_facturationCoProp2
     Inherits System.Windows.Forms.Form
@@ -35,12 +36,9 @@ Public Class frmdiagnostic_facturationCoProp2
     Friend WithEvents tbRefPaiement As TextBox
     Friend WithEvents Label25 As Label
     Friend WithEvents ckReglee As CheckBox
-    Friend WithEvents DataGridView2 As DataGridView
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents m_dgvCoProp As DataGridView
     Friend WithEvents pnlListCoProp As Panel
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnNewExploitant As Button
     Friend WithEvents m_bsLignes As BindingSource
     Friend WithEvents LignesBindingSource As BindingSource
     Friend WithEvents m_bsFacture As BindingSource
@@ -80,6 +78,9 @@ Public Class frmdiagnostic_facturationCoProp2
     Friend WithEvents Label_diagnostic_61 As Label
     Friend WithEvents listTarif_prestations As ComboBox
     Friend WithEvents m_bsrcStructure As BindingSource
+    Friend WithEvents RaisonSocialeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CommuneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents btnSupprCoProp As Button
     Friend WithEvents dgvLignes As System.Windows.Forms.DataGridView
 
 
@@ -129,10 +130,10 @@ Public Class frmdiagnostic_facturationCoProp2
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmdiagnostic_facturationCoProp2))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.panelFooter = New System.Windows.Forms.Panel()
@@ -141,7 +142,6 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.Label_diagnostic_61 = New System.Windows.Forms.Label()
         Me.listTarif_prestations = New System.Windows.Forms.ComboBox()
         Me.tbRefPaiement = New System.Windows.Forms.TextBox()
-        Me.m_bsFacture = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label25 = New System.Windows.Forms.Label()
         Me.ckReglee = New System.Windows.Forms.CheckBox()
         Me.dtpDateEcheance = New System.Windows.Forms.DateTimePicker()
@@ -165,11 +165,6 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.tb_txTVA = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.dgvLignes = New System.Windows.Forms.DataGridView()
-        Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QuantiteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PUDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
         Me.LignesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -182,20 +177,16 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.Label28 = New System.Windows.Forms.Label()
         Me.tbNumFact = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.m_dgvCoProp = New System.Windows.Forms.DataGridView()
         Me.pnlListCoProp = New System.Windows.Forms.Panel()
         Me.TextBox8 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.TextBox7 = New System.Windows.Forms.TextBox()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnNewExploitant = New System.Windows.Forms.Button()
         Me.pnlClient = New System.Windows.Forms.Panel()
         Me.tbEmail = New System.Windows.Forms.TextBox()
-        Me.m_bsExploitant = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label23 = New System.Windows.Forms.Label()
         Me.tbTelPortable = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -213,21 +204,31 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btnSupprCoProp = New System.Windows.Forms.Button()
+        Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QuantiteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PUDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.m_bsFacture = New System.Windows.Forms.BindingSource(Me.components)
+        Me.m_bsExploitant = New System.Windows.Forms.BindingSource(Me.components)
+        Me.RaisonSocialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.m_bsrcStructure = New System.Windows.Forms.BindingSource(Me.components)
+        Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelFooter.SuspendLayout()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvLignes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_dgvCoProp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlListCoProp.SuspendLayout()
         Me.pnlClient.SuspendLayout()
+        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsrcStructure, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -337,10 +338,6 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.tbRefPaiement.Name = "tbRefPaiement"
         Me.tbRefPaiement.Size = New System.Drawing.Size(403, 20)
         Me.tbRefPaiement.TabIndex = 73
-        '
-        'm_bsFacture
-        '
-        Me.m_bsFacture.DataSource = GetType(Crodip_agent.Facture)
         '
         'Label25
         '
@@ -604,61 +601,16 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.dgvLignes.DataSource = Me.m_bsLignes
         Me.dgvLignes.Location = New System.Drawing.Point(12, 380)
         Me.dgvLignes.Name = "dgvLignes"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvLignes.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvLignes.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.dgvLignes.Size = New System.Drawing.Size(904, 162)
         Me.dgvLignes.TabIndex = 1
-        '
-        'CategorieDataGridViewTextBoxColumn
-        '
-        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "Categorie"
-        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "Categorie"
-        Me.CategorieDataGridViewTextBoxColumn.Name = "CategorieDataGridViewTextBoxColumn"
-        Me.CategorieDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'PrestationDataGridViewTextBoxColumn
-        '
-        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "Prestation"
-        Me.PrestationDataGridViewTextBoxColumn.HeaderText = "Prestation"
-        Me.PrestationDataGridViewTextBoxColumn.Name = "PrestationDataGridViewTextBoxColumn"
-        Me.PrestationDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'QuantiteDataGridViewTextBoxColumn
-        '
-        Me.QuantiteDataGridViewTextBoxColumn.DataPropertyName = "Quantite"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.QuantiteDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
-        Me.QuantiteDataGridViewTextBoxColumn.HeaderText = "Quantite"
-        Me.QuantiteDataGridViewTextBoxColumn.Name = "QuantiteDataGridViewTextBoxColumn"
-        '
-        'PUDataGridViewTextBoxColumn
-        '
-        Me.PUDataGridViewTextBoxColumn.DataPropertyName = "PU"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.PUDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
-        Me.PUDataGridViewTextBoxColumn.HeaderText = "PU"
-        Me.PUDataGridViewTextBoxColumn.Name = "PUDataGridViewTextBoxColumn"
-        '
-        'TotalHTDataGridViewTextBoxColumn
-        '
-        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "TotalHT"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "TotalHT"
-        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
-        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
         '
         'columnDelete
         '
@@ -770,36 +722,33 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.Label29.TabIndex = 68
         Me.Label29.Text = "Numéro de facture :"
         '
-        'DataGridView2
+        'm_dgvCoProp
         '
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
-        Me.DataGridView2.Location = New System.Drawing.Point(8, 0)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.RowHeadersVisible = False
-        Me.DataGridView2.Size = New System.Drawing.Size(203, 150)
-        Me.DataGridView2.TabIndex = 42
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Nom"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Commune"
-        Me.Column2.Name = "Column2"
+        Me.m_dgvCoProp.AllowUserToAddRows = False
+        Me.m_dgvCoProp.AllowUserToDeleteRows = False
+        Me.m_dgvCoProp.AutoGenerateColumns = False
+        Me.m_dgvCoProp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.m_dgvCoProp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.m_dgvCoProp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RaisonSocialeDataGridViewTextBoxColumn, Me.CommuneDataGridViewTextBoxColumn})
+        Me.m_dgvCoProp.DataSource = Me.m_bsExploitant
+        Me.m_dgvCoProp.Location = New System.Drawing.Point(8, 0)
+        Me.m_dgvCoProp.MultiSelect = False
+        Me.m_dgvCoProp.Name = "m_dgvCoProp"
+        Me.m_dgvCoProp.ReadOnly = True
+        Me.m_dgvCoProp.RowHeadersVisible = False
+        Me.m_dgvCoProp.Size = New System.Drawing.Size(296, 122)
+        Me.m_dgvCoProp.TabIndex = 42
         '
         'pnlListCoProp
         '
+        Me.pnlListCoProp.Controls.Add(Me.btnSupprCoProp)
         Me.pnlListCoProp.Controls.Add(Me.TextBox8)
         Me.pnlListCoProp.Controls.Add(Me.Button2)
         Me.pnlListCoProp.Controls.Add(Me.Label20)
         Me.pnlListCoProp.Controls.Add(Me.Label19)
         Me.pnlListCoProp.Controls.Add(Me.TextBox7)
-        Me.pnlListCoProp.Controls.Add(Me.Button4)
-        Me.pnlListCoProp.Controls.Add(Me.Button1)
-        Me.pnlListCoProp.Controls.Add(Me.DataGridView2)
+        Me.pnlListCoProp.Controls.Add(Me.btnNewExploitant)
+        Me.pnlListCoProp.Controls.Add(Me.m_dgvCoProp)
         Me.pnlListCoProp.Location = New System.Drawing.Point(13, 164)
         Me.pnlListCoProp.Name = "pnlListCoProp"
         Me.pnlListCoProp.Size = New System.Drawing.Size(308, 210)
@@ -852,25 +801,16 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.TextBox7.Size = New System.Drawing.Size(47, 20)
         Me.TextBox7.TabIndex = 60
         '
-        'Button4
+        'btnNewExploitant
         '
-        Me.Button4.BackColor = System.Drawing.Color.Aqua
-        Me.Button4.Location = New System.Drawing.Point(217, 68)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(87, 33)
-        Me.Button4.TabIndex = 51
-        Me.Button4.Text = "Nouveau"
-        Me.Button4.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.Aqua
-        Me.Button1.Location = New System.Drawing.Point(217, 23)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(87, 33)
-        Me.Button1.TabIndex = 50
-        Me.Button1.Text = "Sélectionner ->"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.btnNewExploitant.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.btnNewExploitant.ForeColor = System.Drawing.Color.White
+        Me.btnNewExploitant.Location = New System.Drawing.Point(8, 128)
+        Me.btnNewExploitant.Name = "btnNewExploitant"
+        Me.btnNewExploitant.Size = New System.Drawing.Size(87, 29)
+        Me.btnNewExploitant.TabIndex = 51
+        Me.btnNewExploitant.Text = "Nouveau"
+        Me.btnNewExploitant.UseVisualStyleBackColor = False
         '
         'pnlClient
         '
@@ -908,10 +848,6 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.tbEmail.Name = "tbEmail"
         Me.tbEmail.Size = New System.Drawing.Size(208, 20)
         Me.tbEmail.TabIndex = 7
-        '
-        'm_bsExploitant
-        '
-        Me.m_bsExploitant.DataSource = GetType(Crodip_agent.Exploitation)
         '
         'Label23
         '
@@ -1088,13 +1024,91 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.Label4.TabIndex = 62
         Me.Label4.Text = "Nom  :"
         '
-        'm_bsDiag
+        'btnSupprCoProp
         '
-        Me.m_bsDiag.DataSource = GetType(Crodip_agent.Diagnostic)
+        Me.btnSupprCoProp.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.btnSupprCoProp.ForeColor = System.Drawing.Color.White
+        Me.btnSupprCoProp.Location = New System.Drawing.Point(101, 128)
+        Me.btnSupprCoProp.Name = "btnSupprCoProp"
+        Me.btnSupprCoProp.Size = New System.Drawing.Size(87, 29)
+        Me.btnSupprCoProp.TabIndex = 64
+        Me.btnSupprCoProp.Text = "Supprimer"
+        Me.btnSupprCoProp.UseVisualStyleBackColor = False
+        '
+        'CategorieDataGridViewTextBoxColumn
+        '
+        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "Categorie"
+        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "Categorie"
+        Me.CategorieDataGridViewTextBoxColumn.Name = "CategorieDataGridViewTextBoxColumn"
+        Me.CategorieDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'PrestationDataGridViewTextBoxColumn
+        '
+        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "Prestation"
+        Me.PrestationDataGridViewTextBoxColumn.HeaderText = "Prestation"
+        Me.PrestationDataGridViewTextBoxColumn.Name = "PrestationDataGridViewTextBoxColumn"
+        Me.PrestationDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'QuantiteDataGridViewTextBoxColumn
+        '
+        Me.QuantiteDataGridViewTextBoxColumn.DataPropertyName = "Quantite"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "N2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.QuantiteDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        Me.QuantiteDataGridViewTextBoxColumn.HeaderText = "Quantite"
+        Me.QuantiteDataGridViewTextBoxColumn.Name = "QuantiteDataGridViewTextBoxColumn"
+        '
+        'PUDataGridViewTextBoxColumn
+        '
+        Me.PUDataGridViewTextBoxColumn.DataPropertyName = "PU"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle6.Format = "C2"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.PUDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
+        Me.PUDataGridViewTextBoxColumn.HeaderText = "PU"
+        Me.PUDataGridViewTextBoxColumn.Name = "PUDataGridViewTextBoxColumn"
+        '
+        'TotalHTDataGridViewTextBoxColumn
+        '
+        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "TotalHT"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle7.Format = "C2"
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
+        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "TotalHT"
+        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
+        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'm_bsFacture
+        '
+        Me.m_bsFacture.DataSource = GetType(Crodip_agent.Facture)
+        '
+        'm_bsExploitant
+        '
+        Me.m_bsExploitant.DataSource = GetType(Crodip_agent.Exploitation)
+        '
+        'RaisonSocialeDataGridViewTextBoxColumn
+        '
+        Me.RaisonSocialeDataGridViewTextBoxColumn.DataPropertyName = "raisonSociale"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.HeaderText = "Raison sociale"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.Name = "RaisonSocialeDataGridViewTextBoxColumn"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CommuneDataGridViewTextBoxColumn
+        '
+        Me.CommuneDataGridViewTextBoxColumn.DataPropertyName = "commune"
+        Me.CommuneDataGridViewTextBoxColumn.HeaderText = "Commune"
+        Me.CommuneDataGridViewTextBoxColumn.Name = "CommuneDataGridViewTextBoxColumn"
+        Me.CommuneDataGridViewTextBoxColumn.ReadOnly = True
         '
         'm_bsrcStructure
         '
         Me.m_bsrcStructure.DataSource = GetType(Crodip_agent.Structuree)
+        '
+        'm_bsDiag
+        '
+        Me.m_bsDiag.DataSource = GetType(Crodip_agent.Diagnostic)
         '
         'frmdiagnostic_facturationCoProp2
         '
@@ -1117,20 +1131,20 @@ Public Class frmdiagnostic_facturationCoProp2
         Me.panelFooter.ResumeLayout(False)
         Me.panelFooter.PerformLayout()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvLignes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_dgvCoProp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlListCoProp.ResumeLayout(False)
         Me.pnlListCoProp.PerformLayout()
         Me.pnlClient.ResumeLayout(False)
         Me.pnlClient.PerformLayout()
+        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsrcStructure, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1147,6 +1161,7 @@ Public Class frmdiagnostic_facturationCoProp2
     Protected m_oAgent As Agent
     Protected m_oFacture As Facture
     Protected m_oStructure As Structuree
+    Protected m_olstExploit As List(Of Exploitation)
 #End Region
 #Region " Chargement "
     Public Sub setContexte(pDiag As Diagnostic, pAgent As Agent, pStructure As Structuree)
@@ -1167,17 +1182,23 @@ Public Class frmdiagnostic_facturationCoProp2
         dgvLignes.AllowUserToDeleteRows = False
 
         m_bsExploitant.Clear()
-        m_bsExploitant.Add(m_oExploit)
 
-        If m_oPulverisateur.modeUtilisation <> "Co-Propriété" Then
+        If Not m_oPulverisateur.isCoPropriete Then
             pnlListCoProp.Visible = False
             pnlClient.Left = pnlListCoProp.Left
             pnlClient.Width = pnlClient.Width + pnlListCoProp.Width
             dgvLignes.Top = pnlClient.Top + pnlClient.Height + 6
             dgvLignes.Height = panelFooter.Top - 6 - dgvLignes.Top
-
-
             btnNouvelleFacture.Visible = False
+            m_bsExploitant.Add(m_oExploit)
+
+        Else
+
+            m_olstExploit = ExploitationManager.GetListExploitationByPulverisateurId(m_oPulverisateur.id)
+            m_olstExploit.ForEach(Function(oExploit) m_bsExploitant.Add(oExploit))
+            pnlListCoProp.Visible = True
+
+
         End If
 
         If pStructure Is Nothing Then
@@ -1328,8 +1349,24 @@ Public Class frmdiagnostic_facturationCoProp2
     End Sub
 
     Private Sub btn_finalisationDiag_valider_Click(sender As Object, e As EventArgs) Handles btn_finalisationDiag_valider.Click
+        Me.ValidateChildren()
+        SauvegarderCoProp()
         Me.DialogResult = DialogResult.OK
         Me.Close()
+    End Sub
+
+    Private Sub SauvegarderCoProp()
+        'Sauvegarde des Exploitants
+        m_olstExploit.ForEach(Function(oExploit) ExploitationManager.save(oExploit, m_oAgent))
+        If m_oPulverisateur.isCoPropriete Then
+            m_olstExploit.ForEach(Sub(oExploit)
+                                      If Not oExploit.isSuppressionCoprop Then
+                                          PulverisateurManager.save(m_oPulverisateur, oExploit.id, m_oAgent)
+                                      Else
+                                          'ExploitationTOPulverisateurManager.remove(oExploit.id, m_oPulverisateur.id)
+                                      End If
+                                  End Sub)
+        End If
     End Sub
 
     Private Sub dgvLignes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvLignes.CellContentClick
@@ -1398,6 +1435,32 @@ Public Class frmdiagnostic_facturationCoProp2
                     CSDebug.dispError("frmDiagnostic_facturation.setlistTarif : " & ex.Message.ToString)
                 End Try
             Next
+        End If
+    End Sub
+
+    Private Sub btnNewExploitant_Click(sender As Object, e As EventArgs) Handles btnNewExploitant.Click
+        CreerExploitant()
+    End Sub
+
+    Private Sub CreerExploitant()
+        Dim OExploit As New Exploitation()
+        OExploit.raisonSociale = "Nouveau."
+        ExploitationManager.save(OExploit, m_oAgent)
+        PulverisateurManager.save(m_oPulverisateur, OExploit.id, m_oAgent)
+        m_bsExploitant.Add(OExploit)
+    End Sub
+
+    Private Sub btnSupprCoProp_Click(sender As Object, e As EventArgs) Handles btnSupprCoProp.Click
+        SuppressionCoProp()
+    End Sub
+
+    Private Sub SuppressionCoProp()
+        If m_bsExploitant.Current IsNot Nothing Then
+            m_oExploit = m_bsExploitant.Current
+            m_oExploit.isSuppressionCoprop = True
+            If m_dgvCoProp.CurrentRow IsNot Nothing Then
+                m_dgvCoProp.Rows.Remove(m_dgvCoProp.CurrentRow)
+            End If
         End If
     End Sub
 End Class

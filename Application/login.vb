@@ -1163,17 +1163,46 @@ Public Class login
         oStructure.Entete = ""
         StructureManager.save(oStructure)
         oPulve = New Pulverisateur()
-        oExploit = New Exploitation()
-        oExploit = ExploitationManager.getExploitationById("2-81-32")
-        oExploit.raisonSociale = "PERAN AGRI KLEG"
+        Dim olst As List(Of Exploitation)
+        olst = ExploitationManager.searchExploitation(oAgent, 0, "TEST")
+        If olst.Count() = 0 Then
+            oExploit = New Exploitation()
+        Else
+            oExploit = olst(0)
+        End If
+        oExploit.raisonSociale = "TEST"
         oExploit.telephoneFixe = "0297250827"
         oExploit.telephonePortable = "0680667189"
         oExploit.eMail = "marc.peran@cleguerec.fr"
         ExploitationManager.save(oExploit, oAgent)
-        '        oPulve = PulverisateurManager.getPulverisateurById("2-1-51") 'Culture maraîchères palissées
-        'oPulve = PulverisateurManager.getPulverisateurById("2-81-63") 'Pulvérisateurs combinés
-        '        oPulve = PulverisateurManager.getPulverisateurById("2-81-50") 'Cultures basses
-        oPulve = PulverisateurManager.getPulverisateurById("2-1083-7") 'Vigne
+        Dim oLstPulve As New List(Of Pulverisateur)
+
+        oLstPulve.AddRange(PulverisateurManager.getPulverisateurByClientId(oExploit.id, ""))
+        If olst.Count() = 0 Then
+            oPulve = New Pulverisateur()
+        Else
+            oPulve = oLstPulve(0)
+        End If
+        oPulve.modeUtilisation = "Co-Propriété"
+        PulverisateurManager.save(oPulve, oExploit.id, oAgent)
+
+        'Création d'un copropriétaire
+        Dim oExploit2 As New Exploitation()
+        olst = ExploitationManager.searchExploitation(oAgent, 0, "TESTCOPROP")
+        If olst.Count() = 0 Then
+            oExploit2 = New Exploitation()
+        Else
+            oExploit2 = olst(0)
+        End If
+        oExploit2.raisonSociale = "TESTCOPROP"
+        oExploit2.telephoneFixe = "[2]0297250827"
+        oExploit2.telephonePortable = "[2]0680667189"
+        oExploit2.eMail = "[2]marc.peran@cleguerec.fr"
+        ExploitationManager.save(oExploit2, oAgent)
+
+        'Affectation du Coprop
+        PulverisateurManager.save(oPulve, oExploit2.id, oAgent)
+
         oDiag = New Diagnostic(oAgent, oPulve, oExploit)
         oDiag.id = ""
         oDiag.controleLieu = "DANS LA COUR"

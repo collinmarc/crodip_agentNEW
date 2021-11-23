@@ -162,7 +162,7 @@
       <Value Profile="(Default)">crodip_agent</Value>
     </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20211013170000</Value>
+      <Value Profile="(Default)">20211119170000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

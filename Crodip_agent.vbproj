@@ -577,16 +577,16 @@
     <Compile Include="Application\includes\classes\Agent\Materiel\ManometreEtalonManager.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Application\includes\classes\Client\ExploitationManager.vb">
+    <Compile Include="Application\includes\classes\Exploitation\ExploitationManager.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Application\includes\classes\Client\Exploitation.vb">
+    <Compile Include="Application\includes\classes\Exploitation\Exploitation.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Application\includes\classes\Client\ExploitationTOPulverisateur.vb">
+    <Compile Include="Application\includes\classes\Exploitation\ExploitationTOPulverisateur.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Application\includes\classes\Client\ExploitationTOPulverisateurManager.vb">
+    <Compile Include="Application\includes\classes\Exploitation\ExploitationTOPulverisateurManager.vb">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Application\includes\classes\Controle\ControleBanc.vb">

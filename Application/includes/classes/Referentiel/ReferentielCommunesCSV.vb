@@ -83,6 +83,7 @@ Public Class ReferentielCommunesCSV
         End If
         Dim odv As New DataView(ods.Communes)
         odv.RowFilter = " CodePostal like '" & pCodePostal & "%'"
+        odv.Sort = "NomCommune"
         odt = odv.ToTable()
 
         Dim oReturn As New List(Of Commune)

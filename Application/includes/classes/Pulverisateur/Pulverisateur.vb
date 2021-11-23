@@ -778,6 +778,10 @@ Public Class Pulverisateur
             _modeUtilisation = value
         End Set
     End Property
+    Public Function isCoPropriete() As Boolean
+        Return modeUtilisation = "Co-Propriété"
+    End Function
+
     Public Property nombreExploitants As String
         Get
             Return _nombreExploitants
