@@ -151,7 +151,7 @@ Public Class PulverisateurManager
             bddCommande.CommandText = "INSERT INTO Pulverisateur (id, idStructure ) VALUES ('" & poPulve.id & "','" & poPulve.idStructure & "')"
             bddCommande.ExecuteNonQuery()
             oCSDB.free()
-            ExploitationTOPulverisateurManager.createExploitationTOPulverisateur(client_id, poPulve.id, pAgent)
+            ExploitationTOPulverisateurManager.save(poPulve.id, client_id, False, pAgent)
             ' Test pour fermeture de connection BDD
             bReturn = True
         Catch ex As Exception
@@ -330,20 +330,14 @@ Public Class PulverisateurManager
                 bddCommande.CommandText = "UPDATE Pulverisateur SET " & paramsQuery & " WHERE Pulverisateur.id='" & objPulverisateur.id & "'"
                 bddCommande.ExecuteNonQuery()
 
-                    ' Vérificatin du lien entre le pulvérisateur et l'exploitation
-                    Dim oExploit2Pulve As ExploitationTOPulverisateur
-                    If client_id <> "0" And client_id <> "" Then
-                        oExploit2Pulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(client_id, objPulverisateur.id)
-                        If String.IsNullOrEmpty(oExploit2Pulve.id) Then
-                            'Création du lien
-                            ExploitationTOPulverisateurManager.createExploitationTOPulverisateur(client_id, objPulverisateur.id, pAgent)
-                            oExploit2Pulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(client_id, objPulverisateur.id)
-                        End If
-                        'Validation du lien pour forcer la synchro
-                        ExploitationTOPulverisateurManager.save(oExploit2Pulve, pAgent)
-                    End If
-                    bReturn = True
-                End If
+                ' Vérificatin du lien entre le pulvérisateur et l'exploitation
+                Dim oExploit2Pulve As New ExploitationTOPulverisateur()
+                oExploit2Pulve.idPulverisateur = objPulverisateur.id
+                oExploit2Pulve.idExploitation = client_id
+                oExploit2Pulve.isSupprimeCoProp = False
+                ExploitationTOPulverisateurManager.save(oExploit2Pulve, pAgent)
+                bReturn = True
+            End If
         Catch ex As Exception
             CSDebug.dispError("PulverisateurManager::save() : " & ex.Message.ToString)
             CSDebug.dispError("PulverisateurManager::save() : " & paramsQuery)

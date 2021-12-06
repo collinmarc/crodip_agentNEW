@@ -53,11 +53,11 @@ Public Class CSDebug
         Dim errorMessage As String
         errorMessage = pErrorMsg + ex.Message
         If ex.InnerException IsNot Nothing Then
-            errorMessage = pErrorMsg + "," + ex.InnerException.Message
+            errorMessage = errorMessage + "," + ex.InnerException.Message
         End If
-        logger.Error(pErrorMsg)
+        logger.Error(errorMessage)
         If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 1 Then
-            displayMsg("[Error] - " & pErrorMsg)
+            displayMsg("[Error] - " & errorMessage)
             '   Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
             '  CSDebug.saveLog("Error", agentCourant.id, errorMsg, curVersion)
         End If

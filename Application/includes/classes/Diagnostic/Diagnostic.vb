@@ -3637,5 +3637,4 @@ Public Class Diagnostic
             _ContratCommercial = value
         End Set
     End Property
-
 End Class

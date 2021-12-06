@@ -91,6 +91,7 @@ Public Class diagnostic_ContratCommercial2
         Me.panelFooter = New System.Windows.Forms.Panel()
         Me.btn_Signatures = New System.Windows.Forms.Label()
         Me.tbCommentaire = New System.Windows.Forms.TextBox()
+        Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
         Me.lblCommentaire = New System.Windows.Forms.Label()
         Me.btn_facturation_imprimerContrat = New System.Windows.Forms.Label()
         Me.facturation_totalHT = New System.Windows.Forms.TextBox()
@@ -110,20 +111,19 @@ Public Class diagnostic_ContratCommercial2
         Me.Label17 = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
-        Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
-        Me.LignesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuantiteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PUDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
+        Me.LignesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
+        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -235,6 +235,10 @@ Public Class diagnostic_ContratCommercial2
         Me.tbCommentaire.Size = New System.Drawing.Size(552, 52)
         Me.tbCommentaire.TabIndex = 45
         Me.tbCommentaire.Visible = False
+        '
+        'm_bsContratCommercial
+        '
+        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
         '
         'lblCommentaire
         '
@@ -476,19 +480,6 @@ Public Class diagnostic_ContratCommercial2
         Me.DataGridView1.Size = New System.Drawing.Size(908, 331)
         Me.DataGridView1.TabIndex = 30
         '
-        'm_bsLignes
-        '
-        Me.m_bsLignes.DataSource = Me.LignesBindingSource
-        '
-        'm_bsContratCommercial
-        '
-        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
-        '
-        'LignesBindingSource
-        '
-        Me.LignesBindingSource.DataMember = "Lignes"
-        Me.LignesBindingSource.DataSource = Me.m_bsContratCommercial
-        '
         'CategorieDataGridViewTextBoxColumn
         '
         Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "Categorie"
@@ -531,6 +522,15 @@ Public Class diagnostic_ContratCommercial2
         Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.columnDelete.Width = 40
         '
+        'm_bsLignes
+        '
+        Me.m_bsLignes.DataSource = Me.LignesBindingSource
+        '
+        'LignesBindingSource
+        '
+        Me.LignesBindingSource.DataMember = "Lignes"
+        Me.LignesBindingSource.DataSource = Me.m_bsContratCommercial
+        '
         'diagnostic_ContratCommercial2
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -553,9 +553,9 @@ Public Class diagnostic_ContratCommercial2
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelFooter.ResumeLayout(False)
         Me.panelFooter.PerformLayout()
+        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -652,7 +652,7 @@ Public Class diagnostic_ContratCommercial2
                 Dim PU As Decimal
                 PU = curPrestation.tarifHT
 
-                Dim oLig As New lgPrestation(listTarif_categories.SelectedItem.libelle.ToString, listTarif_prestations.SelectedItem.libelle.ToString, PU, 1, m_oDiag.id)
+                Dim oLig As New lgPrestation(listTarif_categories.SelectedItem.libelle.ToString, listTarif_prestations.SelectedItem.libelle.ToString, PU, 1, 0, m_oDiag.id)
 
                 Dim oCC As ContratCommercial = m_bsContratCommercial.Current
                 oCC.Lignes.Add(oLig)
@@ -793,8 +793,8 @@ Public Class diagnostic_ContratCommercial2
             Dim oEtat As New EtatBL(m_oDiag)
 
             ' On rempli la liste des prestations
-            For Each oLig As DiagnosticFactureItem In m_bsLignes
-                oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
+            For Each oLig As lgPrestation In m_bsLignes
+                oEtat.AddPresta(oLig.Categorie & " " & oLig.Prestation, oLig.PU, oLig.Quantite, oLig.TotalTVA, oLig.TotalHT, oLig.TotalTTC)
             Next
 
             oEtat.genereEtat()

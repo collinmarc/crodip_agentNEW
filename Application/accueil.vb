@@ -452,6 +452,7 @@ Public Class accueil
         Me.btn_outilsComplementaires_calcDebitBuses = New System.Windows.Forms.Label()
         Me.tabControl_parametrage = New System.Windows.Forms.TabPage()
         Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.btn_LieuxControle = New System.Windows.Forms.Label()
         Me.lblIdentifiantPulve = New System.Windows.Forms.Label()
         Me.lblMaterielsSupprimes = New System.Windows.Forms.Label()
         Me.btn_parametrage_facturation = New System.Windows.Forms.Label()
@@ -512,7 +513,6 @@ Public Class accueil
         Me.laNomAgent2 = New System.Windows.Forms.Label()
         Me.pctLogoStat = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.btn_LieuxControle = New System.Windows.Forms.Label()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
         Me.tabControl_accueil.SuspendLayout()
@@ -2267,6 +2267,19 @@ Public Class accueil
         Me.Panel5.Size = New System.Drawing.Size(1000, 656)
         Me.Panel5.TabIndex = 2
         '
+        'btn_LieuxControle
+        '
+        Me.btn_LieuxControle.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_LieuxControle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_LieuxControle.ForeColor = System.Drawing.Color.White
+        Me.btn_LieuxControle.Image = CType(resources.GetObject("btn_LieuxControle.Image"), System.Drawing.Image)
+        Me.btn_LieuxControle.Location = New System.Drawing.Point(48, 321)
+        Me.btn_LieuxControle.Name = "btn_LieuxControle"
+        Me.btn_LieuxControle.Size = New System.Drawing.Size(180, 24)
+        Me.btn_LieuxControle.TabIndex = 27
+        Me.btn_LieuxControle.Text = "    Lieux de contrôle"
+        Me.btn_LieuxControle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'lblIdentifiantPulve
         '
         Me.lblIdentifiantPulve.Cursor = System.Windows.Forms.Cursors.Hand
@@ -3037,19 +3050,6 @@ Public Class accueil
         Me.Label7.TabIndex = 0
         Me.Label7.Text = "     Statistiques"
         '
-        'btn_LieuxControle
-        '
-        Me.btn_LieuxControle.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_LieuxControle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_LieuxControle.ForeColor = System.Drawing.Color.White
-        Me.btn_LieuxControle.Image = CType(resources.GetObject("btn_LieuxControle.Image"), System.Drawing.Image)
-        Me.btn_LieuxControle.Location = New System.Drawing.Point(48, 321)
-        Me.btn_LieuxControle.Name = "btn_LieuxControle"
-        Me.btn_LieuxControle.Size = New System.Drawing.Size(180, 24)
-        Me.btn_LieuxControle.TabIndex = 27
-        Me.btn_LieuxControle.Text = "    Lieux de contrôle"
-        Me.btn_LieuxControle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'accueil
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -3153,6 +3153,9 @@ Public Class accueil
         If Not Directory.Exists(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE) Then
             Directory.CreateDirectory(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE)
         End If
+        If Not Directory.Exists(GlobalsCRODIP.CONST_PATH_EXP_FACTURE) Then
+            Directory.CreateDirectory(GlobalsCRODIP.CONST_PATH_EXP_FACTURE)
+        End If
 
         Try
 
@@ -3184,9 +3187,9 @@ Public Class accueil
                     oDI.Create()
                     oDI.Attributes = FileAttributes.Hidden
 
-                    oDI.CreateSubdirectory("public\exports\MANOMETRECONTROLE")
-                    oDI.CreateSubdirectory("public\exports\BANCMESURE")
-                    oDI.CreateSubdirectory("public\exports\DIAGNOSTIC")
+                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE)
+                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE)
+                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
 
                     'Transfert des fichiers depuis le publicExport dans le dossier Caché
                     Dim l As String()
@@ -3582,7 +3585,7 @@ Public Class accueil
         End If
     End Sub
     Public Sub RefreshLVIExploitation(pIdExploit As String)
-        Debug.Assert(Not String.IsNullOrEmpty(pIdExploit), "IdExploi doit être renseigné")
+        Debug.Assert(Not String.IsNullOrEmpty(pIdExploit), "IdExploit doit être renseigné")
         Dim tabItem As ListViewItem()
         Dim oItem As ListViewItem
         Dim oExploit As Exploitation
@@ -4434,7 +4437,7 @@ Public Class accueil
         ' Ouverture fiche client
         clientCourant = New Exploitation()
         Dim formFiche_exploitant As New fiche_exploitant()
-        formFiche_exploitant.setContexte(False, clientCourant)
+        formFiche_exploitant.setContexte(False, clientCourant, agentCourant)
         '        formFiche_exploitant.MdiParent = Me.MdiParent
         formFiche_exploitant.ShowDialog()
     End Sub
@@ -4588,7 +4591,7 @@ Public Class accueil
     Private Sub btn_ficheClient_voirFiche_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheClient_voirFiche.Click
         ' Ouverture fiche client
         Dim formFiche_exploitant As New fiche_exploitant
-        formFiche_exploitant.setContexte(False, clientCourant)
+        formFiche_exploitant.setContexte(False, clientCourant, agentCourant)
         formFiche_exploitant.ShowDialog()
     End Sub
 
@@ -4628,7 +4631,7 @@ Public Class accueil
         clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
         ' Ouverture fiche client
         Dim formFiche_exploitant As New fiche_exploitant
-        formFiche_exploitant.setContexte(False, clientCourant)
+        formFiche_exploitant.setContexte(False, clientCourant, agentCourant)
         formFiche_exploitant.ShowDialog()
     End Sub
 
@@ -4707,7 +4710,7 @@ Public Class accueil
     Public Sub NouveauDiagnosticPhase1(pDiagMode As GlobalsCRODIP.DiagMode)
         'Vérification des clients et Pulvés au préalable
         Dim ofrmExpl As New fiche_exploitant()
-        ofrmExpl.setContexte(False, clientCourant)
+        ofrmExpl.setContexte(False, clientCourant, agentCourant)
         '                ofrm.MdiParent = Me.MdiParent
         ofrmExpl.ShowDialog()
         If ofrmExpl.DialogResult = Windows.Forms.DialogResult.OK Then
@@ -5727,5 +5730,13 @@ Public Class accueil
     Private Sub btn_LieuxControle_Click(sender As Object, e As EventArgs) Handles btn_LieuxControle.Click
         Dim odlg As New frmGestLieuxControle()
         odlg.ShowDialog()
+    End Sub
+
+    Private Sub client_search_query_TextChanged(sender As Object, e As EventArgs) Handles client_search_query.TextChanged
+
+    End Sub
+
+    Private Sub btn_rechercher_exploitant_Click(sender As Object, e As EventArgs) Handles btn_rechercher_exploitant.Click
+
     End Sub
 End Class

@@ -1011,8 +1011,8 @@ Public Class diagnostic_ContratCommercial
             Dim oEtat As New EtatBL(m_oDiag)
 
             ' On rempli la liste des prestations
-            For Each oLig As DiagnosticFactureItem In m_bsLignes
-                oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
+            For Each oLig As lgPrestation In m_bsLignes
+                oEtat.AddPresta(oLig.Categorie & " " & oLig.Prestation, oLig.PU, oLig.Quantite, oLig.TotalTVA, oLig.TotalHT, oLig.TotalTTC)
             Next
 
             oEtat.genereEtat()

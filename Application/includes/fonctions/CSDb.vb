@@ -314,6 +314,10 @@ Public Class CSDb
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM IdentifiantPulverisateur"
             bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM factureItem"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM facture"
+            bddCommande.ExecuteNonQuery()
             'bddCommande.CommandText = "DELETE FROM VERSION"
             'bddCommande.ExecuteNonQuery()
 

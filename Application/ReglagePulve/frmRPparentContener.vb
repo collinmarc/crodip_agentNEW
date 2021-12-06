@@ -770,7 +770,7 @@ Public Class frmRPparentContener
             'Création des fenêtres Filles
             SuspendLayout()
             oFRMExploit = New frmRPFicheExlpoitant()
-            oFRMExploit.setContexte(False, clientCourant, m_RPDiagnostic)
+            oFRMExploit.setContexte(False, clientCourant, m_RPDiagnostic, m_oAgent)
             oFRMExploit.WindowState = FormWindowState.Maximized
             oFRMExploit.MdiParent = Me
             '            oFRMExploit.Show()
@@ -1110,7 +1110,7 @@ Public Class frmRPparentContener
 
         CSDebug.dispInfo("frmExploit")
         oFRMExploit = New frmRPFicheExlpoitant()
-        oFRMExploit.setContexte(False, clientCourant, m_RPDiagnostic)
+        oFRMExploit.setContexte(False, clientCourant, m_RPDiagnostic, m_oAgent)
         oFRMExploit.WindowState = FormWindowState.Maximized
         oFRMExploit.MdiParent = Me
 

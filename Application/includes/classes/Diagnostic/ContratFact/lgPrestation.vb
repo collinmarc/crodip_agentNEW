@@ -6,6 +6,15 @@ Imports System.Xml.Serialization
 Public Class lgPrestation
     Implements ICloneable
 #Region "Properties"
+    Private _idFacture As String
+    Public Property idFacture() As String
+        Get
+            Return _idFacture
+        End Get
+        Set(ByVal value As String)
+            _idFacture = value
+        End Set
+    End Property
     Private _ContratCommercialID As String
     Public Property ContratCommercialID() As String
         Get
@@ -51,11 +60,33 @@ Public Class lgPrestation
             _PU = value
         End Set
     End Property
-
+    Private _txTVA As Decimal
+    Public Property txTVA() As Decimal
+        Get
+            Return _txTVA
+        End Get
+        Set(ByVal value As Decimal)
+            _txTVA = value
+        End Set
+    End Property
 
     Public Property TotalHT() As Decimal
         Get
             Return PU * Quantite
+        End Get
+        Set(ByVal value As Decimal)
+        End Set
+    End Property
+    Public Property TotalTVA() As Decimal
+        Get
+            Return PU * Quantite * (txTVA / 100)
+        End Get
+        Set(ByVal value As Decimal)
+        End Set
+    End Property
+    Public Property TotalTTC() As Decimal
+        Get
+            Return TotalHT * (1 + (txTVA / 100))
         End Get
         Set(ByVal value As Decimal)
         End Set
@@ -74,11 +105,12 @@ Public Class lgPrestation
     Public Sub New()
 
     End Sub
-    Public Sub New(pCategorie As String, pPrestation As String, pPU As Decimal, pQte As Decimal, pDiagId As String)
+    Public Sub New(pCategorie As String, pPrestation As String, pPU As Decimal, pQte As Decimal, ptxTva As Decimal, pDiagId As String)
         Categorie = pCategorie
         Prestation = pPrestation
         PU = pPU
         Quantite = pQte
+        txTVA = ptxTva
         DiagId = pDiagId
 
     End Sub
@@ -109,4 +141,51 @@ Public Class lgPrestation
         End Try
         Return oReturn
     End Function
+    Private _NFactureItem As Integer
+    Public Property nFactureItem() As Integer
+        Get
+            Return _NFactureItem
+        End Get
+        Set(ByVal value As Integer)
+            _NFactureItem = value
+        End Set
+    End Property
+    Private _dateModificationAgent As DateTime
+    <XmlIgnoreAttribute()>
+    Public Property dateModificationAgent() As DateTime
+        Get
+            Return _dateModificationAgent
+        End Get
+        Set(ByVal Value As DateTime)
+            _dateModificationAgent = Value
+        End Set
+    End Property
+    <XmlElement("dateModificationAgent")>
+    Public Property dateModificationAgentS() As String
+        Get
+            Return CSDate.GetDateForWS(_dateModificationAgent)
+        End Get
+        Set(ByVal Value As String)
+            _dateModificationAgent = Value
+        End Set
+    End Property
+    Private _dateModificationCrodip As DateTime
+    <XmlIgnoreAttribute()>
+    Public Property dateModificationCrodip() As DateTime
+        Get
+            Return _dateModificationCrodip
+        End Get
+        Set(ByVal Value As DateTime)
+            _dateModificationCrodip = Value
+        End Set
+    End Property
+    <XmlElement("dateModificationCrodip")>
+    Public Property dateModificationCrodipS() As String
+        Get
+            Return CSDate.GetDateForWS(_dateModificationCrodip)
+        End Get
+        Set(ByVal Value As String)
+            _dateModificationCrodip = Value
+        End Set
+    End Property
 End Class

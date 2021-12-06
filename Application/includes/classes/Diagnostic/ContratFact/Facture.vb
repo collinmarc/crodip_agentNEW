@@ -8,9 +8,31 @@ Public Class Facture
     Inherits ContratCommercial
 
     Public Sub New()
+        oExploit = New Exploitation()
+        oDiagnostic = New Diagnostic()
+    End Sub
+    Public Sub New(pStructure As Structuree)
+        Me.New()
+        Me.idStructure = pStructure.id
+        Modereglement = pStructure.Modereglement
+        MsgEntetete = pStructure.Entete
 
+
+        Dim nLg As Integer = pStructure.DernierNumFact.Length()
+        Dim n As Integer
+        Try
+            n = Convert.ToInt64(pStructure.DernierNumFact) + 1
+
+        Catch ex As Exception
+            n = 0
+        End Try
+
+        Me.idFacture = pStructure.RacineNumFact & n.ToString().PadLeft(nLg, "0")
+
+        pStructure.DernierNumFact = n.ToString().PadLeft(nLg, "0")
     End Sub
     Public Sub New(pContrat As ContratCommercial, pStructure As Structuree)
+        Me.New(pStructure)
         Me.Commentaire = pContrat.Commentaire
         'Me.DiagId = pContrat.DiagId
         Me.oDiagnostic = pContrat.oDiagnostic
@@ -18,16 +40,6 @@ Public Class Facture
         Me.TxTVA = pContrat.TxTVA
         pContrat.Lignes.ForEach(Sub(lg) Lignes.Add(lg.Clone()))
 
-        Dim oStructure As Structuree
-        If pStructure Is Nothing Then
-            oStructure = StructureManager.getStructureById(oDiagnostic.organismePresId)
-        Else
-            oStructure = pStructure
-        End If
-        If oStructure IsNot Nothing Then
-            Modereglement = oStructure.Modereglement
-            MsgEntetete = oStructure.Entete
-        End If
 
     End Sub
 #Region "Properties"
@@ -37,7 +49,10 @@ Public Class Facture
             Return _DateFacture
         End Get
         Set(ByVal value As DateTime)
-            _DateFacture = value
+            If value <> _DateFacture Then
+                _DateFacture = value
+                DateEcheance = DateFacture
+            End If
         End Set
     End Property
     Private _DateEchenance As DateTime
@@ -67,7 +82,7 @@ Public Class Facture
             _Reglee = value
         End Set
     End Property
-    Private _RefPaiement As String
+    Private _RefPaiement As String = ""
 
 
     Public Property RefPaiement() As String
@@ -78,13 +93,13 @@ Public Class Facture
             _RefPaiement = value
         End Set
     End Property
-    Private _RefFacture As String
-    Public Property RefFacture() As String
+    Private _idFacture As String
+    Public Property idFacture() As String
         Get
-            Return _RefFacture
+            Return _idFacture
         End Get
         Set(ByVal value As String)
-            _RefFacture = value
+            _idFacture = value
         End Set
     End Property
     Private _MsgEntete As String
@@ -105,5 +120,70 @@ Public Class Facture
             _PathPDF = value
         End Set
     End Property
+    Private _idStructure As String
+    Public Property idStructure() As String
+        Get
+            Return _idStructure
+        End Get
+        Set(ByVal value As String)
+            _idStructure = value
+        End Set
+    End Property
+    Private _dateModificationAgent As DateTime
+    <XmlIgnoreAttribute()>
+    Public Property dateModificationAgent() As DateTime
+        Get
+            Return _dateModificationAgent
+        End Get
+        Set(ByVal Value As DateTime)
+            _dateModificationAgent = Value
+        End Set
+    End Property
+    <XmlElement("dateModificationAgent")>
+    Public Property dateModificationAgentS() As String
+        Get
+            Return CSDate.GetDateForWS(_dateModificationAgent)
+        End Get
+        Set(ByVal Value As String)
+            _dateModificationAgent = Value
+        End Set
+    End Property
+    Private _dateModificationCrodip As DateTime
+    <XmlIgnoreAttribute()>
+    Public Property dateModificationCrodip() As DateTime
+        Get
+            Return _dateModificationCrodip
+        End Get
+        Set(ByVal Value As DateTime)
+            _dateModificationCrodip = Value
+        End Set
+    End Property
+    <XmlElement("dateModificationCrodip")>
+    Public Property dateModificationCrodipS() As String
+        Get
+            Return CSDate.GetDateForWS(_dateModificationCrodip)
+        End Get
+        Set(ByVal Value As String)
+            _dateModificationCrodip = Value
+        End Set
+    End Property
 #End Region
+
+
+    Public Function AjoutNouvelleLigne() As lgPrestation
+        Dim oLg As New lgPrestation()
+        oLg.txTVA = Me.TxTVA
+        Lignes.Add(oLg)
+        Return oLg
+    End Function
+    Public Function AjoutNouvelleLigne(pCategorie As String, pPrestation As String, pPU As Decimal, pQte As Decimal, pDiagId As String) As lgPrestation
+
+        Dim oLg As New lgPrestation(pCategorie, pPrestation, pPU, pQte, Me.TxTVA, pDiagId)
+        Lignes.Add(oLg)
+        Return oLg
+
+    End Function
+
+
+
 End Class

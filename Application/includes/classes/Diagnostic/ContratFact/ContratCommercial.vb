@@ -4,8 +4,8 @@ Imports System.Linq
 Public Class ContratCommercial
 
 
-    Private _DiagId As String
-    Public Property DiagId() As String
+    Private _DiagId As String = ""
+    Public Property idDiag() As String
         Get
             Return _DiagId
         End Get
@@ -29,8 +29,10 @@ Public Class ContratCommercial
         End Get
         Set(ByVal value As Diagnostic)
             _Diag = value
-            If _Diag IsNot Nothing Then
+            If _Diag IsNot Nothing And Not String.IsNullOrEmpty(_Diag.proprietaireId) Then
                 oExploit = ExploitationManager.getExploitationById(_Diag.proprietaireId)
+            Else
+                oExploit = New Exploitation()
             End If
         End Set
     End Property
@@ -85,13 +87,22 @@ Public Class ContratCommercial
     Public Sub New()
         Lignes = New List(Of lgPrestation)()
     End Sub
-    Private _Commentaire As String
+    Private _Commentaire As String = ""
     Public Property Commentaire() As String
         Get
             Return _Commentaire
         End Get
         Set(ByVal value As String)
             _Commentaire = value
+        End Set
+    End Property
+    Private _ResteAFacturer As Decimal
+    Public Property ResteAFacturer() As Decimal
+        Get
+            Return _ResteAFacturer
+        End Get
+        Set(ByVal value As Decimal)
+            _ResteAFacturer = value
         End Set
     End Property
 End Class

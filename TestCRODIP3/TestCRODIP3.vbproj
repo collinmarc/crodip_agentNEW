@@ -139,6 +139,7 @@
     <Compile Include="EtatRapportInspectionTest.vb" />
     <Compile Include="EtatReglagePulveTest.vb" />
     <Compile Include="ExploitationTest.vb" />
+    <Compile Include="FactureTest.vb" />
     <Compile Include="FacturationConfigTest.vb" />
     <Compile Include="FTPTest.vb" />
     <Compile Include="FVBancManagerTest.vb" />

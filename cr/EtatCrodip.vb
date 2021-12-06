@@ -73,21 +73,34 @@ Public Class EtatCrodip
                 End If
             End If
             If My.Settings.TypeStockPDF = "DIR" Then
+                Dim oDI As New DirectoryInfo(GlobalsCRODIP.CONST_STOCK_PDFS)
                 If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
-                    Dim oDI As New DirectoryInfo(GlobalsCRODIP.CONST_STOCK_PDFS)
                     oDI.Create()
                     oDI.Attributes = FileAttributes.Hidden
+                End If
 
-                    oDI.CreateSubdirectory("public\exports\MANOMETRECONTROLE")
-                    oDI.CreateSubdirectory("public\exports\BANCMESURE")
-                    oDI.CreateSubdirectory("public\exports\DIAGNOSTIC")
+                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE) Then
+                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE)
+
+                End If
+                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE) Then
+                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE)
+
+                End If
+                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC) Then
+                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
+
+                End If
+                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_FACTURE) Then
+                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_FACTURE)
+
                 End If
 
                 If File.Exists(FileName) Then
-                    System.IO.File.Copy(FileName, GlobalsCRODIP.CONST_STOCK_PDFS & "\" & FileName)
-                    bReturn = True
+                        System.IO.File.Copy(FileName, GlobalsCRODIP.CONST_STOCK_PDFS & "\" & FileName)
+                        bReturn = True
+                    End If
                 End If
-            End If
         Catch ex As Exception
             CSDebug.dispError("EtatCrodip.AddPFS ERR", ex)
             bReturn = False

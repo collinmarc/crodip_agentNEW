@@ -2,8 +2,8 @@
     Implements IfrmCRODIP
 
     Protected m_oDiag As RPDiagnostic
-    Public Overloads Sub setContexte(pIsModediag As Boolean, pClient As Exploitation, pRPdiag As RPDiagnostic)
-        MyBase.setContexte(pIsModediag, pClient)
+    Public Overloads Sub setContexte(pIsModediag As Boolean, pClient As Exploitation, pRPdiag As RPDiagnostic, pRPAgent As Agent)
+        MyBase.setContexte(pIsModediag, pClient, pRPAgent)
         m_bsExploitation.Clear()
         m_bsExploitation.Add(clientCourant)
         m_oDiag = pRPdiag
@@ -30,7 +30,7 @@
             bReturn = checkForm()
             If bReturn Then
                 m_oDiag.oRPParam.bSectionEntete = True
-                m_oDiag.SetProprietaire(m_clientCourant)
+                m_oDiag.SetProprietaire(m_oExploit)
             End If
 
         Catch ex As Exception

@@ -108,6 +108,7 @@ Public Class GlobalsCRODIP
     Public Shared CONST_PATH_EXP_MANOCONTROLE As String = CONST_PATH_PUBLIC & "exports/MANOMETRECONTROLE/"
     Public Shared CONST_PATH_EXP_BANCMESURE As String = CONST_PATH_PUBLIC & "exports/BANCMESURE/"
     Public Shared CONST_PATH_EXP_DIAGNOSTIC As String = CONST_PATH_PUBLIC & "exports/DIAGNOSTIC/"
+    Public Shared CONST_PATH_EXP_FACTURE As String = CONST_PATH_PUBLIC & "exports/FACTURE/"
 
     ' Images
     Public Shared CONST_PATH_IMG As String = "." & "/img/"

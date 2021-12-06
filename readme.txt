@@ -1,6 +1,9 @@
 TRUNK
 MASTER
 
+BUILD : XXXXXXXXX
+Gestion des co-propriétaires
+
 BUILD : 20211119170000
 0001142: Synhcronisation d'un nouvel agent
 0001416: MAJ de la liste des communes

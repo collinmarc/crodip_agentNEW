@@ -235,7 +235,7 @@ Partial Public Class ds_EtatFacture
         MyBase.Tables.Add(Me.tableFacture)
         Me.tableLigneFact = New LigneFactDataTable()
         MyBase.Tables.Add(Me.tableLigneFact)
-        Me.relationFacture_LigneFact = New Global.System.Data.DataRelation("Facture_LigneFact", New Global.System.Data.DataColumn() {Me.tableFacture.refFactureColumn}, New Global.System.Data.DataColumn() {Me.tableLigneFact.refFactureColumn}, false)
+        Me.relationFacture_LigneFact = New Global.System.Data.DataRelation("Facture_LigneFact", New Global.System.Data.DataColumn() {Me.tableFacture.idFactureColumn}, New Global.System.Data.DataColumn() {Me.tableLigneFact.idFactureColumn}, false)
         Me.Relations.Add(Me.relationFacture_LigneFact)
     End Sub
     
@@ -323,7 +323,7 @@ Partial Public Class ds_EtatFacture
     Partial Public Class FactureDataTable
         Inherits Global.System.Data.TypedTableBase(Of FactureRow)
         
-        Private columnrefFacture As Global.System.Data.DataColumn
+        Private columnidFacture As Global.System.Data.DataColumn
         
         Private columnlogo As Global.System.Data.DataColumn
         
@@ -428,9 +428,9 @@ Partial Public Class ds_EtatFacture
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property refFactureColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property idFactureColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnrefFacture
+                Return Me.columnidFacture
             End Get
         End Property
         
@@ -736,7 +736,7 @@ Partial Public Class ds_EtatFacture
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overloads Function AddFactureRow( _
-                    ByVal refFacture As String,  _
+                    ByVal idFacture As String,  _
                     ByVal logo() As Byte,  _
                     ByVal logoFileName As String,  _
                     ByVal DateFacture As Date,  _
@@ -771,7 +771,7 @@ Partial Public Class ds_EtatFacture
                     ByVal MontantTTC As Decimal,  _
                     ByVal PiedPage As String) As FactureRow
             Dim rowFactureRow As FactureRow = CType(Me.NewRow,FactureRow)
-            Dim columnValuesArray() As Object = New Object() {refFacture, logo, logoFileName, DateFacture, NomOrga, AdresseOrga, CPOrga, CommuneOrga, TelOrga, SIRENORGA, TVAOrga, RCSOrga, RSCli, NomCli, AdresseCli, CPCli, CommuneCli, TelFixeCli, TelPortCli, mailCli, NumNatPulve, NumDiag, EnteteFacture, Commentaire, ModeReglement, DateEcheance, CoordBanK, FReglee, RefReglement, MontantHT, TxTVA, MontantTVA, MontantTTC, PiedPage}
+            Dim columnValuesArray() As Object = New Object() {idFacture, logo, logoFileName, DateFacture, NomOrga, AdresseOrga, CPOrga, CommuneOrga, TelOrga, SIRENORGA, TVAOrga, RCSOrga, RSCli, NomCli, AdresseCli, CPCli, CommuneCli, TelFixeCli, TelPortCli, mailCli, NumNatPulve, NumDiag, EnteteFacture, Commentaire, ModeReglement, DateEcheance, CoordBanK, FReglee, RefReglement, MontantHT, TxTVA, MontantTVA, MontantTTC, PiedPage}
             rowFactureRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowFactureRow)
             Return rowFactureRow
@@ -779,8 +779,8 @@ Partial Public Class ds_EtatFacture
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByrefFacture(ByVal refFacture As String) As FactureRow
-            Return CType(Me.Rows.Find(New Object() {refFacture}),FactureRow)
+        Public Function FindByidFacture(ByVal idFacture As String) As FactureRow
+            Return CType(Me.Rows.Find(New Object() {idFacture}),FactureRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -800,7 +800,7 @@ Partial Public Class ds_EtatFacture
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnrefFacture = MyBase.Columns("refFacture")
+            Me.columnidFacture = MyBase.Columns("idFacture")
             Me.columnlogo = MyBase.Columns("logo")
             Me.columnlogoFileName = MyBase.Columns("logoFileName")
             Me.columnDateFacture = MyBase.Columns("DateFacture")
@@ -839,8 +839,8 @@ Partial Public Class ds_EtatFacture
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnrefFacture = New Global.System.Data.DataColumn("refFacture", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnrefFacture)
+            Me.columnidFacture = New Global.System.Data.DataColumn("idFacture", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnidFacture)
             Me.columnlogo = New Global.System.Data.DataColumn("logo", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnlogo)
             Me.columnlogoFileName = New Global.System.Data.DataColumn("logoFileName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -907,9 +907,9 @@ Partial Public Class ds_EtatFacture
             MyBase.Columns.Add(Me.columnMontantTTC)
             Me.columnPiedPage = New Global.System.Data.DataColumn("PiedPage", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPiedPage)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnrefFacture}, true))
-            Me.columnrefFacture.AllowDBNull = false
-            Me.columnrefFacture.Unique = true
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidFacture}, true))
+            Me.columnidFacture.AllowDBNull = false
+            Me.columnidFacture.Unique = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1047,7 +1047,7 @@ Partial Public Class ds_EtatFacture
     Partial Public Class LigneFactDataTable
         Inherits Global.System.Data.TypedTableBase(Of LigneFactRow)
         
-        Private columnrefFacture As Global.System.Data.DataColumn
+        Private columnidFacture As Global.System.Data.DataColumn
         
         Private columnDescription As Global.System.Data.DataColumn
         
@@ -1100,9 +1100,9 @@ Partial Public Class ds_EtatFacture
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property refFactureColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property idFactureColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnrefFacture
+                Return Me.columnidFacture
             End Get
         End Property
         
@@ -1227,7 +1227,7 @@ Partial Public Class ds_EtatFacture
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnrefFacture = MyBase.Columns("refFacture")
+            Me.columnidFacture = MyBase.Columns("idFacture")
             Me.columnDescription = MyBase.Columns("Description")
             Me.columnPU = MyBase.Columns("PU")
             Me.columnQte = MyBase.Columns("Qte")
@@ -1240,8 +1240,8 @@ Partial Public Class ds_EtatFacture
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnrefFacture = New Global.System.Data.DataColumn("refFacture", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnrefFacture)
+            Me.columnidFacture = New Global.System.Data.DataColumn("idFacture", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnidFacture)
             Me.columnDescription = New Global.System.Data.DataColumn("Description", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDescription)
             Me.columnPU = New Global.System.Data.DataColumn("PU", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
@@ -1402,12 +1402,12 @@ Partial Public Class ds_EtatFacture
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property refFacture() As String
+        Public Property idFacture() As String
             Get
-                Return CType(Me(Me.tableFacture.refFactureColumn),String)
+                Return CType(Me(Me.tableFacture.idFactureColumn),String)
             End Get
             Set
-                Me(Me.tableFacture.refFactureColumn) = value
+                Me(Me.tableFacture.idFactureColumn) = value
             End Set
         End Property
         
@@ -2330,16 +2330,16 @@ Partial Public Class ds_EtatFacture
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property refFacture() As String
+        Public Property idFacture() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableLigneFact.refFactureColumn),String)
+                    Return CType(Me(Me.tableLigneFact.idFactureColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'refFacture' dans la table 'LigneFact' est DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'idFacture' dans la table 'LigneFact' est DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableLigneFact.refFactureColumn) = value
+                Me(Me.tableLigneFact.idFactureColumn) = value
             End Set
         End Property
         
@@ -2461,14 +2461,14 @@ Partial Public Class ds_EtatFacture
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsrefFactureNull() As Boolean
-            Return Me.IsNull(Me.tableLigneFact.refFactureColumn)
+        Public Function IsidFactureNull() As Boolean
+            Return Me.IsNull(Me.tableLigneFact.idFactureColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetrefFactureNull()
-            Me(Me.tableLigneFact.refFactureColumn) = Global.System.Convert.DBNull
+        Public Sub SetidFactureNull()
+            Me(Me.tableLigneFact.idFactureColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

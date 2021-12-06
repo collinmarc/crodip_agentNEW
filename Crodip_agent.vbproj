@@ -112,7 +112,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
-    <DefineConstants>VFACTURATION_NON=1</DefineConstants>
+    <DefineConstants>VFACTURATION=1</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
@@ -294,9 +294,22 @@
     <Compile Include="Application\diagnostic\liste_diagnosticPulve2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\exploitant\dlgListExploitant.Designer.vb">
+      <DependentUpon>dlgListExploitant.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\exploitant\dlgListExploitant.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\includes\classes\Agent\Materiel\Alertes.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\ContratFact\dsFacture.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsFacture.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\Facture.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\ContratCommercial.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureItemManager.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureManager.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\lgPrestation.vb" />
     <Compile Include="Application\includes\classes\Referentiel\LieuxControle.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
@@ -307,6 +320,7 @@
     <Compile Include="Application\includes\classes\Tools\DataGridViewDisableButtonCell.vb" />
     <Compile Include="Application\includes\classes\Tools\FacturationConfig.vb" />
     <Compile Include="Application\includes\classes\Tools\importCRODIP.vb" />
+    <Compile Include="Application\includes\fonctions\oleDBCommandExtensions.vb" />
     <Compile Include="Application\parametrage\facturation2.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -1386,6 +1400,17 @@
     <Content Include="cmd.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Application\includes\classes\Diagnostic\ContratFact\dsFacture.xsc">
+      <DependentUpon>dsFacture.xsd</DependentUpon>
+    </None>
+    <None Include="Application\includes\classes\Diagnostic\ContratFact\dsFacture.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFacture.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Application\includes\classes\Diagnostic\ContratFact\dsFacture.xss">
+      <DependentUpon>dsFacture.xsd</DependentUpon>
+    </None>
     <None Include="cr\ds_EtatFacture.xsc">
       <DependentUpon>ds_EtatFacture.xsd</DependentUpon>
     </None>
@@ -2083,6 +2108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve2.resx">
       <DependentUpon>liste_diagnosticPulve2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\exploitant\dlgListExploitant.resx">
+      <DependentUpon>dlgListExploitant.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\parametrage\facturation2.resx">
       <DependentUpon>facturation2.vb</DependentUpon>

@@ -1138,7 +1138,7 @@ Public Class login
     Private Sub btnExploitant_Click(sender As Object, e As EventArgs) Handles btnExploitant.Click
         Dim dlg As New fiche_exploitant()
         agentCourant = AgentManager.getAgentById("1110")
-        dlg.setContexte(False, New Exploitation())
+        dlg.setContexte(False, New Exploitation(), agentCourant)
         dlg.ShowDialog(Me)
     End Sub
 
@@ -1227,7 +1227,7 @@ Public Class login
         Dim oCC As New ContratCommercial()
         oCC.oDiagnostic = oDiag
         oCC.oExploit = oExploit
-        oCC.Lignes.Add(New lgPrestation("TEST", "test", 10, 10, oDiag.id))
+        oCC.Lignes.Add(New lgPrestation("TEST", "test", 10, 10, 20, oDiag.id))
         oDiag.oContratCommercial = oCC
         oCC.Commentaire = "Commentaire de contrat"
         oCC.TxTVA = 20

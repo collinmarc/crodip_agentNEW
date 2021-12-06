@@ -187,7 +187,7 @@ Public Class Structuree
             _dateModificationAgent = Value
         End Set
     End Property
-    Private _ModeReglement As String
+    Private _ModeReglement As String = ""
     Public Property Modereglement() As String
         Get
             Return _ModeReglement

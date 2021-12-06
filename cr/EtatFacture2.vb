@@ -15,7 +15,7 @@ Public Class EtatFacture2
     Private m_ReportName As String
 
     Public Sub New(pFacture As Facture, pAgent As Agent, pStructure As Structuree)
-        m_Path = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC
+        m_Path = GlobalsCRODIP.CONST_PATH_EXP_FACTURE
         m_oFacture = pFacture
         m_oAgent = pAgent
         If pStructure Is Nothing Then
@@ -44,7 +44,7 @@ Public Class EtatFacture2
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                    m_FileName = CSDiagPdf.makeFilename(m_oFacture.oDiagnostic.pulverisateurId, CSDiagPdf.TYPE_FACTURE) & ".pdf"
+                    m_FileName = Format(Date.Now, "yyyyMMddhhmmss") & "_" & m_oFacture.idFacture & "_" & CSDiagPdf.cleanString(m_oFacture.oExploit.raisonSociale) & "_" & "FACT" & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions
@@ -79,7 +79,7 @@ Public Class EtatFacture2
             End If
             Dim oRow As ds_EtatFacture.FactureRow
             oRow = m_ods.Facture.NewFactureRow()
-            oRow.refFacture = m_oFacture.RefFacture
+            oRow.idFacture = m_oFacture.idFacture
             oRow.DateFacture = m_oFacture.DateFacture
             oRow.logoFileName = logoFilename
             Dim newImage As System.Drawing.Image = System.Drawing.Image.FromFile(logoFilename)
