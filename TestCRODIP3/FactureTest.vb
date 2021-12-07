@@ -10,6 +10,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Dim oFacture = New Facture(m_oStructure)
         oFacture.idFacture = "FACT1"
         oFacture.DateFacture = CDate("06/02/1964")
+        oFacture.TotalHT = 125.5
         oFacture.PathPDF = "public/exports/FACTURE/20211206055027_MCII11_TEST20191014-3_FACT.pdf"
         Assert.IsTrue(FactureManager.save(oFacture))
 
@@ -18,6 +19,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.AreEqual("FACT1", oFacture.idFacture)
         Assert.AreEqual(CDate("06/02/1964"), oFacture.DateFacture)
         Assert.AreEqual(Year(DateTime.Now), Year(oFacture.dateModificationAgent))
+        Assert.AreEqual(125.5D, oFacture.TotalHT)
         Assert.AreEqual("public/exports/FACTURE/20211206055027_MCII11_TEST20191014-3_FACT.pdf", oFacture.PathPDF)
 
         oFacture.DateEcheance = CDate("03/12/2021")
@@ -46,10 +48,10 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.IsTrue(FactureManager.save(oFacture))
 
 
-        Dim olg As lgPrestation
-        olg = New lgPrestation("MaCat", "MaPres", 50, 1, oFacture.TxTVA, "")
+        Dim olg As FactureItem
+        olg = New FactureItem("MaCat", "MaPres", 50, 0.5, oFacture.TxTVA, "")
         oFacture.Lignes.Add(olg)
-        olg = New lgPrestation("MaCat2", "MaPres2", 60, 2, oFacture.TxTVA, "")
+        olg = New FactureItem("MaCat2", "MaPres2", 60, 2, oFacture.TxTVA, "")
         oFacture.Lignes.Add(olg)
 
         Assert.IsTrue(FactureManager.save(oFacture))
@@ -61,7 +63,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.AreEqual("MaCat", olg.Categorie)
         Assert.AreEqual("MaPres", olg.Prestation)
         Assert.AreEqual(50D, olg.PU)
-        Assert.AreEqual(1D, olg.Quantite)
+        Assert.AreEqual(0.5D, olg.Quantite)
         Assert.AreEqual(oFacture.TxTVA, olg.txTVA)
         Assert.AreEqual(oFacture.idFacture, olg.idFacture)
         Assert.AreEqual(1, olg.nFactureItem)

@@ -4,7 +4,7 @@ Imports System.Collections.Generic
 Imports System.IO
 Imports Ionic.Zip
 
-<Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemsList)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(ContratCommercial)), XmlInclude(GetType(Facture)), XmlInclude(GetType(lgPrestation))>
+<Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemsList)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(ContratCommercial)), XmlInclude(GetType(Facture)), XmlInclude(GetType(FactureItem))>
 Public Class Diagnostic
     Implements ICloneable
     Private _id As String = ""
@@ -281,6 +281,7 @@ Public Class Diagnostic
 
         diagRemplacementId = ""
         isSupprime = False
+        oContratCommercial = New ContratCommercial()
     End Sub
 
     Public Sub New(ByVal pAgent As Agent, ByVal pPulve As Pulverisateur, ByVal pClient As Exploitation)
@@ -728,26 +729,18 @@ Public Class Diagnostic
 
     Public Property controleTarif() As String
         Get
-#If VFACTURATION Then
             If oContratCommercial IsNot Nothing Then
                 Return oContratCommercial.TotalTTC.ToString()
             Else
                 Return 0
             End If
 
-#Else
-            Return _controleTarif
-#End If
         End Get
         Set(ByVal Value As String)
-#If VFACTURATION Then
             If oContratCommercial IsNot Nothing Then
                 oContratCommercial.TotalTTC = CDec(Value)
             End If
 
-#Else
-            _controleTarif = Value
-#End If
         End Set
     End Property
 
@@ -2176,74 +2169,50 @@ Public Class Diagnostic
     <XmlIgnoreAttribute()>
     Public Property TotalHT As Decimal
         Get
-#If VFACTURATION Then
             If oContratCommercial IsNot Nothing Then
                 Return oContratCommercial.TotalHT
             Else
                 Return 0
             End If
 
-#Else
-            Return _TotalHT
-#End If
         End Get
         Set(ByVal Value As Decimal)
-#If VFACTURATION Then
             If oContratCommercial IsNot Nothing Then
                 oContratCommercial.TotalHT = Value
             End If
-#Else
-            _TotalHT = Value
-#End If
         End Set
     End Property
     <XmlIgnoreAttribute()>
     Public Property TotalTVA As Decimal
         Get
-#If VFACTURATION Then
             If oContratCommercial IsNot Nothing Then
                 Return oContratCommercial.TotalTVA
             Else
                 Return 0
             End If
 
-#Else
-            Return _TotalTVA
-#End If
         End Get
         Set(ByVal Value As Decimal)
-#If VFACTURATION Then
             If oContratCommercial IsNot Nothing Then
                 oContratCommercial.TotalTVA = Value
             End If
-#Else
-            _TotalTVA = Value
-#End If
         End Set
     End Property
     'le Total TTC du diag est transmis via le champ controleTarif
     <XmlIgnoreAttribute()>
     Public Property TotalTTC As Decimal
         Get
-#If VFACTURATION Then
             If oContratCommercial IsNot Nothing Then
                 Return oContratCommercial.TotalTTC
             Else
                 Return 0
             End If
 
-#Else
-            Return _TotalTTC
-#End If
         End Get
         Set(ByVal Value As Decimal)
-#If VFACTURATION Then
             If oContratCommercial IsNot Nothing Then
                 oContratCommercial.TotalTTC = Value
             End If
-#Else
-            _TotalTTC = Value
-#End If
         End Set
     End Property
 

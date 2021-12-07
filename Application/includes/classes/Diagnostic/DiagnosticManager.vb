@@ -1294,8 +1294,8 @@ Public Class DiagnosticManager
                 End If
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.isSupprime=" & objDiagnostic.isSupprime & ""
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.diagRemplacementId='" & objDiagnostic.diagRemplacementId & "'"
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.totalHT='" & objDiagnostic.TotalHT & "'"
-                paramsQuery2 = paramsQuery2 & " , Diagnostic.totalTTC='" & objDiagnostic.TotalTTC & "'"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.totalHT= ?"
+                paramsQuery2 = paramsQuery2 & " , Diagnostic.totalTTC= ?"
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.isCVImmediate=" & objDiagnostic.isContrevisiteImmediate & ""
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.isGratuit=" & objDiagnostic.isGratuit & ""
 
@@ -1304,7 +1304,9 @@ Public Class DiagnosticManager
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
                     'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
                     bddCommande.ExecuteNonQuery()
-                    bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
+                bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
+                bddCommande.Parameters.Add("?_1", OleDb.OleDbType.Currency).Value = objDiagnostic.TotalHT
+                bddCommande.Parameters.Add("?_2", OleDb.OleDbType.Currency).Value = objDiagnostic.TotalTTC
                 bddCommande.ExecuteNonQuery()
 
                 Dim oParam As OleDbParameter

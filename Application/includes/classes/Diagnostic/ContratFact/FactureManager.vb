@@ -38,7 +38,7 @@
             End If
 
             Dim nLigne As Integer = 1
-            For Each oLg As lgPrestation In pFacture.Lignes
+            For Each oLg As FactureItem In pFacture.Lignes
                 oLg.idFacture = pFacture.idFacture
                 oLg.nFactureItem = nLigne
                 FactureItemManager.save(oLg)
@@ -99,10 +99,10 @@
             oCmd.Parameters.AddWithValue("?_5", pfacture.Modereglement)
             oCmd.Parameters.AddWithValue("?_6", pfacture.Reglee)
             oCmd.Parameters.AddWithValue("?_7", pfacture.RefPaiement)
-            oCmd.Parameters.AddWithValue("?_8", pfacture.TotalHT)
-            oCmd.Parameters.AddWithValue("?_9", pfacture.TotalTVA)
-            oCmd.Parameters.AddWithValue("?_10", pfacture.TotalTTC)
-            oCmd.Parameters.AddWithValue("?_11", pfacture.TxTVA)
+            oCmd.Parameters.Add("?_8", OleDb.OleDbType.Currency).Value = pfacture.TotalHT
+            oCmd.Parameters.Add("?_9", OleDb.OleDbType.Currency).Value = pfacture.TotalTVA
+            oCmd.Parameters.Add("?_10", OleDb.OleDbType.Currency).Value = pfacture.TotalTTC
+            oCmd.Parameters.Add("?_11", OleDb.OleDbType.Currency).Value = pfacture.TxTVA
             oCmd.Parameters.AddWithValue("?_12", pfacture.idDiag)
             oCmd.Parameters.AddWithValue("?_13", pfacture.oExploit.id)
             oCmd.Parameters.AddWithValue("?_14", pfacture.oExploit.raisonSociale)
@@ -201,10 +201,10 @@
             oCmd.Parameters.AddWithValue("?_5", pfacture.Modereglement)
             oCmd.Parameters.AddWithValue("?_6", pfacture.Reglee)
             oCmd.Parameters.AddWithValue("?_7", pfacture.RefPaiement)
-            oCmd.Parameters.AddWithValue("?_8", pfacture.TotalHT)
-            oCmd.Parameters.AddWithValue("?_9", pfacture.TotalTVA)
-            oCmd.Parameters.AddWithValue("?_10", pfacture.TotalTTC)
-            oCmd.Parameters.AddWithValue("?_11", pfacture.TxTVA)
+            oCmd.Parameters.Add("?_8", OleDb.OleDbType.Currency).Value = pfacture.TotalHT
+            oCmd.Parameters.Add("?_9", OleDb.OleDbType.Currency).Value = pfacture.TotalTVA
+            oCmd.Parameters.Add("?_10", OleDb.OleDbType.Currency).Value = pfacture.TotalTTC
+            oCmd.Parameters.Add("?_11", OleDb.OleDbType.Currency).Value = pfacture.TxTVA
             oCmd.Parameters.AddWithValue("?_12", pfacture.oDiagnostic.id)
             oCmd.Parameters.AddWithValue("?_13", pfacture.oExploit.id)
             oCmd.Parameters.AddWithValue("?_14", pfacture.oExploit.raisonSociale)
@@ -226,7 +226,7 @@
             oCSDB.free()
             breturn = True
         Catch ex As Exception
-            CSDebug.dispError("FactureManager.updateFacture ERR", ex)
+            CSDebug.dispError("FactureManager.insert ERR", ex)
 
 
             breturn = False

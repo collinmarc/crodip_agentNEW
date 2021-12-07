@@ -13,19 +13,19 @@ Public Class diagnostic_ContratCommercial
     Inherits System.Windows.Forms.Form
 
     Public positionTop As Integer = 16
-    Friend WithEvents btn_ImprimerFacture As System.Windows.Forms.Label
     Friend WithEvents m_bsLignes As System.Windows.Forms.BindingSource
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents LibelleDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PrixUnitaireDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents QteDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TvaDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PrixTotalDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnDelete As System.Windows.Forms.DataGridViewImageColumn
-    Friend WithEvents btn_imprimerFactureCoProp As System.Windows.Forms.Label
     Friend WithEvents tbCommentaire As System.Windows.Forms.TextBox
     Friend WithEvents lblCommentaire As System.Windows.Forms.Label
     Friend WithEvents btn_Signatures As Label
+    Friend WithEvents m_bsContratCommercial As BindingSource
+    Friend WithEvents CategorieDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PrestationDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents QuantiteDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PUDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TotalHTDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents columnDelete As DataGridViewImageColumn
+    Friend WithEvents LignesBindingSource As BindingSource
     Public prestaIncrement As Integer = 0
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -82,10 +82,7 @@ Public Class diagnostic_ContratCommercial
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_ContratCommercial))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label_diagnostic_61 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -94,9 +91,8 @@ Public Class diagnostic_ContratCommercial
         Me.panelFooter = New System.Windows.Forms.Panel()
         Me.btn_Signatures = New System.Windows.Forms.Label()
         Me.tbCommentaire = New System.Windows.Forms.TextBox()
+        Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
         Me.lblCommentaire = New System.Windows.Forms.Label()
-        Me.btn_imprimerFactureCoProp = New System.Windows.Forms.Label()
-        Me.btn_ImprimerFacture = New System.Windows.Forms.Label()
         Me.btn_facturation_imprimerContrat = New System.Windows.Forms.Label()
         Me.facturation_totalHT = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -115,17 +111,20 @@ Public Class diagnostic_ContratCommercial
         Me.Label17 = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrixUnitaireDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TvaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrixTotalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QuantiteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PUDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
+        Me.LignesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
+        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -136,9 +135,9 @@ Public Class diagnostic_ContratCommercial
         Me.Label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Label3.Location = New System.Drawing.Point(8, 8)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(216, 24)
+        Me.Label3.Size = New System.Drawing.Size(322, 24)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "     Facturation"
+        Me.Label3.Text = "     Contrat Commercial"
         '
         'Label_diagnostic_61
         '
@@ -190,8 +189,6 @@ Public Class diagnostic_ContratCommercial
         Me.panelFooter.Controls.Add(Me.btn_Signatures)
         Me.panelFooter.Controls.Add(Me.tbCommentaire)
         Me.panelFooter.Controls.Add(Me.lblCommentaire)
-        Me.panelFooter.Controls.Add(Me.btn_imprimerFactureCoProp)
-        Me.panelFooter.Controls.Add(Me.btn_ImprimerFacture)
         Me.panelFooter.Controls.Add(Me.btn_facturation_imprimerContrat)
         Me.panelFooter.Controls.Add(Me.Label1)
         Me.panelFooter.Controls.Add(Me.facturation_totalHT)
@@ -231,12 +228,17 @@ Public Class diagnostic_ContratCommercial
         '
         'tbCommentaire
         '
+        Me.tbCommentaire.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "Commentaire", True))
         Me.tbCommentaire.Location = New System.Drawing.Point(110, 20)
         Me.tbCommentaire.Multiline = True
         Me.tbCommentaire.Name = "tbCommentaire"
         Me.tbCommentaire.Size = New System.Drawing.Size(552, 52)
         Me.tbCommentaire.TabIndex = 45
         Me.tbCommentaire.Visible = False
+        '
+        'm_bsContratCommercial
+        '
+        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
         '
         'lblCommentaire
         '
@@ -249,38 +251,6 @@ Public Class diagnostic_ContratCommercial
         Me.lblCommentaire.TabIndex = 44
         Me.lblCommentaire.Text = "Commentaire :"
         Me.lblCommentaire.Visible = False
-        '
-        'btn_imprimerFactureCoProp
-        '
-        Me.btn_imprimerFactureCoProp.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btn_imprimerFactureCoProp.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_imprimerFactureCoProp.Enabled = False
-        Me.btn_imprimerFactureCoProp.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_imprimerFactureCoProp.ForeColor = System.Drawing.Color.White
-        Me.btn_imprimerFactureCoProp.Image = CType(resources.GetObject("btn_imprimerFactureCoProp.Image"), System.Drawing.Image)
-        Me.btn_imprimerFactureCoProp.Location = New System.Drawing.Point(151, 132)
-        Me.btn_imprimerFactureCoProp.Name = "btn_imprimerFactureCoProp"
-        Me.btn_imprimerFactureCoProp.Size = New System.Drawing.Size(180, 24)
-        Me.btn_imprimerFactureCoProp.TabIndex = 34
-        Me.btn_imprimerFactureCoProp.Text = "      Factures co-propriétaires"
-        Me.btn_imprimerFactureCoProp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btn_imprimerFactureCoProp.Visible = False
-        '
-        'btn_ImprimerFacture
-        '
-        Me.btn_ImprimerFacture.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btn_ImprimerFacture.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_ImprimerFacture.Enabled = False
-        Me.btn_ImprimerFacture.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_ImprimerFacture.ForeColor = System.Drawing.Color.White
-        Me.btn_ImprimerFacture.Image = CType(resources.GetObject("btn_ImprimerFacture.Image"), System.Drawing.Image)
-        Me.btn_ImprimerFacture.Location = New System.Drawing.Point(151, 168)
-        Me.btn_ImprimerFacture.Name = "btn_ImprimerFacture"
-        Me.btn_ImprimerFacture.Size = New System.Drawing.Size(180, 24)
-        Me.btn_ImprimerFacture.TabIndex = 33
-        Me.btn_ImprimerFacture.Text = "      Facture client"
-        Me.btn_ImprimerFacture.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btn_ImprimerFacture.Visible = False
         '
         'btn_facturation_imprimerContrat
         '
@@ -300,6 +270,7 @@ Public Class diagnostic_ContratCommercial
         'facturation_totalHT
         '
         Me.facturation_totalHT.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.facturation_totalHT.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalHT", True))
         Me.facturation_totalHT.Location = New System.Drawing.Point(863, 13)
         Me.facturation_totalHT.Name = "facturation_totalHT"
         Me.facturation_totalHT.Size = New System.Drawing.Size(43, 20)
@@ -376,6 +347,7 @@ Public Class diagnostic_ContratCommercial
         'facturation_totalTVA
         '
         Me.facturation_totalTVA.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.facturation_totalTVA.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalTVA", True))
         Me.facturation_totalTVA.Location = New System.Drawing.Point(863, 87)
         Me.facturation_totalTVA.Name = "facturation_totalTVA"
         Me.facturation_totalTVA.ReadOnly = True
@@ -410,6 +382,7 @@ Public Class diagnostic_ContratCommercial
         'facturation_totalTTC
         '
         Me.facturation_totalTTC.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.facturation_totalTTC.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalTTC", True))
         Me.facturation_totalTTC.Location = New System.Drawing.Point(863, 111)
         Me.facturation_totalTTC.Name = "facturation_totalTTC"
         Me.facturation_totalTTC.ReadOnly = True
@@ -457,6 +430,7 @@ Public Class diagnostic_ContratCommercial
         'tb_txTVA
         '
         Me.tb_txTVA.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tb_txTVA.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TxTVA", True))
         Me.tb_txTVA.Location = New System.Drawing.Point(863, 63)
         Me.tb_txTVA.Name = "tb_txTVA"
         Me.tb_txTVA.Size = New System.Drawing.Size(43, 20)
@@ -491,74 +465,53 @@ Public Class diagnostic_ContratCommercial
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LibelleDataGridViewTextBoxColumn, Me.PrixUnitaireDataGridViewTextBoxColumn, Me.QteDataGridViewTextBoxColumn, Me.TvaDataGridViewTextBoxColumn, Me.PrixTotalDataGridViewTextBoxColumn, Me.columnDelete})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CategorieDataGridViewTextBoxColumn, Me.PrestationDataGridViewTextBoxColumn, Me.QuantiteDataGridViewTextBoxColumn, Me.PUDataGridViewTextBoxColumn, Me.TotalHTDataGridViewTextBoxColumn, Me.columnDelete})
         Me.DataGridView1.DataSource = Me.m_bsLignes
         Me.DataGridView1.Location = New System.Drawing.Point(12, 65)
         Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.Size = New System.Drawing.Size(908, 331)
         Me.DataGridView1.TabIndex = 30
         '
-        'LibelleDataGridViewTextBoxColumn
+        'CategorieDataGridViewTextBoxColumn
         '
-        Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.LibelleDataGridViewTextBoxColumn.DataPropertyName = "libelle"
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
-        Me.LibelleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
-        Me.LibelleDataGridViewTextBoxColumn.HeaderText = "Prestation"
-        Me.LibelleDataGridViewTextBoxColumn.Name = "LibelleDataGridViewTextBoxColumn"
-        Me.LibelleDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "Categorie"
+        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "Categorie"
+        Me.CategorieDataGridViewTextBoxColumn.Name = "CategorieDataGridViewTextBoxColumn"
+        Me.CategorieDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'PrixUnitaireDataGridViewTextBoxColumn
+        'PrestationDataGridViewTextBoxColumn
         '
-        Me.PrixUnitaireDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.PrixUnitaireDataGridViewTextBoxColumn.DataPropertyName = "prixUnitaire"
-        Me.PrixUnitaireDataGridViewTextBoxColumn.HeaderText = "Prix U H.T."
-        Me.PrixUnitaireDataGridViewTextBoxColumn.Name = "PrixUnitaireDataGridViewTextBoxColumn"
-        Me.PrixUnitaireDataGridViewTextBoxColumn.Width = 114
+        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "Prestation"
+        Me.PrestationDataGridViewTextBoxColumn.HeaderText = "Prestation"
+        Me.PrestationDataGridViewTextBoxColumn.Name = "PrestationDataGridViewTextBoxColumn"
+        Me.PrestationDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'QteDataGridViewTextBoxColumn
+        'QuantiteDataGridViewTextBoxColumn
         '
-        Me.QteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.QteDataGridViewTextBoxColumn.DataPropertyName = "qte"
-        Me.QteDataGridViewTextBoxColumn.HeaderText = "Quant"
-        Me.QteDataGridViewTextBoxColumn.Name = "QteDataGridViewTextBoxColumn"
-        Me.QteDataGridViewTextBoxColumn.Width = 72
+        Me.QuantiteDataGridViewTextBoxColumn.DataPropertyName = "Quantite"
+        Me.QuantiteDataGridViewTextBoxColumn.HeaderText = "Quantite"
+        Me.QuantiteDataGridViewTextBoxColumn.Name = "QuantiteDataGridViewTextBoxColumn"
         '
-        'TvaDataGridViewTextBoxColumn
+        'PUDataGridViewTextBoxColumn
         '
-        Me.TvaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.TvaDataGridViewTextBoxColumn.DataPropertyName = "tva"
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        Me.TvaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
-        Me.TvaDataGridViewTextBoxColumn.HeaderText = "% TVA"
-        Me.TvaDataGridViewTextBoxColumn.Name = "TvaDataGridViewTextBoxColumn"
-        Me.TvaDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TvaDataGridViewTextBoxColumn.Width = 66
+        Me.PUDataGridViewTextBoxColumn.DataPropertyName = "PU"
+        Me.PUDataGridViewTextBoxColumn.HeaderText = "PU"
+        Me.PUDataGridViewTextBoxColumn.Name = "PUDataGridViewTextBoxColumn"
         '
-        'PrixTotalDataGridViewTextBoxColumn
+        'TotalHTDataGridViewTextBoxColumn
         '
-        Me.PrixTotalDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.PrixTotalDataGridViewTextBoxColumn.DataPropertyName = "prixTotal"
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        Me.PrixTotalDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.PrixTotalDataGridViewTextBoxColumn.HeaderText = "Total TTC"
-        Me.PrixTotalDataGridViewTextBoxColumn.Name = "PrixTotalDataGridViewTextBoxColumn"
-        Me.PrixTotalDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PrixTotalDataGridViewTextBoxColumn.Width = 143
+        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "TotalHT"
+        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "TotalHT"
+        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
+        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
         '
         'columnDelete
         '
@@ -571,9 +524,14 @@ Public Class diagnostic_ContratCommercial
         '
         'm_bsLignes
         '
-        Me.m_bsLignes.DataSource = GetType(Crodip_agent.DiagnosticFactureItem)
+        Me.m_bsLignes.DataSource = Me.LignesBindingSource
         '
-        'diagnostic_ContratCommercial
+        'LignesBindingSource
+        '
+        Me.LignesBindingSource.DataMember = "Lignes"
+        Me.LignesBindingSource.DataSource = Me.m_bsContratCommercial
+        '
+        'diagnostic_ContratCommercial2
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(938, 607)
@@ -588,15 +546,17 @@ Public Class diagnostic_ContratCommercial
         Me.Icon = Global.Crodip_agent.Resources.logoCRODIP
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "diagnostic_ContratCommercial"
+        Me.Name = "diagnostic_ContratCommercial2"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Crodip .::. Facturation"
+        Me.Text = "Crodip .::. Contrat Commercial"
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelFooter.ResumeLayout(False)
         Me.panelFooter.PerformLayout()
+        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -622,6 +582,9 @@ Public Class diagnostic_ContratCommercial
         m_oExploit = pExploit
         m_oAgent = pAgent
         m_oPulverisateur = PulverisateurManager.getPulverisateurById(m_oDiag.pulverisateurId)
+        Dim oCC As New ContratCommercial
+        oCC.oDiagnostic = m_oDiag
+        m_bsContratCommercial.Add(oCC)
     End Sub
 
     ' Chargement de la page
@@ -644,11 +607,6 @@ Public Class diagnostic_ContratCommercial
         listTarif_categories.SelectedItem = 1
 
         tb_txTVA.Text = My.Settings.TxTVADefaut
-        If m_oDiag.TotalHT <> 0 Then
-            facturation_totalHT.Text = m_oDiag.TotalHT
-            facturation_totalTTC.Text = m_oDiag.TotalTTC
-            facturation_totalTVA.Text = m_oDiag.TotalTTC - m_oDiag.TotalHT
-        End If
 
         ' Dans le cas d'une contre-visite
         'isContreVisite = False
@@ -686,28 +644,27 @@ Public Class diagnostic_ContratCommercial
                 ' On récupère la presta sélectionnée
                 Dim curPrestation As New PrestationTarif
                 Try
-                    curPrestation = PrestationTarifManager.getById(CType(listTarif_prestations.SelectedItem.id, Integer), agentCourant.idStructure)
+                    curPrestation = PrestationTarifManager.getById(CType(listTarif_prestations.SelectedItem.id, Integer), m_oAgent.idStructure)
                 Catch ex As Exception
                     CSDebug.dispError("Récupération tarif : " & ex.Message.ToString)
                 End Try
 
+                Dim PU As Decimal
+                PU = curPrestation.tarifHT
 
-                Dim oLig As New DiagnosticFactureItem()
-                oLig.libelle = listTarif_categories.SelectedItem.libelle.ToString & " : " & listTarif_prestations.SelectedItem.libelle.ToString
-                oLig.qte = 1
-                oLig.prixUnitaire = curPrestation.tarifHT
-                oLig.tva = curPrestation.tva
+                Dim oLig As New FactureItem(listTarif_categories.SelectedItem.libelle.ToString, listTarif_prestations.SelectedItem.libelle.ToString, PU, 1, 0, m_oDiag.id)
 
-                m_bsLignes.Add(oLig)
+                Dim oCC As ContratCommercial = m_bsContratCommercial.Current
+                oCC.Lignes.Add(oLig)
 
                 ' On passe le total en readonly
                 facturation_totalHT.ReadOnly = True
                 tb_txTVA.ReadOnly = True
-                tb_txTVA.Text = ""
+                '                tb_txTVA.Text = ""
                 facturation_totalTVA.ReadOnly = True
                 facturation_totalTTC.ReadOnly = True
-                calcTotal()
-
+                '                calcTotal()
+                m_bsContratCommercial.ResetCurrentItem()
                 btn_Signatures.Enabled = True
 
             End If
@@ -720,6 +677,7 @@ Public Class diagnostic_ContratCommercial
 
         If isValider = True Then
             Me.DialogResult = Windows.Forms.DialogResult.OK
+            m_oDiag.oContratCommercial = m_bsContratCommercial.Current
             Me.Close()
         Else
             Dim oResult As MsgBoxResult = MsgBoxResult.Yes
@@ -732,7 +690,6 @@ Public Class diagnostic_ContratCommercial
                 Me.Cursor = Cursors.WaitCursor
                 If facturation_totalTTC.Text <> "" Then
                     ' Enregistrement des tarifs
-                    'diagnosticCourantTarif = CType(facturation_totalTTC.Text, Double)
                     majDiag()
                     desactiveModifications()
                     createContrat()
@@ -744,41 +701,6 @@ Public Class diagnostic_ContratCommercial
                     isValider = True
                     btn_Signatures.Enabled = False
 
-                    'Facture
-                    Try
-                        btn_ImprimerFacture.Visible = False
-                        btn_imprimerFactureCoProp.Visible = False
-                        Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-                        If CType(FACTURATION_XML_CONFIG.getElementValue("/root/isActive"), Boolean) Then
-                            If Trim(m_oDiag.pulverisateurNbreExploitants) <> "" Then
-                                If m_oDiag.pulverisateurNbreExploitants > 1 And m_oDiag.pulverisateurModeUtilisation <> "Entrepreneur" Then
-                                    btn_imprimerFactureCoProp.Visible = True
-                                    btn_ImprimerFacture.Visible = False
-                                    btn_imprimerFactureCoProp.Location = btn_ImprimerFacture.Location
-                                Else
-                                    btn_ImprimerFacture.Visible = True
-                                    btn_imprimerFactureCoProp.Visible = False
-                                End If
-                            Else
-                                btn_ImprimerFacture.Visible = True
-                                btn_imprimerFactureCoProp.Visible = False
-                            End If
-                            btn_ImprimerFacture.Enabled = btn_ImprimerFacture.Visible
-                            btn_imprimerFactureCoProp.Enabled = btn_imprimerFactureCoProp.Visible
-                            tbCommentaire.Visible = btn_ImprimerFacture.Visible
-                            tbCommentaire.Enabled = btn_ImprimerFacture.Visible
-                            lblCommentaire.Visible = btn_ImprimerFacture.Visible
-                            lblCommentaire.Enabled = btn_ImprimerFacture.Visible
-
-                        Else
-                            btn_ImprimerFacture.Visible = False
-                            lblCommentaire.Visible = False
-                            tbCommentaire.Visible = False
-                        End If
-                    Catch ex As Exception
-
-                    End Try
-                    'Facture
                     Me.Cursor = Me.DefaultCursor
 
                     MsgBox("Vous devez maintenant imprimer le contrat commercial pour commencer le contrôle.", MsgBoxStyle.Information)
@@ -792,18 +714,7 @@ Public Class diagnostic_ContratCommercial
     End Sub
 
     Private Sub majDiag()
-        If Not String.IsNullOrEmpty(facturation_totalTTC.Text) Then
-            m_oDiag.controleTarif = CType(facturation_totalTTC.Text, Double)
-        End If
-        If Not String.IsNullOrEmpty(facturation_totalHT.Text) Then
-            m_oDiag.TotalHT = CDec(facturation_totalHT.Text)
-        End If
-        If Not String.IsNullOrEmpty(facturation_totalTVA.Text) Then
-            m_oDiag.TotalTVA = CDec(facturation_totalTVA.Text)
-        End If
-        If Not String.IsNullOrEmpty(facturation_totalTTC.Text) Then
-            m_oDiag.TotalTTC = CDec(facturation_totalTTC.Text)
-        End If
+        m_oDiag.oContratCommercial = m_bsContratCommercial.Current
     End Sub
     ' Retour au contexte
     Private Sub Label2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label2.Click
@@ -839,138 +750,9 @@ Public Class diagnostic_ContratCommercial
 
 #Region " Impressions "
 
-    ' Impression facture
-    Private Sub createFacture_CR()
-
-        Try
-            'Saisie du Numero de facture
-            Dim oFrm As New frmSaisieNumFact(m_oAgent)
-            If oFrm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                Dim factureObj As DiagnosticFacture
-                factureObj = Me.saveFacture(oFrm.NUMFACT)
-
-                Dim oEtat As New EtatFacture(m_oDiag, factureObj.factureReference, tbCommentaire.Text)
-
-                ' On rempli la liste des prestations
-                For Each oLig As DiagnosticFactureItem In m_bsLignes
-                    oEtat.AddPresta(oLig.libelle, oLig.prixUnitaire, oLig.qte, oLig.tva, oLig.prixTotal, oLig.prixTotal * (1 + oLig.tva))
-
-                Next
-                oEtat.genereEtat()
-                m_pathFacture = oEtat.getFileNameFullPath()
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("diagnostic_finalisation::createFacture_CR : " & ex.Message)
-        End Try
-
-
-
-    End Sub
-
-    Private Function saveFacture(pReference As String) As DiagnosticFacture
-        Dim facture As DiagnosticFacture = New DiagnosticFacture
-        Try
-            '####
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-            Dim organismePCourant As Structuree = StructureManager.getStructureById(m_oDiag.organismePresId)
-            '####
-            Dim champTotalTtc As Double = 0
-            If prestaIncrement > 0 Then
-                For i As Integer = 1 To prestaIncrement
-                    Try
-                        ' Calcul total facture
-                        Dim tmpPrixInput As TextBox = CSForm.getControlByName("controlePrixTTC_" & i, Me)
-                        champTotalTtc += CType(tmpPrixInput.Text, Double)
-                    Catch ex As Exception
-                        Console.Write("Erreur de calcul du prix total" & vbNewLine)
-                    End Try
-                Next
-            End If
-
-            '######################################################################################
-            facture.id = DiagnosticFactureManager.getNewId()
-            facture.factureReference = pReference
-            facture.factureDate = Format(Date.Now, "dd/MM/yyyy")
-            facture.factureTotal = champTotalTtc
-            facture.emetteurOrganisme = organismePCourant.nom
-            facture.emetteurOrganismeAdresse = organismePCourant.adresse
-            facture.emetteurOrganismeCpVille = organismePCourant.codePostal & " " & organismePCourant.commune
-            facture.emetteurOrganismeTelFax = organismePCourant.telephoneFixe & " / " & organismePCourant.telephoneFax
-            facture.emetteurOrganismeSiren = FACTURATION_XML_CONFIG.getElementValue("/root/siren")
-            facture.emetteurOrganismeTva = FACTURATION_XML_CONFIG.getElementValue("/root/tva")
-            facture.emetteurOrganismeRcs = FACTURATION_XML_CONFIG.getElementValue("/root/rcs")
-            facture.recepteurRaisonSociale = m_oExploit.raisonSociale
-            facture.recepteurProprio = m_oExploit.nomExploitant & " " & m_oExploit.prenomExploitant
-            facture.recepteurCpVille = m_oExploit.codePostal & " " & m_oExploit.commune
-            DiagnosticFactureManager.save(facture)
-
-        Catch ex As Exception
-
-        End Try
-        Return facture
-    End Function
 
     ' Impression contrat commercial
     Dim pathContrat As String
-    'Private Function createContratPDF() As Boolean
-    '    Dim pdfReader As PdfReader
-    '    Dim pdfStamper As PdfStamper
-    '    Dim pdfFormFields As AcroFields
-    '    Dim bReturn As Boolean
-    '    Try
-
-    '        ' Init
-    '        Dim pdfTemplate As String = GlobalsCRODIP.CONST_PATH_DOCS & GlobalsCRODIP.CONST_DOC_CONTCOM & ".pdf"
-    '        'pathContrat = GlobalsCRODIP.CONST_PATH_EXP & GlobalsCRODIP.CONST_DOC_CONTCOM & "_" & CSDate.getDateId(Date.Now) & ".pdf"
-    '        pathContrat = GlobalsCRODIP.CONST_PATH_EXP & CSDiagPdf.makeFilename(pulverisateurCourant.id, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
-    '        Dim newFile As String = pathContrat
-    '        ' Ouverture des pdf
-    '        pdfReader = New PdfReader(pdfTemplate)
-    '        pdfStamper = New PdfStamper(pdfReader, New FileStream(newFile, FileMode.Create))
-    '        pdfFormFields = pdfStamper.AcroFields
-
-    '        ' Et on rempli les champs
-    '        Dim dDate As Date
-    '        If String.IsNullOrEmpty(diagnosticCourant.controleDateFin) Then
-    '            dDate = Now
-    '        Else
-    '            dDate = CDate(diagnosticCourant.controleDateFin)
-    '        End If
-
-    '        pdfFormFields.SetField("controleDate", dDate.ToString("d"))
-
-    '        pdfFormFields.SetField("controleInspecteur_nomPrenom", diagnosticCourant.inspecteurNom & " " & diagnosticCourant.inspecteurPrenom)
-    '        pdfFormFields.SetField("controleInspecteur_id", agentCourant.numeroNational)
-    '        pdfFormFields.SetField("controleOrganismeP_id", diagnosticCourant.organismePresNumero)
-
-    '        pdfFormFields.SetField("controleProprietaire_raisonSociale", clientCourant.raisonSociale)
-    '        pdfFormFields.SetField("controleProprietaire_nomPrenom", clientCourant.nomExploitant & " " & clientCourant.prenomExploitant)
-    '        pdfFormFields.SetField("controleProprietaire_adresse", clientCourant.adresse)
-    '        pdfFormFields.SetField("controleProprietaire_codePostal", clientCourant.codePostal)
-    '        pdfFormFields.SetField("controleProprietaire_ville", clientCourant.commune)
-    '        pdfFormFields.SetField("controleProprietaire_nomPrenomRepresentant", diagnosticCourant.proprietaireRepresentant)
-
-    '        pdfFormFields.SetField("controlePulve_marque", pulverisateurCourant.marque)
-    '        pdfFormFields.SetField("controlePulve_id", pulverisateurCourant.numeroNational)
-
-    '        pdfFormFields.SetField("controleFacturation_prixHT", facturation_totalHT.Text)
-
-    '        pdfFormFields.SetField("date", dDate.ToString("d"))
-
-
-    '        ' On affiche le PDF rempli
-    '        'CSFile.open(newFile)
-    '        bReturn = True
-    '    Catch ex As Exception
-    '        CSDebug.dispError("Génération contrat commercial : " & ex.Message)
-    '        bReturn = False
-    '    End Try
-    '    ' On referme le PDF
-    '    pdfStamper.FormFlattening = True
-    '    pdfStamper.Close()
-    '    pdfReader.Close()
-    '    Return bReturn
-    'End Function
     Private Function createContrat() As Boolean
         Dim bReturn As Boolean
         Try
@@ -1011,7 +793,7 @@ Public Class diagnostic_ContratCommercial
             Dim oEtat As New EtatBL(m_oDiag)
 
             ' On rempli la liste des prestations
-            For Each oLig As lgPrestation In m_bsLignes
+            For Each oLig As FactureItem In m_bsLignes
                 oEtat.AddPresta(oLig.Categorie & " " & oLig.Prestation, oLig.PU, oLig.Quantite, oLig.TotalTVA, oLig.TotalHT, oLig.TotalTTC)
             Next
 
@@ -1024,96 +806,6 @@ Public Class diagnostic_ContratCommercial
 
     End Sub
 
-    'Private Function getDsForBL() As ds_EtatBL
-    '    Dim oReturn As ds_EtatBL
-    '    Try
-    '        oReturn = diagnosticCourant.generateDataSetForBL()
-
-    '        ' On rempli la liste des prestations
-    '        Dim PrestaLibelle As String = ""
-    '        Dim PrestaHT As String = ""
-    '        Dim PrestaTVA As String = ""
-    '        Dim PrestaTTC As String = ""
-    '        If prestaIncrement > 0 Then
-    '            For i As Integer = 1 To prestaIncrement
-
-    '                ' Libellé
-    '                Dim tmpPrestaLib As Label = CSForm.getControlByName("controlePrestaLib_" & i, Me)
-    '                PrestaLibelle = tmpPrestaLib.Text
-
-    '                ' Prix HT
-    '                Dim tmpPrixHTInput As TextBox = CSForm.getControlByName("controlePrixHT_" & i, Me)
-    '                PrestaHT = tmpPrixHTInput.Text
-
-    '                ' TVA
-    '                Dim tmpPrixTVAInput As TextBox = CSForm.getControlByName("controlePrixTVA_" & i, Me)
-    '                PrestaTVA = tmpPrixTVAInput.Text
-
-    '                ' Prix TTC
-    '                Dim tmpPrixInput As TextBox = CSForm.getControlByName("controlePrixTTC_" & i, Me)
-    '                PrestaTTC = tmpPrixInput.Text
-
-    '                oReturn.Prestation.AddPrestationRow(PrestaLibelle, PrestaHT, PrestaTVA, PrestaTTC, 1, PrestaHT)
-
-
-    '            Next
-    '        End If
-
-    '    Catch ex As Exception
-    '        CSDebug.dispError("diagnostic_finalisation ERR:" & ex.Message)
-    '        oReturn = New ds_EtatBL
-    '    End Try
-    '    Return oReturn
-    'End Function
-
-    'Private Function getDSForFact() As ds_EtatBL
-    '    Dim factureObj As DiagnosticFacture
-    '    Dim ods As ds_EtatBL
-    '    Try
-    '        factureObj = Me.saveFacture()
-
-    '        Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(Application.StartupPath & "\config\facturation.xml")
-    '        Dim oStruct As Structuree
-    '        oStruct = StructureManager.getStructureById(agentCourant.idStructure)
-
-
-    '        'Génération du DataSet par le DiagNostic (Idem BL)
-    '        ods = getDsForBL()
-
-    '        'Remplissage du DS avec les Champs spécifique à la facture
-    '        ods.Facture(0).refacture = factureObj.factureReference
-    '        ' On ajoute le logo
-    '        'Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo_tn")
-    '        Dim logoFilename As String = FACTURATION_XML_CONFIG.getElementValue("/root/logo")
-    '        If Not File.Exists(logoFilename) Then
-    '            logoFilename = GlobalsCRODIP.CONST_PATH_IMG & CR_LOGO_DEFAULT_TN_NAME
-    '        End If
-    '        ods.Facture(0).LogoFileName = logoFilename
-    '        Dim newImage As System.Drawing.Image = System.Drawing.Image.FromFile(logoFilename)
-    '        Dim ms As New MemoryStream
-    '        newImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
-
-    '        ods.Facture(0).LogoFileName = logoFilename
-    '        ods.Organisme(0).TelFax = oStruct.telephoneFixe & " / " & oStruct.telephoneFax
-    '        ods.Organisme(0).SIREN = FACTURATION_XML_CONFIG.getElementValue("/root/siren")
-    '        ods.Organisme(0).TVA = FACTURATION_XML_CONFIG.getElementValue("/root/tva")
-    '        ods.Organisme(0).RCS = FACTURATION_XML_CONFIG.getElementValue("/root/rcs")
-    '        ods.Facture(0).Logo = ms.ToArray()
-
-    '        ' CLIENT
-
-    '        ' FOOTER
-    '        ods.Facture(0).Footer = FACTURATION_XML_CONFIG.getElementValue("/root/footer")
-
-    '    Catch ex As Exception
-    '        CSDebug.dispError("Diagnostic_finalisation ERR : " & ex.Message)
-    '        ods = New ds_EtatBL()
-    '    End Try
-
-
-    '    Return ods
-
-    'End Function
     Private Sub btn_facturation_imprimerBL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_facturation_imprimerBL.Click
 
         ' On génère le PDF rempli
@@ -1180,23 +872,6 @@ Public Class diagnostic_ContratCommercial
         suivant(sender)
     End Sub
 
-    Private Sub btn_ImprimerFacture_Click(sender As Object, e As EventArgs) Handles btn_ImprimerFacture.Click
-        ' On affiche le PDF rempli
-        Try
-            ' Génération de la facture
-
-            createFacture_CR()
-            CSFile.open(m_pathFacture)
-        Catch ex As Exception
-            CSDebug.dispError("diagnostic_finalisation::btn_facturation_imprimerFact_Click( Affichage Facture ) : " & ex.Message)
-        End Try
-
-
-    End Sub
-
-    Private Sub m_bsLignes_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsLignes.CurrentItemChanged
-        calcTotal()
-    End Sub
 
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
@@ -1204,14 +879,6 @@ Public Class diagnostic_ContratCommercial
             'Suppresssion de la ligne courante
             m_bsLignes.RemoveCurrent()
         End If
-    End Sub
-
-    Private Sub btn_imprimerFactureCoProp_Click(sender As Object, e As EventArgs) Handles btn_imprimerFactureCoProp.Click
-        Dim ofrm As New frmdiagnostic_facturationCoProp()
-        Dim olst As New List(Of DiagnosticFactureItem)
-        olst.AddRange(m_bsLignes.List)
-        ofrm.setContexte(m_oDiag, m_oExploit, m_oAgent, olst)
-        ofrm.ShowDialog()
     End Sub
 
     Private Sub facturation_totalHT_TextChanged(sender As Object, e As EventArgs) Handles facturation_totalHT.Validated
@@ -1244,25 +911,6 @@ Public Class diagnostic_ContratCommercial
 
     End Sub
 
-    Private Sub btnSignAgent_Click(sender As Object, e As EventArgs)
-        SignatureAgent()
-    End Sub
-
-    Private Sub btnSignClient_Click(sender As Object, e As EventArgs)
-        Signatureclient()
-    End Sub
-    Public Sub Signatureclient()
-        Dim ofrm As frmSignClient
-        ofrm = frmSignClient.getfrmSignature(m_oDiag, SignMode.CCCLIENT, m_oAgent)
-        ofrm.ShowDialog()
-        desactiverModificationSisigne()
-    End Sub
-    Public Sub SignatureAgent()
-        Dim ofrm As frmSignClient
-        ofrm = frmSignClient.getfrmSignature(m_oDiag, SignMode.CCAGENT, m_oAgent)
-        ofrm.ShowDialog()
-        desactiverModificationSisigne()
-    End Sub
 
     Private Sub desactiverModificationSisigne()
         If m_oDiag.SignCCAgent IsNot Nothing Or m_oDiag.SignCCClient IsNot Nothing Then
@@ -1280,9 +928,6 @@ Public Class diagnostic_ContratCommercial
         listTarif_prestations.Enabled = False
     End Sub
 
-    Private Sub m_bsLignes_ListChanged(sender As Object, e As ListChangedEventArgs)
-
-    End Sub
 
     Private Sub btn_Signatures_Click(sender As Object, e As EventArgs) Handles btn_Signatures.Click
         Dim oFrm As New frmContratCommercial()
@@ -1294,4 +939,7 @@ Public Class diagnostic_ContratCommercial
         End If
     End Sub
 
+    Private Sub DataGridView1_RowValidated(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.RowValidated
+        m_bsContratCommercial.ResetCurrentItem()
+    End Sub
 End Class

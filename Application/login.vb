@@ -959,7 +959,7 @@ Public Class login
             oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
             oDiag = New Diagnostic(oAgent, oPulve, oExploit)
 
-            Dim oFrm As New diagnostic_ContratCommercial2()
+            Dim oFrm As New diagnostic_ContratCommercial()
             oFrm.setContexte(oDiag, oExploit, oAgent)
 
             oFrm.ShowDialog()
@@ -1152,89 +1152,10 @@ Public Class login
         oAgent = AgentManager.getAgentById("1110")
         oAgent.isSignElecActive = True
 
-        Dim oStructure As Structuree
-        oStructure = StructureManager.getStructureById(oAgent.idStructure)
-        oStructure.SIREN = "44468160500010"
-        oStructure.RCS = "55 35 07828 35"
-        oStructure.TVA = "F444446811605"
-        oStructure.TxTVA = 20
-        oStructure.CoordBank = "IBAN FR76 1558 9351 4800 0951 6404 456 AQW 123
-        RIB : 15589 35348 000951640 44 56 123 456"
-        oStructure.Entete = ""
-        StructureManager.save(oStructure)
-        oPulve = New Pulverisateur()
-        Dim olst As List(Of Exploitation)
-        olst = ExploitationManager.searchExploitation(oAgent, 0, "TEST")
-        If olst.Count() = 0 Then
-            oExploit = New Exploitation()
-        Else
-            oExploit = olst(0)
-        End If
-        oExploit.raisonSociale = "TEST"
-        oExploit.telephoneFixe = "0297250827"
-        oExploit.telephonePortable = "0680667189"
-        oExploit.eMail = "marc.peran@cleguerec.fr"
-        ExploitationManager.save(oExploit, oAgent)
-        Dim oLstPulve As New List(Of Pulverisateur)
 
-        oLstPulve.AddRange(PulverisateurManager.getPulverisateurByClientId(oExploit.id, ""))
-        If olst.Count() = 0 Then
-            oPulve = New Pulverisateur()
-        Else
-            oPulve = oLstPulve(0)
-        End If
-        oPulve.modeUtilisation = "Co-Propriété"
-        PulverisateurManager.save(oPulve, oExploit.id, oAgent)
-
-        'Création d'un copropriétaire
-        Dim oExploit2 As New Exploitation()
-        olst = ExploitationManager.searchExploitation(oAgent, 0, "TESTCOPROP")
-        If olst.Count() = 0 Then
-            oExploit2 = New Exploitation()
-        Else
-            oExploit2 = olst(0)
-        End If
-        oExploit2.raisonSociale = "TESTCOPROP"
-        oExploit2.telephoneFixe = "[2]0297250827"
-        oExploit2.telephonePortable = "[2]0680667189"
-        oExploit2.eMail = "[2]marc.peran@cleguerec.fr"
-        ExploitationManager.save(oExploit2, oAgent)
-
-        'Affectation du Coprop
-        PulverisateurManager.save(oPulve, oExploit2.id, oAgent)
-
-        oDiag = New Diagnostic(oAgent, oPulve, oExploit)
-        oDiag.id = ""
-        oDiag.controleLieu = "DANS LA COUR"
-        oDiag.controleIsPreControleProfessionel = True
-        oDiag.proprietaireRepresentant = "Repésentant"
-        oDiag.controleIsComplet = False
-        oDiag.buseDebitD = 2.5
-        oDiag.controleInitialId = "010101"
-        oDiag.controleDateDernierControle = Date.Now().AddMonths(-1)
-        oDiag.inspecteurOrigineNom = "RAULT"
-        oDiag.inspecteurOriginePrenom = "MA"
-        oDiag.organismeOriginePresNom = "CRODIP"
-        oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
-        oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
-        oDiagItem.LibelleCourt = "LIBCourt2561"
-        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
-        oDiag.AdOrReplaceDiagItem(oDiagItem)
-        oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
-        oDiagItem.LibelleCourt = "LIBCourt2562"
-        oDiagItem.LibelleLong = "Ceci est le libelle Long de 2562 a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a aa  a aa  aa a a a a a a a a a a a a a a a a a a a a a a a a aa a aa a   b b b bb b b b b b b b b b b b b b b b b  b bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb bb b bb b bb b bb b b bbbbbbb cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc Z"
-
-        Dim oCC As New ContratCommercial()
-        oCC.oDiagnostic = oDiag
-        oCC.oExploit = oExploit
-        oCC.Lignes.Add(New lgPrestation("TEST", "test", 10, 10, 20, oDiag.id))
-        oDiag.oContratCommercial = oCC
-        oCC.Commentaire = "Commentaire de contrat"
-        oCC.TxTVA = 20
-
-        Dim ofrm As frmdiagnostic_facturationCoProp2
-        ofrm = New frmdiagnostic_facturationCoProp2()
-        ofrm.setContexte(oDiag, oAgent, oStructure)
+        Dim ofrm As frmdiagnostic_facturationCoProp
+        ofrm = New frmdiagnostic_facturationCoProp()
+        ofrm.setContexte(oAgent)
         ofrm.Show()
 
     End Sub

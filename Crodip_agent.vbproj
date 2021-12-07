@@ -112,7 +112,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
-    <DefineConstants>VFACTURATION=1</DefineConstants>
+    <DefineConstants>VFACTURATION_NON=1</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
@@ -273,7 +273,7 @@
     <Compile Include="Application\agent\Manometres\HistoMano.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\diagnostic_ContratCommercial2.vb">
+    <Compile Include="Application\diagnostic\diagnostic_ContratCommercial.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\frmContratCommercial.Designer.vb">
@@ -282,7 +282,7 @@
     <Compile Include="Application\diagnostic\frmContratCommercial.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\frmdiagnostic_facturationCoProp2.vb">
+    <Compile Include="Application\diagnostic\frmdiagnostic_facturationCoProp.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\frmlstLieuxControle.Designer.vb">
@@ -310,7 +310,7 @@
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\ContratCommercial.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureItemManager.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureManager.vb" />
-    <Compile Include="Application\includes\classes\Diagnostic\ContratFact\lgPrestation.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureItem.vb" />
     <Compile Include="Application\includes\classes\Referentiel\LieuxControle.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtPulverisateur.vb" />
@@ -446,10 +446,10 @@
     <Compile Include="Application\diagnostic\diagnostic_dlghelp571.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\frmdiagnostic_facturationCoProp.vb">
+    <Compile Include="Application\diagnostic\frmdiagnostic_facturationCoPropADEL.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\diagnostic_ContratCommercial.vb">
+    <Compile Include="Application\diagnostic\diagnostic_ContratCommercialADEL.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\Diagnostic_dlghelp552.Designer.vb">
@@ -2094,14 +2094,14 @@
     <EmbeddedResource Include="Application\agent\Manometres\HistoMano.resx">
       <DependentUpon>HistoMano.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercial2.resx">
-      <DependentUpon>diagnostic_ContratCommercial2.vb</DependentUpon>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercial.resx">
+      <DependentUpon>diagnostic_ContratCommercial.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmContratCommercial.resx">
       <DependentUpon>frmContratCommercial.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_facturationCoProp2.resx">
-      <DependentUpon>frmdiagnostic_facturationCoProp2.vb</DependentUpon>
+    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_facturationCoProp.resx">
+      <DependentUpon>frmdiagnostic_facturationCoProp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmlstLieuxControle.resx">
       <DependentUpon>frmlstLieuxControle.vb</DependentUpon>
@@ -2214,11 +2214,11 @@
     <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp571.resx">
       <DependentUpon>diagnostic_dlghelp571.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_facturationCoProp.resx">
-      <DependentUpon>frmdiagnostic_facturationCoProp.vb</DependentUpon>
+    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_facturationCoPropADEL.resx">
+      <DependentUpon>frmdiagnostic_facturationCoPropADEL.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercial.resx">
-      <DependentUpon>diagnostic_ContratCommercial.vb</DependentUpon>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercialADEL.resx">
+      <DependentUpon>diagnostic_ContratCommercialADEL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp551.resx">
       <DependentUpon>diagnostic_dlghelp551.vb</DependentUpon>

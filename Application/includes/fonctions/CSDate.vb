@@ -45,7 +45,9 @@ Public Class CSDate
             If mysqlDate.GetType.ToString = "System.String" Then
                 mysqlDate = Date.Parse(mysqlDate)
             End If
-            Return Format(mysqlDate, "dd/MM/yyyy HH:mm:ss")
+            Dim str As String
+            str = Format(mysqlDate, "dd/MM/yyyy HH:mm:ss")
+            Return CDate(str)
         Catch ex As Exception
             Dim accessDate As Date
             accessDate.AddDays(0)

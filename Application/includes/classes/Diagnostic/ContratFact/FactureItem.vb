@@ -3,7 +3,7 @@ Imports System.Xml.Schema
 Imports System.Xml.Serialization
 
 <Serializable()>
-Public Class lgPrestation
+Public Class FactureItem
     Implements ICloneable
 #Region "Properties"
     Private _idFacture As String
@@ -103,9 +103,11 @@ Public Class lgPrestation
 #End Region
 
     Public Sub New()
-
+        dateModificationCrodip = DateTime.MinValue
+        dateModificationAgent = DateTime.Now()
     End Sub
     Public Sub New(pCategorie As String, pPrestation As String, pPU As Decimal, pQte As Decimal, ptxTva As Decimal, pDiagId As String)
+        Me.New()
         Categorie = pCategorie
         Prestation = pPrestation
         PU = pPU
@@ -118,7 +120,7 @@ Public Class lgPrestation
     Public Overridable Function Clone() As Object Implements ICloneable.Clone
         Dim oXS As New XmlSerializer(Me.GetType())
         Dim oStream As New System.IO.MemoryStream()
-        Dim oReturn As lgPrestation
+        Dim oReturn As FactureItem
 
         Try
 
@@ -136,7 +138,7 @@ Public Class lgPrestation
             ' release memory.
             ms.Close()
         Catch ex As Exception
-            CSDebug.dispError("lgPrestation.Clone ERR : " & ex.Message)
+            CSDebug.dispError("FactureItem.Clone ERR : " & ex.Message)
             oReturn = Nothing
         End Try
         Return oReturn

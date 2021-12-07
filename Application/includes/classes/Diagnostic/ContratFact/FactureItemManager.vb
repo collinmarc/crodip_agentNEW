@@ -24,7 +24,7 @@ Public Class FactureItemManager
         Return bReturn
 
     End Function
-    Public Shared Function save(pFactureItem As lgPrestation, Optional bSyncro As Boolean = False) As Boolean
+    Public Shared Function save(pFactureItem As FactureItem, Optional bSyncro As Boolean = False) As Boolean
         Debug.Assert(pFactureItem IsNot Nothing)
 
         Dim bReturn As Boolean
@@ -46,7 +46,7 @@ Public Class FactureItemManager
         Return bReturn
     End Function
 
-    Private Shared Function update(pfactureItem As lgPrestation, bsynchro As Boolean) As Boolean
+    Private Shared Function update(pfactureItem As FactureItem, bsynchro As Boolean) As Boolean
         Dim breturn As Boolean
 
         Try
@@ -93,7 +93,7 @@ Public Class FactureItemManager
         End Try
         Return breturn
     End Function
-    Private Shared Function insert(pfactureItem As lgPrestation, bsynchro As Boolean) As Boolean
+    Private Shared Function insert(pfactureItem As FactureItem, bsynchro As Boolean) As Boolean
         Dim breturn As Boolean
 
         Try
@@ -132,12 +132,12 @@ Public Class FactureItemManager
 
             oCmd.Parameters.AddWithValue("?_1", pfactureItem.Categorie)
             oCmd.Parameters.AddWithValue("?_2", pfactureItem.Prestation)
-            oCmd.Parameters.AddWithValue("?_3", pfactureItem.Quantite)
-            oCmd.Parameters.AddWithValue("?_4", pfactureItem.PU)
-            oCmd.Parameters.AddWithValue("?_5", pfactureItem.TotalHT)
-            oCmd.Parameters.AddWithValue("?_6", pfactureItem.TotalTVA)
-            oCmd.Parameters.AddWithValue("?_7", pfactureItem.TotalTTC)
-            oCmd.Parameters.AddWithValue("?_8", pfactureItem.txTVA)
+            oCmd.Parameters.Add("?_3", OleDb.OleDbType.Currency).Value = pfactureItem.Quantite
+            oCmd.Parameters.Add("?_4", OleDb.OleDbType.Currency).Value = pfactureItem.PU
+            oCmd.Parameters.Add("?_5", OleDb.OleDbType.Currency).Value = pfactureItem.TotalHT
+            oCmd.Parameters.Add("?_6", OleDb.OleDbType.Currency).Value = pfactureItem.TotalTVA
+            oCmd.Parameters.Add("?_7", OleDb.OleDbType.Currency).Value = pfactureItem.TotalTTC
+            oCmd.Parameters.Add("?_8", OleDb.OleDbType.Currency).Value = pfactureItem.txTVA
             oCmd.Parameters.AddWithValue("?_9", CSDate.mysql2access(pfactureItem.dateModificationAgent))
             oCmd.Parameters.AddWithValue("?_10", CSDate.mysql2access(pfactureItem.dateModificationCrodip))
             oCmd.Parameters.AddWithValue("?_11", pfactureItem.idFacture)
@@ -149,17 +149,17 @@ Public Class FactureItemManager
             oCSDB.free()
             breturn = True
         Catch ex As Exception
-            CSDebug.dispError("FactureItemManager.insertFacture ERR", ex)
+            CSDebug.dispError("FactureItemManager.insert ERR", ex)
 
 
             breturn = False
         End Try
         Return breturn
     End Function
-    Public Shared Function getFactureById(pFactureId As String) As List(Of lgPrestation)
+    Public Shared Function getFactureById(pFactureId As String) As List(Of FactureItem)
         Debug.Assert(Not String.IsNullOrEmpty(pFactureId), "PFactureId must be set")
 
-        Dim oReturn As New List(Of lgPrestation)
+        Dim oReturn As New List(Of FactureItem)
         Try
             Dim oCSDB As New CSDb(True)
             Dim oCmd As OleDb.OleDbCommand
@@ -171,7 +171,7 @@ Public Class FactureItemManager
             oDR = oCmd.ExecuteReader()
 
             While oDR.Read()
-                Dim olg As New lgPrestation()
+                Dim olg As New FactureItem()
                 Dim nChamp As Integer
                 For nChamp = 0 To oDR.FieldCount() - 1
                     If Not oDR.IsDBNull(nChamp) Then
@@ -187,12 +187,12 @@ Public Class FactureItemManager
 
         Catch ex As Exception
             CSDebug.dispError("FactureItemManager.getFactureById ERR", ex)
-            oReturn = New List(Of lgPrestation)()
+            oReturn = New List(Of FactureItem)()
         End Try
         Return oReturn
     End Function
 
-    Public Shared Sub Fill(pLg As lgPrestation, pNomchamp As String, pValue As Object)
+    Public Shared Sub Fill(pLg As FactureItem, pNomchamp As String, pValue As Object)
         Try
 
             Select Case Trim(pNomchamp).ToUpper()

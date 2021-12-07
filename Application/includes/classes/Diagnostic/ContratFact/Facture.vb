@@ -111,7 +111,7 @@ Public Class Facture
             _MsgEntete = value
         End Set
     End Property
-    Private _PathPDF As String
+    Private _PathPDF As String = ""
     Public Property PathPDF() As String
         Get
             Return _PathPDF
@@ -170,15 +170,15 @@ Public Class Facture
 #End Region
 
 
-    Public Function AjoutNouvelleLigne() As lgPrestation
-        Dim oLg As New lgPrestation()
+    Public Function AjoutNouvelleLigne() As FactureItem
+        Dim oLg As New FactureItem()
         oLg.txTVA = Me.TxTVA
         Lignes.Add(oLg)
         Return oLg
     End Function
-    Public Function AjoutNouvelleLigne(pCategorie As String, pPrestation As String, pPU As Decimal, pQte As Decimal, pDiagId As String) As lgPrestation
+    Public Function AjoutNouvelleLigne(pCategorie As String, pPrestation As String, pPU As Decimal, pQte As Decimal, pDiagId As String) As FactureItem
 
-        Dim oLg As New lgPrestation(pCategorie, pPrestation, pPU, pQte, Me.TxTVA, pDiagId)
+        Dim oLg As New FactureItem(pCategorie, pPrestation, pPU, pQte, Me.TxTVA, pDiagId)
         Lignes.Add(oLg)
         Return oLg
 

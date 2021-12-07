@@ -6088,6 +6088,27 @@ Public Class DiagnosticManagerTest
 
 
     End Sub
+    <TestMethod()>
+    Public Sub testDecimal()
+        Dim oDiag As Diagnostic
+        Dim id As String
+        Dim bReturn As Boolean
+
+        oDiag = New Diagnostic()
+        oDiag.setOrganisme(m_oAgent)
+        oDiag.TotalHT = 125.5
+        id = "DIAGWS" & Now.Hour & Now.Minute & Now.Second
+        oDiag.id = id
+        bReturn = DiagnosticManager.save(oDiag)
+
+
+        oDiag = DiagnosticManager.getDiagnosticById(id)
+        Assert.AreEqual(id, oDiag.id)
+        Assert.AreEqual(125.5D, oDiag.TotalHT)
+
+    End Sub
+
+
 
 
 End Class
