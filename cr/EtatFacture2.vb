@@ -80,7 +80,7 @@ Public Class EtatFacture2
             Dim oRow As ds_EtatFacture.FactureRow
             oRow = m_ods.Facture.NewFactureRow()
             oRow.idFacture = m_oFacture.idFacture
-            oRow.DateFacture = m_oFacture.DateFacture
+            oRow.DateFacture = m_oFacture.dateFacture
             oRow.logoFileName = logoFilename
             Dim newImage As System.Drawing.Image = System.Drawing.Image.FromFile(logoFilename)
             Dim ms As New MemoryStream
@@ -102,13 +102,13 @@ Public Class EtatFacture2
             oRow.TelFixeCli = m_oFacture.oExploit.telephoneFixe
             oRow.TelPortCli = m_oFacture.oExploit.telephonePortable
             oRow.mailCli = m_oFacture.oExploit.eMail
-            oRow.EnteteFacture = m_oFacture.MsgEntetete
+            oRow.EnteteFacture = m_oFacture.msgEntetete
             oRow.Commentaire = m_oFacture.Commentaire
-            oRow.ModeReglement = m_oFacture.Modereglement
-            oRow.DateEcheance = m_oFacture.DateEcheance
-            oRow.CoordBanK = m_oStructure.CoordBank
-            oRow.FReglee = m_oFacture.Reglee
-            oRow.RefReglement = m_oFacture.RefPaiement
+            oRow.ModeReglement = m_oFacture.modeReglement
+            oRow.DateEcheance = m_oFacture.dateEcheance
+            oRow.CoordBanK = m_oStructure.CoordBancaires
+            oRow.FReglee = m_oFacture.isReglee
+            oRow.RefReglement = m_oFacture.refReglement
             oRow.PiedPage = m_oStructure.PiedPage
             oRow.MontantHT = m_oFacture.TotalHT
             oRow.MontantTVA = m_oFacture.TotalTVA
@@ -122,12 +122,12 @@ Public Class EtatFacture2
             m_ods.Facture.AddFactureRow(oRow)
 
             m_oFacture.Lignes.ForEach(Sub(olg) m_ods.LigneFact.AddLigneFactRow(oRow,
-                                                olg.Categorie & " " & olg.Prestation,
-                                                olg.PU,
-                                                olg.Quantite,
-                                                olg.TotalHT,
+                                                olg.categorie & " " & olg.prestation,
+                                                olg.pu,
+                                                olg.quantite,
+                                                olg.totalHT,
                                                 m_oStructure.TxTVA,
-                                                olg.DiagId, ""
+                                                olg.idDiag, ""
                                                         )
                                     )
 

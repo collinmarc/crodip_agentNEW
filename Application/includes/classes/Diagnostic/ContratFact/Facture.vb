@@ -14,8 +14,8 @@ Public Class Facture
     Public Sub New(pStructure As Structuree)
         Me.New()
         Me.idStructure = pStructure.id
-        Modereglement = pStructure.Modereglement
-        MsgEntetete = pStructure.Entete
+        modeReglement = pStructure.Modereglement
+        msgEntetete = pStructure.Entete
 
 
         Dim nLg As Integer = pStructure.DernierNumFact.Length()
@@ -44,19 +44,19 @@ Public Class Facture
     End Sub
 #Region "Properties"
     Private _DateFacture As DateTime
-    Public Property DateFacture() As DateTime
+    Public Property dateFacture() As DateTime
         Get
             Return _DateFacture
         End Get
         Set(ByVal value As DateTime)
             If value <> _DateFacture Then
                 _DateFacture = value
-                DateEcheance = DateFacture
+                dateEcheance = dateFacture
             End If
         End Set
     End Property
     Private _DateEchenance As DateTime
-    Public Property DateEcheance() As DateTime
+    Public Property dateEcheance() As DateTime
         Get
             Return _DateEchenance
         End Get
@@ -65,7 +65,7 @@ Public Class Facture
         End Set
     End Property
     Private _ModeReglement As String
-    Public Property Modereglement() As String
+    Public Property modeReglement() As String
         Get
             Return _ModeReglement
         End Get
@@ -74,7 +74,7 @@ Public Class Facture
         End Set
     End Property
     Private _Reglee As Boolean
-    Public Property Reglee() As Boolean
+    Public Property isReglee() As Boolean
         Get
             Return _Reglee
         End Get
@@ -85,7 +85,7 @@ Public Class Facture
     Private _RefPaiement As String = ""
 
 
-    Public Property RefPaiement() As String
+    Public Property refReglement() As String
         Get
             Return _RefPaiement
         End Get
@@ -103,7 +103,7 @@ Public Class Facture
         End Set
     End Property
     Private _MsgEntete As String
-    Public Property MsgEntetete() As String
+    Public Property msgEntetete() As String
         Get
             Return _MsgEntete
         End Get
@@ -112,7 +112,7 @@ Public Class Facture
         End Set
     End Property
     Private _PathPDF As String = ""
-    Public Property PathPDF() As String
+    Public Property pathPDF() As String
         Get
             Return _PathPDF
         End Get

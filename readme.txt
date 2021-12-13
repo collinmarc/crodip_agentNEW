@@ -2,7 +2,8 @@ TRUNK
 MASTER
 
 BUILD : XXXXXXXXX
-Gestion des co-propriétaires
+	0001446: Gestion des co-propriétaires
+	0001447: Affichage du type et Fonctionnement des buses TEEJET, CP4916 ne fonctionne pas
 
 BUILD : 20211119170000
 0001142: Synhcronisation d'un nouvel agent

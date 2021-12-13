@@ -55,17 +55,17 @@ Public Class facturation2
     Friend WithEvents tbRacineNumerotation As TextBox
     Friend WithEvents tbDernNumero As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents tbHeader As RichTextBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents RichTextBox2 As RichTextBox
+    Friend WithEvents tbCoordonnesBancaires As RichTextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents tbModeReglement As TextBox
-    Friend WithEvents TbnTxTVA As CRODIP_ControlLibrary.TBNumeric
+    Friend WithEvents tbTxTVA As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents lblError As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(facturation))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(facturation2))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.facturation_siren = New System.Windows.Forms.TextBox()
         Me.Label104 = New System.Windows.Forms.Label()
@@ -87,14 +87,14 @@ Public Class facturation2
         Me.tbRacineNumerotation = New System.Windows.Forms.TextBox()
         Me.tbDernNumero = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.tbHeader = New System.Windows.Forms.RichTextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.RichTextBox2 = New System.Windows.Forms.RichTextBox()
+        Me.tbCoordonnesBancaires = New System.Windows.Forms.RichTextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.tbModeReglement = New System.Windows.Forms.TextBox()
-        Me.TbnTxTVA = New CRODIP_ControlLibrary.TBNumeric()
+        Me.tbTxTVA = New CRODIP_ControlLibrary.TBNumeric()
         Me.panel_logo_bg.SuspendLayout()
         CType(Me.facturation_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -299,14 +299,14 @@ Public Class facturation2
         Me.Label6.Text = "Dernier Numéro"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'RichTextBox1
+        'tbHeader
         '
-        Me.RichTextBox1.Location = New System.Drawing.Point(25, 283)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None
-        Me.RichTextBox1.Size = New System.Drawing.Size(648, 44)
-        Me.RichTextBox1.TabIndex = 79
-        Me.RichTextBox1.Text = ""
+        Me.tbHeader.Location = New System.Drawing.Point(25, 283)
+        Me.tbHeader.Name = "tbHeader"
+        Me.tbHeader.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None
+        Me.tbHeader.Size = New System.Drawing.Size(648, 44)
+        Me.tbHeader.TabIndex = 79
+        Me.tbHeader.Text = ""
         '
         'Label7
         '
@@ -319,14 +319,14 @@ Public Class facturation2
         Me.Label7.Text = "Entete de facture"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'RichTextBox2
+        'tbCoordonnesBancaires
         '
-        Me.RichTextBox2.Location = New System.Drawing.Point(25, 380)
-        Me.RichTextBox2.Name = "RichTextBox2"
-        Me.RichTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None
-        Me.RichTextBox2.Size = New System.Drawing.Size(324, 98)
-        Me.RichTextBox2.TabIndex = 81
-        Me.RichTextBox2.Text = ""
+        Me.tbCoordonnesBancaires.Location = New System.Drawing.Point(25, 380)
+        Me.tbCoordonnesBancaires.Name = "tbCoordonnesBancaires"
+        Me.tbCoordonnesBancaires.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None
+        Me.tbCoordonnesBancaires.Size = New System.Drawing.Size(324, 98)
+        Me.tbCoordonnesBancaires.TabIndex = 81
+        Me.tbCoordonnesBancaires.Text = ""
         '
         'Label8
         '
@@ -368,26 +368,26 @@ Public Class facturation2
         Me.tbModeReglement.Size = New System.Drawing.Size(289, 20)
         Me.tbModeReglement.TabIndex = 85
         '
-        'TbnTxTVA
+        'tbTxTVA
         '
-        Me.TbnTxTVA.ForceBindingOnTextChanged = False
-        Me.TbnTxTVA.Location = New System.Drawing.Point(572, 346)
-        Me.TbnTxTVA.Name = "TbnTxTVA"
-        Me.TbnTxTVA.Size = New System.Drawing.Size(100, 20)
-        Me.TbnTxTVA.TabIndex = 86
+        Me.tbTxTVA.ForceBindingOnTextChanged = False
+        Me.tbTxTVA.Location = New System.Drawing.Point(572, 346)
+        Me.tbTxTVA.Name = "tbTxTVA"
+        Me.tbTxTVA.Size = New System.Drawing.Size(100, 20)
+        Me.tbTxTVA.TabIndex = 86
         '
-        'facturation
+        'facturation2
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(801, 627)
         Me.ControlBox = False
-        Me.Controls.Add(Me.TbnTxTVA)
+        Me.Controls.Add(Me.tbTxTVA)
         Me.Controls.Add(Me.tbModeReglement)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.RichTextBox2)
+        Me.Controls.Add(Me.tbCoordonnesBancaires)
         Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.RichTextBox1)
+        Me.Controls.Add(Me.tbHeader)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.tbDernNumero)
@@ -410,7 +410,7 @@ Public Class facturation2
         Me.Controls.Add(Me.facturation_rcs)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MinimizeBox = False
-        Me.Name = "facturation"
+        Me.Name = "facturation2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Paramétrage du module facturation"
         Me.TopMost = True
@@ -539,22 +539,32 @@ Public Class facturation2
         If x IsNot Nothing Then
             Dim y As Integer = x.ChildNodes.Count
             For i As Integer = 0 To y - 1
-                Select Case x.ChildNodes.Item(i).Name()
-                    Case "isActive"
+                Select Case x.ChildNodes.Item(i).Name().ToUpper().Trim()
+                    Case "isActive".ToUpper().Trim()
                         facturation_isActivated.Checked = CType(x.ChildNodes.Item(i).InnerText, Boolean)
                         Me.toggleForm(facturation_isActivated.Checked)
-                    Case "siren"
+                    Case "siren".ToUpper().Trim()
                         facturation_siren.Text = x.ChildNodes.Item(i).InnerText
-                    Case "tva"
+                    Case "tva".ToUpper().Trim()
                         facturation_tva.Text = x.ChildNodes.Item(i).InnerText
-                    Case "rcs"
+                    Case "rcs".ToUpper().Trim()
                         facturation_rcs.Text = x.ChildNodes.Item(i).InnerText
-                    Case "footer"
+                    Case "footer".ToUpper().Trim()
                         facturation_footer.Text = x.ChildNodes.Item(i).InnerText
-                    Case "racinenumerotation"
+                    Case "racinenumerotation".ToUpper().Trim()
                         tbRacineNumerotation.Text = x.ChildNodes.Item(i).InnerText
-                    Case "derniernumero"
+                    Case "derniernumero".ToUpper().Trim()
                         tbDernNumero.Text = x.ChildNodes.Item(i).InnerText
+                    Case "txTVA".ToUpper().Trim()
+                        tbTxTVA.Text = x.ChildNodes.Item(i).InnerText
+                    Case "header".ToUpper().Trim()
+                        tbHeader.Text = x.ChildNodes.Item(i).InnerText
+                    Case "CoordonnesBancaires".ToUpper().Trim()
+                        tbCoordonnesBancaires.Text = x.ChildNodes.Item(i).InnerText
+                    Case "ModeReglement".ToUpper().Trim()
+                        tbModeReglement.Text = x.ChildNodes.Item(i).InnerText
+                    Case "header".ToUpper().Trim()
+                        tbHeader.Text = x.ChildNodes.Item(i).InnerText
                 End Select
             Next
         End If
@@ -573,10 +583,12 @@ Public Class facturation2
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/tva", facturation_tva.Text)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/rcs", facturation_rcs.Text)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/footer", facturation_footer.Text)
-        Me.FACTURATION_XML_CONFIG.setElementValue("/root/footer", facturation_footer.Text)
+        Me.FACTURATION_XML_CONFIG.setElementValue("/root/header", tbHeader.Text)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/racinenumerotation", tbRacineNumerotation.Text)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/derniernumero", tbDernNumero.Text)
-        Me.FACTURATION_XML_CONFIG.countElements("/root/")
+        Me.FACTURATION_XML_CONFIG.setElementValue("/root/txTVA", tbTxTVA.Text)
+        Me.FACTURATION_XML_CONFIG.setElementValue("/root/coordonneesBancaires", tbCoordonnesBancaires.Text)
+        Me.FACTURATION_XML_CONFIG.setElementValue("/root/modeReglement", tbModeReglement.Text)
 
         Return True
     End Function

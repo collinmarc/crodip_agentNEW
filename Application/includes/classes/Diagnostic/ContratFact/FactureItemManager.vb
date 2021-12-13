@@ -70,13 +70,13 @@ Public Class FactureItemManager
                 "nFactureitem = ? " '12
 
 
-            oCmd.Parameters.AddWithValue("?_1", pfactureItem.Categorie)
-            oCmd.Parameters.AddWithValue("?_2", pfactureItem.Prestation)
-            oCmd.Parameters.AddWithValue("?_3", pfactureItem.Quantite)
-            oCmd.Parameters.AddWithValue("?_4", pfactureItem.PU)
-            oCmd.Parameters.AddWithValue("?_5", pfactureItem.TotalHT)
-            oCmd.Parameters.AddWithValue("?_6", pfactureItem.TotalTVA)
-            oCmd.Parameters.AddWithValue("?_7", pfactureItem.TotalTTC)
+            oCmd.Parameters.AddWithValue("?_1", pfactureItem.categorie)
+            oCmd.Parameters.AddWithValue("?_2", pfactureItem.prestation)
+            oCmd.Parameters.AddWithValue("?_3", pfactureItem.quantite)
+            oCmd.Parameters.AddWithValue("?_4", pfactureItem.pu)
+            oCmd.Parameters.AddWithValue("?_5", pfactureItem.totalHT)
+            oCmd.Parameters.AddWithValue("?_6", pfactureItem.totalTVA)
+            oCmd.Parameters.AddWithValue("?_7", pfactureItem.totalTTC)
             oCmd.Parameters.AddWithValue("?_8", pfactureItem.txTVA)
             oCmd.Parameters.AddWithValue("?_9", CSDate.mysql2access(pfactureItem.dateModificationAgent))
             oCmd.Parameters.AddWithValue("?_10", CSDate.mysql2access(pfactureItem.dateModificationCrodip))
@@ -130,13 +130,13 @@ Public Class FactureItemManager
                 ")"
 
 
-            oCmd.Parameters.AddWithValue("?_1", pfactureItem.Categorie)
-            oCmd.Parameters.AddWithValue("?_2", pfactureItem.Prestation)
-            oCmd.Parameters.Add("?_3", OleDb.OleDbType.Currency).Value = pfactureItem.Quantite
-            oCmd.Parameters.Add("?_4", OleDb.OleDbType.Currency).Value = pfactureItem.PU
-            oCmd.Parameters.Add("?_5", OleDb.OleDbType.Currency).Value = pfactureItem.TotalHT
-            oCmd.Parameters.Add("?_6", OleDb.OleDbType.Currency).Value = pfactureItem.TotalTVA
-            oCmd.Parameters.Add("?_7", OleDb.OleDbType.Currency).Value = pfactureItem.TotalTTC
+            oCmd.Parameters.AddWithValue("?_1", pfactureItem.categorie)
+            oCmd.Parameters.AddWithValue("?_2", pfactureItem.prestation)
+            oCmd.Parameters.Add("?_3", OleDb.OleDbType.Currency).Value = pfactureItem.quantite
+            oCmd.Parameters.Add("?_4", OleDb.OleDbType.Currency).Value = pfactureItem.pu
+            oCmd.Parameters.Add("?_5", OleDb.OleDbType.Currency).Value = pfactureItem.totalHT
+            oCmd.Parameters.Add("?_6", OleDb.OleDbType.Currency).Value = pfactureItem.totalTVA
+            oCmd.Parameters.Add("?_7", OleDb.OleDbType.Currency).Value = pfactureItem.totalTTC
             oCmd.Parameters.Add("?_8", OleDb.OleDbType.Currency).Value = pfactureItem.txTVA
             oCmd.Parameters.AddWithValue("?_9", CSDate.mysql2access(pfactureItem.dateModificationAgent))
             oCmd.Parameters.AddWithValue("?_10", CSDate.mysql2access(pfactureItem.dateModificationCrodip))
@@ -197,19 +197,19 @@ Public Class FactureItemManager
 
             Select Case Trim(pNomchamp).ToUpper()
                 Case Trim("categorie").ToUpper()
-                    pLg.Categorie = pValue.ToString()
+                    pLg.categorie = pValue.ToString()
                 Case Trim("prestation").ToUpper()
-                    pLg.Prestation = pValue
+                    pLg.prestation = pValue
                 Case Trim("quantite").ToUpper()
-                    pLg.Quantite = pValue
+                    pLg.quantite = pValue
                 Case Trim("pu").ToUpper()
-                    pLg.PU = pValue
+                    pLg.pu = pValue
                 Case Trim("totalhtitem").ToUpper()
-                    pLg.TotalHT = pValue
+                    pLg.totalHT = pValue
                 Case Trim("totaltvaItem").ToUpper()
-                    pLg.TotalTVA = pValue
+                    pLg.totalTVA = pValue
                 Case Trim("totalTTCItem").ToUpper()
-                    pLg.TotalTTC = pValue
+                    pLg.totalTTC = pValue
                 Case Trim("txTVAItem").ToUpper()
                     pLg.txTVA = pValue
                 Case Trim("idFacture").ToUpper()

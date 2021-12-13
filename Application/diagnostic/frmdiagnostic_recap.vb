@@ -15,6 +15,8 @@ Public Class frmdiagnostic_recap
     Private m_Pulverisateur As Pulverisateur
     Private m_oAgent As Agent
     Private m_frmdiagnostic As Form
+    Private m_oStructure As Structuree
+
     Dim isValider As Boolean = False
     Dim conclusionDiagnostique As GlobalsCRODIP.enumConclusionDiag
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
@@ -78,6 +80,7 @@ Public Class frmdiagnostic_recap
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         m_bsDiag.Add(m_diagnostic)
+        m_oStructure = StructureManager.getStructureById(m_oAgent.idStructure)
     End Sub
     Public Sub setbTest(Optional pTest As Boolean = True)
         bTest = pTest
@@ -848,16 +851,18 @@ Public Class frmdiagnostic_recap
                 Exit Sub
             End If
             If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
-                Dim ofrmFact As New frmdiagnostic_facturationCoProp()
-                ofrmFact.setContexte(m_diagnostic, m_oAgent)
-                ofrmFact.ShowDialog()
-
+                If m_oStructure.isFacturationActive Then
+                    Dim ofrmFact As New frmdiagnostic_facturationCoProp()
+                    ofrmFact.setContexte(m_diagnostic, m_oAgent)
+                    ofrmFact.ShowDialog()
+                End If
                 'On ouvre la fenetre de l'enquete
-                Dim ofrm As New diagnostic_satisfaction(m_diagnostic)
-                TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
-                Statusbar.clear()
-            Else
-                CloseDiagnostic()
+                Dim ofrm As New diagnostic_satisfaction()
+                    ofrm.Setcontext(m_diagnostic, m_oAgent)
+                    TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
+                    Statusbar.clear()
+                Else
+                    CloseDiagnostic()
             End If
 
         Else

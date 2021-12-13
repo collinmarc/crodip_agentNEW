@@ -937,6 +937,7 @@ Public Class login
         oAgent = AgentManager.getAgentById("1110")
 
         Dim oPulve As New Pulverisateur()
+        oPulve.modeUtilisation = "Co-Propriété"
         Dim oExploit As New Exploitation()
         Dim ofrm As New ajout_pulve2()
         ofrm.setContexte(ajout_pulve2.MODE.AJOUT, oAgent, oPulve, oExploit, Nothing)

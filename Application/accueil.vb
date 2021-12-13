@@ -3385,6 +3385,7 @@ Public Class accueil
             tabControl.TabPages.RemoveByKey(tabControl_synchro.Name)
             tabControl.TabPages.RemoveByKey(tabControl_parametrage.Name)
             tabControl.TabPages.RemoveByKey(tabControl_Statistiques.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_Facturation.Name)
         End If
 
         'Gestion du Mode Simplifié
@@ -3392,6 +3393,7 @@ Public Class accueil
         If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
             'on ne peut rendre invisible ou inactive une page, il faut la supprimer de la tabPages
             tabControl.TabPages.RemoveByKey(tabControl_outilscomp.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_Facturation.Name)
         End If
         If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             'on ne peut rendre invisible ou inactive une page, il faut la supprimer de la tabPages
@@ -3400,6 +3402,13 @@ Public Class accueil
             tabControl.TabPages.RemoveByKey(tabControl_synchro.Name)
             tabControl.TabPages.RemoveByKey(tabControl_parametrage.Name)
             tabControl.TabPages.RemoveByKey(tabControl_Statistiques.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_Facturation.Name)
+        End If
+        Dim oStructure As Structuree
+        oStructure = StructureManager.getStructureById(agentCourant.idStructure)
+        If Not oStructure.isFacturationActive Then
+            tabControl.TabPages.RemoveByKey(tabControl_Facturation.Name)
+            tabControl.TabPages.RemoveByKey(tabControl_Facturation.Name)
         End If
         '        tabControl_outilscomp.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
         pctbx_Docs_refresh.Visible = Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE
@@ -5163,7 +5172,7 @@ Public Class accueil
     End Sub
 
     Private Sub btn_parametrage_facturation_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_parametrage_facturation.Click
-        Dim oFrm As New facturation
+        Dim oFrm As New facturation2
         TryCast(Me.MdiParent, parentContener).DisplayForm(oFrm)
     End Sub
 

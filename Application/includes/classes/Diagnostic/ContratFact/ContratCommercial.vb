@@ -58,7 +58,7 @@ Public Class ContratCommercial
     End Property
     Public Property TotalHT() As Decimal
         Get
-            Return Lignes.Select(Function(olg) olg.TotalHT).Sum()
+            Return Lignes.Select(Function(olg) olg.totalHT).Sum()
         End Get
         Set(ByVal value As Decimal)
         End Set

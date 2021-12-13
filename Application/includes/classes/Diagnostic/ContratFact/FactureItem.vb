@@ -15,17 +15,8 @@ Public Class FactureItem
             _idFacture = value
         End Set
     End Property
-    Private _ContratCommercialID As String
-    Public Property ContratCommercialID() As String
-        Get
-            Return _ContratCommercialID
-        End Get
-        Set(ByVal value As String)
-            _ContratCommercialID = value
-        End Set
-    End Property
     Private _Categorie As String
-    Public Property Categorie() As String
+    Public Property categorie() As String
         Get
             Return _Categorie
         End Get
@@ -34,7 +25,7 @@ Public Class FactureItem
         End Set
     End Property
     Private _Prestation As String
-    Public Property Prestation() As String
+    Public Property prestation() As String
         Get
             Return _Prestation
         End Get
@@ -43,7 +34,7 @@ Public Class FactureItem
         End Set
     End Property
     Private _Quantite As Decimal
-    Public Property Quantite() As Decimal
+    Public Property quantite() As Decimal
         Get
             Return _Quantite
         End Get
@@ -52,7 +43,7 @@ Public Class FactureItem
         End Set
     End Property
     Private _PU As Decimal
-    Public Property PU() As Decimal
+    Public Property pu() As Decimal
         Get
             Return _PU
         End Get
@@ -70,34 +61,34 @@ Public Class FactureItem
         End Set
     End Property
 
-    Public Property TotalHT() As Decimal
+    Public Property totalHT() As Decimal
         Get
-            Return PU * Quantite
+            Return pu * quantite
         End Get
         Set(ByVal value As Decimal)
         End Set
     End Property
-    Public Property TotalTVA() As Decimal
+    Public Property totalTVA() As Decimal
         Get
-            Return PU * Quantite * (txTVA / 100)
+            Return pu * quantite * (txTVA / 100)
         End Get
         Set(ByVal value As Decimal)
         End Set
     End Property
-    Public Property TotalTTC() As Decimal
+    Public Property totalTTC() As Decimal
         Get
-            Return TotalHT * (1 + (txTVA / 100))
+            Return totalHT * (1 + (txTVA / 100))
         End Get
         Set(ByVal value As Decimal)
         End Set
     End Property
-    Private _DiagId As String
-    Public Property DiagId() As String
+    Private _idDiag As String
+    Public Property idDiag() As String
         Get
-            Return _DiagId
+            Return _idDiag
         End Get
         Set(ByVal value As String)
-            _DiagId = value
+            _idDiag = value
         End Set
     End Property
 #End Region
@@ -108,12 +99,12 @@ Public Class FactureItem
     End Sub
     Public Sub New(pCategorie As String, pPrestation As String, pPU As Decimal, pQte As Decimal, ptxTva As Decimal, pDiagId As String)
         Me.New()
-        Categorie = pCategorie
-        Prestation = pPrestation
-        PU = pPU
-        Quantite = pQte
+        categorie = pCategorie
+        prestation = pPrestation
+        pu = pPU
+        quantite = pQte
         txTVA = ptxTva
-        DiagId = pDiagId
+        idDiag = pDiagId
 
     End Sub
 

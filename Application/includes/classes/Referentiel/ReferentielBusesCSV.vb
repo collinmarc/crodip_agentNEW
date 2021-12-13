@@ -47,12 +47,12 @@ Public Class ReferentielBusesCSV
                         Dim tabAngles As String() = AngleLu.Split("-")
                         For Each sAngle As String In tabAngles
 
-                            If Not String.IsNullOrEmpty(tab(0)) Then
-                                Marque = tab(0).ToUpper()
-                            End If
-                            If Not String.IsNullOrEmpty(tab(1)) Then
-                                Modele = tab(1).ToUpper()
-                            End If
+                            '                            If Not String.IsNullOrEmpty(tab(0)) Then
+                            Marque = tab(0).ToUpper()
+                            '                           End If
+                            '                          If Not String.IsNullOrEmpty(tab(1)) Then
+                            Modele = tab(1).ToUpper()
+                            '                         End If
                             If Not String.IsNullOrEmpty(tab(2)) Then
                                 Type = tab(2).ToUpper()
                             End If

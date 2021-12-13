@@ -32,7 +32,7 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents Label2 As Label
     Friend WithEvents dtpDateFact As DateTimePicker
     Friend WithEvents Label24 As Label
-    Friend WithEvents tbRefPaiement As TextBox
+    Friend WithEvents tbRefReglement As TextBox
     Friend WithEvents Label25 As Label
     Friend WithEvents ckReglee As CheckBox
     Friend WithEvents pnlListCoProp As Panel
@@ -86,13 +86,13 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents RaisonSocialeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents dgvLignes As DataGridView
     Friend WithEvents m_bsContratCommercial As BindingSource
+    Friend WithEvents btnAnnuler As Label
     Friend WithEvents CategorieDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PrestationDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents QuantiteColumn As DataGridViewTextBoxColumn
-    Friend WithEvents PUDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PuDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents TotalHTDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents columnDelete As DataGridViewImageColumn
-    Friend WithEvents btnAnnuler As Label
+    Friend WithEvents deleteColumn As DataGridViewImageColumn
     Friend WithEvents CommuneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 
 
@@ -146,11 +146,12 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.panelFooter = New System.Windows.Forms.Panel()
+        Me.btnAnnuler = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.img_Add = New System.Windows.Forms.PictureBox()
         Me.Label_diagnostic_61 = New System.Windows.Forms.Label()
         Me.listTarif_prestations = New System.Windows.Forms.ComboBox()
-        Me.tbRefPaiement = New System.Windows.Forms.TextBox()
+        Me.tbRefReglement = New System.Windows.Forms.TextBox()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.ckReglee = New System.Windows.Forms.CheckBox()
         Me.dtpDateEcheance = New System.Windows.Forms.DateTimePicker()
@@ -223,12 +224,12 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.dgvLignes = New System.Windows.Forms.DataGridView()
-        Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.deleteColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
         Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuantiteColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PUDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PuDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.m_bsFacture = New System.Windows.Forms.BindingSource(Me.components)
         Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
@@ -236,7 +237,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.RaisonSocialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.m_bsrcStructure = New System.Windows.Forms.BindingSource(Me.components)
-        Me.btnAnnuler = New System.Windows.Forms.Label()
         Me.panelFooter.SuspendLayout()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -289,7 +289,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.panelFooter.Controls.Add(Me.img_Add)
         Me.panelFooter.Controls.Add(Me.Label_diagnostic_61)
         Me.panelFooter.Controls.Add(Me.listTarif_prestations)
-        Me.panelFooter.Controls.Add(Me.tbRefPaiement)
+        Me.panelFooter.Controls.Add(Me.tbRefReglement)
         Me.panelFooter.Controls.Add(Me.Label25)
         Me.panelFooter.Controls.Add(Me.ckReglee)
         Me.panelFooter.Controls.Add(Me.dtpDateEcheance)
@@ -316,6 +316,19 @@ Public Class frmdiagnostic_facturationCoProp
         Me.panelFooter.Name = "panelFooter"
         Me.panelFooter.Size = New System.Drawing.Size(921, 168)
         Me.panelFooter.TabIndex = 2
+        '
+        'btnAnnuler
+        '
+        Me.btnAnnuler.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAnnuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAnnuler.ForeColor = System.Drawing.Color.White
+        Me.btnAnnuler.Image = Global.Crodip_agent.Resources.btn_annuler
+        Me.btnAnnuler.Location = New System.Drawing.Point(7, 135)
+        Me.btnAnnuler.Name = "btnAnnuler"
+        Me.btnAnnuler.Size = New System.Drawing.Size(128, 24)
+        Me.btnAnnuler.TabIndex = 78
+        Me.btnAnnuler.Text = "    Annuler"
+        Me.btnAnnuler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'listTarif_categories
         '
@@ -355,13 +368,13 @@ Public Class frmdiagnostic_facturationCoProp
         Me.listTarif_prestations.Size = New System.Drawing.Size(200, 21)
         Me.listTarif_prestations.TabIndex = 75
         '
-        'tbRefPaiement
+        'tbRefReglement
         '
-        Me.tbRefPaiement.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsFacture, "RefPaiement", True))
-        Me.tbRefPaiement.Location = New System.Drawing.Point(278, 104)
-        Me.tbRefPaiement.Name = "tbRefPaiement"
-        Me.tbRefPaiement.Size = New System.Drawing.Size(403, 20)
-        Me.tbRefPaiement.TabIndex = 73
+        Me.tbRefReglement.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsFacture, "RefReglement", True))
+        Me.tbRefReglement.Location = New System.Drawing.Point(278, 104)
+        Me.tbRefReglement.Name = "tbRefReglement"
+        Me.tbRefReglement.Size = New System.Drawing.Size(403, 20)
+        Me.tbRefReglement.TabIndex = 73
         '
         'Label25
         '
@@ -377,7 +390,7 @@ Public Class frmdiagnostic_facturationCoProp
         'ckReglee
         '
         Me.ckReglee.AutoSize = True
-        Me.ckReglee.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Me.m_bsFacture, "Reglee", True))
+        Me.ckReglee.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Me.m_bsFacture, "isReglee", True))
         Me.ckReglee.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ckReglee.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.ckReglee.Location = New System.Drawing.Point(13, 107)
@@ -1150,7 +1163,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.dgvLignes.AutoGenerateColumns = False
         Me.dgvLignes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvLignes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvLignes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CategorieDataGridViewTextBoxColumn, Me.PrestationDataGridViewTextBoxColumn, Me.QuantiteColumn, Me.PUDataGridViewTextBoxColumn, Me.TotalHTDataGridViewTextBoxColumn, Me.columnDelete})
+        Me.dgvLignes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CategorieDataGridViewTextBoxColumn, Me.PrestationDataGridViewTextBoxColumn, Me.QuantiteColumn, Me.PuDataGridViewTextBoxColumn, Me.TotalHTDataGridViewTextBoxColumn, Me.deleteColumn})
         Me.dgvLignes.DataSource = Me.m_bsLignes
         Me.dgvLignes.Location = New System.Drawing.Point(12, 380)
         Me.dgvLignes.Name = "dgvLignes"
@@ -1165,14 +1178,13 @@ Public Class frmdiagnostic_facturationCoProp
         Me.dgvLignes.Size = New System.Drawing.Size(904, 162)
         Me.dgvLignes.TabIndex = 1
         '
-        'columnDelete
+        'deleteColumn
         '
-        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.columnDelete.FillWeight = 20.0!
-        Me.columnDelete.HeaderText = "Suppr"
-        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
-        Me.columnDelete.Name = "columnDelete"
-        Me.columnDelete.Width = 40
+        Me.deleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.deleteColumn.HeaderText = "Supr"
+        Me.deleteColumn.Image = Global.Crodip_agent.Resources.delete
+        Me.deleteColumn.Name = "deleteColumn"
+        Me.deleteColumn.Width = 20
         '
         'm_bsDiag
         '
@@ -1180,40 +1192,35 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'CategorieDataGridViewTextBoxColumn
         '
-        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "Categorie"
-        Me.CategorieDataGridViewTextBoxColumn.FillWeight = 107.8173!
-        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "Categorie"
+        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "categorie"
+        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "Catégorie"
         Me.CategorieDataGridViewTextBoxColumn.Name = "CategorieDataGridViewTextBoxColumn"
         Me.CategorieDataGridViewTextBoxColumn.ReadOnly = True
         '
         'PrestationDataGridViewTextBoxColumn
         '
-        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "Prestation"
-        Me.PrestationDataGridViewTextBoxColumn.FillWeight = 107.8173!
+        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "prestation"
         Me.PrestationDataGridViewTextBoxColumn.HeaderText = "Prestation"
         Me.PrestationDataGridViewTextBoxColumn.Name = "PrestationDataGridViewTextBoxColumn"
         Me.PrestationDataGridViewTextBoxColumn.ReadOnly = True
         '
         'QuantiteColumn
         '
-        Me.QuantiteColumn.DataPropertyName = "Quantite"
-        Me.QuantiteColumn.FillWeight = 107.8173!
-        Me.QuantiteColumn.HeaderText = "Quantite"
+        Me.QuantiteColumn.DataPropertyName = "quantite"
+        Me.QuantiteColumn.HeaderText = "Quantité"
         Me.QuantiteColumn.Name = "QuantiteColumn"
         '
-        'PUDataGridViewTextBoxColumn
+        'PuDataGridViewTextBoxColumn
         '
-        Me.PUDataGridViewTextBoxColumn.DataPropertyName = "PU"
-        Me.PUDataGridViewTextBoxColumn.FillWeight = 107.8173!
-        Me.PUDataGridViewTextBoxColumn.HeaderText = "PU"
-        Me.PUDataGridViewTextBoxColumn.Name = "PUDataGridViewTextBoxColumn"
-        Me.PUDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PuDataGridViewTextBoxColumn.DataPropertyName = "pu"
+        Me.PuDataGridViewTextBoxColumn.HeaderText = "P.Unitaire"
+        Me.PuDataGridViewTextBoxColumn.Name = "PuDataGridViewTextBoxColumn"
+        Me.PuDataGridViewTextBoxColumn.ReadOnly = True
         '
         'TotalHTDataGridViewTextBoxColumn
         '
-        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "TotalHT"
-        Me.TotalHTDataGridViewTextBoxColumn.FillWeight = 107.8173!
-        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "TotalHT"
+        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
+        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "Total HT"
         Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
         Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
         '
@@ -1248,20 +1255,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         Me.m_bsrcStructure.DataSource = GetType(Crodip_agent.Structuree)
         '
-        'btnAnnuler
-        '
-        Me.btnAnnuler.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAnnuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAnnuler.ForeColor = System.Drawing.Color.White
-        Me.btnAnnuler.Image = Global.Crodip_agent.Resources.btn_annuler
-        Me.btnAnnuler.Location = New System.Drawing.Point(7, 135)
-        Me.btnAnnuler.Name = "btnAnnuler"
-        Me.btnAnnuler.Size = New System.Drawing.Size(128, 24)
-        Me.btnAnnuler.TabIndex = 78
-        Me.btnAnnuler.Text = "    Annuler"
-        Me.btnAnnuler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'frmdiagnostic_facturationCoProp2
+        'frmdiagnostic_facturationCoProp
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(933, 728)
@@ -1276,7 +1270,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Icon = Global.Crodip_agent.Resources.logoCRODIP
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmdiagnostic_facturationCoProp2"
+        Me.Name = "frmdiagnostic_facturationCoProp"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Crodip .::. Facturation"
@@ -1362,7 +1356,7 @@ Public Class frmdiagnostic_facturationCoProp
         m_olstExploit.ForEach(Sub(oExpl)
                                   Dim oFact As New Facture(m_oDiag.oContratCommercial, m_oStructure)
                                   oFact.oExploit = oExpl
-                                  oFact.DateFacture = DateTime.Now
+                                  oFact.dateFacture = DateTime.Now
                                   m_olstFacture.Add(oFact)
                               End Sub)
 
@@ -1458,7 +1452,7 @@ Public Class frmdiagnostic_facturationCoProp
             Dim oEtat As New EtatFacture2(pFacture, m_oAgent, m_oStructure)
 
             oEtat.genereEtat()
-            m_pathFacture = oEtat.getFileNameFullPath()
+            m_pathFacture = oEtat.getFileName()
         Catch ex As Exception
             CSDebug.dispError("diagnostic_FacturationCoPro2::createFacture_CR : " & ex.Message)
         End Try
@@ -1585,7 +1579,7 @@ Public Class frmdiagnostic_facturationCoProp
     Private Sub GenererFactures()
         For Each oFacture As Facture In m_bsFacture
             createFacture_CR(oFacture)
-            oFacture.PathPDF = m_pathFacture
+            oFacture.pathPDF = m_pathFacture
             If m_oDiag IsNot Nothing Then
                 oFacture.idDiag = m_oDiag.id
             End If
@@ -1595,7 +1589,7 @@ Public Class frmdiagnostic_facturationCoProp
 
 
     Private Sub dgvLignes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvLignes.CellContentClick
-        If e.ColumnIndex = columnDelete.Index Then
+        If e.ColumnIndex = deleteColumn.Index Then
             'Suppresssion de la ligne courante
             m_bsLignes.RemoveCurrent()
         End If
@@ -1715,9 +1709,13 @@ Public Class frmdiagnostic_facturationCoProp
         Dim ofrm As New dlgListExploitant()
         ofrm.SetContexte(m_oAgent)
         If ofrm.ShowDialog() = DialogResult.OK Then
-            m_olstExploit.Add(ofrm.oExploit)
-            m_bsExploitant.Add(ofrm.oExploit)
-            m_bsExploitant.MoveLast()
+            If m_olstExploit.Where(Function(oExploit)
+                                       Return oExploit.id = ofrm.oExploit.id
+                                   End Function).Count() = 0 Then
+                m_olstExploit.Add(ofrm.oExploit)
+                m_bsExploitant.Add(ofrm.oExploit)
+                m_bsExploitant.MoveLast()
+            End If
         End If
     End Sub
 
@@ -1735,8 +1733,8 @@ Public Class frmdiagnostic_facturationCoProp
         oFact = m_bsFacture.Current
         For Each oLgC As FactureItem In m_oDiag.oContratCommercial.Lignes
             For Each oLgF As FactureItem In oFact.Lignes
-                If oLgF.Categorie = oLgC.Categorie And oLgF.Prestation = oLgF.Prestation Then
-                    oLgF.Quantite = oLgC.Quantite * (pPourcentage / 100)
+                If oLgF.categorie = oLgC.categorie And oLgF.prestation = oLgF.prestation Then
+                    oLgF.quantite = oLgC.quantite * (pPourcentage / 100)
                 End If
             Next
         Next
@@ -1754,9 +1752,9 @@ Public Class frmdiagnostic_facturationCoProp
                 For Each oLgF As FactureItem In oFact.Lignes
                     'Si elle correspond as une ligne du contrat commercial
                     For Each oLgC As FactureItem In m_oDiag.oContratCommercial.Lignes
-                        If oLgF.Categorie = oLgC.Categorie And oLgF.Prestation = oLgF.Prestation Then
+                        If oLgF.categorie = oLgC.categorie And oLgF.prestation = oLgF.prestation Then
                             'On Totalise son totalHT
-                            TotalFacture = TotalFacture + oLgF.TotalHT
+                            TotalFacture = TotalFacture + oLgF.totalHT
                         End If
                     Next
                 Next oLgF
@@ -1792,7 +1790,7 @@ Public Class frmdiagnostic_facturationCoProp
                 oFact = New Facture(m_oStructure)
             End If
             oFact.oExploit = oExploit
-            oFact.DateFacture = DateTime.Now
+            oFact.dateFacture = DateTime.Now
             m_olstFacture.Add(oFact)
             m_bsFacture.Add(oFact)
             m_bsFacture.MoveLast()

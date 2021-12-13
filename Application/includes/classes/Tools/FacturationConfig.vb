@@ -75,7 +75,42 @@ Public Class FacturationConfig
         End Set
     End Property
     '</root>
-
+    Private _TxTVA As String
+    Public Property txTVA() As String
+        Get
+            Return _TxTVA
+        End Get
+        Set(ByVal value As String)
+            _TxTVA = value
+        End Set
+    End Property
+    Private _header As String
+    Public Property header() As String
+        Get
+            Return _header
+        End Get
+        Set(ByVal value As String)
+            _header = value
+        End Set
+    End Property
+    Private _Coordonneesbancaires As String
+    Public Property coordonneesBancaires() As String
+        Get
+            Return _Coordonneesbancaires
+        End Get
+        Set(ByVal value As String)
+            _Coordonneesbancaires = value
+        End Set
+    End Property
+    Private _ModeReglement As String
+    Public Property modeReglement() As String
+        Get
+            Return _ModeReglement
+        End Get
+        Set(ByVal value As String)
+            _ModeReglement = value
+        End Set
+    End Property
     Public Sub New()
         isActive = False
         siren = ""
@@ -84,6 +119,7 @@ Public Class FacturationConfig
         Me.logo = ""
         Me.logo_tn = ""
         Me.footer = ""
+        Me.txTVA = ""
     End Sub
 
     Public Shared Function WriteXml() As Boolean

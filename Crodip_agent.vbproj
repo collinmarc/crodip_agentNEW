@@ -300,6 +300,12 @@
     <Compile Include="Application\exploitant\dlgListExploitant.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\exploitant\pulverisateur\dlgGestionCoPro.Designer.vb">
+      <DependentUpon>dlgGestionCoPro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\exploitant\pulverisateur\dlgGestionCoPro.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\includes\classes\Agent\Materiel\Alertes.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\dsFacture.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -444,12 +450,6 @@
       <DependentUpon>diagnostic_dlghelp571.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\diagnostic\diagnostic_dlghelp571.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\diagnostic\frmdiagnostic_facturationCoPropADEL.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\diagnostic\diagnostic_ContratCommercialADEL.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\Diagnostic_dlghelp552.Designer.vb">
@@ -2112,6 +2112,9 @@
     <EmbeddedResource Include="Application\exploitant\dlgListExploitant.resx">
       <DependentUpon>dlgListExploitant.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\exploitant\pulverisateur\dlgGestionCoPro.resx">
+      <DependentUpon>dlgGestionCoPro.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\parametrage\facturation2.resx">
       <DependentUpon>facturation2.vb</DependentUpon>
     </EmbeddedResource>
@@ -2213,12 +2216,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp571.resx">
       <DependentUpon>diagnostic_dlghelp571.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_facturationCoPropADEL.resx">
-      <DependentUpon>frmdiagnostic_facturationCoPropADEL.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercialADEL.resx">
-      <DependentUpon>diagnostic_ContratCommercialADEL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp551.resx">
       <DependentUpon>diagnostic_dlghelp551.vb</DependentUpon>

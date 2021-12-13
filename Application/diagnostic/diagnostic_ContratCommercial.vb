@@ -794,7 +794,7 @@ Public Class diagnostic_ContratCommercial
 
             ' On rempli la liste des prestations
             For Each oLig As FactureItem In m_bsLignes
-                oEtat.AddPresta(oLig.Categorie & " " & oLig.Prestation, oLig.PU, oLig.Quantite, oLig.TotalTVA, oLig.TotalHT, oLig.TotalTTC)
+                oEtat.AddPresta(oLig.categorie & " " & oLig.prestation, oLig.pu, oLig.quantite, oLig.totalTVA, oLig.totalHT, oLig.totalTTC)
             Next
 
             oEtat.genereEtat()

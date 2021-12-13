@@ -196,15 +196,6 @@ Public Class Structuree
             _ModeReglement = value
         End Set
     End Property
-    Private _TxTVA As Decimal
-    Public Property TxTVA() As Decimal
-        Get
-            Return _TxTVA
-        End Get
-        Set(ByVal value As Decimal)
-            _TxTVA = value
-        End Set
-    End Property
     Private _SIREN As String
     Public Property SIREN() As String
         Get
@@ -226,7 +217,6 @@ Public Class Structuree
             End Using
         End Set
     End Property
-    Private _TVA As String
     Public Property TVA() As String
         Get
             Dim sReturn As String = ""
@@ -247,7 +237,22 @@ Public Class Structuree
             End Using
         End Set
     End Property
-    Private _RCS As String
+    Public Property txTVA() As String
+        Get
+            Dim sReturn As String = ""
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/txTva")
+            If x IsNot Nothing Then
+                sReturn = x.InnerText
+            End If
+            Return sReturn
+        End Get
+        Set(ByVal value As String)
+            Using FACTURATION_XML_CONFIG As New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+                FACTURATION_XML_CONFIG.setElementValue("/root/txTva", value)
+            End Using
+        End Set
+    End Property
     Public Property RCS() As String
         Get
             Dim sReturn As String = ""
@@ -268,16 +273,22 @@ Public Class Structuree
             End Using
         End Set
     End Property
-    Private _CoordBank As String
-    Public Property CoordBank() As String
+    Public Property CoordBancaires() As String
         Get
-            Return _CoordBank
+            Dim sReturn As String = ""
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/coordonneesBancaires")
+            If x IsNot Nothing Then
+                sReturn = x.InnerText
+            End If
+            Return sReturn
         End Get
         Set(ByVal value As String)
-            _CoordBank = value
+            Using FACTURATION_XML_CONFIG As New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+                FACTURATION_XML_CONFIG.setElementValue("/root/coordonneesBancaires", value)
+            End Using
         End Set
     End Property
-    Private _PiedPage As String
     Public Property PiedPage() As String
         Get
             Dim sReturn As String = ""
@@ -294,13 +305,20 @@ Public Class Structuree
             End Using
         End Set
     End Property
-    Private _Entete As String
     Public Property Entete() As String
         Get
-            Return _Entete
+            Dim sReturn As String = ""
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/header")
+            If x IsNot Nothing Then
+                sReturn = x.InnerText
+            End If
+            Return sReturn
         End Get
         Set(ByVal value As String)
-            _Entete = value
+            Using FACTURATION_XML_CONFIG As New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+                FACTURATION_XML_CONFIG.setElementValue("/root/header", value)
+            End Using
         End Set
     End Property
     Public Property RacineNumFact() As String
@@ -331,6 +349,21 @@ Public Class Structuree
         Set(ByVal value As String)
             Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
             FACTURATION_XML_CONFIG.setElementValue("/root/derniernumero", value)
+        End Set
+    End Property
+    Public Property isFacturationActive() As Boolean
+        Get
+            Dim sReturn As Boolean = False
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/isActive")
+            If x IsNot Nothing Then
+                sReturn = CBool(x.InnerText)
+            End If
+            Return sReturn
+        End Get
+        Set(ByVal value As Boolean)
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+            FACTURATION_XML_CONFIG.setElementValue("/root/isActive", value.ToString())
         End Set
     End Property
 #End Region

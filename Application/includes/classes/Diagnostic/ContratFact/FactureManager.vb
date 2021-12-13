@@ -1,4 +1,5 @@
-﻿Public Class FactureManager
+﻿Imports System.Collections.Generic
+Public Class FactureManager
 
     Public Shared Function Exists(pFactureID As String) As Boolean
         Dim bReturn As Boolean
@@ -93,12 +94,12 @@
 
 
             oCmd.Parameters.AddWithValue("?_1", pfacture.idStructure)
-            oCmd.Parameters.AddWithValue("?_2", pfacture.DateFacture)
-            oCmd.Parameters.AddWithValue("?_3", pfacture.DateEcheance)
+            oCmd.Parameters.AddWithValue("?_2", pfacture.dateFacture)
+            oCmd.Parameters.AddWithValue("?_3", pfacture.dateEcheance)
             oCmd.Parameters.AddWithValue("?_4", pfacture.Commentaire)
-            oCmd.Parameters.AddWithValue("?_5", pfacture.Modereglement)
-            oCmd.Parameters.AddWithValue("?_6", pfacture.Reglee)
-            oCmd.Parameters.AddWithValue("?_7", pfacture.RefPaiement)
+            oCmd.Parameters.AddWithValue("?_5", pfacture.modeReglement)
+            oCmd.Parameters.AddWithValue("?_6", pfacture.isReglee)
+            oCmd.Parameters.AddWithValue("?_7", pfacture.refReglement)
             oCmd.Parameters.Add("?_8", OleDb.OleDbType.Currency).Value = pfacture.TotalHT
             oCmd.Parameters.Add("?_9", OleDb.OleDbType.Currency).Value = pfacture.TotalTVA
             oCmd.Parameters.Add("?_10", OleDb.OleDbType.Currency).Value = pfacture.TotalTTC
@@ -114,7 +115,7 @@
             oCmd.Parameters.AddWithValue("?_20", pfacture.oExploit.telephoneFixe)
             oCmd.Parameters.AddWithValue("?_21", pfacture.oExploit.telephonePortable)
             oCmd.Parameters.AddWithValue("?_22", pfacture.oExploit.eMail)
-            oCmd.Parameters.AddWithValue("?_23", pfacture.PathPDF)
+            oCmd.Parameters.AddWithValue("?_23", pfacture.pathPDF)
             oCmd.Parameters.AddWithValue("?_24", CSDate.mysql2access(pfacture.dateModificationAgent))
             oCmd.Parameters.AddWithValue("?_25", CSDate.mysql2access(pfacture.dateModificationCrodip))
             oCmd.Parameters.AddWithValue("?_26", pfacture.idFacture)
@@ -195,12 +196,12 @@
 
 
             oCmd.Parameters.AddWithValue("?_1", pfacture.idStructure)
-            oCmd.Parameters.AddWithValue("?_2", CSDate.mysql2access(pfacture.DateFacture))
-            oCmd.Parameters.AddWithValue("?_3", CSDate.mysql2access(pfacture.DateEcheance))
+            oCmd.Parameters.AddWithValue("?_2", CSDate.mysql2access(pfacture.dateFacture))
+            oCmd.Parameters.AddWithValue("?_3", CSDate.mysql2access(pfacture.dateEcheance))
             oCmd.Parameters.AddWithValue("?_4", pfacture.Commentaire)
-            oCmd.Parameters.AddWithValue("?_5", pfacture.Modereglement)
-            oCmd.Parameters.AddWithValue("?_6", pfacture.Reglee)
-            oCmd.Parameters.AddWithValue("?_7", pfacture.RefPaiement)
+            oCmd.Parameters.AddWithValue("?_5", pfacture.modeReglement)
+            oCmd.Parameters.AddWithValue("?_6", pfacture.isReglee)
+            oCmd.Parameters.AddWithValue("?_7", pfacture.refReglement)
             oCmd.Parameters.Add("?_8", OleDb.OleDbType.Currency).Value = pfacture.TotalHT
             oCmd.Parameters.Add("?_9", OleDb.OleDbType.Currency).Value = pfacture.TotalTVA
             oCmd.Parameters.Add("?_10", OleDb.OleDbType.Currency).Value = pfacture.TotalTTC
@@ -216,7 +217,7 @@
             oCmd.Parameters.AddWithValue("?_20", pfacture.oExploit.telephoneFixe)
             oCmd.Parameters.AddWithValue("?_21", pfacture.oExploit.telephonePortable)
             oCmd.Parameters.AddWithValue("?_22", pfacture.oExploit.eMail)
-            oCmd.Parameters.AddWithValue("?_23", pfacture.PathPDF)
+            oCmd.Parameters.AddWithValue("?_23", pfacture.pathPDF)
             oCmd.Parameters.AddWithValue("?_24", CSDate.mysql2access(pfacture.dateModificationAgent))
             oCmd.Parameters.AddWithValue("?_25", CSDate.mysql2access(pfacture.dateModificationCrodip))
             oCmd.Parameters.AddWithValue("?_26", pfacture.idFacture)
@@ -254,8 +255,9 @@
                 Next
 
             End While
+            oDR.Close()
             oReturn.Lignes.AddRange(FactureItemManager.getFactureById(oReturn.idFacture))
-
+            oCSDB.free()
 
         Catch ex As Exception
             CSDebug.dispError("FactureManager.getFactureById ERR", ex)
@@ -264,6 +266,40 @@
         Return oReturn
     End Function
 
+    Public Shared Function getFacturesByDiagId(pDiagId As String) As List(Of Facture)
+        Debug.Assert(Not String.IsNullOrEmpty(pDiagId), "PDiagId must be set")
+
+        Dim oReturn As New List(Of Facture)
+        Try
+            Dim oCSDB As New CSDb(True)
+            Dim oCmd As OleDb.OleDbCommand
+            Dim oDR As OleDb.OleDbDataReader
+            oCmd = oCSDB.getConnection().CreateCommand
+            oCmd.CommandText = "SELECT * FROM Facture where idDiag = ?"
+            oCmd.Parameters.AddWithValue("?", pDiagId)
+            oDR = oCmd.ExecuteReader()
+            While oDR.Read()
+                Dim oFacture As New Facture()
+                Dim nChamp As Integer
+                For nChamp = 0 To oDR.FieldCount() - 1
+                    If Not oDR.IsDBNull(nChamp) Then
+                        Fill(oFacture, oDR.GetName(nChamp), oDR.GetValue(nChamp))
+                    End If
+                Next
+                oFacture.Lignes.AddRange(FactureItemManager.getFactureById(oFacture.idFacture))
+                oReturn.Add(oFacture)
+
+            End While
+            oDR.Close()
+            oCSDB.free()
+
+
+        Catch ex As Exception
+            CSDebug.dispError("FactureManager.getFactureById ERR", ex)
+            oReturn = New List(Of Facture)()
+        End Try
+        Return oReturn
+    End Function
     Public Shared Sub Fill(pFact As Facture, pNomchamp As String, pValue As Object)
         Try
 
@@ -271,17 +307,17 @@
                 Case Trim("idStructure").ToUpper()
                     pFact.idStructure = pValue.ToString()
                 Case Trim("datefacture").ToUpper()
-                    pFact.DateFacture = CDate(pValue)
+                    pFact.dateFacture = CDate(pValue)
                 Case Trim("dateecheance").ToUpper()
-                    pFact.DateEcheance = CDate(pValue)
+                    pFact.dateEcheance = CDate(pValue)
                 Case Trim("commentaire").ToUpper()
                     pFact.Commentaire = pValue
                 Case Trim("modeReglement").ToUpper()
-                    pFact.Modereglement = pValue
+                    pFact.modeReglement = pValue
                 Case Trim("isreglee").ToUpper()
-                    pFact.Reglee = pValue
+                    pFact.isReglee = pValue
                 Case Trim("refreglement").ToUpper()
-                    pFact.RefPaiement = pValue
+                    pFact.refReglement = pValue
                 Case Trim("totalHt").ToUpper()
                     pFact.TotalHT = pValue
                 Case Trim("totalTVA").ToUpper()
@@ -313,7 +349,7 @@
                 Case Trim("emailClient").ToUpper()
                     pFact.oExploit.eMail = pValue
                 Case Trim("PATHPDF").ToUpper()
-                    pFact.PathPDF = pValue
+                    pFact.pathPDF = pValue
                 Case Trim("dateModificationAgent").ToUpper()
                     pFact.dateModificationAgent = pValue
                 Case Trim("dateModificationCrodip").ToUpper()

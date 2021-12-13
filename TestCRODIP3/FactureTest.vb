@@ -9,27 +9,27 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         Dim oFacture = New Facture(m_oStructure)
         oFacture.idFacture = "FACT1"
-        oFacture.DateFacture = CDate("06/02/1964")
+        oFacture.dateFacture = CDate("06/02/1964")
         oFacture.TotalHT = 125.5
-        oFacture.PathPDF = "public/exports/FACTURE/20211206055027_MCII11_TEST20191014-3_FACT.pdf"
+        oFacture.pathPDF = "public/exports/FACTURE/20211206055027_MCII11_TEST20191014-3_FACT.pdf"
         Assert.IsTrue(FactureManager.save(oFacture))
 
         oFacture = FactureManager.getFactureById("FACT1")
         Assert.IsNotNull(oFacture)
         Assert.AreEqual("FACT1", oFacture.idFacture)
-        Assert.AreEqual(CDate("06/02/1964"), oFacture.DateFacture)
+        Assert.AreEqual(CDate("06/02/1964"), oFacture.dateFacture)
         Assert.AreEqual(Year(DateTime.Now), Year(oFacture.dateModificationAgent))
         Assert.AreEqual(125.5D, oFacture.TotalHT)
-        Assert.AreEqual("public/exports/FACTURE/20211206055027_MCII11_TEST20191014-3_FACT.pdf", oFacture.PathPDF)
+        Assert.AreEqual("public/exports/FACTURE/20211206055027_MCII11_TEST20191014-3_FACT.pdf", oFacture.pathPDF)
 
-        oFacture.DateEcheance = CDate("03/12/2021")
-        oFacture.PathPDF = "FACTURE/TEST1.PDF"
+        oFacture.dateEcheance = CDate("03/12/2021")
+        oFacture.pathPDF = "FACTURE/TEST1.PDF"
         Assert.IsTrue(FactureManager.save(oFacture))
 
         oFacture = FactureManager.getFactureById("FACT1")
         Assert.IsNotNull(oFacture)
-        Assert.AreEqual(CDate("03/12/2021"), oFacture.DateEcheance)
-        Assert.AreEqual("FACTURE/TEST1.PDF", oFacture.PathPDF)
+        Assert.AreEqual(CDate("03/12/2021"), oFacture.dateEcheance)
+        Assert.AreEqual("FACTURE/TEST1.PDF", oFacture.pathPDF)
 
         oFacture.dateModificationAgent = CDate("01/01/1964")
         FactureManager.save(oFacture, True)
@@ -44,7 +44,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         Dim oFacture = New Facture(m_oStructure)
         oFacture.idFacture = "FACT1"
-        oFacture.DateFacture = CDate("06/02/1964")
+        oFacture.dateFacture = CDate("06/02/1964")
         Assert.IsTrue(FactureManager.save(oFacture))
 
 
@@ -60,35 +60,35 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.AreEqual(2, oFacture.Lignes.Count)
 
         olg = oFacture.Lignes(0)
-        Assert.AreEqual("MaCat", olg.Categorie)
-        Assert.AreEqual("MaPres", olg.Prestation)
-        Assert.AreEqual(50D, olg.PU)
-        Assert.AreEqual(0.5D, olg.Quantite)
+        Assert.AreEqual("MaCat", olg.categorie)
+        Assert.AreEqual("MaPres", olg.prestation)
+        Assert.AreEqual(50D, olg.pu)
+        Assert.AreEqual(0.5D, olg.quantite)
         Assert.AreEqual(oFacture.TxTVA, olg.txTVA)
         Assert.AreEqual(oFacture.idFacture, olg.idFacture)
         Assert.AreEqual(1, olg.nFactureItem)
 
         olg = oFacture.Lignes(1)
-        Assert.AreEqual("MaCat2", olg.Categorie)
-        Assert.AreEqual("MaPres2", olg.Prestation)
-        Assert.AreEqual(60D, olg.PU)
-        Assert.AreEqual(2D, olg.Quantite)
+        Assert.AreEqual("MaCat2", olg.categorie)
+        Assert.AreEqual("MaPres2", olg.prestation)
+        Assert.AreEqual(60D, olg.pu)
+        Assert.AreEqual(2D, olg.quantite)
         Assert.AreEqual(oFacture.TxTVA, olg.txTVA)
         Assert.AreEqual(oFacture.idFacture, olg.idFacture)
         Assert.AreEqual(2, olg.nFactureItem)
 
 
-        oFacture.Lignes(0).Quantite = 10
-        oFacture.Lignes(1).Quantite = 20
+        oFacture.Lignes(0).quantite = 10
+        oFacture.Lignes(1).quantite = 20
 
         Assert.IsTrue(FactureManager.save(oFacture))
         oFacture = FactureManager.getFactureById("FACT1")
         Assert.AreEqual(2, oFacture.Lignes.Count)
         olg = oFacture.Lignes(0)
-        Assert.AreEqual(10D, olg.Quantite)
+        Assert.AreEqual(10D, olg.quantite)
 
         olg = oFacture.Lignes(1)
-        Assert.AreEqual(20D, olg.Quantite)
+        Assert.AreEqual(20D, olg.quantite)
 
 
     End Sub

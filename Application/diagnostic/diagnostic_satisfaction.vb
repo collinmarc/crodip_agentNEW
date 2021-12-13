@@ -8,6 +8,7 @@ Public Class diagnostic_satisfaction
 #Region " Variables "
 
     Private m_Diagnostic As Diagnostic
+    Private m_Agent As Agent
     Dim isPrinted As Boolean = False
     Friend WithEvents btn_ContreVisite As System.Windows.Forms.Label
     Friend WithEvents info_typeControle_complet As System.Windows.Forms.CheckBox
@@ -21,7 +22,7 @@ Public Class diagnostic_satisfaction
 #Region " Code généré par le Concepteur Windows Form "
 
 
-    Public Sub New(pDiag As Diagnostic)
+    Public Sub New()
         MyBase.New()
 
         'Cet appel est requis par le Concepteur Windows Form.
@@ -30,7 +31,12 @@ Public Class diagnostic_satisfaction
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         '        Me.objInfos = _objInfos
 
+
+
+    End Sub
+    Public Sub Setcontext(pDiag As Diagnostic, pAgent As Agent)
         m_Diagnostic = pDiag
+        m_Agent = pAgent
 
         info_raisonSociale.Text = m_Diagnostic.proprietaireRaisonSociale
         info_nomPrenom.Text = m_Diagnostic.proprietaireNom & " " & m_Diagnostic.proprietairePrenom
@@ -64,6 +70,7 @@ Public Class diagnostic_satisfaction
             btn_ContreVisite.Visible = False
 
         End If
+
 
     End Sub
     'La méthode substituée Dispose du formulaire pour nettoyer la liste des composants.
@@ -683,18 +690,8 @@ Public Class diagnostic_satisfaction
     Public Sub GenereDocumentCoPropriete()
         Dim lstCoProp As List(Of String)
         Dim ofrm As New FrmAddCoProp()
+        ofrm.Setcontext(m_Diagnostic, m_Agent)
         ofrm.ShowDialog(Me)
-        lstCoProp = ofrm.getListeCoProp()
-
-        Dim oEtat As New EtatDocumentCoPropriete(m_Diagnostic)
-        For Each s As String In lstCoProp
-
-            oEtat.AddCoProprietaire(s)
-        Next
-
-        If oEtat.GenereEtat() Then
-            oEtat.Open()
-        End If
 
     End Sub
 
