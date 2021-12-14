@@ -112,10 +112,12 @@ Public Class DiagnosticItem
 
 
     Sub New()
-
+        Me.id = ""
+        dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+        dateModificationCrodip = CSDate.ToCRODIPString(DateTime.MinValue).ToString
     End Sub
     Public Sub New(ByVal idDiagnostic As String, ByVal pItem As String, ByVal pValue As String, Optional ByVal pCause As String = "", Optional ByVal pCodeEtat As String = "")
-        Me.id = ""
+        Me.New()
         Me.idDiagnostic = idDiagnostic
         Me.idItem = pItem
         Me.itemValue = pValue
@@ -128,6 +130,7 @@ Public Class DiagnosticItem
     ''' </summary>
     ''' <param name="pCtrl"></param>
     Public Sub New(pCtrl As CRODIP_ControlLibrary.CtrlDiag2)
+        Me.New()
         Dim answ_GroupeId As String
         Dim answ_titleId As String
         Dim answ_groupBoxId As String

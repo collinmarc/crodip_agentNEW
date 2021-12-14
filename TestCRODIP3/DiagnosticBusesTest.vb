@@ -567,4 +567,58 @@ Public Class DiagnosticBusesTest
 
 
     End Sub
+
+    <TestMethod()>
+    Public Sub TST_LOAD_SAVE_200_DETAIL()
+        Dim odiag As Diagnostic
+
+        Dim oDiagBuse As DiagnosticBuses
+
+        odiag = New Diagnostic()
+        odiag.id = "99-99"
+        oDiagBuse = New DiagnosticBuses
+        odiag.diagnosticBusesList.Liste.Add(oDiagBuse)
+
+        oDiagBuse.marque = "marque"
+        oDiagBuse.nombre = "nombre"
+        oDiagBuse.genre = "genre"
+        oDiagBuse.calibre = "calibre"
+        oDiagBuse.debitMoyen = "debitMoyen"
+        oDiagBuse.debitNominal = "debitNominal"
+        oDiagBuse.idLot = "1"
+        oDiagBuse.ecartTolere = "ecartTolere"
+
+        Dim oDiagBuseDetail As DiagnosticBusesDetail
+        For n As Integer = 1 To 200
+            oDiagBuseDetail = New DiagnosticBusesDetail()
+            oDiagBuseDetail.idBuse = n
+            oDiagBuseDetail.idLot = "1"
+            oDiagBuseDetail.debit = "1,6"
+            oDiagBuseDetail.ecart = "0.67"
+            oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
+        Next
+
+        DiagnosticManager.save(odiag)
+
+        odiag = DiagnosticManager.getDiagnosticById("99-99")
+        Assert.AreEqual(200, odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste.Count)
+
+        oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste(0)
+        Assert.AreEqual(oDiagBuseDetail.idDiagnostic, oDiagBuse.idDiagnostic)
+        Assert.AreEqual(oDiagBuseDetail.idBuse, 1)
+        Assert.AreEqual(oDiagBuseDetail.idLot, "1")
+        Assert.AreEqual(oDiagBuseDetail.debit, "1,6")
+        Assert.AreEqual(oDiagBuseDetail.ecart, "0.67")
+
+        oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste(1)
+        Assert.AreEqual(oDiagBuseDetail.idDiagnostic, oDiagBuse.idDiagnostic)
+        Assert.AreEqual(oDiagBuseDetail.idBuse, 2)
+        Assert.AreEqual(oDiagBuseDetail.idLot, "1")
+        Assert.AreEqual(oDiagBuseDetail.debit, "1,6")
+        Assert.AreEqual(oDiagBuseDetail.ecart, "0.67")
+
+
+
+    End Sub
+
 End Class

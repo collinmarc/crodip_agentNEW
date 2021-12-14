@@ -955,6 +955,7 @@ Public Class DiagnosticManager
                     createDiagnostic(objDiagnostic.id)
                     bcreationDiag = True
                 End If
+                CSDebug.dispInfo("DiagnosticManager Save : Creation")
 
                 Dim bddCommande As OleDb.OleDbCommand
                 ' On test si la connexion est déjà ouverte ou non
@@ -1300,14 +1301,17 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , Diagnostic.isGratuit=" & objDiagnostic.isGratuit & ""
 
 
+                CSDebug.dispInfo("DiagnosticManager Save : Avant RQ1")
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
                     'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
                     bddCommande.ExecuteNonQuery()
+                CSDebug.dispInfo("DiagnosticManager Save : Avant RQ2")
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE Diagnostic.id='" & objDiagnostic.id & "'"
                 bddCommande.Parameters.Add("?_1", OleDb.OleDbType.Currency).Value = objDiagnostic.TotalHT
                 bddCommande.Parameters.Add("?_2", OleDb.OleDbType.Currency).Value = objDiagnostic.TotalTTC
                 bddCommande.ExecuteNonQuery()
+                CSDebug.dispInfo("DiagnosticManager Save : fin RQ")
 
                 Dim oParam As OleDbParameter
                 If objDiagnostic.SignRIAgent IsNot Nothing Then
@@ -1349,6 +1353,7 @@ Public Class DiagnosticManager
                     bddCommande.ExecuteNonQuery()
                 End If
 
+                CSDebug.dispInfo("DiagnosticManager Save : Fin Signature")
 
                 CSDb.free()
 
@@ -1356,10 +1361,11 @@ Public Class DiagnosticManager
                     '                CSDebug.dispInfo("Sauvegarde des DiagItem")
 
                     SaveDiagItems(objDiagnostic, bcreationDiag)
+                CSDebug.dispInfo("DiagnosticManager Save : SaveDiagItems")
 
 
-                    'Sauvegarde des Help 551 (Si on a des valeurs pertinentes)
-                    If objDiagnostic.diagnosticHelp551.HasValue() Then
+                'Sauvegarde des Help 551 (Si on a des valeurs pertinentes)
+                If objDiagnostic.diagnosticHelp551.HasValue() Then
                         objDiagnostic.diagnosticHelp551.idDiag = objDiagnostic.id
                         DiagnosticHelp551Manager.save(objDiagnostic.diagnosticHelp551, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
                     End If
@@ -1413,8 +1419,9 @@ Public Class DiagnosticManager
                         objDiagnostic.diagnosticHelp12123.idDiag = objDiagnostic.id
                         DiagnosticHelp12123Manager.save(objDiagnostic.diagnosticHelp12123, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
                     End If
-                    'Sauvegarde des InfosComplementaires (Si on a des valeurs pertinentes)
-                    If objDiagnostic.diagnosticInfosComplementaires.hasValue() Then
+                CSDebug.dispInfo("DiagnosticManager Save : SaveHelps")
+                'Sauvegarde des InfosComplementaires (Si on a des valeurs pertinentes)
+                If objDiagnostic.diagnosticInfosComplementaires.hasValue() Then
                         objDiagnostic.diagnosticInfosComplementaires.idDiag = objDiagnostic.id
                         DiagnosticInfosComplementaireManager.save(objDiagnostic.diagnosticInfosComplementaires, objDiagnostic.organismePresId, objDiagnostic.inspecteurId)
                     End If
@@ -1431,10 +1438,11 @@ Public Class DiagnosticManager
                             Next
                         End If
                     End If
+                CSDebug.dispInfo("DiagnosticManager Save : SaveBuses")
 
-                    ' On enregistre les mano 5.4.2
-                    'CSDebug.dispInfo("Sauvegarde des Mano542")
-                    If Not objDiagnostic.diagnosticMano542List Is Nothing Then
+                ' On enregistre les mano 5.4.2
+                'CSDebug.dispInfo("Sauvegarde des Mano542")
+                If Not objDiagnostic.diagnosticMano542List Is Nothing Then
                         If Not objDiagnostic.diagnosticMano542List.Liste Is Nothing Then
                             For Each tmpItemCheck As DiagnosticMano542 In objDiagnostic.diagnosticMano542List.Liste
                                 If Not tmpItemCheck Is Nothing Then
@@ -1444,10 +1452,11 @@ Public Class DiagnosticManager
                             Next
                         End If
                     End If
+                CSDebug.dispInfo("DiagnosticManager Save : Save542")
 
-                    ' On enregistre les tronçons 8.3.3
-                    'CSDebug.dispInfo("Sauvegarde des Tronçons833")
-                    If Not objDiagnostic.diagnosticTroncons833 Is Nothing Then
+                ' On enregistre les tronçons 8.3.3
+                'CSDebug.dispInfo("Sauvegarde des Tronçons833")
+                If Not objDiagnostic.diagnosticTroncons833 Is Nothing Then
                         If Not objDiagnostic.diagnosticTroncons833.Liste Is Nothing Then
                             For Each tmpItemCheck As DiagnosticTroncons833 In objDiagnostic.diagnosticTroncons833.Liste
                                 If Not tmpItemCheck Is Nothing Then
@@ -1464,9 +1473,11 @@ Public Class DiagnosticManager
                             Next
                         End If
                     End If
+                CSDebug.dispInfo("DiagnosticManager Save : Save833")
 
-                End If
+            End If
                 bReturn = True
+            CSDebug.dispInfo("DiagnosticManager Save : Fin")
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticManager(" & objDiagnostic.id & ")::save : " & ex.Message.ToString)
             bReturn = False
@@ -1478,24 +1489,47 @@ Public Class DiagnosticManager
         Dim bReturn As Boolean
         Try
             Dim oCsdb As New CSDb(True)
+            Dim oCmd As OleDbCommand
+            oCmd = oCsdb.getConnection.CreateCommand()
             Dim tmpNewDiagItemId As String = ""
             'Pour accellérer la sauvegarde en création on récupère le nouvel id des diagItem et on l'incrémentera au fur et à mesure
-            If bcreationDiag Then
-                tmpNewDiagItemId = DiagnosticItemManager.getNewId(pDiagnostic.organismePresId, pDiagnostic.inspecteurId)
-            End If
+            tmpNewDiagItemId = pDiagnostic.organismePresId & "-" & pDiagnostic.inspecteurId & "-1"
+            oCmd.CommandText = "DELETE FROM diagnosticItem where idDiagnostic = '" & pDiagnostic.id & "'"
+            oCmd.ExecuteNonQuery()
+
+
+            oCmd.CommandText = "INSERT INTO diagnosticItem ("
+            oCmd.CommandText = oCmd.CommandText & "id ,  "
+            oCmd.CommandText = oCmd.CommandText & "idDiagnostic ,  "
+            oCmd.CommandText = oCmd.CommandText & "idItem ,  "
+            oCmd.CommandText = oCmd.CommandText & "itemValue ,  "
+            oCmd.CommandText = oCmd.CommandText & "itemCodeEtat ,  "
+            oCmd.CommandText = oCmd.CommandText & "cause ,  "
+            oCmd.CommandText = oCmd.CommandText & "dateModificationAgent ,  "
+            oCmd.CommandText = oCmd.CommandText & "dateModificationCrodip "
+            oCmd.CommandText = oCmd.CommandText & " ) VALUES ( "
+            oCmd.CommandText = oCmd.CommandText & " ?, ?,?,?,?,?,?,?"
+            oCmd.CommandText = oCmd.CommandText & " ) "
+            oCmd.Prepare()
             If Not pDiagnostic.diagnosticItemsLst Is Nothing Then
                 If Not pDiagnostic.diagnosticItemsLst.items Is Nothing Then
-                    For Each tmpItemCheck As DiagnosticItem In pDiagnostic.diagnosticItemsLst.items
-                        If Not tmpItemCheck Is Nothing Then
-                            tmpItemCheck.idDiagnostic = pDiagnostic.id
-                            If bcreationDiag Then
-                                tmpItemCheck.id = tmpNewDiagItemId
-                                DiagnosticItemManager.create(tmpItemCheck)
-                                tmpNewDiagItemId = DiagnosticItemManager.incId(tmpNewDiagItemId)
-                            Else
-                                'Si on est en upgrade de diag il ne faut pas forcement créer des DiagItem
-                                DiagnosticItemManager.save(oCsdb, tmpItemCheck, bsynchro)
-                            End If
+                    For Each oDiagItem As DiagnosticItem In pDiagnostic.diagnosticItemsLst.items
+                        If Not oDiagItem Is Nothing Then
+                            oDiagItem.idDiagnostic = pDiagnostic.id
+                            oDiagItem.id = tmpNewDiagItemId
+                            oCmd.Parameters.Clear()
+                            oCmd.Parameters.AddWithValue("?", oDiagItem.id)
+                            oCmd.Parameters.AddWithValue("?", oDiagItem.idDiagnostic)
+                            oCmd.Parameters.AddWithValue("?", oDiagItem.idItem)
+                            oCmd.Parameters.AddWithValue("?", oDiagItem.itemValue)
+                            oCmd.Parameters.AddWithValue("?", oDiagItem.itemCodeEtat)
+                            oCmd.Parameters.AddWithValue("?", oDiagItem.cause)
+                            oCmd.Parameters.AddWithValue("?", oDiagItem.dateModificationAgent)
+                            oCmd.Parameters.AddWithValue("?", oDiagItem.dateModificationCrodip)
+
+                            oCmd.ExecuteNonQuery()
+
+                            tmpNewDiagItemId = DiagnosticItemManager.incId(tmpNewDiagItemId)
                         End If
                     Next
                 End If

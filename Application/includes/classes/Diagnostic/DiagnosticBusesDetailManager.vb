@@ -90,23 +90,14 @@ Public Class DiagnosticBusesDetailManager
         Try
             Dim oCSDb As New CSDb(True)
             Dim bddCommande As New OleDb.OleDbCommand
-            Dim oDR As OleDb.OleDbDataReader
             Dim nEnr As Integer
             ' On test si la connexion est déjà ouverte ou non
             bddCommande.Connection = oCSDb.getConnection()
 
+            bddCommande.CommandText = "DELETE FROM DiagnosticBusesDetail Where idDiagnostic = '" & objDiagnosticBusesDetail.idDiagnostic & "'"
             'Test de l'existence de l'élement
             bddCommande.CommandText = "SELECT count(*) FROM DiagnosticBusesDetail WHERE id = " & objDiagnosticBusesDetail.id & " and idDiagnostic = '" & objDiagnosticBusesDetail.idDiagnostic & "'"
-            oDR = bddCommande.ExecuteReader()
-            If oDR.HasRows Then
-                oDR.Read()
-                Try
-                    nEnr = CType(oDR.GetValue(0), Integer)
-                Catch ex As Exception
-                    nEnr = 0
-                End Try
-            End If
-            oDR.Close()
+            nEnr = bddCommande.ExecuteScalar()
             If nEnr = 0 Then
                 ' Initialisation de la requete
                 Dim paramsQueryColomuns As String = "`idDiagnostic`"
@@ -142,13 +133,13 @@ Public Class DiagnosticBusesDetailManager
                 bddCommande.CommandText = "INSERT INTO `DiagnosticBusesDetail` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
                 bddCommande.ExecuteNonQuery()
 
-                bddCommande.CommandText = "SELECT MAX(id) from DiagnosticBusesDEtail"
-                oDR = bddCommande.ExecuteReader()
-                If oDR.HasRows() Then
-                    oDR.Read()
-                    objDiagnosticBusesDetail.id = oDR.GetValue(0)
-                End If
-                oDR.Close()
+                bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBusesDEtail"
+                objDiagnosticBusesDetail.id = bddCommande.ExecuteScalar()
+                'If oDR.HasRows() Then
+                '    oDR.Read()
+                '    objDiagnosticBusesDetail.id = oDR.GetValue(0)
+                'End If
+                'oDR.Close()
 
             Else
                 'Mise à jour de l'enregistrement

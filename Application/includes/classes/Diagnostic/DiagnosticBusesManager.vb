@@ -197,16 +197,7 @@ Public Class DiagnosticBusesManager
 
             'Test de l'existence de l'élement
             bddCommande.CommandText = "SELECT count(*) FROM DiagnosticBuses WHERE id = " & objDiagnosticBuses.id & " and idDiagnostic = '" & objDiagnosticBuses.idDiagnostic & "'"
-            oDR = bddCommande.ExecuteReader()
-            If oDR.HasRows Then
-                oDR.Read()
-                Try
-                    nEnr = CType(oDR.GetValue(0), Integer)
-                Catch ex As Exception
-                    nEnr = 0
-                End Try
-            End If
-            oDR.Close()
+            nEnr = bddCommande.ExecuteScalar
 
             If Not bSyncro Then
                 objDiagnosticBuses.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
@@ -264,17 +255,8 @@ Public Class DiagnosticBusesManager
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "INSERT INTO `DiagnosticBuses` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
                 bddCommande.ExecuteNonQuery()
-                'oCSDb.free()
-                'oCSDb = New CSDb(True)
-                bddCommande = oCSDb.getConnection().CreateCommand()
-                bddCommande.CommandText = "SELECT MAX(id) from DiagnosticBuses"
-                oDR = bddCommande.ExecuteReader()
-                If oDR.HasRows() Then
-                    oDR.Read()
-                    objDiagnosticBuses.id = oDR.GetValue(0)
-                End If
-                oDR.Close()
-                oCSDb.free()
+                bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBuses"
+                objDiagnosticBuses.id = bddCommande.ExecuteScalar()
             Else
                 'Mise à jour de l'enregistrement
                 Dim paramQuery As String
@@ -299,23 +281,49 @@ Public Class DiagnosticBusesManager
                 bddCommande.ExecuteNonQuery()
 
             End If
-            ' Test pour fermeture de connection BDD
-            oCSDb.free()
 
-            ' On enregistre le détail des buses
+            'Suppression des Detail de Buses Précédentes
+            bddCommande.CommandText = "DELETE FROM  DiagnosticBusesDetail WHERE idDiagnostic = '" & objDiagnosticBuses.idDiagnostic & "'"
+            bddCommande.ExecuteNonQuery()
+            CSDebug.dispInfo("DiagnosticBusesManager.save BusesDetail : Debut")
+            Dim SQL As String = "INSERT INTO DiagnosticBusesDetail ("
+            SQL = SQL & " IdDiagnostic , "
+            SQL = SQL & " IdBuse , "
+            SQL = SQL & " IdLot , "
+            SQL = SQL & " debit , "
+            SQL = SQL & " ecart , "
+            SQL = SQL & " dateModificationAgent , "
+            SQL = SQL & " dateModificationCrodip  "
+            SQL = SQL & " ) VALUES ("
+            SQL = SQL & " ?,?,?,?,?,?,? "
+            SQL = SQL & " )"
+            bddCommande.CommandText = SQL
+            bddCommande.Prepare()
             If Not objDiagnosticBuses.diagnosticBusesDetailList Is Nothing Then
                 If Not objDiagnosticBuses.diagnosticBusesDetailList.Liste Is Nothing Then
-                    Dim i As Integer = 0
-                    For Each tmpItemCheck As DiagnosticBusesDetail In objDiagnosticBuses.diagnosticBusesDetailList.Liste
-                        If Not tmpItemCheck Is Nothing Then
-                            tmpItemCheck.idDiagnostic = objDiagnosticBuses.idDiagnostic
-                            tmpItemCheck.idLot = objDiagnosticBuses.idLot
-                            DiagnosticBusesDetailManager.save(tmpItemCheck)
+                    Dim i As Integer = 1
+                    For Each oBDetail As DiagnosticBusesDetail In objDiagnosticBuses.diagnosticBusesDetailList.Liste
+                        If Not oBDetail Is Nothing Then
+                            oBDetail.idDiagnostic = objDiagnosticBuses.idDiagnostic
+                            oBDetail.idLot = objDiagnosticBuses.idLot
+                            oBDetail.dateModificationAgent = DateTime.Now
+
+                            bddCommande.Parameters.Clear()
+                            bddCommande.Parameters.AddWithValue("?", oBDetail.idDiagnostic)
+                            bddCommande.Parameters.AddWithValue("?", i)
+                            bddCommande.Parameters.AddWithValue("?", oBDetail.idLot)
+                            bddCommande.Parameters.AddWithValue("?", oBDetail.debit)
+                            bddCommande.Parameters.AddWithValue("?", oBDetail.ecart)
+                            bddCommande.Parameters.AddWithValue("?", oBDetail.dateModificationAgent)
+                            bddCommande.Parameters.AddWithValue("?", oBDetail.dateModificationCrodip)
+                            bddCommande.ExecuteNonQuery()
+                            'Pas besoin de recharger l'ID , il ne sert à rien
                         End If
                         i = i + 1
                     Next
                 End If
             End If
+            CSDebug.dispInfo("DiagnosticBusesManager.save BusesDetail : Fin")
 
         Catch ex As Exception
             CSDebug.dispFatal("DiagBusesManager.save : " & ex.Message.ToString)

@@ -45,6 +45,9 @@ Public Class DiagnosticBusesDetail
     Private _dateModificationCrodip As String
 
     Sub New()
+        dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+
+        dateModificationCrodip = CSDate.ToCRODIPString(DateTime.MinValue).ToString
 
     End Sub
 

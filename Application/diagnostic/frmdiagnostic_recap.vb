@@ -931,6 +931,7 @@ Public Class frmdiagnostic_recap
         Dim bReturn As Boolean
         Try
             Try
+                CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic Debut")
                 Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DIAG_SAVING, True)
                 If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
                     'Lecture de la fenêtre
@@ -944,6 +945,7 @@ Public Class frmdiagnostic_recap
                     m_Exploit.dateDernierControle = m_diagnostic.controleDateDebut
                     ExploitationManager.save(m_Exploit, m_oAgent)
                     globFormAccueil.RefreshLVIExploitation(m_Exploit.id)
+                    CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic MAJ Exploitant")
 
                     Statusbar.display("Mise à jour du pulvérisateur", True)
                     'Calcul de la date de prochain controle
@@ -952,6 +954,7 @@ Public Class frmdiagnostic_recap
                     m_Pulverisateur.SetControleEtat(m_diagnostic)
                     m_Pulverisateur.DecodageAutomatiqueDefauts(m_diagnostic.diagnosticItemsLst.Values)
                     PulverisateurManager.save(m_Pulverisateur, m_Exploit.id, m_oAgent)
+                    CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic MAJ Pulve")
 
 
                     ' Enregistrement du diag
@@ -960,6 +963,7 @@ Public Class frmdiagnostic_recap
                     'tmpNewDiagId = InputBox("DiagID", "Entrez le numéro du diag", m_oagent.idStructure & "-" & m_oagent.id & "-")
                     tmpNewDiagId = DiagnosticManager.getNewId(m_oAgent)
                     m_diagnostic.id = tmpNewDiagId
+                    CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic Get ID")
 
 
                     Statusbar.display("Mise à jour du manomètre et banc de mesures", True)
@@ -968,6 +972,7 @@ Public Class frmdiagnostic_recap
                     'Incrément du nombre de diag réalisé
                     My.Settings.nbControlesAvantAlerte = My.Settings.nbControlesAvantAlerte + 1
                     My.Settings.Save()
+                    CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic Stats")
 
                     'on remet les Id à "" pour forcer la création d'un nouvel ID
                     m_diagnostic.diagnosticHelp551.id = ""
@@ -999,11 +1004,14 @@ Public Class frmdiagnostic_recap
                             End If
                         End If
 
+                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic Etat")
                         'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
                         m_diagnostic.dateModificationAgent = CSDate.mysql2access(Date.Now)
                         Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
                         Dim bSave As Boolean
+                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic SauveDiag Debut")
                         bSave = DiagnosticManager.save(m_diagnostic)
+                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic SauveDiag Fin")
                         If Not bSave Then
                             CSDebug.dispFatal("Diagnostic-recap.btn_finalisationDiag_valider_Click ERR : ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE=> FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
                             MsgBox("ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE => FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
