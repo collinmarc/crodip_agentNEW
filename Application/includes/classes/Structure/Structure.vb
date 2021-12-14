@@ -188,12 +188,24 @@ Public Class Structuree
         End Set
     End Property
     Private _ModeReglement As String = ""
-    Public Property Modereglement() As String
+    Public Property modereglement() As String
         Get
-            Return _ModeReglement
+            Dim sReturn As String = ""
+            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/modereglement")
+            If x IsNot Nothing Then
+                sReturn = x.InnerText
+            End If
+            Return sReturn
         End Get
         Set(ByVal value As String)
-            _ModeReglement = value
+            Using FACTURATION_XML_CONFIG As New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+                FACTURATION_XML_CONFIG.setElementValue("/root/modereglement", value)
+                'FACTURATION_XML_CONFIG.setElementValue("/root/tva", facturation_tva.Text)
+                'FACTURATION_XML_CONFIG.setElementValue("/root/rcs", facturation_rcs.Text)
+                'FACTURATION_XML_CONFIG.setElementValue("/root/footer", facturation_footer.Text)
+                'FACTURATION_XML_CONFIG.setElementValue("/root/footer", facturation_footer.Text)
+            End Using
         End Set
     End Property
     Private _SIREN As String
@@ -241,7 +253,7 @@ Public Class Structuree
         Get
             Dim sReturn As String = ""
             Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/txTva")
+            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/txTVA")
             If x IsNot Nothing Then
                 sReturn = x.InnerText
             End If
@@ -249,7 +261,7 @@ Public Class Structuree
         End Get
         Set(ByVal value As String)
             Using FACTURATION_XML_CONFIG As New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-                FACTURATION_XML_CONFIG.setElementValue("/root/txTva", value)
+                FACTURATION_XML_CONFIG.setElementValue("/root/txTVA", value)
             End Using
         End Set
     End Property

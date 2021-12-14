@@ -559,9 +559,9 @@ Public Class facturation2
                         tbTxTVA.Text = x.ChildNodes.Item(i).InnerText
                     Case "header".ToUpper().Trim()
                         tbHeader.Text = x.ChildNodes.Item(i).InnerText
-                    Case "CoordonnesBancaires".ToUpper().Trim()
+                    Case "coordonnesBancaires".ToUpper().Trim()
                         tbCoordonnesBancaires.Text = x.ChildNodes.Item(i).InnerText
-                    Case "ModeReglement".ToUpper().Trim()
+                    Case "modereglement".ToUpper().Trim()
                         tbModeReglement.Text = x.ChildNodes.Item(i).InnerText
                     Case "header".ToUpper().Trim()
                         tbHeader.Text = x.ChildNodes.Item(i).InnerText
@@ -588,7 +588,7 @@ Public Class facturation2
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/derniernumero", tbDernNumero.Text)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/txTVA", tbTxTVA.Text)
         Me.FACTURATION_XML_CONFIG.setElementValue("/root/coordonneesBancaires", tbCoordonnesBancaires.Text)
-        Me.FACTURATION_XML_CONFIG.setElementValue("/root/modeReglement", tbModeReglement.Text)
+        Me.FACTURATION_XML_CONFIG.setElementValue("/root/modereglement", tbModeReglement.Text)
 
         Return True
     End Function

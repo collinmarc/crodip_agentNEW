@@ -14,7 +14,7 @@ Public Class Facture
     Public Sub New(pStructure As Structuree)
         Me.New()
         Me.idStructure = pStructure.id
-        modeReglement = pStructure.Modereglement
+        modeReglement = pStructure.modereglement
         msgEntetete = pStructure.Entete
 
 
@@ -30,6 +30,9 @@ Public Class Facture
         Me.idFacture = pStructure.RacineNumFact & n.ToString().PadLeft(nLg, "0")
 
         pStructure.DernierNumFact = n.ToString().PadLeft(nLg, "0")
+        Me.TxTVA = pStructure.txTVA
+        Me.modeReglement = pStructure.modereglement
+
     End Sub
     Public Sub New(pContrat As ContratCommercial, pStructure As Structuree)
         Me.New(pStructure)

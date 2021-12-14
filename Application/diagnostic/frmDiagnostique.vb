@@ -67,6 +67,7 @@ Public Class FrmDiagnostique
 
     Protected m_Pulverisateur As Pulverisateur
     Protected m_Exploit As Exploitation
+    Private Const NB_BUSES_MAX As Integer = 200
 
 
     Public Sub New()
@@ -3779,8 +3780,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         'Récupération de la liste des buses correspondant au Lot
         Dim oListbuses As DiagnosticBuses = m_DiagBuses.Liste.Item(Lotid - 1)
 
-        If nbBuses > 100 Then
-            nbBuses = 100
+        If nbBuses > NB_BUSES_MAX Then
+            nbBuses = NB_BUSES_MAX
         End If
         ' On récupère le panel de la liste des buses
         Dim Panel_listeSecondaire As Panel = CSForm.getControlByName("Panel_listeSecondaire_" & Lotid, diagBuses_tab_categories)
