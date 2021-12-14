@@ -56,27 +56,43 @@ Public Class ContratCommercial
             _TxTVA = value
         End Set
     End Property
+    Private _TotalHT As Decimal
     Public Property TotalHT() As Decimal
         Get
-            Return Lignes.Select(Function(olg) olg.totalHT).Sum()
+            Return _TotalHT
+            'Return Lignes.Select(Function(olg) olg.totalHT).Sum()
         End Get
         Set(ByVal value As Decimal)
+            _TotalHT = value
         End Set
     End Property
+    Private _TotalTVA As Decimal
     Public Property TotalTVA() As Decimal
         Get
-            Return TotalHT * (TxTVA / 100)
+            Return _TotalTVA
+            'Return TotalHT * (TxTVA / 100)
         End Get
         Set(ByVal value As Decimal)
+            _TotalTVA = value
         End Set
     End Property
+    Private _TotalTTC As Decimal
     Public Property TotalTTC() As Decimal
         Get
-            Return TotalHT + TotalTVA
+            Return _TotalTTC
+            '            Return TotalHT + TotalTVA
         End Get
         Set(ByVal value As Decimal)
+            _TotalTTC = value
         End Set
     End Property
+    Public Sub CalculTotaux()
+        TotalHT = Lignes.Select(Function(olg) olg.totalHT).Sum()
+        TotalTVA = TotalHT * (TxTVA / 100)
+        TotalTTC = TotalHT + TotalTVA
+
+    End Sub
+
 
     Public Sub New()
         Lignes = New List(Of FactureItem)()
@@ -90,6 +106,7 @@ Public Class ContratCommercial
             _Commentaire = value
         End Set
     End Property
+
     Private _ResteAFacturer As Decimal
     Public Property ResteAFacturer() As Decimal
         Get

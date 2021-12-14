@@ -122,7 +122,7 @@ Public Class EtatCrodip
             End If
             If My.Settings.TypeStockPDF = "DIR" Then
                 If File.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & FileName) Then
-                    If Not File.Exists(pFileName) Then
+                    If Not File.Exists(FileName) Then
                         System.IO.File.Copy(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & FileName, FileName)
                     End If
                 End If

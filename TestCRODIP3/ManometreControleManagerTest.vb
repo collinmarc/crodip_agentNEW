@@ -409,7 +409,8 @@ Public Class ManometreControleManagerTest
         Assert.IsTrue(oManoC.etat)
 
         Assert.AreEqual(CDate("01/02/1987"), oManoC.DateActivation)
-        Assert.AreEqual(CDate("01/02/1987"), CDate(oManoC.dateDernierControleS))
+        '        Assert.AreEqual(CDate("01/02/1987"), CDate(oManoC.dateDernierControleS))
+        Assert.AreEqual("", oManoC.dateDernierControleS)
 
         lstFV = FVManometreControleManager.getLstFVManometreControle(idMano)
         Assert.AreEqual(1, lstFV.Count)

@@ -233,6 +233,7 @@ Public Class AgentManagerTest
         oAgent = New Agent(999, "9999", "AgentTest", m_oStructure.id)
         oAgent.prenom = "Moi"
         oAgent.idStructure = m_oStructure.id
+        oAgent.isActif = True
         AgentManager.save(oAgent)
 
         Dim oList As AgentList = AgentManager.getAgentList()

@@ -189,11 +189,10 @@ Public Class DiagnosticBusesManager
     Public Shared Sub save(ByVal objDiagnosticBuses As DiagnosticBuses, Optional bSyncro As Boolean = False)
 
         Dim oCSDb As New CSDb(True)
+        Dim bddCommande As OleDb.OleDbCommand
+        bddCommande = oCSDb.getConnection().CreateCommand()
         Try
-            Dim bddCommande As OleDb.OleDbCommand
-            Dim oDR As OleDb.OleDbDataReader
             Dim nEnr As Integer
-            bddCommande = oCSDb.getConnection().CreateCommand()
 
             'Test de l'existence de l'élement
             bddCommande.CommandText = "SELECT count(*) FROM DiagnosticBuses WHERE id = " & objDiagnosticBuses.id & " and idDiagnostic = '" & objDiagnosticBuses.idDiagnostic & "'"
@@ -283,7 +282,7 @@ Public Class DiagnosticBusesManager
             End If
 
             'Suppression des Detail de Buses Précédentes
-            bddCommande.CommandText = "DELETE FROM  DiagnosticBusesDetail WHERE idDiagnostic = '" & objDiagnosticBuses.idDiagnostic & "'"
+            bddCommande.CommandText = "DELETE FROM  DiagnosticBusesDetail WHERE idDiagnostic = '" & objDiagnosticBuses.idDiagnostic & "' and idLot= " & objDiagnosticBuses.idLot & ""
             bddCommande.ExecuteNonQuery()
             CSDebug.dispInfo("DiagnosticBusesManager.save BusesDetail : Debut")
             Dim SQL As String = "INSERT INTO DiagnosticBusesDetail ("
@@ -316,7 +315,11 @@ Public Class DiagnosticBusesManager
                             bddCommande.Parameters.AddWithValue("?", oBDetail.ecart)
                             bddCommande.Parameters.AddWithValue("?", oBDetail.dateModificationAgent)
                             bddCommande.Parameters.AddWithValue("?", oBDetail.dateModificationCrodip)
-                            bddCommande.ExecuteNonQuery()
+                            Try
+                                bddCommande.ExecuteNonQuery()
+                            Catch ex As Exception
+                                CSDebug.dispFatal("DiagBusesManager.save Details : " & ex.Message.ToString)
+                            End Try
                             'Pas besoin de recharger l'ID , il ne sert à rien
                         End If
                         i = i + 1

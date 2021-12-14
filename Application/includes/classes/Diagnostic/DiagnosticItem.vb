@@ -115,6 +115,7 @@ Public Class DiagnosticItem
         Me.id = ""
         dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
         dateModificationCrodip = CSDate.ToCRODIPString(DateTime.MinValue).ToString
+        Me.cause = ""
     End Sub
     Public Sub New(ByVal idDiagnostic As String, ByVal pItem As String, ByVal pValue As String, Optional ByVal pCause As String = "", Optional ByVal pCodeEtat As String = "")
         Me.New()

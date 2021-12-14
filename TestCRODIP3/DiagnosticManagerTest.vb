@@ -4839,7 +4839,7 @@ Public Class DiagnosticManagerTest
         'Result OK => + 3 ans
         oDiag.controleEtat = Diagnostic.controleEtatOK
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2020-12-15 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2020-12-14 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
         poPulve = New Pulverisateur()
@@ -4853,7 +4853,7 @@ Public Class DiagnosticManagerTest
         'Result CV => + 4 mois
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2016-04-15 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2016-04-14 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CC => + 4 mois
         poPulve = New Pulverisateur()
@@ -4867,7 +4867,7 @@ Public Class DiagnosticManagerTest
         'Result CC => + 4 mois
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2016-04-15 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2016-04-14 00:00:00", oDiag.pulverisateurDateProchainControle)
 
 
         'Etat Pulvé = OK
@@ -4884,7 +4884,7 @@ Public Class DiagnosticManagerTest
         'Result OK => + 3 ans
         oDiag.controleEtat = Diagnostic.controleEtatOK
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2020-12-16 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2020-12-15 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
         poPulve = New Pulverisateur()
@@ -4899,7 +4899,7 @@ Public Class DiagnosticManagerTest
         'Result CV => + 4 mois
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2016-04-16 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2016-04-15 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CC => + 4 mois
         poPulve = New Pulverisateur()
@@ -4931,7 +4931,7 @@ Public Class DiagnosticManagerTest
         'Result OK => + 5 ans
         oDiag.controleEtat = Diagnostic.controleEtatOK
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2020-12-17 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2020-12-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
         poPulve = New Pulverisateur()
@@ -4977,7 +4977,7 @@ Public Class DiagnosticManagerTest
         'Result OK => + 3 ans
         oDiag.controleEtat = Diagnostic.controleEtatOK
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2020-12-17 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2020-12-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
         poPulve = New Pulverisateur()
@@ -4992,7 +4992,7 @@ Public Class DiagnosticManagerTest
         'Result CV => + 4 mois
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2016-04-17 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2016-04-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CC => + 4 mois
         poPulve = New Pulverisateur()
@@ -5023,7 +5023,7 @@ Public Class DiagnosticManagerTest
         'Result OK => + 5 ans
         oDiag.controleEtat = Diagnostic.controleEtatOK
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2020-12-17 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2020-12-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
         poPulve = New Pulverisateur()
@@ -5038,7 +5038,7 @@ Public Class DiagnosticManagerTest
         'Result CV => + 4 mois
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
         oDiag.CalculDateProchainControle()
-        Assert.AreEqual("2016-04-17 00:00:00", oDiag.pulverisateurDateProchainControle)
+        Assert.AreEqual("2016-04-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CC => + 4 mois
         poPulve = New Pulverisateur()
@@ -5743,7 +5743,7 @@ Public Class DiagnosticManagerTest
         oDiag.organismeOriginePresNom = "CRODIP"
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
         'Assert.AreEqual(CSDate.ToCRODIPString("06/02/1964"), oDiag.CalculDateProchainControle)
-        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4)), oDiag.CalculDateProchainControle)
+        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4).AddDays(-1)), oDiag.CalculDateProchainControle)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiag.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "2", "1", "O")
@@ -6099,6 +6099,8 @@ Public Class DiagnosticManagerTest
         oDiag.TotalHT = 125.5
         id = "DIAGWS" & Now.Hour & Now.Minute & Now.Second
         oDiag.id = id
+        Dim lg As New FactureItem("A", "a", "1255", 0.1, 20, "")
+        oDiag.oContratCommercial.Lignes.Add(lg)
         bReturn = DiagnosticManager.save(oDiag)
 
 

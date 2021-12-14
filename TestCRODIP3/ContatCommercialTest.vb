@@ -8,7 +8,7 @@ Imports Crodip_agent
         Dim oCC As New ContratCommercial()
         oCC.TxTVA = 20
         oCC.Lignes.Add(New FactureItem("", "", 10, 15, oCC.TxTVA, ""))
-
+        oCC.CalculTotaux()
         Assert.AreEqual(150D, oCC.TotalHT)
         Assert.AreEqual(150D * 0.2D, oCC.TotalTVA)
         Assert.AreEqual(150D * 1.2D, oCC.TotalTTC)

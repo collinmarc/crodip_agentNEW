@@ -17,7 +17,8 @@ Public Class Banc
 
 
     Sub New()
-        jamaisServi = True
+        MyBase.New()
+        JamaisServi = True
 
     End Sub
 

@@ -67,7 +67,7 @@ Imports System.IO
         oDiag.organismeOriginePresNom = "CRODIP"
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
         'Assert.AreEqual(CSDate.ToCRODIPString("06/02/1964"), oDiag.CalculDateProchainControle)
-        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4)), oDiag.CalculDateProchainControle)
+        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4).AddDays(-1)), oDiag.CalculDateProchainControle)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
@@ -918,7 +918,7 @@ Imports System.IO
         oDiag.organismeOriginePresNom = "CRODIP"
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
         'Assert.AreEqual(CSDate.ToCRODIPString("06/02/1964"), oDiag.CalculDateProchainControle)
-        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4)), oDiag.CalculDateProchainControle)
+        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4).AddDays(-1)), oDiag.CalculDateProchainControle)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
@@ -1054,7 +1054,7 @@ Imports System.IO
         oDiag.organismeOriginePresNom = "CRODIP"
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
         'Assert.AreEqual(CSDate.ToCRODIPString("06/02/1964"), oDiag.CalculDateProchainControle)
-        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4)), oDiag.CalculDateProchainControle)
+        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4).AddDays(-1)), oDiag.CalculDateProchainControle)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
@@ -1145,7 +1145,7 @@ Imports System.IO
         oDiag.organismeOriginePresNom = "CRODIP"
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
         'Assert.AreEqual(CSDate.ToCRODIPString("06/02/1964"), oDiag.CalculDateProchainControle)
-        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4)), oDiag.CalculDateProchainControle)
+        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4).AddDays(-1)), oDiag.CalculDateProchainControle)
 
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
@@ -2111,7 +2111,7 @@ Imports System.IO
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Défauts sur le Pulvé
         oDiag.diagRemplacementId = "132-456-789"
         'Assert.AreEqual(CSDate.ToCRODIPString("06/02/1964"), oDiag.CalculDateProchainControle)
-        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4)), oDiag.CalculDateProchainControle)
+        Assert.AreEqual(CSDate.ToCRODIPString(Date.Now().AddMonths(4).AddDays(-1)), oDiag.CalculDateProchainControle)
         oDiagItem = New DiagnosticItem(oDiag.id, "256", "1", "2", "P")
         oDiagItem.LibelleCourt = "LIBCourt2561"
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"

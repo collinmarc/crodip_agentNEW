@@ -143,6 +143,9 @@ Public Class frmdiagnostic_facturationCoProp
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmdiagnostic_facturationCoProp))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlFooter = New System.Windows.Forms.Panel()
@@ -225,12 +228,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label26 = New System.Windows.Forms.Label()
         Me.pnlLines = New System.Windows.Forms.Panel()
         Me.dgvLignes = New System.Windows.Forms.DataGridView()
-        Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QuantiteColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PuDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.m_bsFacture = New System.Windows.Forms.BindingSource(Me.components)
         Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
         Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
@@ -238,6 +235,12 @@ Public Class frmdiagnostic_facturationCoProp
         Me.RaisonSocialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.m_bsrcStructure = New System.Windows.Forms.BindingSource(Me.components)
+        Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QuantiteColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PuDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.pnlFooter.SuspendLayout()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1183,44 +1186,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.dgvLignes.Size = New System.Drawing.Size(915, 145)
         Me.dgvLignes.TabIndex = 78
         '
-        'SupprColumn
-        '
-        Me.SupprColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.SupprColumn.HeaderText = "Suppr"
-        Me.SupprColumn.Image = Global.Crodip_agent.Resources.delete
-        Me.SupprColumn.Name = "SupprColumn"
-        Me.SupprColumn.Width = 40
-        '
-        'CategorieDataGridViewTextBoxColumn
-        '
-        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "categorie"
-        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "categorie"
-        Me.CategorieDataGridViewTextBoxColumn.Name = "CategorieDataGridViewTextBoxColumn"
-        '
-        'PrestationDataGridViewTextBoxColumn
-        '
-        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "prestation"
-        Me.PrestationDataGridViewTextBoxColumn.HeaderText = "prestation"
-        Me.PrestationDataGridViewTextBoxColumn.Name = "PrestationDataGridViewTextBoxColumn"
-        '
-        'QuantiteColumn
-        '
-        Me.QuantiteColumn.DataPropertyName = "quantite"
-        Me.QuantiteColumn.HeaderText = "quantite"
-        Me.QuantiteColumn.Name = "QuantiteColumn"
-        '
-        'PuDataGridViewTextBoxColumn
-        '
-        Me.PuDataGridViewTextBoxColumn.DataPropertyName = "pu"
-        Me.PuDataGridViewTextBoxColumn.HeaderText = "pu"
-        Me.PuDataGridViewTextBoxColumn.Name = "PuDataGridViewTextBoxColumn"
-        '
-        'TotalHTDataGridViewTextBoxColumn
-        '
-        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
-        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "totalHT"
-        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
-        '
         'm_bsFacture
         '
         Me.m_bsFacture.DataSource = GetType(Crodip_agent.Facture)
@@ -1255,6 +1220,55 @@ Public Class frmdiagnostic_facturationCoProp
         'm_bsrcStructure
         '
         Me.m_bsrcStructure.DataSource = GetType(Crodip_agent.Structuree)
+        '
+        'CategorieDataGridViewTextBoxColumn
+        '
+        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "categorie"
+        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "categorie"
+        Me.CategorieDataGridViewTextBoxColumn.Name = "CategorieDataGridViewTextBoxColumn"
+        '
+        'PrestationDataGridViewTextBoxColumn
+        '
+        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "prestation"
+        Me.PrestationDataGridViewTextBoxColumn.HeaderText = "prestation"
+        Me.PrestationDataGridViewTextBoxColumn.Name = "PrestationDataGridViewTextBoxColumn"
+        '
+        'QuantiteColumn
+        '
+        Me.QuantiteColumn.DataPropertyName = "quantite"
+        DataGridViewCellStyle1.Format = "N2"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.QuantiteColumn.DefaultCellStyle = DataGridViewCellStyle1
+        Me.QuantiteColumn.HeaderText = "quantite"
+        Me.QuantiteColumn.Name = "QuantiteColumn"
+        '
+        'PuDataGridViewTextBoxColumn
+        '
+        Me.PuDataGridViewTextBoxColumn.DataPropertyName = "pu"
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.PuDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
+        Me.PuDataGridViewTextBoxColumn.HeaderText = "pu"
+        Me.PuDataGridViewTextBoxColumn.Name = "PuDataGridViewTextBoxColumn"
+        Me.PuDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TotalHTDataGridViewTextBoxColumn
+        '
+        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "totalHT"
+        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
+        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'SupprColumn
+        '
+        Me.SupprColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.SupprColumn.HeaderText = "Suppr"
+        Me.SupprColumn.Image = Global.Crodip_agent.Resources.delete
+        Me.SupprColumn.Name = "SupprColumn"
+        Me.SupprColumn.Width = 40
         '
         'frmdiagnostic_facturationCoProp
         '
@@ -1594,15 +1608,16 @@ Public Class frmdiagnostic_facturationCoProp
     End Sub
 
 
-    Private Sub dgvLignes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
+    Private Sub dgvLignes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvLignes.CellContentClick
         If e.ColumnIndex = SupprColumn.Index Then
             'Suppresssion de la ligne courante
             m_bsLignes.RemoveCurrent()
+            CalculTotaux()
         End If
 
     End Sub
 
-    Private Sub dgvLignes_RowValidated(sender As Object, e As DataGridViewCellEventArgs)
+    Private Sub dgvLignes_RowValidated(sender As Object, e As DataGridViewCellEventArgs) Handles dgvLignes.RowValidated
         m_bsFacture.ResetCurrentItem()
     End Sub
 
@@ -1640,7 +1655,7 @@ Public Class frmdiagnostic_facturationCoProp
                 End If
 
                 oFact.Lignes.Add(oLig)
-
+                oFact.CalculTotaux()
                 m_bsFacture.ResetCurrentItem()
 
             End If
@@ -1707,7 +1722,7 @@ Public Class frmdiagnostic_facturationCoProp
 
     End Sub
 
-    Private Sub dgvLignes_DataError(sender As Object, e As DataGridViewDataErrorEventArgs)
+    Private Sub dgvLignes_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles dgvLignes.DataError
         CSDebug.dispInfo("fromDiagniostic_facturationcoProp.DataError", e.Exception)
     End Sub
 
@@ -1771,6 +1786,14 @@ Public Class frmdiagnostic_facturationCoProp
         End If
     End Sub
 
+    Private Sub CalculTotaux()
+        Dim oFact As Facture
+        If m_bsFacture.Current IsNot Nothing Then
+            oFact = m_bsFacture.Current
+            oFact.CalculTotaux()
+            m_bsFacture.ResetCurrentItem()
+        End If
+    End Sub
     Private Sub m_bsExploitant_CurrentChanged(sender As Object, e As EventArgs) Handles m_bsExploitant.CurrentChanged
         changementExploitant()
     End Sub
@@ -1817,10 +1840,11 @@ Public Class frmdiagnostic_facturationCoProp
         End If
     End Sub
 
-    Private Sub dgvLignes_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs)
+    Private Sub dgvLignes_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvLignes.CellValueChanged
 
         If e.ColumnIndex = QuantiteColumn.Index Then
             CalculRestAFacturer()
+            CalculTotaux()
         End If
 
     End Sub

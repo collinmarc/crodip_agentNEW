@@ -450,6 +450,9 @@ Public Class DiagnosticManager
             oDataReader.Close()
             DebugStep = "23"
 
+
+
+
             If oCsdb IsNot Nothing Then
                 oCsdb.free()
             End If

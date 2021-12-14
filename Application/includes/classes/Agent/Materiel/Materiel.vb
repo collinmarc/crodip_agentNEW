@@ -27,7 +27,7 @@ Public MustInherit Class Materiel
         _isSupprime = False
         _AgentSuppression = ""
         _RaisonSuppression = ""
-        _DateSuppression = CSDate.ToCRODIPString(Date.MinValue)
+        _DateSuppression = ""
         _JamaisServi = False
         _DateActivation = Date.MinValue
         _dateDernierControle = ""

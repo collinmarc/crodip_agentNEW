@@ -63,7 +63,7 @@ Imports Crodip_agent
         'on retourne les objet non synchro
         Return oLst
     End Function
-    <TestMethod()>
+    <TestMethod(), Ignore()>
     Public Sub TestGetManoControle()
 
         WSCrodip.Init("http://admin.crodip.fr/server")

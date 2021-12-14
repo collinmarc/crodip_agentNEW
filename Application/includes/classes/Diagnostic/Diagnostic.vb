@@ -174,9 +174,9 @@ Public Class Diagnostic
     Private _PulverisateurAncienId As String
 
     Private _diagnosticInfosComplementaire As DiagnosticInfosComplementaires
-    Private _TotalHT As Decimal
-    Private _TotalTVA As Decimal
-    Private _TotalTTC As Decimal
+    'Private _TotalHT As Decimal
+    'Private _TotalTVA As Decimal
+    'Private _TotalTTC As Decimal
     Private _RIFileName As String = ""
     Private _SMFileName As String = ""
     Private _CCFileName As String = ""
@@ -2215,7 +2215,12 @@ Public Class Diagnostic
             End If
         End Set
     End Property
+    Public Sub CalculTotaux()
+        If oContratCommercial IsNot Nothing Then
+            oContratCommercial.CalculTotaux()
+        End If
 
+    End Sub
 
     Public Property pulverisateurRegulation As String
         Get

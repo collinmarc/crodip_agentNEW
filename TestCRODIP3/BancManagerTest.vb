@@ -325,7 +325,6 @@ Public Class BancManagerTest
         Assert.IsTrue(obanc.etat)
 
         Assert.AreEqual(CDate("01/02/1987"), obanc.DateActivation)
-        Assert.AreEqual(CDate("01/02/1987"), CDate(obanc.dateDernierControleS))
 
         lstFV = FVBancManager.getlstFVBancByBancId(idBanc)
         Assert.AreEqual(1, lstFV.Count)

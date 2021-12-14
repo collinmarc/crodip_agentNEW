@@ -45,6 +45,12 @@ Public Class DiagnosticBusesDetail
     Private _dateModificationCrodip As String
 
     Sub New()
+        _idDiagnostic = ""
+        _idBuse = 0
+        _idLot = 0
+        _debit = ""
+        _ecart = ""
+        _Usee = False
         dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
 
         dateModificationCrodip = CSDate.ToCRODIPString(DateTime.MinValue).ToString

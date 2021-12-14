@@ -30,7 +30,11 @@ Public Class Facture
         Me.idFacture = pStructure.RacineNumFact & n.ToString().PadLeft(nLg, "0")
 
         pStructure.DernierNumFact = n.ToString().PadLeft(nLg, "0")
-        Me.TxTVA = pStructure.txTVA
+        If String.IsNullOrEmpty(pStructure.txTVA) Then
+            Me.TxTVA = 0
+        Else
+            Me.TxTVA = pStructure.txTVA
+        End If
         Me.modeReglement = pStructure.modereglement
 
     End Sub

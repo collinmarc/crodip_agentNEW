@@ -346,7 +346,7 @@ Public Class DiagnosticBusesTest
                 Assert.AreEqual(oDiagBuse.debitMoyen, "10")
                 Assert.AreEqual(oDiagBuse.debitNominal, "11")
                 Assert.AreEqual(oDiagBuse.ecartTolere, "12")
-                Assert.AreEqual(oDiagBuse.diagnosticBusesDetailList.Liste.Count, 2)
+                Assert.AreEqual(2, oDiagBuse.diagnosticBusesDetailList.Liste.Count)
                 'Vérification du détail des buses du lot1
                 For Each oDiagBuseDetail In oDiagBuse.diagnosticBusesDetailList.Liste
                     Assert.AreEqual(oDiagBuseDetail.idLot, oDiagBuse.idLot)

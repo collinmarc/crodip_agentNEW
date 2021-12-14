@@ -520,7 +520,12 @@ Public Class AgentManager
         Dim lst As AgentList = AgentManager.getAgentList()
         Dim oReturn As DateTime = CSDate.FromCrodipString("1970-01-01")
         If lst.items.Count > 0 Then
-            oReturn = lst.items.Where(Function(ag) ag.isActif And Not ag.isSupprime And Not ag.isGestionnaire).Min(Function(a) CDate(a.dateDerniereSynchro))
+            Try
+                oReturn = lst.items.Where(Function(ag) ag.isActif And Not ag.isSupprime And Not ag.isGestionnaire).Min(Function(a) CDate(a.dateDerniereSynchro))
+            Catch
+                oReturn = CSDate.FromCrodipString("1970-01-01")
+            End Try
+
         End If
         Return oReturn
     End Function
