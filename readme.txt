@@ -1,7 +1,7 @@
 TRUNK
 MASTER
 
-BUILD : XXXXXXXXX
+BUILD : 20211214170000
 	0001446: Gestion des co-propriétaires
 	0001447: Affichage du type et Fonctionnement des buses TEEJET, CP4916 ne fonctionne pas
 	0001450: La sauvegarde des Diagnostic prend trop de temps
