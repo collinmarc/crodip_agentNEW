@@ -113,11 +113,11 @@ Public Class EtatFacture2
             oRow.MontantHT = m_oFacture.TotalHT
             oRow.MontantTVA = m_oFacture.TotalTVA
             oRow.MontantTTC = m_oFacture.TotalTTC
-            oRow.TxTVA = m_oStructure.TxTVA
-            If m_oFacture.oDiagnostic IsNot Nothing Then
-                oRow.NumNatPulve = m_oFacture.oDiagnostic.pulverisateurNumNational
-                oRow.NumDiag = m_oFacture.oDiagnostic.id
-            End If
+            oRow.TxTVA = m_oStructure.txTVA
+            'If m_oFacture.oDiagnostic IsNot Nothing Then
+            oRow.NumNatPulve = m_oFacture.numNatPulve
+            oRow.NumDiag = m_oFacture.idDiag
+            '   End If
 
             m_ods.Facture.AddFactureRow(oRow)
 

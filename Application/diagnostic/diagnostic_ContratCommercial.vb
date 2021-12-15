@@ -89,10 +89,10 @@ Public Class diagnostic_ContratCommercial
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_ContratCommercial))
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label_diagnostic_61 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -101,7 +101,6 @@ Public Class diagnostic_ContratCommercial
         Me.panelFooter = New System.Windows.Forms.Panel()
         Me.btn_Signatures = New System.Windows.Forms.Label()
         Me.tbCommentaire = New System.Windows.Forms.TextBox()
-        Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
         Me.lblCommentaire = New System.Windows.Forms.Label()
         Me.btn_facturation_imprimerContrat = New System.Windows.Forms.Label()
         Me.facturation_totalHT = New System.Windows.Forms.TextBox()
@@ -121,11 +120,6 @@ Public Class diagnostic_ContratCommercial
         Me.Label17 = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.CategorieDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrestationDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QuantiteDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
         Me.LignesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -134,12 +128,18 @@ Public Class diagnostic_ContratCommercial
         Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuantiteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CategorieDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrestationDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QuantiteDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
-        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -250,10 +250,6 @@ Public Class diagnostic_ContratCommercial
         Me.tbCommentaire.Size = New System.Drawing.Size(552, 52)
         Me.tbCommentaire.TabIndex = 45
         Me.tbCommentaire.Visible = False
-        '
-        'm_bsContratCommercial
-        '
-        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
         '
         'lblCommentaire
         '
@@ -496,49 +492,6 @@ Public Class diagnostic_ContratCommercial
         Me.DataGridView1.Size = New System.Drawing.Size(908, 331)
         Me.DataGridView1.TabIndex = 30
         '
-        'CategorieDataGridViewTextBoxColumn1
-        '
-        Me.CategorieDataGridViewTextBoxColumn1.DataPropertyName = "categorie"
-        Me.CategorieDataGridViewTextBoxColumn1.HeaderText = "Catégorie"
-        Me.CategorieDataGridViewTextBoxColumn1.Name = "CategorieDataGridViewTextBoxColumn1"
-        Me.CategorieDataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'PrestationDataGridViewTextBoxColumn1
-        '
-        Me.PrestationDataGridViewTextBoxColumn1.DataPropertyName = "prestation"
-        Me.PrestationDataGridViewTextBoxColumn1.HeaderText = "Prestation"
-        Me.PrestationDataGridViewTextBoxColumn1.Name = "PrestationDataGridViewTextBoxColumn1"
-        Me.PrestationDataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'QuantiteDataGridViewTextBoxColumn1
-        '
-        Me.QuantiteDataGridViewTextBoxColumn1.DataPropertyName = "quantite"
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.QuantiteDataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle1
-        Me.QuantiteDataGridViewTextBoxColumn1.HeaderText = "Quantité"
-        Me.QuantiteDataGridViewTextBoxColumn1.Name = "QuantiteDataGridViewTextBoxColumn1"
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "pu"
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Tarif"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'TotalHTDataGridViewTextBoxColumn
-        '
-        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "Total HT"
-        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
-        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
-        '
         'SupprColumn
         '
         Me.SupprColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
@@ -596,6 +549,53 @@ Public Class diagnostic_ContratCommercial
         Me.QuantiteDataGridViewTextBoxColumn.Name = "QuantiteDataGridViewTextBoxColumn"
         Me.QuantiteDataGridViewTextBoxColumn.Width = 55
         '
+        'CategorieDataGridViewTextBoxColumn1
+        '
+        Me.CategorieDataGridViewTextBoxColumn1.DataPropertyName = "categorie"
+        Me.CategorieDataGridViewTextBoxColumn1.HeaderText = "Catégorie"
+        Me.CategorieDataGridViewTextBoxColumn1.Name = "CategorieDataGridViewTextBoxColumn1"
+        Me.CategorieDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'PrestationDataGridViewTextBoxColumn1
+        '
+        Me.PrestationDataGridViewTextBoxColumn1.DataPropertyName = "prestation"
+        Me.PrestationDataGridViewTextBoxColumn1.HeaderText = "Prestation"
+        Me.PrestationDataGridViewTextBoxColumn1.Name = "PrestationDataGridViewTextBoxColumn1"
+        Me.PrestationDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'QuantiteDataGridViewTextBoxColumn1
+        '
+        Me.QuantiteDataGridViewTextBoxColumn1.DataPropertyName = "quantite"
+        DataGridViewCellStyle1.Format = "N2"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.QuantiteDataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle1
+        Me.QuantiteDataGridViewTextBoxColumn1.HeaderText = "Quantité"
+        Me.QuantiteDataGridViewTextBoxColumn1.Name = "QuantiteDataGridViewTextBoxColumn1"
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "pu"
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Tarif"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'TotalHTDataGridViewTextBoxColumn
+        '
+        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "Total HT"
+        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
+        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'm_bsContratCommercial
+        '
+        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
+        '
         'diagnostic_ContratCommercial
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -618,10 +618,10 @@ Public Class diagnostic_ContratCommercial
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelFooter.ResumeLayout(False)
         Me.panelFooter.PerformLayout()
-        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -702,6 +702,7 @@ Public Class diagnostic_ContratCommercial
         btn_Signatures.Enabled = False
 
         Me.Cursor = Cursors.Default
+        btn_facturation_suivant.Enabled = False
 
     End Sub
 
@@ -936,10 +937,6 @@ Public Class diagnostic_ContratCommercial
 
     Private Sub btn_facturation_suivant_MouseClick(sender As Object, e As MouseEventArgs) Handles btn_facturation_suivant.MouseClick
         Me.ValidateChildren()
-        If e.Button = Windows.Forms.MouseButtons.Right Then
-            facturation_totalHT.Text = "0"
-            isValider = True
-        End If
         suivant(sender)
     End Sub
 
@@ -1020,5 +1017,25 @@ Public Class diagnostic_ContratCommercial
             m_bsLignes.RemoveCurrent()
             calcultotaux()
         End If
+    End Sub
+
+    Private Sub m_bsContratCommercial_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsContratCommercial.CurrentItemChanged
+        Dim oCC As ContratCommercial
+        oCC = m_bsContratCommercial.Current
+        If oCC.TotalTTC <> 0 Then
+            btn_facturation_suivant.Enabled = True
+        Else
+            btn_facturation_suivant.Enabled = False
+
+        End If
+    End Sub
+
+    Private Sub Label3_MouseClick(sender As Object, e As MouseEventArgs) Handles Label3.MouseClick
+        If e.Button = Windows.Forms.MouseButtons.Right Then
+            facturation_totalHT.Text = "0"
+            isValider = True
+        End If
+        suivant(sender)
+
     End Sub
 End Class

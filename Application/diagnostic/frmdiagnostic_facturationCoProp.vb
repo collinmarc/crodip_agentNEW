@@ -150,6 +150,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlFooter = New System.Windows.Forms.Panel()
         Me.tbRefReglement = New System.Windows.Forms.TextBox()
+        Me.m_bsFacture = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label25 = New System.Windows.Forms.Label()
         Me.ckReglee = New System.Windows.Forms.CheckBox()
         Me.dtpDateEcheance = New System.Windows.Forms.DateTimePicker()
@@ -183,6 +184,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.tbRacine = New System.Windows.Forms.TextBox()
+        Me.m_bsrcStructure = New System.Windows.Forms.BindingSource(Me.components)
         Me.TextBox13 = New System.Windows.Forms.TextBox()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.tbNumFact = New System.Windows.Forms.TextBox()
@@ -192,9 +194,13 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnSupprCoProp = New System.Windows.Forms.Button()
         Me.btnNewExploitant = New System.Windows.Forms.Button()
         Me.m_dgvCoProp = New System.Windows.Forms.DataGridView()
+        Me.RaisonSocialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.m_bsExploitant = New System.Windows.Forms.BindingSource(Me.components)
         Me.pnlClient = New System.Windows.Forms.Panel()
         Me.pnlPourcentage = New System.Windows.Forms.Panel()
         Me.tbResteAFacturer = New System.Windows.Forms.TextBox()
+        Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnCalc = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
@@ -219,6 +225,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label4 = New System.Windows.Forms.Label()
         Me.pnlInfosDiag = New System.Windows.Forms.Panel()
         Me.tbModelePulve = New System.Windows.Forms.TextBox()
+        Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
         Me.tbMarquePulve = New System.Windows.Forms.TextBox()
         Me.tbNumPulve = New System.Windows.Forms.TextBox()
         Me.tbNumDiag = New System.Windows.Forms.TextBox()
@@ -228,13 +235,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label26 = New System.Windows.Forms.Label()
         Me.pnlLines = New System.Windows.Forms.Panel()
         Me.dgvLignes = New System.Windows.Forms.DataGridView()
-        Me.m_bsFacture = New System.Windows.Forms.BindingSource(Me.components)
-        Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
-        Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
-        Me.m_bsExploitant = New System.Windows.Forms.BindingSource(Me.components)
-        Me.RaisonSocialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsrcStructure = New System.Windows.Forms.BindingSource(Me.components)
         Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuantiteColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -242,22 +242,22 @@ Public Class frmdiagnostic_facturationCoProp
         Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.pnlFooter.SuspendLayout()
+        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        CType(Me.m_bsrcStructure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlListCoProp.SuspendLayout()
         CType(Me.m_dgvCoProp, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlClient.SuspendLayout()
         Me.pnlPourcentage.SuspendLayout()
+        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlInfosDiag.SuspendLayout()
+        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlLines.SuspendLayout()
         CType(Me.dgvLignes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcStructure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -322,6 +322,10 @@ Public Class frmdiagnostic_facturationCoProp
         Me.tbRefReglement.Name = "tbRefReglement"
         Me.tbRefReglement.Size = New System.Drawing.Size(403, 20)
         Me.tbRefReglement.TabIndex = 73
+        '
+        'm_bsFacture
+        '
+        Me.m_bsFacture.DataSource = GetType(Crodip_agent.Facture)
         '
         'Label25
         '
@@ -599,7 +603,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btn_finalisationDiag_valider.Name = "btn_finalisationDiag_valider"
         Me.btn_finalisationDiag_valider.Size = New System.Drawing.Size(134, 24)
         Me.btn_finalisationDiag_valider.TabIndex = 2
-        Me.btn_finalisationDiag_valider.Text = "    Valider"
+        Me.btn_finalisationDiag_valider.Text = "    Quitter"
         Me.btn_finalisationDiag_valider.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btn_imprimerFactCoProp
@@ -679,6 +683,10 @@ Public Class frmdiagnostic_facturationCoProp
         Me.tbRacine.Name = "tbRacine"
         Me.tbRacine.Size = New System.Drawing.Size(108, 20)
         Me.tbRacine.TabIndex = 0
+        '
+        'm_bsrcStructure
+        '
+        Me.m_bsrcStructure.DataSource = GetType(Crodip_agent.Structuree)
         '
         'TextBox13
         '
@@ -787,6 +795,25 @@ Public Class frmdiagnostic_facturationCoProp
         Me.m_dgvCoProp.Size = New System.Drawing.Size(319, 167)
         Me.m_dgvCoProp.TabIndex = 42
         '
+        'RaisonSocialeDataGridViewTextBoxColumn
+        '
+        Me.RaisonSocialeDataGridViewTextBoxColumn.DataPropertyName = "raisonSociale"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.HeaderText = "Raison sociale"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.Name = "RaisonSocialeDataGridViewTextBoxColumn"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CommuneDataGridViewTextBoxColumn
+        '
+        Me.CommuneDataGridViewTextBoxColumn.DataPropertyName = "commune"
+        Me.CommuneDataGridViewTextBoxColumn.HeaderText = "Commune"
+        Me.CommuneDataGridViewTextBoxColumn.Name = "CommuneDataGridViewTextBoxColumn"
+        Me.CommuneDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'm_bsExploitant
+        '
+        Me.m_bsExploitant.DataSource = GetType(Crodip_agent.Exploitation)
+        Me.m_bsExploitant.Filter = "not isSuppressionCoprop"
+        '
         'pnlClient
         '
         Me.pnlClient.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -835,6 +862,10 @@ Public Class frmdiagnostic_facturationCoProp
         Me.tbResteAFacturer.ReadOnly = True
         Me.tbResteAFacturer.Size = New System.Drawing.Size(70, 20)
         Me.tbResteAFacturer.TabIndex = 68
+        '
+        'm_bsContratCommercial
+        '
+        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
         '
         'btnCalc
         '
@@ -1085,6 +1116,10 @@ Public Class frmdiagnostic_facturationCoProp
         Me.tbModelePulve.Size = New System.Drawing.Size(100, 20)
         Me.tbModelePulve.TabIndex = 75
         '
+        'm_bsDiag
+        '
+        Me.m_bsDiag.DataSource = GetType(Crodip_agent.Diagnostic)
+        '
         'tbMarquePulve
         '
         Me.tbMarquePulve.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsDiag, "pulverisateurMarque", True))
@@ -1186,41 +1221,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.dgvLignes.Size = New System.Drawing.Size(915, 145)
         Me.dgvLignes.TabIndex = 78
         '
-        'm_bsFacture
-        '
-        Me.m_bsFacture.DataSource = GetType(Crodip_agent.Facture)
-        '
-        'm_bsDiag
-        '
-        Me.m_bsDiag.DataSource = GetType(Crodip_agent.Diagnostic)
-        '
-        'm_bsContratCommercial
-        '
-        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
-        '
-        'm_bsExploitant
-        '
-        Me.m_bsExploitant.DataSource = GetType(Crodip_agent.Exploitation)
-        Me.m_bsExploitant.Filter = "not isSuppressionCoprop"
-        '
-        'RaisonSocialeDataGridViewTextBoxColumn
-        '
-        Me.RaisonSocialeDataGridViewTextBoxColumn.DataPropertyName = "raisonSociale"
-        Me.RaisonSocialeDataGridViewTextBoxColumn.HeaderText = "Raison sociale"
-        Me.RaisonSocialeDataGridViewTextBoxColumn.Name = "RaisonSocialeDataGridViewTextBoxColumn"
-        Me.RaisonSocialeDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CommuneDataGridViewTextBoxColumn
-        '
-        Me.CommuneDataGridViewTextBoxColumn.DataPropertyName = "commune"
-        Me.CommuneDataGridViewTextBoxColumn.HeaderText = "Commune"
-        Me.CommuneDataGridViewTextBoxColumn.Name = "CommuneDataGridViewTextBoxColumn"
-        Me.CommuneDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'm_bsrcStructure
-        '
-        Me.m_bsrcStructure.DataSource = GetType(Crodip_agent.Structuree)
-        '
         'CategorieDataGridViewTextBoxColumn
         '
         Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "categorie"
@@ -1294,26 +1294,26 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Text = "Crodip .::. Facturation"
         Me.pnlFooter.ResumeLayout(False)
         Me.pnlFooter.PerformLayout()
+        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.m_bsrcStructure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlListCoProp.ResumeLayout(False)
         CType(Me.m_dgvCoProp, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlClient.ResumeLayout(False)
         Me.pnlClient.PerformLayout()
         Me.pnlPourcentage.ResumeLayout(False)
         Me.pnlPourcentage.PerformLayout()
+        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlInfosDiag.ResumeLayout(False)
         Me.pnlInfosDiag.PerformLayout()
+        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlLines.ResumeLayout(False)
         CType(Me.dgvLignes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcStructure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1373,7 +1373,7 @@ Public Class frmdiagnostic_facturationCoProp
             pnlListCoProp.Visible = True
         End If
         m_olstExploit.ForEach(Sub(oExpl)
-                                  Dim oFact As New Facture(m_oDiag.oContratCommercial, m_oStructure)
+                                  Dim oFact As New Facture(m_oDiag, m_oStructure)
                                   oFact.oExploit = oExpl
                                   oFact.dateFacture = DateTime.Now
                                   m_olstFacture.Add(oFact)
@@ -1544,14 +1544,15 @@ Public Class frmdiagnostic_facturationCoProp
 
 
     Private Sub btn_imprimerFactCoProp_Click(sender As Object, e As EventArgs) Handles btn_imprimerFactCoProp.Click
-
+        Me.Cursor = Cursors.WaitCursor
         Me.ValidateChildren()
 
         Dim oFacture As Facture
         oFacture = m_bsFacture.Current
         createFacture_CR(oFacture)
+        Me.Cursor = Cursors.Default
 
-        CSFile.open(m_pathFacture)
+        CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & m_pathFacture)
     End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs)
@@ -1814,7 +1815,7 @@ Public Class frmdiagnostic_facturationCoProp
         Next
         If Not bTrouve Then
             If m_oDiag IsNot Nothing Then
-                oFact = New Facture(m_oDiag.oContratCommercial, m_oStructure)
+                oFact = New Facture(m_oDiag, m_oStructure)
             Else
                 oFact = New Facture(m_oStructure)
             End If

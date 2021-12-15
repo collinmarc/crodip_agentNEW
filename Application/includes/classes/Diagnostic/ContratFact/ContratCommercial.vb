@@ -23,19 +23,19 @@ Public Class ContratCommercial
         End Set
     End Property
     Private _Diag As Diagnostic
-    Public Property oDiagnostic() As Diagnostic
-        Get
-            Return _Diag
-        End Get
-        Set(ByVal value As Diagnostic)
-            _Diag = value
-            If _Diag IsNot Nothing And Not String.IsNullOrEmpty(_Diag.proprietaireId) Then
-                oExploit = ExploitationManager.getExploitationById(_Diag.proprietaireId)
-            Else
-                oExploit = New Exploitation()
-            End If
-        End Set
-    End Property
+    'Public Property oDiagnostic() As Diagnostic
+    '    Get
+    '        Return _Diag
+    '    End Get
+    '    Set(ByVal value As Diagnostic)
+    '        _Diag = value
+    '        If _Diag IsNot Nothing And Not String.IsNullOrEmpty(_Diag.proprietaireId) Then
+    '            oExploit = ExploitationManager.getExploitationById(_Diag.proprietaireId)
+    '        Else
+    '            oExploit = New Exploitation()
+    '        End If
+    '    End Set
+    'End Property
 
     Private _Lignes As List(Of FactureItem)
     Public Property Lignes() As List(Of FactureItem)

@@ -9,7 +9,7 @@ Public Class Facture
 
     Public Sub New()
         oExploit = New Exploitation()
-        oDiagnostic = New Diagnostic()
+        'oDiagnostic = New Diagnostic()
     End Sub
     Public Sub New(pStructure As Structuree)
         Me.New()
@@ -38,18 +38,30 @@ Public Class Facture
         Me.modeReglement = pStructure.modereglement
 
     End Sub
-    Public Sub New(pContrat As ContratCommercial, pStructure As Structuree)
+    Public Sub New(poDiag As Diagnostic, pStructure As Structuree)
         Me.New(pStructure)
-        Me.Commentaire = pContrat.Commentaire
-        'Me.DiagId = pContrat.DiagId
-        Me.oDiagnostic = pContrat.oDiagnostic
-        Me.oExploit = pContrat.oExploit
-        Me.TxTVA = pContrat.TxTVA
-        pContrat.Lignes.ForEach(Sub(lg) Lignes.Add(lg.Clone()))
+        Me.Commentaire = poDiag.oContratCommercial.Commentaire
+        Me.idDiag = poDiag.id
+        Me.numNatPulve = poDiag.pulverisateurNumNational
+        'Me.oDiagnostic = poDiag
+        Me.oExploit = poDiag.oContratCommercial.oExploit
+        Me.TxTVA = poDiag.oContratCommercial.TxTVA
+        poDiag.oContratCommercial.Lignes.ForEach(Sub(lg) Lignes.Add(lg.Clone()))
+        CalculTotaux()
 
 
     End Sub
+
 #Region "Properties"
+    Private _numNatPulve As String
+    Public Property numNatPulve() As String
+        Get
+            Return _numNatPulve
+        End Get
+        Set(ByVal value As String)
+            _numNatPulve = value
+        End Set
+    End Property
     Private _DateFacture As DateTime
     Public Property dateFacture() As DateTime
         Get

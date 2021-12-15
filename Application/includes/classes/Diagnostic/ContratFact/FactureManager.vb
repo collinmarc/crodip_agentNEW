@@ -206,7 +206,7 @@ Public Class FactureManager
             oCmd.Parameters.Add("?_9", OleDb.OleDbType.Currency).Value = pfacture.TotalTVA
             oCmd.Parameters.Add("?_10", OleDb.OleDbType.Currency).Value = pfacture.TotalTTC
             oCmd.Parameters.Add("?_11", OleDb.OleDbType.Currency).Value = pfacture.TxTVA
-            oCmd.Parameters.AddWithValue("?_12", pfacture.oDiagnostic.id)
+            oCmd.Parameters.AddWithValue("?_12", pfacture.idDiag)
             oCmd.Parameters.AddWithValue("?_13", pfacture.oExploit.id)
             oCmd.Parameters.AddWithValue("?_14", pfacture.oExploit.raisonSociale)
             oCmd.Parameters.AddWithValue("?_15", pfacture.oExploit.nomExploitant)

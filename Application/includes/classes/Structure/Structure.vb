@@ -252,10 +252,14 @@ Public Class Structuree
     Public Property txTVA() As String
         Get
             Dim sReturn As String = ""
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/txTVA")
-            If x IsNot Nothing Then
-                sReturn = x.InnerText
+            Using FACTURATION_XML_CONFIG As New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+                Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/txTVA")
+                If x IsNot Nothing Then
+                    sReturn = x.InnerText
+                End If
+            End Using
+            If sReturn = "" Then
+                sReturn = "0"
             End If
             Return sReturn
         End Get
