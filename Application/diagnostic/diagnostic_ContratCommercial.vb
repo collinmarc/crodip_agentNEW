@@ -396,7 +396,6 @@ Public Class diagnostic_ContratCommercial
         Me.facturation_totalTTC.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalTTC", True))
         Me.facturation_totalTTC.Location = New System.Drawing.Point(863, 111)
         Me.facturation_totalTTC.Name = "facturation_totalTTC"
-        Me.facturation_totalTTC.ReadOnly = True
         Me.facturation_totalTTC.Size = New System.Drawing.Size(43, 20)
         Me.facturation_totalTTC.TabIndex = 3
         '
@@ -1037,5 +1036,9 @@ Public Class diagnostic_ContratCommercial
         End If
         suivant(sender)
 
+    End Sub
+
+    Private Sub facturation_totalTTC_Validated(sender As Object, e As EventArgs) Handles facturation_totalTTC.Validated
+        btn_facturation_suivant.Enabled = True
     End Sub
 End Class

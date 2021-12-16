@@ -1153,10 +1153,17 @@ Public Class login
         oAgent = AgentManager.getAgentById("1110")
         oAgent.isSignElecActive = True
 
+        oExploit = ExploitationManager.getExploitationById("2-1110-3")
+        oPulve = PulverisateurManager.getPulverisateurById("2-1110-3")
+        oPulve.modeUtilisation = Pulverisateur.CO_PRORIETE
+        PulverisateurManager.save(oPulve, oExploit.id, oAgent)
+        oDiag = New Diagnostic(oAgent, oPulve, oExploit)
+        oDiag.oContratCommercial.Lignes.Add(New FactureItem("TEST", "TEST", 15, 2, 0.2, ""))
+        DiagnosticManager.save(oDiag)
 
         Dim ofrm As frmdiagnostic_facturationCoProp
         ofrm = New frmdiagnostic_facturationCoProp()
-        ofrm.setContexte(oAgent)
+        ofrm.setContexte(oDiag, oAgent)
         ofrm.Show()
 
     End Sub

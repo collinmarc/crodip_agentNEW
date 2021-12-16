@@ -6,6 +6,7 @@ Imports System.Linq
 <Serializable(), XmlInclude(GetType(Pulverisateur))>
 Public Class Pulverisateur
 
+    Public Shared CO_PRORIETE As String = "Co-Propriété"
     Public Shared TYPEPULVE_ARBRES As String = "Arbres"
     Public Shared TYPEPULVE_CULTURESBASSES As String = "Cultures basses"
     Public Shared TYPEPULVE_VIGNE As String = "Vigne"
@@ -779,7 +780,7 @@ Public Class Pulverisateur
         End Set
     End Property
     Public Function isCoPropriete() As Boolean
-        Return modeUtilisation = "Co-Propriété"
+        Return modeUtilisation = Pulverisateur.CO_PRORIETE
     End Function
 
     Public Property nombreExploitants As String

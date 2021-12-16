@@ -193,12 +193,14 @@ Public Class Facture
         Dim oLg As New FactureItem()
         oLg.txTVA = Me.TxTVA
         Lignes.Add(oLg)
+        CalculTotaux()
         Return oLg
     End Function
     Public Function AjoutNouvelleLigne(pCategorie As String, pPrestation As String, pPU As Decimal, pQte As Decimal, pDiagId As String) As FactureItem
 
         Dim oLg As New FactureItem(pCategorie, pPrestation, pPU, pQte, Me.TxTVA, pDiagId)
         Lignes.Add(oLg)
+        CalculTotaux()
         Return oLg
 
     End Function

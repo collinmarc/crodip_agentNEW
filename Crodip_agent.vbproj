@@ -1428,6 +1428,7 @@
     <None Include="Resources\add_to_favorites_96px.png" />
     <None Include="Resources\icons8_membership_card.ico" />
     <None Include="Resources\Favorites.png" />
+    <None Include="Resources\btn_search.jpg" />
     <Content Include="wgssSTU.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

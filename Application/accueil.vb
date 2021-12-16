@@ -76,7 +76,29 @@ Public Class accueil
     Friend WithEvents Panel1 As Panel
     Friend WithEvents btn_LieuxControle As Label
     Friend WithEvents tabControl_Facturation As TabPage
-    Friend WithEvents btn_Facturation As Label
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents btnRechercher As Button
+    Friend WithEvents dtpDeb As DateTimePicker
+    Friend WithEvents tbNomClient As TextBox
+    Friend WithEvents rbNomClient As RadioButton
+    Friend WithEvents tbNumFact As TextBox
+    Friend WithEvents rbNumFact As RadioButton
+    Friend WithEvents dtpFin As DateTimePicker
+    Friend WithEvents Label5 As Label
+    Friend WithEvents rbDatesFacture As RadioButton
+    Friend WithEvents btnAjoutFacture As Button
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents m_bsFacture As BindingSource
+    Friend WithEvents btnExportFacture As Button
+    Friend WithEvents IdFactureDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DateFactureDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ClientColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IdDiagDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NumNatPulveDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TotalHTDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TotalTTCDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IsRegleeDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents PDFColumn As DataGridViewImageColumn
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -286,10 +308,11 @@ Public Class accueil
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(accueil))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImageList_synchro = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_Docs = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
@@ -516,7 +539,29 @@ Public Class accueil
         Me.pctLogoStat = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.tabControl_Facturation = New System.Windows.Forms.TabPage()
-        Me.btn_Facturation = New System.Windows.Forms.Label()
+        Me.btnExportFacture = New System.Windows.Forms.Button()
+        Me.btnAjoutFacture = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.m_bsFacture = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.btnRechercher = New System.Windows.Forms.Button()
+        Me.dtpDeb = New System.Windows.Forms.DateTimePicker()
+        Me.tbNomClient = New System.Windows.Forms.TextBox()
+        Me.rbNomClient = New System.Windows.Forms.RadioButton()
+        Me.tbNumFact = New System.Windows.Forms.TextBox()
+        Me.rbNumFact = New System.Windows.Forms.RadioButton()
+        Me.dtpFin = New System.Windows.Forms.DateTimePicker()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.rbDatesFacture = New System.Windows.Forms.RadioButton()
+        Me.IdFactureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateFactureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ClientColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdDiagDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumNatPulveDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalTTCDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsRegleeDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.PDFColumn = New System.Windows.Forms.DataGridViewImageColumn()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
         Me.tabControl_accueil.SuspendLayout()
@@ -564,6 +609,9 @@ Public Class accueil
         CType(Me.bsStatistiques, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pctLogoStat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_Facturation.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'ImageList_synchro
@@ -789,14 +837,14 @@ Public Class accueil
         Me.dgv_ControleRegulier.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgv_ControleRegulier.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.dgv_ControleRegulier.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_ControleRegulier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TypeDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.isOK, Me.isNOK, Me.isNonEffectue})
         Me.dgv_ControleRegulier.DataSource = Me.bsControleQuotidien
@@ -1119,25 +1167,25 @@ Public Class accueil
         Me.dgvPulveExploit.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvPulveExploit.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvPulveExploit.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.ControlLight
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlLight
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvPulveExploit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPulveExploit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IconPulveCol, Me.NumeroNationalDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn1, Me.MarqueDataGridViewTextBoxColumn, Me.ModeleDataGridViewTextBoxColumn, Me.NombreBusesDataGridViewTextBoxColumn, Me.CapaciteDataGridViewTextBoxColumn, Me.AttelageDataGridViewTextBoxColumn, Me.AnneeAchatDataGridViewTextBoxColumn, Me.DateProchainControleDataGridViewTextBoxColumn, Me.IconPulveColumn, Me.PulvePrincipalNumNatDataGridViewTextBoxColumn})
         Me.dgvPulveExploit.DataSource = Me.m_bsrcPulverisateurTMP
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvPulveExploit.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvPulveExploit.DefaultCellStyle = DataGridViewCellStyle4
         Me.dgvPulveExploit.GridColor = System.Drawing.Color.Black
         Me.dgvPulveExploit.Location = New System.Drawing.Point(11, 62)
         Me.dgvPulveExploit.MultiSelect = False
@@ -1225,9 +1273,9 @@ Public Class accueil
         'DateProchainControleDataGridViewTextBoxColumn
         '
         Me.DateProchainControleDataGridViewTextBoxColumn.DataPropertyName = "dateProchainControleAsDate"
-        DataGridViewCellStyle7.Format = "d"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Format = "d"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
         Me.DateProchainControleDataGridViewTextBoxColumn.FillWeight = 9.0!
         Me.DateProchainControleDataGridViewTextBoxColumn.HeaderText = "Prochain contrôle"
         Me.DateProchainControleDataGridViewTextBoxColumn.Name = "DateProchainControleDataGridViewTextBoxColumn"
@@ -3059,7 +3107,10 @@ Public Class accueil
         'tabControl_Facturation
         '
         Me.tabControl_Facturation.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.tabControl_Facturation.Controls.Add(Me.btn_Facturation)
+        Me.tabControl_Facturation.Controls.Add(Me.btnExportFacture)
+        Me.tabControl_Facturation.Controls.Add(Me.btnAjoutFacture)
+        Me.tabControl_Facturation.Controls.Add(Me.DataGridView1)
+        Me.tabControl_Facturation.Controls.Add(Me.Panel3)
         Me.tabControl_Facturation.Location = New System.Drawing.Point(4, 22)
         Me.tabControl_Facturation.Name = "tabControl_Facturation"
         Me.tabControl_Facturation.Padding = New System.Windows.Forms.Padding(3)
@@ -3067,18 +3118,233 @@ Public Class accueil
         Me.tabControl_Facturation.TabIndex = 7
         Me.tabControl_Facturation.Text = "Facturation"
         '
-        'btn_Facturation
+        'btnExportFacture
         '
-        Me.btn_Facturation.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_Facturation.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_Facturation.ForeColor = System.Drawing.Color.White
-        Me.btn_Facturation.Image = CType(resources.GetObject("btn_Facturation.Image"), System.Drawing.Image)
-        Me.btn_Facturation.Location = New System.Drawing.Point(23, 26)
-        Me.btn_Facturation.Name = "btn_Facturation"
-        Me.btn_Facturation.Size = New System.Drawing.Size(180, 36)
-        Me.btn_Facturation.TabIndex = 32
-        Me.btn_Facturation.Text = "        Facturation"
-        Me.btn_Facturation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btnExportFacture.BackgroundImage = Global.Crodip_agent.Resources.btn_empty_big
+        Me.btnExportFacture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnExportFacture.FlatAppearance.BorderSize = 0
+        Me.btnExportFacture.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExportFacture.ForeColor = System.Drawing.Color.White
+        Me.btnExportFacture.Location = New System.Drawing.Point(590, 596)
+        Me.btnExportFacture.Name = "btnExportFacture"
+        Me.btnExportFacture.Size = New System.Drawing.Size(193, 40)
+        Me.btnExportFacture.TabIndex = 36
+        Me.btnExportFacture.Text = "Export CSV"
+        Me.btnExportFacture.UseVisualStyleBackColor = True
+        '
+        'btnAjoutFacture
+        '
+        Me.btnAjoutFacture.BackgroundImage = Global.Crodip_agent.Resources.btn_divers_add
+        Me.btnAjoutFacture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnAjoutFacture.FlatAppearance.BorderSize = 0
+        Me.btnAjoutFacture.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAjoutFacture.ForeColor = System.Drawing.Color.White
+        Me.btnAjoutFacture.Location = New System.Drawing.Point(799, 596)
+        Me.btnAjoutFacture.Name = "btnAjoutFacture"
+        Me.btnAjoutFacture.Size = New System.Drawing.Size(193, 40)
+        Me.btnAjoutFacture.TabIndex = 35
+        Me.btnAjoutFacture.Text = "Ajout Facture"
+        Me.btnAjoutFacture.UseVisualStyleBackColor = True
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AutoGenerateColumns = False
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFactureDataGridViewTextBoxColumn, Me.DateFactureDataGridViewTextBoxColumn, Me.ClientColumn, Me.IdDiagDataGridViewTextBoxColumn, Me.NumNatPulveDataGridViewTextBoxColumn, Me.TotalHTDataGridViewTextBoxColumn, Me.TotalTTCDataGridViewTextBoxColumn, Me.IsRegleeDataGridViewCheckBoxColumn, Me.PDFColumn})
+        Me.DataGridView1.DataSource = Me.m_bsFacture
+        Me.DataGridView1.Location = New System.Drawing.Point(15, 78)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.Size = New System.Drawing.Size(977, 512)
+        Me.DataGridView1.TabIndex = 34
+        '
+        'm_bsFacture
+        '
+        Me.m_bsFacture.DataSource = GetType(Crodip_agent.Facture)
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.btnRechercher)
+        Me.Panel3.Controls.Add(Me.dtpDeb)
+        Me.Panel3.Controls.Add(Me.tbNomClient)
+        Me.Panel3.Controls.Add(Me.rbNomClient)
+        Me.Panel3.Controls.Add(Me.tbNumFact)
+        Me.Panel3.Controls.Add(Me.rbNumFact)
+        Me.Panel3.Controls.Add(Me.dtpFin)
+        Me.Panel3.Controls.Add(Me.Label5)
+        Me.Panel3.Controls.Add(Me.rbDatesFacture)
+        Me.Panel3.Location = New System.Drawing.Point(15, 11)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(977, 60)
+        Me.Panel3.TabIndex = 33
+        '
+        'btnRechercher
+        '
+        Me.btnRechercher.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.btnRechercher.BackgroundImage = Global.Crodip_agent.Resources.btn_search
+        Me.btnRechercher.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnRechercher.FlatAppearance.BorderSize = 0
+        Me.btnRechercher.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRechercher.ForeColor = System.Drawing.Color.White
+        Me.btnRechercher.Location = New System.Drawing.Point(816, 4)
+        Me.btnRechercher.Name = "btnRechercher"
+        Me.btnRechercher.Size = New System.Drawing.Size(138, 34)
+        Me.btnRechercher.TabIndex = 9
+        Me.btnRechercher.Text = "Rechercher"
+        Me.btnRechercher.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnRechercher.UseVisualStyleBackColor = False
+        '
+        'dtpDeb
+        '
+        Me.dtpDeb.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpDeb.Location = New System.Drawing.Point(424, 3)
+        Me.dtpDeb.Name = "dtpDeb"
+        Me.dtpDeb.Size = New System.Drawing.Size(96, 20)
+        Me.dtpDeb.TabIndex = 8
+        '
+        'tbNomClient
+        '
+        Me.tbNomClient.Location = New System.Drawing.Point(668, 6)
+        Me.tbNomClient.Name = "tbNomClient"
+        Me.tbNomClient.Size = New System.Drawing.Size(100, 20)
+        Me.tbNomClient.TabIndex = 7
+        '
+        'rbNomClient
+        '
+        Me.rbNomClient.AutoSize = True
+        Me.rbNomClient.Location = New System.Drawing.Point(557, 7)
+        Me.rbNomClient.Name = "rbNomClient"
+        Me.rbNomClient.Size = New System.Drawing.Size(96, 17)
+        Me.rbNomClient.TabIndex = 6
+        Me.rbNomClient.TabStop = True
+        Me.rbNomClient.Text = "Nom du client :"
+        Me.rbNomClient.UseVisualStyleBackColor = True
+        '
+        'tbNumFact
+        '
+        Me.tbNumFact.Location = New System.Drawing.Point(134, 5)
+        Me.tbNumFact.Name = "tbNumFact"
+        Me.tbNumFact.Size = New System.Drawing.Size(100, 20)
+        Me.tbNumFact.TabIndex = 5
+        '
+        'rbNumFact
+        '
+        Me.rbNumFact.AutoSize = True
+        Me.rbNumFact.Location = New System.Drawing.Point(8, 5)
+        Me.rbNumFact.Name = "rbNumFact"
+        Me.rbNumFact.Size = New System.Drawing.Size(119, 17)
+        Me.rbNumFact.TabIndex = 4
+        Me.rbNumFact.TabStop = True
+        Me.rbNumFact.Text = "Numéro de facture :"
+        Me.rbNumFact.UseVisualStyleBackColor = True
+        '
+        'dtpFin
+        '
+        Me.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFin.Location = New System.Drawing.Point(424, 29)
+        Me.dtpFin.Name = "dtpFin"
+        Me.dtpFin.Size = New System.Drawing.Size(96, 20)
+        Me.dtpFin.TabIndex = 3
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(376, 25)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(30, 13)
+        Me.Label5.TabIndex = 2
+        Me.Label5.Text = "et le "
+        '
+        'rbDatesFacture
+        '
+        Me.rbDatesFacture.AutoSize = True
+        Me.rbDatesFacture.Location = New System.Drawing.Point(271, 5)
+        Me.rbDatesFacture.Name = "rbDatesFacture"
+        Me.rbDatesFacture.Size = New System.Drawing.Size(147, 17)
+        Me.rbDatesFacture.TabIndex = 0
+        Me.rbDatesFacture.TabStop = True
+        Me.rbDatesFacture.Text = "Date de facture : Entre le "
+        Me.rbDatesFacture.UseVisualStyleBackColor = True
+        '
+        'IdFactureDataGridViewTextBoxColumn
+        '
+        Me.IdFactureDataGridViewTextBoxColumn.DataPropertyName = "idFacture"
+        Me.IdFactureDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.IdFactureDataGridViewTextBoxColumn.HeaderText = "Facture"
+        Me.IdFactureDataGridViewTextBoxColumn.Name = "IdFactureDataGridViewTextBoxColumn"
+        Me.IdFactureDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DateFactureDataGridViewTextBoxColumn
+        '
+        Me.DateFactureDataGridViewTextBoxColumn.DataPropertyName = "dateFacture"
+        DataGridViewCellStyle5.Format = "d"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.DateFactureDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        Me.DateFactureDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.DateFactureDataGridViewTextBoxColumn.HeaderText = "Date"
+        Me.DateFactureDataGridViewTextBoxColumn.Name = "DateFactureDataGridViewTextBoxColumn"
+        Me.DateFactureDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ClientColumn
+        '
+        Me.ClientColumn.FillWeight = 83.18756!
+        Me.ClientColumn.HeaderText = "Client"
+        Me.ClientColumn.Name = "ClientColumn"
+        Me.ClientColumn.ReadOnly = True
+        '
+        'IdDiagDataGridViewTextBoxColumn
+        '
+        Me.IdDiagDataGridViewTextBoxColumn.DataPropertyName = "idDiag"
+        Me.IdDiagDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.IdDiagDataGridViewTextBoxColumn.HeaderText = "Controle"
+        Me.IdDiagDataGridViewTextBoxColumn.Name = "IdDiagDataGridViewTextBoxColumn"
+        Me.IdDiagDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NumNatPulveDataGridViewTextBoxColumn
+        '
+        Me.NumNatPulveDataGridViewTextBoxColumn.DataPropertyName = "numNatPulve"
+        Me.NumNatPulveDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.NumNatPulveDataGridViewTextBoxColumn.HeaderText = "Pulverisateur"
+        Me.NumNatPulveDataGridViewTextBoxColumn.Name = "NumNatPulveDataGridViewTextBoxColumn"
+        Me.NumNatPulveDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TotalHTDataGridViewTextBoxColumn
+        '
+        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "TotalHT"
+        Me.TotalHTDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "Total HT"
+        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
+        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TotalTTCDataGridViewTextBoxColumn
+        '
+        Me.TotalTTCDataGridViewTextBoxColumn.DataPropertyName = "TotalTTC"
+        Me.TotalTTCDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.TotalTTCDataGridViewTextBoxColumn.HeaderText = "Total TTC"
+        Me.TotalTTCDataGridViewTextBoxColumn.Name = "TotalTTCDataGridViewTextBoxColumn"
+        Me.TotalTTCDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'IsRegleeDataGridViewCheckBoxColumn
+        '
+        Me.IsRegleeDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.IsRegleeDataGridViewCheckBoxColumn.DataPropertyName = "isReglee"
+        Me.IsRegleeDataGridViewCheckBoxColumn.HeaderText = "Reglée"
+        Me.IsRegleeDataGridViewCheckBoxColumn.Name = "IsRegleeDataGridViewCheckBoxColumn"
+        Me.IsRegleeDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.IsRegleeDataGridViewCheckBoxColumn.Width = 50
+        '
+        'PDFColumn
+        '
+        Me.PDFColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.PDFColumn.FillWeight = 217.6871!
+        Me.PDFColumn.HeaderText = "PDF"
+        Me.PDFColumn.Image = Global.Crodip_agent.Resources.PDF
+        Me.PDFColumn.Name = "PDFColumn"
+        Me.PDFColumn.ReadOnly = True
+        Me.PDFColumn.Width = 40
         '
         'accueil
         '
@@ -3148,6 +3414,10 @@ Public Class accueil
         CType(Me.bsStatistiques, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pctLogoStat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_Facturation.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -5776,11 +6046,10 @@ Public Class accueil
 
     End Sub
 
-    Private Sub btn_Facturation_Click(sender As Object, e As EventArgs) Handles btn_Facturation.Click
+    Private Sub btnAjoutFacture_Click(sender As Object, e As EventArgs) Handles btnAjoutFacture.Click
         Dim ofrm As frmdiagnostic_facturationCoProp
         ofrm = New frmdiagnostic_facturationCoProp()
         ofrm.setContexte(agentCourant)
         ofrm.ShowDialog(Me)
-
     End Sub
 End Class

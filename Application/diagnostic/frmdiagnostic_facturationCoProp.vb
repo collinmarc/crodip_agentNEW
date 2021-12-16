@@ -53,7 +53,7 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents Label10 As Label
     Friend WithEvents TextBox5 As TextBox
     Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents tbCodePostal As TextBox
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label8 As Label
@@ -94,6 +94,9 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents PuDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents TotalHTDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents SupprColumn As DataGridViewImageColumn
+    Friend WithEvents pnlAddPrestatation As Panel
+    Friend WithEvents cbxCommune As ComboBox
+    Friend WithEvents m_bsCommunes As BindingSource
     Friend WithEvents CommuneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 
 
@@ -198,6 +201,8 @@ Public Class frmdiagnostic_facturationCoProp
         Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.m_bsExploitant = New System.Windows.Forms.BindingSource(Me.components)
         Me.pnlClient = New System.Windows.Forms.Panel()
+        Me.cbxCommune = New System.Windows.Forms.ComboBox()
+        Me.m_bsCommunes = New System.Windows.Forms.BindingSource(Me.components)
         Me.pnlPourcentage = New System.Windows.Forms.Panel()
         Me.tbResteAFacturer = New System.Windows.Forms.TextBox()
         Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
@@ -215,14 +220,14 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.tbCodePostal = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.pnlInfosDiag = New System.Windows.Forms.Panel()
         Me.tbModelePulve = New System.Windows.Forms.TextBox()
         Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
@@ -234,6 +239,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.pnlLines = New System.Windows.Forms.Panel()
+        Me.pnlAddPrestatation = New System.Windows.Forms.Panel()
         Me.dgvLignes = New System.Windows.Forms.DataGridView()
         Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -252,11 +258,13 @@ Public Class frmdiagnostic_facturationCoProp
         CType(Me.m_dgvCoProp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlClient.SuspendLayout()
+        CType(Me.m_bsCommunes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlPourcentage.SuspendLayout()
         CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlInfosDiag.SuspendLayout()
         CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlLines.SuspendLayout()
+        Me.pnlAddPrestatation.SuspendLayout()
         CType(Me.dgvLignes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -553,7 +561,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         Me.listTarif_categories.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.listTarif_categories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.listTarif_categories.Location = New System.Drawing.Point(475, 154)
+        Me.listTarif_categories.Location = New System.Drawing.Point(243, 1)
         Me.listTarif_categories.Name = "listTarif_categories"
         Me.listTarif_categories.Size = New System.Drawing.Size(208, 21)
         Me.listTarif_categories.TabIndex = 74
@@ -563,7 +571,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.img_Add.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.img_Add.Cursor = System.Windows.Forms.Cursors.Hand
         Me.img_Add.Image = CType(resources.GetObject("img_Add.Image"), System.Drawing.Image)
-        Me.img_Add.Location = New System.Drawing.Point(899, 155)
+        Me.img_Add.Location = New System.Drawing.Point(675, 3)
         Me.img_Add.Name = "img_Add"
         Me.img_Add.Size = New System.Drawing.Size(16, 16)
         Me.img_Add.TabIndex = 77
@@ -576,7 +584,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label_diagnostic_61.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label_diagnostic_61.Image = CType(resources.GetObject("Label_diagnostic_61.Image"), System.Drawing.Image)
         Me.Label_diagnostic_61.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label_diagnostic_61.Location = New System.Drawing.Point(254, 155)
+        Me.Label_diagnostic_61.Location = New System.Drawing.Point(30, 2)
         Me.Label_diagnostic_61.Name = "Label_diagnostic_61"
         Me.Label_diagnostic_61.Size = New System.Drawing.Size(208, 22)
         Me.Label_diagnostic_61.TabIndex = 76
@@ -586,7 +594,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         Me.listTarif_prestations.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.listTarif_prestations.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.listTarif_prestations.Location = New System.Drawing.Point(691, 154)
+        Me.listTarif_prestations.Location = New System.Drawing.Point(457, 0)
         Me.listTarif_prestations.Name = "listTarif_prestations"
         Me.listTarif_prestations.Size = New System.Drawing.Size(200, 21)
         Me.listTarif_prestations.TabIndex = 75
@@ -818,6 +826,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         Me.pnlClient.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlClient.Controls.Add(Me.cbxCommune)
         Me.pnlClient.Controls.Add(Me.pnlPourcentage)
         Me.pnlClient.Controls.Add(Me.tbEmail)
         Me.pnlClient.Controls.Add(Me.Label23)
@@ -829,8 +838,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.pnlClient.Controls.Add(Me.Label11)
         Me.pnlClient.Controls.Add(Me.Label10)
         Me.pnlClient.Controls.Add(Me.TextBox5)
-        Me.pnlClient.Controls.Add(Me.TextBox4)
-        Me.pnlClient.Controls.Add(Me.TextBox3)
+        Me.pnlClient.Controls.Add(Me.tbCodePostal)
         Me.pnlClient.Controls.Add(Me.TextBox2)
         Me.pnlClient.Controls.Add(Me.TextBox1)
         Me.pnlClient.Controls.Add(Me.Label8)
@@ -841,6 +849,25 @@ Public Class frmdiagnostic_facturationCoProp
         Me.pnlClient.Name = "pnlClient"
         Me.pnlClient.Size = New System.Drawing.Size(574, 210)
         Me.pnlClient.TabIndex = 0
+        '
+        'cbxCommune
+        '
+        Me.cbxCommune.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbxCommune.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbxCommune.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbxCommune.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "commune", True))
+        Me.cbxCommune.DataSource = Me.m_bsCommunes
+        Me.cbxCommune.DisplayMember = "Nom"
+        Me.cbxCommune.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxCommune.Location = New System.Drawing.Point(266, 114)
+        Me.cbxCommune.Name = "cbxCommune"
+        Me.cbxCommune.Size = New System.Drawing.Size(305, 21)
+        Me.cbxCommune.TabIndex = 74
+        '
+        'm_bsCommunes
+        '
+        Me.m_bsCommunes.DataSource = GetType(Crodip_agent.Commune)
         '
         'pnlPourcentage
         '
@@ -912,9 +939,9 @@ Public Class frmdiagnostic_facturationCoProp
         Me.tbEmail.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbEmail.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "eMail", True))
-        Me.tbEmail.Location = New System.Drawing.Point(383, 141)
+        Me.tbEmail.Location = New System.Drawing.Point(388, 141)
         Me.tbEmail.Name = "tbEmail"
-        Me.tbEmail.Size = New System.Drawing.Size(188, 20)
+        Me.tbEmail.Size = New System.Drawing.Size(183, 20)
         Me.tbEmail.TabIndex = 7
         '
         'Label23
@@ -922,7 +949,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label23.Location = New System.Drawing.Point(332, 144)
+        Me.Label23.Location = New System.Drawing.Point(341, 144)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(45, 13)
         Me.Label23.TabIndex = 72
@@ -1008,25 +1035,15 @@ Public Class frmdiagnostic_facturationCoProp
         Me.TextBox5.Size = New System.Drawing.Size(463, 20)
         Me.TextBox5.TabIndex = 2
         '
-        'TextBox4
+        'tbCodePostal
         '
-        Me.TextBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.tbCodePostal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "commune", True))
-        Me.TextBox4.Location = New System.Drawing.Point(260, 115)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(311, 20)
-        Me.TextBox4.TabIndex = 4
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "codePostal", True))
-        Me.TextBox3.Location = New System.Drawing.Point(107, 115)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(51, 20)
-        Me.TextBox3.TabIndex = 60
+        Me.tbCodePostal.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "codePostal", True))
+        Me.tbCodePostal.Location = New System.Drawing.Point(107, 115)
+        Me.tbCodePostal.Name = "tbCodePostal"
+        Me.tbCodePostal.Size = New System.Drawing.Size(51, 20)
+        Me.tbCodePostal.TabIndex = 60
         '
         'TextBox2
         '
@@ -1092,6 +1109,16 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label4.TabIndex = 62
         Me.Label4.Text = "Nom  :"
         '
+        'TextBox4
+        '
+        Me.TextBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "commune", True))
+        Me.TextBox4.Location = New System.Drawing.Point(275, 85)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(311, 20)
+        Me.TextBox4.TabIndex = 4
+        '
         'pnlInfosDiag
         '
         Me.pnlInfosDiag.Controls.Add(Me.tbModelePulve)
@@ -1102,6 +1129,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.pnlInfosDiag.Controls.Add(Me.Label31)
         Me.pnlInfosDiag.Controls.Add(Me.Label30)
         Me.pnlInfosDiag.Controls.Add(Me.Label26)
+        Me.pnlInfosDiag.Controls.Add(Me.TextBox4)
         Me.pnlInfosDiag.Location = New System.Drawing.Point(350, 37)
         Me.pnlInfosDiag.Name = "pnlInfosDiag"
         Me.pnlInfosDiag.Size = New System.Drawing.Size(571, 120)
@@ -1194,15 +1222,23 @@ Public Class frmdiagnostic_facturationCoProp
         'pnlLines
         '
         Me.pnlLines.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.pnlLines.Controls.Add(Me.pnlAddPrestatation)
         Me.pnlLines.Controls.Add(Me.dgvLignes)
-        Me.pnlLines.Controls.Add(Me.listTarif_categories)
-        Me.pnlLines.Controls.Add(Me.img_Add)
-        Me.pnlLines.Controls.Add(Me.listTarif_prestations)
-        Me.pnlLines.Controls.Add(Me.Label_diagnostic_61)
         Me.pnlLines.Location = New System.Drawing.Point(12, 380)
         Me.pnlLines.Name = "pnlLines"
         Me.pnlLines.Size = New System.Drawing.Size(921, 179)
         Me.pnlLines.TabIndex = 79
+        '
+        'pnlAddPrestatation
+        '
+        Me.pnlAddPrestatation.Controls.Add(Me.Label_diagnostic_61)
+        Me.pnlAddPrestatation.Controls.Add(Me.listTarif_categories)
+        Me.pnlAddPrestatation.Controls.Add(Me.img_Add)
+        Me.pnlAddPrestatation.Controls.Add(Me.listTarif_prestations)
+        Me.pnlAddPrestatation.Location = New System.Drawing.Point(218, 151)
+        Me.pnlAddPrestatation.Name = "pnlAddPrestatation"
+        Me.pnlAddPrestatation.Size = New System.Drawing.Size(700, 24)
+        Me.pnlAddPrestatation.TabIndex = 79
         '
         'dgvLignes
         '
@@ -1306,6 +1342,7 @@ Public Class frmdiagnostic_facturationCoProp
         CType(Me.m_bsExploitant, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlClient.ResumeLayout(False)
         Me.pnlClient.PerformLayout()
+        CType(Me.m_bsCommunes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlPourcentage.ResumeLayout(False)
         Me.pnlPourcentage.PerformLayout()
         CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1313,6 +1350,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.pnlInfosDiag.PerformLayout()
         CType(Me.m_bsDiag, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlLines.ResumeLayout(False)
+        Me.pnlAddPrestatation.ResumeLayout(False)
         CType(Me.dgvLignes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -1338,6 +1376,8 @@ Public Class frmdiagnostic_facturationCoProp
         Debug.Assert(pAgent IsNot Nothing)
         Dim oExploit As Exploitation = Nothing
 
+        'Pas d'ajout de ligne après un controle
+        pnlAddPrestatation.Visible = False
         m_oStructure = StructureManager.getStructureById(pAgent.idStructure)
 
         m_oAgent = pAgent
@@ -1372,12 +1412,16 @@ Public Class frmdiagnostic_facturationCoProp
             m_olstExploit = ExploitationManager.GetListExploitationByPulverisateurId(m_oPulverisateur.id)
             pnlListCoProp.Visible = True
         End If
+
+        'Création des factures pour chaque exploitant
         m_olstExploit.ForEach(Sub(oExpl)
                                   Dim oFact As New Facture(m_oDiag, m_oStructure)
                                   oFact.oExploit = oExpl
                                   oFact.dateFacture = DateTime.Now
                                   m_olstFacture.Add(oFact)
                               End Sub)
+
+
 
     End Sub
     Public Sub setContexte(pAgent As Agent)
@@ -1798,12 +1842,39 @@ Public Class frmdiagnostic_facturationCoProp
     Private Sub m_bsExploitant_CurrentChanged(sender As Object, e As EventArgs) Handles m_bsExploitant.CurrentChanged
         changementExploitant()
     End Sub
+    Protected Overridable Function LoadCommunes(pCodePostal As String, Optional pCommune As String = "") As String
+        Debug.Assert(Not String.IsNullOrEmpty(pCodePostal))
+        Dim oReferentiel As ReferentielCommunesCSV
+        Dim lstCommunes As List(Of Commune)
+        oReferentiel = New ReferentielCommunesCSV()
+        oReferentiel.load()
+        m_bsCommunes.Clear()
+        lstCommunes = oReferentiel.getCommunes(pCodePostal)
+
+        lstCommunes.ForEach(Sub(c) m_bsCommunes.Add(c))
+        If pCommune <> "" Then
+            Dim index As Integer =
+             lstCommunes.FindIndex(Function(oC)
+                                       Return (oC.Nom = pCommune)
+
+                                   End Function)
+            m_bsCommunes.Position = index
+        Else
+            m_bsCommunes.Position = 0
+        End If
+        Return CType(m_bsCommunes.Current, Commune).CodePostal
+    End Function
+
     Private Sub changementExploitant()
         Dim oExploit As Exploitation
         oExploit = m_bsExploitant.Current
         Dim nPos As Integer = 0
         Dim bTrouve As Boolean = False
         Dim oFact As Facture = Nothing
+
+        Dim strCommune As String = oExploit.commune
+        LoadCommunes(oExploit.codePostal, oExploit.commune)
+        oExploit.commune = strCommune
 
         For Each oFact In m_bsFacture.List
             If oFact.oExploit.id = oExploit.id Then
@@ -1813,6 +1884,7 @@ Public Class frmdiagnostic_facturationCoProp
             End If
             nPos = nPos + 1
         Next
+
         If Not bTrouve Then
             If m_oDiag IsNot Nothing Then
                 oFact = New Facture(m_oDiag, m_oStructure)
@@ -1869,5 +1941,37 @@ Public Class frmdiagnostic_facturationCoProp
         btnAnnuler.Enabled = True
         btn_imprimerFactCoProp.Enabled = bFactureOK
         btn_finalisationDiag_valider.Enabled = bFactureOK
+    End Sub
+
+    Private Sub tbCodePostal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbCodePostal.KeyPress
+        CSForm.typeAllowed(e, "integer")
+        If e.Handled = False Then
+            CSForm.maxSize(e, sender, 5)
+        End If
+
+    End Sub
+
+    Private Sub tbCodePostal_Validated(sender As Object, e As EventArgs) Handles tbCodePostal.Validated
+        Try
+            If sender.text <> "" Then
+                sender.text = LoadCommunes(sender.text)
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("frmDiagnostic_facturationCoProp.tbCodePostal_Validated : " & ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub cbxCommune_Validated(sender As Object, e As EventArgs) Handles cbxCommune.Validated
+        Dim oCommune As Commune
+        oCommune = DirectCast(m_bsCommunes.Current, Commune)
+        If oCommune IsNot Nothing Then
+            Dim oExploit As Exploitation = m_bsExploitant.Current
+            oExploit.codePostal = oCommune.CodePostal
+            oExploit.commune = oCommune.Nom ' je n'arrive pas à la faire avec le databinding !!!
+            oExploit.codeInsee = oCommune.CodeInsee
+            m_bsExploitant.ResetCurrentItem()
+        End If
+
     End Sub
 End Class
