@@ -314,6 +314,7 @@
     </Compile>
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\Facture.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\ContratCommercial.vb" />
+    <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureExportCSV.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureItemManager.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureManager.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureItem.vb" />

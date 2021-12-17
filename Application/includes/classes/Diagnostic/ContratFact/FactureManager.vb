@@ -265,6 +265,113 @@ Public Class FactureManager
         End Try
         Return oReturn
     End Function
+    Public Shared Function getFacturesByNomClient(pNomClient As String) As List(Of Facture)
+        Debug.Assert(Not String.IsNullOrEmpty(pNomClient), "pNomClient must be set")
+
+        Dim oReturn As New List(Of Facture)
+        Try
+            Dim oCSDB As New CSDb(True)
+            Dim oCmd As OleDb.OleDbCommand
+            Dim oDR As OleDb.OleDbDataReader
+            Dim oFacture As Facture
+            oCmd = oCSDB.getConnection().CreateCommand
+
+            oCmd.CommandText = "SELECT FACTURE.* FROM Facture where nomclient Like ? Or prenomclient like ? Or rsclient Like ? ORDER BY dateFacture DESC"
+            oCmd.Parameters.AddWithValue("?", "%" & pNomClient & "%")
+            oCmd.Parameters.AddWithValue("?", "%" & pNomClient & "%")
+            oCmd.Parameters.AddWithValue("?", "%" & pNomClient & "%")
+            oDR = oCmd.ExecuteReader()
+            While oDR.Read()
+                oFacture = New Facture()
+                Dim nChamp As Integer
+                For nChamp = 0 To oDR.FieldCount() - 1
+                    If Not oDR.IsDBNull(nChamp) Then
+                        Fill(oFacture, oDR.GetName(nChamp), oDR.GetValue(nChamp))
+                    End If
+                Next
+                oFacture.Lignes.AddRange(FactureItemManager.getFactureById(oFacture.idFacture))
+                oReturn.Add(oFacture)
+
+            End While
+            oDR.Close()
+            oCSDB.free()
+
+        Catch ex As Exception
+            CSDebug.dispError("FactureManager.getFactureByNomClient ERR", ex)
+            oReturn = New List(Of Facture)()
+        End Try
+        Return oReturn
+    End Function
+    Public Shared Function getFacturesByDate(pDateDeb As String, pDateFin As String) As List(Of Facture)
+        Debug.Assert(Not String.IsNullOrEmpty(pDateDeb), "pDateDeb must be set")
+        Debug.Assert(Not String.IsNullOrEmpty(pDateFin), "pDateFin must be set")
+
+        Dim oReturn As New List(Of Facture)
+        Try
+            Dim oCSDB As New CSDb(True)
+            Dim oCmd As OleDb.OleDbCommand
+            Dim oDR As OleDb.OleDbDataReader
+            Dim oFacture As Facture
+            oCmd = oCSDB.getConnection().CreateCommand
+            oCmd.CommandText = "SELECT FACTURE.* FROM Facture where dateFacture >=  ? and dateFacture <= ? ORDER BY dateFacture DESC"
+            '            oCmd.Parameters.Add("?_1", OleDb.OleDbType.Date).Value = pDateDeb
+            '           oCmd.Parameters.Add("?_2", OleDb.OleDbType.Date).Value = pDateFin
+            oCmd.Parameters.AddWithValue("?_1", pDateDeb & " 00:00:00")
+            oCmd.Parameters.AddWithValue("?_2", pDateFin & " 23:59:59")
+            oDR = oCmd.ExecuteReader()
+            While oDR.Read()
+                oFacture = New Facture()
+                Dim nChamp As Integer
+                For nChamp = 0 To oDR.FieldCount() - 1
+                    If Not oDR.IsDBNull(nChamp) Then
+                        Fill(oFacture, oDR.GetName(nChamp), oDR.GetValue(nChamp))
+                    End If
+                Next
+                oFacture.Lignes.AddRange(FactureItemManager.getFactureById(oFacture.idFacture))
+                oReturn.Add(oFacture)
+
+            End While
+            oDR.Close()
+            oCSDB.free()
+
+        Catch ex As Exception
+            CSDebug.dispError("FactureManager.getFactureById ERR", ex)
+            oReturn = New List(Of Facture)()
+        End Try
+        Return oReturn
+    End Function
+    Public Shared Function getFactures() As List(Of Facture)
+
+        Dim oReturn As New List(Of Facture)
+        Try
+            Dim oCSDB As New CSDb(True)
+            Dim oCmd As OleDb.OleDbCommand
+            Dim oDR As OleDb.OleDbDataReader
+            Dim oFacture As Facture
+            oCmd = oCSDB.getConnection().CreateCommand
+            oCmd.CommandText = "SELECT FACTURE.* FROM Facture ORDER BY dateFacture DESC"
+            oDR = oCmd.ExecuteReader()
+            While oDR.Read()
+                oFacture = New Facture()
+                Dim nChamp As Integer
+                For nChamp = 0 To oDR.FieldCount() - 1
+                    If Not oDR.IsDBNull(nChamp) Then
+                        Fill(oFacture, oDR.GetName(nChamp), oDR.GetValue(nChamp))
+                    End If
+                Next
+                oFacture.Lignes.AddRange(FactureItemManager.getFactureById(oFacture.idFacture))
+                oReturn.Add(oFacture)
+
+            End While
+            oDR.Close()
+            oCSDB.free()
+
+        Catch ex As Exception
+            CSDebug.dispError("FactureManager.getFactures ERR", ex)
+            oReturn = New List(Of Facture)()
+        End Try
+        Return oReturn
+    End Function
 
     Public Shared Function getFacturesByDiagId(pDiagId As String) As List(Of Facture)
         Debug.Assert(Not String.IsNullOrEmpty(pDiagId), "PDiagId must be set")

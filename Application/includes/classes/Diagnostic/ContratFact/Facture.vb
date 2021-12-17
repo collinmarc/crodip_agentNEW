@@ -148,6 +148,14 @@ Public Class Facture
             _idStructure = value
         End Set
     End Property
+    Public Property RaisonSocialeExploitant() As String
+        Get
+            Return oExploit.raisonSociale
+        End Get
+        Set(ByVal value As String)
+            oExploit.raisonSociale = value
+        End Set
+    End Property
     Private _dateModificationAgent As DateTime
     <XmlIgnoreAttribute()>
     Public Property dateModificationAgent() As DateTime

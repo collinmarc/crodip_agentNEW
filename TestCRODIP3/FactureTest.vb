@@ -92,4 +92,95 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 
     End Sub
+
+
+    <TestMethod()> Public Sub RechercheParNomClient()
+
+        Dim oFacture = New Facture(m_oStructure)
+        oFacture.idFacture = "FACT1"
+        oFacture.dateFacture = CDate("06/02/1964")
+        oFacture.oExploit.nomExploitant = "RIEN"
+        Assert.IsTrue(FactureManager.save(oFacture))
+
+        oFacture = New Facture(m_oStructure)
+        oFacture.idFacture = "FACT2"
+        oFacture.dateFacture = CDate("06/02/1964")
+        oFacture.oExploit.nomExploitant = "TEST"
+        Assert.IsTrue(FactureManager.save(oFacture))
+
+        'Premeire Recherche
+        Dim oResult As List(Of Facture)
+        oResult = FactureManager.getFacturesByNomClient("TES")
+        Assert.AreEqual(1, oResult.Count)
+        Assert.AreEqual("TEST", oResult(0).oExploit.nomExploitant)
+
+        'Ajout d'une Nouvelle Facture
+        oFacture = New Facture(m_oStructure)
+        oFacture.idFacture = "FACT3"
+        oFacture.dateFacture = CDate("06/02/1964")
+        oFacture.oExploit.prenomExploitant = "TEST"
+        Assert.IsTrue(FactureManager.save(oFacture))
+
+        'Seconde Recherche
+        oResult = FactureManager.getFacturesByNomClient("TES")
+        Assert.AreEqual(2, oResult.Count)
+        Assert.AreEqual("TEST", oResult(1).oExploit.prenomExploitant)
+
+        'Ajout d'une Nouvelle Facture
+        oFacture = New Facture(m_oStructure)
+        oFacture.idFacture = "FACT4"
+        oFacture.dateFacture = CDate("06/02/1964")
+        oFacture.oExploit.raisonSociale = "TEST"
+        Assert.IsTrue(FactureManager.save(oFacture))
+
+        'Troisième Recherche
+        oResult = FactureManager.getFacturesByNomClient("TES")
+        Assert.AreEqual(3, oResult.Count)
+        Assert.AreEqual("TEST", oResult(2).oExploit.raisonSociale)
+    End Sub
+    <TestMethod()> Public Sub RechercheParDate()
+
+        Dim oFacture = New Facture(m_oStructure)
+        oFacture.idFacture = "FACT1"
+        oFacture.dateFacture = CDate("06/02/1964")
+        oFacture.oExploit.nomExploitant = "RIEN"
+        Assert.IsTrue(FactureManager.save(oFacture))
+
+        oFacture = New Facture(m_oStructure)
+        oFacture.idFacture = "FACT2"
+        oFacture.dateFacture = CDate("15/12/2021")
+        oFacture.oExploit.nomExploitant = "TEST"
+        Assert.IsTrue(FactureManager.save(oFacture))
+
+        'Premeire Recherche
+        Dim oResult As List(Of Facture)
+        oResult = FactureManager.getFacturesByDate("01/01/2021", "31/12/2021")
+        Assert.AreEqual(1, oResult.Count)
+        Assert.AreEqual(CDate("15/12/2021"), oResult(0).dateFacture)
+
+        'Ajout d'une Nouvelle Facture
+        oFacture = New Facture(m_oStructure)
+        oFacture.idFacture = "FACT3"
+        oFacture.dateFacture = CDate("20/12/2021")
+        oFacture.oExploit.prenomExploitant = "TEST"
+        Assert.IsTrue(FactureManager.save(oFacture))
+
+        'Seconde Recherche
+        oResult = FactureManager.getFacturesByDate("01/01/2021", "31/12/2021")
+        Assert.AreEqual(2, oResult.Count)
+        Assert.AreEqual(CDate("20/12/2021"), oResult(1).dateFacture)
+
+        'Ajout d'une Nouvelle Facture
+        oFacture = New Facture(m_oStructure)
+        oFacture.idFacture = "FACT4"
+        oFacture.dateFacture = CDate("15/01/2022")
+        oFacture.oExploit.raisonSociale = "TEST"
+        Assert.IsTrue(FactureManager.save(oFacture))
+
+        'Troisième Recherche
+        oResult = FactureManager.getFacturesByNomClient("TES")
+        oResult = FactureManager.getFacturesByDate("01/01/2021", "31/12/2021")
+        Assert.AreEqual(2, oResult.Count)
+
+    End Sub
 End Class

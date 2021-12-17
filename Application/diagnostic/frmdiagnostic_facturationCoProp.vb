@@ -14,6 +14,12 @@ Imports System.Linq
 Public Class frmdiagnostic_facturationCoProp
     Inherits System.Windows.Forms.Form
 
+    Private Enum TypeInit
+        INITFROMDIAG
+        INITFROMACCEUIL
+        INITFROMFACTURE
+    End Enum
+    Private m_TypeInit As TypeInit
     Public positionTop As Integer = 16
     Friend WithEvents m_bsExploitant As System.Windows.Forms.BindingSource
     Friend WithEvents Label18 As System.Windows.Forms.Label
@@ -52,7 +58,6 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextBox4 As TextBox
     Friend WithEvents tbCodePostal As TextBox
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox1 As TextBox
@@ -227,7 +232,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.pnlInfosDiag = New System.Windows.Forms.Panel()
         Me.tbModelePulve = New System.Windows.Forms.TextBox()
         Me.m_bsDiag = New System.Windows.Forms.BindingSource(Me.components)
@@ -425,6 +429,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.facturation_totalHT.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsFacture, "TotalHT", True))
         Me.facturation_totalHT.Location = New System.Drawing.Point(860, 4)
         Me.facturation_totalHT.Name = "facturation_totalHT"
+        Me.facturation_totalHT.ReadOnly = True
         Me.facturation_totalHT.Size = New System.Drawing.Size(43, 20)
         Me.facturation_totalHT.TabIndex = 0
         '
@@ -1109,16 +1114,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label4.TabIndex = 62
         Me.Label4.Text = "Nom  :"
         '
-        'TextBox4
-        '
-        Me.TextBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "commune", True))
-        Me.TextBox4.Location = New System.Drawing.Point(275, 85)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(311, 20)
-        Me.TextBox4.TabIndex = 4
-        '
         'pnlInfosDiag
         '
         Me.pnlInfosDiag.Controls.Add(Me.tbModelePulve)
@@ -1129,7 +1124,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.pnlInfosDiag.Controls.Add(Me.Label31)
         Me.pnlInfosDiag.Controls.Add(Me.Label30)
         Me.pnlInfosDiag.Controls.Add(Me.Label26)
-        Me.pnlInfosDiag.Controls.Add(Me.TextBox4)
         Me.pnlInfosDiag.Location = New System.Drawing.Point(350, 37)
         Me.pnlInfosDiag.Name = "pnlInfosDiag"
         Me.pnlInfosDiag.Size = New System.Drawing.Size(571, 120)
@@ -1376,6 +1370,8 @@ Public Class frmdiagnostic_facturationCoProp
         Debug.Assert(pAgent IsNot Nothing)
         Dim oExploit As Exploitation = Nothing
 
+        m_TypeInit = TypeInit.INITFROMDIAG
+
         'Pas d'ajout de ligne après un controle
         pnlAddPrestatation.Visible = False
         m_oStructure = StructureManager.getStructureById(pAgent.idStructure)
@@ -1424,8 +1420,45 @@ Public Class frmdiagnostic_facturationCoProp
 
 
     End Sub
+    Public Sub setContexte(pFact As Facture)
+        Dim oExploit As Exploitation = Nothing
+        m_TypeInit = TypeInit.INITFROMFACTURE
+
+        'Pas d'ajout de ligne En Visu de Facture
+        pnlAddPrestatation.Visible = False
+        m_oStructure = StructureManager.getStructureById(pFact.idStructure)
+
+        m_oAgent = Nothing
+        m_oDiag = Nothing
+        oExploit = ExploitationManager.getExploitationById(pFact.oExploit.id)
+        m_oPulverisateur = Nothing
+
+        m_olstFacture = New List(Of Facture)()
+
+        dgvLignes.AllowUserToAddRows = False
+        dgvLignes.AllowUserToDeleteRows = False
+
+
+        pnlListCoProp.Visible = False
+        pnlClient.Left = pnlListCoProp.Left
+        pnlClient.Width = pnlClient.Width + pnlListCoProp.Width
+        pnlPourcentage.Visible = False
+        pnlLines.Top = pnlClient.Top + pnlClient.Height + 6
+        pnlLines.Height = pnlFooter.Top - 6 - pnlLines.Top
+
+        m_olstExploit = New List(Of Exploitation)()
+        m_olstExploit.Add(oExploit)
+
+        m_olstFacture.Add(pFact)
+        If Not String.IsNullOrEmpty(pFact.idDiag) Then
+            m_oDiag = DiagnosticManager.getDiagnosticById(pFact.idDiag)
+        End If
+
+    End Sub
     Public Sub setContexte(pAgent As Agent)
         Debug.Assert(pAgent IsNot Nothing)
+        m_TypeInit = TypeInit.INITFROMACCEUIL
+
         Dim oExploit As Exploitation = Nothing
 
         m_oStructure = StructureManager.getStructureById(pAgent.idStructure)
@@ -1461,11 +1494,10 @@ Public Class frmdiagnostic_facturationCoProp
 
     ' Chargement de la page
     Private Sub diagnostic_finalisation_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Debug.Assert(m_oAgent IsNot Nothing, "Context must be set before")
 
         Me.Cursor = Cursors.WaitCursor
         ' Chargement des catégories de prestations
-        Dim arrCategories() As PrestationCategorie = PrestationCategorieManager.getArrayByStructureId(m_oAgent.idStructure)
+        Dim arrCategories() As PrestationCategorie = PrestationCategorieManager.getArrayByStructureId(m_oStructure.id)
         For Each tmpCategorie As PrestationCategorie In arrCategories
             If tmpCategorie.description IsNot Nothing Then
                 Dim objComboItem As New objComboItem(tmpCategorie.id.ToString, tmpCategorie.description)
@@ -1476,19 +1508,24 @@ Public Class frmdiagnostic_facturationCoProp
 
 
         m_bsrcStructure.Add(m_oStructure)
-        m_bsFacture.Clear()
-        If m_oDiag IsNot Nothing Then
+        If m_TypeInit = TypeInit.INITFROMDIAG Then
             m_bsDiag.Add(m_oDiag)
             m_bsContratCommercial.Add(m_oDiag.oContratCommercial)
 
             m_olstFacture.ForEach(Function(oFact) m_bsFacture.Add(oFact))
 
-
+            m_bsFacture.Clear()
             m_bsExploitant.Clear()
             m_olstExploit.ForEach(Function(oExploit) m_bsExploitant.Add(oExploit))
             m_bsExploitant.MoveFirst()
+            SupprColumn.Visible = False
         End If
-
+        If m_TypeInit = TypeInit.INITFROMFACTURE Then
+            m_bsFacture.Add(m_olstFacture(0))
+            m_bsExploitant.Add(m_olstExploit(0))
+            m_bsDiag.Add(m_oDiag)
+            SupprColumn.Visible = False
+        End If
         ActivationFacture()
         Me.Cursor = Cursors.Default
 
