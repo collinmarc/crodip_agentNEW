@@ -16,7 +16,6 @@ Public Class diagnostic_ContratCommercial
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents tbCommentaire As System.Windows.Forms.TextBox
     Friend WithEvents lblCommentaire As System.Windows.Forms.Label
-    Friend WithEvents btn_Signatures As Label
     Friend WithEvents m_bsContratCommercial As BindingSource
     Friend WithEvents PUDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents columnDelete As DataGridViewImageColumn
@@ -32,6 +31,11 @@ Public Class diagnostic_ContratCommercial
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents TotalHTDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents SupprColumn As DataGridViewImageColumn
+    Friend WithEvents btnAnnuler As Button
+    Friend WithEvents btnImprimerBL As Button
+    Friend WithEvents btnImprimerContrat As Button
+    Friend WithEvents btnSigner As Button
+    Friend WithEvents btnSuivant As Button
     Public prestaIncrement As Integer = 0
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -70,9 +74,6 @@ Public Class diagnostic_ContratCommercial
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents panelFooter As System.Windows.Forms.Panel
     Friend WithEvents listTarif_categories As System.Windows.Forms.ComboBox
-    Friend WithEvents btn_facturation_suivant As System.Windows.Forms.Label
-    Friend WithEvents btn_facturation_imprimerContrat As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents facturation_totalHT As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents facturation_totalTVA As System.Windows.Forms.TextBox
@@ -84,30 +85,30 @@ Public Class diagnostic_ContratCommercial
     Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents tb_txTVA As System.Windows.Forms.TextBox
     Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents btn_facturation_imprimerBL As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_ContratCommercial))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label_diagnostic_61 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.listTarif_prestations = New System.Windows.Forms.ComboBox()
         Me.img_Add = New System.Windows.Forms.PictureBox()
         Me.panelFooter = New System.Windows.Forms.Panel()
-        Me.btn_Signatures = New System.Windows.Forms.Label()
+        Me.btnAnnuler = New System.Windows.Forms.Button()
+        Me.btnImprimerBL = New System.Windows.Forms.Button()
+        Me.btnImprimerContrat = New System.Windows.Forms.Button()
+        Me.btnSigner = New System.Windows.Forms.Button()
+        Me.btnSuivant = New System.Windows.Forms.Button()
         Me.tbCommentaire = New System.Windows.Forms.TextBox()
+        Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
         Me.lblCommentaire = New System.Windows.Forms.Label()
-        Me.btn_facturation_imprimerContrat = New System.Windows.Forms.Label()
         Me.facturation_totalHT = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.btn_facturation_suivant = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.btn_facturation_imprimerBL = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.facturation_totalTVA = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -120,6 +121,11 @@ Public Class diagnostic_ContratCommercial
         Me.Label17 = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.CategorieDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrestationDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QuantiteDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
         Me.LignesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -128,18 +134,12 @@ Public Class diagnostic_ContratCommercial
         Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuantiteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CategorieDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrestationDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QuantiteDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsContratCommercial = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
+        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -168,7 +168,7 @@ Public Class diagnostic_ContratCommercial
         '
         'Label1
         '
-        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
@@ -201,16 +201,16 @@ Public Class diagnostic_ContratCommercial
         '
         Me.panelFooter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelFooter.Controls.Add(Me.btn_Signatures)
+        Me.panelFooter.Controls.Add(Me.btnAnnuler)
+        Me.panelFooter.Controls.Add(Me.btnImprimerBL)
+        Me.panelFooter.Controls.Add(Me.btnImprimerContrat)
+        Me.panelFooter.Controls.Add(Me.btnSigner)
+        Me.panelFooter.Controls.Add(Me.btnSuivant)
         Me.panelFooter.Controls.Add(Me.tbCommentaire)
         Me.panelFooter.Controls.Add(Me.lblCommentaire)
-        Me.panelFooter.Controls.Add(Me.btn_facturation_imprimerContrat)
         Me.panelFooter.Controls.Add(Me.Label1)
         Me.panelFooter.Controls.Add(Me.facturation_totalHT)
         Me.panelFooter.Controls.Add(Me.Label5)
-        Me.panelFooter.Controls.Add(Me.btn_facturation_suivant)
-        Me.panelFooter.Controls.Add(Me.Label2)
-        Me.panelFooter.Controls.Add(Me.btn_facturation_imprimerBL)
         Me.panelFooter.Controls.Add(Me.Label9)
         Me.panelFooter.Controls.Add(Me.facturation_totalTVA)
         Me.panelFooter.Controls.Add(Me.Label12)
@@ -226,20 +226,87 @@ Public Class diagnostic_ContratCommercial
         Me.panelFooter.Size = New System.Drawing.Size(926, 206)
         Me.panelFooter.TabIndex = 2
         '
-        'btn_Signatures
+        'btnAnnuler
         '
-        Me.btn_Signatures.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btn_Signatures.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_Signatures.Enabled = False
-        Me.btn_Signatures.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_Signatures.ForeColor = System.Drawing.Color.White
-        Me.btn_Signatures.Image = Global.Crodip_agent.Resources.btn_Signture
-        Me.btn_Signatures.Location = New System.Drawing.Point(537, 168)
-        Me.btn_Signatures.Name = "btn_Signatures"
-        Me.btn_Signatures.Size = New System.Drawing.Size(180, 24)
-        Me.btn_Signatures.TabIndex = 51
-        Me.btn_Signatures.Text = "      Signer"
-        Me.btn_Signatures.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAnnuler.BackgroundImage = Global.Crodip_agent.Resources.btn_retours
+        Me.btnAnnuler.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnAnnuler.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnAnnuler.FlatAppearance.BorderSize = 0
+        Me.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAnnuler.ForeColor = System.Drawing.Color.White
+        Me.btnAnnuler.Location = New System.Drawing.Point(6, 176)
+        Me.btnAnnuler.Name = "btnAnnuler"
+        Me.btnAnnuler.Size = New System.Drawing.Size(132, 27)
+        Me.btnAnnuler.TabIndex = 87
+        Me.btnAnnuler.Text = "Annuler"
+        Me.btnAnnuler.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnAnnuler.UseVisualStyleBackColor = True
+        '
+        'btnImprimerBL
+        '
+        Me.btnImprimerBL.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnImprimerBL.BackgroundImage = Global.Crodip_agent.Resources.btn_divers_print
+        Me.btnImprimerBL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnImprimerBL.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnImprimerBL.FlatAppearance.BorderSize = 0
+        Me.btnImprimerBL.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImprimerBL.ForeColor = System.Drawing.Color.White
+        Me.btnImprimerBL.Location = New System.Drawing.Point(242, 176)
+        Me.btnImprimerBL.Name = "btnImprimerBL"
+        Me.btnImprimerBL.Size = New System.Drawing.Size(188, 27)
+        Me.btnImprimerBL.TabIndex = 86
+        Me.btnImprimerBL.Text = "Imprimer le BL"
+        Me.btnImprimerBL.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnImprimerBL.UseVisualStyleBackColor = True
+        '
+        'btnImprimerContrat
+        '
+        Me.btnImprimerContrat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnImprimerContrat.BackgroundImage = Global.Crodip_agent.Resources.btn_divers_print
+        Me.btnImprimerContrat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnImprimerContrat.FlatAppearance.BorderSize = 0
+        Me.btnImprimerContrat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImprimerContrat.ForeColor = System.Drawing.Color.White
+        Me.btnImprimerContrat.Location = New System.Drawing.Point(436, 176)
+        Me.btnImprimerContrat.Name = "btnImprimerContrat"
+        Me.btnImprimerContrat.Size = New System.Drawing.Size(188, 27)
+        Me.btnImprimerContrat.TabIndex = 85
+        Me.btnImprimerContrat.Text = "Imprimer le contrat"
+        Me.btnImprimerContrat.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnImprimerContrat.UseVisualStyleBackColor = True
+        '
+        'btnSigner
+        '
+        Me.btnSigner.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSigner.BackgroundImage = Global.Crodip_agent.Resources.btn_Signture
+        Me.btnSigner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnSigner.FlatAppearance.BorderSize = 0
+        Me.btnSigner.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSigner.ForeColor = System.Drawing.Color.White
+        Me.btnSigner.Location = New System.Drawing.Point(630, 176)
+        Me.btnSigner.Name = "btnSigner"
+        Me.btnSigner.Size = New System.Drawing.Size(146, 27)
+        Me.btnSigner.TabIndex = 84
+        Me.btnSigner.Text = "Signer"
+        Me.btnSigner.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnSigner.UseVisualStyleBackColor = True
+        '
+        'btnSuivant
+        '
+        Me.btnSuivant.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSuivant.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
+        Me.btnSuivant.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnSuivant.FlatAppearance.BorderSize = 0
+        Me.btnSuivant.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSuivant.ForeColor = System.Drawing.Color.White
+        Me.btnSuivant.Location = New System.Drawing.Point(782, 176)
+        Me.btnSuivant.Name = "btnSuivant"
+        Me.btnSuivant.Size = New System.Drawing.Size(136, 27)
+        Me.btnSuivant.TabIndex = 83
+        Me.btnSuivant.Text = "Valider"
+        Me.btnSuivant.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnSuivant.UseVisualStyleBackColor = True
         '
         'tbCommentaire
         '
@@ -248,8 +315,12 @@ Public Class diagnostic_ContratCommercial
         Me.tbCommentaire.Multiline = True
         Me.tbCommentaire.Name = "tbCommentaire"
         Me.tbCommentaire.Size = New System.Drawing.Size(552, 52)
-        Me.tbCommentaire.TabIndex = 45
+        Me.tbCommentaire.TabIndex = 0
         Me.tbCommentaire.Visible = False
+        '
+        'm_bsContratCommercial
+        '
+        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
         '
         'lblCommentaire
         '
@@ -263,29 +334,14 @@ Public Class diagnostic_ContratCommercial
         Me.lblCommentaire.Text = "Commentaire :"
         Me.lblCommentaire.Visible = False
         '
-        'btn_facturation_imprimerContrat
-        '
-        Me.btn_facturation_imprimerContrat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btn_facturation_imprimerContrat.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_facturation_imprimerContrat.Enabled = False
-        Me.btn_facturation_imprimerContrat.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_facturation_imprimerContrat.ForeColor = System.Drawing.Color.White
-        Me.btn_facturation_imprimerContrat.Image = CType(resources.GetObject("btn_facturation_imprimerContrat.Image"), System.Drawing.Image)
-        Me.btn_facturation_imprimerContrat.Location = New System.Drawing.Point(337, 168)
-        Me.btn_facturation_imprimerContrat.Name = "btn_facturation_imprimerContrat"
-        Me.btn_facturation_imprimerContrat.Size = New System.Drawing.Size(180, 24)
-        Me.btn_facturation_imprimerContrat.TabIndex = 5
-        Me.btn_facturation_imprimerContrat.Text = "      Imprimer le contrat"
-        Me.btn_facturation_imprimerContrat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'facturation_totalHT
         '
-        Me.facturation_totalHT.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.facturation_totalHT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.facturation_totalHT.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalHT", True))
         Me.facturation_totalHT.Location = New System.Drawing.Point(863, 13)
         Me.facturation_totalHT.Name = "facturation_totalHT"
         Me.facturation_totalHT.Size = New System.Drawing.Size(43, 20)
-        Me.facturation_totalHT.TabIndex = 0
+        Me.facturation_totalHT.TabIndex = 1
         '
         'Label5
         '
@@ -299,52 +355,9 @@ Public Class diagnostic_ContratCommercial
         Me.Label5.Text = "€"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'btn_facturation_suivant
-        '
-        Me.btn_facturation_suivant.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_facturation_suivant.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_facturation_suivant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_facturation_suivant.ForeColor = System.Drawing.Color.White
-        Me.btn_facturation_suivant.Image = CType(resources.GetObject("btn_facturation_suivant.Image"), System.Drawing.Image)
-        Me.btn_facturation_suivant.Location = New System.Drawing.Point(793, 168)
-        Me.btn_facturation_suivant.Name = "btn_facturation_suivant"
-        Me.btn_facturation_suivant.Size = New System.Drawing.Size(128, 24)
-        Me.btn_facturation_suivant.TabIndex = 4
-        Me.btn_facturation_suivant.Text = "    Valider"
-        Me.btn_facturation_suivant.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Image = CType(resources.GetObject("Label2.Image"), System.Drawing.Image)
-        Me.Label2.Location = New System.Drawing.Point(8, 168)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(128, 24)
-        Me.Label2.TabIndex = 32
-        Me.Label2.Text = "    Annuler"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btn_facturation_imprimerBL
-        '
-        Me.btn_facturation_imprimerBL.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btn_facturation_imprimerBL.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_facturation_imprimerBL.Enabled = False
-        Me.btn_facturation_imprimerBL.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_facturation_imprimerBL.ForeColor = System.Drawing.Color.White
-        Me.btn_facturation_imprimerBL.Image = CType(resources.GetObject("btn_facturation_imprimerBL.Image"), System.Drawing.Image)
-        Me.btn_facturation_imprimerBL.Location = New System.Drawing.Point(337, 132)
-        Me.btn_facturation_imprimerBL.Name = "btn_facturation_imprimerBL"
-        Me.btn_facturation_imprimerBL.Size = New System.Drawing.Size(178, 24)
-        Me.btn_facturation_imprimerBL.TabIndex = 6
-        Me.btn_facturation_imprimerBL.Text = "      Imprimer le BL"
-        Me.btn_facturation_imprimerBL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'Label9
         '
-        Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label9.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
@@ -357,13 +370,13 @@ Public Class diagnostic_ContratCommercial
         '
         'facturation_totalTVA
         '
-        Me.facturation_totalTVA.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.facturation_totalTVA.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.facturation_totalTVA.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalTVA", True))
         Me.facturation_totalTVA.Location = New System.Drawing.Point(863, 87)
         Me.facturation_totalTVA.Name = "facturation_totalTVA"
         Me.facturation_totalTVA.ReadOnly = True
         Me.facturation_totalTVA.Size = New System.Drawing.Size(43, 20)
-        Me.facturation_totalTVA.TabIndex = 2
+        Me.facturation_totalTVA.TabIndex = 3
         '
         'Label12
         '
@@ -379,7 +392,7 @@ Public Class diagnostic_ContratCommercial
         '
         'Label13
         '
-        Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label13.Image = CType(resources.GetObject("Label13.Image"), System.Drawing.Image)
@@ -392,12 +405,13 @@ Public Class diagnostic_ContratCommercial
         '
         'facturation_totalTTC
         '
-        Me.facturation_totalTTC.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.facturation_totalTTC.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalTTC", True))
+        Me.facturation_totalTTC.AcceptsReturn = True
+        Me.facturation_totalTTC.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.facturation_totalTTC.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalTTCStr", True))
         Me.facturation_totalTTC.Location = New System.Drawing.Point(863, 111)
         Me.facturation_totalTTC.Name = "facturation_totalTTC"
         Me.facturation_totalTTC.Size = New System.Drawing.Size(43, 20)
-        Me.facturation_totalTTC.TabIndex = 3
+        Me.facturation_totalTTC.TabIndex = 4
         '
         'Label14
         '
@@ -413,7 +427,7 @@ Public Class diagnostic_ContratCommercial
         '
         'Label15
         '
-        Me.Label15.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label15.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label15.Image = CType(resources.GetObject("Label15.Image"), System.Drawing.Image)
@@ -426,7 +440,7 @@ Public Class diagnostic_ContratCommercial
         '
         'Label16
         '
-        Me.Label16.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label16.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label16.Image = CType(resources.GetObject("Label16.Image"), System.Drawing.Image)
@@ -439,12 +453,12 @@ Public Class diagnostic_ContratCommercial
         '
         'tb_txTVA
         '
-        Me.tb_txTVA.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tb_txTVA.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tb_txTVA.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TxTVA", True))
         Me.tb_txTVA.Location = New System.Drawing.Point(863, 63)
         Me.tb_txTVA.Name = "tb_txTVA"
         Me.tb_txTVA.Size = New System.Drawing.Size(43, 20)
-        Me.tb_txTVA.TabIndex = 1
+        Me.tb_txTVA.TabIndex = 2
         '
         'Label17
         '
@@ -480,16 +494,59 @@ Public Class diagnostic_ContratCommercial
         Me.DataGridView1.DataSource = Me.m_bsLignes
         Me.DataGridView1.Location = New System.Drawing.Point(12, 65)
         Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle34.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle34.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle34
         Me.DataGridView1.Size = New System.Drawing.Size(908, 331)
-        Me.DataGridView1.TabIndex = 30
+        Me.DataGridView1.TabIndex = 2
+        '
+        'CategorieDataGridViewTextBoxColumn1
+        '
+        Me.CategorieDataGridViewTextBoxColumn1.DataPropertyName = "categorie"
+        Me.CategorieDataGridViewTextBoxColumn1.HeaderText = "Catégorie"
+        Me.CategorieDataGridViewTextBoxColumn1.Name = "CategorieDataGridViewTextBoxColumn1"
+        Me.CategorieDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'PrestationDataGridViewTextBoxColumn1
+        '
+        Me.PrestationDataGridViewTextBoxColumn1.DataPropertyName = "prestation"
+        Me.PrestationDataGridViewTextBoxColumn1.HeaderText = "Prestation"
+        Me.PrestationDataGridViewTextBoxColumn1.Name = "PrestationDataGridViewTextBoxColumn1"
+        Me.PrestationDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'QuantiteDataGridViewTextBoxColumn1
+        '
+        Me.QuantiteDataGridViewTextBoxColumn1.DataPropertyName = "quantite"
+        DataGridViewCellStyle31.Format = "N2"
+        DataGridViewCellStyle31.NullValue = Nothing
+        Me.QuantiteDataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle31
+        Me.QuantiteDataGridViewTextBoxColumn1.HeaderText = "Quantité"
+        Me.QuantiteDataGridViewTextBoxColumn1.Name = "QuantiteDataGridViewTextBoxColumn1"
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "pu"
+        DataGridViewCellStyle32.Format = "C2"
+        DataGridViewCellStyle32.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle32
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Tarif"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'TotalHTDataGridViewTextBoxColumn
+        '
+        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
+        DataGridViewCellStyle33.Format = "C2"
+        DataGridViewCellStyle33.NullValue = Nothing
+        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle33
+        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "Total HT"
+        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
+        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
         '
         'SupprColumn
         '
@@ -541,59 +598,12 @@ Public Class diagnostic_ContratCommercial
         'QuantiteDataGridViewTextBoxColumn
         '
         Me.QuantiteDataGridViewTextBoxColumn.DataPropertyName = "quantite"
-        DataGridViewCellStyle5.Format = "N2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.QuantiteDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle35.Format = "N2"
+        DataGridViewCellStyle35.NullValue = Nothing
+        Me.QuantiteDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle35
         Me.QuantiteDataGridViewTextBoxColumn.HeaderText = "quantite"
         Me.QuantiteDataGridViewTextBoxColumn.Name = "QuantiteDataGridViewTextBoxColumn"
         Me.QuantiteDataGridViewTextBoxColumn.Width = 55
-        '
-        'CategorieDataGridViewTextBoxColumn1
-        '
-        Me.CategorieDataGridViewTextBoxColumn1.DataPropertyName = "categorie"
-        Me.CategorieDataGridViewTextBoxColumn1.HeaderText = "Catégorie"
-        Me.CategorieDataGridViewTextBoxColumn1.Name = "CategorieDataGridViewTextBoxColumn1"
-        Me.CategorieDataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'PrestationDataGridViewTextBoxColumn1
-        '
-        Me.PrestationDataGridViewTextBoxColumn1.DataPropertyName = "prestation"
-        Me.PrestationDataGridViewTextBoxColumn1.HeaderText = "Prestation"
-        Me.PrestationDataGridViewTextBoxColumn1.Name = "PrestationDataGridViewTextBoxColumn1"
-        Me.PrestationDataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'QuantiteDataGridViewTextBoxColumn1
-        '
-        Me.QuantiteDataGridViewTextBoxColumn1.DataPropertyName = "quantite"
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.QuantiteDataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle1
-        Me.QuantiteDataGridViewTextBoxColumn1.HeaderText = "Quantité"
-        Me.QuantiteDataGridViewTextBoxColumn1.Name = "QuantiteDataGridViewTextBoxColumn1"
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "pu"
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Tarif"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'TotalHTDataGridViewTextBoxColumn
-        '
-        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "Total HT"
-        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
-        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'm_bsContratCommercial
-        '
-        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
         '
         'diagnostic_ContratCommercial
         '
@@ -617,10 +627,10 @@ Public Class diagnostic_ContratCommercial
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelFooter.ResumeLayout(False)
         Me.panelFooter.PerformLayout()
+        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsLignes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LignesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -679,7 +689,6 @@ Public Class diagnostic_ContratCommercial
         Next
         listTarif_categories.SelectedItem = 1
 
-        tb_txTVA.Text = My.Settings.TxTVADefaut
 
         ' Dans le cas d'une contre-visite
         'isContreVisite = False
@@ -697,11 +706,11 @@ Public Class diagnostic_ContratCommercial
         '======================
         ' Boutons de Signatures
         '=======================
-        btn_Signatures.Visible = m_oAgent.isSignElecActive
-        btn_Signatures.Enabled = False
+        btnSigner.Visible = m_oAgent.isSignElecActive
+        btnSigner.Enabled = False
 
         Me.Cursor = Cursors.Default
-        btn_facturation_suivant.Enabled = False
+        btnSuivant.Enabled = False
 
     End Sub
 
@@ -735,12 +744,10 @@ Public Class diagnostic_ContratCommercial
                 ' On passe le total en readonly
                 facturation_totalHT.ReadOnly = True
                 tb_txTVA.ReadOnly = True
-                '                tb_txTVA.Text = ""
                 facturation_totalTVA.ReadOnly = True
                 facturation_totalTTC.ReadOnly = True
-                '                calcTotal()
                 m_bsContratCommercial.ResetCurrentItem()
-                btn_Signatures.Enabled = True
+                btnSigner.Enabled = True
 
             End If
         End If
@@ -770,11 +777,11 @@ Public Class diagnostic_ContratCommercial
                     createContrat()
                     createBl_CR()
                     ' Changement d'état du bouton
-                    btn_facturation_suivant.Text = "Poursuivre"
-                    btn_facturation_imprimerContrat.Enabled = True
-                    btn_facturation_imprimerBL.Enabled = True
+                    btnSuivant.Text = "Poursuivre"
+                    btnImprimerContrat.Enabled = True
+                    btnImprimerBL.Enabled = True
                     isValider = True
-                    btn_Signatures.Enabled = False
+                    btnSigner.Enabled = False
 
                     Me.Cursor = Me.DefaultCursor
 
@@ -790,15 +797,6 @@ Public Class diagnostic_ContratCommercial
 
     Private Sub majDiag()
         m_oDiag.oContratCommercial = m_bsContratCommercial.Current
-    End Sub
-    ' Retour au contexte
-    Private Sub Label2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label2.Click
-        'Dim formContexte As New diagnostic_contexte(True)
-        'formContexte.MdiParent = Me.MdiParent
-        'Statusbar.clear()
-        'formContexte.Show()
-        DialogResult = Windows.Forms.DialogResult.Cancel
-        Me.Close()
     End Sub
 
 #End Region
@@ -839,16 +837,6 @@ Public Class diagnostic_ContratCommercial
         End Try
         Return bReturn
     End Function
-    Private Sub btn_facturation_imprimerContrat_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_facturation_imprimerContrat.Click
-        Try
-            If Not String.IsNullOrEmpty(m_oDiag.CCFileName) Then
-                CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)                ' On récupère le Diagnostic selectionné
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("btn_facturation_imprimerContrat_Click : " & ex.Message)
-        End Try
-
-    End Sub
 
     ''' <summary>
     ''' Création du Bon de Livraison avec CrystalReport
@@ -877,19 +865,6 @@ Public Class diagnostic_ContratCommercial
 
     End Sub
 
-    Private Sub btn_facturation_imprimerBL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_facturation_imprimerBL.Click
-
-        ' On génère le PDF rempli
-        Try
-            If String.IsNullOrEmpty(m_pathBl) Then
-                createBl_CR()
-            End If
-            CSFile.open(m_pathBl)
-        Catch ex As Exception
-            CSDebug.dispError("diagnostic_finalisation::btn_facturation_imprimerBL_Click( Affichage BL ) : " & ex.Message)
-        End Try
-
-    End Sub
 
 #End Region
 
@@ -934,10 +909,6 @@ Public Class diagnostic_ContratCommercial
 #End Region
 
 
-    Private Sub btn_facturation_suivant_MouseClick(sender As Object, e As MouseEventArgs) Handles btn_facturation_suivant.MouseClick
-        Me.ValidateChildren()
-        suivant(sender)
-    End Sub
 
 
 
@@ -989,15 +960,6 @@ Public Class diagnostic_ContratCommercial
     End Sub
 
 
-    Private Sub btn_Signatures_Click(sender As Object, e As EventArgs) Handles btn_Signatures.Click
-        Dim oFrm As New frmContratCommercial()
-        majDiag()
-        oFrm.setcontexte(m_oAgent, m_oDiag)
-        oFrm.ShowDialog(Me)
-        If oFrm.DialogResult = DialogResult.OK Then
-            suivant(Me.btn_facturation_suivant)
-        End If
-    End Sub
 
     Private Sub DataGridView1_RowValidated(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.RowValidated
         calcultotaux()
@@ -1022,9 +984,9 @@ Public Class diagnostic_ContratCommercial
         Dim oCC As ContratCommercial
         oCC = m_bsContratCommercial.Current
         If oCC.TotalTTC <> 0 Then
-            btn_facturation_suivant.Enabled = True
+            btnSuivant.Enabled = True
         Else
-            btn_facturation_suivant.Enabled = False
+            btnSuivant.Enabled = False
 
         End If
     End Sub
@@ -1039,6 +1001,65 @@ Public Class diagnostic_ContratCommercial
     End Sub
 
     Private Sub facturation_totalTTC_Validated(sender As Object, e As EventArgs) Handles facturation_totalTTC.Validated
-        btn_facturation_suivant.Enabled = True
+        btnSuivant.Enabled = True
+    End Sub
+
+    Private Sub img_Add_Move(sender As Object, e As EventArgs) Handles img_Add.Move
+
+    End Sub
+
+    Private Sub facturation_totalTTC_KeyPress(sender As Object, e As KeyPressEventArgs) Handles facturation_totalTTC.KeyPress
+        If e.KeyChar = vbCr Then
+            btnSuivant.Enabled = True
+            btnSuivant.Select()
+        End If
+    End Sub
+
+    Private Sub btnAnnuler_Click(sender As Object, e As EventArgs) Handles btnAnnuler.Click
+        DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.Close()
+    End Sub
+
+    Private Sub btnImprimerBL_Click(sender As Object, e As EventArgs) Handles btnImprimerBL.Click
+        ' On génère le PDF rempli
+        Try
+            If String.IsNullOrEmpty(m_pathBl) Then
+                createBl_CR()
+            End If
+            CSFile.open(m_pathBl)
+        Catch ex As Exception
+            CSDebug.dispError("diagnostic_finalisation::btn_facturation_imprimerBL_Click( Affichage BL ) : " & ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub btnImprimerContrat_Click(sender As Object, e As EventArgs) Handles btnImprimerContrat.Click
+        Try
+            If Not String.IsNullOrEmpty(m_oDiag.CCFileName) Then
+                CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)                ' On récupère le Diagnostic selectionné
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("btn_facturation_imprimerContrat_Click : " & ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub btnSigner_Click(sender As Object, e As EventArgs) Handles btnSigner.Click
+        Dim oFrm As New frmContratCommercial()
+        majDiag()
+        oFrm.setcontexte(m_oAgent, m_oDiag)
+        oFrm.ShowDialog(Me)
+        If oFrm.DialogResult = DialogResult.OK Then
+            suivant(Me.btnSuivant)
+        End If
+
+
+    End Sub
+
+
+    Private Sub btnSuivant_MouseClick(sender As Object, e As MouseEventArgs) Handles btnSuivant.MouseClick
+        Me.ValidateChildren()
+        suivant(sender)
+
     End Sub
 End Class

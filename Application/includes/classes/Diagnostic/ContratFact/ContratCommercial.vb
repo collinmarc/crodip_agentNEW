@@ -86,6 +86,25 @@ Public Class ContratCommercial
             _TotalTTC = value
         End Set
     End Property
+    <Xml.Serialization.XmlIgnore()>
+    Public Property TotalTTCStr() As String
+        Get
+            If TotalTTC = 0 Then
+                Return ""
+            Else
+                Return CStr(TotalTTC)
+            End If
+        End Get
+        Set(ByVal value As String)
+            If value = "" Then
+                TotalTTC = 0
+            Else
+                If IsNumeric(value) Then
+                    TotalTTC = CDec(value)
+                End If
+            End If
+        End Set
+    End Property
     Public Sub CalculTotaux()
         TotalHT = Lignes.Select(Function(olg) olg.totalHT).Sum()
         TotalTVA = TotalHT * (TxTVA / 100)

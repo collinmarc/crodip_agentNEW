@@ -1,4 +1,9 @@
-﻿Public Class FactureExportCSV
+﻿Imports System.Collections.Generic
+Imports System.Globalization
+Imports CsvHelper
+
+Public Class FactureExportCSV
+#Region "Properties"
     Private _idFacture As String
     Public Property idFacture() As String
         Get
@@ -260,5 +265,88 @@
             _TxTVAItem = value
         End Set
     End Property
+#End Region
+#Region "Constructeurs"
+    Public Sub New()
 
+    End Sub
+    Public Sub New(pFacture As Facture, pFactureItem As FactureItem)
+        Me.idFacture = pFacture.idFacture
+        Me.DateFacture = pFacture.dateFacture
+        Me.DateEcheance = pFacture.dateEcheance
+        Me.idDiag = pFacture.idDiag
+        Me.commentaire = pFacture.Commentaire
+        Me.modereglement = pFacture.modeReglement
+        Me.refReglement = pFacture.refReglement
+        Me.Reglee = pFacture.isReglee
+        Me.totalHT = pFacture.TotalHT
+        Me.TotalTTC = pFacture.TotalTTC
+        Me.totalTVA = pFacture.TotalTVA
+        Me.txTVA = pFacture.TxTVA
+
+        Me.rsClient = pFacture.oExploit.raisonSociale
+        Me.nomClient = pFacture.oExploit.nomExploitant
+        Me.PrenomClient = pFacture.oExploit.prenomExploitant
+        Me.adresseClient = pFacture.oExploit.adresse
+        Me.CommuneClient = pFacture.oExploit.commune
+        Me.cpClient = pFacture.oExploit.codePostal
+        Me.mailClient = pFacture.oExploit.eMail
+        Me.telFixeClient = pFacture.oExploit.telephoneFixe
+        Me.telPortableClient = pFacture.oExploit.telephonePortable
+
+        Me.categorieItem = pFactureItem.categorie
+        Me.PrestationItem = pFactureItem.prestation
+        Me.pu = pFactureItem.pu
+        Me.quantite = pFactureItem.quantite
+        Me.totalHTItem = pFactureItem.totalHT
+        Me.totalTTCItem = pFactureItem.totalTTC
+        Me.totalTVAItem = pFactureItem.totalTVA
+        Me.txTVAItem = pFactureItem.txTVA
+
+
+    End Sub
+#End Region
+#Region "Shared"
+    Public Shared Function getlstExportfromFacture(pFacture As Facture) As List(Of FactureExportCSV)
+        Dim oReturn As New List(Of FactureExportCSV)
+
+        Try
+            pFacture.Lignes.ForEach(Sub(oLigne)
+                                        Dim oExport As New FactureExportCSV(pFacture, oLigne)
+                                        oReturn.Add(oExport)
+                                    End Sub)
+
+        Catch ex As Exception
+            CSDebug.dispError("FactureExportCSV.getlstExportFromFacture ERR: ", ex)
+            oReturn = New List(Of FactureExportCSV)()
+        End Try
+        Return oReturn
+    End Function
+    Public Shared Function ExportCSV(pFile As String, pListFacture As List(Of Facture)) As Boolean
+        Dim lstElmt As New List(Of FactureExportCSV)
+        Dim bReturn As Boolean
+        Try
+            pListFacture.ForEach(Sub(oFact)
+                                     Dim olst As List(Of FactureExportCSV)
+                                     olst = FactureExportCSV.getlstExportfromFacture(oFact)
+                                     lstElmt.AddRange(olst)
+                                 End Sub)
+            Using sw As New IO.StreamWriter(pFile)
+                Using csw As New CsvWriter(sw, CultureInfo.InvariantCulture)
+                    csw.Configuration.Delimiter = ";"
+                    csw.WriteRecords(Of FactureExportCSV)(lstElmt)
+                End Using
+            End Using
+
+
+
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("FactureExportCSV.ExportCSV ERR: ", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
+#End Region
 End Class

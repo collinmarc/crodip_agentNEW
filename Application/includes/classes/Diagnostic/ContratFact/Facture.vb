@@ -101,15 +101,15 @@ Public Class Facture
             _Reglee = value
         End Set
     End Property
-    Private _RefPaiement As String = ""
+    Private _refReglement As String = ""
 
 
     Public Property refReglement() As String
         Get
-            Return _RefPaiement
+            Return _refReglement
         End Get
         Set(ByVal value As String)
-            _RefPaiement = value
+            _refReglement = value
         End Set
     End Property
     Private _idFacture As String

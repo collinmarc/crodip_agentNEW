@@ -1430,6 +1430,7 @@
     <None Include="Resources\icons8_membership_card.ico" />
     <None Include="Resources\Favorites.png" />
     <None Include="Resources\btn_search.jpg" />
+    <None Include="Resources\btn_retours.jpg" />
     <Content Include="wgssSTU.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

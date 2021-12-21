@@ -6057,7 +6057,13 @@ Public Class accueil
         Dim ofrm As frmdiagnostic_facturationCoProp
         ofrm = New frmdiagnostic_facturationCoProp()
         ofrm.setContexte(agentCourant)
-        ofrm.ShowDialog(Me)
+        If ofrm.ShowDialog(Me) = DialogResult.OK Then
+            ofrm.lstFacture.ForEach(Sub(oFact)
+                                        m_bsFacture.Insert(0, oFact)
+                                    End Sub)
+
+            m_bsFacture.ResetBindings(False)
+        End If
     End Sub
     Private Enum TypeRechercheFacture
         RECHERCHE_FACTURE_TOUTES
@@ -6143,8 +6149,13 @@ Public Class accueil
 
         Me.Cursor = Cursors.WaitCursor
         Try
+            Dim olst As New List(Of Facture)
             Dim SFile As String = GlobalsCRODIP.CONST_PATH_EXP & "Export_Facture_" & Date.Now.ToString("yyyyMMdd") & ".csv"
-            PulverisateurManager.exportToCSV(SFile)
+
+            For Each oFact As Facture In m_bsFacture.List
+                olst.Add(oFact)
+            Next
+            FactureExportCSV.ExportCSV(SFile, olst)
 
             If MsgBox("Fichier correctement enregistré dans : " & vbNewLine & SFile & vbNewLine & "Voulez-vous ouvrir ce fichier ?", MsgBoxStyle.YesNo, "Export Facture") = MsgBoxResult.Yes Then
                 CSFile.open(SFile)

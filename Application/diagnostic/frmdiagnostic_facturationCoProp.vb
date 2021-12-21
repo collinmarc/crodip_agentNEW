@@ -13,7 +13,11 @@ Imports System.Linq
 
 Public Class frmdiagnostic_facturationCoProp
     Inherits System.Windows.Forms.Form
-
+    Public ReadOnly Property lstFacture() As List(Of Facture)
+        Get
+            Return m_olstFacture
+        End Get
+    End Property
     Private Enum TypeInit
         INITFROMDIAG
         INITFROMACCEUIL
@@ -24,7 +28,6 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents m_bsExploitant As System.Windows.Forms.BindingSource
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents tbCommentaire As System.Windows.Forms.TextBox
-    Private WithEvents btn_finalisationDiag_valider As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label27 As Label
     Friend WithEvents tbRacine As TextBox
@@ -54,13 +57,13 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents Label22 As Label
     Friend WithEvents tbTelFixe As TextBox
     Friend WithEvents Label21 As Label
-    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents tbrsClient As TextBox
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents tbPrenomClient As TextBox
     Friend WithEvents tbCodePostal As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents tbAdresseClient As TextBox
+    Friend WithEvents tbNomClient As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
@@ -90,7 +93,6 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents m_dgvCoProp As DataGridView
     Friend WithEvents RaisonSocialeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents m_bsContratCommercial As BindingSource
-    Friend WithEvents btnAnnuler As Label
     Friend WithEvents pnlLines As Panel
     Friend WithEvents dgvLignes As DataGridView
     Friend WithEvents CategorieDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
@@ -102,6 +104,9 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents pnlAddPrestatation As Panel
     Friend WithEvents cbxCommune As ComboBox
     Friend WithEvents m_bsCommunes As BindingSource
+    Friend WithEvents btnAnnuler As Button
+    Friend WithEvents btnImprimer As Button
+    Friend WithEvents btnQuitter As Button
     Friend WithEvents CommuneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 
 
@@ -137,7 +142,6 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents pnlFooter As System.Windows.Forms.Panel
-    Friend WithEvents btn_imprimerFactCoProp As System.Windows.Forms.Label
     Friend WithEvents facturation_totalHT As System.Windows.Forms.TextBox
     Friend WithEvents facturation_totalTVA As System.Windows.Forms.TextBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
@@ -151,9 +155,9 @@ Public Class frmdiagnostic_facturationCoProp
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmdiagnostic_facturationCoProp))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlFooter = New System.Windows.Forms.Panel()
@@ -178,13 +182,10 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label16 = New System.Windows.Forms.Label()
         Me.tb_txTVA = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.btnAnnuler = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.img_Add = New System.Windows.Forms.PictureBox()
         Me.Label_diagnostic_61 = New System.Windows.Forms.Label()
         Me.listTarif_prestations = New System.Windows.Forms.ComboBox()
-        Me.btn_finalisationDiag_valider = New System.Windows.Forms.Label()
-        Me.btn_imprimerFactCoProp = New System.Windows.Forms.Label()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
         Me.LignesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -221,13 +222,13 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label22 = New System.Windows.Forms.Label()
         Me.tbTelFixe = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.tbrsClient = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.tbPrenomClient = New System.Windows.Forms.TextBox()
         Me.tbCodePostal = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.tbAdresseClient = New System.Windows.Forms.TextBox()
+        Me.tbNomClient = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -251,6 +252,9 @@ Public Class frmdiagnostic_facturationCoProp
         Me.PuDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.btnAnnuler = New System.Windows.Forms.Button()
+        Me.btnImprimer = New System.Windows.Forms.Button()
+        Me.btnQuitter = New System.Windows.Forms.Button()
         Me.pnlFooter.SuspendLayout()
         CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -329,7 +333,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'tbRefReglement
         '
-        Me.tbRefReglement.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsFacture, "RefReglement", True))
+        Me.tbRefReglement.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsFacture, "refReglement", True))
         Me.tbRefReglement.Location = New System.Drawing.Point(278, 84)
         Me.tbRefReglement.Name = "tbRefReglement"
         Me.tbRefReglement.Size = New System.Drawing.Size(403, 20)
@@ -549,19 +553,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label17.Text = "%"
         Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'btnAnnuler
-        '
-        Me.btnAnnuler.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAnnuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAnnuler.ForeColor = System.Drawing.Color.White
-        Me.btnAnnuler.Image = Global.Crodip_agent.Resources.btn_annuler
-        Me.btnAnnuler.Location = New System.Drawing.Point(22, 695)
-        Me.btnAnnuler.Name = "btnAnnuler"
-        Me.btnAnnuler.Size = New System.Drawing.Size(128, 24)
-        Me.btnAnnuler.TabIndex = 78
-        Me.btnAnnuler.Text = "    Annuler"
-        Me.btnAnnuler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'listTarif_categories
         '
         Me.listTarif_categories.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -603,35 +594,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.listTarif_prestations.Name = "listTarif_prestations"
         Me.listTarif_prestations.Size = New System.Drawing.Size(200, 21)
         Me.listTarif_prestations.TabIndex = 75
-        '
-        'btn_finalisationDiag_valider
-        '
-        Me.btn_finalisationDiag_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_finalisationDiag_valider.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_finalisationDiag_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_finalisationDiag_valider.ForeColor = System.Drawing.Color.White
-        Me.btn_finalisationDiag_valider.Image = CType(resources.GetObject("btn_finalisationDiag_valider.Image"), System.Drawing.Image)
-        Me.btn_finalisationDiag_valider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_finalisationDiag_valider.Location = New System.Drawing.Point(784, 695)
-        Me.btn_finalisationDiag_valider.Name = "btn_finalisationDiag_valider"
-        Me.btn_finalisationDiag_valider.Size = New System.Drawing.Size(134, 24)
-        Me.btn_finalisationDiag_valider.TabIndex = 2
-        Me.btn_finalisationDiag_valider.Text = "    Quitter"
-        Me.btn_finalisationDiag_valider.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btn_imprimerFactCoProp
-        '
-        Me.btn_imprimerFactCoProp.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_imprimerFactCoProp.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_imprimerFactCoProp.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_imprimerFactCoProp.ForeColor = System.Drawing.Color.White
-        Me.btn_imprimerFactCoProp.Image = Global.Crodip_agent.Resources.btn_divers_print
-        Me.btn_imprimerFactCoProp.Location = New System.Drawing.Point(519, 695)
-        Me.btn_imprimerFactCoProp.Name = "btn_imprimerFactCoProp"
-        Me.btn_imprimerFactCoProp.Size = New System.Drawing.Size(192, 24)
-        Me.btn_imprimerFactCoProp.TabIndex = 1
-        Me.btn_imprimerFactCoProp.Text = "    Imprimer"
-        Me.btn_imprimerFactCoProp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'm_bsLignes
         '
@@ -839,13 +801,13 @@ Public Class frmdiagnostic_facturationCoProp
         Me.pnlClient.Controls.Add(Me.Label22)
         Me.pnlClient.Controls.Add(Me.tbTelFixe)
         Me.pnlClient.Controls.Add(Me.Label21)
-        Me.pnlClient.Controls.Add(Me.TextBox6)
+        Me.pnlClient.Controls.Add(Me.tbrsClient)
         Me.pnlClient.Controls.Add(Me.Label11)
         Me.pnlClient.Controls.Add(Me.Label10)
-        Me.pnlClient.Controls.Add(Me.TextBox5)
+        Me.pnlClient.Controls.Add(Me.tbPrenomClient)
         Me.pnlClient.Controls.Add(Me.tbCodePostal)
-        Me.pnlClient.Controls.Add(Me.TextBox2)
-        Me.pnlClient.Controls.Add(Me.TextBox1)
+        Me.pnlClient.Controls.Add(Me.tbAdresseClient)
+        Me.pnlClient.Controls.Add(Me.tbNomClient)
         Me.pnlClient.Controls.Add(Me.Label8)
         Me.pnlClient.Controls.Add(Me.Label7)
         Me.pnlClient.Controls.Add(Me.Label6)
@@ -998,15 +960,15 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label21.TabIndex = 68
         Me.Label21.Text = "Tel fixe  :"
         '
-        'TextBox6
+        'tbrsClient
         '
-        Me.TextBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.tbrsClient.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "raisonSociale", True))
-        Me.TextBox6.Location = New System.Drawing.Point(107, 11)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(464, 20)
-        Me.TextBox6.TabIndex = 0
+        Me.tbrsClient.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "raisonSociale", True))
+        Me.tbrsClient.Location = New System.Drawing.Point(107, 11)
+        Me.tbrsClient.Name = "tbrsClient"
+        Me.tbrsClient.Size = New System.Drawing.Size(464, 20)
+        Me.tbrsClient.TabIndex = 0
         '
         'Label11
         '
@@ -1030,15 +992,15 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Label10.TabIndex = 66
         Me.Label10.Text = "Prénom :"
         '
-        'TextBox5
+        'tbPrenomClient
         '
-        Me.TextBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.tbPrenomClient.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "prenomExploitant", True))
-        Me.TextBox5.Location = New System.Drawing.Point(107, 63)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(463, 20)
-        Me.TextBox5.TabIndex = 2
+        Me.tbPrenomClient.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "prenomExploitant", True))
+        Me.tbPrenomClient.Location = New System.Drawing.Point(107, 63)
+        Me.tbPrenomClient.Name = "tbPrenomClient"
+        Me.tbPrenomClient.Size = New System.Drawing.Size(463, 20)
+        Me.tbPrenomClient.TabIndex = 2
         '
         'tbCodePostal
         '
@@ -1050,25 +1012,25 @@ Public Class frmdiagnostic_facturationCoProp
         Me.tbCodePostal.Size = New System.Drawing.Size(51, 20)
         Me.tbCodePostal.TabIndex = 60
         '
-        'TextBox2
+        'tbAdresseClient
         '
-        Me.TextBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.tbAdresseClient.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "adresse", True))
-        Me.TextBox2.Location = New System.Drawing.Point(107, 89)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(464, 20)
-        Me.TextBox2.TabIndex = 3
+        Me.tbAdresseClient.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "adresse", True))
+        Me.tbAdresseClient.Location = New System.Drawing.Point(107, 89)
+        Me.tbAdresseClient.Name = "tbAdresseClient"
+        Me.tbAdresseClient.Size = New System.Drawing.Size(464, 20)
+        Me.tbAdresseClient.TabIndex = 3
         '
-        'TextBox1
+        'tbNomClient
         '
-        Me.TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.tbNomClient.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "nomExploitant", True))
-        Me.TextBox1.Location = New System.Drawing.Point(107, 37)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(463, 20)
-        Me.TextBox1.TabIndex = 1
+        Me.tbNomClient.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsExploitant, "nomExploitant", True))
+        Me.tbNomClient.Location = New System.Drawing.Point(107, 37)
+        Me.tbNomClient.Name = "tbNomClient"
+        Me.tbNomClient.Size = New System.Drawing.Size(463, 20)
+        Me.tbNomClient.TabIndex = 1
         '
         'Label8
         '
@@ -1215,7 +1177,9 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'pnlLines
         '
-        Me.pnlLines.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.pnlLines.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlLines.Controls.Add(Me.pnlAddPrestatation)
         Me.pnlLines.Controls.Add(Me.dgvLignes)
         Me.pnlLines.Location = New System.Drawing.Point(12, 380)
@@ -1266,18 +1230,18 @@ Public Class frmdiagnostic_facturationCoProp
         'QuantiteColumn
         '
         Me.QuantiteColumn.DataPropertyName = "quantite"
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.QuantiteColumn.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Format = "N2"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.QuantiteColumn.DefaultCellStyle = DataGridViewCellStyle4
         Me.QuantiteColumn.HeaderText = "quantite"
         Me.QuantiteColumn.Name = "QuantiteColumn"
         '
         'PuDataGridViewTextBoxColumn
         '
         Me.PuDataGridViewTextBoxColumn.DataPropertyName = "pu"
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.PuDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Format = "C2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.PuDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
         Me.PuDataGridViewTextBoxColumn.HeaderText = "pu"
         Me.PuDataGridViewTextBoxColumn.Name = "PuDataGridViewTextBoxColumn"
         Me.PuDataGridViewTextBoxColumn.ReadOnly = True
@@ -1285,9 +1249,9 @@ Public Class frmdiagnostic_facturationCoProp
         'TotalHTDataGridViewTextBoxColumn
         '
         Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Format = "C2"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
         Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "totalHT"
         Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
         Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
@@ -1300,21 +1264,70 @@ Public Class frmdiagnostic_facturationCoProp
         Me.SupprColumn.Name = "SupprColumn"
         Me.SupprColumn.Width = 40
         '
+        'btnAnnuler
+        '
+        Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAnnuler.BackgroundImage = Global.Crodip_agent.Resources.btn_annuler
+        Me.btnAnnuler.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnAnnuler.FlatAppearance.BorderSize = 0
+        Me.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAnnuler.ForeColor = System.Drawing.Color.White
+        Me.btnAnnuler.Location = New System.Drawing.Point(12, 695)
+        Me.btnAnnuler.Name = "btnAnnuler"
+        Me.btnAnnuler.Size = New System.Drawing.Size(141, 27)
+        Me.btnAnnuler.TabIndex = 80
+        Me.btnAnnuler.Text = "Annuler"
+        Me.btnAnnuler.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnAnnuler.UseVisualStyleBackColor = True
+        '
+        'btnImprimer
+        '
+        Me.btnImprimer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnImprimer.BackgroundImage = Global.Crodip_agent.Resources.btn_divers_print
+        Me.btnImprimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnImprimer.FlatAppearance.BorderSize = 0
+        Me.btnImprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImprimer.ForeColor = System.Drawing.Color.White
+        Me.btnImprimer.Location = New System.Drawing.Point(329, 695)
+        Me.btnImprimer.Name = "btnImprimer"
+        Me.btnImprimer.Size = New System.Drawing.Size(185, 27)
+        Me.btnImprimer.TabIndex = 81
+        Me.btnImprimer.Text = "Imprimer"
+        Me.btnImprimer.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnImprimer.UseVisualStyleBackColor = True
+        '
+        'btnQuitter
+        '
+        Me.btnQuitter.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnQuitter.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
+        Me.btnQuitter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnQuitter.FlatAppearance.BorderSize = 0
+        Me.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnQuitter.ForeColor = System.Drawing.Color.White
+        Me.btnQuitter.Location = New System.Drawing.Point(797, 696)
+        Me.btnQuitter.Name = "btnQuitter"
+        Me.btnQuitter.Size = New System.Drawing.Size(136, 27)
+        Me.btnQuitter.TabIndex = 82
+        Me.btnQuitter.Text = "Quitter"
+        Me.btnQuitter.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnQuitter.UseVisualStyleBackColor = True
+        '
         'frmdiagnostic_facturationCoProp
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(933, 728)
         Me.ControlBox = False
-        Me.Controls.Add(Me.pnlLines)
+        Me.Controls.Add(Me.btnQuitter)
+        Me.Controls.Add(Me.btnImprimer)
         Me.Controls.Add(Me.btnAnnuler)
+        Me.Controls.Add(Me.pnlLines)
         Me.Controls.Add(Me.pnlInfosDiag)
         Me.Controls.Add(Me.pnlClient)
         Me.Controls.Add(Me.pnlListCoProp)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.pnlFooter)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.btn_finalisationDiag_valider)
-        Me.Controls.Add(Me.btn_imprimerFactCoProp)
         Me.Icon = Global.Crodip_agent.Resources.logoCRODIP
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -1488,6 +1501,8 @@ Public Class frmdiagnostic_facturationCoProp
         pnlPourcentage.Controls.Add(btnAjoutExploitant)
         btnAjoutExploitant.Top = 0
         btnAjoutExploitant.Left = btnNewExploitant.Width + 10
+        'Par Défaut on désactive le Client
+        EnableClient(False)
         Me.ControlBox = True
 
     End Sub
@@ -1562,38 +1577,6 @@ Public Class frmdiagnostic_facturationCoProp
 
     End Sub
 
-    Private Function saveFacture(pReference As String) As DiagnosticFacture
-        Dim facture As DiagnosticFacture = New DiagnosticFacture
-        Try
-            '####
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-            Dim oStructure As Structuree = StructureManager.getStructureById(m_oDiag.organismePresId)
-            '####
-            Dim oExploit As Exploitation
-            oExploit = m_bsExploitant.Current
-            '######################################################################################
-
-            facture.id = DiagnosticFactureManager.getNewId()
-            facture.factureReference = pReference
-            facture.factureDate = Format(Date.Now, "dd/MM/yyyy")
-            facture.factureTotal = facturation_totalTTC.Text
-            facture.emetteurOrganisme = oStructure.nom
-            facture.emetteurOrganismeAdresse = oStructure.adresse
-            facture.emetteurOrganismeCpVille = oStructure.codePostal & " " & oStructure.commune
-            facture.emetteurOrganismeTelFax = oStructure.telephoneFixe & " / " & oStructure.telephoneFax
-            facture.emetteurOrganismeSiren = FACTURATION_XML_CONFIG.getElementValue("/root/siren")
-            facture.emetteurOrganismeTva = FACTURATION_XML_CONFIG.getElementValue("/root/tva")
-            facture.emetteurOrganismeRcs = FACTURATION_XML_CONFIG.getElementValue("/root/rcs")
-            facture.recepteurRaisonSociale = oExploit.raisonSociale
-            facture.recepteurProprio = oExploit.nomExploitant & " " & oExploit.prenomExploitant
-            facture.recepteurCpVille = oExploit.codePostal & " " & oExploit.commune
-            DiagnosticFactureManager.save(facture)
-
-        Catch ex As Exception
-
-        End Try
-        Return facture
-    End Function
 
 
 #End Region
@@ -1624,17 +1607,6 @@ Public Class frmdiagnostic_facturationCoProp
 
 
 
-    Private Sub btn_imprimerFactCoProp_Click(sender As Object, e As EventArgs) Handles btn_imprimerFactCoProp.Click
-        Me.Cursor = Cursors.WaitCursor
-        Me.ValidateChildren()
-
-        Dim oFacture As Facture
-        oFacture = m_bsFacture.Current
-        createFacture_CR(oFacture)
-        Me.Cursor = Cursors.Default
-
-        CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & m_pathFacture)
-    End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs)
         Me.Close()
@@ -1648,26 +1620,6 @@ Public Class frmdiagnostic_facturationCoProp
 
     End Sub
 
-    Private Sub btn_finalisationDiag_valider_Click(sender As Object, e As EventArgs) Handles btn_finalisationDiag_valider.Click
-        Me.ValidateChildren()
-        Dim bOk As Boolean = True
-        If m_oDiag IsNot Nothing Then
-            If m_oDiag.oContratCommercial.ResteAFacturer <> 0 Then
-                If MsgBox("Il reste des prestations à facturer : " & String.Format(m_oDiag.oContratCommercial.ResteAFacturer, "C") & vbCrLf &
-                        "Voulez-vous continuer ?", MsgBoxStyle.YesNo, "Sauvegarde de facture") = MsgBoxResult.No Then
-                    bOk = False
-                End If
-            End If
-        End If
-        If bOk Then
-            Me.Cursor = Cursors.WaitCursor
-            SauvegarderExploitants()
-            GenererFactures()
-            Me.Cursor = Cursors.Default
-            Me.DialogResult = DialogResult.OK
-            Me.Close()
-        End If
-    End Sub
 
     Private Sub SauvegarderExploitants()
         'Sauvegarde des Exploitants
@@ -1777,6 +1729,7 @@ Public Class frmdiagnostic_facturationCoProp
         If frm.ShowDialog() = DialogResult.OK Then
             m_olstExploit.Add(OExploit)
             m_bsExploitant.Add(OExploit)
+            EnableClient(True)
         End If
         frm.Close()
     End Sub
@@ -1818,6 +1771,8 @@ Public Class frmdiagnostic_facturationCoProp
                 m_olstExploit.Add(ofrm.oExploit)
                 m_bsExploitant.Add(ofrm.oExploit)
                 m_bsExploitant.MoveLast()
+                EnableClient(True)
+
             End If
         End If
     End Sub
@@ -1976,8 +1931,8 @@ Public Class frmdiagnostic_facturationCoProp
 
         pnlFooter.Enabled = bFactureOK
         btnAnnuler.Enabled = True
-        btn_imprimerFactCoProp.Enabled = bFactureOK
-        btn_finalisationDiag_valider.Enabled = bFactureOK
+        btnImprimer.Enabled = bFactureOK
+        btnQuitter.Enabled = bFactureOK
     End Sub
 
     Private Sub tbCodePostal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbCodePostal.KeyPress
@@ -2010,5 +1965,54 @@ Public Class frmdiagnostic_facturationCoProp
             m_bsExploitant.ResetCurrentItem()
         End If
 
+    End Sub
+
+    Private Sub tbRefReglement_Validated(sender As Object, e As EventArgs) Handles tbRefReglement.Validated
+
+    End Sub
+
+    Private Sub btnImprimer_Click(sender As Object, e As EventArgs) Handles btnImprimer.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        Dim oFacture As Facture
+        oFacture = m_bsFacture.Current
+        createFacture_CR(oFacture)
+        Me.Cursor = Cursors.Default
+
+        CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & m_pathFacture)
+
+    End Sub
+
+    Private Sub btnQuitter_Click(sender As Object, e As EventArgs) Handles btnQuitter.Click
+        Me.ValidateChildren()
+        Dim bOk As Boolean = True
+        If m_oDiag IsNot Nothing Then
+            If m_oDiag.oContratCommercial.ResteAFacturer <> 0 Then
+                If MsgBox("Il reste des prestations à facturer : " & String.Format(m_oDiag.oContratCommercial.ResteAFacturer, "C") & vbCrLf &
+                        "Voulez-vous continuer ?", MsgBoxStyle.YesNo, "Sauvegarde de facture") = MsgBoxResult.No Then
+                    bOk = False
+                End If
+            End If
+        End If
+        If bOk Then
+            Me.Cursor = Cursors.WaitCursor
+            SauvegarderExploitants()
+            GenererFactures()
+            Me.Cursor = Cursors.Default
+            Me.DialogResult = DialogResult.OK
+            Me.Close()
+        End If
+
+    End Sub
+    Private Sub EnableClient(pEnable As Boolean)
+        tbrsClient.Enabled = pEnable
+        tbNomClient.Enabled = pEnable
+        tbPrenomClient.Enabled = pEnable
+        tbAdresseClient.Enabled = pEnable
+        tbCodePostal.Enabled = pEnable
+        cbxCommune.Enabled = pEnable
+        tbTelFixe.Enabled = pEnable
+        tbTelPortable.Enabled = pEnable
+        tbEmail.Enabled = pEnable
     End Sub
 End Class
