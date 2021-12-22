@@ -95,18 +95,18 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents m_bsContratCommercial As BindingSource
     Friend WithEvents pnlLines As Panel
     Friend WithEvents dgvLignes As DataGridView
-    Friend WithEvents CategorieDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents PrestationDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents QuantiteColumn As DataGridViewTextBoxColumn
-    Friend WithEvents PuDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents TotalHTDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents SupprColumn As DataGridViewImageColumn
     Friend WithEvents pnlAddPrestatation As Panel
     Friend WithEvents cbxCommune As ComboBox
     Friend WithEvents m_bsCommunes As BindingSource
     Friend WithEvents btnAnnuler As Button
     Friend WithEvents btnImprimer As Button
     Friend WithEvents btnQuitter As Button
+    Friend WithEvents CategorieDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PrestationDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents QuantiteColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PuDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TotalHTDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents SupprColumn As DataGridViewImageColumn
     Friend WithEvents CommuneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 
 
@@ -155,9 +155,9 @@ Public Class frmdiagnostic_facturationCoProp
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmdiagnostic_facturationCoProp))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlFooter = New System.Windows.Forms.Panel()
@@ -246,15 +246,15 @@ Public Class frmdiagnostic_facturationCoProp
         Me.pnlLines = New System.Windows.Forms.Panel()
         Me.pnlAddPrestatation = New System.Windows.Forms.Panel()
         Me.dgvLignes = New System.Windows.Forms.DataGridView()
+        Me.btnAnnuler = New System.Windows.Forms.Button()
+        Me.btnImprimer = New System.Windows.Forms.Button()
+        Me.btnQuitter = New System.Windows.Forms.Button()
         Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuantiteColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PuDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.btnAnnuler = New System.Windows.Forms.Button()
-        Me.btnImprimer = New System.Windows.Forms.Button()
-        Me.btnQuitter = New System.Windows.Forms.Button()
         Me.pnlFooter.SuspendLayout()
         CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1215,55 +1215,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.dgvLignes.Size = New System.Drawing.Size(915, 145)
         Me.dgvLignes.TabIndex = 78
         '
-        'CategorieDataGridViewTextBoxColumn
-        '
-        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "categorie"
-        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "categorie"
-        Me.CategorieDataGridViewTextBoxColumn.Name = "CategorieDataGridViewTextBoxColumn"
-        '
-        'PrestationDataGridViewTextBoxColumn
-        '
-        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "prestation"
-        Me.PrestationDataGridViewTextBoxColumn.HeaderText = "prestation"
-        Me.PrestationDataGridViewTextBoxColumn.Name = "PrestationDataGridViewTextBoxColumn"
-        '
-        'QuantiteColumn
-        '
-        Me.QuantiteColumn.DataPropertyName = "quantite"
-        DataGridViewCellStyle4.Format = "N2"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.QuantiteColumn.DefaultCellStyle = DataGridViewCellStyle4
-        Me.QuantiteColumn.HeaderText = "quantite"
-        Me.QuantiteColumn.Name = "QuantiteColumn"
-        '
-        'PuDataGridViewTextBoxColumn
-        '
-        Me.PuDataGridViewTextBoxColumn.DataPropertyName = "pu"
-        DataGridViewCellStyle5.Format = "C2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.PuDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
-        Me.PuDataGridViewTextBoxColumn.HeaderText = "pu"
-        Me.PuDataGridViewTextBoxColumn.Name = "PuDataGridViewTextBoxColumn"
-        Me.PuDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TotalHTDataGridViewTextBoxColumn
-        '
-        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
-        DataGridViewCellStyle6.Format = "C2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
-        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "totalHT"
-        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
-        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'SupprColumn
-        '
-        Me.SupprColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.SupprColumn.HeaderText = "Suppr"
-        Me.SupprColumn.Image = Global.Crodip_agent.Resources.delete
-        Me.SupprColumn.Name = "SupprColumn"
-        Me.SupprColumn.Width = 40
-        '
         'btnAnnuler
         '
         Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -1312,6 +1263,53 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnQuitter.Text = "Quitter"
         Me.btnQuitter.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnQuitter.UseVisualStyleBackColor = True
+        '
+        'CategorieDataGridViewTextBoxColumn
+        '
+        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "categorie"
+        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "categorie"
+        Me.CategorieDataGridViewTextBoxColumn.Name = "CategorieDataGridViewTextBoxColumn"
+        '
+        'PrestationDataGridViewTextBoxColumn
+        '
+        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "prestation"
+        Me.PrestationDataGridViewTextBoxColumn.HeaderText = "prestation"
+        Me.PrestationDataGridViewTextBoxColumn.Name = "PrestationDataGridViewTextBoxColumn"
+        '
+        'QuantiteColumn
+        '
+        Me.QuantiteColumn.DataPropertyName = "quantiteStr"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.QuantiteColumn.DefaultCellStyle = DataGridViewCellStyle1
+        Me.QuantiteColumn.HeaderText = "quantite"
+        Me.QuantiteColumn.Name = "QuantiteColumn"
+        '
+        'PuDataGridViewTextBoxColumn
+        '
+        Me.PuDataGridViewTextBoxColumn.DataPropertyName = "pustr"
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.PuDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
+        Me.PuDataGridViewTextBoxColumn.HeaderText = "pu"
+        Me.PuDataGridViewTextBoxColumn.Name = "PuDataGridViewTextBoxColumn"
+        '
+        'TotalHTDataGridViewTextBoxColumn
+        '
+        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "totalHT"
+        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
+        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'SupprColumn
+        '
+        Me.SupprColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.SupprColumn.HeaderText = "Suppr"
+        Me.SupprColumn.Image = Global.Crodip_agent.Resources.delete
+        Me.SupprColumn.Name = "SupprColumn"
+        Me.SupprColumn.Width = 40
         '
         'frmdiagnostic_facturationCoProp
         '
@@ -1984,9 +1982,8 @@ Public Class frmdiagnostic_facturationCoProp
     End Sub
 
     Private Sub btnQuitter_Click(sender As Object, e As EventArgs) Handles btnQuitter.Click
-        Me.ValidateChildren()
         Dim bOk As Boolean = True
-        If m_oDiag IsNot Nothing Then
+        If m_TypeInit = TypeInit.INITFROMDIAG Then
             If m_oDiag.oContratCommercial.ResteAFacturer <> 0 Then
                 If MsgBox("Il reste des prestations à facturer : " & String.Format(m_oDiag.oContratCommercial.ResteAFacturer, "C") & vbCrLf &
                         "Voulez-vous continuer ?", MsgBoxStyle.YesNo, "Sauvegarde de facture") = MsgBoxResult.No Then

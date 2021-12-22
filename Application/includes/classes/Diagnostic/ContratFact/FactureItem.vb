@@ -42,6 +42,17 @@ Public Class FactureItem
             _Quantite = value
         End Set
     End Property
+    <XmlIgnore()>
+    Public Property quantiteStr() As String
+        Get
+            Return quantite.ToString("N2")
+        End Get
+        Set(ByVal value As String)
+            'If IsNumeric(value) Then
+            quantite = GlobalsCRODIP.StringToDouble(value)
+            'End If
+        End Set
+    End Property
     Private _PU As Decimal
     Public Property pu() As Decimal
         Get
@@ -49,6 +60,15 @@ Public Class FactureItem
         End Get
         Set(ByVal value As Decimal)
             _PU = value
+        End Set
+    End Property
+    <XmlIgnore()>
+    Public Property pustr() As String
+        Get
+            Return pu.ToString("N2")
+        End Get
+        Set(ByVal value As String)
+            pu = GlobalsCRODIP.StringToDouble(value)
         End Set
     End Property
     Private _txTVA As Decimal
