@@ -231,19 +231,21 @@ Public Class ManometreControleManager
             bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE AgentManoControle.numeroNational='" & pNumeroNational & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
-                ' Puis on les parcours
-                While tmpListProfils.Read()
-                    ' On rempli notre tableau
-                    Dim tmpColId As Integer = 0
-                    While tmpColId < tmpListProfils.FieldCount()
-                        If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
-                        End If
-                        tmpColId = tmpColId + 1
+                Using tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                    ' Puis on les parcours
+                    While tmpListProfils.Read()
+                        ' On rempli notre tableau
+                        Dim tmpColId As Integer = 0
+                        While tmpColId < tmpListProfils.FieldCount()
+                            If Not tmpListProfils.IsDBNull(tmpColId) Then
+                                tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                            End If
+                            tmpColId = tmpColId + 1
 
+                        End While
                     End While
-                End While
+                    tmpListProfils.Close()
+                End Using
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("ManometreControleManager Error: " & ex.Message)
             End Try
@@ -287,6 +289,7 @@ Public Class ManometreControleManager
                     colReturn.Add(oMano)
                 End If
             End While
+            oDataReader.Close()
 
         Catch ex As Exception
             CSDebug.dispError("ManometreControleManager.GetMaterielSupprimes Error" & ex.Message)
@@ -350,6 +353,7 @@ Public Class ManometreControleManager
                 ReDim Preserve arrItems(i)
             End While
             ReDim Preserve arrItems(i - 1)
+            tmpListProfils.Close()
 
         Catch ex As Exception ' On intercepte l'erreur
             CSDebug.dispError("Erreur - ManometreControleManager - getResult : " & ex.Message)
@@ -422,6 +426,7 @@ Public Class ManometreControleManager
                         arrResponse.Add(oMano)
                     End If
                 End While
+                oDataReader.Close()
             Catch ex As Exception
                 ' On catch l'erreur
                 CSDebug.dispError("AgentManager.getManoControle : " & ex.Message)
@@ -459,6 +464,7 @@ Public Class ManometreControleManager
                         arrResponse.Add(oMano)
                     End If
                 End While
+                oDataReader.Close()
             Catch ex As Exception
                 ' On catch l'erreur
                 CSDebug.dispError("AgentManager.getManoControle : " & ex.Message)

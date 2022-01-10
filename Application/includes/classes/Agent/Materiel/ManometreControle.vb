@@ -308,6 +308,8 @@ Public Class ManometreControle
         Dim oReturn As FVManometreControle = Nothing
         Try
             Dim oFV As FVManometreControle
+            CSDebug.dispInfo("ManometreControle.creerfFicheVieControle() :  Creation FV")
+
             oFV = creerFicheVie(FVMateriel.FVTYPE_CONTROLE, pAgent)
             If oFV IsNot Nothing Then
 
@@ -337,9 +339,12 @@ Public Class ManometreControle
                 oFV.blocage = Not Me.etat
                 oFV.dateModif = pControleMano.DateVerif
                 ' On GlobalsCRODIP.CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
+                CSDebug.dispInfo("ManometreControle.creerfFicheVieControle() :  buildPDF")
                 Dim sFileName As String = pControleMano.buildPDF()
                 oFV.FVFileName = sFileName
 
+
+                CSDebug.dispInfo("ManometreControle.creerfFicheVieControle() :  Save oFV")
                 FVManometreControleManager.save(oFV)
 
                 oReturn = oFV

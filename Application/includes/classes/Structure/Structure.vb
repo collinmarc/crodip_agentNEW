@@ -18,6 +18,8 @@ Public Class Structuree
     Private _commentaire As String
     Private _dateModificationCrodip As String
     Private _dateModificationAgent As String
+    Private m_DernNumFact As String
+
 
     Sub New()
         _id = 0
@@ -354,19 +356,23 @@ Public Class Structuree
     End Property
     Public Property DernierNumFact() As String
         Get
-            Dim sReturn As String = ""
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/derniernumero")
-            If x IsNot Nothing Then
-                sReturn = x.InnerText
-            End If
-            Return sReturn
+            Return m_DernNumFact
         End Get
         Set(ByVal value As String)
-            Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-            FACTURATION_XML_CONFIG.setElementValue("/root/derniernumero", value)
+            m_DernNumFact = value
         End Set
     End Property
+    Public Sub LireDernierNumFact()
+        Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+        Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/derniernumero")
+        If x IsNot Nothing Then
+            DernierNumFact = x.InnerText
+        End If
+    End Sub
+    Public Sub SauverDernierNumFact()
+        Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
+        FACTURATION_XML_CONFIG.setElementValue("/root/derniernumero", DernierNumFact)
+    End Sub
     Public Property isFacturationActive() As Boolean
         Get
             Dim sReturn As Boolean = False

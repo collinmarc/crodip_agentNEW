@@ -250,6 +250,7 @@ Public Class ManometreEtalonManager
                         tmpColId = tmpColId + 1
                     End While
                 End While
+                tmpListProfils.Close()
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("ManometreEtalonManager Error: " & ex.Message)
             End Try
@@ -383,6 +384,7 @@ Public Class ManometreEtalonManager
                     End While
                     colReturn.Add(oMano)
                 End While
+                oDataReader.Close()
             End If
 
         Catch ex As Exception
@@ -397,13 +399,14 @@ Public Class ManometreEtalonManager
         Return colReturn
     End Function
 
-#Region " - Suppression - "
     Public Shared Function setUtilise(ByVal pAgent As Agent, ByVal objManometreEtalon As ManometreEtalon) As Boolean
         Dim bReturn As Boolean
         Try
             If Not objManometreEtalon.isUtilise Then
+                CSDebug.dispInfo("ManometreEtalonManager.setUtilise() :  Creattion FV")
                 objManometreEtalon.creerFicheViePremiereUtilisation(pAgent)
                 objManometreEtalon.isUtilise = True
+                CSDebug.dispInfo("ManometreEtalonManager.setUtilise() :  Save ManoE")
                 save(objManometreEtalon)
             End If
             bReturn = True
@@ -413,6 +416,7 @@ Public Class ManometreEtalonManager
         End Try
         Return bReturn
     End Function
+#Region " - Suppression - "
 
     Public Shared Function delete(ByVal pNumeroNational As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pNumeroNational), " le paramètre pNumeroNational doit être initialisé")
@@ -495,6 +499,7 @@ Public Class ManometreEtalonManager
                 ReDim Preserve arrItems(i)
             End While
             ReDim Preserve arrItems(i - 1)
+            tmpListProfils.Close()
 
         Catch ex As Exception ' On intercepte l'erreur
             CSDebug.dispError("Erreur - ManometreEtalonManager - getResult : " & ex.Message)

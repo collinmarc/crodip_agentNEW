@@ -165,8 +165,8 @@ Public Class ManometreEtalon
             Me.dateDernierControleS & "|" & _
             Me.dateModificationAgent & "|" & _
             Me.dateModificationCrodip
-            newFicheVieManoEtalon.dateModif = CSDate.ToCRODIPString(Date.Now).ToString
-            newFicheVieManoEtalon.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+            newFicheVieManoEtalon.dateModif = CSDate.ToCRODIPString(Date.Now)
+            newFicheVieManoEtalon.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
             FVManometreEtalonManager.save(newFicheVieManoEtalon)
             bReturn = True
         Catch ex As Exception

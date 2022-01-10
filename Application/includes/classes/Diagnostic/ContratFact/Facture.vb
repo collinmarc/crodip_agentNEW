@@ -28,7 +28,6 @@ Public Class Facture
         End Try
 
         Me.idFacture = pStructure.RacineNumFact & n.ToString().PadLeft(nLg, "0")
-
         pStructure.DernierNumFact = n.ToString().PadLeft(nLg, "0")
         If String.IsNullOrEmpty(pStructure.txTVA) Then
             Me.TxTVA = 0

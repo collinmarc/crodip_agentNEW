@@ -1,8 +1,6 @@
-Imports System.Threading
-Imports System.IO
 Imports System.Collections.Generic
+Imports System.Threading
 Imports CRODIPAcquisition
-Imports System.Linq
 ''' <summary>
 ''' Fenêtre de controle des manomètres
 ''' </summary>
@@ -791,7 +789,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox1, 7, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox2, 6, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox3, 7, 4)
@@ -856,7 +854,7 @@ Public Class frmControleManometres2
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(122, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(127, 20)
         Me.TextBox1.TabIndex = 60
         Me.TextBox1.TabStop = False
         '
@@ -879,7 +877,7 @@ Public Class frmControleManometres2
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(122, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(127, 20)
         Me.TextBox3.TabIndex = 58
         Me.TextBox3.TabStop = False
         '
@@ -902,7 +900,7 @@ Public Class frmControleManometres2
         Me.TextBox5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(122, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(127, 20)
         Me.TextBox5.TabIndex = 56
         Me.TextBox5.TabStop = False
         '
@@ -925,7 +923,7 @@ Public Class frmControleManometres2
         Me.TextBox7.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(122, 20)
+        Me.TextBox7.Size = New System.Drawing.Size(127, 20)
         Me.TextBox7.TabIndex = 54
         Me.TextBox7.TabStop = False
         '
@@ -948,7 +946,7 @@ Public Class frmControleManometres2
         Me.TextBox9.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(122, 20)
+        Me.TextBox9.Size = New System.Drawing.Size(127, 20)
         Me.TextBox9.TabIndex = 52
         Me.TextBox9.TabStop = False
         '
@@ -971,7 +969,7 @@ Public Class frmControleManometres2
         Me.TextBox11.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.ReadOnly = True
-        Me.TextBox11.Size = New System.Drawing.Size(122, 20)
+        Me.TextBox11.Size = New System.Drawing.Size(127, 20)
         Me.TextBox11.TabIndex = 50
         Me.TextBox11.TabStop = False
         '
@@ -1332,7 +1330,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC6, 7, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbErrAbsPC6, 6, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.tbFondPC5, 7, 4)
@@ -1397,7 +1395,7 @@ Public Class frmControleManometres2
         Me.tbFondPC6.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC6.Name = "tbFondPC6"
         Me.tbFondPC6.ReadOnly = True
-        Me.tbFondPC6.Size = New System.Drawing.Size(122, 20)
+        Me.tbFondPC6.Size = New System.Drawing.Size(127, 20)
         Me.tbFondPC6.TabIndex = 60
         Me.tbFondPC6.TabStop = False
         '
@@ -1420,7 +1418,7 @@ Public Class frmControleManometres2
         Me.tbFondPC5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC5.Name = "tbFondPC5"
         Me.tbFondPC5.ReadOnly = True
-        Me.tbFondPC5.Size = New System.Drawing.Size(122, 20)
+        Me.tbFondPC5.Size = New System.Drawing.Size(127, 20)
         Me.tbFondPC5.TabIndex = 58
         Me.tbFondPC5.TabStop = False
         '
@@ -1443,7 +1441,7 @@ Public Class frmControleManometres2
         Me.tbFondPC4.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC4.Name = "tbFondPC4"
         Me.tbFondPC4.ReadOnly = True
-        Me.tbFondPC4.Size = New System.Drawing.Size(122, 20)
+        Me.tbFondPC4.Size = New System.Drawing.Size(127, 20)
         Me.tbFondPC4.TabIndex = 56
         Me.tbFondPC4.TabStop = False
         '
@@ -1466,7 +1464,7 @@ Public Class frmControleManometres2
         Me.tbFondPC3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC3.Name = "tbFondPC3"
         Me.tbFondPC3.ReadOnly = True
-        Me.tbFondPC3.Size = New System.Drawing.Size(122, 20)
+        Me.tbFondPC3.Size = New System.Drawing.Size(127, 20)
         Me.tbFondPC3.TabIndex = 54
         Me.tbFondPC3.TabStop = False
         '
@@ -1489,7 +1487,7 @@ Public Class frmControleManometres2
         Me.tbFondPC2.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC2.Name = "tbFondPC2"
         Me.tbFondPC2.ReadOnly = True
-        Me.tbFondPC2.Size = New System.Drawing.Size(122, 20)
+        Me.tbFondPC2.Size = New System.Drawing.Size(127, 20)
         Me.tbFondPC2.TabIndex = 52
         Me.tbFondPC2.TabStop = False
         '
@@ -1512,7 +1510,7 @@ Public Class frmControleManometres2
         Me.tbFondPC1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC1.Name = "tbFondPC1"
         Me.tbFondPC1.ReadOnly = True
-        Me.tbFondPC1.Size = New System.Drawing.Size(122, 20)
+        Me.tbFondPC1.Size = New System.Drawing.Size(127, 20)
         Me.tbFondPC1.TabIndex = 50
         Me.tbFondPC1.TabStop = False
         '
@@ -1873,7 +1871,7 @@ Public Class frmControleManometres2
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label5, 4, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label6, 5, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label7, 6, 0)
@@ -1929,7 +1927,7 @@ Public Class frmControleManometres2
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(425, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(185, 48)
+        Me.Label7.Size = New System.Drawing.Size(190, 48)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1941,7 +1939,7 @@ Public Class frmControleManometres2
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(486, 50)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(124, 49)
+        Me.Label11.Size = New System.Drawing.Size(129, 49)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2269,6 +2267,7 @@ Public Class frmControleManometres2
     Private Function EnregistrerLesControles() As Boolean
         Dim bReturn As Boolean
         Try
+            CSDebug.dispInfo("frmControleManager.EnregistrerLesControles Debut")
             Dim oManoEtalon As ManometreEtalon
             oManoEtalon = m_bsManoEtalon.Current
             Dim curManoControle As ManometreControle
@@ -2279,8 +2278,10 @@ Public Class frmControleManometres2
                     oCtrlMano.manoEtalon = oManoEtalon.numeroNational
                     'On met a jour le manometreControle
                     If curManoControle.isUpdated Then
+
                         curManoControle.dateDernierControle = oCtrlMano.DateVerif
                         curManoControle.dateModificationAgent = Date.Now
+                        CSDebug.dispInfo("frmControleManager.EnregistrerLesControles : Enregistrer un Mano ")
                         ManometreControleManager.save(curManoControle)
 
 
@@ -2316,16 +2317,19 @@ Public Class frmControleManometres2
                         oCtrlMano.DateVerif = dtpDateControle.Value
                         curManoControle.dateDernierControle = dtpDateControle.Value
                         ' On construit notre nouvelle fiche de vie
+                        CSDebug.dispInfo("frmControleManager.EnregistrerLesControles : Construct FV Controle ")
                         curManoControle.creerfFicheVieControle(m_oAgent, oCtrlMano)
 
                         ' On flag le mano etalon comme etant utilise
                         ' On récupère le mano
                         Dim tmpManometreEtalon As ManometreEtalon = m_bsManoEtalon.Current
                         ' On le flag
+                        CSDebug.dispInfo("frmControleManager.EnregistrerLesControles : Set ManoEtalon utilisé ")
                         ManometreEtalonManager.setUtilise(m_oAgent, tmpManometreEtalon)
                     End If
                 End If
             Next
+            CSDebug.dispInfo("frmControleManager.EnregistrerLesControles Fin")
 
             bReturn = True
         Catch ex As Exception
@@ -2360,7 +2364,9 @@ Public Class frmControleManometres2
     Private Sub btn_controleManos_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_valider.Click
         If tbTemperature.Text <> "" And cbx_manometresEtalon.Text <> "" Then
             If isSaisieComplete() Then
+                Me.Cursor = Cursors.WaitCursor
                 EnregistrerLesControles()
+                Me.Cursor = Cursors.Default
                 TryCast(MdiParent, parentContener).ReturnToAccueil()
             End If
         Else
@@ -2381,33 +2387,29 @@ Public Class frmControleManometres2
 
     ' Selection du manometre étalon
     Private Sub list_manometresEtalon_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbx_manometresEtalon.SelectedIndexChanged
-        If cbx_manometresEtalon.Text <> "" And tbTemperature.Text <> "" Then
-            IsOK = True
-            m_bsManoControle.MoveFirst()
-            If m_bsManoControle.Count = 1 Then
-                SelectionManoControle()
-            End If
-            SplitContainer1.Enabled = True
-        Else
-            IsOK = False
-            SplitContainer1.Enabled = False
-        End If
+        ActiveListMano()
     End Sub
 
     Private Sub tbTemperature_ValidatedChanged(sender As Object, e As EventArgs) Handles tbTemperature.Validated
-        If cbx_manometresEtalon.Text <> "" And tbTemperature.Text <> "" Then
-            IsOK = True
-            m_bsManoControle.MoveFirst()
-            If m_bsManoControle.Count = 1 Then
-                SelectionManoControle()
-            End If
-            SplitContainer1.Enabled = True
-        Else
-            IsOK = False
-            SplitContainer1.Enabled = False
-        End If
-
+        ActiveListMano()
     End Sub
+
+    Private Sub ActiveListMano()
+        If Not IsOK Then
+            If cbx_manometresEtalon.Text <> "" And tbTemperature.Text <> "" Then
+                IsOK = True
+                m_bsManoControle.MoveFirst()
+                If m_bsManoControle.Count = 1 Then
+                    SelectionManoControle()
+                End If
+                SplitContainer1.Enabled = True
+            Else
+                IsOK = False
+                SplitContainer1.Enabled = False
+            End If
+        End If
+    End Sub
+
     Private Function calcErrAbs(pPressManoctrl As String, pPressManoEtalon As String) As String
         Dim dErr As Double
         If Not String.IsNullOrEmpty(pPressManoctrl) And Not String.IsNullOrEmpty(pPressManoEtalon) Then
@@ -2463,6 +2465,7 @@ Public Class frmControleManometres2
 
             ValiderSaisie(oControle)
             m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferenceup1 : " & ex.Message.ToString)
         End Try
@@ -2493,7 +2496,8 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsControle.ResetBindings(False)
+            m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferenceup1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2523,6 +2527,7 @@ Public Class frmControleManometres2
 
             ValiderSaisie(oControle)
             m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup3(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2552,6 +2557,7 @@ Public Class frmControleManometres2
 
             ValiderSaisie(oControle)
             m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup4(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2581,6 +2587,7 @@ Public Class frmControleManometres2
 
             ValiderSaisie(oControle)
             m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup5(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2610,6 +2617,7 @@ Public Class frmControleManometres2
 
             ValiderSaisie(oControle)
             m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup6(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2640,7 +2648,6 @@ Public Class frmControleManometres2
 
 
             ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
             m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferencedown1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
@@ -2672,6 +2679,7 @@ Public Class frmControleManometres2
 
             ValiderSaisie(oControle)
             m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferencedown1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2701,6 +2709,7 @@ Public Class frmControleManometres2
 
             ValiderSaisie(oControle)
             m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown3(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2730,6 +2739,7 @@ Public Class frmControleManometres2
 
             ValiderSaisie(oControle)
             m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown4(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2759,6 +2769,7 @@ Public Class frmControleManometres2
 
             ValiderSaisie(oControle)
             m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown5(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -2788,6 +2799,7 @@ Public Class frmControleManometres2
 
             ValiderSaisie(oControle)
             m_bsControle.ResetCurrentItem()
+            m_bsManoControle.ResetCurrentItem()
         Catch ex As Exception
             CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown6(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
         End Try
@@ -3095,4 +3107,7 @@ Public Class frmControleManometres2
 
     End Sub
 
+    Private Sub lbMano_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbMano.SelectedIndexChanged
+
+    End Sub
 End Class

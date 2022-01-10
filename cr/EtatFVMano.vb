@@ -16,8 +16,10 @@ Public Class EtatFVMano
         Dim bReturn As Boolean
         Dim strReportName As String
         Try
+            CSDebug.dispInfo("etatFVMano.GenereEtatLocal() :  GenereDS")
             bReturn = genereDS()
             If (bReturn) Then
+                CSDebug.dispInfo("etatFVMano.GenereEtatLocal() :  GenerePDF")
                 Using objReport As New ReportDocument
                     Using r1 As New cr_FicheVerifMano()
                         strReportName = r1.ResourceName
@@ -204,7 +206,7 @@ Public Class EtatFVMano
             bReturn = True
 
         Catch ex As Exception
-            CSDebug.dispError("EtatRapportInspection.GenereEtat ERR" & ex.Message)
+            CSDebug.dispError("EtatFVMAno.GenereDS ERR" & ex.Message)
             bReturn = False
         End Try
         Return bReturn

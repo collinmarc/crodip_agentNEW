@@ -104,7 +104,7 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents CategorieDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PrestationDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents QuantiteColumn As DataGridViewTextBoxColumn
-    Friend WithEvents PuDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PuColumn As DataGridViewTextBoxColumn
     Friend WithEvents TotalHTDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents SupprColumn As DataGridViewImageColumn
     Friend WithEvents CommuneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
@@ -252,7 +252,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuantiteColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PuDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PuColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.pnlFooter.SuspendLayout()
@@ -1208,7 +1208,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.dgvLignes.AutoGenerateColumns = False
         Me.dgvLignes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvLignes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvLignes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CategorieDataGridViewTextBoxColumn, Me.PrestationDataGridViewTextBoxColumn, Me.QuantiteColumn, Me.PuDataGridViewTextBoxColumn, Me.TotalHTDataGridViewTextBoxColumn, Me.SupprColumn})
+        Me.dgvLignes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CategorieDataGridViewTextBoxColumn, Me.PrestationDataGridViewTextBoxColumn, Me.QuantiteColumn, Me.PuColumn, Me.TotalHTDataGridViewTextBoxColumn, Me.SupprColumn})
         Me.dgvLignes.DataSource = Me.m_bsLignes
         Me.dgvLignes.Location = New System.Drawing.Point(3, 3)
         Me.dgvLignes.Name = "dgvLignes"
@@ -1284,14 +1284,14 @@ Public Class frmdiagnostic_facturationCoProp
         Me.QuantiteColumn.HeaderText = "quantite"
         Me.QuantiteColumn.Name = "QuantiteColumn"
         '
-        'PuDataGridViewTextBoxColumn
+        'PuColumn
         '
-        Me.PuDataGridViewTextBoxColumn.DataPropertyName = "pustr"
+        Me.PuColumn.DataPropertyName = "pustr"
         DataGridViewCellStyle2.Format = "C2"
         DataGridViewCellStyle2.NullValue = Nothing
-        Me.PuDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
-        Me.PuDataGridViewTextBoxColumn.HeaderText = "pu"
-        Me.PuDataGridViewTextBoxColumn.Name = "PuDataGridViewTextBoxColumn"
+        Me.PuColumn.DefaultCellStyle = DataGridViewCellStyle2
+        Me.PuColumn.HeaderText = "pu"
+        Me.PuColumn.Name = "PuColumn"
         '
         'TotalHTDataGridViewTextBoxColumn
         '
@@ -1385,6 +1385,8 @@ Public Class frmdiagnostic_facturationCoProp
 
         'Pas d'ajout de ligne après un controle
         pnlAddPrestatation.Visible = False
+        'Pas d'annulation
+        btnAnnuler.Visible = False
         m_oStructure = StructureManager.getStructureById(pAgent.idStructure)
 
         m_oAgent = pAgent
@@ -1525,10 +1527,10 @@ Public Class frmdiagnostic_facturationCoProp
             m_bsDiag.Add(m_oDiag)
             m_bsContratCommercial.Add(m_oDiag.oContratCommercial)
 
-            m_olstFacture.ForEach(Function(oFact) m_bsFacture.Add(oFact))
-
             m_bsFacture.Clear()
             m_bsExploitant.Clear()
+            'nb : il faut charge les factures avant les expoitants
+            m_olstFacture.ForEach(Function(oFact) m_bsFacture.Add(oFact))
             m_olstExploit.ForEach(Function(oExploit) m_bsExploitant.Add(oExploit))
             m_bsExploitant.MoveFirst()
             SupprColumn.Visible = False
@@ -1636,6 +1638,7 @@ Public Class frmdiagnostic_facturationCoProp
                 oFacture.idDiag = m_oDiag.id
             End If
             FactureManager.save(oFacture)
+
         Next
     End Sub
 
@@ -1905,7 +1908,7 @@ Public Class frmdiagnostic_facturationCoProp
 
     Private Sub dgvLignes_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvLignes.CellValueChanged
 
-        If e.ColumnIndex = QuantiteColumn.Index Then
+        If e.ColumnIndex = QuantiteColumn.Index Or e.ColumnIndex = PuColumn.Index Then
             CalculRestAFacturer()
             CalculTotaux()
         End If
@@ -1995,6 +1998,7 @@ Public Class frmdiagnostic_facturationCoProp
             Me.Cursor = Cursors.WaitCursor
             SauvegarderExploitants()
             GenererFactures()
+            m_oStructure.SauverDernierNumFact()
             Me.Cursor = Cursors.Default
             Me.DialogResult = DialogResult.OK
             Me.Close()
@@ -2011,5 +2015,9 @@ Public Class frmdiagnostic_facturationCoProp
         tbTelFixe.Enabled = pEnable
         tbTelPortable.Enabled = pEnable
         tbEmail.Enabled = pEnable
+    End Sub
+
+    Private Sub dgvLignes_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvLignes.CellMouseDoubleClick
+
     End Sub
 End Class
