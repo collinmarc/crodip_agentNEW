@@ -574,7 +574,7 @@ Public Class facturation2
     Private Function saveParams() As Boolean
 
         ' On test les champs obligatoires
-        If facturation_isActivated.Checked And (facturation_siren.Text = "" Or facturation_tva.Text = "" Or facturation_rcs.Text = "" Or facturation_footer.Text = "") Then
+        If facturation_isActivated.Checked And (facturation_siren.Text = "" Or facturation_tva.Text = "" Or facturation_rcs.Text = "") Then
             lblError.Text = "Veuillez remplir tous les champs."
             Return False
         End If

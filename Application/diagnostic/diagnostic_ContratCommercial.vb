@@ -732,13 +732,18 @@ Public Class diagnostic_ContratCommercial
                 End Try
 
                 Dim PU As Decimal
-                PU = curPrestation.tarifHT
-
                 Dim oCC As ContratCommercial = m_bsContratCommercial.Current
+                PU = curPrestation.tarifHT
+                'Si le TX DE TVA est a 0 ET que c'est la première ligne => on prend le Tx de la preta
+                If oCC.TxTVA = 0 And oCC.Lignes.Count = 0 Then
+                    oCC.TxTVA = curPrestation.tva
+                End If
+
                 Dim oLig As New FactureItem(listTarif_categories.SelectedItem.libelle.ToString, listTarif_prestations.SelectedItem.libelle.ToString, PU, 1, oCC.TxTVA, m_oDiag.id)
 
                 oCC.Lignes.Add(oLig)
                 oCC.CalculTotaux()
+
 
                 ' On passe le total en readonly
                 facturation_totalHT.ReadOnly = True
