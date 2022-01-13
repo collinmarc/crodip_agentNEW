@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <root>
-  <isActive>true</isActive>
+  <isActive>True</isActive>
   <siren>444681705</siren>
   <tva>444681705111222333</tva>
   <rcs>RCS01</rcs>
   <footer>Pied de Page</footer>
-  <logo></logo>
-  <logo_tn></logo_tn>
+  <logo>
+  </logo>
+  <logo_tn>
+  </logo_tn>
+  <header>
+  </header>
+  <racinenumerotation>MCII</racinenumerotation>
+  <derniernumero>147</derniernumero>
+  <txTVA>0</txTVA>
+  <coordonneesBancaires>
+  </coordonneesBancaires>
+  <modereglement>
+  </modereglement>
 </root>

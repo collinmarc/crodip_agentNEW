@@ -91,7 +91,6 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents Label32 As Label
     Friend WithEvents Label31 As Label
     Friend WithEvents m_dgvCoProp As DataGridView
-    Friend WithEvents RaisonSocialeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents m_bsContratCommercial As BindingSource
     Friend WithEvents pnlLines As Panel
     Friend WithEvents dgvLignes As DataGridView
@@ -100,14 +99,16 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents m_bsCommunes As BindingSource
     Friend WithEvents btnAnnuler As Button
     Friend WithEvents btnImprimer As Button
-    Friend WithEvents btnQuitter As Button
+    Friend WithEvents btnPoursuivre As Button
     Friend WithEvents CategorieDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PrestationDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents QuantiteColumn As DataGridViewTextBoxColumn
     Friend WithEvents PuColumn As DataGridViewTextBoxColumn
     Friend WithEvents TotalHTDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents SupprColumn As DataGridViewImageColumn
+    Friend WithEvents RaisonSocialeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents CommuneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents bFact As DataGridViewCheckBoxColumn
+    Friend WithEvents SupprColumn As DataGridViewImageColumn
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -155,9 +156,9 @@ Public Class frmdiagnostic_facturationCoProp
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmdiagnostic_facturationCoProp))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlFooter = New System.Windows.Forms.Panel()
@@ -205,6 +206,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.m_dgvCoProp = New System.Windows.Forms.DataGridView()
         Me.RaisonSocialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.bFact = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.m_bsExploitant = New System.Windows.Forms.BindingSource(Me.components)
         Me.pnlClient = New System.Windows.Forms.Panel()
         Me.cbxCommune = New System.Windows.Forms.ComboBox()
@@ -254,7 +256,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnImprimer = New System.Windows.Forms.Button()
-        Me.btnQuitter = New System.Windows.Forms.Button()
+        Me.btnPoursuivre = New System.Windows.Forms.Button()
         Me.pnlFooter.SuspendLayout()
         CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -759,7 +761,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.m_dgvCoProp.AutoGenerateColumns = False
         Me.m_dgvCoProp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.m_dgvCoProp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.m_dgvCoProp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RaisonSocialeDataGridViewTextBoxColumn, Me.CommuneDataGridViewTextBoxColumn})
+        Me.m_dgvCoProp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RaisonSocialeDataGridViewTextBoxColumn, Me.CommuneDataGridViewTextBoxColumn, Me.bFact})
         Me.m_dgvCoProp.DataSource = Me.m_bsExploitant
         Me.m_dgvCoProp.Location = New System.Drawing.Point(8, 0)
         Me.m_dgvCoProp.MultiSelect = False
@@ -782,6 +784,16 @@ Public Class frmdiagnostic_facturationCoProp
         Me.CommuneDataGridViewTextBoxColumn.HeaderText = "Commune"
         Me.CommuneDataGridViewTextBoxColumn.Name = "CommuneDataGridViewTextBoxColumn"
         Me.CommuneDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'bFact
+        '
+        Me.bFact.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.bFact.DataPropertyName = "bFact"
+        Me.bFact.HeaderText = "Fct"
+        Me.bFact.Name = "bFact"
+        Me.bFact.ReadOnly = True
+        Me.bFact.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.bFact.Width = 28
         '
         'm_bsExploitant
         '
@@ -1229,26 +1241,26 @@ Public Class frmdiagnostic_facturationCoProp
         'QuantiteColumn
         '
         Me.QuantiteColumn.DataPropertyName = "quantiteStr"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.QuantiteColumn.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.QuantiteColumn.DefaultCellStyle = DataGridViewCellStyle1
         Me.QuantiteColumn.HeaderText = "quantite"
         Me.QuantiteColumn.Name = "QuantiteColumn"
         '
         'PuColumn
         '
         Me.PuColumn.DataPropertyName = "pustr"
-        DataGridViewCellStyle5.Format = "C2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.PuColumn.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.PuColumn.DefaultCellStyle = DataGridViewCellStyle2
         Me.PuColumn.HeaderText = "pu"
         Me.PuColumn.Name = "PuColumn"
         '
         'TotalHTDataGridViewTextBoxColumn
         '
         Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
-        DataGridViewCellStyle6.Format = "C2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
         Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "totalHT"
         Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
         Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
@@ -1271,7 +1283,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnAnnuler.ForeColor = System.Drawing.Color.White
         Me.btnAnnuler.Location = New System.Drawing.Point(12, 695)
         Me.btnAnnuler.Name = "btnAnnuler"
-        Me.btnAnnuler.Size = New System.Drawing.Size(141, 27)
+        Me.btnAnnuler.Size = New System.Drawing.Size(127, 27)
         Me.btnAnnuler.TabIndex = 80
         Me.btnAnnuler.Text = "Annuler"
         Me.btnAnnuler.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -1290,32 +1302,32 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnImprimer.Name = "btnImprimer"
         Me.btnImprimer.Size = New System.Drawing.Size(185, 27)
         Me.btnImprimer.TabIndex = 81
-        Me.btnImprimer.Text = "Imprimer"
+        Me.btnImprimer.Text = "Valider / Imprimer"
         Me.btnImprimer.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnImprimer.UseVisualStyleBackColor = True
         '
-        'btnQuitter
+        'btnPoursuivre
         '
-        Me.btnQuitter.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnQuitter.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
-        Me.btnQuitter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnQuitter.FlatAppearance.BorderSize = 0
-        Me.btnQuitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnQuitter.ForeColor = System.Drawing.Color.White
-        Me.btnQuitter.Location = New System.Drawing.Point(797, 696)
-        Me.btnQuitter.Name = "btnQuitter"
-        Me.btnQuitter.Size = New System.Drawing.Size(136, 27)
-        Me.btnQuitter.TabIndex = 82
-        Me.btnQuitter.Text = "Quitter"
-        Me.btnQuitter.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnQuitter.UseVisualStyleBackColor = True
+        Me.btnPoursuivre.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnPoursuivre.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
+        Me.btnPoursuivre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnPoursuivre.FlatAppearance.BorderSize = 0
+        Me.btnPoursuivre.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPoursuivre.ForeColor = System.Drawing.Color.White
+        Me.btnPoursuivre.Location = New System.Drawing.Point(797, 696)
+        Me.btnPoursuivre.Name = "btnPoursuivre"
+        Me.btnPoursuivre.Size = New System.Drawing.Size(136, 27)
+        Me.btnPoursuivre.TabIndex = 82
+        Me.btnPoursuivre.Text = "Poursuivre"
+        Me.btnPoursuivre.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnPoursuivre.UseVisualStyleBackColor = True
         '
         'frmdiagnostic_facturationCoProp
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(933, 728)
         Me.ControlBox = False
-        Me.Controls.Add(Me.btnQuitter)
+        Me.Controls.Add(Me.btnPoursuivre)
         Me.Controls.Add(Me.btnImprimer)
         Me.Controls.Add(Me.btnAnnuler)
         Me.Controls.Add(Me.pnlLines)
@@ -1385,8 +1397,6 @@ Public Class frmdiagnostic_facturationCoProp
 
         'Pas d'ajout de ligne après un controle
         pnlAddPrestatation.Visible = False
-        'Pas d'annulation
-        btnAnnuler.Visible = False
         m_oStructure = StructureManager.getStructureById(pAgent.idStructure)
         m_dernnumfact = m_oStructure.DernierNumFact
         m_oAgent = pAgent
@@ -1421,14 +1431,6 @@ Public Class frmdiagnostic_facturationCoProp
             m_olstExploit = ExploitationManager.GetListExploitationByPulverisateurId(m_oPulverisateur.id)
             pnlListCoProp.Visible = True
         End If
-
-        'Création des factures pour chaque exploitant
-        m_olstExploit.ForEach(Sub(oExpl)
-                                  Dim oFact As New Facture(m_oDiag, m_oStructure)
-                                  oFact.oExploit = oExpl
-                                  oFact.dateFacture = DateTime.Now
-                                  m_olstFacture.Add(oFact)
-                              End Sub)
 
 
 
@@ -1533,8 +1535,10 @@ Public Class frmdiagnostic_facturationCoProp
             m_bsExploitant.Clear()
             'nb : il faut charge les factures avant les expoitants
             m_olstFacture.ForEach(Function(oFact) m_bsFacture.Add(oFact))
+            m_bsExploitant.SuspendBinding()
             m_olstExploit.ForEach(Function(oExploit) m_bsExploitant.Add(oExploit))
             m_bsExploitant.MoveFirst()
+            m_bsExploitant.ResumeBinding()
             SupprColumn.Visible = False
         End If
         If m_TypeInit = TypeInit.INITFROMFACTURE Then
@@ -1771,10 +1775,13 @@ Public Class frmdiagnostic_facturationCoProp
             If m_olstExploit.Where(Function(oExploit)
                                        Return oExploit.id = ofrm.oExploit.id
                                    End Function).Count() = 0 Then
+                m_bsExploitant.SuspendBinding()
                 m_olstExploit.Add(ofrm.oExploit)
                 m_bsExploitant.Add(ofrm.oExploit)
                 m_bsExploitant.MoveLast()
+                m_bsExploitant.ResumeBinding()
                 EnableClient(True)
+
 
             End If
         End If
@@ -1892,7 +1899,8 @@ Public Class frmdiagnostic_facturationCoProp
             m_olstFacture.Add(oFact)
             m_bsFacture.Add(oFact)
             m_bsFacture.MoveLast()
-            m_bsrcStructure.ResetCurrentItem()
+            oExploit.bFact = True
+            m_bsExploitant.ResetCurrentItem()
         End If
 
         CalculRestAFacturer()
@@ -1936,7 +1944,7 @@ Public Class frmdiagnostic_facturationCoProp
         pnlFooter.Enabled = bFactureOK
         btnAnnuler.Enabled = True
         btnImprimer.Enabled = bFactureOK
-        btnQuitter.Enabled = bFactureOK
+        btnPoursuivre.Enabled = bFactureOK
     End Sub
 
     Private Sub tbCodePostal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbCodePostal.KeyPress
@@ -1990,7 +1998,7 @@ Public Class frmdiagnostic_facturationCoProp
 
     End Sub
 
-    Private Sub btnQuitter_Click(sender As Object, e As EventArgs) Handles btnQuitter.Click
+    Private Sub btnQuitter_Click(sender As Object, e As EventArgs) Handles btnPoursuivre.Click
         Dim bOk As Boolean = True
         If m_TypeInit = TypeInit.INITFROMDIAG Then
             If m_oDiag.oContratCommercial.ResteAFacturer <> 0 Then

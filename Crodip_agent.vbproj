@@ -1631,9 +1631,7 @@
     <Content Include="moduleDocumentaire\_parametres\EmplacementIdentification.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="config\facturation.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="config\facturation.xml" />
     <Content Include="moduleDocumentaire\_parametres\ParamDiag.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
