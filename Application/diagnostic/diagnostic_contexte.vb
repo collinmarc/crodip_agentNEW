@@ -1023,6 +1023,9 @@ Public Class diagnostic_contexte
                 End If
             End If
 
+            If String.IsNullOrEmpty(My.Settings.DernierControleCodePostal) Then
+                btnDernControle.Enabled = False
+            End If
 
 
         Catch ex As Exception
@@ -1182,7 +1185,9 @@ Public Class diagnostic_contexte
     End Sub
 
     Private Sub btnDernControle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDernControle.Click
-        RappelInfosDernierControle()
+        If Not String.IsNullOrEmpty(My.Settings.DernierControleCodePostal) Then
+            RappelInfosDernierControle()
+        End If
     End Sub
 
     Private Sub RappelInfosDernierControle()

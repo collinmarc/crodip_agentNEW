@@ -468,39 +468,28 @@ Public Class facturation2
         If filesBrowserDialogReturn = DialogResult.OK Or filesBrowserDialogReturn = DialogResult.Yes Then
             Dim selectedFile As String = filesBrowserDialog.FileName
             Dim selectedFileName As String = System.IO.Path.GetFileName(selectedFile)
-            Dim newFilepath As String = GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & selectedFileName
+            'Dim newFilepath As String = GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & selectedFileName
             Dim logoFilepath As String = GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & GlobalsCRODIP.CR_LOGO_NAME
             If selectedFile <> Nothing Then
-                Me.loadLogo(True)
                 ' Copie du nouveau fichier
-                File.Copy(selectedFile, newFilepath, True)
+                File.Copy(selectedFile, logoFilepath, True)
 
-                ' Thumb 184
-                Dim newImage As Image = Image.FromFile(newFilepath)
-                Dim newImage_w As Integer = newImage.Width()
-                Dim newImage_h As Integer = newImage.Height()
-                '' Redimentionnement 184*X
-                'Dim newImage_thumb_w As Integer = 184
-                'Dim newImage_thumb_h As Integer = newImage_thumb_w * newImage_h / newImage_w
-                'Dim newImage_thumb As Image = newImage.GetThumbnailImage(newImage_thumb_w, newImage_thumb_h, Nothing, IntPtr.Zero)
-                '' Redimentionnement 115*X
-                'Dim newImage_thumbTn_w As Integer = 115
-                'Dim newImage_thumbTn_h As Integer = newImage_thumbTn_w * newImage_h / newImage_w
-                'Dim newImage_thumbTn As Image = newImage.GetThumbnailImage(newImage_thumbTn_w, newImage_thumbTn_h, Nothing, IntPtr.Zero)
+                '' Thumb 184
+                'Dim newImage As Image = Image.FromFile(newFilepath)
+                'Dim newImage_w As Integer = newImage.Width()
+                'Dim newImage_h As Integer = newImage.Height()
 
-                ' On save
-                Try
-                    newImage.Save(GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & GlobalsCRODIP.CR_LOGO_NAME)
-                    'newImage_thumb.Save(GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & CR_LOGO_TN_NAME)
-                    'newImage_thumbTn.Save(GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & CR_LOGO_TN2_NAME)
-                Catch ex As Exception
-                    CSDebug.dispError("Facturation.ajoutLogo.save() : " & ex.Message)
-                End Try
+                '' On save
+                'Try
+                '    newImage.Save(GlobalsCRODIP.CONST_PATH_PUBLIC & "\" & GlobalsCRODIP.CR_LOGO_NAME)
+                'Catch ex As Exception
+                '    CSDebug.dispError("Facturation.ajoutLogo.save() : " & ex.Message)
+                'End Try
 
-                ' On libère
-                newImage.Dispose()
-                'newImage_thumb.Dispose()
-                'newImage_thumbTn.Dispose()
+                '' On libère
+                'newImage.Dispose()
+                ''newImage_thumb.Dispose()
+                ''newImage_thumbTn.Dispose()
 
                 ' Enregistrement en conf
                 Me.FACTURATION_XML_CONFIG.setElementValue("/root/logo", GlobalsCRODIP.CONST_PATH_PUBLIC & GlobalsCRODIP.CR_LOGO_NAME)
@@ -512,7 +501,7 @@ Public Class facturation2
                 Me.loadLogo()
 
                 ' Suppression image temporaire
-                File.Delete(newFilepath)
+                'File.Delete(newFilepath)
 
             End If
         End If
@@ -593,11 +582,7 @@ Public Class facturation2
         Return True
     End Function
 
-    ' Chargement du logo
-    Private Sub loadLogo()
-        Me.loadLogo(False)
-    End Sub
-    Private Sub loadLogo(ByVal isDefaultLogo As Boolean)
+    Private Sub loadLogo(ByVal Optional isDefaultLogo As Boolean = False)
         Dim logoFilename As String = GlobalsCRODIP.CONST_PATH_IMG & GlobalsCRODIP.CR_LOGO_DEFAULT_NAME
         If Not isDefaultLogo Then
             logoFilename = Me.FACTURATION_XML_CONFIG.getElementValue("/root/logo")
@@ -605,9 +590,7 @@ Public Class facturation2
         If Not File.Exists(logoFilename) Then
             logoFilename = GlobalsCRODIP.CONST_PATH_IMG & GlobalsCRODIP.CR_LOGO_DEFAULT_NAME
         End If
-        Dim picBox As PictureBox = facturation_logo
-        picBox.Image.Dispose()
-        picBox.Image = System.Drawing.Image.FromFile(logoFilename)
+        facturation_logo.ImageLocation = logoFilename
     End Sub
 
     Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click

@@ -107,7 +107,7 @@ Public Class frmdiagnostic_facturationCoProp
     Friend WithEvents TotalHTDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents RaisonSocialeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents CommuneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents bFact As DataGridViewCheckBoxColumn
+    Friend WithEvents Fact As DataGridViewTextBoxColumn
     Friend WithEvents SupprColumn As DataGridViewImageColumn
 
 
@@ -204,9 +204,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnSupprCoProp = New System.Windows.Forms.Button()
         Me.btnNewExploitant = New System.Windows.Forms.Button()
         Me.m_dgvCoProp = New System.Windows.Forms.DataGridView()
-        Me.RaisonSocialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.bFact = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.m_bsExploitant = New System.Windows.Forms.BindingSource(Me.components)
         Me.pnlClient = New System.Windows.Forms.Panel()
         Me.cbxCommune = New System.Windows.Forms.ComboBox()
@@ -257,6 +254,9 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnImprimer = New System.Windows.Forms.Button()
         Me.btnPoursuivre = New System.Windows.Forms.Button()
+        Me.RaisonSocialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Fact = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlFooter.SuspendLayout()
         CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -761,7 +761,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.m_dgvCoProp.AutoGenerateColumns = False
         Me.m_dgvCoProp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.m_dgvCoProp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.m_dgvCoProp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RaisonSocialeDataGridViewTextBoxColumn, Me.CommuneDataGridViewTextBoxColumn, Me.bFact})
+        Me.m_dgvCoProp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RaisonSocialeDataGridViewTextBoxColumn, Me.CommuneDataGridViewTextBoxColumn, Me.Fact})
         Me.m_dgvCoProp.DataSource = Me.m_bsExploitant
         Me.m_dgvCoProp.Location = New System.Drawing.Point(8, 0)
         Me.m_dgvCoProp.MultiSelect = False
@@ -770,30 +770,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.m_dgvCoProp.RowHeadersVisible = False
         Me.m_dgvCoProp.Size = New System.Drawing.Size(319, 167)
         Me.m_dgvCoProp.TabIndex = 42
-        '
-        'RaisonSocialeDataGridViewTextBoxColumn
-        '
-        Me.RaisonSocialeDataGridViewTextBoxColumn.DataPropertyName = "raisonSociale"
-        Me.RaisonSocialeDataGridViewTextBoxColumn.HeaderText = "Raison sociale"
-        Me.RaisonSocialeDataGridViewTextBoxColumn.Name = "RaisonSocialeDataGridViewTextBoxColumn"
-        Me.RaisonSocialeDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CommuneDataGridViewTextBoxColumn
-        '
-        Me.CommuneDataGridViewTextBoxColumn.DataPropertyName = "commune"
-        Me.CommuneDataGridViewTextBoxColumn.HeaderText = "Commune"
-        Me.CommuneDataGridViewTextBoxColumn.Name = "CommuneDataGridViewTextBoxColumn"
-        Me.CommuneDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'bFact
-        '
-        Me.bFact.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.bFact.DataPropertyName = "bFact"
-        Me.bFact.HeaderText = "Fct"
-        Me.bFact.Name = "bFact"
-        Me.bFact.ReadOnly = True
-        Me.bFact.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.bFact.Width = 28
         '
         'm_bsExploitant
         '
@@ -1322,6 +1298,30 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnPoursuivre.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnPoursuivre.UseVisualStyleBackColor = True
         '
+        'RaisonSocialeDataGridViewTextBoxColumn
+        '
+        Me.RaisonSocialeDataGridViewTextBoxColumn.DataPropertyName = "raisonSociale"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.HeaderText = "Raison sociale"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.Name = "RaisonSocialeDataGridViewTextBoxColumn"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CommuneDataGridViewTextBoxColumn
+        '
+        Me.CommuneDataGridViewTextBoxColumn.DataPropertyName = "commune"
+        Me.CommuneDataGridViewTextBoxColumn.HeaderText = "Commune"
+        Me.CommuneDataGridViewTextBoxColumn.Name = "CommuneDataGridViewTextBoxColumn"
+        Me.CommuneDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'Fact
+        '
+        Me.Fact.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Fact.DataPropertyName = "Fact"
+        Me.Fact.HeaderText = ""
+        Me.Fact.Name = "Fact"
+        Me.Fact.ReadOnly = True
+        Me.Fact.ToolTipText = "indique si une facture a été créé pour cet exploitant"
+        Me.Fact.Width = 20
+        '
         'frmdiagnostic_facturationCoProp
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -1376,8 +1376,8 @@ Public Class frmdiagnostic_facturationCoProp
 
 #Region " - Vars - "
     Private isValider As Boolean = False
-    Private m_pathBl As String
-    Private m_pathFacture As String
+    'Private m_pathBl As String
+    'Private m_pathFacture As String
     Protected m_oDiag As Diagnostic
     Protected m_oPulverisateur As Pulverisateur
     Protected m_oAgent As Agent
@@ -1574,7 +1574,7 @@ Public Class frmdiagnostic_facturationCoProp
             Dim oEtat As New EtatFacture2(pFacture, m_oAgent, m_oStructure)
 
             oEtat.genereEtat()
-            m_pathFacture = oEtat.getFileName()
+            pFacture.pathPDF = oEtat.getFileName()
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("diagnostic_FacturationCoPro2::createFacture_CR : " & ex.Message)
@@ -1636,15 +1636,16 @@ Public Class frmdiagnostic_facturationCoProp
                                   End If
                               End Sub)
     End Sub
-    Private Sub GenererFactures()
+    Private Sub SauvegarderFactures()
         For Each oFacture As Facture In m_bsFacture
-            createFacture_CR(oFacture)
-            oFacture.pathPDF = m_pathFacture
-            If m_oDiag IsNot Nothing Then
-                oFacture.idDiag = m_oDiag.id
-            End If
-            FactureManager.save(oFacture)
+            If oFacture.idFacture <> "" Then
+                createFacture_CR(oFacture)
+                If m_oDiag IsNot Nothing Then
+                    oFacture.idDiag = m_oDiag.id
+                End If
 
+                FactureManager.save(oFacture)
+            End If
         Next
     End Sub
 
@@ -1817,16 +1818,18 @@ Public Class frmdiagnostic_facturationCoProp
             Dim TotalFacture As Decimal = 0
             'Pour Chaque facture
             For Each oFact As Facture In m_bsFacture.List
-                'Pour Chaque liggne de facture
-                For Each oLgF As FactureItem In oFact.Lignes
-                    'Si elle correspond as une ligne du contrat commercial
-                    For Each oLgC As FactureItem In m_oDiag.oContratCommercial.Lignes
-                        If oLgF.categorie = oLgC.categorie And oLgF.prestation = oLgF.prestation Then
-                            'On Totalise son totalHT
-                            TotalFacture = TotalFacture + oLgF.totalHT
-                        End If
-                    Next
-                Next oLgF
+                If Not String.IsNullOrEmpty(oFact.idFacture) Then
+                    'Pour Chaque liggne de facture
+                    For Each oLgF As FactureItem In oFact.Lignes
+                        'Si elle correspond as une ligne du contrat commercial
+                        For Each oLgC As FactureItem In m_oDiag.oContratCommercial.Lignes
+                            If oLgF.categorie = oLgC.categorie And oLgF.prestation = oLgF.prestation Then
+                                'On Totalise son totalHT
+                                TotalFacture = TotalFacture + oLgF.totalHT
+                            End If
+                        Next
+                    Next oLgF
+                End If
             Next oFact
 
             m_oDiag.oContratCommercial.ResteAFacturer = TotalContat - TotalFacture
@@ -1899,8 +1902,6 @@ Public Class frmdiagnostic_facturationCoProp
             m_olstFacture.Add(oFact)
             m_bsFacture.Add(oFact)
             m_bsFacture.MoveLast()
-            oExploit.bFact = True
-            m_bsExploitant.ResetCurrentItem()
         End If
 
         CalculRestAFacturer()
@@ -1927,7 +1928,14 @@ Public Class frmdiagnostic_facturationCoProp
     End Sub
 
     Private Sub btnAnnuler_Click(sender As Object, e As EventArgs) Handles btnAnnuler.Click
-        Me.Close()
+        If MsgBox("Cette action entraine la non-facturation des prestations décrites dans le contrat commercial, Voulez-annuler annuler la facturation ?", MsgBoxStyle.YesNo, "Facturation") = MsgBoxResult.Yes Then
+            For Each oFact As Facture In m_bsFacture
+                If Not String.IsNullOrEmpty(oFact.pathPDF) Then
+                    CSFile.delete(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oFact.pathPDF)
+                End If
+            Next
+            Me.Close()
+        End If
     End Sub
 
     Private Sub m_bsFacture_CurrentChanged(sender As Object, e As EventArgs) Handles m_bsFacture.CurrentChanged
@@ -1987,11 +1995,19 @@ Public Class frmdiagnostic_facturationCoProp
         Me.Cursor = Cursors.WaitCursor
 
         Dim oFacture As Facture
+        Dim oExploit As Exploitation
         oFacture = m_bsFacture.Current
+        oExploit = m_bsExploitant.Current
+        If String.IsNullOrEmpty(oFacture.idFacture) Then
+            oFacture.setNumeroFacture(m_oStructure)
+        End If
         Me.Cursor = Cursors.Default
         If createFacture_CR(oFacture) Then
-            btnAnnuler.Visible = False
-            CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & m_pathFacture)
+            CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oFacture.pathPDF)
+            oExploit.Fact = "F"
+            CalculRestAFacturer()
+            m_bsExploitant.ResetCurrentItem()
+            m_bsFacture.ResetCurrentItem()
 
         End If
 
@@ -2011,7 +2027,7 @@ Public Class frmdiagnostic_facturationCoProp
         If bOk Then
             Me.Cursor = Cursors.WaitCursor
             SauvegarderExploitants()
-            GenererFactures()
+            SauvegarderFactures()
             m_oStructure.SauverDernierNumFact()
             Me.Cursor = Cursors.Default
             Me.DialogResult = DialogResult.OK

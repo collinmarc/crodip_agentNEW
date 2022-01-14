@@ -18,17 +18,6 @@ Public Class Facture
         msgEntetete = pStructure.Entete
 
 
-        Dim nLg As Integer = pStructure.DernierNumFact.Length()
-        Dim n As Integer
-        Try
-            n = Convert.ToInt64(pStructure.DernierNumFact) + 1
-
-        Catch ex As Exception
-            n = 0
-        End Try
-
-        Me.idFacture = pStructure.RacineNumFact & n.ToString().PadLeft(nLg, "0")
-        pStructure.DernierNumFact = n.ToString().PadLeft(nLg, "0")
         If String.IsNullOrEmpty(pStructure.txTVA) Then
             Me.TxTVA = 0
         Else
@@ -51,6 +40,29 @@ Public Class Facture
 
     End Sub
 
+    Public Function setNumeroFacture(pStructure As Structuree) As Boolean
+        Dim bReturn As Boolean
+        Try
+
+            Dim nLg As Integer = pStructure.DernierNumFact.Length()
+            Dim n As Integer
+            Try
+                n = Convert.ToInt64(pStructure.DernierNumFact) + 1
+
+            Catch ex As Exception
+                n = 0
+            End Try
+
+            Me.idFacture = pStructure.RacineNumFact & n.ToString().PadLeft(nLg, "0")
+            pStructure.DernierNumFact = n.ToString().PadLeft(nLg, "0")
+
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("Facture.setnumeroFacture ERR : ", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
 #Region "Properties"
     Private _numNatPulve As String
     Public Property numNatPulve() As String
