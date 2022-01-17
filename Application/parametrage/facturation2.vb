@@ -548,7 +548,7 @@ Public Class facturation2
                         tbTxTVA.Text = x.ChildNodes.Item(i).InnerText
                     Case "header".ToUpper().Trim()
                         tbHeader.Text = x.ChildNodes.Item(i).InnerText
-                    Case "coordonnesBancaires".ToUpper().Trim()
+                    Case "coordonneesBancaires".ToUpper().Trim()
                         tbCoordonnesBancaires.Text = x.ChildNodes.Item(i).InnerText
                     Case "modereglement".ToUpper().Trim()
                         tbModeReglement.Text = x.ChildNodes.Item(i).InnerText

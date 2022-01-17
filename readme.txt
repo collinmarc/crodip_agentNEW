@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+BUILD : XXXXXX
+	0001474: Param Factures : Les Coordonnées bancaires ne se sauvegarde pas
+
 
 BUILD : 20211214170000
 	0001446: Gestion des co-propriétaires
