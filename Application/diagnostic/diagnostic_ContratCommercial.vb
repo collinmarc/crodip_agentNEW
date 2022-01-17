@@ -987,7 +987,7 @@ Public Class diagnostic_ContratCommercial
     Private Sub m_bsContratCommercial_CurrentItemChanged(sender As Object, e As EventArgs) Handles m_bsContratCommercial.CurrentItemChanged
         Dim oCC As ContratCommercial
         oCC = m_bsContratCommercial.Current
-        If oCC.TotalTTC <> 0 Then
+        If oCC.TotalTTC <> 0 Or oCC.Lignes.Count() > 0 Then
             btnSuivant.Enabled = True
         Else
             btnSuivant.Enabled = False

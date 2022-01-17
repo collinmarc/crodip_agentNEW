@@ -89,7 +89,7 @@ Public Class ContratCommercial
     <Xml.Serialization.XmlIgnore()>
     Public Property TotalTTCStr() As String
         Get
-            If TotalTTC = 0 Then
+            If TotalTTC = 0 And Lignes.Count = 0 Then
                 Return ""
             Else
                 Return CStr(TotalTTC)
