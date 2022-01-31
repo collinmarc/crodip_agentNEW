@@ -412,6 +412,8 @@ Public Class Agent
                     Me.isGestionnaire = pValue
                 Case "SignatureElect".Trim().ToUpper()
                     Me.isSignElecActive = pValue
+                Case "isSignElecActive".Trim().ToUpper()
+                    Me.isSignElecActive = pValue
             End Select
 
             bReturn = True

@@ -19,9 +19,9 @@ Public Class frmdiagnostic_facturationCoProp
         End Get
     End Property
     Private Enum TypeInit
-        INITFROMDIAG
-        INITFROMACCEUIL
-        INITFROMFACTURE
+        INIT_FROM_DIAG
+        INIT_NLLE_FACTURE
+        INIT_CONSULT_FACTURE
     End Enum
     Private m_TypeInit As TypeInit
     Public positionTop As Integer = 16
@@ -1385,6 +1385,7 @@ Public Class frmdiagnostic_facturationCoProp
     Protected m_dernnumfact As String
     Protected m_olstExploit As List(Of Exploitation)
     Protected m_olstFacture As List(Of Facture)
+    Protected m_bModeCoProp As Boolean = False
 #End Region
 #Region " Chargement "
     Public Sub setContexte(pDiag As Diagnostic, pAgent As Agent)
@@ -1393,7 +1394,7 @@ Public Class frmdiagnostic_facturationCoProp
         Debug.Assert(pAgent IsNot Nothing)
         Dim oExploit As Exploitation = Nothing
 
-        m_TypeInit = TypeInit.INITFROMDIAG
+        m_TypeInit = TypeInit.INIT_FROM_DIAG
 
         'Pas d'ajout de ligne après un controle
         pnlAddPrestatation.Visible = False
@@ -1416,6 +1417,8 @@ Public Class frmdiagnostic_facturationCoProp
         dgvLignes.AllowUserToDeleteRows = False
 
 
+        'Les informations du client sont non-modifiables 
+        EnableClient(False)
         If Not m_oPulverisateur.isCoPropriete Then
             pnlListCoProp.Visible = False
             pnlClient.Left = pnlListCoProp.Left
@@ -1425,11 +1428,12 @@ Public Class frmdiagnostic_facturationCoProp
             pnlLines.Height = pnlFooter.Top - 6 - pnlLines.Top
             m_olstExploit = New List(Of Exploitation)()
             m_olstExploit.Add(oExploit)
+            m_bModeCoProp = False
 
         Else
-
             m_olstExploit = ExploitationManager.GetListExploitationByPulverisateurId(m_oPulverisateur.id)
             pnlListCoProp.Visible = True
+            m_bModeCoProp = True
         End If
 
 
@@ -1437,7 +1441,8 @@ Public Class frmdiagnostic_facturationCoProp
     End Sub
     Public Sub setContexte(pFact As Facture)
         Dim oExploit As Exploitation = Nothing
-        m_TypeInit = TypeInit.INITFROMFACTURE
+        m_TypeInit = TypeInit.INIT_CONSULT_FACTURE
+        m_bModeCoProp = False
 
         'Pas d'ajout de ligne En Visu de Facture
         pnlAddPrestatation.Visible = False
@@ -1470,10 +1475,14 @@ Public Class frmdiagnostic_facturationCoProp
         End If
 
     End Sub
+    ''' <summary>
+    ''' Initiliation de la fenêtre en mode 'Nouvelle Facture'
+    ''' </summary>
+    ''' <param name="pAgent"></param>
     Public Sub setContexte(pAgent As Agent)
         Debug.Assert(pAgent IsNot Nothing)
-        m_TypeInit = TypeInit.INITFROMACCEUIL
-
+        m_TypeInit = TypeInit.INIT_NLLE_FACTURE
+        m_bModeCoProp = False
         Dim oExploit As Exploitation = Nothing
 
         m_oStructure = StructureManager.getStructureById(pAgent.idStructure)
@@ -1527,7 +1536,7 @@ Public Class frmdiagnostic_facturationCoProp
 
         m_bsrcStructure.Add(m_oStructure)
         tbDernNumFact.Text = m_dernnumfact
-        If m_TypeInit = TypeInit.INITFROMDIAG Then
+        If m_TypeInit = TypeInit.INIT_FROM_DIAG Then
             m_bsDiag.Add(m_oDiag)
             m_bsContratCommercial.Add(m_oDiag.oContratCommercial)
 
@@ -1541,7 +1550,7 @@ Public Class frmdiagnostic_facturationCoProp
             m_bsExploitant.ResumeBinding()
             SupprColumn.Visible = False
         End If
-        If m_TypeInit = TypeInit.INITFROMFACTURE Then
+        If m_TypeInit = TypeInit.INIT_CONSULT_FACTURE Then
             m_bsFacture.Add(m_olstFacture(0))
             m_bsExploitant.Add(m_olstExploit(0))
             m_bsDiag.Add(m_oDiag)
@@ -1777,15 +1786,19 @@ Public Class frmdiagnostic_facturationCoProp
                                        Return oExploit.id = ofrm.oExploit.id
                                    End Function).Count() = 0 Then
                 m_bsExploitant.SuspendBinding()
-                m_olstExploit.Add(ofrm.oExploit)
-                m_bsExploitant.Add(ofrm.oExploit)
-                m_bsExploitant.MoveLast()
+                If m_bModeCoProp Or m_olstExploit.Count() = 0 Then
+                    m_olstExploit.Add(ofrm.oExploit)
+                    m_bsExploitant.Add(ofrm.oExploit)
+                    m_bsExploitant.MoveLast()
+                Else
+                    m_olstExploit(0) = ofrm.oExploit
+                    m_bsExploitant(0) = ofrm.oExploit
+                End If
                 m_bsExploitant.ResumeBinding()
-                EnableClient(True)
 
 
+                End If
             End If
-        End If
     End Sub
 
     Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles btnCalc.Click
@@ -1813,7 +1826,7 @@ Public Class frmdiagnostic_facturationCoProp
     End Sub
 
     Private Sub CalculRestAFacturer()
-        If m_oDiag IsNot Nothing Then
+        If m_TypeInit = TypeInit.INIT_FROM_DIAG Then
             Dim TotalContat As Decimal = m_oDiag.TotalHT
             Dim TotalFacture As Decimal = 0
             'Pour Chaque facture
@@ -1869,6 +1882,7 @@ Public Class frmdiagnostic_facturationCoProp
             m_bsCommunes.Position = 0
         End If
         Return CType(m_bsCommunes.Current, Commune).CodePostal
+
     End Function
 
     Private Sub changementExploitant()
@@ -1881,6 +1895,14 @@ Public Class frmdiagnostic_facturationCoProp
         Dim strCommune As String = oExploit.commune
         LoadCommunes(oExploit.codePostal, oExploit.commune)
         oExploit.commune = strCommune
+
+        If oExploit.id = "" Then
+            EnableClient(True)
+        Else
+            EnableClient(False)
+        End If
+
+
 
         For Each oFact In m_bsFacture.List
             If oFact.oExploit.id = oExploit.id Then
@@ -1899,12 +1921,18 @@ Public Class frmdiagnostic_facturationCoProp
             End If
             oFact.oExploit = oExploit
             oFact.dateFacture = DateTime.Now
-            m_olstFacture.Add(oFact)
-            m_bsFacture.Add(oFact)
+            If m_olstFacture.Count = 0 Or m_bModeCoProp Then
+                m_olstFacture.Add(oFact)
+                m_bsFacture.Add(oFact)
+            Else
+                m_olstFacture(0) = oFact
+                m_bsFacture(0) = oFact
+            End If
             m_bsFacture.MoveLast()
-        End If
 
-        CalculRestAFacturer()
+            End If
+
+            CalculRestAFacturer()
 
     End Sub
 
@@ -1928,12 +1956,16 @@ Public Class frmdiagnostic_facturationCoProp
     End Sub
 
     Private Sub btnAnnuler_Click(sender As Object, e As EventArgs) Handles btnAnnuler.Click
-        If MsgBox("Cette action entraine la non-facturation des prestations décrites dans le contrat commercial, Voulez-annuler annuler la facturation ?", MsgBoxStyle.YesNo, "Facturation") = MsgBoxResult.Yes Then
-            For Each oFact As Facture In m_bsFacture
-                If Not String.IsNullOrEmpty(oFact.pathPDF) Then
-                    CSFile.delete(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oFact.pathPDF)
-                End If
-            Next
+        If m_TypeInit <> TypeInit.INIT_CONSULT_FACTURE Then
+            If MsgBox("Cette action entraine la non-facturation des prestations décrites dans le contrat commercial, Voulez-annuler annuler la facturation ?", MsgBoxStyle.YesNo, "Facturation") = MsgBoxResult.Yes Then
+                For Each oFact As Facture In m_bsFacture
+                    If Not String.IsNullOrEmpty(oFact.pathPDF) Then
+                        CSFile.delete(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oFact.pathPDF)
+                    End If
+                Next
+                Me.Close()
+            End If
+        Else
             Me.Close()
         End If
     End Sub
@@ -2008,6 +2040,11 @@ Public Class frmdiagnostic_facturationCoProp
             CalculRestAFacturer()
             m_bsExploitant.ResetCurrentItem()
             m_bsFacture.ResetCurrentItem()
+            btnAnnuler.Visible = False
+            If Not m_bModeCoProp Then
+                btnNewExploitant.Enabled = False
+                btnAjoutExploitant.Enabled = False
+            End If
 
         End If
 
@@ -2016,7 +2053,7 @@ Public Class frmdiagnostic_facturationCoProp
 
     Private Sub btnQuitter_Click(sender As Object, e As EventArgs) Handles btnPoursuivre.Click
         Dim bOk As Boolean = True
-        If m_TypeInit = TypeInit.INITFROMDIAG Then
+        If m_TypeInit = TypeInit.INIT_FROM_DIAG Then
             If m_oDiag.oContratCommercial.ResteAFacturer <> 0 Then
                 If MsgBox("Il reste des prestations à facturer : " & String.Format(m_oDiag.oContratCommercial.ResteAFacturer, "C") & vbCrLf &
                         "Voulez-vous continuer ?", MsgBoxStyle.YesNo, "Sauvegarde de facture") = MsgBoxResult.No Then
@@ -2045,9 +2082,19 @@ Public Class frmdiagnostic_facturationCoProp
         tbTelFixe.Enabled = pEnable
         tbTelPortable.Enabled = pEnable
         tbEmail.Enabled = pEnable
-        If m_TypeInit = TypeInit.INITFROMACCEUIL Then
-            btnAjoutExploitant.Enabled = Not pEnable
-            btnNewExploitant.Enabled = Not pEnable
+
+        'on peut modifier le client
+        'Si on est en nouvelle facture
+        'Si no est en Diag en mode co-Prop
+
+        btnAjoutExploitant.Enabled = m_TypeInit = TypeInit.INIT_NLLE_FACTURE
+        btnNewExploitant.Enabled = m_TypeInit = TypeInit.INIT_NLLE_FACTURE
+        If m_TypeInit = TypeInit.INIT_FROM_DIAG Then
+            If m_oPulverisateur.isCoPropriete Then
+                btnAjoutExploitant.Enabled = True
+                btnNewExploitant.Enabled = True
+            End If
+
         End If
     End Sub
 

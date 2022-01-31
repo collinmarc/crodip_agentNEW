@@ -124,7 +124,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Seconde Recherche
         oResult = FactureManager.getFacturesByNomClient("TES")
         Assert.AreEqual(2, oResult.Count)
-        Assert.AreEqual("TEST", oResult(1).oExploit.prenomExploitant)
+        Assert.AreEqual("TEST", oResult(0).oExploit.prenomExploitant)
 
         'Ajout d'une Nouvelle Facture
         oFacture = New Facture(m_oStructure)
@@ -136,7 +136,6 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Troisième Recherche
         oResult = FactureManager.getFacturesByNomClient("TES")
         Assert.AreEqual(3, oResult.Count)
-        Assert.AreEqual("TEST", oResult(2).oExploit.raisonSociale)
     End Sub
     <TestMethod()> Public Sub RechercheParDate()
 
@@ -168,7 +167,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Seconde Recherche
         oResult = FactureManager.getFacturesByDate("01/01/2021", "31/12/2021")
         Assert.AreEqual(2, oResult.Count)
-        Assert.AreEqual(CDate("20/12/2021"), oResult(1).dateFacture)
+        Assert.AreEqual(CDate("20/12/2021"), oResult(0).dateFacture)
 
         'Ajout d'une Nouvelle Facture
         oFacture = New Facture(m_oStructure)

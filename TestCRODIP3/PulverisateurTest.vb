@@ -98,5 +98,25 @@ Public Class Pulverisateurtest
 
     End Sub
 
+    <TestMethod()>
+    Public Sub TestTransfertPulve()
+        m_oExploitation = createExploitation()
+        m_oPulve = createPulve(m_oExploitation)
+        Dim oExploit2 As New Exploitation()
+        oExploit2.nomExploitant = "TEST TransfertPulve"
+        ExploitationManager.save(oExploit2, m_oAgent)
+
+        Dim oRelation As ExploitationTOPulverisateur
+
+        m_oPulve.TransfertPulve(m_oExploitation.id, oExploit2.id, m_oAgent)
+
+        oRelation = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(m_oExploitation.id, m_oPulve.id)
+        'La relation a bien été supprimée
+        Assert.IsTrue(String.IsNullOrEmpty(oRelation.id))
+        'et Ajoutée à la seconde exploit
+        oRelation = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit2.id, m_oPulve.id)
+        Assert.IsFalse(String.IsNullOrEmpty(oRelation.id))
+
+    End Sub
 
 End Class

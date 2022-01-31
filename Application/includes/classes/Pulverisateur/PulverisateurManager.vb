@@ -378,7 +378,7 @@ Public Class PulverisateurManager
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Shared Function getPulverisateurByNumNat(ByVal pNumNat As String, pclientId As String) As Pulverisateur
-        Return getPulverisateurSQL("SELECT p.* FROM Pulverisateur p, ExploitationTOPulverisateur p2e WHERE p2e.idPulverisateur= p.id and p.numeroNational='" & pNumNat & "' and p2e.idExploitation = '" & pclientId & "'")
+        Return getPulverisateurSQL("SELECT p.* FROM Pulverisateur p, ExploitationTOPulverisateur p2e WHERE p2e.idPulverisateur= p.id and p.numeroNational='" & pNumNat & "' and p2e.idExploitation = '" & pclientId & "' AND NOT isSupprimeCoProp")
     End Function
     ''' <summary>
     ''' Execution de la requete et retour udu pulvé associé
@@ -498,7 +498,7 @@ Public Class PulverisateurManager
     ''' <param name="pDroitsPulves">Droits de l'agent sur les types de pulvés (inutilisés en Version 4 Lot2)</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getPulverisateurByClientId(ByVal client_id As String, pDroitsPulves As String) As Pulverisateur()
+    Public Shared Function getPulverisateurByClientId(ByVal client_id As String, pDroitsPulves As String, Optional pTous As Boolean = False) As Pulverisateur()
         ' déclarations
         Dim arrItems(0) As Pulverisateur
         Dim oCSDB As New CSDb(True)
@@ -506,6 +506,10 @@ Public Class PulverisateurManager
 
             Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT distinct Pulverisateur.* FROM Pulverisateur INNER JOIN (Exploitation INNER JOIN ExploitationTOPulverisateur ON Exploitation.id = ExploitationTOPulverisateur.idExploitation) ON Pulverisateur.id = ExploitationTOPulverisateur.idPulverisateur WHERE (((ExploitationTOPulverisateur.idExploitation)='" & client_id & "'))"
+            If Not pTous Then
+                bddCommande.CommandText = bddCommande.CommandText & " AND NOT isSupprimeCoProp "
+            End If
+
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
@@ -611,7 +615,7 @@ Public Class PulverisateurManager
 
             Dim strQuery As String = "SELECT Pulverisateur.*, Exploitation.raisonsociale, Exploitation.prenomExploitant, Exploitation.nomExploitant, Exploitation.codepostal,Exploitation.commune " _
                                      & " FROM (ExploitationTOPulverisateur INNER JOIN (Diagnostic RIGHT JOIN Pulverisateur ON Diagnostic.pulverisateurId = Pulverisateur.id) ON ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation ON ExploitationTOPulverisateur.idExploitation = Exploitation.id "
-            strQuery = strQuery & " WHERE "
+            strQuery = strQuery & " WHERE NOT isSupprimeCoProp AND"
             strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) OR Diagnostic.controleDateFin IS NULL) "
             strQuery = strQuery & " AND pulverisateur.idStructure = " & pAgent.idStructure
             strQuery = strQuery & " ORDER BY  Pulverisateur.dateProchainControle ASC"
@@ -759,8 +763,9 @@ Public Class PulverisateurManager
 
             oCmd = oCSdb.getConnection().CreateCommand()
             'Recherche des Pulve qui ont un diag
-            Dim strSQL As String = "SELECT Pulverisateur.*, exploitation.* " & _
-                "FROM (ExploitationTOPulverisateur INNER JOIN Pulverisateur ON ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation ON ExploitationTOPulverisateur.idExploitation = Exploitation.id"
+            Dim strSQL As String = "SELECT Pulverisateur.*, exploitation.* " &
+                "FROM (ExploitationTOPulverisateur INNER JOIN Pulverisateur ON ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation ON ExploitationTOPulverisateur.idExploitation = Exploitation.id" &
+                " WHERE NOT isSupprimeCoProp"
 
             oCmd.CommandText = strSQL
             oDR = oCmd.ExecuteReader()

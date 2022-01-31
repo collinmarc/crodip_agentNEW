@@ -127,6 +127,7 @@ Public Class FVManometreControleManagerTest
 
 
         'Suppression du Manometre
+        Threading.Thread.Sleep(1000)
         Assert.IsFalse(oMano.isSupprime)
         oMano.DeleteMateriel(m_oAgent, "TEST")
         Assert.IsTrue(oMano.isSupprime)

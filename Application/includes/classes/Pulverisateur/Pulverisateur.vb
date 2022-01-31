@@ -1156,11 +1156,13 @@ Public Class Pulverisateur
             Dim oExpl2Pulve As ExploitationTOPulverisateur
             oExpl2Pulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(pExploitOrigineId, id)
             If Not String.IsNullOrEmpty(oExpl2Pulve.id) Then
-                'On modifie la relation 
-                oExpl2Pulve.idExploitation = pExploitCibleId
+                oExpl2Pulve.isSupprimeCoProp = True
                 ExploitationTOPulverisateurManager.save(oExpl2Pulve, pAgent)
-                bReturn = True
             End If
+            oExpl2Pulve = New ExploitationTOPulverisateur()
+            oExpl2Pulve.idExploitation = pExploitCibleId
+            oExpl2Pulve.idPulverisateur = Me.id
+            bReturn = ExploitationTOPulverisateurManager.save(oExpl2Pulve, pAgent)
         Catch ex As Exception
             CSDebug.dispError("Pulverisateur.TransfertPulve ERR" & ex.Message)
             bReturn = False
