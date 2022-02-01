@@ -205,6 +205,9 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnSupprCoProp = New System.Windows.Forms.Button()
         Me.btnNewExploitant = New System.Windows.Forms.Button()
         Me.m_dgvCoProp = New System.Windows.Forms.DataGridView()
+        Me.RaisonSocialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Fact = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.m_bsExploitant = New System.Windows.Forms.BindingSource(Me.components)
         Me.pnlClient = New System.Windows.Forms.Panel()
         Me.cbxCommune = New System.Windows.Forms.ComboBox()
@@ -255,9 +258,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnImprimer = New System.Windows.Forms.Button()
         Me.btnPoursuivre = New System.Windows.Forms.Button()
-        Me.RaisonSocialeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CommuneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Fact = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlFooter.SuspendLayout()
         CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -336,6 +336,8 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'tbRefReglement
         '
+        Me.tbRefReglement.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbRefReglement.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsFacture, "refReglement", True))
         Me.tbRefReglement.Location = New System.Drawing.Point(278, 84)
         Me.tbRefReglement.Name = "tbRefReglement"
@@ -381,6 +383,8 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'tbModeReglement
         '
+        Me.tbModeReglement.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbModeReglement.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsFacture, "Modereglement", True))
         Me.tbModeReglement.Location = New System.Drawing.Point(336, 56)
         Me.tbModeReglement.Name = "tbModeReglement"
@@ -411,6 +415,8 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'tbCommentaire
         '
+        Me.tbCommentaire.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbCommentaire.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsFacture, "Commentaire", True))
         Me.tbCommentaire.Location = New System.Drawing.Point(117, 7)
         Me.tbCommentaire.Multiline = True
@@ -771,6 +777,30 @@ Public Class frmdiagnostic_facturationCoProp
         Me.m_dgvCoProp.RowHeadersVisible = False
         Me.m_dgvCoProp.Size = New System.Drawing.Size(319, 167)
         Me.m_dgvCoProp.TabIndex = 42
+        '
+        'RaisonSocialeDataGridViewTextBoxColumn
+        '
+        Me.RaisonSocialeDataGridViewTextBoxColumn.DataPropertyName = "raisonSociale"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.HeaderText = "Raison sociale"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.Name = "RaisonSocialeDataGridViewTextBoxColumn"
+        Me.RaisonSocialeDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CommuneDataGridViewTextBoxColumn
+        '
+        Me.CommuneDataGridViewTextBoxColumn.DataPropertyName = "commune"
+        Me.CommuneDataGridViewTextBoxColumn.HeaderText = "Commune"
+        Me.CommuneDataGridViewTextBoxColumn.Name = "CommuneDataGridViewTextBoxColumn"
+        Me.CommuneDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'Fact
+        '
+        Me.Fact.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Fact.DataPropertyName = "Fact"
+        Me.Fact.HeaderText = ""
+        Me.Fact.Name = "Fact"
+        Me.Fact.ReadOnly = True
+        Me.Fact.ToolTipText = "indique si une facture a été créé pour cet exploitant"
+        Me.Fact.Width = 20
         '
         'm_bsExploitant
         '
@@ -1177,6 +1207,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'pnlAddPrestatation
         '
+        Me.pnlAddPrestatation.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlAddPrestatation.Controls.Add(Me.Label_diagnostic_61)
         Me.pnlAddPrestatation.Controls.Add(Me.listTarif_categories)
         Me.pnlAddPrestatation.Controls.Add(Me.img_Add)
@@ -1298,30 +1329,6 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnPoursuivre.Text = "Poursuivre"
         Me.btnPoursuivre.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnPoursuivre.UseVisualStyleBackColor = True
-        '
-        'RaisonSocialeDataGridViewTextBoxColumn
-        '
-        Me.RaisonSocialeDataGridViewTextBoxColumn.DataPropertyName = "raisonSociale"
-        Me.RaisonSocialeDataGridViewTextBoxColumn.HeaderText = "Raison sociale"
-        Me.RaisonSocialeDataGridViewTextBoxColumn.Name = "RaisonSocialeDataGridViewTextBoxColumn"
-        Me.RaisonSocialeDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CommuneDataGridViewTextBoxColumn
-        '
-        Me.CommuneDataGridViewTextBoxColumn.DataPropertyName = "commune"
-        Me.CommuneDataGridViewTextBoxColumn.HeaderText = "Commune"
-        Me.CommuneDataGridViewTextBoxColumn.Name = "CommuneDataGridViewTextBoxColumn"
-        Me.CommuneDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'Fact
-        '
-        Me.Fact.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.Fact.DataPropertyName = "Fact"
-        Me.Fact.HeaderText = ""
-        Me.Fact.Name = "Fact"
-        Me.Fact.ReadOnly = True
-        Me.Fact.ToolTipText = "indique si une facture a été créé pour cet exploitant"
-        Me.Fact.Width = 20
         '
         'frmdiagnostic_facturationCoProp
         '
