@@ -19,11 +19,12 @@ Public Class frmdiagnostic_facturationCoProp
         End Get
     End Property
     Private Enum TypeInit
+        INIT_NON_INITIALISE
         INIT_FROM_DIAG
         INIT_NLLE_FACTURE
         INIT_CONSULT_FACTURE
     End Enum
-    Private m_TypeInit As TypeInit
+    Private m_TypeInit As TypeInit = TypeInit.INIT_NON_INITIALISE
     Public positionTop As Integer = 16
     Friend WithEvents m_bsExploitant As System.Windows.Forms.BindingSource
     Friend WithEvents Label18 As System.Windows.Forms.Label

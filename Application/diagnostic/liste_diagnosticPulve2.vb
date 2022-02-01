@@ -3103,10 +3103,11 @@ Public Class liste_diagnosticPulve2
             ' On Recharge le diagnostic selectionné
             m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
             If Not m_oDiag.isSupprime Then
+                'on le positionne comme une contrevisite
+                m_oDiag.SetAsContreVisite(agentCourant)
                 'on le Clone
                 diagnosticCourant = m_oDiag.Clone()
-                'on le positionne comme une contrevisite
-                diagnosticCourant.SetAsContreVisite(agentCourant)
+                diagnosticCourant.controleIsPremierControle = False
                 diagnosticCourant.isContrevisiteImmediate = False
                 ' Mise à jour de la barre de status
                 Statusbar.display("Nouveau contrôle (Contre Visite)")

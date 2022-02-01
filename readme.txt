@@ -3,6 +3,8 @@ MASTER
 BUILD : VXXXXXXX
 	0001475: Transfert de client ne fonctionne plus depuis la dernière version
 	0001476: [Facturation] : Valider/imprimer
+	0001479: Controle Partiel : Date de premier controle
+
 
 BUILD : 20220117170000
 	0001474: Param Factures : Les Coordonnées bancaires ne se sauvegarde pas

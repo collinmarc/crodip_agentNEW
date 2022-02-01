@@ -320,13 +320,16 @@ Public Class EtatRapportInspection
             Dim dateControleInitial As String = ""
             If Not m_oDiag.controleIsComplet Then
                 Dim oDiagInitial As Diagnostic
-                oDiagInitial = DiagnosticManager.getDiagnosticById(m_oDiag.controleInitialId)
-                Try
-                    dateControleInitial = CDate(oDiagInitial.controleDateDebut).ToShortDateString()
-                Catch ex As Exception
-                    dateControleInitial = ""
-
-                End Try
+                If String.IsNullOrEmpty(m_oDiag.controleInitialId) Then
+                    dateControleInitial = m_oDiag.controleDateDernierControleS
+                Else
+                    oDiagInitial = DiagnosticManager.getDiagnosticById(m_oDiag.controleInitialId)
+                    Try
+                        dateControleInitial = CDate(oDiagInitial.controleDateDebut).ToShortDateString()
+                    Catch ex As Exception
+                        dateControleInitial = m_oDiag.controleDateDernierControleS
+                    End Try
+                End If
             End If
 
             oDiagRow = m_ods.Diagnostic.AddDiagnosticRow(m_oDiag.id, m_oDiag.organismeInspAgrement, CDate(m_oDiag.controleDateDebut), m_oDiag.controleLieu, CDate(m_oDiag.controleDateDebut).ToShortTimeString(), CDate(m_oDiag.controleDateFin).ToShortTimeString(), m_oDiag.controleIsPreControleProfessionel, m_oDiag.controleIsComplet, m_oDiag.controleInitialId, oMaterielRow, Conclusion:=m_oDiag.controleEtat, dateLimiteControle:=dateLimiteControle, DateEmission:=Date.Now,

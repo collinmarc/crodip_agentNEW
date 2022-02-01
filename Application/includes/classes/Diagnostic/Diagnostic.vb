@@ -243,8 +243,6 @@ Public Class Diagnostic
         controleSite = ""
         controleNomSite = ""
         controleIsComplet = True
-        controleIsPremierControle = False
-        controleDateDernierControle = ""
         controleIsSiteSecurise = False
         controleIsRecupResidus = False
         controleEtat = ""
