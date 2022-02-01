@@ -183,6 +183,8 @@ Public Class FactureItemManager
                 '                olg.nFactureItem = n
                 n = n + 1
             End While
+            oDR.Close()
+            oCSDB.free()
 
 
         Catch ex As Exception

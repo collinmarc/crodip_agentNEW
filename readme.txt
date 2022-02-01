@@ -1,6 +1,6 @@
 TRUNK
 MASTER
-BUILD : VXXXXXXX
+BUILD : 20220201120000
 	0001475: Transfert de client ne fonctionne plus depuis la dernière version
 	0001476: [Facturation] : Valider/imprimer
 	0001479: Controle Partiel : Date de premier controle

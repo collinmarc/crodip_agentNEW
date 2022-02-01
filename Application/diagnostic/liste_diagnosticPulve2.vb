@@ -3109,6 +3109,9 @@ Public Class liste_diagnosticPulve2
                 diagnosticCourant = m_oDiag.Clone()
                 diagnosticCourant.controleIsPremierControle = False
                 diagnosticCourant.isContrevisiteImmediate = False
+                diagnosticCourant.TotalHT = 0
+                diagnosticCourant.TotalTVA = 0
+                diagnosticCourant.TotalTTC = 0
                 ' Mise à jour de la barre de status
                 Statusbar.display("Nouveau contrôle (Contre Visite)")
                 Me.DialogResult = Windows.Forms.DialogResult.OK

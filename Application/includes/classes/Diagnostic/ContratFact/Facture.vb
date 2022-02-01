@@ -10,6 +10,7 @@ Public Class Facture
     Public Sub New()
         oExploit = New Exploitation()
         'oDiagnostic = New Diagnostic()
+        idFacture = ""
     End Sub
     Public Sub New(pStructure As Structuree)
         Me.New()

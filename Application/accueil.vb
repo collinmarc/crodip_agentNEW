@@ -6059,7 +6059,9 @@ Public Class accueil
         ofrm.setContexte(agentCourant)
         If ofrm.ShowDialog(Me) = DialogResult.OK Then
             ofrm.lstFacture.ForEach(Sub(oFact)
-                                        m_bsFacture.Insert(0, oFact)
+                                        If Not String.IsNullOrEmpty(oFact.idFacture) Then
+                                            m_bsFacture.Insert(0, oFact)
+                                        End If
                                     End Sub)
 
             m_bsFacture.ResetBindings(False)
@@ -6105,7 +6107,11 @@ Public Class accueil
         Dim olst As New List(Of Facture)
         Select Case pTypeRecherche
             Case TypeRechercheFacture.RECHERCHE_FACTURE_NUM
-                olst.Add(FactureManager.getFactureById(pValue1))
+                Dim obj As Facture
+                obj = FactureManager.getFactureById(pValue1)
+                If Not String.IsNullOrEmpty(obj.idFacture) Then
+                    olst.Add(obj)
+                End If
             Case TypeRechercheFacture.RECHERCHE_FACTURE_CLIENT
                 olst.AddRange(FactureManager.getFacturesByNomClient(pValue1))
             Case TypeRechercheFacture.RECHERCHE_FACTURE_PAR_DATE
@@ -6113,6 +6119,7 @@ Public Class accueil
             Case TypeRechercheFacture.RECHERCHE_FACTURE_TOUTES
                 olst.AddRange(FactureManager.getFactures())
         End Select
+
         m_bsFacture.Clear()
         olst.ForEach(Sub(oFact)
                          m_bsFacture.Add(oFact)

@@ -1655,7 +1655,7 @@ Public Class frmdiagnostic_facturationCoProp
     End Sub
     Private Sub SauvegarderFactures()
         For Each oFacture As Facture In m_bsFacture
-            If oFacture.idFacture <> "" Then
+            If Not String.IsNullOrEmpty(oFacture.idFacture) Then
                 createFacture_CR(oFacture)
                 If m_oDiag IsNot Nothing Then
                     oFacture.idDiag = m_oDiag.id
@@ -1748,12 +1748,18 @@ Public Class frmdiagnostic_facturationCoProp
 
     Private Sub CreerExploitant()
         Dim frm As New fiche_exploitant()
-        Dim OExploit As New Exploitation()
-        OExploit.raisonSociale = "Nouveau."
-        frm.setContexte(False, OExploit, m_oAgent)
+        Dim oExploit As New Exploitation()
+        oExploit.raisonSociale = "Nouveau."
+        frm.setContexte(False, oExploit, m_oAgent)
         If frm.ShowDialog() = DialogResult.OK Then
-            m_olstExploit.Add(OExploit)
-            m_bsExploitant.Add(OExploit)
+            If m_bModeCoProp Or m_olstExploit.Count() = 0 Then
+                m_olstExploit.Add(oExploit)
+                m_bsExploitant.Add(oExploit)
+            Else
+                m_olstExploit(0) = oExploit
+                m_bsExploitant(0) = oExploit
+            End If
+            m_bsExploitant.MoveLast()
             EnableClient(True)
         End If
         frm.Close()
@@ -1797,15 +1803,15 @@ Public Class frmdiagnostic_facturationCoProp
                 If m_bModeCoProp Or m_olstExploit.Count() = 0 Then
                     m_olstExploit.Add(ofrm.oExploit)
                     m_bsExploitant.Add(ofrm.oExploit)
-                    m_bsExploitant.MoveLast()
                 Else
                     m_olstExploit(0) = ofrm.oExploit
                     m_bsExploitant(0) = ofrm.oExploit
                 End If
+                m_bsExploitant.MoveLast()
                 m_bsExploitant.ResumeBinding()
 
 
-                End If
+            End If
             End If
     End Sub
 

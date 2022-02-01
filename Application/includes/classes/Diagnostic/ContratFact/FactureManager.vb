@@ -256,7 +256,9 @@ Public Class FactureManager
 
             End While
             oDR.Close()
-            oReturn.Lignes.AddRange(FactureItemManager.getFactureById(oReturn.idFacture))
+            If Not String.IsNullOrEmpty(oReturn.idFacture) Then
+                oReturn.Lignes.AddRange(FactureItemManager.getFactureById(oReturn.idFacture))
+            End If
             oCSDB.free()
 
         Catch ex As Exception
