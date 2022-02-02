@@ -321,7 +321,7 @@ Public Class EtatRapportInspection
             If Not m_oDiag.controleIsComplet Then
                 Dim oDiagInitial As Diagnostic
                 If String.IsNullOrEmpty(m_oDiag.controleInitialId) Then
-                    dateControleInitial = m_oDiag.controleDateDernierControleS
+                    dateControleInitial = CDate(m_oDiag.controleDateDernierControle).ToShortDateString()
                 Else
                     oDiagInitial = DiagnosticManager.getDiagnosticById(m_oDiag.controleInitialId)
                     Try
