@@ -360,8 +360,10 @@ Public Class DiagnosticHelp571
                 Catch ex As Exception
                     CSDebug.dispError("DiagnosticHelp571.load ERR conversion (" & oDiagItem.itemValue & ") ERR " & ex.Message)
                 End Try
+                bReturn = True
+            Else
+                bReturn = False
             End If
-            bReturn = True
 
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp571.Load ERR: " & ex.Message)
@@ -381,7 +383,7 @@ Public Class DiagnosticHelp571
             Dim oDiagItem As DiagnosticItem
             Dim oDiagItemLu As DiagnosticItem
             oDiagItem = ConvertToDiagnosticItem()
-            If Not String.IsNullOrEmpty(id) Then
+            If Not String.IsNullOrEmpty(id) Or id = "0" Then
                 oDiagItemLu = DiagnosticItemManager.getDiagnosticItemById(id, idDiag)
                 If Not String.IsNullOrEmpty(oDiagItemLu.id) Then
                     oDiagItem.id = oDiagItemLu.id
@@ -393,9 +395,11 @@ Public Class DiagnosticHelp571
                     oDiagItem.dateModificationCrodip = oDiagItemLu.dateModificationCrodip
                 End If
             End If
-            If String.IsNullOrEmpty(oDiagItem.id) Then
-                id = DiagnosticItemManager.getNewId(pStructureId, pAgentId)
-                oDiagItem.id = id
+            If CSDb._DBTYPE <> CSDb.EnumDBTYPE.SQLITE Then
+                If Not String.IsNullOrEmpty(id) Or id = "0" Then
+                    id = DiagnosticItemManager.getNewId(pStructureId, pAgentId)
+                    oDiagItem.id = id
+                End If
             End If
             Dim oCSDB As New CSDb(True)
             bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)

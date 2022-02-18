@@ -1,4 +1,5 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
 
 Public Class liste_diagnosticPulve2
     Inherits System.Windows.Forms.Form
@@ -2798,7 +2799,7 @@ Public Class liste_diagnosticPulve2
             End If
             query = query & " ORDER BY Diagnostic.controleDateFin DESC"
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
+            Dim dataResults As DbDataReader = bdd.getResult2s(query)
             '            listPulveDiagnostic.Items.Clear()
             m_bsrcDiag.Clear()
 

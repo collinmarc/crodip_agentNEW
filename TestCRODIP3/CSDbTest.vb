@@ -84,4 +84,27 @@ Public Class CSDbTest
 
     End Sub
 
+    <TestMethod()>
+    Public Sub TST_SQLITE()
+        CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
+        Dim oCSDb As CSDb
+        oCSDb = New CSDb(True)
+        Assert.IsTrue(oCSDb.getConnection().State = ConnectionState.Open)
+
+
+        oCSDb.free()
+    End Sub
+    <TestMethod()>
+    Public Sub TST_SQLITENAtive()
+        Dim oConn As New Microsoft.Data.Sqlite.SqliteConnection()
+        Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
+        oBuider.DataSource = "bdd/crodip_agent.db3"
+        oConn.ConnectionString = oBuider.ConnectionString
+        oConn.Open()
+
+        Assert.IsTrue(oConn.State = ConnectionState.Open)
+
+
+        oConn.Close()
+    End Sub
 End Class

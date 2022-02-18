@@ -4596,61 +4596,6 @@ Public Class accueil
         End If
     End Sub
 
-    ' Chargement de l'historique des synchro
-    'Public Sub loadListSynchro()
-    '    Dim oCSDB As New CSDb(True)
-
-    '    Dim bddCommande As OleDb.OleDbCommand
-    '    bddCommande = oCSDB.getConnection.CreateCommand()
-    '    ' On test si la connexion est déjà ouverte ou non
-    '    bddCommande.CommandText = "SELECT * FROM `Synchronisation` WHERE `idAgent`=" & agentCourant.idStructure & " ORDER By id desc"
-    '    Try
-    '        ' On récupère les résultats
-    '        Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
-    '        Dim i As Integer = 0
-    '        ' Puis on les parcours
-    '        While tmpListProfils.Read()
-
-    '            ' On récupère nos logs de synchro
-    '            Dim tmpSens As String = ""
-    '            Dim tmpDate As String = ""
-    '            Dim tmpLog As String = ""
-    '            Dim tmpColId As Integer = 0
-    '            While tmpColId < tmpListProfils.FieldCount()
-    '                Select Case tmpListProfils.GetName(tmpColId)
-    '                    Case "sensSynchronisation"
-    '                        tmpSens = tmpListProfils.Item(tmpColId).ToString()
-    '                    Case "dateSynchronisation"
-    '                        tmpDate = CSDate.mysql2access(tmpListProfils.Item(tmpColId).ToString())
-    '                    Case "logSynchronisation"
-    '                        tmpLog = tmpListProfils.Item(tmpColId).ToString()
-    '                End Select
-    '                tmpColId = tmpColId + 1
-    '            End While
-
-    '            ' On alimente la liste
-    '            list_dernieresSynchro.Items.Add("")
-    '            If tmpSens = "asc" Then
-    '                list_dernieresSynchro.Items(CInt(i)).StateImageIndex = 1
-    '            Else
-    '                list_dernieresSynchro.Items(CInt(i)).StateImageIndex = 0
-    '            End If
-    '            list_dernieresSynchro.Items(CInt(i)).SubItems.Add(tmpDate)
-    '            list_dernieresSynchro.Items(CInt(i)).SubItems.Add(tmpLog)
-
-    '            i = i + 1
-    '        End While
-    '    Catch ex As Exception ' On intercepte l'erreur
-    '        CSDebug.dispFatal("SynchronisationManager : " & ex.Message)
-    '    End Try
-    '    ' Test pour fermeture de connection BDD
-    '    If oCSDB IsNot Nothing Then
-    '        oCSDB.free()
-    '    End If
-
-    'End Sub
-
-    ' Chargement de l'historique des synchro
     Public Sub afficheSynchroCourante(pMsg As String)
         lbSynhcroCourante.Items.Add(pMsg)
         lbSynhcroCourante.Refresh()
@@ -5524,7 +5469,7 @@ Public Class accueil
     Private Function LoadListControleRegulier() As Boolean
         Dim bReturn As Boolean
         Try
-            Dim oCol As Collection
+            Dim oCol As List(Of AutoTest)
             oCol = AutoTestManager.getcolControlesReguliers(agentCourant, , dtp_ControleRegulier.Value, dtp_ControleRegulier.Value)
             If oCol Is Nothing Or oCol.Count = 0 Then
                 oCol = AutoTestManager.CreateControlesReguliers(agentCourant, dtp_ControleRegulier.Value)

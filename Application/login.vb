@@ -1147,7 +1147,6 @@ Public Class login
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
-        Dim oDiagItem As DiagnosticItem
         Dim oAgent As Agent
 
         oAgent = AgentManager.getAgentById("1110")

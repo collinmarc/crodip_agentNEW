@@ -1,7 +1,8 @@
+Imports System.Data.Common
 Imports System.Web.Services
 Imports System.Xml.Serialization
 
-<Serializable(), XmlInclude(GetType(ManometreControle))> _
+<Serializable(), XmlInclude(GetType(ManometreControle))>
 Public Class ManometreControle
     Inherits Manometre
 
@@ -141,7 +142,7 @@ Public Class ManometreControle
 
 
 
-    Public Function Fill(ByVal oDataReader As OleDb.OleDbDataReader) As Boolean
+    Public Function Fill(ByVal oDataReader As DbDataReader) As Boolean
         Dim bReturn As Boolean
         Try
 
@@ -210,9 +211,9 @@ Public Class ManometreControle
             Case "resolution".Trim.ToUpper()
                 Me.resolution = pValue.ToString()
             Case "agentsuppression".Trim().ToUpper()
-                Me.agentSuppression = pValue.ToString()
+                Me.AgentSuppression = pValue.ToString()
             Case "raisonsuppression".Trim().ToUpper()
-                Me.raisonSuppression = pValue.ToString()
+                Me.RaisonSuppression = pValue.ToString()
             Case "datesuppression".Trim().ToUpper()
                 Dim strDateMin As String = CSDate.ToCRODIPString("")
                 Dim strDateValue As String = CSDate.ToCRODIPString(pValue)
@@ -230,9 +231,9 @@ Public Class ManometreControle
     End Function
     Public Overrides Function DeleteMateriel(ByVal pAgentSuppression As Agent, ByVal pRaison As String) As Boolean
         Me.creerFicheVieSuppression(pAgentSuppression)
-        Me.agentSuppression = pAgentSuppression.nom
-        Me.raisonSuppression = pRaison
-        Me.dateSuppression = Now.ToString()
+        Me.AgentSuppression = pAgentSuppression.nom
+        Me.RaisonSuppression = pRaison
+        Me.DateSuppression = Now.ToString()
         Me.dateModificationAgent = Now()
         Me.isSupprime = True
         ManometreControleManager.save(Me)

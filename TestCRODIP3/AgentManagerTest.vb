@@ -827,7 +827,7 @@ Public Class AgentManagerTest
         Next
     End Sub
     Private Sub createAutotests(ByVal pAgent As Agent)
-        Dim oCol As Collection
+        Dim oCol As List(Of AutoTest)
 
         oCol = AutoTestManager.CreateControlesReguliers(pAgent, Date.Now)
         For Each oTest As AutoTest In oCol

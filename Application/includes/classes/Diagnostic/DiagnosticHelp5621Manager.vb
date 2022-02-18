@@ -1,4 +1,5 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
 
 ''' Classe de gestion du DiagnosticHelp5621
 '''     Elle crée les objets , donc difficile à hériter de help551
@@ -14,12 +15,12 @@ Public Class DiagnosticHelp5621Manager
         ' On récupère les items du diagnostic
         Dim oCSDB As New CSDb(True)
         Dim oHelp5621 As DiagnosticHelp5621
-        Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
         Try
             'Lecture de l'id pour le diagitem help5621 
             bddCommande.CommandText = "SELECT id FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' and DiagnosticItem.idItem = 'help5621' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats
-            Dim oDRDiagnosticItem As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim oDRDiagnosticItem As DbDataReader = bddCommande.ExecuteReader
             oHelp5621 = New DiagnosticHelp5621()
             oHelp5621.id = 0
             oHelp5621.idDiag = pDiagnostic.id

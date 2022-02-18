@@ -1,3 +1,5 @@
+Imports System.Data.Common
+
 Public Class DiagnosticBusesDetailManager
 
 #Region "Methodes Web Service"
@@ -89,10 +91,10 @@ Public Class DiagnosticBusesDetailManager
 
         Try
             Dim oCSDb As New CSDb(True)
-            Dim bddCommande As New OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             Dim nEnr As Integer
             ' On test si la connexion est déjà ouverte ou non
-            bddCommande.Connection = oCSDb.getConnection()
+            bddCommande = oCSDb.getConnection().CreateCommand()
 
             bddCommande.CommandText = "DELETE FROM DiagnosticBusesDetail Where idDiagnostic = '" & objDiagnosticBusesDetail.idDiagnostic & "'"
             'Test de l'existence de l'élement
@@ -133,7 +135,11 @@ Public Class DiagnosticBusesDetailManager
                 bddCommande.CommandText = "INSERT INTO `DiagnosticBusesDetail` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
                 bddCommande.ExecuteNonQuery()
 
-                bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBusesDEtail"
+                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                    bddCommande.CommandText = "SELECT last_insert_rowid() "
+                Else
+                    bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBusesDEtail"
+                End If
                 objDiagnosticBusesDetail.id = bddCommande.ExecuteScalar()
                 'If oDR.HasRows() Then
                 '    oDR.Read()
@@ -192,12 +198,12 @@ Public Class DiagnosticBusesDetailManager
         Dim tmpDiagnosticBusesDetail As DiagnosticBusesDetail = Nothing
         If diagnosticbusesdetail_id <> "" Then
 
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM DiagnosticBusesDetail WHERE DiagnosticBusesDetail.id=" & diagnosticbusesdetail_id & " and idDiagnostic = '" & pidDiag & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
@@ -231,7 +237,7 @@ Public Class DiagnosticBusesDetailManager
 
             Dim oCSDB As New CSDb(True)
 
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "DELETE FROM DiagnosticBusesDetail WHERE id=" & diagnosticbuses_id & " and idDiagnostic = '" & pidDiagnostic & "'"
             bddCommande.ExecuteNonQuery()
@@ -248,13 +254,14 @@ Public Class DiagnosticBusesDetailManager
     Public Shared Function getUpdates() As DiagnosticBusesDetail()
         ' déclarations
         Dim arrItems(0) As DiagnosticBusesDetail
-        Dim bddCommande As OleDb.OleDbCommand = Nothing
+        Dim bddCommande As DbCommand = Nothing
         Dim oCSdb As New CSDb(True)
+        bddCommande = oCSdb.getConnection().CreateCommand
         bddCommande.CommandText = "SELECT * FROM `DiagnosticBusesDetail` WHERE `DiagnosticBusesDetail`.`dateModificationAgent`<>`DiagnosticBusesDetail`.`dateModificationCrodip`"
 
         Try
             ' On récupère les résultats
-            Dim oDR As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim oDR As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While oDR.Read()

@@ -1,3 +1,5 @@
+Imports System.Data.Common
+
 Public Class DiagnosticMano542Manager
 
 #Region "Methodes Web Service"
@@ -89,23 +91,14 @@ Public Class DiagnosticMano542Manager
     Public Shared Function save(ByVal objDiagnosticMano542 As DiagnosticMano542, Optional bSyncro As Boolean = False) As Boolean
         Dim bReturn As Boolean
         Dim oCSDb As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand
-        Dim oDR As OleDb.OleDbDataReader
+        Dim bddCommande As DbCommand
+        Dim oDR As DbDataReader
         Dim nEnr As Integer
         Try
             bddCommande = oCSDb.getConnection().CreateCommand()
             'Test de l'existence de l'élement
             bddCommande.CommandText = "SELECT count(*) FROM DiagnosticMano542 WHERE id = " & objDiagnosticMano542.id & " and idDiagnostic = '" & objDiagnosticMano542.idDiagnostic & "'"
-            oDR = bddCommande.ExecuteReader()
-            If oDR.HasRows Then
-                oDR.Read()
-                Try
-                    nEnr = CType(oDR.GetValue(0), Integer)
-                Catch ex As Exception
-                    nEnr = 0
-                End Try
-            End If
-            oDR.Close()
+            nEnr = CInt(bddCommande.ExecuteScalar)
             ' Mise a jour de la date de derniere modification
             If Not bSyncro Then
                 objDiagnosticMano542.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
@@ -137,12 +130,8 @@ Public Class DiagnosticMano542Manager
                 bddCommande.CommandText = "INSERT INTO `DiagnosticMano542` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
                 bddCommande.ExecuteNonQuery()
                 bddCommande.CommandText = "SELECT MAX(id) from DiagnosticMano542"
-                oDR = bddCommande.ExecuteReader()
-                If oDR.HasRows() Then
-                    oDR.Read()
-                    objDiagnosticMano542.id = oDR.GetValue(0)
-                End If
-                oDR.Close()
+                Dim nId As Integer = bddCommande.ExecuteScalar()
+                objDiagnosticMano542.id = nId
             Else
                 'Mise à jour de l'enregistrement
                 Dim paramQuery As String
@@ -191,11 +180,11 @@ Public Class DiagnosticMano542Manager
         Dim tmpDiagnosticMano542 As New DiagnosticMano542
         If diagnosticMano542_id <> "" Then
 
-            Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+            Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM DiagnosticMano542 WHERE id=" & diagnosticMano542_id & " and idDiagnostic ='" & pIdDiagnostic & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
@@ -226,8 +215,8 @@ Public Class DiagnosticMano542Manager
             'Recupération des infos de MAno542
             pDiagnostic.diagnosticMano542List.Liste.Clear()
             Dim nColId As Integer
-            Dim oDR As System.Data.OleDb.OleDbDataReader
-            Dim bddCommande3 As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+            Dim oDR As DbDataReader
+            Dim bddCommande3 As DbCommand = oCSDB.getConnection().CreateCommand()
             bddCommande3.CommandText = "SELECT * FROM DiagnosticMano542 WHERE idDiagnostic='" & pDiagnostic.id & "'"
             oDR = bddCommande3.ExecuteReader
             Dim oDiagnosticMano542 As DiagnosticMano542
@@ -261,7 +250,7 @@ Public Class DiagnosticMano542Manager
         Try
 
             Dim oCSDB As New CSDb(True)
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "DELETE FROM DiagnosticMano542 WHERE id=" & diagnosticMano542_id & " and idDiagnostic = '" & pidDiagnostic & "'"
             bddCommande.ExecuteNonQuery()
@@ -281,7 +270,7 @@ Public Class DiagnosticMano542Manager
         Try
 
             Dim oCSDB As New CSDb(True)
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "DELETE FROM DiagnosticMano542 WHERE  idDiagnostic = '" & pidDiagnostic & "'"
             bddCommande.ExecuteNonQuery()
@@ -299,12 +288,12 @@ Public Class DiagnosticMano542Manager
         ' déclarations
         Dim arrItems(0) As DiagnosticMano542
         Dim oCSDB As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM `DiagnosticMano542` WHERE `DiagnosticMano542`.`dateModificationAgent`<>`DiagnosticMano542`.`dateModificationCrodip`"
 
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()

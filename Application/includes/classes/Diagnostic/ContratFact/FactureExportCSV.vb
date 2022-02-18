@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.Generic
 Imports System.Globalization
 Imports CsvHelper
+Imports CsvHelper.Configuration.Attributes
 
 Public Class FactureExportCSV
 #Region "Properties"
@@ -14,6 +15,7 @@ Public Class FactureExportCSV
         End Set
     End Property
     Private _DateFacture As Date
+    <Format("dd/MM/yyyy")>
     Public Property DateFacture() As Date
         Get
             Return _DateFacture
@@ -23,6 +25,7 @@ Public Class FactureExportCSV
         End Set
     End Property
     Private _DateEcheance As Date
+    <Format("dd/MM/yyyy")>
     Public Property DateEcheance() As Date
         Get
             Return _DateEcheance
@@ -334,6 +337,7 @@ Public Class FactureExportCSV
             Using sw As New IO.StreamWriter(pFile)
                 Using csw As New CsvWriter(sw, CultureInfo.InvariantCulture)
                     csw.Configuration.Delimiter = ";"
+                    csw.Configuration.CultureInfo = Application.CurrentCulture
                     csw.WriteRecords(Of FactureExportCSV)(lstElmt)
                 End Using
             End Using

@@ -1,14 +1,16 @@
 ﻿Imports System.Collections.Generic
-Public Class FactureManager
+Imports System.Data.Common
 
+Public Class FactureManager
+    Inherits CrodipManager
     Public Shared Function Exists(pFactureID As String) As Boolean
         Dim bReturn As Boolean
         Try
             Dim oCSDB As New CSDb(True)
-            Dim oCmd As OleDb.OleDbCommand
+            Dim oCmd As DbCommand
             oCmd = oCSDB.getConnection.CreateCommand
             oCmd.CommandText = "SELECT Count(*) from facture where idFacture = @idFacture"
-            oCmd.Parameters.AddWithValue("@idFacture", pFactureID)
+            AddParameter(oCmd, "@idFacture", pFactureID)
 
             Dim n As Integer
             n = oCmd.ExecuteScalar()
@@ -62,64 +64,63 @@ Public Class FactureManager
         Try
             Dim oCSDB As New CSDb(True)
 
-            Dim oCmd As OleDb.OleDbCommand
+            Dim oCmd As DbCommand
             oCmd = oCSDB.getConnection().CreateCommand
             oCmd.CommandText = "Update FACTURE SET " &
-                "idStructure = ? , " &'1
-                "datefacture = ? , " &'2
-                "dateecheance = ?, " &'3'
-                "commentaire = ?, " &'4
-                "modeReglement = ?, " &'5'
-                "isreglee = ?, " &'6
-                "refreglement = ?, " &'7
-                "totalHt = ?, " &'8
-                "totalTVA = ?, " &'9
-                "totalTTC = ? , " &'10
-                "txTVA = ? , " &'11'
-                "idDiag = ? , " &'12
-                "idExploit = ?, " &'13
-                "rsClient = ? , " &'14
-                "nomclient = ? , " &'15
-                "prenomclient = ? , " &'16
-                "adresseClient = ? , " &'17
-                "cpClient = ? , " &'18
-                "communeClient = ? , " &'19
-                "telFixeClient = ? , " &'20
-                "telportClient = ? , " &'21
-                "emailClient = ? , " &'22
-                "pathPDF = ? , " &'23
-                "dateModificationAgent = ?, " &'24
-                "dateModificationCrodip = ?" &'25
-                "WHERE idFacture = ?" '26
+                "idStructure = @1 , " &'1
+                "datefacture = @2 , " &'2
+                "dateecheance = @3, " &'3'
+                "commentaire = @4, " &'4
+                "modeReglement = @5, " &'5'
+                "isreglee = @6, " &'6
+                "refreglement = @7, " &'7
+                "totalHt = @8, " &'8
+                "totalTVA = @9, " &'9
+                "totalTTC = @10 , " &'10
+                "txTVA = @11 , " &'11'
+                "idDiag = @12 , " &'12
+                "idExploit = @13, " &'13
+                "rsClient = @14, " &'14
+                "nomclient = @15 , " &'15
+                "prenomclient = @16 , " &'16
+                "adresseClient = @17 , " &'17
+                "cpClient = @18 , " &'18
+                "communeClient = @19 , " &'19
+                "telFixeClient = @20 , " &'20
+                "telportClient = @21 , " &'21
+                "emailClient = @22 , " &'22
+                "pathPDF = @23 , " &'23
+                "dateModificationAgent = @24, " &'24
+                "dateModificationCrodip = @25" &'25
+                "WHERE idFacture = @26" '26
 
 
-            oCmd.Parameters.AddWithValue("?_1", pfacture.idStructure)
-            oCmd.Parameters.AddWithValue("?_2", pfacture.dateFacture)
-            oCmd.Parameters.AddWithValue("?_3", pfacture.dateEcheance)
-            oCmd.Parameters.AddWithValue("?_4", pfacture.Commentaire)
-            oCmd.Parameters.AddWithValue("?_5", pfacture.modeReglement)
-            oCmd.Parameters.AddWithValue("?_6", pfacture.isReglee)
-            oCmd.Parameters.AddWithValue("?_7", pfacture.refReglement)
-            oCmd.Parameters.Add("?_8", OleDb.OleDbType.Currency).Value = pfacture.TotalHT
-            oCmd.Parameters.Add("?_9", OleDb.OleDbType.Currency).Value = pfacture.TotalTVA
-            oCmd.Parameters.Add("?_10", OleDb.OleDbType.Currency).Value = pfacture.TotalTTC
-            oCmd.Parameters.Add("?_11", OleDb.OleDbType.Currency).Value = pfacture.TxTVA
-            oCmd.Parameters.AddWithValue("?_12", pfacture.idDiag)
-            oCmd.Parameters.AddWithValue("?_13", pfacture.oExploit.id)
-            oCmd.Parameters.AddWithValue("?_14", pfacture.oExploit.raisonSociale)
-            oCmd.Parameters.AddWithValue("?_15", pfacture.oExploit.nomExploitant)
-            oCmd.Parameters.AddWithValue("?_16", pfacture.oExploit.prenomExploitant)
-            oCmd.Parameters.AddWithValue("?_17", pfacture.oExploit.adresse)
-            oCmd.Parameters.AddWithValue("?_18", pfacture.oExploit.codePostal)
-            oCmd.Parameters.AddWithValue("?_19", pfacture.oExploit.commune)
-            oCmd.Parameters.AddWithValue("?_20", pfacture.oExploit.telephoneFixe)
-            oCmd.Parameters.AddWithValue("?_21", pfacture.oExploit.telephonePortable)
-            oCmd.Parameters.AddWithValue("?_22", pfacture.oExploit.eMail)
-            oCmd.Parameters.AddWithValue("?_23", pfacture.pathPDF)
-            oCmd.Parameters.AddWithValue("?_24", CSDate.mysql2access(pfacture.dateModificationAgent))
-            oCmd.Parameters.AddWithValue("?_25", CSDate.mysql2access(pfacture.dateModificationCrodip))
-            oCmd.Parameters.AddWithValue("?_26", pfacture.idFacture)
-
+            AddParameter(oCmd, "@1", pfacture.idStructure)
+            AddParameter(oCmd, "@2", pfacture.dateFacture)
+            AddParameter(oCmd, "@3", pfacture.dateEcheance)
+            AddParameter(oCmd, "@4", pfacture.Commentaire)
+            AddParameter(oCmd, "@5", pfacture.modeReglement)
+            AddParameter(oCmd, "@6", pfacture.isReglee)
+            AddParameter(oCmd, "@7", pfacture.refReglement)
+            AddParameter(oCmd, "@8", pfacture.TotalHT, DbType.Currency)
+            AddParameter(oCmd, "@9", pfacture.TotalTVA, DbType.Currency)
+            AddParameter(oCmd, "@10", pfacture.TotalTTC, DbType.Currency)
+            AddParameter(oCmd, "@11", pfacture.TxTVA, DbType.Currency)
+            AddParameter(oCmd, "@12", pfacture.idDiag)
+            AddParameter(oCmd, "@13", pfacture.oExploit.id)
+            AddParameter(oCmd, "@14", pfacture.oExploit.raisonSociale)
+            AddParameter(oCmd, "@15", pfacture.oExploit.nomExploitant)
+            AddParameter(oCmd, "@16", pfacture.oExploit.prenomExploitant)
+            AddParameter(oCmd, "@17", pfacture.oExploit.adresse)
+            AddParameter(oCmd, "@18", pfacture.oExploit.codePostal)
+            AddParameter(oCmd, "@19", pfacture.oExploit.commune)
+            AddParameter(oCmd, "@20", pfacture.oExploit.telephoneFixe)
+            AddParameter(oCmd, "@21", pfacture.oExploit.telephonePortable)
+            AddParameter(oCmd, "@22", pfacture.oExploit.eMail)
+            AddParameter(oCmd, "@23", pfacture.pathPDF)
+            AddParameter(oCmd, "@24", CSDate.mysql2access(pfacture.dateModificationAgent))
+            AddParameter(oCmd, "@25", CSDate.mysql2access(pfacture.dateModificationCrodip))
+            AddParameter(oCmd, "@26", pfacture.idFacture)
             oCmd.ExecuteNonQuery()
 
             oCSDB.free()
@@ -136,7 +137,7 @@ Public Class FactureManager
         Try
             Dim oCSDB As New CSDb(True)
 
-            Dim oCmd As OleDb.OleDbCommand
+            Dim oCmd As DbCommand
             oCmd = oCSDB.getConnection().CreateCommand
             oCmd.CommandText = "insert into FACTURE (" &
                 "idStructure," &
@@ -166,61 +167,61 @@ Public Class FactureManager
                 "dateModificationCrodip," &
                 "idFacture " &
                 ") VALUES ( " &
-                "?," & ' 1
-                "?," &'2
-                "?," &'3
-                "?," &'4'
-                "?," &'5'
-                "?," &'6
-                "?," &'7'
-                "?," &'8
-                "?," &'9
-                "?," &'10
-                "?," &'11
-                "?," &'12
-                "?," &'13
-                "?," &'14
-                "?," &'15
-                "?," &'16
-                "?," &'17
-                "?," &'18
-                "?," &'19
-                "?," &'20
-                "?," &'21
-                "?," &'22'
-                "?," &'23
-                "?," &'24
-                "?," &'25
-                "?" & '26
+                "@1," & ' 1
+                "@2," &'2
+                "@3," &'3
+                "@4," &'4'
+                "@5," &'5'
+                "@6," &'6
+                "@7," &'7'
+                "@8," &'8
+                "@9," &'9
+                "@10," &'10
+                "@11," &'11
+                "@12," &'12
+                "@13," &'13
+                "@14," &'14
+                "@15," &'15
+                "@16," &'16
+                "@17," &'17
+                "@18," &'18
+                "@19," &'19
+                "@20," &'20
+                "@21," &'21
+                "@22," &'22'
+                "@23," &'23
+                "@24," &'24
+                "@25," &'25
+                "@26" & '26
                 ");"
 
 
-            oCmd.Parameters.AddWithValue("?_1", pfacture.idStructure)
-            oCmd.Parameters.AddWithValue("?_2", CSDate.mysql2access(pfacture.dateFacture))
-            oCmd.Parameters.AddWithValue("?_3", CSDate.mysql2access(pfacture.dateEcheance))
-            oCmd.Parameters.AddWithValue("?_4", pfacture.Commentaire)
-            oCmd.Parameters.AddWithValue("?_5", pfacture.modeReglement)
-            oCmd.Parameters.AddWithValue("?_6", pfacture.isReglee)
-            oCmd.Parameters.AddWithValue("?_7", pfacture.refReglement)
-            oCmd.Parameters.Add("?_8", OleDb.OleDbType.Currency).Value = pfacture.TotalHT
-            oCmd.Parameters.Add("?_9", OleDb.OleDbType.Currency).Value = pfacture.TotalTVA
-            oCmd.Parameters.Add("?_10", OleDb.OleDbType.Currency).Value = pfacture.TotalTTC
-            oCmd.Parameters.Add("?_11", OleDb.OleDbType.Currency).Value = pfacture.TxTVA
-            oCmd.Parameters.AddWithValue("?_12", pfacture.idDiag)
-            oCmd.Parameters.AddWithValue("?_13", pfacture.oExploit.id)
-            oCmd.Parameters.AddWithValue("?_14", pfacture.oExploit.raisonSociale)
-            oCmd.Parameters.AddWithValue("?_15", pfacture.oExploit.nomExploitant)
-            oCmd.Parameters.AddWithValue("?_16", pfacture.oExploit.prenomExploitant)
-            oCmd.Parameters.AddWithValue("?_17", pfacture.oExploit.adresse)
-            oCmd.Parameters.AddWithValue("?_18", pfacture.oExploit.codePostal)
-            oCmd.Parameters.AddWithValue("?_19", pfacture.oExploit.commune)
-            oCmd.Parameters.AddWithValue("?_20", pfacture.oExploit.telephoneFixe)
-            oCmd.Parameters.AddWithValue("?_21", pfacture.oExploit.telephonePortable)
-            oCmd.Parameters.AddWithValue("?_22", pfacture.oExploit.eMail)
-            oCmd.Parameters.AddWithValue("?_23", pfacture.pathPDF)
-            oCmd.Parameters.AddWithValue("?_24", CSDate.mysql2access(pfacture.dateModificationAgent))
-            oCmd.Parameters.AddWithValue("?_25", CSDate.mysql2access(pfacture.dateModificationCrodip))
-            oCmd.Parameters.AddWithValue("?_26", pfacture.idFacture)
+            AddParameter(oCmd, "@1", pfacture.idStructure)
+            AddParameter(oCmd, "@2", CSDate.mysql2access(pfacture.dateFacture))
+            AddParameter(oCmd, "@3", CSDate.mysql2access(pfacture.dateEcheance))
+            AddParameter(oCmd, "@4", pfacture.Commentaire)
+            AddParameter(oCmd, "@5", pfacture.modeReglement)
+            AddParameter(oCmd, "@6", pfacture.isReglee)
+            AddParameter(oCmd, "@7", pfacture.refReglement)
+            AddParameter(oCmd, "@8", pfacture.TotalHT, DbType.Currency)
+            AddParameter(oCmd, "@9", pfacture.TotalTVA, DbType.Currency)
+            AddParameter(oCmd, "@10", pfacture.TotalTTC, DbType.Currency)
+            AddParameter(oCmd, "@11", pfacture.TxTVA, DbType.Currency)
+            AddParameter(oCmd, "@12", pfacture.idDiag)
+            AddParameter(oCmd, "@13", pfacture.oExploit.id)
+            AddParameter(oCmd, "@14", pfacture.oExploit.raisonSociale)
+            AddParameter(oCmd, "@15", pfacture.oExploit.nomExploitant)
+            AddParameter(oCmd, "@16", pfacture.oExploit.prenomExploitant)
+            AddParameter(oCmd, "@17", pfacture.oExploit.adresse)
+            AddParameter(oCmd, "@18", pfacture.oExploit.codePostal)
+            AddParameter(oCmd, "@19", pfacture.oExploit.commune)
+            AddParameter(oCmd, "@20", pfacture.oExploit.telephoneFixe)
+            AddParameter(oCmd, "@21", pfacture.oExploit.telephonePortable)
+            AddParameter(oCmd, "@22", pfacture.oExploit.eMail)
+            AddParameter(oCmd, "@23", pfacture.pathPDF)
+            AddParameter(oCmd, "@24", CSDate.mysql2access(pfacture.dateModificationAgent))
+            AddParameter(oCmd, "@25", CSDate.mysql2access(pfacture.dateModificationCrodip))
+            AddParameter(oCmd, "@26", pfacture.idFacture)
 
             oCmd.ExecuteNonQuery()
 
@@ -240,11 +241,11 @@ Public Class FactureManager
         Dim oReturn As New Facture
         Try
             Dim oCSDB As New CSDb(True)
-            Dim oCmd As OleDb.OleDbCommand
-            Dim oDR As OleDb.OleDbDataReader
+            Dim oCmd As DbCommand
+            Dim oDR As DbDataReader
             oCmd = oCSDB.getConnection().CreateCommand
-            oCmd.CommandText = "SELECT * FROM Facture where idFacture = ?"
-            oCmd.Parameters.AddWithValue("?", pFactureId)
+            oCmd.CommandText = "SELECT * FROM Facture where idFacture = @1"
+            AddParameter(oCmd, "@1", pFactureId)
             oDR = oCmd.ExecuteReader()
             While oDR.Read()
                 Dim nChamp As Integer
@@ -273,15 +274,15 @@ Public Class FactureManager
         Dim oReturn As New List(Of Facture)
         Try
             Dim oCSDB As New CSDb(True)
-            Dim oCmd As OleDb.OleDbCommand
-            Dim oDR As OleDb.OleDbDataReader
+            Dim oCmd As DbCommand
+            Dim oDR As DbDataReader
             Dim oFacture As Facture
             oCmd = oCSDB.getConnection().CreateCommand
 
-            oCmd.CommandText = "SELECT FACTURE.* FROM Facture where nomclient Like ? Or prenomclient like ? Or rsclient Like ? ORDER BY dateFacture DESC"
-            oCmd.Parameters.AddWithValue("?", "%" & pNomClient & "%")
-            oCmd.Parameters.AddWithValue("?", "%" & pNomClient & "%")
-            oCmd.Parameters.AddWithValue("?", "%" & pNomClient & "%")
+            oCmd.CommandText = "SELECT FACTURE.* FROM Facture where nomclient Like @1 Or prenomclient like @2 Or rsclient Like @3 ORDER BY dateFacture DESC"
+            AddParameter(oCmd, "@1", "%" & pNomClient & "%")
+            AddParameter(oCmd, "@2", "%" & pNomClient & "%")
+            AddParameter(oCmd, "@3", "%" & pNomClient & "%")
             oDR = oCmd.ExecuteReader()
             While oDR.Read()
                 oFacture = New Facture()
@@ -311,15 +312,13 @@ Public Class FactureManager
         Dim oReturn As New List(Of Facture)
         Try
             Dim oCSDB As New CSDb(True)
-            Dim oCmd As OleDb.OleDbCommand
-            Dim oDR As OleDb.OleDbDataReader
+            Dim oCmd As DbCommand
+            Dim oDR As DbDataReader
             Dim oFacture As Facture
             oCmd = oCSDB.getConnection().CreateCommand
-            oCmd.CommandText = "SELECT FACTURE.* FROM Facture where dateFacture >=  ? and dateFacture <= ? ORDER BY dateFacture DESC"
-            '            oCmd.Parameters.Add("?_1", OleDb.OleDbType.Date).Value = pDateDeb
-            '           oCmd.Parameters.Add("?_2", OleDb.OleDbType.Date).Value = pDateFin
-            oCmd.Parameters.AddWithValue("?_1", pDateDeb & " 00:00:00")
-            oCmd.Parameters.AddWithValue("?_2", pDateFin & " 23:59:59")
+            oCmd.CommandText = "SELECT FACTURE.* FROM Facture where dateFacture >=  @1 and dateFacture <= @2 ORDER BY dateFacture DESC"
+            AddParameter(oCmd, "@1", pDateDeb & " 00:00:00")
+            AddParameter(oCmd, "@2", pDateFin & " 23:59:59")
             oDR = oCmd.ExecuteReader()
             While oDR.Read()
                 oFacture = New Facture()
@@ -347,8 +346,8 @@ Public Class FactureManager
         Dim oReturn As New List(Of Facture)
         Try
             Dim oCSDB As New CSDb(True)
-            Dim oCmd As OleDb.OleDbCommand
-            Dim oDR As OleDb.OleDbDataReader
+            Dim oCmd As DbCommand
+            Dim oDR As DbDataReader
             Dim oFacture As Facture
             oCmd = oCSDB.getConnection().CreateCommand
             oCmd.CommandText = "SELECT FACTURE.* FROM Facture ORDER BY dateFacture DESC"
@@ -381,11 +380,11 @@ Public Class FactureManager
         Dim oReturn As New List(Of Facture)
         Try
             Dim oCSDB As New CSDb(True)
-            Dim oCmd As OleDb.OleDbCommand
-            Dim oDR As OleDb.OleDbDataReader
+            Dim oCmd As DbCommand
+            Dim oDR As DbDataReader
             oCmd = oCSDB.getConnection().CreateCommand
-            oCmd.CommandText = "SELECT * FROM Facture where idDiag = ?"
-            oCmd.Parameters.AddWithValue("?", pDiagId)
+            oCmd.CommandText = "SELECT * FROM Facture where idDiag = @1"
+            AddParameter(oCmd, "@1", pDiagId)
             oDR = oCmd.ExecuteReader()
             While oDR.Read()
                 Dim oFacture As New Facture()

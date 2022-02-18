@@ -1,6 +1,7 @@
 ﻿Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
+Imports System.Data.Common
 '''
 ''' Classe de stockage des infos saisie de mesures pour l'item 12123
 ''' Voir fichier Calcul12123
@@ -239,7 +240,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
                 End If
 
             End If
-                bReturn = True
+            bReturn = True
         Catch ex As Exception
             bReturn = False
             CSDebug.dispError("DiagnosticHelp12123MesureTrtSem ERR : " & ex.Message)
@@ -253,13 +254,13 @@ Public Class DiagnosticHelp12123MesuresTrtSem
         Dim bReturn As Boolean
         Try
             Dim oCsDB As New CSDb(True)
-            Dim oCmd As OleDb.OleDbCommand
+            Dim oCmd As DbCommand
 
             oCmd = oCsDB.getConnection().CreateCommand()
             Dim strQuery As String
             strQuery = "Select * from DiagnosticItem where idDiagnostic = '" & idDiag & "' and idItem = '" & DIAGITEM_ID & pNumPompe & "-" & pNumMesure & "'"
             oCmd.CommandText = strQuery
-            Dim oDr As OleDb.OleDbDataReader
+            Dim oDr As DbDataReader
             oDr = oCmd.ExecuteReader()
             If oDr.HasRows() Then
                 oDr.Read()
@@ -292,7 +293,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
             Dim oDiagItem As DiagnosticItem
             Dim oDiagItemLu As DiagnosticItem
             oDiagItem = ConvertToDiagnosticItem()
-            If Not String.IsNullOrEmpty(id) Then
+            If Not String.IsNullOrEmpty(id) Or id = "0" Then
                 oDiagItemLu = DiagnosticItemManager.getDiagnosticItemById(id, idDiag)
                 If Not String.IsNullOrEmpty(oDiagItemLu.id) Then
                     oDiagItem.id = oDiagItemLu.id
@@ -304,9 +305,11 @@ Public Class DiagnosticHelp12123MesuresTrtSem
                     oDiagItem.dateModificationCrodip = oDiagItemLu.dateModificationCrodip
                 End If
             End If
-            If String.IsNullOrEmpty(oDiagItem.id) Then
-                id = DiagnosticItemManager.getNewId(pStructureId, pAgentId)
-                oDiagItem.id = id
+            If CSDb._DBTYPE <> CSDb.EnumDBTYPE.SQLITE Then
+                If Not String.IsNullOrEmpty(id) Or id = "0" Then
+                    id = DiagnosticItemManager.getNewId(pStructureId, pAgentId)
+                    oDiagItem.id = id
+                End If
             End If
             Dim oCSDB As New CSDb(True)
             bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)

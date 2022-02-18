@@ -1,6 +1,7 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
+Imports System.Data.Common
 
 Public Class AgentList
 
@@ -18,7 +19,7 @@ Public Class AgentList
 
 End Class
 
-<Serializable(), XmlInclude(GetType(Agent))> _
+<Serializable(), XmlInclude(GetType(Agent))>
 Public Class Agent
 
     Private _id As Integer
@@ -449,15 +450,15 @@ Public Class Agent
     Private Function deleteDiagnostic() As Boolean
         Debug.Assert(id > 0, " le paramètre AgentID doit être initialisé")
         CSDebug.dispError("Suppression des Diagnostiques de l'agent " & id)
-        Dim oCsdb As CSDb = Nothing 
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
-        Dim oDR As OleDb.OleDbDataReader
+        Dim oDR As DbDataReader
         Dim idDiag As String
         Try
-            oCSDb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            bddCommande = oCSDb.getConnection.CreateCommand()
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "SELECT id from Diagnostic WHERE inspecteurid=" & id.ToString() & ""
             oDR = bddCommande.ExecuteReader()
             While oDR.Read()
@@ -474,8 +475,8 @@ Public Class Agent
             CSDebug.dispFatal("Agent.deleteDiagnostic (" & id.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'deleteDiagnostic
@@ -485,16 +486,16 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deletePulverisateur() As Boolean
-        Dim oCsdb As CSDb = Nothing 
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
-        Dim oDR As OleDb.OleDbDataReader
+        Dim oDR As DbDataReader
         Dim idPulve As String
         Try
             CSDebug.dispError("Suppression des Pulvérisateurs de l'agent " & id)
-            oCSDb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            bddCommande = oCSDb.getConnection.CreateCommand()
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "SELECT id from pulverisateur WHERE id like " & ControlChars.Quote & "%-" & id.ToString() & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While (oDR.Read())
@@ -510,8 +511,8 @@ Public Class Agent
             CSDebug.dispFatal("Agent.deletePulverisateur (" & id.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'deletePulverisateur
@@ -521,16 +522,16 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteExploitation() As Boolean
-        Dim oCsdb As CSDb = Nothing 
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
-        Dim oDR As OleDb.OleDbDataReader
+        Dim oDR As DbDataReader
         Dim idExploit As String
         Try
             CSDebug.dispError("Suppression des Exploitations de l'agent " & id)
-            oCSDb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            bddCommande = oCSDb.getConnection.CreateCommand()
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "SELECT id from Exploitation WHERE id like " & ControlChars.Quote & "%-" & id.ToString() & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While (oDR.Read())
@@ -546,8 +547,8 @@ Public Class Agent
             CSDebug.dispFatal("Agent.deletePulverisateur (" & id.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'deleteExploitation
@@ -585,14 +586,14 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteBuse() As Boolean
-        Dim oCsdb As CSDb = Nothing 
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
-        Dim oDR As OleDb.OleDbDataReader
+        Dim oDR As DbDataReader
 
         Try
-            oCSDb = New CSDb(True)
-            bddCommande = oCSDb.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT numeroNational from AgentBuseEtalon where numeroNational like " & ControlChars.Quote & "%-" & id & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While oDR.Read()
@@ -604,8 +605,8 @@ Public Class Agent
             CSDebug.dispFatal("AgentManager.deleteBuse (" & id.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'deleteBuse
@@ -616,26 +617,16 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteManoControle() As Boolean
-        Dim oCsdb As CSDb = Nothing 
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
-        Dim oDR As OleDb.OleDbDataReader
+        Dim oDR As DbDataReader
         Try
-            oCSDb = New CSDb(True)
-            bddCommande = oCSDb.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT numeroNational from AgentMAnoControle where numeroNational like " & ControlChars.Quote & "%-" & id & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While oDR.Read()
-                'Suppression des ControleManoMesure
-                'Dim oDR2 As OleDb.OleDbDataReader
-                'Dim bddCommande2 As OleDb.OleDbCommand
-                'bddCommande2 = oCSDb.getConnection().CreateCommand()
-                'bddCommande2.CommandText = "SELECT id from ControleManoMesure where idMano = " & ControlChars.Quote & oDR.GetString(0) & ControlChars.Quote
-                'oDR2 = bddCommande2.ExecuteReader()
-                'While oDR2.Read()
-                '    ControleManoManager.delete(oDR2.GetString(0))
-                'End While
-                'oDR2.Close()
 
                 ManometreControleManager.delete(oDR.GetString(0))
             End While
@@ -645,8 +636,8 @@ Public Class Agent
             CSDebug.dispFatal("Agent.deleteManoControle () Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'deleteManoControle
@@ -656,20 +647,20 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteManoEtalon() As Boolean
-        Dim oCsdb As CSDb = Nothing 
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
-        Dim oDR As OleDb.OleDbDataReader
+        Dim oDR As DbDataReader
         Try
-            oCSDb = New CSDb(True)
-            bddCommande = oCSDb.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT numeroNational from AgentMAnoEtalon where numeroNational like " & ControlChars.Quote & "%-" & id & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While oDR.Read()
                 'Suppression des ControleManoMesure
-                Dim oDR2 As OleDb.OleDbDataReader
-                Dim bddCommande2 As OleDb.OleDbCommand
-                bddCommande2 = oCSDb.getConnection().CreateCommand()
+                Dim oDR2 As DbDataReader
+                Dim bddCommande2 As DbCommand
+                bddCommande2 = oCsdb.getConnection().CreateCommand()
                 bddCommande2.CommandText = "SELECT id from ControleManoMesure where ManoEtalon = " & ControlChars.Quote & oDR.GetString(0) & ControlChars.Quote
                 oDR2 = bddCommande2.ExecuteReader()
                 'While oDR2.Read()
@@ -685,8 +676,8 @@ Public Class Agent
             CSDebug.dispFatal("Agent.deleteManoEtalon () Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'deleteManoEtalon
@@ -697,13 +688,13 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteBancMesure() As Boolean
-        Dim oCsdb As CSDb = Nothing 
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
-        Dim oDR As OleDb.OleDbDataReader
+        Dim oDR As DbDataReader
         Try
-            oCSDb = New CSDb(True)
-            bddCommande = oCSDb.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT id from BancMesure where id like " & ControlChars.Quote & "%-" & id & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While oDR.Read()
@@ -715,8 +706,8 @@ Public Class Agent
             CSDebug.dispFatal("Agent.deleteBancMesure () Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'deleteBancMesure
@@ -726,12 +717,12 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteControleRegulier() As Boolean
-        Dim oCsdb As CSDb = Nothing 
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
         Try
-            oCSDb = New CSDb(True)
-            bddCommande = oCSDb.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "DELETE FROM controle_regulier where ctrg_numagent ='" & id & "'"
             bddCommande.ExecuteNonQuery()
             bReturn = True
@@ -739,8 +730,8 @@ Public Class Agent
             CSDebug.dispFatal("Agent.deleteControleRegulier () Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'deleteControleRegulier

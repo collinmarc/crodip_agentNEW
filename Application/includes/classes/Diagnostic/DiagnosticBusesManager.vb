@@ -1,3 +1,5 @@
+Imports System.Data.Common
+
 Public Class DiagnosticBusesManager
 
 #Region "Methodes Web Service"
@@ -147,7 +149,7 @@ Public Class DiagnosticBusesManager
     '    Dim tmpDiagnosticId As String = structure_id & "-" & agentCourant.id & "-1"
     '    If structure_id <> "" And structure_id <> "0" Then
 
-    '        Dim bddCommande As New OleDb.OleDbCommand
+    '        Dim bddCommande As New DbCommand
     '        ' On test si la connexion est déjà ouverte ou non
     '        If bddConnection.State() = 0 Then
     '            ' Si non, on la configure et on l'ouvre
@@ -158,7 +160,7 @@ Public Class DiagnosticBusesManager
     '        bddCommande.CommandText = "SELECT `DiagnosticItem`.`id` FROM `DiagnosticItem` WHERE `DiagnosticItem`.`id` LIKE '" & structure_id & "-" & agentCourant.id & "-%' ORDER BY `DiagnosticItem`.`id` DESC"
     '        Try
     '            ' On récupère les résultats
-    '            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+    '            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
     '            ' Puis on les parcours
     '            Dim newId As Integer = 0
     '            While tmpListProfils.Read()
@@ -189,7 +191,7 @@ Public Class DiagnosticBusesManager
     Public Shared Sub save(ByVal objDiagnosticBuses As DiagnosticBuses, Optional bSyncro As Boolean = False)
 
         Dim oCSDb As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         bddCommande = oCSDb.getConnection().CreateCommand()
         Try
             Dim nEnr As Integer
@@ -254,7 +256,11 @@ Public Class DiagnosticBusesManager
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "INSERT INTO `DiagnosticBuses` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
                 bddCommande.ExecuteNonQuery()
-                bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBuses"
+                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                    bddCommande.CommandText = "SELECT last_insert_rowid() "
+                Else
+                    bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBuses"
+                End If
                 objDiagnosticBuses.id = bddCommande.ExecuteScalar()
             Else
                 'Mise à jour de l'enregistrement
@@ -294,7 +300,7 @@ Public Class DiagnosticBusesManager
             SQL = SQL & " dateModificationAgent , "
             SQL = SQL & " dateModificationCrodip  "
             SQL = SQL & " ) VALUES ("
-            SQL = SQL & " ?,?,?,?,?,?,? "
+            SQL = SQL & " @P1,@P2,@P3,@P4,@P5,@P6,@P7"
             SQL = SQL & " )"
             bddCommande.CommandText = SQL
             bddCommande.Prepare()
@@ -308,13 +314,66 @@ Public Class DiagnosticBusesManager
                             oBDetail.dateModificationAgent = DateTime.Now
 
                             bddCommande.Parameters.Clear()
-                            bddCommande.Parameters.AddWithValue("?", oBDetail.idDiagnostic)
-                            bddCommande.Parameters.AddWithValue("?", i)
-                            bddCommande.Parameters.AddWithValue("?", oBDetail.idLot)
-                            bddCommande.Parameters.AddWithValue("?", oBDetail.debit)
-                            bddCommande.Parameters.AddWithValue("?", oBDetail.ecart)
-                            bddCommande.Parameters.AddWithValue("?", oBDetail.dateModificationAgent)
-                            bddCommande.Parameters.AddWithValue("?", oBDetail.dateModificationCrodip)
+                            Dim oParam As DbParameter
+                            oParam = bddCommande.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@P1"
+                                End If
+                                .Value = oBDetail.idDiagnostic
+                            End With
+                            bddCommande.Parameters.Add(oParam)
+
+                            oParam = bddCommande.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@P2"
+                                End If
+                                .Value = i
+                            End With
+                            bddCommande.Parameters.Add(oParam)
+
+                            oParam = bddCommande.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@P3"
+                                End If
+                                .Value = oBDetail.idLot
+                            End With
+                            bddCommande.Parameters.Add(oParam)
+
+                            oParam = bddCommande.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@P4"
+                                End If
+                                .Value = oBDetail.debit
+                            End With
+                            bddCommande.Parameters.Add(oParam)
+                            oParam = bddCommande.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@P5"
+                                End If
+                                .Value = oBDetail.ecart
+                            End With
+                            bddCommande.Parameters.Add(oParam)
+                            oParam = bddCommande.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@P6"
+                                End If
+                                .Value = oBDetail.dateModificationAgent
+                            End With
+                            bddCommande.Parameters.Add(oParam)
+                            oParam = bddCommande.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@P7"
+                                End If
+                                .Value = oBDetail.dateModificationCrodip
+                            End With
+                            bddCommande.Parameters.Add(oParam)
                             Try
                                 bddCommande.ExecuteNonQuery()
                             Catch ex As Exception
@@ -352,10 +411,10 @@ Public Class DiagnosticBusesManager
         Dim bReturn As Boolean
         Dim oCSDB As New CSDb(True)
         Try
-            Dim bddCommande3 As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+            Dim bddCommande3 As DbCommand = oCSDB.getConnection().CreateCommand()
             bddCommande3.CommandText = "SELECT MAX(IDLOT) FROM DiagnosticBuses WHERE DiagnosticBuses.idDiagnostic='" & pDiagnostic.id & "'"
             ' On récupère les résultats
-            Dim oDR As System.Data.OleDb.OleDbDataReader = bddCommande3.ExecuteReader
+            Dim oDR As DbDataReader = bddCommande3.ExecuteReader
             If oDR.HasRows Then
                 oDR.Read()
                 If oDR.IsDBNull(0) Then
@@ -390,9 +449,9 @@ Public Class DiagnosticBusesManager
             For nLot As Integer = 1 To pDiagnostic.NbreLotsBuses
                 'Recupération des infos de Buses
                 Dim nColId As Integer
-                Dim bddCommande3 As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+                Dim bddCommande3 As DbCommand = oCSDB.getConnection().CreateCommand()
                 bddCommande3.CommandText = "SELECT * FROM DiagnosticBuses WHERE DiagnosticBuses.idDiagnostic='" & pDiagnostic.id & "' AND IDLOT = '" & nLot & "'"
-                Dim oDRDiagnosticBuses As System.Data.OleDb.OleDbDataReader = bddCommande3.ExecuteReader
+                Dim oDRDiagnosticBuses As DbDataReader = bddCommande3.ExecuteReader
                 'Normalement on en a qu'un type de buse / Lot mais suite à un bug (synchro) il se peut qu'on en ait plusieurs
                 '=> on cumule les infos dans le même objet
                 Dim oDiagnosticBuses As New DiagnosticBuses
@@ -411,9 +470,9 @@ Public Class DiagnosticBusesManager
                 pDiagnostic.diagnosticBusesList.Liste.Add(oDiagnosticBuses)
 
                 'On va ensuite chercher les infos de mesure de ce Lot
-                Dim bddCommande4 As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+                Dim bddCommande4 As DbCommand = oCSDB.getConnection().CreateCommand()
                 bddCommande4.CommandText = "SELECT * FROM DiagnosticBusesDetail WHERE idDiagnostic='" & pDiagnostic.id & "' AND IDLOT = " & nLot & ""
-                Dim oDRDiagBusesDetail As System.Data.OleDb.OleDbDataReader = bddCommande4.ExecuteReader
+                Dim oDRDiagBusesDetail As DbDataReader = bddCommande4.ExecuteReader
                 Dim tmpBuseDetail As DiagnosticBusesDetail
                 While oDRDiagBusesDetail.Read()
                     'Creation de l'objet BuseDetail pour recevoir la mesure
@@ -449,12 +508,12 @@ Public Class DiagnosticBusesManager
         Dim tmpDiagnosticBuses As New DiagnosticBuses
         If diagnosticbuses_id > 0 Then
 
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM DiagnosticBuses WHERE DiagnosticBuses.id=" & diagnosticbuses_id & " and idDiagnostic = '" & pidDiagnostic & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
@@ -512,7 +571,7 @@ Public Class DiagnosticBusesManager
             oDiagBuses = DiagnosticBusesManager.getDiagnosticBusesById(diagnosticbuses_id, pidDiagnostic)
             If oDiagBuses IsNot Nothing Then
                 Dim oCSDB As New CSDb(True)
-                Dim bddCommande As OleDb.OleDbCommand
+                Dim bddCommande As DbCommand
                 bddCommande = oCSDB.getConnection().CreateCommand()
                 bddCommande.CommandText = "DELETE FROM DiagnosticBusesDetail WHERE idLot=" & oDiagBuses.idLot & " and idDiagnostic = '" & pidDiagnostic & "'"
                 bddCommande.ExecuteNonQuery()
@@ -534,7 +593,7 @@ Public Class DiagnosticBusesManager
         Try
 
             Dim oCSDB As New CSDb(True)
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "DELETE FROM DiagnosticBusesDetail WHERE  idDiagnostic = '" & pidDiagnostic & "'"
             bddCommande.ExecuteNonQuery()
@@ -551,14 +610,14 @@ Public Class DiagnosticBusesManager
     Public Shared Function getUpdates() As DiagnosticBuses()
         ' déclarations
         Dim arrItems(0) As DiagnosticBuses
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim oCSDB As New CSDb(True)
         bddCommande = oCSDB.getConnection.CreateCommand()
         bddCommande.CommandText = "SELECT * FROM `DiagnosticBuses` WHERE `DiagnosticBuses`.`dateModificationAgent`<>`DiagnosticBuses`.`dateModificationCrodip`"
 
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()

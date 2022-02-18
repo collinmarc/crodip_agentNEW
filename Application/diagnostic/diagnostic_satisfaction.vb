@@ -688,7 +688,6 @@ Public Class diagnostic_satisfaction
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub GenereDocumentCoPropriete()
-        Dim lstCoProp As List(Of String)
         Dim ofrm As New FrmAddCoProp()
         ofrm.Setcontext(m_Diagnostic, m_Agent)
         ofrm.ShowDialog(Me)

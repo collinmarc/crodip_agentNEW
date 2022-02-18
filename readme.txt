@@ -1,5 +1,9 @@
 TRUNK
 MASTER
+BUILD : XXXXXX
+
+	0001481: Export Factures : Format des dates
+
 BUILD : 20220201120000
 	0001475: Transfert de client ne fonctionne plus depuis la dernière version
 	0001476: [Facturation] : Valider/imprimer

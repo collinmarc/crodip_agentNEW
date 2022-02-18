@@ -1,4 +1,5 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
 Public Class BancManager
 
 #Region "Methodes Web Service"
@@ -68,16 +69,16 @@ Public Class BancManager
     Public Shared Function FTO_getNewId(ByVal pAgent As Agent) As String
         ' déclarations
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
         Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
         If pAgent.idStructure <> 0 Then
-            oCSDb = New CSDb(True)
-            bddCommande = oCSDb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT `BancMesure`.`id` FROM `BancMesure` WHERE `BancMesure`.`id` LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY `BancMesure`.`id` DESC"
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
+            bddCommande.CommandText = "SELECT BancMesure.id FROM BancMesure WHERE BancMesure.id LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY BancMesure.id DESC"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
@@ -96,9 +97,9 @@ Public Class BancManager
             End Try
 
             ' Test pour fermeture de connection BDD
-            If oCSDb IsNot Nothing Then
+            If oCsdb IsNot Nothing Then
                 ' On ferme la connexion
-                oCSDb.free()
+                oCsdb.free()
             End If
 
         End If
@@ -109,7 +110,7 @@ Public Class BancManager
     Public Shared Function save(ByVal objBanc As Banc, Optional bsynchro As Boolean = False) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(objBanc.id), "L'Id doit être inititialisé")
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
         Try
             If objBanc.id <> "" Then
@@ -124,67 +125,67 @@ Public Class BancManager
                 End If
 
                 If bReturn Then
-                    oCSDb = New CSDb(True)
-                    bddCommande = oCSDb.getConnection().CreateCommand()
+                    oCsdb = New CSDb(True)
+                    bddCommande = oCsdb.getConnection().CreateCommand()
 
                     ' Initialisation de la requete
-                    Dim paramsQuery As String = "`BancMesure`.`id`='" & objBanc.id & "'"
+                    Dim paramsQuery As String = "id='" & objBanc.id & "'"
 
                     ' Mise a jour de la date de derniere modification
                     If Not bsynchro Then
                         objBanc.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                     End If
 
-                    paramsQuery = paramsQuery & " , `BancMesure`.`idStructure`=" & objBanc.idStructure & ""
+                    paramsQuery = paramsQuery & " , idStructure=" & objBanc.idStructure & ""
 
                     If Not objBanc.marque Is Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`marque`='" & CSDb.secureString(objBanc.marque) & "'"
+                        paramsQuery = paramsQuery & " , marque='" & CSDb.secureString(objBanc.marque) & "'"
                     End If
                     If Not objBanc.modele Is Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`modele`='" & CSDb.secureString(objBanc.modele) & "'"
+                        paramsQuery = paramsQuery & " , modele='" & CSDb.secureString(objBanc.modele) & "'"
                     End If
                     If objBanc.dateDernierControleS IsNot Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`dateDernierControle`='" & CSDate.mysql2access(objBanc.dateDernierControleS) & "'"
+                        paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.mysql2access(objBanc.dateDernierControleS) & "'"
                     End If
                     If Not objBanc.dateAchat Is Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`dateAchat`='" & CSDate.mysql2access(objBanc.dateAchat) & "'"
+                        paramsQuery = paramsQuery & " , dateAchat='" & CSDate.mysql2access(objBanc.dateAchat) & "'"
                     End If
                     If Not objBanc.dateModificationAgent Is Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`dateModificationAgent`='" & CSDate.mysql2access(objBanc.dateModificationAgent) & "'"
+                        paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(objBanc.dateModificationAgent) & "'"
                     End If
                     If Not objBanc.dateModificationCrodip Is Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`dateModificationCrodip`='" & CSDate.mysql2access(objBanc.dateModificationCrodip) & "'"
+                        paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(objBanc.dateModificationCrodip) & "'"
                     End If
-                    paramsQuery = paramsQuery & " , `BancMesure`.`etat`=" & objBanc.etat & ""
-                    paramsQuery = paramsQuery & " , `BancMesure`.`isUtilise`=" & objBanc.isUtilise & ""
-                    paramsQuery = paramsQuery & " , `BancMesure`.`isSupprime`=" & objBanc.isSupprime & ""
-                    paramsQuery = paramsQuery & " , `BancMesure`.`nbControles`=" & objBanc.nbControles & ""
-                    paramsQuery = paramsQuery & " , `BancMesure`.`nbControlesTotal`=" & objBanc.nbControlesTotal & ""
-                    If Not objBanc.agentSuppression Is Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`agentSuppression`='" & objBanc.AgentSuppression & "'"
+                    paramsQuery = paramsQuery & " , etat=" & objBanc.etat & ""
+                    paramsQuery = paramsQuery & " , isUtilise=" & objBanc.isUtilise & ""
+                    paramsQuery = paramsQuery & " , isSupprime=" & objBanc.isSupprime & ""
+                    paramsQuery = paramsQuery & " , nbControles=" & objBanc.nbControles & ""
+                    paramsQuery = paramsQuery & " , nbControlesTotal=" & objBanc.nbControlesTotal & ""
+                    If Not objBanc.AgentSuppression Is Nothing Then
+                        paramsQuery = paramsQuery & " , agentSuppression='" & objBanc.AgentSuppression & "'"
                     Else
-                        paramsQuery = paramsQuery & " , `BancMesure`.`agentSuppression`=''"
+                        paramsQuery = paramsQuery & " , agentSuppression=''"
                     End If
-                    If Not objBanc.raisonSuppression Is Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`raisonSuppression`='" & objBanc.RaisonSuppression & "'"
+                    If Not objBanc.RaisonSuppression Is Nothing Then
+                        paramsQuery = paramsQuery & " , raisonSuppression='" & objBanc.RaisonSuppression & "'"
                     Else
-                        paramsQuery = paramsQuery & " , `BancMesure`.`raisonSuppression`=''"
+                        paramsQuery = paramsQuery & " , raisonSuppression=''"
                     End If
                     If objBanc.DateSuppression <> "" Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`dateSuppression`='" & CSDate.mysql2access(objBanc.DateSuppression) & "'"
+                        paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.mysql2access(objBanc.DateSuppression) & "'"
                     Else
-                        paramsQuery = paramsQuery & " , `BancMesure`.`dateSuppression`='" & Date.MinValue & "'"
+                        paramsQuery = paramsQuery & " , dateSuppression='" & Date.MinValue & "'"
                     End If
 
-                    paramsQuery = paramsQuery & " , `BancMesure`.`jamaisServi`=" & objBanc.jamaisServi & ""
+                    paramsQuery = paramsQuery & " , jamaisServi=" & objBanc.JamaisServi & ""
                     If objBanc.DateActivation <> Nothing Then
-                        paramsQuery = paramsQuery & " , `BancMesure`.`dateActivation`='" & CSDate.mysql2access(objBanc.DateActivation) & "'"
+                        paramsQuery = paramsQuery & " , dateActivation='" & CSDate.mysql2access(objBanc.DateActivation) & "'"
                     End If
-                    paramsQuery = paramsQuery & " , `BancMesure`.`ModuleAcquisition`='" & objBanc.ModuleAcquisition & "'"
+                    paramsQuery = paramsQuery & " , ModuleAcquisition='" & objBanc.ModuleAcquisition & "'"
 
 
                     ' On finalise la requete et en l'execute
-                    bddCommande.CommandText = "UPDATE `BancMesure` SET " & paramsQuery & " WHERE `BancMesure`.`id`='" & objBanc.id & "'"
+                    bddCommande.CommandText = "UPDATE BancMesure SET " & paramsQuery & " WHERE id='" & objBanc.id & "'"
                     bddCommande.ExecuteNonQuery()
                     bReturn = True
                 End If
@@ -195,8 +196,8 @@ Public Class BancManager
             bReturn = False
         End Try
 
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function
@@ -205,7 +206,7 @@ Public Class BancManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `BancMesure` SET `BancMesure`.`dateModificationCrodip`='" & newDate & "',`BancMesure`.`dateModificationAgent`='" & newDate & "' WHERE `BancMesure`.`id`='" & objBanc.id & "'"
+            dbLink.queryString = "UPDATE BancMesure SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id='" & objBanc.id & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -219,13 +220,13 @@ Public Class BancManager
         ' déclarations
         Dim tmpBanc As New Banc
         Dim oCSdb As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         bddCommande = oCSdb.getConnection().CreateCommand()
 
         bddCommande.CommandText = "SELECT * FROM BancMesure WHERE BancMesure.id='" & banc_id & "'"
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
             While tmpListProfils.Read()
                 ' On rempli notre tableau
@@ -257,11 +258,11 @@ Public Class BancManager
         Dim bReturn As Boolean
         Dim oCSDB As New CSDb(True)
         Try
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO `BancMesure` (`id`) VALUES ('" & pBancID & "')"
+            bddCommande.CommandText = "INSERT INTO BancMesure (id) VALUES ('" & pBancID & "')"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception
@@ -279,12 +280,12 @@ Public Class BancManager
         ' déclarations
         Dim arrItems(0) As Banc
         Dim oCSDB As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM `BancMesure` WHERE `BancMesure`.`dateModificationAgent`<>`BancMesure`.`dateModificationCrodip` AND `BancMesure`.`idStructure`=" & agent.idStructure
+        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT * FROM BancMesure WHERE BancMesure.dateModificationAgent<>BancMesure.dateModificationCrodip AND BancMesure.idStructure=" & agent.idStructure
 
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()
@@ -321,13 +322,13 @@ Public Class BancManager
     Public Shared Function delete(ByVal pBancId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pBancId), " le paramètre ID doit être initialisé")
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
         Try
-            oCSDb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            bddCommande = oCSDb.getConnection.CreateCommand()
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "DELETE FROM BancMesure WHERE BancMesure.id='" & pBancId & "'"
             nResult = bddCommande.ExecuteNonQuery()
             Debug.Assert(nResult = 1, "Erreur en Delete, plus d'une ligne supprimée")
@@ -342,8 +343,8 @@ Public Class BancManager
             CSDebug.dispFatal("BancManager.delete (" & pBancId.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'delete
@@ -358,8 +359,8 @@ Public Class BancManager
         Debug.Assert(Not String.IsNullOrEmpty(pIdStructure), "L'Id Structre doit être initialisé")
         Dim colReturn As New Collection()
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand = Nothing
-        Dim oDataReader As System.Data.OleDb.OleDbDataReader
+        Dim bddCommande As DbCommand = Nothing
+        Dim oDataReader As DbDataReader
         Try
             If pIdStructure <> "" Then
                 oCsdb = New CSDb(True)
@@ -404,7 +405,7 @@ Public Class BancManager
         Dim oCsDB As New CSDb(True)
         If pIdStructure <> "" Then
 
-            Dim bddCommande As OleDb.OleDbCommand = oCsDB.getConnection().CreateCommand()
+            Dim bddCommande As DbCommand = oCsDB.getConnection().CreateCommand()
             ' On test si la connexion est déjà ouverte ou non
             If isShowAll Then
                 bddCommande.CommandText = "SELECT * FROM BancMesure WHERE BancMesure.idStructure=" & pIdStructure & " AND BancMesure.isSupprime=" & False & " AND BancMesure.JamaisServi=" & False & " "
@@ -414,7 +415,7 @@ Public Class BancManager
             Try
 
                 ' On récupère les résultats
-                Dim oDataReader As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 Dim i As Integer = 0
                 While oDataReader.Read()
@@ -450,13 +451,13 @@ Public Class BancManager
         Dim oCsDB As New CSDb(True)
         If pIdStructure <> "" Then
 
-            Dim bddCommande As OleDb.OleDbCommand = oCsDB.getConnection().CreateCommand()
+            Dim bddCommande As DbCommand = oCsDB.getConnection().CreateCommand()
             ' On test si la connexion est déjà ouverte ou non
             bddCommande.CommandText = "SELECT * FROM BancMesure WHERE BancMesure.idStructure=" & pIdStructure & " AND BancMesure.isSupprime=" & False & " AND BancMesure.JamaisServi=" & True & " "
             Try
 
                 ' On récupère les résultats
-                Dim oDataReader As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 Dim i As Integer = 0
                 While oDataReader.Read()

@@ -1,4 +1,6 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
+
 Public Class BuseManager
 
 #Region "Methodes Web Service"
@@ -66,17 +68,17 @@ Public Class BuseManager
     ''' <remarks></remarks>
     Public Shared Function getNewNumeroNationalforTestOnly(ByVal agentCourant As Agent) As String
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         ' déclarations
         Dim tmpObjectId As String = agentCourant.idStructure & "-" & agentCourant.id & "-1"
         If agentCourant.idStructure <> 0 Then
 
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT `AgentBuseEtalon`.`numeroNational` FROM `AgentBuseEtalon` WHERE `AgentBuseEtalon`.`numeroNational` LIKE '" & agentCourant.idStructure & "-" & agentCourant.id & "-%' ORDER BY `AgentBuseEtalon`.`numeroNational` DESC"
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection.CreateCommand()
+            bddCommande.CommandText = "SELECT numeroNational FROM AgentBuseEtalon WHERE AgentBuseEtalon.numeroNational LIKE '" & agentCourant.idStructure & "-" & agentCourant.id & "-%' ORDER BY AgentBuseEtalon.numeroNational DESC"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
@@ -93,8 +95,8 @@ Public Class BuseManager
                 Console.Write("BuseManager - newId : " & ex.Message & vbNewLine)
             End Try
 
-            If Not oCSDB Is Nothing Then
-                oCSDB.free()
+            If Not oCsdb Is Nothing Then
+                oCsdb.free()
             End If
 
         End If
@@ -106,7 +108,7 @@ Public Class BuseManager
     Public Shared Function save(ByVal objBuseEtalon As Buse, Optional bSynchro As Boolean = False) As Boolean
 
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
 
         Try
@@ -121,11 +123,11 @@ Public Class BuseManager
                     createBuse(objBuseEtalon.numeroNational)
                 End If
 
-                oCSDb = New CSDb(True)
-                bddCommande = oCSDb.getConnection().CreateCommand()
+                oCsdb = New CSDb(True)
+                bddCommande = oCsdb.getConnection().CreateCommand()
 
                 ' Initialisation de la requete
-                Dim paramsQuery As String = "`AgentBuseEtalon`.`numeroNational`='" & objBuseEtalon.numeroNational & "'"
+                Dim paramsQuery As String = "numeroNational='" & objBuseEtalon.numeroNational & "'"
 
                 ' Mise a jour de la date de derniere modification
 
@@ -136,44 +138,44 @@ Public Class BuseManager
                 End If
 
                 If Not objBuseEtalon.idCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`idCrodip`='" & objBuseEtalon.idCrodip & "'"
+                    paramsQuery = paramsQuery & " , idCrodip='" & objBuseEtalon.idCrodip & "'"
 
                 End If
-                paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`idStructure`=" & objBuseEtalon.idStructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & objBuseEtalon.idStructure & ""
                 If Not objBuseEtalon.couleur Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`couleur`='" & CSDb.secureString(objBuseEtalon.couleur) & "'"
+                    paramsQuery = paramsQuery & " , couleur='" & CSDb.secureString(objBuseEtalon.couleur) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`pressionEtalonnage`='" & objBuseEtalon.pressionEtalonnage & "'"
-                paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`debitEtalonnage`='" & objBuseEtalon.debitEtalonnage & "'"
-                paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`isSynchro`=" & objBuseEtalon.isSynchro & ""
+                paramsQuery = paramsQuery & " , pressionEtalonnage='" & objBuseEtalon.pressionEtalonnage & "'"
+                paramsQuery = paramsQuery & " , debitEtalonnage='" & objBuseEtalon.debitEtalonnage & "'"
+                paramsQuery = paramsQuery & " , isSynchro=" & objBuseEtalon.isSynchro & ""
                 If Not objBuseEtalon.dateAchat Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`dateAchat`='" & CSDate.mysql2access(objBuseEtalon.dateAchat) & "'"
+                    paramsQuery = paramsQuery & " , dateAchat='" & CSDate.mysql2access(objBuseEtalon.dateAchat) & "'"
                 End If
                 If Not objBuseEtalon.dateModificationAgent Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`dateModificationAgent`='" & CSDate.mysql2access(objBuseEtalon.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(objBuseEtalon.dateModificationAgent) & "'"
                 End If
                 If Not objBuseEtalon.dateModificationCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`dateModificationCrodip`='" & CSDate.mysql2access(objBuseEtalon.dateModificationCrodip) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(objBuseEtalon.dateModificationCrodip) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`etat`=" & objBuseEtalon.etat & ""
-                paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`isSupprime`=" & objBuseEtalon.isSupprime & ""
-                paramsQuery = paramsQuery & " , `AgentBuseEtalon`.`isUtilise`=" & objBuseEtalon.isUtilise & ""
-                If Not objBuseEtalon.agentSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `agentSuppression`='" & objBuseEtalon.agentSuppression & "'"
+                paramsQuery = paramsQuery & " , etat=" & objBuseEtalon.etat & ""
+                paramsQuery = paramsQuery & " , isSupprime=" & objBuseEtalon.isSupprime & ""
+                paramsQuery = paramsQuery & " , isUtilise=" & objBuseEtalon.isUtilise & ""
+                If Not objBuseEtalon.AgentSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , agentSuppression='" & objBuseEtalon.AgentSuppression & "'"
                 End If
-                If Not objBuseEtalon.raisonSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `raisonSuppression`='" & objBuseEtalon.raisonSuppression & "'"
+                If Not objBuseEtalon.RaisonSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , raisonSuppression='" & objBuseEtalon.RaisonSuppression & "'"
                 End If
-                If Not objBuseEtalon.dateSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `dateSuppression`='" & CSDate.mysql2access(objBuseEtalon.dateSuppression) & "'"
+                If Not objBuseEtalon.DateSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.mysql2access(objBuseEtalon.DateSuppression) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `jamaisServi`=" & objBuseEtalon.jamaisServi & ""
+                paramsQuery = paramsQuery & " , jamaisServi=" & objBuseEtalon.JamaisServi & ""
                 If objBuseEtalon.DateActivation <> Nothing Then
-                    paramsQuery = paramsQuery & " , `dateActivation`='" & CSDate.mysql2access(objBuseEtalon.DateActivation) & "'"
+                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.mysql2access(objBuseEtalon.DateActivation) & "'"
                 End If
 
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE `AgentBuseEtalon` SET " & paramsQuery & " WHERE `AgentBuseEtalon`.`numeroNational`='" & objBuseEtalon.numeroNational & "'"
+                bddCommande.CommandText = "UPDATE AgentBuseEtalon SET " & paramsQuery & " WHERE numeroNational='" & objBuseEtalon.numeroNational & "'"
                 bddCommande.ExecuteNonQuery()
 
             End If
@@ -183,9 +185,9 @@ Public Class BuseManager
             bReturn = False
         End Try
         ' Test pour fermeture de connection BDD
-        If Not oCSDb Is Nothing Then
+        If Not oCsdb Is Nothing Then
             ' On ferme la connexion
-            oCSDb.free()
+            oCsdb.free()
         End If
         Return bReturn
     End Function
@@ -194,7 +196,7 @@ Public Class BuseManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `AgentBuseEtalon` SET `AgentBuseEtalon`.`dateModificationCrodip`='" & newDate & "',`AgentBuseEtalon`.`dateModificationAgent`='" & newDate & "' WHERE `AgentBuseEtalon`.`numeroNational`='" & objBuseEtalon.numeroNational & "'"
+            dbLink.queryString = "UPDATE AgentBuseEtalon SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE numeroNational='" & objBuseEtalon.numeroNational & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -205,16 +207,16 @@ Public Class BuseManager
     Public Shared Function getBuseByNumeroNational(ByVal buse_id As String) As Buse
         ' déclarations
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
         Dim tmpBuse As New Buse
         If buse_id <> "" Then
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE AgentBuseEtalon.numeroNational='" & buse_id & "'"
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
+            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE numeroNational='" & buse_id & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
@@ -233,9 +235,9 @@ Public Class BuseManager
 
         End If
         ' Test pour fermeture de connection BDD
-        If Not oCSDB Is Nothing Then
+        If Not oCsdb Is Nothing Then
             ' On ferme la connexion
-            oCSDB.free()
+            oCsdb.free()
         End If
         'on retourne le buse ou un objet vide en cas d'erreur
         Return tmpBuse
@@ -251,7 +253,7 @@ Public Class BuseManager
         Try
             If Not BuseManager.isUsedBuse(objBuse.numeroNational) Then
                 ' On met a jour en base
-                Dim query As String = "UPDATE `AgentBuseEtalon` SET `AgentBuseEtalon`.`dateModificationAgent`='" & Date.Now.ToString & "' , `AgentBuseEtalon`.`isUtilise`=" & True & " WHERE `AgentBuseEtalon`.`numeroNational`='" & objBuse.numeroNational & "'"
+                Dim query As String = "UPDATE AgentBuseEtalon SET AgentBuseEtalon.dateModificationAgent='" & Date.Now.ToString & "' , AgentBuseEtalon.isUtilise=" & True & " WHERE AgentBuseEtalon.numeroNational='" & objBuse.numeroNational & "'"
                 Dim bdd As New CSDb(True)
                 bdd.Execute(query)
                 bdd.free()
@@ -272,7 +274,7 @@ Public Class BuseManager
 
             Dim query As String = "SELECT * FROM AgentBuseEtalon WHERE AgentBuseEtalon.isUtilise=" & False & " AND AgentBuseEtalon.numeroNational='" & buse_id & "'"
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
+            Dim dataResults As DbDataReader = bdd.getResult2s(query)
             bReturn = dataResults.HasRows
             dataResults.Close()
             bdd.free()
@@ -294,7 +296,7 @@ Public Class BuseManager
         Dim bReturn As Boolean
         Try
             If Not isUsedBuse(buse_id) Then
-                Dim query As String = "UPDATE `AgentBuseEtalon` SET `AgentBuseEtalon`.`dateModificationAgent`='" & Date.Now.ToString & "' , `AgentBuseEtalon`.`isSupprime`=" & True & " WHERE `AgentBuseEtalon`.`numeroNational`='" & buse_id & "'"
+                Dim query As String = "UPDATE AgentBuseEtalon SET AgentBuseEtalon.dateModificationAgent='" & Date.Now.ToString & "' , AgentBuseEtalon.isSupprime=" & True & " WHERE AgentBuseEtalon.numeroNational='" & buse_id & "'"
                 Dim bdd As New CSDb(True)
                 bdd.Execute(query)
                 bdd.free()
@@ -318,14 +320,14 @@ Public Class BuseManager
     Private Shared Function createBuse(ByVal buse_id As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(buse_id), "l'Id doit être renseignée")
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
         Try
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO `AgentBuseEtalon` (`numeroNational`) VALUES ('" & buse_id & "')"
+            bddCommande.CommandText = "INSERT INTO AgentBuseEtalon (numeroNational) VALUES ('" & buse_id & "')"
             bddCommande.ExecuteNonQuery()
             bReturn = True
 
@@ -334,8 +336,8 @@ Public Class BuseManager
             bReturn = False
         End Try
 
-        If Not oCSDB Is Nothing Then
-            oCSDB.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function
@@ -348,8 +350,8 @@ Public Class BuseManager
     Public Shared Function getMaterielsSupprimes(ByVal pIdStructure As String) As Collection
         Dim colReturn As New Collection()
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
-        Dim oDataReader As System.Data.OleDb.OleDbDataReader
+        Dim bddCommande As DbCommand
+        Dim oDataReader As DbDataReader
         Try
             If pIdStructure <> "" Then
                 oCsdb = New CSDb(True)
@@ -389,15 +391,15 @@ Public Class BuseManager
         ' déclarations
         Dim arrItems(0) As Buse
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
         Try
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM `AgentBuseEtalon` WHERE `AgentBuseEtalon`.`dateModificationAgent`<>`AgentBuseEtalon`.`dateModificationCrodip` AND `AgentBuseEtalon`.`idStructure`=" & agent.idStructure
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection.CreateCommand()
+            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE dateModificationAgent<>dateModificationCrodip AND idStructure=" & agent.idStructure
 
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()
@@ -421,9 +423,9 @@ Public Class BuseManager
         End Try
 
         ' Test pour fermeture de connection BDD
-        If Not oCSDB Is Nothing Then
+        If Not oCsdb Is Nothing Then
             ' On ferme la connexion
-            oCSDB.free()
+            oCsdb.free()
         End If
 
         'on retourne les objet non synchro
@@ -434,13 +436,13 @@ Public Class BuseManager
     Public Shared Function delete(ByVal pNumeroNational As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pNumeroNational), " le paramètre NumeroNational doit être initialisé")
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
         Try
-            oCSDb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            bddCommande = oCSDb.getConnection.CreateCommand()
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "DELETE FROM AgentBuseEtalon WHERE numeroNational='" & pNumeroNational & "'"
             nResult = bddCommande.ExecuteNonQuery()
             Debug.Assert(nResult = 1, "Erreur en Delete, plus d'une ligne supprimée")
@@ -449,8 +451,8 @@ Public Class BuseManager
             CSDebug.dispFatal("BuseManager.delete (" & pNumeroNational & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'delete
@@ -458,20 +460,20 @@ Public Class BuseManager
 
         Dim lstResponse As New List(Of Buse)
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         If pIdStructure <> "" Then
 
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
             If isShowAll Then
-                bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE AgentBuseEtalon.idStructure=" & pIdStructure & " AND AgentBuseEtalon.jamaisServi=" & False & " AND AgentBuseEtalon.isSupprime=" & False & ""
+                bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE idStructure=" & pIdStructure & " AND jamaisServi=" & False & " AND AgentBuseEtalon.isSupprime=" & False & ""
             Else
-                bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE AgentBuseEtalon.idStructure=" & pIdStructure & " AND AgentBuseEtalon.jamaisServi=" & False & " AND AgentBuseEtalon.isSupprime=" & False & " AND AgentBuseEtalon.etat=" & True & ""
+                bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE idStructure=" & pIdStructure & " AND jamaisServi=" & False & " AND AgentBuseEtalon.isSupprime=" & False & " AND etat=" & True & ""
             End If
             Try
 
                 ' On récupère les résultats
-                Dim tmpListResults As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListResults As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 Dim i As Integer = 0
                 While tmpListResults.Read()
@@ -493,9 +495,9 @@ Public Class BuseManager
                 CSDebug.dispError("BuseManager.getBusesEtalonByStructureId ERR : " & ex.Message.ToString)
             End Try
             ' Test pour fermeture de connection BDD
-            If Not oCSDB Is Nothing Then
+            If Not oCsdb Is Nothing Then
                 ' On ferme la connexion
-                oCSDB.free()
+                oCsdb.free()
             End If
 
         End If
@@ -505,16 +507,16 @@ Public Class BuseManager
     Public Shared Function getBusesEtalonByStructureIdJamaisServi(ByVal pIdStructure As String) As List(Of Buse)
         Dim arrResponse As New List(Of Buse)
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         If pIdStructure <> "" Then
 
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE AgentBuseEtalon.idStructure=" & pIdStructure & " AND AgentBuseEtalon.jamaisServi=" & True & " AND AgentBuseEtalon.isSupprime=" & False & ""
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
+            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE idStructure=" & pIdStructure & " AND jamaisServi=" & True & " AND isSupprime=" & False & ""
             Try
 
                 ' On récupère les résultats
-                Dim tmpListResults As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListResults As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListResults.Read()
 
@@ -535,9 +537,9 @@ Public Class BuseManager
                 CSDebug.dispError("BuseManager.getBusesEtalonByStructureId ERR : " & ex.Message.ToString)
             End Try
             ' Test pour fermeture de connection BDD
-            If Not oCSDB Is Nothing Then
+            If Not oCsdb Is Nothing Then
                 ' On ferme la connexion
-                oCSDB.free()
+                oCsdb.free()
             End If
 
         End If

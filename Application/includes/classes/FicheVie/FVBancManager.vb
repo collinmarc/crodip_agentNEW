@@ -1,4 +1,5 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
 
 Public Class FVBancManager
 
@@ -119,7 +120,7 @@ Public Class FVBancManager
         Dim paramsQuery_col As String = ""
         Dim paramsQuery As String = ""
         Dim oCSDb As New CSDb(True)
-        Dim bddCommande As New OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
 
         Try
@@ -200,7 +201,7 @@ Public Class FVBancManager
             End If
 
             ' On finalise la requete et en l'execute
-            bddCommande.Connection = oCSDb.getConnection()
+            bddCommande = oCSDb.getConnection().CreateCommand
             bddCommande.CommandText = "INSERT INTO `FichevieBancMesure` (" & paramsQuery_col & ") VALUES (" & paramsQuery & ")"
             bddCommande.ExecuteNonQuery()
             oCSDb.free()
@@ -219,7 +220,7 @@ Public Class FVBancManager
         '        Dim paramsQuery_col As String
         '        Dim paramsQuery As String
         Dim CSDb As New CSDb(True)
-        Dim bddCommande As New OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
 
         Try
@@ -302,7 +303,7 @@ Public Class FVBancManager
             End If
 
             ' On finalise la requete et en l'execute
-            bddCommande.Connection = CSDb.getConnection()
+            bddCommande = CSDb.getConnection().CreateCommand()
             bddCommande.CommandText = "UPDATE `FichevieBancMesure` SET " & paramsQueryUpdate & " WHERE `FichevieBancMesure`.`id`='" & objFVBanc.id & "'"
             bddCommande.ExecuteNonQuery()
             CSDb.free()
@@ -318,7 +319,7 @@ Public Class FVBancManager
     Public Shared Function delete(ByVal pId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pId), " le paramètre ID doit être initialisé")
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
         Try
@@ -350,7 +351,7 @@ Public Class FVBancManager
 
                 Try
                     ' On récupère les résultats
-                    Dim oDataReader As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.idStructure & "-" & oAgent.id & "-%' ORDER BY `id` DESC")
+                    Dim oDataReader As DbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.idStructure & "-" & oAgent.id & "-%' ORDER BY `id` DESC")
                     ' Puis on les parcours
                     Dim newId As Integer = 0
                     While oDataReader.Read()
@@ -396,12 +397,12 @@ Public Class FVBancManager
         Dim tmpFVBanc As New FVBanc()
         If Not String.IsNullOrEmpty(fvbanc_id) Then
 
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = oCsDB.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM FichevieBancMesure WHERE FichevieBancMesure.id='" & fvbanc_id & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
@@ -455,7 +456,7 @@ Public Class FVBancManager
     Public Shared Function getUpdates(ByVal pAgent As Agent) As FVBanc()
         ' déclarations
         Dim arrItems(0) As FVBanc
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim oCsdb As CSDb = Nothing
         oCsdb = New CSDb(True)
         bddCommande = oCsdb.getConnection().CreateCommand()
@@ -463,7 +464,7 @@ Public Class FVBancManager
 
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()
@@ -503,7 +504,7 @@ Public Class FVBancManager
 
         Dim lstFVBanc As New System.Collections.Generic.List(Of FVBanc)
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection.CreateCommand()
@@ -511,7 +512,7 @@ Public Class FVBancManager
             Try
 
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
 
@@ -543,7 +544,7 @@ Public Class FVBancManager
     Public Shared Function getLstFVBanc() As List(Of FVBanc)
         Dim lstResponse As New List(Of FVBanc)
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
         oCsdb = New CSDb(True)
         bddCommande = oCsdb.getConnection().CreateCommand()
@@ -551,7 +552,7 @@ Public Class FVBancManager
         Try
 
             ' On récupère les résultats
-            Dim oDR As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim oDR As DbDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
             While oDR.Read()
 

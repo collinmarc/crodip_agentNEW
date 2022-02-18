@@ -1,4 +1,6 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
+
 Public Class FVManometreEtalonManager
 
 #Region "Methodes Web Service"
@@ -9,7 +11,7 @@ Public Class FVManometreEtalonManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As new Object
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetFVManometreEtalon(agentCourant.id, fvmanometrecontrole_id, objWSCrodip_response)
             Select Case codeResponse
@@ -123,15 +125,15 @@ Public Class FVManometreEtalonManager
     Public Shared Function save(ByVal objFVManometreEtalon As FVManometreEtalon, Optional bSyncro As Boolean = False) As Boolean
         Dim paramsQueryUpdate As String
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
         Try
-            oCSDb = New CSDb(True)
-            bddCommande = oCSDb.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
 
             ' Initialisation de la requete
-            paramsQueryUpdate = "`id`='" & objFVManometreEtalon.id & "',`idManometre`='" & CSDb.secureString(objFVManometreEtalon.idManometre) & "'"
-            Dim paramsQuery_col As String = "`id`,`idManometre`"
+            paramsQueryUpdate = "id='" & objFVManometreEtalon.id & "',idManometre='" & CSDb.secureString(objFVManometreEtalon.idManometre) & "'"
+            Dim paramsQuery_col As String = "id,idManometre"
             Dim paramsQuery As String = "'" & objFVManometreEtalon.id & "','" & objFVManometreEtalon.idManometre & "'"
 
             ' Mise a jour de la date de derniere modification
@@ -140,82 +142,82 @@ Public Class FVManometreEtalonManager
             End If
 
             If Not objFVManometreEtalon.type Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`type`"
+                paramsQuery_col = paramsQuery_col & ",type"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.type) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`type`='" & CSDb.secureString(objFVManometreEtalon.type) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",type='" & CSDb.secureString(objFVManometreEtalon.type) & "'"
             End If
             If Not objFVManometreEtalon.auteur Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`auteur`"
+                paramsQuery_col = paramsQuery_col & ",auteur"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.auteur) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`auteur`='" & CSDb.secureString(objFVManometreEtalon.auteur) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",auteur='" & CSDb.secureString(objFVManometreEtalon.auteur) & "'"
             End If
-            paramsQuery_col = paramsQuery_col & ",`idAgentControleur`"
+            paramsQuery_col = paramsQuery_col & ",idAgentControleur"
             paramsQuery = paramsQuery & " , " & objFVManometreEtalon.idAgentControleur & ""
-            paramsQueryUpdate = paramsQueryUpdate & ",`idAgentControleur`=" & CSDb.secureString(objFVManometreEtalon.idAgentControleur) & ""
+            paramsQueryUpdate = paramsQueryUpdate & ",idAgentControleur=" & CSDb.secureString(objFVManometreEtalon.idAgentControleur) & ""
             If Not objFVManometreEtalon.caracteristiques Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`caracteristiques`"
+                paramsQuery_col = paramsQuery_col & ",caracteristiques"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.caracteristiques) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`caracteristiques`='" & CSDb.secureString(objFVManometreEtalon.caracteristiques) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",caracteristiques='" & CSDb.secureString(objFVManometreEtalon.caracteristiques) & "'"
             End If
-            paramsQuery_col = paramsQuery_col & ",`blocage`"
+            paramsQuery_col = paramsQuery_col & ",blocage"
             paramsQuery = paramsQuery & " , " & objFVManometreEtalon.blocage & ""
-            paramsQueryUpdate = paramsQueryUpdate & ",`blocage`=" & CSDb.secureString(objFVManometreEtalon.blocage) & ""
+            paramsQueryUpdate = paramsQueryUpdate & ",blocage=" & CSDb.secureString(objFVManometreEtalon.blocage) & ""
             If Not objFVManometreEtalon.idReetalonnage Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`idReetalonnage`"
+                paramsQuery_col = paramsQuery_col & ",idReetalonnage"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.idReetalonnage) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`idReetalonnage`='" & CSDb.secureString(objFVManometreEtalon.idReetalonnage) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",idReetalonnage='" & CSDb.secureString(objFVManometreEtalon.idReetalonnage) & "'"
             End If
             If Not objFVManometreEtalon.nomLaboratoire Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`nomLaboratoire`"
+                paramsQuery_col = paramsQuery_col & ",nomLaboratoire"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.nomLaboratoire) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`nomLaboratoire`='" & CSDb.secureString(objFVManometreEtalon.nomLaboratoire) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",nomLaboratoire='" & CSDb.secureString(objFVManometreEtalon.nomLaboratoire) & "'"
             End If
             If Not objFVManometreEtalon.dateReetalonnage Is Nothing And objFVManometreEtalon.dateReetalonnage <> "" And objFVManometreEtalon.dateReetalonnage <> "0000-00-00 00:00:00" Then
-                paramsQuery_col = paramsQuery_col & ",`dateReetalonnage`"
+                paramsQuery_col = paramsQuery_col & ",dateReetalonnage"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.dateReetalonnage) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateReetalonnage`='" & CSDb.secureString(objFVManometreEtalon.dateReetalonnage) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateReetalonnage='" & CSDb.secureString(objFVManometreEtalon.dateReetalonnage) & "'"
             End If
             If Not objFVManometreEtalon.pressionControle Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`pressionControle`"
+                paramsQuery_col = paramsQuery_col & ",pressionControle"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.pressionControle) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`pressionControle`='" & CSDb.secureString(objFVManometreEtalon.pressionControle) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",pressionControle='" & CSDb.secureString(objFVManometreEtalon.pressionControle) & "'"
             End If
             If Not objFVManometreEtalon.valeursMesurees Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`valeursMesurees`"
+                paramsQuery_col = paramsQuery_col & ",valeursMesurees"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.valeursMesurees) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`valeursMesurees`='" & CSDb.secureString(objFVManometreEtalon.valeursMesurees) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",valeursMesurees='" & CSDb.secureString(objFVManometreEtalon.valeursMesurees) & "'"
             End If
             If Not objFVManometreEtalon.idManometreControleur Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`idManometreControleur`"
+                paramsQuery_col = paramsQuery_col & ",idManometreControleur"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.idManometreControleur) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`idManometreControleur`='" & CSDb.secureString(objFVManometreEtalon.idManometreControleur) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",idManometreControleur='" & CSDb.secureString(objFVManometreEtalon.idManometreControleur) & "'"
             End If
             If Not objFVManometreEtalon.dateModif Is Nothing And objFVManometreEtalon.dateModif <> "" Then
-                paramsQuery_col = paramsQuery_col & ",`dateModif`"
+                paramsQuery_col = paramsQuery_col & ",dateModif"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.dateModif) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateModif`='" & CSDb.secureString(objFVManometreEtalon.dateModif) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(objFVManometreEtalon.dateModif) & "'"
             End If
             If Not objFVManometreEtalon.dateModificationAgent Is Nothing And objFVManometreEtalon.dateModificationAgent <> "" Then
-                paramsQuery_col = paramsQuery_col & ",`dateModificationAgent`"
+                paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
                 paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(objFVManometreEtalon.dateModificationAgent) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationAgent`='" & CSDb.secureString(objFVManometreEtalon.dateModificationAgent) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(objFVManometreEtalon.dateModificationAgent) & "'"
             End If
             If Not objFVManometreEtalon.dateModificationCrodip Is Nothing And objFVManometreEtalon.dateModificationCrodip <> "" Then
-                paramsQuery_col = paramsQuery_col & ",`dateModificationCrodip`"
+                paramsQuery_col = paramsQuery_col & ",dateModificationCrodip"
                 paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(objFVManometreEtalon.dateModificationCrodip) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationCrodip`='" & CSDb.secureString(objFVManometreEtalon.dateModificationCrodip) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDb.secureString(objFVManometreEtalon.dateModificationCrodip) & "'"
             End If
 
             ' On finalise la requete et en l'execute
-            bddCommande.CommandText = "INSERT INTO `FichevieManometreEtalon` (" & paramsQuery_col & ") VALUES (" & paramsQuery & ")"
+            bddCommande.CommandText = "INSERT INTO FichevieManometreEtalon (" & paramsQuery_col & ") VALUES (" & paramsQuery & ")"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Err FVManoEtalon - Save : " & ex.Message.ToString)
             bReturn = False
         End Try
-        If oCSDb IsNot Nothing Then
-            oCSDb.free()
+        If oCsdb IsNot Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'save
@@ -228,7 +230,7 @@ Public Class FVManometreEtalonManager
             Try
                 ' On récupère les résultats
                 Dim bdd As New CSDb(True)
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieManometreEtalon` WHERE `id` LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY `id` DESC")
+                Dim tmpListProfils As DbDataReader = bdd.getResult2s("SELECT id FROM FichevieManometreEtalon WHERE id LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY id DESC")
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
@@ -255,7 +257,7 @@ Public Class FVManometreEtalonManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `FichevieManometreEtalon` SET `FichevieManometreEtalon`.`dateModificationCrodip`='" & newDate & "',`FichevieManometreEtalon`.`dateModificationAgent`='" & newDate & "' WHERE `FichevieManometreEtalon`.`id`='" & objFVManometreEtalon.id & "'"
+            dbLink.queryString = "UPDATE FichevieManometreEtalon SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id='" & objFVManometreEtalon.id & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -267,14 +269,14 @@ Public Class FVManometreEtalonManager
         ' déclarations
         Dim tmpFVManometreEtalon As New FVManometreEtalon(New Agent())
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         If fvmanometreetalon_id <> "" Then
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM FichevieManometreEtalon WHERE FichevieManometreEtalon.id='" & fvmanometreetalon_id & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
@@ -322,8 +324,8 @@ Public Class FVManometreEtalonManager
                 CSDebug.dispError("FVManometreEtalonManager Error: " & ex.Message)
             End Try
 
-            If oCSDB IsNot Nothing Then
-                oCSDB.free()
+            If oCsdb IsNot Nothing Then
+                oCsdb.free()
             End If
 
         End If
@@ -333,23 +335,23 @@ Public Class FVManometreEtalonManager
 
     Private Shared Function createFVManometreEtalon(ByVal fvmanometreetalon_id As String) As Boolean
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
 
         Try
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO `FichevieManometreEtalon` (`id`) VALUES ('" & fvmanometreetalon_id & "')"
+            bddCommande.CommandText = "INSERT INTO FichevieManometreEtalon (id) VALUES ('" & fvmanometreetalon_id & "')"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("FVManometreEtalonManager error : " & ex.Message)
             bReturn = False
         End Try
-        If oCSDB IsNot Nothing Then
-            oCSDB.free()
+        If oCsdb IsNot Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'createFVManometreEtalon
@@ -359,15 +361,15 @@ Public Class FVManometreEtalonManager
         Dim oCsdb As CSDb = Nothing
 
         Dim arrItems(0) As FVManometreEtalon
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
-        oCSDB = New CSDb(True)
-        bddCommande = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT `FichevieManometreEtalon`.* FROM `FichevieManometreEtalon` INNER JOIN `AgentManoEtalon` ON `FichevieManometreEtalon`.`idManometre` = `AgentManoEtalon`.`idCrodip` WHERE `FichevieManometreEtalon`.`dateModificationAgent`<>`FichevieManometreEtalon`.`dateModificationCrodip` AND `AgentManoEtalon`.`idStructure`=" & agent.idStructure
+        oCsdb = New CSDb(True)
+        bddCommande = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT FichevieManometreEtalon.* FROM FichevieManometreEtalon INNER JOIN AgentManoEtalon ON FichevieManometreEtalon.idManometre = AgentManoEtalon.idCrodip WHERE FichevieManometreEtalon.dateModificationAgent<>FichevieManometreEtalon.dateModificationCrodip AND AgentManoEtalon.idStructure=" & agent.idStructure
 
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()
@@ -422,28 +424,28 @@ Public Class FVManometreEtalonManager
             CSDebug.dispError("Erreur - FVManometreEtalonManager - getResult : " & ex.Message)
         End Try
 
-        If oCSDB IsNot Nothing Then
-            oCSDB.free()
+        If oCsdb IsNot Nothing Then
+            oCsdb.free()
         End If
 
         'on retourne les objet non synchro
         Return arrItems
     End Function
 
-    Public Shared Function getArrFVManometreEtalon(ByVal param As String) As List(Of FVManometreEtalon)
+    Public Shared Function getArrFVManometreEtalon(ByVal pIdMano As String) As List(Of FVManometreEtalon)
         Dim lstResponse As New List(Of FVManometreEtalon)
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
 
-        If param <> "" Then
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM FichevieManometreEtalon WHERE FichevieManometreEtalon.idManometre='" & param & "'"
+        If pIdMano <> "" Then
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
+            bddCommande.CommandText = "SELECT * FROM FichevieManometreEtalon WHERE FichevieManometreEtalon.idManometre='" & pIdMano & "'"
             Try
 
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
 
@@ -494,8 +496,8 @@ Public Class FVManometreEtalonManager
                 CSDebug.dispError("FVManometreEtalonManager.getArrFVManometreEtalon ERR : " & ex.Message)
             End Try
 
-            If oCSDB IsNot Nothing Then
-                oCSDB.free()
+            If oCsdb IsNot Nothing Then
+                oCsdb.free()
             End If
 
         End If
@@ -506,13 +508,13 @@ Public Class FVManometreEtalonManager
     Public Shared Function delete(ByVal pId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pId), " le paramètre ID doit être initialisé")
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
         Try
-            oCSDb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            bddCommande = oCSDb.getConnection.CreateCommand()
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "DELETE FROM FichevieManometreEtalon WHERE id='" & pId & "'"
             nResult = bddCommande.ExecuteNonQuery()
             Debug.Assert(nResult = 1, "Erreur en Delete, plus d'une ligne supprimée")
@@ -521,8 +523,8 @@ Public Class FVManometreEtalonManager
             CSDebug.dispError("FVManometreEtalonManager.delete (" & pId.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'delete

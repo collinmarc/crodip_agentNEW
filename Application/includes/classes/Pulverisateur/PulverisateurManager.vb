@@ -1,4 +1,6 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
+
 Public Class PulverisateurManager
 
 #Region "Methodes acces Web Service"
@@ -66,11 +68,11 @@ Public Class PulverisateurManager
         Dim ncontrole As Integer
         Dim oCSDB As New CSDb(True)
         If pulverisateur_id <> "" Then
-            Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+            Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT count(*) FROM Diagnostic WHERE Diagnostic.controleEtat=0 AND Diagnostic.pulverisateurId='" & pulverisateur_id & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListResults As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListResults As DbDataReader = bddCommande.ExecuteReader
                 While tmpListResults.Read()
                     ncontrole = tmpListResults.GetInt32(0)
                 End While
@@ -96,12 +98,12 @@ Public Class PulverisateurManager
         Dim oCsdb As CSDb = Nothing
         If Not curAgent.numeroNational Is Nothing Then
             oCsdb = New CSDb(True)
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT `Pulverisateur`.`id` FROM `Pulverisateur` WHERE `Pulverisateur`.`id` LIKE '" & curAgent.idStructure & "-" & curAgent.id & "-%' ORDER BY `Pulverisateur`.`id` DESC"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
@@ -144,7 +146,7 @@ Public Class PulverisateurManager
         Dim bReturn As Boolean
         Dim oCSDB As New CSDb(True)
         Try
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
 
             ' Création
@@ -165,177 +167,178 @@ Public Class PulverisateurManager
         Return bReturn
     End Function
 
-    Public Shared Function save(ByVal objPulverisateur As Pulverisateur, ByVal client_id As String, ByVal pAgent As Agent, Optional bSynchro As Boolean = False) As Boolean
-        Debug.Assert(Not objPulverisateur Is Nothing)
+    Public Shared Function save(ByVal pPulve As Pulverisateur, ByVal client_id As String, ByVal pAgent As Agent, Optional bSynchro As Boolean = False) As Boolean
+        Debug.Assert(Not pPulve Is Nothing)
         Debug.Assert(client_id <> "", "L'id Client doit être spécifié")
 
         Dim bReturn As Boolean
         Dim bdd As New CSDb(True)
         Dim paramsQuery As String = ""
 
-        If objPulverisateur.id = "" Then
-            objPulverisateur.id = getNewId(pAgent)
+        If pPulve.id = "" Then
+            pPulve.id = getNewId(pAgent)
         End If
         Try
             bReturn = False
-            If objPulverisateur.id <> "" Then
+            If pPulve.id <> "" Then
 
                 ' On test si le Pulverisateur existe ou non
                 Dim existsPulverisateur As Object
                 If Not pAgent.isGestionnaire Then
-                    objPulverisateur.idStructure = pAgent.idStructure
+                    pPulve.idStructure = pAgent.idStructure
                 End If
-                existsPulverisateur = PulverisateurManager.getPulverisateurById(objPulverisateur.id)
+                existsPulverisateur = PulverisateurManager.getPulverisateurById(pPulve.id)
                 If existsPulverisateur.id = "" Then
-                    createPulve(objPulverisateur, client_id, pAgent)
+                    createPulve(pPulve, client_id, pAgent)
                 End If
-                Dim bddCommande As OleDb.OleDbCommand
+                Dim bddCommande As DbCommand
                 bddCommande = bdd.getConnection().CreateCommand()
 
                 ' Initialisation de la requete
-                paramsQuery = "Pulverisateur.id='" & objPulverisateur.id & "'"
+                paramsQuery = "id='" & pPulve.id & "'"
 
                 ' Mise a jour de la date de derniere modification
                 If Not bSynchro Then
-                    objPulverisateur.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                    pPulve.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                 End If
 
-                If Not objPulverisateur.numeroNational Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.numeroNational='" & objPulverisateur.numeroNational & "'"
+                If Not pPulve.numeroNational Is Nothing Then
+                    paramsQuery = paramsQuery & " , numeroNational='" & pPulve.numeroNational & "'"
                 End If
-                If Not objPulverisateur.type Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.type='" & objPulverisateur.type & "'"
+                If Not pPulve.type Is Nothing Then
+                    paramsQuery = paramsQuery & " , type='" & pPulve.type & "'"
                 End If
-                If Not objPulverisateur.marque Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.marque='" & CSDb.secureString(objPulverisateur.marque) & "'"
+                If Not pPulve.marque Is Nothing Then
+                    paramsQuery = paramsQuery & " , marque='" & CSDb.secureString(pPulve.marque) & "'"
                 End If
-                If Not objPulverisateur.modele Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.modele='" & CSDb.secureString(objPulverisateur.modele) & "'"
+                If Not pPulve.modele Is Nothing Then
+                    paramsQuery = paramsQuery & " , modele='" & CSDb.secureString(pPulve.modele) & "'"
                 End If
-                If Not objPulverisateur.anneeAchat Is Nothing And objPulverisateur.anneeAchat <> "" Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.anneeAchat='" & objPulverisateur.anneeAchat & "'"
+                If Not pPulve.anneeAchat Is Nothing And pPulve.anneeAchat <> "" Then
+                    paramsQuery = paramsQuery & " , anneeAchat='" & pPulve.anneeAchat & "'"
                 End If
-                paramsQuery = paramsQuery & " , Pulverisateur.categorie='" & CSDb.secureString(objPulverisateur.categorie) & "'"
-                If Not objPulverisateur.attelage Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.attelage='" & CSDb.secureString(objPulverisateur.attelage) & "'"
+                paramsQuery = paramsQuery & " , categorie='" & CSDb.secureString(pPulve.categorie) & "'"
+                If Not pPulve.attelage Is Nothing Then
+                    paramsQuery = paramsQuery & " , attelage='" & CSDb.secureString(pPulve.attelage) & "'"
                 End If
-                paramsQuery = paramsQuery & " , Pulverisateur.pulverisation='" & CSDb.secureString(objPulverisateur.pulverisation) & "'"
-                paramsQuery = paramsQuery & " , Pulverisateur.capacite=" & objPulverisateur.capacite & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.largeur='" & objPulverisateur.largeur & "'"
-                paramsQuery = paramsQuery & " , Pulverisateur.nombreRangs='" & objPulverisateur.nombreRangs & "'"
-                If Not objPulverisateur.largeurPlantation Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.largeurPlantation='" & objPulverisateur.largeurPlantation & "'"
+                paramsQuery = paramsQuery & " , pulverisation='" & CSDb.secureString(pPulve.pulverisation) & "'"
+                paramsQuery = paramsQuery & " , capacite=" & pPulve.capacite & ""
+                paramsQuery = paramsQuery & " , largeur='" & pPulve.largeur & "'"
+                paramsQuery = paramsQuery & " , nombreRangs='" & pPulve.nombreRangs & "'"
+                If Not pPulve.largeurPlantation Is Nothing Then
+                    paramsQuery = paramsQuery & " , largeurPlantation='" & pPulve.largeurPlantation & "'"
                 End If
-                If Not objPulverisateur.surfaceParAn Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.surfaceParAn='" & objPulverisateur.surfaceParAn & "'"
+                If Not pPulve.surfaceParAn Is Nothing Then
+                    paramsQuery = paramsQuery & " , surfaceParAn='" & pPulve.surfaceParAn & "'"
                 End If
-                If Not objPulverisateur.nombreUtilisateurs Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.nombreUtilisateurs='" & objPulverisateur.nombreUtilisateurs & "'"
+                If Not pPulve.nombreUtilisateurs Is Nothing Then
+                    paramsQuery = paramsQuery & " , nombreUtilisateurs='" & pPulve.nombreUtilisateurs & "'"
                 End If
-                paramsQuery = paramsQuery & " , Pulverisateur.isVentilateur=" & objPulverisateur.isVentilateur & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isDebrayage=" & objPulverisateur.isDebrayage & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isCuveRincage=" & objPulverisateur.isCuveRincage & ""
-                If Not objPulverisateur.capaciteCuveRincage Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.capaciteCuveRincage='" & objPulverisateur.capaciteCuveRincage & "'"
+                paramsQuery = paramsQuery & " , isVentilateur=" & pPulve.isVentilateur & ""
+                paramsQuery = paramsQuery & " , isDebrayage=" & pPulve.isDebrayage & ""
+                paramsQuery = paramsQuery & " , isCuveRincage=" & pPulve.isCuveRincage & ""
+                If Not pPulve.capaciteCuveRincage Is Nothing Then
+                    paramsQuery = paramsQuery & " , capaciteCuveRincage='" & pPulve.capaciteCuveRincage & "'"
                 End If
-                paramsQuery = paramsQuery & " , Pulverisateur.isRotobuse=" & objPulverisateur.isRotobuse & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isCuveIncorporation=" & objPulverisateur.isCuveIncorporation & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isRinceBidon=" & objPulverisateur.isRinceBidon & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isBidonLaveMain=" & objPulverisateur.isBidonLaveMain & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isLanceLavage=" & objPulverisateur.isLanceLavage & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.Regulation='" & CSDb.secureString(objPulverisateur.regulation) & "'"
-                paramsQuery = paramsQuery & " , Pulverisateur.RegulationOptions='" & CSDb.secureString(objPulverisateur.regulationOptions) & "'"
-                paramsQuery = paramsQuery & " , Pulverisateur.nombreBuses=" & objPulverisateur.nombreBuses & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.buseIsIso=" & objPulverisateur.buseIsIso & ""
-                If Not objPulverisateur.buseMarque Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.buseMarque='" & CSDb.secureString(objPulverisateur.buseMarque) & "'"
+                paramsQuery = paramsQuery & " , isRotobuse=" & pPulve.isRotobuse & ""
+                paramsQuery = paramsQuery & " , isCuveIncorporation=" & pPulve.isCuveIncorporation & ""
+                paramsQuery = paramsQuery & " , isRinceBidon=" & pPulve.isRinceBidon & ""
+                paramsQuery = paramsQuery & " , isBidonLaveMain=" & pPulve.isBidonLaveMain & ""
+                paramsQuery = paramsQuery & " , isLanceLavage=" & pPulve.isLanceLavage & ""
+                paramsQuery = paramsQuery & " , Regulation='" & CSDb.secureString(pPulve.regulation) & "'"
+                paramsQuery = paramsQuery & " , RegulationOptions='" & CSDb.secureString(pPulve.regulationOptions) & "'"
+                paramsQuery = paramsQuery & " , nombreBuses=" & pPulve.nombreBuses & ""
+                paramsQuery = paramsQuery & " , buseIsIso=" & pPulve.buseIsIso & ""
+                If Not pPulve.buseMarque Is Nothing Then
+                    paramsQuery = paramsQuery & " , buseMarque='" & CSDb.secureString(pPulve.buseMarque) & "'"
                 End If
-                If Not objPulverisateur.buseType Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.buseType='" & CSDb.secureString(objPulverisateur.buseType) & "'"
+                If Not pPulve.buseType Is Nothing Then
+                    paramsQuery = paramsQuery & " , buseType='" & CSDb.secureString(pPulve.buseType) & "'"
                 End If
-                If Not objPulverisateur.buseFonctionnement Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.buseFonctionnement='" & CSDb.secureString(objPulverisateur.buseFonctionnement) & "'"
+                If Not pPulve.buseFonctionnement Is Nothing Then
+                    paramsQuery = paramsQuery & " , buseFonctionnement='" & CSDb.secureString(pPulve.buseFonctionnement) & "'"
                 End If
-                If Not objPulverisateur.buseAge = "" Then
+                If Not pPulve.buseAge = "" Then
                     'Le Champs BuseAge est stocké en boolean mais la prop est du String
-                    paramsQuery = paramsQuery & " , Pulverisateur.buseAge=" & objPulverisateur.buseAge & ""
+                    paramsQuery = paramsQuery & " , buseAge=" & pPulve.buseAge & ""
                 End If
-                If Not objPulverisateur.buseAngle Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.buseAngle='" & objPulverisateur.buseAngle & "'"
+                If Not pPulve.buseAngle Is Nothing Then
+                    paramsQuery = paramsQuery & " , buseAngle='" & pPulve.buseAngle & "'"
                 End If
-                If Not objPulverisateur.buseCouleur Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.buseCouleur='" & objPulverisateur.buseCouleur & "'"
+                If Not pPulve.buseCouleur Is Nothing Then
+                    paramsQuery = paramsQuery & " , buseCouleur='" & pPulve.buseCouleur & "'"
                 End If
-                If Not objPulverisateur.manometreMarque Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.manometreMarque='" & CSDb.secureString(objPulverisateur.manometreMarque) & "'"
+                If Not pPulve.manometreMarque Is Nothing Then
+                    paramsQuery = paramsQuery & " , manometreMarque='" & CSDb.secureString(pPulve.manometreMarque) & "'"
                 End If
-                If Not objPulverisateur.manometreType Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.manometreType='" & CSDb.secureString(objPulverisateur.manometreType) & "'"
+                If Not pPulve.manometreType Is Nothing Then
+                    paramsQuery = paramsQuery & " , manometreType='" & CSDb.secureString(pPulve.manometreType) & "'"
                 End If
-                If Not objPulverisateur.manometreFondEchelle Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.manometreFondEchelle='" & objPulverisateur.manometreFondEchelle & "'"
+                If Not pPulve.manometreFondEchelle Is Nothing Then
+                    paramsQuery = paramsQuery & " , manometreFondEchelle='" & pPulve.manometreFondEchelle & "'"
                 End If
-                If Not objPulverisateur.manometreDiametre Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.manometreDiametre='" & objPulverisateur.manometreDiametre & "'"
+                If Not pPulve.manometreDiametre Is Nothing Then
+                    paramsQuery = paramsQuery & " , manometreDiametre='" & pPulve.manometreDiametre & "'"
                 End If
-                If Not objPulverisateur.manometrePressionTravail Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.manometrePressionTravail='" & objPulverisateur.manometrePressionTravail & "'"
+                If Not pPulve.manometrePressionTravail Is Nothing Then
+                    paramsQuery = paramsQuery & " , manometrePressionTravail='" & pPulve.manometrePressionTravail & "'"
                 End If
-                paramsQuery = paramsQuery & " , Pulverisateur.isSynchro=" & objPulverisateur.isSynchro & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isSupprime=" & objPulverisateur.isSupprime & ""
-                If Not objPulverisateur.dateProchainControle Is Nothing And objPulverisateur.dateProchainControle <> "" And objPulverisateur.dateProchainControle <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.dateProchainControle='" & objPulverisateur.dateProchainControle & "'"
+                paramsQuery = paramsQuery & " , isSynchro=" & pPulve.isSynchro & ""
+                paramsQuery = paramsQuery & " , isSupprime=" & pPulve.isSupprime & ""
+                If Not pPulve.dateProchainControle Is Nothing And pPulve.dateProchainControle <> "" And pPulve.dateProchainControle <> "0000-00-00 00:00:00" Then
+                    paramsQuery = paramsQuery & " , dateProchainControle='" & pPulve.dateProchainControle & "'"
                 End If
-                If Not objPulverisateur.dateModificationCrodip Is Nothing And objPulverisateur.dateModificationCrodip <> "" Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.dateModificationCrodip='" & objPulverisateur.dateModificationCrodip & "'"
+                If Not pPulve.dateModificationCrodip Is Nothing And pPulve.dateModificationCrodip <> "" Then
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & pPulve.dateModificationCrodip & "'"
                 End If
-                If Not objPulverisateur.dateModificationAgent Is Nothing And objPulverisateur.dateModificationAgent <> "" Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.dateModificationAgent='" & objPulverisateur.dateModificationAgent & "'"
+                If Not pPulve.dateModificationAgent Is Nothing And pPulve.dateModificationAgent <> "" Then
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & pPulve.dateModificationAgent & "'"
                 End If
-                paramsQuery = paramsQuery & " , Pulverisateur.idStructure=" & objPulverisateur.idStructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & pPulve.idStructure & ""
                 ' Emplacement Identification
-                If Not objPulverisateur.emplacementIdentification Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.emplacementIdentification='" & CSDb.secureString(objPulverisateur.emplacementIdentification) & "'"
+                If Not pPulve.emplacementIdentification Is Nothing Then
+                    paramsQuery = paramsQuery & " , emplacementIdentification='" & CSDb.secureString(pPulve.emplacementIdentification) & "'"
                 End If
                 ' ancien Identifiant
-                If Not objPulverisateur.ancienIdentifiant Is Nothing Then
-                    paramsQuery = paramsQuery & " , Pulverisateur.ancienIdentifiant='" & CSDb.secureString(objPulverisateur.ancienIdentifiant) & "'"
+                If Not pPulve.ancienIdentifiant Is Nothing Then
+                    paramsQuery = paramsQuery & " , ancienIdentifiant='" & CSDb.secureString(pPulve.ancienIdentifiant) & "'"
                 End If
-                paramsQuery = paramsQuery & " , Pulverisateur.isEclairageRampe=" & objPulverisateur.isEclairageRampe & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isBarreGuidage=" & objPulverisateur.isBarreGuidage & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isCoupureAutoTroncons=" & objPulverisateur.isCoupureAutoTroncons & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isRincageAutoAssiste=" & objPulverisateur.isRincageAutoAssiste & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.buseModele='" & objPulverisateur.buseModele & "'"
-                paramsQuery = paramsQuery & " , Pulverisateur.buseNbniveaux=" & objPulverisateur.buseNbniveaux & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.manometreNbNiveaux=" & objPulverisateur.manometreNbniveaux & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.manometreNbTroncons=" & objPulverisateur.manometreNbtroncons & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.modeUtilisation='" & CSDb.secureString(objPulverisateur.modeUtilisation) & "'"
-                paramsQuery = paramsQuery & " , Pulverisateur.nombreExploitants='" & CSDb.secureString(objPulverisateur.nombreExploitants) & "'"
-                paramsQuery = paramsQuery & " , Pulverisateur.controleEtat='" & CSDb.secureString(objPulverisateur.controleEtat) & "'"
-                paramsQuery = paramsQuery & " , Pulverisateur.isAspirationExt=" & objPulverisateur.isAspirationExt & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isDispoAntiRetour=" & objPulverisateur.isDispoAntiRetour & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isReglageAutoHauteur=" & objPulverisateur.isReglageAutoHauteur & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isFiltrationAspiration=" & objPulverisateur.isFiltrationAspiration & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isFiltrationRefoulement=" & objPulverisateur.isFiltrationRefoulement & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isFiltrationTroncons=" & objPulverisateur.isFiltrationTroncons & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isFiltrationBuses=" & objPulverisateur.isFiltrationBuses & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isPulveAdditionnel=" & objPulverisateur.isPulveAdditionnel & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.pulvePrincipalNumNat='" & CSDb.secureString(objPulverisateur.pulvePrincipalNumNat) & "'"
-                paramsQuery = paramsQuery & " , Pulverisateur.isRincagecircuit=" & objPulverisateur.isRincagecircuit & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.isPompesDoseuses=" & objPulverisateur.isPompesDoseuses & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.nbPompesDoseuses=" & objPulverisateur.nbPompesDoseuses & ""
-                paramsQuery = paramsQuery & " , Pulverisateur.Numchassis='" & CSDb.secureString(objPulverisateur.numChassis) & "'"
+                paramsQuery = paramsQuery & " , isEclairageRampe=" & pPulve.isEclairageRampe & ""
+                paramsQuery = paramsQuery & " , isBarreGuidage=" & pPulve.isBarreGuidage & ""
+                paramsQuery = paramsQuery & " , isCoupureAutoTroncons=" & pPulve.isCoupureAutoTroncons & ""
+                paramsQuery = paramsQuery & " , isRincageAutoAssiste=" & pPulve.isRincageAutoAssiste & ""
+                paramsQuery = paramsQuery & " , buseModele='" & pPulve.buseModele & "'"
+                paramsQuery = paramsQuery & " , buseNbniveaux=" & pPulve.buseNbniveaux & ""
+                paramsQuery = paramsQuery & " , manometreNbNiveaux=" & pPulve.manometreNbniveaux & ""
+                paramsQuery = paramsQuery & " , manometreNbTroncons=" & pPulve.manometreNbtroncons & ""
+                paramsQuery = paramsQuery & " , modeUtilisation='" & CSDb.secureString(pPulve.modeUtilisation) & "'"
+                paramsQuery = paramsQuery & " , nombreExploitants='" & CSDb.secureString(pPulve.nombreExploitants) & "'"
+                paramsQuery = paramsQuery & " , controleEtat='" & CSDb.secureString(pPulve.controleEtat) & "'"
+                paramsQuery = paramsQuery & " , isAspirationExt=" & pPulve.isAspirationExt & ""
+                paramsQuery = paramsQuery & " , isDispoAntiRetour=" & pPulve.isDispoAntiRetour & ""
+                paramsQuery = paramsQuery & " , isReglageAutoHauteur=" & pPulve.isReglageAutoHauteur & ""
+                paramsQuery = paramsQuery & " , isFiltrationAspiration=" & pPulve.isFiltrationAspiration & ""
+                paramsQuery = paramsQuery & " , isFiltrationRefoulement=" & pPulve.isFiltrationRefoulement & ""
+                paramsQuery = paramsQuery & " , isFiltrationTroncons=" & pPulve.isFiltrationTroncons & ""
+                paramsQuery = paramsQuery & " , isFiltrationBuses=" & pPulve.isFiltrationBuses & ""
+                paramsQuery = paramsQuery & " , isPulveAdditionnel=" & pPulve.isPulveAdditionnel & ""
+                paramsQuery = paramsQuery & " , pulvePrincipalNumNat='" & CSDb.secureString(pPulve.pulvePrincipalNumNat) & "'"
+                paramsQuery = paramsQuery & " , isRincagecircuit=" & pPulve.isRincagecircuit & ""
+                paramsQuery = paramsQuery & " , isPompesDoseuses=" & pPulve.isPompesDoseuses & ""
+                paramsQuery = paramsQuery & " , nbPompesDoseuses=" & pPulve.nbPompesDoseuses & ""
+                paramsQuery = paramsQuery & " , Numchassis='" & CSDb.secureString(pPulve.numChassis) & "'"
 
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE Pulverisateur SET " & paramsQuery & " WHERE Pulverisateur.id='" & objPulverisateur.id & "'"
+                bddCommande.CommandText = "UPDATE Pulverisateur SET " & paramsQuery & " WHERE id='" & pPulve.id & "'"
                 bddCommande.ExecuteNonQuery()
 
                 ' Vérificatin du lien entre le pulvérisateur et l'exploitation
                 Dim oExploit2Pulve As New ExploitationTOPulverisateur()
-                oExploit2Pulve.idPulverisateur = objPulverisateur.id
+                oExploit2Pulve.idPulverisateur = pPulve.id
                 oExploit2Pulve.idExploitation = client_id
                 oExploit2Pulve.isSupprimeCoProp = False
                 ExploitationTOPulverisateurManager.save(oExploit2Pulve, pAgent)
+
                 bReturn = True
             End If
         Catch ex As Exception
@@ -391,12 +394,12 @@ Public Class PulverisateurManager
         Dim tmpPulverisateur As New Pulverisateur
         Dim oCSDB As New CSDb(True)
 
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         bddCommande = oCSDB.getConnection().CreateCommand()
         bddCommande.CommandText = pSQL
         Try
             ' On récupère les résultats
-            Dim oDataReader As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
             If oDataReader.HasRows() Then
                 oDataReader.Read()
                 ' On rempli notre tableau
@@ -434,7 +437,7 @@ Public Class PulverisateurManager
             ' On vérifie que le pulvé n'a pas servi dans un diag
             Dim query As String = "SELECT * FROM Diagnostic WHERE Diagnostic.pulverisateurId = '" & pulverisateur_id & "'"
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
+            Dim dataResults As DbDataReader = bdd.getResult2s(query)
 
             bReturn = dataResults.HasRows
             bdd.free()
@@ -475,12 +478,12 @@ Public Class PulverisateurManager
             ' On supprime le Pulverisateur de la base
             Dim query As String = "DELETE FROM `Pulverisateur` WHERE Pulverisateur.id='" & pPulveId & "'"
             Dim bdd As New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(query)
+            Dim dataResults As DbDataReader = bdd.getResult2s(query)
             bdd.free()
             'Suppression de la relation vers les exploitations
             query = "DELETE FROM `ExploitationTOPulverisateur` WHERE `ExploitationTOPulverisateur`.`idPulverisateur`='" & pPulveId & "'"
             Dim bdd2 As New CSDb(True)
-            Dim dataResults2 As System.Data.OleDb.OleDbDataReader = bdd2.getResult2s(query)
+            Dim dataResults2 As DbDataReader = bdd2.getResult2s(query)
             bdd2.free()
 
             Return True
@@ -504,7 +507,7 @@ Public Class PulverisateurManager
         Dim oCSDB As New CSDb(True)
         If client_id <> "" Then
 
-            Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+            Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT distinct Pulverisateur.* FROM Pulverisateur INNER JOIN (Exploitation INNER JOIN ExploitationTOPulverisateur ON Exploitation.id = ExploitationTOPulverisateur.idExploitation) ON Pulverisateur.id = ExploitationTOPulverisateur.idPulverisateur WHERE (((ExploitationTOPulverisateur.idExploitation)='" & client_id & "'))"
             If Not pTous Then
                 bddCommande.CommandText = bddCommande.CommandText & " AND NOT isSupprimeCoProp "
@@ -512,12 +515,12 @@ Public Class PulverisateurManager
 
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 Dim i As Integer = 0
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
-                    Dim tmpPulverisateur As New Pulverisateur
+                    Dim tmpPulverisateur As New Pulverisateur()
                     ' On rempli notre tableau
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
@@ -567,14 +570,14 @@ Public Class PulverisateurManager
         Dim bReturn As Boolean = False
         Dim oCSDB As New CSDb(True)
 
-        Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT Pulverisateur.id, Exploitation.* " _
                                    & "FROM (ExploitationTOPulverisateur INNER JOIN Pulverisateur ON ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation ON ExploitationTOPulverisateur.idExploitation = Exploitation.id " _
                                      & " WHERE pulverisateur.id = '" & pPulve.id & "'"
 
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()
@@ -616,10 +619,62 @@ Public Class PulverisateurManager
             Dim strQuery As String = "SELECT Pulverisateur.*, Exploitation.raisonsociale, Exploitation.prenomExploitant, Exploitation.nomExploitant, Exploitation.codepostal,Exploitation.commune " _
                                      & " FROM (ExploitationTOPulverisateur INNER JOIN (Diagnostic RIGHT JOIN Pulverisateur ON Diagnostic.pulverisateurId = Pulverisateur.id) ON ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation ON ExploitationTOPulverisateur.idExploitation = Exploitation.id "
             strQuery = strQuery & " WHERE NOT isSupprimeCoProp AND"
-            strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) OR Diagnostic.controleDateFin IS NULL) "
-            strQuery = strQuery & " AND pulverisateur.idStructure = " & pAgent.idStructure
+            strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) OR Diagnostic.controleDateFin IS NULL) AND "
+            strQuery = strQuery & " pulverisateur.idStructure = " & pAgent.idStructure
             strQuery = strQuery & " ORDER BY  Pulverisateur.dateProchainControle ASC"
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResult2s(strQuery)
+            Dim tmpListProfils As DbDataReader = bdd.getResult2s(strQuery)
+
+            Dim i As Integer = 0
+            ' Puis on les parcours
+            While tmpListProfils.Read()
+                ' On rempli notre tableau
+                Dim tmpPulverisateur As New Pulverisateur
+                ' On rempli notre tableau
+                Dim tmpColId As Integer = 0
+                While tmpColId < tmpListProfils.FieldCount()
+                    If Not tmpListProfils.IsDBNull(tmpColId) Then
+                        tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                    End If
+                    tmpColId = tmpColId + 1
+                End While
+                'Vérification que le type ou la catégorie du pulve sont dans les droits
+                If String.IsNullOrEmpty(pDroitsPulves) Then
+                    oReturn.Add(tmpPulverisateur)
+                Else
+                    If Not pDroitsPulves.StartsWith("|") Then
+                        pDroitsPulves = "|" & pDroitsPulves & "|"
+                    End If
+                    If pDroitsPulves.ToUpper().Contains("|" & tmpPulverisateur.type.ToUpper() & "|") Or pDroitsPulves.ToUpper().Contains("|" & tmpPulverisateur.categorie.ToUpper() & "|") Then
+
+                        oReturn.Add(tmpPulverisateur)
+                    End If
+                End If
+            End While
+        Catch ex As Exception ' On intercepte l'erreur
+            CSDebug.dispError("PulverisateurManager - getListeOfPulverisateur : " & ex.Message)
+        End Try
+        bdd.free()
+        'on retourne les pulvé
+        Return oReturn
+    End Function
+
+    Public Shared Function getPulverisateurList2(ByVal pAgent As Agent, pDroitsPulves As String, Optional pTous As Boolean = False) As List(Of Pulverisateur)
+        ' déclarations
+        Dim oReturn As New List(Of Pulverisateur)
+
+        Dim bdd As New CSDb(True)
+        Try
+            ' On récupère les résultats
+
+            Dim strQuery As String = "SELECT Pulverisateur.*, Exploitation.raisonsociale, Exploitation.prenomExploitant, Exploitation.nomExploitant, Exploitation.codepostal,Exploitation.commune " _
+                                      & " FROM (ExploitationTOPulverisateur INNER JOIN Pulverisateur On ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation On ExploitationTOPulverisateur.idExploitation = Exploitation.id "
+            '            strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) OR Diagnostic.controleDateFin IS NULL) AND "
+            strQuery = strQuery & " WHERE pulverisateur.idStructure = " & pAgent.idStructure
+            If Not pTous Then
+                strQuery = strQuery & " AND  NOT ExploitationTOPulverisateur.isSupprimeCoProp"
+            End If
+            strQuery = strQuery & " ORDER BY  Pulverisateur.dateProchainControle ASC"
+            Dim tmpListProfils As DbDataReader = bdd.getResult2s(strQuery)
 
             Dim i As Integer = 0
             ' Puis on les parcours
@@ -659,13 +714,13 @@ Public Class PulverisateurManager
         ' déclarations
         Dim arrItems(0) As Pulverisateur
         Dim oCSdb As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand = oCSdb.getConnection().CreateCommand()
+        Dim bddCommande As DbCommand = oCSdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM Pulverisateur WHERE dateModificationAgent<>dateModificationCrodip "
         bddCommande.CommandText = bddCommande.CommandText & " AND idStructure=" & agent.idStructure
 
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()
@@ -697,7 +752,7 @@ Public Class PulverisateurManager
         Dim bdd As CSDb
         bdd = New CSDb(True)
         Try
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "' AND id <> '" & pulveId & "'")
+            Dim dataResults As DbDataReader = bdd.getResult2s("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "' AND id <> '" & pulveId & "'")
             While dataResults.Read()
                 Dim returnVal As Integer = CInt(Trim(dataResults.Item(0).ToString))
                 bdd.free()
@@ -721,7 +776,7 @@ Public Class PulverisateurManager
         Dim returnVal As Integer
         Try
             bdd = New CSDb(True)
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "'")
+            Dim dataResults As DbDataReader = bdd.getResult2s("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "'")
             While dataResults.Read()
                 returnVal = CInt(Trim(dataResults.Item(0).ToString))
             End While
@@ -741,8 +796,8 @@ Public Class PulverisateurManager
 
         Dim bReturn As Boolean
         Dim oCsdb As CSDb = Nothing
-        Dim oCmd As OleDb.OleDbCommand
-        Dim oDR As OleDb.OleDbDataReader
+        Dim oCmd As DbCommand
+        Dim oDR As DbDataReader
         Dim oFI As IO.FileInfo
         Dim oFS As IO.FileStream
         Dim oSW As IO.StreamWriter
@@ -759,9 +814,9 @@ Public Class PulverisateurManager
 
 
 
-            oCSdb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            oCmd = oCSdb.getConnection().CreateCommand()
+            oCmd = oCsdb.getConnection().CreateCommand()
             'Recherche des Pulve qui ont un diag
             Dim strSQL As String = "SELECT Pulverisateur.*, exploitation.* " &
                 "FROM (ExploitationTOPulverisateur INNER JOIN Pulverisateur ON ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation ON ExploitationTOPulverisateur.idExploitation = Exploitation.id" &
@@ -788,7 +843,7 @@ Public Class PulverisateurManager
             End If
             oSW.Close()
             oFS.Close()
-            oCSdb.free()
+            oCsdb.free()
             bReturn = True
         Catch ex As Exception
             bReturn = False

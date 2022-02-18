@@ -1,4 +1,5 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
 
 Public Class DiagnosticHelp551Manager
     ' Variables
@@ -21,7 +22,7 @@ Public Class DiagnosticHelp551Manager
         ' On récupère les items du diagnostic
         Dim oCSDB As New CSDb(True)
         Dim oHelp551 As DiagnosticHelp551
-        Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
         Try
             Dim strIdItem As String = ""
             Select Case pMode
@@ -34,9 +35,9 @@ Public Class DiagnosticHelp551Manager
             End Select
             bddCommande.CommandText = "SELECT id FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' and DiagnosticItem.idItem = '" & strIdItem & "' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats
-            Dim oDRDiagnosticItem As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim oDRDiagnosticItem As DbDataReader = bddCommande.ExecuteReader
             oHelp551 = New DiagnosticHelp551(pMode)
-            oHelp551.id = 0
+            oHelp551.id = "0"
             oHelp551.idDiag = pDiagnostic.id
             While oDRDiagnosticItem.Read()
                 oHelp551.id = oDRDiagnosticItem.GetString(0)

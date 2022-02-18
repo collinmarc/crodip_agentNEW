@@ -1,4 +1,6 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
+
 Public Class FVManometreControleManager
 
 #Region "Methodes Web Service"
@@ -9,7 +11,7 @@ Public Class FVManometreControleManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As new Object
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetFVManometreControle(agentCourant.id, fvmanometrecontrole_id, objWSCrodip_response)
             Select Case codeResponse
@@ -127,7 +129,7 @@ Public Class FVManometreControleManager
         Dim paramsQuery_col As String
         Dim paramsQuery As String
         Dim oCSDb As New CSDb(True)
-        Dim bddCommande As New OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
 
         Try
@@ -135,8 +137,8 @@ Public Class FVManometreControleManager
             bddCommande = oCSDb.getConnection().CreateCommand()
 
             ' Initialisation de la requete
-            'paramsQueryUpdate = "`id`='" & objFVManometreControle.id & "',`idManometre`='" & CSDb.secureString(objFVManometreControle.idManometre) & "'"
-            paramsQuery_col = "`id`,`idManometre`"
+            'paramsQueryUpdate = "id='" & objFVManometreControle.id & "',idManometre='" & CSDb.secureString(objFVManometreControle.idManometre) & "'"
+            paramsQuery_col = "id,idManometre"
             paramsQuery = "'" & pobjFV.id & "' , '" & pobjFV.idManometre & "'"
 
             ' Mise a jour de la date de derniere modification
@@ -145,74 +147,74 @@ Public Class FVManometreControleManager
             End If
 
             If Not pobjFV.type Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`type`"
+                paramsQuery_col = paramsQuery_col & ",type"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.type) & "'"
-                '  paramsQueryUpdate = paramsQueryUpdate & ",`type`='" & CSDb.secureString(objFVManometreControle.type) & "'"
+                '  paramsQueryUpdate = paramsQueryUpdate & ",type='" & CSDb.secureString(objFVManometreControle.type) & "'"
             End If
             If Not pobjFV.auteur Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`auteur`"
+                paramsQuery_col = paramsQuery_col & ",auteur"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.auteur) & "'"
-                '   paramsQueryUpdate = paramsQueryUpdate & ",`auteur`='" & CSDb.secureString(objFVManometreControle.auteur) & "'"
+                '   paramsQueryUpdate = paramsQueryUpdate & ",auteur='" & CSDb.secureString(objFVManometreControle.auteur) & "'"
             End If
-            paramsQuery_col = paramsQuery_col & ",`idAgentControleur`"
+            paramsQuery_col = paramsQuery_col & ",idAgentControleur"
             paramsQuery = paramsQuery & " , " & pobjFV.idAgentControleur & ""
-            'paramsQueryUpdate = paramsQueryUpdate & ",`idAgentControleur`=" & CSDb.secureString(objFVManometreControle.idAgentControleur) & ""
+            'paramsQueryUpdate = paramsQueryUpdate & ",idAgentControleur=" & CSDb.secureString(objFVManometreControle.idAgentControleur) & ""
             If Not pobjFV.caracteristiques Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`caracteristiques`"
+                paramsQuery_col = paramsQuery_col & ",caracteristiques"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.caracteristiques) & "'"
-                '   paramsQueryUpdate = paramsQueryUpdate & ",`caracteristiques`='" & CSDb.secureString(objFVManometreControle.caracteristiques) & "'"
+                '   paramsQueryUpdate = paramsQueryUpdate & ",caracteristiques='" & CSDb.secureString(objFVManometreControle.caracteristiques) & "'"
             End If
-            paramsQuery_col = paramsQuery_col & ",`blocage`"
+            paramsQuery_col = paramsQuery_col & ",blocage"
             paramsQuery = paramsQuery & " , " & pobjFV.blocage & ""
-            'paramsQueryUpdate = paramsQueryUpdate & ",`blocage`=" & CSDb.secureString(objFVManometreControle.blocage) & ""
+            'paramsQueryUpdate = paramsQueryUpdate & ",blocage=" & CSDb.secureString(objFVManometreControle.blocage) & ""
             If Not pobjFV.idReetalonnage Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`idReetalonnage`"
+                paramsQuery_col = paramsQuery_col & ",idReetalonnage"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.idReetalonnage) & "'"
-                'paramsQueryUpdate = paramsQueryUpdate & ",`idReetalonnage`='" & CSDb.secureString(objFVManometreControle.idReetalonnage) & "'"
+                'paramsQueryUpdate = paramsQueryUpdate & ",idReetalonnage='" & CSDb.secureString(objFVManometreControle.idReetalonnage) & "'"
             End If
             If Not pobjFV.nomLaboratoire Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`nomLaboratoire`"
+                paramsQuery_col = paramsQuery_col & ",nomLaboratoire"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.nomLaboratoire) & "'"
-                'paramsQueryUpdate = paramsQueryUpdate & ",`nomLaboratoire`='" & CSDb.secureString(objFVManometreControle.nomLaboratoire) & "'"
+                'paramsQueryUpdate = paramsQueryUpdate & ",nomLaboratoire='" & CSDb.secureString(objFVManometreControle.nomLaboratoire) & "'"
             End If
             If Not pobjFV.dateReetalonnage Is Nothing And pobjFV.dateReetalonnage <> "" And pobjFV.dateReetalonnage <> "0000-00-00 00:00:00" Then
-                paramsQuery_col = paramsQuery_col & ",`dateReetalonnage`"
+                paramsQuery_col = paramsQuery_col & ",dateReetalonnage"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.dateReetalonnage) & "'"
-                'paramsQueryUpdate = paramsQueryUpdate & ",`dateReetalonnage`='" & CSDb.secureString(objFVManometreControle.dateReetalonnage) & "'"
+                'paramsQueryUpdate = paramsQueryUpdate & ",dateReetalonnage='" & CSDb.secureString(objFVManometreControle.dateReetalonnage) & "'"
             End If
             If Not pobjFV.pressionControle Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`pressionControle`"
+                paramsQuery_col = paramsQuery_col & ",pressionControle"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.pressionControle) & "'"
-                'paramsQueryUpdate = paramsQueryUpdate & ",`pressionControle`='" & CSDb.secureString(objFVManometreControle.pressionControle) & "'"
+                'paramsQueryUpdate = paramsQueryUpdate & ",pressionControle='" & CSDb.secureString(objFVManometreControle.pressionControle) & "'"
             End If
             If Not pobjFV.valeursMesurees Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`valeursMesurees`"
+                paramsQuery_col = paramsQuery_col & ",valeursMesurees"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.valeursMesurees) & "'"
-                'paramsQueryUpdate = paramsQueryUpdate & ",`valeursMesurees`='" & CSDb.secureString(objFVManometreControle.valeursMesurees) & "'"
+                'paramsQueryUpdate = paramsQueryUpdate & ",valeursMesurees='" & CSDb.secureString(objFVManometreControle.valeursMesurees) & "'"
             End If
             If Not pobjFV.idManometreControleur Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`idManometreControleur`"
+                paramsQuery_col = paramsQuery_col & ",idManometreControleur"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.idManometreControleur) & "'"
-                'paramsQueryUpdate = paramsQueryUpdate & ",`idManometreControleur`='" & CSDb.secureString(objFVManometreControle.idManometreControleur) & "'"
+                'paramsQueryUpdate = paramsQueryUpdate & ",idManometreControleur='" & CSDb.secureString(objFVManometreControle.idManometreControleur) & "'"
             End If
             If Not pobjFV.dateModif Is Nothing And pobjFV.dateModif <> "" Then
-                paramsQuery_col = paramsQuery_col & ",`dateModif`"
+                paramsQuery_col = paramsQuery_col & ",dateModif"
                 paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(pobjFV.dateModif) & "'"
-                'paramsQueryUpdate = paramsQueryUpdate & ",`dateModif`='" & CSDb.secureString(objFVManometreControle.dateModif) & "'"
+                'paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(objFVManometreControle.dateModif) & "'"
             End If
             If Not pobjFV.dateModificationAgent Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`dateModificationAgent`"
+                paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
                 paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(pobjFV.dateModificationAgent) & "'"
-                'paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationAgent`='" & CSDb.secureString(objFVManometreControle.dateModificationAgent) & "'"
+                'paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(objFVManometreControle.dateModificationAgent) & "'"
             End If
             If Not pobjFV.dateModificationCrodip Is Nothing Then
-                paramsQuery_col = paramsQuery_col & ",`FVFileName`"
+                paramsQuery_col = paramsQuery_col & ",FVFileName"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.FVFileName) & "'"
-                ' paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationCrodip`='" & CSDb.secureString(objFVManometreControle.dateModificationCrodip) & "'"
+                ' paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDb.secureString(objFVManometreControle.dateModificationCrodip) & "'"
             End If
 
             ' On finalise la requete et en l'execute
-            bddCommande.CommandText = "INSERT INTO `FichevieManometreControle` (" & paramsQuery_col & ") VALUES (" & paramsQuery & ")"
+            bddCommande.CommandText = "INSERT INTO FichevieManometreControle (" & paramsQuery_col & ") VALUES (" & paramsQuery & ")"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception
@@ -228,7 +230,7 @@ Public Class FVManometreControleManager
         '        Dim paramsQueryUpdate As String
         Dim paramsQueryUpdate As String
         Dim oCSDb As New CSDb(True)
-        Dim bddCommande As New OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
 
         Try
@@ -236,8 +238,8 @@ Public Class FVManometreControleManager
             bddCommande = oCSDb.getConnection().CreateCommand()
 
             ' Initialisation de la requete
-            paramsQueryUpdate = "`id`='" & pobjFV.id & "',`idManometre`='" & CSDb.secureString(pobjFV.idManometre) & "'"
-            'paramsQuery_col = "`id`,`idManometre`"
+            paramsQueryUpdate = "id='" & pobjFV.id & "',idManometre='" & CSDb.secureString(pobjFV.idManometre) & "'"
+            'paramsQuery_col = "id,idManometre"
             'paramsQuery = "'" & pobjFV.id & "' , '" & pobjFV.idManometre & "'"
 
             ' Mise a jour de la date de derniere modification
@@ -246,81 +248,81 @@ Public Class FVManometreControleManager
             End If
 
             If Not pobjFV.type Is Nothing Then
-                'paramsQuery_col = paramsQuery_col & ",`type`"
+                'paramsQuery_col = paramsQuery_col & ",type"
                 ' paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.type) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`type`='" & CSDb.secureString(pobjFV.type) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",type='" & CSDb.secureString(pobjFV.type) & "'"
             End If
             If Not pobjFV.auteur Is Nothing Then
-                '  paramsQuery_col = paramsQuery_col & ",`auteur`"
+                '  paramsQuery_col = paramsQuery_col & ",auteur"
                 '   paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.auteur) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`auteur`='" & CSDb.secureString(pobjFV.auteur) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",auteur='" & CSDb.secureString(pobjFV.auteur) & "'"
             End If
-            'paramsQuery_col = paramsQuery_col & ",`idAgentControleur`"
+            'paramsQuery_col = paramsQuery_col & ",idAgentControleur"
             'paramsQuery = paramsQuery & " , " & pobjFV.idAgentControleur & ""
-            paramsQueryUpdate = paramsQueryUpdate & ",`idAgentControleur`=" & CSDb.secureString(pobjFV.idAgentControleur) & ""
+            paramsQueryUpdate = paramsQueryUpdate & ",idAgentControleur=" & CSDb.secureString(pobjFV.idAgentControleur) & ""
             If Not pobjFV.caracteristiques Is Nothing Then
-                '  paramsQuery_col = paramsQuery_col & ",`caracteristiques`"
+                '  paramsQuery_col = paramsQuery_col & ",caracteristiques"
                 '   paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.caracteristiques) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`caracteristiques`='" & CSDb.secureString(pobjFV.caracteristiques) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",caracteristiques='" & CSDb.secureString(pobjFV.caracteristiques) & "'"
             End If
-            'paramsQuery_col = paramsQuery_col & ",`blocage`"
+            'paramsQuery_col = paramsQuery_col & ",blocage"
             'paramsQuery = paramsQuery & " , " & pobjFV.blocage & ""
-            paramsQueryUpdate = paramsQueryUpdate & ",`blocage`=" & CSDb.secureString(pobjFV.blocage) & ""
+            paramsQueryUpdate = paramsQueryUpdate & ",blocage=" & CSDb.secureString(pobjFV.blocage) & ""
             If Not pobjFV.idReetalonnage Is Nothing Then
-                'paramsQuery_col = paramsQuery_col & ",`idReetalonnage`"
+                'paramsQuery_col = paramsQuery_col & ",idReetalonnage"
                 'paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.idReetalonnage) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`idReetalonnage`='" & CSDb.secureString(pobjFV.idReetalonnage) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",idReetalonnage='" & CSDb.secureString(pobjFV.idReetalonnage) & "'"
             End If
             If Not pobjFV.nomLaboratoire Is Nothing Then
-                'paramsQuery_col = paramsQuery_col & ",`nomLaboratoire`"
+                'paramsQuery_col = paramsQuery_col & ",nomLaboratoire"
                 'paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.nomLaboratoire) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`nomLaboratoire`='" & CSDb.secureString(pobjFV.nomLaboratoire) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",nomLaboratoire='" & CSDb.secureString(pobjFV.nomLaboratoire) & "'"
             End If
             If Not pobjFV.dateReetalonnage Is Nothing And pobjFV.dateReetalonnage <> "" And pobjFV.dateReetalonnage <> "0000-00-00 00:00:00" Then
-                'paramsQuery_col = paramsQuery_col & ",`dateReetalonnage`"
+                'paramsQuery_col = paramsQuery_col & ",dateReetalonnage"
                 'paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.dateReetalonnage) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateReetalonnage`='" & CSDb.secureString(pobjFV.dateReetalonnage) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateReetalonnage='" & CSDb.secureString(pobjFV.dateReetalonnage) & "'"
             End If
             If Not pobjFV.pressionControle Is Nothing Then
-                'paramsQuery_col = paramsQuery_col & ",`pressionControle`"
+                'paramsQuery_col = paramsQuery_col & ",pressionControle"
                 'paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.pressionControle) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`pressionControle`='" & CSDb.secureString(pobjFV.pressionControle) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",pressionControle='" & CSDb.secureString(pobjFV.pressionControle) & "'"
             End If
             If Not pobjFV.valeursMesurees Is Nothing Then
-                'paramsQuery_col = paramsQuery_col & ",`valeursMesurees`"
+                'paramsQuery_col = paramsQuery_col & ",valeursMesurees"
                 'paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.valeursMesurees) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`valeursMesurees`='" & CSDb.secureString(pobjFV.valeursMesurees) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",valeursMesurees='" & CSDb.secureString(pobjFV.valeursMesurees) & "'"
             End If
             If Not pobjFV.idManometreControleur Is Nothing Then
-                'paramsQuery_col = paramsQuery_col & ",`idManometreControleur`"
+                'paramsQuery_col = paramsQuery_col & ",idManometreControleur"
                 'paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.idManometreControleur) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`idManometreControleur`='" & CSDb.secureString(pobjFV.idManometreControleur) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",idManometreControleur='" & CSDb.secureString(pobjFV.idManometreControleur) & "'"
             End If
             If Not pobjFV.dateModif Is Nothing And pobjFV.dateModif <> "" Then
-                'paramsQuery_col = paramsQuery_col & ",`dateModif`"
+                'paramsQuery_col = paramsQuery_col & ",dateModif"
                 'paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(pobjFV.dateModif) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateModif`='" & CSDb.secureString(pobjFV.dateModif) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(pobjFV.dateModif) & "'"
             End If
             If Not pobjFV.dateModificationAgent Is Nothing Then
-                'paramsQuery_col = paramsQuery_col & ",`dateModificationAgent`"
+                'paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
                 'paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(pobjFV.dateModificationAgent) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationAgent`='" & CSDb.secureString(pobjFV.dateModificationAgent) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(pobjFV.dateModificationAgent) & "'"
             End If
             If Not pobjFV.dateModificationCrodip Is Nothing Then
-                'paramsQuery_col = paramsQuery_col & ",`FVFileName`"
+                'paramsQuery_col = paramsQuery_col & ",FVFileName"
                 'paramsQuery = paramsQuery & " , '" & pobjFV.FVFileName & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationCrodip`='" & CSDb.secureString(pobjFV.dateModificationCrodip) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDb.secureString(pobjFV.dateModificationCrodip) & "'"
             End If
             If Not pobjFV.FVFileName Is Nothing Then
-                'paramsQuery_col = paramsQuery_col & ",`FVFileName`"
+                'paramsQuery_col = paramsQuery_col & ",FVFileName"
                 'paramsQuery = paramsQuery & " , '" & pobjFV.FVFileName & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",`FVFileName`='" & CSDb.secureString(pobjFV.FVFileName) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",FVFileName='" & CSDb.secureString(pobjFV.FVFileName) & "'"
             End If
 
             ' On finalise la requete et en l'execute
             ' On finalise la requete et en l'execute
             bddCommande.Connection = oCSDb.getConnection()
-            bddCommande.CommandText = "UPDATE `FichevieManometreControle` SET " & paramsQueryUpdate & " WHERE `FichevieManometreControle`.`id`='" & pobjFV.id & "'"
+            bddCommande.CommandText = "UPDATE FichevieManometreControle SET " & paramsQueryUpdate & " WHERE FichevieManometreControle.id='" & pobjFV.id & "'"
             bddCommande.ExecuteNonQuery()
             oCSDb.free()
             bReturn = True
@@ -342,7 +344,7 @@ Public Class FVManometreControleManager
             Try
                 ' On récupère les résultats
                 Dim bdd As New CSDb(True)
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieManometreControle` WHERE `id` LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY `id` DESC")
+                Dim tmpListProfils As DbDataReader = bdd.getResult2s("SELECT id FROM FichevieManometreControle WHERE id LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY id DESC")
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
@@ -371,7 +373,7 @@ Public Class FVManometreControleManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `FichevieManometreControle` SET `FichevieManometreControle`.`dateModificationCrodip`='" & newDate & "',`FichevieManometreControle`.`dateModificationAgent`='" & newDate & "' WHERE `FichevieManometreControle`.`id`='" & objFVManometreControle.id & "'"
+            dbLink.queryString = "UPDATE FichevieManometreControle SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id='" & objFVManometreControle.id & "'"
             dbLink.Execute()
             dbLink.free()
             bReturn = True
@@ -385,7 +387,7 @@ Public Class FVManometreControleManager
         Debug.Assert(Not String.IsNullOrEmpty(fvmanometrecontrole_id), "Id doit être initialisé")
         ' déclarations
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
         Dim tmpFVManometreControle As New FVManometreControle(New Agent)
         oCsdb = New CSDb(True)
@@ -393,7 +395,7 @@ Public Class FVManometreControleManager
         bddCommande.CommandText = "SELECT * FROM FichevieManometreControle WHERE FichevieManometreControle.id='" & fvmanometrecontrole_id & "'"
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
             While tmpListProfils.Read()
                 ' On rempli notre tableau
@@ -423,15 +425,15 @@ Public Class FVManometreControleManager
         ' déclarations
         Dim oCsdb As CSDb = Nothing
         Dim arrItems(0) As FVManometreControle
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
 
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT `FichevieManometreControle`.* FROM `FichevieManometreControle` INNER JOIN `AgentManoControle` ON `FichevieManometreControle`.`idManometre` = `AgentManoControle`.`idCrodip` WHERE `FichevieManometreControle`.`dateModificationAgent`<>`FichevieManometreControle`.`dateModificationCrodip` AND `AgentManoControle`.`idStructure`=" & agent.idStructure
+            bddCommande.CommandText = "SELECT FichevieManometreControle.* FROM FichevieManometreControle INNER JOIN AgentManoControle ON FichevieManometreControle.idManometre = AgentManoControle.idCrodip WHERE FichevieManometreControle.dateModificationAgent<>FichevieManometreControle.dateModificationCrodip AND AgentManoControle.idStructure=" & agent.idStructure
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()
@@ -462,7 +464,7 @@ Public Class FVManometreControleManager
         Debug.Assert(Not String.IsNullOrEmpty(pIdManometre), "L'ID doit êtr initialisé")
         Dim lstResponse As New List(Of FVManometreControle)
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
         If pIdManometre <> "" Then
             oCsdb = New CSDb(True)
@@ -471,7 +473,7 @@ Public Class FVManometreControleManager
             Try
 
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
 
@@ -500,35 +502,35 @@ Public Class FVManometreControleManager
     Public Shared Function getLstFVManometreControle() As List(Of FVManometreControle)
         Dim lstResponse As New List(Of FVManometreControle)
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
         oCsdb = New CSDb(True)
         bddCommande = oCsdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM FichevieManometreControle Where dateModif is not null"
         Try
 
-                ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
-                ' Puis on les parcours
-                While tmpListProfils.Read()
+            ' On récupère les résultats
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            While tmpListProfils.Read()
 
-                    ' On rempli notre tableau
-                    Dim tmpFVManometreControle As New FVManometreControle(New Agent())
-                    Dim tmpColId As Integer = 0
-                    While tmpColId < tmpListProfils.FieldCount()
-                        tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
-                        tmpColId = tmpColId + 1
-                    End While
-                    lstResponse.Add(tmpFVManometreControle)
+                ' On rempli notre tableau
+                Dim tmpFVManometreControle As New FVManometreControle(New Agent())
+                Dim tmpColId As Integer = 0
+                While tmpColId < tmpListProfils.FieldCount()
+                    tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                    tmpColId = tmpColId + 1
                 End While
-                tmpListProfils.Close()
-            Catch ex As Exception
+                lstResponse.Add(tmpFVManometreControle)
+            End While
+            tmpListProfils.Close()
+        Catch ex As Exception
             CSDebug.dispError("FVManometreControleManager - getlstFVManometreControle ERR : " & ex.Message)
         End Try
 
-            If oCsdb IsNot Nothing Then
-                oCsdb.free()
-            End If
+        If oCsdb IsNot Nothing Then
+            oCsdb.free()
+        End If
 
         Return lstResponse
     End Function
@@ -536,13 +538,13 @@ Public Class FVManometreControleManager
     Public Shared Function delete(ByVal pId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pId), " le paramètre ID doit être initialisé")
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
         Try
-            oCSDb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            bddCommande = oCSDb.getConnection.CreateCommand()
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "DELETE FROM FichevieManometreControle WHERE id='" & pId & "'"
             nResult = bddCommande.ExecuteNonQuery()
             Debug.Assert(nResult = 1, "Erreur en Delete, plus d'une ligne supprimée")
@@ -551,8 +553,8 @@ Public Class FVManometreControleManager
             CSDebug.dispFatal("FVManometreControleManager.delete (" & pId.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'delete

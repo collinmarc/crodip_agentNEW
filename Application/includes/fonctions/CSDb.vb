@@ -1,14 +1,12 @@
-Imports System.Data.OleDb
-Public Enum DBTYPE
-    AGENT = 0
-    ETAT = 1
-    DAISY = 2
-End Enum
-#Region " Base de données locale "
+Imports System.Data.Common
+'Imports System.Data.OleDb
 
-
-#End Region
 Public Class CSDb
+    Public Enum EnumDBTYPE
+        MSACCESS = 0
+        SQLITE = 1
+    End Enum
+
     Public Const conf_bddUser As String = "Developpeur"
     Public conf_bddPass As String = "UmtU8Scb"
     Public conf_bddDLPath As String = "crodip_dasylab"
@@ -19,53 +17,60 @@ Public Class CSDb
     Public conf_bddEtatPath As String = "crodip_etats"
     Public conf_bddEtatPath_dev As String = "crodip_etats_dev"
 
-    Private DBextension As String = ".mdb"
+    Protected DBextension As String = ".mdb"
     ' Parametres de connexion
     ' Connexion
-    Private _dbConnection As OleDb.OleDbConnection
-    Private _bddConnectString As String
-    Private _dbName As String ' Nom de la base de données
+    Protected _dbConnection As DbConnection
+    Protected _bddConnectString As String
+    Protected _dbName As String ' Nom de la base de données
     ' Query
     Private _queryString As String
+    Public Shared _DBTYPE As CSDb.EnumDBTYPE = CSDb.EnumDBTYPE.SQLITE
 
     Sub New(Optional ByVal doConnect As Boolean = False, Optional pdbPath As String = "", Optional pdbExtension As String = "")
         _queryString = ""
+        If _DBTYPE = EnumDBTYPE.MSACCESS Then
+            If pdbPath = "" Then
+                conf_bddPath = My.Settings.DB
+            Else
+                conf_bddPath = pdbPath
+            End If
 
-        If pdbPath = "" Then
-            conf_bddPath = My.Settings.DB
-        Else
-            conf_bddPath = pdbPath
-        End If
-        If pdbExtension = "" Then
-            DBextension = My.Settings.DBExtension
-        Else
-            DBextension = pdbExtension
-        End If
-        If conf_bddPath = "" Then
-            conf_bddPath = "cropdip_agent"
-        End If
-        conf_bddPath_dev = conf_bddPath & "_dev"
+            If pdbExtension = "" Then
+                DBextension = My.Settings.DBExtension
+            Else
+                DBextension = pdbExtension
+            End If
+            If conf_bddPath = "" Then
+                conf_bddPath = "cropdip_agent"
+            End If
+            conf_bddPath_dev = conf_bddPath & "_dev"
 
-        'Select Case pDBType
-        'Case DBTYPE.AGENT
-        If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
-            _dbName = conf_bddPath_dev
+            If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
+                _dbName = conf_bddPath_dev
+            Else
+                _dbName = conf_bddPath
+            End If
         Else
-            _dbName = conf_bddPath
+            _dbName = "crodip_agent"
+            DBextension = ".db3"
         End If
-        _bddConnectString = getConnectString(_dbName)
-        '    Case DBTYPE.ETAT
-        '_dbName = conf_bddEtatPath
-        '        _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & _dbName & DBextension
-        '    Case DBTYPE.DAISY
-        '        _dbName = conf_bddDLPath
-        '        _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & _dbName & DBextension
-        'End Select
+
+        _bddConnectString = getConnectString(_dbName, _DBTYPE)
 
 
         If _dbConnection Is Nothing Then
-            _dbConnection = New OleDb.OleDbConnection
+            Select Case _DBTYPE
+                Case EnumDBTYPE.MSACCESS
+                    _dbConnection = New OleDb.OleDbConnection
+                Case EnumDBTYPE.SQLITE
+                    _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
+                    Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
+                    oBuider.DataSource = "bdd/crodip_agent.db3"
+                    _dbConnection.ConnectionString = oBuider.ConnectionString
+            End Select
         End If
+
         _dbConnection.ConnectionString = _bddConnectString
 
         If doConnect = True Then
@@ -83,22 +88,28 @@ Public Class CSDb
     Public Function getbddPathName() As String
         Return ".\bdd\" & _dbName & DBextension
     End Function
-    Public Function getConnectString(pDBName As String) As String
-        Dim bReturn As String
-        If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
-            If DBextension = ".accdb" Then
-                bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password="
-            Else
-                bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password="
-            End If
+    Public Function getConnectString(pDBName As String, pdbType As EnumDBTYPE) As String
+        Dim bReturn As String = ""
+        Select Case pdbType
+            Case EnumDBTYPE.MSACCESS
+                If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
+                    If DBextension = ".accdb" Then
+                        bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password="
+                    Else
+                        bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password="
+                    End If
 
-        Else
-            If DBextension = ".accdb" Then
-                bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
-            Else
-                bReturn = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
-            End If
-        End If
+                Else
+                    If DBextension = ".accdb" Then
+                        bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
+                    Else
+                        bReturn = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
+                    End If
+                End If
+            Case EnumDBTYPE.SQLITE
+                bReturn = "Data Source=.\bdd\" & pDBName & DBextension
+        End Select
+
         Return bReturn
     End Function
 
@@ -156,9 +167,8 @@ Public Class CSDb
         Dim bReturn As Boolean
         Try
             ' Test pour fermeture de connection BDD
-            If _dbConnection.State() <> 0 Then
-                ' On ferme la connexion
-                _dbConnection.Close()
+            If _dbConnection.State <> ConnectionState.Open Then
+                free()
             End If
         Catch ex As Exception
             CSDebug.dispError("CSDb.getInstance1 ERR : " & ex.Message)
@@ -166,32 +176,28 @@ Public Class CSDb
 
         ' on essaie 10 fois la connexion
         Dim nTry As Integer
-        Dim bOpen As Boolean
-        bOpen = False
         For nTry = 1 To 10
             Try
 
                 If _dbConnection.State() = 0 Then
                     ' Si non, on la configure et on l'ouvre
-                    _dbConnection.ConnectionString = _bddConnectString
                     _dbConnection.Open()
-                    bOpen = True
+                    bReturn = True
                     Exit For
                 End If
             Catch ex As Exception
-                CSDebug.dispError("CSDb.getInstance2 on " & _bddConnectString & ":" & ex.Message)
+                CSDebug.dispError("CSDb.getInstance2 on " & _dbConnection.ConnectionString & ":" & ex.Message)
             End Try
 
         Next
-        bReturn = bOpen
         Return bReturn
     End Function
-    Public Function getConnection() As OleDbConnection
+    Public Function getConnection() As DbConnection
         Return _dbConnection
     End Function
 
     Public Function getValue(ByVal pQuery As String) As Object
-        Dim _resultReader As System.Data.OleDb.OleDbDataReader
+        Dim _resultReader As DbDataReader
         Dim oCSdb As New CSDb(True)
         Dim oReturn As Object = Nothing
         Try
@@ -220,7 +226,7 @@ Public Class CSDb
     Public Function Execute() As Boolean
         Dim bReturn As Boolean
         Try
-            Dim _dbCommande As System.Data.OleDb.OleDbCommand = getConnection().CreateCommand
+            Dim _dbCommande As DbCommand = getConnection().CreateCommand
             _dbCommande.CommandText = _queryString
             _dbCommande.ExecuteNonQuery()
             bReturn = True
@@ -230,10 +236,10 @@ Public Class CSDb
         End Try
         Return bReturn
     End Function
-    Public Function getResult2s() As System.Data.OleDb.OleDbDataReader
-        Dim _resultReader As System.Data.OleDb.OleDbDataReader
+    Public Function getResult2s() As DbDataReader
+        Dim _resultReader As DbDataReader
         Try
-            Dim _dbCommande As System.Data.OleDb.OleDbCommand = getConnection().CreateCommand
+            Dim _dbCommande As DbCommand = getConnection().CreateCommand
             _dbCommande.CommandText = _queryString
             _resultReader = _dbCommande.ExecuteReader
         Catch ex As Exception
@@ -244,7 +250,7 @@ Public Class CSDb
         End Try
         Return _resultReader
     End Function
-    Public Function getResult2s(ByVal queryString As String) As OleDb.OleDbDataReader
+    Public Function getResult2s(ByVal queryString As String) As DbDataReader
         _queryString = queryString
         Return getResult2s()
     End Function
@@ -255,11 +261,25 @@ Public Class CSDb
         Dim bReturn As Boolean
         Try
             CSDebug.dispError("VIDAGE DE LA BASE DE DONNEES !!!!!")
-            Dim bddCommande As OleDbCommand
+            Dim bddCommande As DbCommand
             bddCommande = getConnection().CreateCommand
             'Vidage conmplet de la base
-            bddCommande.CommandText = "DELETE FROM Agent"
+            bddCommande.CommandText = "DELETE FROM facture"
             bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM factureItem"
+            bddCommande.ExecuteNonQuery()
+
+            bddCommande.CommandText = "DELETE FROM ControleBancMesure"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM ControleManoMesure"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM FicheVieBancMesure"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM FicheVieManometreControle"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM FicheVieManometreEtalon"
+            bddCommande.ExecuteNonQuery()
+
             bddCommande.CommandText = "DELETE FROM AgentBuseEtalon"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM AgentManoControle"
@@ -270,12 +290,7 @@ Public Class CSDb
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Controle_Regulier"
             bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM ControleBancMesure"
-            bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM ControleManoMesure"
-            bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM Diagnostic"
-            bddCommande.ExecuteNonQuery()
+
             bddCommande.CommandText = "DELETE FROM DiagnosticBuses"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM DiagnosticBusesDetail"
@@ -290,33 +305,26 @@ Public Class CSDb
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM DiagnosticTroncons833"
             bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM Exploitation"
+            bddCommande.CommandText = "DELETE FROM Diagnostic"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM ExploitationToPulverisateur"
             bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM FicheVieBancMesure"
-            bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM FicheVieManometreControle"
-            bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM FicheVieManometreEtalon"
-            bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM Logs"
-            bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM PrestationCategorie"
-            bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM PrestationTarif"
+            bddCommande.CommandText = "DELETE FROM Exploitation"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Pulverisateur"
             bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM Structure"
+            bddCommande.CommandText = "DELETE FROM IdentifiantPulverisateur"
+            bddCommande.ExecuteNonQuery()
+
+            bddCommande.CommandText = "DELETE FROM PrestationTarif"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PrestationCategorie"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Synchronisation"
             bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM IdentifiantPulverisateur"
+            bddCommande.CommandText = "DELETE FROM Agent"
             bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM factureItem"
-            bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM facture"
+            bddCommande.CommandText = "DELETE FROM Structure"
             bddCommande.ExecuteNonQuery()
             'bddCommande.CommandText = "DELETE FROM VERSION"
             'bddCommande.ExecuteNonQuery()
@@ -352,7 +360,7 @@ Public Class CSDb
         Try
             Dim jro As JRO.JetEngine
             jro = New JRO.JetEngine()
-            Dim bdd2 As String = getConnectString(_dbName & "2")
+            Dim bdd2 As String = getConnectString(_dbName & "2", EnumDBTYPE.MSACCESS)
             If System.IO.File.Exists("./bdd/" & _dbName & "2" & DBextension) Then
                 System.IO.File.Delete("./bdd/" & _dbName & "2" & DBextension)
             End If

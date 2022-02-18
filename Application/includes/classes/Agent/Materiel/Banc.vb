@@ -1,8 +1,9 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
+Imports System.Data.Common
 
-<Serializable(), XmlInclude(GetType(Banc))> _
+<Serializable(), XmlInclude(GetType(Banc))>
 Public Class Banc
     Inherits Materiel
 
@@ -111,9 +112,9 @@ Public Class Banc
                     'Le banc est marqué comme supprimé
 
                     bReturn = True
-                    Me.agentSuppression = pAgentSuppression.nom
-                    Me.raisonSuppression = pRaison
-                    Me.dateSuppression = Now()
+                    Me.AgentSuppression = pAgentSuppression.nom
+                    Me.RaisonSuppression = pRaison
+                    Me.DateSuppression = Now()
                     Me.isSupprime = True
                     bReturn = BancManager.save(Me)
                 End If
@@ -125,7 +126,7 @@ Public Class Banc
         End Try
         Return bReturn
     End Function
-    Public Function Fill(oDataReader As OleDb.OleDbDataReader) As Boolean
+    Public Function Fill(oDataReader As DbDataReader) As Boolean
         Dim bReturn As Boolean
         Try
             Dim tmpColId As Integer = 0
@@ -181,9 +182,9 @@ Public Class Banc
                 Case "issupprime".Trim().ToUpper()
                     Me.isSupprime = CType(pcolValue, Boolean) 'Public isSupprime As Boolean
                 Case "agentsuppression".Trim().ToUpper()
-                    Me.agentSuppression = pcolValue.ToString()
+                    Me.AgentSuppression = pcolValue.ToString()
                 Case "raisonsuppression".Trim().ToUpper()
-                    Me.raisonSuppression = pcolValue.ToString()
+                    Me.RaisonSuppression = pcolValue.ToString()
                 Case "datesuppression".Trim().ToUpper()
                     Dim strDateMin As String = CSDate.ToCRODIPString("")
                     Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)

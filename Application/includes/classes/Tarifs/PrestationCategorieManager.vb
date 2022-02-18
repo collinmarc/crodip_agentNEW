@@ -1,3 +1,6 @@
+Imports System.Collections.Generic
+Imports System.Data.Common
+
 Public Class PrestationCategorieManager
 
 #Region "Methodes Web Service"
@@ -9,7 +12,7 @@ Public Class PrestationCategorieManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As new Object 
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetPrestationCategorie(pAgent.id, PrestationCategorie_id, pAgent.idStructure, objWSCrodip_response)
             Select Case codeResponse
@@ -156,10 +159,10 @@ Public Class PrestationCategorieManager
         Dim iReturn As Integer = 1
         Dim dbLink As New CSDb(True)
         '## Préparation de la connexion
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         bddCommande = dbLink.getConnection().CreateCommand()
         Try
-            Dim tmpResults As System.Data.OleDb.OleDbDataReader
+            Dim tmpResults As DbDataReader
             bddCommande.CommandText = "SELECT MAX(Id)+1 as NEWID FROM PrestationCategorie "
             tmpResults = bddCommande.ExecuteReader()
             While tmpResults.Read()
@@ -199,7 +202,7 @@ Public Class PrestationCategorieManager
         Dim bReturn As Boolean
         Dim dbLink As New CSDb(True)
         '## Préparation de la connexion
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         bddCommande = dbLink.getConnection().CreateCommand()
         Try
             '####################################################
@@ -224,11 +227,11 @@ Public Class PrestationCategorieManager
     Public Shared Function exists(ByVal curObject As PrestationCategorie) As Boolean
         Dim bReturn As Boolean
         Dim oCSDB As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         bddCommande = oCSDB.getConnection().CreateCommand()
         Try
             '## Execution de la requete
-            Dim tmpResults As System.Data.OleDb.OleDbDataReader
+            Dim tmpResults As DbDataReader
             bddCommande.CommandText = "SELECT * FROM `PrestationCategorie` WHERE id=" & curObject.id & " AND idStructure = " & curObject.idStructure
             tmpResults = bddCommande.ExecuteReader()
             '################################################################
@@ -270,7 +273,7 @@ Public Class PrestationCategorieManager
     End Sub
     Public Shared Sub delete(ByVal curObjectId As Integer)
         Dim oCSDB As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Try
             bddCommande = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "DELETE FROM `PrestationCategorie` WHERE `PrestationCategorie`.`id`=" & curObjectId & ""
@@ -291,7 +294,7 @@ Public Class PrestationCategorieManager
                 '## Préparation de la connexion
                 Dim dbLink As New CSDb(True)
                 '## Execution de la requete
-                Dim tmpResults As System.Data.OleDb.OleDbDataReader
+                Dim tmpResults As DbDataReader
                 tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationCategorie` WHERE idStructure=" & idStructure & " ORDER BY id")
                 '################################################################
                 Dim i As Integer = 0
@@ -333,6 +336,53 @@ Public Class PrestationCategorieManager
         End Try
         Return arrObjects
     End Function
+    Public Shared Function getlstByStructureId(ByVal idStructure As Integer) As List(Of PrestationCategorie)
+        Dim lstReturn As New List(Of PrestationCategorie)
+        Try
+            If idStructure <> 0 Then
+                '## Préparation de la connexion
+                Dim dbLink As New CSDb(True)
+                '## Execution de la requete
+                Dim tmpResults As DbDataReader
+                tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationCategorie` WHERE idStructure=" & idStructure & " ORDER BY id")
+                '################################################################
+                Dim i As Integer = 0
+                While tmpResults.Read()
+                    '# construction de l'objet
+                    Dim tmpObject As New PrestationCategorie
+                    Dim tmpColId As Integer = 0
+                    While tmpColId < tmpResults.FieldCount()
+                        Select Case tmpResults.GetName(tmpColId)
+                            Case "id"
+                                tmpObject.id = tmpResults.Item(tmpColId)
+                            Case "idStructure"
+                                tmpObject.idStructure = tmpResults.Item(tmpColId)
+                            Case "libelle"
+                                tmpObject.description = tmpResults.Item(tmpColId).ToString()
+                            Case "dateModificationAgent"
+                                tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
+                            Case "dateModificationCrodip"
+                                tmpObject.dateModificationCrodip = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
+                        End Select
+                        tmpColId = tmpColId + 1
+                    End While
+                    '# Ajout au tableau de résultats
+                    tmpObject.setEtat(Tarif.BDEtat.ETATNONE)
+
+                    lstReturn.Add(tmpObject)
+                    '###############################
+                End While
+                '################################################################
+
+                '' 110727 : arzur_c : On ferme la connexion
+                dbLink.free()
+
+            End If
+        Catch ex As Exception
+            CSDebug.dispFatal("PrestationCategorieManager::getlstByStructureId(" & idStructure & ") : " & ex.Message)
+        End Try
+        Return lstReturn
+    End Function
 
     ' OK
     Public Shared Function getCategoryById(ByVal idCategorie As Integer, pidStructure As Integer) As PrestationCategorie
@@ -341,7 +391,7 @@ Public Class PrestationCategorieManager
             '## Préparation de la connexion
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
-            Dim tmpResults As System.Data.OleDb.OleDbDataReader
+            Dim tmpResults As DbDataReader
             tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationCategorie` WHERE id=" & idCategorie & " AND idStructure=" & pidStructure)
             '################################################################
             Dim i As Integer = 0
@@ -387,7 +437,7 @@ Public Class PrestationCategorieManager
             '## Préparation de la connexion
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
-            Dim tmpResults As System.Data.OleDb.OleDbDataReader
+            Dim tmpResults As DbDataReader
             tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationCategorie.id")
             '################################################################
             Dim i As Integer = 0

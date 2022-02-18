@@ -1,3 +1,6 @@
+Imports System.Collections.Generic
+Imports System.Data.Common
+
 Public Class PrestationTarifManager
 
 #Region "Methodes Web Service"
@@ -9,7 +12,7 @@ Public Class PrestationTarifManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As new Object 
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetPrestationTarif(pAgent.id, PrestationTarif_id, pAgent.idStructure, PrestationTarif_idCategorie, objWSCrodip_response)
             Select Case codeResponse
@@ -129,32 +132,32 @@ Public Class PrestationTarifManager
 
                     ' Mise a jour de la date de derniere modification
                     If Not bSyncro Then
-                            curObject.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-                        End If
+                        curObject.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                    End If
 
-                        Dim paramsQuery As String = ""
-                        paramsQuery = paramsQuery & "`description`='" & CSDb.secureString(curObject.description) & "'"
-                        'If curObject.tarifHT <> 0 Then
-                        paramsQuery = paramsQuery & " , `tarifHT`='" & CSDb.secureString(curObject.tarifHT) & "'"
-                        'End If
-                        'If curObject.tarifTTC <> 0 Then
-                        paramsQuery = paramsQuery & " , `tarifTTC`='" & CSDb.secureString(curObject.tarifTTC) & "'"
-                        'End If
-                        paramsQuery = paramsQuery & " , `tva`='" & CSDb.secureString(curObject.tva) & "'"
-                        If Not curObject.dateModificationAgent Is Nothing Then
-                            paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(curObject.dateModificationAgent) & "'"
-                        End If
-                        If Not curObject.dateModificationCrodip Is Nothing Then
-                            paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.mysql2access(curObject.dateModificationCrodip) & "'"
-                        End If
+                    Dim paramsQuery As String = ""
+                    paramsQuery = paramsQuery & "`description`='" & CSDb.secureString(curObject.description) & "'"
+                    'If curObject.tarifHT <> 0 Then
+                    paramsQuery = paramsQuery & " , `tarifHT`='" & CSDb.secureString(curObject.tarifHT) & "'"
+                    'End If
+                    'If curObject.tarifTTC <> 0 Then
+                    paramsQuery = paramsQuery & " , `tarifTTC`='" & CSDb.secureString(curObject.tarifTTC) & "'"
+                    'End If
+                    paramsQuery = paramsQuery & " , `tva`='" & CSDb.secureString(curObject.tva) & "'"
+                    If Not curObject.dateModificationAgent Is Nothing Then
+                        paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(curObject.dateModificationAgent) & "'"
+                    End If
+                    If Not curObject.dateModificationCrodip Is Nothing Then
+                        paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.mysql2access(curObject.dateModificationCrodip) & "'"
+                    End If
 
-                        '####################################################
-                        '## Execution de la requete
-                        dbLink.Execute("UPDATE `PrestationTarif` SET " & paramsQuery & " WHERE id=" & curObject.id & " AND idStructure = " & curObject.idStructure & " and idCategorie = " & curObject.idCategorie & "")
+                    '####################################################
+                    '## Execution de la requete
+                    dbLink.Execute("UPDATE `PrestationTarif` SET " & paramsQuery & " WHERE id=" & curObject.id & " AND idStructure = " & curObject.idStructure & " and idCategorie = " & curObject.idCategorie & "")
 
                     curObject.setEtat(Tarif.BDEtat.ETATNONE)
                 End If
-                End If
+            End If
             dbLink.free()
             bReturn = True
         Catch ex As Exception
@@ -175,7 +178,7 @@ Public Class PrestationTarifManager
             Dim dbLink As New CSDb(True)
             '####################################################
             '## Execution de la requete
-            Dim tmpResults As System.Data.OleDb.OleDbDataReader
+            Dim tmpResults As DbDataReader
             tmpResults = dbLink.getResult2s("SELECT MAX(id)+1 as NEWID  FROM PrestationTarif")
             While tmpResults.Read()
                 '# construction de l'objet
@@ -208,7 +211,7 @@ Public Class PrestationTarifManager
             Dim dbLink As New CSDb(True)
             '####################################################
             '## Execution de la requete
-            Dim oCmd As OleDb.OleDbCommand
+            Dim oCmd As DbCommand
             oCmd = dbLink.getConnection().CreateCommand()
             If exists(pTarif) Then
                 oCmd.CommandText = "UPDATE PrestationTarif SET idStructure = " & pTarif.idStructure & " , idCategorie = " & pTarif.idCategorie & " where id = " & pTarif.id & ""
@@ -232,7 +235,7 @@ Public Class PrestationTarifManager
         Try
             '## Préparation de la connexion
             '## Execution de la requete
-            Dim tmpResults As System.Data.OleDb.OleDbDataReader
+            Dim tmpResults As DbDataReader
             tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE id=" & curObject.id & " AND idStructure=" & curObject.idStructure & " AND idCategorie=" & curObject.idCategorie & "")
             'tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE id=" & curObject.id & "")
             '################################################################
@@ -295,7 +298,7 @@ Public Class PrestationTarifManager
                 '## Préparation de la connexion
                 Dim dbLink As New CSDb(True)
                 '## Execution de la requete
-                Dim tmpResults As System.Data.OleDb.OleDbDataReader
+                Dim tmpResults As DbDataReader
                 tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE id=" & idObject & "")
                 '################################################################
                 Dim i As Integer = 0
@@ -370,7 +373,7 @@ Public Class PrestationTarifManager
                 '## Préparation de la connexion
                 Dim dbLink As New CSDb(True)
                 '## Execution de la requete
-                Dim oDR As System.Data.OleDb.OleDbDataReader
+                Dim oDR As DbDataReader
                 oDR = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE idStructure=" & idStructure & " ORDER BY id")
                 '################################################################
                 Dim i As Integer = 0
@@ -416,7 +419,7 @@ Public Class PrestationTarifManager
                 '## Préparation de la connexion
                 Dim dbLink As New CSDb(True)
                 '## Execution de la requete
-                Dim oDR As System.Data.OleDb.OleDbDataReader
+                Dim oDR As DbDataReader
                 oDR = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE idCategorie=" & idCategorie & " ORDER BY id")
                 '################################################################
                 Dim i As Integer = 0
@@ -450,6 +453,44 @@ Public Class PrestationTarifManager
         End Try
         Return arrObjects
     End Function
+    Public Shared Function getlstByCategorieId(ByVal idCategorie As Integer) As List(Of PrestationTarif)
+        Dim lstReturn As New List(Of PrestationTarif)
+        Try
+            If idCategorie <> 0 Then
+                '## Préparation de la connexion
+                Dim dbLink As New CSDb(True)
+                '## Execution de la requete
+                Dim oDR As DbDataReader
+                oDR = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE idCategorie=" & idCategorie & " ORDER BY id")
+                '################################################################
+                Dim i As Integer = 0
+                While oDR.Read()
+                    '# construction de l'objet
+                    Dim oNewTarif As New PrestationTarif
+                    Dim tmpColId As Integer = 0
+                    While tmpColId < oDR.FieldCount()
+                        If Not oDR.IsDBNull(tmpColId) Then
+                            oNewTarif.Fill(oDR.GetName(tmpColId), oDR.GetValue(tmpColId))
+                        End If
+
+                        tmpColId = tmpColId + 1
+                    End While
+                    oNewTarif.setEtat(Tarif.BDEtat.ETATNONE)
+                    '# Ajout au tableau de résultats
+                    lstReturn.Add(oNewTarif)
+                    '###############################
+                End While
+                '################################################################
+
+                '' 110727 : arzur_c : On ferme la connexion
+                dbLink.free()
+
+            End If
+        Catch ex As Exception
+            CSDebug.dispFatal("PrestationTarifManager::getlstByCategorieId(" & idCategorie & ") : " & ex.Message)
+        End Try
+        Return lstReturn
+    End Function
 
     ' 
     Public Shared Function getUpdates() As PrestationTarif()
@@ -458,7 +499,7 @@ Public Class PrestationTarifManager
             '## Préparation de la connexion
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
-            Dim tmpResults As System.Data.OleDb.OleDbDataReader
+            Dim tmpResults As DbDataReader
             tmpResults = dbLink.getResult2s("SELECT * FROM PrestationTarif WHERE PrestationTarif.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationTarif.id")
             '################################################################
             Dim i As Integer = 0

@@ -1062,8 +1062,6 @@ Public Class Pulverisateur
                     Me.codePostal = pColValue
                 Case "commune".ToUpper().Trim()
                     Me.Commune = pColValue
-                Case "commune".ToUpper().Trim()
-                    Me.Commune = pColValue
                 Case "isEclairageRampe".ToUpper().Trim()
                     Me.isEclairageRampe = pColValue
                 Case "isBarreGuidage".ToUpper().Trim()

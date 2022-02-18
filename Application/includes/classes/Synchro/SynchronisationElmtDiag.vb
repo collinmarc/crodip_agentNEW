@@ -67,8 +67,10 @@ Public Class SynchronisationElmtDiag
             Dim odiag As Diagnostic
             Try
                 SetStatus("Réception MAJ item de contrôle n°" & Me.IdentifiantChaine & "...")
+                Dim oCSDB As New CSDb(True)
                 odiag = DiagnosticItemManager.getWSDiagnosticItemsByDiagnosticId(pAgent, Me.IdentifiantChaine)
-                DiagnosticManager.SaveDiagItems(odiag, False, True)
+                DiagnosticManager.SaveDiagItems(oCSDB, odiag, False, True)
+                oCSDB.free()
                 bReturn = True
             Catch ex As Exception
                 CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticItems) : " & ex.Message.ToString)

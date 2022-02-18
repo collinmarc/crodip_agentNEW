@@ -1,4 +1,6 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
+
 Public Class ManometreEtalonManager
 
 #Region "Methodes Web Service"
@@ -9,7 +11,7 @@ Public Class ManometreEtalonManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As new Object
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetManometreEtalon(pAgent.id, manometreetalon_id, objWSCrodip_response)
             Select Case codeResponse
@@ -66,13 +68,13 @@ Public Class ManometreEtalonManager
         Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
         If pAgent.idStructure <> 0 Then
 
-            Dim bddCommande As OleDb.OleDbCommand
+            Dim bddCommande As DbCommand
             Dim oCSDB As New CSDb(True)
             bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT `AgentManoEtalon`.`numeroNational` FROM `AgentManoEtalon` WHERE `AgentManoEtalon`.`numeroNational` LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY `AgentManoEtalon`.`numeroNational` DESC"
+            bddCommande.CommandText = "SELECT AgentManoEtalon.numeroNational FROM AgentManoEtalon WHERE AgentManoEtalon.numeroNational LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY AgentManoEtalon.numeroNational DESC"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
@@ -107,7 +109,7 @@ Public Class ManometreEtalonManager
         Dim bReturn As Boolean
         Try
             If objManometreEtalon.numeroNational <> "" Then
-                oCSDb = New CSDb(True)
+                oCsdb = New CSDb(True)
 
 
                 ' On test si l'object existe ou non
@@ -118,11 +120,11 @@ Public Class ManometreEtalonManager
                     createManometreEtalon(objManometreEtalon.numeroNational)
                 End If
 
-                Dim bddCommande As OleDb.OleDbCommand
-                bddCommande = oCSDb.getConnection().CreateCommand()
+                Dim bddCommande As DbCommand
+                bddCommande = oCsdb.getConnection().CreateCommand()
 
                 ' Initialisation de la requete
-                paramsQuery = "`AgentManoEtalon`.`numeroNational`='" & objManometreEtalon.numeroNational & "'"
+                paramsQuery = "numeroNational='" & objManometreEtalon.numeroNational & "'"
 
                 ' Mise a jour de la date de derniere modification
                 If Not bSyncro Then
@@ -130,55 +132,55 @@ Public Class ManometreEtalonManager
                 End If
 
                 If Not objManometreEtalon.idCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`idCrodip`='" & CSDb.secureString(objManometreEtalon.idCrodip) & "'"
+                    paramsQuery = paramsQuery & " , idCrodip='" & CSDb.secureString(objManometreEtalon.idCrodip) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `AgentManoEtalon`.`idStructure`=" & objManometreEtalon.idStructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & objManometreEtalon.idStructure & ""
                 If Not objManometreEtalon.marque Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`marque`='" & CSDb.secureString(objManometreEtalon.marque) & "'"
+                    paramsQuery = paramsQuery & " , marque='" & CSDb.secureString(objManometreEtalon.marque) & "'"
                 End If
                 If Not objManometreEtalon.classe Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`classe`='" & CSDb.secureString(objManometreEtalon.classe) & "'"
+                    paramsQuery = paramsQuery & " , classe='" & CSDb.secureString(objManometreEtalon.classe) & "'"
                 End If
                 If Not objManometreEtalon.incertitudeEtalon Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`incertitudeEtalon`='" & CSDb.secureString(objManometreEtalon.incertitudeEtalon) & "'"
+                    paramsQuery = paramsQuery & " , incertitudeEtalon='" & CSDb.secureString(objManometreEtalon.incertitudeEtalon) & "'"
                 End If
                 If Not objManometreEtalon.type Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`type`='" & CSDb.secureString(objManometreEtalon.type) & "'"
+                    paramsQuery = paramsQuery & " , type='" & CSDb.secureString(objManometreEtalon.type) & "'"
                 End If
                 If Not objManometreEtalon.fondEchelle Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`fondEchelle`='" & CSDb.secureString(objManometreEtalon.fondEchelle) & "'"
+                    paramsQuery = paramsQuery & " , fondEchelle='" & CSDb.secureString(objManometreEtalon.fondEchelle) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `AgentManoEtalon`.`isSynchro`=" & objManometreEtalon.isSynchro & ""
+                paramsQuery = paramsQuery & " , isSynchro=" & objManometreEtalon.isSynchro & ""
                 If objManometreEtalon.dateDernierControleS <> Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateDernierControle`='" & CSDate.mysql2access(objManometreEtalon.dateDernierControleS) & "'"
+                    paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.mysql2access(objManometreEtalon.dateDernierControleS) & "'"
                 End If
                 If Not objManometreEtalon.dateModificationAgent Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateModificationAgent`='" & CSDate.mysql2access(objManometreEtalon.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(objManometreEtalon.dateModificationAgent) & "'"
                 End If
                 If Not objManometreEtalon.dateModificationCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateModificationCrodip`='" & CSDate.mysql2access(objManometreEtalon.dateModificationCrodip) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(objManometreEtalon.dateModificationCrodip) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `AgentManoEtalon`.`etat`=" & objManometreEtalon.etat & ""
-                paramsQuery = paramsQuery & " , `AgentManoEtalon`.`isUtilise`=" & objManometreEtalon.isUtilise & ""
-                paramsQuery = paramsQuery & " , `AgentManoEtalon`.`isSupprime`=" & objManometreEtalon.isSupprime & ""
-                paramsQuery = paramsQuery & " , `AgentManoEtalon`.`nbControles`=" & objManometreEtalon.nbControles & ""
-                paramsQuery = paramsQuery & " , `AgentManoEtalon`.`nbControlesTotal`=" & objManometreEtalon.nbControlesTotal & ""
+                paramsQuery = paramsQuery & " , etat=" & objManometreEtalon.etat & ""
+                paramsQuery = paramsQuery & " , isUtilise=" & objManometreEtalon.isUtilise & ""
+                paramsQuery = paramsQuery & " , isSupprime=" & objManometreEtalon.isSupprime & ""
+                paramsQuery = paramsQuery & " , nbControles=" & objManometreEtalon.nbControles & ""
+                paramsQuery = paramsQuery & " , nbControlesTotal=" & objManometreEtalon.nbControlesTotal & ""
 
-                If Not objManometreEtalon.agentSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`agentSuppression`='" & objManometreEtalon.agentSuppression & "'"
+                If Not objManometreEtalon.AgentSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , agentSuppression='" & objManometreEtalon.AgentSuppression & "'"
                 End If
-                If Not objManometreEtalon.raisonSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`raisonSuppression`='" & objManometreEtalon.raisonSuppression & "'"
+                If Not objManometreEtalon.RaisonSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , raisonSuppression='" & objManometreEtalon.RaisonSuppression & "'"
                 End If
-                If Not objManometreEtalon.dateSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateSuppression`='" & CSDate.mysql2access(objManometreEtalon.dateSuppression) & "'"
+                If Not objManometreEtalon.DateSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.mysql2access(objManometreEtalon.DateSuppression) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `AgentManoEtalon`.`jamaisServi`=" & objManometreEtalon.jamaisServi & ""
+                paramsQuery = paramsQuery & " , jamaisServi=" & objManometreEtalon.JamaisServi & ""
                 If objManometreEtalon.DateActivation <> Nothing Then
-                    paramsQuery = paramsQuery & " , `AgentManoEtalon`.`dateActivation`='" & CSDate.mysql2access(objManometreEtalon.DateActivation) & "'"
+                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.mysql2access(objManometreEtalon.DateActivation) & "'"
                 End If
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE `AgentManoEtalon` SET " & paramsQuery & " WHERE `AgentManoEtalon`.`numeroNational`='" & objManometreEtalon.numeroNational & "'"
+                bddCommande.CommandText = "UPDATE AgentManoEtalon SET " & paramsQuery & " WHERE numeroNational='" & objManometreEtalon.numeroNational & "'"
                 bddCommande.ExecuteNonQuery()
                 bReturn = True
             End If
@@ -186,8 +188,8 @@ Public Class ManometreEtalonManager
             CSDebug.dispFatal("ManometreEtalonManager.Save  Error : " & ex.Message.ToString() & paramsQuery)
             bReturn = False
         End Try
-        If oCSDb IsNot Nothing Then
-            oCSDb.free()
+        If oCsdb IsNot Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function
@@ -196,7 +198,7 @@ Public Class ManometreEtalonManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `AgentManoEtalon` SET `AgentManoEtalon`.`dateModificationCrodip`='" & newDate & "',`AgentManoEtalon`.`dateModificationAgent`='" & newDate & "' WHERE `AgentManoEtalon`.`numeroNational`='" & objManometreEtalon.numeroNational & "'"
+            dbLink.queryString = "UPDATE AgentManoEtalon SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE numeroNational='" & objManometreEtalon.numeroNational & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -208,7 +210,7 @@ Public Class ManometreEtalonManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `AgentManoEtalon` SET `AgentManoEtalon`.`nbControles`=(`AgentManoEtalon`.`nbControles`+1), `AgentManoEtalon`.`nbControlesTotal`=(`AgentManoEtalon`.`nbControlesTotal`+1) WHERE `AgentManoEtalon`.`numeroNational`='" & objManometreEtalon.numeroNational & "'"
+            dbLink.queryString = "UPDATE AgentManoEtalon SET nbControles=(nbControles+1), nbControlesTotal=(nbControlesTotal+1) WHERE AgentManoEtalon.numeroNational='" & objManometreEtalon.numeroNational & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -219,7 +221,7 @@ Public Class ManometreEtalonManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `AgentManoEtalon` SET `AgentManoEtalon`.`nbControles`=0 WHERE `AgentManoEtalon`.`numeroNational`='" & objManometreEtalon.numeroNational & "'"
+            dbLink.queryString = "UPDATE AgentManoEtalon SET nbControles=0 WHERE numeroNational='" & objManometreEtalon.numeroNational & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -232,13 +234,13 @@ Public Class ManometreEtalonManager
         Dim tmpManometreEtalon As New ManometreEtalon
         Dim oCsdb As CSDb = Nothing
         If pNumeroNational <> "" Then
-            oCSDB = New CSDb(True)
-            Dim bddCommande As OleDb.OleDbCommand
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            Dim bddCommande As DbCommand
+            bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE AgentManoEtalon.numeroNational='" & pNumeroNational & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
@@ -256,9 +258,9 @@ Public Class ManometreEtalonManager
             End Try
 
             ' Test pour fermeture de connection BDD
-            If Not oCSDB Is Nothing Then
+            If Not oCsdb Is Nothing Then
                 ' On ferme la connexion
-                oCSDB.free()
+                oCsdb.free()
             End If
 
         End If
@@ -272,9 +274,9 @@ Public Class ManometreEtalonManager
         Dim tmpManometreEtalon As ManometreEtalon
         Dim lstManometreEtalon As New List(Of ManometreEtalon)
         Dim oCsdb As CSDb = Nothing
-        oCSDB = New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand
-        bddCommande = oCSDB.getConnection().CreateCommand()
+        oCsdb = New CSDb(True)
+        Dim bddCommande As DbCommand
+        bddCommande = oCsdb.getConnection().CreateCommand()
         If isShowAll Then
             bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pidStructure & " AND isSupprime=" & False
         Else
@@ -282,7 +284,7 @@ Public Class ManometreEtalonManager
         End If
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
             While tmpListProfils.Read()
                 tmpManometreEtalon = New ManometreEtalon()
@@ -302,9 +304,9 @@ Public Class ManometreEtalonManager
         End Try
 
         ' Test pour fermeture de connection BDD
-        If Not oCSDB Is Nothing Then
+        If Not oCsdb Is Nothing Then
             ' On ferme la connexion
-            oCSDB.free()
+            oCsdb.free()
         End If
 
         'on retourne le manometreetalon ou un objet vide en cas d'erreur
@@ -317,13 +319,13 @@ Public Class ManometreEtalonManager
         Dim tmpManometreEtalon As ManometreEtalon
         Dim lstManometreEtalon As New List(Of ManometreEtalon)
         Dim oCsdb As CSDb = Nothing
-        oCSDB = New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand
-        bddCommande = oCSDB.getConnection().CreateCommand()
+        oCsdb = New CSDb(True)
+        Dim bddCommande As DbCommand
+        bddCommande = oCsdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pidStructure & " AND  jamaisServi = " & True & ""
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
             While tmpListProfils.Read()
                 tmpManometreEtalon = New ManometreEtalon()
@@ -343,9 +345,9 @@ Public Class ManometreEtalonManager
         End Try
 
         ' Test pour fermeture de connection BDD
-        If Not oCSDB Is Nothing Then
+        If Not oCsdb Is Nothing Then
             ' On ferme la connexion
-            oCSDB.free()
+            oCsdb.free()
         End If
 
         'on retourne le manometreetalon ou un objet vide en cas d'erreur
@@ -361,8 +363,8 @@ Public Class ManometreEtalonManager
     Public Shared Function getMaterielsSupprimes(ByVal pIdStructure As String) As Collection
         Dim colReturn As New Collection()
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
-        Dim oDataReader As System.Data.OleDb.OleDbDataReader
+        Dim bddCommande As DbCommand
+        Dim oDataReader As DbDataReader
         Try
             If pIdStructure <> "" Then
                 oCsdb = New CSDb(True)
@@ -421,13 +423,13 @@ Public Class ManometreEtalonManager
     Public Shared Function delete(ByVal pNumeroNational As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pNumeroNational), " le paramètre pNumeroNational doit être initialisé")
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
         Try
-            oCSDb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            bddCommande = oCSDb.getConnection.CreateCommand()
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "DELETE FROM AgentManoEtalon WHERE AgentManoEtalon.numeroNational='" & pNumeroNational & "'"
             nResult = bddCommande.ExecuteNonQuery()
             Debug.Assert(nResult = 1, "Erreur en Delete, plus d'une ligne supprimée")
@@ -438,8 +440,8 @@ Public Class ManometreEtalonManager
             CSDebug.dispFatal("ManometreEtalonManager.delete (" & pNumeroNational.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'delete
@@ -450,12 +452,12 @@ Public Class ManometreEtalonManager
         Dim bReturn As Boolean
         Dim oCsdb As CSDb = Nothing
         Try
-            Dim bddCommande As OleDb.OleDbCommand
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            Dim bddCommande As DbCommand
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO `AgentManoEtalon` (`numeroNational`) VALUES ('" & manometreetalon_id & "')"
+            bddCommande.CommandText = "INSERT INTO AgentManoEtalon (numeroNational) VALUES ('" & manometreetalon_id & "')"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception
@@ -463,9 +465,9 @@ Public Class ManometreEtalonManager
             bReturn = False
         End Try
         ' Test pour fermeture de connection BDD
-        If Not oCSDB Is Nothing Then
+        If Not oCsdb Is Nothing Then
             ' On ferme la connexion
-            oCSDB.free()
+            oCsdb.free()
         End If
         Return bReturn
     End Function
@@ -475,13 +477,13 @@ Public Class ManometreEtalonManager
         Dim arrItems(0) As ManometreEtalon
         Dim oCsdb As CSDb = Nothing
         Try
-            oCSDB = New CSDb(True)
-            Dim bddCommande As OleDb.OleDbCommand
-            bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM `AgentManoEtalon` WHERE `AgentManoEtalon`.`dateModificationAgent`<>`AgentManoEtalon`.`dateModificationCrodip` AND `AgentManoEtalon`.`idStructure`=" & agent.idStructure
+            oCsdb = New CSDb(True)
+            Dim bddCommande As DbCommand
+            bddCommande = oCsdb.getConnection().CreateCommand()
+            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE AgentManoEtalon.dateModificationAgent<>AgentManoEtalon.dateModificationCrodip AND AgentManoEtalon.idStructure=" & agent.idStructure
 
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()
@@ -506,9 +508,9 @@ Public Class ManometreEtalonManager
         End Try
 
         ' Test pour fermeture de connection BDD
-        If Not oCSDB Is Nothing Then
+        If Not oCsdb Is Nothing Then
             ' On ferme la connexion
-            oCSDB.free()
+            oCsdb.free()
         End If
 
         'on retourne les objet non synchro

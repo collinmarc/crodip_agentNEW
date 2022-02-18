@@ -241,7 +241,7 @@ Public Class AutoTestTest
         Dim objB1 As AutoTest
         Dim objMC1 As AutoTest
         Dim objME1 As AutoTest
-        Dim col As Collection
+        Dim col As List(Of AutoTest)
 
         objBanc = New Banc()
         objBanc.id = "MonBanc"
@@ -460,7 +460,7 @@ Public Class AutoTestTest
         objManometreControle.nbControlesTotal = 15
         ManometreControleManager.save(objManometreControle)
 
-        Dim oColCtrl As Collection
+        Dim oColCtrl As List(Of AutoTest)
         Dim octrl As AutoTest
 
         'Creation des controles Regulier des bancs
@@ -515,7 +515,7 @@ Public Class AutoTestTest
 
         nId = obj.Id
 
-        Dim col As Collection
+        Dim col As List(Of AutoTest)
         col = AutoTestManager.getcolControlesReguliers(m_oAgent)
         Assert.AreEqual(1, col.Count)
 
@@ -593,7 +593,7 @@ Public Class AutoTestTest
         Assert.IsTrue(AutoTestManager.save(obj))
 
         'On vérifie que les autoTest sont bien dans la collection des a synchronisé
-        Dim oCol As Collection
+        Dim oCol As List(Of AutoTest)
         oCol = AutoTestManager.getcolControlesReguliers(m_oAgent, , , , True)
         Assert.AreEqual(3, oCol.Count)
 

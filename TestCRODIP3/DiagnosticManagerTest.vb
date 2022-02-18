@@ -5999,7 +5999,7 @@ Public Class DiagnosticManagerTest
         oDiag.RIFileName = oEtat.getFileName()
         DiagnosticManager.save(oDiag)
 
-        Dim lstDiag As List(Of Diagnostic) = DiagnosticManager.getlstDiagnostic().Where(Function(d) d.RIFileName <> "" And CDate(d.controleDateDebut) > Now.AddYears(-1)).ToList()
+        Dim lstDiag As List(Of Diagnostic) = DiagnosticManager.getlstDiagnostic(m_oStructure.id).Where(Function(d) d.RIFileName <> "" And CDate(d.controleDateDebut) > Now.AddYears(-1)).ToList()
 
         Assert.AreEqual(1, lstDiag.Count)
 
@@ -6026,7 +6026,7 @@ Public Class DiagnosticManagerTest
         '        oDiag.RIFileName = oEtat.getFileName()
         DiagnosticManager.save(oDiag)
 
-        lstDiag = DiagnosticManager.getlstDiagnostic()
+        lstDiag = DiagnosticManager.getlstDiagnostic(m_oStructure.id)
         lstDiag = lstDiag.Where(Function(d) d.RIFileName <> "").ToList()
         lstDiag = lstDiag.Where(Function(d) CDate(d.controleDateDebut) > Now.AddYears(-1)).ToList()
         'Si le nom du fichier n'est pas renseigné, le diag n'est pas pris
@@ -6055,7 +6055,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oEtat.GenereEtat(True))
         oDiag.RIFileName = oEtat.getFileName()
         DiagnosticManager.save(oDiag)
-        lstDiag = DiagnosticManager.getlstDiagnostic().Where(Function(d) d.RIFileName <> "" And CDate(d.controleDateDebut) > Now.AddYears(-1)).ToList()
+        lstDiag = DiagnosticManager.getlstDiagnostic(m_oStructure.id).Where(Function(d) d.RIFileName <> "" And CDate(d.controleDateDebut) > Now.AddYears(-1)).ToList()
         'Pas de changement
         Assert.AreEqual(1, lstDiag.Count)
 
@@ -6082,7 +6082,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oEtat.GenereEtat(True))
         oDiag.RIFileName = oEtat.getFileName()
         DiagnosticManager.save(oDiag)
-        lstDiag = DiagnosticManager.getlstDiagnostic().Where(Function(d) d.RIFileName <> "" And CDate(d.controleDateDebut) > Now.AddYears(-1)).ToList()
+        lstDiag = DiagnosticManager.getlstDiagnostic(m_oStructure.id).Where(Function(d) d.RIFileName <> "" And CDate(d.controleDateDebut) > Now.AddYears(-1)).ToList()
         'Ce diag est pris en compte
         Assert.AreEqual(2, lstDiag.Count)
 

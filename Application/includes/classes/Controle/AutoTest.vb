@@ -1,4 +1,5 @@
-﻿Imports System.Web.Services
+﻿Imports System.Data.Common
+Imports System.Web.Services
 Imports System.Xml.Serialization
 
 <Serializable(), XmlInclude(GetType(AutoTest))> _
@@ -215,7 +216,7 @@ Public Class AutoTest
             _dateModificationCrodip = Value
         End Set
     End Property
-    Public Function Fill(pDBReader As System.Data.OleDb.OleDbDataReader) As Boolean
+    Public Function Fill(pDBReader As DbDataReader) As Boolean
         Dim tmpColId As Integer = 0
         Dim bReturn As Boolean
 

@@ -1,4 +1,5 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
 
 Public Class DiagnosticHelp12123Manager
     ' Variables
@@ -15,12 +16,12 @@ Public Class DiagnosticHelp12123Manager
         ' On récupère les items du diagnostic
         Dim oCSDB As New CSDb(True)
         Dim oHelp12123 As DiagnosticHelp12123
-        Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
         Try
             'Lecture de l'id pour le diagitem help12123 
             bddCommande.CommandText = "SELECT id FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' and DiagnosticItem.idItem = '" & DiagnosticHelp12123.DIAGITEM_ID & "' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats
-            Dim oDRDiagnosticItem As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim oDRDiagnosticItem As DbDataReader = bddCommande.ExecuteReader
             oHelp12123 = New DiagnosticHelp12123()
             oHelp12123.id = 0
             oHelp12123.idDiag = pDiagnostic.id

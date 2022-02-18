@@ -1,4 +1,8 @@
+Imports System.Collections.Generic
+Imports System.Data.Common
+
 Public Class StructureManager
+    Inherits RootManager
 
 #Region "Methodes acces Web Service"
 
@@ -8,7 +12,7 @@ Public Class StructureManager
 
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Dim objWSCrodip_response As new Object 
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetStructure(agentCourant.id, structuree_id, objWSCrodip_response)
             Select Case codeResponse
@@ -170,11 +174,11 @@ Public Class StructureManager
         If structure_id <> 0 Then
 
             Dim oCSDB As New CSDb(True)
-            Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand
+            Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand
             bddCommande.CommandText = "SELECT * FROM Structure WHERE Structure.id=" & structure_id & ""
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
@@ -240,10 +244,10 @@ Public Class StructureManager
         Dim oCSDB As New CSDb(True)
         Try
             iReturn = 0
-            Dim oCommand As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+            Dim oCommand As DbCommand = oCSDB.getConnection().CreateCommand()
             oCommand.CommandText = " SELECT MAX(ID) from Structure"
             'Récupération du prochainID
-            Dim oReader As OleDb.OleDbDataReader = oCommand.ExecuteReader()
+            Dim oReader As DbDataReader = oCommand.ExecuteReader()
             If oReader.HasRows Then
                 While oReader.Read()
                     If oReader.IsDBNull(0) Then
@@ -276,14 +280,14 @@ Public Class StructureManager
     Private Shared Sub createStructure(ByVal structuree_id As String)
         Try
             Dim oCsdb As CSDb = Nothing
-            oCSDb = New CSDb(True)
-            Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO `Structure` (`id`) VALUES ('" & structuree_id & "')"
+            bddCommande.CommandText = "INSERT INTO Structure (id) VALUES ('" & structuree_id & "')"
             bddCommande.ExecuteReader()
 
-            oCSDB.free()
+            oCsdb.free()
         Catch ex As Exception
             MsgBox("StructureManager.createStructure error : " & ex.Message)
         End Try
@@ -303,67 +307,67 @@ Public Class StructureManager
 
 
             Dim oCSDb As New CSDb(True)
-            Dim bddCommande As OleDb.OleDbCommand = oCSDb.getConnection().CreateCommand()
+            Dim bddCommande As DbCommand = oCSDb.getConnection().CreateCommand()
 
             Dim paramsQuery As String
-            paramsQuery = "`Structure`.`id`=" & objStructure.id & ""
+            paramsQuery = "id=" & objStructure.id & ""
             ' Mise a jour de la date de derniere modification
             If Not bSyncro Then
                 objStructure.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             End If
 
             If Not objStructure.idCrodip Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`idCrodip`='" & CSDb.secureString(objStructure.idCrodip) & "'"
+                paramsQuery = paramsQuery & " , idCrodip='" & CSDb.secureString(objStructure.idCrodip) & "'"
             End If
             If Not objStructure.nom Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`nom`='" & CSDb.secureString(objStructure.nom) & "'"
+                paramsQuery = paramsQuery & " , nom='" & CSDb.secureString(objStructure.nom) & "'"
             End If
             If Not objStructure.type Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`type`='" & CSDb.secureString(objStructure.type) & "'"
+                paramsQuery = paramsQuery & " , type='" & CSDb.secureString(objStructure.type) & "'"
             End If
             If Not objStructure.nomResponsable Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`nomResponsable`='" & CSDb.secureString(objStructure.nomResponsable) & "'"
+                paramsQuery = paramsQuery & " , nomResponsable='" & CSDb.secureString(objStructure.nomResponsable) & "'"
             End If
             If Not objStructure.nomContact Is Nothing And objStructure.nomContact <> "" Then
-                paramsQuery = paramsQuery & " , `Structure`.`nomContact`='" & CSDb.secureString(objStructure.nomContact) & "'"
+                paramsQuery = paramsQuery & " , nomContact='" & CSDb.secureString(objStructure.nomContact) & "'"
             End If
             If Not objStructure.prenomContact Is Nothing And objStructure.prenomContact <> "" Then
-                paramsQuery = paramsQuery & " , `Structure`.`prenomContact`='" & CSDb.secureString(objStructure.prenomContact) & "'"
+                paramsQuery = paramsQuery & " , prenomContact='" & CSDb.secureString(objStructure.prenomContact) & "'"
             End If
             If Not objStructure.adresse Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`adresse`='" & CSDb.secureString(objStructure.adresse) & "'"
+                paramsQuery = paramsQuery & " , adresse='" & CSDb.secureString(objStructure.adresse) & "'"
             End If
             If Not objStructure.codePostal Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`codePostal`='" & CSDb.secureString(objStructure.codePostal) & "'"
+                paramsQuery = paramsQuery & " , codePostal='" & CSDb.secureString(objStructure.codePostal) & "'"
             End If
             If Not objStructure.commune Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`commune`='" & CSDb.secureString(objStructure.commune) & "'"
+                paramsQuery = paramsQuery & " , commune='" & CSDb.secureString(objStructure.commune) & "'"
             End If
             If Not objStructure.codeInsee Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`codeInsee`='" & CSDb.secureString(objStructure.codeInsee) & "'"
+                paramsQuery = paramsQuery & " , codeInsee='" & CSDb.secureString(objStructure.codeInsee) & "'"
             End If
             If Not objStructure.telephoneFixe Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`telephoneFixe`='" & CSDb.secureString(objStructure.telephoneFixe) & "'"
+                paramsQuery = paramsQuery & " , telephoneFixe='" & CSDb.secureString(objStructure.telephoneFixe) & "'"
             End If
             If Not objStructure.telephonePortable Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`telephonePortable`='" & CSDb.secureString(objStructure.telephonePortable) & "'"
+                paramsQuery = paramsQuery & " , telephonePortable='" & CSDb.secureString(objStructure.telephonePortable) & "'"
             End If
             If Not objStructure.telephoneFax Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`telephoneFax`='" & CSDb.secureString(objStructure.telephoneFax) & "'"
+                paramsQuery = paramsQuery & " , telephoneFax='" & CSDb.secureString(objStructure.telephoneFax) & "'"
             End If
             If Not objStructure.eMail Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`eMail`='" & CSDb.secureString(objStructure.eMail) & "'"
+                paramsQuery = paramsQuery & " , eMail='" & CSDb.secureString(objStructure.eMail) & "'"
             End If
             If Not objStructure.commentaire Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`commentaire`='" & CSDb.secureString(objStructure.commentaire) & "'"
+                paramsQuery = paramsQuery & " , commentaire='" & CSDb.secureString(objStructure.commentaire) & "'"
             End If
             If Not objStructure.dateModificationAgent Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`dateModificationAgent`='" & CSDate.mysql2access(objStructure.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(objStructure.dateModificationAgent) & "'"
             End If
             If Not objStructure.dateModificationCrodip Is Nothing Then
-                paramsQuery = paramsQuery & " , `Structure`.`dateModificationCrodip`='" & CSDate.mysql2access(objStructure.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(objStructure.dateModificationCrodip) & "'"
             End If
-            bddCommande.CommandText = "UPDATE `Structure` SET " & paramsQuery & " WHERE `Structure`.`id`=" & objStructure.id & ""
+            bddCommande.CommandText = "UPDATE Structure SET " & paramsQuery & " WHERE Structure.id=" & objStructure.id & ""
             bddCommande.ExecuteNonQuery()
 
             oCSDb.free()
@@ -374,7 +378,7 @@ Public Class StructureManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `Structure` SET `Structure`.`dateModificationCrodip`='" & newDate & "',`Structure`.`dateModificationAgent`='" & newDate & "' WHERE `Structure`.`id`=" & objStructure.id & ""
+            dbLink.queryString = "UPDATE Structure SET Structure.dateModificationCrodip='" & newDate & "',Structure.dateModificationAgent='" & newDate & "' WHERE Structure.id=" & objStructure.id & ""
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -386,12 +390,12 @@ Public Class StructureManager
         ' déclarations
         Dim arrItems(0) As Structuree
         Dim oCSDB As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM `Structure` WHERE `Structure`.`dateModificationAgent`<>`Structure`.`dateModificationCrodip` AND `Structure`.`id`=" & agent.idStructure
+        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT * FROM Structure WHERE Structure.dateModificationAgent<>Structure.dateModificationCrodip AND Structure.id=" & agent.idStructure
 
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()
@@ -455,18 +459,89 @@ Public Class StructureManager
         Return arrItems
     End Function
 
+    Public Shared Function getList() As List(Of Structuree)
+        Dim lstReturn As New List(Of Structuree)
+
+        Dim oCSDB As New CSDb(True)
+        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand
+        bddCommande.CommandText = "SELECT * FROM Structure"
+        Try
+            ' On récupère les résultats
+            Dim oDR As DbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            While oDR.Read()
+                Dim oStruct As New Structuree()
+                ' On rempli notre tableau
+                Dim tmpColId As Integer = 0
+                While tmpColId < oDR.FieldCount()
+                    Select Case oDR.GetName(tmpColId).Trim().ToUpper()
+                        Case "id".Trim().ToUpper()
+                            oStruct.id = oDR.Item(tmpColId)
+                        Case "idCrodip".Trim().ToUpper()
+                            oStruct.idCrodip = oDR.Item(tmpColId).ToString()
+                        Case "nom".Trim().ToUpper()
+                            oStruct.nom = oDR.Item(tmpColId).ToString()
+                        Case "type".Trim().ToUpper()
+                            oStruct.type = oDR.Item(tmpColId).ToString()
+                        Case "nomResponsable".Trim().ToUpper()
+                            oStruct.nomResponsable = oDR.Item(tmpColId).ToString()
+                        Case "nomContact".Trim().ToUpper()
+                            oStruct.nomContact = oDR.Item(tmpColId).ToString()
+                        Case "prenomContact".Trim().ToUpper()
+                            oStruct.prenomContact = oDR.Item(tmpColId).ToString()
+                        Case "adresse".Trim().ToUpper()
+                            oStruct.adresse = oDR.Item(tmpColId).ToString()
+                        Case "codePostal".Trim().ToUpper()
+                            oStruct.codePostal = oDR.Item(tmpColId).ToString()
+                        Case "commune".Trim().ToUpper()
+                            oStruct.commune = oDR.Item(tmpColId).ToString()
+                        Case "codeInsee".Trim().ToUpper()
+                            oStruct.codeInsee = oDR.Item(tmpColId).ToString()
+                        Case "telephoneFixe".Trim().ToUpper()
+                            oStruct.telephoneFixe = oDR.Item(tmpColId).ToString()
+                        Case "telephonePortable".Trim().ToUpper()
+                            oStruct.telephonePortable = oDR.Item(tmpColId).ToString()
+                        Case "telephoneFax".Trim().ToUpper()
+                            oStruct.telephoneFax = oDR.Item(tmpColId).ToString()
+                        Case "eMail".Trim().ToUpper()
+                            oStruct.eMail = oDR.Item(tmpColId).ToString()
+                        Case "commentaire".Trim().ToUpper()
+                            oStruct.commentaire = oDR.Item(tmpColId).ToString()
+                        Case "dateModificationAgent".Trim().ToUpper()
+                            oStruct.dateModificationAgent = CSDate.ToCRODIPString(oDR.Item(tmpColId).ToString())
+                        Case "dateModificationCrodip".Trim().ToUpper()
+                            oStruct.dateModificationCrodip = CSDate.ToCRODIPString(oDR.Item(tmpColId).ToString())
+                    End Select
+                    tmpColId = tmpColId + 1
+                End While
+                oStruct.LireDernierNumFact()
+                lstReturn.Add(oStruct)
+            End While
+        Catch ex As Exception ' On intercepte l'erreur
+            MsgBox("StructureManager.GetList Err: " & ex.Message)
+            lstReturn = Nothing
+        End Try
+
+        If Not oCSDB Is Nothing Then
+            oCSDB.free()
+        End If
+        'on retourne le client ou un objet vide en cas d'erreur
+        Return lstReturn
+
+    End Function
+
 #End Region
 
     Public Shared Function delete(ByVal pStructureID As Integer) As Boolean
         Debug.Assert(pStructureID > 0, " le paramètre StructureID doit être initialisé")
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
         Try
-            oCSDb = New CSDb(True)
+            oCsdb = New CSDb(True)
 
-            bddCommande = oCSDb.getConnection.CreateCommand()
+            bddCommande = oCsdb.getConnection.CreateCommand()
             bddCommande.CommandText = "DELETE FROM Structure WHERE id=" & pStructureID.ToString() & ""
             nResult = bddCommande.ExecuteNonQuery()
             Debug.Assert(nResult = 1, "Erreur en Delete, plus d'une ligne supprimée")
@@ -475,8 +550,8 @@ Public Class StructureManager
             CSDebug.dispFatal("StructureManager.delete (" & pStructureID.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function 'delete

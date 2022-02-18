@@ -1,3 +1,4 @@
+Imports System.Data.Common
 Imports System.Linq
 
 Public Class AgentManager
@@ -126,7 +127,7 @@ Public Class AgentManager
         ' déclarations
         Dim tmpAgent As New Agent
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim strSQL As String
         Dim oReturn As New AgentList()
         Dim objAgent As Agent
@@ -154,14 +155,14 @@ Public Class AgentManager
             strSQL = strSQL & "Agent.commentaire as commentaire, "
             strSQL = strSQL & "Agent.cleActivation as cleActivation, "
             strSQL = strSQL & "Agent.isActif as isActif, "
-            strSQL = strSQL & "Agent.DroitsPulves as DroitsPulves, "
+            strSQL = strSQL & "Agent.droitsPulves as droitsPulves, "
             strSQL = strSQL & "Agent.isGestionnaire as isGestionnaire, "
-            strSQL = strSQL & "Agent.SignatureElect as SignatureElect, "
+            strSQL = strSQL & "Agent.signatureElect as signatureElect, "
             strSQL = strSQL & "Structure.nom as structureNom "
             strSQL = strSQL & "FROM Agent LEFT JOIN Structure ON ( Agent.idStructure = Structure.id )"
             bddCommande.CommandText = strSQL
             ' On récupère les résultats
-            Dim dataListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim dataListProfils As DbDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
             While dataListProfils.Read()
                 ' On rempli notre tableau
@@ -195,7 +196,7 @@ Public Class AgentManager
         ' déclarations
         Dim tmpAgent As New Agent
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
         oCsdb = New CSDb(True)
 
@@ -203,7 +204,7 @@ Public Class AgentManager
         bddCommande.CommandText = "SELECT * FROM Agent WHERE Agent.id=" & pAgentID & ""
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
             While tmpListProfils.Read()
                 ' On rempli notre tableau
@@ -235,7 +236,7 @@ Public Class AgentManager
         ' déclarations
         Dim tmpAgent As New Agent
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As Common.DbCommand
 
         If pNumeroNational <> "" Then
             oCsdb = New CSDb(True)
@@ -244,7 +245,7 @@ Public Class AgentManager
             bddCommande.CommandText = "SELECT * FROM Agent WHERE Agent.numeroNational='" & pNumeroNational & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
@@ -278,7 +279,7 @@ Public Class AgentManager
     Private Shared Sub createAgent(ByVal id As Integer, ByVal pNumeronational As String, ByVal pNom As String, pIdStructure As Integer)
         Debug.Assert(Not String.IsNullOrEmpty(pNumeronational), " le paramètre NumeroNational doit être initialisé")
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
         Try
             oCsdb = New CSDb(True)
@@ -310,7 +311,7 @@ Public Class AgentManager
         Debug.Assert(pAgentID > 0, " le paramètre AgentID doit être initialisé")
         CSDebug.dispError("Suppression de l'agent " & pAgentID)
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim nResult As Integer
         Dim bReturn As Boolean
         Dim oAgent As Agent
@@ -351,7 +352,7 @@ Public Class AgentManager
         Debug.Assert(Not String.IsNullOrEmpty(agent.numeroNational), "Agent.Numeronational doit être initialisé")
 
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim bReturn As Boolean
         Dim nResult As Integer
 
@@ -382,59 +383,59 @@ Public Class AgentManager
                     agent.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                 End If
 
-                paramsQuery = paramsQuery & " `Agent`.`id`=" & agent.id
+                paramsQuery = paramsQuery & " id=" & agent.id
                 If Not agent.numeroNational Is Nothing Then
-                    paramsQuery = paramsQuery & ", `Agent`.`numeroNational`='" & CSDb.secureString(agent.numeroNational) & "'"
+                    paramsQuery = paramsQuery & ", numeroNational='" & CSDb.secureString(agent.numeroNational) & "'"
                 End If
                 If Not agent.motDePasse Is Nothing Then
-                    paramsQuery = paramsQuery & " , `Agent`.`motDePasse`='" & CSDb.secureString(agent.motDePasse) & "'"
+                    paramsQuery = paramsQuery & " , motDePasse='" & CSDb.secureString(agent.motDePasse) & "'"
                 End If
                 If Not agent.nom Is Nothing Then
-                    paramsQuery = paramsQuery & " , `Agent`.`nom`='" & CSDb.secureString(agent.nom) & "'"
+                    paramsQuery = paramsQuery & " , nom='" & CSDb.secureString(agent.nom) & "'"
                 End If
                 If Not agent.prenom Is Nothing Then
-                    paramsQuery = paramsQuery & " , `Agent`.`prenom`='" & CSDb.secureString(agent.prenom) & "'"
+                    paramsQuery = paramsQuery & " , prenom='" & CSDb.secureString(agent.prenom) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Agent`.`idStructure`=" & agent.idStructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & agent.idStructure & ""
                 If Not agent.telephonePortable Is Nothing Then
-                    paramsQuery = paramsQuery & " , `Agent`.`telephonePortable`='" & CSDb.secureString(agent.telephonePortable) & "'"
+                    paramsQuery = paramsQuery & " , telephonePortable='" & CSDb.secureString(agent.telephonePortable) & "'"
                 End If
                 If Not agent.eMail Is Nothing Then
-                    paramsQuery = paramsQuery & " , `Agent`.`eMail`='" & CSDb.secureString(agent.eMail) & "'"
+                    paramsQuery = paramsQuery & " , eMail='" & CSDb.secureString(agent.eMail) & "'"
                 End If
                 If Not agent.statut Is Nothing Then
-                    paramsQuery = paramsQuery & " , `Agent`.`statut`='" & CSDb.secureString(agent.statut) & "'"
+                    paramsQuery = paramsQuery & " , statut='" & CSDb.secureString(agent.statut) & "'"
                 End If
                 If Not agent.dateCreation Is Nothing And agent.dateCreation <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , `Agent`.`dateCreation`='" & CSDate.mysql2access(agent.dateCreation) & "'"
+                    paramsQuery = paramsQuery & " , dateCreation='" & CSDate.mysql2access(agent.dateCreation) & "'"
                 End If
                 If Not agent.dateDerniereConnexion Is Nothing And agent.dateDerniereConnexion <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , `Agent`.`dateDerniereConnexion`='" & CSDate.mysql2access(agent.dateDerniereConnexion) & "'"
+                    paramsQuery = paramsQuery & " , dateDerniereConnexion='" & CSDate.mysql2access(agent.dateDerniereConnexion) & "'"
                 End If
                 If Not agent.dateDerniereSynchro Is Nothing And agent.dateDerniereSynchro <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , `Agent`.`dateDerniereSynchro`='" & CSDate.mysql2access(agent.dateDerniereSynchro) & "'"
+                    paramsQuery = paramsQuery & " , dateDerniereSynchro='" & CSDate.mysql2access(agent.dateDerniereSynchro) & "'"
                 End If
                 If Not agent.dateModificationAgent Is Nothing And agent.dateModificationAgent <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , `Agent`.`dateModificationAgent`='" & CSDate.mysql2access(agent.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(agent.dateModificationAgent) & "'"
                 End If
                 If Not agent.dateModificationCrodip Is Nothing And agent.dateModificationCrodip <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , `Agent`.`dateModificationCrodip`='" & CSDate.mysql2access(agent.dateModificationCrodip) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(agent.dateModificationCrodip) & "'"
                 End If
                 If Not agent.versionLogiciel Is Nothing Then
-                    paramsQuery = paramsQuery & " , `Agent`.`versionLogiciel`='" & CSDb.secureString(agent.versionLogiciel) & "'"
+                    paramsQuery = paramsQuery & " , versionLogiciel='" & CSDb.secureString(agent.versionLogiciel) & "'"
                 End If
                 If Not agent.commentaire Is Nothing Then
-                    paramsQuery = paramsQuery & " , `Agent`.`commentaire`='" & CSDb.secureString(agent.commentaire) & "'"
+                    paramsQuery = paramsQuery & " , commentaire='" & CSDb.secureString(agent.commentaire) & "'"
                 End If
                 If Not agent.cleActivation Is Nothing Then
-                    paramsQuery = paramsQuery & " , `Agent`.`cleActivation`='" & CSDb.secureString(agent.cleActivation) & "'"
+                    paramsQuery = paramsQuery & " , cleActivation='" & CSDb.secureString(agent.cleActivation) & "'"
                 End If
-                paramsQuery = paramsQuery & " , `Agent`.`isActif`=" & agent.isActif & ""
-                paramsQuery = paramsQuery & " , `Agent`.`DroitsPulves`='" & agent.DroitsPulves & "'"
-                paramsQuery = paramsQuery & " , `Agent`.`isGestionnaire`=" & agent.isGestionnaire & ""
-                paramsQuery = paramsQuery & " , `Agent`.`SignatureElect`=" & agent.isSignElecActive & ""
+                paramsQuery = paramsQuery & " , isActif=" & agent.isActif & ""
+                paramsQuery = paramsQuery & " , droitsPulves='" & agent.DroitsPulves & "'"
+                paramsQuery = paramsQuery & " , isGestionnaire=" & agent.isGestionnaire & ""
+                paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
 
-                bddCommande.CommandText = "UPDATE `Agent` SET " & paramsQuery & " WHERE `Agent`.`numeroNational`='" & agent.numeroNational & "'"
+                bddCommande.CommandText = "UPDATE Agent SET " & paramsQuery & " WHERE numeroNational='" & agent.numeroNational & "'"
                 nResult = bddCommande.ExecuteNonQuery()
                 Debug.Assert(nResult = 1, "AgentManager.save: Erreur en update 0 ou  plus d'une ligne concernée")
                 bReturn = True
@@ -453,7 +454,7 @@ Public Class AgentManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `Agent` SET `Agent`.`dateModificationCrodip`='" & CSDate.ToCRODIPString(newDate) & "',`Agent`.`dateModificationAgent`='" & CSDate.ToCRODIPString(newDate) & "' WHERE `Agent`.`id`=" & agent.id & ""
+            dbLink.queryString = "UPDATE Agent SET dateModificationCrodip='" & CSDate.ToCRODIPString(newDate) & "',dateModificationAgent='" & CSDate.ToCRODIPString(newDate) & "' WHERE id=" & agent.id & ""
             dbLink.Execute()
         Catch ex As Exception
             CSDebug.dispFatal("AgentManager::setSynchro : " & ex.Message)
@@ -468,18 +469,18 @@ Public Class AgentManager
     ''' <remarks></remarks>
     Public Shared Function getUpdates(ByVal agent As Agent) As Agent()
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
 
         ' déclarations
         Dim arrItems(0) As Agent
 
         oCsdb = New CSDb(True)
         bddCommande = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM `Agent` WHERE `Agent`.`dateModificationAgent`<>`Agent`.`dateModificationCrodip` AND `Agent`.`idStructure`=" & agent.idStructure
+        bddCommande.CommandText = "SELECT * FROM Agent WHERE dateModificationAgent<>dateModificationCrodip AND idStructure=" & agent.idStructure
 
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While tmpListProfils.Read()

@@ -1,4 +1,6 @@
 Imports System.Collections.Generic
+Imports System.Data.Common
+
 Public Class AutoTestManager
 
 
@@ -12,7 +14,7 @@ Public Class AutoTestManager
         Try
             '## Préparation de la connexion
             '## Execution de la requete
-            Dim tmpResults As System.Data.OleDb.OleDbDataReader
+            Dim tmpResults As DbDataReader
             tmpResults = dbLink.getResult2s("SELECT * FROM `Controle_Regulier` WHERE ctrg_id=" & idControle & "")
             '################################################################
             Dim i As Integer = 0
@@ -44,21 +46,21 @@ Public Class AutoTestManager
     End Function
     Private Shared Function create(ByVal pAgent As Agent) As AutoTest
         Dim oCsdb As CSDb = Nothing
-        Dim bddCommande As OleDb.OleDbCommand
+        Dim bddCommande As DbCommand
         Dim oCtrlRegulier As New AutoTest(pAgent)
         Try
-            oCSDB = New CSDb(True)
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
 
             ' Création
             bddCommande.CommandText = "INSERT INTO Controle_Regulier (CTRG_date) VALUES(NULL)"
             bddCommande.ExecuteNonQuery()
 
             '## Execution de la requete
-            Dim oDBReader As System.Data.OleDb.OleDbDataReader
+            Dim oDBReader As DbDataReader
             Dim sqlQuery As String
             sqlQuery = "SELECT MAX(CTRG_ID) as ctrg_id FROM CONTROLE_REGULIER "
-            oDBReader = oCSDb.getResult2s(sqlQuery)
+            oDBReader = oCsdb.getResult2s(sqlQuery)
 
             '################################################################
             Dim i As Integer = 0
@@ -75,8 +77,8 @@ Public Class AutoTestManager
             CSDebug.dispFatal("ControleregulierManager - create : " & ex.Message)
         End Try
 
-        If Not oCSDB Is Nothing Then
-            oCSDB.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
 
         Return oCtrlRegulier
@@ -119,20 +121,20 @@ Public Class AutoTestManager
                 paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(pCtrlRegulier.dateModificationCrodip) & "'"
 
                 ' On finalise la requete et en l'execute
-                oCSDB = New CSDb(True)
-                Dim bddCommande As OleDb.OleDbCommand
-                bddCommande = oCSDB.getConnection().CreateCommand
+                oCsdb = New CSDb(True)
+                Dim bddCommande As DbCommand
+                bddCommande = oCsdb.getConnection().CreateCommand
 
                 bddCommande.CommandText = "Update CONTROLE_REGULIER set " & paramsQuery & " WHERE CTRG_ID=" & pCtrlRegulier.Id & ""
                 bddCommande.ExecuteNonQuery()
-                oCSDB.free()
+                oCsdb.free()
             End If
         Catch ex As Exception
             CSDebug.dispError("ControleRegulierManager.save ERROR" & ex.Message)
             bReturn = False
         End Try
-        If Not oCSDB Is Nothing Then
-            oCSDB.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function
@@ -155,20 +157,20 @@ Public Class AutoTestManager
                 paramsQuery = paramsQuery & " dateModificationCrodip='" & CSDate.mysql2access(pCtrlRegulier.dateModificationCrodip) & "'"
 
                 ' On finalise la requete et en l'execute
-                oCSDB = New CSDb(True)
-                Dim bddCommande As OleDb.OleDbCommand
-                bddCommande = oCSDB.getConnection().CreateCommand
+                oCsdb = New CSDb(True)
+                Dim bddCommande As DbCommand
+                bddCommande = oCsdb.getConnection().CreateCommand
 
                 bddCommande.CommandText = "Update CONTROLE_REGULIER set " & paramsQuery & " WHERE CTRG_ID=" & pCtrlRegulier.Id & ""
                 bddCommande.ExecuteNonQuery()
-                oCSDB.free()
+                oCsdb.free()
             End If
         Catch ex As Exception
             CSDebug.dispError("ControleRegulierManager.saveSynchro ERROR" & ex.Message)
             bReturn = False
         End Try
-        If Not oCSDB Is Nothing Then
-            oCSDB.free()
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
         End If
         Return bReturn
     End Function
@@ -203,24 +205,24 @@ Public Class AutoTestManager
     ''' <param name="idStructure"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getcolControlesReguliers(ByVal pAgent As Agent, Optional ByVal pTypeMateriels As String = "TOUS", Optional ByVal pDateDeb As String = "JJ/MM/AAAA", Optional ByVal pDateFin As String = "JJ/MM/AAAA", Optional ByVal pSynchro As Boolean = False) As Collection
-        Dim ocolReturn As New Collection
+    Public Shared Function getcolControlesReguliers(ByVal pAgent As Agent, Optional ByVal pTypeMateriels As String = "TOUS", Optional ByVal pDateDeb As String = "JJ/MM/AAAA", Optional ByVal pDateFin As String = "JJ/MM/AAAA", Optional ByVal pSynchro As Boolean = False) As List(Of AutoTest)
+        Dim ocolReturn As New List(Of AutoTest)
         Try
             If Not pAgent Is Nothing Then
                 '## Préparation de la connexion
                 Dim dbLink As New CSDb(True)
                 '## Execution de la requete
-                Dim oDBReader As System.Data.OleDb.OleDbDataReader
+                Dim oDBReader As DbDataReader
                 Dim sqlQuery As String
                 sqlQuery = "SELECT * FROM CONTROLE_REGULIER WHERE CTRG_NUMAGENT='" & pAgent.id & "' "
                 If Not (pTypeMateriels = "TOUS" Or String.IsNullOrEmpty(pTypeMateriels)) Then
                     sqlQuery = sqlQuery & " AND CTRG_TYPE = '" & pTypeMateriels & "' "
                 End If
                 If pDateDeb <> "JJ/MM/AAAA" Then
-                    sqlQuery = sqlQuery & " AND CTRG_date >=#" & CSDate.ToCRODIPString(pDateDeb).Substring(0, 10) & "#"
+                    sqlQuery = sqlQuery & " AND CTRG_date >='" & CSDate.ToCRODIPString(pDateDeb).Substring(0, 10) & "'"
                 End If
                 If pDateFin <> "JJ/MM/AAAA" Then
-                    sqlQuery = sqlQuery & " AND CTRG_date <=#" & CSDate.ToCRODIPString(pDateFin).Substring(0, 10) & "#"
+                    sqlQuery = sqlQuery & " AND CTRG_date <='" & CSDate.ToCRODIPString(pDateFin).Substring(0, 10) & "'"
                 End If
                 If pSynchro Then
                     sqlQuery = sqlQuery & " AND dateModificationAgent > dateModificationCrodip "
@@ -252,10 +254,10 @@ Public Class AutoTestManager
     ''' <param name="pTypeMateriels"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function CreateControlesReguliers(ByVal pAgent As Agent, ByVal pDateControle As Date, Optional ByVal pTypeMateriels As String = "TOUS") As Collection
+    Public Shared Function CreateControlesReguliers(ByVal pAgent As Agent, ByVal pDateControle As Date, Optional ByVal pTypeMateriels As String = "TOUS") As List(Of AutoTest)
         Dim bReturn As Boolean
         Dim oCtrlRegulier As AutoTest
-        Dim oColReturn As Collection = New Collection()
+        Dim oColReturn As New List(Of AutoTest)
         Try
             If pTypeMateriels.ToUpper() = "BANC" Or pTypeMateriels.ToUpper() = "TOUS" Then
                 Dim arrBanc As System.Collections.Generic.List(Of Banc)
@@ -305,7 +307,7 @@ Public Class AutoTestManager
     Public Shared Function ExportAsCSV(ByVal dDeb As String, ByVal dFin As String, ByVal pAgent As Agent, ByVal pCSVFile As String, Optional ByVal pTypeMateriels As String = "TOUS") As Boolean
         Dim bReturn As Boolean
         Dim oCtrlRegulier As AutoTest
-        Dim oCol As Collection
+        Dim oCol As List(Of AutoTest)
         Try
             If System.IO.File.Exists(pCSVFile) Then
                 System.IO.File.Delete(pCSVFile)
@@ -335,7 +337,7 @@ Public Class AutoTestManager
         Dim bReturn As Boolean
 
         Try
-            Dim oCol As Collection
+            Dim oCol As List(Of AutoTest)
             oCol = getcolControlesReguliers(pAgent, , , , True)
             If Not oCol Is Nothing Then
                 If oCol.Count > 0 Then

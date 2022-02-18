@@ -1,4 +1,6 @@
 ﻿Imports System.Collections.Generic
+Imports System.Data.Common
+
 Public Class IdentifiantPulverisateurManager
 
     Public Shared Function Save(ByVal pIdent As IdentifiantPulverisateur, Optional pSynchro As Boolean = False) As Boolean
@@ -30,7 +32,7 @@ Public Class IdentifiantPulverisateurManager
             '## Préparation de la connexion
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
-            Dim tmpResults As System.Data.OleDb.OleDbDataReader
+            Dim tmpResults As DbDataReader
             tmpResults = dbLink.getResult2s("SELECT * FROM IdentifiantPulverisateur WHERE id=" & pId & "")
             bReturn = tmpResults.HasRows
             tmpResults.Close()
@@ -53,7 +55,7 @@ Public Class IdentifiantPulverisateurManager
         Dim returnVal As Integer
         bdd = New CSDb(True)
         Try
-            Dim dataResults As System.Data.OleDb.OleDbDataReader = bdd.getResult2s("SELECT Max(id)+1 AS Id FROM IdentifiantPulverisateur ")
+            Dim dataResults As DbDataReader = bdd.getResult2s("SELECT Max(id)+1 AS Id FROM IdentifiantPulverisateur ")
             While dataResults.Read()
                 returnVal = dataResults.GetInt32(0)
             End While
@@ -142,7 +144,7 @@ Public Class IdentifiantPulverisateurManager
             '## Préparation de la connexion
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
-            Dim oDataReader As System.Data.OleDb.OleDbDataReader
+            Dim oDataReader As DbDataReader
             oDataReader = dbLink.getResult2s("SELECT * FROM IdentifiantPulverisateur WHERE id=" & pId & "")
             While oDataReader.Read()
                 ' On rempli notre Object
@@ -201,7 +203,7 @@ Public Class IdentifiantPulverisateurManager
             ' déclarations
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             objWSCrodip.Timeout = 10000
-            Dim objWSCrodip_response As new Object
+            Dim objWSCrodip_response As New Object
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetIdentifiantPulverisateur(pAgent.id, pId, objWSCrodip_response)
             Select Case codeResponse
@@ -266,7 +268,7 @@ Public Class IdentifiantPulverisateurManager
             End Select
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("IdentifiantPulverisateurManager.SendWSIdentifiantPulverisateur (" & pIdentPulve.toString() & ") ERR: " & ex.Message)
+            CSDebug.dispError("IdentifiantPulverisateurManager.SendWSIdentifiantPulverisateur (" & pIdentPulve.ToString() & ") ERR: " & ex.Message)
             bReturn = False
         End Try
         Return bReturn
@@ -282,13 +284,13 @@ Public Class IdentifiantPulverisateurManager
         ' déclarations
         Dim arrItems(0) As IdentifiantPulverisateur
         Dim oCSdb As New CSDb(True)
-        Dim bddCommande As OleDb.OleDbCommand = oCSdb.getConnection().CreateCommand()
+        Dim bddCommande As DbCommand = oCSdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM IdentifiantPulverisateur WHERE dateModificationAgent<>dateModificationCrodip "
         bddCommande.CommandText = bddCommande.CommandText & " AND idStructure=" & agent.idStructure
 
         Try
             ' On récupère les résultats
-            Dim oDR As System.Data.OleDb.OleDbDataReader = bddCommande.ExecuteReader
+            Dim oDR As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0
             ' Puis on les parcours
             While oDR.Read()
@@ -343,7 +345,7 @@ Public Class IdentifiantPulverisateurManager
         Dim olst As New List(Of IdentifiantPulverisateur)
         Dim oCSDB As New CSDb(True)
         Try
-            Dim oDR As OleDb.OleDbDataReader
+            Dim oDR As DbDataReader
             oDR = oCSDB.getResult2s("SELECT * FROM IDENTIFIANTPULVERISATEUR WHERE IDSTRUCTURE = " & pIdStructure & " ORDER BY NUMERONATIONAL")
             While oDR.Read()
                 Dim oIdentPulve As New IdentifiantPulverisateur
