@@ -863,7 +863,7 @@ Public Class FrmDiagnostique
             If m_diagnostic.diagRemplacementId = "" Then
                 m_diagnostic.EncodageAuto()
             End If
-            AfficheDiagnosticItems()
+            'AfficheDiagnosticItems()
 
             '================================
             'Initialisation de l'onglet Buses
@@ -917,9 +917,23 @@ Public Class FrmDiagnostique
         Return bReturn
     End Function
 
-    ' Chargement des infos d'un diagnostic existant
+    ''' <summary>
+    ''' Affichage d'un diagnostic Exitant, (Cas de la CV ou de la consult d'un Diag)
+    ''' </summary>
     Public Sub loadExistingDiag()
         Try
+            'Par DEfaut  on met tout OK
+            LstCtrl.ForEach(Sub(olstN1)
+                                olstN1.ForEach(Sub(olstN2)
+                                                   olstN2.ForEach(Sub(oCtrl)
+                                                                      If oCtrl.Name.EndsWith("0") Then
+                                                                          oCtrl.Checked = True
+                                                                      End If
+                                                                  End Sub)
+                                               End Sub)
+
+                            End Sub)
+
             ' On liste les boutons radio du form
 
             'RadioButton_diagnostic_5622.CheckState = CheckState.Unchecked
@@ -927,16 +941,24 @@ Public Class FrmDiagnostique
 
             'Les Données des help 551 5621 552 5622 sont affichées lors de l'activation du popup
             'Calcul du Help 551 et 5621
-            m_diagnostic.diagnosticHelp551.calc(5.0)
-            m_diagnostic.diagnosticHelp5621.calc(5.0)
+            If m_diagnostic.diagnosticHelp551 IsNot Nothing Then
+                m_diagnostic.diagnosticHelp551.calc(5.0)
+            End If
+            If m_diagnostic.diagnosticHelp5621 IsNot Nothing Then
+                m_diagnostic.diagnosticHelp5621.calc(5.0)
+            End If
             'Calcul du help 552 et 5622 (Débitmetre)
-            m_diagnostic.diagnosticHelp552.DebitMoyen0Bar = m_diagnostic.buseDebitD
-            m_diagnostic.diagnosticHelp552.PressionMesure = m_diagnostic.manometrePressionTravailD
-            m_diagnostic.diagnosticHelp552.calc()
+            If m_diagnostic.diagnosticHelp552 IsNot Nothing Then
+                m_diagnostic.diagnosticHelp552.DebitMoyen0Bar = m_diagnostic.buseDebitD
+                m_diagnostic.diagnosticHelp552.PressionMesure = m_diagnostic.manometrePressionTravailD
+                m_diagnostic.diagnosticHelp552.calc()
+            End If
 
-            m_diagnostic.diagnosticHelp5622.DebitMoyen0Bar = m_diagnostic.buseDebitD
-            m_diagnostic.diagnosticHelp5622.PressionMesure = m_diagnostic.manometrePressionTravailD
-            m_diagnostic.diagnosticHelp5622.calc()
+            If m_diagnostic.diagnosticHelp5622 IsNot Nothing Then
+                m_diagnostic.diagnosticHelp5622.DebitMoyen0Bar = m_diagnostic.buseDebitD
+                m_diagnostic.diagnosticHelp5622.PressionMesure = m_diagnostic.manometrePressionTravailD
+                m_diagnostic.diagnosticHelp5622.calc()
+            End If
 
             'Récupération des infos de help811
             If m_diagnostic.diagnosticHelp811.hasValue() Then
@@ -1101,7 +1123,7 @@ Public Class FrmDiagnostique
             'Recalcul de l'onglet Mano
             RecalculerToutMano()
             '########################################################################################################
-            AfficheDiagnosticItems()
+            'AfficheDiagnosticItems() Les DiagItem sont affichés plus tard 
             '###############################################
 
 
@@ -1109,15 +1131,6 @@ Public Class FrmDiagnostique
                 DisableControls()
             End If
 
-            checkIsOk(1)
-            checkIsOk(2)
-            checkIsOk(3)
-            checkIsOk(4)
-            checkIsOk(5)
-            checkIsOk(6)
-            checkIsOk(7)
-            checkIsOk(8)
-            checkIsOk(9)
         Catch ex As Exception
             CSDebug.dispError("loadExistingDiag ERR" & ex.Message)
             If ex.InnerException IsNot Nothing Then
@@ -5141,6 +5154,41 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
 
             checkAnswer(sender, sender.Categorie, pOngletId, sender.Cause)
+
+            If sender.Checked Then
+                '
+                Dim lstGrap As List(Of CRODIP_ControlLibrary.CtrlDiag2) = Nothing
+                LstCtrl.ForEach(Sub(oLstN1)
+                                    oLstN1.ForEach(Sub(olstN2)
+                                                       olstN2.ForEach(Sub(octrl)
+                                                                          If octrl.Name = sender.Name Then
+                                                                              lstGrap = olstN2
+                                                                          End If
+                                                                      End Sub)
+
+                                                   End Sub)
+                                End Sub)
+                If lstGrap IsNot Nothing Then
+                    'on a bien trouvé le groupe de controle
+
+                    If sender.Name.EndsWith("0") Then
+                        'Déchecker tous les autres controles du groupe
+                        lstGrap.ForEach(Sub(oCtrl)
+                                            If Not oCtrl.Name.EndsWith("0") And oCtrl.Checked Then
+                                                oCtrl.Checked = False
+                                            End If
+                                        End Sub)
+                    Else
+                        'Déchecker le controle OK du Groupe
+                        lstGrap.ForEach(Sub(oCtrl)
+                                            If oCtrl.Name.EndsWith("0") And oCtrl.Checked Then
+                                                oCtrl.Checked = False
+                                            End If
+                                        End Sub)
+
+                    End If
+                End If
+            End If
         End If
     End Sub
 
@@ -10387,6 +10435,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 m_bDuringLoad = True
                 Formload()
                 m_bDuringLoad = False
+                AfficheDiagnosticItems() 'Affiche des Diag Item existant (en dehors du DuringLoad)
                 checkAllIsOk()
             End If
         End If

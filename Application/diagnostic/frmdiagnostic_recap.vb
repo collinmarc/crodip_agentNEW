@@ -1171,7 +1171,7 @@ Public Class frmdiagnostic_recap
             ' On affiche le PDF rempli
             CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.RIFileName)
         Catch ex As Exception
-            Console.Write("[Erreur] - Génération Rapport d'Inspection : " & ex.Message.ToString & vbNewLine)
+            CSDebug.dispError("[Erreur] - Génération Rapport d'Inspection : " & ex.Message.ToString & vbNewLine)
         End Try
     End Sub
 

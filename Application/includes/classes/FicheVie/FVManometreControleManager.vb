@@ -359,7 +359,7 @@ Public Class FVManometreControleManager
                 tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
                 bdd.free()
             Catch ex As Exception ' On intercepte l'erreur
-                Console.Write("FVManometreControleManager - newId : " & ex.Message & vbNewLine)
+                CSDebug.dispError("FVManometreControleManager - newId : " & ex.Message & vbNewLine)
             End Try
 
         End If

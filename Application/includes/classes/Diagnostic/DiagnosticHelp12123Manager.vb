@@ -52,7 +52,7 @@ Public Class DiagnosticHelp12123Manager
             breturn = False
             breturn = pHelp12123.Save(pStructureId, pAgentId)
         Catch ex As Exception
-            Console.Write("Erreur DiagnosticHelp12123Manager - save" & ex.Message.ToString)
+            CSDebug.dispError("Erreur DiagnosticHelp12123Manager - save" & ex.Message.ToString)
             breturn = False
         End Try
         Return breturn

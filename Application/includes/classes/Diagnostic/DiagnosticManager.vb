@@ -1017,10 +1017,10 @@ Public Class DiagnosticManager
                 End If
 
                 If Not pDiag.controleDateDebut Is Nothing And pDiag.controleDateDebut <> "" Then
-                    paramsQuery = paramsQuery & " , controleDateDebut='" & CSDb.secureString(pDiag.controleDateDebut) & "'"
+                    paramsQuery = paramsQuery & " , controleDateDebut='" & CSDate.ToCRODIPString(pDiag.controleDateDebut) & "'"
                 End If
                 If Not pDiag.controleDateFin Is Nothing And pDiag.controleDateFin <> "" Then
-                    paramsQuery = paramsQuery & " , controleDateFin='" & CSDb.secureString(pDiag.controleDateFin) & "'"
+                    paramsQuery = paramsQuery & " , controleDateFin='" & CSDate.ToCRODIPString(pDiag.controleDateFin) & "'"
                 End If
                 If Not pDiag.controleCommune Is Nothing And pDiag.controleCommune <> "" Then
                     paramsQuery = paramsQuery & " , controleCommune='" & CSDb.secureString(pDiag.controleCommune) & "'"
@@ -1043,7 +1043,7 @@ Public Class DiagnosticManager
                 paramsQuery = paramsQuery & " , controleIsComplet=" & pDiag.controleIsComplet & ""
                 paramsQuery = paramsQuery & " , controleIsPremierControle=" & pDiag.controleIsPremierControle & ""
                 If Not pDiag.controleDateDernierControle Is Nothing And pDiag.controleDateDernierControle <> "" And pDiag.controleDateDernierControle <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , controleDateDernierControle='" & CSDb.secureString(pDiag.controleDateDernierControle) & "'"
+                    paramsQuery = paramsQuery & " , controleDateDernierControle='" & CSDate.ToCRODIPString(pDiag.controleDateDernierControle) & "'"
                 End If
                 paramsQuery = paramsQuery & " , controleIsSiteSecurise=" & pDiag.controleIsSiteSecurise & ""
                 paramsQuery = paramsQuery & " , controleIsRecupResidus=" & pDiag.controleIsRecupResidus & ""
@@ -1224,10 +1224,10 @@ Public Class DiagnosticManager
                     paramsQuery = paramsQuery & " , exploitationSau='" & CSDb.secureString(pDiag.exploitationSau) & "'"
                 End If
                 If Not pDiag.dateModificationAgent Is Nothing And pDiag.dateModificationAgent <> "" Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDb.secureString(pDiag.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(pDiag.dateModificationAgent) & "'"
                 End If
                 If Not pDiag.dateModificationCrodip Is Nothing And pDiag.dateModificationCrodip <> "" Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDb.secureString(pDiag.dateModificationCrodip) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(pDiag.dateModificationCrodip) & "'"
                 End If
 
                 'On scinde la requete en 2 car elle est trop longue sinon
@@ -1286,16 +1286,16 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , isSignCCAgent=" & pDiag.isSignCCAgent & ""
                 paramsQuery2 = paramsQuery2 & " , isSignCCClient=" & pDiag.isSignCCClient & ""
                 If pDiag.dateSignRIAgent.HasValue Then
-                    paramsQuery2 = paramsQuery2 & " , dateSignRIAgent='" & pDiag.dateSignRIAgent & "'"
+                    paramsQuery2 = paramsQuery2 & " , dateSignRIAgent='" & CSDate.ToCRODIPString(pDiag.dateSignRIAgent) & "'"
                 End If
                 If pDiag.dateSignRIClient.HasValue Then
-                    paramsQuery2 = paramsQuery2 & " , dateSignRIClient='" & pDiag.dateSignRIClient & "'"
+                    paramsQuery2 = paramsQuery2 & " , dateSignRIClient='" & CSDate.ToCRODIPString(pDiag.dateSignRIClient) & "'"
                 End If
                 If pDiag.dateSignCCAgent.HasValue Then
-                    paramsQuery2 = paramsQuery2 & " , dateSignCCAgent='" & pDiag.dateSignCCAgent & "'"
+                    paramsQuery2 = paramsQuery2 & " , dateSignCCAgent='" & CSDate.ToCRODIPString(pDiag.dateSignCCAgent) & "'"
                 End If
                 If pDiag.dateSignCCClient.HasValue Then
-                    paramsQuery2 = paramsQuery2 & " , dateSignCCClient='" & pDiag.dateSignCCClient & "'"
+                    paramsQuery2 = paramsQuery2 & " , dateSignCCClient='" & CSDate.ToCRODIPString(pDiag.dateSignCCClient) & "'"
                 End If
                 paramsQuery2 = paramsQuery2 & " , isSupprime=" & pDiag.isSupprime & ""
                 paramsQuery2 = paramsQuery2 & " , diagRemplacementId='" & pDiag.diagRemplacementId & "'"

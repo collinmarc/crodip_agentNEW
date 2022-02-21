@@ -112,7 +112,7 @@ Public Class DiagnosticItemManager
             Dim olst As New CRODIP_ControlLibrary.LstParamCtrlDiag()
             olst.readXML(MySettings.Default.RepertoireParametres & "/" & sFichierConfig)
 
-            bddCommande2.CommandText = "SELECT * FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' AND  DiagnosticItem.idItem <> '" & DiagnosticInfosComplementaires.DIAGITEM_ID & "' AND DiagnosticItem.idItem not Like 'h%' ORDER BY IdItem, ItemValue"
+            bddCommande2.CommandText = "SELECT * FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' AND  DiagnosticItem.idItem <> '" & DiagnosticInfosComplementaires.DIAGITEM_ID & "' AND DiagnosticItem.idItem not Like 'h%' And ItemCodeEtat <> 'B' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats
             Dim oDRDiagnosticItem As DbDataReader = bddCommande2.ExecuteReader
             ' Puis on les parcours

@@ -149,7 +149,7 @@
                 ecartAutorise_3bar = debitEtalonne * 0.025 * 3 ^ 0.5 / pressionEtalonnage ^ 0.5
             End If
         Catch ex As Exception
-            Console.Write("[Erreur] - Calcul Ecart : " & ex.Message.ToString & vbNewLine)
+            CSDebug.dispError("[Erreur] - Calcul Ecart : " & ex.Message.ToString & vbNewLine)
         End Try
         ' Affichage résultats
         'controleBanc_buse1_3bar_ecartAutorise.Text = Math.Round(ecartAutorise_2bar, 3)

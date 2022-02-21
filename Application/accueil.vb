@@ -3851,7 +3851,6 @@ Public Class accueil
             oItem.SubItems.Add(oExploit.adresse) ' Adresse
             oItem.SubItems.Add(oExploit.codePostal) ' Code postal
             oItem.SubItems.Add(oExploit.commune) ' Commune
-            Console.WriteLine(oExploit.dateProchainControle)
             If oExploit.dateProchainControle <> "" And oExploit.dateProchainControle <> "2001-01-01 00:00:00" And oExploit.dateProchainControle <> "1899-12-30 00:00:00" Then
                 Dim tmpDateNextDiag As Date = oExploit.dateProchainControle
                 oItem.SubItems.Add(tmpDateNextDiag.ToShortDateString)  ' Prochain controle

@@ -51,7 +51,7 @@ Public Class DiagnosticInfosComplementaireManager
             breturn = False
             breturn = pInfosComplementaires.Save(pStructureId, pAgentId)
         Catch ex As Exception
-            Console.Write("Erreur DiagnosticInfosComplementairesManager - save" & ex.Message.ToString)
+            CSDebug.dispError("Erreur DiagnosticInfosComplementairesManager - save" & ex.Message.ToString)
             breturn = False
         End Try
         Return breturn

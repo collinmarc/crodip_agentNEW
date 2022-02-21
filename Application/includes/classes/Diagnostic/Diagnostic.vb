@@ -2533,9 +2533,9 @@ Public Class Diagnostic
                     pulverisateurDateProchainControle = DateProchainCtrl
 
                 Case "controleDateDebut".ToUpper().Trim()
-                    Me.controleDateDebut = CSDate.ToCRODIPString(pcolValue.ToString())
+                    Me.controleDateDebut = pcolValue.ToString()
                 Case "controleDateFin".ToUpper().Trim()
-                    Me.controleDateFin = CSDate.ToCRODIPString(pcolValue.ToString())
+                    Me.controleDateFin = pcolValue.ToString()
                 Case "controleCommune".ToUpper().Trim()
                     Me.controleCommune = pcolValue.ToString()
                 Case "controleCodePostal".ToUpper().Trim()
@@ -2553,7 +2553,7 @@ Public Class Diagnostic
                 Case "controleIsPremierControle".ToUpper().Trim()
                     Me.controleIsPremierControle = pcolValue
                 Case "controleDateDernierControle".ToUpper().Trim()
-                    Me.controleDateDernierControle = CSDate.ToCRODIPString(pcolValue.ToString())
+                    Me.controleDateDernierControle = pcolValue.ToString() 'Les Date sont stockée comme de chaine dans sqlITE
                 Case "controleIsSiteSecurise".ToUpper().Trim()
                     Me.controleIsSiteSecurise = pcolValue
                 Case "controleIsRecupResidus".ToUpper().Trim()
@@ -2715,11 +2715,11 @@ Public Class Diagnostic
                 Case "exploitationSau".ToUpper().Trim()
                     Me.exploitationSau = pcolValue.ToString()
                 Case "dateModificationAgent".ToUpper().Trim()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue.ToString())
+                    Me.dateModificationAgent = pcolValue.ToString()
                 Case "dateModificationCrodip".ToUpper().Trim()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pcolValue.ToString())
+                    Me.dateModificationCrodip = pcolValue.ToString()
                 Case "dateSynchro".ToUpper().Trim()
-                    Me.dateSynchro = CSDate.ToCRODIPString(pcolValue.ToString())
+                    Me.dateSynchro = pcolValue.ToString()
                 Case "isSynchro".ToUpper().Trim()
                     Me.isSynchro = pcolValue
                 Case "isATGIP".ToUpper().Trim()

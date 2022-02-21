@@ -86,7 +86,7 @@ Public Class ManometreControleManager
                 End While
                 tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
-                Console.Write("ManoControleManager - newId : " & ex.Message & vbNewLine)
+                CSDebug.dispError("ManoControleManager - newId : " & ex.Message & vbNewLine)
             End Try
 
             ' Test pour fermeture de connection BDD

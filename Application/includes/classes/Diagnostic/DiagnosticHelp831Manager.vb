@@ -64,7 +64,7 @@ Public Class DiagnosticHelp831Manager
             breturn = False
             breturn = pHelp831.Save(pStructureId, pAgentId)
         Catch ex As Exception
-            Console.Write("Erreur DiagnosticHelp831Manager - save" & ex.Message.ToString)
+            CSDebug.dispError("Erreur DiagnosticHelp831Manager - save" & ex.Message.ToString)
             breturn = False
         End Try
         Return breturn

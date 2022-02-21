@@ -92,7 +92,7 @@ Public Class BuseManager
                 End While
                 tmpObjectId = agentCourant.idStructure & "-" & agentCourant.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
-                Console.Write("BuseManager - newId : " & ex.Message & vbNewLine)
+                CSDebug.dispError("BuseManager - newId : " & ex.Message & vbNewLine)
             End Try
 
             If Not oCsdb Is Nothing Then

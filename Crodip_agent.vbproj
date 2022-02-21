@@ -1429,6 +1429,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Content Include="bdd\crodip_agent.mdb" />
+    <Content Include="bdd\crodip_agent.sql" />
     <Content Include="bdd\crodip_agentBasePourImport.mdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -2477,7 +2477,6 @@ Public Class frmControleManometres2
         Dim oControle As ControleMano
         Try
             ' Init
-            Console.WriteLine("saisiePressionManoReferenceup2")
 
             oManoC = m_bsManoControle.Current
             oManoE = m_bsManoEtalon.Current
