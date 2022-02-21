@@ -505,7 +505,7 @@ Public Class DiagnosticManager
                 oDiag.organismePresId = pStructureId
                 oDiag.pulverisateurId = pPulveId
                 oDiag.id = Trim(dataResults.Item(0).ToString)
-                oDiag.controleDateFin = CSDate.mysql2access(Trim(dataResults.Item(1).ToString))
+                oDiag.controleDateFin = CSDate.TOCRODIPString(Trim(dataResults.Item(1).ToString))
                 oDiag.controleEtat = dataResults.Item(2).ToString
                 colDiag.Add(oDiag)
             End While

@@ -81,7 +81,7 @@ Public Class DBVersionManagerManager
 
             Dim paramsQuery As String
             paramsQuery = "VERSION_NUM='" & pDBVersion.NUM & "'"
-            paramsQuery = paramsQuery & " , " & "VERSION_DATE='" & CSDate.mysql2access(pDBVersion.DateVersion) & "'"
+            paramsQuery = paramsQuery & " , " & "VERSION_DATE='" & CSDate.TOCRODIPString(pDBVersion.DateVersion) & "'"
             paramsQuery = paramsQuery & " , " & "VERSION_COMM='" & pDBVersion.Commentaire & "'"
 
             bddCommande.CommandText = "UPDATE `VERSION` SET " & paramsQuery
@@ -112,11 +112,11 @@ Public Class DBVersionManagerManager
 
             Dim paramsQuery As String
             paramsQuery = "VERSION_NUM='" & pDBVersion.NUM & "'"
-            paramsQuery = paramsQuery & " , " & "VERSION_DATE='" & CSDate.mysql2access(pDBVersion.DateVersion) & "'"
+            paramsQuery = paramsQuery & " , " & "VERSION_DATE='" & CSDate.TOCRODIPString(pDBVersion.DateVersion) & "'"
             paramsQuery = paramsQuery & " , " & "VERSION_COMM='" & pDBVersion.Commentaire & "'"
 
             paramsQuery = "insert into VERSION (VERSION_NUM, VERSION_DATE,VERSION_COMM) VALUES"
-            paramsQuery = paramsQuery & "('" & pDBVersion.NUM & "','" & CSDate.mysql2access(pDBVersion.DateVersion) & "','" & pDBVersion.Commentaire & "') "
+            paramsQuery = paramsQuery & "('" & pDBVersion.NUM & "','" & CSDate.TOCRODIPString(pDBVersion.DateVersion) & "','" & pDBVersion.Commentaire & "') "
             oCsdb.Execute(paramsQuery)
 
             bReturn = True

@@ -162,17 +162,21 @@ Public Class DiagnosticTroncons833Manager
                 End If
                 If Not objDiagnosticTroncons833.dateModificationAgent Is Nothing And objDiagnosticTroncons833.dateModificationAgent <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationAgent`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticTroncons833.dateModificationAgent & "'"
+                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationAgent) & "'"
                 End If
                 If Not objDiagnosticTroncons833.dateModificationCrodip Is Nothing And objDiagnosticTroncons833.dateModificationCrodip <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationCrodip`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticTroncons833.dateModificationCrodip & "'"
+                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationCrodip) & "'"
                 End If
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "INSERT INTO `DiagnosticTroncons833` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
                 bddCommande.ExecuteNonQuery()
+                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                    bddCommande.CommandText = "SELECT last_insert_rowid() from DiagnosticTroncons833"
+                End If
                 bddCommande.CommandText = "SELECT MAX(id) from DiagnosticTroncons833"
+
                 Dim id As Integer = CInt(bddCommande.ExecuteScalar())
                 objDiagnosticTroncons833.id = id
             Else
@@ -185,9 +189,9 @@ Public Class DiagnosticTroncons833Manager
                 paramQuery = paramQuery & ",idPression = '" & objDiagnosticTroncons833.idPression & "'"
                 paramQuery = paramQuery & ",idColumn = '" & objDiagnosticTroncons833.idColumn & "'"
                 paramQuery = paramQuery & ",pressionSortie = '" & objDiagnosticTroncons833.pressionSortie & "'"
-                paramQuery = paramQuery & ",dateModificationAgent = '" & objDiagnosticTroncons833.dateModificationAgent & "'"
+                paramQuery = paramQuery & ",dateModificationAgent = '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationAgent) & "'"
                 If Not String.IsNullOrEmpty(objDiagnosticTroncons833.dateModificationCrodip) Then
-                    paramQuery = paramQuery & ",dateModificationCrodip = '" & objDiagnosticTroncons833.dateModificationCrodip & "'"
+                    paramQuery = paramQuery & ",dateModificationCrodip = '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationCrodip) & "'"
                 End If
 
                 bddCommande.CommandText = "UPDATE DiagnosticTroncons833 SET " & paramQuery & " WHERE id = " & objDiagnosticTroncons833.id & " and idDiagnostic = '" & objDiagnosticTroncons833.idDiagnostic & "'"

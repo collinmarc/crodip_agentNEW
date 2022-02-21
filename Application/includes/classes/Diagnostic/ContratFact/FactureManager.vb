@@ -96,8 +96,8 @@ Public Class FactureManager
 
 
             AddParameter(oCmd, "@1", pfacture.idStructure)
-            AddParameter(oCmd, "@2", pfacture.dateFacture)
-            AddParameter(oCmd, "@3", pfacture.dateEcheance)
+            AddParameter(oCmd, "@2", CSDate.ToCRODIPString(pfacture.dateFacture))
+            AddParameter(oCmd, "@3", CSDate.ToCRODIPString(pfacture.dateEcheance))
             AddParameter(oCmd, "@4", pfacture.Commentaire)
             AddParameter(oCmd, "@5", pfacture.modeReglement)
             AddParameter(oCmd, "@6", pfacture.isReglee)
@@ -118,8 +118,8 @@ Public Class FactureManager
             AddParameter(oCmd, "@21", pfacture.oExploit.telephonePortable)
             AddParameter(oCmd, "@22", pfacture.oExploit.eMail)
             AddParameter(oCmd, "@23", pfacture.pathPDF)
-            AddParameter(oCmd, "@24", CSDate.mysql2access(pfacture.dateModificationAgent))
-            AddParameter(oCmd, "@25", CSDate.mysql2access(pfacture.dateModificationCrodip))
+            AddParameter(oCmd, "@24", CSDate.TOCRODIPString(pfacture.dateModificationAgent))
+            AddParameter(oCmd, "@25", CSDate.TOCRODIPString(pfacture.dateModificationCrodip))
             AddParameter(oCmd, "@26", pfacture.idFacture)
             oCmd.ExecuteNonQuery()
 
@@ -197,8 +197,8 @@ Public Class FactureManager
 
 
             AddParameter(oCmd, "@1", pfacture.idStructure)
-            AddParameter(oCmd, "@2", CSDate.mysql2access(pfacture.dateFacture))
-            AddParameter(oCmd, "@3", CSDate.mysql2access(pfacture.dateEcheance))
+            AddParameter(oCmd, "@2", CSDate.TOCRODIPString(pfacture.dateFacture))
+            AddParameter(oCmd, "@3", CSDate.TOCRODIPString(pfacture.dateEcheance))
             AddParameter(oCmd, "@4", pfacture.Commentaire)
             AddParameter(oCmd, "@5", pfacture.modeReglement)
             AddParameter(oCmd, "@6", pfacture.isReglee)
@@ -219,8 +219,8 @@ Public Class FactureManager
             AddParameter(oCmd, "@21", pfacture.oExploit.telephonePortable)
             AddParameter(oCmd, "@22", pfacture.oExploit.eMail)
             AddParameter(oCmd, "@23", pfacture.pathPDF)
-            AddParameter(oCmd, "@24", CSDate.mysql2access(pfacture.dateModificationAgent))
-            AddParameter(oCmd, "@25", CSDate.mysql2access(pfacture.dateModificationCrodip))
+            AddParameter(oCmd, "@24", CSDate.TOCRODIPString(pfacture.dateModificationAgent))
+            AddParameter(oCmd, "@25", CSDate.TOCRODIPString(pfacture.dateModificationCrodip))
             AddParameter(oCmd, "@26", pfacture.idFacture)
 
             oCmd.ExecuteNonQuery()

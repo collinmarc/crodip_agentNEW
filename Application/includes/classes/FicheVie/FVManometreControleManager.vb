@@ -179,7 +179,7 @@ Public Class FVManometreControleManager
             End If
             If Not pobjFV.dateReetalonnage Is Nothing And pobjFV.dateReetalonnage <> "" And pobjFV.dateReetalonnage <> "0000-00-00 00:00:00" Then
                 paramsQuery_col = paramsQuery_col & ",dateReetalonnage"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.dateReetalonnage) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(pobjFV.dateReetalonnage) & "'"
                 'paramsQueryUpdate = paramsQueryUpdate & ",dateReetalonnage='" & CSDb.secureString(objFVManometreControle.dateReetalonnage) & "'"
             End If
             If Not pobjFV.pressionControle Is Nothing Then
@@ -199,12 +199,12 @@ Public Class FVManometreControleManager
             End If
             If Not pobjFV.dateModif Is Nothing And pobjFV.dateModif <> "" Then
                 paramsQuery_col = paramsQuery_col & ",dateModif"
-                paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(pobjFV.dateModif) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModif) & "'"
                 'paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(objFVManometreControle.dateModif) & "'"
             End If
             If Not pobjFV.dateModificationAgent Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
-                paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(pobjFV.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModificationAgent) & "'"
                 'paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(objFVManometreControle.dateModificationAgent) & "'"
             End If
             If Not pobjFV.dateModificationCrodip Is Nothing Then
@@ -300,18 +300,18 @@ Public Class FVManometreControleManager
             End If
             If Not pobjFV.dateModif Is Nothing And pobjFV.dateModif <> "" Then
                 'paramsQuery_col = paramsQuery_col & ",dateModif"
-                'paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(pobjFV.dateModif) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(pobjFV.dateModif) & "'"
+                'paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModif) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDate.ToCRODIPString(pobjFV.dateModif) & "'"
             End If
             If Not pobjFV.dateModificationAgent Is Nothing Then
                 'paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
-                'paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(pobjFV.dateModificationAgent) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(pobjFV.dateModificationAgent) & "'"
+                'paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModificationAgent) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDate.ToCRODIPString(pobjFV.dateModificationAgent) & "'"
             End If
             If Not pobjFV.dateModificationCrodip Is Nothing Then
                 'paramsQuery_col = paramsQuery_col & ",FVFileName"
                 'paramsQuery = paramsQuery & " , '" & pobjFV.FVFileName & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDb.secureString(pobjFV.dateModificationCrodip) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDate.ToCRODIPString(pobjFV.dateModificationCrodip) & "'"
             End If
             If Not pobjFV.FVFileName Is Nothing Then
                 'paramsQuery_col = paramsQuery_col & ",FVFileName"

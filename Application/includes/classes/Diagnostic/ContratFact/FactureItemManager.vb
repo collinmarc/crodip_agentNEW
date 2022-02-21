@@ -84,8 +84,8 @@ Public Class FactureItemManager
             AddParameter(oCmd, "@6", pfactureItem.totalTVA)
             AddParameter(oCmd, "@7", pfactureItem.totalTTC)
             AddParameter(oCmd, "@8", pfactureItem.txTVA)
-            AddParameter(oCmd, "@9", CSDate.mysql2access(pfactureItem.dateModificationAgent))
-            AddParameter(oCmd, "@10", CSDate.mysql2access(pfactureItem.dateModificationCrodip))
+            AddParameter(oCmd, "@9", CSDate.TOCRODIPString(pfactureItem.dateModificationAgent))
+            AddParameter(oCmd, "@10", CSDate.TOCRODIPString(pfactureItem.dateModificationCrodip))
             AddParameter(oCmd, "@11", pfactureItem.idFacture)
             AddParameter(oCmd, "@12", pfactureItem.nFactureItem)
 
@@ -149,8 +149,8 @@ Public Class FactureItemManager
             AddParameter(oCmd, "@6", pfactureItem.totalTVA, DbType.Currency)
             AddParameter(oCmd, "@7", pfactureItem.totalTTC, DbType.Currency)
             AddParameter(oCmd, "@8", pfactureItem.txTVA, DbType.Currency)
-            AddParameter(oCmd, "@9", CSDate.mysql2access(pfactureItem.dateModificationAgent))
-            AddParameter(oCmd, "@10", CSDate.mysql2access(pfactureItem.dateModificationCrodip))
+            AddParameter(oCmd, "@9", CSDate.TOCRODIPString(pfactureItem.dateModificationAgent))
+            AddParameter(oCmd, "@10", CSDate.TOCRODIPString(pfactureItem.dateModificationCrodip))
             AddParameter(oCmd, "@11", pfactureItem.idFacture)
             AddParameter(oCmd, "@12", pfactureItem.nFactureItem)
 

@@ -363,7 +363,7 @@ Public Class fiche_banc
             ficheBanc_marque.Text = BancCourant.marque
             ficheBanc_modele.Text = BancCourant.modele
             If Not String.IsNullOrEmpty(BancCourant.dateAchat) Then
-                ficheBanc_dateAchat.Text = CSDate.mysql2access(BancCourant.dateAchat)
+                ficheBanc_dateAchat.Text = CSDate.TOCRODIPString(BancCourant.dateAchat)
             Else
                 lblDateAchat.Visible = False
                 ficheBanc_dateAchat.Enabled = False
@@ -380,10 +380,10 @@ Public Class fiche_banc
             End If
             btnActiver.Visible = BancCourant.JamaisServi
             If Not CSDate.isDateNull(BancCourant.DateActivation) Then
-                ficheBanc_dateActivation.Text = CSDate.mysql2access(BancCourant.DateActivation)
+                ficheBanc_dateActivation.Text = CSDate.TOCRODIPString(BancCourant.DateActivation)
             End If
             If Not CSDate.isDateNull(BancCourant.dateDernierControleS) Then
-                ficheBanc_dateControle.Text = CSDate.mysql2access(BancCourant.dateDernierControleS)
+                ficheBanc_dateControle.Text = CSDate.TOCRODIPString(BancCourant.dateDernierControleS)
             End If
             cbxModulesAcquisition.Text = BancCourant.ModuleAcquisition
 
@@ -406,7 +406,7 @@ Public Class fiche_banc
                 BancCourant.modele = ficheBanc_modele.Text
                 BancCourant.ModuleAcquisition = cbxModulesAcquisition.Text
                 If (ficheBanc_dateAchat.Visible) Then
-                    BancCourant.dateAchat = CSDate.mysql2access(ficheBanc_dateAchat.Value)
+                    BancCourant.dateAchat = CSDate.TOCRODIPString(ficheBanc_dateAchat.Value)
                 End If
                 BancManager.save(BancCourant)
                 Me.DialogResult = Windows.Forms.DialogResult.OK

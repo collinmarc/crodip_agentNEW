@@ -81,7 +81,7 @@ Public Class IdentifiantPulverisateurManager
             Dim strQuery As String
             strQuery = "insert into identifiantPulverisateur (id,  idStructure ,  numeroNational ,  etat ,  dateUtilisation ,  libelle ,  dateModificationAgent ,  dateModificationCrodip )"
             strQuery = strQuery & " VALUES ("
-            strQuery = strQuery & pIdent.id & "," & pIdent.idStructure & ",'" & CSDb.secureString(pIdent.numeroNational) & "','" & CSDb.secureString(pIdent.etat) & "','" & CSDb.secureString(pIdent.dateUtilisation) & "','" & CSDb.secureString(pIdent.libelle) & "','" & CSDb.secureString(pIdent.dateModificationAgent) & "','" & CSDb.secureString(pIdent.dateModificationCrodip) & "'"
+            strQuery = strQuery & pIdent.id & "," & pIdent.idStructure & ",'" & CSDb.secureString(pIdent.numeroNational) & "','" & CSDb.secureString(pIdent.etat) & "','" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "','" & CSDb.secureString(pIdent.libelle) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
             strQuery = strQuery & " )"
 
 
@@ -112,10 +112,10 @@ Public Class IdentifiantPulverisateurManager
             strQuery = strQuery & "  idStructure =" & pIdent.idStructure & ","
             strQuery = strQuery & "  numeroNational ='" & CSDb.secureString(pIdent.numeroNational) & "',"
             strQuery = strQuery & "  etat = '" & CSDb.secureString(pIdent.etat) & "'" & ","
-            strQuery = strQuery & "  dateUtilisation ='" & CSDb.secureString(pIdent.dateUtilisation) & "'" & ","
+            strQuery = strQuery & "  dateUtilisation ='" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "'" & ","
             strQuery = strQuery & "  libelle ='" & CSDb.secureString(pIdent.libelle) & "'" & ","
-            strQuery = strQuery & "  dateModificationAgent ='" & CSDb.secureString(pIdent.dateModificationAgent) & "'" & ","
-            strQuery = strQuery & "  dateModificationCrodip = '" & CSDb.secureString(pIdent.dateModificationCrodip) & "'"
+            strQuery = strQuery & "  dateModificationAgent ='" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "'" & ","
+            strQuery = strQuery & "  dateModificationCrodip = '" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
 
             strQuery = strQuery & "WHERE id = " & pIdent.id
 

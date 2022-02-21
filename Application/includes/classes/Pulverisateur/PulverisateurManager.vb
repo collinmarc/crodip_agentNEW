@@ -286,13 +286,13 @@ Public Class PulverisateurManager
                 paramsQuery = paramsQuery & " , isSynchro=" & pPulve.isSynchro & ""
                 paramsQuery = paramsQuery & " , isSupprime=" & pPulve.isSupprime & ""
                 If Not pPulve.dateProchainControle Is Nothing And pPulve.dateProchainControle <> "" And pPulve.dateProchainControle <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , dateProchainControle='" & pPulve.dateProchainControle & "'"
+                    paramsQuery = paramsQuery & " , dateProchainControle='" & CSDate.ToCRODIPString(pPulve.dateProchainControle) & "'"
                 End If
                 If Not pPulve.dateModificationCrodip Is Nothing And pPulve.dateModificationCrodip <> "" Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & pPulve.dateModificationCrodip & "'"
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(pPulve.dateModificationCrodip) & "'"
                 End If
                 If Not pPulve.dateModificationAgent Is Nothing And pPulve.dateModificationAgent <> "" Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & pPulve.dateModificationAgent & "'"
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(pPulve.dateModificationAgent) & "'"
                 End If
                 paramsQuery = paramsQuery & " , idStructure=" & pPulve.idStructure & ""
                 ' Emplacement Identification

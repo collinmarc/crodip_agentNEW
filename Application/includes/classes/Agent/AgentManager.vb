@@ -407,19 +407,19 @@ Public Class AgentManager
                     paramsQuery = paramsQuery & " , statut='" & CSDb.secureString(agent.statut) & "'"
                 End If
                 If Not agent.dateCreation Is Nothing And agent.dateCreation <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , dateCreation='" & CSDate.mysql2access(agent.dateCreation) & "'"
+                    paramsQuery = paramsQuery & " , dateCreation='" & CSDate.ToCRODIPString(agent.dateCreation) & "'"
                 End If
                 If Not agent.dateDerniereConnexion Is Nothing And agent.dateDerniereConnexion <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , dateDerniereConnexion='" & CSDate.mysql2access(agent.dateDerniereConnexion) & "'"
+                    paramsQuery = paramsQuery & " , dateDerniereConnexion='" & CSDate.ToCRODIPString(agent.dateDerniereConnexion) & "'"
                 End If
                 If Not agent.dateDerniereSynchro Is Nothing And agent.dateDerniereSynchro <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , dateDerniereSynchro='" & CSDate.mysql2access(agent.dateDerniereSynchro) & "'"
+                    paramsQuery = paramsQuery & " , dateDerniereSynchro='" & CSDate.ToCRODIPString(agent.dateDerniereSynchro) & "'"
                 End If
                 If Not agent.dateModificationAgent Is Nothing And agent.dateModificationAgent <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(agent.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(agent.dateModificationAgent) & "'"
                 End If
                 If Not agent.dateModificationCrodip Is Nothing And agent.dateModificationCrodip <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(agent.dateModificationCrodip) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(agent.dateModificationCrodip) & "'"
                 End If
                 If Not agent.versionLogiciel Is Nothing Then
                     paramsQuery = paramsQuery & " , versionLogiciel='" & CSDb.secureString(agent.versionLogiciel) & "'"

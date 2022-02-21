@@ -174,7 +174,7 @@ Public Class FVManometreEtalonManager
             End If
             If Not objFVManometreEtalon.dateReetalonnage Is Nothing And objFVManometreEtalon.dateReetalonnage <> "" And objFVManometreEtalon.dateReetalonnage <> "0000-00-00 00:00:00" Then
                 paramsQuery_col = paramsQuery_col & ",dateReetalonnage"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.dateReetalonnage) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateReetalonnage) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateReetalonnage='" & CSDb.secureString(objFVManometreEtalon.dateReetalonnage) & "'"
             End If
             If Not objFVManometreEtalon.pressionControle Is Nothing Then
@@ -194,17 +194,17 @@ Public Class FVManometreEtalonManager
             End If
             If Not objFVManometreEtalon.dateModif Is Nothing And objFVManometreEtalon.dateModif <> "" Then
                 paramsQuery_col = paramsQuery_col & ",dateModif"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.dateModif) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateModif) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(objFVManometreEtalon.dateModif) & "'"
             End If
             If Not objFVManometreEtalon.dateModificationAgent Is Nothing And objFVManometreEtalon.dateModificationAgent <> "" Then
                 paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
-                paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(objFVManometreEtalon.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVManometreEtalon.dateModificationAgent) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(objFVManometreEtalon.dateModificationAgent) & "'"
             End If
             If Not objFVManometreEtalon.dateModificationCrodip Is Nothing And objFVManometreEtalon.dateModificationCrodip <> "" Then
                 paramsQuery_col = paramsQuery_col & ",dateModificationCrodip"
-                paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(objFVManometreEtalon.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVManometreEtalon.dateModificationCrodip) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDb.secureString(objFVManometreEtalon.dateModificationCrodip) & "'"
             End If
 
@@ -256,7 +256,7 @@ Public Class FVManometreEtalonManager
     Public Shared Sub setSynchro(ByVal objFVManometreEtalon As FVManometreEtalon)
         Try
             Dim dbLink As New CSDb(True)
-            Dim newDate As String = Date.Now.ToString
+            Dim newDate As String = CSDate.ToCRODIPString(Date.Now)
             dbLink.queryString = "UPDATE FichevieManometreEtalon SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id='" & objFVManometreEtalon.id & "'"
             dbLink.Execute()
             dbLink.free()

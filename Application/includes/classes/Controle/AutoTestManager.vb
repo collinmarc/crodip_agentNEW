@@ -117,8 +117,8 @@ Public Class AutoTestManager
                 paramsQuery = paramsQuery & " , CTRG_MATID='" & pCtrlRegulier.IdMateriel & "'  "
                 paramsQuery = paramsQuery & " , CTRG_ETAT=" & pCtrlRegulier.Etat & " "
                 paramsQuery = paramsQuery & " , CTRG_NUMAGENT='" & pCtrlRegulier.NumAgent & "' "
-                paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(pCtrlRegulier.dateModificationAgent) & "'"
-                paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(pCtrlRegulier.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.TOCRODIPString(pCtrlRegulier.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.TOCRODIPString(pCtrlRegulier.dateModificationCrodip) & "'"
 
                 ' On finalise la requete et en l'execute
                 oCsdb = New CSDb(True)
@@ -154,7 +154,7 @@ Public Class AutoTestManager
 
                 Dim paramsQuery As String
                 paramsQuery = ""
-                paramsQuery = paramsQuery & " dateModificationCrodip='" & CSDate.mysql2access(pCtrlRegulier.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " dateModificationCrodip='" & CSDate.TOCRODIPString(pCtrlRegulier.dateModificationCrodip) & "'"
 
                 ' On finalise la requete et en l'execute
                 oCsdb = New CSDb(True)

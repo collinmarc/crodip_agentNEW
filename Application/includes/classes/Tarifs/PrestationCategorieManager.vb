@@ -124,10 +124,10 @@ Public Class PrestationCategorieManager
                             paramsQuery = paramsQuery & " `libelle`='" & CSDb.secureString(curObject.description) & "'"
                         End If
                         If Not curObject.dateModificationAgent Is Nothing Then
-                            paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(curObject.dateModificationAgent) & "'"
+                            paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.TOCRODIPString(curObject.dateModificationAgent) & "'"
                         End If
                         If Not curObject.dateModificationCrodip Is Nothing Then
-                            paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.mysql2access(curObject.dateModificationCrodip) & "'"
+                            paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.TOCRODIPString(curObject.dateModificationCrodip) & "'"
                         End If
 
                         '####################################################
@@ -207,7 +207,7 @@ Public Class PrestationCategorieManager
         Try
             '####################################################
             '## Execution de la requete
-            bddCommande.CommandText = "INSERT INTO `PrestationCategorie` (`id`,`idStructure`,`dateModificationAgent`) VALUES ('" & id & "','" & pAgent.idStructure & "','" & CSDate.mysql2access(Date.Now) & "')"
+            bddCommande.CommandText = "INSERT INTO `PrestationCategorie` (`id`,`idStructure`,`dateModificationAgent`) VALUES ('" & id & "','" & pAgent.idStructure & "','" & CSDate.TOCRODIPString(Date.Now) & "')"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception

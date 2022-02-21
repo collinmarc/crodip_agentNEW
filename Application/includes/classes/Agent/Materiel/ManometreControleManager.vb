@@ -149,13 +149,13 @@ Public Class ManometreControleManager
                 paramsQuery = paramsQuery & " , etat=" & objManometreControle.etat & ""
                 paramsQuery = paramsQuery & " , isSynchro=" & objManometreControle.isSynchro & ""
                 If objManometreControle.dateDernierControleS <> Nothing Then
-                    paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.mysql2access(objManometreControle.dateDernierControleS) & "'"
+                    paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.ToCRODIPString(objManometreControle.dateDernierControle) & "'"
                 End If
                 If Not objManometreControle.dateModificationAgent Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(objManometreControle.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objManometreControle.dateModificationAgent) & "'"
                 End If
                 If Not objManometreControle.dateModificationCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(objManometreControle.dateModificationCrodip) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objManometreControle.dateModificationCrodip) & "'"
                 End If
                 If Not objManometreControle.resolution Is Nothing Then
                     paramsQuery = paramsQuery & " , resolution='" & CSDb.secureString(objManometreControle.resolution) & "'"
@@ -172,11 +172,11 @@ Public Class ManometreControleManager
                     paramsQuery = paramsQuery & " , raisonSuppression='" & objManometreControle.RaisonSuppression & "'"
                 End If
                 If Not objManometreControle.DateSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.mysql2access(objManometreControle.DateSuppression) & "'"
+                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objManometreControle.DateSuppression) & "'"
                 End If
                 paramsQuery = paramsQuery & " , jamaisServi=" & objManometreControle.JamaisServi & ""
                 If objManometreControle.DateActivation <> Nothing Then
-                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.mysql2access(objManometreControle.DateActivation) & "'"
+                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objManometreControle.DateActivation) & "'"
                 End If
 
                 ' On finalise la requete et en l'execute

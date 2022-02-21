@@ -40,25 +40,25 @@ Public Class CSDate
         End Try
     End Function
     'Conversion date MySQL => Access
-    Public Shared Function mysql2access(ByVal mysqlDate As Object) As Date
-        Try
-            If mysqlDate.GetType.ToString = "System.String" Then
-                mysqlDate = Date.Parse(mysqlDate)
-            End If
-            Dim str As String
-            str = Format(mysqlDate, "dd/MM/yyyy HH:mm:ss")
-            Return CDate(str)
-        Catch ex As Exception
-            Dim accessDate As Date
-            accessDate.AddDays(0)
-            accessDate.AddMonths(0)
-            accessDate.AddYears(0)
-            accessDate.AddHours(0)
-            accessDate.AddMinutes(0)
-            accessDate.AddSeconds(0)
-            Return accessDate
-        End Try
-    End Function
+    'Public Shared Function mysql2access(ByVal mysqlDate As Object) As Date
+    '    Try
+    '        If mysqlDate.GetType.ToString = "System.String" Then
+    '            mysqlDate = Date.Parse(mysqlDate)
+    '        End If
+    '        Dim str As String
+    '        str = Format(mysqlDate, "dd/MM/yyyy HH:mm:ss")
+    '        Return CDate(str)
+    '    Catch ex As Exception
+    '        Dim accessDate As Date
+    '        accessDate.AddDays(0)
+    '        accessDate.AddMonths(0)
+    '        accessDate.AddYears(0)
+    '        accessDate.AddHours(0)
+    '        accessDate.AddMinutes(0)
+    '        accessDate.AddSeconds(0)
+    '        Return accessDate
+    '    End Try
+    'End Function
 
     Public Shared Function FromCrodipString(ByVal accessDate As String) As Date
         Dim vbDate As Date

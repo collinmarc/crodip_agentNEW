@@ -149,13 +149,13 @@ Public Class BuseManager
                 paramsQuery = paramsQuery & " , debitEtalonnage='" & objBuseEtalon.debitEtalonnage & "'"
                 paramsQuery = paramsQuery & " , isSynchro=" & objBuseEtalon.isSynchro & ""
                 If Not objBuseEtalon.dateAchat Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateAchat='" & CSDate.mysql2access(objBuseEtalon.dateAchat) & "'"
+                    paramsQuery = paramsQuery & " , dateAchat='" & CSDate.ToCRODIPString(objBuseEtalon.dateAchat) & "'"
                 End If
                 If Not objBuseEtalon.dateModificationAgent Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(objBuseEtalon.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objBuseEtalon.dateModificationAgent) & "'"
                 End If
                 If Not objBuseEtalon.dateModificationCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(objBuseEtalon.dateModificationCrodip) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objBuseEtalon.dateModificationCrodip) & "'"
                 End If
                 paramsQuery = paramsQuery & " , etat=" & objBuseEtalon.etat & ""
                 paramsQuery = paramsQuery & " , isSupprime=" & objBuseEtalon.isSupprime & ""
@@ -167,11 +167,11 @@ Public Class BuseManager
                     paramsQuery = paramsQuery & " , raisonSuppression='" & objBuseEtalon.RaisonSuppression & "'"
                 End If
                 If Not objBuseEtalon.DateSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.mysql2access(objBuseEtalon.DateSuppression) & "'"
+                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objBuseEtalon.DateSuppression) & "'"
                 End If
                 paramsQuery = paramsQuery & " , jamaisServi=" & objBuseEtalon.JamaisServi & ""
                 If objBuseEtalon.DateActivation <> Nothing Then
-                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.mysql2access(objBuseEtalon.DateActivation) & "'"
+                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objBuseEtalon.DateActivation) & "'"
                 End If
 
                 ' On finalise la requete et en l'execute

@@ -22,7 +22,7 @@ Public Class SynchronisationManager
             Dim bddCommande As DbCommand
             bddCommande = CSDb.getConnection().CreateCommand()
             ' Création du nouveau log
-            bddCommande.CommandText = "INSERT INTO `Synchronisation` (`idAgent`,`sensSynchronisation`,`dateSynchronisation`,`logSynchronisation`) VALUES (" & CSDb.secureString(agentCourant.idStructure) & ",'" & CSDb.secureString(_sens) & "','" & CSDate.mysql2access(Date.Now) & "','" & CSDb.secureString(_log) & "')"
+            bddCommande.CommandText = "INSERT INTO `Synchronisation` (`idAgent`,`sensSynchronisation`,`dateSynchronisation`,`logSynchronisation`) VALUES (" & CSDb.secureString(agentCourant.idStructure) & ",'" & CSDb.secureString(_sens) & "','" & CSDate.TOCRODIPString(Date.Now) & "','" & CSDb.secureString(_log) & "')"
             bddCommande.ExecuteNonQuery()
 
 

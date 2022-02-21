@@ -477,11 +477,11 @@ Public Class fiche_manometre
         btnActiver.Visible = manometreCourant.JamaisServi
         If Not manometreCourant.JamaisServi Then
             If Not CSDate.isDateNull(manometreCourant.DateActivation) Then
-                ficheMano_dateActivation.Text = CSDate.mysql2access(manometreCourant.DateActivation)
+                ficheMano_dateActivation.Text = CSDate.TOCRODIPString(manometreCourant.DateActivation)
             End If
         End If
         If Not CSDate.isDateNull(manometreCourant.dateDernierControleS) Then
-            ficheMano_dateControle.Text = CSDate.mysql2access(manometreCourant.dateDernierControleS)
+            ficheMano_dateControle.Text = CSDate.TOCRODIPString(manometreCourant.dateDernierControleS)
         End If
 
     End Sub
@@ -502,7 +502,7 @@ Public Class fiche_manometre
                 Else
                     CType(manometreCourant, ManometreEtalon).incertitudeEtalon = ficheMano_resolution.Text
                 End If
-                manometreCourant.dateModificationAgent = CSDate.mysql2access(Date.Now)
+                manometreCourant.dateModificationAgent = CSDate.TOCRODIPString(Date.Now)
                 If m_TypeMano = TYPEMANO.MANOCONTROLE Then
                     ManometreControleManager.save(manometreCourant)
                 Else

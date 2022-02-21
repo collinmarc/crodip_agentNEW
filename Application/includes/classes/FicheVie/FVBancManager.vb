@@ -186,12 +186,12 @@ Public Class FVBancManager
             End If
             If Not objFVBanc.dateModificationAgent Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`dateModificationAgent`"
-                paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(objFVBanc.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVBanc.dateModificationAgent) & "'"
                 '   paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationAgent`='" & CSDb.secureString(objFVBanc.dateModificationAgent) & "'"
             End If
             If Not objFVBanc.dateModificationCrodip Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`dateModificationCrodip`"
-                paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(objFVBanc.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVBanc.dateModificationCrodip) & "'"
                 '  paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationCrodip`='" & CSDb.secureString(objFVBanc.dateModificationCrodip) & "'"
             End If
             If Not objFVBanc.FVFileName Is Nothing Then
@@ -288,12 +288,12 @@ Public Class FVBancManager
             End If
             If Not objFVBanc.dateModificationAgent Is Nothing Then
                 'paramsQuery_col = paramsQuery_col & ",`dateModificationAgent`"
-                'paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(objFVBanc.dateModificationAgent) & "'"
+                'paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVBanc.dateModificationAgent) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationAgent`='" & CSDb.secureString(objFVBanc.dateModificationAgent) & "'"
             End If
             If Not objFVBanc.dateModificationCrodip Is Nothing Then
                 'paramsQuery_col = paramsQuery_col & ",`dateModificationCrodip`"
-                'paramsQuery = paramsQuery & " , '" & CSDate.mysql2access(objFVBanc.dateModificationCrodip) & "'"
+                'paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVBanc.dateModificationCrodip) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationCrodip`='" & CSDb.secureString(objFVBanc.dateModificationCrodip) & "'"
             End If
             If Not objFVBanc.FVFileName Is Nothing Then

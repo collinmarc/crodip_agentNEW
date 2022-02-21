@@ -3539,8 +3539,8 @@ Public Class accueil
         lbl_infosAgent_IdCrodip.Text = agentCourant.numeroNational
         lbl_infosAgent_Nom.Text = agentCourant.nom
         lbl_infosAgent_Prenom.Text = agentCourant.prenom
-        lbl_infosAgent_dateDernCnx.Text = CSDate.mysql2access(agentCourant.dateDerniereConnexion)
-        Dim dateDernSynhcro As String = CSDate.mysql2access(agentCourant.dateDerniereSynchro)
+        lbl_infosAgent_dateDernCnx.Text = CSDate.TOCRODIPString(agentCourant.dateDerniereConnexion)
+        Dim dateDernSynhcro As String = CSDate.TOCRODIPString(agentCourant.dateDerniereSynchro)
         If dateDernSynhcro = "01/01/1970 00:00:00" Or dateDernSynhcro = "" Or dateDernSynhcro = "00/00/0000 00:00:00" Then
             lbl_infosAgent_dateDernSynchro.Text = "--/--/-- --:--:--"
         Else

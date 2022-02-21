@@ -124,11 +124,11 @@ Public Class DiagnosticBusesDetailManager
                 End If
                 If Not objDiagnosticBusesDetail.dateModificationAgent Is Nothing And objDiagnosticBusesDetail.dateModificationAgent <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationAgent`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticBusesDetail.dateModificationAgent & "'"
+                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticBusesDetail.dateModificationAgent) & "'"
                 End If
                 If Not objDiagnosticBusesDetail.dateModificationCrodip Is Nothing And objDiagnosticBusesDetail.dateModificationCrodip <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationCrodip`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticBusesDetail.dateModificationCrodip & "'"
+                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticBusesDetail.dateModificationCrodip) & "'"
                 End If
 
                 ' On finalise la requete et en l'execute

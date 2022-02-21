@@ -72,7 +72,7 @@ Public Class StatsCrodipTest
         Dim oDiag As New Diagnostic()
         oDiag.setOrganisme(m_oAgent)
         oDiag.id = DiagnosticManager.getNewId(m_oAgent)
-        oDiag.controleDateDebut = CSDate.mysql2access(Date.Now).ToShortDateString()
+        oDiag.controleDateDebut = CSDate.FromCrodipString(Date.Now).ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC 'Controle NOK
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
@@ -101,7 +101,7 @@ Public Class StatsCrodipTest
 
         'Modification de la date de controle (1 an plus tot)
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.controleDateDebut = CSDate.mysql2access(DateAdd(DateInterval.Year, -1, Date.Now)).ToShortDateString()
+        oDiag.controleDateDebut = CSDate.FromCrodipString(DateAdd(DateInterval.Year, -1, Date.Now)).ToShortDateString()
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
         Assert.AreEqual(ostat.NCtrlStructureTotal, nCtrlS + 1)
@@ -111,7 +111,7 @@ Public Class StatsCrodipTest
 
         'Controle OK
         oDiag.inspecteurId = m_oAgent.id
-        oDiag.controleDateDebut = CSDate.mysql2access(Date.Now).ToShortDateString()
+        oDiag.controleDateDebut = CSDate.FromCrodipString(Date.Now).ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatOK 'Controle OK
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
@@ -215,7 +215,7 @@ Public Class StatsCrodipTest
         Dim oDiag As New Diagnostic()
         oDiag.setOrganisme(m_oAgent)
         oDiag.id = DiagnosticManager.getNewId(m_oAgent)
-        oDiag.controleDateDebut = CSDate.mysql2access(Date.Now).ToShortDateString()
+        oDiag.controleDateDebut = CSDate.FromCrodipString(Date.Now).ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC 'Controle NOK
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)

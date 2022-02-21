@@ -362,10 +362,10 @@ Public Class StructureManager
                 paramsQuery = paramsQuery & " , commentaire='" & CSDb.secureString(objStructure.commentaire) & "'"
             End If
             If Not objStructure.dateModificationAgent Is Nothing Then
-                paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(objStructure.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.TOCRODIPString(objStructure.dateModificationAgent) & "'"
             End If
             If Not objStructure.dateModificationCrodip Is Nothing Then
-                paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(objStructure.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.TOCRODIPString(objStructure.dateModificationCrodip) & "'"
             End If
             bddCommande.CommandText = "UPDATE Structure SET " & paramsQuery & " WHERE Structure.id=" & objStructure.id & ""
             bddCommande.ExecuteNonQuery()

@@ -119,17 +119,22 @@ Public Class DiagnosticMano542Manager
                 End If
                 If Not objDiagnosticMano542.dateModificationAgent Is Nothing And objDiagnosticMano542.dateModificationAgent <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationAgent`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticMano542.dateModificationAgent & "'"
+                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticMano542.dateModificationAgent) & "'"
                 End If
                 If Not objDiagnosticMano542.dateModificationCrodip Is Nothing And objDiagnosticMano542.dateModificationCrodip <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationCrodip`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticMano542.dateModificationCrodip & "'"
+                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticMano542.dateModificationCrodip) & "'"
                 End If
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "INSERT INTO `DiagnosticMano542` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
                 bddCommande.ExecuteNonQuery()
-                bddCommande.CommandText = "SELECT MAX(id) from DiagnosticMano542"
+                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                    bddCommande.CommandText = "SELECT last_insert_rowid()"
+                Else
+                    bddCommande.CommandText = "SELECT MAX(id) from DiagnosticMano542"
+
+                End If
                 Dim nId As Integer = bddCommande.ExecuteScalar()
                 objDiagnosticMano542.id = nId
             Else

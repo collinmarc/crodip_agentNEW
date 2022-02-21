@@ -254,7 +254,7 @@ Public Class Diagnostic
         isATGIP = False
         isTGIP = False
         isFacture = False
-        dateModificationAgent = CSDate.mysql2access(Date.Now)
+        dateModificationAgent = CSDate.TOCRODIPString(Date.Now)
         controleInitialId = ""
 
         Me.buseGenre = ""
@@ -267,8 +267,8 @@ Public Class Diagnostic
         manometrePressionTravailD = 3
 
         controleIsComplet = True
-        controleDateDebut = CSDate.mysql2access(Date.Now)
-        controleDateFin = CSDate.mysql2access(Date.Now)
+        controleDateDebut = CSDate.TOCRODIPString(Date.Now)
+        controleDateFin = CSDate.TOCRODIPString(Date.Now)
         controleIsPremierControle = True
         controleDateDernierControle = ""
         typeDiagnostic = "pulverisateur"
@@ -288,8 +288,8 @@ Public Class Diagnostic
         setPulverisateur(pPulve)
         SetProprietaire(pClient)
         controleIsComplet = True
-        controleDateDebut = CSDate.mysql2access(Date.Now)
-        controleDateFin = CSDate.mysql2access(Date.Now)
+        controleDateDebut = CSDate.TOCRODIPString(Date.Now)
+        controleDateFin = CSDate.TOCRODIPString(Date.Now)
     End Sub
 
     ''' <summary>
@@ -2457,9 +2457,9 @@ Public Class Diagnostic
             Me.setOrganisme(pAgent)
             Me.controleInitialId = Me.id
             Me.controleDateDernierControle = Me.controleDateFin
-            Me.controleDateDebut = CSDate.mysql2access(Date.Now)
-            Me.controleDateFin = CSDate.mysql2access(Date.Now)
-            Me.dateModificationAgent = CSDate.mysql2access(Date.Now)
+            Me.controleDateDebut = CSDate.TOCRODIPString(Date.Now)
+            Me.controleDateFin = CSDate.TOCRODIPString(Date.Now)
+            Me.dateModificationAgent = CSDate.TOCRODIPString(Date.Now)
             Me.controleIsComplet = False
             Me.isATGIP = False
             Me.isTGIP = False

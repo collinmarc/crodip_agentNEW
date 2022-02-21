@@ -145,16 +145,16 @@ Public Class BancManager
                         paramsQuery = paramsQuery & " , modele='" & CSDb.secureString(objBanc.modele) & "'"
                     End If
                     If objBanc.dateDernierControleS IsNot Nothing Then
-                        paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.mysql2access(objBanc.dateDernierControleS) & "'"
+                        paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.TOCRODIPString(objBanc.dateDernierControleS) & "'"
                     End If
                     If Not objBanc.dateAchat Is Nothing Then
-                        paramsQuery = paramsQuery & " , dateAchat='" & CSDate.mysql2access(objBanc.dateAchat) & "'"
+                        paramsQuery = paramsQuery & " , dateAchat='" & CSDate.TOCRODIPString(objBanc.dateAchat) & "'"
                     End If
                     If Not objBanc.dateModificationAgent Is Nothing Then
-                        paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(objBanc.dateModificationAgent) & "'"
+                        paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.TOCRODIPString(objBanc.dateModificationAgent) & "'"
                     End If
                     If Not objBanc.dateModificationCrodip Is Nothing Then
-                        paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(objBanc.dateModificationCrodip) & "'"
+                        paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.TOCRODIPString(objBanc.dateModificationCrodip) & "'"
                     End If
                     paramsQuery = paramsQuery & " , etat=" & objBanc.etat & ""
                     paramsQuery = paramsQuery & " , isUtilise=" & objBanc.isUtilise & ""
@@ -172,14 +172,14 @@ Public Class BancManager
                         paramsQuery = paramsQuery & " , raisonSuppression=''"
                     End If
                     If objBanc.DateSuppression <> "" Then
-                        paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.mysql2access(objBanc.DateSuppression) & "'"
+                        paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.TOCRODIPString(objBanc.DateSuppression) & "'"
                     Else
                         paramsQuery = paramsQuery & " , dateSuppression='" & Date.MinValue & "'"
                     End If
 
                     paramsQuery = paramsQuery & " , jamaisServi=" & objBanc.JamaisServi & ""
                     If objBanc.DateActivation <> Nothing Then
-                        paramsQuery = paramsQuery & " , dateActivation='" & CSDate.mysql2access(objBanc.DateActivation) & "'"
+                        paramsQuery = paramsQuery & " , dateActivation='" & CSDate.TOCRODIPString(objBanc.DateActivation) & "'"
                     End If
                     paramsQuery = paramsQuery & " , ModuleAcquisition='" & objBanc.ModuleAcquisition & "'"
 

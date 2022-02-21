@@ -330,7 +330,7 @@ Public Class fiche_buse
         ficheBuse_pressionReference.Text = "3"
         ficheBuse_debitReference.Text = BuseCourant.debitEtalonnage
 
-        ficheBuse_dateAchat.Text = CSDate.mysql2access(BuseCourant.dateAchat)
+        ficheBuse_dateAchat.Text = CSDate.TOCRODIPString(BuseCourant.dateAchat)
         If BuseCourant.JamaisServi Then
             pbEtat.Image = imagesEtatMateriel.Images(2) 'Gris
         Else
@@ -344,7 +344,7 @@ Public Class fiche_buse
         If CSDate.isDateNull(BuseCourant.DateActivation) Or BuseCourant.JamaisServi Then
             ficheBuse_dateActivation.Text = ""
         Else
-            ficheBuse_dateActivation.Text = CSDate.mysql2access(BuseCourant.DateActivation)
+            ficheBuse_dateActivation.Text = CSDate.TOCRODIPString(BuseCourant.DateActivation)
         End If
 
     End Sub
@@ -356,7 +356,7 @@ Public Class fiche_buse
                 BuseCourant.couleur = ficheBuse_couleur.Text
                 BuseCourant.pressionEtalonnage = CType(ficheBuse_pressionReference.Text.Replace(".", ","), Double)
                 BuseCourant.debitEtalonnage = CType(ficheBuse_debitReference.Text.Replace(".", ","), Double)
-                BuseCourant.dateAchat = CSDate.mysql2access(ficheBuse_dateAchat.Value)
+                BuseCourant.dateAchat = CSDate.TOCRODIPString(ficheBuse_dateAchat.Value)
                 BuseManager.save(BuseCourant)
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()

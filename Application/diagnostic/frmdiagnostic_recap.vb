@@ -654,7 +654,7 @@ Public Class frmdiagnostic_recap
             If (m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV) And
                 m_diagnostic.diagRemplacementId = "" Then
                 'Remplacement de la date de fin si on n'est pas en remplacement
-                m_diagnostic.controleDateFin = CSDate.mysql2access(Date.Now)
+                m_diagnostic.controleDateFin = CSDate.TOCRODIPString(Date.Now)
             End If
             diagnosticRecap_organisme_heureFin.Text = CDate(m_diagnostic.controleDateFin).ToShortTimeString
         Catch ex As Exception
@@ -1006,7 +1006,7 @@ Public Class frmdiagnostic_recap
 
                         CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic Etat")
                         'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
-                        m_diagnostic.dateModificationAgent = CSDate.mysql2access(Date.Now)
+                        m_diagnostic.dateModificationAgent = CSDate.TOCRODIPString(Date.Now)
                         Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
                         Dim bSave As Boolean
                         CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic SauveDiag Debut")

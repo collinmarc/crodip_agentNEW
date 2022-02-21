@@ -152,13 +152,13 @@ Public Class ManometreEtalonManager
                 End If
                 paramsQuery = paramsQuery & " , isSynchro=" & objManometreEtalon.isSynchro & ""
                 If objManometreEtalon.dateDernierControleS <> Nothing Then
-                    paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.mysql2access(objManometreEtalon.dateDernierControleS) & "'"
+                    paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.ToCRODIPString(objManometreEtalon.dateDernierControleS) & "'"
                 End If
                 If Not objManometreEtalon.dateModificationAgent Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(objManometreEtalon.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objManometreEtalon.dateModificationAgent) & "'"
                 End If
                 If Not objManometreEtalon.dateModificationCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(objManometreEtalon.dateModificationCrodip) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objManometreEtalon.dateModificationCrodip) & "'"
                 End If
                 paramsQuery = paramsQuery & " , etat=" & objManometreEtalon.etat & ""
                 paramsQuery = paramsQuery & " , isUtilise=" & objManometreEtalon.isUtilise & ""
@@ -173,11 +173,11 @@ Public Class ManometreEtalonManager
                     paramsQuery = paramsQuery & " , raisonSuppression='" & objManometreEtalon.RaisonSuppression & "'"
                 End If
                 If Not objManometreEtalon.DateSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.mysql2access(objManometreEtalon.DateSuppression) & "'"
+                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objManometreEtalon.DateSuppression) & "'"
                 End If
                 paramsQuery = paramsQuery & " , jamaisServi=" & objManometreEtalon.JamaisServi & ""
                 If objManometreEtalon.DateActivation <> Nothing Then
-                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.mysql2access(objManometreEtalon.DateActivation) & "'"
+                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objManometreEtalon.DateActivation) & "'"
                 End If
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE AgentManoEtalon SET " & paramsQuery & " WHERE numeroNational='" & objManometreEtalon.numeroNational & "'"

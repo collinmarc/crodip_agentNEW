@@ -145,10 +145,10 @@ Public Class PrestationTarifManager
                     'End If
                     paramsQuery = paramsQuery & " , `tva`='" & CSDb.secureString(curObject.tva) & "'"
                     If Not curObject.dateModificationAgent Is Nothing Then
-                        paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.mysql2access(curObject.dateModificationAgent) & "'"
+                        paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.TOCRODIPString(curObject.dateModificationAgent) & "'"
                     End If
                     If Not curObject.dateModificationCrodip Is Nothing Then
-                        paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.mysql2access(curObject.dateModificationCrodip) & "'"
+                        paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.TOCRODIPString(curObject.dateModificationCrodip) & "'"
                     End If
 
                     '####################################################

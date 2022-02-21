@@ -316,10 +316,10 @@ Public Class DiagnosticItemManager
                     'paramsQuery = paramsQuery & " , isItemCode2=" & objisItemCode2 & ""
                     paramsQuery = paramsQuery & " , cause='" & pDiagIt.cause & "'"
                     If Not pDiagIt.dateModificationCrodip Is Nothing And pDiagIt.dateModificationCrodip <> "" Then
-                        paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.mysql2access(pDiagIt.dateModificationCrodip) & "'"
+                        paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.TOCRODIPString(pDiagIt.dateModificationCrodip) & "'"
                     End If
                     If Not pDiagIt.dateModificationAgent Is Nothing And pDiagIt.dateModificationAgent <> "" Then
-                        paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.mysql2access(pDiagIt.dateModificationAgent) & "'"
+                        paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.TOCRODIPString(pDiagIt.dateModificationAgent) & "'"
                     End If
 
                     ' On finalise la requete et en l'execute
@@ -406,7 +406,7 @@ Public Class DiagnosticItemManager
             bddCommande.CommandText = "INSERT INTO DiagnosticItem (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
             bddCommande.ExecuteNonQuery()
             If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
-                bddCommande.CommandText = "SELECT last_insert_rowid()"
+                bddCommande.CommandText = "SELECT "
                 objDiagnosticItem.id = CInt(bddCommande.ExecuteScalar())
             End If
             sDebugStep = "5"
