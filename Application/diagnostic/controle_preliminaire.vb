@@ -19,6 +19,8 @@ Public Class controle_preliminaire
     Private m_Diagnostic As Diagnostic
     Private m_Pulverisateur As Pulverisateur
     Private m_Exploit As Exploitation
+    'Liste des controles par onglets
+    Protected LstCtrl As New List(Of List(Of List(Of CRODIP_ControlLibrary.CtrlDiag2)))
 
 #End Region
 
@@ -33,7 +35,11 @@ Public Class controle_preliminaire
 
         m_Mode = GlobalsCRODIP.DiagMode.CTRL_COMPLET
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
+
+        OrganizeControls()
+
         m_bDuringLoad = False
+
     End Sub
     Public Sub New(ByVal pMode As GlobalsCRODIP.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pclient As Exploitation)
         Me.New()
@@ -1515,6 +1521,88 @@ Public Class controle_preliminaire
 #End Region
 
 #Region " Au chargement "
+    Private Sub OrganizeControls()
+        Dim lstOnglet As List(Of List(Of CRODIP_ControlLibrary.CtrlDiag2))
+        Dim lstGrpBox As List(Of CRODIP_ControlLibrary.CtrlDiag2)
+
+        'Onglet 1 'Préliminaire
+        lstOnglet = New List(Of List(Of CRODIP_ControlLibrary.CtrlDiag2))
+        'Fonctionnalité du pulvé
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_1111)
+        lstGrpBox.Add(RadioButton_diagnostic_1112)
+        lstGrpBox.Add(RadioButton_diagnostic_1113)
+        lstGrpBox.Add(RadioButton_diagnostic_1110)
+        lstOnglet.Add(lstGrpBox)
+
+        'Propreté matériel
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_1121)
+        lstGrpBox.Add(RadioButton_diagnostic_1122)
+        lstGrpBox.Add(RadioButton_diagnostic_1123)
+        lstGrpBox.Add(RadioButton_diagnostic_1120)
+        lstOnglet.Add(lstGrpBox)
+
+        'Contexte
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_1131)
+        lstGrpBox.Add(RadioButton_diagnostic_1132)
+        lstGrpBox.Add(RadioButton_diagnostic_1133)
+        lstGrpBox.Add(RadioButton_diagnostic_1130)
+        lstOnglet.Add(lstGrpBox)
+
+        'Transmission hydraulique
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_1211)
+        lstGrpBox.Add(RadioButton_diagnostic_1212)
+        lstGrpBox.Add(RadioButton_diagnostic_1213)
+        lstGrpBox.Add(RadioButton_diagnostic_1210)
+        lstOnglet.Add(lstGrpBox)
+
+        'Transmission hydraulique
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_1211)
+        lstGrpBox.Add(RadioButton_diagnostic_1212)
+        lstGrpBox.Add(RadioButton_diagnostic_1213)
+        lstGrpBox.Add(RadioButton_diagnostic_1210)
+        lstOnglet.Add(lstGrpBox)
+
+        'Transmission mécanique Tracteur Pulve
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_1221)
+        lstGrpBox.Add(RadioButton_diagnostic_1222)
+        lstGrpBox.Add(RadioButton_diagnostic_1223)
+        lstGrpBox.Add(RadioButton_diagnostic_1224)
+        lstGrpBox.Add(RadioButton_diagnostic_1220)
+        lstOnglet.Add(lstGrpBox)
+
+        'Transmission mécanique Pulve
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_1231)
+        lstGrpBox.Add(RadioButton_diagnostic_1232)
+        lstGrpBox.Add(RadioButton_diagnostic_1230)
+        lstOnglet.Add(lstGrpBox)
+
+        'Fixations au chassis
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_1241)
+        lstGrpBox.Add(RadioButton_diagnostic_1242)
+        lstGrpBox.Add(RadioButton_diagnostic_1243)
+        lstGrpBox.Add(RadioButton_diagnostic_1244)
+        lstGrpBox.Add(RadioButton_diagnostic_1245)
+        lstGrpBox.Add(RadioButton_diagnostic_1246)
+        lstGrpBox.Add(RadioButton_diagnostic_1247)
+        lstGrpBox.Add(RadioButton_diagnostic_1240)
+        lstOnglet.Add(lstGrpBox)
+
+        'Débrayage Ventilateurs
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_1251)
+        lstGrpBox.Add(RadioButton_diagnostic_1250)
+        lstOnglet.Add(lstGrpBox)
+        LstCtrl.Add(lstOnglet)
+
+    End Sub
 
     ' Chargement du form
     Private Sub controle_preliminaire_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -1594,121 +1682,201 @@ Public Class controle_preliminaire
         End If
 
         m_bDuringLoad = False
+        AfficheDiagnosticItems()
         Me.Cursor = Cursors.Default
     End Sub
 
     ' Chargement des infos d'un diagnostic existant
     Private Sub loadExistingDiag()
-        ' On liste les boutons radio du form
-        'Dim listRadioButtons(0) As RadioButton
-        'CSForm.getListRadioButtons(Me, listRadioButtons)
-        'ReDim Preserve listRadioButtons(listRadioButtons.Length - 1)
-
-        ' Chargement des informations du diag
-        Dim tmpDiagnosticItem As DiagnosticItem
-        Dim isLoaded As Boolean = False
-        Try
-            If Not m_Diagnostic Is Nothing Then
-                If Not m_Diagnostic.diagnosticItemsLst Is Nothing Then
-                    If Not m_Diagnostic.diagnosticItemsLst.items Is Nothing Then
-                        Dim lstDiagItem As New List(Of DiagnosticItem)
-                        'lstDiagItem.AddRange(m_Diagnostic.diagnosticItemsLst.items)
-                        'on ne parcours que les IdItem de niveau 1 (pas les 10,11,12) => Longueur = 3
-                        lstDiagItem = m_Diagnostic.diagnosticItemsLst.items.Where(Function(o) o.idItem.Length = 3 And o.idItem.StartsWith("1")).ToList()
-                        For Each tmpDiagnosticItem In lstDiagItem
-                            If Not tmpDiagnosticItem Is Nothing Then
-                                Dim TestIdVar As String = tmpDiagnosticItem.idItem & tmpDiagnosticItem.itemValue
-                                Dim TestNameVar As String = "RadioButton_diagnostic_" & TestIdVar
-                                isLoaded = True
-                                Try
-                                    Dim tmpControl As CRODIP_ControlLibrary.CtrlDiag2 = CSForm.getControlByName(TestNameVar, Me)
-
-                                    If Not tmpControl Is Nothing Then
-                                        tmpControl.Checked = True
-                                    End If
-
-                                Catch ex As Exception
-                                    CSDebug.dispWarn("Contrôle Préliminaire - Load infos diag. : " & ex.Message)
-                                End Try
-                            End If
-                        Next
-                    End If
-                End If
-            End If
-            checkIsOk()
-        Catch ex As Exception
-            CSDebug.dispError("Controle preliminaire - loadExistingDiag : " & ex.Message.ToString)
-        End Try
-
-        'If isLoaded Then
-        '    btn_toutCocher.Enabled = False
-        'End If
     End Sub
+    Private Function AfficheDiagnosticItems() As Boolean
+        Dim bReturn As Boolean
+        Try
+            'Par DEfaut  on met tout OK
+            LstCtrl.ForEach(Sub(olstN1)
+                                olstN1.ForEach(Sub(olstN2)
+                                                   olstN2.ForEach(Sub(oCtrl)
+                                                                      If oCtrl.Name.EndsWith("0") Then
+                                                                          oCtrl.Checked = True
+                                                                      End If
+                                                                  End Sub)
+                                               End Sub)
+
+                            End Sub)
+
+
+
+
+            ' Chargement des informations du diag
+            Dim tmpDiagnosticItem As DiagnosticItem
+            If Not m_Diagnostic.diagnosticItemsLst Is Nothing And Not m_Diagnostic.diagnosticItemsLst.Values Is Nothing Then
+                For Each tmpDiagnosticItem In m_Diagnostic.diagnosticItemsLst.Values
+                    If tmpDiagnosticItem IsNot Nothing Then
+                        Dim tmpControl As CRODIP_ControlLibrary.CtrlDiag2 = getControlFromDiagItem(tmpDiagnosticItem)
+                        If tmpControl IsNot Nothing Then
+                            tmpControl.Checked = True
+                            Select Case tmpDiagnosticItem.cause
+                                Case "1"
+                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN
+                                Case "2"
+                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX
+                                Case "3"
+                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.TROIS
+                            End Select
+
+                        End If
+                    End If
+                Next
+            End If
+            bReturn = True
+        Catch ex As Exception
+
+            CSDebug.dispError("Diagnostique.AfficheDiagnosticItems ERROR : " & ex.Message)
+
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
+    Private Function getControlFromDiagItem(poDiagItem As DiagnosticItem) As CRODIP_ControlLibrary.CtrlDiag2
+        Dim oReturn As CRODIP_ControlLibrary.CtrlDiag2
+        Try
+
+            Dim TestIdVar As String = poDiagItem.idItem & poDiagItem.itemValue
+            Dim TestNameVar As String = "RadioButton_diagnostic_" & TestIdVar
+            oReturn = CSForm.getControlByName(TestNameVar, Me)
+        Catch ex As Exception
+            CSDebug.dispWarn("Diagnostique.getControlFromDiagItem ERR : " & ex.Message)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+    End Function
+
 
 #End Region
 
 #Region " Gestion Checkbox "
-
-    Private Sub checkAnswer2(ByVal sender As CRODIP_ControlLibrary.CtrlDiag2, ByVal pOngletId As Integer)
+    Private Sub checkAnswer2(ByVal pcontrole As CRODIP_ControlLibrary.CtrlDiag2, ByVal pOngletId As Integer)
 
         If Not m_bDuringLoad Then
-
             'Si l'objet n'a pas de nom on sort (Evnmt déclenché lors de la création du controle)
-            If String.IsNullOrEmpty(sender.Name) Or sender.Name.ToUpper() = "CTRLDIAG2" Then
+            If String.IsNullOrEmpty(pcontrole.Name) Or pcontrole.Name.ToUpper() = "CTRLDIAG2" Then
                 Exit Sub
             End If
 
-            'Conversion des codes Nlleversion=> ancienne versions
-            Dim strCode As String
-            Dim nTypeCheckBox As Integer
-            strCode = ""
-            If sender.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN Then
-                strCode = "1"
+            If pcontrole.Categorie <> CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK Then
+                'Création du diagItem à partir du controle de saisie (Ex CheckAnswer)
+                Dim curDiagnosticItem As New DiagnosticItem(pcontrole)
+
+                If pcontrole.Checked = True Then
+                    m_Diagnostic.AdOrReplaceDiagItem(curDiagnosticItem)
+                Else
+                    m_Diagnostic.RemoveDiagItem(curDiagnosticItem)
+                End If
+
             End If
-            If sender.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX Then
-                strCode = "2"
+
+            If pcontrole.Checked Then
+                'Uncheck les autres controle du groupe
+                'Récupération de la liste des ctrole du groupe
+                Dim lstGrap As List(Of CRODIP_ControlLibrary.CtrlDiag2) = Nothing
+                LstCtrl.ForEach(Sub(oLstN1)
+                                    oLstN1.ForEach(Sub(olstN2)
+                                                       olstN2.ForEach(Sub(octrl)
+                                                                          If octrl.Name = pcontrole.Name Then
+                                                                              lstGrap = olstN2
+                                                                          End If
+                                                                      End Sub)
+
+                                                   End Sub)
+                                End Sub)
+                If lstGrap IsNot Nothing Then
+                    'on a bien trouvé le groupe de controle
+                    If pcontrole.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK Then
+                        'Si le controle était un OK
+                        'Déchecker tous les autres controles du groupe (autre que OK)
+                        lstGrap.ForEach(Sub(oCtrl)
+                                            If Not oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
+                                                oCtrl.Checked = False
+                                            End If
+                                        End Sub)
+                    Else
+                        'Déchecker les controles OK du Groupe
+                        lstGrap.ForEach(Sub(oCtrl)
+                                            If oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
+                                                oCtrl.Checked = False
+                                            End If
+                                        End Sub)
+
+                    End If
+                End If
+
+                'Vérification de l'onglet
+                checkIsOk()
             End If
-            If sender.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.TROIS Then
-                strCode = "3"
-            End If
-            nTypeCheckBox = CHK_OK
-            Select Case sender.Categorie
-                Case CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
-                    nTypeCheckBox = CHK_OK
-                Case CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
-                    nTypeCheckBox = CHK_DEFAUT_MINEUR
-                Case CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
-                    nTypeCheckBox = CHK_DEFAUT_MAJEUR
-                Case CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEURPRELIM
-                    nTypeCheckBox = CHK_DEFAUT_MAJEURPRELIM
-            End Select
-            checkAnswer(sender, nTypeCheckBox, pOngletId, strCode)
         End If
     End Sub
 
-    Private Sub checkAnswer(ByVal sender As System.Object, ByVal typeCheckbox As Integer, ByVal ongletId As Integer, Optional ByVal codeId As String = "")
+    'Private Sub checkAnswer2(ByVal sender As CRODIP_ControlLibrary.CtrlDiag2, ByVal pOngletId As Integer)
 
-        Try
-            'Si l'objet n'a pas de nom on sort (Evnmt déclenché lors de la création du controle)
-            If String.IsNullOrEmpty(sender.name) Then
-                Exit Sub
-            End If
-            'On construit l'item
-            Dim curDiagnosticItem As New DiagnosticItem(sender)
+    '    If Not m_bDuringLoad Then
 
-            If sender.checked = True Then
-                m_Diagnostic.AdOrReplaceDiagItem(curDiagnosticItem)
-            Else
-                m_Diagnostic.RemoveDiagItem(curDiagnosticItem)
-            End If
+    '        'Si l'objet n'a pas de nom on sort (Evnmt déclenché lors de la création du controle)
+    '        If String.IsNullOrEmpty(sender.Name) Or sender.Name.ToUpper() = "CTRLDIAG2" Then
+    '            Exit Sub
+    '        End If
 
-            ' Mise a jour du flag de l'onglet suivant les checkbox cochées
-            checkIsOk()
-        Catch ex As Exception
-            CSDebug.dispError("diagnostique::checkAnswer (" & sender.name & ") : " & ex.Message)
-        End Try
+    '        'Conversion des codes Nlleversion=> ancienne versions
+    '        Dim strCode As String
+    '        Dim nTypeCheckBox As Integer
+    '        strCode = ""
+    '        If sender.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN Then
+    '            strCode = "1"
+    '        End If
+    '        If sender.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX Then
+    '            strCode = "2"
+    '        End If
+    '        If sender.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.TROIS Then
+    '            strCode = "3"
+    '        End If
+    '        nTypeCheckBox = CHK_OK
+    '        Select Case sender.Categorie
+    '            Case CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+    '                nTypeCheckBox = CHK_OK
+    '            Case CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+    '                nTypeCheckBox = CHK_DEFAUT_MINEUR
+    '            Case CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
+    '                nTypeCheckBox = CHK_DEFAUT_MAJEUR
+    '            Case CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEURPRELIM
+    '                nTypeCheckBox = CHK_DEFAUT_MAJEURPRELIM
+    '        End Select
+    '        checkAnswer(sender, nTypeCheckBox, pOngletId, strCode)
+    '    End If
+    'End Sub
 
-    End Sub
+    'Private Sub checkAnswer(ByVal sender As System.Object, ByVal typeCheckbox As Integer, ByVal ongletId As Integer, Optional ByVal codeId As String = "")
+
+    '    Try
+    '        'Si l'objet n'a pas de nom on sort (Evnmt déclenché lors de la création du controle)
+    '        If String.IsNullOrEmpty(sender.name) Then
+    '            Exit Sub
+    '        End If
+    '        'On construit l'item
+    '        Dim curDiagnosticItem As New DiagnosticItem(sender)
+
+    '        If sender.checked = True Then
+    '            m_Diagnostic.AdOrReplaceDiagItem(curDiagnosticItem)
+    '        Else
+    '            m_Diagnostic.RemoveDiagItem(curDiagnosticItem)
+    '        End If
+
+    '        ' Mise a jour du flag de l'onglet suivant les checkbox cochées
+    '        checkIsOk()
+    '    Catch ex As Exception
+    '        CSDebug.dispError("diagnostique::checkAnswer (" & sender.name & ") : " & ex.Message)
+    '    End Try
+
+    'End Sub
 
     Private Sub checkIsOk()
 

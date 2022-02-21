@@ -163,17 +163,7 @@ Public Class DiagnosticItemManager
             bddCommande.CommandText = "SELECT count(*) FROM DiagnosticItem WHERE DiagnosticItem.id='" & diagnosticitem_id & "' AND idDiagnostic = '" & pIdDiagnostic & "'"
             Try
                 ' On récupère les résultats
-                Dim oDR As DbDataReader = bddCommande.ExecuteReader
-                If oDR.HasRows Then
-                    oDR.Read()
-                    Try
-                        nEnr = CType(oDR.GetValue(0), Integer)
-                    Catch ex As Exception
-                        nEnr = 0
-                    End Try
-                End If
-                oDR.Close()
-                ' Puis on les parcours
+                nEnr = bddCommande.ExecuteScalar
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("DiagnosticItemManager.ExistsDiagnosticItem Error: " & ex.Message)
             End Try
@@ -279,18 +269,18 @@ Public Class DiagnosticItemManager
         Return tmpDiagnosticId
     End Function
     '''
-    ''' Sauvegarde d'un diagnosticItem
+    ''' Sauvegarde d'un diagnosticItem individuel
     ''' Paramètres :
     Public Shared Function save(ByVal pCsDb As CSDb, ByVal pDiagIt As DiagnosticItem, Optional bSyncro As Boolean = False) As Boolean
 
         Dim breturn As Boolean
         Try
             breturn = False
-            If pDiagIt.id <> "" Then
+            '            If pDiagIt.id <> "" Then
 
 
-                ' On test si le DiagnosticItem existe ou non
-                Dim existsDiagnosticItem As Boolean
+            ' On test si le DiagnosticItem existe ou non
+            Dim existsDiagnosticItem As Boolean
                 existsDiagnosticItem = DiagnosticItemManager.existsDiagnosticItemById(pCsDb, pDiagIt.id, pDiagIt.idDiagnostic)
 
                 If Not existsDiagnosticItem Then
@@ -340,7 +330,7 @@ Public Class DiagnosticItemManager
                     ' On ferme la connexion
                     ' oCSDb.free()
                 End If
-            End If
+            'End If
             breturn = True
         Catch ex As Exception
             CSDebug.dispError("Erreur DiagnosticItemManager" & pDiagIt.idDiagnostic & " - save" & ex.Message.ToString)
@@ -361,74 +351,72 @@ Public Class DiagnosticItemManager
         Dim bddCommande As DbCommand
         Try
             breturn = False
-            If objDiagnosticItem.id <> "" Then
-                sDebugStep = "1"
+            sDebugStep = "1"
 
-                ' On test si le DiagnosticItem existe ou non
+            ' On test si le DiagnosticItem existe ou non
 
-                bddCommande = oCSDb.getConnection().CreateCommand()
-                sDebugStep = "2"
+            bddCommande = oCSDb.getConnection().CreateCommand()
+            sDebugStep = "2"
 
-                Dim paramsQueryColomuns As String = ""
-                Dim paramsQuery As String = ""
-                If CSDb._DBTYPE <> CSDb.EnumDBTYPE.SQLITE Then
-                    paramsQueryColomuns = paramsQueryColomuns & "id , "
-                    paramsQuery = paramsQuery & "'" & objDiagnosticItem.id & " , '"
+            Dim paramsQueryColomuns As String = ""
+            Dim paramsQuery As String = ""
+            If CSDb._DBTYPE <> CSDb.EnumDBTYPE.SQLITE Then
+                paramsQueryColomuns = paramsQueryColomuns & "id , "
+                paramsQuery = paramsQuery & "'" & objDiagnosticItem.id & " , '"
             End If
 
 
-                sDebugStep = "3"
-                    ' Mise a jour de la date de derniere modification
-                    objDiagnosticItem.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+            sDebugStep = "3"
+            ' Mise a jour de la date de derniere modification
+            objDiagnosticItem.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
 
-                    If Not objDiagnosticItem.idDiagnostic Is Nothing And objDiagnosticItem.idDiagnostic <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & "  idDiagnostic"
-                    paramsQuery = paramsQuery & " '" & objDiagnosticItem.idDiagnostic & "'"
-                End If
-                    If Not objDiagnosticItem.idItem Is Nothing And objDiagnosticItem.idItem <> "" Then
-                        paramsQueryColomuns = paramsQueryColomuns & " , idItem"
-                        paramsQuery = paramsQuery & " , '" & objDiagnosticItem.idItem & "'"
-                    End If
-                    If Not objDiagnosticItem.itemValue Is Nothing And objDiagnosticItem.itemValue <> "" Then
-                        paramsQueryColomuns = paramsQueryColomuns & " , itemValue"
-                        paramsQuery = paramsQuery & " , '" & CSDb.secureString(objDiagnosticItem.itemValue) & "'"
-                    End If
-                    If Not objDiagnosticItem.itemCodeEtat Is Nothing And objDiagnosticItem.itemCodeEtat <> "" Then
-                        paramsQueryColomuns = paramsQueryColomuns & " , itemCodeEtat"
-                        paramsQuery = paramsQuery & " , '" & objDiagnosticItem.itemCodeEtat & "'"
-                    End If
-                    'paramsQueryColomuns = paramsQueryColomuns & " , isItemCode1"
-                    'paramsQuery = paramsQuery & " , " & objDiagnosticItem.isItemCode1 & ""
-                    'paramsQueryColomuns = paramsQueryColomuns & " , isItemCode2"
-                    'paramsQuery = paramsQuery & " , " & objDiagnosticItem.isItemCode2 & ""
-                    paramsQueryColomuns = paramsQueryColomuns & " , cause"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticItem.cause & "'"
+            If Not objDiagnosticItem.idDiagnostic Is Nothing And objDiagnosticItem.idDiagnostic <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & "  idDiagnostic"
+                paramsQuery = paramsQuery & " '" & objDiagnosticItem.idDiagnostic & "'"
+            End If
+            If Not objDiagnosticItem.idItem Is Nothing And objDiagnosticItem.idItem <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , idItem"
+                paramsQuery = paramsQuery & " , '" & objDiagnosticItem.idItem & "'"
+            End If
+            If Not objDiagnosticItem.itemValue Is Nothing And objDiagnosticItem.itemValue <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , itemValue"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objDiagnosticItem.itemValue) & "'"
+            End If
+            If Not objDiagnosticItem.itemCodeEtat Is Nothing And objDiagnosticItem.itemCodeEtat <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , itemCodeEtat"
+                paramsQuery = paramsQuery & " , '" & objDiagnosticItem.itemCodeEtat & "'"
+            End If
+            'paramsQueryColomuns = paramsQueryColomuns & " , isItemCode1"
+            'paramsQuery = paramsQuery & " , " & objDiagnosticItem.isItemCode1 & ""
+            'paramsQueryColomuns = paramsQueryColomuns & " , isItemCode2"
+            'paramsQuery = paramsQuery & " , " & objDiagnosticItem.isItemCode2 & ""
+            paramsQueryColomuns = paramsQueryColomuns & " , cause"
+            paramsQuery = paramsQuery & " , '" & objDiagnosticItem.cause & "'"
 
-                    If Not objDiagnosticItem.dateModificationAgent Is Nothing And objDiagnosticItem.dateModificationAgent <> "" Then
-                        paramsQueryColomuns = paramsQueryColomuns & " , dateModificationAgent"
-                        paramsQuery = paramsQuery & " , '" & objDiagnosticItem.dateModificationAgent & "'"
-                    End If
-                    If Not objDiagnosticItem.dateModificationCrodip Is Nothing And objDiagnosticItem.dateModificationCrodip <> "" Then
-                        paramsQueryColomuns = paramsQueryColomuns & " , dateModificationCrodip"
-                        paramsQuery = paramsQuery & " , '" & objDiagnosticItem.dateModificationCrodip & "'"
-                    End If
-                    sDebugStep = "4"
-                    ' On finalise la requete et en l'execute
-                    bddCommande.CommandText = "INSERT INTO DiagnosticItem (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
-                bddCommande.ExecuteNonQuery()
-                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
-                    bddCommande.CommandText = "SELECT last_insert_rowid()"
-                    objDiagnosticItem.id = CInt(bddCommande.ExecuteScalar())
-                End If
-                sDebugStep = "5"
-                    ' Test pour fermeture de connection BDD
-                    If Not oCSDb Is Nothing Then
-                        ' On ferme la connexion
-                        oCSDb.free()
-                    End If
-                    sDebugStep = "6"
-                    breturn = True
-                End If
+            If Not objDiagnosticItem.dateModificationAgent Is Nothing And objDiagnosticItem.dateModificationAgent <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , dateModificationAgent"
+                paramsQuery = paramsQuery & " , '" & objDiagnosticItem.dateModificationAgent & "'"
+            End If
+            If Not objDiagnosticItem.dateModificationCrodip Is Nothing And objDiagnosticItem.dateModificationCrodip <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , dateModificationCrodip"
+                paramsQuery = paramsQuery & " , '" & objDiagnosticItem.dateModificationCrodip & "'"
+            End If
+            sDebugStep = "4"
+            ' On finalise la requete et en l'execute
+            bddCommande.CommandText = "INSERT INTO DiagnosticItem (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
+            bddCommande.ExecuteNonQuery()
+            If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                bddCommande.CommandText = "SELECT last_insert_rowid()"
+                objDiagnosticItem.id = CInt(bddCommande.ExecuteScalar())
+            End If
+            sDebugStep = "5"
+            ' Test pour fermeture de connection BDD
+            If Not oCSDb Is Nothing Then
+                ' On ferme la connexion
+                oCSDb.free()
+            End If
+            sDebugStep = "6"
+            breturn = True
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticItemManager.Create ERR" & sDebugStep & ex.Message.ToString)
             breturn = False

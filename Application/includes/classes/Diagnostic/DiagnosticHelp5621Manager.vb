@@ -26,10 +26,9 @@ Public Class DiagnosticHelp5621Manager
             oHelp5621.idDiag = pDiagnostic.id
             While oDRDiagnosticItem.Read()
                 oHelp5621.id = oDRDiagnosticItem.GetString(0)
+                oHelp5621.Load()
             End While
-            If Not oHelp5621.Load() Then
-                oHelp5621 = Nothing
-            End If
+            oDRDiagnosticItem.Close()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp5621Manager::getDiagnosticHelp5621ByDiagnosticId : " & ex.Message)
             oHelp5621 = Nothing

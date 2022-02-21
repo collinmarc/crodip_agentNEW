@@ -27,10 +27,9 @@ Public Class DiagnosticInfosComplementaireManager
             oInfosComplementaires.idDiag = pDiagnostic.id
             While oDRDiagnosticItem.Read()
                 oInfosComplementaires.id = oDRDiagnosticItem.GetString(0)
+                oInfosComplementaires.Load()
             End While
-            If Not oInfosComplementaires.Load() Then
-                oInfosComplementaires = Nothing
-            End If
+            oDRDiagnosticItem.Close()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticInfosComplementairesManager::getDiagnosticInfosComplementairesByDiagnosticId : " & ex.Message)
             oInfosComplementaires = Nothing

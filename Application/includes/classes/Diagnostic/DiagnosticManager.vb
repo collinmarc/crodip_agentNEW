@@ -638,7 +638,7 @@ Public Class DiagnosticManager
         Dim bddCommande As DbCommand
         Dim oCsdb As New CSDb(True)
         ' On test si la connexion est déjà ouverte ou non
-        bddCommande.Connection = oCsdb.getConnection()
+        bddCommande = oCsdb.getConnection().CreateCommand
         '        bddCommande.CommandText = "SELECT * FROM Diagnostic WHERE Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip AND Diagnostic.inspecteurId=" & agent.id
         bddCommande.CommandText = "Select Diagnostic.* From Diagnostic INNER Join Agent On Diagnostic.inspecteurId = Agent.Id Where Agent.idStructure = " & pAgent.idStructure
         bddCommande.CommandText = bddCommande.CommandText & " AND Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip"

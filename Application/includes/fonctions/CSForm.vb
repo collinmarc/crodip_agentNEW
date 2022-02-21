@@ -63,22 +63,7 @@ Module CSForm
             tmpReturn = tabControl(0)
         End If
 
-        'For Each Ctr As Control In controlObj.Controls
-        '    If Not Ctr Is Nothing Then
-        '        If Not Ctr.Name Is Nothing Then
-        '            If Ctr.Name = controlName Then
-        '                Return Ctr
-        '            Else
-        '                If Ctr.Controls.Count > 0 Then
-        '                    tmpReturn = getControlByName(controlName, Ctr)
-        '                End If
-        '                If Not tmpReturn Is Nothing Then
-        '                    Return tmpReturn
-        '                End If
-        '            End If
-        '        End If
-        '    End If
-        'Next
+
         Return tmpReturn
     End Function
 

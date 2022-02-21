@@ -3034,38 +3034,40 @@ Public Class Diagnostic
             End If
 
             'Mise à jour du DiahHelp12123
-            _diagnostichelp12123.fonctionnementBuses = poPulve.buseFonctionnement
-            If poPulve.isPompesDoseuses Then
-                Dim nbPompes As Integer
-                nbPompes = poPulve.nbPompesDoseuses
+            If _diagnostichelp12123 IsNot Nothing Then
+                _diagnostichelp12123.fonctionnementBuses = poPulve.buseFonctionnement
+                If poPulve.isPompesDoseuses Then
+                    Dim nbPompes As Integer
+                    nbPompes = poPulve.nbPompesDoseuses
 
-                _diagnostichelp12123.lstPompesTrtSem.Clear()
-                _diagnostichelp12123.lstPompes.Clear()
-                If poPulve.isTraitementdesSemences() Then
-                    For i As Integer = 1 To nbPompes
-                        _diagnostichelp12123.AjoutePompeTrtSem()
-                    Next
+                    _diagnostichelp12123.lstPompesTrtSem.Clear()
+                    _diagnostichelp12123.lstPompes.Clear()
+                    If poPulve.isTraitementdesSemences() Then
+                        For i As Integer = 1 To nbPompes
+                            _diagnostichelp12123.AjoutePompeTrtSem()
+                        Next
 
+                    Else
+                        For i As Integer = 1 To nbPompes
+                            _diagnostichelp12123.AjoutePompe()
+                        Next
+
+
+                    End If
                 Else
-                    For i As Integer = 1 To nbPompes
-                        _diagnostichelp12123.AjoutePompe()
-                    Next
-
-
+                    'Pas de pompes doseuses
+                    _diagnostichelp12123.lstPompes.Clear()
+                    _diagnostichelp12123.lstPompesTrtSem.Clear()
+                    'Pour le traietement des semences CUILLERES
+                    'On ajout une Pompe avec 1 Mesure
+                    If poPulve.isTraitementdesSemences() Then
+                        Dim oPompe As DiagnosticHelp12123PompeTrtSem
+                        oPompe = _diagnostichelp12123.AjoutePompeTrtSem()
+                    End If
                 End If
-            Else
-                'Pas de pompes doseuses
-                _diagnostichelp12123.lstPompes.Clear()
-                _diagnostichelp12123.lstPompesTrtSem.Clear()
-                'Pour le traietement des semences CUILLERES
-                'On ajout une Pompe avec 1 Mesure
-                If poPulve.isTraitementdesSemences() Then
-                    Dim oPompe As DiagnosticHelp12123PompeTrtSem
-                    oPompe = _diagnostichelp12123.AjoutePompeTrtSem()
-                End If
+                _diagnostichelp12123.fonctionnementBuses = poPulve.buseFonctionnement
+                _diagnostichelp12123.calcule()
             End If
-            _diagnostichelp12123.fonctionnementBuses = poPulve.buseFonctionnement
-            _diagnostichelp12123.calcule()
 
             'On Stocke la referenc du pulve ou l'encodage Automatique
             _pulverisateur = poPulve

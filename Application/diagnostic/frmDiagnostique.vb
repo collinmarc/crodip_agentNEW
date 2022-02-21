@@ -5145,23 +5145,34 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 #Region " Traitement des checkbox "
     Dim isCodeSpecial As Boolean = False
 
-    Private Sub checkAnswer2(ByVal sender As CRODIP_ControlLibrary.CtrlDiag2, ByVal pOngletId As Integer)
+    Private Sub checkAnswer2(ByVal pcontrole As CRODIP_ControlLibrary.CtrlDiag2, ByVal pOngletId As Integer)
 
         If Not m_bDuringLoad Then
             'Si l'objet n'a pas de nom on sort (Evnmt déclenché lors de la création du controle)
-            If String.IsNullOrEmpty(sender.Name) Or sender.Name.ToUpper() = "CTRLDIAG2" Then
+            If String.IsNullOrEmpty(pcontrole.Name) Or pcontrole.Name.ToUpper() = "CTRLDIAG2" Then
                 Exit Sub
             End If
 
-            checkAnswer(sender, sender.Categorie, pOngletId, sender.Cause)
+            If pcontrole.Categorie <> CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK Then
+                'Création du diagItem à partir du controle de saisie (Ex CheckAnswer)
+                Dim curDiagnosticItem As New DiagnosticItem(pcontrole)
 
-            If sender.Checked Then
-                '
+                If pcontrole.Checked = True Then
+                    m_diagnostic.AdOrReplaceDiagItem(curDiagnosticItem)
+                Else
+                    m_diagnostic.RemoveDiagItem(curDiagnosticItem)
+                End If
+
+            End If
+
+            If pcontrole.Checked Then
+                'Uncheck les autres controle du groupe
+                'Récupération de la liste des ctrole du groupe
                 Dim lstGrap As List(Of CRODIP_ControlLibrary.CtrlDiag2) = Nothing
                 LstCtrl.ForEach(Sub(oLstN1)
                                     oLstN1.ForEach(Sub(olstN2)
                                                        olstN2.ForEach(Sub(octrl)
-                                                                          If octrl.Name = sender.Name Then
+                                                                          If octrl.Name = pcontrole.Name Then
                                                                               lstGrap = olstN2
                                                                           End If
                                                                       End Sub)
@@ -5170,76 +5181,53 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                                 End Sub)
                 If lstGrap IsNot Nothing Then
                     'on a bien trouvé le groupe de controle
-
-                    If sender.Name.EndsWith("0") Then
-                        'Déchecker tous les autres controles du groupe
+                    If pcontrole.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK Then
+                        'Si le controle était un OK
+                        'Déchecker tous les autres controles du groupe (autre que OK)
                         lstGrap.ForEach(Sub(oCtrl)
-                                            If Not oCtrl.Name.EndsWith("0") And oCtrl.Checked Then
+                                            If Not oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
                                                 oCtrl.Checked = False
                                             End If
                                         End Sub)
                     Else
-                        'Déchecker le controle OK du Groupe
+                        'Déchecker les controles OK du Groupe
                         lstGrap.ForEach(Sub(oCtrl)
-                                            If oCtrl.Name.EndsWith("0") And oCtrl.Checked Then
+                                            If oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
                                                 oCtrl.Checked = False
                                             End If
                                         End Sub)
 
                     End If
                 End If
+
+                'Vérification de l'onglet
+                checkIsOk(pOngletId)
             End If
         End If
     End Sub
 
-    Private Sub checkAnswer(ByVal sender As System.Object, ByVal typeCheckbox As CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT, ByVal ongletId As Integer, Optional ByVal pCause As String = "")
-        Try
-            'Si l'objet n'a pas de nom on sort (Evnmt déclenché lors de la création du controle)
-            If String.IsNullOrEmpty(sender.name) Then
-                Exit Sub
-            End If
-            'Créationdu diagItem à partir du controle de saisie
-            Dim curDiagnosticItem As New DiagnosticItem(sender)
-            '' On récupère l'identifiant de la question/réponse
-            'Dim tmp As Array = Split(sender.name, "_", -1)
-            'Dim ItemCode As String
-            'ItemCode = tmp(tmp.Length - 1)
-            'Dim answ_GroupeId As String
-            'Dim answ_titleId As String
-            'Dim answ_groupBoxId As String
-            'Dim answ_itemId As String
-            'If ItemCode.StartsWith("10") Or ItemCode.StartsWith("11") Or ItemCode.StartsWith("12") And ItemCode.Length() > 4 Then
-            '    answ_GroupeId = ItemCode.Substring(0, 2)
-            '    answ_titleId = ItemCode.Substring(2, 1)
-            '    answ_groupBoxId = ItemCode.Substring(3, 1)
-            '    answ_itemId = ItemCode.Substring(4)
-            'Else
-            '    answ_GroupeId = ItemCode.Substring(0, 1)
-            '    answ_titleId = ItemCode.Substring(1, 1)
-            '    answ_groupBoxId = ItemCode.Substring(2, 1)
-            '    answ_itemId = ItemCode.Substring(3)
-            'End If
-            ''On GlobalsCRODIP.CONSTruit l'item
-            'Dim curDiagnosticItem As New DiagnosticItem
-            'curDiagnosticItem.idDiagnostic = _diagnosticCourant.id
-            'curDiagnosticItem.idItem = answ_GroupeId & answ_titleId & answ_groupBoxId
-            'curDiagnosticItem.itemValue = answ_itemId
-            'curDiagnosticItem.SetItemCodeEtat(typeCheckbox)
-            'curDiagnosticItem.cause = pCause
+    'Private Sub checkAnswer(ByVal sender As System.Object, ByVal typeCheckbox As CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT, ByVal ongletId As Integer, Optional ByVal pCause As String = "")
+    '    Try
+    '        'Si l'objet n'a pas de nom on sort (Evnmt déclenché lors de la création du controle)
+    '        If String.IsNullOrEmpty(sender.name) Then
+    '            Exit Sub
+    '        End If
+    '        'Créationdu diagItem à partir du controle de saisie
+    '        Dim curDiagnosticItem As New DiagnosticItem(sender)
 
-            If sender.checked = True Then
-                m_diagnostic.AdOrReplaceDiagItem(curDiagnosticItem)
-            Else
-                m_diagnostic.RemoveDiagItem(curDiagnosticItem)
-            End If
+    '        If sender.checked = True Then
+    '            m_diagnostic.AdOrReplaceDiagItem(curDiagnosticItem)
+    '        Else
+    '            m_diagnostic.RemoveDiagItem(curDiagnosticItem)
+    '        End If
 
-            ' Mise a jour du flag de l'onglet suivant les checkbox cochées
-            checkIsOk(ongletId)
-        Catch ex As Exception
-            CSDebug.dispError("diagnostique::checkAnswer (" & sender.name & ") : " & ex.Message)
-        End Try
+    '        ' Mise a jour du flag de l'onglet suivant les checkbox cochées
+    '        checkIsOk(ongletId)
+    '    Catch ex As Exception
+    '        CSDebug.dispError("diagnostique::checkAnswer (" & sender.name & ") : " & ex.Message)
+    '    End Try
 
-    End Sub
+    'End Sub
     ''' <summary>
     ''' Vérification de tous les onglets de la page
     ''' </summary>
