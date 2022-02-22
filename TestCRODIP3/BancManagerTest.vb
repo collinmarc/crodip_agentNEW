@@ -65,7 +65,7 @@ Public Class BancManagerTest
         Assert.IsTrue(BancManager.save(objBanc2))
 
         'Rehcragement du banc pour vérifier l'update
-        objBanc = BancManager.getBancById("Monbanc")
+        objBanc = BancManager.getBancById("MonBanc")
 
         Assert.AreEqual(objBanc.isSupprime, False)
         Assert.AreEqual(objBanc.AgentSuppression, "MonAgentSuppression")

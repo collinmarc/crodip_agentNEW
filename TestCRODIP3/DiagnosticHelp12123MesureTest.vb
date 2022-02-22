@@ -55,9 +55,11 @@ Public Class DiagnosticHelp12123Mesuretest
     Public Sub TST_Create_Save_Update()
         Dim oHelp12123 As New DiagnosticHelp12123()
         Dim oDiagHelp12123M As DiagnosticHelp12123Mesure
-        Dim idDiag As String = "99-99"
+        Dim idDiag As String
         Dim iD As String
 
+        createAndSaveDiagnostic()
+        idDiag = m_oDiag.id
         Dim oPompe As DiagnosticHelp12123Pompe
         oPompe = New DiagnosticHelp12123Pompe(oHelp12123, 2)
         oDiagHelp12123M = New DiagnosticHelp12123Mesure(oPompe, 1)

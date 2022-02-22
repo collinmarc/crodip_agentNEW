@@ -151,13 +151,13 @@ Public Class ManometreEtalonManager
                     paramsQuery = paramsQuery & " , fondEchelle='" & CSDb.secureString(objManometreEtalon.fondEchelle) & "'"
                 End If
                 paramsQuery = paramsQuery & " , isSynchro=" & objManometreEtalon.isSynchro & ""
-                If objManometreEtalon.dateDernierControleS <> Nothing Then
+                If objManometreEtalon.dateDernierControle <> Nothing Then
                     paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.ToCRODIPString(objManometreEtalon.dateDernierControleS) & "'"
                 End If
-                If Not objManometreEtalon.dateModificationAgent Is Nothing Then
+                If Not String.IsNullOrEmpty(objManometreEtalon.dateModificationAgent) Then
                     paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objManometreEtalon.dateModificationAgent) & "'"
                 End If
-                If Not objManometreEtalon.dateModificationCrodip Is Nothing Then
+                If Not String.IsNullOrEmpty(objManometreEtalon.dateModificationCrodip) Then
                     paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objManometreEtalon.dateModificationCrodip) & "'"
                 End If
                 paramsQuery = paramsQuery & " , etat=" & objManometreEtalon.etat & ""
@@ -172,7 +172,7 @@ Public Class ManometreEtalonManager
                 If Not objManometreEtalon.RaisonSuppression Is Nothing Then
                     paramsQuery = paramsQuery & " , raisonSuppression='" & objManometreEtalon.RaisonSuppression & "'"
                 End If
-                If Not objManometreEtalon.DateSuppression Is Nothing Then
+                If Not String.IsNullOrEmpty(objManometreEtalon.DateSuppression) Then
                     paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objManometreEtalon.DateSuppression) & "'"
                 End If
                 paramsQuery = paramsQuery & " , jamaisServi=" & objManometreEtalon.JamaisServi & ""
@@ -280,7 +280,7 @@ Public Class ManometreEtalonManager
         If isShowAll Then
             bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pidStructure & " AND isSupprime=" & False
         Else
-            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pidStructure & " AND isSupprime=" & False & " AND etat=" & True & ""
+            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pidStructure & " AND isSupprime=" & False & " AND etat=" & True & " And JamaisServi = " & False & ""
         End If
         Try
             ' On récupère les résultats

@@ -105,6 +105,7 @@ Public Class DiagnosticHelp811
             End If
             Dim oCSDB As New CSDb(True)
             bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
+            id = oDiagItem.id
             oCSDB.free()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp811.Save ERR :" & ex.Message)

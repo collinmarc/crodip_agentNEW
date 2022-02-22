@@ -67,60 +67,60 @@ Public Class FactureManager
             Dim oCmd As DbCommand
             oCmd = oCSDB.getConnection().CreateCommand
             oCmd.CommandText = "Update FACTURE SET " &
-                "idStructure = @1 , " &'1
-                "datefacture = @2 , " &'2
-                "dateecheance = @3, " &'3'
-                "commentaire = @4, " &'4
-                "modeReglement = @5, " &'5'
-                "isreglee = @6, " &'6
-                "refreglement = @7, " &'7
-                "totalHt = @8, " &'8
-                "totalTVA = @9, " &'9
-                "totalTTC = @10 , " &'10
-                "txTVA = @11 , " &'11'
-                "idDiag = @12 , " &'12
-                "idExploit = @13, " &'13
-                "rsClient = @14, " &'14
-                "nomclient = @15 , " &'15
-                "prenomclient = @16 , " &'16
-                "adresseClient = @17 , " &'17
-                "cpClient = @18 , " &'18
-                "communeClient = @19 , " &'19
-                "telFixeClient = @20 , " &'20
-                "telportClient = @21 , " &'21
-                "emailClient = @22 , " &'22
-                "pathPDF = @23 , " &'23
-                "dateModificationAgent = @24, " &'24
-                "dateModificationCrodip = @25" &'25
-                "WHERE idFacture = @26" '26
+                "idStructure = '" & pfacture.idStructure & "', " &'1
+                "datefacture = '" & CSDate.ToCRODIPString(pfacture.dateFacture) & "' , " &'2
+                "dateecheance ='" & CSDate.ToCRODIPString(pfacture.dateEcheance) & "', " &'3'
+                "commentaire = '" & pfacture.Commentaire & "', " &'4
+                "modeReglement = '" & pfacture.modeReglement & "', " &'5'
+                "isreglee = '" & pfacture.isReglee & "', " &'6
+                "refreglement = '" & pfacture.refReglement & "', " &'7
+                "totalHt = '" & pfacture.TotalHT & "', " &'8
+                "totalTVA ='" & pfacture.TotalTVA & "', " &'9
+                "totalTTC = '" & pfacture.TotalTTC & "' , " &'10
+                "txTVA = '" & pfacture.TxTVA & "' , " &'11'
+                "idDiag = '" & pfacture.idDiag & "' , " &'12
+                "idExploit = '" & pfacture.oExploit.id & "', " &'13
+                "rsClient = '" & pfacture.oExploit.raisonSociale & "', " &'14
+                "nomclient = '" & pfacture.oExploit.nomExploitant & "' , " &'15
+                "prenomclient = '" & pfacture.oExploit.prenomExploitant & "' , " &'16
+                "adresseClient = '" & pfacture.oExploit.adresse & "' , " &'17
+                "cpClient = '" & pfacture.oExploit.codePostal & "' , " &'18
+                "communeClient = '" & pfacture.oExploit.commune & "' , " &'19
+                "telFixeClient = '" & pfacture.oExploit.telephoneFixe & "' , " &'20
+                "telportClient = '" & pfacture.oExploit.telephonePortable & "' , " &'21
+                "emailClient = '" & pfacture.oExploit.eMail & "' , " &'22
+                "pathPDF = '" & pfacture.pathPDF & "' , " &'23
+                "dateModificationAgent = '" & CSDate.ToCRODIPString(pfacture.dateModificationAgent) & "', " &'24
+                "dateModificationCrodip = '" & CSDate.ToCRODIPString(pfacture.dateModificationCrodip) & "'" &'25
+                " WHERE idFacture = '" & pfacture.idFacture & "'" '26
 
 
-            AddParameter(oCmd, "@1", pfacture.idStructure)
-            AddParameter(oCmd, "@2", CSDate.ToCRODIPString(pfacture.dateFacture))
-            AddParameter(oCmd, "@3", CSDate.ToCRODIPString(pfacture.dateEcheance))
-            AddParameter(oCmd, "@4", pfacture.Commentaire)
-            AddParameter(oCmd, "@5", pfacture.modeReglement)
-            AddParameter(oCmd, "@6", pfacture.isReglee)
-            AddParameter(oCmd, "@7", pfacture.refReglement)
-            AddParameter(oCmd, "@8", pfacture.TotalHT, DbType.Currency)
-            AddParameter(oCmd, "@9", pfacture.TotalTVA, DbType.Currency)
-            AddParameter(oCmd, "@10", pfacture.TotalTTC, DbType.Currency)
-            AddParameter(oCmd, "@11", pfacture.TxTVA, DbType.Currency)
-            AddParameter(oCmd, "@12", pfacture.idDiag)
-            AddParameter(oCmd, "@13", pfacture.oExploit.id)
-            AddParameter(oCmd, "@14", pfacture.oExploit.raisonSociale)
-            AddParameter(oCmd, "@15", pfacture.oExploit.nomExploitant)
-            AddParameter(oCmd, "@16", pfacture.oExploit.prenomExploitant)
-            AddParameter(oCmd, "@17", pfacture.oExploit.adresse)
-            AddParameter(oCmd, "@18", pfacture.oExploit.codePostal)
-            AddParameter(oCmd, "@19", pfacture.oExploit.commune)
-            AddParameter(oCmd, "@20", pfacture.oExploit.telephoneFixe)
-            AddParameter(oCmd, "@21", pfacture.oExploit.telephonePortable)
-            AddParameter(oCmd, "@22", pfacture.oExploit.eMail)
-            AddParameter(oCmd, "@23", pfacture.pathPDF)
-            AddParameter(oCmd, "@24", CSDate.TOCRODIPString(pfacture.dateModificationAgent))
-            AddParameter(oCmd, "@25", CSDate.TOCRODIPString(pfacture.dateModificationCrodip))
-            AddParameter(oCmd, "@26", pfacture.idFacture)
+            '            AddParameter(oCmd, "@1", pfacture.idStructure)
+            '            AddParameter(oCmd, "@2", CSDate.ToCRODIPString(pfacture.dateFacture))
+            '           AddParameter(oCmd, "@3", CSDate.ToCRODIPString(pfacture.dateEcheance))
+            'AddParameter(oCmd, "@4", pfacture.Commentaire)
+            'AddParameter(oCmd, "@5", pfacture.modeReglement)
+            'AddParameter(oCmd, "@6", pfacture.isReglee)
+            'AddParameter(oCmd, "@7", pfacture.refReglement)
+            'AddParameter(oCmd, "@8", pfacture.TotalHT, DbType.Currency)
+            'AddParameter(oCmd, "@9", pfacture.TotalTVA, DbType.Currency)
+            'AddParameter(oCmd, "@10", pfacture.TotalTTC, DbType.Currency)
+            'AddParameter(oCmd, "@11", pfacture.TxTVA, DbType.Currency)
+            'AddParameter(oCmd, "@12", pfacture.idDiag)
+            'AddParameter(oCmd, "@13", pfacture.oExploit.id)
+            'AddParameter(oCmd, "@14", pfacture.oExploit.raisonSociale)
+            'AddParameter(oCmd, "@15", pfacture.oExploit.nomExploitant)
+            'AddParameter(oCmd, "@16", pfacture.oExploit.prenomExploitant)
+            'AddParameter(oCmd, "@17", pfacture.oExploit.adresse)
+            'AddParameter(oCmd, "@18", pfacture.oExploit.codePostal)
+            'AddParameter(oCmd, "@19", pfacture.oExploit.commune)
+            'AddParameter(oCmd, "@20", pfacture.oExploit.telephoneFixe)
+            'AddParameter(oCmd, "@21", pfacture.oExploit.telephonePortable)
+            'AddParameter(oCmd, "@22", pfacture.oExploit.eMail)
+            'AddParameter(oCmd, "@23", pfacture.pathPDF)
+            'AddParameter(oCmd, "@24", CSDate.TOCRODIPString(pfacture.dateModificationAgent))
+            'AddParameter(oCmd, "@25", CSDate.TOCRODIPString(pfacture.dateModificationCrodip))
+            'AddParameter(oCmd, "@26", pfacture.idFacture)
             oCmd.ExecuteNonQuery()
 
             oCSDB.free()
@@ -279,10 +279,12 @@ Public Class FactureManager
             Dim oFacture As Facture
             oCmd = oCSDB.getConnection().CreateCommand
 
-            oCmd.CommandText = "SELECT FACTURE.* FROM Facture where nomclient Like @1 Or prenomclient like @2 Or rsclient Like @3 ORDER BY dateFacture DESC"
-            AddParameter(oCmd, "@1", "%" & pNomClient & "%")
-            AddParameter(oCmd, "@2", "%" & pNomClient & "%")
-            AddParameter(oCmd, "@3", "%" & pNomClient & "%")
+            Dim strParam As String = "%" & pNomClient & "%"
+
+            oCmd.CommandText = "SELECT FACTURE.* FROM Facture where nomclient Like '" & strParam & "' Or prenomclient like '" & strParam & "' Or rsclient Like '" & strParam & "' ORDER BY dateFacture DESC"
+            'AddParameter(oCmd, "@1", "%" & pNomClient & "%")
+            'AddParameter(oCmd, "@2", "%" & pNomClient & "%")
+            'AddParameter(oCmd, "@3", "%" & pNomClient & "%")
             oDR = oCmd.ExecuteReader()
             While oDR.Read()
                 oFacture = New Facture()
@@ -316,9 +318,9 @@ Public Class FactureManager
             Dim oDR As DbDataReader
             Dim oFacture As Facture
             oCmd = oCSDB.getConnection().CreateCommand
-            oCmd.CommandText = "SELECT FACTURE.* FROM Facture where dateFacture >=  @1 and dateFacture <= @2 ORDER BY dateFacture DESC"
-            AddParameter(oCmd, "@1", pDateDeb & " 00:00:00")
-            AddParameter(oCmd, "@2", pDateFin & " 23:59:59")
+            oCmd.CommandText = "SELECT FACTURE.* FROM Facture where dateFacture >='" & CSDate.ToCRODIPString(pDateDeb) & "' and dateFacture <= '" & CSDate.ToCRODIPString(pDateFin) & "' ORDER BY dateFacture DESC"
+            '            AddParameter(oCmd, "@1", pDateDeb & " 00:00:00")
+            '            AddParameter(oCmd, "@2", pDateFin & " 23:59:59")
             oDR = oCmd.ExecuteReader()
             While oDR.Read()
                 oFacture = New Facture()

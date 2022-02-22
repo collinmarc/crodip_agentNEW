@@ -63,6 +63,7 @@ Public Class CRODIPTest
     <TestInitialize()> _
     Public Sub MyTestInitialize()
         GlobalsCRODIP.Init()
+        CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
         Dim oCSDB As New CSDb(True)
         oCSDB.RAZ_BASE_DONNEES()
         oCSDB.free()
@@ -196,6 +197,13 @@ Public Class CRODIPTest
 
         PulverisateurManager.save(poPulve, pExploit.id, m_oAgent)
         Return poPulve
+    End Function
+    Protected Function createAndSaveDiagnostic() As Diagnostic
+        m_oExploitation = createExploitation()
+        m_oPulve = createPulve(m_oExploitation)
+        m_oDiag = createDiagnostic(m_oExploitation, m_oPulve, True)
+        Return m_oDiag
+
     End Function
 
     Protected Function createDiagnostic(pExploit As Exploitation, pPulve As Pulverisateur, Optional pbSave As Boolean = True) As Diagnostic

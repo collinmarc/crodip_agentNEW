@@ -124,7 +124,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Seconde Recherche
         oResult = FactureManager.getFacturesByNomClient("TES")
         Assert.AreEqual(2, oResult.Count)
-        Assert.AreEqual("TEST", oResult(0).oExploit.prenomExploitant)
+        Assert.AreEqual("TEST", oResult(1).oExploit.prenomExploitant)
 
         'Ajout d'une Nouvelle Facture
         oFacture = New Facture(m_oStructure)

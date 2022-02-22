@@ -56,9 +56,12 @@ Public Class DiagnosticBusesTest
     Public Sub TST_Create_Save_Update()
         Dim oDiagBuse As DiagnosticBuses
         Dim iD As Integer
+
+        createAndSaveDiagnostic()
+
         oDiagBuse = New DiagnosticBuses
 
-        oDiagBuse.idDiagnostic = "99"
+        oDiagBuse.idDiagnostic = m_oDiag.id
         oDiagBuse.marque = "marque"
         oDiagBuse.nombre = "nombre"
         oDiagBuse.genre = "genre"
@@ -73,7 +76,7 @@ Public Class DiagnosticBusesTest
         oDiagBuse = DiagnosticBusesManager.getDiagnosticBusesById(oDiagBuse.id, oDiagBuse.idDiagnostic)
 
         Assert.AreEqual(oDiagBuse.id, iD)
-        Assert.AreEqual(oDiagBuse.idDiagnostic, "99")
+        Assert.AreEqual(oDiagBuse.idDiagnostic, m_oDiag.id)
         Assert.AreEqual(oDiagBuse.marque, "marque")
         Assert.AreEqual(oDiagBuse.nombre, "nombre")
         Assert.AreEqual(oDiagBuse.genre, "genre")
@@ -117,8 +120,13 @@ Public Class DiagnosticBusesTest
 
         Dim oDiagBuse As DiagnosticBuses
 
-        odiag = New Diagnostic()
-        odiag.id = "99-99"
+        odiag = createAndSaveDiagnostic()
+        Dim oCSDb As New CSDb(True)
+        odiag.diagnosticBusesList.Liste.Clear()
+        oCSDb.Execute("DELETE FROM DIAGNOSTICBUSES WHERE idDiagnostic = '" & odiag.id & "'")
+        oCSDb.Execute("DELETE FROM DIAGNOSTICBUSESDETAIL WHERE idDiagnostic = '" & odiag.id & "'")
+        oCSDb.free()
+
         oDiagBuse = New DiagnosticBuses
 
         oDiagBuse.idDiagnostic = odiag.id
@@ -209,9 +217,14 @@ Public Class DiagnosticBusesTest
         Dim oDiagBuseDetail As DiagnosticBusesDetail
         Dim idDiag As String
 
-        odiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent)
-        odiag.id = idDiag
+        odiag = createAndSaveDiagnostic()
+        oCSDB.getInstance()
+        odiag.diagnosticBusesList.Liste.Clear()
+        oCSDB.Execute("DELETE FROM DIAGNOSTICBUSES WHERE idDiagnostic = '" & odiag.id & "'")
+        oCSDB.Execute("DELETE FROM DIAGNOSTICBUSESDETAIL WHERE idDiagnostic = '" & odiag.id & "'")
+        oCSDB.free()
+
+        idDiag = odiag.id
         odiag.setOrganisme(m_oAgent)
         odiag.controleNomSite = "MonSite"
         odiag.controleIsPulveRepare = True
@@ -574,8 +587,7 @@ Public Class DiagnosticBusesTest
 
         Dim oDiagBuse As DiagnosticBuses
 
-        odiag = New Diagnostic()
-        odiag.id = "99-99"
+        odiag = createAndSaveDiagnostic()
         oDiagBuse = New DiagnosticBuses
         odiag.diagnosticBusesList.Liste.Add(oDiagBuse)
 
@@ -600,7 +612,7 @@ Public Class DiagnosticBusesTest
 
         DiagnosticManager.save(odiag)
 
-        odiag = DiagnosticManager.getDiagnosticById("99-99")
+        odiag = DiagnosticManager.getDiagnosticById(odiag.id)
         Assert.AreEqual(200, odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste.Count)
 
         oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste(0)

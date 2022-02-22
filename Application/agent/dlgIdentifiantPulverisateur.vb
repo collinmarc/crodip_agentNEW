@@ -244,7 +244,7 @@ Public Class dlgIdentifiantPulverisateur
             m_IdentifiantPulve.dateUtilisation = ""
             dtDateUtilisation.Enabled = False
         Else
-            m_IdentifiantPulve.dateUtilisation = CSDate.ToCRODIPString(Date.Now, "yyyy-MM-dd")
+            m_IdentifiantPulve.dateUtilisation = CSDate.ToCRODIPString(Date.Now)
             dtDateUtilisation.Enabled = True
         End If
         m_bsIdentifiantPulveristeur.ResetCurrentItem()

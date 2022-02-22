@@ -29,9 +29,9 @@ Public Class SynchronisationManager
             CSDb.free()
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("SynchronisationManager - logSynchro : " & ex.Message)
-            CSDebug.dispError("SynchronisationManager - logSynchro : " & _sens)
-            CSDebug.dispError("SynchronisationManager - logSynchro : " & _log)
+            CSDebug.dispError("SynchronisationManager - DBsaveSynchro : " & ex.Message)
+            CSDebug.dispError("SynchronisationManager - DBsaveSynchro : " & _sens)
+            CSDebug.dispError("SynchronisationManager - DBsaveSynchro : " & _log)
             bReturn = False
         End Try
         Return bReturn

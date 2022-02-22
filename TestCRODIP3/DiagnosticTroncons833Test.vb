@@ -57,7 +57,9 @@ Public Class DiagnosticTroncons833Test
         Dim iD As Integer
         oDiagTroncons833 = New DiagnosticTroncons833
 
-        oDiagTroncons833.idDiagnostic = "99-99"
+        createAndSaveDiagnostic()
+
+        oDiagTroncons833.idDiagnostic = m_oDiag.id
         oDiagTroncons833.idPression = "1"
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.7"
@@ -67,7 +69,7 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833 = DiagnosticTroncons833Manager.getDiagnosticTroncons833ById(oDiagTroncons833.id.ToString, oDiagTroncons833.idDiagnostic)
 
         Assert.AreEqual(oDiagTroncons833.id, iD)
-        Assert.AreEqual(oDiagTroncons833.idDiagnostic, "99-99")
+        Assert.AreEqual(oDiagTroncons833.idDiagnostic, m_oDiag.id)
         Assert.AreEqual(oDiagTroncons833.idPression, "1")
         Assert.AreEqual(oDiagTroncons833.idColumn, "1")
         Assert.AreEqual(oDiagTroncons833.pressionSortie, "1.7")
@@ -96,8 +98,8 @@ Public Class DiagnosticTroncons833Test
 
         Dim oDiagTroncons833 As DiagnosticTroncons833
 
-        odiag = New Diagnostic()
-        odiag.id = "99-99"
+        odiag = createAndSaveDiagnostic()
+        odiag.diagnosticTroncons833.Liste.Clear()
         oDiagTroncons833 = New DiagnosticTroncons833
 
         oDiagTroncons833.idDiagnostic = odiag.id
@@ -105,7 +107,6 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.7"
         odiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
-        DiagnosticTroncons833Manager.save(oDiagTroncons833)
 
         oDiagTroncons833 = New DiagnosticTroncons833
         oDiagTroncons833.idDiagnostic = odiag.id
@@ -113,7 +114,8 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
         odiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
-        DiagnosticTroncons833Manager.save(oDiagTroncons833)
+
+        DiagnosticManager.save(odiag)
 
         'Rechargement par le diagnostic
         DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(odiag)

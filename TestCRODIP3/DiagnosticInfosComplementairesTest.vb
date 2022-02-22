@@ -57,10 +57,7 @@ Public Class DiagnosticInfosComplementairesTest
         Dim oDiag As Diagnostic
         Dim iD As String
 
-        oDiag = New Diagnostic()
-        oDiag.id = "99-99"
-        oDiag.organismePresId = m_oAgent.idStructure
-        oDiag.inspecteurId = m_oAgent.id
+        oDiag = createAndSaveDiagnostic()
 
         oDiagInfosComplementaires = New DiagnosticInfosComplementaires
 
@@ -110,8 +107,8 @@ Public Class DiagnosticInfosComplementairesTest
 
         'Creation d'un Diagnostic
         '============================
-        oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent)
+        oDiag = createAndSaveDiagnostic()
+        idDiag = oDiag.id
         oDiag.id = idDiag
 
         oDiag.setOrganisme(m_oAgent)
@@ -145,10 +142,11 @@ Public Class DiagnosticInfosComplementairesTest
         Dim oDiagItem As DiagnosticItem
         'Dim oLst As New List(Of DiagnosticItem)
         'Item1
+        oDiag.diagnosticItemsLst.Clear()
         oDiagItem = New DiagnosticItem()
         oDiagItem.idItem = "111"
         oDiagItem.itemValue = "1"
-        oDiagItem.itemCodeEtat = "B"
+        oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR
         oDiagItem.cause = "1"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
@@ -198,7 +196,7 @@ Public Class DiagnosticInfosComplementairesTest
         'Item1
         Assert.IsTrue(oDiagItem.idItem = "111")
         Assert.IsTrue(oDiagItem.itemValue = "1")
-        Assert.IsTrue(oDiagItem.itemCodeEtat = "B")
+        Assert.IsTrue(oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR)
         Assert.IsTrue(oDiagItem.cause = "1")
 
         'Vérification des mesures InfosComplementaires
@@ -224,9 +222,8 @@ Public Class DiagnosticInfosComplementairesTest
         oCSDB.Execute("UPDATE DIAGNOSTIC SET dateModificationAgent = dateModificationCrodip")
         'Creation d'un Diagnostic
         '============================
-        oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent)
-        oDiag.id = idDiag
+        oDiag = createAndSaveDiagnostic()
+        idDiag = oDiag.id
 
         oDiag.setOrganisme(m_oAgent)
         oDiag.controleNomSite = "MonSite"
@@ -259,10 +256,11 @@ Public Class DiagnosticInfosComplementairesTest
         Dim oDiagItem As DiagnosticItem
         'Dim oLst As New List(Of DiagnosticItem)
         'Item1
+        oDiag.diagnosticItemsLst.Clear()
         oDiagItem = New DiagnosticItem()
         oDiagItem.idItem = "111"
         oDiagItem.itemValue = "1"
-        oDiagItem.itemCodeEtat = "B"
+        oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR
         oDiagItem.cause = "1"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
@@ -340,7 +338,7 @@ Public Class DiagnosticInfosComplementairesTest
         'Item1
         Assert.IsTrue(oDiagItem.idItem = "111")
         Assert.IsTrue(oDiagItem.itemValue = "1")
-        Assert.IsTrue(oDiagItem.itemCodeEtat = "B")
+        Assert.IsTrue(oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR)
         Assert.IsTrue(oDiagItem.cause = "1")
 
         'Vérification des mesures InfosComplementaires

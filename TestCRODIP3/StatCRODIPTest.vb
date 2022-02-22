@@ -69,9 +69,7 @@ Public Class StatsCrodipTest
         Dim nCtrlOKI As Integer = ostat.NCtrl_OK_InspecteurTotal
         Dim nCtrlOKIA As Integer = ostat.NCtrl_OK_InspecteurAnnee
 
-        Dim oDiag As New Diagnostic()
-        oDiag.setOrganisme(m_oAgent)
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
+        Dim oDiag As Diagnostic = createAndSaveDiagnostic()
         oDiag.controleDateDebut = CSDate.FromCrodipString(Date.Now).ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC 'Controle NOK
         Assert.IsTrue(DiagnosticManager.save(oDiag))

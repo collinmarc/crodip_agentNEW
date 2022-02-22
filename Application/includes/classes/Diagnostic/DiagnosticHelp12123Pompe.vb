@@ -355,6 +355,7 @@ Public Class DiagnosticHelp12123Pompe
             End If
             Dim oCSDB As New CSDb(True)
             bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
+            id = oDiagItem.id
             oCSDB.free()
             For Each oMEsure As DiagnosticHelp12123Mesure In m_lstHelp12123Mesures
                 oMEsure.idDiag = idDiag

@@ -52,9 +52,11 @@ Public Class DiagnosticMano542Test
     Public Sub TST_Create_Save_Update()
         Dim oDiagMAno542 As DiagnosticMano542
         Dim iD As Integer
+
+        createAndSaveDiagnostic()
         oDiagMAno542 = New DiagnosticMano542
 
-        oDiagMAno542.idDiagnostic = "99-99"
+        oDiagMAno542.idDiagnostic = m_oDiag.id
         oDiagMAno542.pressionControle = "1.6"
         oDiagMAno542.pressionPulve = "1.7"
 
@@ -63,7 +65,7 @@ Public Class DiagnosticMano542Test
         oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(oDiagMAno542.id.ToString, oDiagMAno542.idDiagnostic)
 
         Assert.AreEqual(oDiagMAno542.id, iD)
-        Assert.AreEqual(oDiagMAno542.idDiagnostic, "99-99")
+        Assert.AreEqual(oDiagMAno542.idDiagnostic, m_oDiag.id)
         Assert.AreEqual(oDiagMAno542.pressionControle, "1.6")
         Assert.AreEqual(oDiagMAno542.pressionPulve, "1.7")
 
@@ -89,22 +91,22 @@ Public Class DiagnosticMano542Test
 
         Dim oDiagMAno542 As DiagnosticMano542
 
-        odiag = New Diagnostic()
-        odiag.id = "99-99"
+        odiag = createAndSaveDiagnostic()
+        odiag.diagnosticMano542List.Liste.Clear()
         oDiagMAno542 = New DiagnosticMano542
 
         oDiagMAno542.idDiagnostic = odiag.id
         oDiagMAno542.pressionControle = "1.6"
         oDiagMAno542.pressionPulve = "1.7"
         odiag.diagnosticMano542List.Liste.Add(oDiagMAno542)
-        DiagnosticMano542Manager.save(oDiagMAno542)
 
         oDiagMAno542 = New DiagnosticMano542
         oDiagMAno542.idDiagnostic = odiag.id
         oDiagMAno542.pressionControle = "2"
         oDiagMAno542.pressionPulve = "2.1"
         odiag.diagnosticMano542List.Liste.Add(oDiagMAno542)
-        DiagnosticMano542Manager.save(oDiagMAno542)
+
+        DiagnosticManager.save(odiag)
 
         'Rechargement par le diagnostic
         DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(odiag)

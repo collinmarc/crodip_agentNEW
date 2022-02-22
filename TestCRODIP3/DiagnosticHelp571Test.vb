@@ -57,10 +57,7 @@ Public Class DiagnosticHelp571test
         Dim oDiag As Diagnostic
         Dim iD As String
 
-        oDiag = New Diagnostic()
-        oDiag.id = "99-99"
-        oDiag.organismePresId = m_oAgent.idStructure
-        oDiag.inspecteurId = m_oAgent.id
+        oDiag = createAndSaveDiagnostic()
 
         oDiagHelp571 = New DiagnosticHelp571
         oDiagHelp571.bCalcule = False

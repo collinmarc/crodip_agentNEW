@@ -1,4 +1,5 @@
 ﻿
+Imports System.Data.Common
 Imports Crodip_agent
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
@@ -75,7 +76,7 @@ Public Class AgentManagerTest
     '''Test pour sendWSAgent
     '''</summary>
     ''' 
-    <TestMethod()> _
+    <TestMethod(), Ignore()>
     Public Sub sendWSAgentTest()
         Dim agent As Agent = Nothing
         Dim agentLu As Agent = Nothing
@@ -143,7 +144,7 @@ Public Class AgentManagerTest
         Dim oDB As CSDb
         oDB = New CSDb(True)
 
-        Dim oCommand As OleDb.OleDbCommand
+        Dim oCommand As DbCommand
 
         oCommand = oDB.getConnection().CreateCommand()
         oCommand.CommandText = "DELETE FROM AGENT"
@@ -725,6 +726,8 @@ Public Class AgentManagerTest
         oBanc.id = numnat
         oBanc.idStructure = pAgent.idStructure
         oBanc.marque = "JAUNE"
+        oBanc.JamaisServi = False
+        oBanc.etat = True
         BancManager.save(oBanc)
         Return numnat
 
@@ -781,22 +784,15 @@ Public Class AgentManagerTest
     'End Sub
 
     Private Sub createFVBanc(ByVal pAgent As Agent)
-        Dim oCSdb As New CSDb(True)
-        Dim cmd As OleDb.OleDbCommand = oCSdb.getConnection().CreateCommand
-        Dim oDR As OleDb.OleDbDataReader
-        cmd.CommandText = "SELECT id from BancMesure where id LIKE" & ControlChars.Quote & "%-" & pAgent.id & "-%" & ControlChars.Quote
-        oDR = cmd.ExecuteReader()
-        While oDR.Read()
-
+        Dim lstBanc As New List(Of Banc)
+        lstBanc = BancManager.getBancByStructureId(pAgent.idStructure)
+        For Each oBanc In lstBanc
             Dim oFV As New FVBanc()
             oFV.idAgentControleur = m_oAgent.id
-            oFV.idBancMesure = oDR.GetString(0)
+            oFV.idBancMesure = oBanc.id
 
             FVBancManager.save(oFV)
-        End While
-        oDR.Close()
-
-        oCSdb.free()
+        Next
     End Sub
     Private Sub createFVManoControle(ByVal pAgent As Agent)
         Dim idMano As String

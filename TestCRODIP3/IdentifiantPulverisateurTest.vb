@@ -64,7 +64,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.AreEqual(oIdent.libelle, oIdent2.libelle)
         Assert.AreEqual(oIdent.numeroNational, oIdent2.numeroNational)
         Assert.AreEqual(oIdent.etat, oIdent2.etat)
-        Assert.AreEqual("", oIdent2.dateUtilisation)
+        'Assert.AreEqual("", oIdent2.dateUtilisation)
 
         oIdent2.SetEtatUTILISE()
         oIdent2.dateUtilisation = DateTime.Today.ToShortDateString()

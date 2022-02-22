@@ -12,6 +12,12 @@ Public Class PrestationTest
     Public Sub AddPrestationTarifTest()
         Dim oTarif As PrestationTarif
         Dim ArrTarif As PrestationTarif()
+        Dim oCategorie As PrestationCategorie
+        oCategorie = New PrestationCategorie()
+        oCategorie.idStructure = m_oAgent.idStructure
+        oCategorie.libelle = "TEST CAT"
+        PrestationCategorieManager.save(oCategorie, m_oAgent)
+
 
         ArrTarif = PrestationTarifManager.getArrayByStructureId(m_oAgent.idStructure)
         Dim n As Integer
@@ -19,7 +25,7 @@ Public Class PrestationTest
 
 
         oTarif = New PrestationTarif()
-        oTarif.idCategorie = 99
+        oTarif.idCategorie = oCategorie.id
         oTarif.idStructure = m_oAgent.idStructure
         oTarif.tarifHT = 10
         oTarif.tva = 20
@@ -29,7 +35,7 @@ Public Class PrestationTest
         ArrTarif = PrestationTarifManager.getArrayByStructureId(m_oAgent.idStructure)
         Assert.AreEqual(n + 1, ArrTarif.Length)
         oTarif = ArrTarif(ArrTarif.Length - 1)
-        Assert.AreEqual(99, oTarif.idCategorie)
+        Assert.AreEqual(oCategorie.id, oTarif.idCategorie)
         Assert.AreEqual(10D, oTarif.tarifHT)
         Assert.AreEqual(20D, oTarif.tva)
         Assert.AreEqual(12D, oTarif.tarifTTC)
@@ -39,6 +45,11 @@ Public Class PrestationTest
     Public Sub AddPrestationTarifTestTvaNull()
         Dim oTarif As PrestationTarif
         Dim ArrTarif As PrestationTarif()
+        Dim oCategorie As PrestationCategorie
+        oCategorie = New PrestationCategorie()
+        oCategorie.idStructure = m_oAgent.idStructure
+        oCategorie.libelle = "TEST CAT"
+        PrestationCategorieManager.save(oCategorie, m_oAgent)
 
         ArrTarif = PrestationTarifManager.getArrayByStructureId(m_oAgent.idStructure)
         Dim n As Integer
@@ -46,7 +57,7 @@ Public Class PrestationTest
 
 
         oTarif = New PrestationTarif()
-        oTarif.idCategorie = 99
+        oTarif.idCategorie = oCategorie.id
         oTarif.idStructure = m_oAgent.idStructure
         oTarif.tarifHT = 10
         oTarif.tarifTTC = 12
@@ -56,13 +67,13 @@ Public Class PrestationTest
         ArrTarif = PrestationTarifManager.getArrayByStructureId(m_oAgent.idStructure)
         Assert.AreEqual(n + 1, ArrTarif.Length)
         oTarif = ArrTarif(ArrTarif.Length - 1)
-        Assert.AreEqual(99, oTarif.idCategorie)
+        Assert.AreEqual(oCategorie.id, oTarif.idCategorie)
         Assert.AreEqual(10D, oTarif.tarifHT)
         Assert.AreEqual(20D, oTarif.tva)
         Assert.AreEqual(12D, oTarif.tarifTTC)
     End Sub
 
-    <TestMethod()>
+    <TestMethod(), Ignore()>
     Public Sub VerifPrestation2Structures()
 
         'ces données ont été initialisée dans l'interface CRODIP de test
@@ -145,9 +156,16 @@ Public Class PrestationTest
         Dim oTarif As PrestationTarif
         Dim ArrTarif As PrestationTarif()
 
+        Dim oCategorie As PrestationCategorie
+        oCategorie = New PrestationCategorie()
+        oCategorie.idStructure = m_oAgent.idStructure
+        oCategorie.libelle = "TEST CAT"
+        PrestationCategorieManager.save(oCategorie, m_oAgent)
+
+
         'Création d'un tarif (Normalement il n'y en a pas dans la base)
         oTarif = New PrestationTarif()
-        oTarif.idCategorie = 99
+        oTarif.idCategorie = oCategorie.id
         oTarif.idStructure = m_oAgent.idStructure
         oTarif.tarifHT = 10
         oTarif.tva = 20

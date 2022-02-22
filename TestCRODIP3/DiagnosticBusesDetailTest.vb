@@ -52,13 +52,17 @@ Public Class DiagnosticBusesDetailTest
     '''<summary>
     '''Test pour D'init de l'objet + properties
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_Create_Save_Update()
+        Dim oExploit As Exploitation = createExploitation()
+        Dim oPulve As Pulverisateur = createPulve(oExploit)
+
+        Dim oDiag As Diagnostic = createDiagnostic(oExploit, oPulve, True)
         Dim oDiagBuse As DiagnosticBusesDetail
         Dim iD As Integer
         oDiagBuse = New DiagnosticBusesDetail
 
-        oDiagBuse.idDiagnostic = "99"
+        oDiagBuse.idDiagnostic = oDiag.id
         oDiagBuse.idBuse = 100
         oDiagBuse.idLot = "1"
         oDiagBuse.debit = "debit"
@@ -69,7 +73,7 @@ Public Class DiagnosticBusesDetailTest
         oDiagBuse = DiagnosticBusesDetailManager.getDiagnosticBusesDetailById(oDiagBuse.id.ToString, oDiagBuse.idDiagnostic.ToString)
 
         Assert.AreEqual(oDiagBuse.id, iD)
-        Assert.AreEqual(oDiagBuse.idDiagnostic, "99")
+        Assert.AreEqual(oDiagBuse.idDiagnostic, oDiag.id)
         Assert.AreEqual(oDiagBuse.idBuse, 100)
         Assert.AreEqual(oDiagBuse.idLot, "1")
         Assert.AreEqual(oDiagBuse.debit, "debit")
@@ -84,7 +88,7 @@ Public Class DiagnosticBusesDetailTest
         oDiagBuse = DiagnosticBusesDetailManager.getDiagnosticBusesDetailById(oDiagBuse.id.ToString, oDiagBuse.idDiagnostic.ToString)
 
         Assert.AreEqual(oDiagBuse.id, iD)
-        Assert.AreEqual(oDiagBuse.idDiagnostic, "99")
+        Assert.AreEqual(oDiagBuse.idDiagnostic, oDiag.id)
         Assert.AreEqual(oDiagBuse.idBuse, 101)
         Assert.AreEqual(oDiagBuse.idLot, "2")
         Assert.AreEqual(oDiagBuse.debit, "debit2")

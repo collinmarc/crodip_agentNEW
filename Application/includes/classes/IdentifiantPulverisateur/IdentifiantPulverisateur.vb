@@ -83,7 +83,7 @@ Public Class IdentifiantPulverisateur
         End Get
         Set(value As String)
             If Not String.IsNullOrEmpty(value) Then
-                m_dateUtilisation = CSDate.ToCRODIPString(value, "yyyy-MM-dd")
+                m_dateUtilisation = CSDate.ToCRODIPString(value)
             Else
                 m_dateUtilisation = ""
             End If

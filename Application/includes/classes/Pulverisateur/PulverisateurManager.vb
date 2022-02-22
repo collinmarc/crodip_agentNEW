@@ -153,7 +153,10 @@ Public Class PulverisateurManager
             bddCommande.CommandText = "INSERT INTO Pulverisateur (id, idStructure ) VALUES ('" & poPulve.id & "','" & poPulve.idStructure & "')"
             bddCommande.ExecuteNonQuery()
             oCSDB.free()
-            ExploitationTOPulverisateurManager.save(poPulve.id, client_id, False, pAgent)
+            'En synchro, le ClientId n'est pas connu
+            If client_id <> "0" Then
+                ExploitationTOPulverisateurManager.save(poPulve.id, client_id, False, pAgent)
+            End If
             ' Test pour fermeture de connection BDD
             bReturn = True
         Catch ex As Exception
@@ -333,12 +336,13 @@ Public Class PulverisateurManager
                 bddCommande.ExecuteNonQuery()
 
                 ' Vérificatin du lien entre le pulvérisateur et l'exploitation
-                Dim oExploit2Pulve As New ExploitationTOPulverisateur()
-                oExploit2Pulve.idPulverisateur = pPulve.id
-                oExploit2Pulve.idExploitation = client_id
-                oExploit2Pulve.isSupprimeCoProp = False
-                ExploitationTOPulverisateurManager.save(oExploit2Pulve, pAgent)
-
+                If client_id <> "0" Then
+                    Dim oExploit2Pulve As New ExploitationTOPulverisateur()
+                    oExploit2Pulve.idPulverisateur = pPulve.id
+                    oExploit2Pulve.idExploitation = client_id
+                    oExploit2Pulve.isSupprimeCoProp = False
+                    ExploitationTOPulverisateurManager.save(oExploit2Pulve, pAgent)
+                End If
                 bReturn = True
             End If
         Catch ex As Exception
@@ -715,7 +719,7 @@ Public Class PulverisateurManager
         Dim arrItems(0) As Pulverisateur
         Dim oCSdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCSdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM Pulverisateur WHERE dateModificationAgent<>dateModificationCrodip "
+        bddCommande.CommandText = "SELECT * FROM Pulverisateur WHERE (dateModificationAgent<>dateModificationCrodip Or  dateModificationCrodip is null)"
         bddCommande.CommandText = bddCommande.CommandText & " AND idStructure=" & agent.idStructure
 
         Try

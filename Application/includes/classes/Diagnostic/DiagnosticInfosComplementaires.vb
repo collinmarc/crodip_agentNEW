@@ -95,6 +95,7 @@ Public Class DiagnosticInfosComplementaires
             End If
             Dim oCSDB As New CSDb(True)
             bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
+            id = oDiagItem.id
             oCSDB.free()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticInfosComplementaires.Save ERR :" & ex.Message)

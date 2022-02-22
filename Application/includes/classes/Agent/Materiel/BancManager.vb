@@ -174,7 +174,7 @@ Public Class BancManager
                     If objBanc.DateSuppression <> "" Then
                         paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.TOCRODIPString(objBanc.DateSuppression) & "'"
                     Else
-                        paramsQuery = paramsQuery & " , dateSuppression='" & Date.MinValue & "'"
+                        paramsQuery = paramsQuery & " , dateSuppression=''"
                     End If
 
                     paramsQuery = paramsQuery & " , jamaisServi=" & objBanc.JamaisServi & ""

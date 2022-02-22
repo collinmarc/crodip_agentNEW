@@ -151,10 +151,10 @@ Public Class ManometreControleManager
                 If objManometreControle.dateDernierControleS <> Nothing Then
                     paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.ToCRODIPString(objManometreControle.dateDernierControle) & "'"
                 End If
-                If Not objManometreControle.dateModificationAgent Is Nothing Then
+                If Not String.IsNullOrEmpty(objManometreControle.dateModificationAgent) Then
                     paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objManometreControle.dateModificationAgent) & "'"
                 End If
-                If Not objManometreControle.dateModificationCrodip Is Nothing Then
+                If Not String.IsNullOrEmpty(objManometreControle.dateModificationCrodip) Then
                     paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objManometreControle.dateModificationCrodip) & "'"
                 End If
                 If Not objManometreControle.resolution Is Nothing Then
@@ -171,7 +171,7 @@ Public Class ManometreControleManager
                 If Not objManometreControle.RaisonSuppression Is Nothing Then
                     paramsQuery = paramsQuery & " , raisonSuppression='" & objManometreControle.RaisonSuppression & "'"
                 End If
-                If Not objManometreControle.DateSuppression Is Nothing Then
+                If Not String.IsNullOrEmpty(objManometreControle.DateSuppression) Then
                     paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objManometreControle.DateSuppression) & "'"
                 End If
                 paramsQuery = paramsQuery & " , jamaisServi=" & objManometreControle.JamaisServi & ""

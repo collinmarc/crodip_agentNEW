@@ -54,9 +54,10 @@ Public Class DiagnosticHelp12123Pompetest
     <TestMethod()> _
     Public Sub TST_Create_Save_Update()
         Dim oHelp12123 As New DiagnosticHelp12123()
+        Dim oDiag As Diagnostic = createAndSaveDiagnostic()
 
         Dim oDiagHelp12123P As DiagnosticHelp12123Pompe
-        Dim idDiag As String = m_oStructure.id & "-" & m_oAgent.id & "-99"
+        Dim idDiag As String = oDiag.id
         Dim iD As String
 
 
@@ -129,7 +130,8 @@ Public Class DiagnosticHelp12123Pompetest
     Public Sub TST_SaveColMesures()
         Dim oHelp12123 As New DiagnosticHelp12123()
         Dim oPompe As DiagnosticHelp12123Pompe
-        Dim idDiag As String = m_oStructure.id & "-" & m_oAgent.id & "-99"
+        createAndSaveDiagnostic()
+        Dim idDiag As String = m_oDiag.id
         Dim iD As String
 
         'Suppressino des Mesures
@@ -220,7 +222,8 @@ Public Class DiagnosticHelp12123Pompetest
     Public Sub testLoadByNumPompe()
         Dim oHelp12123 As New DiagnosticHelp12123()
         Dim oDiagHelp12123P As DiagnosticHelp12123Pompe
-        Dim idDiag As String = m_oStructure.id & "-" & m_oAgent.id & "-99"
+        createAndSaveDiagnostic()
+        Dim idDiag As String = m_oDiag.id
         Dim iD As String
 
         'Arrange

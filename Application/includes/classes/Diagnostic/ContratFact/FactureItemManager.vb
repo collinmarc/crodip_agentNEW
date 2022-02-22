@@ -61,33 +61,33 @@ Public Class FactureItemManager
             Dim oCmd As DbCommand
             oCmd = oCSDB.getConnection().CreateCommand
             oCmd.CommandText = "Update FACTUREITEM SET " &
-                "categorie = @1 , " &'1
-                "prestation = @2 , " &'2
-                "quantite = @3, " &'3'
-                "pu = @4, " &'4
-                "totalhtitem = @5, " &'5'
-                "totaltvaItem = @6, " &'6
-                "totalTTCItem = @7, " &'7
-                "txTVAItem = @8, " &'8
-                "dateModificationAgent = @9, " &'9
-                "dateModificationCrodip = @10" &'10
+                "categorie = '" & pfactureItem.categorie & "' , " &'1
+                "prestation = '" & pfactureItem.prestation & "' , " &'2
+                "quantite = '" & pfactureItem.quantite & "', " &'3'
+                "pu = '" & pfactureItem.pu & "', " &'4
+                "totalhtitem = '" & pfactureItem.totalHT & "', " &'5'
+                "totaltvaItem = '" & pfactureItem.totalTVA & "', " &'6
+                "totalTTCItem = '" & pfactureItem.totalTTC & "', " &'7
+                "txTVAItem = '" & pfactureItem.txTVA & "', " &'8
+                "dateModificationAgent = '" & CSDate.ToCRODIPString(pfactureItem.dateModificationAgent) & "', " &'9
+                "dateModificationCrodip = '" & CSDate.ToCRODIPString(pfactureItem.dateModificationCrodip) & "'" &'10
                 "WHERE " &
-                "idFacture = @11 And " &'11
-                "nFactureitem = @12 " '12
+                "idFacture = '" & pfactureItem.idFacture & "' And " &'11
+                "nFactureitem = '" & pfactureItem.nFactureItem & "' " '12
 
 
-            AddParameter(oCmd, "@1", pfactureItem.categorie)
-            AddParameter(oCmd, "@2", pfactureItem.prestation)
-            AddParameter(oCmd, "@3", pfactureItem.quantite)
-            AddParameter(oCmd, "@4", pfactureItem.pu)
-            AddParameter(oCmd, "@5", pfactureItem.totalHT)
-            AddParameter(oCmd, "@6", pfactureItem.totalTVA)
-            AddParameter(oCmd, "@7", pfactureItem.totalTTC)
-            AddParameter(oCmd, "@8", pfactureItem.txTVA)
-            AddParameter(oCmd, "@9", CSDate.TOCRODIPString(pfactureItem.dateModificationAgent))
-            AddParameter(oCmd, "@10", CSDate.TOCRODIPString(pfactureItem.dateModificationCrodip))
-            AddParameter(oCmd, "@11", pfactureItem.idFacture)
-            AddParameter(oCmd, "@12", pfactureItem.nFactureItem)
+            'AddParameter(oCmd, "@_1", pfactureItem.categorie)
+            'AddParameter(oCmd, "@_2", pfactureItem.prestation)
+            'AddParameter(oCmd, "@_3", pfactureItem.quantite)
+            'AddParameter(oCmd, "@_4", pfactureItem.pu)
+            'AddParameter(oCmd, "@_5", pfactureItem.totalHT)
+            'AddParameter(oCmd, "@_6", pfactureItem.totalTVA)
+            'AddParameter(oCmd, "@_7", pfactureItem.totalTTC)
+            'AddParameter(oCmd, "@_8", pfactureItem.txTVA)
+            'AddParameter(oCmd, "@_9", CSDate.ToCRODIPString(pfactureItem.dateModificationAgent))
+            'AddParameter(oCmd, "@_10", CSDate.ToCRODIPString(pfactureItem.dateModificationCrodip))
+            'AddParameter(oCmd, "@_11", pfactureItem.idFacture)
+            'AddParameter(oCmd, "@_12", pfactureItem.nFactureItem)
 
             oCmd.ExecuteNonQuery()
 

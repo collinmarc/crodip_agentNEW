@@ -431,7 +431,9 @@ Public Class FVManometreControleManager
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT FichevieManometreControle.* FROM FichevieManometreControle INNER JOIN AgentManoControle ON FichevieManometreControle.idManometre = AgentManoControle.idCrodip WHERE FichevieManometreControle.dateModificationAgent<>FichevieManometreControle.dateModificationCrodip AND AgentManoControle.idStructure=" & agent.idStructure
+            bddCommande.CommandText = "SELECT FichevieManometreControle.* FROM FichevieManometreControle INNER JOIN AgentManoControle ON FichevieManometreControle.idManometre = AgentManoControle.idCrodip "
+            bddCommande.CommandText = bddCommande.CommandText & " WHERE (FichevieManometreControle.dateModificationAgent<>FichevieManometreControle.dateModificationCrodip or FichevieManometreControle.dateModificationCrodip is null ) "
+            bddCommande.CommandText = bddCommande.CommandText & " AND AgentManoControle.idStructure=" & agent.idStructure
             ' On récupère les résultats
             Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
             Dim i As Integer = 0

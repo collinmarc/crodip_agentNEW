@@ -229,6 +229,7 @@ Public Class DiagnosticHelp12123
             End If
             Dim oCSDB As New CSDb(True)
             bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
+            id = oDiagItem.id
             oCSDB.free()
             'Sauvegarde des pompes
             For Each oPompe As DiagnosticHelp12123Pompe In lstPompes

@@ -57,10 +57,7 @@ Public Class DiagnosticHelp5622test
         Dim oDiag As Diagnostic
         Dim iD As String
 
-        oDiag = New Diagnostic()
-        oDiag.id = "99-99"
-        oDiag.organismePresId = m_oAgent.idStructure
-        oDiag.inspecteurId = m_oAgent.id
+        oDiag = createAndSaveDiagnostic()
 
         oDiagHelp5622 = New DiagnosticHelp5622
 
@@ -168,11 +165,9 @@ Public Class DiagnosticHelp5622test
 
         'Creation d'un Diagnostic
         '============================
-        oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent)
-        oDiag.id = idDiag
+        oDiag = createAndSaveDiagnostic()
+        idDiag = oDiag.id
 
-        oDiag.setOrganisme(m_oAgent)
         oDiag.controleNomSite = "MonSite"
         oDiag.controleIsPulveRepare = True
         oDiag.controleIsPreControleProfessionel = True
@@ -193,12 +188,13 @@ Public Class DiagnosticHelp5622test
         'Ajout des DiagItems
         '======================
         Dim oDiagItem As DiagnosticItem
+        oDiag.diagnosticItemsLst.Clear()
         'Dim oLst As New List(Of DiagnosticItem)
         'Item1
         oDiagItem = New DiagnosticItem()
         oDiagItem.idItem = "111"
         oDiagItem.itemValue = "1"
-        oDiagItem.itemCodeEtat = "B"
+        oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR
         oDiagItem.cause = "1"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
@@ -289,7 +285,7 @@ Public Class DiagnosticHelp5622test
         'Item1
         Assert.IsTrue(oDiagItem.idItem = "111")
         Assert.IsTrue(oDiagItem.itemValue = "1")
-        Assert.IsTrue(oDiagItem.itemCodeEtat = "B")
+        Assert.IsTrue(oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR)
         Assert.IsTrue(oDiagItem.cause = "1")
 
         'Vérification des mesures help5622

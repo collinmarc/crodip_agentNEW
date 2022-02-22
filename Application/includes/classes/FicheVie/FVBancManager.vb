@@ -382,8 +382,8 @@ Public Class FVBancManager
     Public Shared Sub setSynchro(ByVal objFVBanc As FVBanc)
         Try
             Dim dbLink As New CSDb(True)
-            Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `FichevieBancMesure` SET `FichevieBancMesure`.`dateModificationCrodip`='" & newDate & "',`FichevieBancMesure`.`dateModificationAgent`='" & newDate & "' WHERE `FichevieBancMesure`.`id`='" & objFVBanc.id & "'"
+            Dim newDate As String = CSDate.ToCRODIPString(Date.Now.ToString)
+            dbLink.queryString = "UPDATE FichevieBancMesure SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE FichevieBancMesure.id='" & objFVBanc.id & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -460,7 +460,9 @@ Public Class FVBancManager
         Dim oCsdb As CSDb = Nothing
         oCsdb = New CSDb(True)
         bddCommande = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT `FichevieBancMesure`.* FROM `FichevieBancMesure` INNER JOIN `BancMesure` ON `FichevieBancMesure`.`idBancMesure` = `BancMesure`.`id` WHERE `FichevieBancMesure`.`dateModificationAgent`<>`FichevieBancMesure`.`dateModificationCrodip` AND `BancMesure`.`idStructure`=" & pAgent.idStructure
+        bddCommande.CommandText = "SELECT FichevieBancMesure.* FROM FichevieBancMesure INNER JOIN BancMesure ON FichevieBancMesure.idBancMesure = BancMesure.id "
+        bddCommande.CommandText = bddCommande.CommandText & " WHERE (FichevieBancMesure.dateModificationAgent<>FichevieBancMesure.dateModificationCrodip Or FichevieBancMesure.dateModificationCrodip is Null )"
+        bddCommande.CommandText = bddCommande.CommandText & " And BancMesure.idStructure = " & pAgent.idStructure
 
         Try
             ' On récupère les résultats

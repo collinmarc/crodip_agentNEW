@@ -1068,6 +1068,22 @@ Public Class Synchronisation
                     oSynchroElmt.Traitee = True
                 End If
             Next
+            'Puis les Exploitations
+            For Each oSynchroElmt As SynchronisationElmt In lstElementsASynchroniser
+                If oSynchroElmt.Type.ToUpper().Trim() = "GetExploitation".ToUpper().Trim() Then
+                    Notice(" Exploitation")
+                    oSynchroElmt.SynchroDesc(m_Agent)
+                    oSynchroElmt.Traitee = True
+                End If
+            Next
+            'Puis les Pulverisateurs
+            For Each oSynchroElmt As SynchronisationElmt In lstElementsASynchroniser
+                If oSynchroElmt.Type.ToUpper().Trim() = "GetPulverisateur".ToUpper().Trim() Then
+                    Notice(" Pulverisateur")
+                    oSynchroElmt.SynchroDesc(m_Agent)
+                    oSynchroElmt.Traitee = True
+                End If
+            Next
 
             'On recharge l'agent courant
             m_Agent = AgentManager.getAgentById(m_Agent.id)

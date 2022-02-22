@@ -406,9 +406,12 @@ Public Class DiagnosticItemManager
             bddCommande.CommandText = "INSERT INTO DiagnosticItem (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
             bddCommande.ExecuteNonQuery()
             If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
-                bddCommande.CommandText = "SELECT "
-                objDiagnosticItem.id = CInt(bddCommande.ExecuteScalar())
+                bddCommande.CommandText = "SELECT last_insert_rowid()"
+            Else
+                bddCommande.CommandText = "SELECT @@identity"
+
             End If
+            objDiagnosticItem.id = CInt(bddCommande.ExecuteScalar())
             sDebugStep = "5"
             ' Test pour fermeture de connection BDD
             If Not oCSDb Is Nothing Then

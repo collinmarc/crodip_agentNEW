@@ -254,8 +254,25 @@ Public Class CSDb
         _queryString = queryString
         Return getResult2s()
     End Function
+    Public Function getLastId() As Integer
+        Dim bddCommande As DbCommand
+        Dim nReturn As Integer
+        Try
 
+            bddCommande = getConnection().CreateCommand
+            If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                bddCommande.CommandText = "SELECT last_insert_rowid()"
+            Else
+                bddCommande.CommandText = "SELECT @@identity"
 
+            End If
+            nReturn = CInt(bddCommande.ExecuteScalar())
+        Catch ex As Exception
+            CSDebug.dispError("CSDB.getLastId ERR", ex)
+            nReturn = -1
+        End Try
+        Return nReturn
+    End Function
     Public Function RAZ_BASE_DONNEES() As Boolean
         Debug.Assert(getConnection().State = ConnectionState.Open, "La connexion doit être ouverte")
         Dim bReturn As Boolean

@@ -489,9 +489,16 @@ Public Class DiagnosticManager
             'avant la 2.5.3
             '#5762 : Réactivation du Controle
             '            Dim strSQL As String = " DATEDIFF('m',Diagnostic.controleDateFin, NOW())<4"
-            Dim strSQL As String = " Diagnostic.controleDateFin >= #" & DateLimite.ToString("MM/dd/yyyy") & "#"
+            Dim strSQL As String
+            If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                strSQL = " Diagnostic.controleDateFin >= '" & CSDate.ToCRODIPString(DateLimite) & "'"
+            Else
+                strSQL = " Diagnostic.controleDateFin >= #" & DateLimite.ToString("MM/dd/yyyy") & "#"
+
+            End If
             'query = "SELECT DISTINCT Diagnostic.id,Diagnostic.controleDateFin,Diagnostic.controleEtat FROM Diagnostic,diagnosticItem WHERE diagnosticItem.idDiagnostic = Diagnostic.id and  Diagnostic.controleEtat='0' AND Diagnostic.pulverisateurId='" & pPulveId & "' AND Diagnostic.organismePresId=" & pStructureId & " AND " & strSQL
-            query = "SELECT DISTINCT Diagnostic.id,Diagnostic.controleDateFin,Diagnostic.controleEtat FROM Diagnostic WHERE Diagnostic.controleEtat='0' AND Diagnostic.pulverisateurId='" & pPulveId & "' AND Diagnostic.organismePresId=" & pStructureId & " AND " & strSQL
+            query = "SELECT DISTINCT Diagnostic.id,Diagnostic.controleDateFin,Diagnostic.controleEtat FROM Diagnostic WHERE Diagnostic.controleEtat='0' AND Diagnostic.pulverisateurId='" & pPulveId & "' AND Diagnostic.organismePresId=" & pStructureId
+            query = query & " AND " & strSQL
             If Not String.IsNullOrEmpty(pdiagnosticID) Then
                 query = query & " AND Diagnostic.id LIKE '" & pdiagnosticID & "%'"
             End If
@@ -641,7 +648,7 @@ Public Class DiagnosticManager
         bddCommande = oCsdb.getConnection().CreateCommand
         '        bddCommande.CommandText = "SELECT * FROM Diagnostic WHERE Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip AND Diagnostic.inspecteurId=" & agent.id
         bddCommande.CommandText = "Select Diagnostic.* From Diagnostic INNER Join Agent On Diagnostic.inspecteurId = Agent.Id Where Agent.idStructure = " & pAgent.idStructure
-        bddCommande.CommandText = bddCommande.CommandText & " AND Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip"
+        bddCommande.CommandText = bddCommande.CommandText & " AND (Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip OR Diagnostic.dateModificationCrodip is null)"
         Try
             ' On récupère les résultats
             Dim oDRDiagnostic As DbDataReader = bddCommande.ExecuteReader
@@ -744,7 +751,7 @@ Public Class DiagnosticManager
 
                 ' On récupère les mesures des mano
                 Dim bddCommande5 As DbCommand
-                bddCommande5.Connection = oCsdb.getConnection()
+                bddCommande5 = oCsdb.getConnection().CreateCommand()
                 bddCommande5.CommandText = "SELECT * FROM DiagnosticMano542 WHERE DiagnosticMano542.idDiagnostic='" & oDiagnostic.id & "'"
                 ' On récupère les résultats
                 Dim oDRDiagnosticMano542 As DbDataReader = bddCommande5.ExecuteReader
@@ -1443,21 +1450,28 @@ Public Class DiagnosticManager
                 End If
                 ' On enregistre les buses
                 'CSDebug.dispInfo("Sauvegarde des buses")
+                Dim oCSDB As New CSDb(True)
+                oCSDB.Execute("DELETE FROM diagnosticBusesDetail where idDiagnostic = '" & pDiag.id & "'")
+                oCSDB.Execute("DELETE FROM diagnosticBuses where idDiagnostic = '" & pDiag.id & "'")
+                oCSDB.free()
                 If Not pDiag.diagnosticBusesList Is Nothing Then
-                        If Not pDiag.diagnosticBusesList.Liste Is Nothing Then
-                            For Each tmpItemCheck As DiagnosticBuses In pDiag.diagnosticBusesList.Liste
-                                If Not tmpItemCheck Is Nothing Then
-                                    tmpItemCheck.idDiagnostic = pDiag.id
-                                    DiagnosticBusesManager.save(tmpItemCheck)
-                                End If
-                            Next
-                        End If
+                    If Not pDiag.diagnosticBusesList.Liste Is Nothing Then
+                        For Each tmpItemCheck As DiagnosticBuses In pDiag.diagnosticBusesList.Liste
+                            If Not tmpItemCheck Is Nothing Then
+                                tmpItemCheck.idDiagnostic = pDiag.id
+                                DiagnosticBusesManager.save(tmpItemCheck)
+                            End If
+                        Next
                     End If
-                    CSDebug.dispInfo("DiagnosticManager Save : SaveBuses")
+                End If
+                CSDebug.dispInfo("DiagnosticManager Save : SaveBuses")
 
-                    ' On enregistre les mano 5.4.2
-                    'CSDebug.dispInfo("Sauvegarde des Mano542")
-                    If Not pDiag.diagnosticMano542List Is Nothing Then
+                Dim oCSDB2 As New CSDb(True)
+                oCSDB2.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & pDiag.id & "'")
+                oCSDB2.free()
+                ' On enregistre les mano 5.4.2
+                'CSDebug.dispInfo("Sauvegarde des Mano542")
+                If Not pDiag.diagnosticMano542List Is Nothing Then
                         If Not pDiag.diagnosticMano542List.Liste Is Nothing Then
                             For Each tmpItemCheck As DiagnosticMano542 In pDiag.diagnosticMano542List.Liste
                                 If Not tmpItemCheck Is Nothing Then
@@ -1469,9 +1483,12 @@ Public Class DiagnosticManager
                     End If
                     CSDebug.dispInfo("DiagnosticManager Save : Save542")
 
-                    ' On enregistre les tronçons 8.3.3
-                    'CSDebug.dispInfo("Sauvegarde des Tronçons833")
-                    If Not pDiag.diagnosticTroncons833 Is Nothing Then
+                Dim oCSDB1 As New CSDb(True)
+                oCSDB1.Execute("DELETE FROM diagnosticTroncons833 where idDiagnostic = '" & pDiag.id & "'")
+                oCSDB1.free()
+                ' On enregistre les tronçons 8.3.3
+                'CSDebug.dispInfo("Sauvegarde des Tronçons833")
+                If Not pDiag.diagnosticTroncons833 Is Nothing Then
                         If Not pDiag.diagnosticTroncons833.Liste Is Nothing Then
                             For Each tmpItemCheck As DiagnosticTroncons833 In pDiag.diagnosticTroncons833.Liste
                                 If Not tmpItemCheck Is Nothing Then

@@ -403,6 +403,7 @@ Public Class DiagnosticHelp571
             End If
             Dim oCSDB As New CSDb(True)
             bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
+            id = oDiagItem.id
             oCSDB.free()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp571.Save ERR :" & ex.Message)

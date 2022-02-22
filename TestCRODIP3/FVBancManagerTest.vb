@@ -53,23 +53,23 @@ Public Class FVBancManagerTest
         Dim expected As Object = Nothing ' TODO: initialisez à une valeur appropriée
         Dim objFVBanc2 As FVBanc
         objFVBanc = New FVBanc(m_oAgent)
-        objFVBanc.id = "9-99-99"
-        objFVBanc.idBancMesure = "0001"
+        objFVBanc.id = m_oBanc.id
+        objFVBanc.idBancMesure = m_oBanc.id
 
         Assert.IsTrue(FVBancManager.save(objFVBanc))
 
-        objFVBanc2 = FVBancManager.getFVBancById("9-99-99")
-        Assert.AreEqual("9-99-99", objFVBanc2.id)
+        objFVBanc2 = FVBancManager.getFVBancById(m_oBanc.id)
+        Assert.AreEqual(m_oBanc.id, objFVBanc2.id)
 
         objFVBanc2.caracteristiques = "TEST"
         Assert.IsTrue(FVBancManager.save(objFVBanc2))
 
-        objFVBanc = FVBancManager.getFVBancById("9-99-99")
+        objFVBanc = FVBancManager.getFVBancById(m_oBanc.id)
         Assert.AreEqual(objFVBanc.caracteristiques, objFVBanc2.caracteristiques)
 
         FVBancManager.delete(objFVBanc.id)
-        objFVBanc2 = FVBancManager.getFVBancById("9-99-99")
-        Assert.AreNotEqual("9-99-99", objFVBanc2.id)
+        objFVBanc2 = FVBancManager.getFVBancById(m_oBanc.id)
+        Assert.AreNotEqual(m_oBanc.id, objFVBanc2.id)
 
     End Sub
     '''<summary>

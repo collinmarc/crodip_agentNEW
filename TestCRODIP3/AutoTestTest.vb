@@ -466,23 +466,23 @@ Public Class AutoTestTest
         'Creation des controles Regulier des bancs
         oColCtrl = AutoTestManager.CreateControlesReguliers(m_oAgent, Now(), "BANC")
         Assert.AreEqual(2, oColCtrl.Count)
-        octrl = CType(oColCtrl(1), AutoTest)
+        octrl = CType(oColCtrl(0), AutoTest)
         Assert.AreEqual("MonBanc1", octrl.IdMateriel)
         Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
-        octrl = CType(oColCtrl(2), AutoTest)
+        octrl = CType(oColCtrl(1), AutoTest)
         Assert.AreEqual("MonBanc2", octrl.IdMateriel)
         Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
 
         'Creation des controles Regulier des Manos
         oColCtrl = AutoTestManager.CreateControlesReguliers(m_oAgent, Now(), "MANOC")
         Assert.AreEqual(oColCtrl.Count, 3)
-        octrl = CType(oColCtrl(1), AutoTest)
+        octrl = CType(oColCtrl(0), AutoTest)
         Assert.AreEqual("MonManometreControle1", octrl.IdMateriel)
         Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
-        octrl = CType(oColCtrl(2), AutoTest)
+        octrl = CType(oColCtrl(1), AutoTest)
         Assert.AreEqual("MonManometreControle2", octrl.IdMateriel)
         Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
-        octrl = CType(oColCtrl(3), AutoTest)
+        octrl = CType(oColCtrl(2), AutoTest)
         Assert.AreEqual("MonManometreControle3", octrl.IdMateriel)
         Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
 
