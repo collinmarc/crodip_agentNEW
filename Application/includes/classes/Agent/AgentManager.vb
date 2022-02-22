@@ -476,7 +476,7 @@ Public Class AgentManager
 
         oCsdb = New CSDb(True)
         bddCommande = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM Agent WHERE dateModificationAgent<>dateModificationCrodip AND idStructure=" & agent.idStructure
+        bddCommande.CommandText = "SELECT * FROM Agent WHERE (dateModificationAgent<>dateModificationCrodip Or dateModificationCrodip is null) AND idStructure=" & agent.idStructure
 
         Try
             ' On récupère les résultats

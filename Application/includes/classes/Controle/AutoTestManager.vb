@@ -225,7 +225,7 @@ Public Class AutoTestManager
                     sqlQuery = sqlQuery & " AND CTRG_date <='" & CSDate.ToCRODIPString(pDateFin).Substring(0, 10) & "'"
                 End If
                 If pSynchro Then
-                    sqlQuery = sqlQuery & " AND dateModificationAgent > dateModificationCrodip "
+                    sqlQuery = sqlQuery & " AND ( dateModificationAgent > dateModificationCrodip  or dateModificationCrodip is null)"
                 End If
                 oDBReader = dbLink.getResult2s(sqlQuery & " ORDER BY CTRG_ID")
 

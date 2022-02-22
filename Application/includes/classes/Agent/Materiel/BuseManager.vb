@@ -396,7 +396,7 @@ Public Class BuseManager
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE dateModificationAgent<>dateModificationCrodip AND idStructure=" & agent.idStructure
+            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE (dateModificationAgent<>dateModificationCrodip or dateModificationCrodip is null) AND idStructure=" & agent.idStructure
 
             ' On récupère les résultats
             Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader

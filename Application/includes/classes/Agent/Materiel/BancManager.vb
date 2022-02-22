@@ -281,7 +281,7 @@ Public Class BancManager
         Dim arrItems(0) As Banc
         Dim oCSDB As New CSDb(True)
         Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM BancMesure WHERE BancMesure.dateModificationAgent<>BancMesure.dateModificationCrodip AND BancMesure.idStructure=" & agent.idStructure
+        bddCommande.CommandText = "SELECT * FROM BancMesure WHERE (BancMesure.dateModificationAgent<>BancMesure.dateModificationCrodip or dateModificationCrodip is null) AND BancMesure.idStructure=" & agent.idStructure
 
         Try
             ' On récupère les résultats

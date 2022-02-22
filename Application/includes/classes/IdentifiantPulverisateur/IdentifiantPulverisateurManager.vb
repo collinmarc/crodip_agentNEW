@@ -285,7 +285,7 @@ Public Class IdentifiantPulverisateurManager
         Dim arrItems(0) As IdentifiantPulverisateur
         Dim oCSdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCSdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM IdentifiantPulverisateur WHERE dateModificationAgent<>dateModificationCrodip "
+        bddCommande.CommandText = "SELECT * FROM IdentifiantPulverisateur WHERE (dateModificationAgent<>dateModificationCrodip  or dateModificationCrodip is null)"
         bddCommande.CommandText = bddCommande.CommandText & " AND idStructure=" & agent.idStructure
 
         Try

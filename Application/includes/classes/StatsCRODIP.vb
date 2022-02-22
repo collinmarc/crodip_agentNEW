@@ -512,41 +512,79 @@ Public Class StatsCrodip
         Dim bReturn As Boolean
         Try
             Dim oCSDb As New CSDb(True)
-            NCtrlStructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where OrganismePresId = " & pAgent.idStructure & "")
-            NCtrlInspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where inspecteurId = " & pAgent.id & "")
+            If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                NCtrlStructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where OrganismePresId = " & pAgent.idStructure & "")
+                NCtrlInspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where inspecteurId = " & pAgent.id & "")
 
-            NCtrlStructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
-            NCtrlInspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrlStructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrlInspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
 
-            NCtrl_OK_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and OrganismePresId = " & pAgent.idStructure & "")
-            NCtrl_OK_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and inspecteurId = " & pAgent.id & "")
+                NCtrl_OK_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and OrganismePresId = " & pAgent.idStructure & "")
+                NCtrl_OK_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and inspecteurId = " & pAgent.id & "")
 
-            NCtrl_OK_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
-            NCtrl_OK_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_OK_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_OK_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
 
-            NCtrl_CP_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and OrganismePresId = " & pAgent.idStructure & "")
-            NCtrl_CP_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and inspecteurId = " & pAgent.id & "")
+                NCtrl_CP_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and OrganismePresId = " & pAgent.idStructure & "")
+                NCtrl_CP_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and inspecteurId = " & pAgent.id & "")
 
-            NCtrl_CP_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
-            NCtrl_CP_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_CP_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_CP_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
 
-            NCtrl_ReparAvant_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and OrganismePresId = " & pAgent.idStructure & "")
-            NCtrl_ReparAvant_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and inspecteurId = " & pAgent.id & "")
+                NCtrl_ReparAvant_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and OrganismePresId = " & pAgent.idStructure & "")
+                NCtrl_ReparAvant_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and inspecteurId = " & pAgent.id & "")
 
-            NCtrl_ReparAvant_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
-            NCtrl_ReparAvant_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_ReparAvant_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_ReparAvant_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
 
-            NCtrl_AutoControle_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and OrganismePresId = " & pAgent.idStructure & "")
-            NCtrl_AutoControle_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and inspecteurId = " & pAgent.id & "")
+                NCtrl_AutoControle_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and OrganismePresId = " & pAgent.idStructure & "")
+                NCtrl_AutoControle_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and inspecteurId = " & pAgent.id & "")
 
-            NCtrl_AutoControle_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
-            NCtrl_AutoControle_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_AutoControle_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_AutoControle_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
 
-            NCtrl_PreControle_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and OrganismePresId = " & pAgent.idStructure & "")
-            NCtrl_PreControle_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and inspecteurId = " & pAgent.id & "")
+                NCtrl_PreControle_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and OrganismePresId = " & pAgent.idStructure & "")
+                NCtrl_PreControle_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and inspecteurId = " & pAgent.id & "")
 
-            NCtrl_PreControle_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
-            NCtrl_PreControle_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_PreControle_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and OrganismePresId = " & pAgent.idStructure & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_PreControle_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and inspecteurId = " & pAgent.id & " and strftime('%Y',controleDateDebut) = '" & pAnneeReference & "'")
+            Else
+                NCtrlStructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where OrganismePresId = " & pAgent.idStructure & "")
+                NCtrlInspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where inspecteurId = " & pAgent.id & "")
+
+                NCtrlStructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where OrganismePresId = " & pAgent.idStructure & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrlInspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where inspecteurId = " & pAgent.id & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+
+                NCtrl_OK_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and OrganismePresId = " & pAgent.idStructure & "")
+                NCtrl_OK_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and inspecteurId = " & pAgent.id & "")
+
+                NCtrl_OK_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and OrganismePresId = " & pAgent.idStructure & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_OK_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat = '1' and inspecteurId = " & pAgent.id & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+
+                NCtrl_CP_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and OrganismePresId = " & pAgent.idStructure & "")
+                NCtrl_CP_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and inspecteurId = " & pAgent.id & "")
+
+                NCtrl_CP_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and OrganismePresId = " & pAgent.idStructure & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_CP_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where ControleEtat <> '1' and inspecteurId = " & pAgent.id & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+
+                NCtrl_ReparAvant_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and OrganismePresId = " & pAgent.idStructure & "")
+                NCtrl_ReparAvant_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and inspecteurId = " & pAgent.id & "")
+
+                NCtrl_ReparAvant_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and OrganismePresId = " & pAgent.idStructure & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_ReparAvant_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPulveRepare  = TRUE and inspecteurId = " & pAgent.id & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+
+                NCtrl_AutoControle_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and OrganismePresId = " & pAgent.idStructure & "")
+                NCtrl_AutoControle_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and inspecteurId = " & pAgent.id & "")
+
+                NCtrl_AutoControle_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and OrganismePresId = " & pAgent.idStructure & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_AutoControle_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsAutoControle  = TRUE and inspecteurId = " & pAgent.id & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+
+                NCtrl_PreControle_StructureTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and OrganismePresId = " & pAgent.idStructure & "")
+                NCtrl_PreControle_InspecteurTotal = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and inspecteurId = " & pAgent.id & "")
+
+                NCtrl_PreControle_StructureAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and OrganismePresId = " & pAgent.idStructure & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+                NCtrl_PreControle_InspecteurAnnee = oCSDb.getValue("SELECT count(*) from diagnostic where controleIsPreControleProfessionel  = TRUE and inspecteurId = " & pAgent.id & " and YEAR(controleDateDebut) = '" & pAnneeReference & "'")
+            End If
             oCSDb.free()
             bReturn = True
         Catch ex As Exception

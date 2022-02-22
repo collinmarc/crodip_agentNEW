@@ -480,7 +480,7 @@ Public Class ManometreEtalonManager
             oCsdb = New CSDb(True)
             Dim bddCommande As DbCommand
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE AgentManoEtalon.dateModificationAgent<>AgentManoEtalon.dateModificationCrodip AND AgentManoEtalon.idStructure=" & agent.idStructure
+            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE (AgentManoEtalon.dateModificationAgent<>AgentManoEtalon.dateModificationCrodip or dateModificationCrodip is null) AND AgentManoEtalon.idStructure=" & agent.idStructure
 
             ' On récupère les résultats
             Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
