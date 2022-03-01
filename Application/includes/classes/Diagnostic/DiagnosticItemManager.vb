@@ -272,6 +272,7 @@ Public Class DiagnosticItemManager
     ''' Sauvegarde d'un diagnosticItem individuel
     ''' Paramètres :
     Public Shared Function save(ByVal pCsDb As CSDb, ByVal pDiagIt As DiagnosticItem, Optional bSyncro As Boolean = False) As Boolean
+        Debug.Assert(pCsDb.isOpen(), "La Connection Doit être ouverte")
 
         Dim breturn As Boolean
         Try

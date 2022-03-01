@@ -1660,12 +1660,6 @@ Public Class controle_preliminaire
                 btn_controlePreliminaire_poursuivre.Visible = True
                 CSForm.disableAllCheckBox(Me)
         End Select
-        If m_Mode <> GlobalsCRODIP.DiagMode.CTRL_COMPLET Or
-                (m_Mode = GlobalsCRODIP.DiagMode.CTRL_COMPLET And m_Diagnostic.diagRemplacementId <> "") Then
-            'Chargement des infos existantes si on n'est pas sur un controle complet (CV ou VISU)
-            'ou si on est en CC en remplacement
-            loadExistingDiag()
-        End If
 
         If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Me.Text = "Contrôle préliminaire"
@@ -1682,7 +1676,12 @@ Public Class controle_preliminaire
         End If
 
         m_bDuringLoad = False
-        AfficheDiagnosticItems()
+        If m_Mode <> GlobalsCRODIP.DiagMode.CTRL_COMPLET Or
+                (m_Mode = GlobalsCRODIP.DiagMode.CTRL_COMPLET And m_Diagnostic.diagRemplacementId <> "") Then
+            'Chargement des infos existantes si on n'est pas sur un controle complet (CV ou VISU)
+            'ou si on est en CC en remplacement
+            AfficheDiagnosticItems()
+        End If
         Me.Cursor = Cursors.Default
     End Sub
 

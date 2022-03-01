@@ -247,11 +247,12 @@ Public Class DiagnosticHelp551
         End Try
         Return bReturn
     End Function
-    Public Function Save(ByVal pStructureId As String, ByVal pAgentId As String) As Boolean
+    Public Function Save(ByVal pStructureId As String, ByVal pAgentId As String, pCSDB As CSDb) As Boolean
         '        Debug.Assert(Not String.IsNullOrEmpty(id), "Id must be set")
         Debug.Assert(Not String.IsNullOrEmpty(idDiag), "IdDiag must be set")
         Debug.Assert(Not String.IsNullOrEmpty(pStructureId), "pStructureId must be set")
         Debug.Assert(Not String.IsNullOrEmpty(pAgentId), "pAgentId must be set")
+        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
 
         Dim bReturn As Boolean
         Try
@@ -277,10 +278,8 @@ Public Class DiagnosticHelp551
                     oDiagItem.id = id
                 End If
             End If
-            Dim oCSDB As New CSDb(True)
-            bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
+            bReturn = DiagnosticItemManager.save(pCSDB, oDiagItem)
             id = oDiagItem.id
-            oCSDB.free()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp551.Save ERR :" & ex.Message)
             bReturn = False

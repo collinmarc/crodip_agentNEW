@@ -43,12 +43,13 @@ Public Class DiagnosticInfosComplementaireManager
     '''
     ''' Sauvegarde d'un InfosComplementaires
     ''' Paramètres :
-    Public Shared Function save(ByVal pInfosComplementaires As DiagnosticInfosComplementaires, ByVal pStructureId As String, ByVal pAgentId As String) As Boolean
+    Public Shared Function save(ByVal pInfosComplementaires As DiagnosticInfosComplementaires, ByVal pStructureId As String, ByVal pAgentId As String, pCSDB As CSDb) As Boolean
+        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
 
         Dim breturn As Boolean
         Try
             breturn = False
-            breturn = pInfosComplementaires.Save(pStructureId, pAgentId)
+            breturn = pInfosComplementaires.Save(pStructureId, pAgentId, pCSDB)
         Catch ex As Exception
             CSDebug.dispError("Erreur DiagnosticInfosComplementairesManager - save" & ex.Message.ToString)
             breturn = False

@@ -78,7 +78,9 @@ Public Class DiagnosticHelp12123Mesuretest
         oDiagHelp12123M.EcartReglage = 1.12D
         oDiagHelp12123M.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
-        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString))
+        Dim oCSDB As New CSDb(True)
+        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString, oCSDB))
+        oCSDB.free()
         iD = oDiagHelp12123M.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp12123M.id))
 
@@ -122,7 +124,9 @@ Public Class DiagnosticHelp12123Mesuretest
         oDiagHelp12123M.Resultat = DiagnosticItem.EtatDiagItemMINEUR
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString))
+        oCSDB.getInstance()
+        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString, oCSDB))
+        oCSDB.free()
 
         Debug.WriteLine("Lecture")
         oDiagHelp12123M = New DiagnosticHelp12123Mesure()

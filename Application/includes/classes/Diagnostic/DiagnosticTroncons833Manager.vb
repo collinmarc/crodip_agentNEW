@@ -118,14 +118,15 @@ Public Class DiagnosticTroncons833Manager
 #Region "Methodes Locales"
 
     ' o
-    Public Shared Function save(ByVal objDiagnosticTroncons833 As DiagnosticTroncons833, Optional bSynhcro As Boolean = False) As Boolean
-        Dim oCSDB As New CSDb(True)
+    Public Shared Function save(ByVal objDiagnosticTroncons833 As DiagnosticTroncons833, pCSDB As CSDb, Optional bSynhcro As Boolean = False) As Boolean
+        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
+
         Dim bddCommande As DbCommand
         Dim oDR As DbDataReader
         Dim nEnr As Integer
         Dim bReturn As Boolean
         Try
-            bddCommande = oCSDB.getConnection().CreateCommand()
+            bddCommande = pCSDB.getConnection().CreateCommand()
             'Test de l'existence de l'élement
             bddCommande.CommandText = "SELECT count(*) FROM DiagnosticTroncons833 WHERE id = " & objDiagnosticTroncons833.id & " and idDiagnostic = '" & objDiagnosticTroncons833.idDiagnostic & "'"
             oDR = bddCommande.ExecuteReader()
@@ -204,9 +205,6 @@ Public Class DiagnosticTroncons833Manager
             CSDebug.dispFatal("DiagnosticTroncons833Manager::save() : " & ex.Message.ToString)
             bReturn = False
         End Try
-        If Not oCSDB Is Nothing Then
-            oCSDB.free()
-        End If
         Return bReturn
     End Function
 

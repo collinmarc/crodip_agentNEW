@@ -55,6 +55,8 @@ Public Class DiagnosticTroncons833Test
     Public Sub TST_Create_Save_Update()
         Dim oDiagTroncons833 As DiagnosticTroncons833
         Dim iD As Integer
+        Dim oCSDB As New CSDb(True)
+
         oDiagTroncons833 = New DiagnosticTroncons833
 
         createAndSaveDiagnostic()
@@ -64,7 +66,7 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.7"
 
-        DiagnosticTroncons833Manager.save(oDiagTroncons833)
+        DiagnosticTroncons833Manager.save(oDiagTroncons833, oCSDB)
         iD = oDiagTroncons833.id
         oDiagTroncons833 = DiagnosticTroncons833Manager.getDiagnosticTroncons833ById(oDiagTroncons833.id.ToString, oDiagTroncons833.idDiagnostic)
 
@@ -78,7 +80,7 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.idPression = "2"
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
-        DiagnosticTroncons833Manager.save(oDiagTroncons833)
+        DiagnosticTroncons833Manager.save(oDiagTroncons833, oCSDB)
         oDiagTroncons833 = DiagnosticTroncons833Manager.getDiagnosticTroncons833ById(oDiagTroncons833.id.ToString, oDiagTroncons833.idDiagnostic)
 
         Assert.AreEqual(oDiagTroncons833.idPression, "2")
@@ -97,6 +99,7 @@ Public Class DiagnosticTroncons833Test
         Dim odiag As Diagnostic
 
         Dim oDiagTroncons833 As DiagnosticTroncons833
+        Dim oCSDB As New CSDb(True)
 
         odiag = createAndSaveDiagnostic()
         odiag.diagnosticTroncons833.Liste.Clear()
@@ -139,7 +142,7 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.idColumn = "3"
         oDiagTroncons833.pressionSortie = "3.7"
 
-        DiagnosticTroncons833Manager.save(oDiagTroncons833)
+        DiagnosticTroncons833Manager.save(oDiagTroncons833, oCSDB)
 
         'Relecture des items
         DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(odiag)
@@ -152,6 +155,7 @@ Public Class DiagnosticTroncons833Test
 
         DiagnosticTroncons833Manager.deleteByDiagnosticID(oDiagTroncons833.idDiagnostic)
 
+        oCSDB.free()
 
     End Sub
     '''<summary>

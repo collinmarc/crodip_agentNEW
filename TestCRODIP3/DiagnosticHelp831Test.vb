@@ -56,6 +56,7 @@ Public Class DiagnosticHelp831test
         Dim oDiagHelp831 As DiagnosticHelp831
         Dim oDiag As Diagnostic
         Dim iD As String
+        Dim oCSDB As New CSDb(True)
 
         oDiag = createAndSaveDiagnostic()
 
@@ -70,7 +71,7 @@ Public Class DiagnosticHelp831test
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp831.id))
-        Assert.IsTrue(oDiagHelp831.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp831.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
         iD = oDiagHelp831.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp831.id))
 
@@ -93,7 +94,7 @@ Public Class DiagnosticHelp831test
         oDiagHelp831.Ecart_pct = "2.8"
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp831.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp831.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
 
         Debug.WriteLine("Lecture")
         oDiagHelp831 = New DiagnosticHelp831(DiagnosticHelp831.ModeHelp831.Mode8312)
@@ -106,9 +107,7 @@ Public Class DiagnosticHelp831test
         Assert.AreEqual(oDiagHelp831.Ecart_Maxi, "2.7")
         Assert.AreEqual(oDiagHelp831.Ecart_pct, "2.8")
 
-        Debug.WriteLine("Suppression")
-        oDiagHelp831.Delete()
-
+        oCSDB.free()
     End Sub
     <TestMethod()>
     Public Sub SaveDiagTest()

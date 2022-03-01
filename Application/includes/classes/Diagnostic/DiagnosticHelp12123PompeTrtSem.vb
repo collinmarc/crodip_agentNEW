@@ -244,11 +244,12 @@ Public Class DiagnosticHelp12123PompeTrtSem
 
     End Sub
 
-    Public Function Save(ByVal pStructureId As Integer, ByVal pAgentId As Integer) As Boolean
+    Public Function Save(ByVal pStructureId As Integer, ByVal pAgentId As Integer, pCSDB As CSDb) As Boolean
         '        Debug.Assert(Not String.IsNullOrEmpty(id), "Id must be set")
         Debug.Assert(Not String.IsNullOrEmpty(idDiag), "IdDiag must be set")
         Debug.Assert(Not String.IsNullOrEmpty(pStructureId), "pStructureId must be set")
         Debug.Assert(Not String.IsNullOrEmpty(pAgentId), "pAgentId must be set")
+        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
 
         Dim bReturn As Boolean
         Try
@@ -272,10 +273,8 @@ Public Class DiagnosticHelp12123PompeTrtSem
                     oDiagItem.id = id
                 End If
             End If
-            Dim oCSDB As New CSDb(True)
-            bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
+            bReturn = DiagnosticItemManager.save(pCSDB, oDiagItem)
             id = oDiagItem.id
-            oCSDB.free()
             For Each oMEsure As DiagnosticHelp12123MesuresTrtSem In m_lstHelp12123Mesures
                 oMEsure.idDiag = idDiag
                 oMEsure.Save(pStructureId, pAgentId)

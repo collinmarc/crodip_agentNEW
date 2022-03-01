@@ -4084,7 +4084,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             '------------------------------------------------------
             'Récupération de la pression de mesure à 3 bars
             m_diagnostic.buseDebit = tbDebitMoyen3bars.Text
-            m_diagnostic.buseDebitMoyenPM = GlobalsCRODIP.StringToDouble(diagBuses_debitMoyen.Text)
+            m_diagnostic.buseDebitMoyenPM = diagBuses_debitMoyen.DecimalValue
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("diagnostique::ValiderDiagnostiqueBuses : " & ex.Message)

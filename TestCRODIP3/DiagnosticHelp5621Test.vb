@@ -56,6 +56,7 @@ Public Class DiagnosticHelp5621test
         Dim oDiagHelp5621 As DiagnosticHelp5621
         Dim oDiag As Diagnostic
         Dim iD As String
+        Dim oCSDB As New CSDb(True)
 
         oDiag = createAndSaveDiagnostic()
         oDiag.organismePresId = m_oAgent.idStructure
@@ -73,7 +74,7 @@ Public Class DiagnosticHelp5621test
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp5621.id))
-        Assert.IsTrue(oDiagHelp5621.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp5621.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
         iD = oDiagHelp5621.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp5621.id))
 
@@ -100,7 +101,7 @@ Public Class DiagnosticHelp5621test
         oDiagHelp5621.VitesseLue2 = 300.2D
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp5621.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp5621.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
 
         Debug.WriteLine("Lecture")
         oDiagHelp5621 = New DiagnosticHelp5621()
@@ -115,8 +116,7 @@ Public Class DiagnosticHelp5621test
         Assert.AreEqual(oDiagHelp5621.VitesseLue1, 300.1D)
         Assert.AreEqual(oDiagHelp5621.VitesseLue2, 300.2D)
 
-        Debug.WriteLine("Suppression")
-        oDiagHelp5621.Delete()
+        oCSDB.free()
 
     End Sub
     <TestMethod()>

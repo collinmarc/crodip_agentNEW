@@ -56,6 +56,8 @@ Public Class DiagnosticHelp552test
         Dim oDiagHelp552 As DiagnosticHelp552
         Dim oDiag As Diagnostic
         Dim iD As String
+        Dim oCSDB As New CSDb(True)
+
 
         oDiag = createAndSaveDiagnostic()
 
@@ -80,7 +82,7 @@ Public Class DiagnosticHelp552test
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp552.id))
-        Assert.IsTrue(oDiagHelp552.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp552.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
         iD = oDiagHelp552.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp552.id))
 
@@ -123,7 +125,7 @@ Public Class DiagnosticHelp552test
 
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp552.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp552.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
 
         Debug.WriteLine("Lecture")
         oDiagHelp552 = New DiagnosticHelp552()
@@ -149,6 +151,7 @@ Public Class DiagnosticHelp552test
         Debug.WriteLine("Suppression")
         oDiagHelp552.Delete()
 
+        oCSDB.free()
     End Sub
     <TestMethod()>
     Public Sub Get_Send_WS()

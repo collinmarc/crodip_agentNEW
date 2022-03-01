@@ -1,8 +1,9 @@
 TRUNK
 MASTER
-BUILD : XXXXXX
+BUILD : 20220225120000
 
 	0001481: Export Factures : Format des dates
+	0001284: Evolution du Moteur de base de données
 
 BUILD : 20220201120000
 	0001475: Transfert de client ne fonctionne plus depuis la dernière version

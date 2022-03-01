@@ -60,7 +60,9 @@ Public Class DiagnosticMano542Test
         oDiagMAno542.pressionControle = "1.6"
         oDiagMAno542.pressionPulve = "1.7"
 
-        DiagnosticMano542Manager.save(oDiagMAno542)
+        Dim oCSDB As New CSDb(True)
+        DiagnosticMano542Manager.save(oDiagMAno542, oCSDB)
+        oCSDB.free()
         iD = oDiagMAno542.id
         oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(oDiagMAno542.id.ToString, oDiagMAno542.idDiagnostic)
 
@@ -72,7 +74,9 @@ Public Class DiagnosticMano542Test
         'Maj de l'objet
         oDiagMAno542.pressionControle = "1.61"
         oDiagMAno542.pressionPulve = "1.71"
-        DiagnosticMano542Manager.save(oDiagMAno542)
+        oCSDB.getInstance()
+        DiagnosticMano542Manager.save(oDiagMAno542, oCSDB)
+        oCSDB.free()
         oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(oDiagMAno542.id.ToString, oDiagMAno542.idDiagnostic)
 
         Assert.AreEqual(oDiagMAno542.pressionControle, "1.61")
@@ -127,7 +131,9 @@ Public Class DiagnosticMano542Test
         oDiagMAno542.pressionControle = "2,5"
         oDiagMAno542.pressionPulve = "2,6"
 
-        DiagnosticMano542Manager.save(oDiagMAno542)
+        Dim oCSDB As New CSDb(True)
+        DiagnosticMano542Manager.save(oDiagMAno542, oCSDB)
+        oCSDB.free()
 
         'Relecture des items
         DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(odiag)

@@ -316,6 +316,12 @@ Public Class GlobalsCRODIP
 
     Public Shared Sub Init()
         My.Settings.Reload()
+        If My.Settings.BDDType = "ACCESS" Then
+            CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
+        End If
+        If My.Settings.BDDType = "SQLITE" Then
+            CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
+        End If
         GLOB_ENV_AUTOSYNC = My.Settings.AutoSync
         GLOB_ENV_MODESIMPLIFIE = (My.Settings.Mode = "SIMPLIFIE")
         GLOB_ENV_MODEFORMATION = (My.Settings.Mode = "FORMATION")

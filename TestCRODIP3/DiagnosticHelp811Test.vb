@@ -56,6 +56,7 @@ Public Class DiagnosticHelp811test
         Dim oDiagHelp811 As DiagnosticHelp811
         Dim oDiag As Diagnostic
         Dim iD As String
+        Dim oCSDB As New CSDb(True)
 
         oDiag = createAndSaveDiagnostic()
 
@@ -68,7 +69,7 @@ Public Class DiagnosticHelp811test
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp811.id))
-        Assert.IsTrue(oDiagHelp811.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp811.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
         iD = oDiagHelp811.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp811.id))
 
@@ -87,7 +88,7 @@ Public Class DiagnosticHelp811test
         oDiagHelp811.Fleche = "4.6"
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp811.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp811.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
 
         Debug.WriteLine("Lecture")
         oDiagHelp811 = New DiagnosticHelp811()
@@ -98,9 +99,7 @@ Public Class DiagnosticHelp811test
         Assert.AreEqual(oDiagHelp811.LargeurRampe, "3.5")
         Assert.AreEqual(oDiagHelp811.Fleche, "4.6")
 
-        Debug.WriteLine("Suppression")
-        oDiagHelp811.Delete()
-
+        oCSDB.free()
     End Sub
     <TestMethod()>
     Public Sub SaveDiagTest()

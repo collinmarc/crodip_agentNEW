@@ -101,6 +101,12 @@ Public Class parentContener
             If Var = vbNo Then
                 e.Cancel = True
             Else
+                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                    Me.Cursor = Cursors.WaitCursor
+
+                    CSDb.ExecuteSQL("VACUUM")
+                    Me.Cursor = Cursors.Default
+                End If
                 CSEnvironnement.delPid()
             End If
         Else

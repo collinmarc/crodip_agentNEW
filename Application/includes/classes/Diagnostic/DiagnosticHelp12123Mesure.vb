@@ -369,7 +369,7 @@ Public Class DiagnosticHelp12123Mesure
         Return bReturn
     End Function
 
-    Public Function Save(ByVal pStructureId As String, ByVal pAgentId As String) As Boolean
+    Public Function Save(ByVal pStructureId As String, ByVal pAgentId As String, pCSDB As CSDb) As Boolean
         '        Debug.Assert(Not String.IsNullOrEmpty(id), "Id must be set")
         Debug.Assert(Not String.IsNullOrEmpty(idDiag), "IdDiag must be set")
         Debug.Assert(Not String.IsNullOrEmpty(pStructureId), "pStructureId must be set")
@@ -399,10 +399,8 @@ Public Class DiagnosticHelp12123Mesure
                     oDiagItem.id = id
                 End If
             End If
-            Dim oCSDB As New CSDb(True)
-            bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
+            bReturn = DiagnosticItemManager.save(pCSDB, oDiagItem)
             id = oDiagItem.id
-            oCSDB.free()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp12123Mesure.Save ERR :" & ex.Message)
             bReturn = False

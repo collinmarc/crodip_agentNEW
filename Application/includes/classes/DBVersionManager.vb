@@ -16,7 +16,7 @@ Public Class DBVersionManagerManager
                 bReturn = False
             End If
         Catch ex As Exception
-            CSDebug.dispError("DBVersion.CheckVersion Error : " & ex.Message)
+            CSDebug.dispError("DBVersion.CheckVersion Error : ", ex)
             bReturn = False
         End Try
         Return bReturn

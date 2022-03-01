@@ -56,12 +56,13 @@ Public Class DiagnosticHelp831Manager
     '''
     ''' Sauvegarde d'un Help831
     ''' Paramètres :
-    Public Shared Function save(ByVal pHelp831 As DiagnosticHelp831, ByVal pStructureId As String, ByVal pAgentId As String) As Boolean
+    Public Shared Function save(ByVal pHelp831 As DiagnosticHelp831, ByVal pStructureId As String, ByVal pAgentId As String, pCSDb As CSDb) As Boolean
+        Debug.Assert(pCSDb.isOpen(), "La Connection Doit être ouverte")
 
         Dim breturn As Boolean
         Try
             breturn = False
-            breturn = pHelp831.Save(pStructureId, pAgentId)
+            breturn = pHelp831.Save(pStructureId, pAgentId, pCSDb)
         Catch ex As Exception
             CSDebug.dispError("Erreur DiagnosticHelp831Manager - save" & ex.Message.ToString)
             breturn = False

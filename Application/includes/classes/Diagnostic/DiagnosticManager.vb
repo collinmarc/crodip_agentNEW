@@ -956,7 +956,7 @@ Public Class DiagnosticManager
             bcreationDiag = False
             If pDiag.id <> "" Then
 
-                Dim CSDb As New CSDb(True)
+                Dim oCSDb As New CSDb(True)
 
                 ' On test si le Diagnostic existe ou non
                 Dim existsDiagnostic As Boolean
@@ -970,7 +970,7 @@ Public Class DiagnosticManager
 
                 Dim bddCommande As DbCommand
                 ' On test si la connexion est déjà ouverte ou non
-                bddCommande = CSDb.getConnection().CreateCommand
+                bddCommande = oCSDb.getConnection().CreateCommand
 
                 ' Initialisation de la requete
                 Dim paramsQuery As String = "id='" & pDiag.id & "'"
@@ -1326,21 +1326,21 @@ Public Class DiagnosticManager
                 CSDebug.dispInfo("DiagnosticManager Save : fin RQ")
 
                 If pDiag.SignRIAgent IsNot Nothing Then
-                    bddCommande = CSDb.getConnection().CreateCommand
+                    bddCommande = oCSDb.getConnection().CreateCommand
                     bddCommande.CommandText = "UPDATE Diagnostic SET  signRIAgent=@sign WHERE id='" & pDiag.id & "'"
                     AddParameter(bddCommande, "@sign", pDiag.SignRIAgent, DbType.Binary)
                     bddCommande.ExecuteNonQuery()
                 End If
 
                 If pDiag.SignRIClient IsNot Nothing Then
-                    bddCommande = CSDb.getConnection().CreateCommand
+                    bddCommande = oCSDb.getConnection().CreateCommand
                     bddCommande.CommandText = "UPDATE Diagnostic SET  signRIClient=@sign WHERE id='" & pDiag.id & "'"
                     AddParameter(bddCommande, "@sign", pDiag.SignRIClient, DbType.Binary)
                     bddCommande.ExecuteNonQuery()
                 End If
 
                 If pDiag.SignCCAgent IsNot Nothing Then
-                    bddCommande = CSDb.getConnection().CreateCommand
+                    bddCommande = oCSDb.getConnection().CreateCommand
                     bddCommande.CommandText = "UPDATE Diagnostic SET  signCCAgent=@sign WHERE id='" & pDiag.id & "'"
                     AddParameter(bddCommande, "@sign", pDiag.SignCCAgent, DbType.Binary)
 
@@ -1348,7 +1348,7 @@ Public Class DiagnosticManager
                 End If
 
                 If pDiag.SignCCClient IsNot Nothing Then
-                    bddCommande = CSDb.getConnection().CreateCommand
+                    bddCommande = oCSDb.getConnection().CreateCommand
                     bddCommande.CommandText = "UPDATE Diagnostic SET  signCCClient=@sign WHERE id='" & pDiag.id & "'"
                     AddParameter(bddCommande, "@sign", pDiag.SignCCAgent, DbType.Binary)
                     bddCommande.ExecuteNonQuery()
@@ -1360,23 +1360,22 @@ Public Class DiagnosticManager
                 ' On enregistre les items du diag
                 '                CSDebug.dispInfo("Sauvegarde des DiagItem")
 
-                SaveDiagItems(CSDb, pDiag, bcreationDiag)
+                SaveDiagItems(oCSDb, pDiag, bcreationDiag, bsyncro)
                 CSDebug.dispInfo("DiagnosticManager Save : SaveDiagItems")
 
-                CSDb.free()
 
                 'Sauvegarde des Help 551 (Si on a des valeurs pertinentes)
                 If pDiag.diagnosticHelp551 IsNot Nothing Then
                     If pDiag.diagnosticHelp551.HasValue() Then
                         pDiag.diagnosticHelp551.idDiag = pDiag.id
-                        DiagnosticHelp551Manager.save(pDiag.diagnosticHelp551, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticHelp551Manager.save(pDiag.diagnosticHelp551, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
                 'Sauvegarde des Help 12323 (Si on a des valeurs pertinentes)
                 If pDiag.diagnosticHelp12323 IsNot Nothing Then
                     If pDiag.diagnosticHelp12323.HasValue() Then
                         pDiag.diagnosticHelp12323.idDiag = pDiag.id
-                        DiagnosticHelp551Manager.save(pDiag.diagnosticHelp12323, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticHelp551Manager.save(pDiag.diagnosticHelp12323, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
 
@@ -1384,7 +1383,7 @@ Public Class DiagnosticManager
                 If pDiag.diagnosticHelp5621 IsNot Nothing Then
                     If pDiag.diagnosticHelp5621.HasValue() Then
                         pDiag.diagnosticHelp5621.idDiag = pDiag.id
-                        DiagnosticHelp5621Manager.save(pDiag.diagnosticHelp5621, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticHelp5621Manager.save(pDiag.diagnosticHelp5621, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
 
@@ -1392,7 +1391,7 @@ Public Class DiagnosticManager
                 If pDiag.diagnosticHelp552 IsNot Nothing Then
                     If pDiag.diagnosticHelp552.hasValue() Then
                         pDiag.diagnosticHelp552.idDiag = pDiag.id
-                        DiagnosticHelp552Manager.save(pDiag.diagnosticHelp552, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticHelp552Manager.save(pDiag.diagnosticHelp552, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
 
@@ -1400,7 +1399,7 @@ Public Class DiagnosticManager
                 If pDiag.diagnosticHelp5622 IsNot Nothing Then
                     If pDiag.diagnosticHelp5622.hasValue() Then
                         pDiag.diagnosticHelp5622.idDiag = pDiag.id
-                        DiagnosticHelp5622Manager.save(pDiag.diagnosticHelp5622, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticHelp5622Manager.save(pDiag.diagnosticHelp5622, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
 
@@ -1408,7 +1407,7 @@ Public Class DiagnosticManager
                 If pDiag.diagnosticHelp811 IsNot Nothing Then
                     If pDiag.diagnosticHelp811.hasValue() Then
                         pDiag.diagnosticHelp811.idDiag = pDiag.id
-                        DiagnosticHelp811Manager.save(pDiag.diagnosticHelp811, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticHelp811Manager.save(pDiag.diagnosticHelp811, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
 
@@ -1416,13 +1415,13 @@ Public Class DiagnosticManager
                 If pDiag.diagnosticHelp8312 IsNot Nothing Then
                     If pDiag.diagnosticHelp8312.hasValue() Then
                         pDiag.diagnosticHelp8312.idDiag = pDiag.id
-                        DiagnosticHelp831Manager.save(pDiag.diagnosticHelp8312, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticHelp831Manager.save(pDiag.diagnosticHelp8312, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
                 If pDiag.diagnosticHelp8314 IsNot Nothing Then
                     If pDiag.diagnosticHelp8314.hasValue() Then
                         pDiag.diagnosticHelp8314.idDiag = pDiag.id
-                        DiagnosticHelp831Manager.save(pDiag.diagnosticHelp8314, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticHelp831Manager.save(pDiag.diagnosticHelp8314, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
 
@@ -1430,14 +1429,14 @@ Public Class DiagnosticManager
                 If pDiag.diagnosticHelp571 IsNot Nothing Then
                     If pDiag.diagnosticHelp571.hasValue() Then
                         pDiag.diagnosticHelp571.idDiag = pDiag.id
-                        DiagnosticHelp571Manager.save(pDiag.diagnosticHelp571, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticHelp571Manager.save(pDiag.diagnosticHelp571, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
                 'Sauvegarde des Help 12123 (Si on a des valeurs pertinentes)
                 If pDiag.diagnosticHelp12123 IsNot Nothing Then
                     If pDiag.diagnosticHelp12123.hasValue() Then
                         pDiag.diagnosticHelp12123.idDiag = pDiag.id
-                        DiagnosticHelp12123Manager.save(pDiag.diagnosticHelp12123, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticHelp12123Manager.save(pDiag.diagnosticHelp12123, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
                 CSDebug.dispInfo("DiagnosticManager Save : SaveHelps")
@@ -1445,70 +1444,67 @@ Public Class DiagnosticManager
                 If pDiag.diagnosticInfosComplementaires IsNot Nothing Then
                     If pDiag.diagnosticInfosComplementaires.hasValue() Then
                         pDiag.diagnosticInfosComplementaires.idDiag = pDiag.id
-                        DiagnosticInfosComplementaireManager.save(pDiag.diagnosticInfosComplementaires, pDiag.organismePresId, pDiag.inspecteurId)
+                        DiagnosticInfosComplementaireManager.save(pDiag.diagnosticInfosComplementaires, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
                 ' On enregistre les buses
                 'CSDebug.dispInfo("Sauvegarde des buses")
-                Dim oCSDB As New CSDb(True)
-                oCSDB.Execute("DELETE FROM diagnosticBusesDetail where idDiagnostic = '" & pDiag.id & "'")
+                '                oCSDb.getInstance()
+                oCSDb.Execute("DELETE FROM diagnosticBusesDetail where idDiagnostic = '" & pDiag.id & "'")
                 oCSDB.Execute("DELETE FROM diagnosticBuses where idDiagnostic = '" & pDiag.id & "'")
-                oCSDB.free()
+                '               oCSDB.free()
                 If Not pDiag.diagnosticBusesList Is Nothing Then
                     If Not pDiag.diagnosticBusesList.Liste Is Nothing Then
                         For Each tmpItemCheck As DiagnosticBuses In pDiag.diagnosticBusesList.Liste
                             If Not tmpItemCheck Is Nothing Then
                                 tmpItemCheck.idDiagnostic = pDiag.id
-                                DiagnosticBusesManager.save(tmpItemCheck)
+                                DiagnosticBusesManager.save(tmpItemCheck, oCSDb, bsyncro)
                             End If
                         Next
                     End If
                 End If
                 CSDebug.dispInfo("DiagnosticManager Save : SaveBuses")
 
-                Dim oCSDB2 As New CSDb(True)
-                oCSDB2.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & pDiag.id & "'")
-                oCSDB2.free()
+                oCSDb.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & pDiag.id & "'")
                 ' On enregistre les mano 5.4.2
                 'CSDebug.dispInfo("Sauvegarde des Mano542")
                 If Not pDiag.diagnosticMano542List Is Nothing Then
-                        If Not pDiag.diagnosticMano542List.Liste Is Nothing Then
-                            For Each tmpItemCheck As DiagnosticMano542 In pDiag.diagnosticMano542List.Liste
-                                If Not tmpItemCheck Is Nothing Then
-                                    tmpItemCheck.idDiagnostic = pDiag.id
-                                    DiagnosticMano542Manager.save(tmpItemCheck)
-                                End If
-                            Next
-                        End If
+                    If Not pDiag.diagnosticMano542List.Liste Is Nothing Then
+                        For Each tmpItemCheck As DiagnosticMano542 In pDiag.diagnosticMano542List.Liste
+                            If Not tmpItemCheck Is Nothing Then
+                                tmpItemCheck.idDiagnostic = pDiag.id
+                                DiagnosticMano542Manager.save(tmpItemCheck, oCSDb, bsyncro)
+                            End If
+                        Next
                     End If
-                    CSDebug.dispInfo("DiagnosticManager Save : Save542")
+                End If
+                CSDebug.dispInfo("DiagnosticManager Save : Save542")
 
-                Dim oCSDB1 As New CSDb(True)
-                oCSDB1.Execute("DELETE FROM diagnosticTroncons833 where idDiagnostic = '" & pDiag.id & "'")
-                oCSDB1.free()
+                oCSDb.Execute("DELETE FROM diagnosticTroncons833 where idDiagnostic = '" & pDiag.id & "'")
                 ' On enregistre les tronçons 8.3.3
                 'CSDebug.dispInfo("Sauvegarde des Tronçons833")
                 If Not pDiag.diagnosticTroncons833 Is Nothing Then
-                        If Not pDiag.diagnosticTroncons833.Liste Is Nothing Then
-                            For Each tmpItemCheck As DiagnosticTroncons833 In pDiag.diagnosticTroncons833.Liste
-                                If Not tmpItemCheck Is Nothing Then
-                                    tmpItemCheck.idDiagnostic = pDiag.id
-                                    'Par sécurité on recalcule les idPressions car certains diag on des id = 5,6,7,8
-                                    If tmpItemCheck.idPression > 4 Then
-                                        tmpItemCheck.idPression = (tmpItemCheck.idPression Mod 4)
-                                        If tmpItemCheck.idPression = 0 Then
-                                            tmpItemCheck.idPression = 4
-                                        End If
+                    If Not pDiag.diagnosticTroncons833.Liste Is Nothing Then
+                        For Each tmpItemCheck As DiagnosticTroncons833 In pDiag.diagnosticTroncons833.Liste
+                            If Not tmpItemCheck Is Nothing Then
+                                tmpItemCheck.idDiagnostic = pDiag.id
+                                'Par sécurité on recalcule les idPressions car certains diag on des id = 5,6,7,8
+                                If tmpItemCheck.idPression > 4 Then
+                                    tmpItemCheck.idPression = (tmpItemCheck.idPression Mod 4)
+                                    If tmpItemCheck.idPression = 0 Then
+                                        tmpItemCheck.idPression = 4
                                     End If
-                                    DiagnosticTroncons833Manager.save(tmpItemCheck, bsyncro)
                                 End If
-                            Next
-                        End If
+                                DiagnosticTroncons833Manager.save(tmpItemCheck, oCSDb, bsyncro)
+                            End If
+                        Next
                     End If
-                    CSDebug.dispInfo("DiagnosticManager Save : Save833")
-
                 End If
-                bReturn = True
+                CSDebug.dispInfo("DiagnosticManager Save : Save833")
+
+                oCSDb.free()
+            End If
+            bReturn = True
             CSDebug.dispInfo("DiagnosticManager Save : Fin")
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticManager(" & pDiag.id & ")::save : " & ex.Message.ToString)
@@ -1517,11 +1513,12 @@ Public Class DiagnosticManager
         Return bReturn
     End Function
 
-    Public Shared Function SaveDiagItems(oCSDB As CSDb, ByVal pDiagnostic As Diagnostic, ByVal bcreationDiag As Boolean, Optional bsynchro As Boolean = False) As Boolean
+    Public Shared Function SaveDiagItems(pCSDB As CSDb, ByVal pDiagnostic As Diagnostic, ByVal bcreationDiag As Boolean, Optional bsynchro As Boolean = False) As Boolean
+        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
         Dim bReturn As Boolean
         Dim oCmd As DbCommand
         Try
-            oCmd = oCsdb.getConnection.CreateCommand()
+            oCmd = pCSDB.getConnection.CreateCommand()
             Dim tmpNewDiagItemId As String = ""
             'Pour accellérer la sauvegarde en création on récupère le nouvel id des diagItem et on l'incrémentera au fur et à mesure
             tmpNewDiagItemId = pDiagnostic.organismePresId & "-" & pDiagnostic.inspecteurId & "-1"
@@ -1647,7 +1644,7 @@ Public Class DiagnosticManager
 
                             oCmd.ExecuteNonQuery()
                             If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
-                                Dim oCmd2 As DbCommand = oCsdb.getConnection().CreateCommand()
+                                Dim oCmd2 As DbCommand = pCSDB.getConnection().CreateCommand()
                                 oCmd2.CommandText = "SELECT last_insert_rowid()"
                                 oDiagItem.id = CInt(oCmd2.ExecuteScalar())
                             Else

@@ -5627,9 +5627,11 @@ Public Class DiagnosticManagerTest
         DiagnosticManager.save(oDiag)
         Dim oDiagBusesList As DiagnosticBusesList
         oDiagBusesList = DiagnosticBusesManager.getWSDiagnosticBusesByDiagId(oDiag.id)
+        Dim oCSDB As New CSDb(True)
         For Each oDiagBuses As DiagnosticBuses In oDiagBusesList.Liste
-            DiagnosticBusesManager.save(oDiagBuses)
+            DiagnosticBusesManager.save(oDiagBuses, oCSDB)
         Next
+        oCSDB.free()
         Dim oDiagBusesDetailList As DiagnosticBusesDetailList
         oDiagBusesDetailList = DiagnosticBusesDetailManager.getWSDiagnosticBusesDetailByDiagId(oDiag.id)
         For Each oDiagBusesDetail As DiagnosticBusesDetail In oDiagBusesDetailList.Liste

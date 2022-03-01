@@ -538,15 +538,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("V2.7.02")>  _
-    Public ReadOnly Property DBVersionExpected() As String
-        Get
-            Return CType(Me("DBVersionExpected"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
     Public ReadOnly Property checkNetwork() As Boolean
         Get
@@ -565,10 +556,28 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20211119170000")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("V2.8.00")>  _
+    Public ReadOnly Property DBVersionExpected() As String
+        Get
+            Return CType(Me("DBVersionExpected"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20220201120000")>  _
     Public ReadOnly Property NumBuild() As String
         Get
             Return CType(Me("NumBuild"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("SQLITE")>  _
+    Public ReadOnly Property BDDType() As String
+        Get
+            Return CType(Me("BDDType"),String)
         End Get
     End Property
 End Class

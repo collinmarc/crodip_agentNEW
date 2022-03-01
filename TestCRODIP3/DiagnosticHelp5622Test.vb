@@ -56,6 +56,8 @@ Public Class DiagnosticHelp5622test
         Dim oDiagHelp5622 As DiagnosticHelp5622
         Dim oDiag As Diagnostic
         Dim iD As String
+        Dim oCSDB As New CSDb(True)
+
 
         oDiag = createAndSaveDiagnostic()
 
@@ -80,7 +82,7 @@ Public Class DiagnosticHelp5622test
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp5622.id))
-        Assert.IsTrue(oDiagHelp5622.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp5622.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
         iD = oDiagHelp5622.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp5622.id))
 
@@ -123,7 +125,7 @@ Public Class DiagnosticHelp5622test
 
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp5622.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp5622.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
 
         Debug.WriteLine("Lecture")
         oDiagHelp5622 = New DiagnosticHelp5622()
@@ -146,8 +148,7 @@ Public Class DiagnosticHelp5622test
         Assert.AreEqual(oDiagHelp5622.DebitEtalon_m3, 112.3D)
         Assert.AreEqual(oDiagHelp5622.DebitAfficheur_m3, 113.3D)
 
-        Debug.WriteLine("Suppression")
-        oDiagHelp5622.Delete()
+        oCSDB.free()
 
     End Sub
     <TestMethod()>

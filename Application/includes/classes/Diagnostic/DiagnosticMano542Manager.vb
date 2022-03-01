@@ -88,14 +88,14 @@ Public Class DiagnosticMano542Manager
 #Region "Methodes Locales"
 
     ' o
-    Public Shared Function save(ByVal objDiagnosticMano542 As DiagnosticMano542, Optional bSyncro As Boolean = False) As Boolean
+    Public Shared Function save(ByVal objDiagnosticMano542 As DiagnosticMano542, pCSDB As CSDb, Optional bSyncro As Boolean = False) As Boolean
+        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
+
         Dim bReturn As Boolean
-        Dim oCSDb As New CSDb(True)
         Dim bddCommande As DbCommand
-        Dim oDR As DbDataReader
         Dim nEnr As Integer
         Try
-            bddCommande = oCSDb.getConnection().CreateCommand()
+            bddCommande = pCSDB.getConnection().CreateCommand()
             'Test de l'existence de l'élement
             bddCommande.CommandText = "SELECT count(*) FROM DiagnosticMano542 WHERE id = " & objDiagnosticMano542.id & " and idDiagnostic = '" & objDiagnosticMano542.idDiagnostic & "'"
             nEnr = CInt(bddCommande.ExecuteScalar)
@@ -160,9 +160,6 @@ Public Class DiagnosticMano542Manager
             bReturn = False
         End Try
 
-        If Not oCSDb Is Nothing Then
-            oCSDb.free()
-        End If
     End Function
 
     ' o

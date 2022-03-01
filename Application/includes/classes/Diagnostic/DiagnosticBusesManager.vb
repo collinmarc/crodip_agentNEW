@@ -188,11 +188,11 @@ Public Class DiagnosticBusesManager
     '    Return tmpDiagnosticId
     'End Function
 
-    Public Shared Sub save(ByVal objDiagnosticBuses As DiagnosticBuses, Optional bSyncro As Boolean = False)
+    Public Shared Sub save(ByVal objDiagnosticBuses As DiagnosticBuses, pCSDB As CSDb, Optional bSyncro As Boolean = False)
+        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
 
-        Dim oCSDb As New CSDb(True)
         Dim bddCommande As DbCommand
-        bddCommande = oCSDb.getConnection().CreateCommand()
+        bddCommande = pCSDB.getConnection().CreateCommand()
         Try
             Dim nEnr As Integer
 
@@ -391,9 +391,6 @@ Public Class DiagnosticBusesManager
             CSDebug.dispFatal("DiagBusesManager.save : " & ex.Message.ToString)
         End Try
 
-        If oCSDb IsNot Nothing Then
-            oCSDb.free()
-        End If
     End Sub
 
     Public Shared Sub setSynchro(ByVal objDiagnosticBuses As DiagnosticBuses)

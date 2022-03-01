@@ -72,7 +72,9 @@ Public Class DiagnosticHelp12123Pompetest
         oDiagHelp12123P.DebitReel = 1.6D
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString))
+        Dim oCSDB As New CSDb(True)
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString, oCSDB))
+        oCSDB.free()
         iD = oDiagHelp12123P.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp12123P.id))
 
@@ -106,8 +108,9 @@ Public Class DiagnosticHelp12123Pompetest
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMINEUR
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString))
-
+        oCSDB.getInstance()
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString, oCSDB))
+        oCSDB.free()
         Debug.WriteLine("Lecture")
         oDiagHelp12123P = New DiagnosticHelp12123Pompe(iD, idDiag)
         Assert.IsTrue(oDiagHelp12123P.Load())
@@ -162,7 +165,9 @@ Public Class DiagnosticHelp12123Pompetest
         oMesure.idDiag = oPompe.idDiag
         oMesure.ReglageDispositif = 1.3D
 
-        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString))
+        Dim oCSDB As New CSDb(True)
+        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString, oCSDB))
+        oCSDB.free()
         iD = oPompe.id
         Assert.IsFalse(String.IsNullOrEmpty(oPompe.id))
 
@@ -200,7 +205,10 @@ Public Class DiagnosticHelp12123Pompetest
         oMesure = oPompe.getMesure(2)
         oMesure.ReglageDispositif = 2.3D
 
-        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString.ToString))
+        oCSDB.getInstance()
+
+        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString.ToString, oCSDB))
+        oCSDB.free()
         Debug.WriteLine("Lecture")
         oPompe = New DiagnosticHelp12123Pompe(iD, idDiag)
         Assert.IsTrue(oPompe.Load())
@@ -238,7 +246,10 @@ Public Class DiagnosticHelp12123Pompetest
         oDiagHelp12123P.DebitReel = 1.6D
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oStructure.id.ToString, m_oAgent.id.ToString))
+        Dim oCSDB As New CSDb(True)
+
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oStructure.id.ToString, m_oAgent.id.ToString, oCSDB))
+        oCSDB.free()
         iD = oDiagHelp12123P.id
 
         'Act

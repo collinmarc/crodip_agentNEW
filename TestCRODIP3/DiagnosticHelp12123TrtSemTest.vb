@@ -58,6 +58,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         Dim oDiagHelp12123P As DiagnosticHelp12123PompeTrtSem
         Dim idDiag As String = createAndSaveDiagnostic().id
         Dim iD As String
+        Dim oCSDB As New CSDb(True)
 
 
         oDiagHelp12123P = New DiagnosticHelp12123PompeTrtSem(oHelp12123, 1)
@@ -67,7 +68,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         oDiagHelp12123P.EcartReglageMoyen = 2.3D
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure, m_oAgent.id))
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure, m_oAgent.id, oCSDB))
         iD = oDiagHelp12123P.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp12123P.id))
 
@@ -92,7 +93,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMINEUR
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure, m_oAgent.id))
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure, m_oAgent.id, oCSDB))
 
         Debug.WriteLine("Lecture")
         oDiagHelp12123P = New DiagnosticHelp12123PompeTrtSem(iD, idDiag)
@@ -114,9 +115,10 @@ Public Class DiagnosticHelp12123TrtSemTest
         Dim oPompe As DiagnosticHelp12123PompeTrtSem
         Dim idDiag As String = createAndSaveDiagnostic().id
         Dim iD As String
+        Dim oCSDB As New CSDb(True)
 
         'Suppressino des Mesures
-        CSDb.ExecuteSQL("DELETE FROM DiagnosticItem WHERE idDiagnostic= '" + idDiag + "'")
+        oCSDB.Execute("DELETE FROM DiagnosticItem WHERE idDiagnostic= '" + idDiag + "'")
 
         oPompe = New DiagnosticHelp12123PompeTrtSem(oHelp12123, 1)
         oPompe.idDiag = idDiag
@@ -139,7 +141,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         'oMesure.idDiag = oPompe.idDiag
         'oMesure.qteGrains = 1.3D
 
-        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id))
+        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id, oCSDB))
         iD = oPompe.id
         Assert.IsFalse(String.IsNullOrEmpty(oPompe.id))
 
@@ -176,7 +178,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         'oMesure = oPompe.getMesure(2)
         'oMesure.qteGrains = 2.3D
 
-        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id))
+        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id, oCSDB))
         Debug.WriteLine("Lecture")
         oPompe = New DiagnosticHelp12123PompeTrtSem(iD, idDiag)
         Assert.IsTrue(oPompe.Load())
@@ -190,7 +192,7 @@ Public Class DiagnosticHelp12123TrtSemTest
 
         'oMesure = oPompe.getMesure(2)
         'Assert.AreEqual(2.3D, oMesure.qteGrains)
-
+        oCSDB.free()
 
 
     End Sub
@@ -200,6 +202,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         Dim oDiagHelp12123P As DiagnosticHelp12123PompeTrtSem
         Dim idDiag As String = createAndSaveDiagnostic().id
         Dim iD As String
+        Dim oCSDB As New CSDb(True)
 
         'Arrange
         oDiagHelp12123P = New DiagnosticHelp12123PompeTrtSem(oHelp12123, 1)
@@ -209,7 +212,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         oDiagHelp12123P.EcartReglageMoyen = 1.21D
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oStructure.id, m_oAgent.id))
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oStructure.id, m_oAgent.id, oCSDB))
         iD = oDiagHelp12123P.id
 
         'Act
@@ -225,6 +228,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         Assert.AreEqual(1.21D, oDiagHelp12123P.EcartReglageMoyen)
         Assert.AreEqual(DiagnosticItem.EtatDiagItemMAJEUR, oDiagHelp12123P.Resultat)
 
+        oCSDB.free()
     End Sub
 
     <TestMethod()>

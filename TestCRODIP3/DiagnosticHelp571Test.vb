@@ -56,6 +56,7 @@ Public Class DiagnosticHelp571test
         Dim oDiagHelp571 As DiagnosticHelp571
         Dim oDiag As Diagnostic
         Dim iD As String
+        Dim oCSDB As New CSDb(True)
 
         oDiag = createAndSaveDiagnostic()
 
@@ -83,7 +84,7 @@ Public Class DiagnosticHelp571test
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp571.id))
-        Assert.IsTrue(oDiagHelp571.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp571.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
         iD = oDiagHelp571.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp571.id))
 
@@ -131,7 +132,7 @@ Public Class DiagnosticHelp571test
         oDiagHelp571.IsDPAEPression = False
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp571.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagHelp571.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
 
         Debug.WriteLine("Lecture")
         oDiagHelp571 = New DiagnosticHelp571()
@@ -155,8 +156,7 @@ Public Class DiagnosticHelp571test
         Assert.AreEqual(True, oDiagHelp571.IsDPAEDebit)
         Assert.AreEqual(False, oDiagHelp571.IsDPAEPression)
 
-        Debug.WriteLine("Suppression")
-        oDiagHelp571.Delete()
+        oCSDB.free()
 
     End Sub
     <TestMethod()>

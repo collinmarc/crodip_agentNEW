@@ -85,9 +85,11 @@ Public Class SynchronisationElmtDiag
             Try
                 SetStatus("Réception MAJ buse de contrôle n°" & Me.IdentifiantChaine & "...")
                 tmpObjectList = DiagnosticBusesManager.getWSDiagnosticBusesByDiagId(Me.IdentifiantChaine)
+                Dim oCSDB As New CSDb(True)
                 For Each tmpObject In tmpObjectList.Liste
-                    DiagnosticBusesManager.save(tmpObject, True)
+                    DiagnosticBusesManager.save(tmpObject, oCSDB, True)
                 Next
+                oCSDB.free()
                 bReturn = True
             Catch ex As Exception
                 CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticBuses) : " & ex.Message.ToString)
@@ -114,10 +116,12 @@ Public Class SynchronisationElmtDiag
             Dim tmpObject As New DiagnosticMano542
             Try
                 SetStatus("Réception MAJ DiagnosticMano542 n°" & Me.IdentifiantChaine & "...")
+                Dim oCSDB As New CSDb(True)
                 tmpObjectList = DiagnosticMano542Manager.getWSDiagnosticMano542ByDiagId(Me.IdentifiantChaine)
                 For Each tmpObject In tmpObjectList.Liste
-                    DiagnosticMano542Manager.save(tmpObject, True)
+                    DiagnosticMano542Manager.save(tmpObject, oCSDB, True)
                 Next
+                oCSDB.free()
                 bReturn = True
             Catch ex As Exception
                 CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticBusesDetail) : " & ex.Message.ToString)
@@ -129,10 +133,12 @@ Public Class SynchronisationElmtDiag
             Dim oListManotroncon833 As New DiagnosticTroncons833List
             Try
                 SetStatus("Réception MAJ DiagnosticTroncons833 n°" & Me.IdentifiantChaine & "...")
+                Dim oCSDB As New CSDb(True)
                 oListManotroncon833 = DiagnosticTroncons833Manager.getWSDiagnosticTroncons833ByDiagId(Me.IdentifiantChaine)
                 For Each oManoTroncon833 In oListManotroncon833.Liste
-                    DiagnosticTroncons833Manager.save(oManoTroncon833, True)
+                    DiagnosticTroncons833Manager.save(oManoTroncon833, oCSDB, True)
                 Next
+                oCSDB.free()
                 bReturn = True
             Catch ex As Exception
                 CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticBusesDetail) : " & ex.Message.ToString)

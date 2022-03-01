@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("CRODIP")>
 <Assembly: AssemblyProduct("Logiciel Crodip Agent")>
 <Assembly: AssemblyCopyright("")>
-<Assembly: AssemblyTrademark("20220117170000")>
+<Assembly: AssemblyTrademark("20220225120000")>
 <Assembly: CLSCompliant(False)>
 
 'Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
@@ -29,9 +29,9 @@ Imports System.Runtime.InteropServices
 ' Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut 
 ' en utilisant '*', comme indiqué ci-dessous :
 
-<Assembly: AssemblyVersion("2.7.1.0")>
+<Assembly: AssemblyVersion("3.0.0.0")>
 
 <Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodip")>
 <Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodip3")>
-<Assembly: AssemblyFileVersionAttribute("2022.02.02.1000")>
+<Assembly: AssemblyFileVersionAttribute("2022.02.28.1200")>
 <Assembly: ComVisible(False)>

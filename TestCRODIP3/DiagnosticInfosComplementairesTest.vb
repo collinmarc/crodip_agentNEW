@@ -56,6 +56,7 @@ Public Class DiagnosticInfosComplementairesTest
         Dim oDiagInfosComplementaires As DiagnosticInfosComplementaires
         Dim oDiag As Diagnostic
         Dim iD As String
+        Dim oCSDB As New CSDb(True)
 
         oDiag = createAndSaveDiagnostic()
 
@@ -68,7 +69,7 @@ Public Class DiagnosticInfosComplementairesTest
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagInfosComplementaires.id))
-        Assert.IsTrue(oDiagInfosComplementaires.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagInfosComplementaires.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
         iD = oDiagInfosComplementaires.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagInfosComplementaires.id))
 
@@ -85,7 +86,7 @@ Public Class DiagnosticInfosComplementairesTest
         oDiagInfosComplementaires.PressionParDefaut = "4"
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagInfosComplementaires.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Assert.IsTrue(oDiagInfosComplementaires.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDB))
 
         Debug.WriteLine("Lecture")
         oDiagInfosComplementaires = New DiagnosticInfosComplementaires()

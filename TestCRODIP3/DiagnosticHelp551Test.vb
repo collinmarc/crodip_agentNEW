@@ -71,7 +71,9 @@ Public Class DiagnosticHelp551test
 
         Debug.WriteLine("Création")
         Assert.IsTrue(String.IsNullOrEmpty(oDiagHelp551.id))
-        Assert.IsTrue(oDiagHelp551.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        Dim oCSDb As New CSDb(True)
+        Assert.IsTrue(oDiagHelp551.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDb))
+        oCSDb.free()
         iD = oDiagHelp551.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp551.id))
 
@@ -98,7 +100,10 @@ Public Class DiagnosticHelp551test
         oDiagHelp551.VitesseLue2 = 300.2D
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp551.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString))
+        oCSDb.getInstance()
+        Assert.IsTrue(oDiagHelp551.Save(oDiag.organismePresId.ToString, oDiag.inspecteurId.ToString, oCSDb))
+        oCSDb.free()
+
 
         Debug.WriteLine("Lecture")
         oDiagHelp551 = New DiagnosticHelp551(DiagnosticHelp551.Help551Mode.Mode551)

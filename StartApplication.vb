@@ -94,6 +94,12 @@ Module StartApplication
 
         ofrm = New parentContener()
 #End If
+        If File.Exists("./TransfertBDD") Then
+            Dim oFrmBDD As New FrmMigrationBDD()
+            If oFrmBDD.ShowDialog() = DialogResult.OK Then
+                File.Delete("./TransfertBDD")
+            End If
+        End If
         CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
         If Not bLoginFailed Then
             ofrm.ShowDialog()

@@ -20,7 +20,7 @@ Public Class CSDb
     Protected DBextension As String = ".mdb"
     ' Parametres de connexion
     ' Connexion
-    Protected _dbConnection As DbConnection
+    Protected _dbConnection As DbConnection = Nothing
     Protected _bddConnectString As String
     Protected _dbName As String ' Nom de la base de données
     ' Query
@@ -28,50 +28,53 @@ Public Class CSDb
     Public Shared _DBTYPE As CSDb.EnumDBTYPE = CSDb.EnumDBTYPE.SQLITE
 
     Sub New(Optional ByVal doConnect As Boolean = False, Optional pdbPath As String = "", Optional pdbExtension As String = "")
-        _queryString = ""
-        If _DBTYPE = EnumDBTYPE.MSACCESS Then
-            If pdbPath = "" Then
-                conf_bddPath = My.Settings.DB
-            Else
-                conf_bddPath = pdbPath
-            End If
-
-            If pdbExtension = "" Then
-                DBextension = My.Settings.DBExtension
-            Else
-                DBextension = pdbExtension
-            End If
-            If conf_bddPath = "" Then
-                conf_bddPath = "cropdip_agent"
-            End If
-            conf_bddPath_dev = conf_bddPath & "_dev"
-
-            If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
-                _dbName = conf_bddPath_dev
-            Else
-                _dbName = conf_bddPath
-            End If
-        Else
-            _dbName = "crodip_agent"
-            DBextension = ".db3"
-        End If
-
-        _bddConnectString = getConnectString(_dbName, _DBTYPE)
-
-
         If _dbConnection Is Nothing Then
-            Select Case _DBTYPE
-                Case EnumDBTYPE.MSACCESS
-                    _dbConnection = New OleDb.OleDbConnection
-                Case EnumDBTYPE.SQLITE
-                    _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
-                    Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
-                    oBuider.DataSource = "bdd/crodip_agent.db3"
-                    _dbConnection.ConnectionString = oBuider.ConnectionString
-            End Select
-        End If
+            _queryString = ""
+            If _DBTYPE = EnumDBTYPE.MSACCESS Then
+                If pdbPath = "" Then
+                    conf_bddPath = My.Settings.DB
+                Else
+                    conf_bddPath = pdbPath
+                End If
 
-        _dbConnection.ConnectionString = _bddConnectString
+                If pdbExtension = "" Then
+                    DBextension = My.Settings.DBExtension
+                Else
+                    DBextension = pdbExtension
+                End If
+                If conf_bddPath = "" Then
+                    conf_bddPath = "cropdip_agent"
+                End If
+                conf_bddPath_dev = conf_bddPath & "_dev"
+
+                If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
+                    _dbName = conf_bddPath_dev
+                Else
+                    _dbName = conf_bddPath
+                End If
+            Else
+                _dbName = "crodip_agent"
+                DBextension = ".db3"
+            End If
+
+            _bddConnectString = getConnectString(_dbName, _DBTYPE)
+
+
+            If _dbConnection Is Nothing Then
+                Select Case _DBTYPE
+                    Case EnumDBTYPE.MSACCESS
+                        _dbConnection = New OleDb.OleDbConnection
+                    Case EnumDBTYPE.SQLITE
+                        _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
+                        Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
+                        oBuider.DataSource = "bdd/crodip_agent.db3"
+                        _dbConnection.ConnectionString = oBuider.ConnectionString
+                End Select
+            End If
+
+            _dbConnection.ConnectionString = _bddConnectString
+
+        End If
 
         If doConnect = True Then
             If Not getInstance() Then
@@ -167,19 +170,18 @@ Public Class CSDb
         Dim bReturn As Boolean
         Try
             ' Test pour fermeture de connection BDD
-            If _dbConnection.State <> ConnectionState.Open Then
+            If _dbConnection.State <> ConnectionState.Closed Then
                 free()
             End If
         Catch ex As Exception
             CSDebug.dispError("CSDb.getInstance1 ERR : " & ex.Message)
-        End Try
-
+            End Try
         ' on essaie 10 fois la connexion
         Dim nTry As Integer
         For nTry = 1 To 10
             Try
 
-                If _dbConnection.State() = 0 Then
+                If _dbConnection.State() = ConnectionState.Closed Then
                     ' Si non, on la configure et on l'ouvre
                     _dbConnection.Open()
                     bReturn = True
@@ -392,6 +394,13 @@ Public Class CSDb
             bReturn = False
         End Try
         Return bReturn
+    End Function
+
+    Public Function isOpen() As Boolean
+        Return (getConnection().State = ConnectionState.Open)
+    End Function
+    Public Function isClose() As Boolean
+        Return (getConnection().State = ConnectionState.Closed)
     End Function
 
     Public Shared Function ExecuteSQL(pSQL As String) As Boolean
