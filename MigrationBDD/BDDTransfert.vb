@@ -1705,7 +1705,7 @@ INSERT INTO Diagnostic (
         ocmdACCESS.CommandText = "SELECT Count(*) FROM DiagnosticItem Where ItemCodeEtat <> 'B'"
         nMax = ocmdACCESS.ExecuteScalar()
 
-        ocmdACCESS.CommandText = "SELECT * FROM DiagnosticItem"
+        ocmdACCESS.CommandText = "SELECT * FROM DiagnosticItem  Where ItemCodeEtat <> 'B'"
 
 
         ocmdSQL.CommandText = strSQL
