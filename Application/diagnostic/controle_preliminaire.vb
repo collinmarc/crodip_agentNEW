@@ -15,7 +15,7 @@ Public Class controle_preliminaire
     Private Const CHK_DEFAUT_MAJEURPRELIM As Integer = 4
     Private m_bDuringLoad As Boolean
     Private m_oParamdiag As CRODIP_ControlLibrary.ParamDiag
-    Private m_Mode As GlobalsCRODIP.DiagMode
+    Private m_ModeAffichage As GlobalsCRODIP.DiagMode
     Private m_Diagnostic As Diagnostic
     Private m_Pulverisateur As Pulverisateur
     Private m_Exploit As Exploitation
@@ -33,7 +33,7 @@ Public Class controle_preliminaire
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
 
-        m_Mode = GlobalsCRODIP.DiagMode.CTRL_COMPLET
+        m_ModeAffichage = GlobalsCRODIP.DiagMode.CTRL_COMPLET
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
 
         OrganizeControls()
@@ -44,7 +44,7 @@ Public Class controle_preliminaire
     Public Sub New(ByVal pMode As GlobalsCRODIP.DiagMode, pDiag As Diagnostic, pPulve As Pulverisateur, pclient As Exploitation)
         Me.New()
         m_bDuringLoad = True
-        m_Mode = pMode
+        m_ModeAffichage = pMode
         m_Diagnostic = pDiag
         m_Pulverisateur = pPulve
         m_Exploit = pclient
@@ -1651,7 +1651,7 @@ Public Class controle_preliminaire
         btn_controlePreliminaire_poursuivre.Visible = False
         btn_toutCocher.Visible = False
 
-        Select Case m_Mode
+        Select Case m_ModeAffichage
             Case GlobalsCRODIP.DiagMode.CTRL_COMPLET
                 btn_toutCocher.Visible = True
             Case GlobalsCRODIP.DiagMode.CTRL_CV
@@ -1676,8 +1676,8 @@ Public Class controle_preliminaire
         End If
 
         m_bDuringLoad = False
-        If m_Mode <> GlobalsCRODIP.DiagMode.CTRL_COMPLET Or
-                (m_Mode = GlobalsCRODIP.DiagMode.CTRL_COMPLET And m_Diagnostic.diagRemplacementId <> "") Then
+        If m_ModeAffichage <> GlobalsCRODIP.DiagMode.CTRL_COMPLET Or
+                (m_ModeAffichage = GlobalsCRODIP.DiagMode.CTRL_COMPLET And m_Diagnostic.diagRemplacementId <> "") Then
             'Chargement des infos existantes si on n'est pas sur un controle complet (CV ou VISU)
             'ou si on est en CC en remplacement
             AfficheDiagnosticItems()
@@ -1801,11 +1801,14 @@ Public Class controle_preliminaire
                                         End Sub)
                     Else
                         'Déchecker les controles OK du Groupe
-                        lstGrap.ForEach(Sub(oCtrl)
-                                            If oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
-                                                oCtrl.Checked = False
-                                            End If
-                                        End Sub)
+                        If m_ModeAffichage = GlobalsCRODIP.DiagMode.CTRL_CV _
+                            Or m_ModeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
+                            lstGrap.ForEach(Sub(oCtrl)
+                                                If oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
+                                                    oCtrl.Checked = False
+                                                End If
+                                            End Sub)
+                        End If
 
                     End If
                 End If
@@ -1974,7 +1977,7 @@ Public Class controle_preliminaire
         ' Ouverture form diagnostic
         Statusbar.clear()
         Me.Cursor = Cursors.WaitCursor
-        globFormDiagnostic = New FrmDiagnostique(m_Mode, m_Diagnostic, m_Pulverisateur, m_Exploit)
+        globFormDiagnostic = New FrmDiagnostique(m_ModeAffichage, m_Diagnostic, m_Pulverisateur, m_Exploit)
         TryCast(Me.MdiParent, parentContener).DisplayForm(globFormDiagnostic)
         Me.Cursor = Cursors.Default
 
@@ -2135,7 +2138,7 @@ Public Class controle_preliminaire
         'Dim objInfos(15) As Object
         '        diagnosticCourant.ChargeArrAnswers(arrAnswers)
         m_Diagnostic.ParamDiag = m_oParamdiag
-        Dim ofrm As New frmdiagnostic_recap(m_Mode, m_Diagnostic, m_Pulverisateur, m_Exploit, agentCourant, Me)
+        Dim ofrm As New frmdiagnostic_recap(m_ModeAffichage, m_Diagnostic, m_Pulverisateur, m_Exploit, agentCourant, Me)
         TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
 
         Statusbar.clear()

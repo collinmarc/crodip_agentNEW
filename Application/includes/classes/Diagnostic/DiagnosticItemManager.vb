@@ -344,7 +344,7 @@ Public Class DiagnosticItemManager
     ''' Sauvegarde d'un diagnosticItem
     ''' Paramètres :
     ''' pbForceCreate : Ne controle pas l'existence préalable de l'élément , Force la création immédiatement (Gain de temps)
-    Public Shared Function create(ByVal objDiagnosticItem As DiagnosticItem) As Boolean
+    Public Shared Function create(ByVal pDiagnosticItem As DiagnosticItem) As Boolean
 
         Dim breturn As Boolean
         Dim sDebugStep As String = "0"
@@ -363,44 +363,44 @@ Public Class DiagnosticItemManager
             Dim paramsQuery As String = ""
             If CSDb._DBTYPE <> CSDb.EnumDBTYPE.SQLITE Then
                 paramsQueryColomuns = paramsQueryColomuns & "id , "
-                paramsQuery = paramsQuery & "'" & objDiagnosticItem.id & " , '"
+                paramsQuery = paramsQuery & "'" & pDiagnosticItem.id & " , '"
             End If
 
 
             sDebugStep = "3"
             ' Mise a jour de la date de derniere modification
-            objDiagnosticItem.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+            pDiagnosticItem.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
 
-            If Not objDiagnosticItem.idDiagnostic Is Nothing And objDiagnosticItem.idDiagnostic <> "" Then
+            If Not pDiagnosticItem.idDiagnostic Is Nothing And pDiagnosticItem.idDiagnostic <> "" Then
                 paramsQueryColomuns = paramsQueryColomuns & "  idDiagnostic"
-                paramsQuery = paramsQuery & " '" & objDiagnosticItem.idDiagnostic & "'"
+                paramsQuery = paramsQuery & " '" & pDiagnosticItem.idDiagnostic & "'"
             End If
-            If Not objDiagnosticItem.idItem Is Nothing And objDiagnosticItem.idItem <> "" Then
+            If Not pDiagnosticItem.idItem Is Nothing And pDiagnosticItem.idItem <> "" Then
                 paramsQueryColomuns = paramsQueryColomuns & " , idItem"
-                paramsQuery = paramsQuery & " , '" & objDiagnosticItem.idItem & "'"
+                paramsQuery = paramsQuery & " , '" & pDiagnosticItem.idItem & "'"
             End If
-            If Not objDiagnosticItem.itemValue Is Nothing And objDiagnosticItem.itemValue <> "" Then
+            If Not pDiagnosticItem.itemValue Is Nothing And pDiagnosticItem.itemValue <> "" Then
                 paramsQueryColomuns = paramsQueryColomuns & " , itemValue"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objDiagnosticItem.itemValue) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(pDiagnosticItem.itemValue) & "'"
             End If
-            If Not objDiagnosticItem.itemCodeEtat Is Nothing And objDiagnosticItem.itemCodeEtat <> "" Then
+            If Not pDiagnosticItem.itemCodeEtat Is Nothing And pDiagnosticItem.itemCodeEtat <> "" Then
                 paramsQueryColomuns = paramsQueryColomuns & " , itemCodeEtat"
-                paramsQuery = paramsQuery & " , '" & objDiagnosticItem.itemCodeEtat & "'"
+                paramsQuery = paramsQuery & " , '" & pDiagnosticItem.itemCodeEtat & "'"
             End If
             'paramsQueryColomuns = paramsQueryColomuns & " , isItemCode1"
             'paramsQuery = paramsQuery & " , " & objDiagnosticItem.isItemCode1 & ""
             'paramsQueryColomuns = paramsQueryColomuns & " , isItemCode2"
             'paramsQuery = paramsQuery & " , " & objDiagnosticItem.isItemCode2 & ""
             paramsQueryColomuns = paramsQueryColomuns & " , cause"
-            paramsQuery = paramsQuery & " , '" & objDiagnosticItem.cause & "'"
+            paramsQuery = paramsQuery & " , '" & pDiagnosticItem.cause & "'"
 
-            If Not objDiagnosticItem.dateModificationAgent Is Nothing And objDiagnosticItem.dateModificationAgent <> "" Then
+            If Not pDiagnosticItem.dateModificationAgent Is Nothing And pDiagnosticItem.dateModificationAgent <> "" Then
                 paramsQueryColomuns = paramsQueryColomuns & " , dateModificationAgent"
-                paramsQuery = paramsQuery & " , '" & objDiagnosticItem.dateModificationAgent & "'"
+                paramsQuery = paramsQuery & " , '" & pDiagnosticItem.dateModificationAgent & "'"
             End If
-            If Not objDiagnosticItem.dateModificationCrodip Is Nothing And objDiagnosticItem.dateModificationCrodip <> "" Then
+            If Not pDiagnosticItem.dateModificationCrodip Is Nothing And pDiagnosticItem.dateModificationCrodip <> "" Then
                 paramsQueryColomuns = paramsQueryColomuns & " , dateModificationCrodip"
-                paramsQuery = paramsQuery & " , '" & objDiagnosticItem.dateModificationCrodip & "'"
+                paramsQuery = paramsQuery & " , '" & pDiagnosticItem.dateModificationCrodip & "'"
             End If
             sDebugStep = "4"
             ' On finalise la requete et en l'execute
@@ -412,7 +412,7 @@ Public Class DiagnosticItemManager
                 bddCommande.CommandText = "SELECT @@identity"
 
             End If
-            objDiagnosticItem.id = CInt(bddCommande.ExecuteScalar())
+            pDiagnosticItem.id = CInt(bddCommande.ExecuteScalar())
             sDebugStep = "5"
             ' Test pour fermeture de connection BDD
             If Not oCSDb Is Nothing Then

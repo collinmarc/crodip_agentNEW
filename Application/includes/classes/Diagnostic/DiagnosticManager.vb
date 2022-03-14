@@ -1287,7 +1287,7 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , commentaire='" & CSDb.secureString(pDiag.commentaire) & "'"
                 paramsQuery2 = paramsQuery2 & " , pulverisateurNumNational='" & CSDb.secureString(pDiag.pulverisateurNumNational) & "'"
                 paramsQuery2 = paramsQuery2 & " , pulverisateurNumChassis='" & CSDb.secureString(pDiag.pulverisateurNumChassis) & "'"
-                paramsQuery2 = paramsQuery2 & " , OrigineDiag='" & CSDb.secureString(pDiag.origineDiag) & "'"
+                paramsQuery2 = paramsQuery2 & " , origineDiag='" & CSDb.secureString(pDiag.origineDiag) & "'"
                 paramsQuery2 = paramsQuery2 & " , isSignRIAgent=" & pDiag.isSignRIAgent & ""
                 paramsQuery2 = paramsQuery2 & " , isSignRIClient=" & pDiag.isSignRIClient & ""
                 paramsQuery2 = paramsQuery2 & " , isSignCCAgent=" & pDiag.isSignCCAgent & ""

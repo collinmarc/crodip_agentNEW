@@ -5190,15 +5190,18 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                                             End If
                                         End Sub)
                     Else
-                        'Déchecker les controles OK du Groupe
-                        lstGrap.ForEach(Sub(oCtrl)
-                                            If oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
-                                                oCtrl.Checked = False
-                                            End If
-                                        End Sub)
+                        'Déchecker les controles OK du Groupe (Uniquement en CV ou VISU)
+                        If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_CV _
+                            Or m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
+                            lstGrap.ForEach(Sub(oCtrl)
+                                                If oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
+                                                    oCtrl.Checked = False
+                                                End If
+                                            End Sub)
+                        End If
 
                     End If
-                End If
+                    End If
 
                 'Vérification de l'onglet
                 checkIsOk(pOngletId)

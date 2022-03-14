@@ -59,53 +59,53 @@ Public Class StatsCrodipTest
         ostat = New StatsCrodip()
 
         Assert.IsTrue(ostat.Fill(m_oAgent, Date.Now.Year))
-        Dim nCtrlS As Integer = ostat.NCtrlStructureTotal
-        Dim nCtrlSA As Integer = ostat.NCtrlStructureAnnee
-        Dim nCtrlI As Integer = ostat.NCtrlInspecteurTotal
-        Dim nCtrlIA As Integer = ostat.NCtrlInspecteurAnnee
+        Dim nCtrlS As Integer = ostat.NCtrlCCStructureTotal
+        Dim nCtrlSA As Integer = ostat.NCtrlCCStructureAnnee
+        Dim nCtrlI As Integer = ostat.NCtrlCCInspecteurTotal
+        Dim nCtrlIA As Integer = ostat.NCtrlCCInspecteurAnnee
 
-        Dim nCtrlOKS As Integer = ostat.NCtrl_OK_StructureTotal
-        Dim nCtrlOKSA As Integer = ostat.NCtrl_OK_StructureAnnee
-        Dim nCtrlOKI As Integer = ostat.NCtrl_OK_InspecteurTotal
-        Dim nCtrlOKIA As Integer = ostat.NCtrl_OK_InspecteurAnnee
+        Dim nCtrlOKS As Integer = ostat.NCtrlCC_OK_StructureTotal
+        Dim nCtrlOKSA As Integer = ostat.NCtrlCC_OK_StructureAnnee
+        Dim nCtrlOKI As Integer = ostat.NCtrlCC_OK_InspecteurTotal
+        Dim nCtrlOKIA As Integer = ostat.NCtrlCC_OK_InspecteurAnnee
 
         Dim oDiag As Diagnostic = createAndSaveDiagnostic()
         oDiag.controleDateDebut = CSDate.FromCrodipString(Date.Now).ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC 'Controle NOK
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Assert.AreEqual(ostat.NCtrlStructureTotal, nCtrlS + 1)
-        Assert.AreEqual(ostat.NCtrlStructureAnnee, nCtrlSA + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurTotal, nCtrlI + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurAnnee, nCtrlIA + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureTotal, nCtrlS + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureAnnee, nCtrlSA + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurTotal, nCtrlI + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurAnnee, nCtrlIA + 1)
 
         'Modification du numéro d'inspecteur
         oDiag.inspecteurId = m_oAgent.id + 1
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Assert.AreEqual(ostat.NCtrlStructureTotal, nCtrlS + 1)
-        Assert.AreEqual(ostat.NCtrlStructureAnnee, nCtrlSA + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurTotal, nCtrlI)
-        Assert.AreEqual(ostat.NCtrlInspecteurAnnee, nCtrlIA)
+        Assert.AreEqual(ostat.NCtrlCCStructureTotal, nCtrlS + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureAnnee, nCtrlSA + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurTotal, nCtrlI)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurAnnee, nCtrlIA)
 
         'Modification du numéro d'inspecteur
         oDiag.inspecteurId = m_oAgent.id + 1
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Assert.AreEqual(ostat.NCtrlStructureTotal, nCtrlS + 1)
-        Assert.AreEqual(ostat.NCtrlStructureAnnee, nCtrlSA + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurTotal, nCtrlI)
-        Assert.AreEqual(ostat.NCtrlInspecteurAnnee, nCtrlIA)
+        Assert.AreEqual(ostat.NCtrlCCStructureTotal, nCtrlS + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureAnnee, nCtrlSA + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurTotal, nCtrlI)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurAnnee, nCtrlIA)
 
         'Modification de la date de controle (1 an plus tot)
         oDiag.inspecteurId = m_oAgent.id
         oDiag.controleDateDebut = CSDate.FromCrodipString(DateAdd(DateInterval.Year, -1, Date.Now)).ToShortDateString()
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Assert.AreEqual(ostat.NCtrlStructureTotal, nCtrlS + 1)
-        Assert.AreEqual(ostat.NCtrlStructureAnnee, nCtrlSA)
-        Assert.AreEqual(ostat.NCtrlInspecteurTotal, nCtrlI + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurAnnee, nCtrlIA)
+        Assert.AreEqual(ostat.NCtrlCCStructureTotal, nCtrlS + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureAnnee, nCtrlSA)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurTotal, nCtrlI + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurAnnee, nCtrlIA)
 
         'Controle OK
         oDiag.inspecteurId = m_oAgent.id
@@ -113,86 +113,86 @@ Public Class StatsCrodipTest
         oDiag.controleEtat = Diagnostic.controleEtatOK 'Controle OK
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        nCtrlOKI = ostat.NCtrl_OK_InspecteurTotal
-        nCtrlOKIA = ostat.NCtrl_OK_InspecteurAnnee
-        nCtrlOKS = ostat.NCtrl_OK_StructureTotal
-        nCtrlOKSA = ostat.NCtrl_OK_StructureAnnee
+        nCtrlOKI = ostat.NCtrlCC_OK_InspecteurTotal
+        nCtrlOKIA = ostat.NCtrlCC_OK_InspecteurAnnee
+        nCtrlOKS = ostat.NCtrlCC_OK_StructureTotal
+        nCtrlOKSA = ostat.NCtrlCC_OK_StructureAnnee
 
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV 'Controle NOK
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Assert.AreEqual(ostat.NCtrl_OK_InspecteurTotal, nCtrlOKI - 1)
-        Assert.AreEqual(ostat.NCtrl_OK_InspecteurAnnee, nCtrlOKIA - 1)
-        Assert.AreEqual(ostat.NCtrl_OK_StructureTotal, nCtrlOKS - 1)
-        Assert.AreEqual(ostat.NCtrl_OK_StructureAnnee, nCtrlOKSA - 1)
+        Assert.AreEqual(ostat.NCtrlCC_OK_InspecteurTotal, nCtrlOKI - 1)
+        Assert.AreEqual(ostat.NCtrlCC_OK_InspecteurAnnee, nCtrlOKIA - 1)
+        Assert.AreEqual(ostat.NCtrlCC_OK_StructureTotal, nCtrlOKS - 1)
+        Assert.AreEqual(ostat.NCtrlCC_OK_StructureAnnee, nCtrlOKSA - 1)
 
-        Dim nCtrlNOKI As Integer = ostat.NCtrl_CP_InspecteurTotal
-        Dim nCtrlNOKIA As Integer = ostat.NCtrl_CP_InspecteurAnnee
-        Dim nCtrlNOKS As Integer = ostat.NCtrl_CP_StructureTotal
-        Dim nCtrlNOKSA As Integer = ostat.NCtrl_CP_StructureAnnee
+        Dim nCtrlNOKI As Integer = ostat.NCtrlCC_CP_InspecteurTotal
+        Dim nCtrlNOKIA As Integer = ostat.NCtrlCC_CP_InspecteurAnnee
+        Dim nCtrlNOKS As Integer = ostat.NCtrlCC_CP_StructureTotal
+        Dim nCtrlNOKSA As Integer = ostat.NCtrlCC_CP_StructureAnnee
 
         oDiag.controleEtat = Diagnostic.controleEtatOK 'Controle OK
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Assert.AreEqual(ostat.NCtrl_CP_InspecteurTotal, nCtrlNOKI - 1)
-        Assert.AreEqual(ostat.NCtrl_CP_InspecteurAnnee, nCtrlNOKIA - 1)
-        Assert.AreEqual(ostat.NCtrl_CP_StructureTotal, nCtrlNOKS - 1)
-        Assert.AreEqual(ostat.NCtrl_CP_StructureAnnee, nCtrlNOKSA - 1)
+        Assert.AreEqual(ostat.NCtrlCC_CP_InspecteurTotal, nCtrlNOKI - 1)
+        Assert.AreEqual(ostat.NCtrlCC_CP_InspecteurAnnee, nCtrlNOKIA - 1)
+        Assert.AreEqual(ostat.NCtrlCC_CP_StructureTotal, nCtrlNOKS - 1)
+        Assert.AreEqual(ostat.NCtrlCC_CP_StructureAnnee, nCtrlNOKSA - 1)
 
         'Reparé avant
         oDiag.controleIsPulveRepare = True
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Dim nCtrl_REP_I As Integer = ostat.NCtrl_ReparAvant_InspecteurTotal
-        Dim nCtrl_REP_IA As Integer = ostat.NCtrl_ReparAvant_InspecteurAnnee
-        Dim nCtrl_REP_S As Integer = ostat.NCtrl_ReparAvant_StructureTotal
-        Dim nCtrl_REP_SA As Integer = ostat.NCtrl_ReparAvant_StructureAnnee
+        Dim nCtrl_REP_I As Integer = ostat.NCtrlCC_ReparAvant_InspecteurTotal
+        Dim nCtrl_REP_IA As Integer = ostat.NCtrlCC_ReparAvant_InspecteurAnnee
+        Dim nCtrl_REP_S As Integer = ostat.NCtrlCC_ReparAvant_StructureTotal
+        Dim nCtrl_REP_SA As Integer = ostat.NCtrlCC_ReparAvant_StructureAnnee
 
         oDiag.controleIsPulveRepare = False
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
 
-        Assert.AreEqual(ostat.NCtrl_ReparAvant_InspecteurTotal, nCtrl_REP_I - 1)
-        Assert.AreEqual(ostat.NCtrl_ReparAvant_InspecteurAnnee, nCtrl_REP_IA - 1)
-        Assert.AreEqual(ostat.NCtrl_ReparAvant_StructureTotal, nCtrl_REP_S - 1)
-        Assert.AreEqual(ostat.NCtrl_ReparAvant_StructureAnnee, nCtrl_REP_SA - 1)
+        Assert.AreEqual(ostat.NCtrlCC_ReparAvant_InspecteurTotal, nCtrl_REP_I - 1)
+        Assert.AreEqual(ostat.NCtrlCC_ReparAvant_InspecteurAnnee, nCtrl_REP_IA - 1)
+        Assert.AreEqual(ostat.NCtrlCC_ReparAvant_StructureTotal, nCtrl_REP_S - 1)
+        Assert.AreEqual(ostat.NCtrlCC_ReparAvant_StructureAnnee, nCtrl_REP_SA - 1)
 
 
         'AutoControle
         oDiag.controleIsAutoControle = False
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Dim nCtrl_AC_I As Integer = ostat.NCtrl_AutoControle_InspecteurTotal
-        Dim nCtrl_AC_IA As Integer = ostat.NCtrl_AutoControle_InspecteurAnnee
-        Dim nCtrl_AC_S As Integer = ostat.NCtrl_AutoControle_StructureTotal
-        Dim nCtrl_AC_SA As Integer = ostat.NCtrl_AutoControle_StructureAnnee
+        Dim nCtrl_AC_I As Integer = ostat.NCtrlCC_AutoControle_InspecteurTotal
+        Dim nCtrl_AC_IA As Integer = ostat.NCtrlCC_AutoControle_InspecteurAnnee
+        Dim nCtrl_AC_S As Integer = ostat.NCtrlCC_AutoControle_StructureTotal
+        Dim nCtrl_AC_SA As Integer = ostat.NCtrlCC_AutoControle_StructureAnnee
 
         oDiag.controleIsAutoControle = True
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
 
-        Assert.AreEqual(ostat.NCtrl_AutoControle_InspecteurTotal, nCtrl_AC_I + 1)
-        Assert.AreEqual(ostat.NCtrl_AutoControle_InspecteurAnnee, nCtrl_AC_IA + 1)
-        Assert.AreEqual(ostat.NCtrl_AutoControle_StructureTotal, nCtrl_AC_S + 1)
-        Assert.AreEqual(ostat.NCtrl_AutoControle_StructureAnnee, nCtrl_AC_SA + 1)
+        Assert.AreEqual(ostat.NCtrlCC_AutoControle_InspecteurTotal, nCtrl_AC_I + 1)
+        Assert.AreEqual(ostat.NCtrlCC_AutoControle_InspecteurAnnee, nCtrl_AC_IA + 1)
+        Assert.AreEqual(ostat.NCtrlCC_AutoControle_StructureTotal, nCtrl_AC_S + 1)
+        Assert.AreEqual(ostat.NCtrlCC_AutoControle_StructureAnnee, nCtrl_AC_SA + 1)
 
         'Precontrole
         oDiag.controleIsPreControleProfessionel = False
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Dim nCtrl_PC_I As Integer = ostat.NCtrl_PreControle_InspecteurTotal
-        Dim nCtrl_PC_IA As Integer = ostat.NCtrl_PreControle_InspecteurAnnee
-        Dim nCtrl_PC_S As Integer = ostat.NCtrl_PreControle_StructureTotal
-        Dim nCtrl_PC_SA As Integer = ostat.NCtrl_PreControle_StructureAnnee
+        Dim nCtrl_PC_I As Integer = ostat.NCtrlCC_PreControle_InspecteurTotal
+        Dim nCtrl_PC_IA As Integer = ostat.NCtrlCC_PreControle_InspecteurAnnee
+        Dim nCtrl_PC_S As Integer = ostat.NCtrlCC_PreControle_StructureTotal
+        Dim nCtrl_PC_SA As Integer = ostat.NCtrlCC_PreControle_StructureAnnee
 
         oDiag.controleIsPreControleProfessionel = True
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
 
-        Assert.AreEqual(ostat.NCtrl_PreControle_InspecteurTotal, nCtrl_PC_I + 1)
-        Assert.AreEqual(ostat.NCtrl_PreControle_InspecteurAnnee, nCtrl_PC_IA + 1)
-        Assert.AreEqual(ostat.NCtrl_PreControle_StructureTotal, nCtrl_PC_S + 1)
-        Assert.AreEqual(ostat.NCtrl_PreControle_StructureAnnee, nCtrl_PC_SA + 1)
+        Assert.AreEqual(ostat.NCtrlCC_PreControle_InspecteurTotal, nCtrl_PC_I + 1)
+        Assert.AreEqual(ostat.NCtrlCC_PreControle_InspecteurAnnee, nCtrl_PC_IA + 1)
+        Assert.AreEqual(ostat.NCtrlCC_PreControle_StructureTotal, nCtrl_PC_S + 1)
+        Assert.AreEqual(ostat.NCtrlCC_PreControle_StructureAnnee, nCtrl_PC_SA + 1)
     End Sub
     <TestMethod()> _
     Public Sub TST_AnneeReference()
@@ -200,15 +200,15 @@ Public Class StatsCrodipTest
         ostat = New StatsCrodip()
 
         Assert.IsTrue(ostat.Fill(m_oAgent, Date.Now.Year))
-        Dim nCtrlS As Integer = ostat.NCtrlStructureTotal
-        Dim nCtrlSA As Integer = ostat.NCtrlStructureAnnee
-        Dim nCtrlI As Integer = ostat.NCtrlInspecteurTotal
-        Dim nCtrlIA As Integer = ostat.NCtrlInspecteurAnnee
+        Dim nCtrlS As Integer = ostat.NCtrlCCStructureTotal
+        Dim nCtrlSA As Integer = ostat.NCtrlCCStructureAnnee
+        Dim nCtrlI As Integer = ostat.NCtrlCCInspecteurTotal
+        Dim nCtrlIA As Integer = ostat.NCtrlCCInspecteurAnnee
 
-        Dim nCtrlOKS As Integer = ostat.NCtrl_OK_StructureTotal
-        Dim nCtrlOKSA As Integer = ostat.NCtrl_OK_StructureAnnee
-        Dim nCtrlOKI As Integer = ostat.NCtrl_OK_InspecteurTotal
-        Dim nCtrlOKIA As Integer = ostat.NCtrl_OK_InspecteurAnnee
+        Dim nCtrlOKS As Integer = ostat.NCtrlCC_OK_StructureTotal
+        Dim nCtrlOKSA As Integer = ostat.NCtrlCC_OK_StructureAnnee
+        Dim nCtrlOKI As Integer = ostat.NCtrlCC_OK_InspecteurTotal
+        Dim nCtrlOKIA As Integer = ostat.NCtrlCC_OK_InspecteurAnnee
 
         Dim oDiag As New Diagnostic()
         oDiag.setOrganisme(m_oAgent)
@@ -217,31 +217,31 @@ Public Class StatsCrodipTest
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC 'Controle NOK
         Assert.IsTrue(DiagnosticManager.save(oDiag))
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Assert.AreEqual(ostat.NCtrlStructureTotal, nCtrlS + 1)
-        Assert.AreEqual(ostat.NCtrlStructureAnnee, nCtrlSA + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurTotal, nCtrlI + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurAnnee, nCtrlIA + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureTotal, nCtrlS + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureAnnee, nCtrlSA + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurTotal, nCtrlI + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurAnnee, nCtrlIA + 1)
 
         ostat.Fill(m_oAgent, 2013)
-        Assert.AreEqual(ostat.NCtrlStructureTotal, nCtrlS + 1)
-        Assert.AreEqual(ostat.NCtrlStructureAnnee, nCtrlSA)
-        Assert.AreEqual(ostat.NCtrlInspecteurTotal, nCtrlI + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurAnnee, nCtrlIA)
+        Assert.AreEqual(ostat.NCtrlCCStructureTotal, nCtrlS + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureAnnee, nCtrlSA)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurTotal, nCtrlI + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurAnnee, nCtrlIA)
 
         'changment d'année d Diag
         oDiag.controleDateDebut = "21/01/2013 08:00:00"
 
         DiagnosticManager.save(oDiag)
         ostat.Fill(m_oAgent, 2013)
-        Assert.AreEqual(ostat.NCtrlStructureTotal, nCtrlS + 1)
-        Assert.AreEqual(ostat.NCtrlStructureAnnee, nCtrlSA + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurTotal, nCtrlI + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurAnnee, nCtrlIA + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureTotal, nCtrlS + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureAnnee, nCtrlSA + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurTotal, nCtrlI + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurAnnee, nCtrlIA + 1)
         ostat.Fill(m_oAgent, Date.Now.Year)
-        Assert.AreEqual(ostat.NCtrlStructureTotal, nCtrlS + 1)
-        Assert.AreEqual(ostat.NCtrlStructureAnnee, nCtrlSA)
-        Assert.AreEqual(ostat.NCtrlInspecteurTotal, nCtrlI + 1)
-        Assert.AreEqual(ostat.NCtrlInspecteurAnnee, nCtrlIA)
+        Assert.AreEqual(ostat.NCtrlCCStructureTotal, nCtrlS + 1)
+        Assert.AreEqual(ostat.NCtrlCCStructureAnnee, nCtrlSA)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurTotal, nCtrlI + 1)
+        Assert.AreEqual(ostat.NCtrlCCInspecteurAnnee, nCtrlIA)
 
 
     End Sub
