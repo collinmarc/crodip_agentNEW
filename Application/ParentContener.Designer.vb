@@ -60,6 +60,7 @@ Partial Class parentContener
         Me.notify_connexionStatus_ok = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.notify_connexionStatus_wait = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.statusBar_img_loader = New System.Windows.Forms.PictureBox()
+        Me.mniVaccum = New System.Windows.Forms.MenuItem()
         CType(Me.statusBar_img_loader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -70,7 +71,7 @@ Partial Class parentContener
         'MenuItem1
         '
         Me.MenuItem1.Index = 0
-        Me.MenuItem1.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem2, Me.MenuItem4, Me.MenuItem3, Me.mnuCheckupdates, Me.MenuItem7, Me.MenuItem_aide_apropos, Me.MenuItem_aide_debug})
+        Me.MenuItem1.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem2, Me.MenuItem4, Me.MenuItem3, Me.mnuCheckupdates, Me.MenuItem7, Me.MenuItem_aide_apropos, Me.MenuItem_aide_debug, Me.mniVaccum})
         Me.MenuItem1.Text = "?"
         '
         'MenuItem2
@@ -148,6 +149,11 @@ Partial Class parentContener
         Me.statusBar_img_loader.TabStop = False
         Me.statusBar_img_loader.Visible = False
         '
+        'mniVaccum
+        '
+        Me.mniVaccum.Index = 7
+        Me.mniVaccum.Text = "Nettoyage Base de données"
+        '
         'parentContener
         '
         Me.AutoSize = True
@@ -164,4 +170,6 @@ Partial Class parentContener
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents mniVaccum As MenuItem
 End Class

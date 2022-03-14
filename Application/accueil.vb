@@ -98,6 +98,48 @@ Public Class accueil
     Friend WithEvents TotalTTCDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents IsRegleeDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
     Friend WithEvents PDFColumn As DataGridViewImageColumn
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents TextBox25 As TextBox
+    Friend WithEvents TextBox27 As TextBox
+    Friend WithEvents TextBox28 As TextBox
+    Friend WithEvents TextBox29 As TextBox
+    Friend WithEvents TextBox30 As TextBox
+    Friend WithEvents TextBox31 As TextBox
+    Friend WithEvents TextBox32 As TextBox
+    Friend WithEvents TextBox33 As TextBox
+    Friend WithEvents TextBox34 As TextBox
+    Friend WithEvents TextBox35 As TextBox
+    Friend WithEvents TextBox36 As TextBox
+    Friend WithEvents TextBox37 As TextBox
+    Friend WithEvents TextBox38 As TextBox
+    Friend WithEvents TextBox39 As TextBox
+    Friend WithEvents TextBox40 As TextBox
+    Friend WithEvents TextBox41 As TextBox
+    Friend WithEvents TextBox42 As TextBox
+    Friend WithEvents TextBox43 As TextBox
+    Friend WithEvents TextBox44 As TextBox
+    Friend WithEvents TextBox45 As TextBox
+    Friend WithEvents TextBox46 As TextBox
+    Friend WithEvents TextBox47 As TextBox
+    Friend WithEvents TextBox48 As TextBox
+    Friend WithEvents TextBox49 As TextBox
+    Friend WithEvents Label23 As Label
+    Friend WithEvents Label25 As Label
+    Friend WithEvents Label27 As Label
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label31 As Label
+    Friend WithEvents Label32 As Label
+    Friend WithEvents Label33 As Label
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Label35 As Label
+    Friend WithEvents Label36 As Label
+    Friend WithEvents Label37 As Label
+    Friend WithEvents Label38 As Label
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -537,6 +579,48 @@ Public Class accueil
         Me.TextBox24 = New System.Windows.Forms.TextBox()
         Me.laNomStructure2 = New System.Windows.Forms.Label()
         Me.laNomAgent2 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.TextBox25 = New System.Windows.Forms.TextBox()
+        Me.TextBox27 = New System.Windows.Forms.TextBox()
+        Me.TextBox28 = New System.Windows.Forms.TextBox()
+        Me.TextBox29 = New System.Windows.Forms.TextBox()
+        Me.TextBox30 = New System.Windows.Forms.TextBox()
+        Me.TextBox31 = New System.Windows.Forms.TextBox()
+        Me.TextBox32 = New System.Windows.Forms.TextBox()
+        Me.TextBox33 = New System.Windows.Forms.TextBox()
+        Me.TextBox34 = New System.Windows.Forms.TextBox()
+        Me.TextBox35 = New System.Windows.Forms.TextBox()
+        Me.TextBox36 = New System.Windows.Forms.TextBox()
+        Me.TextBox37 = New System.Windows.Forms.TextBox()
+        Me.TextBox38 = New System.Windows.Forms.TextBox()
+        Me.TextBox39 = New System.Windows.Forms.TextBox()
+        Me.TextBox40 = New System.Windows.Forms.TextBox()
+        Me.TextBox41 = New System.Windows.Forms.TextBox()
+        Me.TextBox42 = New System.Windows.Forms.TextBox()
+        Me.TextBox43 = New System.Windows.Forms.TextBox()
+        Me.TextBox44 = New System.Windows.Forms.TextBox()
+        Me.TextBox45 = New System.Windows.Forms.TextBox()
+        Me.TextBox46 = New System.Windows.Forms.TextBox()
+        Me.TextBox47 = New System.Windows.Forms.TextBox()
+        Me.TextBox48 = New System.Windows.Forms.TextBox()
+        Me.TextBox49 = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Label38 = New System.Windows.Forms.Label()
         Me.pctLogoStat = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.tabControl_Facturation = New System.Windows.Forms.TabPage()
@@ -2631,56 +2715,107 @@ Public Class accueil
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
-        Me.TableLayoutPanel1.ColumnCount = 5
+        Me.TableLayoutPanel1.ColumnCount = 6
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
         Me.TableLayoutPanel1.Controls.Add(Me.Label4, 0, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.laNomAgent, 2, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.laNomStructure, 1, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox3, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label22, 0, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label24, 0, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label26, 0, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox1, 2, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox2, 3, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox4, 4, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox5, 1, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox6, 2, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox7, 3, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox8, 4, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox9, 1, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox10, 2, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox11, 3, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox12, 4, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox13, 1, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox14, 2, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox15, 4, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label6, 0, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label12, 0, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox16, 3, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox17, 1, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox18, 2, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox19, 3, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox20, 4, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox21, 1, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox22, 2, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox23, 3, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox24, 4, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.laNomStructure2, 3, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.laNomAgent2, 4, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.laNomAgent, 3, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.laNomStructure, 2, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox3, 2, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label22, 0, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label24, 0, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label26, 0, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox1, 3, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox2, 4, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox4, 5, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox5, 2, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox6, 3, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox7, 4, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox8, 5, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox9, 2, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox10, 3, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox11, 4, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox12, 5, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox13, 2, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox14, 3, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox15, 5, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label6, 0, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label12, 0, 11)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox16, 4, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox17, 2, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox18, 3, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox19, 4, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox20, 5, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox21, 2, 11)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox22, 3, 11)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox23, 4, 11)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox24, 5, 11)
+        Me.TableLayoutPanel1.Controls.Add(Me.laNomStructure2, 4, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.laNomAgent2, 5, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label11, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label13, 0, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label14, 0, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label16, 0, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label17, 0, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label21, 0, 10)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox25, 2, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox27, 3, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox28, 4, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox29, 5, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox30, 2, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox31, 3, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox32, 4, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox33, 5, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox34, 2, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox35, 3, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox36, 4, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox37, 5, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox38, 2, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox39, 3, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox40, 4, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox41, 5, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox42, 2, 10)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox43, 3, 10)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox44, 4, 10)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox45, 5, 10)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox46, 2, 12)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox47, 3, 12)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox48, 4, 12)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox49, 5, 12)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label23, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label25, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label27, 1, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label28, 1, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label31, 1, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label32, 1, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label33, 1, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label34, 1, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label35, 1, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label36, 1, 10)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label37, 1, 11)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label38, 1, 12)
+        Me.TableLayoutPanel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TableLayoutPanel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(19, 145)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 7
+        Me.TableLayoutPanel1.RowCount = 13
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(953, 448)
         Me.TableLayoutPanel1.TabIndex = 38
         '
@@ -2693,7 +2828,7 @@ Public Class accueil
         Me.Label4.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Label4.Location = New System.Drawing.Point(4, 18)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(467, 35)
+        Me.Label4.Size = New System.Drawing.Size(451, 35)
         Me.Label4.TabIndex = 11
         Me.Label4.Text = "       Nombre de contrôles réalisés  :"
         '
@@ -2703,9 +2838,9 @@ Public Class accueil
         Me.laNomAgent.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.laNomAgent.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.laNomAgent.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.laNomAgent.Location = New System.Drawing.Point(597, 1)
+        Me.laNomAgent.Location = New System.Drawing.Point(609, 1)
         Me.laNomAgent.Name = "laNomAgent"
-        Me.laNomAgent.Size = New System.Drawing.Size(112, 16)
+        Me.laNomAgent.Size = New System.Drawing.Size(108, 16)
         Me.laNomAgent.TabIndex = 39
         Me.laNomAgent.Text = "inspecteur"
         Me.laNomAgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2716,21 +2851,21 @@ Public Class accueil
         Me.laNomStructure.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.laNomStructure.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.laNomStructure.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.laNomStructure.Location = New System.Drawing.Point(478, 1)
+        Me.laNomStructure.Location = New System.Drawing.Point(494, 1)
         Me.laNomStructure.Name = "laNomStructure"
-        Me.laNomStructure.Size = New System.Drawing.Size(112, 16)
+        Me.laNomStructure.Size = New System.Drawing.Size(108, 16)
         Me.laNomStructure.TabIndex = 38
         Me.laNomStructure.Text = "structure"
         Me.laNomStructure.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TextBox3
         '
-        Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlStructureAnnee", True))
+        Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCCStructureAnnee", True))
         Me.TextBox3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox3.Location = New System.Drawing.Point(478, 21)
+        Me.TextBox3.Location = New System.Drawing.Point(494, 21)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(108, 20)
         Me.TextBox3.TabIndex = 40
         Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -2745,9 +2880,9 @@ Public Class accueil
         Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label22.Image = CType(resources.GetObject("Label22.Image"), System.Drawing.Image)
         Me.Label22.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label22.Location = New System.Drawing.Point(4, 89)
+        Me.Label22.Location = New System.Drawing.Point(4, 81)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(467, 40)
+        Me.Label22.Size = New System.Drawing.Size(451, 40)
         Me.Label22.TabIndex = 44
         Me.Label22.Text = "       Pourcentage de conclusion ""Bon état""   :"
         '
@@ -2758,9 +2893,9 @@ Public Class accueil
         Me.Label24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label24.Image = CType(resources.GetObject("Label24.Image"), System.Drawing.Image)
         Me.Label24.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label24.Location = New System.Drawing.Point(4, 160)
+        Me.Label24.Location = New System.Drawing.Point(4, 149)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(467, 32)
+        Me.Label24.Size = New System.Drawing.Size(451, 32)
         Me.Label24.TabIndex = 46
         Me.Label24.Text = "       Pourcentage de conclusion ""CP"" :"
         '
@@ -2771,163 +2906,163 @@ Public Class accueil
         Me.Label26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label26.Image = CType(resources.GetObject("Label26.Image"), System.Drawing.Image)
         Me.Label26.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label26.Location = New System.Drawing.Point(4, 231)
+        Me.Label26.Location = New System.Drawing.Point(4, 209)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(467, 32)
+        Me.Label26.Size = New System.Drawing.Size(451, 32)
         Me.Label26.TabIndex = 48
         Me.Label26.Text = "       Pourcentage de pulvérisateurs ""Réparation avant"" :"
         '
         'TextBox1
         '
-        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlInspecteurAnnee", True))
+        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCCInspecteurAnnee", True))
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox1.Location = New System.Drawing.Point(597, 21)
+        Me.TextBox1.Location = New System.Drawing.Point(609, 21)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(108, 20)
         Me.TextBox1.TabIndex = 50
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox2
         '
-        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlStructureTotal", True))
+        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCCStructureTotal", True))
         Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox2.Location = New System.Drawing.Point(716, 21)
+        Me.TextBox2.Location = New System.Drawing.Point(724, 21)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(108, 20)
         Me.TextBox2.TabIndex = 51
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox4
         '
-        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlInspecteurTotal", True))
+        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCCInspecteurTotal", True))
         Me.TextBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox4.Location = New System.Drawing.Point(835, 21)
+        Me.TextBox4.Location = New System.Drawing.Point(839, 21)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(114, 20)
+        Me.TextBox4.Size = New System.Drawing.Size(110, 20)
         Me.TextBox4.TabIndex = 52
         Me.TextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox5
         '
-        Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_OK_StructureAnnee", True))
+        Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_OK_StructureAnnee", True))
         Me.TextBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox5.Location = New System.Drawing.Point(478, 92)
+        Me.TextBox5.Location = New System.Drawing.Point(494, 84)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(108, 20)
         Me.TextBox5.TabIndex = 53
         Me.TextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox6
         '
-        Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_OK_InspecteurAnnee", True))
+        Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_OK_InspecteurAnnee", True))
         Me.TextBox6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox6.Location = New System.Drawing.Point(597, 92)
+        Me.TextBox6.Location = New System.Drawing.Point(609, 84)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.ReadOnly = True
-        Me.TextBox6.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox6.Size = New System.Drawing.Size(108, 20)
         Me.TextBox6.TabIndex = 54
         Me.TextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox7
         '
-        Me.TextBox7.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_OK_StructureTotal", True))
+        Me.TextBox7.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_OK_StructureTotal", True))
         Me.TextBox7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox7.Location = New System.Drawing.Point(716, 92)
+        Me.TextBox7.Location = New System.Drawing.Point(724, 84)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox7.Size = New System.Drawing.Size(108, 20)
         Me.TextBox7.TabIndex = 55
         Me.TextBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox8
         '
-        Me.TextBox8.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_OK_InspecteurTotal", True))
+        Me.TextBox8.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_OK_InspecteurTotal", True))
         Me.TextBox8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox8.Location = New System.Drawing.Point(835, 92)
+        Me.TextBox8.Location = New System.Drawing.Point(839, 84)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.ReadOnly = True
-        Me.TextBox8.Size = New System.Drawing.Size(114, 20)
+        Me.TextBox8.Size = New System.Drawing.Size(110, 20)
         Me.TextBox8.TabIndex = 56
         Me.TextBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox9
         '
-        Me.TextBox9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_CP_StructureAnnee", True))
+        Me.TextBox9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_CP_StructureAnnee", True))
         Me.TextBox9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox9.Location = New System.Drawing.Point(478, 163)
+        Me.TextBox9.Location = New System.Drawing.Point(494, 152)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox9.Size = New System.Drawing.Size(108, 20)
         Me.TextBox9.TabIndex = 57
         Me.TextBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox10
         '
-        Me.TextBox10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_CP_InspecteurAnnee", True))
+        Me.TextBox10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_CP_InspecteurAnnee", True))
         Me.TextBox10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox10.Location = New System.Drawing.Point(597, 163)
+        Me.TextBox10.Location = New System.Drawing.Point(609, 152)
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.ReadOnly = True
-        Me.TextBox10.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox10.Size = New System.Drawing.Size(108, 20)
         Me.TextBox10.TabIndex = 58
         Me.TextBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox11
         '
-        Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_CP_StructureTotal", True))
+        Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_CP_StructureTotal", True))
         Me.TextBox11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox11.Location = New System.Drawing.Point(716, 163)
+        Me.TextBox11.Location = New System.Drawing.Point(724, 152)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.ReadOnly = True
-        Me.TextBox11.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox11.Size = New System.Drawing.Size(108, 20)
         Me.TextBox11.TabIndex = 59
         Me.TextBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox12
         '
-        Me.TextBox12.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_CP_InspecteurTotal", True))
+        Me.TextBox12.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_CP_InspecteurTotal", True))
         Me.TextBox12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox12.Location = New System.Drawing.Point(835, 163)
+        Me.TextBox12.Location = New System.Drawing.Point(839, 152)
         Me.TextBox12.Name = "TextBox12"
         Me.TextBox12.ReadOnly = True
-        Me.TextBox12.Size = New System.Drawing.Size(114, 20)
+        Me.TextBox12.Size = New System.Drawing.Size(110, 20)
         Me.TextBox12.TabIndex = 60
         Me.TextBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox13
         '
-        Me.TextBox13.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_ReparAvant_StructureAnnee", True))
+        Me.TextBox13.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_ReparAvant_StructureAnnee", True))
         Me.TextBox13.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox13.Location = New System.Drawing.Point(478, 234)
+        Me.TextBox13.Location = New System.Drawing.Point(494, 212)
         Me.TextBox13.Name = "TextBox13"
         Me.TextBox13.ReadOnly = True
-        Me.TextBox13.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox13.Size = New System.Drawing.Size(108, 20)
         Me.TextBox13.TabIndex = 61
         Me.TextBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox14
         '
-        Me.TextBox14.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_ReparAvant_InspecteurAnnee", True))
+        Me.TextBox14.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_ReparAvant_InspecteurAnnee", True))
         Me.TextBox14.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox14.Location = New System.Drawing.Point(597, 234)
+        Me.TextBox14.Location = New System.Drawing.Point(609, 212)
         Me.TextBox14.Name = "TextBox14"
         Me.TextBox14.ReadOnly = True
-        Me.TextBox14.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox14.Size = New System.Drawing.Size(108, 20)
         Me.TextBox14.TabIndex = 62
         Me.TextBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox15
         '
-        Me.TextBox15.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_ReparAvant_InspecteurTotal", True))
+        Me.TextBox15.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_ReparAvant_InspecteurTotal", True))
         Me.TextBox15.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox15.Location = New System.Drawing.Point(835, 234)
+        Me.TextBox15.Location = New System.Drawing.Point(839, 212)
         Me.TextBox15.Name = "TextBox15"
         Me.TextBox15.ReadOnly = True
-        Me.TextBox15.Size = New System.Drawing.Size(114, 20)
+        Me.TextBox15.Size = New System.Drawing.Size(110, 20)
         Me.TextBox15.TabIndex = 63
         Me.TextBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -2938,9 +3073,9 @@ Public Class accueil
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label6.Image = CType(resources.GetObject("Label6.Image"), System.Drawing.Image)
         Me.Label6.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label6.Location = New System.Drawing.Point(4, 302)
+        Me.Label6.Location = New System.Drawing.Point(4, 269)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(467, 30)
+        Me.Label6.Size = New System.Drawing.Size(451, 30)
         Me.Label6.TabIndex = 65
         Me.Label6.Text = "       Pourcentage de pulvérisateurs ""Auto Contrôle"":"
         '
@@ -2951,108 +3086,108 @@ Public Class accueil
         Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label12.Image = CType(resources.GetObject("Label12.Image"), System.Drawing.Image)
         Me.Label12.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label12.Location = New System.Drawing.Point(4, 373)
+        Me.Label12.Location = New System.Drawing.Point(4, 327)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(467, 35)
+        Me.Label12.Size = New System.Drawing.Size(451, 35)
         Me.Label12.TabIndex = 67
         Me.Label12.Text = "       Pourcentage de pulvérisateurs ""Pre Contrôle"" :"
         '
         'TextBox16
         '
-        Me.TextBox16.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_ReparAvant_StructureTotal", True))
+        Me.TextBox16.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_ReparAvant_StructureTotal", True))
         Me.TextBox16.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox16.Location = New System.Drawing.Point(716, 234)
+        Me.TextBox16.Location = New System.Drawing.Point(724, 212)
         Me.TextBox16.Name = "TextBox16"
         Me.TextBox16.ReadOnly = True
-        Me.TextBox16.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox16.Size = New System.Drawing.Size(108, 20)
         Me.TextBox16.TabIndex = 69
         Me.TextBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox17
         '
-        Me.TextBox17.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_AutoControle_StructureAnnee", True))
+        Me.TextBox17.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_AutoControle_StructureAnnee", True))
         Me.TextBox17.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox17.Location = New System.Drawing.Point(478, 305)
+        Me.TextBox17.Location = New System.Drawing.Point(494, 272)
         Me.TextBox17.Name = "TextBox17"
         Me.TextBox17.ReadOnly = True
-        Me.TextBox17.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox17.Size = New System.Drawing.Size(108, 20)
         Me.TextBox17.TabIndex = 70
         Me.TextBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox18
         '
-        Me.TextBox18.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_AutoControle_InspecteurAnnee", True))
+        Me.TextBox18.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_AutoControle_InspecteurAnnee", True))
         Me.TextBox18.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox18.Location = New System.Drawing.Point(597, 305)
+        Me.TextBox18.Location = New System.Drawing.Point(609, 272)
         Me.TextBox18.Name = "TextBox18"
         Me.TextBox18.ReadOnly = True
-        Me.TextBox18.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox18.Size = New System.Drawing.Size(108, 20)
         Me.TextBox18.TabIndex = 71
         Me.TextBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox19
         '
-        Me.TextBox19.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_AutoControle_StructureTotal", True))
+        Me.TextBox19.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_AutoControle_StructureTotal", True))
         Me.TextBox19.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox19.Location = New System.Drawing.Point(716, 305)
+        Me.TextBox19.Location = New System.Drawing.Point(724, 272)
         Me.TextBox19.Name = "TextBox19"
         Me.TextBox19.ReadOnly = True
-        Me.TextBox19.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox19.Size = New System.Drawing.Size(108, 20)
         Me.TextBox19.TabIndex = 72
         Me.TextBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox20
         '
-        Me.TextBox20.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_AutoControle_InspecteurTotal", True))
+        Me.TextBox20.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_AutoControle_InspecteurTotal", True))
         Me.TextBox20.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox20.Location = New System.Drawing.Point(835, 305)
+        Me.TextBox20.Location = New System.Drawing.Point(839, 272)
         Me.TextBox20.Name = "TextBox20"
         Me.TextBox20.ReadOnly = True
-        Me.TextBox20.Size = New System.Drawing.Size(114, 20)
+        Me.TextBox20.Size = New System.Drawing.Size(110, 20)
         Me.TextBox20.TabIndex = 73
         Me.TextBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox21
         '
-        Me.TextBox21.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_PreControle_StructureAnnee", True))
+        Me.TextBox21.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_PreControle_StructureAnnee", True))
         Me.TextBox21.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox21.Location = New System.Drawing.Point(478, 376)
+        Me.TextBox21.Location = New System.Drawing.Point(494, 330)
         Me.TextBox21.Name = "TextBox21"
         Me.TextBox21.ReadOnly = True
-        Me.TextBox21.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox21.Size = New System.Drawing.Size(108, 20)
         Me.TextBox21.TabIndex = 74
         Me.TextBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox22
         '
-        Me.TextBox22.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_PreControle_InspecteurAnnee", True))
+        Me.TextBox22.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_PreControle_InspecteurAnnee", True))
         Me.TextBox22.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox22.Location = New System.Drawing.Point(597, 376)
+        Me.TextBox22.Location = New System.Drawing.Point(609, 330)
         Me.TextBox22.Name = "TextBox22"
         Me.TextBox22.ReadOnly = True
-        Me.TextBox22.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox22.Size = New System.Drawing.Size(108, 20)
         Me.TextBox22.TabIndex = 75
         Me.TextBox22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox23
         '
-        Me.TextBox23.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_PreControle_StructureTotal", True))
+        Me.TextBox23.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_PreControle_StructureTotal", True))
         Me.TextBox23.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox23.Location = New System.Drawing.Point(716, 376)
+        Me.TextBox23.Location = New System.Drawing.Point(724, 330)
         Me.TextBox23.Name = "TextBox23"
         Me.TextBox23.ReadOnly = True
-        Me.TextBox23.Size = New System.Drawing.Size(112, 20)
+        Me.TextBox23.Size = New System.Drawing.Size(108, 20)
         Me.TextBox23.TabIndex = 76
         Me.TextBox23.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox24
         '
-        Me.TextBox24.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrl_PreControle_InspecteurTotal", True))
+        Me.TextBox24.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_PreControle_InspecteurTotal", True))
         Me.TextBox24.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox24.Location = New System.Drawing.Point(835, 376)
+        Me.TextBox24.Location = New System.Drawing.Point(839, 330)
         Me.TextBox24.Name = "TextBox24"
         Me.TextBox24.ReadOnly = True
-        Me.TextBox24.Size = New System.Drawing.Size(114, 20)
+        Me.TextBox24.Size = New System.Drawing.Size(110, 20)
         Me.TextBox24.TabIndex = 77
         Me.TextBox24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -3062,9 +3197,9 @@ Public Class accueil
         Me.laNomStructure2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.laNomStructure2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.laNomStructure2.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.laNomStructure2.Location = New System.Drawing.Point(716, 1)
+        Me.laNomStructure2.Location = New System.Drawing.Point(724, 1)
         Me.laNomStructure2.Name = "laNomStructure2"
-        Me.laNomStructure2.Size = New System.Drawing.Size(112, 16)
+        Me.laNomStructure2.Size = New System.Drawing.Size(108, 16)
         Me.laNomStructure2.TabIndex = 78
         Me.laNomStructure2.Text = "structure"
         Me.laNomStructure2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -3075,12 +3210,498 @@ Public Class accueil
         Me.laNomAgent2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.laNomAgent2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.laNomAgent2.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.laNomAgent2.Location = New System.Drawing.Point(835, 1)
+        Me.laNomAgent2.Location = New System.Drawing.Point(839, 1)
         Me.laNomAgent2.Name = "laNomAgent2"
-        Me.laNomAgent2.Size = New System.Drawing.Size(112, 16)
+        Me.laNomAgent2.Size = New System.Drawing.Size(110, 16)
         Me.laNomAgent2.TabIndex = 79
         Me.laNomAgent2.Text = "inspecteur"
         Me.laNomAgent2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(4, 1)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(11, 13)
+        Me.Label11.TabIndex = 80
+        Me.Label11.Text = " "
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(4, 54)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(11, 13)
+        Me.Label13.TabIndex = 81
+        Me.Label13.Text = " "
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(4, 122)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(11, 13)
+        Me.Label14.TabIndex = 82
+        Me.Label14.Text = " "
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(4, 182)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(11, 13)
+        Me.Label16.TabIndex = 83
+        Me.Label16.Text = " "
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(4, 242)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(11, 13)
+        Me.Label17.TabIndex = 84
+        Me.Label17.Text = " "
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(4, 300)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(11, 13)
+        Me.Label21.TabIndex = 85
+        Me.Label21.Text = " "
+        '
+        'TextBox25
+        '
+        Me.TextBox25.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox25.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCVStructureAnnee", True))
+        Me.TextBox25.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox25.Location = New System.Drawing.Point(494, 57)
+        Me.TextBox25.Name = "TextBox25"
+        Me.TextBox25.ReadOnly = True
+        Me.TextBox25.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox25.TabIndex = 86
+        Me.TextBox25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox27
+        '
+        Me.TextBox27.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox27.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCVInspecteurAnnee", True))
+        Me.TextBox27.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox27.Location = New System.Drawing.Point(609, 57)
+        Me.TextBox27.Name = "TextBox27"
+        Me.TextBox27.ReadOnly = True
+        Me.TextBox27.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox27.TabIndex = 87
+        Me.TextBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox28
+        '
+        Me.TextBox28.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox28.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCVStructureTotal", True))
+        Me.TextBox28.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox28.Location = New System.Drawing.Point(724, 57)
+        Me.TextBox28.Name = "TextBox28"
+        Me.TextBox28.ReadOnly = True
+        Me.TextBox28.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox28.TabIndex = 88
+        Me.TextBox28.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox29
+        '
+        Me.TextBox29.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox29.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCVInspecteurTotal", True))
+        Me.TextBox29.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox29.Location = New System.Drawing.Point(839, 57)
+        Me.TextBox29.Name = "TextBox29"
+        Me.TextBox29.ReadOnly = True
+        Me.TextBox29.Size = New System.Drawing.Size(110, 20)
+        Me.TextBox29.TabIndex = 89
+        Me.TextBox29.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox30
+        '
+        Me.TextBox30.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox30.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_OK_StructureAnnee", True))
+        Me.TextBox30.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox30.Location = New System.Drawing.Point(494, 125)
+        Me.TextBox30.Name = "TextBox30"
+        Me.TextBox30.ReadOnly = True
+        Me.TextBox30.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox30.TabIndex = 90
+        Me.TextBox30.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox31
+        '
+        Me.TextBox31.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox31.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_OK_InspecteurAnnee", True))
+        Me.TextBox31.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox31.Location = New System.Drawing.Point(609, 125)
+        Me.TextBox31.Name = "TextBox31"
+        Me.TextBox31.ReadOnly = True
+        Me.TextBox31.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox31.TabIndex = 91
+        Me.TextBox31.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox32
+        '
+        Me.TextBox32.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox32.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_OK_StructureTotal", True))
+        Me.TextBox32.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox32.Location = New System.Drawing.Point(724, 125)
+        Me.TextBox32.Name = "TextBox32"
+        Me.TextBox32.ReadOnly = True
+        Me.TextBox32.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox32.TabIndex = 92
+        Me.TextBox32.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox33
+        '
+        Me.TextBox33.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox33.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_OK_InspecteurTotal", True))
+        Me.TextBox33.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox33.Location = New System.Drawing.Point(839, 125)
+        Me.TextBox33.Name = "TextBox33"
+        Me.TextBox33.ReadOnly = True
+        Me.TextBox33.Size = New System.Drawing.Size(110, 20)
+        Me.TextBox33.TabIndex = 93
+        Me.TextBox33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox34
+        '
+        Me.TextBox34.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox34.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_CP_StructureAnnee", True))
+        Me.TextBox34.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox34.Location = New System.Drawing.Point(494, 185)
+        Me.TextBox34.Name = "TextBox34"
+        Me.TextBox34.ReadOnly = True
+        Me.TextBox34.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox34.TabIndex = 94
+        Me.TextBox34.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox35
+        '
+        Me.TextBox35.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox35.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_CP_InspecteurAnnee", True))
+        Me.TextBox35.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox35.Location = New System.Drawing.Point(609, 185)
+        Me.TextBox35.Name = "TextBox35"
+        Me.TextBox35.ReadOnly = True
+        Me.TextBox35.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox35.TabIndex = 95
+        Me.TextBox35.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox36
+        '
+        Me.TextBox36.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox36.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_CP_StructureTotal", True))
+        Me.TextBox36.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox36.Location = New System.Drawing.Point(724, 185)
+        Me.TextBox36.Name = "TextBox36"
+        Me.TextBox36.ReadOnly = True
+        Me.TextBox36.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox36.TabIndex = 96
+        Me.TextBox36.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox37
+        '
+        Me.TextBox37.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox37.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_CP_InspecteurTotal", True))
+        Me.TextBox37.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox37.Location = New System.Drawing.Point(839, 185)
+        Me.TextBox37.Name = "TextBox37"
+        Me.TextBox37.ReadOnly = True
+        Me.TextBox37.Size = New System.Drawing.Size(110, 20)
+        Me.TextBox37.TabIndex = 97
+        Me.TextBox37.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox38
+        '
+        Me.TextBox38.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox38.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_ReparAvant_StructureAnnee", True))
+        Me.TextBox38.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox38.Location = New System.Drawing.Point(494, 245)
+        Me.TextBox38.Name = "TextBox38"
+        Me.TextBox38.ReadOnly = True
+        Me.TextBox38.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox38.TabIndex = 98
+        Me.TextBox38.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox39
+        '
+        Me.TextBox39.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox39.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_ReparAvant_InspecteurAnnee", True))
+        Me.TextBox39.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox39.Location = New System.Drawing.Point(609, 245)
+        Me.TextBox39.Name = "TextBox39"
+        Me.TextBox39.ReadOnly = True
+        Me.TextBox39.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox39.TabIndex = 99
+        Me.TextBox39.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox40
+        '
+        Me.TextBox40.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox40.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_ReparAvant_StructureTotal", True))
+        Me.TextBox40.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox40.Location = New System.Drawing.Point(724, 245)
+        Me.TextBox40.Name = "TextBox40"
+        Me.TextBox40.ReadOnly = True
+        Me.TextBox40.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox40.TabIndex = 100
+        Me.TextBox40.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox41
+        '
+        Me.TextBox41.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox41.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_ReparAvant_InspecteurTotal", True))
+        Me.TextBox41.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox41.Location = New System.Drawing.Point(839, 245)
+        Me.TextBox41.Name = "TextBox41"
+        Me.TextBox41.ReadOnly = True
+        Me.TextBox41.Size = New System.Drawing.Size(110, 20)
+        Me.TextBox41.TabIndex = 101
+        Me.TextBox41.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox42
+        '
+        Me.TextBox42.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox42.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_AutoControle_StructureAnnee", True))
+        Me.TextBox42.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox42.Location = New System.Drawing.Point(494, 303)
+        Me.TextBox42.Name = "TextBox42"
+        Me.TextBox42.ReadOnly = True
+        Me.TextBox42.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox42.TabIndex = 102
+        Me.TextBox42.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox43
+        '
+        Me.TextBox43.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox43.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_AutoControle_InspecteurAnnee", True))
+        Me.TextBox43.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox43.Location = New System.Drawing.Point(609, 303)
+        Me.TextBox43.Name = "TextBox43"
+        Me.TextBox43.ReadOnly = True
+        Me.TextBox43.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox43.TabIndex = 103
+        Me.TextBox43.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox44
+        '
+        Me.TextBox44.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox44.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_AutoControle_StructureTotal", True))
+        Me.TextBox44.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox44.Location = New System.Drawing.Point(724, 303)
+        Me.TextBox44.Name = "TextBox44"
+        Me.TextBox44.ReadOnly = True
+        Me.TextBox44.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox44.TabIndex = 104
+        Me.TextBox44.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox45
+        '
+        Me.TextBox45.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox45.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_AutoControle_InspecteurTotal", True))
+        Me.TextBox45.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox45.Location = New System.Drawing.Point(839, 303)
+        Me.TextBox45.Name = "TextBox45"
+        Me.TextBox45.ReadOnly = True
+        Me.TextBox45.Size = New System.Drawing.Size(110, 20)
+        Me.TextBox45.TabIndex = 105
+        Me.TextBox45.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox46
+        '
+        Me.TextBox46.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox46.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_PreControle_StructureAnnee", True))
+        Me.TextBox46.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox46.Location = New System.Drawing.Point(494, 366)
+        Me.TextBox46.Name = "TextBox46"
+        Me.TextBox46.ReadOnly = True
+        Me.TextBox46.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox46.TabIndex = 106
+        Me.TextBox46.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox47
+        '
+        Me.TextBox47.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox47.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_PreControle_InspecteurAnnee", True))
+        Me.TextBox47.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox47.Location = New System.Drawing.Point(609, 366)
+        Me.TextBox47.Name = "TextBox47"
+        Me.TextBox47.ReadOnly = True
+        Me.TextBox47.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox47.TabIndex = 107
+        Me.TextBox47.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox48
+        '
+        Me.TextBox48.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox48.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_PreControle_StructureTotal", True))
+        Me.TextBox48.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox48.Location = New System.Drawing.Point(724, 366)
+        Me.TextBox48.Name = "TextBox48"
+        Me.TextBox48.ReadOnly = True
+        Me.TextBox48.Size = New System.Drawing.Size(108, 20)
+        Me.TextBox48.TabIndex = 108
+        Me.TextBox48.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBox49
+        '
+        Me.TextBox49.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.TextBox49.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_PreControle_InspecteurTotal", True))
+        Me.TextBox49.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox49.Location = New System.Drawing.Point(839, 366)
+        Me.TextBox49.Name = "TextBox49"
+        Me.TextBox49.ReadOnly = True
+        Me.TextBox49.Size = New System.Drawing.Size(110, 20)
+        Me.TextBox49.TabIndex = 109
+        Me.TextBox49.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label23.Location = New System.Drawing.Point(462, 18)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(25, 15)
+        Me.Label23.TabIndex = 110
+        Me.Label23.Text = "CC"
+        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label25.Location = New System.Drawing.Point(462, 54)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(24, 15)
+        Me.Label25.TabIndex = 111
+        Me.Label25.Text = "CV"
+        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label27.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label27.Location = New System.Drawing.Point(462, 81)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(25, 15)
+        Me.Label27.TabIndex = 112
+        Me.Label27.Text = "CC"
+        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label28.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label28.Location = New System.Drawing.Point(462, 122)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(24, 15)
+        Me.Label28.TabIndex = 113
+        Me.Label28.Text = "CV"
+        Me.Label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label31.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label31.Location = New System.Drawing.Point(462, 149)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(25, 15)
+        Me.Label31.TabIndex = 114
+        Me.Label31.Text = "CC"
+        Me.Label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label32.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label32.Location = New System.Drawing.Point(462, 182)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(24, 15)
+        Me.Label32.TabIndex = 115
+        Me.Label32.Text = "CV"
+        Me.Label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label33.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label33.Location = New System.Drawing.Point(462, 209)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(25, 15)
+        Me.Label33.TabIndex = 116
+        Me.Label33.Text = "CC"
+        Me.Label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label34.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label34.Location = New System.Drawing.Point(462, 242)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(24, 15)
+        Me.Label34.TabIndex = 117
+        Me.Label34.Text = "CV"
+        Me.Label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label35.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label35.Location = New System.Drawing.Point(462, 269)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(25, 15)
+        Me.Label35.TabIndex = 118
+        Me.Label35.Text = "CC"
+        Me.Label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label36.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label36.Location = New System.Drawing.Point(462, 300)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(24, 15)
+        Me.Label36.TabIndex = 119
+        Me.Label36.Text = "CV"
+        Me.Label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label37.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label37.Location = New System.Drawing.Point(462, 327)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(25, 15)
+        Me.Label37.TabIndex = 120
+        Me.Label37.Text = "CC"
+        Me.Label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label38.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label38.Location = New System.Drawing.Point(462, 363)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(24, 15)
+        Me.Label38.TabIndex = 121
+        Me.Label38.Text = "CV"
+        Me.Label38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'pctLogoStat
         '
@@ -3539,8 +4160,8 @@ Public Class accueil
         lbl_infosAgent_IdCrodip.Text = agentCourant.numeroNational
         lbl_infosAgent_Nom.Text = agentCourant.nom
         lbl_infosAgent_Prenom.Text = agentCourant.prenom
-        lbl_infosAgent_dateDernCnx.Text = CSDate.TOCRODIPString(agentCourant.dateDerniereConnexion)
-        Dim dateDernSynhcro As String = CSDate.TOCRODIPString(agentCourant.dateDerniereSynchro)
+        lbl_infosAgent_dateDernCnx.Text = CSDate.ToCRODIPString(agentCourant.dateDerniereConnexion)
+        Dim dateDernSynhcro As String = CSDate.ToCRODIPString(agentCourant.dateDerniereSynchro)
         If dateDernSynhcro = "01/01/1970 00:00:00" Or dateDernSynhcro = "" Or dateDernSynhcro = "00/00/0000 00:00:00" Then
             lbl_infosAgent_dateDernSynchro.Text = "--/--/-- --:--:--"
         Else

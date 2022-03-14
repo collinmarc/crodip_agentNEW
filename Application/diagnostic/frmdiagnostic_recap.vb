@@ -339,6 +339,7 @@ Public Class frmdiagnostic_recap
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbCommentaire.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsDiag, "Commentaire", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.rtbCommentaire.Location = New System.Drawing.Point(6, 307)
+        Me.rtbCommentaire.MaxLength = 255
         Me.rtbCommentaire.Name = "rtbCommentaire"
         Me.rtbCommentaire.Size = New System.Drawing.Size(341, 226)
         Me.rtbCommentaire.TabIndex = 63

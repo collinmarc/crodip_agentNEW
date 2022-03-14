@@ -199,23 +199,23 @@ Public Class CSDb
     End Function
 
     Public Function getValue(ByVal pQuery As String) As Object
-        Dim _resultReader As DbDataReader
-        Dim oCSdb As New CSDb(True)
+        Dim bBDFermee As Boolean = isClose()
+        If bBDFermee Then
+            getInstance()
+        End If
         Dim oReturn As Object = Nothing
         Try
-            _resultReader = oCSdb.getResult2s(pQuery)
-            If _resultReader.HasRows Then
-                _resultReader.Read()
-                oReturn = _resultReader.GetValue(0)
-            Else
-                oReturn = Nothing
+            Dim oCmd As DbCommand
+            oCmd = getConnection().CreateCommand
+            oCmd.CommandText = pQuery
+            oReturn = oCmd.ExecuteScalar()
+            If bBDFermee Then
+                free()
             End If
-            _resultReader.Close()
-            oCSdb.free()
         Catch ex As Exception
-            CSDebug.dispFatal("CSDb::getValue : " & ex.Message.ToString & vbNewLine & "Query : " & _queryString)
-        End Try
-        Return oReturn
+                CSDebug.dispFatal("CSDb::getValue : " & ex.Message.ToString & vbNewLine & "Query : " & _queryString)
+            End Try
+            Return oReturn
     End Function
     '''
     ''' Execution d'un requete sans retour

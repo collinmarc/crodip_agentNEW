@@ -101,12 +101,6 @@ Public Class parentContener
             If Var = vbNo Then
                 e.Cancel = True
             Else
-                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
-                    Me.Cursor = Cursors.WaitCursor
-
-                    CSDb.ExecuteSQL("VACUUM")
-                    Me.Cursor = Cursors.Default
-                End If
                 CSEnvironnement.delPid()
             End If
         Else
@@ -242,5 +236,13 @@ Public Class parentContener
 
     Private Sub parentContener_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles MyBase.PreviewKeyDown
         CSDebug.dispError(e.Control)
+    End Sub
+
+    Private Sub mniVaccum_Click(sender As Object, e As EventArgs) Handles mniVaccum.Click
+        If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+            Me.Cursor = Cursors.WaitCursor
+            CSDb.ExecuteSQL("VACUUM")
+            Me.Cursor = Cursors.Default
+        End If
     End Sub
 End Class
