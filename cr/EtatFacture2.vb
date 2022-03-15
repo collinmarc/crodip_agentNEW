@@ -68,7 +68,6 @@ Public Class EtatFacture2
     Private Function genereDS() As Boolean
         Dim bReturn As Boolean
         Try
-
             Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
 
             ' On ajoute le logo
@@ -118,6 +117,7 @@ Public Class EtatFacture2
             oRow.NumNatPulve = m_oFacture.numNatPulve
             oRow.NumDiag = m_oFacture.idDiag
             '   End If
+            oRow.Fax = m_oFacture.oExploit.telephoneFax
 
             m_ods.Facture.AddFactureRow(oRow)
 

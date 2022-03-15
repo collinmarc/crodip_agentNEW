@@ -391,6 +391,8 @@ Partial Public Class ds_EtatFacture
         
         Private columnPiedPage As Global.System.Data.DataColumn
         
+        Private columnFax As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -699,6 +701,14 @@ Partial Public Class ds_EtatFacture
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property FaxColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFax
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -769,9 +779,10 @@ Partial Public Class ds_EtatFacture
                     ByVal TxTVA As Decimal,  _
                     ByVal MontantTVA As Decimal,  _
                     ByVal MontantTTC As Decimal,  _
-                    ByVal PiedPage As String) As FactureRow
+                    ByVal PiedPage As String,  _
+                    ByVal Fax As String) As FactureRow
             Dim rowFactureRow As FactureRow = CType(Me.NewRow,FactureRow)
-            Dim columnValuesArray() As Object = New Object() {idFacture, logo, logoFileName, DateFacture, NomOrga, AdresseOrga, CPOrga, CommuneOrga, TelOrga, SIRENORGA, TVAOrga, RCSOrga, RSCli, NomCli, AdresseCli, CPCli, CommuneCli, TelFixeCli, TelPortCli, mailCli, NumNatPulve, NumDiag, EnteteFacture, Commentaire, ModeReglement, DateEcheance, CoordBanK, FReglee, RefReglement, MontantHT, TxTVA, MontantTVA, MontantTTC, PiedPage}
+            Dim columnValuesArray() As Object = New Object() {idFacture, logo, logoFileName, DateFacture, NomOrga, AdresseOrga, CPOrga, CommuneOrga, TelOrga, SIRENORGA, TVAOrga, RCSOrga, RSCli, NomCli, AdresseCli, CPCli, CommuneCli, TelFixeCli, TelPortCli, mailCli, NumNatPulve, NumDiag, EnteteFacture, Commentaire, ModeReglement, DateEcheance, CoordBanK, FReglee, RefReglement, MontantHT, TxTVA, MontantTVA, MontantTTC, PiedPage, Fax}
             rowFactureRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowFactureRow)
             Return rowFactureRow
@@ -834,6 +845,7 @@ Partial Public Class ds_EtatFacture
             Me.columnMontantTVA = MyBase.Columns("MontantTVA")
             Me.columnMontantTTC = MyBase.Columns("MontantTTC")
             Me.columnPiedPage = MyBase.Columns("PiedPage")
+            Me.columnFax = MyBase.Columns("Fax")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -907,6 +919,8 @@ Partial Public Class ds_EtatFacture
             MyBase.Columns.Add(Me.columnMontantTTC)
             Me.columnPiedPage = New Global.System.Data.DataColumn("PiedPage", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPiedPage)
+            Me.columnFax = New Global.System.Data.DataColumn("Fax", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFax)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidFacture}, true))
             Me.columnidFacture.AllowDBNull = false
             Me.columnidFacture.Unique = true
@@ -1908,6 +1922,21 @@ Partial Public Class ds_EtatFacture
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Fax() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacture.FaxColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'Fax' dans la table 'Facture' est DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacture.FaxColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IslogoNull() As Boolean
             Return Me.IsNull(Me.tableFacture.logoColumn)
         End Function
@@ -2300,6 +2329,18 @@ Partial Public Class ds_EtatFacture
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetPiedPageNull()
             Me(Me.tableFacture.PiedPageColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsFaxNull() As Boolean
+            Return Me.IsNull(Me.tableFacture.FaxColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetFaxNull()
+            Me(Me.tableFacture.FaxColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

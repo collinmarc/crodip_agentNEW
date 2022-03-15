@@ -1,14 +1,13 @@
 TRUNK
 MASTER
 
-
 BUILD : 20220225120000
-
 	0001481: Export Factures : Format des dates
 	0001284: Evolution du Moteur de base de données
 	0001487: Saisie des Defauts: Les défauts ne désactivent pas les OK
 	0001488: Limiter le commentaire de Diag à 255 Caractères
 	0001242: Sur onglet stat: Avoir le nombre de contrôles complets réalisés et le nb de contre-visites réalisées
+	0001483: Modif Fiche Client (Fax)
 
 BUILD : 20220201120000
 	0001475: Transfert de client ne fonctionne plus depuis la dernière version

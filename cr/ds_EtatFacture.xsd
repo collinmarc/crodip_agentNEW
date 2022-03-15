@@ -12,7 +12,7 @@
   <xs:element name="ds_EtatFacture" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ds_EtatFacture" msprop:Generator_UserDSName="ds_EtatFacture">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Facture" msprop:Generator_TableClassName="FactureDataTable" msprop:Generator_TableVarName="tableFacture" msprop:Generator_RowChangedName="FactureRowChanged" msprop:Generator_TablePropName="Facture" msprop:Generator_RowDeletingName="FactureRowDeleting" msprop:Generator_RowChangingName="FactureRowChanging" msprop:Generator_RowEvHandlerName="FactureRowChangeEventHandler" msprop:Generator_RowDeletedName="FactureRowDeleted" msprop:Generator_RowClassName="FactureRow" msprop:Generator_UserTableName="Facture" msprop:Generator_RowEvArgName="FactureRowChangeEvent">
+        <xs:element name="Facture" msprop:Generator_TableClassName="FactureDataTable" msprop:Generator_TableVarName="tableFacture" msprop:Generator_TablePropName="Facture" msprop:Generator_RowDeletingName="FactureRowDeleting" msprop:Generator_RowChangingName="FactureRowChanging" msprop:Generator_RowEvHandlerName="FactureRowChangeEventHandler" msprop:Generator_RowDeletedName="FactureRowDeleted" msprop:Generator_UserTableName="Facture" msprop:Generator_RowChangedName="FactureRowChanged" msprop:Generator_RowEvArgName="FactureRowChangeEvent" msprop:Generator_RowClassName="FactureRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idFacture" msprop:Generator_ColumnVarNameInTable="columnidFacture" msprop:Generator_ColumnPropNameInRow="idFacture" msprop:Generator_ColumnPropNameInTable="idFactureColumn" msprop:Generator_UserColumnName="idFacture" type="xs:string" />
@@ -49,10 +49,11 @@
               <xs:element name="MontantTVA" msprop:Generator_ColumnVarNameInTable="columnMontantTVA" msprop:Generator_ColumnPropNameInRow="MontantTVA" msprop:Generator_ColumnPropNameInTable="MontantTVAColumn" msprop:Generator_UserColumnName="MontantTVA" type="xs:decimal" minOccurs="0" />
               <xs:element name="MontantTTC" msprop:Generator_ColumnVarNameInTable="columnMontantTTC" msprop:Generator_ColumnPropNameInRow="MontantTTC" msprop:Generator_ColumnPropNameInTable="MontantTTCColumn" msprop:Generator_UserColumnName="MontantTTC" type="xs:decimal" minOccurs="0" />
               <xs:element name="PiedPage" msprop:Generator_ColumnVarNameInTable="columnPiedPage" msprop:Generator_ColumnPropNameInRow="PiedPage" msprop:Generator_ColumnPropNameInTable="PiedPageColumn" msprop:Generator_UserColumnName="PiedPage" type="xs:string" minOccurs="0" />
+              <xs:element name="Fax" msprop:Generator_ColumnVarNameInTable="columnFax" msprop:Generator_ColumnPropNameInRow="Fax" msprop:Generator_ColumnPropNameInTable="FaxColumn" msprop:Generator_UserColumnName="Fax" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="LigneFact" msprop:Generator_TableClassName="LigneFactDataTable" msprop:Generator_TableVarName="tableLigneFact" msprop:Generator_RowChangedName="LigneFactRowChanged" msprop:Generator_TablePropName="LigneFact" msprop:Generator_RowDeletingName="LigneFactRowDeleting" msprop:Generator_RowChangingName="LigneFactRowChanging" msprop:Generator_RowEvHandlerName="LigneFactRowChangeEventHandler" msprop:Generator_RowDeletedName="LigneFactRowDeleted" msprop:Generator_RowClassName="LigneFactRow" msprop:Generator_UserTableName="LigneFact" msprop:Generator_RowEvArgName="LigneFactRowChangeEvent">
+        <xs:element name="LigneFact" msprop:Generator_TableClassName="LigneFactDataTable" msprop:Generator_TableVarName="tableLigneFact" msprop:Generator_TablePropName="LigneFact" msprop:Generator_RowDeletingName="LigneFactRowDeleting" msprop:Generator_RowChangingName="LigneFactRowChanging" msprop:Generator_RowEvHandlerName="LigneFactRowChangeEventHandler" msprop:Generator_RowDeletedName="LigneFactRowDeleted" msprop:Generator_UserTableName="LigneFact" msprop:Generator_RowChangedName="LigneFactRowChanged" msprop:Generator_RowEvArgName="LigneFactRowChangeEvent" msprop:Generator_RowClassName="LigneFactRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idFacture" msprop:Generator_ColumnVarNameInTable="columnidFacture" msprop:Generator_ColumnPropNameInRow="idFacture" msprop:Generator_ColumnPropNameInTable="idFactureColumn" msprop:Generator_UserColumnName="idFacture" type="xs:string" minOccurs="0" />
@@ -75,7 +76,7 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Facture_LigneFact" msdata:parent="Facture" msdata:child="LigneFact" msdata:parentkey="idFacture" msdata:childkey="idFacture" msprop:Generator_UserChildTable="LigneFact" msprop:Generator_ChildPropName="GetLigneFactRows" msprop:Generator_UserRelationName="Facture_LigneFact" msprop:Generator_RelationVarName="relationFacture_LigneFact" msprop:Generator_UserParentTable="Facture" msprop:Generator_ParentPropName="FactureRow" />
+      <msdata:Relationship name="Facture_LigneFact" msdata:parent="Facture" msdata:child="LigneFact" msdata:parentkey="idFacture" msdata:childkey="idFacture" msprop:Generator_UserChildTable="LigneFact" msprop:Generator_ChildPropName="GetLigneFactRows" msprop:Generator_UserRelationName="Facture_LigneFact" msprop:Generator_ParentPropName="FactureRow" msprop:Generator_RelationVarName="relationFacture_LigneFact" msprop:Generator_UserParentTable="Facture" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

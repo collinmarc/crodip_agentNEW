@@ -3150,6 +3150,9 @@ Public Class Diagnostic
             Dim oRow As ds_EtatBL.FactureRow
             Dim oStructure As New Structuree()
             oStructure = StructureManager.getStructureById(Me.organismePresId)
+            Dim oExploit As Exploitation
+            oExploit = ExploitationManager.getExploitationById(proprietaireId)
+
             oRow = oReturn.Facture.AddFactureRow(IdPulve:=Me.pulverisateurNumNational,
                                                  NomOrganisme:=Me.organismePresNom,
                                                  MontantHT:=Me.TotalHT,
@@ -3180,7 +3183,7 @@ Public Class Diagnostic
                                           CodeAPE:=proprietaireCodeApe,
                                           SIREN:=proprietaireNumeroSiren,
                                           Tel:=proprietaireTelephoneFixe,
-                                          Fax:="",
+                                          Fax:=oExploit.telephoneFax,
                                           Port:=proprietaireTelephonePortable,
                                           Mail:=proprietaireEmail)
 
