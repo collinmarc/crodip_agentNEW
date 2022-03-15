@@ -54,10 +54,29 @@ Public Class CSDiagPdf
 
     ' Nettoie une chaine pour etre utilisée comme nom de fichier
     Public Shared Function cleanString(ByVal chaine As String) As String
+        chaine = chaine.Replace("è", "e").Trim
+        chaine = chaine.Replace("è", "e").Trim
+        chaine = chaine.Replace("à", "a").Trim
+        chaine = chaine.Replace("ï", "i").Trim
+        chaine = chaine.Replace("ê", "e").Trim
+        chaine = chaine.Replace("ô", "o").Trim
+        chaine = chaine.Replace("ç", "c").Trim
+        chaine = chaine.Replace("ù", "u").Trim
+        chaine = chaine.Replace("ù", "u").Trim
         chaine = chaine.ToUpper.Replace("'", "").Trim
         chaine = chaine.ToUpper.Replace("/", "").Trim
         chaine = chaine.ToUpper.Replace("\", "").Trim
         chaine = chaine.ToUpper.Replace(" ", "_").Trim
+        chaine = chaine.ToUpper.Replace("è", "e").Trim
+        chaine = chaine.ToUpper.Replace("è", "e").Trim
+        chaine = chaine.ToUpper.Replace("à", "a").Trim
+        chaine = chaine.ToUpper.Replace("ï", "i").Trim
+        chaine = chaine.ToUpper.Replace("ê", "e").Trim
+        chaine = chaine.ToUpper.Replace("ô", "o").Trim
+        chaine = chaine.ToUpper.Replace("ç", "c").Trim
+        chaine = chaine.ToUpper.Replace("ù", "u").Trim
+        chaine = chaine.ToUpper.Replace("ù", "u").Trim
+        chaine = chaine.ToUpper.Replace("ù", "u").Trim
         Dim aOctets As Byte() = System.Text.Encoding.GetEncoding(1251).GetBytes(chaine)
         chaine = System.Text.Encoding.ASCII.GetString(aOctets)
         Return chaine
