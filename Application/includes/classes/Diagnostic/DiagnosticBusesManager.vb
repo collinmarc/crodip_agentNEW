@@ -397,7 +397,7 @@ Public Class DiagnosticBusesManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As Date = Date.Now
-            dbLink.queryString = "UPDATE `DiagnosticBuses` SET `DiagnosticBuses`.`dateModificationCrodip`='" & newDate & "',`DiagnosticBuses`.`dateModificationAgent`='" & newDate & "' WHERE `DiagnosticBuses`.`id`=" & objDiagnosticBuses.id & ""
+            dbLink.queryString = "UPDATE DiagnosticBuses SET dateModificationCrodip='" & newDate & "' ,dateModificationAgent='" & newDate & "' WHERE id=" & objDiagnosticBuses.id & ""
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -434,9 +434,8 @@ Public Class DiagnosticBusesManager
 
     End Function
 
-    Public Shared Function getDiagnosticBusesByDiagnostic(pDiagnostic As Diagnostic) As Boolean
+    Public Shared Function getDiagnosticBusesByDiagnostic(oCSDB As CSDb, pDiagnostic As Diagnostic) As Boolean
         Dim bReturn As Boolean
-        Dim oCSDB As New CSDb(True)
         Try
             pDiagnostic.diagnosticBusesList.Liste.Clear()
             'Récupération du nbre de Lots de Buses
@@ -490,7 +489,6 @@ Public Class DiagnosticBusesManager
             Next nLot
 
 
-            oCSDB.free()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticBusesManager.getDiagnosticBusesByDiagnosticId ERR" & ex.Message.ToString())
             bReturn = False

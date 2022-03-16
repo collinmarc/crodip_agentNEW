@@ -442,10 +442,7 @@ Public Class RPloginAgent
         ' On récupère le nombre d'organismes
         Dim nbStructures As Integer = 0
         Dim CSDb As New CSDb(True)
-        Dim dataListStructure As DbDataReader = CSDb.getResult2s("SELECT count(*) FROM Structure")
-        While dataListStructure.Read()
-            nbStructures = CType(dataListStructure.Item(0), Integer)
-        End While
+        nbStructures = CSDb.getValue("SELECT count(*) FROM Structure")
         CSDb.free()
         FillCbxAgent()
         'Statusbardisplay("Chargement réussi de " & nbProfils & " profil(s)", False)

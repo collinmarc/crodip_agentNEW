@@ -477,18 +477,18 @@ retryOldFile:
         'End Try
 
         ' Puis on traite les dossiers
-        Try
-            For Each tmpDir As String In Directory.GetDirectories(srcDir)
+        For Each tmpDir As String In Directory.GetDirectories(srcDir)
+            Try
                 Dim newDir As String = tmpDir.Replace(srcDir, "")
                 If Directory.Exists(targetDir & newDir) Then
                     Me._majSoftware_copyDirContent(tmpDir, targetDir & newDir, progressBar_download)
                 Else
                     Directory.Move(tmpDir, targetDir & newDir)
                 End If
-            Next
-        Catch ex As Exception
-            CSDebug.dispError("CrodipUpdater.Main._majSoftware_copyDirContent 3 : " & ex.Message.ToString)
-        End Try
+            Catch ex As Exception
+                CSDebug.dispError("CrodipUpdater.Main._majSoftware_copyDirContent 3 : (" & tmpDir & ")" & ex.Message.ToString)
+            End Try
+        Next
 
         ' On supprime le dossier vidé
         Try

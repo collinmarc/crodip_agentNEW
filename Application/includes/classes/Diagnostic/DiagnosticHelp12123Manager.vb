@@ -12,9 +12,8 @@ Public Class DiagnosticHelp12123Manager
 #Region "Methodes acces Local"
 
 
-    Public Shared Function getDiagnosticHelp12123ByDiagnosticId(ByVal pDiagnostic As Diagnostic) As DiagnosticHelp12123
+    Public Shared Function getDiagnosticHelp12123ByDiagnosticId(oCSDB As CSDb, ByVal pDiagnostic As Diagnostic) As DiagnosticHelp12123
         ' On récupère les items du diagnostic
-        Dim oCSDB As New CSDb(True)
         Dim oHelp12123 As DiagnosticHelp12123
         Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
         Try
@@ -35,9 +34,6 @@ Public Class DiagnosticHelp12123Manager
             oHelp12123 = Nothing
         End Try
 
-        If Not oCSDB Is Nothing Then
-            oCSDB.free()
-        End If
         Return oHelp12123
     End Function
     '''

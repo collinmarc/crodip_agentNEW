@@ -242,6 +242,7 @@ Public Class FVManometreEtalonManager
                         newId = tmpId
                     End If
                 End While
+                tmpListProfils.Close()
                 tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
                 bdd.free()
             Catch ex As Exception ' On intercepte l'erreur

@@ -1656,7 +1656,9 @@ Public Class frmdiagnostic_facturationCoProp
     Private Sub SauvegarderFactures()
         For Each oFacture As Facture In m_bsFacture
             If Not String.IsNullOrEmpty(oFacture.idFacture) Then
-                createFacture_CR(oFacture)
+                If String.IsNullOrEmpty(oFacture.pathPDF) Then
+                    createFacture_CR(oFacture)
+                End If
                 If m_oDiag IsNot Nothing Then
                     oFacture.idDiag = m_oDiag.id
                 End If
@@ -1812,7 +1814,7 @@ Public Class frmdiagnostic_facturationCoProp
 
 
             End If
-            End If
+        End If
     End Sub
 
     Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles btnCalc.Click

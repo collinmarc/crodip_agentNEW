@@ -98,10 +98,9 @@ Public Class DiagnosticItemManager
 #Region "Methodes acces Local"
 
 
-    Public Shared Function getDiagnosticItemByDiagnosticId(pDiagnostic As Diagnostic) As Boolean
+    Public Shared Function getDiagnosticItemByDiagnosticId(oCSDB As CSDb, pDiagnostic As Diagnostic) As Boolean
         ' On récupère les items du diagnostic
         Dim bReturn As Boolean
-        Dim oCSDB As New CSDb(True)
         Dim bddCommande2 As DbCommand = oCSDB.getConnection().CreateCommand()
         Try
             ' récupération du fichier de config associé au Pulvé
@@ -146,9 +145,6 @@ Public Class DiagnosticItemManager
             bReturn = False
         End Try
 
-        If Not oCSDB Is Nothing Then
-            oCSDB.free()
-        End If
         Return bReturn
     End Function
     Public Shared Function existsDiagnosticItemById(ByVal pCsdb As CSDb, ByVal diagnosticitem_id As String, ByVal pIdDiagnostic As String) As Boolean
@@ -431,7 +427,7 @@ Public Class DiagnosticItemManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE DiagnosticItem SET dateModificationCrodip='" & newDate & "',DiagnosticItem.dateModificationAgent='" & newDate & "' WHERE id='" & objDiagnosticItem.id & "' AND idDiagnostic = '" & objDiagnosticItem.idDiagnostic & "'"
+            dbLink.queryString = "UPDATE DiagnosticItem SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id='" & objDiagnosticItem.id & "' AND idDiagnostic = '" & objDiagnosticItem.idDiagnostic & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception

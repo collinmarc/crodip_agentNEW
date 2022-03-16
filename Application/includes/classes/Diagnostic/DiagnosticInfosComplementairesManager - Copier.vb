@@ -12,9 +12,8 @@ Public Class DiagnosticInfosComplementaireManager
 #Region "Methodes acces Local"
 
 
-    Public Shared Function getDiagnosticInfosComplementairesByDiagnosticId(ByVal pDiagnostic As Diagnostic) As DiagnosticInfosComplementaires
+    Public Shared Function getDiagnosticInfosComplementairesByDiagnosticId(oCSDB As CSDb, ByVal pDiagnostic As Diagnostic) As DiagnosticInfosComplementaires
         ' On récupère les items du diagnostic
-        Dim oCSDB As New CSDb(True)
         Dim oInfosComplementaires As DiagnosticInfosComplementaires
         Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
         Try
@@ -35,9 +34,6 @@ Public Class DiagnosticInfosComplementaireManager
             oInfosComplementaires = Nothing
         End Try
 
-        If Not oCSDB Is Nothing Then
-            oCSDB.free()
-        End If
         Return oInfosComplementaires
     End Function
     '''

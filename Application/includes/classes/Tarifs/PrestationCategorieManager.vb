@@ -254,7 +254,7 @@ Public Class PrestationCategorieManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `PrestationCategorie` SET `PrestationCategorie`.`dateModificationCrodip`='" & newDate & "',`PrestationCategorie`.`dateModificationAgent`='" & newDate & "' WHERE `PrestationCategorie`.`id`=" & curObject.id & ""
+            dbLink.queryString = "UPDATE PrestationCategorie SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id=" & curObject.id & ""
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -326,7 +326,7 @@ Public Class PrestationCategorieManager
                 End While
                 ReDim Preserve arrObjects(i - 1)
                 '################################################################
-
+                tmpResults.Close()
                 '' 110727 : arzur_c : On ferme la connexion
                 dbLink.free()
 
@@ -373,7 +373,7 @@ Public Class PrestationCategorieManager
                     '###############################
                 End While
                 '################################################################
-
+                tmpResults.Close()
                 '' 110727 : arzur_c : On ferme la connexion
                 dbLink.free()
 
@@ -471,6 +471,7 @@ Public Class PrestationCategorieManager
             ReDim Preserve arrObjects(i - 1)
             '################################################################
             '' 110727 : arzur_c : On ferme la connexion
+            tmpResults.Close()
             dbLink.free()
         Catch ex As Exception
             CSDebug.dispFatal("PrestationCategorieManager::getUpdates() : " & ex.Message)

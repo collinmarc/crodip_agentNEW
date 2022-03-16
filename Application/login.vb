@@ -170,9 +170,9 @@ Public Class login
         Me.lblBaseDonnee.ForeColor = System.Drawing.Color.Silver
         Me.lblBaseDonnee.Location = New System.Drawing.Point(189, 656)
         Me.lblBaseDonnee.Name = "lblBaseDonnee"
-        Me.lblBaseDonnee.Size = New System.Drawing.Size(112, 15)
+        Me.lblBaseDonnee.Size = New System.Drawing.Size(118, 15)
         Me.lblBaseDonnee.TabIndex = 34
-        Me.lblBaseDonnee.Text = "Mode : Simplifié"
+        Me.lblBaseDonnee.Text = "Base de données"
         Me.lblBaseDonnee.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'lblMode
@@ -740,7 +740,7 @@ Public Class login
         End If
         If GlobalsCRODIP.GLOB_ENV_DEBUG Then
             Dim oCSDB As New CSDb(False)
-            lblBaseDonnee.Text = oCSDB.getbddPathName()
+            lblBaseDonnee.Text = oCSDB.getConnection().ConnectionString
         Else
             lblBaseDonnee.Text = ""
         End If

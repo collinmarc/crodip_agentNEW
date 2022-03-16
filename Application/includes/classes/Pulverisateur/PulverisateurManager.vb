@@ -360,7 +360,7 @@ Public Class PulverisateurManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `Pulverisateur` SET `Pulverisateur`.`dateModificationCrodip`='" & newDate & "',`Pulverisateur`.`dateModificationAgent`='" & newDate & "' WHERE `Pulverisateur`.`id`='" & objPulverisateur.id & "'"
+            dbLink.queryString = "UPDATE Pulverisateur SET dateModificationCrodip='" & newDate & "' , dateModificationAgent='" & newDate & "' WHERE id='" & objPulverisateur.id & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -444,6 +444,7 @@ Public Class PulverisateurManager
             Dim dataResults As DbDataReader = bdd.getResult2s(query)
 
             bReturn = dataResults.HasRows
+            dataResults.Close()
             bdd.free()
             Return bReturn
         Catch ex As Exception
@@ -482,12 +483,12 @@ Public Class PulverisateurManager
             ' On supprime le Pulverisateur de la base
             Dim query As String = "DELETE FROM `Pulverisateur` WHERE Pulverisateur.id='" & pPulveId & "'"
             Dim bdd As New CSDb(True)
-            Dim dataResults As DbDataReader = bdd.getResult2s(query)
+            bdd.Execute(query)
             bdd.free()
             'Suppression de la relation vers les exploitations
             query = "DELETE FROM `ExploitationTOPulverisateur` WHERE `ExploitationTOPulverisateur`.`idPulverisateur`='" & pPulveId & "'"
             Dim bdd2 As New CSDb(True)
-            Dim dataResults2 As DbDataReader = bdd2.getResult2s(query)
+            bdd2.Execute(query)
             bdd2.free()
 
             Return True
@@ -654,6 +655,7 @@ Public Class PulverisateurManager
                     End If
                 End If
             End While
+            tmpListProfils.Close()
         Catch ex As Exception ' On intercepte l'erreur
             CSDebug.dispError("PulverisateurManager - getListeOfPulverisateur : " & ex.Message)
         End Try
@@ -706,6 +708,7 @@ Public Class PulverisateurManager
                     End If
                 End If
             End While
+            tmpListProfils.Close()
         Catch ex As Exception ' On intercepte l'erreur
             CSDebug.dispError("PulverisateurManager - getListeOfPulverisateur : " & ex.Message)
         End Try
@@ -756,16 +759,10 @@ Public Class PulverisateurManager
         Dim bdd As CSDb
         bdd = New CSDb(True)
         Try
-            Dim dataResults As DbDataReader = bdd.getResult2s("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "' AND id <> '" & pulveId & "'")
-            While dataResults.Read()
-                Dim returnVal As Integer = CInt(Trim(dataResults.Item(0).ToString))
-                bdd.free()
-                Return returnVal
-            End While
+            Dim returnVal As Integer = CInt(bdd.getValue("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "' AND id <> '" & pulveId & "'"))
         Catch ex As Exception
-            bdd.free()
-            Return 0
         End Try
+        bdd.free()
     End Function
     ''' <summary>
     ''' Rend le nobre de publvérisateur par numéro national
@@ -779,12 +776,7 @@ Public Class PulverisateurManager
         bdd = New CSDb(True)
         Dim returnVal As Integer
         Try
-            bdd = New CSDb(True)
-            Dim dataResults As DbDataReader = bdd.getResult2s("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "'")
-            While dataResults.Read()
-                returnVal = CInt(Trim(dataResults.Item(0).ToString))
-            End While
-            dataResults.Close()
+            returnVal = bdd.getValue("SELECT Count(*) AS existsPulve FROM Pulverisateur WHERE numeroNational='" & numeroNational & "'")
         Catch ex As Exception
             returnVal = 0
         End Try

@@ -113,7 +113,8 @@ Public Class DiagnosticMano542Test
         DiagnosticManager.save(odiag)
 
         'Rechargement par le diagnostic
-        DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(odiag)
+        Dim oCSDB As New CSDb(True)
+        DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(oCSDB, odiag)
         'Vérification que les Mano542 sopnt bien lus
         Assert.AreEqual(2, odiag.diagnosticMano542List.Liste.Count)
 
@@ -131,12 +132,11 @@ Public Class DiagnosticMano542Test
         oDiagMAno542.pressionControle = "2,5"
         oDiagMAno542.pressionPulve = "2,6"
 
-        Dim oCSDB As New CSDb(True)
         DiagnosticMano542Manager.save(oDiagMAno542, oCSDB)
-        oCSDB.free()
 
         'Relecture des items
-        DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(odiag)
+        DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(oCSDB, odiag)
+        oCSDB.free()
 
         Assert.AreEqual(2, odiag.diagnosticMano542List.Liste.Count)
         oDiagMAno542 = odiag.diagnosticMano542List.Liste(1)

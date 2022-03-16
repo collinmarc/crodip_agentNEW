@@ -20,7 +20,7 @@ Public Class CSDb
     Protected DBextension As String = ".mdb"
     ' Parametres de connexion
     ' Connexion
-    Protected _dbConnection As DbConnection = Nothing
+    Protected Shared _dbConnection As DbConnection = Nothing
     Protected _bddConnectString As String
     Protected _dbName As String ' Nom de la base de données
     ' Query
@@ -64,15 +64,16 @@ Public Class CSDb
                 Select Case _DBTYPE
                     Case EnumDBTYPE.MSACCESS
                         _dbConnection = New OleDb.OleDbConnection
+                        _dbConnection.ConnectionString = _bddConnectString
                     Case EnumDBTYPE.SQLITE
                         _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
                         Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
                         oBuider.DataSource = "bdd/crodip_agent.db3"
+                        oBuider.Pooling = True
                         _dbConnection.ConnectionString = oBuider.ConnectionString
                 End Select
             End If
 
-            _dbConnection.ConnectionString = _bddConnectString
 
         End If
 
@@ -82,6 +83,29 @@ Public Class CSDb
             End If
         End If
     End Sub
+
+    Public Function IsLocked() As Boolean
+        Dim bReturn As Boolean = False
+
+        Try
+
+            Dim oCmd As Microsoft.Data.Sqlite.SqliteCommand
+            oCmd = _dbConnection.CreateCommand()
+            oCmd.CommandText = "BEGIN EXCLUSIVE"
+            oCmd.CommandTimeout = 1
+            oCmd.ExecuteNonQuery()
+
+            oCmd = _dbConnection.CreateCommand()
+            oCmd.CommandText = "COMMIT"
+            oCmd.CommandTimeout = 1
+            oCmd.ExecuteNonQuery()
+            bReturn = False
+        Catch ex As Microsoft.Data.Sqlite.SqliteException
+            bReturn = True
+
+        End Try
+        Return bReturn
+    End Function
     ''' <summary>
     ''' Rend la Chaine de connextion à la base de donnée en fonction de l'environnement
     ''' </summary>
@@ -110,7 +134,7 @@ Public Class CSDb
                     End If
                 End If
             Case EnumDBTYPE.SQLITE
-                bReturn = "Data Source=.\bdd\" & pDBName & DBextension
+                bReturn = "Data Source=.\bdd\" & pDBName & DBextension & ";Pooling=true"
         End Select
 
         Return bReturn
@@ -134,18 +158,23 @@ Public Class CSDb
     ''' </summary>
     Public Sub free()
         'Me.Finalize()
-        Try
-            ' Test pour fermeture de connection BDD
-            While _dbConnection.State() <> System.Data.ConnectionState.Closed
-                ' On ferme la connexion
-                _dbConnection.Close()
-                If _dbConnection.State <> System.Data.ConnectionState.Closed Then
-                    pause(10)
-                End If
-            End While
-        Catch ex As Exception
-            'CSDebug.dispError("CSDB.Free ERR : " & ex.Message)
-        End Try
+        nInstance = nInstance - 1
+        If nInstance <= 0 Then
+            Try
+                ' Test pour fermeture de connection BDD
+                'While _dbConnection.State() <> System.Data.ConnectionState.Closed
+                '    ' On ferme la connexion
+                '    _dbConnection.Close()
+                '    If _dbConnection.State <> System.Data.ConnectionState.Closed Then
+                '        pause(10)
+                '    End If
+                'End While
+            Catch ex As Exception
+                'CSDebug.dispError("CSDB.Free ERR : " & ex.Message)
+            End Try
+            nInstance = 0
+
+        End If
     End Sub
 
     '############################################################
@@ -165,33 +194,42 @@ Public Class CSDb
     '############################################################
     '################### Methodes publiques #####################
     '############################################################
-
+    Protected Shared nInstance As Integer = 0
+    Public ReadOnly Property nbInstances() As String
+        Get
+            Return nInstance
+        End Get
+    End Property
     Public Function getInstance() As Boolean
         Dim bReturn As Boolean
-        Try
-            ' Test pour fermeture de connection BDD
-            If _dbConnection.State <> ConnectionState.Closed Then
-                free()
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("CSDb.getInstance1 ERR : " & ex.Message)
-            End Try
-        ' on essaie 10 fois la connexion
-        Dim nTry As Integer
-        For nTry = 1 To 10
-            Try
+        'Try
+        '    ' Test pour fermeture de connection BDD
+        '    If _dbConnection.State <> ConnectionState.Closed Then
+        '        free()
+        '    End If
+        'Catch ex As Exception
+        '    CSDebug.dispError("CSDb.getInstance1 ERR : " & ex.Message)
+        'End Try
+        bReturn = True
+        If nInstance = 0 Then
+            ' on essaie 10 fois la connexion
+            Dim nTry As Integer
+            For nTry = 1 To 10
+                Try
 
-                If _dbConnection.State() = ConnectionState.Closed Then
                     ' Si non, on la configure et on l'ouvre
                     _dbConnection.Open()
-                    bReturn = True
+                    If IsLocked() Then
+                        CSDebug.dispFatal("CSDB.GetInstance DB is Locked")
+                    End If
                     Exit For
-                End If
-            Catch ex As Exception
-                CSDebug.dispError("CSDb.getInstance2 on " & _dbConnection.ConnectionString & ":" & ex.Message)
-            End Try
-
-        Next
+                Catch ex As Exception
+                    CSDebug.dispError("CSDb.getInstance2 on " & _dbConnection.ConnectionString & ":", ex)
+                    bReturn = False
+                End Try
+            Next
+        End If
+        nInstance = nInstance + 1
         Return bReturn
     End Function
     Public Function getConnection() As DbConnection

@@ -434,8 +434,6 @@ Public Class AgentManagerTest
         Assert.AreEqual(0, n)
         n = CType(oCSDB.getValue("Select count(*) FROM  FicheVieManometreEtalon"), Integer)
         Assert.AreEqual(0, n)
-        n = CType(oCSDB.getValue("Select count(*) FROM  Logs"), Integer)
-        Assert.AreEqual(0, n)
         n = CType(oCSDB.getValue("Select count(*) FROM  PrestationCategorie"), Integer)
         Assert.AreEqual(0, n)
         n = CType(oCSDB.getValue("Select count(*) FROM  PrestationTarif"), Integer)

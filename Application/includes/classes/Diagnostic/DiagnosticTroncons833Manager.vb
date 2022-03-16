@@ -213,7 +213,7 @@ Public Class DiagnosticTroncons833Manager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `DiagnosticTroncons833` SET `DiagnosticTroncons833`.`dateModificationCrodip`='" & newDate & "',`DiagnosticTroncons833`.`dateModificationAgent`='" & newDate & "' WHERE `DiagnosticTroncons833`.`id`=" & objDiagnosticTroncons833.id & ""
+            dbLink.queryString = "UPDATE DiagnosticTroncons833 SET dateModificationCrodip='" & newDate & "', dateModificationAgent='" & newDate & "' WHERE id=" & objDiagnosticTroncons833.id & ""
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -260,12 +260,11 @@ Public Class DiagnosticTroncons833Manager
     End Function
 
     ''' Chargement des troncons833 dans le Diagnostic
-    Public Shared Function getDiagnosticTroncons833ByDiagnostic(ByVal pDiagnostic As Diagnostic) As Boolean
+    Public Shared Function getDiagnosticTroncons833ByDiagnostic(oCSDB As CSDb, ByVal pDiagnostic As Diagnostic) As Boolean
         Debug.Assert(pDiagnostic IsNot Nothing)
         Debug.Assert(Not String.IsNullOrEmpty(pDiagnostic.id))
 
         Dim bReturn As Boolean
-        Dim oCSDB As New CSDb(True)
         Try
             'Recupération des infos de Troncons833
             pDiagnostic.diagnosticTroncons833.Liste.Clear()
@@ -289,7 +288,6 @@ Public Class DiagnosticTroncons833Manager
             oDR.Close()
 
 
-            oCSDB.free()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic ERR" & ex.Message.ToString())
             bReturn = False

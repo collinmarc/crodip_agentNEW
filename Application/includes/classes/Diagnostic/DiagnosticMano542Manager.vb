@@ -167,7 +167,7 @@ Public Class DiagnosticMano542Manager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `DiagnosticMano542` SET `DiagnosticMano542`.`dateModificationCrodip`='" & newDate & "',`DiagnosticMano542`.`dateModificationAgent`='" & newDate & "' WHERE `DiagnosticMano542`.`id`=" & objDiagnosticMano542.id & ""
+            dbLink.queryString = "UPDATE DiagnosticMano542 SET dateModificationCrodip='" & newDate & "', dateModificationAgent='" & newDate & "' WHERE id =" & objDiagnosticMano542.id & ""
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -210,9 +210,8 @@ Public Class DiagnosticMano542Manager
     End Function
 
     ' o
-    Public Shared Function getDiagnosticMano542ByDiagnostic(ByVal pDiagnostic As Diagnostic) As Boolean
+    Public Shared Function getDiagnosticMano542ByDiagnostic(oCSDB As CSDb, ByVal pDiagnostic As Diagnostic) As Boolean
         Dim bReturn As Boolean
-        Dim oCSDB As New CSDb(True)
         Try
             'Recupération des infos de MAno542
             pDiagnostic.diagnosticMano542List.Liste.Clear()
@@ -236,7 +235,6 @@ Public Class DiagnosticMano542Manager
             oDR.Close()
 
 
-            oCSDB.free()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticMAno542Manager.getDiagnosticMano542ByDiagnostic ERR" & ex.Message.ToString())
             bReturn = False

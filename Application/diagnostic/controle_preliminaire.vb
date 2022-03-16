@@ -1794,11 +1794,11 @@ Public Class controle_preliminaire
                     If pcontrole.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK Then
                         'Si le controle était un OK
                         'Déchecker tous les autres controles du groupe (autre que OK)
-                        lstGrap.ForEach(Sub(oCtrl)
-                                            If Not oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
-                                                oCtrl.Checked = False
-                                            End If
-                                        End Sub)
+                        'lstGrap.ForEach(Sub(oCtrl)
+                        '                    If Not oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
+                        '                        oCtrl.Checked = False
+                        '                    End If
+                        '                End Sub)
                     Else
                         'Déchecker les controles OK du Groupe
                         If m_ModeAffichage = GlobalsCRODIP.DiagMode.CTRL_CV _

@@ -99,7 +99,6 @@ Public Class DiagnosticTroncons833Test
         Dim odiag As Diagnostic
 
         Dim oDiagTroncons833 As DiagnosticTroncons833
-        Dim oCSDB As New CSDb(True)
 
         odiag = createAndSaveDiagnostic()
         odiag.diagnosticTroncons833.Liste.Clear()
@@ -121,7 +120,8 @@ Public Class DiagnosticTroncons833Test
         DiagnosticManager.save(odiag)
 
         'Rechargement par le diagnostic
-        DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(odiag)
+        Dim oCSDB As New CSDb(True)
+        DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(oCSDB, odiag)
         'Vérification que les Troncons833 sopnt bien lus
         Assert.AreEqual(2, odiag.diagnosticTroncons833.Liste.Count)
 
@@ -145,7 +145,7 @@ Public Class DiagnosticTroncons833Test
         DiagnosticTroncons833Manager.save(oDiagTroncons833, oCSDB)
 
         'Relecture des items
-        DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(odiag)
+        DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(oCSDB, odiag)
 
         Assert.AreEqual(2, odiag.diagnosticTroncons833.Liste.Count)
         oDiagTroncons833 = odiag.diagnosticTroncons833.Liste(1)

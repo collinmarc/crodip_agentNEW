@@ -362,12 +362,17 @@ Public Class FactureManager
                         Fill(oFacture, oDR.GetName(nChamp), oDR.GetValue(nChamp))
                     End If
                 Next
-                oFacture.Lignes.AddRange(FactureItemManager.getFactureById(oFacture.idFacture))
+                '                oFacture.Lignes.AddRange(FactureItemManager.getFactureById(oFacture.idFacture))
                 oReturn.Add(oFacture)
 
             End While
             oDR.Close()
             oCSDB.free()
+            'Chargement des lignes de factures
+            oReturn.ForEach(Sub(oFact)
+                                oFact.Lignes.AddRange(FactureItemManager.getFactureById(oFact.idFacture))
+                            End Sub)
+
 
         Catch ex As Exception
             CSDebug.dispError("FactureManager.getFactures ERR", ex)

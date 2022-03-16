@@ -5184,21 +5184,18 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     If pcontrole.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK Then
                         'Si le controle était un OK
                         'Déchecker tous les autres controles du groupe (autre que OK)
+                        'lstGrap.ForEach(Sub(oCtrl)
+                        '                    If Not oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
+                        '                        oCtrl.Checked = False
+                        '                    End If
+                        '                End Sub)
+                    Else
+                        'Déchecker les controles OK du Groupe (Uniquement en CV ou VISU)
                         lstGrap.ForEach(Sub(oCtrl)
-                                            If Not oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
+                                            If oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
                                                 oCtrl.Checked = False
                                             End If
                                         End Sub)
-                    Else
-                        'Déchecker les controles OK du Groupe (Uniquement en CV ou VISU)
-                        If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_CV _
-                            Or m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
-                            lstGrap.ForEach(Sub(oCtrl)
-                                                If oCtrl.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK And oCtrl.Checked Then
-                                                    oCtrl.Checked = False
-                                                End If
-                                            End Sub)
-                        End If
 
                     End If
                     End If

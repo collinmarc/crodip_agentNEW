@@ -224,12 +224,18 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Content Include="favicon.ico" />
+    <Content Include="Logiciel Crodip Agent.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ReleaseNotes.css" />
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Logiciel Crodip Agent.exe.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="My Project\Settings.settings">
       <CustomToolNamespace>My</CustomToolNamespace>

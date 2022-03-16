@@ -201,7 +201,7 @@ Public Class ManometreControleManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE AgentManoControle SET dateModificationCrodip='" & newDate & "',AgentManoControle.dateModificationAgent='" & newDate & "' WHERE numeroNational='" & objManometreControle.numeroNational & "'"
+            dbLink.queryString = "UPDATE AgentManoControle SET dateModificationCrodip='" & newDate & "', dateModificationAgent='" & newDate & "' WHERE numeroNational='" & objManometreControle.numeroNational & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception

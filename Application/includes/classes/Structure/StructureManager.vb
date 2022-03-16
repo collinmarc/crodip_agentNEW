@@ -367,7 +367,7 @@ Public Class StructureManager
             If Not objStructure.dateModificationCrodip Is Nothing Then
                 paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.TOCRODIPString(objStructure.dateModificationCrodip) & "'"
             End If
-            bddCommande.CommandText = "UPDATE Structure SET " & paramsQuery & " WHERE Structure.id=" & objStructure.id & ""
+            bddCommande.CommandText = "UPDATE Structure SET " & paramsQuery & " WHERE id=" & objStructure.id & ""
             bddCommande.ExecuteNonQuery()
 
             oCSDb.free()
@@ -378,7 +378,7 @@ Public Class StructureManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE Structure SET Structure.dateModificationCrodip='" & newDate & "',Structure.dateModificationAgent='" & newDate & "' WHERE Structure.id=" & objStructure.id & ""
+            dbLink.queryString = "UPDATE Structure SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id=" & objStructure.id & ""
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception

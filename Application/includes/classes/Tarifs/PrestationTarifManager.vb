@@ -261,7 +261,7 @@ Public Class PrestationTarifManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE `PrestationTarif` SET `PrestationTarif`.`dateModificationCrodip`='" & newDate & "',`PrestationTarif`.`dateModificationAgent`='" & newDate & "' WHERE `PrestationTarif`.`id`=" & curObject.id & ""
+            dbLink.queryString = "UPDATE PrestationTarif SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id=" & curObject.id & ""
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
@@ -350,11 +350,10 @@ Public Class PrestationTarifManager
                     '# Ajout au tableau de résultats
                     curObject = tmpObject
                     curObject.setEtat(Tarif.BDEtat.ETATNONE)
-                    Return curObject
                     '###############################
                 End While
                 '################################################################
-
+                tmpResults.Close()
                 '' 110727 : arzur_c : On ferme la connexion
                 dbLink.free()
 
@@ -400,7 +399,7 @@ Public Class PrestationTarifManager
                 End While
                 ReDim Preserve arrObjects(i - 1)
                 '################################################################
-
+                oDR.Close()
                 '' 110727 : arzur_c : On ferme la connexion
                 dbLink.free()
 
@@ -443,7 +442,7 @@ Public Class PrestationTarifManager
                 End While
                 ReDim Preserve arrObjects(i - 1)
                 '################################################################
-
+                oDR.Close()
                 '' 110727 : arzur_c : On ferme la connexion
                 dbLink.free()
 
@@ -481,7 +480,7 @@ Public Class PrestationTarifManager
                     '###############################
                 End While
                 '################################################################
-
+                oDR.Close()
                 '' 110727 : arzur_c : On ferme la connexion
                 dbLink.free()
 
@@ -541,7 +540,7 @@ Public Class PrestationTarifManager
             End While
             ReDim Preserve arrObjects(i - 1)
             '################################################################
-
+            tmpResults.Close()
             '' 110727 : arzur_c : On ferme la connexion
             dbLink.free()
 

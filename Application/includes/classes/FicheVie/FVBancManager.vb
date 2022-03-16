@@ -383,7 +383,7 @@ Public Class FVBancManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = CSDate.ToCRODIPString(Date.Now.ToString)
-            dbLink.queryString = "UPDATE FichevieBancMesure SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE FichevieBancMesure.id='" & objFVBanc.id & "'"
+            dbLink.queryString = "UPDATE FichevieBancMesure SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id='" & objFVBanc.id & "'"
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception

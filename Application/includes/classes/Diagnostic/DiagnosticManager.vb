@@ -306,7 +306,7 @@ Public Class DiagnosticManager
                     DebugStep = "4"
                     DebugStep = "5"
 
-                    LoadDiagnosticAttributes(pdiag)
+                    LoadDiagnosticAttributes(oCsdb, pdiag)
                     bReturn = True
                 Else
                     bReturn = False
@@ -326,71 +326,69 @@ Public Class DiagnosticManager
         Return bReturn
     End Function
 
-    Protected Shared Function LoadDiagnosticAttributes(pDiag As Diagnostic) As Boolean
+    Protected Shared Function LoadDiagnosticAttributes(oCSDB As CSDb, pDiag As Diagnostic) As Boolean
         Dim DebugStep As String
-        Dim oCsdb As CSDb = Nothing
         Dim bReturn As Boolean = True
         Try
 
-            oCsdb = New CSDb(True)
             '########################################
             ' On récupère les items du diagnostic
             '########################################
-            DiagnosticItemManager.getDiagnosticItemByDiagnosticId(pDiag)
+            DiagnosticItemManager.getDiagnosticItemByDiagnosticId(oCSDB, pDiag)
             DebugStep = "8"
 
             '########################################
             ' On récupère les mesures help551
             '########################################
-            pDiag.diagnosticHelp551 = DiagnosticHelp551Manager.getDiagnosticHelp551ByDiagnosticId(pDiag)
+            pDiag.diagnosticHelp551 = DiagnosticHelp551Manager.getDiagnosticHelp551ByDiagnosticId(oCSDB, pDiag)
             DebugStep = "9"
-            pDiag.diagnosticHelp5621 = DiagnosticHelp5621Manager.getDiagnosticHelp5621ByDiagnosticId(pDiag)
+            pDiag.diagnosticHelp5621 = DiagnosticHelp5621Manager.getDiagnosticHelp5621ByDiagnosticId(oCSDB, pDiag)
             DebugStep = "9.5621"
-            pDiag.diagnosticHelp12323 = DiagnosticHelp551Manager.getDiagnosticHelp12323ByDiagnosticId(pDiag)
+            pDiag.diagnosticHelp12323 = DiagnosticHelp551Manager.getDiagnosticHelp12323ByDiagnosticId(oCSDB, pDiag)
             DebugStep = "9.12323"
 
             '########################################
             ' On récupère les mesures help552
             '########################################
-            pDiag.diagnosticHelp552 = DiagnosticHelp552Manager.getDiagnosticHelp552ByDiagnosticId(pDiag)
+            pDiag.diagnosticHelp552 = DiagnosticHelp552Manager.getDiagnosticHelp552ByDiagnosticId(oCSDB, pDiag)
             DebugStep = "9.552"
 
             '########################################
             ' On récupère les mesures help5622
             '########################################
-            pDiag.diagnosticHelp5622 = DiagnosticHelp5622Manager.getDiagnosticHelp5622ByDiagnosticId(pDiag)
+            pDiag.diagnosticHelp5622 = DiagnosticHelp5622Manager.getDiagnosticHelp5622ByDiagnosticId(oCSDB, pDiag)
             DebugStep = "9.5622"
 
             '########################################
             ' On récupère les mesures help811
             '########################################
-            pDiag.diagnosticHelp811 = DiagnosticHelp811Manager.getDiagnosticHelp811ByDiagnosticId(pDiag)
+            pDiag.diagnosticHelp811 = DiagnosticHelp811Manager.getDiagnosticHelp811ByDiagnosticId(oCSDB, pDiag)
             DebugStep = "9.811"
             '########################################
             ' On récupère les mesures help831
             '########################################
-            pDiag.diagnosticHelp8312 = DiagnosticHelp831Manager.getDiagnosticHelp8312ByDiagnosticId(pDiag)
-            pDiag.diagnosticHelp8314 = DiagnosticHelp831Manager.getDiagnosticHelp8314ByDiagnosticId(pDiag)
+            pDiag.diagnosticHelp8312 = DiagnosticHelp831Manager.getDiagnosticHelp8312ByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticHelp8314 = DiagnosticHelp831Manager.getDiagnosticHelp8314ByDiagnosticId(oCSDB, pDiag)
             DebugStep = "8.831"
             '########################################
             ' On récupère les mesures help571
             '########################################
-            pDiag.diagnosticHelp571 = DiagnosticHelp571Manager.getDiagnosticHelp571ByDiagnosticId(pDiag)
+            pDiag.diagnosticHelp571 = DiagnosticHelp571Manager.getDiagnosticHelp571ByDiagnosticId(oCSDB, pDiag)
             DebugStep = "8.831"
             '########################################
             ' On récupère les mesures help12123
             '########################################
-            pDiag.diagnosticHelp12123 = DiagnosticHelp12123Manager.getDiagnosticHelp12123ByDiagnosticId(pDiag)
+            pDiag.diagnosticHelp12123 = DiagnosticHelp12123Manager.getDiagnosticHelp12123ByDiagnosticId(oCSDB, pDiag)
             DebugStep = "8.12123"
             '########################################
             ' On récupère les infosComplémentaires
             '########################################
-            pDiag.diagnosticInfosComplementaires = DiagnosticInfosComplementaireManager.getDiagnosticInfosComplementairesByDiagnosticId(pDiag)
+            pDiag.diagnosticInfosComplementaires = DiagnosticInfosComplementaireManager.getDiagnosticInfosComplementairesByDiagnosticId(oCSDB, pDiag)
             DebugStep = "9."
             '#########################################################
             ' On récupère les diagnosticBuses et DiagnosticBusesDetail
             '#########################################################
-            DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(pDiag)
+            DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oCSDB, pDiag)
 
             '#########################################################
             ' On récupère les diagnosticMano542
@@ -454,9 +452,6 @@ Public Class DiagnosticManager
 
 
 
-            If oCsdb IsNot Nothing Then
-                oCsdb.free()
-            End If
             bReturn = True
 
         Catch ex As Exception
@@ -516,6 +511,7 @@ Public Class DiagnosticManager
                 oDiag.controleEtat = dataResults.Item(2).ToString
                 colDiag.Add(oDiag)
             End While
+            dataResults.Close()
             bdd.free()
             bdd = Nothing
         Catch ex As Exception
@@ -668,12 +664,12 @@ Public Class DiagnosticManager
 
                 ' If oDiagnostic.controleDateFin >= DateAdd(DateInterval.Month, -4, Date.Today) Then
                 ' On récupère les items du diagnostic
-                DiagnosticItemManager.getDiagnosticItemByDiagnosticId(oDiagnostic)
+                DiagnosticItemManager.getDiagnosticItemByDiagnosticId(oCsdb, oDiagnostic)
 
                 '########################################
                 ' On récupère les mesures help551
                 '########################################
-                oDiagnostic.diagnosticHelp551 = DiagnosticHelp551Manager.getDiagnosticHelp551ByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticHelp551 = DiagnosticHelp551Manager.getDiagnosticHelp551ByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticHelp551.HasValue() Then
                     'Ajout de l'help dans la liste des diagItems
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp551AsDiagItem())
@@ -682,7 +678,7 @@ Public Class DiagnosticManager
                 '########################################
                 ' On récupère les mesures help5621
                 '########################################
-                oDiagnostic.diagnosticHelp5621 = DiagnosticHelp5621Manager.getDiagnosticHelp5621ByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticHelp5621 = DiagnosticHelp5621Manager.getDiagnosticHelp5621ByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticHelp5621.HasValue() Then
                     'Ajout de l'help dans la liste des diagItems
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp5621AsDiagItem())
@@ -691,18 +687,18 @@ Public Class DiagnosticManager
                 '########################################
                 ' On récupère les mesures help552
                 '########################################
-                oDiagnostic.diagnosticHelp552 = DiagnosticHelp552Manager.getDiagnosticHelp552ByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticHelp552 = DiagnosticHelp552Manager.getDiagnosticHelp552ByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticHelp552.hasValue() Then
                     'Ajout de l'help dans la liste des diagItems
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp552AsDiagItem())
                 End If
                 ' On récupère les buses du diagnostic
-                DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oDiagnostic)
+                DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oCsdb, oDiagnostic)
 
                 '########################################
                 ' On récupère les mesures help5622
                 '########################################
-                oDiagnostic.diagnosticHelp5622 = DiagnosticHelp5622Manager.getDiagnosticHelp5622ByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticHelp5622 = DiagnosticHelp5622Manager.getDiagnosticHelp5622ByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticHelp5622.hasValue() Then
                     'Ajout de l'help dans la liste des diagItems
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp5622AsDiagItem())
@@ -711,7 +707,7 @@ Public Class DiagnosticManager
                 '########################################
                 ' On récupère les mesures help811
                 '########################################
-                oDiagnostic.diagnosticHelp811 = DiagnosticHelp811Manager.getDiagnosticHelp811ByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticHelp811 = DiagnosticHelp811Manager.getDiagnosticHelp811ByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticHelp811.hasValue() Then
                     'Ajout de l'help dans la liste des diagItems
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp811AsDiagItem())
@@ -719,30 +715,30 @@ Public Class DiagnosticManager
                 '########################################
                 ' On récupère les mesures help831
                 '########################################
-                oDiagnostic.diagnosticHelp8312 = DiagnosticHelp831Manager.getDiagnosticHelp8312ByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticHelp8312 = DiagnosticHelp831Manager.getDiagnosticHelp8312ByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticHelp8312.hasValue() Then
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp8312AsDiagItem())
                 End If
-                oDiagnostic.diagnosticHelp8314 = DiagnosticHelp831Manager.getDiagnosticHelp8314ByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticHelp8314 = DiagnosticHelp831Manager.getDiagnosticHelp8314ByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticHelp8314.hasValue() Then
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp8314AsDiagItem())
                 End If
-                oDiagnostic.diagnosticHelp571 = DiagnosticHelp571Manager.getDiagnosticHelp571ByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticHelp571 = DiagnosticHelp571Manager.getDiagnosticHelp571ByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticHelp571.hasValue() Then
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp571.ConvertToDiagnosticItem())
                 End If
-                oDiagnostic.diagnosticHelp12123 = DiagnosticHelp12123Manager.getDiagnosticHelp12123ByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticHelp12123 = DiagnosticHelp12123Manager.getDiagnosticHelp12123ByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticHelp12123.hasValue() Then
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp12123.ConvertToDiagnosticItem())
                 End If
-                oDiagnostic.diagnosticHelp12323 = DiagnosticHelp551Manager.getDiagnosticHelp12323ByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticHelp12323 = DiagnosticHelp551Manager.getDiagnosticHelp12323ByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticHelp12323.HasValue() Then
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp12323.ConvertToDiagnosticItem())
                 End If
                 '########################################
                 ' On récupère les infos complémentaire
                 '########################################
-                oDiagnostic.diagnosticInfosComplementaires = DiagnosticInfosComplementaireManager.getDiagnosticInfosComplementairesByDiagnosticId(oDiagnostic)
+                oDiagnostic.diagnosticInfosComplementaires = DiagnosticInfosComplementaireManager.getDiagnosticInfosComplementairesByDiagnosticId(oCsdb, oDiagnostic)
                 If oDiagnostic.diagnosticInfosComplementaires.hasValue() Then
                     oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticInfosComplementairesAsDiagItem())
                 End If
@@ -889,11 +885,8 @@ Public Class DiagnosticManager
         If pAgent.idStructure <> 0 Then
 
             ' On test si la table est vide
-            Dim tmpNbDiagResult As DbDataReader = oCSDb.getResult2s("SELECT count(*) as nbControles FROM Diagnostic WHERE Diagnostic.InspecteurID = " & pAgent.id & "")
-            Dim tmpNbDiag As Integer = 0
-            While tmpNbDiagResult.Read()
-                tmpNbDiag = tmpNbDiagResult.GetInt32(0)
-            End While
+
+            Dim tmpNbDiag As Integer = CInt(oCSDb.getValue("SELECT count(*) as nbControles FROM Diagnostic WHERE Diagnostic.InspecteurID = " & pAgent.id & ""))
 
             ' Si la base est vide, on récupère le dernier incrément par WS
             If tmpNbDiag < 1 Then

@@ -8,7 +8,7 @@ BUILD : 20220225120000
 	0001488: Limiter le commentaire de Diag à 255 Caractères
 	0001242: Sur onglet stat: Avoir le nombre de contrôles complets réalisés et le nb de contre-visites réalisées
 	0001483: Modif Fiche Client (Fax)
-		0001485: Modification du nom des fichiers DIAG
+	0001485: Modification du nom des fichiers DIAG
 
 BUILD : 20220201120000
 	0001475: Transfert de client ne fonctionne plus depuis la dernière version

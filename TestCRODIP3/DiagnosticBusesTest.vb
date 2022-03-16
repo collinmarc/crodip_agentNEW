@@ -161,7 +161,7 @@ Public Class DiagnosticBusesTest
         DiagnosticBusesManager.save(oDiagBuse, oCSDb)
         oCSDb.free()
         'Rechargement par le diagnostic
-        DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(odiag)
+        DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oCSDb, odiag)
         'Vérification que les Buses Détail sopnt bien lus
         Assert.AreEqual(2, odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste.Count)
 
@@ -185,10 +185,9 @@ Public Class DiagnosticBusesTest
 
         oCSDb.getInstance()
         DiagnosticBusesManager.save(odiag.diagnosticBusesList.Liste(0), oCSDb)
-        oCSDb.free()
         'Relecture des items
-        DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(odiag)
-
+        DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oCSDb, odiag)
+        oCSDb.free()
         Assert.AreEqual(1, odiag.diagnosticBusesList.Liste.Count)
         oDiagBuse = odiag.diagnosticBusesList.Liste(0)
         Assert.AreEqual(2, oDiagBuse.diagnosticBusesDetailList.Liste.Count)
