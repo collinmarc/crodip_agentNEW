@@ -58,7 +58,7 @@
             oBDD.TransfertPrestation()
         End If
         If Not BackgroundWorker1.CancellationPending Then
-            Crodip_agent.CSDebug.dispInfo("Disganostic")
+            Crodip_agent.CSDebug.dispInfo("Diagnostic")
             BackgroundWorker1.ReportProgress(170, "Diagnostic")
             oBDD.TransfertDiagnosticALL()
         End If

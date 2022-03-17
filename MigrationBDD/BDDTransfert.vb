@@ -7,6 +7,7 @@ Imports System.Collections.Generic
 
 Public Class BDDTransfert
     Private _bgw As System.ComponentModel.BackgroundWorker
+    Private dbNameACCESS As String
     Public Property bgw() As System.ComponentModel.BackgroundWorker
         Get
             Return _bgw
@@ -16,38 +17,121 @@ Public Class BDDTransfert
         End Set
     End Property
     Public Sub New()
+        If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
+            dbNameACCESS = "crodip_agent_dev"
+        Else
+            dbNameACCESS = "crodip_agent"
+        End If
 
     End Sub
 
     Public Sub TransfertStructureAgent()
-        Dim nAvant As Integer
-        Dim oListStructure As List(Of Structuree)
-        CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
-        oListStructure = StructureManager.getList()
-        oListStructure.ForEach(Sub(pObj)
-                                   CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-                                   StructureManager.save(pObj, True)
-                               End Sub)
-        nAvant = oListStructure.Count()
-        Debug.Assert(nAvant = StructureManager.getList().Count(), "Structure : Nb avant <> Après")
-
-        Dim oListAgent As List(Of Agent)
-        CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
-        oListAgent = AgentManager.getAgentList().items
-        oListAgent.ForEach(Sub(pobj)
-                               If _bgw.CancellationPending Then
-                                   Exit Sub
-                               End If
-                               CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-                               AgentManager.save(pobj, True)
-                           End Sub)
-        nAvant = oListAgent.Count()
-        Debug.Assert(nAvant = AgentManager.getAgentList().items.Count(), "Agent : Nb avant <> Après")
-
+        TransfertStructure()
+        TransfertAgent()
 
 
 
     End Sub
+
+    Public Sub TransfertStructure()
+        Dim strSQL As String = "
+INSERT INTO Structure (
+                          id,
+                          idCrodip,
+                          nom,
+                          type,
+                          nomResponsable,
+                          nomContact,
+                          prenomContact,
+                          adresse,
+                          codePostal,
+                          commune,
+                          codeInsee,
+                          telephoneFixe,
+                          telephonePortable,
+                          telephoneFax,
+                          eMail,
+                          commentaire,
+                          dateModificationAgent,
+                          dateModificationCrodip
+                      )
+                      VALUES (
+                          @id,
+                          @idCrodip,
+                          @nom,
+                          @type,
+                          @nomResponsable,
+                          @nomContact,
+                          @prenomContact,
+                          @adresse,
+                          @codePostal,
+                          @commune,
+                          @codeInsee,
+                          @telephoneFixe,
+                          @telephonePortable,
+                          @telephoneFax,
+                          @eMail,
+                          @commentaire,
+                          @dateModificationAgent,
+                          @dateModificationCrodip
+                      );
+"
+        TransfertTable("Structure", strSQL)
+
+    End Sub
+    Public Sub TransfertAgent()
+        Dim strSQL As String = "
+INSERT INTO Agent (
+                      Id,
+                      numeroNational,
+                      motDePasse,
+                      nom,
+                      prenom,
+                      idStructure,
+                      telephonePortable,
+                      eMail,
+                      dateCreation,
+                      dateDerniereConnexion,
+                      dateDerniereSynchro,
+                      dateModificationAgent,
+                      dateModificationCrodip,
+                      versionLogiciel,
+                      commentaire,
+                      cleActivation,
+                      isActif,
+                      droitsPulves,
+                      isGestionnaire,
+                      SignatureElect,
+                      statut
+                  )
+                  VALUES (
+                      @Id,
+                      @numeroNational,
+                      @motDePasse,
+                      @nom,
+                      @prenom,
+                      @idStructure,
+                      @telephonePortable,
+                      @eMail,
+                      @dateCreation,
+                      @dateDerniereConnexion,
+                      @dateDerniereSynchro,
+                      @dateModificationAgent,
+                      @dateModificationCrodip,
+                      @versionLogiciel,
+                      @commentaire,
+                      @cleActivation,
+                      @isActif,
+                      @droitsPulves,
+                      @isGestionnaire,
+                      @SignatureElect,
+                      @statut
+                  );
+"
+        TransfertTable("Agent", strSQL)
+
+    End Sub
+
 
     Public Sub TransfertExploitationPulve()
         Dim strSQL As String =
@@ -439,15 +523,18 @@ INSERT INTO AgentManoEtalon (
     Public Sub TransfertTable(pTable As String, pINSERTSQL As String, Optional pExcept As String = "")
 
         CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
-        Dim oCSDBACCESS As New CSDb(True)
+        Dim oCSDB As New CSDb(False)
+        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+        oCSDBACCESS.Open()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New CSDb(True)
+        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+        oCSDBSQL.Open()
         Dim nMax As Integer = 100
         Dim ocmdACCESS As DbCommand
         Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
 
-        ocmdACCESS = oCSDBACCESS.getConnection().CreateCommand
-        ocmdSQL = oCSDBSQL.getConnection().CreateCommand
+        ocmdACCESS = oCSDBACCESS.CreateCommand
+        ocmdSQL = oCSDBSQL.CreateCommand
         ocmdACCESS.CommandText = "SELECT Count(*) FROM " & pTable
         nMax = ocmdACCESS.ExecuteScalar()
 
@@ -469,7 +556,12 @@ INSERT INTO AgentManoEtalon (
             ocmdSQL.Parameters.Clear()
             For i As Integer = 0 To oDR.FieldCount() - 1
                 If oDR.GetName(i) <> pExcept Then
-                    ocmdSQL.Parameters.AddWithValue("@" & oDR.GetName(i), oDR.GetValue(i))
+                    Dim Nom As String
+                    Nom = oDR.GetName(i).Replace("OrigineDiag", "origineDiag")
+                    If Nom.ToUpper() = "droitsPulves".ToUpper() Then
+                        Nom = "droitsPulves"
+                    End If
+                    ocmdSQL.Parameters.AddWithValue("@" & Nom, oDR.GetValue(i))
                 End If
             Next
             Try
@@ -482,8 +574,8 @@ INSERT INTO AgentManoEtalon (
         End While
         oDR.Close()
 
-        oCSDBACCESS.free()
-        oCSDBSQL.free()
+        oCSDBACCESS.Close()
+        oCSDBSQL.Close()
 
 
     End Sub
@@ -1693,15 +1785,21 @@ INSERT INTO Diagnostic (
                                @cause
                            );"
         CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
-        Dim oCSDBACCESS As New CSDb(True)
+        Dim oCSDB As New CSDb(False)
+        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+        oCSDBACCESS.Open()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New CSDb(True)
+        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+        oCSDBSQL.Open()
         Dim nMax As Integer = 100
         Dim ocmdACCESS As DbCommand
         Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
 
-        ocmdACCESS = oCSDBACCESS.getConnection().CreateCommand
-        ocmdSQL = oCSDBSQL.getConnection().CreateCommand
+        ocmdACCESS = oCSDBACCESS.CreateCommand
+        ocmdSQL = oCSDBSQL.CreateCommand
+
+        ocmdACCESS = oCSDBACCESS.CreateCommand
+        ocmdSQL = oCSDBSQL.CreateCommand
         ocmdACCESS.CommandText = "SELECT Count(*) FROM DiagnosticItem Where ItemCodeEtat <> 'B'"
         nMax = ocmdACCESS.ExecuteScalar()
 
@@ -1733,8 +1831,8 @@ INSERT INTO Diagnostic (
         End While
         oDR.Close()
 
-        oCSDBACCESS.free()
-        oCSDBSQL.free()
+        oCSDBACCESS.Close()
+        oCSDBSQL.Close()
 
 
     End Sub

@@ -134,7 +134,7 @@ Public Class CSDb
                     End If
                 End If
             Case EnumDBTYPE.SQLITE
-                bReturn = "Data Source=.\bdd\" & pDBName & DBextension & ";Pooling=true"
+                bReturn = "Data Source=.\bdd\" & pDBName & ".db3;Pooling=true"
         End Select
 
         Return bReturn
@@ -161,7 +161,7 @@ Public Class CSDb
         nInstance = nInstance - 1
         If nInstance <= 0 Then
             Try
-                ' Test pour fermeture de connection BDD
+                '' Test pour fermeture de connection BDD
                 'While _dbConnection.State() <> System.Data.ConnectionState.Closed
                 '    ' On ferme la connexion
                 '    _dbConnection.Close()
@@ -169,6 +169,7 @@ Public Class CSDb
                 '        pause(10)
                 '    End If
                 'End While
+                'nInstance = 0
             Catch ex As Exception
                 'CSDebug.dispError("CSDB.Free ERR : " & ex.Message)
             End Try

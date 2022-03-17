@@ -57,9 +57,8 @@ Partial Class FrmMigrationBDD
         Me.lblProgressN2.AutoSize = True
         Me.lblProgressN2.Location = New System.Drawing.Point(377, 101)
         Me.lblProgressN2.Name = "lblProgressN2"
-        Me.lblProgressN2.Size = New System.Drawing.Size(39, 13)
+        Me.lblProgressN2.Size = New System.Drawing.Size(0, 13)
         Me.lblProgressN2.TabIndex = 2
-        Me.lblProgressN2.Text = "Label1"
         '
         'ProgressBarN1
         '
@@ -73,9 +72,8 @@ Partial Class FrmMigrationBDD
         Me.lblProgressN1.AutoSize = True
         Me.lblProgressN1.Location = New System.Drawing.Point(377, 38)
         Me.lblProgressN1.Name = "lblProgressN1"
-        Me.lblProgressN1.Size = New System.Drawing.Size(39, 13)
+        Me.lblProgressN1.Size = New System.Drawing.Size(0, 13)
         Me.lblProgressN1.TabIndex = 4
-        Me.lblProgressN1.Text = "Label1"
         '
         'btnAnnuler
         '
@@ -85,19 +83,21 @@ Partial Class FrmMigrationBDD
         Me.btnAnnuler.TabIndex = 5
         Me.btnAnnuler.Text = "Annuler"
         Me.btnAnnuler.UseVisualStyleBackColor = True
+        Me.btnAnnuler.Visible = False
         '
-        'Form1
+        'FrmMigrationBDD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 203)
+        Me.ControlBox = False
         Me.Controls.Add(Me.btnAnnuler)
         Me.Controls.Add(Me.lblProgressN1)
         Me.Controls.Add(Me.ProgressBarN1)
         Me.Controls.Add(Me.lblProgressN2)
         Me.Controls.Add(Me.ProgressBarN2)
         Me.Controls.Add(Me.Button1)
-        Me.Name = "Form1"
+        Me.Name = "FrmMigrationBDD"
         Me.Text = "Migration de la base de données"
         Me.ResumeLayout(False)
         Me.PerformLayout()
