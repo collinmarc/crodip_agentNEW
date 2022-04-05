@@ -4,6 +4,7 @@
 'Imports iTextSharp.text.xml
 Imports System.IO
 Imports System.Globalization
+Imports System.ComponentModel
 
 Public Class frmdiagnostic_recap
     Inherits frmCRODIP
@@ -91,6 +92,10 @@ Public Class frmdiagnostic_recap
         If disposing Then
             If Not (components Is Nothing) Then
                 components.Dispose()
+            End If
+            If CrystalReportViewer1.ReportSource IsNot Nothing Then
+                CrystalReportViewer1.ReportSource.dispose()
+                CrystalReportViewer1.Dispose()
             End If
         End If
         MyBase.Dispose(disposing)
@@ -655,7 +660,7 @@ Public Class frmdiagnostic_recap
             If (m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV) And
                 m_diagnostic.diagRemplacementId = "" Then
                 'Remplacement de la date de fin si on n'est pas en remplacement
-                m_diagnostic.controleDateFin = CSDate.TOCRODIPString(Date.Now)
+                m_diagnostic.controleDateFin = CSDate.ToCRODIPString(Date.Now)
             End If
             diagnosticRecap_organisme_heureFin.Text = CDate(m_diagnostic.controleDateFin).ToShortTimeString
         Catch ex As Exception
@@ -859,11 +864,11 @@ Public Class frmdiagnostic_recap
                 End If
                 'On ouvre la fenetre de l'enquete
                 Dim ofrm As New diagnostic_satisfaction()
-                    ofrm.Setcontext(m_diagnostic, m_oAgent)
-                    TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
-                    Statusbar.clear()
-                Else
-                    CloseDiagnostic()
+                ofrm.Setcontext(m_diagnostic, m_oAgent)
+                TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
+                Statusbar.clear()
+            Else
+                CloseDiagnostic()
             End If
 
         Else
@@ -915,7 +920,7 @@ Public Class frmdiagnostic_recap
             End If
 
 
-                sender.Enabled = True
+            sender.Enabled = True
         End If
     End Sub
 
@@ -1007,7 +1012,7 @@ Public Class frmdiagnostic_recap
 
                         CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic Etat")
                         'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
-                        m_diagnostic.dateModificationAgent = CSDate.TOCRODIPString(Date.Now)
+                        m_diagnostic.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
                         Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
                         Dim bSave As Boolean
                         CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic SauveDiag Debut")
@@ -1107,7 +1112,7 @@ Public Class frmdiagnostic_recap
         Try
             CSDebug.dispInfo("TBD : createEtatSyntheseDesMesures")
             Dim oEtat As New EtatSyntheseMesures(m_diagnostic)
-            oEtat.GenereEtat(pExportPDF)
+            oEtat.genereEtat(pExportPDF)
             If pExportPDF Then
                 _PathToSynthesePDF = oEtat.getFileName()
                 m_diagnostic.SMFileName = _PathToSynthesePDF
@@ -1127,7 +1132,7 @@ Public Class frmdiagnostic_recap
         Dim pathRapport As String
         Try
             Dim oEtat As New EtatRapportInspection(m_diagnostic)
-            oEtat.GenereEtat(pExportDPF)
+            oEtat.genereEtat(pExportDPF)
             If pExportDPF Then
                 pathRapport = oEtat.getFileName()
                 m_diagnostic.RIFileName = pathRapport
@@ -1150,7 +1155,7 @@ Public Class frmdiagnostic_recap
         Dim bReturn As Boolean
         Try
             Dim oEtat As New EtatContratCommercial(m_diagnostic)
-            oEtat.GenereEtat(pExportDPF)
+            oEtat.genereEtat(pExportDPF)
             If pExportDPF Then
                 If File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName) Then
                     File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_diagnostic.CCFileName)
@@ -1205,10 +1210,10 @@ Public Class frmdiagnostic_recap
         'Vérification des heures de controle
         If Not CSDate.CheckHours(diagnosticRecap_organisme_heureDebut.Text) Then
 
-                MsgBox("Format heure début incorrect : HH:MM")
-                bReturn = False
-            End If
-            If Not CSDate.CheckHours(diagnosticRecap_organisme_heureFin.Text) Then
+            MsgBox("Format heure début incorrect : HH:MM")
+            bReturn = False
+        End If
+        If Not CSDate.CheckHours(diagnosticRecap_organisme_heureFin.Text) Then
 
             MsgBox("Format heure fin incorrect : HH:MM")
             bReturn = False
@@ -1468,5 +1473,9 @@ Public Class frmdiagnostic_recap
     Private Sub btn_Annuler_Click(sender As Object, e As EventArgs) Handles btn_Annuler.Click
         CloseDiagnostic()
 
+    End Sub
+
+    Private Sub frmdiagnostic_recap_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        CrystalReportViewer1.ReportSource = Nothing
     End Sub
 End Class

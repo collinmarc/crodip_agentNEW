@@ -271,7 +271,7 @@ INSERT INTO Pulverisateur (
                               isRincagecircuit,
                               isPompesDoseuses,
                               nbPompesDoseuses,
-                              Numchassis
+                              numChassis
                           )
                           VALUES (
                               @id,
@@ -344,7 +344,7 @@ INSERT INTO Pulverisateur (
                               @isRincagecircuit,
                               @isPompesDoseuses,
                               @nbPompesDoseuses,
-                              @Numchassis
+                              @numChassis
                           );
 "
         TransfertTable("Pulverisateur", strSQL)
@@ -541,7 +541,7 @@ INSERT INTO AgentManoEtalon (
         ocmdACCESS.CommandText = "SELECT * FROM " & pTable
 
 
-        ocmdSQL.CommandText = pINSERTSQL
+        ocmdSQL.CommandText = pINSERTSQL.ToUpper()
 
         ocmdSQL.Prepare()
         Dim oDR As DbDataReader
@@ -557,11 +557,8 @@ INSERT INTO AgentManoEtalon (
             For i As Integer = 0 To oDR.FieldCount() - 1
                 If oDR.GetName(i) <> pExcept Then
                     Dim Nom As String
-                    Nom = oDR.GetName(i).Replace("OrigineDiag", "origineDiag")
-                    If Nom.ToUpper() = "droitsPulves".ToUpper() Then
-                        Nom = "droitsPulves"
-                    End If
-                    ocmdSQL.Parameters.AddWithValue("@" & Nom, oDR.GetValue(i))
+                    Nom = oDR.GetName(i)
+                    ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
                 End If
             Next
             Try

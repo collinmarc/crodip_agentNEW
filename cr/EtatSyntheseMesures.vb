@@ -109,7 +109,11 @@ Public Class EtatSyntheseMesures
             'on l'utilise pour sélectionner le rapport de synthèse des buses (cr_syntheseBuses10 ou cr_syntheseBuses15)
             Dim EcartTolere As Integer
             If m_oDiag.diagnosticBusesList.Liste.Count > 0 Then
-                EcartTolere = m_oDiag.diagnosticBusesList.Liste(0).ecartTolere
+                Try
+                    EcartTolere = m_oDiag.diagnosticBusesList.Liste(0).ecartTolere
+                Catch ex As Exception
+                    EcartTolere = 10
+                End Try
             Else
                 EcartTolere = 10
             End If
