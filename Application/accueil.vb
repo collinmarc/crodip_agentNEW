@@ -99,11 +99,6 @@ Public Class accueil
     Friend WithEvents IsRegleeDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
     Friend WithEvents PDFColumn As DataGridViewImageColumn
     Friend WithEvents Label11 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label21 As Label
     Friend WithEvents TextBox25 As TextBox
     Friend WithEvents TextBox27 As TextBox
     Friend WithEvents TextBox28 As TextBox
@@ -349,13 +344,13 @@ Public Class accueil
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(accueil))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImageList_synchro = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_Docs = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
@@ -580,11 +575,6 @@ Public Class accueil
         Me.laNomStructure2 = New System.Windows.Forms.Label()
         Me.laNomAgent2 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
         Me.TextBox25 = New System.Windows.Forms.TextBox()
         Me.TextBox27 = New System.Windows.Forms.TextBox()
         Me.TextBox28 = New System.Windows.Forms.TextBox()
@@ -921,14 +911,14 @@ Public Class accueil
         Me.dgv_ControleRegulier.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgv_ControleRegulier.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.dgv_ControleRegulier.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.dgv_ControleRegulier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TypeDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.isOK, Me.isNOK, Me.isNonEffectue})
         Me.dgv_ControleRegulier.DataSource = Me.bsControleQuotidien
@@ -1251,25 +1241,25 @@ Public Class accueil
         Me.dgvPulveExploit.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvPulveExploit.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvPulveExploit.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlLight
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.ControlLight
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.dgvPulveExploit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPulveExploit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IconPulveCol, Me.NumeroNationalDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn1, Me.MarqueDataGridViewTextBoxColumn, Me.ModeleDataGridViewTextBoxColumn, Me.NombreBusesDataGridViewTextBoxColumn, Me.CapaciteDataGridViewTextBoxColumn, Me.AttelageDataGridViewTextBoxColumn, Me.AnneeAchatDataGridViewTextBoxColumn, Me.DateProchainControleDataGridViewTextBoxColumn, Me.IconPulveColumn, Me.PulvePrincipalNumNatDataGridViewTextBoxColumn})
         Me.dgvPulveExploit.DataSource = Me.m_bsrcPulverisateurTMP
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvPulveExploit.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvPulveExploit.DefaultCellStyle = DataGridViewCellStyle11
         Me.dgvPulveExploit.GridColor = System.Drawing.Color.Black
         Me.dgvPulveExploit.Location = New System.Drawing.Point(11, 62)
         Me.dgvPulveExploit.MultiSelect = False
@@ -1357,9 +1347,9 @@ Public Class accueil
         'DateProchainControleDataGridViewTextBoxColumn
         '
         Me.DateProchainControleDataGridViewTextBoxColumn.DataPropertyName = "dateProchainControleAsDate"
-        DataGridViewCellStyle3.Format = "d"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle10.Format = "d"
+        DataGridViewCellStyle10.NullValue = Nothing
+        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle10
         Me.DateProchainControleDataGridViewTextBoxColumn.FillWeight = 9.0!
         Me.DateProchainControleDataGridViewTextBoxColumn.HeaderText = "Prochain contrôle"
         Me.DateProchainControleDataGridViewTextBoxColumn.Name = "DateProchainControleDataGridViewTextBoxColumn"
@@ -2757,11 +2747,6 @@ Public Class accueil
         Me.TableLayoutPanel1.Controls.Add(Me.laNomStructure2, 4, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.laNomAgent2, 5, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label11, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label13, 0, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label14, 0, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label16, 0, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label17, 0, 8)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label21, 0, 10)
         Me.TableLayoutPanel1.Controls.Add(Me.TextBox25, 2, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.TextBox27, 3, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.TextBox28, 4, 2)
@@ -2821,14 +2806,17 @@ Public Class accueil
         '
         'Label4
         '
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label4.Image = CType(resources.GetObject("Label4.Image"), System.Drawing.Image)
         Me.Label4.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label4.Location = New System.Drawing.Point(4, 18)
+        Me.Label4.Location = New System.Drawing.Point(1, 18)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(451, 35)
+        Me.TableLayoutPanel1.SetRowSpan(Me.Label4, 2)
+        Me.Label4.Size = New System.Drawing.Size(457, 53)
         Me.Label4.TabIndex = 11
         Me.Label4.Text = "       Nombre de contrôles réalisés  :"
         '
@@ -2875,40 +2863,49 @@ Public Class accueil
         '
         'Label22
         '
-        Me.Label22.BackColor = System.Drawing.Color.Transparent
+        Me.Label22.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Label22.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label22.Image = CType(resources.GetObject("Label22.Image"), System.Drawing.Image)
         Me.Label22.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label22.Location = New System.Drawing.Point(4, 81)
+        Me.Label22.Location = New System.Drawing.Point(1, 72)
+        Me.Label22.Margin = New System.Windows.Forms.Padding(0)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(451, 40)
+        Me.TableLayoutPanel1.SetRowSpan(Me.Label22, 2)
+        Me.Label22.Size = New System.Drawing.Size(457, 53)
         Me.Label22.TabIndex = 44
         Me.Label22.Text = "       Pourcentage de conclusion ""Bon état""   :"
         '
         'Label24
         '
-        Me.Label24.BackColor = System.Drawing.Color.Transparent
+        Me.Label24.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Label24.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label24.Image = CType(resources.GetObject("Label24.Image"), System.Drawing.Image)
         Me.Label24.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label24.Location = New System.Drawing.Point(4, 149)
+        Me.Label24.Location = New System.Drawing.Point(1, 126)
+        Me.Label24.Margin = New System.Windows.Forms.Padding(0)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(451, 32)
+        Me.TableLayoutPanel1.SetRowSpan(Me.Label24, 2)
+        Me.Label24.Size = New System.Drawing.Size(457, 53)
         Me.Label24.TabIndex = 46
         Me.Label24.Text = "       Pourcentage de conclusion ""CP"" :"
         '
         'Label26
         '
-        Me.Label26.BackColor = System.Drawing.Color.Transparent
+        Me.Label26.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Label26.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label26.Image = CType(resources.GetObject("Label26.Image"), System.Drawing.Image)
         Me.Label26.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label26.Location = New System.Drawing.Point(4, 209)
+        Me.Label26.Location = New System.Drawing.Point(1, 180)
+        Me.Label26.Margin = New System.Windows.Forms.Padding(0)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(451, 32)
+        Me.TableLayoutPanel1.SetRowSpan(Me.Label26, 2)
+        Me.Label26.Size = New System.Drawing.Size(457, 53)
         Me.Label26.TabIndex = 48
         Me.Label26.Text = "       Pourcentage de pulvérisateurs ""Réparation avant"" :"
         '
@@ -2949,7 +2946,7 @@ Public Class accueil
         '
         Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_OK_StructureAnnee", True))
         Me.TextBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox5.Location = New System.Drawing.Point(494, 84)
+        Me.TextBox5.Location = New System.Drawing.Point(494, 75)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
         Me.TextBox5.Size = New System.Drawing.Size(108, 20)
@@ -2960,7 +2957,7 @@ Public Class accueil
         '
         Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_OK_InspecteurAnnee", True))
         Me.TextBox6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox6.Location = New System.Drawing.Point(609, 84)
+        Me.TextBox6.Location = New System.Drawing.Point(609, 75)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.ReadOnly = True
         Me.TextBox6.Size = New System.Drawing.Size(108, 20)
@@ -2971,7 +2968,7 @@ Public Class accueil
         '
         Me.TextBox7.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_OK_StructureTotal", True))
         Me.TextBox7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox7.Location = New System.Drawing.Point(724, 84)
+        Me.TextBox7.Location = New System.Drawing.Point(724, 75)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
         Me.TextBox7.Size = New System.Drawing.Size(108, 20)
@@ -2982,7 +2979,7 @@ Public Class accueil
         '
         Me.TextBox8.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_OK_InspecteurTotal", True))
         Me.TextBox8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox8.Location = New System.Drawing.Point(839, 84)
+        Me.TextBox8.Location = New System.Drawing.Point(839, 75)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.ReadOnly = True
         Me.TextBox8.Size = New System.Drawing.Size(110, 20)
@@ -2993,7 +2990,7 @@ Public Class accueil
         '
         Me.TextBox9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_CP_StructureAnnee", True))
         Me.TextBox9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox9.Location = New System.Drawing.Point(494, 152)
+        Me.TextBox9.Location = New System.Drawing.Point(494, 129)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.ReadOnly = True
         Me.TextBox9.Size = New System.Drawing.Size(108, 20)
@@ -3004,7 +3001,7 @@ Public Class accueil
         '
         Me.TextBox10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_CP_InspecteurAnnee", True))
         Me.TextBox10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox10.Location = New System.Drawing.Point(609, 152)
+        Me.TextBox10.Location = New System.Drawing.Point(609, 129)
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.ReadOnly = True
         Me.TextBox10.Size = New System.Drawing.Size(108, 20)
@@ -3015,7 +3012,7 @@ Public Class accueil
         '
         Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_CP_StructureTotal", True))
         Me.TextBox11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox11.Location = New System.Drawing.Point(724, 152)
+        Me.TextBox11.Location = New System.Drawing.Point(724, 129)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.ReadOnly = True
         Me.TextBox11.Size = New System.Drawing.Size(108, 20)
@@ -3026,7 +3023,7 @@ Public Class accueil
         '
         Me.TextBox12.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_CP_InspecteurTotal", True))
         Me.TextBox12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox12.Location = New System.Drawing.Point(839, 152)
+        Me.TextBox12.Location = New System.Drawing.Point(839, 129)
         Me.TextBox12.Name = "TextBox12"
         Me.TextBox12.ReadOnly = True
         Me.TextBox12.Size = New System.Drawing.Size(110, 20)
@@ -3037,7 +3034,7 @@ Public Class accueil
         '
         Me.TextBox13.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_ReparAvant_StructureAnnee", True))
         Me.TextBox13.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox13.Location = New System.Drawing.Point(494, 212)
+        Me.TextBox13.Location = New System.Drawing.Point(494, 183)
         Me.TextBox13.Name = "TextBox13"
         Me.TextBox13.ReadOnly = True
         Me.TextBox13.Size = New System.Drawing.Size(108, 20)
@@ -3048,7 +3045,7 @@ Public Class accueil
         '
         Me.TextBox14.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_ReparAvant_InspecteurAnnee", True))
         Me.TextBox14.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox14.Location = New System.Drawing.Point(609, 212)
+        Me.TextBox14.Location = New System.Drawing.Point(609, 183)
         Me.TextBox14.Name = "TextBox14"
         Me.TextBox14.ReadOnly = True
         Me.TextBox14.Size = New System.Drawing.Size(108, 20)
@@ -3059,7 +3056,7 @@ Public Class accueil
         '
         Me.TextBox15.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_ReparAvant_InspecteurTotal", True))
         Me.TextBox15.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox15.Location = New System.Drawing.Point(839, 212)
+        Me.TextBox15.Location = New System.Drawing.Point(839, 183)
         Me.TextBox15.Name = "TextBox15"
         Me.TextBox15.ReadOnly = True
         Me.TextBox15.Size = New System.Drawing.Size(110, 20)
@@ -3068,27 +3065,33 @@ Public Class accueil
         '
         'Label6
         '
-        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label6.Image = CType(resources.GetObject("Label6.Image"), System.Drawing.Image)
         Me.Label6.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label6.Location = New System.Drawing.Point(4, 269)
+        Me.Label6.Location = New System.Drawing.Point(1, 234)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(451, 30)
+        Me.TableLayoutPanel1.SetRowSpan(Me.Label6, 2)
+        Me.Label6.Size = New System.Drawing.Size(457, 53)
         Me.Label6.TabIndex = 65
         Me.Label6.Text = "       Pourcentage de pulvérisateurs ""Auto Contrôle"":"
         '
         'Label12
         '
-        Me.Label12.BackColor = System.Drawing.Color.Transparent
+        Me.Label12.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Label12.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label12.Image = CType(resources.GetObject("Label12.Image"), System.Drawing.Image)
         Me.Label12.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label12.Location = New System.Drawing.Point(4, 327)
+        Me.Label12.Location = New System.Drawing.Point(1, 288)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(451, 35)
+        Me.TableLayoutPanel1.SetRowSpan(Me.Label12, 2)
+        Me.Label12.Size = New System.Drawing.Size(457, 159)
         Me.Label12.TabIndex = 67
         Me.Label12.Text = "       Pourcentage de pulvérisateurs ""Pre Contrôle"" :"
         '
@@ -3096,7 +3099,7 @@ Public Class accueil
         '
         Me.TextBox16.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_ReparAvant_StructureTotal", True))
         Me.TextBox16.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox16.Location = New System.Drawing.Point(724, 212)
+        Me.TextBox16.Location = New System.Drawing.Point(724, 183)
         Me.TextBox16.Name = "TextBox16"
         Me.TextBox16.ReadOnly = True
         Me.TextBox16.Size = New System.Drawing.Size(108, 20)
@@ -3107,7 +3110,7 @@ Public Class accueil
         '
         Me.TextBox17.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_AutoControle_StructureAnnee", True))
         Me.TextBox17.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox17.Location = New System.Drawing.Point(494, 272)
+        Me.TextBox17.Location = New System.Drawing.Point(494, 237)
         Me.TextBox17.Name = "TextBox17"
         Me.TextBox17.ReadOnly = True
         Me.TextBox17.Size = New System.Drawing.Size(108, 20)
@@ -3118,7 +3121,7 @@ Public Class accueil
         '
         Me.TextBox18.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_AutoControle_InspecteurAnnee", True))
         Me.TextBox18.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox18.Location = New System.Drawing.Point(609, 272)
+        Me.TextBox18.Location = New System.Drawing.Point(609, 237)
         Me.TextBox18.Name = "TextBox18"
         Me.TextBox18.ReadOnly = True
         Me.TextBox18.Size = New System.Drawing.Size(108, 20)
@@ -3129,7 +3132,7 @@ Public Class accueil
         '
         Me.TextBox19.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_AutoControle_StructureTotal", True))
         Me.TextBox19.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox19.Location = New System.Drawing.Point(724, 272)
+        Me.TextBox19.Location = New System.Drawing.Point(724, 237)
         Me.TextBox19.Name = "TextBox19"
         Me.TextBox19.ReadOnly = True
         Me.TextBox19.Size = New System.Drawing.Size(108, 20)
@@ -3140,7 +3143,7 @@ Public Class accueil
         '
         Me.TextBox20.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_AutoControle_InspecteurTotal", True))
         Me.TextBox20.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox20.Location = New System.Drawing.Point(839, 272)
+        Me.TextBox20.Location = New System.Drawing.Point(839, 237)
         Me.TextBox20.Name = "TextBox20"
         Me.TextBox20.ReadOnly = True
         Me.TextBox20.Size = New System.Drawing.Size(110, 20)
@@ -3151,7 +3154,7 @@ Public Class accueil
         '
         Me.TextBox21.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_PreControle_StructureAnnee", True))
         Me.TextBox21.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox21.Location = New System.Drawing.Point(494, 330)
+        Me.TextBox21.Location = New System.Drawing.Point(494, 291)
         Me.TextBox21.Name = "TextBox21"
         Me.TextBox21.ReadOnly = True
         Me.TextBox21.Size = New System.Drawing.Size(108, 20)
@@ -3162,7 +3165,7 @@ Public Class accueil
         '
         Me.TextBox22.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_PreControle_InspecteurAnnee", True))
         Me.TextBox22.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox22.Location = New System.Drawing.Point(609, 330)
+        Me.TextBox22.Location = New System.Drawing.Point(609, 291)
         Me.TextBox22.Name = "TextBox22"
         Me.TextBox22.ReadOnly = True
         Me.TextBox22.Size = New System.Drawing.Size(108, 20)
@@ -3173,7 +3176,7 @@ Public Class accueil
         '
         Me.TextBox23.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_PreControle_StructureTotal", True))
         Me.TextBox23.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox23.Location = New System.Drawing.Point(724, 330)
+        Me.TextBox23.Location = New System.Drawing.Point(724, 291)
         Me.TextBox23.Name = "TextBox23"
         Me.TextBox23.ReadOnly = True
         Me.TextBox23.Size = New System.Drawing.Size(108, 20)
@@ -3184,7 +3187,7 @@ Public Class accueil
         '
         Me.TextBox24.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCC_PreControle_InspecteurTotal", True))
         Me.TextBox24.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox24.Location = New System.Drawing.Point(839, 330)
+        Me.TextBox24.Location = New System.Drawing.Point(839, 291)
         Me.TextBox24.Name = "TextBox24"
         Me.TextBox24.ReadOnly = True
         Me.TextBox24.Size = New System.Drawing.Size(110, 20)
@@ -3226,57 +3229,12 @@ Public Class accueil
         Me.Label11.TabIndex = 80
         Me.Label11.Text = " "
         '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(4, 54)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(11, 13)
-        Me.Label13.TabIndex = 81
-        Me.Label13.Text = " "
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(4, 122)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(11, 13)
-        Me.Label14.TabIndex = 82
-        Me.Label14.Text = " "
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(4, 182)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(11, 13)
-        Me.Label16.TabIndex = 83
-        Me.Label16.Text = " "
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(4, 242)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(11, 13)
-        Me.Label17.TabIndex = 84
-        Me.Label17.Text = " "
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(4, 300)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(11, 13)
-        Me.Label21.TabIndex = 85
-        Me.Label21.Text = " "
-        '
         'TextBox25
         '
         Me.TextBox25.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox25.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCVStructureAnnee", True))
         Me.TextBox25.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox25.Location = New System.Drawing.Point(494, 57)
+        Me.TextBox25.Location = New System.Drawing.Point(494, 48)
         Me.TextBox25.Name = "TextBox25"
         Me.TextBox25.ReadOnly = True
         Me.TextBox25.Size = New System.Drawing.Size(108, 20)
@@ -3288,7 +3246,7 @@ Public Class accueil
         Me.TextBox27.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox27.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCVInspecteurAnnee", True))
         Me.TextBox27.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox27.Location = New System.Drawing.Point(609, 57)
+        Me.TextBox27.Location = New System.Drawing.Point(609, 48)
         Me.TextBox27.Name = "TextBox27"
         Me.TextBox27.ReadOnly = True
         Me.TextBox27.Size = New System.Drawing.Size(108, 20)
@@ -3300,7 +3258,7 @@ Public Class accueil
         Me.TextBox28.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox28.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCVStructureTotal", True))
         Me.TextBox28.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox28.Location = New System.Drawing.Point(724, 57)
+        Me.TextBox28.Location = New System.Drawing.Point(724, 48)
         Me.TextBox28.Name = "TextBox28"
         Me.TextBox28.ReadOnly = True
         Me.TextBox28.Size = New System.Drawing.Size(108, 20)
@@ -3312,7 +3270,7 @@ Public Class accueil
         Me.TextBox29.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox29.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "NCtrlCVInspecteurTotal", True))
         Me.TextBox29.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox29.Location = New System.Drawing.Point(839, 57)
+        Me.TextBox29.Location = New System.Drawing.Point(839, 48)
         Me.TextBox29.Name = "TextBox29"
         Me.TextBox29.ReadOnly = True
         Me.TextBox29.Size = New System.Drawing.Size(110, 20)
@@ -3324,7 +3282,7 @@ Public Class accueil
         Me.TextBox30.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox30.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_OK_StructureAnnee", True))
         Me.TextBox30.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox30.Location = New System.Drawing.Point(494, 125)
+        Me.TextBox30.Location = New System.Drawing.Point(494, 102)
         Me.TextBox30.Name = "TextBox30"
         Me.TextBox30.ReadOnly = True
         Me.TextBox30.Size = New System.Drawing.Size(108, 20)
@@ -3336,7 +3294,7 @@ Public Class accueil
         Me.TextBox31.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox31.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_OK_InspecteurAnnee", True))
         Me.TextBox31.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox31.Location = New System.Drawing.Point(609, 125)
+        Me.TextBox31.Location = New System.Drawing.Point(609, 102)
         Me.TextBox31.Name = "TextBox31"
         Me.TextBox31.ReadOnly = True
         Me.TextBox31.Size = New System.Drawing.Size(108, 20)
@@ -3348,7 +3306,7 @@ Public Class accueil
         Me.TextBox32.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox32.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_OK_StructureTotal", True))
         Me.TextBox32.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox32.Location = New System.Drawing.Point(724, 125)
+        Me.TextBox32.Location = New System.Drawing.Point(724, 102)
         Me.TextBox32.Name = "TextBox32"
         Me.TextBox32.ReadOnly = True
         Me.TextBox32.Size = New System.Drawing.Size(108, 20)
@@ -3360,7 +3318,7 @@ Public Class accueil
         Me.TextBox33.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox33.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_OK_InspecteurTotal", True))
         Me.TextBox33.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox33.Location = New System.Drawing.Point(839, 125)
+        Me.TextBox33.Location = New System.Drawing.Point(839, 102)
         Me.TextBox33.Name = "TextBox33"
         Me.TextBox33.ReadOnly = True
         Me.TextBox33.Size = New System.Drawing.Size(110, 20)
@@ -3372,7 +3330,7 @@ Public Class accueil
         Me.TextBox34.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox34.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_CP_StructureAnnee", True))
         Me.TextBox34.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox34.Location = New System.Drawing.Point(494, 185)
+        Me.TextBox34.Location = New System.Drawing.Point(494, 156)
         Me.TextBox34.Name = "TextBox34"
         Me.TextBox34.ReadOnly = True
         Me.TextBox34.Size = New System.Drawing.Size(108, 20)
@@ -3384,7 +3342,7 @@ Public Class accueil
         Me.TextBox35.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox35.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_CP_InspecteurAnnee", True))
         Me.TextBox35.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox35.Location = New System.Drawing.Point(609, 185)
+        Me.TextBox35.Location = New System.Drawing.Point(609, 156)
         Me.TextBox35.Name = "TextBox35"
         Me.TextBox35.ReadOnly = True
         Me.TextBox35.Size = New System.Drawing.Size(108, 20)
@@ -3396,7 +3354,7 @@ Public Class accueil
         Me.TextBox36.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox36.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_CP_StructureTotal", True))
         Me.TextBox36.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox36.Location = New System.Drawing.Point(724, 185)
+        Me.TextBox36.Location = New System.Drawing.Point(724, 156)
         Me.TextBox36.Name = "TextBox36"
         Me.TextBox36.ReadOnly = True
         Me.TextBox36.Size = New System.Drawing.Size(108, 20)
@@ -3408,7 +3366,7 @@ Public Class accueil
         Me.TextBox37.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox37.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_CP_InspecteurTotal", True))
         Me.TextBox37.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox37.Location = New System.Drawing.Point(839, 185)
+        Me.TextBox37.Location = New System.Drawing.Point(839, 156)
         Me.TextBox37.Name = "TextBox37"
         Me.TextBox37.ReadOnly = True
         Me.TextBox37.Size = New System.Drawing.Size(110, 20)
@@ -3420,7 +3378,7 @@ Public Class accueil
         Me.TextBox38.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox38.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_ReparAvant_StructureAnnee", True))
         Me.TextBox38.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox38.Location = New System.Drawing.Point(494, 245)
+        Me.TextBox38.Location = New System.Drawing.Point(494, 210)
         Me.TextBox38.Name = "TextBox38"
         Me.TextBox38.ReadOnly = True
         Me.TextBox38.Size = New System.Drawing.Size(108, 20)
@@ -3432,7 +3390,7 @@ Public Class accueil
         Me.TextBox39.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox39.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_ReparAvant_InspecteurAnnee", True))
         Me.TextBox39.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox39.Location = New System.Drawing.Point(609, 245)
+        Me.TextBox39.Location = New System.Drawing.Point(609, 210)
         Me.TextBox39.Name = "TextBox39"
         Me.TextBox39.ReadOnly = True
         Me.TextBox39.Size = New System.Drawing.Size(108, 20)
@@ -3444,7 +3402,7 @@ Public Class accueil
         Me.TextBox40.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox40.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_ReparAvant_StructureTotal", True))
         Me.TextBox40.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox40.Location = New System.Drawing.Point(724, 245)
+        Me.TextBox40.Location = New System.Drawing.Point(724, 210)
         Me.TextBox40.Name = "TextBox40"
         Me.TextBox40.ReadOnly = True
         Me.TextBox40.Size = New System.Drawing.Size(108, 20)
@@ -3456,7 +3414,7 @@ Public Class accueil
         Me.TextBox41.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox41.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_ReparAvant_InspecteurTotal", True))
         Me.TextBox41.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox41.Location = New System.Drawing.Point(839, 245)
+        Me.TextBox41.Location = New System.Drawing.Point(839, 210)
         Me.TextBox41.Name = "TextBox41"
         Me.TextBox41.ReadOnly = True
         Me.TextBox41.Size = New System.Drawing.Size(110, 20)
@@ -3468,7 +3426,7 @@ Public Class accueil
         Me.TextBox42.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox42.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_AutoControle_StructureAnnee", True))
         Me.TextBox42.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox42.Location = New System.Drawing.Point(494, 303)
+        Me.TextBox42.Location = New System.Drawing.Point(494, 264)
         Me.TextBox42.Name = "TextBox42"
         Me.TextBox42.ReadOnly = True
         Me.TextBox42.Size = New System.Drawing.Size(108, 20)
@@ -3480,7 +3438,7 @@ Public Class accueil
         Me.TextBox43.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox43.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_AutoControle_InspecteurAnnee", True))
         Me.TextBox43.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox43.Location = New System.Drawing.Point(609, 303)
+        Me.TextBox43.Location = New System.Drawing.Point(609, 264)
         Me.TextBox43.Name = "TextBox43"
         Me.TextBox43.ReadOnly = True
         Me.TextBox43.Size = New System.Drawing.Size(108, 20)
@@ -3492,7 +3450,7 @@ Public Class accueil
         Me.TextBox44.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox44.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_AutoControle_StructureTotal", True))
         Me.TextBox44.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox44.Location = New System.Drawing.Point(724, 303)
+        Me.TextBox44.Location = New System.Drawing.Point(724, 264)
         Me.TextBox44.Name = "TextBox44"
         Me.TextBox44.ReadOnly = True
         Me.TextBox44.Size = New System.Drawing.Size(108, 20)
@@ -3504,7 +3462,7 @@ Public Class accueil
         Me.TextBox45.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox45.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_AutoControle_InspecteurTotal", True))
         Me.TextBox45.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox45.Location = New System.Drawing.Point(839, 303)
+        Me.TextBox45.Location = New System.Drawing.Point(839, 264)
         Me.TextBox45.Name = "TextBox45"
         Me.TextBox45.ReadOnly = True
         Me.TextBox45.Size = New System.Drawing.Size(110, 20)
@@ -3516,7 +3474,7 @@ Public Class accueil
         Me.TextBox46.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox46.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_PreControle_StructureAnnee", True))
         Me.TextBox46.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox46.Location = New System.Drawing.Point(494, 366)
+        Me.TextBox46.Location = New System.Drawing.Point(494, 318)
         Me.TextBox46.Name = "TextBox46"
         Me.TextBox46.ReadOnly = True
         Me.TextBox46.Size = New System.Drawing.Size(108, 20)
@@ -3528,7 +3486,7 @@ Public Class accueil
         Me.TextBox47.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox47.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_PreControle_InspecteurAnnee", True))
         Me.TextBox47.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox47.Location = New System.Drawing.Point(609, 366)
+        Me.TextBox47.Location = New System.Drawing.Point(609, 318)
         Me.TextBox47.Name = "TextBox47"
         Me.TextBox47.ReadOnly = True
         Me.TextBox47.Size = New System.Drawing.Size(108, 20)
@@ -3540,7 +3498,7 @@ Public Class accueil
         Me.TextBox48.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox48.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_PreControle_StructureTotal", True))
         Me.TextBox48.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox48.Location = New System.Drawing.Point(724, 366)
+        Me.TextBox48.Location = New System.Drawing.Point(724, 318)
         Me.TextBox48.Name = "TextBox48"
         Me.TextBox48.ReadOnly = True
         Me.TextBox48.Size = New System.Drawing.Size(108, 20)
@@ -3552,7 +3510,7 @@ Public Class accueil
         Me.TextBox49.BackColor = System.Drawing.Color.LightSkyBlue
         Me.TextBox49.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.bsStatistiques, "PctCtrlCV_PreControle_InspecteurTotal", True))
         Me.TextBox49.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox49.Location = New System.Drawing.Point(839, 366)
+        Me.TextBox49.Location = New System.Drawing.Point(839, 318)
         Me.TextBox49.Name = "TextBox49"
         Me.TextBox49.ReadOnly = True
         Me.TextBox49.Size = New System.Drawing.Size(110, 20)
@@ -3576,7 +3534,7 @@ Public Class accueil
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label25.Location = New System.Drawing.Point(462, 54)
+        Me.Label25.Location = New System.Drawing.Point(462, 45)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(24, 15)
         Me.Label25.TabIndex = 111
@@ -3588,7 +3546,7 @@ Public Class accueil
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label27.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label27.Location = New System.Drawing.Point(462, 81)
+        Me.Label27.Location = New System.Drawing.Point(462, 72)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(25, 15)
         Me.Label27.TabIndex = 112
@@ -3600,7 +3558,7 @@ Public Class accueil
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label28.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label28.Location = New System.Drawing.Point(462, 122)
+        Me.Label28.Location = New System.Drawing.Point(462, 99)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(24, 15)
         Me.Label28.TabIndex = 113
@@ -3612,7 +3570,7 @@ Public Class accueil
         Me.Label31.AutoSize = True
         Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label31.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label31.Location = New System.Drawing.Point(462, 149)
+        Me.Label31.Location = New System.Drawing.Point(462, 126)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(25, 15)
         Me.Label31.TabIndex = 114
@@ -3624,7 +3582,7 @@ Public Class accueil
         Me.Label32.AutoSize = True
         Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label32.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label32.Location = New System.Drawing.Point(462, 182)
+        Me.Label32.Location = New System.Drawing.Point(462, 153)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(24, 15)
         Me.Label32.TabIndex = 115
@@ -3636,7 +3594,7 @@ Public Class accueil
         Me.Label33.AutoSize = True
         Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label33.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label33.Location = New System.Drawing.Point(462, 209)
+        Me.Label33.Location = New System.Drawing.Point(462, 180)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(25, 15)
         Me.Label33.TabIndex = 116
@@ -3648,7 +3606,7 @@ Public Class accueil
         Me.Label34.AutoSize = True
         Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label34.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label34.Location = New System.Drawing.Point(462, 242)
+        Me.Label34.Location = New System.Drawing.Point(462, 207)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(24, 15)
         Me.Label34.TabIndex = 117
@@ -3660,7 +3618,7 @@ Public Class accueil
         Me.Label35.AutoSize = True
         Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label35.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label35.Location = New System.Drawing.Point(462, 269)
+        Me.Label35.Location = New System.Drawing.Point(462, 234)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(25, 15)
         Me.Label35.TabIndex = 118
@@ -3672,7 +3630,7 @@ Public Class accueil
         Me.Label36.AutoSize = True
         Me.Label36.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label36.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label36.Location = New System.Drawing.Point(462, 300)
+        Me.Label36.Location = New System.Drawing.Point(462, 261)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(24, 15)
         Me.Label36.TabIndex = 119
@@ -3684,7 +3642,7 @@ Public Class accueil
         Me.Label37.AutoSize = True
         Me.Label37.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label37.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label37.Location = New System.Drawing.Point(462, 327)
+        Me.Label37.Location = New System.Drawing.Point(462, 288)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(25, 15)
         Me.Label37.TabIndex = 120
@@ -3696,7 +3654,7 @@ Public Class accueil
         Me.Label38.AutoSize = True
         Me.Label38.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label38.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.Label38.Location = New System.Drawing.Point(462, 363)
+        Me.Label38.Location = New System.Drawing.Point(462, 315)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(24, 15)
         Me.Label38.TabIndex = 121
@@ -3798,9 +3756,9 @@ Public Class accueil
         'DateFactureDataGridViewTextBoxColumn
         '
         Me.DateFactureDataGridViewTextBoxColumn.DataPropertyName = "dateFacture"
-        DataGridViewCellStyle5.Format = "d"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.DateFactureDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle12.Format = "d"
+        DataGridViewCellStyle12.NullValue = Nothing
+        Me.DateFactureDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle12
         Me.DateFactureDataGridViewTextBoxColumn.FillWeight = 83.18756!
         Me.DateFactureDataGridViewTextBoxColumn.HeaderText = "Date"
         Me.DateFactureDataGridViewTextBoxColumn.Name = "DateFactureDataGridViewTextBoxColumn"
@@ -3825,9 +3783,9 @@ Public Class accueil
         'TotalHTDataGridViewTextBoxColumn
         '
         Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "TotalHT"
-        DataGridViewCellStyle6.Format = "C2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle13.Format = "C2"
+        DataGridViewCellStyle13.NullValue = Nothing
+        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle13
         Me.TotalHTDataGridViewTextBoxColumn.FillWeight = 83.18756!
         Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "Total HT"
         Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
@@ -3836,9 +3794,9 @@ Public Class accueil
         'TotalTTCDataGridViewTextBoxColumn
         '
         Me.TotalTTCDataGridViewTextBoxColumn.DataPropertyName = "TotalTTC"
-        DataGridViewCellStyle7.Format = "C2"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.TotalTTCDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle14.Format = "C2"
+        DataGridViewCellStyle14.NullValue = Nothing
+        Me.TotalTTCDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle14
         Me.TotalTTCDataGridViewTextBoxColumn.FillWeight = 83.18756!
         Me.TotalTTCDataGridViewTextBoxColumn.HeaderText = "Total TTC"
         Me.TotalTTCDataGridViewTextBoxColumn.Name = "TotalTTCDataGridViewTextBoxColumn"

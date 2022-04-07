@@ -9,6 +9,8 @@ BUILD : 20220225120000
 	0001242: Sur onglet stat: Avoir le nombre de contrôles complets réalisés et le nb de contre-visites réalisées
 	0001483: Modif Fiche Client (Fax)
 	0001485: Modification du nom des fichiers DIAG
+	0001489: Mode d'utilsation à blanc dans certains Cas
+	0001478: ACKERMAN : Calcul dte de prochain Ctrl
 
 BUILD : 20220201120000
 	0001475: Transfert de client ne fonctionne plus depuis la dernière version

@@ -4804,12 +4804,14 @@ Public Class DiagnosticManagerTest
     Public Sub TST_DateProchainControle2015()
         Dim oDiag As Diagnostic
         Dim poPulve As Pulverisateur
+        Dim oExploit As Exploitation
 
+        oExploit = createExploitation()
         'Etat Pulvé = nouveau
         '======================
-        poPulve = New Pulverisateur()
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = ""
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("15/12/2015")
@@ -4821,9 +4823,10 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2020-12-14 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
-        poPulve = New Pulverisateur()
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = ""
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("15/12/2015")
@@ -4835,9 +4838,10 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2016-04-14 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CC => + 4 mois
-        poPulve = New Pulverisateur()
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = ""
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("15/12/2015")
@@ -4851,10 +4855,10 @@ Public Class DiagnosticManagerTest
 
         'Etat Pulvé = OK
         '======================
-        poPulve = New Pulverisateur()
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatOK
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("16/12/2015")
@@ -4866,10 +4870,11 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2020-12-15 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
-        poPulve = New Pulverisateur()
-        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatOK
+        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("16/12/2015")
@@ -4881,10 +4886,11 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2016-04-15 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CC => + 4 mois
-        poPulve = New Pulverisateur()
-        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatOK
+        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("16/12/2015")
@@ -4898,10 +4904,10 @@ Public Class DiagnosticManagerTest
 
         'Etat Pulvé = En attente de CComplet -1
         '======================
-        poPulve = New Pulverisateur()
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("17/12/2015")
@@ -4913,10 +4919,11 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2020-12-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
-        poPulve = New Pulverisateur()
-        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
+        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("17/12/2015")
@@ -4928,10 +4935,11 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2015-12-20 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CC => + 4 mois
-        poPulve = New Pulverisateur()
-        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
-        poPulve.id = "E001-1"
+        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("16/12/2015")
@@ -4944,10 +4952,11 @@ Public Class DiagnosticManagerTest
 
         'Etat Pulvé = En attente de CV 0
         '======================
-        poPulve = New Pulverisateur()
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("17/12/2015")
@@ -4959,10 +4968,11 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2020-12-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
-        poPulve = New Pulverisateur()
-        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
+        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("17/12/2015")
@@ -4974,10 +4984,11 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2016-04-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CC => + 4 mois
-        poPulve = New Pulverisateur()
-        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
-        poPulve.id = "E001-1"
+        poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("16/12/2015")
@@ -4990,10 +5001,11 @@ Public Class DiagnosticManagerTest
 
         'Etat Pulvé = En attente de CV ou CC mais Controle complet car dépassement de la date limite
         '======================
-        poPulve = New Pulverisateur()
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("1/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("17/12/2015")
@@ -5005,10 +5017,11 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2020-12-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CV => + 4 mois
-        poPulve = New Pulverisateur()
-        poPulve.dateProchainControle = CSDate.ToCRODIPString("01/12/2015")
-        poPulve.id = "E001-1"
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
+        poPulve.dateProchainControle = CSDate.ToCRODIPString("1/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("17/12/2015")
@@ -5020,10 +5033,11 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2016-04-16 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Result CC => + 4 mois
-        poPulve = New Pulverisateur()
-        poPulve.dateProchainControle = CSDate.ToCRODIPString("01/12/2015")
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
-        poPulve.id = "E001-1"
+        poPulve.dateProchainControle = CSDate.ToCRODIPString("1/12/2015")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("17/12/2015")
@@ -5035,10 +5049,11 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("2015-12-01 00:00:00", oDiag.pulverisateurDateProchainControle)
 
         'Pulve ERR DateProchctrl = 01/08/2020, CTRL au 01/09/2020 resulat = ErrPrelim => DateProchainCtrl = 01/08/2020
-        poPulve = New Pulverisateur()
-        poPulve.dateProchainControle = CSDate.ToCRODIPString("01/08/2020")
+        poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
-        poPulve.id = "E001-1"
+        poPulve.dateProchainControle = CSDate.ToCRODIPString("01/08/2020")
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("01/09/2020")
@@ -5077,30 +5092,12 @@ Public Class DiagnosticManagerTest
     '<DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCC, "01/12/2020", Pulverisateur.controleEtatNOKCC, "12-Pulve OK , Ctrl OK , Date Ctrl Avant => DateCrl+3 ans")>
 
     <DataTestMethod()>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/08/2020", Diagnostic.controleEtatOK, "01/08/2025", Pulverisateur.controleEtatOK, "1-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCV, "01/12/2020", Pulverisateur.controleEtatNOKCV, "2-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CV  => DateCtrl + 4 mois")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "3-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CC  => Pas de Chgmt")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/10/2020", Diagnostic.controleEtatOK, "01/10/2025", Pulverisateur.controleEtatOK, "4-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCV, "01/02/2021", Pulverisateur.controleEtatNOKCV, "5-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CV  => DateCtrl + 4 mois")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "6-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CV  => Pas de Changement")>
-    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/08/2020", Diagnostic.controleEtatOK, "01/08/2025", Pulverisateur.controleEtatOK, "7-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCV, "01/12/2020", Pulverisateur.controleEtatNOKCV, "8-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CV  => DateCtrl + 4 mois")>
-    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "9-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CC  => Pas de Chgmt")>
-    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/10/2020", Diagnostic.controleEtatOK, "01/10/2025", Pulverisateur.controleEtatOK, "10-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCV, "01/02/2021", Pulverisateur.controleEtatNOKCV, "11-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CV  => DateCtrl + 4 mois")>
-    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "12-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CV  => Pas de Changement")>
-    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/08/2020", Diagnostic.controleEtatOK, "01/08/2025", Pulverisateur.controleEtatOK, "13-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCV, "01/09/2020", Pulverisateur.controleEtatNOKCC, "14-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CV  => Pas de Chgmt")>
-    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/08/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "15-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat CC  => Pas de Chgmt")>
-    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/10/2020", Diagnostic.controleEtatOK, "01/10/2025", Pulverisateur.controleEtatOK, "16-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCV, "01/09/2020", Pulverisateur.controleEtatNOKCC, "17-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CV  => Pas de Changement")>
-    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCC, "01/09/2020", Pulverisateur.controleEtatNOKCC, "18-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat CC  => Pas de Changement")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2021", "01/08/2021", Diagnostic.controleEtatOK, "01/08/2024", Pulverisateur.controleEtatOK, "2021-1-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatOK, "01/09/2021", "01/10/2021", Diagnostic.controleEtatOK, "01/10/2024", Pulverisateur.controleEtatOK, "2021-4-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2021", "01/08/2021", Diagnostic.controleEtatOK, "01/08/2024", Pulverisateur.controleEtatOK, "2021-7-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2021", "01/10/2021", Diagnostic.controleEtatOK, "01/10/2024", Pulverisateur.controleEtatOK, "2021-10-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2021", "01/08/2021", Diagnostic.controleEtatOK, "01/08/2024", Pulverisateur.controleEtatOK, "2021-13-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
-    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2021", "01/10/2021", Diagnostic.controleEtatOK, "01/10/2024", Pulverisateur.controleEtatOK, "2021-16-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatOK, "01/09/2021", "01/08/2021", Diagnostic.controleEtatOK, "31/07/2024", Pulverisateur.controleEtatOK, "2021-1-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatOK, "01/09/2021", "01/10/2021", Diagnostic.controleEtatOK, "30/09/2024", Pulverisateur.controleEtatOK, "2021-4-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2021", "01/08/2021", Diagnostic.controleEtatOK, "31/07/2024", Pulverisateur.controleEtatOK, "2021-7-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2021", "01/10/2021", Diagnostic.controleEtatOK, "30/09/2024", Pulverisateur.controleEtatOK, "2021-10-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2021", "01/08/2021", Diagnostic.controleEtatOK, "31/07/2024", Pulverisateur.controleEtatOK, "2021-13-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
+    <DataRow(Pulverisateur.controleEtatNOKCC, "01/09/2021", "01/10/2021", Diagnostic.controleEtatOK, "30/09/2024", Pulverisateur.controleEtatOK, "2021-16-Pulve NOK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
     Public Sub TST_DateProchainControleDT(pEtatPulveAvant As String, pDateProchainCtrlavant As String, pDateCtrl As String, presultatCtrl As String, pDateProchainCtrlApres As String, petatPulveapres As String, pMesg As String)
         Dim oDiag As Diagnostic
         Dim poPulve As Pulverisateur
@@ -5109,10 +5106,10 @@ Public Class DiagnosticManagerTest
         oExploit = createExploitation()
         ExploitationManager.save(oExploit, m_oAgent)
         poPulve = createPulve(oExploit)
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
 
         poPulve.controleEtat = pEtatPulveAvant
         poPulve.dateProchainControle = pDateProchainCtrlavant
+        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
 
         oDiag = createDiagnostic(oExploit, poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString(pDateCtrl)

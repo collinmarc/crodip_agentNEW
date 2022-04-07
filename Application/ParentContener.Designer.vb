@@ -55,18 +55,19 @@ Partial Class parentContener
         Me.MenuItem_aide_debug = New System.Windows.Forms.MenuItem()
         Me.MenuItem_aide_debug_exportLogs = New System.Windows.Forms.MenuItem()
         Me.MenuItem_aide_debug_exportSynchro = New System.Windows.Forms.MenuItem()
+        Me.mniVaccum = New System.Windows.Forms.MenuItem()
         Me.parentContener_statusBar = New System.Windows.Forms.StatusBar()
         Me.notify_connexionStatus_nok = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.notify_connexionStatus_ok = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.notify_connexionStatus_wait = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.statusBar_img_loader = New System.Windows.Forms.PictureBox()
-        Me.mniVaccum = New System.Windows.Forms.MenuItem()
+        Me.MenuItem5 = New System.Windows.Forms.MenuItem()
         CType(Me.statusBar_img_loader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MainMenu1
         '
-        Me.MainMenu1.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem1})
+        Me.MainMenu1.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem1, Me.MenuItem5})
         '
         'MenuItem1
         '
@@ -120,6 +121,11 @@ Partial Class parentContener
         Me.MenuItem_aide_debug_exportSynchro.Index = 1
         Me.MenuItem_aide_debug_exportSynchro.Text = "Extraire la trace de synchronisation"
         '
+        'mniVaccum
+        '
+        Me.mniVaccum.Index = 7
+        Me.mniVaccum.Text = "Nettoyage Base de données"
+        '
         'parentContener_statusBar
         '
         Me.parentContener_statusBar.Location = New System.Drawing.Point(0, 684)
@@ -149,10 +155,11 @@ Partial Class parentContener
         Me.statusBar_img_loader.TabStop = False
         Me.statusBar_img_loader.Visible = False
         '
-        'mniVaccum
+        'MenuItem5
         '
-        Me.mniVaccum.Index = 7
-        Me.mniVaccum.Text = "Nettoyage Base de données"
+        Me.MenuItem5.Index = 1
+        Me.MenuItem5.MdiList = True
+        Me.MenuItem5.Text = "Fenêtres"
         '
         'parentContener
         '
@@ -172,4 +179,5 @@ Partial Class parentContener
     End Sub
 
     Friend WithEvents mniVaccum As MenuItem
+    Friend WithEvents MenuItem5 As MenuItem
 End Class

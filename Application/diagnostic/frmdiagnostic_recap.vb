@@ -518,10 +518,10 @@ Public Class frmdiagnostic_recap
         '
         'label_pulveBonEtat
         '
-        Me.label_pulveBonEtat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.label_pulveBonEtat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.label_pulveBonEtat.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label_pulveBonEtat.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.label_pulveBonEtat.Location = New System.Drawing.Point(682, 9)
+        Me.label_pulveBonEtat.Location = New System.Drawing.Point(688, 12)
         Me.label_pulveBonEtat.Name = "label_pulveBonEtat"
         Me.label_pulveBonEtat.Size = New System.Drawing.Size(311, 24)
         Me.label_pulveBonEtat.TabIndex = 15
@@ -530,7 +530,7 @@ Public Class frmdiagnostic_recap
         '
         'conclusion_pictoEtat
         '
-        Me.conclusion_pictoEtat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.conclusion_pictoEtat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.conclusion_pictoEtat.Image = CType(resources.GetObject("conclusion_pictoEtat.Image"), System.Drawing.Image)
         Me.conclusion_pictoEtat.Location = New System.Drawing.Point(666, 12)
         Me.conclusion_pictoEtat.Name = "conclusion_pictoEtat"
@@ -838,8 +838,9 @@ Public Class frmdiagnostic_recap
             Next
         End If
         If ofrmDiag IsNot Nothing Then
-            ofrmDiag.WindowState = FormWindowState.Maximized
-            ofrmDiag.Activate()
+            'ofrmDiag.WindowState = FormWindowState.Maximized
+            ActivateMdiChild(ofrmDiag)
+            'ofrmDiag.Activate()
             Me.Close()
         End If
     End Sub
@@ -1473,9 +1474,5 @@ Public Class frmdiagnostic_recap
     Private Sub btn_Annuler_Click(sender As Object, e As EventArgs) Handles btn_Annuler.Click
         CloseDiagnostic()
 
-    End Sub
-
-    Private Sub frmdiagnostic_recap_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        CrystalReportViewer1.ReportSource = Nothing
     End Sub
 End Class

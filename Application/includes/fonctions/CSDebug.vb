@@ -15,24 +15,24 @@ Public Class CSDebug
     End Sub
     Public Shared Sub dispError(ByVal errorMsg As String)
         logger.Error(errorMsg)
-        If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 1 Then
-            displayMsg("[Error] - " & errorMsg)
-            '   Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
-            '  CSDebug.saveLog("Error", agentCourant.id, errorMsg, curVersion)
-        End If
+        'If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 1 Then
+        displayMsg("[Error] - " & errorMsg)
+        '   Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        '  CSDebug.saveLog("Error", agentCourant.id, errorMsg, curVersion)
+        'End If
     End Sub
     Public Shared Sub dispWarn(ByVal warnMsg As String)
         logger.Warn(warnMsg)
-        If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 2 Then
-            displayMsg("[Warning] - " & warnMsg)
-            ' Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
-            'CSDebug.saveLog("Warning", agentCourant.id, warnMsg, curVersion)
-        End If
+        'If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 2 Then
+        displayMsg("[Warning] - " & warnMsg)
+        ' Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        'CSDebug.saveLog("Warning", agentCourant.id, warnMsg, curVersion)
+        'End If
     End Sub
     Public Shared Sub dispInfo(ByVal infoMsg As String)
         logger.Info(infoMsg)
         'If GLOB_ENV_DEBUGLVL >= 3 Then
-        ' displayMsg("[Info] - " & infoMsg)
+        displayMsg("[Info] - " & infoMsg)
         ' End If
     End Sub
 
@@ -56,11 +56,11 @@ Public Class CSDebug
             errorMessage = errorMessage + "," + ex.InnerException.Message
         End If
         logger.Error(errorMessage)
-        If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 1 Then
-            displayMsg("[Error] - " & errorMessage)
-            '   Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
-            '  CSDebug.saveLog("Error", agentCourant.id, errorMsg, curVersion)
-        End If
+        'If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 1 Then
+        displayMsg("[Error] - " & errorMessage)
+        '   Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        '  CSDebug.saveLog("Error", agentCourant.id, errorMsg, curVersion)
+        'End If
     End Sub
     Public Shared Sub dispWarn(ByVal warnMsg As String, ex As Exception)
         Dim errorMessage As String
@@ -69,11 +69,11 @@ Public Class CSDebug
             errorMessage = warnMsg + "," + ex.InnerException.Message
         End If
         logger.Warn(errorMessage)
-        If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 2 Then
-            displayMsg("[Warning] - " & errorMessage)
-            ' Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
-            'CSDebug.saveLog("Warning", agentCourant.id, warnMsg, curVersion)
-        End If
+        'If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 2 Then
+        displayMsg("[Warning] - " & errorMessage)
+        ' Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        'CSDebug.saveLog("Warning", agentCourant.id, warnMsg, curVersion)
+        'End If
     End Sub
     Public Shared Sub dispInfo(ByVal infoMsg As String, ex As Exception)
         Dim errorMessage As String
@@ -83,7 +83,7 @@ Public Class CSDebug
         End If
         logger.Info(errorMessage)
         'If GLOB_ENV_DEBUGLVL >= 3 Then
-        ' displayMsg("[Info] - " & infoMsg)
+        displayMsg("[Info] - " & infoMsg)
         ' End If
     End Sub
 

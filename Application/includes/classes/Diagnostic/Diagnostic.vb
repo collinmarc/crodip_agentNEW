@@ -2978,10 +2978,17 @@ Public Class Diagnostic
             Me.pulverisateurRegulationOptions = poPulve.regulationOptions
             Me.pulverisateurPulverisation = poPulve.pulverisation
             Me.pulverisateurAutresAccessoires = ""
-            Me.pulverisateurEmplacementIdentification = poPulve.emplacementIdentification
-            Me.pulverisateurModeUtilisation = poPulve.modeUtilisation
-            Me.pulverisateurNbreExploitants = poPulve.nombreExploitants
-            If poPulve.isCoupureAutoTroncons Then
+            If String.IsNullOrEmpty(pulverisateurEmplacementIdentification) Then
+                Me.pulverisateurEmplacementIdentification = poPulve.emplacementIdentification
+            End If
+            If Not String.IsNullOrEmpty(poPulve.modeUtilisation) Then
+                Me.pulverisateurModeUtilisation = poPulve.modeUtilisation
+
+            End If
+            If Not String.IsNullOrEmpty(poPulve.nombreExploitants) Then
+                Me.pulverisateurNbreExploitants = poPulve.nombreExploitants
+            End if
+                If poPulve.isCoupureAutoTroncons Then
                 Me.pulverisateurCoupureAutoTroncons = "OUI"
             Else
                 Me.pulverisateurCoupureAutoTroncons = "NON"
@@ -3014,8 +3021,6 @@ Public Class Diagnostic
             Me.manometreType = poPulve.manometreType
             Me.manometreFondEchelle = poPulve.manometreFondEchelle
             '            Me.manometrePressionTravail = poPulve.manometrePressionTravail 'La Pression reste toujours à 3
-
-            Me.pulverisateurDateProchainControle = poPulve.dateProchainControle
             Me.pulverisateurControleEtat = poPulve.controleEtat
 
             Dim sDate As String = poPulve.getDateDernierControle()
@@ -3246,10 +3251,13 @@ Public Class Diagnostic
     ''' <remarks></remarks>
     Public Function CalculDateProchainControle(Optional pImport As Boolean = False) As String
         Dim dReturn As Date
-        If String.IsNullOrEmpty(pulverisateurDateProchainControle) Then
+        Dim oPulve As Pulverisateur
+        oPulve = PulverisateurManager.getPulverisateurById(pulverisateurId)
+
+        If String.IsNullOrEmpty(oPulve.dateProchainControle) Then
             dReturn = Now()
         Else
-            dReturn = CDate(pulverisateurDateProchainControle)
+            dReturn = CDate(oPulve.dateProchainControle)
         End If
         Dim oAlertes As Alertes
         oAlertes = Alertes.readXML()

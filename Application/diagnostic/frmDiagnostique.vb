@@ -10760,4 +10760,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub FrmDiagnostique_ForeColorChanged(sender As Object, e As EventArgs) Handles Me.ForeColorChanged
 
     End Sub
+
+    Private Sub FrmDiagnostique_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        Me.WindowState = FormWindowState.Maximized
+    End Sub
 End Class

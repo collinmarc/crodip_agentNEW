@@ -2231,4 +2231,7 @@ Public Class controle_preliminaire
         Return bReturn
     End Function
 
+    Private Sub controle_preliminaire_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        Me.WindowState = FormWindowState.Maximized
+    End Sub
 End Class
