@@ -461,7 +461,14 @@ retryOldFile:
                 File.Move(targetDir & newFile, targetDir & newFile & majFileSuffix)
                 hasMoved = True
             End If
-            File.Move(tmpFile, targetDir & newFile)
+            Try
+
+                CSDebug.dispInfo("CrodipUpdater.Main._majSoftware_copyDirContent : Copie de " & tmpFile & " vers" & targetDir & newFile)
+                File.Move(tmpFile, targetDir & newFile)
+            Catch ex As Exception
+                CSDebug.dispError("CrodipUpdater.Main._majSoftware_copyDirContent MOVE : " & ex.Message.ToString)
+            End Try
+
             If hasMoved Then
                 Try
                     File.Delete(targetDir & newFile & majFileSuffix)
