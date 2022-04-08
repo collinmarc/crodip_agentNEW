@@ -1177,7 +1177,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsFvBanc.xsd</DependentUpon>
     </Compile>
-    <Compile Include="cr\EtatBL.vb" />
+    <Compile Include="cr\EtatBL.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="cr\EtatFacture.vb" />
     <Compile Include="cr\EtatRapportInspection.vb" />
     <Compile Include="moduleDocumentaire\_parametres\cr_EnqueteSatisfaction.vb">

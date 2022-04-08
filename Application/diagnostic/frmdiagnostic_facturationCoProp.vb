@@ -1852,7 +1852,7 @@ Public Class frmdiagnostic_facturationCoProp
                     For Each oLgF As FactureItem In oFact.Lignes
                         'Si elle correspond as une ligne du contrat commercial
                         For Each oLgC As FactureItem In m_oDiag.oContratCommercial.Lignes
-                            If oLgF.categorie = oLgC.categorie And oLgF.prestation = oLgF.prestation Then
+                            If oLgF.categorie = oLgC.categorie And oLgF.prestation = oLgC.prestation Then
                                 'On Totalise son totalHT
                                 TotalFacture = TotalFacture + oLgF.totalHT
                             End If

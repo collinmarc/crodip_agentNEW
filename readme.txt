@@ -11,6 +11,9 @@ BUILD : 20220225120000
 	0001485: Modification du nom des fichiers DIAG
 	0001489: Mode d'utilsation à blanc dans certains Cas
 	0001478: ACKERMAN : Calcul dte de prochain Ctrl
+	0001490: Affichage du BL et Factures
+	0001491: Recherche de facture sur la date du jour
+
 
 BUILD : 20220201120000
 	0001475: Transfert de client ne fonctionne plus depuis la dernière version

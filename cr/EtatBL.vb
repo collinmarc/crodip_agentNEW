@@ -10,15 +10,15 @@ Public Class EtatBL
         Public m_Libelle As String
         Public m_PU As Decimal
         Public m_qte As Decimal
-        Public m_TVA As Decimal
+        Public m_TxTVA As Decimal
         Public m_TotalHT As Decimal
         Public m_TotalTTC As Decimal
 
-        Public Sub New(pLib As String, pPU As Decimal, pQte As Decimal, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal)
+        Public Sub New(pLib As String, pPU As Decimal, pQte As Decimal, pTxTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal)
             m_Libelle = pLib
             m_PU = pPU
             m_qte = pQte
-            m_TVA = pTVA
+            m_TxTVA = pTxTVA
             m_TotalHT = pTotalHT
             m_TotalTTC = pTotalTTC
 
@@ -43,10 +43,10 @@ Public Class EtatBL
 
 
 
-    Public Function AddPresta(pLib As String, pPU As Decimal, pQte As Decimal, pTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal) As Boolean
+    Public Function AddPresta(pLib As String, pPU As Decimal, pQte As Decimal, pTxTVA As Decimal, pTotalHT As Decimal, pTotalTTC As Decimal) As Boolean
         Dim bReturn As Boolean
         Try
-            Dim oPresta As LgPrestation = New LgPrestation(pLib, pPU, pQte, pTVA, pTotalHT, pTotalTTC)
+            Dim oPresta As LgPrestation = New LgPrestation(pLib:=pLib, pPU:=pPU, pQte:=pQte, pTxTVA:=pTxTVA, pTotalHT:=pTotalHT, pTotalTTC:=pTotalTTC)
             m_lstPresta.Add(oPresta)
             bReturn = True
         Catch ex As Exception
@@ -57,7 +57,7 @@ Public Class EtatBL
     End Function
 
 
-    protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
+    Protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()
@@ -100,7 +100,7 @@ Public Class EtatBL
             '
             m_ods = m_oDiag.generateDataSetForBL("")
             For Each oPresta As LgPrestation In m_lstPresta
-                m_ods.Prestation.AddPrestationRow(oPresta.m_Libelle, oPresta.m_TotalHT, oPresta.m_TVA, oPresta.m_TotalTTC, oPresta.m_qte, oPresta.m_PU)
+                m_ods.Prestation.AddPrestationRow(Description:=oPresta.m_Libelle, TotalHT:=oPresta.m_TotalHT, TxTVA:=oPresta.m_TxTVA, TotalTTC:=oPresta.m_TotalTTC, Qte:=oPresta.m_qte, PrixUnitaire:=oPresta.m_PU)
 
             Next
 

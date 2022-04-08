@@ -13,11 +13,11 @@ Imports Crodip_agent
         m_oPulve = createPulve(m_oExploitation)
         m_oDiag = createDiagnostic(m_oExploitation, m_oPulve)
         oEtat = New EtatBL(m_oDiag)
-        oEtat.AddPresta("TEST", 300.5D, 0.5D, 20, 30, 50)
+        oEtat.AddPresta(pLib:="TEST", pPU:=61.5D, pQte:=0.5D, pTxTVA:=20, pTotalHT:=30.25D, pTotalTTC:=30.25D * 1.2)
 
         Assert.IsTrue(oEtat.GenereEtat())
         Assert.IsTrue(oEtat.getFileName().EndsWith("BL.pdf"))
-        CSFile.open(oEtat.getFileName())
+        CSFile.open(oEtat.getFileNameFullPath())
     End Sub
 
 End Class

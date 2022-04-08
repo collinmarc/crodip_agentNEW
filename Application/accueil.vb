@@ -6603,7 +6603,7 @@ Public Class accueil
         If rbDatesFacture.Checked Then
             typerecherche = TypeRechercheFacture.RECHERCHE_FACTURE_PAR_DATE
             Value1 = dtpDeb.Value.ToShortDateString()
-            Value2 = dtpFin.Value.ToShortDateString()
+            Value2 = dtpFin.Value.ToShortDateString() & " 23:59:59"
         End If
         If rbNumFact.Checked Then
             If tbNumFact.Text = "" Then
