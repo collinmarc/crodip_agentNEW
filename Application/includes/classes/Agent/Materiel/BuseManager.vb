@@ -151,12 +151,8 @@ Public Class BuseManager
                 If Not objBuseEtalon.dateAchat Is Nothing Then
                     paramsQuery = paramsQuery & " , dateAchat='" & CSDate.ToCRODIPString(objBuseEtalon.dateAchat) & "'"
                 End If
-                If Not objBuseEtalon.dateModificationAgent Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objBuseEtalon.dateModificationAgent) & "'"
-                End If
-                If Not objBuseEtalon.dateModificationCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objBuseEtalon.dateModificationCrodip) & "'"
-                End If
+                paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objBuseEtalon.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objBuseEtalon.dateModificationCrodip) & "'"
                 paramsQuery = paramsQuery & " , etat=" & objBuseEtalon.etat & ""
                 paramsQuery = paramsQuery & " , isSupprime=" & objBuseEtalon.isSupprime & ""
                 paramsQuery = paramsQuery & " , isUtilise=" & objBuseEtalon.isUtilise & ""

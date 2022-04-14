@@ -48,7 +48,7 @@ Public Class ManometreControle
         End Get
     End Property
 
-    Public Overrides ReadOnly Property Libelle() As String
+    Public Overrides Property Libelle() As String
         Get
             Dim sLibelle As String = "   "
             If m_bIsUpdated Then
@@ -62,6 +62,9 @@ Public Class ManometreControle
             End If
             Return sLibelle
         End Get
+        Set(value As String)
+
+        End Set
     End Property
     Private Function getPressionCtrl(pNum As Integer) As String
         Try

@@ -71,10 +71,13 @@ Public Class Buse
         End Set
     End Property
 
-    Public Overrides ReadOnly Property Libelle() As String
+    Public Overrides Property Libelle() As String
         Get
             Return idCrodip + " (" & Me.couleur & ")"
         End Get
+        Set(value As String)
+
+        End Set
     End Property
 
 

@@ -259,11 +259,90 @@
 
 --ALTER TABLE ExploitationTOPulverisateur ADD isSupprimeCoProp YESNO 
 --UPDATE ExploitationTOPulverisateur SET isSupprimeCoProp = False
-CREATE TABLE [facture] ([idfacture] TEXT(255)  NOT NULL,[idstructure] TEXT(50) ,[datefacture] DATETIME,[dateecheance] DATETIME,[commentaire] TEXT(255) ,[modereglement] TEXT(255) ,[isreglee] BIT NOT NULL,[refreglement] TEXT(255) ,[totalht] float,[txtva] float,[totalttc] float,[totaltva] float,[iddiag] TEXT(50) ,[idexploit] TEXT(50) ,[rsclient] TEXT(255) ,[nomclient] TEXT(255) ,[prenomclient] TEXT(255) ,[adresseclient] TEXT(255) ,[cpclient] TEXT(255) ,[communeclient] TEXT(255) ,[telfixeclient] TEXT(255) ,[telportclient] TEXT(255) ,[emailclient] TEXT(255), [dateModificationAgent]  dateTime, [dateModificationCRODIP]  dateTime ,CONSTRAINT [PK_facture] PRIMARY KEY ([idfacture]));
-CREATE TABLE [factureitem] ([idfacture] TEXT(255) , [nfactureitem] LONG NOT NULL,[categorie] TEXT(255) ,[prestation] TEXT(255) ,[quantite] float,[pu] float,[totalhtitem] float,[totaltvaitem] float,[totalttcitem] float,[txtvaitem] float, [dateModificationAgent]  dateTime, [dateModificationCRODIP]  dateTime ,CONSTRAINT [PK_factureitems] PRIMARY KEY ([idfacture],[nfactureitem]));
+--CREATE TABLE [facture] ([idfacture] TEXT(255)  NOT NULL,[idstructure] TEXT(50) ,[datefacture] DATETIME,[dateecheance] DATETIME,[commentaire] TEXT(255) ,[modereglement] TEXT(255) ,[isreglee] BIT NOT NULL,[refreglement] TEXT(255) ,[totalht] float,[txtva] float,[totalttc] float,[totaltva] float,[iddiag] TEXT(50) ,[idexploit] TEXT(50) ,[rsclient] TEXT(255) ,[nomclient] TEXT(255) ,[prenomclient] TEXT(255) ,[adresseclient] TEXT(255) ,[cpclient] TEXT(255) ,[communeclient] TEXT(255) ,[telfixeclient] TEXT(255) ,[telportclient] TEXT(255) ,[emailclient] TEXT(255), [dateModificationAgent]  dateTime, [dateModificationCRODIP]  dateTime ,CONSTRAINT [PK_facture] PRIMARY KEY ([idfacture]));
+--CREATE TABLE [factureitem] ([idfacture] TEXT(255) , [nfactureitem] LONG NOT NULL,[categorie] TEXT(255) ,[prestation] TEXT(255) ,[quantite] float,[pu] float,[totalhtitem] float,[totaltvaitem] float,[totalttcitem] float,[txtvaitem] float, [dateModificationAgent]  dateTime, [dateModificationCRODIP]  dateTime ,CONSTRAINT [PK_factureitems] PRIMARY KEY ([idfacture],[nfactureitem]));
 
-ALTER TABLE [factureitem] ADD CONSTRAINT [facturefactureitem] FOREIGN KEY ([idfacture]) REFERENCES [facture] ([idfacture]);
+--ALTER TABLE [factureitem] ADD CONSTRAINT [facturefactureitem] FOREIGN KEY ([idfacture]) REFERENCES [facture] ([idfacture]);
 
-Alter Table Facture add column pathPDF Text(255);
+--Alter Table Facture add column pathPDF Text(255);
 
-INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.8.00", #29/11/2021# , "CoProprietaire") 
+--INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.8.00", #29/11/2021# , "CoProprietaire") 
+
+CREATE TABLE AgentPC (
+    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+    idCrodip               TEXT,
+    idStructure            INTEGER,
+    cleUtilisation         TEXT,
+    libelle                TEXT,
+    etat                   BIT,
+    numInterne             TEXT,
+    AgentSuppression       TEXT,
+    RaisonSuppression      TEXT,
+    dateSuppression        DATETIME,
+    isSupprime             BIT,
+    dateModificationAgent  DATETIME,
+    dateModificationCrodip DATETIME
+);
+
+
+CREATE TABLE POOL (
+    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+    idCRODIP               TEXT,
+    libelle                TEXT,
+    idPC                   INTEGER  REFERENCES AgentPC (id),
+    nbPastillesVertes      INTEGER  DEFAULT (0),
+    dateModificationAgent  DATETIME,
+    dateModificationCrodip DATETIME
+);
+
+ALTER TABLE Agent 
+ ADD COLUMN     idPOOL                 INTEGER        REFERENCES POOL (id) ;
+
+INSERT INTO AgentPC (
+                        idCrodip,
+                        idStructure,
+                        cleUtilisation,
+                        libelle,
+                        etat,
+                        numInterne,
+                        AgentSuppression,
+                        RaisonSuppression,
+                        dateSuppression,
+                        isSupprime,
+                        dateModificationAgent,
+                        dateModificationCrodip
+                    )
+                    VALUES (
+                        '2-123',
+                        '2',
+                        '',
+                        'ASUS',
+                        1,
+                        '123-',
+                        '',
+                        '',
+                        '',
+                        0,
+                        '2022-04-14',
+                        NULL
+                    );
+
+INSERT INTO POOL (
+                     idCRODIP,
+                     libelle,
+                     idPC,
+                     nbPastillesVertes,
+                     dateModificationAgent,
+                     dateModificationCrodip
+                 )
+                 VALUES (
+                     '2-000',
+                     'Principal',
+                     (SELECT MAX(id) from agentPC),
+                     0,
+                     '2022-04-14',
+                     NULL
+                 );
+
+UPDATE Agent SET IdPool = (SELECT id From POOL where libelle = 'Principal')
+

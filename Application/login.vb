@@ -11,6 +11,7 @@ Imports System.Collections.Generic
 
 Public Class login
     Inherits frmCRODIP
+    Private _selectedAgent As Agent
 
 #Region " Code généré par le Concepteur Windows Form "
 
@@ -79,11 +80,22 @@ Public Class login
     Friend WithEvents btnLieuxControles As Button
     Friend WithEvents btnExploitant As Button
     Friend WithEvents btnTestFacture As Button
+    Friend WithEvents pnlPools As Panel
+    Friend WithEvents dgvPools As DataGridView
+    Friend WithEvents m_bsrcPools As BindingSource
+    Friend WithEvents Label1 As Label
+    Friend WithEvents LibelleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NbPastillesVertesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IDCRODIPPC As DataGridViewTextBoxColumn
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
         Me.Button3 = New System.Windows.Forms.Button()
         Me.pnlPrincipal = New System.Windows.Forms.Panel()
+        Me.pnlPools = New System.Windows.Forms.Panel()
+        Me.dgvPools = New System.Windows.Forms.DataGridView()
+        Me.m_bsrcPools = New System.Windows.Forms.BindingSource(Me.components)
         Me.lblBaseDonnee = New System.Windows.Forms.Label()
         Me.lblMode = New System.Windows.Forms.Label()
         Me.pnlLoginControls = New System.Windows.Forms.Panel()
@@ -119,7 +131,14 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
+        Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NbPastillesVertesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IDCRODIPPC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlPrincipal.SuspendLayout()
+        Me.pnlPools.SuspendLayout()
+        CType(Me.dgvPools, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcPools, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
         Me.panel_splashSynchro.SuspendLayout()
@@ -143,6 +162,7 @@ Public Class login
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlPrincipal.BackgroundImage = Global.Crodip_agent.Resources.login_bgVide
         Me.pnlPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pnlPrincipal.Controls.Add(Me.pnlPools)
         Me.pnlPrincipal.Controls.Add(Me.lblBaseDonnee)
         Me.pnlPrincipal.Controls.Add(Me.lblMode)
         Me.pnlPrincipal.Controls.Add(Me.pnlLoginControls)
@@ -160,6 +180,43 @@ Public Class login
         Me.pnlPrincipal.Name = "pnlPrincipal"
         Me.pnlPrincipal.Size = New System.Drawing.Size(1008, 680)
         Me.pnlPrincipal.TabIndex = 0
+        '
+        'pnlPools
+        '
+        Me.pnlPools.BackColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(179, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.pnlPools.Controls.Add(Me.Label1)
+        Me.pnlPools.Controls.Add(Me.dgvPools)
+        Me.pnlPools.Location = New System.Drawing.Point(459, 349)
+        Me.pnlPools.Name = "pnlPools"
+        Me.pnlPools.Size = New System.Drawing.Size(436, 165)
+        Me.pnlPools.TabIndex = 35
+        Me.pnlPools.Visible = False
+        '
+        'dgvPools
+        '
+        Me.dgvPools.AllowUserToAddRows = False
+        Me.dgvPools.AllowUserToDeleteRows = False
+        Me.dgvPools.AllowUserToResizeColumns = False
+        Me.dgvPools.AllowUserToResizeRows = False
+        Me.dgvPools.AutoGenerateColumns = False
+        Me.dgvPools.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvPools.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(179, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.dgvPools.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgvPools.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvPools.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LibelleDataGridViewTextBoxColumn, Me.NbPastillesVertesDataGridViewTextBoxColumn, Me.IDCRODIPPC})
+        Me.dgvPools.DataSource = Me.m_bsrcPools
+        Me.dgvPools.Location = New System.Drawing.Point(0, 27)
+        Me.dgvPools.MultiSelect = False
+        Me.dgvPools.Name = "dgvPools"
+        Me.dgvPools.ReadOnly = True
+        Me.dgvPools.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvPools.Size = New System.Drawing.Size(436, 138)
+        Me.dgvPools.TabIndex = 0
+        '
+        'm_bsrcPools
+        '
+        Me.m_bsrcPools.AllowNew = False
+        Me.m_bsrcPools.DataSource = GetType(Crodip_agent.Pool)
         '
         'lblBaseDonnee
         '
@@ -308,9 +365,9 @@ Public Class login
         Me.GroupBox_test.Controls.Add(Me.cbTestRIFin)
         Me.GroupBox_test.Controls.Add(Me.btnTestDiagContext)
         Me.GroupBox_test.Controls.Add(Me.btnTest)
-        Me.GroupBox_test.Location = New System.Drawing.Point(192, 471)
+        Me.GroupBox_test.Location = New System.Drawing.Point(12, 376)
         Me.GroupBox_test.Name = "GroupBox_test"
-        Me.GroupBox_test.Size = New System.Drawing.Size(793, 120)
+        Me.GroupBox_test.Size = New System.Drawing.Size(294, 261)
         Me.GroupBox_test.TabIndex = 27
         Me.GroupBox_test.TabStop = False
         Me.GroupBox_test.Text = "Tests"
@@ -319,7 +376,7 @@ Public Class login
         '
         Me.btnTestFacture.BackColor = System.Drawing.SystemColors.Control
         Me.btnTestFacture.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnTestFacture.Location = New System.Drawing.Point(522, 77)
+        Me.btnTestFacture.Location = New System.Drawing.Point(159, 173)
         Me.btnTestFacture.Name = "btnTestFacture"
         Me.btnTestFacture.Size = New System.Drawing.Size(104, 23)
         Me.btnTestFacture.TabIndex = 40
@@ -328,7 +385,7 @@ Public Class login
         '
         'btnExploitant
         '
-        Me.btnExploitant.Location = New System.Drawing.Point(522, 46)
+        Me.btnExploitant.Location = New System.Drawing.Point(159, 142)
         Me.btnExploitant.Name = "btnExploitant"
         Me.btnExploitant.Size = New System.Drawing.Size(101, 23)
         Me.btnExploitant.TabIndex = 39
@@ -337,7 +394,7 @@ Public Class login
         '
         'btnLieuxControles
         '
-        Me.btnLieuxControles.Location = New System.Drawing.Point(522, 19)
+        Me.btnLieuxControles.Location = New System.Drawing.Point(159, 115)
         Me.btnLieuxControles.Name = "btnLieuxControles"
         Me.btnLieuxControles.Size = New System.Drawing.Size(101, 23)
         Me.btnLieuxControles.TabIndex = 38
@@ -346,7 +403,7 @@ Public Class login
         '
         'btnTSTSignature
         '
-        Me.btnTSTSignature.Location = New System.Drawing.Point(396, 77)
+        Me.btnTSTSignature.Location = New System.Drawing.Point(33, 173)
         Me.btnTSTSignature.Name = "btnTSTSignature"
         Me.btnTSTSignature.Size = New System.Drawing.Size(107, 23)
         Me.btnTSTSignature.TabIndex = 37
@@ -355,7 +412,7 @@ Public Class login
         '
         'btn_dlgAcquisition
         '
-        Me.btn_dlgAcquisition.Location = New System.Drawing.Point(375, 47)
+        Me.btn_dlgAcquisition.Location = New System.Drawing.Point(12, 143)
         Me.btn_dlgAcquisition.Name = "btn_dlgAcquisition"
         Me.btn_dlgAcquisition.Size = New System.Drawing.Size(128, 23)
         Me.btn_dlgAcquisition.TabIndex = 36
@@ -364,7 +421,7 @@ Public Class login
         '
         'bntGetWSDiag
         '
-        Me.bntGetWSDiag.Location = New System.Drawing.Point(377, 19)
+        Me.bntGetWSDiag.Location = New System.Drawing.Point(14, 115)
         Me.bntGetWSDiag.Name = "bntGetWSDiag"
         Me.bntGetWSDiag.Size = New System.Drawing.Size(128, 23)
         Me.bntGetWSDiag.TabIndex = 35
@@ -373,7 +430,7 @@ Public Class login
         '
         'btnTesttrtSemences
         '
-        Me.btnTesttrtSemences.Location = New System.Drawing.Point(267, 77)
+        Me.btnTesttrtSemences.Location = New System.Drawing.Point(159, 204)
         Me.btnTesttrtSemences.Name = "btnTesttrtSemences"
         Me.btnTesttrtSemences.Size = New System.Drawing.Size(128, 23)
         Me.btnTesttrtSemences.TabIndex = 34
@@ -404,7 +461,7 @@ Public Class login
         '
         Me.Button2.BackColor = System.Drawing.SystemColors.Control
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(244, 48)
+        Me.Button2.Location = New System.Drawing.Point(24, 209)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(104, 23)
         Me.Button2.TabIndex = 30
@@ -462,7 +519,7 @@ Public Class login
         Me.panel_splashSynchro.Controls.Add(Me.PictureBox1)
         Me.panel_splashSynchro.Controls.Add(Me.title_alertes)
         Me.panel_splashSynchro.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.panel_splashSynchro.Location = New System.Drawing.Point(270, 410)
+        Me.panel_splashSynchro.Location = New System.Drawing.Point(446, 518)
         Me.panel_splashSynchro.Name = "panel_splashSynchro"
         Me.panel_splashSynchro.Size = New System.Drawing.Size(468, 102)
         Me.panel_splashSynchro.TabIndex = 25
@@ -564,6 +621,41 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'LibelleDataGridViewTextBoxColumn
+        '
+        Me.LibelleDataGridViewTextBoxColumn.DataPropertyName = "Libelle"
+        Me.LibelleDataGridViewTextBoxColumn.HeaderText = "Nom"
+        Me.LibelleDataGridViewTextBoxColumn.Name = "LibelleDataGridViewTextBoxColumn"
+        Me.LibelleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NbPastillesVertesDataGridViewTextBoxColumn
+        '
+        Me.NbPastillesVertesDataGridViewTextBoxColumn.DataPropertyName = "nbPastillesVertes"
+        Me.NbPastillesVertesDataGridViewTextBoxColumn.HeaderText = "Pastilles vertes"
+        Me.NbPastillesVertesDataGridViewTextBoxColumn.Name = "NbPastillesVertesDataGridViewTextBoxColumn"
+        Me.NbPastillesVertesDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'IDCRODIPPC
+        '
+        Me.IDCRODIPPC.DataPropertyName = "IDCRODIPPC"
+        Me.IDCRODIPPC.HeaderText = "Numéro du PC"
+        Me.IDCRODIPPC.Name = "IDCRODIPPC"
+        Me.IDCRODIPPC.ReadOnly = True
+        '
+        'Label1
+        '
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
+        Me.Label1.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.Label1.Location = New System.Drawing.Point(0, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(436, 24)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "        Sélectionner le matériel que vous utilisez :"
+        '
         'login
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -578,6 +670,9 @@ Public Class login
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.pnlPrincipal.ResumeLayout(False)
         Me.pnlPrincipal.PerformLayout()
+        Me.pnlPools.ResumeLayout(False)
+        CType(Me.dgvPools, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcPools, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlLoginControls.ResumeLayout(False)
         Me.pnlLoginControls.PerformLayout()
         Me.GroupBox_test.ResumeLayout(False)
@@ -605,18 +700,18 @@ Public Class login
         Dim idAgent As Integer
         Try
             ' On récupère l'agent sélèctionné
-            Dim selectedAgent As Agent
-            selectedAgent = AgentManager.getAgentByNumeroNational(login_profil.SelectedItem.Id)
-            idAgent = selectedAgent.id
-            If selectedAgent.numeroNational.ToString <> "" Then
+
+            _selectedAgent = AgentManager.getAgentByNumeroNational(login_profil.SelectedItem.Id)
+            idAgent = _selectedAgent.id
+            If _selectedAgent.numeroNational.ToString <> "" Then
                 If CSEnvironnement.checkWebService() = True Then
                     ' On commence par redescendre le pass de l'agent courant
                     Dim tmpObject As New Agent
                     Try
-                        tmpObject = AgentManager.getWSAgentById(selectedAgent.numeroNational)
+                        tmpObject = AgentManager.getWSAgentById(_selectedAgent.numeroNational)
                         If tmpObject.id > 0 And tmpObject.isActif And Not tmpObject.isSupprime Then
-                            selectedAgent.duppliqueInfosAgent(tmpObject, False)
-                            AgentManager.save(selectedAgent, True)
+                            _selectedAgent.duppliqueInfosAgent(tmpObject, False)
+                            AgentManager.save(_selectedAgent, True)
                             bAgentExistant = True
                         Else
                             bAgentExistant = False
@@ -641,48 +736,37 @@ Public Class login
                     bAgentExistant = True
                 End If
                 If bAgentExistant Then
-                    If CSCrypt.encode(login_password.Text, "sha256") = selectedAgent.motDePasse Or GlobalsCRODIP.GLOB_ENV_DEBUG Then
+                    If CSCrypt.encode(login_password.Text, "sha256") = _selectedAgent.motDePasse Or GlobalsCRODIP.GLOB_ENV_DEBUG Then
                         ' Mot de passe correct => On le met en "session"
-                        agentCourant = selectedAgent
+                        agentCourant = _selectedAgent
                         ' On met à jour le numéro de version du logiciel agent
-                        If selectedAgent.versionLogiciel <> GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD Then
-                            selectedAgent.versionLogiciel = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD
-                            CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & selectedAgent.dateModificationAgent)
-                            AgentManager.save(selectedAgent)
+                        If _selectedAgent.versionLogiciel <> GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD Then
+                            _selectedAgent.versionLogiciel = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD
+                            CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & _selectedAgent.dateModificationAgent)
+                            AgentManager.save(_selectedAgent)
                         End If
-                        'Synchronisation 
-                        If GlobalsCRODIP.GLOB_ENV_AUTOSYNC = True And Not selectedAgent.isGestionnaire Then
-                            If CSEnvironnement.checkWebService() = True Then
-                                panel_splashSynchro.Visible = True
-                                CSTime.pause(500) ' Pause de 500ms
-
-                                ' On vérifie les mises à jour
-                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
-                                Me.Cursor = Cursors.WaitCursor
-                                Dim oSynchro As New Synchronisation(selectedAgent)
-                                oSynchro.ajouteObservateur(TryCast(Me.MdiParent, parentContener))
-                                '###### SYNCHRO ######
-                                oSynchro.Synchro(True, True)
-                                oSynchro.Notice("")
-                                Me.Cursor = Cursors.Default
+                        If _selectedAgent.idPool <> 0 Then
+                            If Not _selectedAgent.checkConnection() Then
+                                CSDebug.dispFatal("Le PC n'est pas reconnu")
+                                MsgBox("Connexion impossible, matériel non reconnu", MsgBoxStyle.Critical, "Logiciel CrodipAgent")
+                                Application.Exit()
+                            Else
+                                'L'agent à un Pool et est reconnu
+                                SynchroEtSuite(_selectedAgent)
                             End If
-                        End If
-                        agentCourant = AgentManager.getAgentById(idAgent)
-                        panel_splashSynchro.Visible = False
-                        ' On met à jour la barre de status
-                        Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_OK, False)
-                        CSDebug.dispInfo("Connexion réussie " & selectedAgent.nom)
-                        ' On met a jour la date de dernière connexion
-                        selectedAgent.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now)
-                        AgentManager.save(agentCourant)
-                        ' On affiche le formulaire d'accueil de l'application
-                        Dim formAccueil As New accueil
-                        globFormAccueil = formAccueil
-                        formAccueil.MdiParent = Me.MdiParent
-                        formAccueil.Init(idAgent) '' initialisation de la fenêtre avant l'affichage
-                        TryCast(MdiParent, parentContener).DisplayForm(formAccueil)
-                        Me.Hide()
+                        Else
+                            'Chargement de la liste de pools
+                            PoolManager.GetListe().ForEach(Sub(p)
+                                                               m_bsrcPools.Add(p)
+                                                           End Sub)
+                            If m_bsrcPools.Count > 0 Then
+                                pnlPools.Visible = True
+                            Else
+                                'il n'y a pas de pool dans la base => on passe à la suite
+                                SynchroEtSuite(_selectedAgent)
+                            End If
 
+                        End If
                     Else
                         ' On met à jour la barre de status
                         Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
@@ -1165,5 +1249,57 @@ Public Class login
         ofrm.setContexte(oDiag, oAgent)
         ofrm.Show()
 
+    End Sub
+
+    Private Sub btnConnect2_Click(sender As Object, e As EventArgs)
+
+    End Sub
+    Private Sub SynchroEtSuite(pAgent As Agent)
+        'Synchronisation 
+        If GlobalsCRODIP.GLOB_ENV_AUTOSYNC = True And Not pAgent.isGestionnaire Then
+            If CSEnvironnement.checkWebService() = True Then
+                panel_splashSynchro.Visible = True
+                CSTime.pause(500) ' Pause de 500ms
+
+                ' On vérifie les mises à jour
+                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
+                Me.Cursor = Cursors.WaitCursor
+                Dim oSynchro As New Synchronisation(pAgent)
+                oSynchro.ajouteObservateur(TryCast(Me.MdiParent, parentContener))
+                '###### SYNCHRO ######
+                oSynchro.Synchro(True, True)
+                oSynchro.Notice("")
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+        agentCourant = pAgent
+        panel_splashSynchro.Visible = False
+        ' On met à jour la barre de status
+        Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_OK, False)
+        CSDebug.dispInfo("Connexion réussie " & pAgent.nom)
+        ' On met a jour la date de dernière connexion
+        pAgent.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now)
+        AgentManager.save(agentCourant)
+        ' On affiche le formulaire d'accueil de l'application
+        Dim formAccueil As New accueil
+        globFormAccueil = formAccueil
+        formAccueil.MdiParent = Me.MdiParent
+        formAccueil.Init(pAgent.id) '' initialisation de la fenêtre avant l'affichage
+        TryCast(MdiParent, parentContener).DisplayForm(formAccueil)
+        Me.Hide()
+    End Sub
+
+    Private Sub dgvPools_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPools.CellDoubleClick
+        Dim oPool As Pool
+        oPool = m_bsrcPools.Current
+        _selectedAgent.idPool = oPool.id
+        If Not _selectedAgent.checkConnection() Then
+            CSDebug.dispFatal("Le PC n'est pas reconnu")
+            MsgBox("Connexion impossible, matériel non reconnu", MsgBoxStyle.Critical, "Logiciel CrodipAgent")
+            Application.Exit()
+        Else
+            'L'agent à un Pool et est reconnu
+            SynchroEtSuite(_selectedAgent)
+        End If
     End Sub
 End Class

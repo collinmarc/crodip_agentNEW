@@ -2,9 +2,12 @@ Imports System.Data.Common
 Imports System.Linq
 
 Public Class AgentManager
-
+    Inherits RootManager
 #Region "Methodes acces Web Service"
 
+    Public Shared Function RESTlogin(pAgent As Agent) As Boolean
+        Return RootManager.RESTConnect(pAgent)
+    End Function
     ' Methode OK
     Public Shared Function getWSAgentById(ByVal agent_id As String) As Agent
         Dim objAgent As New Agent
@@ -158,6 +161,9 @@ Public Class AgentManager
             strSQL = strSQL & "Agent.droitsPulves as droitsPulves, "
             strSQL = strSQL & "Agent.isGestionnaire as isGestionnaire, "
             strSQL = strSQL & "Agent.signatureElect as signatureElect, "
+#If VGESEQP Then
+            strSQL = strSQL & "Agent.idPool as idPool, "
+#End If
             strSQL = strSQL & "Structure.nom as structureNom "
             strSQL = strSQL & "FROM Agent LEFT JOIN Structure ON ( Agent.idStructure = Structure.id )"
             bddCommande.CommandText = strSQL
@@ -434,12 +440,18 @@ Public Class AgentManager
                 paramsQuery = paramsQuery & " , droitsPulves='" & agent.DroitsPulves & "'"
                 paramsQuery = paramsQuery & " , isGestionnaire=" & agent.isGestionnaire & ""
                 paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
+#If VGESTEQP Then
+                If agent.idPool <> 0 Then
+                    paramsQuery = paramsQuery & " , idPool=" & agent.idPool & ""
+                End If
+#End If
+                paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
 
-                bddCommande.CommandText = "UPDATE Agent SET " & paramsQuery & " WHERE numeroNational='" & agent.numeroNational & "'"
-                nResult = bddCommande.ExecuteNonQuery()
-                Debug.Assert(nResult = 1, "AgentManager.save: Erreur en update 0 ou  plus d'une ligne concernée")
-                bReturn = True
-            End If
+                    bddCommande.CommandText = "UPDATE Agent SET " & paramsQuery & " WHERE numeroNational='" & agent.numeroNational & "'"
+                    nResult = bddCommande.ExecuteNonQuery()
+                    Debug.Assert(nResult = 1, "AgentManager.save: Erreur en update 0 ou  plus d'une ligne concernée")
+                    bReturn = True
+                End If
         Catch ex As Exception
             CSDebug.dispFatal("Err AgentManager - save : " & ex.Message.ToString)
             bReturn = False

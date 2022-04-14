@@ -150,12 +150,8 @@ Public Class BancManager
                     If Not objBanc.dateAchat Is Nothing Then
                         paramsQuery = paramsQuery & " , dateAchat='" & CSDate.TOCRODIPString(objBanc.dateAchat) & "'"
                     End If
-                    If Not objBanc.dateModificationAgent Is Nothing Then
-                        paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.TOCRODIPString(objBanc.dateModificationAgent) & "'"
-                    End If
-                    If Not objBanc.dateModificationCrodip Is Nothing Then
-                        paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.TOCRODIPString(objBanc.dateModificationCrodip) & "'"
-                    End If
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objBanc.dateModificationAgent) & "'"
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objBanc.dateModificationCrodip) & "'"
                     paramsQuery = paramsQuery & " , etat=" & objBanc.etat & ""
                     paramsQuery = paramsQuery & " , isUtilise=" & objBanc.isUtilise & ""
                     paramsQuery = paramsQuery & " , isSupprime=" & objBanc.isSupprime & ""

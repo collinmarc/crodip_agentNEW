@@ -3,7 +3,8 @@ Imports System.Xml.Serialization
 Imports System.Collections.Generic
 <Serializable(), XmlInclude(GetType(Materiel))> _
 Public MustInherit Class Materiel
-
+    Inherits root
+    'Protected _id As Integer
     Protected _numeroNational As String
     Protected _idCrodip As String
     Protected _idStructure As Integer
@@ -14,13 +15,12 @@ Public MustInherit Class Materiel
     Protected _JamaisServi As Boolean
     Protected _DateActivation As Nullable(Of Date)
     Protected _dateDernierControle As String
-    Protected _dateModificationAgent As String
-    Protected _dateModificationCrodip As String
     Protected _etat As Boolean
 
 
 
     Sub New()
+        MyBase.New()
         _numeroNational = ""
         _idCrodip = ""
         _idStructure = 0
@@ -31,12 +31,17 @@ Public MustInherit Class Materiel
         _JamaisServi = False
         _DateActivation = Date.MinValue
         _dateDernierControle = ""
-        _dateModificationAgent = ""
-        _dateModificationCrodip = ""
         _JamaisServi = False
 
     End Sub
-
+    'Public Property id() As Integer
+    '    Get
+    '        Return _id
+    '    End Get
+    '    Set(ByVal value As Integer)
+    '        _id = value
+    '    End Set
+    'End Property
     Public Property numeroNational() As String
         Get
             Return _numeroNational
@@ -169,23 +174,6 @@ Public MustInherit Class Materiel
         End If
         Return bReturn
     End Function
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
 
     Public Property etat() As Boolean
         Get
@@ -196,14 +184,62 @@ Public MustInherit Class Materiel
         End Set
     End Property
 
-    Public Overridable ReadOnly Property Libelle() As String
+    Public Overridable Property Libelle() As String
         Get
             Return "Matériel : " + numeroNational
         End Get
+        Set(value As String)
+
+        End Set
     End Property
     Public Overridable Function DeleteMateriel(ByVal pAgentSuppression As Agent, ByVal pRaison As String) As Boolean
         Return False
     End Function
+    Public Overrides Function Fill(pColName As String, pcolValue As Object) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = MyBase.Fill(pColName, pcolValue)
+            If Not bReturn Then
+                bReturn = True
+                Select Case pColName.Trim().ToUpper()
+                    Case "idCrodip".Trim().ToUpper()
+                        Me.idCrodip = pcolValue.ToString()
+                    Case "idstructure".Trim().ToUpper()
+                        Me.idStructure = pcolValue.ToString()
+                    Case "etat".Trim().ToUpper()
+                        Me.etat = CType(pcolValue, Boolean)
+                    Case "issupprime".Trim().ToUpper()
+                        Me.isSupprime = CType(pcolValue, Boolean)
+                    Case "issupprime".Trim().ToUpper()
+                        Me.isSupprime = CType(pcolValue, Boolean)
+                    Case "agentsuppression".Trim().ToUpper()
+                        Me.AgentSuppression = pcolValue.ToString()
+                    Case "raisonsuppression".Trim().ToUpper()
+                        Me.RaisonSuppression = pcolValue.ToString()
+                    Case "datesuppression".Trim().ToUpper()
+                        Dim strDateMin As String = CSDate.ToCRODIPString("")
+                        Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)
+                        If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
+                            Me.DateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
+                        Else
+                            Me.DateSuppression = ""
+                        End If
+
+                    Case "jamaisServi".Trim().ToUpper()
+                        Me.JamaisServi = pcolValue
+                    Case "dateActivation".Trim().ToUpper()
+                        Me.DateActivation = pcolValue
+                    Case Else
+                        bReturn = False
+                End Select
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("Materiel.Fill  (" + pColName + "," + pcolValue.ToString + ") ERR : " + ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
 
     Public Overridable Function ActiverMateriel(ByVal pDateActivation As Date, ByVal pAgent As Agent) As Boolean
         Debug.Assert(Not CSDate.isDateNull(pDateActivation), "Date non nulle")

@@ -45,6 +45,8 @@ Public Class Agent
     Private _droitsPulves As String
     Private _IsGestionnaire As Boolean
     Private _IsSignElecActive As Boolean
+    Private _idPool As Integer
+
 
 
 
@@ -71,6 +73,7 @@ Public Class Agent
         _droitsPulves = ""
         _IsGestionnaire = False
         _IsSignElecActive = False
+        _idPool = 0
     End Sub
     Sub New(pId As Integer, pNumeroNational As String, pnom As String, pidStructure As Integer)
         Me.New()
@@ -301,6 +304,14 @@ Public Class Agent
             _IsSignElecActive = value
         End Set
     End Property
+    Public Property idPool() As Integer
+        Get
+            Return _idPool
+        End Get
+        Set(ByVal value As Integer)
+            _idPool = value
+        End Set
+    End Property
     ''' <summary>
     ''' Rend la liste des types et catégories de pulvés disponibles. L'utilisation des droits des inspecteurs est facultative
     ''' </summary>
@@ -415,6 +426,8 @@ Public Class Agent
                     Me.isSignElecActive = pValue
                 Case "isSignElecActive".Trim().ToUpper()
                     Me.isSignElecActive = pValue
+                Case "idPool".Trim().ToUpper()
+                    Me.idPool = pValue
             End Select
 
             bReturn = True
@@ -754,6 +767,7 @@ Public Class Agent
                 Me.dateModificationAgent = pAgent.dateModificationAgent
                 Me.dateModificationCrodip = pAgent.dateModificationCrodip
                 Me.cleActivation = pAgent.cleActivation
+                Me.idPool = pAgent.idPool
             End If
             Me.nom = pAgent.nom
             Me.prenom = pAgent.prenom
@@ -785,6 +799,57 @@ Public Class Agent
 
             End If
         End If
+        Return bReturn
+    End Function
+
+
+    Public Function getPool() As Pool
+        Dim oReturn As Pool = Nothing
+
+        Try
+
+            If idPool <> 0 Then
+                oReturn = PoolManager.getPoolById(Me.idPool)
+            End If
+        Catch ex As Exception
+            oReturn = Nothing
+            CSDebug.dispError("Agent.getPool ERR", ex)
+        End Try
+        Return oReturn
+    End Function
+
+    Public Function checkConnection() As Boolean
+        Dim oPool As Pool
+        Dim oAgentPC As AgentPC
+        Dim bReturn As Boolean
+        Dim bCleARegenerer As Boolean = False
+#If VGESTEQP Then
+        bReturn = False
+        oPool = getPool()
+        If oPool IsNot Nothing Then
+            oAgentPC = AgentPCManager.RESTgetAgentPCByIDCrodip(Me, oPool.idPC)
+            If oAgentPC Is Nothing Then
+                'La réception via le WS ne fonctionne pas, on charge celui qui est en base
+                oAgentPC = oPool.getAgentPC()
+            End If
+            's'il y a un PC , on vérifie la base de registre, sinon on arrête
+            If oAgentPC IsNot Nothing Then
+                bCleARegenerer = String.IsNullOrEmpty(oAgentPC.cleUtilisation)
+                bReturn = oAgentPC.checkRegistry()
+                If bCleARegenerer Then
+                    AgentPCManager.save(oAgentPC)
+                    AgentPCManager.RESTsetAgentPC(Me, oAgentPC)
+                End If
+            Else
+                bReturn = False
+            End If
+        Else
+                bReturn = True
+        End If
+#Else
+        bReturn = True
+#End If
+
         Return bReturn
     End Function
 End Class

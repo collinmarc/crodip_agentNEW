@@ -27,7 +27,7 @@ Public Class WSCrodip
             'm_WS2.Endpoint.Address = New System.ServiceModel.EndpointAddress(URL)
             m_bInit = True
         Catch ex As Exception
-            CSDebug.dispError("WSCrodip.Init() Error " & ex.Message)
+            CSDebug.dispError("WSCrodip.Init() ERR ", ex)
             m_bInit = False
         End Try
 

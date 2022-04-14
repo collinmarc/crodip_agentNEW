@@ -7,7 +7,7 @@ Imports System.Data.Common
 Public Class Banc
     Inherits Materiel
 
-    Private _id As String
+    Private Shadows _id As String
     Private _marque As String
     Private _modele As String
     Private _dateAchat As String
@@ -16,21 +16,19 @@ Public Class Banc
     Private _nbControlesTotal As Integer
     Private _ModuleAcquisition As String
 
-
+    Public Overloads Property id() As String
+        Get
+            Return _id
+        End Get
+        Set(ByVal value As String)
+            _id = value
+        End Set
+    End Property
     Sub New()
         MyBase.New()
         JamaisServi = True
 
     End Sub
-
-    Public Property id() As String
-        Get
-            Return _id
-        End Get
-        Set(ByVal Value As String)
-            _id = Value
-        End Set
-    End Property
 
 
     Public Property marque() As String
@@ -97,10 +95,13 @@ Public Class Banc
         End Set
     End Property
 
-    Public Overrides ReadOnly Property Libelle() As String
+    Public Overrides Property Libelle() As String
         Get
             Return "Banc de mesure : " + id
         End Get
+        Set(value As String)
+
+        End Set
     End Property
 
     Public Overrides Function DeleteMateriel(ByVal pAgentSuppression As Agent, ByVal pRaison As String) As Boolean

@@ -28,6 +28,10 @@ Public Class CRODIPTest
 
     Protected m_oBanc As Banc
 
+    Public Sub New()
+
+    End Sub
+
     '''<summary>
     '''Obtient ou définit le contexte de test qui fournit
     '''des informations sur la série de tests active ainsi que ses fonctionnalités.

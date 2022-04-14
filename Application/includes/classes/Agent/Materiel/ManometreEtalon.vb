@@ -31,10 +31,13 @@ Public Class ManometreEtalon
         End Get
     End Property
 
-    Public Overrides ReadOnly Property Libelle() As String
+    Public Overrides Property Libelle() As String
         Get
             Return "Manomètre Etalon : " + idCrodip
         End Get
+        Set(value As String)
+
+        End Set
     End Property
     Public Function Fill(pColName As String, pcolValue As Object) As Boolean
         Dim bReturn As Boolean

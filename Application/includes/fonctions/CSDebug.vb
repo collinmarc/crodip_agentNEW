@@ -55,6 +55,10 @@ Public Class CSDebug
         If ex.InnerException IsNot Nothing Then
             errorMessage = errorMessage + "," + ex.InnerException.Message
         End If
+
+#If DEBUG Then
+        errorMessage = errorMessage & ", " & ex.StackTrace
+#End If
         logger.Error(errorMessage)
         'If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 1 Then
         displayMsg("[Error] - " & errorMessage)

@@ -27,6 +27,10 @@ Public Class parentContener
 
         ExecuteCMD()
 
+        If Not GlobalsCRODIP.GLOB_ENV_DEBUG Then
+            mnuFenetre.Visible = False
+        End If
+
         If TestCrystalReport() Then
             globFormParent = Me
             Me.UseWaitCursor = False
