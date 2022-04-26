@@ -124,7 +124,7 @@ Partial Class parentContener
         'mniVaccum
         '
         Me.mniVaccum.Index = 7
-        Me.mniVaccum.Text = "Nettoyage Base de données"
+        Me.mniVaccum.Text = "Reconstruction des index  de la base de données"
         '
         'mnuFenetre
         '

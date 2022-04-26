@@ -565,19 +565,19 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20220201120000")>  _
-    Public ReadOnly Property NumBuild() As String
+     Global.System.Configuration.DefaultSettingValueAttribute("SQLITE")>  _
+    Public ReadOnly Property BDDType() As String
         Get
-            Return CType(Me("NumBuild"),String)
+            Return CType(Me("BDDType"),String)
         End Get
     End Property
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("SQLITE")>  _
-    Public ReadOnly Property BDDType() As String
+     Global.System.Configuration.DefaultSettingValueAttribute("20220225120000")>  _
+    Public ReadOnly Property NumBuild() As String
         Get
-            Return CType(Me("BDDType"),String)
+            Return CType(Me("NumBuild"),String)
         End Get
     End Property
 End Class

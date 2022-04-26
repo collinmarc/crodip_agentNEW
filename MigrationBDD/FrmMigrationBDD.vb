@@ -43,6 +43,12 @@
             oBDD.TransfertAgentEquipement()
         End If
         If Not BackgroundWorker1.CancellationPending Then
+            Crodip_agent.CSDebug.dispInfo("Diagnostic")
+            BackgroundWorker1.ReportProgress(170, "Diagnostic")
+            oBDD.TransfertDiagnosticALL()
+        End If
+
+        If Not BackgroundWorker1.CancellationPending Then
             Crodip_agent.CSDebug.dispInfo("Controle Equipement")
             BackgroundWorker1.ReportProgress(140, "Controle Equipement agent")
             oBDD.TransfertAgentEquipementControle()
@@ -56,11 +62,6 @@
             Crodip_agent.CSDebug.dispInfo("Prestation")
             BackgroundWorker1.ReportProgress(160, "Prestation")
             oBDD.TransfertPrestation()
-        End If
-        If Not BackgroundWorker1.CancellationPending Then
-            Crodip_agent.CSDebug.dispInfo("Diagnostic")
-            BackgroundWorker1.ReportProgress(170, "Diagnostic")
-            oBDD.TransfertDiagnosticALL()
         End If
         If Not BackgroundWorker1.CancellationPending Then
             Crodip_agent.CSDebug.dispInfo("Factures")

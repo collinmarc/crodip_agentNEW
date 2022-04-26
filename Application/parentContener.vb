@@ -208,8 +208,8 @@ Public Class parentContener
 
         End If
         oFrm.ShowInTaskbar = True
-            oFrm.WindowState = FormWindowState.Maximized
-            oFrm.MdiParent = Me
+        oFrm.WindowState = FormWindowState.Maximized
+        oFrm.MdiParent = Me
         oFrm.Show()
     End Sub
 

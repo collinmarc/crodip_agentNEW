@@ -538,38 +538,44 @@ INSERT INTO AgentManoEtalon (
         ocmdACCESS.CommandText = "SELECT Count(*) FROM " & pTable
         nMax = ocmdACCESS.ExecuteScalar()
 
-        ocmdACCESS.CommandText = "SELECT * FROM " & pTable
+        Try
 
+            ocmdACCESS.CommandText = "SELECT * FROM " & pTable
+            ocmdACCESS.CommandTimeout = 0
 
-        ocmdSQL.CommandText = pINSERTSQL.ToUpper()
+            ocmdSQL.CommandText = pINSERTSQL.ToUpper()
+            ocmdSQL.CommandTimeout = 0
 
-        ocmdSQL.Prepare()
-        Dim oDR As DbDataReader
-        oDR = ocmdACCESS.ExecuteReader()
-        Dim n As Integer = 0
-        While oDR.Read()
-            n = n + 1
-            If bgw.CancellationPending Then
-                Exit Sub
-            End If
-            bgw.ReportProgress(n * 100 / nMax, pTable & oDR.GetValue(0))
-            ocmdSQL.Parameters.Clear()
-            For i As Integer = 0 To oDR.FieldCount() - 1
-                If oDR.GetName(i) <> pExcept Then
-                    Dim Nom As String
-                    Nom = oDR.GetName(i)
-                    ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
+            ocmdSQL.Prepare()
+            Dim oDR As DbDataReader
+            oDR = ocmdACCESS.ExecuteReader()
+            Dim n As Integer = 0
+            While oDR.Read()
+                n = n + 1
+                If bgw.CancellationPending Then
+                    Exit Sub
                 End If
-            Next
-            Try
+                bgw.ReportProgress(n * 100 / nMax, pTable & oDR.GetValue(0))
+                ocmdSQL.Parameters.Clear()
+                For i As Integer = 0 To oDR.FieldCount() - 1
+                    If oDR.GetName(i) <> pExcept Then
+                        Dim Nom As String
+                        Nom = oDR.GetName(i)
+                        ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
+                    End If
+                Next
+                Try
 
-                ocmdSQL.ExecuteNonQuery()
-            Catch ex As Exception
-                CSDebug.dispError(pTable & " [" & oDR.GetValue(0) & "] ERR :", ex)
-            End Try
+                    ocmdSQL.ExecuteNonQuery()
+                Catch ex As Exception
+                    CSDebug.dispError(pTable & " [" & oDR.GetValue(0) & "] ERR :", ex)
+                End Try
 
-        End While
-        oDR.Close()
+            End While
+            oDR.Close()
+        Catch ex As Exception
+            CSDebug.dispError(pTable & " ERR :", ex)
+        End Try
 
         oCSDBACCESS.Close()
         oCSDBSQL.Close()
@@ -1942,11 +1948,11 @@ INSERT INTO Diagnostic (
         Try
 
             TransfertDiagnostic()
+            TransfertDiagnosticItem()
             TransfertDiagnosticBuses()
             TransfertDiagnosticBusesDetail()
             TransfertDiagnosticMano542()
             TransfertDiagnosticTronçons833()
-            TransfertDiagnosticItem()
         Catch ex As Exception
             CSDebug.dispError("TransfertDiagnostic ERR", ex)
         End Try

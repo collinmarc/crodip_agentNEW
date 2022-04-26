@@ -621,11 +621,16 @@ retryOldFile:
     End Function
 
     Private Sub mainForm_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-        Me.Lbl_Version.Text = ""
-        Dim oAss As System.Reflection.Assembly
-        oAss = System.Reflection.Assembly.GetExecutingAssembly()
-        Dim fvi As FileVersionInfo = FileVersionInfo.GetVersionInfo(oAss.Location)
-        Dim version As String = " v " & fvi.FileVersion
-        Me.Text = Me.Text & version
+        Try
+
+            Me.Lbl_Version.Text = ""
+            Dim oAss As System.Reflection.Assembly
+            oAss = System.Reflection.Assembly.GetExecutingAssembly()
+            Dim fvi As FileVersionInfo = FileVersionInfo.GetVersionInfo(oAss.Location)
+            Dim version As String = " v " & fvi.FileVersion
+            Me.Text = Me.Text & version
+        Catch ex As Exception
+            CSDebug.dispError("main.Load ERR" & ex.Message)
+        End Try
     End Sub
 End Class
