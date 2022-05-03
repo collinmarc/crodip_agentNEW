@@ -199,7 +199,7 @@ INSERT INTO Agent (
 
         TransfertTable("Exploitation", strSQL)
 
-        strSQL = "
+        strSQL = " 
 INSERT INTO Pulverisateur (
                               id,
                               numeroNational,
@@ -348,7 +348,7 @@ INSERT INTO Pulverisateur (
                           );
 "
         TransfertTable("Pulverisateur", strSQL)
-        strSQL = "
+        strSQL = " 
 INSERT INTO ExploitationTOPulverisateur (
                                             id,
                                             idPulverisateur,
@@ -558,7 +558,69 @@ INSERT INTO AgentManoEtalon (
                 bgw.ReportProgress(n * 100 / nMax, pTable & oDR.GetValue(0))
                 ocmdSQL.Parameters.Clear()
                 For i As Integer = 0 To oDR.FieldCount() - 1
-                    If oDR.GetName(i) <> pExcept Then
+                    If oDR.GetName(i).ToUpper() <> pExcept.ToUpper() Then
+                        Dim Nom As String
+                        Nom = oDR.GetName(i)
+                        ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
+                    End If
+                Next
+                Try
+
+                    ocmdSQL.ExecuteNonQuery()
+                Catch ex As Exception
+                    CSDebug.dispError(pTable & " [" & oDR.GetValue(0) & "] ERR :", ex)
+                End Try
+
+            End While
+            oDR.Close()
+        Catch ex As Exception
+            CSDebug.dispError(pTable & " ERR :", ex)
+        End Try
+
+        oCSDBACCESS.Close()
+        oCSDBSQL.Close()
+
+
+    End Sub
+    Public Sub TransfertTable2(pTable As String, pINSERTSQL As String, Optional pExcept As String = "")
+
+        CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
+        Dim oCSDB As New CSDb(False)
+        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+        oCSDBACCESS.Open()
+        CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
+        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+        oCSDBSQL.Open()
+        Dim nMax As Integer = 100
+        Dim ocmdACCESS As DbCommand
+        Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
+
+        ocmdACCESS = oCSDBACCESS.CreateCommand
+        ocmdSQL = oCSDBSQL.CreateCommand
+        ocmdACCESS.CommandText = "SELECT Count(*) FROM " & pTable
+        nMax = ocmdACCESS.ExecuteScalar()
+
+        Try
+
+            ocmdACCESS.CommandText = "SELECT * FROM " & pTable
+            ocmdACCESS.CommandTimeout = 0
+
+            ocmdSQL.CommandText = pINSERTSQL.ToUpper()
+            ocmdSQL.CommandTimeout = 0
+
+            ocmdSQL.Prepare()
+            Dim oDR As DbDataReader
+            oDR = ocmdACCESS.ExecuteReader()
+            Dim n As Integer = 0
+            While oDR.Read()
+                n = n + 1
+                If bgw.CancellationPending Then
+                    Exit Sub
+                End If
+                bgw.ReportProgress(n * 100 / nMax, pTable & oDR.GetValue(0))
+                ocmdSQL.Parameters.Clear()
+                For i As Integer = 0 To oDR.FieldCount() - 1
+                    If Not oDR.GetName(i).ToUpper().StartsWith("SIGN") Then
                         Dim Nom As String
                         Nom = oDR.GetName(i)
                         ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
@@ -1591,10 +1653,6 @@ INSERT INTO Diagnostic (
                            dateSignCCClient,
                            isSupprime,
                            diagRemplacementId,
-                           signRIAgent,
-                           signRIClient,
-                           signCCAgent,
-                           signCCClient,
                            totalHT,
                            totalTTC,
                            dateRemplacement,
@@ -1750,10 +1808,6 @@ INSERT INTO Diagnostic (
                            @dateSignCCClient,
                            @isSupprime,
                            @diagRemplacementId,
-                           @signRIAgent,
-                           @signRIClient,
-                           @signCCAgent,
-                           @signCCClient,
                            @totalHT,
                            @totalTTC,
                            @dateRemplacement,
@@ -1761,7 +1815,7 @@ INSERT INTO Diagnostic (
                            @isGratuit
                        )"
 
-        TransfertTable("Diagnostic", strSQL)
+        TransfertTable2("Diagnostic", strSQL)
     End Sub
     Public Sub TransfertDiagnosticItem()
 

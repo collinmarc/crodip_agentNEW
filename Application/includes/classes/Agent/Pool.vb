@@ -39,6 +39,15 @@ Public Class Pool
             _idPC = value
         End Set
     End Property
+    Private _idBanc As String
+    Public Property idBanc() As String
+        Get
+            Return _idBanc
+        End Get
+        Set(ByVal value As String)
+            _idBanc = value
+        End Set
+    End Property
     <XmlIgnoreAttribute()>
     Public Property IDCRODIPPC() As String
         Get
@@ -70,8 +79,12 @@ Public Class Pool
                         Me.libelle = pValue.ToString()
                     Case "idPC".Trim().ToUpper()
                         Me.idPC = pValue
+                    Case "idStructure".Trim().ToUpper()
+                        Me.idStructure = pValue
                     Case "nbPastillesVertes".Trim().ToUpper()
                         Me.nbPastillesVertes = pValue
+                    Case "idBanc".Trim().ToUpper()
+                        Me.idBanc = pValue
                     Case Else
                         bReturn = False
                 End Select

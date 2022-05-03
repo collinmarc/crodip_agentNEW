@@ -1877,12 +1877,20 @@ Public Class frmcontrole_bancs
         '###########################################################
         '################### Chargement des bancs ##################
         '###########################################################
-        Dim arrBanc As List(Of Banc) = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+        Dim arrBanc As List(Of Banc)
+        If BancCourant Is Nothing Then
+            arrBanc = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+        Else
+            arrBanc = New List(Of Banc)()
+            arrBanc.Add(BancCourant)
+        End If
         For Each tmpBanc As Banc In arrBanc
             Dim objComboItem As New objComboItem(tmpBanc.id, tmpBanc.marque & " (" & tmpBanc.id & ")")
             controleBanc_numBanc.Items.Add(objComboItem)
         Next
-
+        If arrBanc.Count = 1 Then
+            controleBanc_numBanc.SelectedIndex = 0
+        End If
         ' Création du controlebanc
         m_oControleBanc = New ControleBanc()
         m_bsControleBanc.Add(m_oControleBanc)

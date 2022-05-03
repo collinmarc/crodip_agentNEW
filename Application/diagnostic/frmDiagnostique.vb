@@ -846,11 +846,21 @@ Public Class FrmDiagnostique
     End Sub
 
     Protected Overridable Sub getListeBancsMesures()
-        Dim arrBancs As System.Collections.Generic.List(Of Banc) = BancManager.getBancByStructureId(agentCourant.idStructure)
+        Dim arrBancs As System.Collections.Generic.List(Of Banc)
+        If BancCourant IsNot Nothing Then
+            arrBancs = New List(Of Banc)
+            arrBancs.Add(BancCourant)
+        Else
+            arrBancs = BancManager.getBancByStructureId(agentCourant.idStructure)
+        End If
         For Each tmpBanc As Banc In arrBancs
             Dim objComboItem As New objComboItem(tmpBanc.id, tmpBanc.id & " - " & tmpBanc.marque & " (" & tmpBanc.modele & ")")
             buses_listBancs.Items.Add(objComboItem)
         Next
+        'Sélection automatique du banc de mesure
+        If arrBancs.Count = 1 Then
+            buses_listBancs.SelectedIndex = 0
+        End If
 
     End Sub
     '''

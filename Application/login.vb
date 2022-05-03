@@ -87,6 +87,7 @@ Public Class login
     Friend WithEvents LibelleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents NbPastillesVertesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents IDCRODIPPC As DataGridViewTextBoxColumn
+    Friend WithEvents idBanc As DataGridViewTextBoxColumn
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -94,6 +95,7 @@ Public Class login
         Me.Button3 = New System.Windows.Forms.Button()
         Me.pnlPrincipal = New System.Windows.Forms.Panel()
         Me.pnlPools = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.dgvPools = New System.Windows.Forms.DataGridView()
         Me.m_bsrcPools = New System.Windows.Forms.BindingSource(Me.components)
         Me.lblBaseDonnee = New System.Windows.Forms.Label()
@@ -134,7 +136,7 @@ Public Class login
         Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NbPastillesVertesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IDCRODIPPC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.idBanc = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlPrincipal.SuspendLayout()
         Me.pnlPools.SuspendLayout()
         CType(Me.dgvPools, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -192,6 +194,20 @@ Public Class login
         Me.pnlPools.TabIndex = 35
         Me.pnlPools.Visible = False
         '
+        'Label1
+        '
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
+        Me.Label1.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.Label1.Location = New System.Drawing.Point(0, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(436, 24)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "        Sélectionner le matériel que vous utilisez :"
+        '
         'dgvPools
         '
         Me.dgvPools.AllowUserToAddRows = False
@@ -203,7 +219,7 @@ Public Class login
         Me.dgvPools.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(179, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dgvPools.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvPools.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPools.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LibelleDataGridViewTextBoxColumn, Me.NbPastillesVertesDataGridViewTextBoxColumn, Me.IDCRODIPPC})
+        Me.dgvPools.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LibelleDataGridViewTextBoxColumn, Me.NbPastillesVertesDataGridViewTextBoxColumn, Me.IDCRODIPPC, Me.idBanc})
         Me.dgvPools.DataSource = Me.m_bsrcPools
         Me.dgvPools.Location = New System.Drawing.Point(0, 27)
         Me.dgvPools.MultiSelect = False
@@ -642,19 +658,12 @@ Public Class login
         Me.IDCRODIPPC.Name = "IDCRODIPPC"
         Me.IDCRODIPPC.ReadOnly = True
         '
-        'Label1
+        'idBanc
         '
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
-        Me.Label1.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label1.Location = New System.Drawing.Point(0, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(436, 24)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "        Sélectionner le matériel que vous utilisez :"
+        Me.idBanc.DataPropertyName = "idBanc"
+        Me.idBanc.HeaderText = "Banc"
+        Me.idBanc.Name = "idBanc"
+        Me.idBanc.ReadOnly = True
         '
         'login
         '
@@ -756,9 +765,9 @@ Public Class login
                             End If
                         Else
                             'Chargement de la liste de pools
-                            PoolManager.GetListe().ForEach(Sub(p)
-                                                               m_bsrcPools.Add(p)
-                                                           End Sub)
+                            PoolManager.GetListe(_selectedAgent.idStructure).ForEach(Sub(p)
+                                                                                         m_bsrcPools.Add(p)
+                                                                                     End Sub)
                             If m_bsrcPools.Count > 0 Then
                                 pnlPools.Visible = True
                             Else

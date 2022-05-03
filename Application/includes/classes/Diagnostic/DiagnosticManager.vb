@@ -898,6 +898,8 @@ Public Class DiagnosticManager
                     CSDebug.dispFatal("DiagnosticManager - newId (getWSDiagnosticIncrement) : " & ex.Message)
                 End Try
             Else ' Sinon on le calcul en local
+                'SELECT MAX(CAST (REPLACE(Id,'524-1182-','') as INT)) as ID  from Diagnostic where inspecteurId = 1182 ORDER BY ID DESC
+
                 Dim bddCommande As DbCommand
                 ' On test si la connexion est déjà ouverte ou non
                 bddCommande = oCSDb.getConnection().CreateCommand

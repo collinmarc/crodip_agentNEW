@@ -286,17 +286,22 @@ CREATE TABLE AgentPC (
 
 
 CREATE TABLE POOL (
-    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+    id                     INTEGER        PRIMARY KEY AUTOINCREMENT,
     idCRODIP               TEXT,
     libelle                TEXT,
-    idPC                   INTEGER  REFERENCES AgentPC (id),
-    nbPastillesVertes      INTEGER  DEFAULT (0),
+    idPC                   INTEGER        REFERENCES AgentPC (id) ON DELETE SET NULL,
+    nbPastillesVertes      INTEGER        DEFAULT (0),
     dateModificationAgent  DATETIME,
-    dateModificationCrodip DATETIME
+    dateModificationCrodip DATETIME,
+    idStructure            INTEGER        REFERENCES Structure (id),
+    idBanc                 NVARCHAR (255) REFERENCES BancMesure (id) ON DELETE SET NULL
 );
 
+
+
+
 ALTER TABLE Agent 
- ADD COLUMN     idPOOL                 INTEGER        REFERENCES POOL (id) ;
+ ADD COLUMN     idPOOL                 INTEGER        REFERENCES POOL (id) ON DELETE SET NULL;
 
 INSERT INTO AgentPC (
                         idCrodip,
@@ -332,6 +337,7 @@ INSERT INTO POOL (
                      libelle,
                      idPC,
                      nbPastillesVertes,
+					 idStructure,
                      dateModificationAgent,
                      dateModificationCrodip
                  )
@@ -340,6 +346,7 @@ INSERT INTO POOL (
                      'Principal',
                      (SELECT MAX(id) from agentPC),
                      0,
+                     (SELECT MAX(id) from structure),
                      '2022-04-14',
                      NULL
                  );

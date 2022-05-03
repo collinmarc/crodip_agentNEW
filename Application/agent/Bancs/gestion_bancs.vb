@@ -431,9 +431,14 @@ Public Class gestion_bancs
             gestionBanc_panel_etat.Controls.Clear()
 
             ' On récupère les bancs de l'agent
-            m_arrBanc = BancManager.getBancByStructureId(agentCourant.idStructure, True)
-            'Ajout des banc Jamais Servi
-            m_arrBanc.AddRange(BancManager.getBancByStructureIdJamaisServi(agentCourant.idStructure))
+            If BancCourant Is Nothing Then
+                m_arrBanc = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+                'Ajout des banc Jamais Servi
+                m_arrBanc.AddRange(BancManager.getBancByStructureIdJamaisServi(agentCourant.idStructure))
+            Else
+                m_arrBanc = New Generic.List(Of Banc)
+                m_arrBanc.Add(BancCourant)
+            End If
             ' Création des contrôles a la volée
             Dim positionTop As Integer = 0
             For Each tmpBanc As Banc In m_arrBanc

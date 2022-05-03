@@ -30,7 +30,7 @@ Public Class PoolManager
 
         Try
             Dim bddCommande As DbCommand = pCSDB.getConnection().CreateCommand
-            bddCommande.CommandText = "insert into Pool (idCrodip) VALUES(" & pPool.idCrodip & ")"
+            bddCommande.CommandText = "insert into Pool (idCrodip) VALUES('" & pPool.idCrodip & "')"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "SELECT last_insert_rowid()"
             pPool.id = CInt(bddCommande.ExecuteScalar())
@@ -58,6 +58,9 @@ Public Class PoolManager
        idCRODIP = @idCRODIP,
        libelle = @libelle,
        nbPastillesVertes = @nbPastillesVertes,
+idStructure =@idStructure,
+idBanc = @idBanc,
+idPC = @idPC,
        dateModificationAgent = @dateModificationAgent,
        dateModificationCrodip = @dateModificationCrodip
  WHERE id = @id
@@ -94,6 +97,44 @@ Public Class PoolManager
 
             oParam = oCmd.CreateParameter()
             With oParam
+                .ParameterName = "@idStructure"
+                .DbType = DbType.Int32
+                If pPool.idStructure > 0 Then
+                    .Value = pPool.idStructure
+                Else
+                    .Value = DBNull.Value
+                End If
+            End With
+            oCmd.Parameters.Add(oParam)
+
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@idBanc"
+                .DbType = DbType.String
+                If Not String.IsNullOrEmpty(pPool.idBanc) Then
+                    .Value = pPool.idBanc
+                Else
+                    .Value = DBNull.Value
+                End If
+            End With
+            oCmd.Parameters.Add(oParam)
+
+
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@idPC"
+                .DbType = DbType.Int32
+                If Not String.IsNullOrEmpty(pPool.idPC) Then
+                    .Value = pPool.idPC
+                Else
+                    .Value = DBNull.Value
+                End If
+            End With
+            oCmd.Parameters.Add(oParam)
+
+
+            oParam = oCmd.CreateParameter()
+            With oParam
                 .ParameterName = "@dateModificationAgent"
                 .DbType = DbType.DateTime
                 .Value = pPool.dateModificationAgent
@@ -105,8 +146,8 @@ Public Class PoolManager
                 .ParameterName = "@dateModificationCrodip"
                 .DbType = DbType.DateTime
                 .Value = pPool.dateModificationCrodip
-                oCmd.Parameters.Add(oParam)
             End With
+            oCmd.Parameters.Add(oParam)
 
             oParam = oCmd.CreateParameter()
             With oParam
@@ -126,10 +167,11 @@ Public Class PoolManager
         Return bReturn
     End Function
 
-    Public Overloads Shared Function GetListe() As List(Of Pool)
+    Public Overloads Shared Function GetListe(pidStructure As Integer) As List(Of Pool)
+        Debug.Assert(pidStructure > 0, "IdStructure doit être initialisé")
         Dim oList As New List(Of Pool)
         Try
-            oList = getListe(Of Pool)("SELECT* FROM POOL")
+            oList = getListe(Of Pool)("SELECT* FROM POOL WHERE idStructure = " & pidStructure)
 
         Catch ex As Exception
             CSDebug.dispError("PoolManager.GetListe ERR", ex)

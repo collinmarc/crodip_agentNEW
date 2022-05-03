@@ -382,6 +382,13 @@ Public Class CSDb
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Agent"
             bddCommande.ExecuteNonQuery()
+#If VGESTEQP = 1 Then
+
+            bddCommande.CommandText = "DELETE FROM AgentPC"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Pool"
+            bddCommande.ExecuteNonQuery()
+#End If
             bddCommande.CommandText = "DELETE FROM Structure"
             bddCommande.ExecuteNonQuery()
             'bddCommande.CommandText = "DELETE FROM VERSION"

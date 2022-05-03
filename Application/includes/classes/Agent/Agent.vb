@@ -46,6 +46,7 @@ Public Class Agent
     Private _IsGestionnaire As Boolean
     Private _IsSignElecActive As Boolean
     Private _idPool As Integer
+    Private _oPool As Pool
 
 
 
@@ -312,6 +313,15 @@ Public Class Agent
             _idPool = value
         End Set
     End Property
+    <XmlIgnore()>
+    Public Property oPool() As Pool
+        Get
+            Return _oPool
+        End Get
+        Set(ByVal value As Pool)
+            _oPool = value
+        End Set
+    End Property
     ''' <summary>
     ''' Rend la liste des types et catégories de pulvés disponibles. L'utilisation des droits des inspecteurs est facultative
     ''' </summary>
@@ -428,6 +438,9 @@ Public Class Agent
                     Me.isSignElecActive = pValue
                 Case "idPool".Trim().ToUpper()
                     Me.idPool = pValue
+                    If idPool <> 0 Then
+                        oPool = PoolManager.getPoolById(idPool)
+                    End If
             End Select
 
             bReturn = True
@@ -803,29 +816,13 @@ Public Class Agent
     End Function
 
 
-    Public Function getPool() As Pool
-        Dim oReturn As Pool = Nothing
-
-        Try
-
-            If idPool <> 0 Then
-                oReturn = PoolManager.getPoolById(Me.idPool)
-            End If
-        Catch ex As Exception
-            oReturn = Nothing
-            CSDebug.dispError("Agent.getPool ERR", ex)
-        End Try
-        Return oReturn
-    End Function
 
     Public Function checkConnection() As Boolean
-        Dim oPool As Pool
         Dim oAgentPC As AgentPC
         Dim bReturn As Boolean
         Dim bCleARegenerer As Boolean = False
 #If VGESTEQP Then
         bReturn = False
-        oPool = getPool()
         If oPool IsNot Nothing Then
             oAgentPC = AgentPCManager.RESTgetAgentPCByIDCrodip(Me, oPool.idPC)
             If oAgentPC Is Nothing Then
@@ -844,7 +841,7 @@ Public Class Agent
                 bReturn = False
             End If
         Else
-                bReturn = True
+            bReturn = True
         End If
 #Else
         bReturn = True
