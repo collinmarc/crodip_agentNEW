@@ -2113,4 +2113,40 @@ INSERT INTO facture (
 "
         TransfertTable("facture", strSQL)
     End Sub
+    ''' <summary>
+    ''' compare la numérotation des Diag avant et après migration
+    ''' et revoie une liste de Messages d'alertes
+    ''' </summary>
+    ''' <returns></returns>
+    Public Shared Function ComparerNumDiag() As List(Of String)
+        CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
+        Dim lstAlertes As New List(Of String)
+        Dim strNumAvant As String
+        Dim strNumApres As String
+        Dim olst As List(Of Agent) = AgentManager.getAgentList().items
+        For Each oAgent As Agent In olst
+            CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
+            CSDb.resetConnection()
+            strNumAvant = DiagnosticManager.getNewId(oAgent)
+
+            CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
+            CSDb.resetConnection()
+            strNumApres = DiagnosticManager.getNewId(oAgent)
+
+            If strNumAvant <> strNumApres Then
+                lstAlertes.Add("Erreur de numérotation pour l'agent [" & oAgent.numeroNational & "] : Avant = " & strNumAvant & " , Après = " & strNumApres & " , prévenez le CRODIP")
+            End If
+        Next
+
+        If My.Settings.BDDType = "ACCESS" Then
+            CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
+        End If
+        If My.Settings.BDDType = "SQLITE" Then
+            CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
+        End If
+        CSDb.resetConnection()
+
+        Return lstAlertes
+
+    End Function
 End Class

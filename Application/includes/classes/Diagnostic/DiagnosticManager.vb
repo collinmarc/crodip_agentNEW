@@ -928,14 +928,10 @@ Public Class DiagnosticManager
                     tmpDiagnosticId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
                 Catch ex As Exception ' On intercepte l'erreur
                     tmpDiagnosticId = pAgent.idStructure & "-" & pAgent.id & "-0"
-                    CSDebug.dispFatal("DiagnosticManager - newId (On récupère le dernier ID) : " & ex.Message)
+                    CSDebug.dispFatal("DiagnosticManager - newId (On récupère le dernier ID) : ", ex)
                 End Try
 
-                ' Test pour fermeture de connection BDD
-                If Not oCSDb Is Nothing Then
-                    ' On ferme la connexion
-                    oCSDb.free()
-                End If
+                oCSDb.free()
             End If
 
         End If

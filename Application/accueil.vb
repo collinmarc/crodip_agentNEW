@@ -4760,6 +4760,16 @@ Public Class accueil
         End If
 
     End Sub
+    Private Sub loadAccueilAlertsNumeroration(ByRef positionTopAlertes As Integer)
+
+        Dim olst As New List(Of String)
+        olst = BDDTransfert.ComparerNumDiag()
+        For Each strAlert As String In olst
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.NOIRE, "Migration", strAlert, positionTopAlertes)
+        Next
+
+
+    End Sub
 
     Private Sub loadAccueilAlertsManoControle(ByRef positionTopAlertes As Integer)
         CSDebug.dispInfo("LoadAccueilAlertsManoControle : Debut")
@@ -5141,7 +5151,13 @@ Public Class accueil
             'If isVerifManoEtalon Then
             '    loadAccueilAlertsManoEtalon(positionTopAlertes)
             'End If
+
             CSDebug.dispInfo("LoadAccueilAlerts : Debut")
+
+            If File.Exists("./TransfertBDD") Then
+            loadAccueilAlertsNumeroration(positionTopAlertes)
+                File.Delete("./TransfertBDD")
+            End If
             loadAccueilAlertsManoControle(positionTopAlertes)
             loadAccueilAlertsBuseEtalon(positionTopAlertes)
             LoadAccueilAlertsBancsMesures(positionTopAlertes)

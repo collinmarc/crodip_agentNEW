@@ -1,6 +1,7 @@
 TRUNK
 MASTER
 
+
 BUILD : 20220225120000
 	0001481: Export Factures : Format des dates
 	0001284: Evolution du Moteur de base de données
@@ -13,6 +14,7 @@ BUILD : 20220225120000
 	0001478: ACKERMAN : Calcul dte de prochain Ctrl
 	0001490: Affichage du BL et Factures
 	0001491: Recherche de facture sur la date du jour
+	0001495: Ajout d'une alerte sur la numérotation après migration
 
 
 BUILD : 20220201120000

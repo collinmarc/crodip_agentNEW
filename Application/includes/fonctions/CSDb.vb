@@ -220,8 +220,10 @@ Public Class CSDb
 
                     ' Si non, on la configure et on l'ouvre
                     _dbConnection.Open()
-                    If IsLocked() Then
-                        CSDebug.dispFatal("CSDB.GetInstance DB is Locked")
+                    If _DBTYPE = EnumDBTYPE.SQLITE Then
+                        If IsLocked() Then
+                            CSDebug.dispFatal("CSDB.GetInstance DB is Locked")
+                        End If
                     End If
                     Exit For
                 Catch ex As Exception
@@ -236,6 +238,14 @@ Public Class CSDb
     Public Function getConnection() As DbConnection
         Return _dbConnection
     End Function
+    Public Shared Sub resetConnection()
+        If _dbConnection IsNot Nothing Then
+            _dbConnection.Close()
+        End If
+        _dbConnection = Nothing
+        nInstance = 0
+    End Sub
+
 
     Public Function getValue(ByVal pQuery As String) As Object
         Dim bBDFermee As Boolean = isClose()

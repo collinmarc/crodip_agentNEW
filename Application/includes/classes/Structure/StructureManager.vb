@@ -228,7 +228,7 @@ Public Class StructureManager
 
                 End While
             Catch ex As Exception ' On intercepte l'erreur
-                MsgBox("StructureManager.GetStructureById Err: " & ex.Message)
+                CSDebug.dispError("StructureManager.getStructureById ERR", ex)
                 tmpStructure = Nothing
             End Try
 

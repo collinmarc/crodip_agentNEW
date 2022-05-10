@@ -124,7 +124,7 @@ idPC = @idPC,
             With oParam
                 .ParameterName = "@idPC"
                 .DbType = DbType.Int32
-                If Not String.IsNullOrEmpty(pPool.idPC) Then
+                If pPool.idPC > 0 Then
                     .Value = pPool.idPC
                 Else
                     .Value = DBNull.Value

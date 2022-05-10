@@ -100,10 +100,11 @@ Module StartApplication
         If File.Exists("./TransfertBDD") Then
             Dim oFrmBDD As New FrmMigrationBDD()
             If oFrmBDD.ShowDialog() = DialogResult.OK Then
-                File.Delete("./TransfertBDD")
+                '                File.Delete("./TransfertBDD")
+                ' Le fichier sera détruit dans la page d'accueil
             End If
         End If
-        CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
+            CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
         If Not bLoginFailed Then
             ofrm.ShowDialog()
         End If
