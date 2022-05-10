@@ -290,7 +290,6 @@ Public Class DiagnosticBusesManager
             'Suppression des Detail de Buses Précédentes
             bddCommande.CommandText = "DELETE FROM  DiagnosticBusesDetail WHERE idDiagnostic = '" & objDiagnosticBuses.idDiagnostic & "' and idLot= " & objDiagnosticBuses.idLot & ""
             bddCommande.ExecuteNonQuery()
-            CSDebug.dispInfo("DiagnosticBusesManager.save BusesDetail : Debut")
             Dim SQL As String = "INSERT INTO DiagnosticBusesDetail ("
             SQL = SQL & " IdDiagnostic , "
             SQL = SQL & " IdBuse , "
@@ -385,7 +384,6 @@ Public Class DiagnosticBusesManager
                     Next
                 End If
             End If
-            CSDebug.dispInfo("DiagnosticBusesManager.save BusesDetail : Fin")
 
         Catch ex As Exception
             CSDebug.dispFatal("DiagBusesManager.save : " & ex.Message.ToString)

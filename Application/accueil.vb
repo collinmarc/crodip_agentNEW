@@ -4772,7 +4772,6 @@ Public Class accueil
     End Sub
 
     Private Sub loadAccueilAlertsManoControle(ByRef positionTopAlertes As Integer)
-        CSDebug.dispInfo("LoadAccueilAlertsManoControle : Debut")
 
         ' Vérification des alertes sur les manomètre de contrôle
         Dim nbAlertes_ManometreControle_Orange As Integer = 0
@@ -4867,7 +4866,6 @@ Public Class accueil
     End Sub
     'Chargement des alertes
     Private Sub loadAccueilAlertsIdentifiantsPulvérisateurs(ByRef positionTopAlertes As Integer)
-        CSDebug.dispInfo("loadAccueilAlertsIdentifiantPulve : Debut")
 
         'charegement de la liste des identifiants Inutilisés
         'Si le nbre est inférieure au nombre mini/4
@@ -4908,7 +4906,6 @@ Public Class accueil
     ''' </summary>
     ''' <param name="positionTopAlertes"></param>
     Private Sub loadAccueilAlertsSynchro(ByRef positionTopAlertes As Integer)
-        CSDebug.dispInfo("loadAccueilAlertsSynchro : Debut")
 
         ' Vérification de la date de dernière synchro
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
@@ -4966,11 +4963,12 @@ Public Class accueil
         Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         tmpAlerte.Font = tmpFontLabelCategorie
 
+        CSDebug.dispInfo("Alertes : " & ptext)
+
     End Sub
 
 
     Private Sub loadAccueilAlertsBuseEtalon(ByRef positionTopAlertes As Integer)
-        CSDebug.dispInfo("loadAccueilAlertsBuseEtalon : Debut")
         ' Vérification des alertes sur les buses étalons
         Dim nbAlertes_Buse_alerte As Integer = 0
         Dim nbAlertes_Buse_out As Integer = 0
@@ -5023,7 +5021,6 @@ Public Class accueil
     ''' <param name="positionTopAlertes"></param>
     ''' <remarks></remarks>
     Private Sub loadAccueilAlertsNbControle(ByRef positionTopAlertes As Integer)
-        CSDebug.dispInfo("loadAccueilAlertsNbControle : Debut")
 
         Dim bAlerte As Boolean = False
         bAlerte = My.Settings.nbControlesAvantAlerte > My.Settings.nbControlesAvantAlerteMax
@@ -5039,7 +5036,6 @@ Public Class accueil
     End Sub
 
     Private Sub LoadAccueilAlertsBancsMesures(ByRef positionTopAlertes As Integer)
-        CSDebug.dispInfo("loadAccueilAlertsBancsMesures : Debut")
         ' Vérification des alertes sur les banc de mesure
         Dim nbAlertes_Banc_Orange As Integer = 0
         Dim nbAlertes_Banc_1mois As Integer = 0
@@ -5152,10 +5148,8 @@ Public Class accueil
             '    loadAccueilAlertsManoEtalon(positionTopAlertes)
             'End If
 
-            CSDebug.dispInfo("LoadAccueilAlerts : Debut")
-
             If File.Exists("./TransfertBDD") Then
-            loadAccueilAlertsNumeroration(positionTopAlertes)
+                loadAccueilAlertsNumeroration(positionTopAlertes)
                 File.Delete("./TransfertBDD")
             End If
             loadAccueilAlertsManoControle(positionTopAlertes)
@@ -5168,7 +5162,6 @@ Public Class accueil
 
             'Vérification du nombre de controles effectuées depuis le dernier controle Regulier
             loadAccueilAlertsNbControle(positionTopAlertes)
-            CSDebug.dispInfo("LoadAccueilAlerts : Fin")
 
             ' Si aucune alerte à afficher, alors on affiche un message
             If positionTopAlertes = 8 Then

@@ -957,7 +957,6 @@ Public Class DiagnosticManager
                     createDiagnostic(pDiag.id)
                     bcreationDiag = True
                 End If
-                CSDebug.dispInfo("DiagnosticManager Save : Creation")
 
                 Dim bddCommande As DbCommand
                 ' On test si la connexion est déjà ouverte ou non
@@ -1303,12 +1302,10 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , isGratuit=" & pDiag.isGratuit & ""
 
 
-                CSDebug.dispInfo("DiagnosticManager Save : Avant RQ1")
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery & " WHERE id='" & pDiag.id & "'"
                 'CSDebug.dispInfo("DiagnosticManager::save (query) : " & bddCommande.CommandText)
                 bddCommande.ExecuteNonQuery()
-                CSDebug.dispInfo("DiagnosticManager Save : Avant RQ2")
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE id='" & pDiag.id & "'"
                 AddParameter(bddCommande, "@HT", pDiag.TotalHT, DbType.Currency)
                 AddParameter(bddCommande, "@TTC", pDiag.TotalTTC, DbType.Currency)
@@ -1345,14 +1342,12 @@ Public Class DiagnosticManager
                     bddCommande.ExecuteNonQuery()
                 End If
 
-                CSDebug.dispInfo("DiagnosticManager Save : Fin Signature")
 
 
                 ' On enregistre les items du diag
                 '                CSDebug.dispInfo("Sauvegarde des DiagItem")
 
                 SaveDiagItems(oCSDb, pDiag, bcreationDiag, bsyncro)
-                CSDebug.dispInfo("DiagnosticManager Save : SaveDiagItems")
 
 
                 'Sauvegarde des Help 551 (Si on a des valeurs pertinentes)
@@ -1430,7 +1425,6 @@ Public Class DiagnosticManager
                         DiagnosticHelp12123Manager.save(pDiag.diagnosticHelp12123, pDiag.organismePresId, pDiag.inspecteurId, oCSDb)
                     End If
                 End If
-                CSDebug.dispInfo("DiagnosticManager Save : SaveHelps")
                 'Sauvegarde des InfosComplementaires (Si on a des valeurs pertinentes)
                 If pDiag.diagnosticInfosComplementaires IsNot Nothing Then
                     If pDiag.diagnosticInfosComplementaires.hasValue() Then
@@ -1454,7 +1448,6 @@ Public Class DiagnosticManager
                         Next
                     End If
                 End If
-                CSDebug.dispInfo("DiagnosticManager Save : SaveBuses")
 
                 oCSDb.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & pDiag.id & "'")
                 ' On enregistre les mano 5.4.2
@@ -1469,7 +1462,6 @@ Public Class DiagnosticManager
                         Next
                     End If
                 End If
-                CSDebug.dispInfo("DiagnosticManager Save : Save542")
 
                 oCSDb.Execute("DELETE FROM diagnosticTroncons833 where idDiagnostic = '" & pDiag.id & "'")
                 ' On enregistre les tronçons 8.3.3
@@ -1491,12 +1483,10 @@ Public Class DiagnosticManager
                         Next
                     End If
                 End If
-                CSDebug.dispInfo("DiagnosticManager Save : Save833")
 
                 oCSDb.free()
             End If
             bReturn = True
-            CSDebug.dispInfo("DiagnosticManager Save : Fin")
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticManager(" & pDiag.id & ")::save : " & ex.Message.ToString)
             bReturn = False
