@@ -4764,9 +4764,15 @@ Public Class accueil
 
         Dim olst As New List(Of String)
         olst = BDDTransfert.ComparerNumDiag()
-        For Each strAlert As String In olst
-            AjouteUneAlerte(GlobalsCRODIP.ALERTE.NOIRE, "Migration", strAlert, positionTopAlertes)
-        Next
+        If olst.Count > 0 Then
+            MsgBox(olst(0), MsgBoxStyle.Critical, "ERREUR DE MIGRATION")
+            Application.Exit()
+        Else
+            File.Delete("./TransfertBDD")
+        End If
+        'For Each strAlert As String In olst
+        '    AjouteUneAlerte(GlobalsCRODIP.ALERTE.NOIRE, "Migration", strAlert, positionTopAlertes)
+        'Next
 
 
     End Sub
@@ -5150,7 +5156,6 @@ Public Class accueil
 
             If File.Exists("./TransfertBDD") Then
                 loadAccueilAlertsNumeroration(positionTopAlertes)
-                File.Delete("./TransfertBDD")
             End If
             loadAccueilAlertsManoControle(positionTopAlertes)
             loadAccueilAlertsBuseEtalon(positionTopAlertes)

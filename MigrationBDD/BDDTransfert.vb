@@ -2134,7 +2134,7 @@ INSERT INTO facture (
             strNumApres = DiagnosticManager.getNewId(oAgent)
 
             If strNumAvant <> strNumApres Then
-                lstAlertes.Add("Erreur de numérotation pour l'agent [" & oAgent.numeroNational & "] : Avant = " & strNumAvant & " , Après = " & strNumApres & " , prévenez le CRODIP")
+                lstAlertes.Add("Erreur de numérotation pour l'agent [" & oAgent.numeroNational & "] : Avant = " & strNumAvant & " , Après = " & strNumApres & " , URGENT PREVENEZ LE CRODIP")
             End If
         Next
 
