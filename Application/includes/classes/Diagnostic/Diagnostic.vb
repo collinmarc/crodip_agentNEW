@@ -1152,7 +1152,7 @@ Public Class Diagnostic
         Get
             Return _pulverisateurDateProchainControle
         End Get
-        Set(ByVal Value As String)
+        Private Set(ByVal Value As String)
             _pulverisateurDateProchainControle = Value
         End Set
     End Property

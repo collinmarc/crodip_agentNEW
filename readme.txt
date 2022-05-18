@@ -1,6 +1,9 @@
 TRUNK
 MASTER
 
+BUILD : XXXXXXXXXX
+0001496: Calcul de la date de prochain controle en signatureà postériori
+
 
 BUILD : 20220225120000
 	0001481: Export Factures : Format des dates

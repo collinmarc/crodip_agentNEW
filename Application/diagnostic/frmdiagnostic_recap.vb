@@ -1432,30 +1432,33 @@ Public Class frmdiagnostic_recap
 
     Private Sub rbEtatRISMCC_CheckedChanged(sender As Object, e As EventArgs) Handles rbEtatRI.CheckedChanged, rbEtatSM.CheckedChanged, rbEtatCC.CheckedChanged
         Dim oRB As RadioButton = CType(sender, RadioButton)
-        If m_oAgent.isSignElecActive Then
-            If rbEtatRI.Checked Then
-                btnSignAgent.Visible = True
-                btnSignClient.Visible = True
-            End If
-            If rbEtatSM.Checked Then
-                btnSignAgent.Visible = False
-                btnSignClient.Visible = False
+        If oRB.IsHandleCreated Then
+
+            If m_oAgent.isSignElecActive Then
+                If rbEtatRI.Checked Then
+                    btnSignAgent.Visible = True
+                    btnSignClient.Visible = True
+                End If
+                If rbEtatSM.Checked Then
+                    btnSignAgent.Visible = False
+                    btnSignClient.Visible = False
+
+                End If
+                If rbEtatCC.Checked Then
+                    btnSignAgent.Visible = True
+                    btnSignClient.Visible = True
+
+                End If
+
+                ActiveDesactiveBtnsignature()
 
             End If
-            If rbEtatCC.Checked Then
-                btnSignAgent.Visible = True
-                btnSignClient.Visible = True
-
+            '' ne déclenccher l'apperçu que sur le checked
+            If oRB.Checked Then
+                AppercuDocument()
             End If
-
-            ActiveDesactiveBtnsignature()
 
         End If
-        '' ne déclenccher l'apperçu que sur le checked
-        If oRB.Checked Then
-            AppercuDocument()
-        End If
-
 
     End Sub
 

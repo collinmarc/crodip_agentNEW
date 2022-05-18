@@ -274,6 +274,7 @@ Public Class EtatRapportInspection
                                                          PrincNumNat:=oPulvePrinc.numeroNational)
 
             Dim dateLimiteControle As Date
+            m_oDiag.CalculDateProchainControle()
             If String.IsNullOrEmpty(m_oDiag.pulverisateurDateProchainControle) Then
                 dateLimiteControle = Now()
             Else
