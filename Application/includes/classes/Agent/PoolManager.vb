@@ -60,7 +60,7 @@ Public Class PoolManager
        nbPastillesVertes = @nbPastillesVertes,
 idStructure =@idStructure,
 idBanc = @idBanc,
-idPC = @idPC,
+idCRODIPPC = @idCRODIPPC,
        dateModificationAgent = @dateModificationAgent,
        dateModificationCrodip = @dateModificationCrodip
  WHERE id = @id
@@ -122,10 +122,10 @@ idPC = @idPC,
 
             oParam = oCmd.CreateParameter()
             With oParam
-                .ParameterName = "@idPC"
-                .DbType = DbType.Int32
-                If pPool.idPC > 0 Then
-                    .Value = pPool.idPC
+                .ParameterName = "@idCRODIPPC"
+                .DbType = DbType.String
+                If Not String.IsNullOrEmpty(pPool.idCRODIPPC) Then
+                    .Value = pPool.idCRODIPPC
                 Else
                     .Value = DBNull.Value
                 End If

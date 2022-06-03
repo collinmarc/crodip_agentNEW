@@ -63,7 +63,7 @@ Imports Crodip_agent
         Dim oPool As Pool
         oPool = New Pool()
         oPool.idCrodip = "P1"
-        oPool.idPC = oPC.id
+        oPool.idCRODIPPC = oPC.id
         oPool.idStructure = m_oStructure.id
 
         Assert.IsTrue(PoolManager.Save(oPool))
@@ -78,7 +78,7 @@ Imports Crodip_agent
         Assert.IsNotNull(m_oAgent.oPool)
 
         Assert.AreEqual("P1", m_oAgent.oPool.idCrodip)
-        Assert.AreEqual(oPC.id, m_oAgent.oPool.idPC)
+        Assert.AreEqual(oPC.id, m_oAgent.oPool.idCRODIPPC)
         Assert.AreEqual(oPC.idCrodip, m_oAgent.oPool.IDCRODIPPC)
 
         'Création d'un banc

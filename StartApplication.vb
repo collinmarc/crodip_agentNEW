@@ -104,7 +104,15 @@ Module StartApplication
                 ' Le fichier sera détruit dans la page d'accueil
             End If
         End If
-            CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
+
+#If VGESTEQP Then
+        StructureManager.getList().ForEach(Sub(S)
+
+                                               S.CreatePool()
+                                           End Sub)
+#End If
+
+        CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
         If Not bLoginFailed Then
             ofrm.ShowDialog()
         End If

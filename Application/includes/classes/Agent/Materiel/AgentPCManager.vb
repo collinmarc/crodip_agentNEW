@@ -29,7 +29,7 @@ Public Class AgentPCManager
                 bddCommande = oCsdb.getConnection().CreateCommand()
 
                 ' Initialisation de la requete
-                Dim paramsQuery As String = "id='" & objAgentPC.id & "'"
+                Dim paramsQuery As String = "id=" & objAgentPC.id & ""
 
                 ' Mise a jour de la date de derniere modification
                 If Not bsynchro Then
@@ -40,20 +40,23 @@ Public Class AgentPCManager
                 End If
 
 
+                If objAgentPC.idStructure <> 0 Then
+                    paramsQuery = paramsQuery & " , idStructure=" & objAgentPC.idStructure & ""
+                End If
                 If Not objAgentPC.idCrodip Is Nothing Then
                     paramsQuery = paramsQuery & " , idCrodip='" & CSDb.secureString(objAgentPC.idCrodip) & "'"
                 End If
-                If Not objAgentPC.libelle Is Nothing Then
+                If Not String.IsNullOrEmpty(objAgentPC.libelle) Then
                     paramsQuery = paramsQuery & " , libelle='" & CSDb.secureString(objAgentPC.libelle) & "'"
                 End If
-                If Not objAgentPC.cleUtilisation Is Nothing Then
-                    paramsQuery = paramsQuery & " , cleUtilisation='" & CSDb.secureString(objAgentPC.cleUtilisation) & "'"
+                If Not String.IsNullOrEmpty(objAgentPC.numInterne) Then
+                    paramsQuery = paramsQuery & " , numInterne='" & CSDb.secureString(objAgentPC.numInterne) & "'"
                 End If
                 paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objAgentPC.dateModificationAgent) & "'"
                 paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objAgentPC.dateModificationCrodip) & "'"
 
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE AgentPC SET " & paramsQuery & " WHERE id='" & objAgentPC.id & "'"
+                bddCommande.CommandText = "UPDATE AgentPC SET " & paramsQuery & " WHERE id=" & objAgentPC.id & ""
                 bddCommande.ExecuteNonQuery()
                 bReturn = True
             End If
@@ -69,16 +72,16 @@ Public Class AgentPCManager
         Return bReturn
     End Function
 
-    Public Shared Function getAgentPCById(ByVal pid As String) As AgentPC
+    Public Shared Function getAgentPCByIdCRODIP(ByVal pid As String) As AgentPC
         Debug.Assert(pid <> 0, "ID doit être initialisé")
         Dim oReturn As AgentPC = Nothing
         Try
 
-            oReturn = getById(Of AgentPC)("SELECT * FROM AgentPC WHERE id=" & pid & "")
+            oReturn = getById(Of AgentPC)("SELECT * FROM AgentPC WHERE idCRODIP=" & pid & "")
 
 
         Catch ex As Exception
-            CSDebug.dispError("AgentPCManager.getAgentPCById ERR", ex)
+            CSDebug.dispError("AgentPCManager.getAgentPCByIdCRODIP ERR", ex)
             oReturn = Nothing
         End Try
         Return oReturn

@@ -9,13 +9,13 @@ Imports Microsoft.Win32
 Public Class AgentPC
     Inherits Materiel
 
-    Private _cleUtilisation As String
     Private _NumInterne As String
 
 
     Sub New()
         MyBase.New()
-
+        etat = True
+        numInterne = ""
     End Sub
     Private _id As Integer
     Public Property id() As Integer
@@ -24,14 +24,6 @@ Public Class AgentPC
         End Get
         Set(ByVal value As Integer)
             _id = value
-        End Set
-    End Property
-    Public Property cleUtilisation() As String
-        Get
-            Return _cleUtilisation
-        End Get
-        Set(ByVal value As String)
-            _cleUtilisation = value
         End Set
     End Property
     Public Property numInterne() As String
@@ -62,8 +54,6 @@ Public Class AgentPC
                 Select Case pName.Trim().ToUpper()
                     Case "id".Trim().ToUpper()
                         Me.id = CInt(pValue)
-                    Case "cleUtilisation".Trim().ToUpper()
-                        Me.cleUtilisation = pValue.ToString() 'Public marque As String
                     Case "numInterne".Trim().ToUpper()
                         Me.numInterne = pValue.ToString() 'Public modele As String
                     Case "libelle".Trim().ToUpper()
@@ -91,11 +81,11 @@ Public Class AgentPC
             Const subkey As String = "CRODIP"
             Const keyName As String = userRoot & "\" & subkey
 
-            If String.IsNullOrEmpty(Me.cleUtilisation) Then
+            If String.IsNullOrEmpty(Me.numInterne) Then
                 Dim g As New Guid()
                 g = Guid.NewGuid()
-                Me.cleUtilisation = g.ToString()
-                Registry.SetValue(keyName, "POOL", Me.cleUtilisation)
+                Me.numInterne = g.ToString()
+                Registry.SetValue(keyName, "POOL", Me.numInterne)
                 AgentPCManager.save(Me)
 
             End If
@@ -103,12 +93,12 @@ Public Class AgentPC
 
             Dim IDLu As String =
             Registry.GetValue(keyName, "POOL", "")
-            If IDLu.Equals(Me.cleUtilisation) Then
+            If IDLu.Equals(Me.numInterne) Then
                 bReturn = True
             Else
                 bReturn = False
 #If DEBUG Then
-                CSDebug.dispError("AgentPC.checkRegistry MauvaiseClé : (" & Me.cleUtilisation & "/" & IDLu)
+                CSDebug.dispError("AgentPC.checkRegistry MauvaiseClé : (" & Me.numInterne & "/" & IDLu)
 #End If
             End If
 

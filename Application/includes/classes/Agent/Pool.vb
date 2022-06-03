@@ -30,13 +30,13 @@ Public Class Pool
             _nbPastillesVertes = value
         End Set
     End Property
-    Private _idPC As Integer
-    Public Property idPC() As Integer
+    Private _idPCRODIPPC As String
+    Public Property idCRODIPPC() As String
         Get
-            Return _idPC
+            Return _idPCRODIPPC
         End Get
-        Set(ByVal value As Integer)
-            _idPC = value
+        Set(ByVal value As String)
+            _idPCRODIPPC = value
         End Set
     End Property
     Private _idBanc As String
@@ -48,19 +48,7 @@ Public Class Pool
             _idBanc = value
         End Set
     End Property
-    <XmlIgnoreAttribute()>
-    Public Property IDCRODIPPC() As String
-        Get
-            If idPC <> 0 Then
-                Return AgentPCManager.getAgentPCById(idPC).idCrodip
-            Else
-                Return ""
-            End If
-        End Get
-        Set(ByVal value As String)
 
-        End Set
-    End Property
     Public Sub New()
         libelle = ""
         nbPastillesVertes = 0
@@ -77,8 +65,8 @@ Public Class Pool
                         Me.id = CInt(pValue)
                     Case "libelle".Trim().ToUpper()
                         Me.libelle = pValue.ToString()
-                    Case "idPC".Trim().ToUpper()
-                        Me.idPC = pValue
+                    Case "idCRODIPPC".Trim().ToUpper()
+                        Me.idCRODIPPC = pValue
                     Case "idStructure".Trim().ToUpper()
                         Me.idStructure = pValue
                     Case "nbPastillesVertes".Trim().ToUpper()
@@ -99,11 +87,11 @@ Public Class Pool
     Public Function getAgentPC() As AgentPC
         Dim oReturn As AgentPC = Nothing
         Try
-            If idPC <> 0 Then
-                oReturn = AgentPCManager.getAgentPCById(idPC)
+            If idCRODIPPC <> 0 Then
+                oReturn = AgentPCManager.getAgentPCByIdCRODIP(idCRODIPPC)
             End If
         Catch ex As Exception
-            CSDebug.dispError("Pool.getPC ERR", ex)
+            CSDebug.dispError("Pool.getAgentPC ERR", ex)
             oReturn = Nothing
         End Try
         Return oReturn

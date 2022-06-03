@@ -821,17 +821,16 @@ Public Class Agent
         Dim oAgentPC As AgentPC
         Dim bReturn As Boolean
         Dim bCleARegenerer As Boolean = False
-#If VGESTEQP Then
         bReturn = False
         If oPool IsNot Nothing Then
-            oAgentPC = AgentPCManager.RESTgetAgentPCByIDCrodip(Me, oPool.idPC)
+            oAgentPC = AgentPCManager.RESTgetAgentPCByIDCrodip(Me, oPool.idCRODIPPC)
             If oAgentPC Is Nothing Then
                 'La réception via le WS ne fonctionne pas, on charge celui qui est en base
                 oAgentPC = oPool.getAgentPC()
             End If
             's'il y a un PC , on vérifie la base de registre, sinon on arrête
             If oAgentPC IsNot Nothing Then
-                bCleARegenerer = String.IsNullOrEmpty(oAgentPC.cleUtilisation)
+                bCleARegenerer = String.IsNullOrEmpty(oAgentPC.numInterne)
                 bReturn = oAgentPC.checkRegistry()
                 If bCleARegenerer Then
                     AgentPCManager.save(oAgentPC)
@@ -843,9 +842,6 @@ Public Class Agent
         Else
             bReturn = True
         End If
-#Else
-        bReturn = True
-#End If
 
         Return bReturn
     End Function

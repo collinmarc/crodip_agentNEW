@@ -1,3 +1,6 @@
+Imports System.Collections.Generic
+Imports System.Linq
+
 Public Class Structuree
 
     Private _id As Integer
@@ -389,5 +392,27 @@ Public Class Structuree
         End Set
     End Property
 #End Region
+    Public Sub CreatePool()
 
+
+        Dim lstpool As List(Of Pool)
+        lstpool = PoolManager.GetListe(Me.id)
+        If lstpool.Count = 0 Then
+
+            Dim oPool As New Pool
+            oPool.idCrodip = Me.id & "-0"
+            oPool.idStructure = Me.id
+            PoolManager.Save(oPool)
+
+            Dim lst As List(Of Agent)
+            lst = AgentManager.getAgentList().items
+            For Each oAgent As Agent In lst.Where(Function(A)
+                                                      Return A.idStructure = Me.id
+                                                  End Function)
+
+                oAgent.idPool = oPool.id
+                AgentManager.save(oAgent)
+            Next
+        End If
+    End Sub
 End Class
