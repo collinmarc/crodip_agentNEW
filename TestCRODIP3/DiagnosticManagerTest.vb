@@ -6071,6 +6071,31 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
+    <TestMethod()>
+    Public Sub testGetNewId()
+        Dim oDiag As Diagnostic
+
+        oDiag = createAndSaveDiagnostic()
+        oDiag = createAndSaveDiagnostic()
+
+        m_oAgent.oPool = New Pool()
+        m_oAgent.oPool.idCRODIPPC = "12345"
+
+        Dim str As String
+        str = DiagnosticManager.getNewId(m_oAgent)
+
+        Assert.AreEqual(m_oAgent.idStructure & "-12345-1", str)
+
+        m_oAgent.oPool.idCRODIPPC = "1119"
+        str = DiagnosticManager.getNewId(m_oAgent)
+        Assert.AreEqual("498-1119-1242", str)
+
+        m_oAgent.oPool = Nothing
+        str = DiagnosticManager.getNewId(m_oAgent)
+        Assert.AreEqual("498-1119-1242", str)
+
+
+    End Sub
 
 
 

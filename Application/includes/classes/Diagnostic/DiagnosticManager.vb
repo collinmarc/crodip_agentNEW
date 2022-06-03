@@ -874,8 +874,39 @@ Public Class DiagnosticManager
 
     End Function
 
-
     Public Shared Function getNewId(pAgent As Agent) As String
+        If pAgent.oPool IsNot Nothing Then
+            Return getNewIdNew(pAgent)
+        Else
+            Return getNewIdOLD(pAgent)
+        End If
+    End Function
+
+    Public Shared Function getNewIdNew(pAgent As Agent) As String
+        Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
+        Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
+        Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
+        ' déclarations
+        Dim Racine As String = pAgent.idStructure.ToString() & "-" & pAgent.oPool.idCRODIPPC & "-"
+        Dim nIndex As Integer = 1
+
+        If pAgent.idStructure <> 0 Then
+
+            ' On test si la table est vide
+
+            Dim oCSDb As New CSDb(True)
+            Dim res As Object = oCSDb.getValue("SELECT MAX(CAST (REPLACE(Id,'" & Racine & "','') as INT)) as ID  from Diagnostic where id Like '" & Racine & "%'")
+            oCSDb.free()
+            If TypeOf res IsNot DBNull Then
+                nIndex = CInt(res) + 1
+            End If
+        End If
+
+        'on retourne le nouvel id
+        Return Racine & nIndex
+    End Function
+
+    Public Shared Function getNewIdOLD(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
         Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
