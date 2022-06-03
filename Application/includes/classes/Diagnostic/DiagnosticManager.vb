@@ -874,7 +874,7 @@ Public Class DiagnosticManager
 
     End Function
 
-    Public Shared Function getNewId(pAgent As Agent) As String
+    Friend Shared Function getNewId(pAgent As Agent) As String
         If pAgent.oPool IsNot Nothing Then
             Return getNewIdNew(pAgent)
         Else
