@@ -5052,14 +5052,19 @@ Public Class accueil
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
         Dim arrBanc As List(Of Banc)
         'Chargement des bancs du Pool
-#If VGESTEQP = 1 Then
-        BancCourant = BancManager.getBancById(agentCourant.oPool.idBanc)
-        arrBanc = New List(Of Banc)()
-        arrBanc.Add(BancCourant)
-#Else
-    arrBanc = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+        If agentCourant.idPool <> 0 Then
+            arrBanc = New List(Of Banc)()
+            If agentCourant.oPool.idBanc <> 0 Then
+                BancCourant = BancManager.getBancById(agentCourant.oPool.idBanc)
+                arrBanc.Add(BancCourant)
+            Else
+                'S'il n'y a pas de banc affecté au pool on prend tout
+                arrBanc = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+            End If
+        Else
+            arrBanc = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+        End If
 
-#End If
         Dim njours As Integer
         Dim nbBancAvantDL(3000) As Integer 'Nombre de banc devant être controler njours avant la Date Limite
         Dim AlerteBanc As GlobalsCRODIP.ALERTE
