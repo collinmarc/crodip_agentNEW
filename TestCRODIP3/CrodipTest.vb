@@ -75,7 +75,7 @@ Public Class CRODIPTest
         'Création de la Structure
         m_oStructure = New Structuree()
         m_oStructure.id = m_idStructure
-        m_oStructure.idCrodip = m_idStructure.ToString()
+        m_oStructure.idCrodip = "8888"
         m_oStructure.nom = "Structure TestsUnitaires"
         StructureManager.save(m_oStructure)
 
@@ -87,6 +87,7 @@ Public Class CRODIPTest
         m_oAgent.telephonePortable = "0606060606"
         m_oAgent.eMail = "a@a.com"
         m_oAgent.isActif = True
+        m_oAgent.numeroNational = "9999"
         AgentManager.save(m_oAgent)
         Assert.IsNotNull(m_oAgent, "erreur en création d'un agent")
         '        AgentManager.getWSUpdates(m_oAgent.id,

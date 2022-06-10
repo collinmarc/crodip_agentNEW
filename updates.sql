@@ -303,53 +303,8 @@ CREATE TABLE POOL (
 ALTER TABLE Agent 
  ADD COLUMN     idPOOL                 INTEGER        REFERENCES POOL (id) ON DELETE SET NULL;
 
-INSERT INTO AgentPC (
-                        idCrodip,
-                        idStructure,
-                        cleUtilisation,
-                        libelle,
-                        etat,
-                        numInterne,
-                        AgentSuppression,
-                        RaisonSuppression,
-                        dateSuppression,
-                        isSupprime,
-                        dateModificationAgent,
-                        dateModificationCrodip
-                    )
-                    VALUES (
-                        '2-123',
-                        '2',
-                        '',
-                        'ASUS',
-                        1,
-                        '123-',
-                        '',
-                        '',
-                        '',
-                        0,
-                        '2022-04-14',
-                        NULL
-                    );
 
-INSERT INTO POOL (
-                     idCRODIP,
-                     libelle,
-                     idPC,
-                     nbPastillesVertes,
-					 idStructure,
-                     dateModificationAgent,
-                     dateModificationCrodip
-                 )
-                 VALUES (
-                     '2-000',
-                     'Principal',
-                     (SELECT MAX(id) from agentPC),
-                     0,
-                     (SELECT MAX(id) from structure),
-                     '2022-04-14',
-                     NULL
-                 );
-
-UPDATE Agent SET IdPool = (SELECT id From POOL where libelle = 'Principal')
-
+Alter Table DIAGNOSTIC Add COLUMN BLFileName  TEXT ;
+Alter Table DIAGNOSTIC Add COLUMN ESFileName  TEXT ;
+Alter Table DIAGNOSTIC Add COLUMN COPROFileName  TEXT ;
+Alter Table DIAGNOSTIC Add COLUMN FACTFileNames  TEXT ;

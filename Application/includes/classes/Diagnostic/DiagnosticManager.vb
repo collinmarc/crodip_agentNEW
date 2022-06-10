@@ -887,7 +887,8 @@ Public Class DiagnosticManager
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
         Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
         ' déclarations
-        Dim Racine As String = pAgent.idStructure.ToString() & "-" & pAgent.oPool.idCRODIPPC & "-"
+        Dim idStructure As String = StructureManager.getStructureById(pAgent.idStructure).idCrodip
+        Dim Racine As String = idStructure & "-" & pAgent.numeroNational & "-" & pAgent.oPool.idCRODIPPC & "-"
         Dim nIndex As Integer = 1
 
         If pAgent.idStructure <> 0 Then
@@ -1331,6 +1332,10 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , totalTTC= @TTC"
                 paramsQuery2 = paramsQuery2 & " , isCVImmediate=" & pDiag.isContrevisiteImmediate & ""
                 paramsQuery2 = paramsQuery2 & " , isGratuit=" & pDiag.isGratuit & ""
+                paramsQuery2 = paramsQuery2 & " , BLFileName='" & CSDb.secureString(pDiag.BLFileName) & "'"
+                paramsQuery2 = paramsQuery2 & " , ESFileName='" & CSDb.secureString(pDiag.ESFileName) & "'"
+                paramsQuery2 = paramsQuery2 & " , COPROFileName='" & CSDb.secureString(pDiag.COPROFileName) & "'"
+                paramsQuery2 = paramsQuery2 & " , FACTFileNames='" & CSDb.secureString(pDiag.FACTFileNames) & "'"
 
 
                 ' On finalise la requete et en l'execute

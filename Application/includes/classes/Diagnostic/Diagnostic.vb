@@ -2849,6 +2849,14 @@ Public Class Diagnostic
                     Me.isContrevisiteImmediate = pcolValue
                 Case "isGratuit".ToUpper().Trim()
                     Me.isGratuit = pcolValue
+                Case "BLFileName".ToUpper().Trim()
+                    Me.BLFileName = pcolValue
+                Case "ESFileName".ToUpper().Trim()
+                    Me.ESFileName = pcolValue
+                Case "COPROFileName".ToUpper().Trim()
+                    Me.COPROFileName = pcolValue
+                Case "FACTFileNames".ToUpper().Trim()
+                    Me.FACTFileNames = pcolValue
             End Select
             '            ALTER TABLE DIAGNOSTIC ADD isSignRIAgent YESNO
             'ALTER TABLE DIAGNOSTIC ADD isSignRIClient YESNO
@@ -3620,6 +3628,45 @@ Public Class Diagnostic
         End Get
         Set(ByVal value As ContratCommercial)
             _ContratCommercial = value
+        End Set
+    End Property
+    Private _BLFileName As String
+    Public Property BLFileName() As String
+        Get
+            Return _BLFileName
+        End Get
+        Set(ByVal value As String)
+            _BLFileName = value
+        End Set
+    End Property
+    Private _ESFileName As String
+    Public Property ESFileName() As String
+        Get
+            Return _ESFileName
+        End Get
+        Set(ByVal value As String)
+            _ESFileName = value
+        End Set
+    End Property
+    Private _COPROFileName As String
+    Public Property COPROFileName() As String
+        Get
+            Return _COPROFileName
+        End Get
+        Set(ByVal value As String)
+            _COPROFileName = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' Contient le nom des fichiers de factures séparées par des ;
+    ''' </summary>
+    Private _FACTFileNames As String
+    Public Property FACTFileNames() As String
+        Get
+            Return _FACTFileNames
+        End Get
+        Set(ByVal value As String)
+            _FACTFileNames = value
         End Set
     End Property
 End Class

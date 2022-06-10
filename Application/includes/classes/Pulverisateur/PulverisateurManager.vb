@@ -106,7 +106,8 @@ Public Class PulverisateurManager
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
         Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
         ' déclarations
-        Dim Racine As String = pAgent.idStructure.ToString() & "-" & pAgent.oPool.idCRODIPPC & "-"
+        Dim idStructure As String = StructureManager.getStructureById(pAgent.idStructure).idCrodip
+        Dim Racine As String = idStructure & "-" & pAgent.numeroNational & "-" & pAgent.oPool.idCRODIPPC & "-"
         Dim nIndex As Integer = 1
 
         If pAgent.idStructure <> 0 Then

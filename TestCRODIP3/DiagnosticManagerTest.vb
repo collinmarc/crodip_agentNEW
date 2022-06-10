@@ -44,37 +44,6 @@ Public Class DiagnosticManagerTest
 #End Region
 
 
-    '''<summary>
-    '''Test pour D'init de l'objet + properties
-    '''</summary>
-    <TestMethod()>
-    Public Sub TST_Object()
-        Dim oDiag As Diagnostic
-        oDiag = New Diagnostic()
-        Assert.AreEqual(False, oDiag.controleIsPulveRepare)
-        Assert.AreEqual(False, oDiag.controleIsPreControleProfessionel)
-        Assert.AreEqual(False, oDiag.controleIsAutoControle)
-        Assert.IsTrue(String.IsNullOrEmpty(oDiag.proprietaireRepresentant))
-        Assert.AreEqual(0, oDiag.diagnosticItemsLst.Count)
-        Assert.AreEqual("", oDiag.controleInitialId)
-        Assert.IsFalse(oDiag.isSupprime)
-        Assert.AreEqual("", oDiag.diagRemplacementId)
-
-        oDiag.controleIsPulveRepare = True
-        Assert.AreEqual(True, oDiag.controleIsPulveRepare)
-        oDiag.controleIsPreControleProfessionel = True
-        Assert.AreEqual(True, oDiag.controleIsPreControleProfessionel)
-        oDiag.controleIsAutoControle = True
-        Assert.AreEqual(True, oDiag.controleIsAutoControle)
-        oDiag.proprietaireRepresentant = "MonRepresentant"
-        Assert.AreEqual(oDiag.proprietaireRepresentant, "MonRepresentant")
-        oDiag.controleInitialId = "004563"
-        Assert.AreEqual("004563", oDiag.controleInitialId)
-        oDiag.isSupprime = True
-        Assert.IsTrue(oDiag.isSupprime)
-        oDiag.diagRemplacementId = "123"
-        Assert.AreEqual("123", oDiag.diagRemplacementId)
-    End Sub
 
     '''<summary>
     '''Test pour D'init de l'objet à partir des données Client
@@ -398,6 +367,12 @@ Public Class DiagnosticManagerTest
         oDiag.isContrevisiteImmediate = True
         oDiag.isGratuit = True
 
+
+        oDiag.BLFileName = "BL"
+        oDiag.ESFileName = "ES"
+        oDiag.COPROFileName = "COPRO"
+        oDiag.FACTFileNames = "FACT1;FACT2"
+
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
@@ -420,6 +395,13 @@ Public Class DiagnosticManagerTest
 
         Assert.IsTrue(oDiag2.isContrevisiteImmediate)
         Assert.IsTrue(oDiag2.isGratuit)
+        Assert.AreEqual(oDiag.BLFileName, "BL")
+        Assert.AreEqual(oDiag.ESFileName, "ES")
+        Assert.AreEqual(oDiag.COPROFileName, "COPRO")
+        Assert.AreEqual(oDiag.FACTFileNames, "FACT1;FACT2")
+
+
+
 
         oDiag2.controleNomSite = "Mon Site updated"
         oDiag2.controleIsAutoControle = False
@@ -437,6 +419,10 @@ Public Class DiagnosticManagerTest
         oDiag2.diagRemplacementId = ""
         oDiag2.isContrevisiteImmediate = False
         oDiag2.isGratuit = False
+        oDiag2.BLFileName = "BL1"
+        oDiag2.ESFileName = "ES1"
+        oDiag2.COPROFileName = "COPRO1"
+        oDiag2.FACTFileNames = "FACT3;FACT4"
 
 
         Assert.IsTrue(DiagnosticManager.save(oDiag2))
@@ -459,6 +445,11 @@ Public Class DiagnosticManagerTest
 
         Assert.IsFalse(oDiag.isContrevisiteImmediate)
         Assert.IsFalse(oDiag.isGratuit)
+        Assert.AreEqual(oDiag.BLFileName, "BL1")
+        Assert.AreEqual(oDiag.ESFileName, "ES1")
+        Assert.AreEqual(oDiag.COPROFileName, "COPRO1")
+        Assert.AreEqual(oDiag.FACTFileNames, "FACT3;FACT4")
+
 
         oDiag2.controleNomSite = "Mon Site updated2"
         oDiag2.controleIsPreControleProfessionel = False
@@ -6084,11 +6075,11 @@ Public Class DiagnosticManagerTest
         Dim str As String
         str = DiagnosticManager.getNewId(m_oAgent)
 
-        Assert.AreEqual(m_oAgent.idStructure & "-12345-1", str)
+        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
 
         m_oAgent.oPool.idCRODIPPC = "1119"
         str = DiagnosticManager.getNewId(m_oAgent)
-        Assert.AreEqual("498-1119-1242", str)
+        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-1119-1", str)
 
         m_oAgent.oPool = Nothing
         str = DiagnosticManager.getNewId(m_oAgent)
