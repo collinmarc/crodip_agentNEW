@@ -701,6 +701,7 @@ Public Class login
 
 #Region "Fonction de login"
     Private Sub doLogin()
+
         pnlLoginControls.Enabled = False
         ' On récupère le formulaire contener
         Dim myFormParentContener As Form = Me.MdiParent

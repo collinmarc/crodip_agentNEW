@@ -3625,6 +3625,24 @@ Public Class Diagnostic
         bReturn = IsFichierExists(Me.CCFileName)
         Return bReturn
     End Function
+    Public Function IsFichierBLExists() As Boolean
+        Dim bReturn As Boolean
+        bReturn = True
+        bReturn = IsFichierExists(Me.BLFileName)
+        Return bReturn
+    End Function
+    Public Function IsFichierESExists() As Boolean
+        Dim bReturn As Boolean
+        bReturn = True
+        bReturn = IsFichierExists(Me.ESFileName)
+        Return bReturn
+    End Function
+    Public Function IsFichierCoProExists() As Boolean
+        Dim bReturn As Boolean
+        bReturn = True
+        bReturn = IsFichierExists(Me.COPROFileName)
+        Return bReturn
+    End Function
     Private _ContratCommercial As ContratCommercial
     Public Property oContratCommercial() As ContratCommercial
         Get
