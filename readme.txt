@@ -3,6 +3,9 @@ MASTER
 
 BUILD : XXXXXXXXXX
 0001496: Calcul de la date de prochain controle en signatureà postériori
+0001292: Présenter les Autres PDFS dans la visualisation d'un Contrôle
+0001267: Numérotation des controles à partir de l'identifiant PC
+
 
 
 BUILD : 20220225120000

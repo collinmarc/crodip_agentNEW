@@ -1592,6 +1592,15 @@ Public Class frmdiagnostic_facturationCoProp
 
             oEtat.genereEtat()
             pFacture.pathPDF = oEtat.getFileName()
+            If m_oDiag IsNot Nothing Then
+                Dim tabNumFact As String() = m_oDiag.FACTFileNames.Split(";")
+                If Not tabNumFact.Contains(pFacture.idFacture) Then
+                    If Not String.IsNullOrEmpty(m_oDiag.FACTFileNames) Then
+                        m_oDiag.FACTFileNames = m_oDiag.FACTFileNames & ";"
+                    End If
+                    m_oDiag.FACTFileNames = m_oDiag.FACTFileNames & pFacture.idFacture
+                End If
+            End If
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("diagnostic_FacturationCoPro2::createFacture_CR : " & ex.Message)
@@ -2082,6 +2091,9 @@ Public Class frmdiagnostic_facturationCoProp
             SauvegarderExploitants()
             SauvegarderFactures()
             m_oStructure.SauverDernierNumFact()
+            If m_oDiag IsNot Nothing Then
+                DiagnosticManager.UpdateFileNames(m_oDiag)
+            End If
             Me.Cursor = Cursors.Default
             Me.DialogResult = DialogResult.OK
             Me.Close()

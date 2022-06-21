@@ -89,10 +89,10 @@ Public Class diagnostic_ContratCommercial
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_ContratCommercial))
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label_diagnostic_61 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -121,6 +121,12 @@ Public Class diagnostic_ContratCommercial
         Me.Label17 = New System.Windows.Forms.Label()
         Me.listTarif_categories = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.CategorieDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrestationDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QuantiteDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsLignes = New System.Windows.Forms.BindingSource(Me.components)
         Me.LignesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.columnDelete = New System.Windows.Forms.DataGridViewImageColumn()
@@ -128,12 +134,6 @@ Public Class diagnostic_ContratCommercial
         Me.CategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PrestationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuantiteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CategorieDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrestationDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QuantiteDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SupprColumn = New System.Windows.Forms.DataGridViewImageColumn()
         CType(Me.img_Add, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelFooter.SuspendLayout()
         CType(Me.m_bsContratCommercial, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -505,55 +505,6 @@ Public Class diagnostic_ContratCommercial
         Me.DataGridView1.Size = New System.Drawing.Size(908, 331)
         Me.DataGridView1.TabIndex = 2
         '
-        'm_bsLignes
-        '
-        Me.m_bsLignes.DataSource = Me.LignesBindingSource
-        '
-        'LignesBindingSource
-        '
-        Me.LignesBindingSource.DataMember = "Lignes"
-        Me.LignesBindingSource.DataSource = Me.m_bsContratCommercial
-        '
-        'columnDelete
-        '
-        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.columnDelete.HeaderText = "Suppr"
-        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
-        Me.columnDelete.Name = "columnDelete"
-        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.columnDelete.Width = 40
-        '
-        'IdFactureDataGridViewTextBoxColumn
-        '
-        Me.IdFactureDataGridViewTextBoxColumn.DataPropertyName = "idFacture"
-        Me.IdFactureDataGridViewTextBoxColumn.HeaderText = "idFacture"
-        Me.IdFactureDataGridViewTextBoxColumn.Name = "IdFactureDataGridViewTextBoxColumn"
-        Me.IdFactureDataGridViewTextBoxColumn.Width = 55
-        '
-        'CategorieDataGridViewTextBoxColumn
-        '
-        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "categorie"
-        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "categorie"
-        Me.CategorieDataGridViewTextBoxColumn.Name = "CategorieDataGridViewTextBoxColumn"
-        Me.CategorieDataGridViewTextBoxColumn.Width = 55
-        '
-        'PrestationDataGridViewTextBoxColumn
-        '
-        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "prestation"
-        Me.PrestationDataGridViewTextBoxColumn.HeaderText = "prestation"
-        Me.PrestationDataGridViewTextBoxColumn.Name = "PrestationDataGridViewTextBoxColumn"
-        Me.PrestationDataGridViewTextBoxColumn.Width = 55
-        '
-        'QuantiteDataGridViewTextBoxColumn
-        '
-        Me.QuantiteDataGridViewTextBoxColumn.DataPropertyName = "quantite"
-        DataGridViewCellStyle5.Format = "N2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.QuantiteDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
-        Me.QuantiteDataGridViewTextBoxColumn.HeaderText = "quantite"
-        Me.QuantiteDataGridViewTextBoxColumn.Name = "QuantiteDataGridViewTextBoxColumn"
-        Me.QuantiteDataGridViewTextBoxColumn.Width = 55
-        '
         'CategorieDataGridViewTextBoxColumn1
         '
         Me.CategorieDataGridViewTextBoxColumn1.DataPropertyName = "categorie"
@@ -603,6 +554,55 @@ Public Class diagnostic_ContratCommercial
         Me.SupprColumn.Image = Global.Crodip_agent.Resources.delete
         Me.SupprColumn.Name = "SupprColumn"
         Me.SupprColumn.Width = 40
+        '
+        'm_bsLignes
+        '
+        Me.m_bsLignes.DataSource = Me.LignesBindingSource
+        '
+        'LignesBindingSource
+        '
+        Me.LignesBindingSource.DataMember = "Lignes"
+        Me.LignesBindingSource.DataSource = Me.m_bsContratCommercial
+        '
+        'columnDelete
+        '
+        Me.columnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.columnDelete.HeaderText = "Suppr"
+        Me.columnDelete.Image = Global.Crodip_agent.Resources.delete
+        Me.columnDelete.Name = "columnDelete"
+        Me.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.columnDelete.Width = 40
+        '
+        'IdFactureDataGridViewTextBoxColumn
+        '
+        Me.IdFactureDataGridViewTextBoxColumn.DataPropertyName = "idFacture"
+        Me.IdFactureDataGridViewTextBoxColumn.HeaderText = "idFacture"
+        Me.IdFactureDataGridViewTextBoxColumn.Name = "IdFactureDataGridViewTextBoxColumn"
+        Me.IdFactureDataGridViewTextBoxColumn.Width = 55
+        '
+        'CategorieDataGridViewTextBoxColumn
+        '
+        Me.CategorieDataGridViewTextBoxColumn.DataPropertyName = "categorie"
+        Me.CategorieDataGridViewTextBoxColumn.HeaderText = "categorie"
+        Me.CategorieDataGridViewTextBoxColumn.Name = "CategorieDataGridViewTextBoxColumn"
+        Me.CategorieDataGridViewTextBoxColumn.Width = 55
+        '
+        'PrestationDataGridViewTextBoxColumn
+        '
+        Me.PrestationDataGridViewTextBoxColumn.DataPropertyName = "prestation"
+        Me.PrestationDataGridViewTextBoxColumn.HeaderText = "prestation"
+        Me.PrestationDataGridViewTextBoxColumn.Name = "PrestationDataGridViewTextBoxColumn"
+        Me.PrestationDataGridViewTextBoxColumn.Width = 55
+        '
+        'QuantiteDataGridViewTextBoxColumn
+        '
+        Me.QuantiteDataGridViewTextBoxColumn.DataPropertyName = "quantite"
+        DataGridViewCellStyle5.Format = "N2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.QuantiteDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        Me.QuantiteDataGridViewTextBoxColumn.HeaderText = "quantite"
+        Me.QuantiteDataGridViewTextBoxColumn.Name = "QuantiteDataGridViewTextBoxColumn"
+        Me.QuantiteDataGridViewTextBoxColumn.Width = 55
         '
         'diagnostic_ContratCommercial
         '
@@ -862,6 +862,7 @@ Public Class diagnostic_ContratCommercial
 
             oEtat.genereEtat()
             m_pathBl = oEtat.getFileNameFullPath()
+            m_oDiag.BLFileName = oEtat.getFileName()
         Catch ex As Exception
             CSDebug.dispError("diagnostic_finalisation::createBL_CR : " & ex.Message)
         End Try
@@ -1066,4 +1067,6 @@ Public Class diagnostic_ContratCommercial
         suivant(sender)
 
     End Sub
+
+
 End Class

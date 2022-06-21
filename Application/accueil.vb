@@ -4586,9 +4586,9 @@ Public Class accueil
         pLvItem.SubItems.Add(Trim(pPulverisateur.Commune.ToString)) ' Commune
         If pPulverisateur.dateProchainControle.ToString <> "" And pPulverisateur.dateProchainControle.ToString <> "00:00:00" And pPulverisateur.dateProchainControle.ToString <> "1899-12-30 00:00:00" Then
             Dim tmpDateNextDiag As Date = CSDate.FromCrodipString(pPulverisateur.dateProchainControle)
-            pLvItem.SubItems.Add(tmpDateNextDiag.ToShortDateString) ' Dernier contrôle
+            pLvItem.SubItems.Add(tmpDateNextDiag.ToShortDateString) 'prochain contrôle
         Else
-            pLvItem.SubItems.Add("") ' Dernier contrôle
+            pLvItem.SubItems.Add("") ' prochain contrôle
         End If
 
         ' Conclusion du dernier Diag sur le pulvé

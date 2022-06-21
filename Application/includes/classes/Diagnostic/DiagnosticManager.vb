@@ -971,6 +971,42 @@ Public Class DiagnosticManager
         Return tmpDiagnosticId
     End Function
 
+    Public Shared Function UpdateFileNames(ByVal pDiag As Diagnostic) As Boolean
+        Debug.Assert(Not String.IsNullOrEmpty(pDiag.id))
+        Dim bReturn As Boolean = False
+        Try
+
+            Dim oCSDb As New CSDb(True)
+
+            Dim bddCommande As DbCommand
+            ' On test si la connexion est déjà ouverte ou non
+            bddCommande = oCSDb.getConnection().CreateCommand
+
+            ' Initialisation de la requete
+            Dim paramsQuery2 As String = "id='" & pDiag.id & "'"
+
+
+            paramsQuery2 = paramsQuery2 & " , RIFileName='" & CSDb.secureString(pDiag.RIFileName) & "'"
+            paramsQuery2 = paramsQuery2 & " , SMFileName='" & CSDb.secureString(pDiag.SMFileName) & "'"
+            paramsQuery2 = paramsQuery2 & " , CCFileName='" & CSDb.secureString(pDiag.CCFileName) & "'"
+            paramsQuery2 = paramsQuery2 & " , BLFileName='" & CSDb.secureString(pDiag.BLFileName) & "'"
+            paramsQuery2 = paramsQuery2 & " , ESFileName='" & CSDb.secureString(pDiag.ESFileName) & "'"
+            paramsQuery2 = paramsQuery2 & " , COPROFileName='" & CSDb.secureString(pDiag.COPROFileName) & "'"
+            paramsQuery2 = paramsQuery2 & " , FACTFileNames='" & CSDb.secureString(pDiag.FACTFileNames) & "'"
+
+
+            ' On finalise la requete et en l'execute
+            bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE id='" & pDiag.id & "'"
+
+            bddCommande.ExecuteNonQuery()
+            oCSDb.free()
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispFatal("DiagnosticManager(" & pDiag.id & ")::updateFileNAmes : " & ex.Message.ToString)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
     Public Shared Function save(ByVal pDiag As Diagnostic, Optional bsyncro As Boolean = False) As Boolean
         'Debug.Assert(Not String.IsNullOrEmpty(objid))
         Dim bReturn As Boolean = False
@@ -1472,7 +1508,7 @@ Public Class DiagnosticManager
                 'CSDebug.dispInfo("Sauvegarde des buses")
                 '                oCSDb.getInstance()
                 oCSDb.Execute("DELETE FROM diagnosticBusesDetail where idDiagnostic = '" & pDiag.id & "'")
-                oCSDB.Execute("DELETE FROM diagnosticBuses where idDiagnostic = '" & pDiag.id & "'")
+                oCSDb.Execute("DELETE FROM diagnosticBuses where idDiagnostic = '" & pDiag.id & "'")
                 '               oCSDB.free()
                 If Not pDiag.diagnosticBusesList Is Nothing Then
                     If Not pDiag.diagnosticBusesList.Liste Is Nothing Then

@@ -97,6 +97,6 @@ Public Class FrmAddCoProp
         If oEtat.genereEtat() Then
             oEtat.Open()
         End If
-
+        DiagnosticManager.UpdateFileNames(m_odiag)
     End Sub
 End Class

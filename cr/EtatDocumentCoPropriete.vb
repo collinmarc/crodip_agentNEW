@@ -61,7 +61,7 @@ Public Class EtatDocumentCoPropriete
                     objReport.Export()
                     objReport.Close()
                 End Using
-
+                m_oDiag.COPROFileName = getFileName()
 
             End If
         Catch ex As Exception

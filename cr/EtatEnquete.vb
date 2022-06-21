@@ -44,6 +44,7 @@ Public Class EtatEnquete
                     objReport.Export()
                     objReport.Close()
                 End Using
+                m_oDiag.ESFileName = getFileName()
 
             End If
         Catch ex As Exception

@@ -681,7 +681,7 @@ Public Class diagnostic_satisfaction
         If oEtat.GenereEtat() Then
             oEtat.Open()
         End If
-
+        DiagnosticManager.UpdateFileNames(m_Diagnostic)
     End Sub
     ''' <summary>
     ''' Génération du document de co-propriété

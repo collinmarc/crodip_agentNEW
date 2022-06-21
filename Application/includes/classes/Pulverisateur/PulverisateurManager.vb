@@ -655,24 +655,32 @@ Public Class PulverisateurManager
         Try
             ' On récupère les résultats
 
-            Dim strQuery As String = "SELECT Pulverisateur.*, Exploitation.raisonsociale, Exploitation.prenomExploitant, Exploitation.nomExploitant, Exploitation.codepostal,Exploitation.commune " _
-                                     & " FROM (ExploitationTOPulverisateur INNER JOIN (Diagnostic RIGHT JOIN Pulverisateur ON Diagnostic.pulverisateurId = Pulverisateur.id) ON ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation ON ExploitationTOPulverisateur.idExploitation = Exploitation.id "
-            strQuery = strQuery & " WHERE NOT isSupprimeCoProp AND"
-            strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) OR Diagnostic.controleDateFin IS NULL) AND "
-            strQuery = strQuery & " pulverisateur.idStructure = " & pAgent.idStructure
-            strQuery = strQuery & " ORDER BY  Pulverisateur.dateProchainControle ASC"
-            Dim tmpListProfils As DbDataReader = bdd.getResult2s(strQuery)
+            Dim strQuery As String = ""
+            'strQuery = "SELECT Pulverisateur.*, Exploitation.raisonsociale, Exploitation.prenomExploitant, Exploitation.nomExploitant, Exploitation.codepostal,Exploitation.commune " _
+            '                         & " FROM (ExploitationTOPulverisateur INNER JOIN (Diagnostic RIGHT JOIN Pulverisateur ON Diagnostic.pulverisateurId = Pulverisateur.id) ON ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation ON ExploitationTOPulverisateur.idExploitation = Exploitation.id "
+            'strQuery = strQuery & " WHERE Not isSupprimeCoProp And"
+            'strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) Or Diagnostic.controleDateFin Is NULL) And "
+            'strQuery = strQuery & " pulverisateur.idStructure = " & pAgent.idStructure
+            'strQuery = strQuery & " ORDER BY  Pulverisateur.dateProchainControle ASC"
+
+            strQuery = "SELECT p.id, p.numeroNational, p.type, p.marque, p.dateProchainControle, p.controleEtat, e.raisonSociale,e.prenomExploitant,e.nomExploitant,e.codePostal, e.commune"
+            '            strQuery = strQuery & " , (Select  Max(d.controledateFin) From Diagnostic d  where d.pulverisateurId = p.id) as DateCtrl"
+            strQuery = strQuery & " From Pulverisateur p inner  join ExploitationTOPulverisateur e2p on e2p.idPulverisateur = p.id inner join Exploitation e on e2p.idExploitation = e.id "
+            strQuery = strQuery & " WHERE p.idStructure = " & pAgent.idStructure
+            strQuery = strQuery & " ORDER BY  P.dateProchainControle ASC"
+
+            Dim oDataReader As DbDataReader = bdd.getResult2s(strQuery)
 
             Dim i As Integer = 0
             ' Puis on les parcours
-            While tmpListProfils.Read()
+            While oDataReader.Read()
                 ' On rempli notre tableau
                 Dim tmpPulverisateur As New Pulverisateur
                 ' On rempli notre tableau
                 Dim tmpColId As Integer = 0
-                While tmpColId < tmpListProfils.FieldCount()
-                    If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                While tmpColId < oDataReader.FieldCount()
+                    If Not oDataReader.IsDBNull(tmpColId) Then
+                        tmpPulverisateur.Fill(oDataReader.GetName(tmpColId), oDataReader.Item(tmpColId))
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -689,9 +697,9 @@ Public Class PulverisateurManager
                     End If
                 End If
             End While
-            tmpListProfils.Close()
+            oDataReader.Close()
         Catch ex As Exception ' On intercepte l'erreur
-            CSDebug.dispError("PulverisateurManager - getListeOfPulverisateur : " & ex.Message)
+            CSDebug.dispError("PulverisateurManager - getListeOfPulverisateur  " & ex.Message)
         End Try
         bdd.free()
         'on retourne les pulvé
@@ -708,10 +716,10 @@ Public Class PulverisateurManager
 
             Dim strQuery As String = "SELECT Pulverisateur.*, Exploitation.raisonsociale, Exploitation.prenomExploitant, Exploitation.nomExploitant, Exploitation.codepostal,Exploitation.commune " _
                                       & " FROM (ExploitationTOPulverisateur INNER JOIN Pulverisateur On ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation On ExploitationTOPulverisateur.idExploitation = Exploitation.id "
-            '            strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) OR Diagnostic.controleDateFin IS NULL) AND "
+            '            strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) Or Diagnostic.controleDateFin Is NULL) And "
             strQuery = strQuery & " WHERE pulverisateur.idStructure = " & pAgent.idStructure
             If Not pTous Then
-                strQuery = strQuery & " AND  NOT ExploitationTOPulverisateur.isSupprimeCoProp"
+                strQuery = strQuery & " And  Not ExploitationTOPulverisateur.isSupprimeCoProp"
             End If
             strQuery = strQuery & " ORDER BY  Pulverisateur.dateProchainControle ASC"
             Dim tmpListProfils As DbDataReader = bdd.getResult2s(strQuery)
@@ -744,7 +752,7 @@ Public Class PulverisateurManager
             End While
             tmpListProfils.Close()
         Catch ex As Exception ' On intercepte l'erreur
-            CSDebug.dispError("PulverisateurManager - getListeOfPulverisateur : " & ex.Message)
+            CSDebug.dispError("PulverisateurManager - getListeOfPulverisateur  " & ex.Message)
         End Try
         bdd.free()
         'on retourne les pulvé
@@ -756,8 +764,8 @@ Public Class PulverisateurManager
         Dim arrItems(0) As Pulverisateur
         Dim oCSdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCSdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM Pulverisateur WHERE (dateModificationAgent<>dateModificationCrodip Or  dateModificationCrodip is null)"
-        bddCommande.CommandText = bddCommande.CommandText & " AND idStructure=" & agent.idStructure
+        bddCommande.CommandText = "SELECT * FROM Pulverisateur WHERE (dateModificationAgent<>dateModificationCrodip Or  dateModificationCrodip Is null)"
+        bddCommande.CommandText = bddCommande.CommandText & " And idStructure=" & agent.idStructure
 
         Try
             ' On récupère les résultats

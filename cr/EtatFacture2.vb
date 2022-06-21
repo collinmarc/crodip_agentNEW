@@ -56,7 +56,6 @@ Public Class EtatFacture2
                     objReport.Export()
                     objReport.Close()
                 End Using
-
             End If
         Catch ex As Exception
             CSDebug.dispError("EtatFacture.GenereEtat ERR" & ex.Message)

@@ -280,6 +280,10 @@ Public Class Diagnostic
         diagRemplacementId = ""
         isSupprime = False
         oContratCommercial = New ContratCommercial()
+        FACTFileNames = ""
+        BLFileName = ""
+        ESFileName = ""
+        COPROFileName = ""
     End Sub
 
     Public Sub New(ByVal pAgent As Agent, ByVal pPulve As Pulverisateur, ByVal pClient As Exploitation)
