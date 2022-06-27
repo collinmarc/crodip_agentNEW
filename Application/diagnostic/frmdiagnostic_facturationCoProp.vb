@@ -1594,11 +1594,11 @@ Public Class frmdiagnostic_facturationCoProp
             pFacture.pathPDF = oEtat.getFileName()
             If m_oDiag IsNot Nothing Then
                 Dim tabNumFact As String() = m_oDiag.FACTFileNames.Split(";")
-                If Not tabNumFact.Contains(pFacture.idFacture) Then
+                If Not tabNumFact.Contains(pFacture.pathPDF) Then
                     If Not String.IsNullOrEmpty(m_oDiag.FACTFileNames) Then
                         m_oDiag.FACTFileNames = m_oDiag.FACTFileNames & ";"
                     End If
-                    m_oDiag.FACTFileNames = m_oDiag.FACTFileNames & pFacture.idFacture
+                    m_oDiag.FACTFileNames = m_oDiag.FACTFileNames & pFacture.pathPDF
                 End If
             End If
             bReturn = True

@@ -1,5 +1,6 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
+Imports System.Net
 
 Public Class DiagnosticManager
     Inherits CrodipManager
@@ -58,65 +59,19 @@ Public Class DiagnosticManager
         EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, pDiag.RIFileName)
         EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, pDiag.SMFileName)
         EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, pDiag.CCFileName)
-        If My.Settings.SynchroEtatMode = "FTP" Then
-            bReturn = SendFTPEtats(pDiag)
-        Else
-            bReturn = SendHTTPEtats(pDiag)
+        EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, pDiag.BLFileName)
+        EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, pDiag.ESFileName)
+        If Not String.IsNullOrEmpty(pDiag.COPROFileName) Then
+            EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, pDiag.COPROFileName)
         End If
-        Return bReturn
-    End Function
-    Public Shared Function GetEtats(pDiag As Diagnostic) As Boolean
-        Dim bReturn As Boolean
-        If My.Settings.SynchroEtatMode = "FTP" Then
-            bReturn = getFTPEtats(pDiag)
-        Else
-            bReturn = getHTTPEtats(pDiag)
-        End If
+        For Each FileName As String In pDiag.FACTFileNames.Split(";")
+            EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_FACTURE, FileName)
+        Next
+        bReturn = SendHTTPEtats(pDiag)
         Return bReturn
     End Function
 
-    ''' <summary>
-    ''' Envoie par FTP des Etats relatid au diag
-    ''' </summary>
-    ''' <param name="pDiag"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Private Shared Function SendFTPEtats(pDiag As Diagnostic) As Boolean
-        Dim bReturn As Boolean
-        Try
-            bReturn = True
-            Dim oCSftp As CSFTP = New CSFTP()
-            Dim filePath As String
-            If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
-                filePath = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.RIFileName
-                If System.IO.File.Exists(filePath) Then
-                    bReturn = oCSftp.Upload(filePath)
-                    bReturn = oCSftp.FileExists(pDiag.RIFileName)
-                    SynchronisationManager.LogSynchroElmt(filePath)
-                End If
-            End If
-            If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
-                filePath = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.SMFileName
-                If System.IO.File.Exists(filePath) Then
-                    SynchronisationManager.LogSynchroElmt(filePath)
-                    bReturn = bReturn And oCSftp.Upload(filePath)
-                    bReturn = bReturn And oCSftp.FileExists(pDiag.SMFileName)
-                End If
-            End If
-            If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
-                filePath = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.CCFileName
-                If System.IO.File.Exists(filePath) Then
-                    SynchronisationManager.LogSynchroElmt(filePath)
-                    bReturn = bReturn And oCSftp.Upload(filePath)
-                    bReturn = bReturn And oCSftp.FileExists(pDiag.CCFileName)
-                End If
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("DiagnosticManager.SendFTPEtats ERR : " & ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
+
     Friend Shared Function SendHTTPEtats(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
@@ -145,6 +100,36 @@ Public Class DiagnosticManager
                     My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
                     SynchronisationManager.LogSynchroElmt(filePath)
                 End If
+            End If
+            If Not String.IsNullOrEmpty(pDiag.BLFileName) Then
+                filePath = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.BLFileName
+                If System.IO.File.Exists(filePath) Then
+                    My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
+                    SynchronisationManager.LogSynchroElmt(filePath)
+                End If
+            End If
+            If Not String.IsNullOrEmpty(pDiag.ESFileName) Then
+                filePath = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.ESFileName
+                If System.IO.File.Exists(filePath) Then
+                    My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
+                    SynchronisationManager.LogSynchroElmt(filePath)
+                End If
+            End If
+            If Not String.IsNullOrEmpty(pDiag.COPROFileName) Then
+                filePath = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.COPROFileName
+                If System.IO.File.Exists(filePath) Then
+                    My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
+                    SynchronisationManager.LogSynchroElmt(filePath)
+                End If
+            End If
+            If Not String.IsNullOrEmpty(pDiag.FACTFileNames) Then
+                For Each Filename As String In pDiag.FACTFileNames.Split(";")
+                    filePath = GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & Filename
+                    If System.IO.File.Exists(filePath) Then
+                        My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
+                        SynchronisationManager.LogSynchroElmt(filePath)
+                    End If
+                Next
             End If
         Catch ex As Exception
             CSDebug.dispError("DiagnosticManager.SendHTTPEtats ERR : " & ex.Message)
@@ -192,40 +177,120 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Friend Shared Function getHTTPEtats(pDiag As Diagnostic) As Boolean
+    Private Shared Function GetWSEtat(pDiagId As String, pfileName As String, pDossierStockage As String) As Boolean
         Dim bReturn As Boolean
         Try
-            bReturn = True
+
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Dim url As String = objWSCrodip.Url
             Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatDiagUser, My.Settings.SynhcroEtatDiagPwd)
             Dim filePath As String
-            If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
-                filePath = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.RIFileName
+            filePath = pDossierStockage & "/" & pfileName
+            If Not String.IsNullOrEmpty(pfileName) Then
                 If System.IO.File.Exists(filePath) Then
                     System.IO.File.Delete(filePath)
                 End If
-                Dim uri As New Uri(WSCrodip.URL & "/../admin/diagnostic/get-pdf-view?id=" & pDiag.id)
-                My.Computer.Network.DownloadFile(uri, filePath, Credential, False, 100000, True)
-                'My.Computer.Network.DownloadFile(uri, filePath, My.Settings.SynchroEtatDiagUser, My.Settings.SynhcroEtatDiagPwd)
+                Dim uri As New Uri(WSCrodip.URL & "/../pdf/" & pfileName)
+                '                My.Computer.Network.DownloadFile(uri, filePath, Credential, False, 100000, True)
+                Using Wc As WebClient = New WebClient()
+                        '                    Wc.Headers.Add("User-Agent:crodip")
+                        '                   Wc.Headers.Add("User-password:crodip35")
+                        Wc.Credentials = Credential
+                        Wc.DownloadFile(uri, filePath)
+                    End Using
+                End If
+                bReturn = IO.File.Exists(filePath)
+            'Recopie dans le Répertoire de stock
+            If IO.File.Exists(filePath) Then
+                System.IO.File.Copy(filePath, GlobalsCRODIP.CONST_STOCK_PDFS & "\" & filePath)
+                bReturn = True
             End If
-            'L'appli ne permet pas de redescendre les SM et CC
-            'If Not String.IsNullOrEmpty(pDiag.SMFileName) Then
-            '    filePath = GlobalsCRODIP.CONST_PATH_EXP & "/" & pDiag.SMFileName
-            '    If System.IO.File.Exists(filePath) Then
-            '        System.IO.File.Delete(filePath)
-            '    End If
-            '    My.Computer.Network.DownloadFile(New Uri(url & "/pdf/" & pDiag.RIFileName), filePath, "crodip", "crodip35")
-            'End If
-            'If Not String.IsNullOrEmpty(pDiag.CCFileName) Then
-            '    filePath = GlobalsCRODIP.CONST_PATH_EXP & "/" & pDiag.CCFileName
-            '    If System.IO.File.Exists(filePath) Then
-            '        System.IO.File.Delete(filePath)
-            '    End If
-            '    My.Computer.Network.DownloadFile(objWSCrodip.Url + "/pdf/" & pDiag.RIFileName, filePath, "crodip", "crodip35")
-            'End If
+
         Catch ex As Exception
-            CSDebug.dispError("DiagnosticManager.GetHTTPEtats ERR : (" & WSCrodip.URL & "/../admin/diagnostic/get-pdf-view?id=" & pDiag.id & ")" & ex.Message)
+
+            CSDebug.dispError("diagnosticManager.WSGetEtat ERR", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Friend Shared Function getWSEtatsRI(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            bReturn = GetWSEtat(pDiag.id, pDiag.RIFileName, GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
+
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.getWSEtatsRI ERR : (" & WSCrodip.URL & "/../admin/diagnostic/get-pdf-view?id=" & pDiag.id & ")" & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Friend Shared Function getWSEtatsSM(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            bReturn = GetWSEtat(pDiag.id, pDiag.SMFileName, GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.getWSEtatsSM ERR : ", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Friend Shared Function getWSEtatsCC(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            bReturn = GetWSEtat(pDiag.id, pDiag.CCFileName, GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.getWSEtatsRI ERR :", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Friend Shared Function getWSEtatsBL(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            bReturn = GetWSEtat(pDiag.id, pDiag.BLFileName, GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.getWSEtatsBL ERR :", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Friend Shared Function getWSEtatsES(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            bReturn = GetWSEtat(pDiag.id, pDiag.ESFileName, GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.getWSEtatsES ERR :", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Friend Shared Function getWSEtatsCOPRO(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            bReturn = GetWSEtat(pDiag.id, pDiag.COPROFileName, GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.getWSEtatsCOPRO ERR :", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Friend Shared Function getWSEtatsFACTs(pDiag As Diagnostic) As Boolean
+        Dim bReturn As Boolean
+        Try
+            bReturn = True
+            Dim filenames As String = pDiag.FACTFileNames
+            Dim tab As String() = filenames.Split(";")
+            For Each filename As String In tab
+                bReturn = GetWSEtat(pDiag.id, filename, GlobalsCRODIP.CONST_PATH_EXP_FACTURE)
+            Next
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.getWSEtatsFACTs ERR :", ex)
             bReturn = False
         End Try
         Return bReturn
@@ -395,7 +460,7 @@ Public Class DiagnosticManager
             '#########################################################
 
             Dim bddCommande5 As DbCommand
-            bddCommande5 = oCsdb.getConnection().CreateCommand
+            bddCommande5 = oCSDB.getConnection().CreateCommand
             bddCommande5.CommandText = "SELECT * FROM DiagnosticMano542 WHERE DiagnosticMano542.idDiagnostic='" & pDiag.id & "' ORDER BY id"
             ' On récupère les résultats
             Dim oDataReader As DbDataReader = bddCommande5.ExecuteReader
@@ -424,7 +489,7 @@ Public Class DiagnosticManager
             '#########################################################
             ' On récupère les pressions aux tronçons
             Dim bddCommande6 As DbCommand
-            bddCommande6 = oCsdb.getConnection().CreateCommand
+            bddCommande6 = oCSDB.getConnection().CreateCommand
             bddCommande6.CommandText = "SELECT * FROM DiagnosticTroncons833 WHERE DiagnosticTroncons833.idDiagnostic='" & pDiag.id & "'"
             ' On récupère les résultats
             oDataReader = bddCommande6.ExecuteReader
@@ -507,7 +572,7 @@ Public Class DiagnosticManager
                 oDiag.organismePresId = pStructureId
                 oDiag.pulverisateurId = pPulveId
                 oDiag.id = Trim(dataResults.Item(0).ToString)
-                oDiag.controleDateFin = CSDate.TOCRODIPString(Trim(dataResults.Item(1).ToString))
+                oDiag.controleDateFin = CSDate.ToCRODIPString(Trim(dataResults.Item(1).ToString))
                 oDiag.controleEtat = dataResults.Item(2).ToString
                 colDiag.Add(oDiag)
             End While

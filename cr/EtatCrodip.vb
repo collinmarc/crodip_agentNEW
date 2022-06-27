@@ -110,23 +110,28 @@ Public Class EtatCrodip
     Public Shared Function getPDFs(pPathDest As String, pFileName As String) As String
         Dim FileName As String = pPathDest & pFileName
         Try
-            If My.Settings.TypeStockPDF = "ZIP" Then
-                If Not File.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
-                    FileName = ""
-                Else
-                    Using z As ZipFile = ZipFile.Read(GlobalsCRODIP.CONST_STOCK_PDFS)
-                        z.Password = GlobalsCRODIP.CONST_PDFS_DIAG_PWD
-                        z.ExtractSelectedEntries(pFileName, pPathDest, "", ExtractExistingFileAction.OverwriteSilently)
-                    End Using
+            'If My.Settings.TypeStockPDF = "ZIP" Then
+            '    If Not File.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
+            '        FileName = ""
+            '    Else
+            '        Using z As ZipFile = ZipFile.Read(GlobalsCRODIP.CONST_STOCK_PDFS)
+            '            z.Password = GlobalsCRODIP.CONST_PDFS_DIAG_PWD
+            '            z.ExtractSelectedEntries(pFileName, pPathDest, "", ExtractExistingFileAction.OverwriteSilently)
+            '        End Using
+            '    End If
+            'End If
+            'If My.Settings.TypeStockPDF = "DIR" Then
+            If Not File.Exists(FileName) Then
+                If File.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & FileName) Then
+                    System.IO.File.Copy(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & FileName, FileName)
                 End If
             End If
-            If My.Settings.TypeStockPDF = "DIR" Then
-                If File.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & FileName) Then
-                    If Not File.Exists(FileName) Then
-                        System.IO.File.Copy(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & FileName, FileName)
-                    End If
-                End If
-                End If
+            If File.Exists(FileName) Then
+                FileName = pPathDest & pFileName
+            Else
+                FileName = ""
+            End If
+            ' End If
         Catch ex As Exception
             CSDebug.dispError("etatCrodip.getPFS ERR", ex)
             FileName = ""

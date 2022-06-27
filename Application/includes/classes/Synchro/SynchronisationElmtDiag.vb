@@ -50,12 +50,6 @@ Public Class SynchronisationElmtDiag
                 SetStatus("Réception MAJ contrôle n°" & Me.IdentifiantChaine & "...")
                 oDiag = DiagnosticManager.getWSDiagnosticById(pAgent.id, Me.IdentifiantChaine)
                 DiagnosticManager.save(oDiag, True)
-                'Récupération des etats du diagnostic s'ils n'existent pas
-                If Not String.IsNullOrEmpty(oDiag.RIFileName) Then
-                    If Not File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName) Then
-                        DiagnosticManager.GetEtats(oDiag)
-                    End If
-                End If
 
                 bReturn = True
             Catch ex As Exception

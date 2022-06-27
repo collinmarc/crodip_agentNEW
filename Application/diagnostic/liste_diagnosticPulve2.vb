@@ -2836,7 +2836,9 @@ Public Class liste_diagnosticPulve2
                 Dim oDiag As New Diagnostic()
 
                 For i As Int32 = 0 To dataResults.FieldCount - 1
-                    oDiag.Fill(dataResults.GetName(i), dataResults.GetValue(i))
+                    If Not dataResults.IsDBNull(i) Then
+                        oDiag.Fill(dataResults.GetName(i), dataResults.GetValue(i))
+                    End If
                 Next
                 m_bsrcDiag.Add(oDiag)
             End While
@@ -2875,10 +2877,10 @@ Public Class liste_diagnosticPulve2
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
                 Else
-                    If Not oDiag.IsFichierRIExists() Then
-                        oCellI.Value = New Bitmap(1, 1)
-                        oCellI.Tag = ""
-                    End If
+                    'If Not oDiag.IsFichierRIExists() Then
+                    '    oCellI.Value = New Bitmap(1, 1)
+                    '    oCellI.Tag = ""
+                    'End If
                 End If
 
                 oCellI = DataGridView1.Rows(nRow).Cells(col_SM.Index)
@@ -2888,10 +2890,10 @@ Public Class liste_diagnosticPulve2
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
                 Else
-                    If Not oDiag.IsFichierSMExists() Then
-                        oCellI.Value = New Bitmap(1, 1)
-                        oCellI.Tag = ""
-                    End If
+                    'If Not oDiag.IsFichierSMExists() Then
+                    '    oCellI.Value = New Bitmap(1, 1)
+                    '    oCellI.Tag = ""
+                    'End If
                 End If
 
                 oCellI = DataGridView1.Rows(nRow).Cells(col_contrat.Index)
@@ -2901,10 +2903,10 @@ Public Class liste_diagnosticPulve2
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
                 Else
-                    If Not oDiag.IsFichierCCExists() Then
-                        oCellI.Value = New Bitmap(1, 1)
-                        oCellI.Tag = ""
-                    End If
+                    'If Not oDiag.IsFichierCCExists() Then
+                    '    oCellI.Value = New Bitmap(1, 1)
+                    '    oCellI.Tag = ""
+                    'End If
                 End If
 
                 oCellI = DataGridView1.Rows(nRow).Cells(FactureColumn.Index)
@@ -2924,10 +2926,10 @@ Public Class liste_diagnosticPulve2
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
                 Else
-                    If Not oDiag.IsFichierBLExists() Then
-                        oCellI.Value = New Bitmap(1, 1)
-                        oCellI.Tag = ""
-                    End If
+                    'If Not oDiag.IsFichierBLExists() Then
+                    'oCellI.Value = New Bitmap(1, 1)
+                    'oCellI.Tag = ""
+                    'End If
                 End If
 
                 oCellI = DataGridView1.Rows(nRow).Cells(ESColumn.Index)
@@ -2937,10 +2939,10 @@ Public Class liste_diagnosticPulve2
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
                 Else
-                    If Not oDiag.IsFichierESExists() Then
-                        oCellI.Value = New Bitmap(1, 1)
-                        oCellI.Tag = ""
-                    End If
+                    'If Not oDiag.IsFichierESExists() Then
+                    '    oCellI.Value = New Bitmap(1, 1)
+                    '    oCellI.Tag = ""
+                    'End If
                 End If
 
                 oCellI = DataGridView1.Rows(nRow).Cells(COPROColumn.Index)
@@ -2950,10 +2952,10 @@ Public Class liste_diagnosticPulve2
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray
                 Else
-                    If Not oDiag.IsFichierCoProExists() Then
-                        oCellI.Value = New Bitmap(1, 1)
-                        oCellI.Tag = ""
-                    End If
+                    'If Not oDiag.IsFichierCoProExists() Then
+                    '    oCellI.Value = New Bitmap(1, 1)
+                    '    oCellI.Tag = ""
+                    'End If
                 End If
 
 
@@ -3031,13 +3033,13 @@ Public Class liste_diagnosticPulve2
                 Case col_contrat.Index
                     VisualisationCC()
                 Case FactureColumn.Index
-                    VisualisationFacture()
+                    VisualisationFactures()
                 Case BLColumn.Index
                     VisualisationBL()
                 Case ESColumn.Index
                     VisualisationES()
                 Case COPROColumn.Index
-                    VisualisationCoPro()
+                    VisualisationCopro()
                 Case col_Signatures.Index
                     Signatures()
                 Case col_Details.Index
@@ -3126,7 +3128,11 @@ Public Class liste_diagnosticPulve2
         If m_oDiag IsNot Nothing Then
             Try
                 If Not String.IsNullOrEmpty(m_oDiag.RIFileName) Then
-                    EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.RIFileName)
+                    Dim FileName As String
+                    FileName = EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.RIFileName)
+                    If String.IsNullOrEmpty(FileName) Then
+                        DiagnosticManager.getWSEtatsRI(m_oDiag)
+                    End If
                     CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.RIFileName)                ' On récupère le Diagnostic selectionné
                 End If
             Catch ex As Exception
@@ -3135,10 +3141,15 @@ Public Class liste_diagnosticPulve2
         End If
     End Sub
     Private Sub VisualisationSM()
+        Dim FileName As String = ""
         If m_oDiag IsNot Nothing Then
             Try
                 If Not String.IsNullOrEmpty(m_oDiag.SMFileName) Then
-                    EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.SMFileName)
+                    FileName = EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.SMFileName)
+                    If String.IsNullOrEmpty(FileName) Then
+                        DiagnosticManager.getWSEtatsSM(m_oDiag)
+                    End If
+
                     CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.SMFileName)                ' On récupère le Diagnostic selectionné
                 End If
             Catch ex As Exception
@@ -3147,10 +3158,15 @@ Public Class liste_diagnosticPulve2
         End If
     End Sub
     Private Sub VisualisationCC()
+        Dim FileName As String = ""
         If m_oDiag IsNot Nothing Then
             Try
                 If Not String.IsNullOrEmpty(m_oDiag.CCFileName) Then
-                    EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.CCFileName)
+                    FileName = EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.CCFileName)
+                    If String.IsNullOrEmpty(FileName) Then
+                        DiagnosticManager.getWSEtatsCC(m_oDiag)
+                    End If
+
                     CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.CCFileName)                ' On récupère le Diagnostic selectionné
                 End If
             Catch ex As Exception
@@ -3159,10 +3175,15 @@ Public Class liste_diagnosticPulve2
         End If
     End Sub
     Private Sub VisualisationBL()
+        Dim FileName As String
         If m_oDiag IsNot Nothing Then
             Try
                 If Not String.IsNullOrEmpty(m_oDiag.BLFileName) Then
-                    EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.BLFileName)
+                    FileName = EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.BLFileName)
+                    If String.IsNullOrEmpty(FileName) Then
+                        DiagnosticManager.getWSEtatsBL(m_oDiag)
+                    End If
+
                     CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.BLFileName)                ' On récupère le Diagnostic selectionné
                 End If
             Catch ex As Exception
@@ -3171,10 +3192,15 @@ Public Class liste_diagnosticPulve2
         End If
     End Sub
     Private Sub VisualisationES()
+        Dim FileName As String = ""
         If m_oDiag IsNot Nothing Then
             Try
                 If Not String.IsNullOrEmpty(m_oDiag.ESFileName) Then
-                    EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.ESFileName)
+                    FileName = EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.ESFileName)
+                    If String.IsNullOrEmpty(FileName) Then
+                        DiagnosticManager.getWSEtatsES(m_oDiag)
+                    End If
+
                     CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.ESFileName)                ' On récupère le Diagnostic selectionné
                 End If
             Catch ex As Exception
@@ -3183,10 +3209,15 @@ Public Class liste_diagnosticPulve2
         End If
     End Sub
     Private Sub VisualisationCopro()
+        Dim Filename As String = ""
         If m_oDiag IsNot Nothing Then
             Try
                 If Not String.IsNullOrEmpty(m_oDiag.COPROFileName) Then
-                    EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.COPROFileName)
+                    Filename = EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, m_oDiag.COPROFileName)
+                    If String.IsNullOrEmpty(Filename) Then
+                        DiagnosticManager.getWSEtatsCOPRO(m_oDiag)
+                    End If
+
                     CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_oDiag.COPROFileName)                ' On récupère le Diagnostic selectionné
                 End If
             Catch ex As Exception
@@ -3195,14 +3226,19 @@ Public Class liste_diagnosticPulve2
         End If
     End Sub
 
-    Private Sub VisualisationFacture()
+    Private Sub VisualisationFactures()
+        Dim FileName As String = ""
         If m_oDiag IsNot Nothing Then
             Try
                 Dim olst As List(Of Facture)
                 olst = FactureManager.getFacturesByDiagId(m_oDiag.id)
                 For Each oFact As Facture In olst
                     If Not String.IsNullOrEmpty(oFact.pathPDF) Then
-                        EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_FACTURE, oFact.pathPDF)
+                        FileName = EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_FACTURE, oFact.pathPDF)
+                        If String.IsNullOrEmpty(FileName) Then
+                            DiagnosticManager.getWSEtatsFACTs(m_oDiag)
+                        End If
+
                         CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & oFact.pathPDF)                ' On récupère le Diagnostic selectionné
                     End If
 
