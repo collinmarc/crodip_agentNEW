@@ -56,51 +56,33 @@ Public Class EtatCrodip
         Dim FileName As String = m_Path & getFileName()
         Dim bReturn As Boolean = False
         Try
-            If My.Settings.TypeStockPDF = "ZIP" Then
-                If Not File.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
-                    Using z As New ZipFile()
-                        z.Password = GlobalsCRODIP.CONST_PDFS_DIAG_PWD
-                        z.Save(GlobalsCRODIP.CONST_STOCK_PDFS)
-                    End Using
-                End If
-                If File.Exists(FileName) Then
-                    Using z As ZipFile = ZipFile.Read(GlobalsCRODIP.CONST_STOCK_PDFS)
-                        z.Password = GlobalsCRODIP.CONST_PDFS_DIAG_PWD
-                        z.AddFile(FileName, m_Path)
-                        z.Save()
-                    End Using
-                    bReturn = True
-                End If
+            Dim oDI As New DirectoryInfo(GlobalsCRODIP.CONST_STOCK_PDFS)
+            If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
+                oDI.Create()
+                oDI.Attributes = FileAttributes.Hidden
             End If
-            If My.Settings.TypeStockPDF = "DIR" Then
-                Dim oDI As New DirectoryInfo(GlobalsCRODIP.CONST_STOCK_PDFS)
-                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
-                    oDI.Create()
-                    oDI.Attributes = FileAttributes.Hidden
-                End If
 
-                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE) Then
-                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE)
+            If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE) Then
+                oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE)
 
-                End If
-                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE) Then
-                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE)
+            End If
+            If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE) Then
+                oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE)
 
-                End If
-                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC) Then
-                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
+            End If
+            If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC) Then
+                oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
 
-                End If
-                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_FACTURE) Then
-                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_FACTURE)
+            End If
+            If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS & "\" & GlobalsCRODIP.CONST_PATH_EXP_FACTURE) Then
+                oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_FACTURE)
 
-                End If
+            End If
 
-                If File.Exists(FileName) Then
-                        System.IO.File.Copy(FileName, GlobalsCRODIP.CONST_STOCK_PDFS & "\" & FileName)
-                        bReturn = True
-                    End If
-                End If
+            If File.Exists(FileName) Then
+                System.IO.File.Copy(FileName, GlobalsCRODIP.CONST_STOCK_PDFS & "\" & FileName)
+                bReturn = True
+            End If
         Catch ex As Exception
             CSDebug.dispError("EtatCrodip.AddPFS ERR", ex)
             bReturn = False

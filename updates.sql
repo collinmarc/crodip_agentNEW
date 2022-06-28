@@ -268,40 +268,12 @@
 
 --INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.8.00", #29/11/2021# , "CoProprietaire") 
 
-CREATE TABLE AgentPC (
-    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
-    idCrodip               TEXT,
-    idStructure            INTEGER,
-    cleUtilisation         TEXT,
-    libelle                TEXT,
-    etat                   BIT,
-    numInterne             TEXT,
-    AgentSuppression       TEXT,
-    RaisonSuppression      TEXT,
-    dateSuppression        DATETIME,
-    isSupprime             BIT,
-    dateModificationAgent  DATETIME,
-    dateModificationCrodip DATETIME
-);
+CREATE TABLE AgentPC (id INTEGER  PRIMARY KEY AUTOINCREMENT,idCrodip TEXT,idStructure INTEGER,cleUtilisation TEXT,libelle                TEXT,etat                   BIT,numInterne             TEXT,AgentSuppression       TEXT,RaisonSuppression      TEXT,dateSuppression        DATETIME,isSupprime             BIT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
 
 
-CREATE TABLE POOL (
-    id                     INTEGER        PRIMARY KEY AUTOINCREMENT,
-    idCRODIP               TEXT,
-    libelle                TEXT,
-    idPC                   INTEGER        REFERENCES AgentPC (id) ON DELETE SET NULL,
-    nbPastillesVertes      INTEGER        DEFAULT (0),
-    dateModificationAgent  DATETIME,
-    dateModificationCrodip DATETIME,
-    idStructure            INTEGER        REFERENCES Structure (id),
-    idBanc                 NVARCHAR (255) REFERENCES BancMesure (id) ON DELETE SET NULL
-);
+CREATE TABLE POOL (id INTEGER PRIMARY KEY AUTOINCREMENT,idCrodip TEXT,libelle TEXT, IDCrodipPC TEXT ,nbPastillesVertes INTEGER DEFAULT (0),dateModificationAgent  DATETIME,dateModificationCrodip DATETIME,idStructure INTEGER REFERENCES Structure (id),idBanc TEXT REFERENCES BancMesure (id) ON DELETE SET NULL);
 
-
-
-
-ALTER TABLE Agent 
- ADD COLUMN     idPOOL                 INTEGER        REFERENCES POOL (id) ON DELETE SET NULL;
+ALTER TABLE Agent ADD COLUMN     idPOOL                 INTEGER        REFERENCES POOL (id) ON DELETE SET NULL;
 
 
 Alter Table DIAGNOSTIC Add COLUMN BLFileName  TEXT ;

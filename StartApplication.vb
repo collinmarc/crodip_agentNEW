@@ -105,14 +105,12 @@ Module StartApplication
             End If
         End If
 
-#If VGESTEQP Then
         StructureManager.getList().ForEach(Sub(S)
 
                                                S.CreatePool()
                                            End Sub)
-#End If
 
-        CSDebug.dispInfo("StartApplication.Show ParenbtContainer")
+        CSDebug.dispInfo("StartApplication.Show ParentContainer")
         If Not bLoginFailed Then
             ofrm.ShowDialog()
         End If

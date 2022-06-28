@@ -4046,65 +4046,41 @@ Public Class accueil
 
         Try
 
-            'Création du Fichier ZIP des PDFs
-            If My.Settings.TypeStockPDF = "ZIP" Then
-                If Not File.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
-                    Using z As New ZipFile()
-                        z.Password = GlobalsCRODIP.CONST_PDFS_DIAG_PWD
-                        Dim l As String() = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP, "*.pdf")
-                        For Each f As String In l
-                            If f.Contains("MANOMETRECONTROLE") Then
-                                z.AddFile(f, GlobalsCRODIP.CONST_PATH_EXP & "MANOMETRECONTROLE/")
-                            Else
-                                If f.Contains("BANCMESURE") Then
-                                    z.AddFile(f, GlobalsCRODIP.CONST_PATH_EXP & "BANCMESURE/")
-                                Else
-                                    z.AddFile(f, GlobalsCRODIP.CONST_PATH_EXP & "DIAGNOSTIC/")
-                                End If
+            If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
+                Dim oDI As New DirectoryInfo(GlobalsCRODIP.CONST_STOCK_PDFS)
+                oDI.Create()
+                oDI.Attributes = FileAttributes.Hidden
 
-                            End If
-                        Next
-                        z.Save(GlobalsCRODIP.CONST_STOCK_PDFS)
-                    End Using
-                End If
-            End If
-            If My.Settings.TypeStockPDF = "DIR" Then
-                If Not Directory.Exists(GlobalsCRODIP.CONST_STOCK_PDFS) Then
-                    Dim oDI As New DirectoryInfo(GlobalsCRODIP.CONST_STOCK_PDFS)
-                    oDI.Create()
-                    oDI.Attributes = FileAttributes.Hidden
+                oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE)
+                oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE)
+                oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
 
-                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE)
-                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE)
-                    oDI.CreateSubdirectory(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC)
+                'Transfert des fichiers depuis le publicExport dans le dossier Caché
+                Dim l As String()
+                l = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE, "*.pdf")
+                For Each f As String In l
+                    Try
+                        System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
+                    Catch ex As Exception
 
-                    'Transfert des fichiers depuis le publicExport dans le dossier Caché
-                    Dim l As String()
-                    l = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE, "*.pdf")
-                    For Each f As String In l
-                        Try
-                            System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
-                        Catch ex As Exception
+                    End Try
+                Next
+                l = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE, "*.pdf")
+                For Each f As String In l
+                    Try
+                        System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
+                    Catch ex As Exception
 
-                        End Try
-                    Next
-                    l = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE, "*.pdf")
-                    For Each f As String In l
-                        Try
-                            System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
-                        Catch ex As Exception
+                    End Try
+                Next
+                l = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, "*.pdf")
+                For Each f As String In l
+                    Try
+                        System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
+                    Catch ex As Exception
 
-                        End Try
-                    Next
-                    l = System.IO.Directory.GetFiles(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, "*.pdf")
-                    For Each f As String In l
-                        Try
-                            System.IO.File.Copy(f, My.Settings.StockPDF & "/" & f)
-                        Catch ex As Exception
-
-                        End Try
-                    Next
-                End If
+                    End Try
+                Next
             End If
         Catch ex As Exception
 

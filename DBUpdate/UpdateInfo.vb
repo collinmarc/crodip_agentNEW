@@ -1,4 +1,6 @@
 Imports System.IO
+Imports Microsoft.Data.Sqlite
+
 Public Class UpdateInfo
 
     Private _returnCode As Integer = 1
@@ -110,52 +112,26 @@ Public Class UpdateInfo
         Dim bReturn As Boolean
         Try
             Dim streamReader As New StreamReader(pSqlFileName)
-            Dim oReader As OleDb.OleDbDataReader
             Dim ligne As String
-            Dim db As CSDb = New CSDb(True)
 
 
             ligne = streamReader.ReadLine
             bReturn = True
             While Not ligne Is Nothing And bReturn
 
-                CSDebug.dispInfo(ligne)
-                If ligne.StartsWith("--<TEST1>") Then
-                    oReader = db.getResults("SELECT controleIsPreControleProfessionel from Diagnostic")
-                    If oReader Is Nothing Then
-                        'La Colonne n'existe pas, on la crée
-                        ligne = ligne.Replace("--<TEST1>", "")
-                    Else
-                        oReader.Close()
-                    End If
-                End If
-                If ligne.StartsWith("--<TEST2>") Then
-                    oReader = db.getResults("SELECT controleIsAutoControle from Diagnostic")
-                    If oReader Is Nothing Then
-                        'La Colonne n'existe pas, on la crée
-                        ligne = ligne.Replace("--<TEST2>", "")
-                    Else
-                        oReader.Close()
-                    End If
-                End If
-                If ligne.StartsWith("--<TEST3>") Then
-                    oReader = db.getResults("SELECT ProprietaireRepresentant from Diagnostic")
-                    If oReader Is Nothing Then
-                        'La Colonne n'existe pas, on la crée
-                        ligne = ligne.Replace("--<TEST3>", "")
-                    Else
-                        oReader.Close()
-                    End If
-                End If
 
                 If Not ligne = "" And Not ligne.StartsWith("--") Then
                     Try
-                        Dim oConn As OleDb.OleDbConnection
-                        Dim oCmd As OleDb.OleDbCommand
-                        oConn = db.getConnection()
-                        CSDebug.dispInfo("UpdateInfo.MajDatabase  DBNAme : " & oConn.ConnectionString & " " & oConn.State)
-                        CSDebug.dispInfo("UpdateInfo.MajDatabase SQL : " & ligne)
-                        oCmd = oConn.CreateCommand()
+                        Dim _dbConnection As SqliteConnection
+                        Dim oCmd As SqliteCommand
+                        _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
+                        Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
+                        oBuider.DataSource = "bdd/crodip_agent.db3"
+                        oBuider.Pooling = True
+                        _dbConnection.ConnectionString = oBuider.ConnectionString
+                        CSDebug.dispInfo("UpdateInfo.MajDatabase SQL : (" & _dbConnection.ConnectionString & ")" & ligne)
+                        _dbConnection.Open()
+                        oCmd = _dbConnection.CreateCommand()
                         oCmd.CommandText = ligne
                         oCmd.ExecuteNonQuery()
                         'oReader = db.getResults(ligne)
@@ -165,18 +141,18 @@ Public Class UpdateInfo
                         'Else
                         '    CSDebug.dispInfo("UpdateInfo.MajDatabase OK : ")
                         'End If
+                        _dbConnection.Close()
                         bReturn = True
                     Catch ex As Exception
-                        CSDebug.dispError("UpdateInfo.MajDatabase  ERROR : " & ex.Message.ToString)
+                        CSDebug.dispError("UpdateInfo.MajDatabase  ERROR : ", ex)
                         bReturn = False
                     End Try
                 End If
                 ligne = streamReader.ReadLine
             End While
             streamReader.Close()
-            db.free()
         Catch ex As Exception
-            CSDebug.dispFatal("UpdateInfo.MajDatabase(" & pSqlFileName & ") Erreur : " & ex.Message)
+            CSDebug.dispFatal("UpdateInfo.MajDatabase(" & pSqlFileName & ") Erreur : ", ex)
             bReturn = False
 
         End Try

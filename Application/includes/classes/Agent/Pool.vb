@@ -87,7 +87,7 @@ Public Class Pool
     Public Function getAgentPC() As AgentPC
         Dim oReturn As AgentPC = Nothing
         Try
-            If idCRODIPPC <> 0 Then
+            If Not String.IsNullOrEmpty(idCRODIPPC) Then
                 oReturn = AgentPCManager.getAgentPCByIdCRODIP(idCRODIPPC)
             End If
         Catch ex As Exception

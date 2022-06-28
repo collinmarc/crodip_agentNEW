@@ -440,14 +440,12 @@ Public Class AgentManager
                 paramsQuery = paramsQuery & " , droitsPulves='" & agent.DroitsPulves & "'"
                 paramsQuery = paramsQuery & " , isGestionnaire=" & agent.isGestionnaire & ""
                 paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
-#If VGESTEQP Then
                 If agent.idPool <> 0 Then
                     paramsQuery = paramsQuery & " , idPool=" & agent.idPool & ""
                 End If
-#End If
                 paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
 
-                    bddCommande.CommandText = "UPDATE Agent SET " & paramsQuery & " WHERE numeroNational='" & agent.numeroNational & "'"
+                bddCommande.CommandText = "UPDATE Agent SET " & paramsQuery & " WHERE numeroNational='" & agent.numeroNational & "'"
                     nResult = bddCommande.ExecuteNonQuery()
                     Debug.Assert(nResult = 1, "AgentManager.save: Erreur en update 0 ou  plus d'une ligne concernée")
                     bReturn = True

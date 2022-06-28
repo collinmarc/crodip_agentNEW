@@ -146,12 +146,6 @@
     <Setting Name="DBExtension" Type="System.String" Scope="Application">
       <Value Profile="(Default)">.mdb</Value>
     </Setting>
-    <Setting Name="StockPDF" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">DOSSIERCACHE</Value>
-    </Setting>
-    <Setting Name="TypeStockPDF" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">DIR</Value>
-    </Setting>
     <Setting Name="checkNetwork" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -165,7 +159,13 @@
       <Value Profile="(Default)">SQLITE</Value>
     </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20220225120000</Value>
+      <Value Profile="(Default)">20220627170000</Value>
+    </Setting>
+    <Setting Name="StockPDF" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DOSSIERCACHE</Value>
+    </Setting>
+    <Setting Name="aqw" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

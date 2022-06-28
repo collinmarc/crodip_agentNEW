@@ -822,7 +822,7 @@ Public Class Agent
         Dim bReturn As Boolean
         Dim bCleARegenerer As Boolean = False
         bReturn = False
-        If oPool IsNot Nothing Then
+        If oPool IsNot Nothing And My.Settings.aqw <> "zsx" Then
             oAgentPC = AgentPCManager.RESTgetAgentPCByIDCrodip(Me, oPool.idCRODIPPC)
             If oAgentPC Is Nothing Then
                 'La réception via le WS ne fonctionne pas, on charge celui qui est en base

@@ -399,9 +399,11 @@ Public Class Structuree
         lstpool = PoolManager.GetListe(Me.id)
         If lstpool.Count = 0 Then
 
+
             Dim oPool As New Pool
             oPool.idCrodip = Me.id & "-0"
             oPool.idStructure = Me.id
+            CSDebug.dispInfo("Creation du Pool [" & Me.id & "]")
             PoolManager.Save(oPool)
 
             Dim lst As List(Of Agent)
@@ -409,6 +411,7 @@ Public Class Structuree
             For Each oAgent As Agent In lst.Where(Function(A)
                                                       Return A.idStructure = Me.id
                                                   End Function)
+                CSDebug.dispInfo("MAJ Agent [" & oAgent.id & "]")
 
                 oAgent.idPool = oPool.id
                 AgentManager.save(oAgent)

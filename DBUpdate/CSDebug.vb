@@ -1,90 +1,111 @@
+Imports NLog
+
 Public Class CSDebug
+    Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
 
 #Region " Methodes de log "
 
-    Public Shared Function dispFatal(ByVal errorMsg As String) As Boolean
-        Return displayMsg("[Fatal] - " & errorMsg)
-    End Function
+    Public Shared Sub dispFatal(ByVal errorMsg As String)
+        logger.Fatal(errorMsg)
 
-    Public Shared Function dispError(ByVal errorMsg As String) As Boolean
-        Dim bReturn As Boolean
-        Dim iLevel As Integer
-        iLevel = My.Settings.debug_level
-        bReturn = True
-        If iLevel >= 1 Then
-            bReturn = displayMsg("[Error] - " & errorMsg)
-            'Dim curVersion As String = GLOB_APPLI_VERSION & GLOB_APPLI_BUILD & "-" & GLOB_APPLI_DATEBUILD
-            'CSDebug.saveLog("error", agentCourant.id, errorMsg, curVersion)
-        End If
-        Return bReturn
-    End Function
-    Public Shared Function dispWarn(ByVal warnMsg As String) As Boolean
-        Dim bReturn As Boolean
-        bReturn = True
-        Dim iLevel As Integer
-        iLevel = My.Settings.debug_level
+        displayMsg("[Fatal] - " & errorMsg)
+        ' Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        'CSDebug.saveLog("fatal", agentCourant.id, errorMsg, curVersion)
+        'MsgBox(errorMsg, MsgBoxStyle.Critical, "FATAL ERROR")
+    End Sub
+    Public Shared Sub dispError(ByVal errorMsg As String)
+        logger.Error(errorMsg)
+        'If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 1 Then
+        displayMsg("[Error] - " & errorMsg)
+        '   Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        '  CSDebug.saveLog("Error", agentCourant.id, errorMsg, curVersion)
+        'End If
+    End Sub
+    Public Shared Sub dispWarn(ByVal warnMsg As String)
+        logger.Warn(warnMsg)
+        'If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 2 Then
+        displayMsg("[Warning] - " & warnMsg)
+        ' Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        'CSDebug.saveLog("Warning", agentCourant.id, warnMsg, curVersion)
+        'End If
+    End Sub
+    Public Shared Sub dispInfo(ByVal infoMsg As String)
+        logger.Info(infoMsg)
+        'If GLOB_ENV_DEBUGLVL >= 3 Then
+        displayMsg("[Info] - " & infoMsg)
+        ' End If
+    End Sub
 
-        If iLevel >= 2 Then
-            bReturn = displayMsg("[Warning] - " & warnMsg)
+    Public Shared Sub dispFatal(ByVal pErrorMsg As String, ex As Exception)
+        Dim errorMessage As String
+        errorMessage = pErrorMsg + ex.Message
+        If ex.InnerException IsNot Nothing Then
+            errorMessage = pErrorMsg + "," + ex.InnerException.Message
         End If
-        Return bReturn
-    End Function
-    Public Shared Function dispInfo(ByVal infoMsg As String) As Boolean
-        Dim bReturn As Boolean
-        bReturn = True
-        Dim iLevel As Integer
-        iLevel = My.Settings.debug_level
+        logger.Fatal(errorMessage)
 
-        If iLevel >= 3 Then
-            bReturn = displayMsg("[Info] - " & infoMsg)
+        displayMsg("[Fatal] - " & errorMessage)
+        ' Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        'CSDebug.saveLog("fatal", agentCourant.id, errorMsg, curVersion)
+        'MsgBox(errorMsg, MsgBoxStyle.Critical, "FATAL ERROR")
+    End Sub
+    Public Shared Sub dispError(ByVal pErrorMsg As String, ex As Exception)
+        Dim errorMessage As String
+        errorMessage = pErrorMsg + ex.Message
+        If ex.InnerException IsNot Nothing Then
+            errorMessage = errorMessage + "," + ex.InnerException.Message
         End If
-        Return bReturn
-    End Function
+
+#If DEBUG Then
+        errorMessage = errorMessage & ", " & ex.StackTrace
+#End If
+        logger.Error(errorMessage)
+        'If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 1 Then
+        displayMsg("[Error] - " & errorMessage)
+        '   Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        '  CSDebug.saveLog("Error", agentCourant.id, errorMsg, curVersion)
+        'End If
+    End Sub
+    Public Shared Sub dispWarn(ByVal warnMsg As String, ex As Exception)
+        Dim errorMessage As String
+        errorMessage = warnMsg + ex.Message
+        If ex.InnerException IsNot Nothing Then
+            errorMessage = warnMsg + "," + ex.InnerException.Message
+        End If
+        logger.Warn(errorMessage)
+        'If GlobalsCRODIP.GLOB_ENV_DEBUGLVL >= 2 Then
+        displayMsg("[Warning] - " & errorMessage)
+        ' Dim curVersion As String = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GLOB_APPLI_BUILD
+        'CSDebug.saveLog("Warning", agentCourant.id, warnMsg, curVersion)
+        'End If
+    End Sub
+    Public Shared Sub dispInfo(ByVal infoMsg As String, ex As Exception)
+        Dim errorMessage As String
+        errorMessage = infoMsg + ex.Message
+        If ex.InnerException IsNot Nothing Then
+            errorMessage = infoMsg + "," + ex.InnerException.Message
+        End If
+        logger.Info(errorMessage)
+        'If GLOB_ENV_DEBUGLVL >= 3 Then
+        displayMsg("[Info] - " & infoMsg)
+        ' End If
+    End Sub
 
 #End Region
 
-#Region " Divers "
-
-
-#End Region
 
 #Region " Private "
 
-    Private Shared Function displayMsg(ByVal msg As String) As Boolean
+    Private Shared Sub displayMsg(ByVal msg As String)
 
         Dim timeString As String = ""
         timeString = timeString & "[" & Date.Now.ToShortDateString & "]"
         timeString = timeString & "[" & Date.Now.ToLongTimeString & "]"
         msg = timeString & "" & msg
-        Dim strDebugType As String
-        Dim bReturn As Boolean
-        Try
 
+        Console.Write(msg & vbNewLine)
 
-            strDebugType = My.Settings.debug_type
-            Select Case strDebugType
-
-                Case "none"
-                Case "console"
-                    Console.Write(msg & vbNewLine)
-                Case "msgbox"
-                    MsgBox(msg)
-                Case "file"
-                    Dim strLogFile As String
-                    strLogFile = Environment.CurrentDirectory & My.Settings.debug_filename
-                    If Not CSFile.exists(strLogFile) Then
-                        CSFile.create(strLogFile, msg)
-                    Else
-                        CSFile.append(strLogFile, msg)
-                    End If
-
-            End Select
-            bReturn = True
-        Catch ex As Exception
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
+    End Sub
 
 #End Region
 
