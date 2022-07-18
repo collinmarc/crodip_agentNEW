@@ -1,5 +1,7 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
+Imports Microsoft.Win32
+
 Public Class AgentPCManager
     Inherits RootManager
 
@@ -163,6 +165,16 @@ Public Class AgentPCManager
         End Try
         Return oReturn
     End Function
+
+    Public Shared Sub RAZInstall()
+
+        Dim oCSDB As New CSDb(True)
+        oCSDB.Execute("UPDATE AGENTPC SET NUMINTERNE = NULL")
+
+        Registry.CurrentUser.DeleteSubKeyTree("CRODIP")
+
+    End Sub
+
 
 
 End Class
