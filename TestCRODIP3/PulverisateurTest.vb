@@ -51,6 +51,7 @@ Public Class Pulverisateurtest
 
         m_oPulve.categorie = "Traitement post-récolte"
         Assert.IsFalse(m_oPulve.isTraitementdesSemences)
+        Assert.IsTrue(m_oPulve.isTypeFixeouSemisMobile)
 
 
     End Sub

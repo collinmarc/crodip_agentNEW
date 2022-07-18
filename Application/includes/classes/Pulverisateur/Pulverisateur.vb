@@ -2,6 +2,7 @@ Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
 Imports System.Linq
+Imports CRODIP_ControlLibrary
 
 <Serializable(), XmlInclude(GetType(Pulverisateur))>
 Public Class Pulverisateur
@@ -165,6 +166,22 @@ Public Class Pulverisateur
             _type = Value
         End Set
     End Property
+
+    Public Function isTypeFixeouSemisMobile() As Boolean
+
+        Dim bReturn As Boolean
+        Dim oLstParam As List(Of ParamDiag)
+        oLstParam = ParamDiag.readXML()
+        Dim libParam As String = ""
+        For Each oParam As ParamDiag In oLstParam
+            If oParam.id = "6" Then
+                libParam = oParam.libelle
+            End If
+        Next
+        bReturn = type.Equals(libParam)
+        Return bReturn
+
+    End Function
 
     Public ReadOnly Property isDiagRampe() As Boolean
         Get
@@ -1260,13 +1277,13 @@ Public Class Pulverisateur
         End If
         If bReturn = CheckResult.OK And pbAjout Then
             'En mode ajout , on vérifie toujours l'existence
-            If PulverisateurManager.getNbrePulverisateursParNumeroNational(pNumNAtional) > 0 Then
+            If PulverisateurManager.getNbrePulverisateursParNumeroNational(pNumNational) > 0 Then
                 bReturn = CheckResult.NUMEROEXISTANT
             End If
         End If
         Dim bCheck As Boolean
         bCheck = True
-        If Not pbAjout And Me.numeroNational = pNumNAtional Then
+        If Not pbAjout And Me.numeroNational = pNumNational Then
             'Si on n'est pas en ajout est qu'il n'y a pas eu de modif sur le numéro 
             ' => pas de controle par rapport aux Identifiants Pulvés
             bCheck = False
@@ -1361,15 +1378,15 @@ Public Class Pulverisateur
 
         Try
             olstParam.readXML(MySettings.Default.RepertoireParametres & "/" & sfichierConfig)
-            ' DEfauut Attelage
+            ' DEfauut Pneumatiques
             '-----------------
             oDiagItem = New DiagnosticItemAuto("", "251", "0", "", DiagnosticItem.EtatDiagItemOK)
-            If attelage = Pulverisateur.ATTELAGE_PORTE Then
+            If attelage = Pulverisateur.ATTELAGE_PORTE Or isTypeFixeouSemisMobile() Then
                 oDiagItem.FillWithParam(olstParam.Find("2.5.1.0"))
             End If
             oReturn.Add(oDiagItem)
             oDiagItem = New DiagnosticItemAuto("", "252", "0", "", DiagnosticItem.EtatDiagItemOK)
-            If attelage = Pulverisateur.ATTELAGE_PORTE Then
+            If attelage = Pulverisateur.ATTELAGE_PORTE Or isTypeFixeouSemisMobile() Then
                 oDiagItem.FillWithParam(olstParam.Find("2.5.2.0"))
             End If
             oReturn.Add(oDiagItem)

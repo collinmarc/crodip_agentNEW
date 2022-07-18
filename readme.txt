@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+BUILD XXXXXXX
+	0001499: Encodage automatique Fixe et Semi-mobles
+		0001502: Affichage du numéro de Ctrl sur le RI
 
 BUILD : 20220627170000
 0001496: Calcul de la date de prochain controle en signatureà postériori
