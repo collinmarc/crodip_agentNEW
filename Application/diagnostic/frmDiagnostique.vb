@@ -1644,10 +1644,12 @@ Public Class FrmDiagnostique
             manoPulveEcartMax.Text = oLstMano542.EcartMax
             'Définitiion du Défaut
             'Dim valueBarManoTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionPulve_" & idMano, Panel48)
-            'RadioButton_diagnostic_5421.Checked = False
-            RadioButton_diagnostic_5422.Checked = False
-            RadioButton_diagnostic_5423.Checked = False
-            RadioButton_diagnostic_5420.Checked = False
+            If Not m_bDuringLoad Then
+                'RadioButton_diagnostic_5421.Checked = False
+                RadioButton_diagnostic_5422.Checked = False
+                RadioButton_diagnostic_5423.Checked = False
+                RadioButton_diagnostic_5420.Checked = False
+            End If
             If oLstMano542.Result = DiagnosticMano542.ERR542.OK Then
                 manopulveResultat.Text = "OK"
                 manopulveResultat.ForeColor = System.Drawing.Color.Green
