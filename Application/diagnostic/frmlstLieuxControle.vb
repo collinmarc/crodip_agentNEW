@@ -14,13 +14,18 @@ Public Class frmlstLieuxControle
     End Sub
 
     Public Sub chargerLieuxControle()
-        If File.Exists(GlobalsCRODIP.PATH_TO_LIEUXCONTROLE) Then
-            Using reader As StreamReader = New StreamReader(GlobalsCRODIP.PATH_TO_LIEUXCONTROLE)
-                Using csv As CsvReader = New CsvReader(reader, Globalization.CultureInfo.InvariantCulture)
-                    csv.GetRecords(Of LieuxControle)().ToList().ForEach(Sub(lieu) m_bsLieuxControle.Add(lieu))
+        Try
+
+            If File.Exists(GlobalsCRODIP.PATH_TO_LIEUXCONTROLE) Then
+                Using reader As StreamReader = New StreamReader(GlobalsCRODIP.PATH_TO_LIEUXCONTROLE)
+                    Using csv As CsvReader = New CsvReader(reader, Globalization.CultureInfo.InvariantCulture)
+                        csv.GetRecords(Of LieuxControle)().ToList().ForEach(Sub(lieu) m_bsLieuxControle.Add(lieu))
+                    End Using
                 End Using
-            End Using
-        End If
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("frmLstLieuxControle.chargerLieuxControle ERR", ex)
+        End Try
 
     End Sub
 
