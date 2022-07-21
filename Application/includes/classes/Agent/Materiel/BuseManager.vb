@@ -174,6 +174,13 @@ Public Class BuseManager
                 bddCommande.CommandText = "UPDATE AgentBuseEtalon SET " & paramsQuery & " WHERE numeroNational='" & objBuseEtalon.numeroNational & "'"
                 bddCommande.ExecuteNonQuery()
 
+                'Suppression des Pools avant insertion
+                clearlstPoolByBuse(objBuseEtalon.idCrodip)
+                'Insertion des Pools
+                objBuseEtalon.lstPools.ForEach(Sub(p)
+                                                   insertPoolBuse(p.idCrodip, objBuseEtalon.idCrodip)
+                                               End Sub)
+
             End If
             bReturn = True
         Catch ex As Exception
@@ -452,7 +459,7 @@ Public Class BuseManager
         End If
         Return bReturn
     End Function 'delete
-    Public Shared Function getBusesEtalonByStructureId(ByVal pIdStructure As String, Optional ByVal isShowAll As Boolean = False) As List(Of Buse)
+    Public Shared Function getBusesByStructureId(ByVal pIdStructure As String, Optional ByVal isShowAll As Boolean = False) As List(Of Buse)
 
         Dim lstResponse As New List(Of Buse)
         Dim oCsdb As CSDb = Nothing
@@ -541,4 +548,197 @@ Public Class BuseManager
         End If
         Return arrResponse
     End Function
+    Public Shared Function getBusesByAgent(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of Buse)
+        Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
+        Dim arrResponse As New List(Of Buse)
+        If pAgent.idPool = 0 Then
+            arrResponse = getBusesByStructureId(pAgent.idStructure, isShowAll)
+        Else
+            arrResponse = getBusesByPoolId(pAgent.idPool, isShowAll)
+        End If
+        'Charegement de la Liste des pools du mano
+        arrResponse.ForEach(Sub(M)
+                                M.lstPools.AddRange(getlstPoolByBuse(M.idCrodip))
+                            End Sub)
+        Return arrResponse
+    End Function
+    Public Shared Function getBusesByAgentJamaisServi(ByVal pAgent As Agent) As List(Of Buse)
+        Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
+        Dim arrResponse As New List(Of Buse)
+        If pAgent.idPool = 0 Then
+            arrResponse = getBusesEtalonByStructureIdJamaisServi(pAgent.idStructure)
+        Else
+            arrResponse = getBusesByPoolIdJamaisServi(pAgent.idPool)
+        End If
+        'Charegement de la Liste des pools du mano
+        arrResponse.ForEach(Sub(M)
+                                M.lstPools.AddRange(getlstPoolByBuse(M.idCrodip))
+                            End Sub)
+        Return arrResponse
+    End Function
+    Private Shared Function getBusesByPoolId(ByVal pIdPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of Buse)
+        Debug.Assert(Not String.IsNullOrEmpty(pIdPool), "L'IDPool doit être renseigné")
+        Dim arrResponse As New List(Of Buse)
+        Dim oPool As Pool
+
+        oPool = PoolManager.getPoolById(pIdPool)
+
+        Dim oCsdb As New CSDb(True)
+        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon , PoolBUSE WHERE AgentBuseEtalon.idCrodip = PoolBUSE.idCRODIPBUSE AND Poolbuse.idCRODIPPool = '" & oPool.idCrodip & "' AND AgentBuseEtalon.isSupprime=" & False & " And AgentBuseEtalon .jamaisServi = " & False & ""
+        If Not isShowAll Then
+            bddCommande.CommandText = bddCommande.CommandText & " AND AgentBuseEtalon.etat=" & True
+        End If
+        bddCommande.CommandText = bddCommande.CommandText & " ORDER BY AgentBuseEtalon.idCrodip"
+
+        Try
+            ' On récupère les résultats
+            Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            Dim i As Integer = 0
+            While oDataReader.Read()
+
+                ' On remplit notre tableau
+                Dim oBuse As New Buse()
+                If oBuse.FillDR(oDataReader) Then
+                    arrResponse.Add(oBuse)
+                End If
+            End While
+            oDataReader.Close()
+        Catch ex As Exception
+            ' On catch l'erreur
+            CSDebug.dispError("BuseManager.getBuseByPoolID : ", ex)
+        End Try
+        ' Test pour fermeture de connection BDD
+        If Not oCsdb Is Nothing Then
+            ' On ferme la connexion
+            oCsdb.free()
+        End If
+
+        Return arrResponse
+    End Function
+    Private Shared Function getBusesByPoolIdJamaisServi(ByVal pIdPool As String) As List(Of Buse)
+        Debug.Assert(Not String.IsNullOrEmpty(pIdPool), "L'IDPool doit être renseigné")
+        Dim arrResponse As New List(Of Buse)
+        Dim oPool As Pool
+
+        oPool = PoolManager.getPoolById(pIdPool)
+
+        Dim oCsdb As New CSDb(True)
+        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon , PoolBuse WHERE AgentBuseEtalon.idCrodip = PoolBuse.idCRODIPBuse AND PoolBuse.idCrodipPool = '" & oPool.idCrodip & "' AND AgentBuseEtalon.isSupprime=" & False & " And AgentBuseEtalon.jamaisServi = " & True & ""
+        bddCommande.CommandText = bddCommande.CommandText & " ORDER BY AgentBuseEtalon.idCrodip"
+
+        Try
+            ' On récupère les résultats
+            Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            Dim i As Integer = 0
+            While oDataReader.Read()
+
+                ' On remplit notre tableau
+                Dim oBuse As New Buse
+                If oBuse.FillDR(oDataReader) Then
+                    arrResponse.Add(oBuse)
+                End If
+            End While
+            oDataReader.Close()
+        Catch ex As Exception
+            ' On catch l'erreur
+            CSDebug.dispError("BuseManager.getBuseByPoolIDJamaisServi: ", ex)
+        End Try
+        ' Test pour fermeture de connection BDD
+        If Not oCsdb Is Nothing Then
+            ' On ferme la connexion
+            oCsdb.free()
+        End If
+
+        Return arrResponse
+    End Function
+    ''' <summary>
+    ''' Charegement de la liste de Pool d'un Mano de Controle
+    ''' </summary>
+    ''' <param name="pIdCrodipManoC"></param>
+    ''' <returns></returns>
+    Private Shared Function getlstPoolByBuse(pIdCrodipBuse As String) As List(Of Pool)
+
+        Dim oreturn As New List(Of Pool)
+
+        Dim oCsdb As New CSDb(True)
+        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT Pool.* FROM Pool , PoolBuse WHERE Pool.idCrodip = PoolBuse.idCRODIPPool AND PoolBuse.idcrodipBuse = '" & pIdCrodipBuse & "'"
+
+        Try
+            ' On récupère les résultats
+            Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            Dim i As Integer = 0
+            While oDataReader.Read()
+
+                ' On remplit le Pool
+                Dim oPool As New Pool
+                If oPool.FillDR(oDataReader) Then
+                    'et on l'ajoute à la collection
+                    oreturn.Add(oPool)
+                End If
+            End While
+            oDataReader.Close()
+        Catch ex As Exception
+            ' On catch l'erreur
+            CSDebug.dispError("BuseManager.getlstPoolByBuse : ", ex)
+        End Try
+        ' Test pour fermeture de connection BDD
+        If Not oCsdb Is Nothing Then
+            ' On ferme la connexion
+            oCsdb.free()
+        End If
+
+        Return oreturn
+    End Function
+
+    Private Shared Function clearlstPoolByBuse(pIdCrodipBuse As String) As Boolean
+
+        Dim oreturn As Boolean
+
+        Dim oCsdb As New CSDb(True)
+        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "DELETE FROM PoolBuse WHERE  PoolBuse.idCrodipBuse = '" & pIdCrodipBuse & "'"
+
+        Try
+            ' On récupère les résultats
+            bddCommande.ExecuteNonQuery()
+            oCsdb.free()
+            oreturn = True
+        Catch ex As Exception
+            ' On catch l'erreur
+            CSDebug.dispError("BuseManager.clearlstPoolByBuse : ", ex)
+            oreturn = False
+        End Try
+
+
+        Return oreturn
+    End Function
+    Private Shared Function insertPoolBuse(pIdPool As String, pIdCrodipBuse As String) As Boolean
+
+        Dim oreturn As Boolean
+
+        Dim oCsdb As New CSDb(True)
+        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "insert into PoolBuse (idCRODIPPool, idCRODIPBuse) vAlues ( '" & pIdPool & "','" & pIdCrodipBuse & "')"
+
+        Try
+            ' On récupère les résultats
+            bddCommande.ExecuteNonQuery()
+            oCsdb.free()
+            oreturn = True
+        Catch ex As Exception
+            ' On catch l'erreur
+            CSDebug.dispError("BuseManager.insertPoolBuse : ", ex)
+            oreturn = False
+        End Try
+
+
+        Return oreturn
+    End Function
+
 End Class

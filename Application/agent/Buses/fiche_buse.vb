@@ -1,3 +1,6 @@
+Imports System.Collections.Generic
+Imports System.Linq
+
 Public Class fiche_buse
     Inherits System.Windows.Forms.Form
 
@@ -10,6 +13,9 @@ Public Class fiche_buse
     Friend WithEvents btnActiver As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents ficheBuse_dateActivation As System.Windows.Forms.Label
+    Friend WithEvents cbxPool As CheckedListBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents m_bsrcPool As BindingSource
     Dim isAjout As Boolean
 
     Public Sub New(ByVal _BuseCourant As Buse)
@@ -20,6 +26,9 @@ Public Class fiche_buse
 
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
+
+        cbxPool.DataSource = m_bsrcPool
+        cbxPool.DisplayMember = "Libelle"
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
 
@@ -80,7 +89,11 @@ Public Class fiche_buse
         Me.btnActiver = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ficheBuse_dateActivation = New System.Windows.Forms.Label()
+        Me.cbxPool = New System.Windows.Forms.CheckedListBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.m_bsrcPool = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -119,11 +132,12 @@ Public Class fiche_buse
         '
         'btn_ficheMano_valider
         '
+        Me.btn_ficheMano_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_ficheMano_valider.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_ficheMano_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheMano_valider.ForeColor = System.Drawing.Color.White
         Me.btn_ficheMano_valider.Image = CType(resources.GetObject("btn_ficheMano_valider.Image"), System.Drawing.Image)
-        Me.btn_ficheMano_valider.Location = New System.Drawing.Point(289, 272)
+        Me.btn_ficheMano_valider.Location = New System.Drawing.Point(383, 383)
         Me.btn_ficheMano_valider.Name = "btn_ficheMano_valider"
         Me.btn_ficheMano_valider.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheMano_valider.TabIndex = 0
@@ -132,11 +146,12 @@ Public Class fiche_buse
         '
         'btn_ficheMano_supprimer
         '
+        Me.btn_ficheMano_supprimer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_ficheMano_supprimer.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_ficheMano_supprimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheMano_supprimer.ForeColor = System.Drawing.Color.White
         Me.btn_ficheMano_supprimer.Image = CType(resources.GetObject("btn_ficheMano_supprimer.Image"), System.Drawing.Image)
-        Me.btn_ficheMano_supprimer.Location = New System.Drawing.Point(9, 272)
+        Me.btn_ficheMano_supprimer.Location = New System.Drawing.Point(249, 383)
         Me.btn_ficheMano_supprimer.Name = "btn_ficheMano_supprimer"
         Me.btn_ficheMano_supprimer.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheMano_supprimer.TabIndex = 7
@@ -278,10 +293,35 @@ Public Class fiche_buse
         Me.ficheBuse_dateActivation.Text = "01/01/2011"
         Me.ficheBuse_dateActivation.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
+        'cbxPool
+        '
+        Me.cbxPool.FormattingEnabled = True
+        Me.cbxPool.Location = New System.Drawing.Point(201, 282)
+        Me.cbxPool.Name = "cbxPool"
+        Me.cbxPool.Size = New System.Drawing.Size(202, 49)
+        Me.cbxPool.TabIndex = 40
+        '
+        'Label9
+        '
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.Label9.Location = New System.Drawing.Point(35, 282)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(128, 16)
+        Me.Label9.TabIndex = 39
+        Me.Label9.Text = "Pool :"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'm_bscrPool
+        '
+        Me.m_bsrcPool.DataSource = GetType(Crodip_agent.Pool)
+        '
         'fiche_buse
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(523, 356)
+        Me.ClientSize = New System.Drawing.Size(523, 416)
+        Me.Controls.Add(Me.cbxPool)
+        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.ficheBuse_dateActivation)
         Me.Controls.Add(Me.btnActiver)
@@ -306,6 +346,7 @@ Public Class fiche_buse
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Fiche Buse"
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -320,6 +361,12 @@ Public Class fiche_buse
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
+        Dim oLst As List(Of Pool)
+        oLst = PoolManager.GetListe(BuseCourant.idStructure)
+        m_bsrcPool.Clear()
+        oLst.ForEach(Sub(p)
+                         m_bsrcPool.Add(p)
+                     End Sub)
 
         DisplayBuse()
     End Sub
@@ -330,7 +377,7 @@ Public Class fiche_buse
         ficheBuse_pressionReference.Text = "3"
         ficheBuse_debitReference.Text = BuseCourant.debitEtalonnage
 
-        ficheBuse_dateAchat.Text = CSDate.TOCRODIPString(BuseCourant.dateAchat)
+        ficheBuse_dateAchat.Text = CSDate.ToCRODIPString(BuseCourant.dateAchat)
         If BuseCourant.JamaisServi Then
             pbEtat.Image = imagesEtatMateriel.Images(2) 'Gris
         Else
@@ -344,8 +391,22 @@ Public Class fiche_buse
         If CSDate.isDateNull(BuseCourant.DateActivation) Or BuseCourant.JamaisServi Then
             ficheBuse_dateActivation.Text = ""
         Else
-            ficheBuse_dateActivation.Text = CSDate.TOCRODIPString(BuseCourant.DateActivation)
+            ficheBuse_dateActivation.Text = CSDate.ToCRODIPString(BuseCourant.DateActivation)
         End If
+
+        'Parcours de la Liste des Pools pour checker ceux qui sont les Pool du manoCourant
+        Dim index As Integer = 0
+        For index = 0 To cbxPool.Items.Count() - 1
+            Dim obj As Pool = cbxPool.Items(index)
+            If BuseCourant.lstPools.Where(Function(p)
+                                              Return (p.idCrodip.Equals(obj.idCrodip))
+                                          End Function).Count() > 0 Then
+                cbxPool.SetItemChecked(index, True)
+            Else
+                cbxPool.SetItemChecked(index, False)
+            End If
+        Next
+
 
     End Sub
     ' Validation/enregistrement
@@ -356,7 +417,7 @@ Public Class fiche_buse
                 BuseCourant.couleur = ficheBuse_couleur.Text
                 BuseCourant.pressionEtalonnage = CType(ficheBuse_pressionReference.Text.Replace(".", ","), Double)
                 BuseCourant.debitEtalonnage = CType(ficheBuse_debitReference.Text.Replace(".", ","), Double)
-                BuseCourant.dateAchat = CSDate.TOCRODIPString(ficheBuse_dateAchat.Value)
+                BuseCourant.dateAchat = CSDate.ToCRODIPString(ficheBuse_dateAchat.Value)
                 BuseManager.save(BuseCourant)
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()

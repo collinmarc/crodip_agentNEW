@@ -283,5 +283,6 @@
 
 CREATE TABLE PoolManoC (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT,idCRODIPManoC          TEXT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
 CREATE TABLE PoolManoE (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT,idCRODIPManoE          TEXT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
-
+CREATE TABLE PoolBUSE  (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT,idCRODIPBUSE          TEXT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME
+);
 );

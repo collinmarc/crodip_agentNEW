@@ -1,7 +1,8 @@
+Imports System.Collections.Generic
 Imports System.Web.Services
 Imports System.Xml.Serialization
 
-<Serializable(), XmlInclude(GetType(Buse))> _
+<Serializable(), XmlInclude(GetType(Buse))>
 Public Class Buse
     Inherits Materiel
 
@@ -14,8 +15,17 @@ Public Class Buse
 
 
     Sub New()
-
+        _lstPools = New List(Of Pool)
     End Sub
+    Private _lstPools As List(Of Pool)
+    Public Property lstPools() As List(Of Pool)
+        Get
+            Return _lstPools
+        End Get
+        Set(ByVal value As List(Of Pool))
+            _lstPools = value
+        End Set
+    End Property
 
 
     Public Property couleur() As String
@@ -82,7 +92,7 @@ Public Class Buse
 
 
 
-    Public Function Fill(pColName As String, pValue As Object) As Boolean
+    Public Overrides Function Fill(pColName As String, pValue As Object) As Boolean
         Select Case pColName.ToUpper.Trim().ToUpper()
             Case "numeroNational".Trim().ToUpper()
                 Me.numeroNational = pValue.ToString()
@@ -111,13 +121,13 @@ Public Class Buse
             Case "isUtilise".Trim().ToUpper()
                 Me.isUtilise = CType(pValue, Boolean)
             Case "agentsuppression".Trim().ToUpper()
-                Me.agentSuppression = pValue.ToString()
+                Me.AgentSuppression = pValue.ToString()
             Case "raisonsuppression".Trim().ToUpper()
-                Me.raisonSuppression = pValue.ToString()
+                Me.RaisonSuppression = pValue.ToString()
             Case "datesuppression".Trim().ToUpper()
-                Me.dateSuppression = CSDate.ToCRODIPString(pValue).ToString()
+                Me.DateSuppression = CSDate.ToCRODIPString(pValue).ToString()
             Case "jamaisServi".Trim().ToUpper()
-                Me.jamaisServi = pValue
+                Me.JamaisServi = pValue
             Case "dateActivation".Trim().ToUpper()
                 Me.DateActivation = pValue
         End Select
@@ -125,9 +135,9 @@ Public Class Buse
     End Function
 
     Public Overrides Function DeleteMateriel(ByVal pAgentSuppression As Agent, ByVal pRaison As String) As Boolean
-        Me.agentSuppression = pAgentSuppression.nom
-        Me.raisonSuppression = pRaison
-        Me.dateSuppression = Now.ToString()
+        Me.AgentSuppression = pAgentSuppression.nom
+        Me.RaisonSuppression = pRaison
+        Me.DateSuppression = Now.ToString()
         Me.dateModificationAgent = Now()
         Me.isSupprime = True
         BuseManager.save(Me)

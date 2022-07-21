@@ -398,7 +398,7 @@ Public Class Structuree
         Dim lstpool As List(Of Pool)
         lstpool = PoolManager.GetListe(Me.id)
         If lstpool.Count = 0 Then
-
+            CSDebug.dispInfo("Création du pool pour la structure" & Me.id)
 
             Dim oPool As New Pool
             oPool.idCrodip = Me.id & "-0"
@@ -411,11 +411,37 @@ Public Class Structuree
             For Each oAgent As Agent In lst.Where(Function(A)
                                                       Return A.idStructure = Me.id
                                                   End Function)
-                CSDebug.dispInfo("MAJ Agent [" & oAgent.id & "]")
+                CSDebug.dispInfo("MAJ Agent Pool [" & oAgent.id & "]")
 
                 oAgent.idPool = oPool.id
                 AgentManager.save(oAgent)
             Next
+            'Affectation des Manos
+            Dim olst As List(Of ManometreControle)
+            CSDebug.dispInfo("Affectation des Mano de controle ")
+            olst = ManometreControleManager.getManoControleByStructureId(Me.id, True)
+            olst.AddRange(ManometreControleManager.getManoControleByStructureIdJamaisServi(Me.id))
+            For Each oMano As ManometreControle In olst
+                oMano.lstPools.Add(oPool)
+                ManometreControleManager.save(oMano)
+            Next
+            CSDebug.dispInfo("Affectation des Mano Etalon ")
+            Dim olst2 As List(Of ManometreEtalon)
+            olst2 = ManometreEtalonManager.getManometreEtalonByStructureId(Me.id, True)
+            olst2.AddRange(ManometreEtalonManager.getManometreEtalonByStructureIdJamaisServi(Me.id))
+            For Each oMano As ManometreEtalon In olst2
+                oMano.lstPools.Add(oPool)
+                ManometreEtalonManager.save(oMano)
+            Next
+            CSDebug.dispInfo("Affectation des Buses ")
+            Dim olst3 As List(Of Buse)
+            olst3 = BuseManager.getBusesByStructureId(Me.id, True)
+            olst3.AddRange(BuseManager.getBusesEtalonByStructureIdJamaisServi(Me.id))
+            For Each oBuse As Buse In olst3
+                oBuse.lstPools.Add(oPool)
+                BuseManager.save(oBuse)
+            Next
+
         End If
     End Sub
 End Class

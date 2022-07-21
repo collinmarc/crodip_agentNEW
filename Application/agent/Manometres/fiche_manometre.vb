@@ -459,12 +459,6 @@ Public Class fiche_manometre
             lblResolution.Visible = True
             lblIncertitude.Visible = False
             Me.Text = "Crodip .::. Fiche Manomètre Contrôle"
-            Dim oLst As List(Of Pool)
-            oLst = PoolManager.GetListe(BancCourant.idStructure)
-            m_bsrcPool.Clear()
-            oLst.ForEach(Sub(p)
-                             m_bsrcPool.Add(p)
-                         End Sub)
 
         Else
             LabelManoEtalon.Visible = True
@@ -482,6 +476,13 @@ Public Class fiche_manometre
             '        manometreCourant.numeroNational = ManometreEtalonManager.getNewNumeroNational()
             '    End If
         End If
+        Dim oLst As List(Of Pool)
+        oLst = PoolManager.GetListe(manometreCourant.idStructure)
+        m_bsrcPool.Clear()
+        oLst.ForEach(Sub(p)
+                         m_bsrcPool.Add(p)
+                     End Sub)
+
         DisplayManoCourant()
         bManoMAJ = False
 

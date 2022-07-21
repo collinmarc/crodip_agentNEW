@@ -4958,7 +4958,7 @@ Public Class accueil
         Dim alerte As GlobalsCRODIP.ALERTE = GlobalsCRODIP.ALERTE.NONE
 
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_BUSESETALON_LOAD, True)
-        Dim arrBusesEtalon As List(Of Buse) = BuseManager.getBusesEtalonByStructureId(agentCourant.idStructure, True)
+        Dim arrBusesEtalon As List(Of Buse) = BuseManager.getBusesByAgent(agentCourant, True)
         For Each tmpBuseEtalon As Buse In arrBusesEtalon
             If Not String.IsNullOrEmpty(tmpBuseEtalon.dateAchat) Then
                 alerte = tmpBuseEtalon.getAlerte()

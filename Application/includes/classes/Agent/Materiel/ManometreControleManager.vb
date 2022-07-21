@@ -510,7 +510,7 @@ Public Class ManometreControleManager
         If pAgent.idPool = 0 Then
             arrResponse = getManoControleByStructureId(pAgent.idStructure, isShowAll)
         Else
-            arrResponse = getManoControleByPoolId(pAgent.idPool)
+            arrResponse = getManoControleByPoolId(pAgent.idPool, isShowAll)
         End If
         'Charegement de la Liste des pools du mano
         arrResponse.ForEach(Sub(M)
@@ -568,7 +568,7 @@ Public Class ManometreControleManager
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM AgentManoControle , PoolManoC WHERE AgentManoControle.idCrodip = PoolManoc.idCRODIPManoC AND PoolManoc.idPool = '" & oPool.idCrodip & "' AND AgentManoControle.isSupprime=" & False & " And AgentManoControle.jamaisServi = " & True & ""
+        bddCommande.CommandText = "SELECT * FROM AgentManoControle , PoolManoC WHERE AgentManoControle.idCrodip = PoolManoc.idCRODIPManoC AND PoolManoc.idCRODIPPool = '" & oPool.idCrodip & "' AND AgentManoControle.isSupprime=" & False & " And AgentManoControle.jamaisServi = " & True & ""
         bddCommande.CommandText = bddCommande.CommandText & " ORDER BY AgentManoControle.idCrodip"
 
         Try

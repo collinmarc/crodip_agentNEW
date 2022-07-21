@@ -379,8 +379,8 @@ Public Class gestion_busesEtalons
 
             Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(gestion_busesEtalons))
             ' On récupère les buses étalon de l'agent
-            Dim arrBusesEtalon As List(Of Buse) = BuseManager.getBusesEtalonByStructureId(agentCourant.idStructure, True)
-            arrBusesEtalon.AddRange(BuseManager.getBusesEtalonByStructureIdJamaisServi(agentCourant.idStructure))
+            Dim arrBusesEtalon As List(Of Buse) = BuseManager.getBusesByAgent(agentCourant, True)
+            arrBusesEtalon.AddRange(BuseManager.getBusesByAgentJamaisServi(agentCourant))
 
             '            gestionBanc_panel_showFV.Controls.Clear()
             gestionBusesEtalon_panel_id.Controls.Clear()
@@ -404,6 +404,7 @@ Public Class gestion_busesEtalons
                 '## Le picto "fiche"
                 Dim tmpPictoFiche As New PictureBox
                 tmpPictoFiche.Name = "buseEtalon_" & tmpBuseEtalon.numeroNational & "_showFiche"
+                tmpPictoFiche.Tag = tmpBuseEtalon
                 tmpPictoFiche.Image = imagesPictos.Images(0)
                 Controls.Add(tmpPictoFiche)
                 tmpPictoFiche.Parent = gestionBusesEtalon_panel_id
@@ -503,8 +504,8 @@ Public Class gestion_busesEtalons
     End Function
     Private Sub dispFicheBuse(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
-            Dim buseId As String = sender.name.ToString.Replace("buseEtalon_", "").Replace("_showFiche", "")
-            Dim formFicheBuse As New fiche_buse(BuseManager.getBuseByNumeroNational(buseId))
+            Dim obuse As Buse = sender.Tag
+            Dim formFicheBuse As New fiche_buse(obuse)
             If formFicheBuse.ShowDialog(Me) <> Windows.Forms.DialogResult.Cancel Then
                 DisplayListe()
             End If

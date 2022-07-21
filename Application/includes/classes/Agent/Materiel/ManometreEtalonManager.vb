@@ -531,7 +531,7 @@ Public Class ManometreEtalonManager
         If pAgent.idPool = 0 Then
             arrResponse = getManometreEtalonByStructureId(pAgent.idStructure, isShowAll)
         Else
-            arrResponse = getManoEtalonByPoolId(pAgent.idPool)
+            arrResponse = getManoEtalonByPoolId(pAgent.idPool, isShowAll)
         End If
         'Charegement de la Liste des pools du mano
         arrResponse.ForEach(Sub(M)

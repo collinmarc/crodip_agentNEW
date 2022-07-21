@@ -174,6 +174,17 @@ Public Class AgentPCManager
         Registry.CurrentUser.DeleteSubKeyTree("CRODIP")
 
     End Sub
+    Public Shared Sub ResetDB()
+
+        Dim oCSDB As New CSDb(True)
+        oCSDB.Execute("DELETE FROM AGENTPC;")
+        oCSDB.Execute("DELETE FROM POOL;")
+        oCSDB.Execute("DELETE FROM POOLMANOC;")
+        oCSDB.Execute("DELETE FROM POOLMANOE;")
+        oCSDB.Execute("UPDATE AGENT SET idPOOL =  NULL;")
+
+
+    End Sub
 
 
 

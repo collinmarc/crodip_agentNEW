@@ -316,36 +316,36 @@ Public Class BuseManagerTest
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
 
         Assert.IsTrue(BuseManager.save(oBuse))
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString)
+        tabBuse = BuseManager.getBusesByAgent(m_oAgent)
         Assert.AreEqual(1, tabBuse.Count)
 
         'Suppression du Buse
         oBuse.isSupprime = True
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString)
+        tabBuse = BuseManager.getBusesByAgent(m_oAgent)
         Assert.AreEqual(0, tabBuse.Count)
 
         'Buse Jamais Servi
         oBuse.isSupprime = False
         oBuse.JamaisServi = True
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString, True)
+        tabBuse = BuseManager.getBusesByAgent(m_oAgent, True)
         Assert.AreEqual(0, tabBuse.Count)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString, False)
+        tabBuse = BuseManager.getBusesByAgent(m_oAgent, False)
         Assert.AreEqual(0, tabBuse.Count)
 
         oBuse.JamaisServi = False 'Le Buse n'a pas jamaisservi => il est actif
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString, True)
+        tabBuse = BuseManager.getBusesByAgent(m_oAgent, True)
         Assert.AreEqual(1, tabBuse.Count)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString)
+        tabBuse = BuseManager.getBusesByAgent(m_oAgent)
         Assert.AreEqual(1, tabBuse.Count)
 
         oBuse.etat = False 'Buse non controlé
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString, True)
+        tabBuse = BuseManager.getBusesByAgent(m_oAgent, True)
         Assert.AreEqual(1, tabBuse.Count)
-        tabBuse = BuseManager.getBusesEtalonByStructureId(m_oAgent.idStructure.ToString)
+        tabBuse = BuseManager.getBusesByAgent(m_oAgent)
         Assert.AreEqual(0, tabBuse.Count)
 
 
@@ -464,6 +464,65 @@ Public Class BuseManagerTest
 
         oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -29, Now).ToShortDateString()
         Assert.AreEqual(GlobalsCRODIP.ALERTE.NONE, oBuse.getAlerte())
+
+    End Sub
+    <TestMethod()>
+    Public Sub GetByPoolTest()
+        Dim oBuse As Buse
+        Dim idMano As String
+
+        'Creation d'un Pool
+        Dim oPool = New Pool()
+        oPool.idCrodip = "P1"
+        oPool.libelle = "LIbP1"
+        PoolManager.Save(oPool)
+
+        Dim oPool2 = New Pool()
+        oPool2.idCrodip = "P2"
+        oPool2.libelle = "LIbP2"
+        PoolManager.Save(oPool2)
+
+        m_oAgent.idPool = oPool.id
+        AgentManager.save(m_oAgent)
+
+        'Creation d'un Mano
+        oBuse = New Buse()
+        idMano = "M1E"
+        oBuse.numeroNational = idMano
+        oBuse.idCrodip = idMano
+        oBuse.idStructure = m_oAgent.idStructure
+        oBuse.isSupprime = False
+        oBuse.etat = True
+        oBuse.JamaisServi = False
+        oBuse.lstPools.Add(oPool)
+        BuseManager.save(oBuse)
+
+        Dim lst As List(Of Buse)
+        lst = BuseManager.getBusesByAgent(m_oAgent)
+        Assert.AreEqual(1, lst.Count)
+
+        'Si l'agent utilise le Pool2 , il ne voit pas le Mano
+        m_oAgent.idPool = oPool2.id
+        AgentManager.save(m_oAgent)
+
+        lst = BuseManager.getBusesByAgent(m_oAgent)
+        Assert.AreEqual(0, lst.Count)
+
+        'Ajout du Pool2 dans le Mano
+        oBuse.lstPools.Add(oPool2)
+        BuseManager.save(oBuse)
+        'Le Mano est bien chargé
+        lst = BuseManager.getBusesByAgent(m_oAgent)
+        Assert.AreEqual(1, lst.Count)
+        'il appartient Bien aux 2 pool
+        Assert.AreEqual(2, lst(0).lstPools.Count)
+        'et on le retrouve bien sur le pool1
+        m_oAgent.idPool = oPool.id
+        AgentManager.save(m_oAgent)
+
+        lst = BuseManager.getBusesByAgent(m_oAgent)
+        Assert.AreEqual(1, lst.Count)
+
 
     End Sub
 
