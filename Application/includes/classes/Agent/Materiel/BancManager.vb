@@ -392,11 +392,29 @@ Public Class BancManager
         End If
         Return colReturn
     End Function 'GetMatereilSupprimes
+
+    Public Shared Function getBancByAgent(pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of Banc)
+        Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
+        Dim arrResponse As New List(Of Banc)
+        If pAgent.idPool <> 0 Then
+            If agentCourant.oPool.idBanc <> "" Then
+                BancCourant = BancManager.getBancById(agentCourant.oPool.idBanc)
+                arrResponse.Add(BancCourant)
+            Else
+                'S'il n'y a pas de banc affecté au pool on prend tout
+                arrResponse = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+            End If
+        Else
+            arrResponse = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+        End If
+        Return arrResponse
+    End Function
+
     '''
     ''' Récupération des bancs de la structure isSupprimé=False, JamaisServi = false
     ''' isShowall = TRUE => on ne regarde pas l'état, False seuls les bancs Etat = True sont retournés
     '''
-    Public Shared Function getBancByStructureId(ByVal pIdStructure As String, Optional ByVal isShowAll As Boolean = False) As List(Of Banc)
+    Private Shared Function getBancByStructureId(ByVal pIdStructure As String, Optional ByVal isShowAll As Boolean = False) As List(Of Banc)
         Dim lstBanc As New List(Of Banc)
         Dim oCsDB As New CSDb(True)
         If pIdStructure <> "" Then

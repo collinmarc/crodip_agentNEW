@@ -846,7 +846,7 @@ Public Class frmDiagnostiqueSimple
     End Sub
 
     Protected Overridable Sub getListeBancsMesures()
-        Dim arrBancs As System.Collections.Generic.List(Of Banc) = BancManager.getBancByStructureId(agentCourant.idStructure)
+        Dim arrBancs As System.Collections.Generic.List(Of Banc) = BancManager.getBancByAgent(agentCourant)
         For Each tmpBanc As Banc In arrBancs
             Dim objComboItem As New objComboItem(tmpBanc.id, tmpBanc.id & " - " & tmpBanc.marque & " (" & tmpBanc.modele & ")")
             buses_listBancs.Items.Add(objComboItem)

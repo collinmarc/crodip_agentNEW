@@ -262,7 +262,7 @@ Public Class AutoTestManager
             If pTypeMateriels.ToUpper() = "BANC" Or pTypeMateriels.ToUpper() = "TOUS" Then
                 Dim arrBanc As System.Collections.Generic.List(Of Banc)
                 ' On récupère les bancs de l'agent
-                arrBanc = BancManager.getBancByStructureId(pAgent.idStructure, True)
+                arrBanc = BancManager.getBancByAgent(pAgent, True)
                 For Each oBanc As Banc In arrBanc
                     oCtrlRegulier = New AutoTest(pAgent, oBanc)
                     oCtrlRegulier.DateControle = pDateControle

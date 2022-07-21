@@ -5027,19 +5027,8 @@ Public Class accueil
 
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
         Dim arrBanc As List(Of Banc)
-        'Chargement des bancs du Pool
-        If agentCourant.idPool <> 0 Then
-            arrBanc = New List(Of Banc)()
-            If agentCourant.oPool.idBanc <> "" Then
-                BancCourant = BancManager.getBancById(agentCourant.oPool.idBanc)
-                arrBanc.Add(BancCourant)
-            Else
-                'S'il n'y a pas de banc affecté au pool on prend tout
-                arrBanc = BancManager.getBancByStructureId(agentCourant.idStructure, True)
-            End If
-        Else
-            arrBanc = BancManager.getBancByStructureId(agentCourant.idStructure, True)
-        End If
+        arrBanc = BancManager.getBancByAgent(agentCourant)
+        BancCourant = arrBanc(0)
 
         Dim njours As Integer
         Dim nbBancAvantDL(3000) As Integer 'Nombre de banc devant être controler njours avant la Date Limite

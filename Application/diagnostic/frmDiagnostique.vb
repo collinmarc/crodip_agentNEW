@@ -851,7 +851,7 @@ Public Class FrmDiagnostique
             arrBancs = New List(Of Banc)
             arrBancs.Add(BancCourant)
         Else
-            arrBancs = BancManager.getBancByStructureId(agentCourant.idStructure)
+            arrBancs = BancManager.getBancByAgent(agentCourant)
         End If
         For Each tmpBanc As Banc In arrBancs
             Dim objComboItem As New objComboItem(tmpBanc.id, tmpBanc.id & " - " & tmpBanc.marque & " (" & tmpBanc.modele & ")")

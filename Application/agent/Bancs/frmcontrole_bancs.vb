@@ -1879,7 +1879,7 @@ Public Class frmcontrole_bancs
         '###########################################################
         Dim arrBanc As List(Of Banc)
         If BancCourant Is Nothing Then
-            arrBanc = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+            arrBanc = BancManager.getBancByAgent(agentCourant, True)
         Else
             arrBanc = New List(Of Banc)()
             arrBanc.Add(BancCourant)

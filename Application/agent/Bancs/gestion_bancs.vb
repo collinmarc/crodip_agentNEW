@@ -432,7 +432,7 @@ Public Class gestion_bancs
 
             ' On récupère les bancs de l'agent
             If BancCourant Is Nothing Then
-                m_arrBanc = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+                m_arrBanc = BancManager.getBancByAgent(agentCourant, True)
                 'Ajout des banc Jamais Servi
                 m_arrBanc.AddRange(BancManager.getBancByStructureIdJamaisServi(agentCourant.idStructure))
             Else
