@@ -783,7 +783,7 @@ Public Class AgentManagerTest
 
     Private Sub createFVBanc(ByVal pAgent As Agent)
         Dim lstBanc As New List(Of Banc)
-        lstBanc = BancManager.getBancByStructureId(pAgent.idStructure)
+        lstBanc = BancManager.getBancByAgent(pAgent)
         For Each oBanc In lstBanc
             Dim oFV As New FVBanc()
             oFV.idAgentControleur = m_oAgent.id

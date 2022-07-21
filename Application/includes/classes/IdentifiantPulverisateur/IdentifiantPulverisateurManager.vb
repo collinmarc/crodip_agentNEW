@@ -79,9 +79,9 @@ Public Class IdentifiantPulverisateurManager
         Dim bReturn As Boolean
         Try
             Dim strQuery As String
-            strQuery = "insert into identifiantPulverisateur (id,  idStructure ,  numeroNational ,  etat ,  dateUtilisation ,  libelle ,  dateModificationAgent ,  dateModificationCrodip )"
+            strQuery = "insert into identifiantPulverisateur (id,  idStructure ,  numeroNational ,  etat ,  dateUtilisation ,  libelle ,  idCRODIPPOOL, dateModificationAgent ,  dateModificationCrodip )"
             strQuery = strQuery & " VALUES ("
-            strQuery = strQuery & pIdent.id & "," & pIdent.idStructure & ",'" & CSDb.secureString(pIdent.numeroNational) & "','" & CSDb.secureString(pIdent.etat) & "','" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "','" & CSDb.secureString(pIdent.libelle) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
+            strQuery = strQuery & pIdent.id & "," & pIdent.idStructure & ",'" & CSDb.secureString(pIdent.numeroNational) & "','" & CSDb.secureString(pIdent.etat) & "','" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "','" & CSDb.secureString(pIdent.libelle) & "','" & pIdent.idCRODIPPool & "' , '" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
             strQuery = strQuery & " )"
 
 
@@ -114,6 +114,7 @@ Public Class IdentifiantPulverisateurManager
             strQuery = strQuery & "  etat = '" & CSDb.secureString(pIdent.etat) & "'" & ","
             strQuery = strQuery & "  dateUtilisation ='" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "'" & ","
             strQuery = strQuery & "  libelle ='" & CSDb.secureString(pIdent.libelle) & "'" & ","
+            strQuery = strQuery & "  idCrodipPool ='" & CSDb.secureString(pIdent.idCRODIPPool) & "'" & ","
             strQuery = strQuery & "  dateModificationAgent ='" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "'" & ","
             strQuery = strQuery & "  dateModificationCrodip = '" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
 
@@ -335,13 +336,27 @@ Public Class IdentifiantPulverisateurManager
         End Try
         Return bReturn
     End Function
+    Public Shared Function getListe(pAgent As Agent) As List(Of IdentifiantPulverisateur)
+        Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
+        Dim olst As New List(Of IdentifiantPulverisateur)
+
+        If pAgent.idPool = 0 Then
+            olst = getListeByStructure(pAgent.idStructure)
+        Else
+            Dim oPool As Pool = PoolManager.getPoolById(pAgent.idPool)
+            olst = getListeByPool(oPool.idCrodip)
+        End If
+
+        Return olst
+
+    End Function
     ''' <summary>
     ''' Rend la Liste des identifiants pour une structure donnée
     ''' </summary>
     ''' <param name="pIdStructure"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getListe(pIdStructure As Integer) As List(Of IdentifiantPulverisateur)
+    Public Shared Function getListeByStructure(pIdStructure As Integer) As List(Of IdentifiantPulverisateur)
         Dim olst As New List(Of IdentifiantPulverisateur)
         Dim oCSDB As New CSDb(True)
         Try
@@ -364,16 +379,68 @@ Public Class IdentifiantPulverisateurManager
         End Try
         Return olst
     End Function
+    Private Shared Function getListeByPool(pIdCrodipPool As String) As List(Of IdentifiantPulverisateur)
+        Dim olst As New List(Of IdentifiantPulverisateur)
+        Dim oCSDB As New CSDb(True)
+        Try
+            Dim oDR As DbDataReader
+            oDR = oCSDB.getResult2s("SELECT * FROM IDENTIFIANTPULVERISATEUR WHERE IDCRODIPPOOL = '" & pIdCrodipPool & "' ORDER BY NUMERONATIONAL")
+            While oDR.Read()
+                Dim oIdentPulve As New IdentifiantPulverisateur
+                Dim nColId As Integer = 0
+                While nColId < oDR.FieldCount()
+                    If Not oDR.IsDBNull(nColId) Then
+                        oIdentPulve.Fill(oDR.GetName(nColId), oDR.Item(nColId))
+                    End If
+                    nColId = nColId + 1
+                End While
+                olst.Add(oIdentPulve)
+            End While
+            oDR.Close()
+        Catch ex As Exception
+            CSDebug.dispError("IdentifiantPulveristaeurManager.getListeByPool ERR" & ex.Message)
+        End Try
+        Return olst
+    End Function
+    Public Shared Function getListeInutilise(pAgent As Agent) As List(Of IdentifiantPulverisateur)
+        Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
+        Dim olst As New List(Of IdentifiantPulverisateur)
+
+        If pAgent.idPool = 0 Then
+            olst = getListeInutiliseByStructure(pAgent.idStructure)
+        Else
+            Dim oPool As Pool = PoolManager.getPoolById(pAgent.idPool)
+            olst = getListeInutiliseByPool(oPool.idCrodip)
+        End If
+
+        Return olst
+
+    End Function
+
     ''' <summary>
     ''' Rend la liste des Identifiants Pulvés Utilisables
     ''' </summary>
     ''' <param name="pIdStructure"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getListeInutilise(pIdStructure As Integer) As List(Of IdentifiantPulverisateur)
+    Private Shared Function getListeInutiliseByStructure(pIdStructure As Integer) As List(Of IdentifiantPulverisateur)
         Dim olst As New List(Of IdentifiantPulverisateur)
         Try
-            Dim olstAll As List(Of IdentifiantPulverisateur) = getListe(pIdStructure)
+            Dim olstAll As List(Of IdentifiantPulverisateur) = getListeByStructure(pIdStructure)
+            For Each oIdentPulve As IdentifiantPulverisateur In olstAll
+                If oIdentPulve.isEtatINUTILISE Then
+                    olst.Add(oIdentPulve)
+                End If
+            Next
+        Catch ex As Exception
+            CSDebug.dispError("IdentifiantPulveristaeurManager.getListeInitulise ERR" & ex.Message)
+        End Try
+        Return olst
+    End Function
+    Private Shared Function getListeInutiliseByPool(pIdCrodipPool As String) As List(Of IdentifiantPulverisateur)
+        Dim olst As New List(Of IdentifiantPulverisateur)
+        Try
+            Dim olstAll As List(Of IdentifiantPulverisateur) = getListeByPool(pIdCrodipPool)
             For Each oIdentPulve As IdentifiantPulverisateur In olstAll
                 If oIdentPulve.isEtatINUTILISE Then
                     olst.Add(oIdentPulve)
@@ -395,7 +462,7 @@ Public Class IdentifiantPulverisateurManager
         Dim bReturn As Boolean
         Try
             bReturn = False
-            Dim olst As List(Of IdentifiantPulverisateur) = getListe(pAgent.idStructure)
+            Dim olst As List(Of IdentifiantPulverisateur) = getListeByStructure(pAgent.idStructure)
             For Each oIdentPulve As IdentifiantPulverisateur In olst
                 If oIdentPulve.numeroNational = pNumeroNational Then
                     If Not oIdentPulve.isEtatUTILISE Then

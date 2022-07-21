@@ -1271,7 +1271,7 @@ Public Class Pulverisateur
             Return CheckResult.NUMEROPART1FORMATINCORRECT
         End If
         ' Lecture de la liste des identifiant dispo
-        Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(pAgent.idStructure)
+        Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(pAgent)
         If pNumNatPart2.Length <> 6 Or Not IsNumeric(pNumNatPart2) Then
             bReturn = CheckResult.NUMEROFORMATINCORRECT
         End If
@@ -1341,28 +1341,7 @@ Public Class Pulverisateur
 
     End Function
 
-    ''' <summary>
-    ''' Initialisation du numéro nationnal avec le Premier Identifiant disponible
-    ''' </summary>
-    ''' <param name="pIdStructure"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Public Function InitNumeroNationnal(pIdStructure As Integer) As Boolean
-        Dim bReturn As Boolean
-        Try
 
-            Dim olstIdent As List(Of IdentifiantPulverisateur)
-            olstIdent = IdentifiantPulverisateurManager.getListeInutilise(idStructure)
-            If olstIdent.Count > 0 Then
-                Me.numeroNational = olstIdent(0).numeroNational
-            End If
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError("Pulverisateur.InitNumeroNational ERR : " & ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
     ''' <summary>
     ''' Encodage Automatique des défauts 
     ''' </summary>

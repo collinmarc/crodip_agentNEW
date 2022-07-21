@@ -215,7 +215,7 @@ Public Class BancManagerTest
         Dim tabBanc As List(Of Banc)
 
         'Suppression de tous les bancs
-        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString, True)
+        tabBanc = BancManager.getBancByAgent(m_oAgent, True)
         For Each obanc In tabBanc
             BancManager.delete(obanc.id)
         Next
@@ -228,36 +228,36 @@ Public Class BancManagerTest
         obanc.JamaisServi = False
 
         Assert.IsTrue(BancManager.save(obanc))
-        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString)
+        tabBanc = BancManager.getBancByAgent(m_oAgent)
         Assert.AreEqual(1, tabBanc.Count)
 
         'Suppression du banc
         obanc.isSupprime = True
         BancManager.save(obanc)
-        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString)
+        tabBanc = BancManager.getBancByAgent(m_oAgent)
         Assert.AreEqual(0, tabBanc.Count)
 
         'banc Jamais Servi
         obanc.isSupprime = False
         obanc.JamaisServi = True
         BancManager.save(obanc)
-        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString, True)
+        tabBanc = BancManager.getBancByAgent(m_oAgent, True)
         Assert.AreEqual(0, tabBanc.Count)
-        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString, False)
+        tabBanc = BancManager.getBancByAgent(m_oAgent, False)
         Assert.AreEqual(0, tabBanc.Count)
 
         obanc.JamaisServi = False 'Le Banc n'a pas jamaisservi => il est actif
         BancManager.save(obanc)
-        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString, True)
+        tabBanc = BancManager.getBancByAgent(m_oAgent, True)
         Assert.AreEqual(1, tabBanc.Count)
-        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString)
+        tabBanc = BancManager.getBancByAgent(m_oAgent)
         Assert.AreEqual(1, tabBanc.Count)
 
         obanc.etat = False 'Banc non controlé
         BancManager.save(obanc)
-        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString, True)
+        tabBanc = BancManager.getBancByAgent(m_oAgent, True)
         Assert.AreEqual(1, tabBanc.Count)
-        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure.ToString)
+        tabBanc = BancManager.getBancByAgent(m_oAgent)
         Assert.AreEqual(0, tabBanc.Count)
 
 

@@ -253,7 +253,7 @@ Public Class frmGestIdentifiantsPulve
         Dim bReturn As Boolean
         Try
             Dim oCol1 As List(Of IdentifiantPulverisateur)
-            oCol1 = IdentifiantPulverisateurManager.getListe(agentCourant.idStructure)
+            oCol1 = IdentifiantPulverisateurManager.getListe(agentCourant)
             For Each oIdent As IdentifiantPulverisateur In oCol1
                 m_bsrcManoControlSuppr.Add(oIdent)
             Next

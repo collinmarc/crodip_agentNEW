@@ -10,6 +10,7 @@ Public Class IdentifiantPulverisateur
     Private m_etat As String
     Private m_dateUtilisation As String
     Private m_libelle As String
+    Private m_IDCRODIPPOOL As String
     Private m_dateModificationAgent As String
     Private m_dateModificationCrodip As String
 
@@ -97,6 +98,14 @@ Public Class IdentifiantPulverisateur
             m_libelle = value
         End Set
     End Property
+    Public Property idCRODIPPool As String
+        Get
+            Return m_IDCRODIPPOOL
+        End Get
+        Set(value As String)
+            m_IDCRODIPPOOL = value
+        End Set
+    End Property
     Public Property dateModificationAgent As String
         Get
             Return m_dateModificationAgent
@@ -129,6 +138,8 @@ Public Class IdentifiantPulverisateur
                     Me.etat = pColValue.ToString()
                 Case "libelle".ToUpper().Trim()
                     Me.libelle = pColValue.ToString()
+                Case "idCrodipPool".ToUpper().Trim()
+                    Me.idCRODIPPool = pColValue.ToString()
                 Case "dateUtilisation".ToUpper().Trim()
                     Me.dateUtilisation = pColValue.ToString()
                 Case "dateModificationCrodip".ToUpper().Trim()

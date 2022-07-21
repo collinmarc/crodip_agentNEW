@@ -4857,7 +4857,7 @@ Public Class accueil
         'Si le nbre est inférieure au nombre mini
         'Alerte Orange
         Dim AlerteIdent As GlobalsCRODIP.ALERTE
-        Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(agentCourant.idStructure)
+        Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(agentCourant)
         If olst.Count < My.Settings.NbIdentifiantPulveMini Then
             If olst.Count < (My.Settings.NbIdentifiantPulveMini / 4) Then
                 AlerteIdent = GlobalsCRODIP.ALERTE.NOIRE

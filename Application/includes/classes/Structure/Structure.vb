@@ -441,6 +441,13 @@ Public Class Structuree
                 oBuse.lstPools.Add(oPool)
                 BuseManager.save(oBuse)
             Next
+            CSDebug.dispInfo("Affectation des Identifiants Pulverisateurs")
+            Dim olst4 As List(Of IdentifiantPulverisateur)
+            olst4 = IdentifiantPulverisateurManager.getListeByStructure(Me.id)
+            For Each oIdentPulve As IdentifiantPulverisateur In olst4
+                oIdentPulve.idCRODIPPool = oPool.idCrodip
+                IdentifiantPulverisateurManager.Save(oIdentPulve)
+            Next
 
         End If
     End Sub
