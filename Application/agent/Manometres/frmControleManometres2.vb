@@ -2163,7 +2163,7 @@ Public Class frmControleManometres2
         '####################################################
 
         ' On récupère les mano étalons de l'agent
-        Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(m_oAgent.idStructure)
+        Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByAgent(m_oAgent)
         m_bsManoEtalon.Clear()
         For Each oManoE As ManometreEtalon In arrManoEtalon
             m_bsManoEtalon.Add(oManoE)
@@ -2177,7 +2177,7 @@ Public Class frmControleManometres2
         m_bsManoControle.Clear()
 
         ' On récupère la liste des manos de la structure de l'agent
-        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure, True)
+        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(m_oAgent, True)
         For Each oManoC As ManometreControle In arrManoControle
             oManoC.controle = New ControleMano(oManoC, m_oAgent)
             m_bsManoControle.Add(oManoC)

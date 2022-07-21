@@ -285,61 +285,61 @@ Public Class ManometreControleManagerTest
         Assert.IsTrue(ManometreControleManager.save(oManometreControle))
 
 
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString)
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)
         Assert.AreEqual(1, lstMano.Count)
 
-        'Suppression du banc
+        'Suppression du ManoC
         oManometreControle.isSupprime = True
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString)
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)
         Assert.AreEqual(0, lstMano.Count)
 
         oManometreControle.isSupprime = False
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString)
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)
         Assert.AreEqual(1, lstMano.Count)
 
-        'banc Jamais Servi
+        'Mano Jamais Servi
         oManometreControle.isSupprime = False
         oManometreControle.JamaisServi = True
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString, True)
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent, True)
         Assert.AreEqual(0, lstMano.Count)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString, False)
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent, False)
         Assert.AreEqual(0, lstMano.Count)
 
         oManometreControle.JamaisServi = False 'Le Mano n'a pas jamaisservi => il est actif
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString, True)
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent, True)
         Assert.AreEqual(1, lstMano.Count)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString)
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)
         Assert.AreEqual(1, lstMano.Count)
 
         oManometreControle.etat = False 'Mano non controlé
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString, True)
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent, True)
         Assert.AreEqual(1, lstMano.Count)
-        lstMano = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure.ToString)
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)
         Assert.AreEqual(0, lstMano.Count)
 
         oManometreControle.JamaisServi = False 'Le Mano n'a pas jamaisservi => il est actif
         oManometreControle.etat = False 'Mano non controlé
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString)
+        lstMano = ManometreControleManager.getManoControleByAgentJamaisServi(m_oAgent)
         Assert.AreEqual(0, lstMano.Count)
         oManometreControle.etat = True 'Mano controlé
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString)
+        lstMano = ManometreControleManager.getManoControleByAgentJamaisServi(m_oAgent)
         Assert.AreEqual(0, lstMano.Count)
 
         oManometreControle.JamaisServi = True 'Le Mano n'a jamaisservi 
         oManometreControle.etat = False 'Mano non controlé
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString)
+        lstMano = ManometreControleManager.getManoControleByAgentJamaisServi(m_oAgent)
         Assert.AreEqual(1, lstMano.Count)
         oManometreControle.etat = True 'Mano controlé
         ManometreControleManager.save(oManometreControle)
-        lstMano = ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString)
+        lstMano = ManometreControleManager.getManoControleByAgentJamaisServi(m_oAgent)
         Assert.AreEqual(1, lstMano.Count)
 
         ManometreControleManager.delete(idManometreControle)
@@ -361,17 +361,17 @@ Public Class ManometreControleManagerTest
         ManometreControleManager.save(pMano)
 
         'Vérification que le banc n'est pas dans les liste des jamais servi
-        Assert.AreEqual(0, ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
+        Assert.AreEqual(0, ManometreControleManager.getManoControleByAgentJamaisServi(m_oAgent).Count)
 
         pMano.JamaisServi = True
         ManometreControleManager.save(pMano)
         'Vérification que le banc est dans la liste des jamais servi
-        Assert.AreEqual(1, ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
+        Assert.AreEqual(1, ManometreControleManager.getManoControleByAgentJamaisServi(m_oAgent).Count)
 
         pMano.JamaisServi = False
         ManometreControleManager.save(pMano)
         'Vérification que le banc n'est plus dans la liste des jamais servi
-        Assert.AreEqual(0, ManometreControleManager.getManoControleByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
+        Assert.AreEqual(0, ManometreControleManager.getManoControleByAgentJamaisServi(m_oAgent).Count)
 
         ManometreControleManager.delete(idMano)
     End Sub
@@ -477,4 +477,67 @@ Public Class ManometreControleManagerTest
 
     End Sub
 
+    ''' <summary>
+    ''' Test du chargement à partir d'un Pool
+    ''' </summary>
+    ''' <remarks></remarks>
+    <TestMethod()>
+    Public Sub GetByPoolTest()
+        Dim oManoC As ManometreControle
+        Dim idMano As String
+
+        'Creation d'un Pool
+        Dim oPool = New Pool()
+        oPool.idCrodip = "P1"
+        oPool.libelle = "LIbP1"
+        PoolManager.Save(oPool)
+
+        Dim oPool2 = New Pool()
+        oPool2.idCrodip = "P2"
+        oPool2.libelle = "LIbP2"
+        PoolManager.Save(oPool2)
+
+        m_oAgent.idPool = oPool.id
+        AgentManager.save(m_oAgent)
+
+        'Creation d'un Mano
+        oManoC = New ManometreControle()
+        idMano = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
+        oManoC.numeroNational = idMano
+        oManoC.idCrodip = idMano
+        oManoC.idStructure = m_oAgent.idStructure
+        oManoC.isSupprime = False
+        oManoC.etat = True
+        oManoC.JamaisServi = False
+        oManoC.lstPools.Add(oPool)
+        ManometreControleManager.save(oManoC)
+
+        Dim lstMano As List(Of ManometreControle)
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)
+        Assert.AreEqual(1, lstMano.Count)
+
+        'Si l'agent utilise le Pool2 , il ne voit pas le Mano
+        m_oAgent.idPool = oPool2.id
+        AgentManager.save(m_oAgent)
+
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)
+        Assert.AreEqual(0, lstMano.Count)
+
+        'Ajout du Pool2 dans le Mano
+        oManoC.lstPools.Add(oPool2)
+        ManometreControleManager.save(oManoC)
+        'Le Mano est bien chargé
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)
+        Assert.AreEqual(1, lstMano.Count)
+        'il appartient Bien aux 2 pool
+        Assert.AreEqual(2, lstMano(0).lstPools.Count)
+        'et on le retrouve bien sur le pool1
+        m_oAgent.idPool = oPool.id
+        AgentManager.save(m_oAgent)
+
+        lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)
+        Assert.AreEqual(1, lstMano.Count)
+
+
+    End Sub
 End Class

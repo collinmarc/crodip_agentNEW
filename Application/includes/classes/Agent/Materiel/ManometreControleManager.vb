@@ -182,6 +182,14 @@ Public Class ManometreControleManager
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE AgentManoControle SET " & paramsQuery & " WHERE numeroNational='" & objManometreControle.numeroNational & "'"
                 bddCommande.ExecuteNonQuery()
+
+                'Suppression des Pools avant insertion
+                clearlstPoolByManoC(objManometreControle.idCrodip)
+                'Insertion des Pools
+                objManometreControle.lstPools.ForEach(Sub(p)
+                                                          insertPoolManoC(p.idCrodip, objManometreControle.idCrodip)
+                                                      End Sub)
+
                 bReturn = True
             End If
         Catch ex As Exception
@@ -407,10 +415,9 @@ Public Class ManometreControleManager
         If pIdStructure <> "" Then
             Dim oCsdb As New CSDb(True)
             Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-            If isShowAll Then
-                bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE AgentManoControle.idStructure=" & pIdStructure & " AND AgentManoControle.isSupprime=" & False & " And AgentManoControle.jamaisServi = " & False & ""
-            Else
-                bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE AgentManoControle.idStructure=" & pIdStructure & " AND AgentManoControle.isSupprime=" & False & " AND AgentManoControle.jamaisServi = " & False & " AND AgentManoControle.etat=" & True & ""
+            bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE AgentManoControle.idStructure=" & pIdStructure & " AND AgentManoControle.isSupprime=" & False & " AND AgentManoControle.jamaisServi = " & False & " "
+            If Not isShowAll Then
+                bddCommande.CommandText = bddCommande.CommandText & " AND AgentManoControle.etat=" & True & ""
             End If
             bddCommande.CommandText = bddCommande.CommandText & " ORDER BY idCrodip"
 
@@ -479,6 +486,200 @@ Public Class ManometreControleManager
         End If
         Return arrResponse
     End Function
+    Public Shared Function getManoControleByAgentJamaisServi(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
+        Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
+        Dim arrResponse As New List(Of ManometreControle)
+        If pAgent.idPool = 0 Then
+            arrResponse = getManoControleByStructureIdJamaisServi(pAgent.idStructure)
+        Else
+            arrResponse = getManoControleByPoolIdJamaisServi(pAgent.idPool)
+            If arrResponse.Count = 0 Then
+                arrResponse = getManoControleByStructureIdJamaisServi(pAgent.idStructure)
+            End If
+        End If
+        'Charegement de la Liste des pools du mano
+        arrResponse.ForEach(Sub(M)
+                                M.lstPools.AddRange(getlstPoolByManoC(M.idCrodip))
+                            End Sub)
+        Return arrResponse
+    End Function
 
+    Public Shared Function getManoControleByAgent(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
+        Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
+        Dim arrResponse As New List(Of ManometreControle)
+        If pAgent.idPool = 0 Then
+            arrResponse = getManoControleByStructureId(pAgent.idStructure, isShowAll)
+        Else
+            arrResponse = getManoControleByPoolId(pAgent.idPool)
+        End If
+        'Charegement de la Liste des pools du mano
+        arrResponse.ForEach(Sub(M)
+                                M.lstPools.AddRange(getlstPoolByManoC(M.idCrodip))
+                            End Sub)
+        Return arrResponse
+    End Function
+    Private Shared Function getManoControleByPoolId(ByVal pIdPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
+        Debug.Assert(Not String.IsNullOrEmpty(pIdPool), "L'IDPool doit être renseigné")
+        Dim arrResponse As New List(Of ManometreControle)
+        Dim oPool As Pool
+
+        oPool = PoolManager.getPoolById(pIdPool)
+
+        Dim oCsdb As New CSDb(True)
+        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT * FROM AgentManoControle , PoolManoC WHERE AgentManoControle.idCrodip = PoolManoc.idCRODIPManoC AND PoolManoc.idCRODIPPool = '" & oPool.idCrodip & "' AND AgentManoControle.isSupprime=" & False & " And AgentManoControle.jamaisServi = " & False & ""
+        If Not isShowAll Then
+            bddCommande.CommandText = bddCommande.CommandText & " AND AgentManoControle.etat=" & True
+        End If
+        bddCommande.CommandText = bddCommande.CommandText & " ORDER BY AgentManoControle.idCrodip"
+
+        Try
+            ' On récupère les résultats
+            Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            Dim i As Integer = 0
+            While oDataReader.Read()
+
+                ' On remplit notre tableau
+                Dim oMano As New ManometreControle
+                If oMano.Fill(oDataReader) Then
+                    arrResponse.Add(oMano)
+                End If
+            End While
+            oDataReader.Close()
+        Catch ex As Exception
+            ' On catch l'erreur
+            CSDebug.dispError("ManoControleManager.getManoControle : " & ex.Message)
+        End Try
+        ' Test pour fermeture de connection BDD
+        If Not oCsdb Is Nothing Then
+            ' On ferme la connexion
+            oCsdb.free()
+        End If
+
+        Return arrResponse
+    End Function
+    Private Shared Function getManoControleByPoolIdJamaisServi(ByVal pIdPool As String) As List(Of ManometreControle)
+        Debug.Assert(Not String.IsNullOrEmpty(pIdPool), "L'IDPool doit être renseigné")
+        Dim arrResponse As New List(Of ManometreControle)
+        Dim oPool As Pool
+
+        oPool = PoolManager.getPoolById(pIdPool)
+
+        Dim oCsdb As New CSDb(True)
+        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT * FROM AgentManoControle , PoolManoC WHERE AgentManoControle.idCrodip = PoolManoc.idCRODIPManoC AND PoolManoc.idPool = '" & oPool.idCrodip & "' AND AgentManoControle.isSupprime=" & False & " And AgentManoControle.jamaisServi = " & True & ""
+        bddCommande.CommandText = bddCommande.CommandText & " ORDER BY AgentManoControle.idCrodip"
+
+        Try
+            ' On récupère les résultats
+            Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            Dim i As Integer = 0
+            While oDataReader.Read()
+
+                ' On remplit notre tableau
+                Dim oMano As New ManometreControle
+                If oMano.Fill(oDataReader) Then
+                    arrResponse.Add(oMano)
+                End If
+            End While
+            oDataReader.Close()
+        Catch ex As Exception
+            ' On catch l'erreur
+            CSDebug.dispError("ManoControleManager.getManoControle : " & ex.Message)
+        End Try
+        ' Test pour fermeture de connection BDD
+        If Not oCsdb Is Nothing Then
+            ' On ferme la connexion
+            oCsdb.free()
+        End If
+
+        Return arrResponse
+    End Function
+    ''' <summary>
+    ''' Charegement de la liste de Pool d'un Mano de Controle
+    ''' </summary>
+    ''' <param name="pIdCrodipManoC"></param>
+    ''' <returns></returns>
+    Private Shared Function getlstPoolByManoC(pIdCrodipManoC As String) As List(Of Pool)
+
+        Dim oreturn As New List(Of Pool)
+
+        Dim oCsdb As New CSDb(True)
+        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT Pool.* FROM Pool , PoolManoC WHERE Pool.idCrodip = PoolManoc.idCRODIPPool AND PoolManoc.idcrodipManoc = '" & pIdCrodipManoC & "'"
+
+        Try
+            ' On récupère les résultats
+            Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            Dim i As Integer = 0
+            While oDataReader.Read()
+
+                ' On remplit le Pool
+                Dim oPool As New Pool
+                If oPool.FillDR(oDataReader) Then
+                    'et on l'ajoute à la collection
+                    oreturn.Add(oPool)
+                End If
+            End While
+            oDataReader.Close()
+        Catch ex As Exception
+            ' On catch l'erreur
+            CSDebug.dispError("ManoControleManager.getlstPoolByManoC : " & ex.Message)
+        End Try
+        ' Test pour fermeture de connection BDD
+        If Not oCsdb Is Nothing Then
+            ' On ferme la connexion
+            oCsdb.free()
+        End If
+
+        Return oreturn
+    End Function
+    Private Shared Function clearlstPoolByManoC(pIdCrodipManoC As String) As Boolean
+
+        Dim oreturn As Boolean
+
+        Dim oCsdb As New CSDb(True)
+        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "DELETE FROM PoolManoC WHERE  PoolManoc.idCrodipManoc = '" & pIdCrodipManoC & "'"
+
+        Try
+            ' On récupère les résultats
+            bddCommande.ExecuteNonQuery()
+            oCsdb.free()
+            oreturn = True
+        Catch ex As Exception
+            ' On catch l'erreur
+            CSDebug.dispError("ManoControleManager.clearlstPoolByManoC : " & ex.Message)
+            oreturn = False
+        End Try
+
+
+        Return oreturn
+    End Function
+    Private Shared Function insertPoolManoC(pIdPool As String, pIdCrodipManoC As String) As Boolean
+
+        Dim oreturn As Boolean
+
+        Dim oCsdb As New CSDb(True)
+        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
+        bddCommande.CommandText = "insert into PoolManoC (idCRODIPPool, idCRODIPManoC) vAlues ( '" & pIdPool & "','" & pIdCrodipManoC & "')"
+
+        Try
+            ' On récupère les résultats
+            bddCommande.ExecuteNonQuery()
+            oCsdb.free()
+            oreturn = True
+        Catch ex As Exception
+            ' On catch l'erreur
+            CSDebug.dispError("ManoControleManager.addPoolManoC : " & ex.Message)
+            oreturn = False
+        End Try
+
+
+        Return oreturn
+    End Function
 
 End Class

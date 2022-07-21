@@ -268,15 +268,20 @@
 
 --INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V2.8.00", #29/11/2021# , "CoProprietaire") 
 
-CREATE TABLE AgentPC (id INTEGER  PRIMARY KEY AUTOINCREMENT,idCrodip TEXT,idStructure INTEGER,cleUtilisation TEXT,libelle                TEXT,etat                   BIT,numInterne             TEXT,AgentSuppression       TEXT,RaisonSuppression      TEXT,dateSuppression        DATETIME,isSupprime             BIT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+--CREATE TABLE AgentPC (id INTEGER  PRIMARY KEY AUTOINCREMENT,idCrodip TEXT,idStructure INTEGER,cleUtilisation TEXT,libelle                TEXT,etat                   BIT,numInterne             TEXT,AgentSuppression       TEXT,RaisonSuppression      TEXT,dateSuppression        DATETIME,isSupprime             BIT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
 
 
-CREATE TABLE POOL (id INTEGER PRIMARY KEY AUTOINCREMENT,idCrodip TEXT,libelle TEXT, IDCrodipPC TEXT ,nbPastillesVertes INTEGER DEFAULT (0),dateModificationAgent  DATETIME,dateModificationCrodip DATETIME,idStructure INTEGER REFERENCES Structure (id),idBanc TEXT REFERENCES BancMesure (id) ON DELETE SET NULL);
+--CREATE TABLE POOL (id INTEGER PRIMARY KEY AUTOINCREMENT,idCrodip TEXT,libelle TEXT, IDCrodipPC TEXT ,nbPastillesVertes INTEGER DEFAULT (0),dateModificationAgent  DATETIME,dateModificationCrodip DATETIME,idStructure INTEGER REFERENCES Structure (id),idBanc TEXT REFERENCES BancMesure (id) ON DELETE SET NULL);
 
-ALTER TABLE Agent ADD COLUMN     idPOOL                 INTEGER        REFERENCES POOL (id) ON DELETE SET NULL;
+--ALTER TABLE Agent ADD COLUMN     idPOOL                 INTEGER        REFERENCES POOL (id) ON DELETE SET NULL;
 
 
-Alter Table DIAGNOSTIC Add COLUMN BLFileName  TEXT ;
-Alter Table DIAGNOSTIC Add COLUMN ESFileName  TEXT ;
-Alter Table DIAGNOSTIC Add COLUMN COPROFileName  TEXT ;
-Alter Table DIAGNOSTIC Add COLUMN FACTFileNames  TEXT ;
+--Alter Table DIAGNOSTIC Add COLUMN BLFileName  TEXT ;
+--Alter Table DIAGNOSTIC Add COLUMN ESFileName  TEXT ;
+--Alter Table DIAGNOSTIC Add COLUMN COPROFileName  TEXT ;
+--Alter Table DIAGNOSTIC Add COLUMN FACTFileNames  TEXT ;
+
+CREATE TABLE PoolManoC (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT,idCRODIPManoC          TEXT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+CREATE TABLE PoolManoE (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT,idCRODIPManoE          TEXT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+
+);

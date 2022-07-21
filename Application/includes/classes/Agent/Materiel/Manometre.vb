@@ -1,7 +1,8 @@
+Imports System.Collections.Generic
 Imports System.Web.Services
 Imports System.Xml.Serialization
 
-<Serializable(), XmlInclude(GetType(Manometre))> _
+<Serializable(), XmlInclude(GetType(Manometre))>
 Public Class Manometre
     Inherits Materiel
 
@@ -16,7 +17,7 @@ Public Class Manometre
 
 
     Sub New()
-
+        _lstPools = New List(Of Pool)()
     End Sub
 
 
@@ -93,6 +94,15 @@ Public Class Manometre
         End Get
         Set(ByVal Value As Integer)
             m_nbControlesTotal = Value
+        End Set
+    End Property
+    Private _lstPools As List(Of Pool)
+    Public Property lstPools() As List(Of Pool)
+        Get
+            Return _lstPools
+        End Get
+        Set(ByVal value As List(Of Pool))
+            _lstPools = value
         End Set
     End Property
 

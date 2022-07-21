@@ -1,4 +1,6 @@
 Imports System.Collections.Generic
+Imports System.Linq
+
 Public Class fiche_manometre
     Inherits System.Windows.Forms.Form
 
@@ -11,6 +13,9 @@ Public Class fiche_manometre
     Friend WithEvents imagesEtatMateriel As System.Windows.Forms.ImageList
     Dim isAjout As Boolean
     Friend WithEvents ficheMano_type As TextBox
+    Friend WithEvents m_bsrcPool As BindingSource
+    Friend WithEvents Label9 As Label
+    Friend WithEvents cbxPool As CheckedListBox
     Dim bManoMAJ As Boolean
 
     Public Sub New(ByVal _manometreCourant As Manometre)
@@ -18,6 +23,9 @@ Public Class fiche_manometre
 
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
+
+        cbxPool.DataSource = m_bsrcPool
+        cbxPool.DisplayMember = "Libelle"
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         ' On load le mano
@@ -98,7 +106,11 @@ Public Class fiche_manometre
         Me.btnActiver = New System.Windows.Forms.Button()
         Me.imagesEtatMateriel = New System.Windows.Forms.ImageList(Me.components)
         Me.ficheMano_type = New System.Windows.Forms.TextBox()
+        Me.m_bsrcPool = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.cbxPool = New System.Windows.Forms.CheckedListBox()
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelManoControle
@@ -225,7 +237,7 @@ Public Class fiche_manometre
         Me.btn_ficheMano_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheMano_valider.ForeColor = System.Drawing.Color.White
         Me.btn_ficheMano_valider.Image = CType(resources.GetObject("btn_ficheMano_valider.Image"), System.Drawing.Image)
-        Me.btn_ficheMano_valider.Location = New System.Drawing.Point(288, 299)
+        Me.btn_ficheMano_valider.Location = New System.Drawing.Point(358, 369)
         Me.btn_ficheMano_valider.Name = "btn_ficheMano_valider"
         Me.btn_ficheMano_valider.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheMano_valider.TabIndex = 0
@@ -238,7 +250,7 @@ Public Class fiche_manometre
         Me.btn_ficheMano_supprimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheMano_supprimer.ForeColor = System.Drawing.Color.White
         Me.btn_ficheMano_supprimer.Image = CType(resources.GetObject("btn_ficheMano_supprimer.Image"), System.Drawing.Image)
-        Me.btn_ficheMano_supprimer.Location = New System.Drawing.Point(153, 299)
+        Me.btn_ficheMano_supprimer.Location = New System.Drawing.Point(223, 369)
         Me.btn_ficheMano_supprimer.Name = "btn_ficheMano_supprimer"
         Me.btn_ficheMano_supprimer.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheMano_supprimer.TabIndex = 8
@@ -359,10 +371,35 @@ Public Class fiche_manometre
         Me.ficheMano_type.Size = New System.Drawing.Size(256, 20)
         Me.ficheMano_type.TabIndex = 36
         '
+        'm_bsrcPool
+        '
+        Me.m_bsrcPool.DataSource = GetType(Crodip_agent.Pool)
+        '
+        'Label9
+        '
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.Label9.Location = New System.Drawing.Point(5, 284)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(128, 16)
+        Me.Label9.TabIndex = 37
+        Me.Label9.Text = "Pool :"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'cbxPool
+        '
+        Me.cbxPool.FormattingEnabled = True
+        Me.cbxPool.Location = New System.Drawing.Point(144, 284)
+        Me.cbxPool.Name = "cbxPool"
+        Me.cbxPool.Size = New System.Drawing.Size(143, 49)
+        Me.cbxPool.TabIndex = 38
+        '
         'fiche_manometre
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(501, 353)
+        Me.ClientSize = New System.Drawing.Size(498, 402)
+        Me.Controls.Add(Me.cbxPool)
+        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.ficheMano_type)
         Me.Controls.Add(Me.btnActiver)
         Me.Controls.Add(Me.pbEtat)
@@ -393,6 +430,7 @@ Public Class fiche_manometre
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Fiche Manomètre Contrôle"
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -420,15 +458,14 @@ Public Class fiche_manometre
             LabelManoControle.Location = New Point(8, 8)
             lblResolution.Visible = True
             lblIncertitude.Visible = False
-            'C'est le libelle de résolution qui détient la bonne position
-            '            lblResolution.Location = New Point(8, 177)
             Me.Text = "Crodip .::. Fiche Manomètre Contrôle"
-            'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MARQUES_MANOCONT, ficheMano_marque)
-            'MarquesManager.populateCombobox(GlobalsCRODIP.GLOB_XML_MODELES_MANOCONT, ficheMano_type)
-            ' On charge les infos
-            '    If manometreCourant.numeroNational = "" Then
-            '        manometreCourant.numeroNational = ManometreControleManager.getNewNumeroNational()
-            '    End If
+            Dim oLst As List(Of Pool)
+            oLst = PoolManager.GetListe(BancCourant.idStructure)
+            m_bsrcPool.Clear()
+            oLst.ForEach(Sub(p)
+                             m_bsrcPool.Add(p)
+                         End Sub)
+
         Else
             LabelManoEtalon.Visible = True
             LabelManoControle.Visible = False
@@ -477,12 +514,25 @@ Public Class fiche_manometre
         btnActiver.Visible = manometreCourant.JamaisServi
         If Not manometreCourant.JamaisServi Then
             If Not CSDate.isDateNull(manometreCourant.DateActivation) Then
-                ficheMano_dateActivation.Text = CSDate.TOCRODIPString(manometreCourant.DateActivation)
+                ficheMano_dateActivation.Text = CSDate.ToCRODIPString(manometreCourant.DateActivation)
             End If
         End If
         If Not CSDate.isDateNull(manometreCourant.dateDernierControleS) Then
-            ficheMano_dateControle.Text = CSDate.TOCRODIPString(manometreCourant.dateDernierControleS)
+            ficheMano_dateControle.Text = CSDate.ToCRODIPString(manometreCourant.dateDernierControleS)
         End If
+
+        'Parcours de la Liste des Pools pour checker ceux qui sont les Pool du manoCourant
+        Dim index As Integer = 0
+        For index = 0 To cbxPool.Items.Count() - 1
+            Dim obj As Pool = cbxPool.Items(index)
+            If manometreCourant.lstPools.Where(Function(p)
+                                                   Return (p.idCrodip.Equals(obj.idCrodip))
+                                               End Function).Count() > 0 Then
+                cbxPool.SetItemChecked(index, True)
+            Else
+                cbxPool.SetItemChecked(index, False)
+            End If
+        Next
 
     End Sub
 
@@ -502,7 +552,12 @@ Public Class fiche_manometre
                 Else
                     CType(manometreCourant, ManometreEtalon).incertitudeEtalon = ficheMano_resolution.Text
                 End If
-                manometreCourant.dateModificationAgent = CSDate.TOCRODIPString(Date.Now)
+                manometreCourant.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
+                manometreCourant.lstPools.Clear()
+                For Each oItem As Pool In cbxPool.CheckedItems
+                    manometreCourant.lstPools.Add(oItem)
+                Next
+
                 If m_TypeMano = TYPEMANO.MANOCONTROLE Then
                     ManometreControleManager.save(manometreCourant)
                 Else
@@ -575,5 +630,9 @@ Public Class fiche_manometre
             DisplayManoCourant()
         End If
 #End If
+    End Sub
+
+    Private Sub cbxPool_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles cbxPool.ItemCheck
+        bManoMAJ = True
     End Sub
 End Class

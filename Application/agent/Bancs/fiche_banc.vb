@@ -11,19 +11,25 @@ Public Class fiche_banc
     Friend WithEvents pbEtat As System.Windows.Forms.PictureBox
     Friend WithEvents Label4 As Label
     Friend WithEvents cbxModulesAcquisition As ComboBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents m_bsrcPool As BindingSource
+    Friend WithEvents cbxPool As ComboBox
+    Friend WithEvents m_bsrcBanc As BindingSource
     Friend WithEvents btnActiver As System.Windows.Forms.Button
 
 
-    Public Sub New(ByVal _BancCourant As Banc)
+    Public Sub New(ByVal pBancCourant As Banc)
         MyBase.New()
 
-        ' On load le mano
-        BancCourant = _BancCourant
 
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
+        ' On load le mano
+        m_bsrcBanc.Clear()
+        BancCourant = pBancCourant
+        m_bsrcBanc.Add(BancCourant)
 
     End Sub
 
@@ -63,6 +69,7 @@ Public Class fiche_banc
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(fiche_banc))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ficheBanc_id = New System.Windows.Forms.TextBox()
+        Me.m_bsrcBanc = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -82,7 +89,12 @@ Public Class fiche_banc
         Me.btnActiver = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cbxModulesAcquisition = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.m_bsrcPool = New System.Windows.Forms.BindingSource(Me.components)
+        Me.cbxPool = New System.Windows.Forms.ComboBox()
+        CType(Me.m_bsrcBanc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -99,12 +111,17 @@ Public Class fiche_banc
         '
         'ficheBanc_id
         '
+        Me.ficheBanc_id.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcBanc, "id", True))
         Me.ficheBanc_id.Location = New System.Drawing.Point(160, 48)
         Me.ficheBanc_id.MaxLength = 5
         Me.ficheBanc_id.Name = "ficheBanc_id"
         Me.ficheBanc_id.ReadOnly = True
         Me.ficheBanc_id.Size = New System.Drawing.Size(256, 20)
         Me.ficheBanc_id.TabIndex = 1
+        '
+        'm_bsrcBanc
+        '
+        Me.m_bsrcBanc.DataSource = GetType(Crodip_agent.Banc)
         '
         'Label6
         '
@@ -152,6 +169,7 @@ Public Class fiche_banc
         '
         'ficheBanc_marque
         '
+        Me.ficheBanc_marque.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcBanc, "marque", True))
         Me.ficheBanc_marque.Enabled = False
         Me.ficheBanc_marque.Location = New System.Drawing.Point(160, 72)
         Me.ficheBanc_marque.Name = "ficheBanc_marque"
@@ -183,6 +201,7 @@ Public Class fiche_banc
         '
         'ficheBanc_dateActivation
         '
+        Me.ficheBanc_dateActivation.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcBanc, "DateActivation", True))
         Me.ficheBanc_dateActivation.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ficheBanc_dateActivation.ForeColor = System.Drawing.Color.Black
         Me.ficheBanc_dateActivation.Location = New System.Drawing.Point(157, 208)
@@ -193,6 +212,7 @@ Public Class fiche_banc
         '
         'ficheBanc_dateControle
         '
+        Me.ficheBanc_dateControle.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcBanc, "dateDernierControle", True))
         Me.ficheBanc_dateControle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ficheBanc_dateControle.ForeColor = System.Drawing.Color.Black
         Me.ficheBanc_dateControle.Location = New System.Drawing.Point(157, 229)
@@ -203,11 +223,12 @@ Public Class fiche_banc
         '
         'btn_ficheMano_valider
         '
+        Me.btn_ficheMano_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_ficheMano_valider.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_ficheMano_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheMano_valider.ForeColor = System.Drawing.Color.White
         Me.btn_ficheMano_valider.Image = CType(resources.GetObject("btn_ficheMano_valider.Image"), System.Drawing.Image)
-        Me.btn_ficheMano_valider.Location = New System.Drawing.Point(288, 275)
+        Me.btn_ficheMano_valider.Location = New System.Drawing.Point(288, 341)
         Me.btn_ficheMano_valider.Name = "btn_ficheMano_valider"
         Me.btn_ficheMano_valider.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheMano_valider.TabIndex = 0
@@ -216,11 +237,12 @@ Public Class fiche_banc
         '
         'btn_ficheMano_supprimer
         '
+        Me.btn_ficheMano_supprimer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_ficheMano_supprimer.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_ficheMano_supprimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheMano_supprimer.ForeColor = System.Drawing.Color.White
         Me.btn_ficheMano_supprimer.Image = CType(resources.GetObject("btn_ficheMano_supprimer.Image"), System.Drawing.Image)
-        Me.btn_ficheMano_supprimer.Location = New System.Drawing.Point(149, 275)
+        Me.btn_ficheMano_supprimer.Location = New System.Drawing.Point(149, 341)
         Me.btn_ficheMano_supprimer.Name = "btn_ficheMano_supprimer"
         Me.btn_ficheMano_supprimer.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheMano_supprimer.TabIndex = 6
@@ -229,6 +251,7 @@ Public Class fiche_banc
         '
         'ficheBanc_dateAchat
         '
+        Me.ficheBanc_dateAchat.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcBanc, "dateAchat", True))
         Me.ficheBanc_dateAchat.Enabled = False
         Me.ficheBanc_dateAchat.Location = New System.Drawing.Point(232, 120)
         Me.ficheBanc_dateAchat.Name = "ficheBanc_dateAchat"
@@ -237,6 +260,7 @@ Public Class fiche_banc
         '
         'ficheBanc_modele
         '
+        Me.ficheBanc_modele.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcBanc, "modele", True))
         Me.ficheBanc_modele.Enabled = False
         Me.ficheBanc_modele.Location = New System.Drawing.Point(160, 96)
         Me.ficheBanc_modele.MaxLength = 100
@@ -293,6 +317,7 @@ Public Class fiche_banc
         '
         'cbxModulesAcquisition
         '
+        Me.cbxModulesAcquisition.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcBanc, "ModuleAcquisition", True))
         Me.cbxModulesAcquisition.Enabled = False
         Me.cbxModulesAcquisition.Location = New System.Drawing.Point(160, 143)
         Me.cbxModulesAcquisition.Name = "cbxModulesAcquisition"
@@ -300,10 +325,39 @@ Public Class fiche_banc
         Me.cbxModulesAcquisition.Sorted = True
         Me.cbxModulesAcquisition.TabIndex = 19
         '
+        'Label9
+        '
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.Label9.Location = New System.Drawing.Point(-6, 261)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(144, 16)
+        Me.Label9.TabIndex = 20
+        Me.Label9.Text = "Pool :"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'm_bsrcPool
+        '
+        Me.m_bsrcPool.AllowNew = False
+        Me.m_bsrcPool.DataSource = GetType(Crodip_agent.Pool)
+        '
+        'cbxPool
+        '
+        Me.cbxPool.DataSource = Me.m_bsrcPool
+        Me.cbxPool.DisplayMember = "Libelle"
+        Me.cbxPool.FormattingEnabled = True
+        Me.cbxPool.Location = New System.Drawing.Point(160, 261)
+        Me.cbxPool.Name = "cbxPool"
+        Me.cbxPool.Size = New System.Drawing.Size(256, 21)
+        Me.cbxPool.TabIndex = 21
+        Me.cbxPool.ValueMember = "id"
+        '
         'fiche_banc
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(441, 326)
+        Me.ClientSize = New System.Drawing.Size(441, 374)
+        Me.Controls.Add(Me.cbxPool)
+        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.cbxModulesAcquisition)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btnActiver)
@@ -329,7 +383,9 @@ Public Class fiche_banc
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip .::. Fiche Banc"
+        CType(Me.m_bsrcBanc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -352,23 +408,32 @@ Public Class fiche_banc
         For Each oMod As CRODIPAcquisition.ModuleAcq In olstModules
             cbxModulesAcquisition.Items.Add(oMod.Nom)
         Next
-
+        Dim lstPool As List(Of Pool)
+        lstPool = PoolManager.GetListe(BancCourant.idStructure)
+        lstPool.ForEach(Sub(p)
+                            m_bsrcPool.Add(p)
+                        End Sub)
 
         dispBancCourant()
+#If DEBUG Then
+        cbxPool.Enabled = True
+#Else
+        cbxPool.Enabled = false
+#End If
     End Sub
     Private Sub dispBancCourant()
         Try
 
-            ficheBanc_id.Text = BancCourant.id
-            ficheBanc_marque.Text = BancCourant.marque
-            ficheBanc_modele.Text = BancCourant.modele
-            If Not String.IsNullOrEmpty(BancCourant.dateAchat) Then
-                ficheBanc_dateAchat.Text = CSDate.TOCRODIPString(BancCourant.dateAchat)
-            Else
-                lblDateAchat.Visible = False
-                ficheBanc_dateAchat.Enabled = False
-                ficheBanc_dateAchat.Visible = False
-            End If
+            '            ficheBanc_id.Text = BancCourant.id
+            '           ficheBanc_marque.Text = BancCourant.marque
+            '          ficheBanc_modele.Text = BancCourant.modele
+            '         If Not String.IsNullOrEmpty(BancCourant.dateAchat) Then
+            '        ficheBanc_dateAchat.Text = CSDate.TOCRODIPString(BancCourant.dateAchat)
+            '       Else
+            '      lblDateAchat.Visible = False
+            '     ficheBanc_dateAchat.Enabled = False
+            '    ficheBanc_dateAchat.Visible = False
+            '   End If
             If BancCourant.JamaisServi Then
                 pbEtat.Image = imagesEtatMateriel.Images(2) 'Gris
             Else
@@ -379,13 +444,13 @@ Public Class fiche_banc
                 End If
             End If
             btnActiver.Visible = BancCourant.JamaisServi
-            If Not CSDate.isDateNull(BancCourant.DateActivation) Then
-                ficheBanc_dateActivation.Text = CSDate.TOCRODIPString(BancCourant.DateActivation)
-            End If
-            If Not CSDate.isDateNull(BancCourant.dateDernierControleS) Then
-                ficheBanc_dateControle.Text = CSDate.TOCRODIPString(BancCourant.dateDernierControleS)
-            End If
-            cbxModulesAcquisition.Text = BancCourant.ModuleAcquisition
+            '  If Not CSDate.isDateNull(BancCourant.DateActivation) Then
+            ' ficheBanc_dateActivation.Text = CSDate.TOCRODIPString(BancCourant.DateActivation)
+            'End If
+            ' If Not CSDate.isDateNull(BancCourant.dateDernierControleS) Then
+            'ficheBanc_dateControle.Text = CSDate.TOCRODIPString(BancCourant.dateDernierControleS)
+            'End If
+            'cbxModulesAcquisition.Text = BancCourant.ModuleAcquisition
 
         Catch ex As Exception
             CSDebug.dispError("fiche_banc.dispBancCourant ERR" & ex.Message)
@@ -402,13 +467,18 @@ Public Class fiche_banc
                 'BancCourant.idStructure = agentCourant.idStructure
                 'End If
                 '                BancCourant.id = ficheBanc_id.Text
-                BancCourant.marque = ficheBanc_marque.Text
-                BancCourant.modele = ficheBanc_modele.Text
-                BancCourant.ModuleAcquisition = cbxModulesAcquisition.Text
-                If (ficheBanc_dateAchat.Visible) Then
-                    BancCourant.dateAchat = CSDate.TOCRODIPString(ficheBanc_dateAchat.Value)
-                End If
+                '                BancCourant.marque = ficheBanc_marque.Text
+                '                BancCourant.modele = ficheBanc_modele.Text
+                '               BancCourant.ModuleAcquisition = cbxModulesAcquisition.Text
+                '              If (ficheBanc_dateAchat.Visible) Then
+                '             BancCourant.dateAchat = CSDate.TOCRODIPString(ficheBanc_dateAchat.Value)
+                '    End If
                 BancManager.save(BancCourant)
+                'Sauvegarde du Pool
+                Dim oPool As Pool
+                oPool = m_bsrcPool.Current
+                oPool.idBanc = BancCourant.id
+                PoolManager.Save(oPool)
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()
             Catch ex As Exception

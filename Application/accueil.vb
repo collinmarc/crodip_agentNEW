@@ -4613,7 +4613,7 @@ Public Class accueil
         Dim nbAlertes_ManometreEtalon_1mois As Integer = 0
         Dim nbAlertes_ManometreEtalon_1mois7jr As Integer = 0
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOETALON_LOAD, True)
-        Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(agentCourant.idStructure, True)
+        Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByAgent(agentCourant, True)
         For Each tmpManoEtalon As ManometreEtalon In arrManoEtalon
             Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(tmpManoEtalon.dateDernierControleS)
             Dim tmpCompareManoControleAlerte20jr As Integer = tmpDateLCManoControle.CompareTo(DateAdd(DateInterval.DayOfYear, -20, Now))
@@ -4765,7 +4765,7 @@ Public Class accueil
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
 
         'Chargement de tous les manos
-        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(agentCourant.idStructure, True)
+        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(agentCourant, True)
         Dim njours As Integer
         Dim nbManoOrange(3000) As Integer 'Nombre de manomètres devant être controler njours avant la Date Limite
         'Parcours de manos
@@ -5030,7 +5030,7 @@ Public Class accueil
         'Chargement des bancs du Pool
         If agentCourant.idPool <> 0 Then
             arrBanc = New List(Of Banc)()
-            If agentCourant.oPool.idBanc <> 0 Then
+            If agentCourant.oPool.idBanc <> "" Then
                 BancCourant = BancManager.getBancById(agentCourant.oPool.idBanc)
                 arrBanc.Add(BancCourant)
             Else

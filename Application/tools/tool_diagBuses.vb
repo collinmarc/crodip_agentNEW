@@ -1590,7 +1590,7 @@ Public Class tool_diagBuses
         ' On vide les onglets
         diagBuses_tab_categories.TabPages.Clear()
         ' On charge les mano de contrôle de la strcuture
-        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(agentCourant.idStructure)
+        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(agentCourant)
         Dim positionTop As Integer = 0
         For Each tmpManoControle As ManometreControle In arrManoControle
             Dim objComboItem As New objComboItem(tmpManoControle.numeroNational, tmpManoControle.idCrodip & " - " & tmpManoControle.type & " (" & tmpManoControle.marque & ")")

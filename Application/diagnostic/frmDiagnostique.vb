@@ -835,7 +835,7 @@ Public Class FrmDiagnostique
     End Sub
 
     Protected Overridable Sub getListeManoControle()
-        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(agentCourant.idStructure)
+        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(agentCourant)
         Dim positionTop As Integer = 0
         For Each tmpManoControle As ManometreControle In arrManoControle
             Dim objComboItem As New objComboItem(tmpManoControle.numeroNational, tmpManoControle.idCrodip & " - " & tmpManoControle.type & " (" & tmpManoControle.marque & ")")

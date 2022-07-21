@@ -795,7 +795,7 @@ Public Class AgentManagerTest
     Private Sub createFVManoControle(ByVal pAgent As Agent)
         Dim idMano As String
 
-        Dim Lst As List(Of ManometreControle) = ManometreControleManager.getManoControleByStructureId(pAgent.idStructure.ToString(), True)
+        Dim Lst As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(pAgent, True)
         For Each oMano As ManometreControle In Lst
             idMano = FVManometreControleManager.getNewId(pAgent)
             Dim oFV As New FVManometreControle()
@@ -809,7 +809,7 @@ Public Class AgentManagerTest
     Private Sub createFVManoEtalon(ByVal pAgent As Agent)
         Dim idMano As String
 
-        Dim Lst As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByStructureId(pAgent.idStructure.ToString, True)
+        Dim Lst As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByAgent(pAgent, True)
         For Each oMano As ManometreEtalon In Lst
             idMano = FVManometreEtalonManager.getNewId(pAgent)
             Dim oFV As New FVManometreEtalon()
