@@ -4119,7 +4119,9 @@ Public Class accueil
         Dim objComboItem_Nom As New objComboItem("4", "Nom")
         Dim objComboItem_DateC As New objComboItem("5", "Date de controle")
         Dim objComboItem_Pulve As New objComboItem("6", "Numero Pulverisateur")
-        Dim objComboItem_ID As New objComboItem("6", "Numéro Controle")
+        Dim objComboItem_ID As New objComboItem("7", "Numéro Controle")
+        Dim objComboItem_Commune As New objComboItem("8", "Commune")
+        Dim objComboItem_CodePostal As New objComboItem("9", "Code postal")
 
         If Not agentCourant.isGestionnaire Then
             'Les données ont déjà été Chargée par la page de login
@@ -4145,6 +4147,8 @@ Public Class accueil
             list_search_fieldSearch.Items.Add(objComboItem_Nom)
             list_search_fieldSearch.Items.Add(objComboItem_DateC)
             list_search_fieldSearch.Items.Add(objComboItem_Pulve)
+            list_search_fieldSearch.Items.Add(objComboItem_Commune)
+            list_search_fieldSearch.Items.Add(objComboItem_CodePostal)
 
 
             btnParamModeSimplifie.Visible = False
