@@ -45,7 +45,7 @@ Public Class Agent
     Private _droitsPulves As String
     Private _IsGestionnaire As Boolean
     Private _IsSignElecActive As Boolean
-    Private _idPool As Integer
+    Private _idCRODIPPool As String
     Private _oPool As Pool
 
 
@@ -74,7 +74,7 @@ Public Class Agent
         _droitsPulves = ""
         _IsGestionnaire = False
         _IsSignElecActive = False
-        _idPool = 0
+        _idCRODIPPool = ""
     End Sub
     Sub New(pId As Integer, pNumeroNational As String, pnom As String, pidStructure As Integer)
         Me.New()
@@ -305,12 +305,12 @@ Public Class Agent
             _IsSignElecActive = value
         End Set
     End Property
-    Public Property idPool() As Integer
+    Public Property idCRODIPPool() As String
         Get
-            Return _idPool
+            Return _idCRODIPPool
         End Get
-        Set(ByVal value As Integer)
-            _idPool = value
+        Set(ByVal value As String)
+            _idCRODIPPool = value
         End Set
     End Property
     <XmlIgnore()>
@@ -436,10 +436,10 @@ Public Class Agent
                     Me.isSignElecActive = pValue
                 Case "isSignElecActive".Trim().ToUpper()
                     Me.isSignElecActive = pValue
-                Case "idPool".Trim().ToUpper()
-                    Me.idPool = pValue
-                    If idPool <> 0 Then
-                        oPool = PoolManager.getPoolById(idPool)
+                Case "idCRODIPPool".Trim().ToUpper()
+                    Me.idCRODIPPool = pValue
+                    If idCRODIPPool <> "" Then
+                        oPool = PoolManager.getPoolByIdCRODIP(idCRODIPPool)
                     End If
             End Select
 
@@ -780,7 +780,7 @@ Public Class Agent
                 Me.dateModificationAgent = pAgent.dateModificationAgent
                 Me.dateModificationCrodip = pAgent.dateModificationCrodip
                 Me.cleActivation = pAgent.cleActivation
-                Me.idPool = pAgent.idPool
+                Me.idCRODIPPool = pAgent.idCRODIPPool
             End If
             Me.nom = pAgent.nom
             Me.prenom = pAgent.prenom

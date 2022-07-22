@@ -184,10 +184,10 @@ Public Class ManometreControleManager
                 bddCommande.ExecuteNonQuery()
 
                 'Suppression des Pools avant insertion
-                clearlstPoolByManoC(objManometreControle.idCrodip)
+                clearlstPoolByManoC(objManometreControle.numeroNational)
                 'Insertion des Pools
                 objManometreControle.lstPools.ForEach(Sub(p)
-                                                          insertPoolManoC(p.idCrodip, objManometreControle.idCrodip)
+                                                          insertPoolManoC(p.idCrodip, objManometreControle.numeroNational)
                                                       End Sub)
 
                 bReturn = True
@@ -294,7 +294,7 @@ Public Class ManometreControleManager
 
                 ' On remplit notre tableau
                 Dim oMano As New ManometreControle
-                If oMano.Fill(oDataReader) Then
+                If oMano.FillDR(oDataReader) Then
                     colReturn.Add(oMano)
                 End If
             End While
@@ -430,7 +430,7 @@ Public Class ManometreControleManager
 
                     ' On remplit notre tableau
                     Dim oMano As New ManometreControle
-                    If oMano.Fill(oDataReader) Then
+                    If oMano.FillDR(oDataReader) Then
                         arrResponse.Add(oMano)
                     End If
                 End While
@@ -468,7 +468,7 @@ Public Class ManometreControleManager
 
                     ' On remplit notre tableau
                     Dim oMano As New ManometreControle
-                    If oMano.Fill(oDataReader) Then
+                    If oMano.FillDR(oDataReader) Then
                         arrResponse.Add(oMano)
                     End If
                 End While
@@ -489,17 +489,17 @@ Public Class ManometreControleManager
     Public Shared Function getManoControleByAgentJamaisServi(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
-        If pAgent.idPool = 0 Then
+        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
             arrResponse = getManoControleByStructureIdJamaisServi(pAgent.idStructure)
         Else
-            arrResponse = getManoControleByPoolIdJamaisServi(pAgent.idPool)
+            arrResponse = getManoControleByPoolIdJamaisServi(pAgent.idCRODIPPool)
             If arrResponse.Count = 0 Then
                 arrResponse = getManoControleByStructureIdJamaisServi(pAgent.idStructure)
             End If
         End If
         'Charegement de la Liste des pools du mano
         arrResponse.ForEach(Sub(M)
-                                M.lstPools.AddRange(getlstPoolByManoC(M.idCrodip))
+                                M.lstPools.AddRange(getlstPoolByManoC(M.numeroNational))
                             End Sub)
         Return arrResponse
     End Function
@@ -507,10 +507,10 @@ Public Class ManometreControleManager
     Public Shared Function getManoControleByAgent(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
-        If pAgent.idPool = 0 Then
+        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
             arrResponse = getManoControleByStructureId(pAgent.idStructure, isShowAll)
         Else
-            arrResponse = getManoControleByPoolId(pAgent.idPool, isShowAll)
+            arrResponse = getManoControleByPoolId(pAgent.idCRODIPPool, isShowAll)
         End If
         'Charegement de la Liste des pools du mano
         arrResponse.ForEach(Sub(M)
@@ -518,16 +518,13 @@ Public Class ManometreControleManager
                             End Sub)
         Return arrResponse
     End Function
-    Private Shared Function getManoControleByPoolId(ByVal pIdPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
-        Debug.Assert(Not String.IsNullOrEmpty(pIdPool), "L'IDPool doit être renseigné")
+    Private Shared Function getManoControleByPoolId(ByVal pIdCrodipPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
+        Debug.Assert(Not String.IsNullOrEmpty(pIdCrodipPool), "L'IDPool doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
-        Dim oPool As Pool
-
-        oPool = PoolManager.getPoolById(pIdPool)
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM AgentManoControle , PoolManoC WHERE AgentManoControle.idCrodip = PoolManoc.idCRODIPManoC AND PoolManoc.idCRODIPPool = '" & oPool.idCrodip & "' AND AgentManoControle.isSupprime=" & False & " And AgentManoControle.jamaisServi = " & False & ""
+        bddCommande.CommandText = "SELECT * FROM AgentManoControle , PoolManoC WHERE AgentManoControle.numeronational = PoolManoc.numeronationalManoC AND PoolManoc.idCRODIPPool = '" & pIdCrodipPool & "' AND AgentManoControle.isSupprime=" & False & " And AgentManoControle.jamaisServi = " & False & ""
         If Not isShowAll Then
             bddCommande.CommandText = bddCommande.CommandText & " AND AgentManoControle.etat=" & True
         End If
@@ -542,7 +539,7 @@ Public Class ManometreControleManager
 
                 ' On remplit notre tableau
                 Dim oMano As New ManometreControle
-                If oMano.Fill(oDataReader) Then
+                If oMano.FillDR(oDataReader) Then
                     arrResponse.Add(oMano)
                 End If
             End While
@@ -559,16 +556,13 @@ Public Class ManometreControleManager
 
         Return arrResponse
     End Function
-    Private Shared Function getManoControleByPoolIdJamaisServi(ByVal pIdPool As String) As List(Of ManometreControle)
-        Debug.Assert(Not String.IsNullOrEmpty(pIdPool), "L'IDPool doit être renseigné")
+    Private Shared Function getManoControleByPoolIdJamaisServi(ByVal pIdCrodipPool As String) As List(Of ManometreControle)
+        Debug.Assert(Not String.IsNullOrEmpty(pIdCrodipPool), "L'IDPool doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
-        Dim oPool As Pool
-
-        oPool = PoolManager.getPoolById(pIdPool)
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM AgentManoControle , PoolManoC WHERE AgentManoControle.idCrodip = PoolManoc.idCRODIPManoC AND PoolManoc.idCRODIPPool = '" & oPool.idCrodip & "' AND AgentManoControle.isSupprime=" & False & " And AgentManoControle.jamaisServi = " & True & ""
+        bddCommande.CommandText = "SELECT * FROM AgentManoControle , PoolManoC WHERE AgentManoControle.numeronational = PoolManoc.numeronationalManoC AND PoolManoc.idCRODIPPool = '" & pIdCrodipPool & "' AND AgentManoControle.isSupprime=" & False & " And AgentManoControle.jamaisServi = " & True & ""
         bddCommande.CommandText = bddCommande.CommandText & " ORDER BY AgentManoControle.idCrodip"
 
         Try
@@ -580,7 +574,7 @@ Public Class ManometreControleManager
 
                 ' On remplit notre tableau
                 Dim oMano As New ManometreControle
-                If oMano.Fill(oDataReader) Then
+                If oMano.FillDR(oDataReader) Then
                     arrResponse.Add(oMano)
                 End If
             End While
@@ -600,15 +594,15 @@ Public Class ManometreControleManager
     ''' <summary>
     ''' Charegement de la liste de Pool d'un Mano de Controle
     ''' </summary>
-    ''' <param name="pIdCrodipManoC"></param>
+    ''' <param name="pnumeronationalManoC"></param>
     ''' <returns></returns>
-    Private Shared Function getlstPoolByManoC(pIdCrodipManoC As String) As List(Of Pool)
+    Private Shared Function getlstPoolByManoC(pnumeronationalManoC As String) As List(Of Pool)
 
         Dim oreturn As New List(Of Pool)
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT Pool.* FROM Pool , PoolManoC WHERE Pool.idCrodip = PoolManoc.idCRODIPPool AND PoolManoc.idcrodipManoc = '" & pIdCrodipManoC & "'"
+        bddCommande.CommandText = "SELECT Pool.* FROM Pool , PoolManoC WHERE Pool.idCrodip = PoolManoc.idCRODIPPool AND PoolManoc.numeronationalManoc = '" & pnumeronationalManoC & "'"
 
         Try
             ' On récupère les résultats
@@ -637,13 +631,13 @@ Public Class ManometreControleManager
 
         Return oreturn
     End Function
-    Private Shared Function clearlstPoolByManoC(pIdCrodipManoC As String) As Boolean
+    Private Shared Function clearlstPoolByManoC(numeronationalManoC As String) As Boolean
 
         Dim oreturn As Boolean
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "DELETE FROM PoolManoC WHERE  PoolManoc.idCrodipManoc = '" & pIdCrodipManoC & "'"
+        bddCommande.CommandText = "DELETE FROM PoolManoC WHERE  PoolManoc.numeronationalManoc = '" & numeronationalManoC & "'"
 
         Try
             ' On récupère les résultats
@@ -659,13 +653,13 @@ Public Class ManometreControleManager
 
         Return oreturn
     End Function
-    Private Shared Function insertPoolManoC(pIdPool As String, pIdCrodipManoC As String) As Boolean
+    Private Shared Function insertPoolManoC(pIdPool As String, pnumeronational As String) As Boolean
 
         Dim oreturn As Boolean
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "insert into PoolManoC (idCRODIPPool, idCRODIPManoC) vAlues ( '" & pIdPool & "','" & pIdCrodipManoC & "')"
+        bddCommande.CommandText = "insert into PoolManoC (idCRODIPPool, numeronationalManoC) vAlues ( '" & pIdPool & "','" & pnumeronational & "')"
 
         Try
             ' On récupère les résultats

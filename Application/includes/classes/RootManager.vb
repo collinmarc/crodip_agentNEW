@@ -42,7 +42,7 @@ Public Class RootManager
     Protected Shared BaseUrl As String = "https://api-pp.crodip.fr"
     Protected Shared _token As String
     Protected Shared _bConnecte As Boolean
-    Protected Shared Function getById(Of T As {root, New})(pSQL As String) As T
+    Protected Shared Function getByKey(Of T As {root, New})(pSQL As String) As T
         Dim oReturn As T = Nothing
         Try
 
@@ -64,7 +64,7 @@ Public Class RootManager
 
 
         Catch ex As Exception
-            CSDebug.dispError("RootManager.getById ERR", ex)
+            CSDebug.dispError("RootManager.getByKey ERR", ex)
             oReturn = Nothing
         End Try
         Return oReturn

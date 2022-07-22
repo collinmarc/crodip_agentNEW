@@ -17,15 +17,6 @@ Public Class AgentPC
         etat = True
         numInterne = ""
     End Sub
-    Private _id As Integer
-    Public Property id() As Integer
-        Get
-            Return _id
-        End Get
-        Set(ByVal value As Integer)
-            _id = value
-        End Set
-    End Property
     Public Property numInterne() As String
         Get
             Return _NumInterne
@@ -52,8 +43,8 @@ Public Class AgentPC
             If Not bReturn Then
                 bReturn = True
                 Select Case pName.Trim().ToUpper()
-                    Case "id".Trim().ToUpper()
-                        Me.id = CInt(pValue)
+                    Case "idCrodip".Trim().ToUpper()
+                        Me.idCrodip = CInt(pValue)
                     Case "numInterne".Trim().ToUpper()
                         Me.numInterne = pValue.ToString() 'Public modele As String
                     Case "libelle".Trim().ToUpper()

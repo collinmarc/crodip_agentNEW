@@ -3,15 +3,7 @@ Imports Crodip_agent
 
 Public Class Pool
     Inherits Materiel
-    Private _id As Integer
-    Public Property id() As Integer
-        Get
-            Return _id
-        End Get
-        Set(ByVal value As Integer)
-            _id = value
-        End Set
-    End Property
+
     Private _libelle As String
     Public Overrides Property libelle() As String
         Get
@@ -61,8 +53,6 @@ Public Class Pool
             If Not bReturn Then
                 bReturn = True
                 Select Case pcolName.Trim().ToUpper()
-                    Case "id".Trim().ToUpper()
-                        Me.id = CInt(pValue)
                     Case "libelle".Trim().ToUpper()
                         Me.libelle = pValue.ToString()
                     Case "idCRODIPPC".Trim().ToUpper()

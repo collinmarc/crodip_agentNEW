@@ -183,10 +183,10 @@ Public Class ManometreEtalonManager
                 bddCommande.CommandText = "UPDATE AgentManoEtalon SET " & paramsQuery & " WHERE numeroNational='" & objManometreEtalon.numeroNational & "'"
                 bddCommande.ExecuteNonQuery()
                 'Suppression des Pools avant insertion
-                clearlstPoolByManoE(objManometreEtalon.idCrodip)
+                clearlstPoolByManoE(objManometreEtalon.numeroNational)
                 'Insertion des Pools
                 objManometreEtalon.lstPools.ForEach(Sub(p)
-                                                        insertPoolManoE(p.idCrodip, objManometreEtalon.idCrodip)
+                                                        insertPoolManoE(p.idCrodip, objManometreEtalon.numeroNational)
                                                     End Sub)
 
                 bReturn = True
@@ -528,41 +528,38 @@ Public Class ManometreEtalonManager
     Public Shared Function getManometreEtalonByAgent(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreEtalon)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
-        If pAgent.idPool = 0 Then
+        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
             arrResponse = getManometreEtalonByStructureId(pAgent.idStructure, isShowAll)
         Else
-            arrResponse = getManoEtalonByPoolId(pAgent.idPool, isShowAll)
+            arrResponse = getManoEtalonByPoolId(pAgent.idCRODIPPool, isShowAll)
         End If
         'Charegement de la Liste des pools du mano
         arrResponse.ForEach(Sub(M)
-                                M.lstPools.AddRange(getlstPoolByManoE(M.idCrodip))
+                                M.lstPools.AddRange(getlstPoolByManoE(M.numeroNational))
                             End Sub)
         Return arrResponse
     End Function
     Public Shared Function getManometreEtalonByAgentJamaisServi(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreEtalon)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
-        If pAgent.idPool = 0 Then
+        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
             arrResponse = getManometreEtalonByStructureIdJamaisServi(pAgent.idStructure)
         Else
-            arrResponse = getManoEtalonByPoolIdJamaisServi(pAgent.idPool)
+            arrResponse = getManoEtalonByPoolIdJamaisServi(pAgent.idCRODIPPool)
         End If
         'Charegement de la Liste des pools du mano
         arrResponse.ForEach(Sub(M)
-                                M.lstPools.AddRange(getlstPoolByManoE(M.idCrodip))
+                                M.lstPools.AddRange(getlstPoolByManoE(M.numeroNational))
                             End Sub)
         Return arrResponse
     End Function
-    Private Shared Function getManoEtalonByPoolId(ByVal pIdPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreEtalon)
-        Debug.Assert(Not String.IsNullOrEmpty(pIdPool), "L'IDPool doit être renseigné")
+    Private Shared Function getManoEtalonByPoolId(ByVal pIdCrodipPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreEtalon)
+        Debug.Assert(Not String.IsNullOrEmpty(pIdCrodipPool), "L'IDPool doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
-        Dim oPool As Pool
-
-        oPool = PoolManager.getPoolById(pIdPool)
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM AgentManoEtalon , PoolManoE WHERE AgentManoEtalon.idCrodip = PoolManoE.idCRODIPManoE AND PoolManoE.idCRODIPPool = '" & oPool.idCrodip & "' AND AgentManoEtalon.isSupprime=" & False & " And AgentManoEtalon.jamaisServi = " & False & ""
+        bddCommande.CommandText = "SELECT * FROM AgentManoEtalon , PoolManoE WHERE AgentManoEtalon.numeronational = PoolManoE.numeronationalManoE AND PoolManoE.idCRODIPPool = '" & pIdCrodipPool & "' AND AgentManoEtalon.isSupprime=" & False & " And AgentManoEtalon.jamaisServi = " & False & ""
         If Not isShowAll Then
             bddCommande.CommandText = bddCommande.CommandText & " AND AgentManoEtalon.etat=" & True
         End If
@@ -594,16 +591,13 @@ Public Class ManometreEtalonManager
 
         Return arrResponse
     End Function
-    Private Shared Function getManoEtalonByPoolIdJamaisServi(ByVal pIdPool As String) As List(Of ManometreEtalon)
-        Debug.Assert(Not String.IsNullOrEmpty(pIdPool), "L'IDPool doit être renseigné")
+    Private Shared Function getManoEtalonByPoolIdJamaisServi(ByVal pIdCrodipPool As String) As List(Of ManometreEtalon)
+        Debug.Assert(Not String.IsNullOrEmpty(pIdCrodipPool), "L'IDPool doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
-        Dim oPool As Pool
-
-        oPool = PoolManager.getPoolById(pIdPool)
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM AgentManoEtalon , PoolManoE WHERE AgentManoEtalon.idCrodip = PoolManoE.idCRODIPManoE AND PoolManoE.idPool = '" & oPool.idCrodip & "' AND AgentManoEtalon.isSupprime=" & False & " And AgentManoEtalon.jamaisServi = " & True & ""
+        bddCommande.CommandText = "SELECT * FROM AgentManoEtalon , PoolManoE WHERE AgentManoEtalon.numeronational = PoolManoE.numeronationalManoE AND PoolManoE.idPool = '" & pIdCrodipPool & "' AND AgentManoEtalon.isSupprime=" & False & " And AgentManoEtalon.jamaisServi = " & True & ""
         bddCommande.CommandText = bddCommande.CommandText & " ORDER BY AgentManoEtalon.idCrodip"
 
         Try
@@ -635,15 +629,15 @@ Public Class ManometreEtalonManager
     ''' <summary>
     ''' Charegement de la liste de Pool d'un Mano 
     ''' </summary>
-    ''' <param name="pIdCrodipManoE"></param>
+    ''' <param name="pnumeronationalManoE"></param>
     ''' <returns></returns>
-    Private Shared Function getlstPoolByManoE(pIdCrodipManoE As String) As List(Of Pool)
+    Private Shared Function getlstPoolByManoE(pnumeronationalManoE As String) As List(Of Pool)
 
         Dim oreturn As New List(Of Pool)
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT Pool.* FROM Pool , PoolManoE WHERE Pool.idCrodip = PoolManoE.idCRODIPPool AND PoolManoE.idcrodipManoE = '" & pIdCrodipManoE & "'"
+        bddCommande.CommandText = "SELECT Pool.* FROM Pool , PoolManoE WHERE Pool.idCrodip = PoolManoE.idCRODIPPool AND PoolManoE.numeronationalManoE = '" & pnumeronationalManoE & "'"
 
         Try
             ' On récupère les résultats
@@ -673,13 +667,13 @@ Public Class ManometreEtalonManager
         Return oreturn
     End Function
 
-    Private Shared Function clearlstPoolByManoE(pIdCrodipManoE As String) As Boolean
+    Private Shared Function clearlstPoolByManoE(numeronationalManoE As String) As Boolean
 
         Dim oreturn As Boolean
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "DELETE FROM PoolManoE WHERE  PoolManoE.idCrodipManoE = '" & pIdCrodipManoE & "'"
+        bddCommande.CommandText = "DELETE FROM PoolManoE WHERE  PoolManoE.numeronationalManoE = '" & numeronationalManoE & "'"
 
         Try
             ' On récupère les résultats
@@ -695,13 +689,13 @@ Public Class ManometreEtalonManager
 
         Return oreturn
     End Function
-    Private Shared Function insertPoolManoE(pIdPool As String, pIdCrodipManoE As String) As Boolean
+    Private Shared Function insertPoolManoE(pIdPool As String, pnumeronationalManoE As String) As Boolean
 
         Dim oreturn As Boolean
 
         Dim oCsdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "insert into PoolManoE (idCRODIPPool, idCRODIPManoE) vAlues ( '" & pIdPool & "','" & pIdCrodipManoE & "')"
+        bddCommande.CommandText = "insert into PoolManoE (idCRODIPPool, numeronationalManoE) vAlues ( '" & pIdPool & "','" & pnumeronationalManoE & "')"
 
         Try
             ' On récupère les résultats

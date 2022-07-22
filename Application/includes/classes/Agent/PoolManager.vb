@@ -8,12 +8,12 @@ Imports System.Text.Json.Serialization
 Public Class PoolManager
     Inherits RootManager
 
-    Public Shared Function getPoolById(pId As Integer) As Pool
-        Debug.Assert(pId <> 0, "ID doit être initialisé")
+    Public Shared Function getPoolByIdCRODIP(pIdCRODIP As String) As Pool
+        Debug.Assert(Not String.IsNullOrEmpty(pIdCRODIP), "IDCRODIP doit être initialisé")
         Dim oReturn As Pool = Nothing
         Try
 
-            oReturn = getById(Of Pool)("SELECT * FROM Pool WHERE id=" & pId & "")
+            oReturn = getByKey(Of Pool)("SELECT * FROM Pool WHERE idCRODIP= '" & pIdCRODIP & "'")
 
 
         Catch ex As Exception
@@ -32,8 +32,6 @@ Public Class PoolManager
             Dim bddCommande As DbCommand = pCSDB.getConnection().CreateCommand
             bddCommande.CommandText = "insert into Pool (idCrodip) VALUES('" & pPool.idCrodip & "')"
             bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "SELECT last_insert_rowid()"
-            pPool.id = CInt(bddCommande.ExecuteScalar())
         Catch ex As Exception
             CSDebug.dispError("PoolManager.createPool ERR", ex)
             bReturn = False
@@ -43,19 +41,20 @@ Public Class PoolManager
 
     Public Shared Function Save(pPool As Pool, Optional pSynhcro As Boolean = False) As Boolean
         Debug.Assert(pPool IsNot Nothing, "pPool doit être initialisé")
+        Debug.Assert(Not String.IsNullOrEmpty(pPool.idCrodip), "idCrodip doit être initialisé")
         Dim bReturn As Boolean = True
         Dim oParam As DbParameter
         Try
 
             Dim oCSDB As New CSDb(True)
-            If pPool.id = 0 Then
+            Dim n As Integer = oCSDB.getValue("SELECT Count(*) from POOL Where IDCRODIP = '" & pPool.idCrodip & "'")
+            If n = 0 Then
                 createPool(oCSDB, pPool)
             End If
             Dim oCmd As DbCommand = oCSDB.getConnection().CreateCommand
             oCmd.CommandText =
 "UPDATE POOL
    SET 
-       idCRODIP = @idCRODIP,
        libelle = @libelle,
        nbPastillesVertes = @nbPastillesVertes,
 idStructure =@idStructure,
@@ -63,7 +62,7 @@ idBanc = @idBanc,
 idCRODIPPC = @idCRODIPPC,
        dateModificationAgent = @dateModificationAgent,
        dateModificationCrodip = @dateModificationCrodip
- WHERE id = @id
+ WHERE idCRODIP = @idCRODIP
 "
             If pSynhcro Then
                 pPool.dateModificationAgent = pPool.dateModificationCrodip
@@ -149,13 +148,6 @@ idCRODIPPC = @idCRODIPPC,
             End With
             oCmd.Parameters.Add(oParam)
 
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@id"
-                .DbType = DbType.Int32
-                .Value = pPool.id
-            End With
-            oCmd.Parameters.Add(oParam)
 
             oCmd.ExecuteNonQuery()
             oCSDB.free()

@@ -348,6 +348,12 @@ Public Class CSDb
             bddCommande.CommandText = "DELETE FROM FicheVieManometreEtalon"
             bddCommande.ExecuteNonQuery()
 
+            bddCommande.CommandText = "DELETE FROM PoolBuse"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolManoC"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolManoE"
+            bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM AgentBuseEtalon"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM AgentManoControle"

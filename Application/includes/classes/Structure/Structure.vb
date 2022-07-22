@@ -413,7 +413,7 @@ Public Class Structuree
                                                   End Function)
                 CSDebug.dispInfo("MAJ Agent Pool [" & oAgent.id & "]")
 
-                oAgent.idPool = oPool.id
+                oAgent.idCRODIPPool = oPool.idCrodip
                 AgentManager.save(oAgent)
             Next
             'Affectation des Manos

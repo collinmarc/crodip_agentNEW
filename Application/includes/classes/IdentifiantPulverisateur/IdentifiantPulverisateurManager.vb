@@ -340,11 +340,10 @@ Public Class IdentifiantPulverisateurManager
         Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
         Dim olst As New List(Of IdentifiantPulverisateur)
 
-        If pAgent.idPool = 0 Then
+        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
             olst = getListeByStructure(pAgent.idStructure)
         Else
-            Dim oPool As Pool = PoolManager.getPoolById(pAgent.idPool)
-            olst = getListeByPool(oPool.idCrodip)
+            olst = getListeByPool(pAgent.idCRODIPPool)
         End If
 
         Return olst
@@ -406,11 +405,10 @@ Public Class IdentifiantPulverisateurManager
         Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
         Dim olst As New List(Of IdentifiantPulverisateur)
 
-        If pAgent.idPool = 0 Then
+        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
             olst = getListeInutiliseByStructure(pAgent.idStructure)
         Else
-            Dim oPool As Pool = PoolManager.getPoolById(pAgent.idPool)
-            olst = getListeInutiliseByPool(oPool.idCrodip)
+            olst = getListeInutiliseByPool(pAgent.idCRODIPPool)
         End If
 
         Return olst

@@ -16,14 +16,16 @@ Public Class AgentPCManager
     ''' Cette méthode n'est plus utilisée depuis la 2.5.4.3 , car les matériels sont créés sur le Serveur 
 
     Public Shared Function save(ByVal objAgentPC As AgentPC, Optional bsynchro As Boolean = False) As Boolean
-        Debug.Assert(Not String.IsNullOrEmpty(objAgentPC.id), "L'Id doit être inititialisé")
+        Debug.Assert(Not String.IsNullOrEmpty(objAgentPC.idCrodip), "L'Id doit être inititialisé")
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
         Dim bReturn As Boolean
         Try
+            oCsdb = New CSDb(True)
+            Dim n As Integer = oCsdb.getValue("SELECT Count(*) FROM AgentPC Where IDCRODIP = '" & objAgentPC.idCrodip & "'")
+            oCsdb.free()
             bReturn = True
-            If objAgentPC.id = 0 Then
-
+            If n = 0 Then
                 bReturn = createAgentPC(objAgentPC)
             End If
             If bReturn Then
@@ -31,7 +33,7 @@ Public Class AgentPCManager
                 bddCommande = oCsdb.getConnection().CreateCommand()
 
                 ' Initialisation de la requete
-                Dim paramsQuery As String = "id=" & objAgentPC.id & ""
+                Dim paramsQuery As String = "idCrodip=" & objAgentPC.idCrodip & ""
 
                 ' Mise a jour de la date de derniere modification
                 If Not bsynchro Then
@@ -58,7 +60,7 @@ Public Class AgentPCManager
                 paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objAgentPC.dateModificationCrodip) & "'"
 
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE AgentPC SET " & paramsQuery & " WHERE id=" & objAgentPC.id & ""
+                bddCommande.CommandText = "UPDATE AgentPC SET " & paramsQuery & " WHERE idCrodip='" & objAgentPC.idCrodip & "'"
                 bddCommande.ExecuteNonQuery()
                 bReturn = True
             End If
@@ -79,7 +81,7 @@ Public Class AgentPCManager
         Dim oReturn As AgentPC = Nothing
         Try
 
-            oReturn = getById(Of AgentPC)("SELECT * FROM AgentPC WHERE idCRODIP=" & pid & "")
+            oReturn = getByKey(Of AgentPC)("SELECT * FROM AgentPC WHERE idCRODIP=" & pid & "")
 
 
         Catch ex As Exception
@@ -98,6 +100,7 @@ Public Class AgentPCManager
     '''
     Private Shared Function createAgentPC(ByVal pAgentPC As AgentPC) As Boolean
         Debug.Assert(pAgentPC IsNot Nothing, "pAgentPC doit être initialisé")
+        Debug.Assert(Not String.IsNullOrEmpty(pAgentPC.idCrodip), "IDCrodip doit être initialisé")
         Dim bReturn As Boolean
         Dim oCSDB As New CSDb(True)
         Try
@@ -107,8 +110,6 @@ Public Class AgentPCManager
             ' Création
             bddCommande.CommandText = "INSERT INTO AgentPC (idCrodip) values ('" & pAgentPC.idCrodip & "')"
             bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "SELECT last_insert_rowid()"
-            pAgentPC.id = CInt(bddCommande.ExecuteScalar())
 
             bReturn = True
         Catch ex As Exception
@@ -181,7 +182,8 @@ Public Class AgentPCManager
         oCSDB.Execute("DELETE FROM POOL;")
         oCSDB.Execute("DELETE FROM POOLMANOC;")
         oCSDB.Execute("DELETE FROM POOLMANOE;")
-        oCSDB.Execute("UPDATE AGENT SET idPOOL =  NULL;")
+        oCSDB.Execute("ALTER TABLE Agent DROP COLUMN idCRODIPPOOL;")
+        oCSDB.Execute("ALTER TABLE IdentifiantPulverisateur DROP COLUMN idCRODIPPOOL;")
 
 
     End Sub

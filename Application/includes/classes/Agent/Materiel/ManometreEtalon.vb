@@ -39,7 +39,7 @@ Public Class ManometreEtalon
 
         End Set
     End Property
-    Public Function Fill(pColName As String, pcolValue As Object) As Boolean
+    Public Overrides Function Fill(pColName As String, pcolValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
 
@@ -83,9 +83,9 @@ Public Class ManometreEtalon
                         Me.nbControlesTotal = CType(pcolValue, Integer)
                     End If
                 Case "agentsuppression".Trim().ToUpper()
-                    Me.agentSuppression = pcolValue.ToString()
+                    Me.AgentSuppression = pcolValue.ToString()
                 Case "raisonsuppression".Trim().ToUpper()
-                    Me.raisonSuppression = pcolValue.ToString()
+                    Me.RaisonSuppression = pcolValue.ToString()
                 Case "datesuppression".Trim().ToUpper()
                     Dim strDateMin As String = CSDate.ToCRODIPString("")
                     Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)

@@ -440,8 +440,8 @@ Public Class AgentManager
                 paramsQuery = paramsQuery & " , droitsPulves='" & agent.DroitsPulves & "'"
                 paramsQuery = paramsQuery & " , isGestionnaire=" & agent.isGestionnaire & ""
                 paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
-                If agent.idPool <> 0 Then
-                    paramsQuery = paramsQuery & " , idPool=" & agent.idPool & ""
+                If Not String.IsNullOrEmpty(agent.idCRODIPPool) Then
+                    paramsQuery = paramsQuery & " , idCRODIPPool='" & agent.idCRODIPPool & "'"
                 End If
                 paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
 

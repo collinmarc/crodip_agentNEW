@@ -497,7 +497,7 @@ Public Class ManometreControleManagerTest
         oPool2.libelle = "LIbP2"
         PoolManager.Save(oPool2)
 
-        m_oAgent.idPool = oPool.id
+        m_oAgent.idCRODIPPool = oPool.idCrodip
         AgentManager.save(m_oAgent)
 
         'Creation d'un Mano
@@ -517,7 +517,7 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(1, lstMano.Count)
 
         'Si l'agent utilise le Pool2 , il ne voit pas le Mano
-        m_oAgent.idPool = oPool2.id
+        m_oAgent.idCRODIPPool = oPool2.idCrodip
         AgentManager.save(m_oAgent)
 
         lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)
@@ -532,7 +532,7 @@ Public Class ManometreControleManagerTest
         'il appartient Bien aux 2 pool
         Assert.AreEqual(2, lstMano(0).lstPools.Count)
         'et on le retrouve bien sur le pool1
-        m_oAgent.idPool = oPool.id
+        m_oAgent.idCRODIPPool = oPool.idCrodip
         AgentManager.save(m_oAgent)
 
         lstMano = ManometreControleManager.getManoControleByAgent(m_oAgent)

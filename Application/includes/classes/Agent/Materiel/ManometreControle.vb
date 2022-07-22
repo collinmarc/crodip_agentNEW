@@ -143,27 +143,7 @@ Public Class ManometreControle
 
     End Function
 
-
-
-    Public Function Fill(ByVal oDataReader As DbDataReader) As Boolean
-        Dim bReturn As Boolean
-        Try
-
-            Dim tmpColId As Integer = 0
-            While tmpColId < oDataReader.FieldCount()
-                If Not oDataReader.IsDBNull(tmpColId) Then
-                    Fill(oDataReader.GetName(tmpColId), oDataReader.Item(tmpColId))
-                End If
-                tmpColId = tmpColId + 1
-            End While
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError("ManomettreControle.Fill Err: " + ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
-    Public Function Fill(ByVal pColName As String, ByVal pValue As Object) As Boolean
+    Public Overrides Function Fill(ByVal pColName As String, ByVal pValue As Object) As Boolean
         Select Case pColName.Trim().ToUpper()
             Case "numeroNational".Trim.ToUpper()
                 Me.numeroNational = pValue.ToString() 'Public numeroNational As String

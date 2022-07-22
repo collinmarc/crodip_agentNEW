@@ -755,7 +755,7 @@ Public Class login
                             CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & _selectedAgent.dateModificationAgent)
                             AgentManager.save(_selectedAgent)
                         End If
-                        If _selectedAgent.idPool <> 0 Then
+                        If Not String.IsNullOrEmpty(_selectedAgent.idCRODIPPool) Then
                             If _selectedAgent.oPool.idCRODIPPC = "" Then
                                 Dim Str As String = InputBox("Veuillez entrer le numéro CRODIP du PC", "Saisie du numéro CRODIP du PC")
 
@@ -1313,7 +1313,7 @@ Public Class login
     Private Sub dgvPools_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPools.CellDoubleClick
         Dim oPool As Pool
         oPool = m_bsrcPools.Current
-        _selectedAgent.idPool = oPool.id
+        _selectedAgent.idCRODIPPool = oPool.idCrodip
         If Not _selectedAgent.checkConnection() Then
             CSDebug.dispFatal("Le PC n'est pas reconnu")
             MsgBox("Connexion impossible, matériel non reconnu", MsgBoxStyle.Critical, "Logiciel CrodipAgent")
