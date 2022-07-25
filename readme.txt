@@ -8,6 +8,8 @@ BUILD XXXXXXX
 	Ajout de RAZinstall
 	0001410: Recherche de Client par CP ou Commune
 	0001510: Blocage des pages si mauvais paramétrage des buses en initial (juste niveau sans nombre de buses)
+	0001508: Dérouler des buses dans ordre alphabétique
+	0001505: Meilleure visibilité du rapport en visualisation avant la validation
 
 BUILD : 20220627170000
 0001496: Calcul de la date de prochain controle en signatureà postériori

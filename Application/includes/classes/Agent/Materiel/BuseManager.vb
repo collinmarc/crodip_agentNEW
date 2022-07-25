@@ -473,6 +473,7 @@ Public Class BuseManager
             Else
                 bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE idStructure=" & pIdStructure & " AND jamaisServi=" & False & " AND AgentBuseEtalon.isSupprime=" & False & " AND etat=" & True & ""
             End If
+            bddCommande.CommandText = bddCommande.CommandText & " ORDER BY idCrodip"
             Try
 
                 ' On récupère les résultats

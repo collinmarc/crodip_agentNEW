@@ -64,6 +64,7 @@ Public Class frmdiagnostic_recap
         InitializeComponent()
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
+        CrystalReportViewer1.Zoom(1) 'Page Width
 
     End Sub
 
@@ -80,6 +81,7 @@ Public Class frmdiagnostic_recap
         InitializeComponent()
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
+
         m_bsDiag.Add(m_diagnostic)
         m_oStructure = StructureManager.getStructureById(m_oAgent.idStructure)
     End Sub
@@ -244,6 +246,8 @@ Public Class frmdiagnostic_recap
         Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SplitContainer1.BackColor = System.Drawing.SystemColors.Control
+        Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.SplitContainer1.Location = New System.Drawing.Point(10, 45)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
@@ -307,7 +311,7 @@ Public Class frmdiagnostic_recap
         Me.btnAppercu.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAppercu.ForeColor = System.Drawing.Color.White
         Me.btnAppercu.Image = Global.Crodip_agent.Resources.btn_refresh
-        Me.btnAppercu.Location = New System.Drawing.Point(423, 8)
+        Me.btnAppercu.Location = New System.Drawing.Point(419, 8)
         Me.btnAppercu.Name = "btnAppercu"
         Me.btnAppercu.Size = New System.Drawing.Size(200, 24)
         Me.btnAppercu.TabIndex = 5
@@ -333,7 +337,7 @@ Public Class frmdiagnostic_recap
         Me.CrystalReportViewer1.ShowPrintButton = False
         Me.CrystalReportViewer1.ShowRefreshButton = False
         Me.CrystalReportViewer1.ShowTextSearchButton = False
-        Me.CrystalReportViewer1.Size = New System.Drawing.Size(626, 529)
+        Me.CrystalReportViewer1.Size = New System.Drawing.Size(622, 525)
         Me.CrystalReportViewer1.TabIndex = 0
         Me.CrystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         '
@@ -346,7 +350,7 @@ Public Class frmdiagnostic_recap
         Me.rtbCommentaire.Location = New System.Drawing.Point(6, 307)
         Me.rtbCommentaire.MaxLength = 255
         Me.rtbCommentaire.Name = "rtbCommentaire"
-        Me.rtbCommentaire.Size = New System.Drawing.Size(341, 121)
+        Me.rtbCommentaire.Size = New System.Drawing.Size(337, 117)
         Me.rtbCommentaire.TabIndex = 63
         Me.rtbCommentaire.Text = ""
         '
@@ -375,7 +379,7 @@ Public Class frmdiagnostic_recap
         Me.grpMateriel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.grpMateriel.Location = New System.Drawing.Point(6, 156)
         Me.grpMateriel.Name = "grpMateriel"
-        Me.grpMateriel.Size = New System.Drawing.Size(347, 106)
+        Me.grpMateriel.Size = New System.Drawing.Size(343, 106)
         Me.grpMateriel.TabIndex = 4
         Me.grpMateriel.TabStop = False
         Me.grpMateriel.Text = "Matériel"
@@ -387,7 +391,7 @@ Public Class frmdiagnostic_recap
         Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.FormattingEnabled = True
         Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.Location = New System.Drawing.Point(6, 40)
         Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.Name = "cbx_diagnosticRecap_materiel_EmplacementIdentification"
-        Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.Size = New System.Drawing.Size(335, 21)
+        Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.Size = New System.Drawing.Size(331, 21)
         Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.TabIndex = 68
         '
         'btn_voirFiche_Pulve
@@ -397,7 +401,7 @@ Public Class frmdiagnostic_recap
         Me.btn_voirFiche_Pulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_voirFiche_Pulve.ForeColor = System.Drawing.Color.White
         Me.btn_voirFiche_Pulve.Image = CType(resources.GetObject("btn_voirFiche_Pulve.Image"), System.Drawing.Image)
-        Me.btn_voirFiche_Pulve.Location = New System.Drawing.Point(211, 79)
+        Me.btn_voirFiche_Pulve.Location = New System.Drawing.Point(207, 79)
         Me.btn_voirFiche_Pulve.Name = "btn_voirFiche_Pulve"
         Me.btn_voirFiche_Pulve.Size = New System.Drawing.Size(128, 24)
         Me.btn_voirFiche_Pulve.TabIndex = 1
@@ -422,7 +426,7 @@ Public Class frmdiagnostic_recap
         Me.grpProprio.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.grpProprio.Location = New System.Drawing.Point(6, 100)
         Me.grpProprio.Name = "grpProprio"
-        Me.grpProprio.Size = New System.Drawing.Size(345, 50)
+        Me.grpProprio.Size = New System.Drawing.Size(341, 50)
         Me.grpProprio.TabIndex = 3
         Me.grpProprio.TabStop = False
         Me.grpProprio.Text = "Propriétaire du matériel"
@@ -434,7 +438,7 @@ Public Class frmdiagnostic_recap
         Me.btn_voirFicheExploitant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_voirFicheExploitant.ForeColor = System.Drawing.Color.White
         Me.btn_voirFicheExploitant.Image = CType(resources.GetObject("btn_voirFicheExploitant.Image"), System.Drawing.Image)
-        Me.btn_voirFicheExploitant.Location = New System.Drawing.Point(211, 16)
+        Me.btn_voirFicheExploitant.Location = New System.Drawing.Point(207, 16)
         Me.btn_voirFicheExploitant.Name = "btn_voirFicheExploitant"
         Me.btn_voirFicheExploitant.Size = New System.Drawing.Size(128, 24)
         Me.btn_voirFicheExploitant.TabIndex = 0
@@ -455,7 +459,7 @@ Public Class frmdiagnostic_recap
         Me.grpOrganisme.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.grpOrganisme.Location = New System.Drawing.Point(2, 19)
         Me.grpOrganisme.Name = "grpOrganisme"
-        Me.grpOrganisme.Size = New System.Drawing.Size(345, 75)
+        Me.grpOrganisme.Size = New System.Drawing.Size(341, 75)
         Me.grpOrganisme.TabIndex = 2
         Me.grpOrganisme.TabStop = False
         Me.grpOrganisme.Text = "Organisme d'inspection"
@@ -1119,6 +1123,7 @@ Public Class frmdiagnostic_recap
                 m_diagnostic.SMFileName = _PathToSynthesePDF
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
+                CrystalReportViewer1.Zoom(1) 'Page Width
             End If
             bReturn = True
         Catch ex As Exception
@@ -1140,6 +1145,7 @@ Public Class frmdiagnostic_recap
                 bReturn = File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & pathRapport)
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
+                CrystalReportViewer1.Zoom(1) 'Page Width
             End If
         Catch ex As Exception
             CSDebug.dispError("createEtatRapportInspection ERR : " & ex.Message.ToString)
@@ -1165,6 +1171,7 @@ Public Class frmdiagnostic_recap
                 bReturn = File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & oEtat.getFileName())
             Else
                 CrystalReportViewer1.ReportSource = oEtat.getReportdocument
+                CrystalReportViewer1.Zoom(1) 'Page Width
             End If
         Catch ex As Exception
             CSDebug.dispError("createEtatContratCommercial ERR : " & ex.Message.ToString)
