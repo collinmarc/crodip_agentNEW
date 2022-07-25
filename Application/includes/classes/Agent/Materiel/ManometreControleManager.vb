@@ -489,33 +489,33 @@ Public Class ManometreControleManager
     Public Shared Function getManoControleByAgentJamaisServi(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
-        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
+        If Not My.Settings.GestiondesPools Then
             arrResponse = getManoControleByStructureIdJamaisServi(pAgent.idStructure)
         Else
             arrResponse = getManoControleByPoolIdJamaisServi(pAgent.idCRODIPPool)
             If arrResponse.Count = 0 Then
                 arrResponse = getManoControleByStructureIdJamaisServi(pAgent.idStructure)
             End If
+            'Charegement de la Liste des pools du mano
+            arrResponse.ForEach(Sub(M)
+                                    M.lstPools.AddRange(getlstPoolByManoC(M.numeroNational))
+                                End Sub)
         End If
-        'Charegement de la Liste des pools du mano
-        arrResponse.ForEach(Sub(M)
-                                M.lstPools.AddRange(getlstPoolByManoC(M.numeroNational))
-                            End Sub)
         Return arrResponse
     End Function
 
     Public Shared Function getManoControleByAgent(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
-        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
+        If Not My.Settings.GestiondesPools Then
             arrResponse = getManoControleByStructureId(pAgent.idStructure, isShowAll)
         Else
             arrResponse = getManoControleByPoolId(pAgent.idCRODIPPool, isShowAll)
+            'Charegement de la Liste des pools du mano
+            arrResponse.ForEach(Sub(M)
+                                    M.lstPools.AddRange(getlstPoolByManoC(M.idCrodip))
+                                End Sub)
         End If
-        'Charegement de la Liste des pools du mano
-        arrResponse.ForEach(Sub(M)
-                                M.lstPools.AddRange(getlstPoolByManoC(M.idCrodip))
-                            End Sub)
         Return arrResponse
     End Function
     Private Shared Function getManoControleByPoolId(ByVal pIdCrodipPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)

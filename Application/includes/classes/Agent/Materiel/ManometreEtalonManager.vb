@@ -528,29 +528,29 @@ Public Class ManometreEtalonManager
     Public Shared Function getManometreEtalonByAgent(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreEtalon)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
-        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
+        If Not My.Settings.GestiondesPools Then
             arrResponse = getManometreEtalonByStructureId(pAgent.idStructure, isShowAll)
         Else
             arrResponse = getManoEtalonByPoolId(pAgent.idCRODIPPool, isShowAll)
+            'Charegement de la Liste des pools du mano
+            arrResponse.ForEach(Sub(M)
+                                    M.lstPools.AddRange(getlstPoolByManoE(M.numeroNational))
+                                End Sub)
         End If
-        'Charegement de la Liste des pools du mano
-        arrResponse.ForEach(Sub(M)
-                                M.lstPools.AddRange(getlstPoolByManoE(M.numeroNational))
-                            End Sub)
         Return arrResponse
     End Function
     Public Shared Function getManometreEtalonByAgentJamaisServi(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreEtalon)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
-        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
+        If Not My.Settings.GestiondesPools Then
             arrResponse = getManometreEtalonByStructureIdJamaisServi(pAgent.idStructure)
         Else
             arrResponse = getManoEtalonByPoolIdJamaisServi(pAgent.idCRODIPPool)
+            'Charegement de la Liste des pools du mano
+            arrResponse.ForEach(Sub(M)
+                                    M.lstPools.AddRange(getlstPoolByManoE(M.numeroNational))
+                                End Sub)
         End If
-        'Charegement de la Liste des pools du mano
-        arrResponse.ForEach(Sub(M)
-                                M.lstPools.AddRange(getlstPoolByManoE(M.numeroNational))
-                            End Sub)
         Return arrResponse
     End Function
     Private Shared Function getManoEtalonByPoolId(ByVal pIdCrodipPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreEtalon)

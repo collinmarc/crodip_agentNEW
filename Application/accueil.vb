@@ -5503,37 +5503,51 @@ Public Class accueil
 
         ' On vérifie qu'il y a bien une ligne de sélectionnée
         'If list_ficheClient_puverisateur.SelectedItems().Count > 0 Then
+        Dim bBancOK As Boolean = True
         If dgvPulveExploit.SelectedRows.Count() > 0 Then
             Try
-                Dim oRowIndex As Integer = dgvPulveExploit.SelectedRows(0).Index
-                pulverisateurCourant = m_BindingListOfPulve(oRowIndex)
-                ' On récupère le pulvé selectionné
-                '                pulverisateurCourant = PulverisateurManager.getPulverisateurById(list_ficheClient_puverisateur.SelectedItems().Item(0).Tag)
-                ' Mise à jour de la barre de status
-                If pDiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
-                    Statusbar.display("Nouvelle contre-visite")
+                If BancCourant Is Nothing Then
+                    MessageBox.Show("Vous n'avez pas de banc de mesure affecté à votre compte merci de faire un controle ou contactez le CRODIP", "Controle Pulverisateur")
+                    bBancOK = False
                 Else
-                    Statusbar.display("Nouveau Controle")
+                    If Not BancCourant.etat Then
+                        MessageBox.Show("Le banc de mesure affecté à votre compte est désactivé, merci de faire un controle ou contactez le CRODIP", "Controle Pulverisateur")
+                        bBancOK = False
+                    End If
                 End If
 
-                'Vérification du ficher de Param
-                'Lecture du paramétrage associé au pulvérisateur
-                If Not pulverisateurCourant.CheckParam() Then
-                    Exit Sub
-                End If
-                ' Création d'une nouveau diagnostic
-                diagnosticCourant = New Diagnostic(agentCourant, pulverisateurCourant, clientCourant)
+                If bBancOK Then
 
-                Dim bContinue As Boolean = True
-                If pDiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
-                    ' Rechercge du diagnostique initial
-                    Dim frmLstDiag As New liste_diagnosticPulve2()
-                    frmLstDiag.setcontexte(GlobalsCRODIP.DiagMode.CTRL_CV, pulverisateurCourant, clientCourant, agentCourant)
-                    frmLstDiag.ShowDialog()
-                    bContinue = (frmLstDiag.DialogResult = Windows.Forms.DialogResult.OK)
-                End If
-                If bContinue Then
-                    NouveauDiagnosticPhase1(pDiagMode)
+                    Dim oRowIndex As Integer = dgvPulveExploit.SelectedRows(0).Index
+                    pulverisateurCourant = m_BindingListOfPulve(oRowIndex)
+                    ' On récupère le pulvé selectionné
+                    '                pulverisateurCourant = PulverisateurManager.getPulverisateurById(list_ficheClient_puverisateur.SelectedItems().Item(0).Tag)
+                    ' Mise à jour de la barre de status
+                    If pDiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
+                        Statusbar.display("Nouvelle contre-visite")
+                    Else
+                        Statusbar.display("Nouveau Controle")
+                    End If
+
+                    'Vérification du ficher de Param
+                    'Lecture du paramétrage associé au pulvérisateur
+                    If Not pulverisateurCourant.CheckParam() Then
+                        Exit Sub
+                    End If
+                    ' Création d'une nouveau diagnostic
+                    diagnosticCourant = New Diagnostic(agentCourant, pulverisateurCourant, clientCourant)
+
+                    Dim bContinue As Boolean = True
+                    If pDiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
+                        ' Rechercge du diagnostique initial
+                        Dim frmLstDiag As New liste_diagnosticPulve2()
+                        frmLstDiag.setcontexte(GlobalsCRODIP.DiagMode.CTRL_CV, pulverisateurCourant, clientCourant, agentCourant)
+                        frmLstDiag.ShowDialog()
+                        bContinue = (frmLstDiag.DialogResult = Windows.Forms.DialogResult.OK)
+                    End If
+                    If bContinue Then
+                        NouveauDiagnosticPhase1(pDiagMode)
+                    End If
                 End If
             Catch ex As Exception
                 Statusbar.clear()
@@ -5582,7 +5596,7 @@ Public Class accueil
 
     End Sub
     ''' <summary>
-    ''' Réalisation d"un nouveau controle Pahse 2
+    ''' Réalisation d"un nouveau controle Phase 2
     '''  Affichage du contexte
     '''  Si on ne fait pas une contrevisite gratuite 
     '''        Affichage de la page de facturation

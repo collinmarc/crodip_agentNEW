@@ -396,7 +396,7 @@ Public Class BancManager
     Public Shared Function getBancByAgent(pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of Banc)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of Banc)
-        If Not String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
+        If My.Settings.GestiondesPools Then
             If agentCourant.oPool.idBanc <> "" Then
                 BancCourant = BancManager.getBancById(agentCourant.oPool.idBanc)
                 arrResponse.Add(BancCourant)

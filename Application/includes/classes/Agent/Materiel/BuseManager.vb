@@ -551,30 +551,30 @@ Public Class BuseManager
     Public Shared Function getBusesByAgent(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of Buse)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of Buse)
-        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
+        If Not My.Settings.GestiondesPools Then
             arrResponse = getBusesByStructureId(pAgent.idStructure, isShowAll)
         Else
             arrResponse = getBusesByPoolId(pAgent.idCRODIPPool, isShowAll)
+            'Charegement de la Liste des pools du mano
+            arrResponse.ForEach(Sub(M)
+                                    M.lstPools.AddRange(getlstPoolByBuse(M.numeroNational))
+                                End Sub)
         End If
-        'Charegement de la Liste des pools du mano
-        arrResponse.ForEach(Sub(M)
-                                M.lstPools.AddRange(getlstPoolByBuse(M.numeroNational))
-                            End Sub)
         Return arrResponse
     End Function
     Public Shared Function getBusesByAgentJamaisServi(ByVal pAgent As Agent) As List(Of Buse)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of Buse)
-        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
+        If Not My.Settings.GestiondesPools Then
             arrResponse = getBusesEtalonByStructureIdJamaisServi(pAgent.idStructure)
         Else
             arrResponse = getBusesByPoolIdJamaisServi(pAgent.idCRODIPPool)
+            'Charegement de la Liste des pools du mano
+            arrResponse.ForEach(Sub(M)
+                                    M.lstPools.AddRange(getlstPoolByBuse(M.numeroNational))
+                                End Sub)
+            Return arrResponse
         End If
-        'Charegement de la Liste des pools du mano
-        arrResponse.ForEach(Sub(M)
-                                M.lstPools.AddRange(getlstPoolByBuse(M.numeroNational))
-                            End Sub)
-        Return arrResponse
     End Function
     Private Shared Function getBusesByPoolId(ByVal pIdCRODIPPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of Buse)
         Debug.Assert(Not String.IsNullOrEmpty(pIdCRODIPPool), "L'IDPool doit être renseigné")

@@ -48,11 +48,7 @@ Public Class FVManometreControleManager
         If Not String.IsNullOrEmpty(pFV.FVFileName) Then
             filePath = GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE & "/" & pFV.FVFileName
             EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE, pFV.FVFileName)
-            If My.Settings.SynchroEtatMode = "FTP" Then
-                bReturn = SendFTPEtats(filePath)
-            Else
-                bReturn = SendHTTPEtats(filePath)
-            End If
+            bReturn = SendHTTPEtats(filePath)
         End If
         Return bReturn
     End Function
@@ -84,7 +80,7 @@ Public Class FVManometreControleManager
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & My.Settings.SynchroEtatTVManoUrl)
             'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur
-            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVManoUser, My.Settings.SynhcroEtatFVManoPwd)
+            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVBancUser, My.Settings.SynhcroEtatDiagPwd)
             If System.IO.File.Exists(filePath) Then
                 My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
                 SynchronisationManager.LogSynchroElmt(filePath)

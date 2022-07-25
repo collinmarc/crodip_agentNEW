@@ -116,21 +116,6 @@
     <Setting Name="SynchroEtatTVManoUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/index/envoi-fv-mano-controle-pdf</Value>
     </Setting>
-    <Setting Name="SynchroEtatFVBancUser" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">inutilisé pour l'instant</Value>
-    </Setting>
-    <Setting Name="SynchroEtatFVManoUser" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">inutilisé pour l'instant</Value>
-    </Setting>
-    <Setting Name="SynhcroEtatFVBancPwd" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">inutilisé pour l'instant</Value>
-    </Setting>
-    <Setting Name="SynhcroEtatFVManoPwd" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">inutilisé pour l'instant</Value>
-    </Setting>
-    <Setting Name="SynchroEtatMode" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">HTTP</Value>
-    </Setting>
     <Setting Name="WSCrodipURL" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://admin.crodip.fr/server</Value>
     </Setting>
@@ -166,6 +151,15 @@
     </Setting>
     <Setting Name="aqw" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="GestiondesPools" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVBancUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVBancpwd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé</Value>
     </Setting>
   </Settings>
 </SettingsFile>
