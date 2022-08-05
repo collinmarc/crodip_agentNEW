@@ -138,6 +138,7 @@ Partial Class parentContener
         Me.parentContener_statusBar.Name = "parentContener_statusBar"
         Me.parentContener_statusBar.Size = New System.Drawing.Size(1012, 22)
         Me.parentContener_statusBar.TabIndex = 1
+        Me.parentContener_statusBar.UseWaitCursor = True
         '
         'notify_connexionStatus_nok
         '
@@ -159,6 +160,7 @@ Partial Class parentContener
         Me.statusBar_img_loader.Size = New System.Drawing.Size(16, 16)
         Me.statusBar_img_loader.TabIndex = 13
         Me.statusBar_img_loader.TabStop = False
+        Me.statusBar_img_loader.UseWaitCursor = True
         Me.statusBar_img_loader.Visible = False
         '
         'parentContener
@@ -173,6 +175,7 @@ Partial Class parentContener
         Me.Name = "parentContener"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Crodip"
+        Me.UseWaitCursor = True
         CType(Me.statusBar_img_loader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

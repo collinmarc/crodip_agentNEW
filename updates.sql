@@ -286,6 +286,13 @@ CREATE TABLE AgentPC (idCrodip TEXT PRIMARY KEY ,idStructure INTEGER  REFERENCES
 DROP TABLE IF EXISTS POOL;
 CREATE TABLE POOL (idCrodip TEXT PRIMARY KEY,libelle TEXT, idCRODIPPC TEXT REFERENCES AgentPC (idCrodip) ON DELETE SET NULL, nbPastillesVertes INTEGER DEFAULT (0),dateModificationAgent  DATETIME,dateModificationCrodip DATETIME,idStructure INTEGER REFERENCES Structure (id) ON DELETE CASCADE, idBanc TEXT REFERENCES BancMesure (id) ON DELETE SET NULL);
 
+-- A SUPPRIMER LORS DE LA MISE EN PROD (SUPPRESSION DE LA PREPROD 2206)
+CREATE TABLE Agent2 (Id                     INT            PRIMARY KEY,numeroNational         NVARCHAR (50)  UNIQUE,motdepasse             NVARCHAR (255),nom                    VARCHAR (256),prenom                 VARCHAR (256),idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,telephoneportable      VARCHAR (256),email                  VARCHAR (256),dateCreation           DATETIME2,dateDerniereConnexion  DATETIME2,dateDerniereSynchro    DATETIME2,dateModificationAgent  DATETIME2,dateModificationCrodip DATETIME2,versionLogiciel        VARCHAR (256),commentaire            VARCHAR (256),cleActivation          VARCHAR (256),isActif                BIT            DEFAULT 0,droitsPulves           VARCHAR (2560),isGestionnaire         BIT            DEFAULT 0,signatureElect         BIT            DEFAULT 0,statut                 VARCHAR (50));
+INSERT INTO Agent2 (Id,numeroNational,motdepasse,nom,prenom,idStructure,telephoneportable,email,dateCreation,dateDerniereConnexion,dateDerniereSynchro,dateModificationAgent,dateModificationCrodip,versionLogiciel,commentaire,cleActivation,isActif,droitsPulves,isGestionnaire,signatureElect,statut) SELECT Id,numeroNational,motdepasse,nom,prenom,idStructure,telephoneportable,email,dateCreation,dateDerniereConnexion,dateDerniereSynchro,dateModificationAgent,dateModificationCrodip,versionLogiciel,commentaire,cleActivation,isActif,droitsPulves,isGestionnaire,signatureElect,statut from Agent
+ALTER TABLE Agent RENAME TO AGENT_ADEL;
+ALTER TABLE Agent2 RENAME TO AGENT;
+--
+
 ALTER TABLE Agent ADD COLUMN idCRODIPPOOL TEXT REFERENCES POOL (idCRODIP) ON DELETE SET NULL;
 
 
@@ -295,6 +302,6 @@ CREATE TABLE PoolManoC (id INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool      
 DROP TABLE IF EXISTS PoolManoE;
 CREATE TABLE PoolManoE (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,numeroNationalManoE    TEXT     REFERENCES AgentManoEtalon (numeroNational) ON DELETE CASCADE,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
 DROP TABLE IF EXISTS PoolBUSE;
-CREATE TABLE PoolBUSE (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE, numeroNationalBUSE     TEXT     REFERENCES AgentBuseEtalon (numeroNational) ON DELETE CASCADE,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+CREATE TABLE PoolBUSE (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE, numeroNationalBUSE     TEXT     ,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
 
 ALTER TABLE IdentifiantPulverisateur ADD COLUMN         idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE CASCADE;

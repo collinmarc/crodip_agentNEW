@@ -105,11 +105,6 @@ Module StartApplication
             End If
         End If
 
-        StructureManager.getList().ForEach(Sub(S)
-
-                                               S.CreatePool()
-                                           End Sub)
-
         CSDebug.dispInfo("StartApplication.Show ParentContainer")
         If Not bLoginFailed Then
             ofrm.ShowDialog()

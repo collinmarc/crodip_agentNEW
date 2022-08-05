@@ -22,6 +22,7 @@ Public Class parentContener
 
     Private Sub parentContener_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Cursor = Cursors.WaitCursor
+
         loadSplash()
         GlobalsCRODIP.Init()
 
@@ -30,6 +31,12 @@ Public Class parentContener
         If Not GlobalsCRODIP.GLOB_ENV_DEBUG Then
             mnuFenetre.Visible = False
         End If
+
+        StructureManager.getList().ForEach(Sub(S)
+
+                                               S.CreatePool()
+                                           End Sub)
+
 
         If TestCrystalReport() Then
             globFormParent = Me
