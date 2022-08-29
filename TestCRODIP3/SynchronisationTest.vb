@@ -245,7 +245,7 @@ Public Class SynchronisationTest
         Assert.IsTrue(oEtat.GenereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         CSFile.open(oEtat.getFileName())
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
         DiagnosticManager.save(oDiag)
         Return oDiag
 

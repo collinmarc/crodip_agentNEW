@@ -847,12 +847,12 @@ Public Class FrmDiagnostique
 
     Protected Overridable Sub getListeBancsMesures()
         Dim arrBancs As System.Collections.Generic.List(Of Banc)
-        If BancCourant IsNot Nothing Then
-            arrBancs = New List(Of Banc)
-            arrBancs.Add(BancCourant)
-        Else
-            arrBancs = BancManager.getBancByAgent(agentCourant)
-        End If
+        'If BancCourant IsNot Nothing Then
+        'arrBancs = New List(Of Banc)
+        'arrBancs.Add(BancCourant)
+        'Else
+        arrBancs = BancManager.getBancByAgent(agentCourant)
+        'End If
         For Each tmpBanc As Banc In arrBancs
             Dim objComboItem As New objComboItem(tmpBanc.id, tmpBanc.id & " - " & tmpBanc.marque & " (" & tmpBanc.modele & ")")
             buses_listBancs.Items.Add(objComboItem)

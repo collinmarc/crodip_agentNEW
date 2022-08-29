@@ -458,7 +458,7 @@ Public Class AgentManagerTest
         Dim idDiag As String
         'Creation d'un Diagnostic
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(pAgent)
+        idDiag = DiagnosticManager.getNewId(pAgent, "")
         oDiag.id = idDiag
         oDiag.setOrganisme(pAgent)
 

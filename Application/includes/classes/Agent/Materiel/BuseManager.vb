@@ -556,7 +556,7 @@ Public Class BuseManager
             arrResponse = getBusesByStructureId(pAgent.idStructure, isShowAll)
         Else
             arrResponse = getBusesByPoolId(pAgent.idCRODIPPool, isShowAll)
-            'Charegement de la Liste des pools du mano
+            'Charegement de la Liste des pools 
             arrResponse.ForEach(Sub(M)
                                     M.lstPools.AddRange(getlstPoolByBuse(M.numeroNational))
                                 End Sub)

@@ -366,7 +366,7 @@ Public Class importCRODIP
                     End If
                 Next
                 For Each oDiag As Diagnostic In oExploit.lstDiagImport
-                    Dim strdiagId As String = DiagnosticManager.getNewId(pAgent)
+                    Dim strdiagId As String = DiagnosticManager.getNewId(pAgent, oDiag.controleBancMesureId)
                     oDiag.id = strdiagId
                     'Affecation du ProprietaireID et PulverisateurID
                     oDiag.proprietaireId = oExploit.id

@@ -972,7 +972,7 @@ Public Class frmdiagnostic_recap
                     Statusbar.display("Récupération d'un nouvel ID", True)
                     Dim tmpNewDiagId As String
                     'tmpNewDiagId = InputBox("DiagID", "Entrez le numéro du diag", m_oagent.idStructure & "-" & m_oagent.id & "-")
-                    tmpNewDiagId = DiagnosticManager.getNewId(m_oAgent)
+                    tmpNewDiagId = DiagnosticManager.getNewId(m_oAgent, m_diagnostic.controleBancMesureId)
                     m_diagnostic.id = tmpNewDiagId
                     CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic Get ID")
 

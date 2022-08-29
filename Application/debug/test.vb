@@ -1042,7 +1042,7 @@ Public Class test
 
         'agentCourant = AgentManager.getAgentById("E001000002")
         agentCourant = AgentManager.getAgentByNumeroNational("agent-1")
-        Dim test As String = DiagnosticManager.getNewId(agentCourant)
+        Dim test As String = DiagnosticManager.getNewId(agentCourant, agentCourant.id)
 
     End Sub
 

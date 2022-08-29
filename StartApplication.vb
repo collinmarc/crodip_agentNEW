@@ -12,7 +12,7 @@ Module StartApplication
     ' Agent courant logguer
     Public agentCourant As Agent
     ' Agent courant logguer
-    Public BancCourant As Banc = Nothing 'Banc du Pool
+    'Public BancCourant As Banc = Nothing 'Banc du Pool
 
     ' Client actuellement sélectionné
     Public clientCourant As Exploitation

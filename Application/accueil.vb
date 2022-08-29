@@ -1,5 +1,6 @@
 Imports System.Collections.Generic
 Imports System.IO
+Imports System.Linq
 Imports Ionic.Zip
 
 Public Class accueil
@@ -5032,7 +5033,8 @@ Public Class accueil
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
         Dim arrBanc As List(Of Banc)
         arrBanc = BancManager.getBancByAgent(agentCourant)
-        BancCourant = arrBanc(0)
+
+        'BancCourant = arrBanc(0)
 
         Dim njours As Integer
         Dim nbBancAvantDL(3000) As Integer 'Nombre de banc devant être controler njours avant la Date Limite
@@ -5506,14 +5508,9 @@ Public Class accueil
         Dim bBancOK As Boolean = True
         If dgvPulveExploit.SelectedRows.Count() > 0 Then
             Try
-                If BancCourant Is Nothing Then
-                    MessageBox.Show("Vous n'avez pas de banc de mesure affecté à votre compte merci de faire un controle ou contactez le CRODIP", "Controle Pulverisateur")
+                If BancManager.getBancByAgent(agentCourant).Count = 0 Then
+                    MessageBox.Show("Vous n'avez pas de banc de mesure actif affecté à votre compte, merci de faire un controle ou contactez le CRODIP", "Controle Pulverisateur")
                     bBancOK = False
-                Else
-                    If Not BancCourant.etat Then
-                        MessageBox.Show("Le banc de mesure affecté à votre compte est désactivé, merci de faire un controle ou contactez le CRODIP", "Controle Pulverisateur")
-                        bBancOK = False
-                    End If
                 End If
 
                 If bBancOK Then

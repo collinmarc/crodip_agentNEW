@@ -213,7 +213,7 @@ Public Class CRODIPTest
 
     Protected Function createDiagnostic(pExploit As Exploitation, pPulve As Pulverisateur, Optional pbSave As Boolean = True) As Diagnostic
         Dim oDiag = New Diagnostic(m_oAgent, pPulve, pExploit)
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
         oDiag.setOrganisme(m_oAgent)
         Dim oDiagBuses As New DiagnosticBuses()
         oDiagBuses.marque = "DBMarque1"

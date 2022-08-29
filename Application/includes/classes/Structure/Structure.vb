@@ -416,6 +416,16 @@ Public Class Structuree
                 oAgent.idCRODIPPool = oPool.idCrodip
                 AgentManager.save(oAgent)
             Next
+            'Affectation des Bancs
+            Dim olst1 As List(Of Banc)
+            CSDebug.dispInfo("Affectation des Bancs")
+            olst1 = BancManager.getBancByStructureId(Me.id, True)
+            olst1.AddRange(BancManager.getBancByStructureIdJamaisServi(Me.id))
+            For Each oBanc As Banc In olst1
+                oBanc.lstPools.Add(oPool)
+                BancManager.save(oBanc)
+            Next
+
             'Affectation des Manos
             Dim olst As List(Of ManometreControle)
             CSDebug.dispInfo("Affectation des Mano de controle ")

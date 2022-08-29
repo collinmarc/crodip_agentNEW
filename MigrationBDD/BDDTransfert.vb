@@ -2127,11 +2127,11 @@ INSERT INTO facture (
         For Each oAgent As Agent In olst
             CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
             CSDb.resetConnection()
-            strNumAvant = DiagnosticManager.getNewId(oAgent)
+            strNumAvant = DiagnosticManager.getNewId(oAgent, oAgent.id)
 
             CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
             CSDb.resetConnection()
-            strNumApres = DiagnosticManager.getNewId(oAgent)
+            strNumApres = DiagnosticManager.getNewId(oAgent, oAgent.id)
 
             If strNumAvant <> strNumApres Then
                 lstAlertes.Add("Erreur de numérotation pour l'agent [" & oAgent.numeroNational & "] : Avant = " & strNumAvant & " , Après = " & strNumApres & " , URGENT PREVENEZ LE CRODIP")

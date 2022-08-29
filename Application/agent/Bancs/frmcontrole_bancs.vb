@@ -1878,12 +1878,7 @@ Public Class frmcontrole_bancs
         '################### Chargement des bancs ##################
         '###########################################################
         Dim arrBanc As List(Of Banc)
-        If BancCourant Is Nothing Then
-            arrBanc = BancManager.getBancByAgent(agentCourant, True)
-        Else
-            arrBanc = New List(Of Banc)()
-            arrBanc.Add(BancCourant)
-        End If
+        arrBanc = BancManager.getBancByAgent(agentCourant, True)
         For Each tmpBanc As Banc In arrBanc
             Dim objComboItem As New objComboItem(tmpBanc.id, tmpBanc.marque & " (" & tmpBanc.id & ")")
             controleBanc_numBanc.Items.Add(objComboItem)

@@ -939,33 +939,38 @@ Public Class DiagnosticManager
 
     End Function
 
-    Friend Shared Function getNewId(pAgent As Agent) As String
+    Friend Shared Function getNewId(pAgent As Agent, pIdBanc As String) As String
         If pAgent.oPool IsNot Nothing Then
-            Return getNewIdNew(pAgent)
+            Return getNewIdNew(pAgent, pIdBanc)
         Else
             Return getNewIdOLD(pAgent)
         End If
     End Function
 
-    Public Shared Function getNewIdNew(pAgent As Agent) As String
+    Public Shared Function getNewIdNew(pAgent As Agent, pIdBanc As String) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
         Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
         ' déclarations
         Dim idStructure As String = StructureManager.getStructureById(pAgent.idStructure).idCrodip
-        Dim Racine As String = idStructure & "-" & pAgent.numeroNational & "-" & pAgent.oPool.idCRODIPPC & "-"
+        'Si le banc n'est pas transmis => on utilise le Id du PC
+        If String.IsNullOrEmpty(pIdBanc) Then
+            If pAgent.oPool IsNot Nothing Then
+                pIdBanc = pAgent.oPool.getAgentPC().idCrodip
+            Else
+                pIdBanc = pAgent.id
+            End If
+        End If
+        Dim Racine As String = idStructure & "-" & pAgent.numeroNational & "-" & pIdBanc & "-"
         Dim nIndex As Integer = 1
 
-        If pAgent.idStructure <> 0 Then
 
-            ' On test si la table est vide
 
-            Dim oCSDb As New CSDb(True)
-            Dim res As Object = oCSDb.getValue("SELECT MAX(CAST (REPLACE(Id,'" & Racine & "','') as INT)) as ID  from Diagnostic where id Like '" & Racine & "%'")
-            oCSDb.free()
-            If TypeOf res IsNot DBNull Then
-                nIndex = CInt(res) + 1
-            End If
+        Dim oCSDb As New CSDb(True)
+        Dim res As Object = oCSDb.getValue("SELECT MAX(CAST (REPLACE(Id,'" & Racine & "','') as INT)) as ID  from Diagnostic where id Like '" & Racine & "%'")
+        oCSDb.free()
+        If TypeOf res IsNot DBNull Then
+            nIndex = CInt(res) + 1
         End If
 
         'on retourne le nouvel id

@@ -27,9 +27,18 @@ Public Class Banc
     Sub New()
         MyBase.New()
         JamaisServi = True
-
+        _lstPools = New List(Of Pool)
     End Sub
 
+    Private _lstPools As List(Of Pool)
+    Public Property lstPools() As List(Of Pool)
+        Get
+            Return _lstPools
+        End Get
+        Set(ByVal value As List(Of Pool))
+            _lstPools = value
+        End Set
+    End Property
 
     Public Property marque() As String
         Get
@@ -127,26 +136,8 @@ Public Class Banc
         End Try
         Return bReturn
     End Function
-    Public Function Fill(oDataReader As DbDataReader) As Boolean
-        Dim bReturn As Boolean
-        Try
-            Dim tmpColId As Integer = 0
-            bReturn = True
-            While tmpColId < oDataReader.FieldCount()
-                If Not oDataReader.IsDBNull(tmpColId) Then
-                    bReturn = bReturn And Fill(oDataReader.GetName(tmpColId).Trim().ToLower(), oDataReader.Item(tmpColId))
-                End If
-                tmpColId = tmpColId + 1
-            End While
 
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError("Banc.Fill ERR : " + ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
-    Public Function Fill(pColName As String, pcolValue As Object) As Boolean
+    Public Overrides Function Fill(pColName As String, pcolValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
             ' Console.WriteLine(pColName & " . " & pcolValue.ToString())
@@ -201,6 +192,7 @@ Public Class Banc
                     Me.DateActivation = pcolValue
                 Case "ModuleAcquisition".Trim().ToUpper()
                     Me.ModuleAcquisition = pcolValue
+                Case "idCrodipPool".Trim().ToUpper()
                 Case Else
                     CSDebug.dispError("Banc.Fill  (" + pColName + "," + pcolValue.ToString + ") ERR : Champs inconnu")
 

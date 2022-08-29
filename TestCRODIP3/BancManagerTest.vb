@@ -214,8 +214,23 @@ Public Class BancManagerTest
         Dim idBanc As String
         Dim tabBanc As List(Of Banc)
 
+        'Creation d'un Pool
+        Dim oPool = New Pool()
+        oPool.idCrodip = "P1"
+        oPool.libelle = "LIbP1"
+        PoolManager.Save(oPool)
+
+        Dim oPool2 = New Pool()
+        oPool2.idCrodip = "P2"
+        oPool2.libelle = "LIbP2"
+        PoolManager.Save(oPool2)
+
+        m_oAgent.idCRODIPPool = oPool.idCrodip
+        AgentManager.save(m_oAgent)
+
+
         'Suppression de tous les bancs
-        tabBanc = BancManager.getBancByAgent(m_oAgent, True)
+        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure, True)
         For Each obanc In tabBanc
             BancManager.delete(obanc.id)
         Next
@@ -228,36 +243,36 @@ Public Class BancManagerTest
         obanc.JamaisServi = False
 
         Assert.IsTrue(BancManager.save(obanc))
-        tabBanc = BancManager.getBancByAgent(m_oAgent)
+        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure)
         Assert.AreEqual(1, tabBanc.Count)
 
         'Suppression du banc
         obanc.isSupprime = True
         BancManager.save(obanc)
-        tabBanc = BancManager.getBancByAgent(m_oAgent)
+        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure)
         Assert.AreEqual(0, tabBanc.Count)
 
         'banc Jamais Servi
         obanc.isSupprime = False
         obanc.JamaisServi = True
         BancManager.save(obanc)
-        tabBanc = BancManager.getBancByAgent(m_oAgent, True)
+        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure, True)
         Assert.AreEqual(0, tabBanc.Count)
-        tabBanc = BancManager.getBancByAgent(m_oAgent, False)
+        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure, False)
         Assert.AreEqual(0, tabBanc.Count)
 
         obanc.JamaisServi = False 'Le Banc n'a pas jamaisservi => il est actif
         BancManager.save(obanc)
-        tabBanc = BancManager.getBancByAgent(m_oAgent, True)
+        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure, True)
         Assert.AreEqual(1, tabBanc.Count)
-        tabBanc = BancManager.getBancByAgent(m_oAgent)
+        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure)
         Assert.AreEqual(1, tabBanc.Count)
 
         obanc.etat = False 'Banc non controlé
         BancManager.save(obanc)
-        tabBanc = BancManager.getBancByAgent(m_oAgent, True)
+        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure, True)
         Assert.AreEqual(1, tabBanc.Count)
-        tabBanc = BancManager.getBancByAgent(m_oAgent)
+        tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure)
         Assert.AreEqual(0, tabBanc.Count)
 
 
@@ -490,5 +505,64 @@ Public Class BancManagerTest
         Assert.AreEqual(GlobalsCRODIP.ALERTE.JAUNE, obanc.getAlerte())
     End Sub
 
+    <TestMethod()>
+    Public Sub GetByPoolTest()
+        Dim oBanc As Banc
+        Dim idBanc As String
+
+        'Creation d'un Pool
+        Dim oPool = New Pool()
+        oPool.idCrodip = "P1"
+        oPool.libelle = "LIbP1"
+        PoolManager.Save(oPool)
+
+        Dim oPool2 = New Pool()
+        oPool2.idCrodip = "P2"
+        oPool2.libelle = "LIbP2"
+        PoolManager.Save(oPool2)
+
+        m_oAgent.idCRODIPPool = oPool.idCrodip
+        AgentManager.save(m_oAgent)
+
+        'Creation d'un Mano
+        oBanc = New Banc()
+        idBanc = "M1E"
+        oBanc.id = idBanc
+        oBanc.idCrodip = idBanc
+        oBanc.idStructure = m_oAgent.idStructure
+        oBanc.isSupprime = False
+        oBanc.etat = True
+        oBanc.JamaisServi = False
+        oBanc.lstPools.Add(oPool)
+        BancManager.save(oBanc)
+
+        Dim lst As List(Of Banc)
+        lst = BancManager.getBancByAgent(m_oAgent)
+        Assert.AreEqual(1, lst.Count)
+
+        'Si l'agent utilise le Pool2 , il ne voit pas le Mano
+        m_oAgent.idCRODIPPool = oPool2.idCrodip
+        AgentManager.save(m_oAgent)
+
+        lst = BancManager.getBancByAgent(m_oAgent)
+        Assert.AreEqual(0, lst.Count)
+
+        'Ajout du Pool2 dans le Mano
+        oBanc.lstPools.Add(oPool2)
+        BancManager.save(oBanc)
+        'Le Mano est bien chargé
+        lst = BancManager.getBancByAgent(m_oAgent)
+        Assert.AreEqual(1, lst.Count)
+        'il appartient Bien aux 2 pool
+        Assert.AreEqual(2, lst(0).lstPools.Count)
+        'et on le retrouve bien sur le pool1
+        m_oAgent.idCRODIPPool = oPool.idCrodip
+        AgentManager.save(m_oAgent)
+
+        lst = BancManager.getBancByAgent(m_oAgent)
+        Assert.AreEqual(1, lst.Count)
+
+
+    End Sub
 
 End Class
