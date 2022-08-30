@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+BUILD 20220830120000
+	Gestion des equipements : Gestion de bancs
+
 BUILD 20220808120000
 	0001499: Encodage automatique Fixe et Semi-mobles
 	0001502: Affichage du numéro de Ctrl sur le RI

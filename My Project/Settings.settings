@@ -143,14 +143,8 @@
     <Setting Name="BDDType" Type="System.String" Scope="Application">
       <Value Profile="(Default)">SQLITE</Value>
     </Setting>
-    <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20220627170000</Value>
-    </Setting>
     <Setting Name="StockPDF" Type="System.String" Scope="Application">
       <Value Profile="(Default)">DOSSIERCACHE</Value>
-    </Setting>
-    <Setting Name="aqw" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="GestiondesPools" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
@@ -160,6 +154,12 @@
     </Setting>
     <Setting Name="SynchroEtatFVBancpwd" Type="System.String" Scope="Application">
       <Value Profile="(Default)">inutilisé</Value>
+    </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20220830120000</Value>
+    </Setting>
+    <Setting Name="aqw" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
