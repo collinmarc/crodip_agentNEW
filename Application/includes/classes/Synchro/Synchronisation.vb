@@ -572,7 +572,7 @@ Public Class Synchronisation
             End If
             If (m_SynchroBoolean.m_bSynchAscAutotests) Then
                 ' Synchro des AutoTest()
-                Notice("des Controles Reguliers ")
+                Notice("Controles Reguliers ")
                 Dim bReturn As Boolean = AutoTestManager.sendWSControlesReguliers(m_Agent)
                 If Not bReturn Then
                     CSDebug.dispError("Synchronisation::runAscSynchro(sendWSControlesReguliers) - Erreur Locale")

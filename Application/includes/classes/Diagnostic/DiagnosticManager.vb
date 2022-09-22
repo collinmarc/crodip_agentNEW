@@ -939,29 +939,24 @@ Public Class DiagnosticManager
 
     End Function
 
-    Friend Shared Function getNewId(pAgent As Agent, pIdBanc As String) As String
+    Friend Shared Function getNewId(pAgent As Agent) As String
         If pAgent.oPool IsNot Nothing Then
-            Return getNewIdNew(pAgent, pIdBanc)
+            Return getNewIdNew(pAgent)
         Else
             Return getNewIdOLD(pAgent)
         End If
     End Function
 
-    Public Shared Function getNewIdNew(pAgent As Agent, pIdBanc As String) As String
+    Public Shared Function getNewIdNew(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
         Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
+        Debug.Assert(pAgent.oPool IsNot Nothing, "Le pool doit être renseigné")
         ' déclarations
         Dim idStructure As String = StructureManager.getStructureById(pAgent.idStructure).idCrodip
-        'Si le banc n'est pas transmis => on utilise le Id du PC
-        If String.IsNullOrEmpty(pIdBanc) Then
-            If pAgent.oPool IsNot Nothing Then
-                pIdBanc = pAgent.oPool.getAgentPC().idCrodip
-            Else
-                pIdBanc = pAgent.id
-            End If
-        End If
-        Dim Racine As String = idStructure & "-" & pAgent.numeroNational & "-" & pIdBanc & "-"
+        Dim idPC As String
+        idPC = pAgent.oPool.getAgentPC().idCrodip
+        Dim Racine As String = idStructure & "-" & pAgent.numeroNational & "-" & idPC & "-"
         Dim nIndex As Integer = 1
 
 
@@ -1453,7 +1448,6 @@ Public Class DiagnosticManager
                 AddParameter(bddCommande, "@TTC", pDiag.TotalTTC, DbType.Currency)
 
                 bddCommande.ExecuteNonQuery()
-                CSDebug.dispInfo("DiagnosticManager Save : fin RQ")
 
                 If pDiag.SignRIAgent IsNot Nothing Then
                     bddCommande = oCSDb.getConnection().CreateCommand

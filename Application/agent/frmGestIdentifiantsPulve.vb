@@ -215,19 +215,7 @@ Public Class frmGestIdentifiantsPulve
     Private Sub frmIdentifiantPulve_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         formLoad()
     End Sub
-#If DEBUG Then
-    ''' <summary>
-    ''' Création de 10 Identifiant Pulvéristaeurs (Test Only)
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub Label82_MouseClick(sender As Object, e As MouseEventArgs) Handles Label82.MouseClick
-        If e.Button = Windows.Forms.MouseButtons.Right Then
-            TestCreateIdentifiantPulve()
-        End If
-    End Sub
-#End If
+
 
     Private Sub dgv_ManoControleSuppr_RowHeaderMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv_ManoControleSuppr.RowHeaderMouseDoubleClick
         EditIdentifiantPulve()
@@ -257,26 +245,6 @@ Public Class frmGestIdentifiantsPulve
             For Each oIdent As IdentifiantPulverisateur In oCol1
                 m_bsrcManoControlSuppr.Add(oIdent)
             Next
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError("frmGestIndentifiantPulveristaeur.quitter ERR" & ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
-    Private Function TestCreateIdentifiantPulve() As Boolean
-        Dim bReturn As Boolean
-        Try
-            'Création de Quelques Identifiant Pulvé
-            For i As Integer = 0 To 10
-                Dim oIdent As New IdentifiantPulverisateur()
-                oIdent.id = i
-                oIdent.idStructure = agentCourant.idStructure
-                oIdent.numeroNational = "E001" & Format(i, "000000")
-                oIdent.SetEtatINUTILISE()
-                IdentifiantPulverisateurManager.Save(oIdent)
-            Next
-
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("frmGestIndentifiantPulveristaeur.quitter ERR" & ex.Message)

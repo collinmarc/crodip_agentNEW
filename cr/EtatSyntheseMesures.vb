@@ -28,7 +28,6 @@ Public Class EtatSyntheseMesures
         Dim bReturn As Boolean
         Dim strReportName As String
         Try
-            CSDebug.dispInfo("TBD : GenereEtat")
             bReturn = genereDS()
             If (bReturn) Then
                 Using r1 As New cr_EtatSynthese()
@@ -36,7 +35,6 @@ Public Class EtatSyntheseMesures
                     r1.Close()
                 End Using
                 m_oReportDocument = New ReportDocument
-                CSDebug.dispInfo("TBD : Load" & MySettings.Default.RepertoireParametres & "/" & strReportName)
                 m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
                 'Dim olst As ReportObjects
                 'For Each oSubReport As ReportDocument In m_oReportDocument.Subreports
@@ -60,9 +58,7 @@ Public Class EtatSyntheseMesures
 
                 'Next
 
-                CSDebug.dispInfo("TBD : setDataSource")
                 m_oReportDocument.SetDataSource(m_ods)
-                CSDebug.dispInfo("TBD : setParameter")
                 m_oReportDocument.SetParameterValue("ModeSimplifie", GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE)
                 If pExportPDF Then
                     Dim CrExportOptions As ExportOptions
@@ -85,7 +81,6 @@ Public Class EtatSyntheseMesures
             CSDebug.dispError("EtatRapportInspection.GenereEtat ERR" & ex.Message)
             bReturn = False
         End Try
-        CSDebug.dispInfo("TBD : GenereEtat End")
         Return bReturn
     End Function
 

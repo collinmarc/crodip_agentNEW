@@ -194,14 +194,14 @@ Namespace WSCrodip_prod
         Public Function GetDiagnostic(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal id As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Diagnostic As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetDiagnostic", New Object() {agentId, id})
             Diagnostic = CType(results(1), Object)
-            SynchronisationManager.LogSynchroElmt(Diagnostic)
+            SynchronisationManager.LogSynchroElmt(Diagnostic, id)
             Return CType(results(0), Integer)
         End Function
 
         '<remarks/>
         <XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(DiagnosticBuses)), XmlInclude(GetType(DiagnosticBusesDetail)), XmlInclude(GetType(DiagnosticMano542)), XmlInclude(GetType(DiagnosticTroncons833)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnostic", RequestElementName:="SendDiagnosticRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function SendDiagnostic(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal DiagnosticRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Diagnostic As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            SynchronisationManager.LogSynchroElmt(DiagnosticRequest)
+            SynchronisationManager.LogSynchroElmt(DiagnosticRequest, CType(DiagnosticRequest, Diagnostic).id)
             Dim results() As Object = Me.Invoke("SendDiagnostic", New Object() {agentId, DiagnosticRequest})
             Diagnostic = CType(results(1), Object)
             Return CType(results(0), Integer)
@@ -313,13 +313,13 @@ Namespace WSCrodip_prod
         Public Function GetExploitation(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal id As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Exploitation As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetExploitation", New Object() {agentId, id})
             Exploitation = CType(results(1), Object)
-            SynchronisationManager.LogSynchroElmt(Exploitation)
+            SynchronisationManager.LogSynchroElmt(Exploitation, id)
             Return CType(results(0), Integer)
         End Function
         '<remarks/>
         <XmlInclude(GetType(Exploitation)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendExploitation", RequestElementName:="SendExploitationRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function SendExploitation(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ExploitationRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Exploitation As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            SynchronisationManager.LogSynchroElmt(ExploitationRequest)
+            SynchronisationManager.LogSynchroElmt(ExploitationRequest, CType(ExploitationRequest, Exploitation).id)
             Dim results() As Object = Me.Invoke("SendExploitation", New Object() {agentId, ExploitationRequest})
             Exploitation = CType(results(1), Object)
             Return CType(results(0), Integer)
@@ -436,7 +436,7 @@ Namespace WSCrodip_prod
         '<remarks/>
         <XmlInclude(GetType(Pulverisateur)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendPulverisateur", RequestElementName:="SendPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function SendPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PulverisateurRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            SynchronisationManager.LogSynchroElmt(PulverisateurRequest)
+            SynchronisationManager.LogSynchroElmt(PulverisateurRequest, CType(PulverisateurRequest, Pulverisateur).id)
             Dim results() As Object = Me.Invoke("SendPulverisateur", New Object() {agentId, PulverisateurRequest})
             Pulverisateur = CType(results(1), Object)
             Return CType(results(0), Integer)

@@ -32,7 +32,7 @@ Public Class SynchronisationElmtIdentifiantPulverisateur
         Try
             Dim oIdentPulve As New IdentifiantPulverisateur
             Try
-                oIdentPulve = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(pAgent, Me.identifiantEntier)
+                oIdentPulve = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(pAgent, Me.IdentifiantEntier)
                 If oIdentPulve.id <> 0 Then
                     bReturn = IdentifiantPulverisateurManager.Save(oIdentPulve, True)
                 Else

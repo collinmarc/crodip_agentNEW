@@ -115,7 +115,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
-    <DefineConstants>VGESTEQP=1</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
@@ -837,7 +838,6 @@
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagBusesDetail.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagBuses.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiagItem.vb" />
-    <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtFVBanc.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtDiag.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationGetSynchroDateTime.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationGetVersionLogicielAgent.vb" />

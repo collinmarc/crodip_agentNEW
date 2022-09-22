@@ -364,6 +364,9 @@ Public Class SynchronisationElmt
                             oBuseE.etat = True
                         End If
 
+                        If My.Settings.GestionDesPools Then
+                            BuseManager.getLstPoolById(oBuseE)
+                        End If
                         BuseManager.save(oBuseE, True)
                         bReturn = True
                     Catch ex As Exception
@@ -379,7 +382,11 @@ Public Class SynchronisationElmt
                     Try
                         setStatus("Réception MAJ Manomètre de Controle n°" & pElement.identifiantChaine & "...")
                         tmpObject = ManometreControleManager.getWSManometreControleById(pAgent, pElement.identifiantChaine)
+                        If My.Settings.GestionDesPools Then
+                            ManometreControleManager.getLstPoolById(tmpObject)
+                        End If
                         ManometreControleManager.save(tmpObject, True)
+
                         bReturn = True
                     Catch ex As Exception
                         CSDebug.dispFatal("Synchronisation::runDescSynchro(GetManometreControle) : " & ex.Message.ToString)
@@ -438,7 +445,11 @@ Public Class SynchronisationElmt
                     Try
                         setStatus("Réception MAJ Manomètre Etalon n°" & pElement.identifiantChaine & "...")
                         tmpObject = ManometreEtalonManager.getWSManometreEtalonById(pAgent, pElement.identifiantChaine)
+                        If My.Settings.GestionDesPools Then
+                            ManometreEtalonManager.getLstPoolById(tmpObject)
+                        End If
                         ManometreEtalonManager.save(tmpObject, True)
+
                         bReturn = True
                     Catch ex As Exception
                         CSDebug.dispFatal("Synchronisation::runDescSynchro(GetManometreEtalon) : " & ex.Message.ToString)
@@ -464,7 +475,11 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New Banc
                     Try
                         setStatus("Réception MAJ Banc n°" & pElement.identifiantChaine & "...")
-                        tmpObject = BancManager.getWSBancById(pAgent, pElement.identifiantChaine)
+                        tmpObject = BancManager.getWSBancById(pAgent, pElement.IdentifiantChaine)
+                        If My.Settings.GestionDesPools Then
+                            BancManager.getLstPoolById(tmpObject)
+                        End If
+
                         BancManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception

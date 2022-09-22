@@ -520,15 +520,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-    Public ReadOnly Property GestiondesPools() As Boolean
-        Get
-            Return CType(Me("GestiondesPools"),Boolean)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("inutilisé")>  _
     Public ReadOnly Property SynchroEtatFVBancUser() As String
         Get
@@ -560,6 +551,15 @@ Partial Friend NotInheritable Class MySettings
     Public ReadOnly Property aqw() As String
         Get
             Return CType(Me("aqw"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+    Public ReadOnly Property GestionDesPools() As Boolean
+        Get
+            Return CType(Me("GestionDesPools"),Boolean)
         End Get
     End Property
 End Class

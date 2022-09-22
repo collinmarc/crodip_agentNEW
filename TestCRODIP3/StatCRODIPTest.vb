@@ -212,7 +212,7 @@ Public Class StatsCrodipTest
 
         Dim oDiag As New Diagnostic()
         oDiag.setOrganisme(m_oAgent)
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         oDiag.controleDateDebut = CSDate.FromCrodipString(Date.Now).ToShortDateString()
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC 'Controle NOK
         Assert.IsTrue(DiagnosticManager.save(oDiag))

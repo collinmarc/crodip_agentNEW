@@ -5355,7 +5355,7 @@ Public Class accueil
                 If Not oDiag Is Nothing Then
                     diagnosticCourant = oDiag
                     Dim oExploit As Exploitation
-                    oExploit = ExploitationManager.getWSClientByDiagnosticId(agentCourant, searchCriteria)
+                    oExploit = ExploitationManager.getWSClientPulveByDiagnosticId(agentCourant, searchCriteria)
                     ocol = New List(Of Exploitation)
                     ocol.Add(oExploit)
                 End If

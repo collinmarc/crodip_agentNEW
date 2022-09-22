@@ -79,13 +79,20 @@ Public Class IdentifiantPulverisateurManager
         Dim bReturn As Boolean
         Try
             Dim strQuery As String
-            strQuery = "insert into identifiantPulverisateur (id,  idStructure ,  numeroNational ,  etat ,  dateUtilisation ,  libelle ,  idCRODIPPOOL, dateModificationAgent ,  dateModificationCrodip )"
-            strQuery = strQuery & " VALUES ("
-            strQuery = strQuery & pIdent.id & "," & pIdent.idStructure & ",'" & CSDb.secureString(pIdent.numeroNational) & "','" & CSDb.secureString(pIdent.etat) & "','" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "','" & CSDb.secureString(pIdent.libelle) & "','" & pIdent.idCRODIPPool & "' , '" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
+            strQuery = "insert into identifiantPulverisateur (id,  idStructure ,  numeroNational ,  etat ,  dateUtilisation ,  libelle , dateModificationAgent ,  dateModificationCrodip "
+            If My.Settings.GestionDesPools Then
+                strQuery = strQuery & ",idCRODIPPOOL"
+            End If
+
+            strQuery = strQuery & ") VALUES ("
+            strQuery = strQuery & pIdent.id & "," & pIdent.idStructure & ",'" & CSDb.secureString(pIdent.numeroNational) & "','" & CSDb.secureString(pIdent.etat) & "','" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "','" & CSDb.secureString(pIdent.libelle) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
+            If My.Settings.GestionDesPools Then
+                strQuery = strQuery & "'" & pIdent.idCRODIPPool & "'"
+            End If
             strQuery = strQuery & " )"
 
 
-            Dim oCSDb As New CSDb(True)
+                Dim oCSDb As New CSDb(True)
             bReturn = oCSDb.Execute(strQuery)
 
             oCSDb.free()
@@ -114,7 +121,9 @@ Public Class IdentifiantPulverisateurManager
             strQuery = strQuery & "  etat = '" & CSDb.secureString(pIdent.etat) & "'" & ","
             strQuery = strQuery & "  dateUtilisation ='" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "'" & ","
             strQuery = strQuery & "  libelle ='" & CSDb.secureString(pIdent.libelle) & "'" & ","
-            strQuery = strQuery & "  idCrodipPool ='" & CSDb.secureString(pIdent.idCRODIPPool) & "'" & ","
+            If Not String.IsNullOrEmpty(pIdent.idCRODIPPool) Then
+                strQuery = strQuery & "  idCrodipPool ='" & CSDb.secureString(pIdent.idCRODIPPool) & "'" & ","
+            End If
             strQuery = strQuery & "  dateModificationAgent ='" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "'" & ","
             strQuery = strQuery & "  dateModificationCrodip = '" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
 
@@ -340,7 +349,7 @@ Public Class IdentifiantPulverisateurManager
         Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
         Dim olst As New List(Of IdentifiantPulverisateur)
 
-        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
+        If Not My.Settings.GestionDesPools Then
             olst = getListeByStructure(pAgent.idStructure)
         Else
             olst = getListeByPool(pAgent.idCRODIPPool)
@@ -378,7 +387,7 @@ Public Class IdentifiantPulverisateurManager
         End Try
         Return olst
     End Function
-    Private Shared Function getListeByPool(pIdCrodipPool As String) As List(Of IdentifiantPulverisateur)
+    Public Shared Function getListeByPool(pIdCrodipPool As String) As List(Of IdentifiantPulverisateur)
         Dim olst As New List(Of IdentifiantPulverisateur)
         Dim oCSDB As New CSDb(True)
         Try
@@ -405,7 +414,7 @@ Public Class IdentifiantPulverisateurManager
         Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
         Dim olst As New List(Of IdentifiantPulverisateur)
 
-        If String.IsNullOrEmpty(pAgent.idCRODIPPool) Then
+        If Not My.Settings.GestionDesPools Then
             olst = getListeInutiliseByStructure(pAgent.idStructure)
         Else
             olst = getListeInutiliseByPool(pAgent.idCRODIPPool)

@@ -98,6 +98,7 @@ Public Class IdentifiantPulverisateur
             m_libelle = value
         End Set
     End Property
+    <XmlIgnore()>
     Public Property idCRODIPPool As String
         Get
             Return m_IDCRODIPPOOL

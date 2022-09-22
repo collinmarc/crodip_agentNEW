@@ -574,8 +574,8 @@ Public Class BuseManager
             arrResponse.ForEach(Sub(M)
                                     M.lstPools.AddRange(getlstPoolByBuse(M.numeroNational))
                                 End Sub)
-            Return arrResponse
         End If
+        Return arrResponse
     End Function
     Private Shared Function getBusesByPoolId(ByVal pIdCRODIPPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of Buse)
         Debug.Assert(Not String.IsNullOrEmpty(pIdCRODIPPool), "L'IDPool doit être renseigné")
@@ -734,6 +734,34 @@ Public Class BuseManager
 
 
         Return oreturn
+    End Function
+    Public Shared Function getLstPoolById(pBuse As Buse) As Boolean
+
+        ' déclarations
+        Dim bReturn As Boolean = False
+        Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
+        Dim objWSCrodip_response As New Object
+        Debug.Assert("FONCTION BuseManager.getlstPoolByID Non implémentée")
+        '' Appel au WS
+        'Dim codeResponse As Integer = objWSCrodip.GetlstPoolByBuseId(agentCourant.id, pBuse.idCrodip, objWSCrodip_response)
+        'Select Case codeResponse
+        '    Case 0 ' OK
+        '        ' construction de l'objet
+        '        Dim objWSCrodip_responseItem As System.Xml.XmlNode
+        '        For Each objWSCrodip_responseItem In objWSCrodip_response
+        '            If objWSCrodip_responseItem.InnerText() <> "" Then
+
+        '            End If
+        '        Next
+        '        bReturn = True
+        '    Case 1 ' NOK
+        '        CSDebug.dispError("Erreur - BuseManager - Code 1 : Non-Trouvée")
+        '    Case 9 ' BADREQUEST
+        '        CSDebug.dispError("Erreur - BuseManager - Code 9 : Bad Request")
+        'End Select
+
+
+        Return bReturn
     End Function
 
 End Class

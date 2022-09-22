@@ -309,15 +309,18 @@
 --ALTER TABLE IdentifiantPulverisateur ADD COLUMN         idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE CASCADE;
 
 -- Ajout des dépendances BANC-POOL
-CREATE TABLE PoolBanc (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCrodip) ON DELETE NO ACTION,numeroNationalBanc     TEXT     REFERENCES BancMesure (id) ON DELETE CASCADE,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+--CREATE TABLE PoolBanc (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCrodip) ON DELETE NO ACTION,numeroNationalBanc     TEXT     REFERENCES BancMesure (id) ON DELETE CASCADE,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
 
 --Nettoyage de la base  (si upgrade)
+DROP TABLE IF EXISTS AGENT_ADEL;
+DELETE FROM POOLBanc;
 DELETE FROM POOLBUSE;
 DELETE FROM POOLManoE;
 DELETE FROM POOLManoC;
-UPDATE IdentifiantPulverisateur SET idCRODIPPOOL = NULL
-UPDATE Agent SET idCRODIPPOOL = NULL
+DELETE FROM AgentPC;
+UPDATE IdentifiantPulverisateur SET idCRODIPPOOL = NULL;
+UPDATE Agent SET idCRODIPPOOL = NULL;
 DELETE FROM POOL;
-INSERT INTO VERSION (VERSION_NUM, VERSION_DATE, VERSION_COMM) VALUES ("V3.0.00", #30/08/2022# , "Gestion des Equipements") 
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.0.00','2022-08-30 12:00:00','Gestion des equipements');
 
 

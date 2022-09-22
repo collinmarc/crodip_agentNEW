@@ -1206,7 +1206,7 @@ Public Class DiagnosticManagerTest
 
         'SAuvegarde du Diag
         '====================
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         DiagnosticManager.save(oDiag)
         idDiag = oDiag.id
         'Rechargement du Diag
@@ -1893,7 +1893,7 @@ Public Class DiagnosticManagerTest
 
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         DiagnosticManager.save(oDiag)
         idDiag = oDiag.id
 
@@ -1956,7 +1956,7 @@ Public Class DiagnosticManagerTest
         PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
         'Creation d'un Diagnostic
         oDiag = createDiagnostic(oExploit, oPulve)
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.diagnosticBusesList.Liste.Clear()
         oDiag.diagnosticMano542List.Liste.Clear()
@@ -2280,7 +2280,7 @@ Public Class DiagnosticManagerTest
         Dim idDiag As String
         'Creation d'un Diagnostic
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
         oDiagBuses = New DiagnosticBuses()
@@ -2468,7 +2468,7 @@ Public Class DiagnosticManagerTest
         Dim idDiag As String
         'Creation d'un Diagnostic
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
         oDiagBuses = New DiagnosticBuses()
@@ -2539,7 +2539,7 @@ Public Class DiagnosticManagerTest
         Dim idDiag As String
         'Creation d'un Diagnostic
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
 
@@ -2588,7 +2588,7 @@ Public Class DiagnosticManagerTest
         Dim idDiag As String
         'Creation d'un Diagnostic
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
 
@@ -2731,7 +2731,7 @@ Public Class DiagnosticManagerTest
         Dim idDiag As String
         'Creation d'un Diagnostic
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
 
@@ -2764,7 +2764,7 @@ Public Class DiagnosticManagerTest
     Public Sub TST_AddDiagItem()
 
         Dim oDiag As New Diagnostic()
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         Dim oDiagItem As DiagnosticItem
 
         'Assert.AreEqual(1, oDiag.diagnosticItemsLst.Count)
@@ -2949,7 +2949,7 @@ Public Class DiagnosticManagerTest
         'I - Creation d'un Diagnostic
         '============================
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
         oDiag.controleDateDebut = Date.Now().ToShortDateString()
@@ -3027,7 +3027,7 @@ Public Class DiagnosticManagerTest
         '===========================
         Dim ods As ds_Etat_SM
         Dim oEtat As New EtatSyntheseMesures(oDiag)
-        oEtat.GenereEtat()
+        oEtat.genereEtat()
         ods = DirectCast(oEtat.getDs(), ds_Etat_SM)
 
         'III- Vérification du dataset généré
@@ -3122,7 +3122,7 @@ Public Class DiagnosticManagerTest
         'I - Creation d'un Diagnostic
         '============================
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
         oDiag.controleDateDebut = Date.Now().ToShortDateString()
@@ -3174,7 +3174,7 @@ Public Class DiagnosticManagerTest
         '===========================
         Dim ods As ds_Etat_SM
         Dim oEtat As New EtatSyntheseMesures(oDiag)
-        oEtat.GenereEtat()
+        oEtat.genereEtat()
         ods = DirectCast(oEtat.getDs(), ds_Etat_SM)
 
         'III- Vérification du dataset généré
@@ -3263,7 +3263,7 @@ Public Class DiagnosticManagerTest
         'I - Creation d'un Diagnostic
         '============================
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
         oDiag.controleDateDebut = Date.Now().ToShortDateString()
@@ -3378,7 +3378,7 @@ Public Class DiagnosticManagerTest
         '===========================
         Dim ods As ds_Etat_SM
         Dim oEtat As New EtatSyntheseMesures(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat())
+        Assert.IsTrue(oEtat.genereEtat())
         ods = DirectCast(oEtat.getDs(), ds_Etat_SM)
         oEtat.Open()
         Assert.IsNotNull(ods)
@@ -3573,7 +3573,7 @@ Public Class DiagnosticManagerTest
         'I - Creation d'un Diagnostic
         '============================
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
         oDiag.controleDateDebut = Date.Now().ToShortDateString()
@@ -3614,7 +3614,7 @@ Public Class DiagnosticManagerTest
         '===========================
         Dim ods As ds_Etat_SM
         Dim oEtat As New EtatSyntheseMesures(oDiag)
-        oEtat.GenereEtat()
+        oEtat.genereEtat()
         ods = DirectCast(oEtat.getDs(), ds_Etat_SM)
 
         'III- Vérification du dataset généré
@@ -3661,7 +3661,7 @@ Public Class DiagnosticManagerTest
         'I - Creation d'un Diagnostic
         '============================
         oDiag = New Diagnostic()
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
         oDiag.controleDateDebut = Date.Now().ToShortDateString()
@@ -3714,7 +3714,7 @@ Public Class DiagnosticManagerTest
         '===========================
         Dim ods As ds_Etat_SM
         Dim oEtat As New EtatSyntheseMesures(oDiag)
-        oEtat.GenereEtat()
+        oEtat.genereEtat()
         ods = DirectCast(oEtat.getDs(), ds_Etat_SM)
 
         'III- Vérification du dataset généré
@@ -3792,7 +3792,7 @@ Public Class DiagnosticManagerTest
         odiag.setOrganisme(m_oAgent)
 
         'Récupération d'un ID
-        strId = DiagnosticManager.getNewId(m_oAgent, "")
+        strId = DiagnosticManager.getNewId(m_oAgent)
 
         odiag.id = strId
         tabStr = strId.Split("-"c)
@@ -3807,7 +3807,7 @@ Public Class DiagnosticManagerTest
         oCsdb.Execute("UPDATE DIAGNOSTIC Set id = '45-99-33' WHERE id = " & strId)
 
         'Récupération d'un nouvel Id
-        strId = DiagnosticManager.getNewId(m_oAgent, "")
+        strId = DiagnosticManager.getNewId(m_oAgent)
         tabStr = strId.Split("-"c)
         'Le nouvel Id doit être égal à l'ancien +1
         Assert.AreEqual(nId + 1, CInt(tabStr(2)))
@@ -3860,7 +3860,7 @@ Public Class DiagnosticManagerTest
         pClient.surfaceAgricoleUtile = "1500"
         oDiag.SetProprietaire(pClient)
 
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiagBuses = New DiagnosticBuses()
         oDiagBuses.marque = "DBMarque1"
@@ -4244,7 +4244,7 @@ Public Class DiagnosticManagerTest
         pClient.surfaceAgricoleUtile = "1500"
         oDiag.SetProprietaire(pClient)
 
-        idDiag = DiagnosticManager.getNewId(m_oAgent, "")
+        idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiagBuses = New DiagnosticBuses()
         oDiagBuses.marque = "DBMarque1"
@@ -4516,7 +4516,7 @@ Public Class DiagnosticManagerTest
         Dim bReturn As Boolean
         Dim oDiag2 As Diagnostic
         Dim id As String
-        id = DiagnosticManager.getNewId(m_oAgent, "")
+        id = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = id
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
@@ -5323,7 +5323,7 @@ Public Class DiagnosticManagerTest
         '==========
         'Creation d'un Diagnostic
         oDiag = New Diagnostic()
-        id = DiagnosticManager.getNewId(m_oAgent, "")
+        id = DiagnosticManager.getNewId(m_oAgent)
         oDiag.pulverisateurId = "PULVETEST"
         oDiag.id = id
         oDiag.organismePresId = m_oAgent.idStructure
@@ -5505,7 +5505,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("pulverisateur", oDiag.typeDiagnostic)
         Assert.AreEqual("35067", oDiag.codeInsee)
 
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         id = oDiag.id
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
@@ -5591,7 +5591,7 @@ Public Class DiagnosticManagerTest
         oDiag.SetProprietaire(oExploit)
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
         oDiag.controleDateFin = CSDate.ToCRODIPString(CDate("2016/09/26 18:07:30"))
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         id = oDiag.id
         DiagnosticManager.save(oDiag)
 
@@ -5630,7 +5630,7 @@ Public Class DiagnosticManagerTest
         oDiag = DiagnosticManager.getDiagnosticById(oDiag.id)
 
         Dim oEtat As New EtatSyntheseMesures(oDiag)
-        oEtat.GenereEtat()
+        oEtat.genereEtat()
         oEtat.Open()
 
 
@@ -5932,7 +5932,7 @@ Public Class DiagnosticManagerTest
         oDiag.controleLieu = "DANS LA COUR"
         oDiag.controleIsPreControleProfessionel = True
         oDiag.proprietaireRepresentant = "Repésentant"
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         oDiag.controleIsComplet = False
         oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
@@ -5947,7 +5947,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat(True))
+        Assert.IsTrue(oEtat.genereEtat(True))
         oDiag.RIFileName = oEtat.getFileName()
         DiagnosticManager.save(oDiag)
 
@@ -5959,7 +5959,7 @@ Public Class DiagnosticManagerTest
         oDiag.controleLieu = "DANS LA COUR"
         oDiag.controleIsPreControleProfessionel = True
         oDiag.proprietaireRepresentant = "Repésentant"
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         oDiag.controleIsComplet = False
         oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
@@ -5974,7 +5974,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat(True))
+        Assert.IsTrue(oEtat.genereEtat(True))
         '        oDiag.RIFileName = oEtat.getFileName()
         DiagnosticManager.save(oDiag)
 
@@ -5989,7 +5989,7 @@ Public Class DiagnosticManagerTest
         oDiag.controleLieu = "DANS LA COUR"
         oDiag.controleIsPreControleProfessionel = True
         oDiag.proprietaireRepresentant = "Repésentant"
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         oDiag.controleIsComplet = False
         oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
@@ -6004,7 +6004,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat(True))
+        Assert.IsTrue(oEtat.genereEtat(True))
         oDiag.RIFileName = oEtat.getFileName()
         DiagnosticManager.save(oDiag)
         lstDiag = DiagnosticManager.getlstDiagnostic(m_oStructure.id).Where(Function(d) d.RIFileName <> "" And CDate(d.controleDateDebut) > Now.AddYears(-1)).ToList()
@@ -6016,7 +6016,7 @@ Public Class DiagnosticManagerTest
         oDiag.controleLieu = "DANS LA COUR"
         oDiag.controleIsPreControleProfessionel = True
         oDiag.proprietaireRepresentant = "Repésentant"
-        oDiag.id = DiagnosticManager.getNewId(m_oAgent, "")
+        oDiag.id = DiagnosticManager.getNewId(m_oAgent)
         oDiag.controleIsComplet = False
         oDiag.buseDebitD = "2,5"
         oDiag.controleInitialId = "010101"
@@ -6031,7 +6031,7 @@ Public Class DiagnosticManagerTest
         oDiagItem.LibelleLong = "Ceci est le libelle Long de 2561 ce libellé est sur plusieurs lignes et tout doit apparaoitre même ces dernièrs mots bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccccccc dddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeee ffffffffffffffffffff Z"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat(True))
+        Assert.IsTrue(oEtat.genereEtat(True))
         oDiag.RIFileName = oEtat.getFileName()
         DiagnosticManager.save(oDiag)
         lstDiag = DiagnosticManager.getlstDiagnostic(m_oStructure.id).Where(Function(d) d.RIFileName <> "" And CDate(d.controleDateDebut) > Now.AddYears(-1)).ToList()
@@ -6073,16 +6073,16 @@ Public Class DiagnosticManagerTest
         m_oAgent.oPool.idCRODIPPC = "12345"
 
         Dim str As String
-        str = DiagnosticManager.getNewId(m_oAgent, "")
+        str = DiagnosticManager.getNewId(m_oAgent)
 
         Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
 
         m_oAgent.oPool.idCRODIPPC = "1119"
-        str = DiagnosticManager.getNewId(m_oAgent, "")
+        str = DiagnosticManager.getNewId(m_oAgent)
         Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-1119-1", str)
 
         m_oAgent.oPool = Nothing
-        str = DiagnosticManager.getNewId(m_oAgent, "")
+        str = DiagnosticManager.getNewId(m_oAgent)
         Assert.AreEqual("498-1119-1242", str)
 
 
