@@ -510,7 +510,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New Structuree
                     Try
                         setStatus("Réception MAJ Organisme n°" & pElement.identifiantEntier & "...")
-                        tmpObject = StructureManager.getWSStructureeById(pElement.identifiantEntier)
+                        tmpObject = StructureManager.getWSStructureeById(pAgent, pElement.IdentifiantEntier)
                         StructureManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception

@@ -620,7 +620,7 @@ Public Class test
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         Dim objStructure As New Structuree
         Try
-            objStructure = StructureManager.getWSStructureeById(1)
+            objStructure = StructureManager.getWSStructureeById(agentCourant, 1)
             If objStructure.id <> 0 Then
                 MsgBox("Ok, profil chargé :" & objStructure.nom)
             Else

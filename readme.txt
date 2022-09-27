@@ -1,5 +1,9 @@
 TRUNK
 MASTER
+BUILD 20220927120000
+	0001521: Ajout d'un inspecteur sur une base vide
+	0001523: Faire le controle de date de validité sur la version FORMATION
+
 BUILD 20220922120000
 	#1520 : Prise en compte de la non gestion des Eqptms sur le SRV
 BUILD 20220830120000

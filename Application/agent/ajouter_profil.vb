@@ -248,14 +248,22 @@ Public Class ajouter_profil
                             existsAgent = AgentManager.getAgentByNumeroNational(objAgent.numeroNational)
                             If existsAgent.numeroNational = "" Then
                                 'Si l'agent n'esiste pas encore en base (normal)
+                                'Chargement de la structure
+                                Dim oStructure As Structuree
+                                oStructure = StructureManager.getStructureById(objAgent.idStructure)
+                                If oStructure.id <> objAgent.idStructure Then
+                                    'La Structure n'existe pas , il faut la Récupéré
+                                    oStructure = StructureManager.getWSStructureeById(objAgent, objAgent.idStructure)
+                                    StructureManager.save(oStructure, True)
+                                End If
                                 'La date de ernière synhcro est la plus petite date de synchro des agents en base.
                                 objAgent.dateDerniereSynchro = AgentManager.GetDateDernSynchro()
-                                'Update de cet agent avec l'agent recu pas WS
-                                AgentManager.save(objAgent)
-                                MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")
-                                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
-                            Else
-                                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
+                                    'Update de cet agent avec l'agent recu pas WS
+                                    AgentManager.save(objAgent)
+                                    MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")
+                                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
+                                Else
+                                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
                                 MsgBox("Erreur: Cet inspecteur est déjà présent en base." & existsAgent.numeroNational)
                             End If
                         Else

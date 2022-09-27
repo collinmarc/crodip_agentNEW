@@ -6,7 +6,7 @@ Public Class StructureManager
 
 #Region "Methodes acces Web Service"
 
-    Public Shared Function getWSStructureeById(ByVal structuree_id As String) As Object
+    Public Shared Function getWSStructureeById(pAgent As Agent, ByVal structuree_id As String) As Object
         Dim objStructuree As New Structuree
         Try
 
@@ -14,7 +14,7 @@ Public Class StructureManager
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Dim objWSCrodip_response As New Object
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetStructure(agentCourant.id, structuree_id, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetStructure(pAgent.id, structuree_id, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet

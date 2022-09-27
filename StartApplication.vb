@@ -76,7 +76,7 @@ Module StartApplication
             FacturationConfig.WriteXml()
         End If
 
-        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
 
             'Test de la validité 
             ParamReglagePulve.XMLFileName = "zsxedc.crodip"
