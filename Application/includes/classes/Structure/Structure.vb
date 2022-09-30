@@ -456,7 +456,8 @@ Public Class Structuree
             olst4 = IdentifiantPulverisateurManager.getListeByStructure(Me.id)
             For Each oIdentPulve As IdentifiantPulverisateur In olst4
                 oIdentPulve.idCRODIPPool = oPool.idCrodip
-                IdentifiantPulverisateurManager.Save(oIdentPulve)
+                'on ne met pas à jour les dates de modif pour éviter la synchro
+                IdentifiantPulverisateurManager.Save(oIdentPulve, True)
             Next
 
         End If

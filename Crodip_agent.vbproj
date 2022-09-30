@@ -1503,9 +1503,6 @@
     <None Include="Resources\Favorites.png" />
     <None Include="Resources\btn_search.jpg" />
     <None Include="Resources\btn_retours.jpg" />
-    <Content Include="undoUpdates.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="wgssSTU.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

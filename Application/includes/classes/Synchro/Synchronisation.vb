@@ -1112,6 +1112,8 @@ Public Class Synchronisation
                 ' Ensuite on met à jour la date de dernière synchro
                 Notice("MAJ date de dernière Synchro")
                 MAJDateDerniereSynchro()
+                'Rechargement de l'agent courant
+                agentCourant = AgentManager.getAgentById(m_Agent.id)
                 bReturn = True
                 SynchronisationManager.LogSynchroEnd()
                 Notice("Fin Synchronisation descendante")
@@ -1182,7 +1184,6 @@ Public Class Synchronisation
             CSDebug.dispError("SynchronisationManager.MAJDateDerniereSynchro ERR" & ex.Message)
             bReturn = False
         End Try
-        agentCourant = m_Agent
         Return bReturn
     End Function
 

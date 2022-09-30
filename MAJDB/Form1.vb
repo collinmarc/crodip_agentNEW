@@ -1,9 +1,10 @@
 ﻿Imports Crodip_agent
+Imports System.Data.Common
 Imports System.Data.OleDb
 Public Class frmMAJDB
     Private Sub btnExec_Click(sender As Object, e As EventArgs) Handles btnExec.Click
         Dim ocsDB As CSDb
-        Dim oReader As OleDb.OleDbDataReader
+        Dim oReader As DbDataReader
         Try
             Me.Cursor = Cursors.WaitCursor
             ocsDB = New CSDb()

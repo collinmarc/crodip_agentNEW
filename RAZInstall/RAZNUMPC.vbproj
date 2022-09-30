@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{035DB878-4818-4184-B05F-6416270D5E1D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>RAZInstall.Module1</StartupObject>
-    <RootNamespace>RAZInstall</RootNamespace>
-    <AssemblyName>RAZInstall</AssemblyName>
+    <StartupObject>RAZNUMPC.Module1</StartupObject>
+    <RootNamespace>RAZNUMPC</RootNamespace>
+    <AssemblyName>RAZNUMPC</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
@@ -119,6 +119,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy  /Y $(SolutionDir)\$(ProjectName)\$(OutDir)\$(TargetName).* $(SolutionDir)\bin\x86\$(ConfigurationName)</PostBuildEvent>
+    <PostBuildEvent>copy  /Y $(SolutionDir)RAZInstall\$(OutDir)$(TargetName).exe  $(SolutionDir)bin\x86\$(ConfigurationName)
+copy  /Y $(SolutionDir)RAZInstall\$(OutDir)$(TargetName).exe.config  $(SolutionDir)bin\x86\$(ConfigurationName)</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -168,11 +168,16 @@ Public Class AgentPCManager
     End Function
 
     Public Shared Sub RAZInstall()
+        Try
 
-        Dim oCSDB As New CSDb(True)
-        oCSDB.Execute("UPDATE AGENTPC SET NUMINTERNE = NULL")
-
-        Registry.CurrentUser.DeleteSubKeyTree("CRODIP")
+            Dim oCSDB As New CSDb(True)
+            oCSDB.Execute("UPDATE POOL SET idCRODIPPC = NULL")
+            oCSDB.Execute("DELETE FROM AgentPC")
+            oCSDB.free()
+            Registry.CurrentUser.DeleteSubKeyTree("CRODIP")
+        Catch ex As Exception
+            CSDebug.dispError("AgentPCManager.RAZInstall ERR", ex)
+        End Try
 
     End Sub
     Public Shared Sub ResetDB()
