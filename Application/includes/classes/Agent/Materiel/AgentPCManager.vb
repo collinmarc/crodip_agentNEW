@@ -81,7 +81,7 @@ Public Class AgentPCManager
         Dim oReturn As AgentPC = Nothing
         Try
 
-            oReturn = getByKey(Of AgentPC)("SELECT * FROM AgentPC WHERE idCRODIP=" & pid & "")
+            oReturn = getByKey(Of AgentPC)("SELECT * FROM AgentPC WHERE idCRODIP='" & pid & "'")
 
 
         Catch ex As Exception

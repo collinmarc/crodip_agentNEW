@@ -1459,13 +1459,14 @@
     <Compile Include="Application\Signature\frmSignClientWacom.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Content Include="bdd\crodip_agent.mdb" />
-    <Content Include="bdd\crodip_agent.sql" />
-    <Content Include="bdd\crodip_agentBasePourImport.mdb">
+    <None Include="bdd\crodip_agent.db3" />
+    <None Include="bdd\crodip_agent.mdb" />
+    <None Include="bdd\crodip_agent.sql" />
+    <None Include="bdd\crodip_agentBasePourImport.mdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="bdd\crodip_dasylab.mdb" />
-    <Content Include="bdd\crodip_etats.mdb" />
+    <None Include="bdd\crodip_etats.mdb" />
     <Content Include="bdd\crodip_md2.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1513,7 +1514,7 @@
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ds_Etat_ReglagePulve.Designer.vb</LastGenOutput>
     </None>
-    <Content Include="bdd\crodip_agent.mdw" />
+    <None Include="bdd\crodip_agent.mdw" />
     <None Include="cr\dsTest.xsc">
       <DependentUpon>dsTest.xsd</DependentUpon>
     </None>
