@@ -113,7 +113,8 @@ Public Class EtatContratCommercial
                                                         DateSignclient:=m_oDiag.dateSignCCClientS,
                                                         bSignAgent:=m_oDiag.isSignCCAgent,
                                                         SignAgent:=m_oDiag.SignCCAgent,
-                                                        DateSignAgent:=m_oDiag.dateSignCCAgentS)
+                                                        DateSignAgent:=m_oDiag.dateSignCCAgentS,
+                                                        MontantTTC:=m_oDiag.TotalTTC)
 
 
             bReturn = True

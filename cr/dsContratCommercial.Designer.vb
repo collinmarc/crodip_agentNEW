@@ -321,6 +321,8 @@ Partial Public Class dsContratCommercial
         
         Private columnDateSignAgent As Global.System.Data.DataColumn
         
+        Private columnMontantTTC As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -509,6 +511,14 @@ Partial Public Class dsContratCommercial
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MontantTTCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMontantTTC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -564,9 +574,10 @@ Partial Public Class dsContratCommercial
                     ByVal DateSignclient As String,  _
                     ByVal bSignAgent As Boolean,  _
                     ByVal SignAgent() As Byte,  _
-                    ByVal DateSignAgent As String) As ContratCommercialRow
+                    ByVal DateSignAgent As String,  _
+                    ByVal MontantTTC As Decimal) As ContratCommercialRow
             Dim rowContratCommercialRow As ContratCommercialRow = CType(Me.NewRow,ContratCommercialRow)
-            Dim columnValuesArray() As Object = New Object() {dateControle, RSExploitant, adresse1Exploit, cpExploit, villeExploit, numStruct, NomPrenomInspecteur, NumInspecteur, NomRepresentant, MarquePulve, NumnatPulve, MontantHT, NomPrenomExploit, bSignClient, SignClient, DateSignclient, bSignAgent, SignAgent, DateSignAgent}
+            Dim columnValuesArray() As Object = New Object() {dateControle, RSExploitant, adresse1Exploit, cpExploit, villeExploit, numStruct, NomPrenomInspecteur, NumInspecteur, NomRepresentant, MarquePulve, NumnatPulve, MontantHT, NomPrenomExploit, bSignClient, SignClient, DateSignclient, bSignAgent, SignAgent, DateSignAgent, MontantTTC}
             rowContratCommercialRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowContratCommercialRow)
             Return rowContratCommercialRow
@@ -608,6 +619,7 @@ Partial Public Class dsContratCommercial
             Me.columnbSignAgent = MyBase.Columns("bSignAgent")
             Me.columnSignAgent = MyBase.Columns("SignAgent")
             Me.columnDateSignAgent = MyBase.Columns("DateSignAgent")
+            Me.columnMontantTTC = MyBase.Columns("MontantTTC")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -651,6 +663,8 @@ Partial Public Class dsContratCommercial
             MyBase.Columns.Add(Me.columnSignAgent)
             Me.columnDateSignAgent = New Global.System.Data.DataColumn("DateSignAgent", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDateSignAgent)
+            Me.columnMontantTTC = New Global.System.Data.DataColumn("MontantTTC", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMontantTTC)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1101,6 +1115,22 @@ Partial Public Class dsContratCommercial
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MontantTTC() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableContratCommercial.MontantTTCColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'MontantTTC' dans la table 'ContratCommercial' est DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableContratCommercial.MontantTTCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsdateControleNull() As Boolean
             Return Me.IsNull(Me.tableContratCommercial.dateControleColumn)
         End Function
@@ -1325,6 +1355,18 @@ Partial Public Class dsContratCommercial
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetDateSignAgentNull()
             Me(Me.tableContratCommercial.DateSignAgentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMontantTTCNull() As Boolean
+            Return Me.IsNull(Me.tableContratCommercial.MontantTTCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMontantTTCNull()
+            Me(Me.tableContratCommercial.MontantTTCColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
