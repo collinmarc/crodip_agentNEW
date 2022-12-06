@@ -961,6 +961,9 @@ Public Class frmdiagnostic_recap
                     'Calcul de la date de prochain controle
                     m_Pulverisateur.dateProchainControle = m_diagnostic.pulverisateurDateProchainControle
                     m_Pulverisateur.emplacementIdentification = m_diagnostic.pulverisateurEmplacementIdentification
+                    m_Pulverisateur.modeUtilisation = m_diagnostic.pulverisateurModeUtilisation
+                    m_Pulverisateur.nombreExploitants = m_diagnostic.pulverisateurNbreExploitants
+
                     m_Pulverisateur.SetControleEtat(m_diagnostic)
                     m_Pulverisateur.DecodageAutomatiqueDefauts(m_diagnostic.diagnosticItemsLst.Values)
                     PulverisateurManager.save(m_Pulverisateur, m_Exploit.id, m_oAgent)
