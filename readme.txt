@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+BUILD 
+	0001530: Affichage du numero de rapport dans la synthese des mesures
+
 BUILD 20220927120000
 	0001521: Ajout d'un inspecteur sur une base vide
 	0001523: Faire le controle de date de validité sur la version FORMATION
