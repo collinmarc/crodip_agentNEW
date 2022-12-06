@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+BUILD XXXXX
+	0001463: Affichage des Libelle de défauts 5.1 et 5.2 sur la page diagnostique
+
 BUILD 
 	0001530: Affichage du numero de rapport dans la synthese des mesures
 
