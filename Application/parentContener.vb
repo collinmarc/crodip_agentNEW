@@ -267,18 +267,22 @@ Public Class parentContener
             End If
         End If
         oEtatFDiag = oEtatFDiag.Action(pAction)
-        DisplayFormDiag()
-    End Sub
-
-    Public Sub DisplayFormDiag()
         If oEtatFDiag Is Nothing Then
             CloseDiagnostic()
         Else
-            If oEtatFDiag.ShowDialog Then
-                oEtatFDiag.frmDiag.ShowDialog(Me)
+            If oEtatFDiag.IsVisible Then
+                DisplayFormDiag()
             Else
-                DisplayForm(oEtatFDiag.frmDiag)
+                oEtatFDiag.Action(New ActionFDiagNext)
             End If
+        End If
+    End Sub
+
+    Public Sub DisplayFormDiag()
+        If oEtatFDiag.ShowDialog Then
+            oEtatFDiag.frmDiag.ShowDialog(Me)
+        Else
+            DisplayForm(oEtatFDiag.frmDiag)
         End If
     End Sub
     Private Sub CloseDiagnostic()

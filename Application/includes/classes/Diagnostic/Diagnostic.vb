@@ -243,6 +243,24 @@ Public Class Diagnostic
             _TrtDefauts = value
         End Set
     End Property
+    Private _TrtPreliminaires As Boolean
+    Public Property bTrtPreliminaires() As Boolean
+        Get
+            Return _TrtPreliminaires
+        End Get
+        Set(ByVal value As Boolean)
+            _TrtPreliminaires = value
+        End Set
+    End Property
+    Private _TrtComplement As Boolean
+    Public Property bTrtComplement() As Boolean
+        Get
+            Return _TrtComplement
+        End Get
+        Set(ByVal value As Boolean)
+            _TrtComplement = value
+        End Set
+    End Property
     Private _TrtFacture As Boolean
     <XmlIgnore()>
     Public Property bTrtFacture() As Boolean
@@ -358,9 +376,11 @@ Public Class Diagnostic
         bTrtPulverisateur = True
         bTrtContexte = True
         bTrtContrat = True
+        bTrtPreliminaires = True
         bTrtDefauts = True
         bTrtFacture = True
         bTrtEnquete = True
+        bTrtComplement = True
     End Sub
 
     Public Sub New(ByVal pAgent As Agent, ByVal pPulve As Pulverisateur, ByVal pClient As Exploitation)

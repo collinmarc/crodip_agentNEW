@@ -26,5 +26,8 @@
         End Select
         Return oReturn
     End Function
+    Public Overrides Function IsVisible() As Boolean
+        Return oDiag.bTrtPulverisateur
+    End Function
 
 End Class

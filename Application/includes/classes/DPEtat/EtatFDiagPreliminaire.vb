@@ -25,5 +25,8 @@
         End Select
         Return oReturn
     End Function
+    Public Overrides Function IsVisible() As Boolean
+        Return oDiag.bTrtPreliminaires
+    End Function
 
 End Class

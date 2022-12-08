@@ -30,6 +30,9 @@
         End Select
         Return oReturn
     End Function
+    Public Overrides Function IsVisible() As Boolean
+        Return oDiag.bTrtFacture
+    End Function
 
 
 End Class

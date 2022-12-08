@@ -29,5 +29,8 @@
         Return oReturn
     End Function
 
+    Public Overrides Function IsVisible() As Boolean
+        Return oDiag.bTrtEnquete
+    End Function
 
 End Class

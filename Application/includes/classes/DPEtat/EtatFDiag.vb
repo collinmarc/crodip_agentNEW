@@ -121,5 +121,6 @@ Public MustInherit Class EtatFDiag
     End Function
 
     Public MustOverride Function createFrmDiag() As Form
+    Public MustOverride Function IsVisible() As Boolean
 
 End Class

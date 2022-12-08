@@ -3060,7 +3060,15 @@ Public Class liste_diagnosticPulve2
         If m_oDiag IsNot Nothing Then
             Try
                 m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
-
+                m_oDiag.bTrtExploitation = False
+                m_oDiag.bTrtPulverisateur = False
+                m_oDiag.bTrtContexte = False
+                m_oDiag.bTrtContrat = False
+                m_oDiag.bTrtPreliminaires = True
+                m_oDiag.bTrtDefauts = True
+                m_oDiag.bTrtFacture = False
+                m_oDiag.bTrtEnquete = False
+                m_oDiag.bTrtComplement = False
                 ' On récupère le Diagnostic selectionné
                 Me.DiagMode = GlobalsCRODIP.DiagMode.CTRL_VISU
                 Me.DialogResult = Windows.Forms.DialogResult.OK
@@ -3107,9 +3115,11 @@ Public Class liste_diagnosticPulve2
                         m_oDiag.bTrtPulverisateur = oFrmPahse.bTrtPulve
                         m_oDiag.bTrtContexte = oFrmPahse.bTrtContexte
                         m_oDiag.bTrtContrat = oFrmPahse.bTrtContrat
+                        m_oDiag.bTrtPreliminaires = oFrmPahse.bTrtDefauts
                         m_oDiag.bTrtDefauts = oFrmPahse.bTrtDefauts
                         m_oDiag.bTrtFacture = False
                         m_oDiag.bTrtEnquete = False
+                        m_oDiag.bTrtComplement = False
 
                         Me.DialogResult = Windows.Forms.DialogResult.OK
                         Me.Close()
