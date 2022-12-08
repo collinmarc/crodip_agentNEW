@@ -2094,9 +2094,7 @@ Public Class frmdiagnostic_facturationCoProp
             If m_oDiag IsNot Nothing Then
                 DiagnosticManager.UpdateFileNames(m_oDiag)
             End If
-            Me.Cursor = Cursors.Default
-            Me.DialogResult = DialogResult.OK
-            Me.Close()
+            TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
         End If
 
     End Sub

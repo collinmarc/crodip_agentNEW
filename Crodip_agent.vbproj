@@ -337,6 +337,12 @@
     <Compile Include="Application\diagnostic\diagnostic_ContratCommercial.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\frmSelectPhaseDiag.Designer.vb">
+      <DependentUpon>frmSelectPhaseDiag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmSelectPhaseDiag.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\frmContratCommercial.Designer.vb">
       <DependentUpon>frmContratCommercial.vb</DependentUpon>
     </Compile>
@@ -383,6 +389,20 @@
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureItemManager.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureManager.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\FactureItem.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\ActionFDiag.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiag.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagContrat.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagContexte.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagDepart.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagPulve.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagInfosComplementaires.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagEnquete.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagFacture.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagExploitation.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagRecap.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagDefautsEtMesures.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagPreliminaire.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\MoteurFrmDiag.vb" />
     <Compile Include="Application\includes\classes\FicheVie\FVAgentPC.vb" />
     <Compile Include="Application\includes\classes\Referentiel\LieuxControle.vb" />
     <Compile Include="Application\includes\classes\root.vb" />
@@ -2170,6 +2190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercial.resx">
       <DependentUpon>diagnostic_ContratCommercial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmSelectPhaseDiag.resx">
+      <DependentUpon>frmSelectPhaseDiag.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmContratCommercial.resx">
       <DependentUpon>frmContratCommercial.vb</DependentUpon>

@@ -5556,40 +5556,54 @@ Public Class accueil
     End Sub
 
     Public Sub NouveauDiagnosticPhase1(pDiagMode As GlobalsCRODIP.DiagMode)
-        'Vérification des clients et Pulvés au préalable
-        Dim ofrmExpl As New fiche_exploitant()
-        ofrmExpl.setContexte(False, clientCourant, agentCourant)
-        '                ofrm.MdiParent = Me.MdiParent
-        ofrmExpl.ShowDialog()
-        If ofrmExpl.DialogResult = Windows.Forms.DialogResult.OK Then
-            'Affectation de exploitation au Diagnostic
-            If Not diagnosticCourant Is Nothing Then
-                diagnosticCourant.SetProprietaire(clientCourant)
-                diagnosticCourant.proprietaireRepresentant = ofrmExpl.tbNomPrenomRepresentant.Text
-            End If
-            'End If
-            'Vérification du Pulvérisateur
-            'Si c'est un pulvé Additionnel => Affichage du pulvé principal puis du pulvé Additionnel
-            Dim ofrmEditPulve As ajout_pulve2
-            ofrmEditPulve = New ajout_pulve2()
-            'If pulverisateurCourant.isPulveAdditionnel Then
-            '    Dim oPulvePrincipal As Pulverisateur
-            '    Dim oPulveAdditionnel As Pulverisateur
-            '    oPulveAdditionnel = pulverisateurCourant
-            '    oPulvePrincipal = PulverisateurManager.getPulverisateurByNumNat(pulverisateurCourant.pulvePrincipalNumNat)
-            '    If oPulvePrincipal.id <> "" Then
-            '        ofrmEditPulve.setContexte(ajout_pulve2.MODE.CONSULT, agentCourant, oPulvePrincipal, diagnosticCourant)
-            '        ofrmEditPulve.ShowDialog()
-            '    End If
-            '    pulverisateurCourant = oPulveAdditionnel
-            'End If
-            ofrmEditPulve.setContexte(ajout_pulve2.MODE.VERIF, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
-            ofrmEditPulve.ShowDialog()
-            If ofrmEditPulve.DialogResult = Windows.Forms.DialogResult.OK Then
-                diagnosticCourant.setPulverisateur(pulverisateurCourant)
-                NouveauDiagnosticPhase2(pDiagMode, diagnosticCourant)
-            End If
+        Dim oParent As parentContener = TryCast(Me.MdiParent, parentContener)
+        If oParent IsNot Nothing Then
+            oParent.oEtatFDiag = New EtatFDiagDepart(pDiagMode, diagnosticCourant, pulverisateurCourant, clientCourant, agentCourant)
+            oParent.Action(New ActionFDiagNext())
         End If
+
+
+
+        ''Vérification des clients et Pulvés au préalable
+        'Dim ofrmExpl As New fiche_exploitant()
+        'ofrmExpl.DialogResult = DialogResult.OK
+        'ofrmExpl.setContexte(False, clientCourant, agentCourant)
+        ''                ofrm.MdiParent = Me.MdiParent
+        'If diagnosticCourant.bTrtExploitation Then
+        '    ofrmExpl.ShowDialog()
+        'End If
+        'If ofrmExpl.DialogResult = Windows.Forms.DialogResult.OK Then
+        '    'Affectation de exploitation au Diagnostic
+        '    If Not diagnosticCourant Is Nothing Then
+        '        diagnosticCourant.SetProprietaire(clientCourant)
+        '        diagnosticCourant.proprietaireRepresentant = ofrmExpl.tbNomPrenomRepresentant.Text
+        '    End If
+        '    'End If
+        '    'Vérification du Pulvérisateur
+        '    'Si c'est un pulvé Additionnel => Affichage du pulvé principal puis du pulvé Additionnel
+        '    Dim ofrmEditPulve As ajout_pulve2
+        '    ofrmEditPulve = New ajout_pulve2()
+        '    'If pulverisateurCourant.isPulveAdditionnel Then
+        '    '    Dim oPulvePrincipal As Pulverisateur
+        '    '    Dim oPulveAdditionnel As Pulverisateur
+        '    '    oPulveAdditionnel = pulverisateurCourant
+        '    '    oPulvePrincipal = PulverisateurManager.getPulverisateurByNumNat(pulverisateurCourant.pulvePrincipalNumNat)
+        '    '    If oPulvePrincipal.id <> "" Then
+        '    '        ofrmEditPulve.setContexte(ajout_pulve2.MODE.CONSULT, agentCourant, oPulvePrincipal, diagnosticCourant)
+        '    '        ofrmEditPulve.ShowDialog()
+        '    '    End If
+        '    '    pulverisateurCourant = oPulveAdditionnel
+        '    'End If
+        '    ofrmEditPulve.setContexte(ajout_pulve2.MODE.VERIF, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
+        '    ofrmEditPulve.DialogResult = DialogResult.OK
+        '    If diagnosticCourant.bTrtPulverisateur Then
+        '        ofrmEditPulve.ShowDialog()
+        '    End If
+        '    If ofrmEditPulve.DialogResult = Windows.Forms.DialogResult.OK Then
+        '        diagnosticCourant.setPulverisateur(pulverisateurCourant)
+        '        NouveauDiagnosticPhase2(pDiagMode, diagnosticCourant)
+        '    End If
+        'End If
 
     End Sub
     ''' <summary>
@@ -5601,18 +5615,21 @@ Public Class accueil
     ''' </summary>
     ''' <param name="bisContreVisite"></param>
     ''' <remarks></remarks>
-    Public Sub NouveauDiagnosticPhase2(pDiagMode As GlobalsCRODIP.DiagMode, pDiag As Diagnostic)
+    Public Sub NouveauDiagnosticPhase2a(pDiagMode As GlobalsCRODIP.DiagMode, pDiag As Diagnostic)
         Statusbar.clear()
         diagnosticCourant = pDiag ''Par Sécurité
         Dim bOK As Boolean = True
         If Not GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Me.Cursor = Cursors.WaitCursor
             Dim formDiagnostic_Contexte As New diagnostic_contexte(pDiagMode, pDiag, pulverisateurCourant, clientCourant, False)
-            formDiagnostic_Contexte.ShowDialog()
+            formDiagnostic_Contexte.DialogResult = DialogResult.OK
+            If diagnosticCourant.bTrtContexte Then
+                formDiagnostic_Contexte.ShowDialog()
+                formDiagnostic_Contexte.Close()
+            End If
             Me.Cursor = Cursors.Default
             bOK = (formDiagnostic_Contexte.DialogResult = Windows.Forms.DialogResult.OK)
             If bOK Then
-                formDiagnostic_Contexte.Close()
                 Dim isContreVisiteGratuite As Boolean
                 isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
                 If (diagnosticCourant.isContrevisiteImmediate And isContreVisiteGratuite) Or GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
@@ -5625,22 +5642,73 @@ Public Class accueil
                 Else
                     'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
                     Statusbar.clear()
-                    Me.Cursor = Cursors.WaitCursor
-                    Dim frmFact As diagnostic_ContratCommercial = New diagnostic_ContratCommercial()
-                    frmFact.setContexte(pDiag, clientCourant, agentCourant)
-                    frmFact.ShowDialog()
-                    Me.Cursor = Cursors.Default
-                    bOK = (frmFact.DialogResult = Windows.Forms.DialogResult.OK)
+                    If diagnosticCourant.bTrtContrat Then
+                        Me.Cursor = Cursors.WaitCursor
+                        Dim frmFact As diagnostic_ContratCommercial = New diagnostic_ContratCommercial()
+                        frmFact.setContexte(pDiag, clientCourant, agentCourant)
+                        frmFact.ShowDialog()
+                        Me.Cursor = Cursors.Default
+                        bOK = (frmFact.DialogResult = Windows.Forms.DialogResult.OK)
+                    End If
                 End If
                 Statusbar.clear()
             End If
         End If
         If bOK Then
-            Dim frmDiagPreliminaires As New controle_preliminaire(pDiagMode, pDiag, pulverisateurCourant, clientCourant)
-            globFormControlePreliminaire = frmDiagPreliminaires
+            TryCast(MdiParent, parentContener).Action(New ActionFDiagNext())
+            Statusbar.clear()
+        End If
+
+
+    End Sub
+
+    Public Sub NouveauDiagnosticPhase2(pDiagMode As GlobalsCRODIP.DiagMode, pDiag As Diagnostic)
+        Statusbar.clear()
+        diagnosticCourant = pDiag ''Par Sécurité
+        Dim bOK As Boolean = True
+        If Not GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
             Me.Cursor = Cursors.WaitCursor
-            TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagPreliminaires)
+            Dim formDiagnostic_Contexte As New diagnostic_contexte(pDiagMode, pDiag, pulverisateurCourant, clientCourant, False)
+            formDiagnostic_Contexte.DialogResult = DialogResult.OK
+            If diagnosticCourant.bTrtContexte Then
+                formDiagnostic_Contexte.ShowDialog()
+                formDiagnostic_Contexte.Close()
+            End If
             Me.Cursor = Cursors.Default
+            bOK = (formDiagnostic_Contexte.DialogResult = Windows.Forms.DialogResult.OK)
+            If bOK Then
+                Dim isContreVisiteGratuite As Boolean
+                isContreVisiteGratuite = System.IO.File.Exists("ContreVisiteGratuite")
+                If (diagnosticCourant.isContrevisiteImmediate And isContreVisiteGratuite) Or GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
+                    'Mise à jour du tarif du Diagnostique
+                    diagnosticCourant.isGratuit = True
+                    diagnosticCourant.controleTarif = 0
+                    diagnosticCourant.TotalHT = 0
+                    diagnosticCourant.TotalTVA = 0
+                    diagnosticCourant.TotalTTC = 0
+                Else
+                    'Nous ne sommes pas une contrevisite immédiate ou cette CV n'est pas gratuite
+                    Statusbar.clear()
+                    If diagnosticCourant.bTrtContrat Then
+                        Me.Cursor = Cursors.WaitCursor
+                        Dim frmFact As diagnostic_ContratCommercial = New diagnostic_ContratCommercial()
+                        frmFact.setContexte(pDiag, clientCourant, agentCourant)
+                        frmFact.ShowDialog()
+                        Me.Cursor = Cursors.Default
+                        bOK = (frmFact.DialogResult = Windows.Forms.DialogResult.OK)
+                    End If
+                End If
+                Statusbar.clear()
+            End If
+        End If
+        If bOK Then
+            If diagnosticCourant.bTrtDefauts Then
+                Dim oParent As parentContener = TryCast(Me.MdiParent, parentContener)
+                If oParent IsNot Nothing Then
+                    'oParent.oEtatFDiag = New EtatFDiagPreliminaire(pDiagMode, pDiag, pulverisateurCourant, clientCourant, agentCourant)
+                    oParent.DisplayFormDiag()
+                End If
+            End If
         End If
 
 

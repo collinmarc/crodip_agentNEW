@@ -1976,12 +1976,9 @@ Public Class controle_preliminaire
 
         ' Ouverture form diagnostic
         Statusbar.clear()
-        Me.Cursor = Cursors.WaitCursor
-        globFormDiagnostic = New FrmDiagnostique(m_ModeAffichage, m_Diagnostic, m_Pulverisateur, m_Exploit)
-        TryCast(Me.MdiParent, parentContener).DisplayForm(globFormDiagnostic)
-        Me.Cursor = Cursors.Default
-
         Me.Hide()
+        TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
+
     End Sub
 
 #End Region
@@ -2135,11 +2132,7 @@ Public Class controle_preliminaire
 
 
     Private Sub btn_controlePreliminaire_imprimerRapport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controlePreliminaire_imprimerRapport.Click
-        'Dim objInfos(15) As Object
-        '        diagnosticCourant.ChargeArrAnswers(arrAnswers)
-        m_Diagnostic.ParamDiag = m_oParamdiag
-        Dim ofrm As New frmdiagnostic_recap(m_ModeAffichage, m_Diagnostic, m_Pulverisateur, m_Exploit, agentCourant, Me)
-        TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
+        TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagRecapApresPreliminaire())
 
         Statusbar.clear()
     End Sub

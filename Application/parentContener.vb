@@ -256,4 +256,51 @@ Public Class parentContener
             Me.Cursor = Cursors.Default
         End If
     End Sub
+
+
+    Public oEtatFDiag As EtatFDiag
+    Public Sub Action(pAction As ActionFDiag)
+        If oEtatFDiag.frmDiag IsNot Nothing Then
+            oEtatFDiag.frmDiag.Hide()
+            If oEtatFDiag.ShowDialog Then
+                oEtatFDiag.frmDiag.Close()
+            End If
+        End If
+        oEtatFDiag = oEtatFDiag.Action(pAction)
+        DisplayFormDiag()
+    End Sub
+
+    Public Sub DisplayFormDiag()
+        If oEtatFDiag Is Nothing Then
+            CloseDiagnostic()
+        Else
+            If oEtatFDiag.ShowDialog Then
+                oEtatFDiag.frmDiag.ShowDialog(Me)
+            Else
+                DisplayForm(oEtatFDiag.frmDiag)
+            End If
+        End If
+    End Sub
+    Private Sub CloseDiagnostic()
+        ' On vide les infos de session
+        diagnosticCourant = Nothing
+        'Fermeture de fenêtres Filles de diag
+        Dim ofrm As Form
+        Dim ofrmAccueil As accueil
+        For Each ofrm In MdiChildren
+            If Not TypeOf ofrm Is accueil Then
+                ofrm.Close()
+            Else
+                ofrmAccueil = ofrm
+                ofrmAccueil.loadListPulveExploitation(False)
+                ofrmAccueil.WindowState = FormWindowState.Maximized
+            End If
+        Next
+
+        ' On ferme le contrôle
+        Statusbar.clear()
+
+    End Sub
+
+
 End Class

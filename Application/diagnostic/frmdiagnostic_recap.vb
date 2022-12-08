@@ -820,33 +820,39 @@ Public Class frmdiagnostic_recap
         End If
         'Récupération des infos de la fenêtre
         GetInfos()
-        Dim ofrmDiag As Form = Nothing
-        'Si on a une fenêtre Précédente on prend celle_là , sinon on recherche la bonne
-        If m_frmdiagnostic IsNot Nothing Then
-            ofrmDiag = m_frmdiagnostic
+        If m_diagnostic.controleEtat <> Diagnostic.controleEtatNOKCC Then
+            TryCast(MdiParent, parentContener).Action(New ActionFDiagbackToDefauts)
         Else
-            If m_diagnostic.controleEtat <> Diagnostic.controleEtatNOKCC Then
-                'Activation de la fenêtre
-                For Each oForm As Form In MdiParent.MdiChildren
-                    If TypeOf oForm Is FrmDiagnostique Then
-                        ofrmDiag = oForm
-                        Exit For
-                    End If
-                Next
-            End If
-            For Each oForm As Form In MdiParent.MdiChildren
-                If TypeOf oForm Is controle_preliminaire Then
-                    ofrmDiag = oForm
-                    Exit For
-                End If
-            Next
+            TryCast(MdiParent, parentContener).Action(New ActionFDiagbackToPreliminaires())
         End If
-        If ofrmDiag IsNot Nothing Then
-            'ofrmDiag.WindowState = FormWindowState.Maximized
-            ActivateMdiChild(ofrmDiag)
-            'ofrmDiag.Activate()
-            Me.Close()
-        End If
+
+        'Dim ofrmDiag As Form = Nothing
+        ''Si on a une fenêtre Précédente on prend celle_là , sinon on recherche la bonne
+        'If m_frmdiagnostic IsNot Nothing Then
+        '    ofrmDiag = m_frmdiagnostic
+        'Else
+        '    If m_diagnostic.controleEtat <> Diagnostic.controleEtatNOKCC Then
+        '        'Activation de la fenêtre
+        '        For Each oForm As Form In MdiParent.MdiChildren
+        '            If TypeOf oForm Is FrmDiagnostique Then
+        '                ofrmDiag = oForm
+        '                Exit For
+        '            End If
+        '        Next
+        '    End If
+        '    For Each oForm As Form In MdiParent.MdiChildren
+        '        If TypeOf oForm Is controle_preliminaire Then
+        '            ofrmDiag = oForm
+        '            Exit For
+        '        End If
+        '    Next
+        'End If
+        'If ofrmDiag IsNot Nothing Then
+        '    'ofrmDiag.WindowState = FormWindowState.Maximized
+        '    ActivateMdiChild(ofrmDiag)
+        '    'ofrmDiag.Activate()
+        '    Me.Close()
+        'End If
     End Sub
 
     ' Validation
@@ -862,16 +868,7 @@ Public Class frmdiagnostic_recap
                 Exit Sub
             End If
             If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
-                If m_oStructure.isFacturationActive Then
-                    Dim ofrmFact As New frmdiagnostic_facturationCoProp()
-                    ofrmFact.setContexte(m_diagnostic, m_oAgent)
-                    ofrmFact.ShowDialog()
-                End If
-                'On ouvre la fenetre de l'enquete
-                Dim ofrm As New diagnostic_satisfaction()
-                ofrm.Setcontext(m_diagnostic, m_oAgent)
-                TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
-                Statusbar.clear()
+                TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
             Else
                 CloseDiagnostic()
             End If
@@ -1483,7 +1480,6 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Private Sub btn_Annuler_Click(sender As Object, e As EventArgs) Handles btn_Annuler.Click
-        CloseDiagnostic()
-
+        TryCast(MdiParent, parentContener).Action(New ActionFDiagEND())
     End Sub
 End Class

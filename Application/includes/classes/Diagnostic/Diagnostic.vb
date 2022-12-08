@@ -193,7 +193,76 @@ Public Class Diagnostic
     Protected m_buseDebitMoyenPM As Decimal 'utilisé pour le Reglage Pulve
 
     Private _ParamDiag As CRODIP_ControlLibrary.ParamDiag
-
+    Private _TrtExploitation As Boolean
+    <XmlIgnore()>
+    Public Property bTrtExploitation() As Boolean
+        Get
+            Return _TrtExploitation
+        End Get
+        Set(ByVal value As Boolean)
+            _TrtExploitation = value
+        End Set
+    End Property
+    Private _TrtPulverisateur As Boolean
+    <XmlIgnore()>
+    Public Property bTrtPulverisateur() As Boolean
+        Get
+            Return _TrtPulverisateur
+        End Get
+        Set(ByVal value As Boolean)
+            _TrtPulverisateur = value
+        End Set
+    End Property
+    Private _TrtContexte As Boolean
+    <XmlIgnore()>
+    Public Property bTrtContexte() As Boolean
+        Get
+            Return _TrtContexte
+        End Get
+        Set(ByVal value As Boolean)
+            _TrtContexte = value
+        End Set
+    End Property
+    Private _TrtContrat As Boolean
+    <XmlIgnore()>
+    Public Property bTrtContrat() As Boolean
+        Get
+            Return _TrtContrat
+        End Get
+        Set(ByVal value As Boolean)
+            _TrtContrat = value
+        End Set
+    End Property
+    Private _TrtDefauts As Boolean
+    <XmlIgnore()>
+    Public Property bTrtDefauts() As Boolean
+        Get
+            Return _TrtDefauts
+        End Get
+        Set(ByVal value As Boolean)
+            _TrtDefauts = value
+        End Set
+    End Property
+    Private _TrtFacture As Boolean
+    <XmlIgnore()>
+    Public Property bTrtFacture() As Boolean
+        Get
+            Return _TrtFacture
+        End Get
+        Set(ByVal value As Boolean)
+            _TrtFacture = value
+        End Set
+    End Property
+    Private _TrtEnquete As Boolean
+    <XmlIgnore()>
+    Public Property bTrtEnquete() As Boolean
+        Get
+            Return _TrtEnquete
+        End Get
+        Set(ByVal value As Boolean)
+            _TrtEnquete = value
+        End Set
+    End Property
     Public Sub New()
         controleIsPulveRepare = False
         controleIsPreControleProfessionel = False
@@ -254,7 +323,7 @@ Public Class Diagnostic
         isATGIP = False
         isTGIP = False
         isFacture = False
-        dateModificationAgent = CSDate.TOCRODIPString(Date.Now)
+        dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
         controleInitialId = ""
 
         Me.buseGenre = ""
@@ -267,8 +336,8 @@ Public Class Diagnostic
         manometrePressionTravailD = 3
 
         controleIsComplet = True
-        controleDateDebut = CSDate.TOCRODIPString(Date.Now)
-        controleDateFin = CSDate.TOCRODIPString(Date.Now)
+        controleDateDebut = CSDate.ToCRODIPString(Date.Now)
+        controleDateFin = CSDate.ToCRODIPString(Date.Now)
         controleIsPremierControle = True
         controleDateDernierControle = ""
         typeDiagnostic = "pulverisateur"
@@ -284,6 +353,14 @@ Public Class Diagnostic
         BLFileName = ""
         ESFileName = ""
         COPROFileName = ""
+        'Booleens de traitement (Par defaut on fait tous les traitements)
+        bTrtExploitation = True
+        bTrtPulverisateur = True
+        bTrtContexte = True
+        bTrtContrat = True
+        bTrtDefauts = True
+        bTrtFacture = True
+        bTrtEnquete = True
     End Sub
 
     Public Sub New(ByVal pAgent As Agent, ByVal pPulve As Pulverisateur, ByVal pClient As Exploitation)

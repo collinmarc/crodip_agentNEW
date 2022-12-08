@@ -762,9 +762,13 @@ Public Class diagnostic_ContratCommercial
         sender.Enabled = False
 
         If isValider = True Then
-            Me.DialogResult = Windows.Forms.DialogResult.OK
             m_oDiag.oContratCommercial = m_bsContratCommercial.Current
-            Me.Close()
+            If Parent Is Nothing Then
+                TryCast(Owner, parentContener).Action(New ActionFDiagNext())
+            Else
+                TryCast(Parent, parentContener).Action(New ActionFDiagNext())
+            End If
+
         Else
             Dim oResult As MsgBoxResult = MsgBoxResult.Yes
             If m_oAgent.isSignElecActive Then

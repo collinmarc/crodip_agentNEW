@@ -624,10 +624,7 @@ Public Class diagnostic_satisfaction
             'Me.objInfos(8) = diagnosticCourant.buseNbBuses
 
             ' On ouvre le form
-            Dim formInfosInspecteur As New diagnostic_infosInspecteur()
-            formInfosInspecteur.MdiParent = Me.MdiParent
-            formInfosInspecteur.Show()
-            Statusbar.clear()
+            TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
 
             Me.Close()
         Catch ex As Exception
@@ -707,10 +704,9 @@ Public Class diagnostic_satisfaction
         diagnosticCourant.CCFileName = ""
 
 
-        Dim ofrmAccueil As accueil = globFormAccueil
-        If ofrmAccueil IsNot Nothing Then
-            ofrmAccueil.NouveauDiagnosticPhase2(GlobalsCRODIP.DiagMode.CTRL_CV, diagnosticCourant)
-        End If
+        'On Change le Diag de départ
+        TryCast(MdiParent, parentContener).oEtatFDiag.oDiag = diagnosticCourant
+        TryCast(MdiParent, parentContener).Action(New ActionFDiagCVImmediate())
 
 
 

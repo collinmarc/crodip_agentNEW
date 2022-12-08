@@ -5070,9 +5070,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Return bReturn
     End Function
     Protected Overridable Sub NextForm()
-        Dim ofrm As New frmdiagnostic_recap(m_modeAffichage, m_diagnostic, m_Pulverisateur, m_Exploit, agentCourant, Me)
-        TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
-        Statusbar.clear()
+        TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
     End Sub
     ' Annulation du diag
     Private Sub btn_diagnostic_annuler_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -5082,17 +5080,14 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Protected Overridable Sub Annuler() Implements IfrmCRODIP.Annuler
         Try
 
-            If m_diagnostic.id <> "" Then
-                '            accueil.ActiveForm.Show()
-                '           Statusbar.clear()
-                TryCast(Me.MdiParent, parentContener).ReturnToAccueil()
-            Else
+            If m_diagnostic.id = "" Then
+                'Nouveau DIAG
                 Dim confirmCancel As MsgBoxResult = MsgBox("Êtes-vous sûr de vouloir annuler ce diagnostic ? Vous ne pourrez plus revenir en arrière !", MsgBoxStyle.YesNo)
                 If confirmCancel = MsgBoxResult.Yes Then
-                    CloseDiagnostic()
-                    'accueil.ActiveForm.Show()
-                    'Statusbar.clear()
+                    TryCast(MdiParent, parentContener).Action(New ActionFDiagEND())
                 End If
+            Else
+                TryCast(MdiParent, parentContener).Action(New ActionFDiagEND())
             End If
         Catch ex As Exception
             CSDebug.dispError("btn_diagnostic_annuler_Click ERR " & ex.Message)

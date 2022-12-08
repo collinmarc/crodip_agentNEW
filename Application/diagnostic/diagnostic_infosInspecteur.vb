@@ -907,6 +907,6 @@ Public Class diagnostic_infosInspecteur
     End Sub
 
     Private Sub btn_finalisationDiag_quitter_Click(sender As System.Object, e As System.EventArgs) Handles btn_finalisationDiag_quitter.Click
-        CloseDiagnostic()
+        TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
     End Sub
 End Class

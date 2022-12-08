@@ -1111,9 +1111,11 @@ Public Class diagnostic_contexte
             My.Settings.DernierControleRecupResidus = ckisRecuperationResidus.Checked
             My.Settings.Save()
 
-            Me.DialogResult = Windows.Forms.DialogResult.OK
-            'Me.Close() elle sera fermée par la fenêtre appelante
-            Me.Cursor = Cursors.Default
+            If Parent Is Nothing Then
+                TryCast(Owner, parentContener).Action(New ActionFDiagNext())
+            Else
+                TryCast(Parent, parentContener).Action(New ActionFDiagNext())
+            End If
 
         Else
             btn_poursuivre.Enabled = True

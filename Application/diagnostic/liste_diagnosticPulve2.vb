@@ -3100,8 +3100,20 @@ Public Class liste_diagnosticPulve2
                     m_oDiag.SignRIClient = Nothing
                     m_oDiag.SignCCAgent = Nothing
                     m_oDiag.SignCCClient = Nothing
-                    Me.DialogResult = Windows.Forms.DialogResult.OK
-                    Me.Close()
+                    'Récupération des Phases de modif
+                    Dim oFrmPahse As New frmSelectPhaseDiag()
+                    If oFrmPahse.ShowDialog() = DialogResult.OK Then
+                        m_oDiag.bTrtExploitation = oFrmPahse.bTrtExploitation
+                        m_oDiag.bTrtPulverisateur = oFrmPahse.bTrtPulve
+                        m_oDiag.bTrtContexte = oFrmPahse.bTrtContexte
+                        m_oDiag.bTrtContrat = oFrmPahse.bTrtContrat
+                        m_oDiag.bTrtDefauts = oFrmPahse.bTrtDefauts
+                        m_oDiag.bTrtFacture = False
+                        m_oDiag.bTrtEnquete = False
+
+                        Me.DialogResult = Windows.Forms.DialogResult.OK
+                        Me.Close()
+                    End If
                 End If
             Catch ex As Exception
                 CSDebug.dispError("lsy_diagnosticPulve2.RemplacerDiag" & ex.Message.ToString)
