@@ -22,9 +22,9 @@
         Select Case pAction.CodeAction
             Case Crodip_agent.Action.ACTION_BACK
             Case Crodip_agent.Action.ACTION_NEXT
-                Dim oStruct As Structuree = StructureManager.getStructureById(oDiag.organismePresId)
                 oReturn = New EtatFDiagInfosComplementaires(Me)
-
+            Case Crodip_agent.Action.ACTION_CVI
+                oReturn = New EtatFDiagDepart(Me)
         End Select
         Return oReturn
     End Function

@@ -1886,6 +1886,7 @@ Public Class controle_preliminaire
             If Not checkIsError() Then
                 lbl_controlePreliminaire_etatDiag_ok.Visible = True
                 btn_controlePreliminaire_poursuivre.Visible = True
+                btn_controlePreliminaire_poursuivre.Enabled = True
                 lbl_controlePreliminaire_etatDiag_nok.Visible = False
                 btn_controlePreliminaire_annuler.Visible = False
                 btn_controlePreliminaire_imprimerRapport.Visible = False

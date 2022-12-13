@@ -702,12 +702,22 @@ Public Class diagnostic_satisfaction
         diagnosticCourant.RIFileName = ""
         diagnosticCourant.SMFileName = ""
         diagnosticCourant.CCFileName = ""
+        diagnosticCourant.bTrtExploitation = False
+        diagnosticCourant.bTrtPulverisateur = False
+        diagnosticCourant.bTrtContexte = False
+        Dim oStructure As Structuree
+        oStructure = StructureManager.getStructureById(diagnosticCourant.organismePresId)
+        If oStructure.isCVImmediateActive Then
+            diagnosticCourant.bTrtContrat = False
 
+        End If
 
         'On Change le Diag de départ
-        TryCast(MdiParent, parentContener).oEtatFDiag.oDiag = diagnosticCourant
-        TryCast(MdiParent, parentContener).Action(New ActionFDiagCVImmediate())
-
+        Dim oParent As parentContener
+        oParent = TryCast(MdiParent, parentContener)
+        oParent.oEtatFDiag.oDiag = diagnosticCourant
+        oParent.Action(New ActionFDiagCVImmediate())
+        oParent.Action(New ActionFDiagNext())
 
 
     End Sub

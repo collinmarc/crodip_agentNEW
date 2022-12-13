@@ -391,6 +391,23 @@ Public Class Structuree
             FACTURATION_XML_CONFIG.setElementValue("/root/isActive", value.ToString())
         End Set
     End Property
+    Public Property isCVImmediateActive() As Boolean
+        Get
+            Return System.IO.File.Exists("ContreVisiteGratuite")
+        End Get
+        Set(ByVal value As Boolean)
+
+            If value Then
+                If Not System.IO.File.Exists("ContreVisiteGratuite") Then
+                    System.IO.File.CreateText("ContreVisiteGratuite").Close()
+                End If
+            Else
+                If System.IO.File.Exists("ContreVisiteGratuite") Then
+                    System.IO.File.Delete("ContreVisiteGratuite")
+                End If
+            End If
+        End Set
+    End Property
 #End Region
     Public Sub CreatePool()
 

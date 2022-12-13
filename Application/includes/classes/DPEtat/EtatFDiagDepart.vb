@@ -2,7 +2,7 @@
     Inherits EtatFDiag
 
     Public Sub New()
-        Etat = EtatFenetre.ETAT_PRELIMINAIRE
+        Etat = EtatFenetre.ETAT_DEPART
     End Sub
     Public Sub New(pEtatFDiag As EtatFDiag)
         MyBase.New(pEtatFDiag)

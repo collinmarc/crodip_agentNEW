@@ -281,6 +281,15 @@ Public Class Diagnostic
             _TrtEnquete = value
         End Set
     End Property
+    Private _TrtRecap As Boolean
+    Public Property bTrtRecap() As Boolean
+        Get
+            Return _TrtRecap
+        End Get
+        Set(ByVal value As Boolean)
+            _TrtRecap = value
+        End Set
+    End Property
     Public Sub New()
         controleIsPulveRepare = False
         controleIsPreControleProfessionel = False
@@ -378,6 +387,7 @@ Public Class Diagnostic
         bTrtContrat = True
         bTrtPreliminaires = True
         bTrtDefauts = True
+        bTrtRecap = True
         bTrtFacture = True
         bTrtEnquete = True
         bTrtComplement = True

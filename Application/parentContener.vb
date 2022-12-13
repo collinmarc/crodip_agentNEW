@@ -267,13 +267,13 @@ Public Class parentContener
             End If
         End If
         oEtatFDiag = oEtatFDiag.Action(pAction)
-        If oEtatFDiag Is Nothing Then
+        If oEtatFDiag Is Nothing Or TypeOf oEtatFDiag Is EtatFDiagDepart Then
             CloseDiagnostic()
         Else
             If oEtatFDiag.IsVisible Then
                 DisplayFormDiag()
             Else
-                oEtatFDiag.Action(New ActionFDiagNext)
+                Action(New ActionFDiagNext)
             End If
         End If
     End Sub
@@ -285,7 +285,7 @@ Public Class parentContener
             DisplayForm(oEtatFDiag.frmDiag)
         End If
     End Sub
-    Private Sub CloseDiagnostic()
+    Public Sub CloseDiagnostic()
         ' On vide les infos de session
         diagnosticCourant = Nothing
         'Fermeture de fenêtres Filles de diag

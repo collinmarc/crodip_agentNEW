@@ -173,7 +173,7 @@ Public Class diagnostic_ContratCommercial
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
         Me.Label1.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label1.Location = New System.Drawing.Point(710, 16)
+        Me.Label1.Location = New System.Drawing.Point(499, 18)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(127, 16)
         Me.Label1.TabIndex = 24
@@ -221,9 +221,9 @@ Public Class diagnostic_ContratCommercial
         Me.panelFooter.Controls.Add(Me.Label16)
         Me.panelFooter.Controls.Add(Me.tb_txTVA)
         Me.panelFooter.Controls.Add(Me.Label17)
-        Me.panelFooter.Location = New System.Drawing.Point(15, 402)
+        Me.panelFooter.Location = New System.Drawing.Point(15, 376)
         Me.panelFooter.Name = "panelFooter"
-        Me.panelFooter.Size = New System.Drawing.Size(926, 206)
+        Me.panelFooter.Size = New System.Drawing.Size(715, 208)
         Me.panelFooter.TabIndex = 2
         '
         'btnAnnuler
@@ -235,7 +235,7 @@ Public Class diagnostic_ContratCommercial
         Me.btnAnnuler.FlatAppearance.BorderSize = 0
         Me.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAnnuler.ForeColor = System.Drawing.Color.White
-        Me.btnAnnuler.Location = New System.Drawing.Point(6, 176)
+        Me.btnAnnuler.Location = New System.Drawing.Point(6, 178)
         Me.btnAnnuler.Name = "btnAnnuler"
         Me.btnAnnuler.Size = New System.Drawing.Size(132, 27)
         Me.btnAnnuler.TabIndex = 87
@@ -252,7 +252,7 @@ Public Class diagnostic_ContratCommercial
         Me.btnImprimerBL.FlatAppearance.BorderSize = 0
         Me.btnImprimerBL.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnImprimerBL.ForeColor = System.Drawing.Color.White
-        Me.btnImprimerBL.Location = New System.Drawing.Point(242, 176)
+        Me.btnImprimerBL.Location = New System.Drawing.Point(31, 178)
         Me.btnImprimerBL.Name = "btnImprimerBL"
         Me.btnImprimerBL.Size = New System.Drawing.Size(188, 27)
         Me.btnImprimerBL.TabIndex = 86
@@ -268,7 +268,7 @@ Public Class diagnostic_ContratCommercial
         Me.btnImprimerContrat.FlatAppearance.BorderSize = 0
         Me.btnImprimerContrat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnImprimerContrat.ForeColor = System.Drawing.Color.White
-        Me.btnImprimerContrat.Location = New System.Drawing.Point(436, 176)
+        Me.btnImprimerContrat.Location = New System.Drawing.Point(225, 178)
         Me.btnImprimerContrat.Name = "btnImprimerContrat"
         Me.btnImprimerContrat.Size = New System.Drawing.Size(188, 27)
         Me.btnImprimerContrat.TabIndex = 85
@@ -284,7 +284,7 @@ Public Class diagnostic_ContratCommercial
         Me.btnSigner.FlatAppearance.BorderSize = 0
         Me.btnSigner.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSigner.ForeColor = System.Drawing.Color.White
-        Me.btnSigner.Location = New System.Drawing.Point(630, 176)
+        Me.btnSigner.Location = New System.Drawing.Point(419, 178)
         Me.btnSigner.Name = "btnSigner"
         Me.btnSigner.Size = New System.Drawing.Size(146, 27)
         Me.btnSigner.TabIndex = 84
@@ -300,7 +300,7 @@ Public Class diagnostic_ContratCommercial
         Me.btnSuivant.FlatAppearance.BorderSize = 0
         Me.btnSuivant.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSuivant.ForeColor = System.Drawing.Color.White
-        Me.btnSuivant.Location = New System.Drawing.Point(782, 176)
+        Me.btnSuivant.Location = New System.Drawing.Point(571, 178)
         Me.btnSuivant.Name = "btnSuivant"
         Me.btnSuivant.Size = New System.Drawing.Size(136, 27)
         Me.btnSuivant.TabIndex = 83
@@ -310,11 +310,14 @@ Public Class diagnostic_ContratCommercial
         '
         'tbCommentaire
         '
+        Me.tbCommentaire.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbCommentaire.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "Commentaire", True))
         Me.tbCommentaire.Location = New System.Drawing.Point(110, 20)
         Me.tbCommentaire.Multiline = True
         Me.tbCommentaire.Name = "tbCommentaire"
-        Me.tbCommentaire.Size = New System.Drawing.Size(552, 52)
+        Me.tbCommentaire.Size = New System.Drawing.Size(362, 52)
         Me.tbCommentaire.TabIndex = 0
         Me.tbCommentaire.Visible = False
         '
@@ -338,7 +341,7 @@ Public Class diagnostic_ContratCommercial
         '
         Me.facturation_totalHT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.facturation_totalHT.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalHT", True))
-        Me.facturation_totalHT.Location = New System.Drawing.Point(863, 13)
+        Me.facturation_totalHT.Location = New System.Drawing.Point(652, 15)
         Me.facturation_totalHT.Name = "facturation_totalHT"
         Me.facturation_totalHT.Size = New System.Drawing.Size(43, 20)
         Me.facturation_totalHT.TabIndex = 1
@@ -348,7 +351,7 @@ Public Class diagnostic_ContratCommercial
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(910, 15)
+        Me.Label5.Location = New System.Drawing.Point(699, 15)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(8, 16)
         Me.Label5.TabIndex = 27
@@ -362,7 +365,7 @@ Public Class diagnostic_ContratCommercial
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label9.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
         Me.Label9.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label9.Location = New System.Drawing.Point(710, 40)
+        Me.Label9.Location = New System.Drawing.Point(499, 42)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(211, 16)
         Me.Label9.TabIndex = 24
@@ -372,7 +375,7 @@ Public Class diagnostic_ContratCommercial
         '
         Me.facturation_totalTVA.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.facturation_totalTVA.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalTVA", True))
-        Me.facturation_totalTVA.Location = New System.Drawing.Point(863, 87)
+        Me.facturation_totalTVA.Location = New System.Drawing.Point(652, 89)
         Me.facturation_totalTVA.Name = "facturation_totalTVA"
         Me.facturation_totalTVA.ReadOnly = True
         Me.facturation_totalTVA.Size = New System.Drawing.Size(43, 20)
@@ -383,7 +386,7 @@ Public Class diagnostic_ContratCommercial
         Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label12.Location = New System.Drawing.Point(910, 87)
+        Me.Label12.Location = New System.Drawing.Point(699, 87)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(8, 16)
         Me.Label12.TabIndex = 27
@@ -397,7 +400,7 @@ Public Class diagnostic_ContratCommercial
         Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label13.Image = CType(resources.GetObject("Label13.Image"), System.Drawing.Image)
         Me.Label13.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label13.Location = New System.Drawing.Point(710, 112)
+        Me.Label13.Location = New System.Drawing.Point(499, 114)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(138, 16)
         Me.Label13.TabIndex = 24
@@ -408,7 +411,7 @@ Public Class diagnostic_ContratCommercial
         Me.facturation_totalTTC.AcceptsReturn = True
         Me.facturation_totalTTC.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.facturation_totalTTC.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TotalTTCStr", True))
-        Me.facturation_totalTTC.Location = New System.Drawing.Point(863, 111)
+        Me.facturation_totalTTC.Location = New System.Drawing.Point(652, 113)
         Me.facturation_totalTTC.Name = "facturation_totalTTC"
         Me.facturation_totalTTC.Size = New System.Drawing.Size(43, 20)
         Me.facturation_totalTTC.TabIndex = 4
@@ -418,7 +421,7 @@ Public Class diagnostic_ContratCommercial
         Me.Label14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label14.Location = New System.Drawing.Point(910, 111)
+        Me.Label14.Location = New System.Drawing.Point(699, 111)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(8, 16)
         Me.Label14.TabIndex = 27
@@ -432,7 +435,7 @@ Public Class diagnostic_ContratCommercial
         Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label15.Image = CType(resources.GetObject("Label15.Image"), System.Drawing.Image)
         Me.Label15.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label15.Location = New System.Drawing.Point(774, 64)
+        Me.Label15.Location = New System.Drawing.Point(563, 66)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(88, 16)
         Me.Label15.TabIndex = 24
@@ -445,7 +448,7 @@ Public Class diagnostic_ContratCommercial
         Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label16.Image = CType(resources.GetObject("Label16.Image"), System.Drawing.Image)
         Me.Label16.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.Label16.Location = New System.Drawing.Point(774, 88)
+        Me.Label16.Location = New System.Drawing.Point(563, 90)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(88, 16)
         Me.Label16.TabIndex = 24
@@ -455,7 +458,7 @@ Public Class diagnostic_ContratCommercial
         '
         Me.tb_txTVA.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tb_txTVA.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsContratCommercial, "TxTVA", True))
-        Me.tb_txTVA.Location = New System.Drawing.Point(863, 63)
+        Me.tb_txTVA.Location = New System.Drawing.Point(652, 65)
         Me.tb_txTVA.Name = "tb_txTVA"
         Me.tb_txTVA.Size = New System.Drawing.Size(43, 20)
         Me.tb_txTVA.TabIndex = 2
@@ -465,7 +468,7 @@ Public Class diagnostic_ContratCommercial
         Me.Label17.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label17.Location = New System.Drawing.Point(910, 63)
+        Me.Label17.Location = New System.Drawing.Point(699, 63)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(8, 16)
         Me.Label17.TabIndex = 27
@@ -502,7 +505,7 @@ Public Class diagnostic_ContratCommercial
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
-        Me.DataGridView1.Size = New System.Drawing.Size(908, 331)
+        Me.DataGridView1.Size = New System.Drawing.Size(718, 305)
         Me.DataGridView1.TabIndex = 2
         '
         'CategorieDataGridViewTextBoxColumn1
@@ -607,7 +610,7 @@ Public Class diagnostic_ContratCommercial
         'diagnostic_ContratCommercial
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(938, 607)
+        Me.ClientSize = New System.Drawing.Size(748, 596)
         Me.ControlBox = False
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.listTarif_categories)

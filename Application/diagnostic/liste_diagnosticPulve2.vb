@@ -3066,6 +3066,7 @@ Public Class liste_diagnosticPulve2
                 m_oDiag.bTrtContrat = False
                 m_oDiag.bTrtPreliminaires = True
                 m_oDiag.bTrtDefauts = True
+                m_oDiag.bTrtRecap = True
                 m_oDiag.bTrtFacture = False
                 m_oDiag.bTrtEnquete = False
                 m_oDiag.bTrtComplement = False

@@ -35,7 +35,7 @@
     End Function
 
     Public Overrides Function IsVisible() As Boolean
-        Return oDiag.bTrtContexte
+        Return oDiag.bTrtRecap
 
     End Function
 

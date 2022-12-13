@@ -5716,9 +5716,7 @@ Public Class accueil
 
     Private Sub VoirDiagnostique()
         If diagnosticCourant IsNot Nothing Then
-            Dim frmDiagPreliminaires As New controle_preliminaire(GlobalsCRODIP.DiagMode.CTRL_VISU, diagnosticCourant, pulverisateurCourant, clientCourant)
-            globFormControlePreliminaire = frmDiagPreliminaires
-            TryCast(Me.MdiParent, parentContener).DisplayForm(frmDiagPreliminaires)
+            NouveauDiagnosticPhase1(GlobalsCRODIP.DiagMode.CTRL_VISU)
         End If
 
     End Sub
