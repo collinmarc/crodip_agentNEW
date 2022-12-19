@@ -6,6 +6,7 @@ Imports CRODIP_ControlLibrary
 
 <Serializable(), XmlInclude(GetType(Pulverisateur))>
 Public Class Pulverisateur
+    Implements ICloneable
 
     Public Shared CO_PRORIETE As String = "Co-Propriété"
     Public Shared TYPEPULVE_ARBRES As String = "Arbres"
@@ -1725,6 +1726,39 @@ Public Class Pulverisateur
         End If
         Return oNiveau
     End Function
+    Public Sub SetPulverisateurAdditionnel(pPulvePrinc As Pulverisateur)
+        Me.isPulveAdditionnel = True
+        Me.pulvePrincipalNumNat = pPulvePrinc.numeroNational
+        Me.numeroNational = pPulvePrinc.numeroNational.Substring(0, 4)
+        Me.marque = ""
+        Me.modele = ""
+    End Sub
+
+    Public Function Clone() As Object Implements ICloneable.Clone
+        Dim oXS As New XmlSerializer(Me.GetType())
+        Dim oStream As New System.IO.MemoryStream()
+        Dim oReturn As Pulverisateur
+
+        Try
 
 
+            ' Create a memory stream and a formatter.
+            Dim ms As New System.IO.MemoryStream(1000)
+            Dim bf As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter(Nothing,
+                New System.Runtime.Serialization.StreamingContext(System.Runtime.Serialization.StreamingContextStates.Clone))
+            ' Serialize the object into the stream.
+            bf.Serialize(ms, Me)
+            ' Position streem pointer back to first byte.
+            ms.Seek(0, System.IO.SeekOrigin.Begin)
+            ' Deserialize into another object.
+            oReturn = bf.Deserialize(ms)
+            ' release memory.
+            ms.Close()
+        Catch ex As Exception
+            CSDebug.dispError("Pulverisateur.Clone ERR : " & ex.Message)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+
+    End Function
 End Class

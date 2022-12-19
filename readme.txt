@@ -4,8 +4,9 @@ BUILD XXXXX
 	0001463: Affichage des Libelle de défauts 5.1 et 5.2 sur la page diagnostique
 	0001443: Stockage du champ Mode d'utilisation
 	0001529: Ajout du montant TTC sur le Contrat commercial
-BUILD 
+	0001099: Modification de la gestion des équipements additionnels
 	0001530: Affichage du numero de rapport dans la synthese des mesures
+	0001522: Amelioration de l'annule et remplace
 
 BUILD 20220927120000
 	0001521: Ajout d'un inspecteur sur une base vide
