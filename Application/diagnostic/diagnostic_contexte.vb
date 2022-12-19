@@ -1111,10 +1111,10 @@ Public Class diagnostic_contexte
             My.Settings.DernierControleRecupResidus = ckisRecuperationResidus.Checked
             My.Settings.Save()
 
-            If Parent Is Nothing Then
+            If MdiParent Is Nothing Then
                 TryCast(Owner, parentContener).Action(New ActionFDiagNext())
             Else
-                TryCast(Parent, parentContener).Action(New ActionFDiagNext())
+                TryCast(MdiParent, parentContener).Action(New ActionFDiagNext())
             End If
 
         Else

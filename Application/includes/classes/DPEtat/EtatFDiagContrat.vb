@@ -13,7 +13,7 @@
         oReturn = New diagnostic_ContratCommercial()
         oReturn.setContexte(Me.oDiag, Me.oExploit, Me.oAgent)
         oReturn.DialogResult = DialogResult.OK
-        ShowDialog = True
+        ShowDialog = False
         Return oReturn
     End Function
 

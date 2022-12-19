@@ -214,7 +214,7 @@ Public Class parentContener
             oFrm.ShowIcon = Not GlobalsCRODIP.GLOB_ENV_MODEFORMATION
 
         End If
-        oFrm.ShowInTaskbar = True
+        oFrm.ShowInTaskbar = False
         oFrm.WindowState = FormWindowState.Maximized
         oFrm.MdiParent = Me
         oFrm.Show()
