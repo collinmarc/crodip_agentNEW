@@ -7,6 +7,8 @@ BUILD XXXXX
 	0001099: Modification de la gestion des équipements additionnels
 	0001530: Affichage du numero de rapport dans la synthese des mesures
 	0001522: Amelioration de l'annule et remplace
+	0001359: Fiche Pulve : Marque recherche sur le nom avec autocomplétion
+
 
 BUILD 20220927120000
 	0001521: Ajout d'un inspecteur sur une base vide
