@@ -1732,6 +1732,24 @@ Public Class Pulverisateur
         Me.numeroNational = pPulvePrinc.numeroNational.Substring(0, 4)
         Me.marque = ""
         Me.modele = ""
+        Me.numChassis = ""
+        Me.anneeAchat = ""
+        Me.emplacementIdentification = ""
+        Me.type = ""
+        Me.categorie = ""
+        Me.LargeurNombreRangs = ""
+        Me.buseMarque = ""
+        Me.buseType = ""
+        Me.buseFonctionnement = ""
+        Me.buseModele = ""
+        Me.buseAngle = ""
+        Me.buseNbniveaux = 0
+        Me.nombreBuses = 0
+        Me.buseIsIso = False
+        Me.buseCouleur = ""
+        Me.buseAge = ""
+
+        'N° Chasssis, Année, Type , niveau tronçons Mano Modifiat , Fitration Tronons et buses Modificables pulveridation Modificable
     End Sub
 
     Public Function Clone() As Object Implements ICloneable.Clone

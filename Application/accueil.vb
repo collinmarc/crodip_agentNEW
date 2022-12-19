@@ -122,7 +122,7 @@ Public Class accueil
     Friend WithEvents Label36 As Label
     Friend WithEvents Label37 As Label
     Friend WithEvents Label38 As Label
-    Friend WithEvents btnAjoutPulveAdditionnel As Button
+    Friend WithEvents laAjoutPulveAdditionnel As Label
     Friend WithEvents IconPulveCol As DataGridViewImageColumn
     Friend WithEvents NumeroNationalDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents TypeDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
@@ -136,7 +136,6 @@ Public Class accueil
     Friend WithEvents IconPulveColumn As DataGridViewTextBoxColumn
     Friend WithEvents PulvePrincipalNumNatDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents FichePulve As DataGridViewImageColumn
-    Friend WithEvents SuppressionCol As DataGridViewImageColumn
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -349,10 +348,10 @@ Public Class accueil
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImageList_synchro = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_Docs = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
@@ -411,22 +410,8 @@ Public Class accueil
         Me.tabControl_clientele = New System.Windows.Forms.TabPage()
         Me.panel_clientele_ficheClient = New System.Windows.Forms.Panel()
         Me.grp_ficheClient_ListePulve = New System.Windows.Forms.GroupBox()
-        Me.btnAjoutPulveAdditionnel = New System.Windows.Forms.Button()
+        Me.laAjoutPulveAdditionnel = New System.Windows.Forms.Label()
         Me.dgvPulveExploit = New System.Windows.Forms.DataGridView()
-        Me.IconPulveCol = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.NumeroNationalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TypeDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MarqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ModeleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NombreBusesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CapaciteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AttelageDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AnneeAchatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateProchainControleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IconPulveColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FichePulve = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.SuppressionCol = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsrcPulverisateurTMP = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnTransfertPulve = New System.Windows.Forms.Button()
         Me.btnAjoutPulve = New System.Windows.Forms.Button()
@@ -639,6 +624,19 @@ Public Class accueil
         Me.dtpFin = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.rbDatesFacture = New System.Windows.Forms.RadioButton()
+        Me.IconPulveCol = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.NumeroNationalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TypeDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MarqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ModeleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreBusesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CapaciteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AttelageDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AnneeAchatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateProchainControleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IconPulveColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FichePulve = New System.Windows.Forms.DataGridViewImageColumn()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
         Me.tabControl_accueil.SuspendLayout()
@@ -1215,7 +1213,7 @@ Public Class accueil
         Me.grp_ficheClient_ListePulve.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnAjoutPulveAdditionnel)
+        Me.grp_ficheClient_ListePulve.Controls.Add(Me.laAjoutPulveAdditionnel)
         Me.grp_ficheClient_ListePulve.Controls.Add(Me.dgvPulveExploit)
         Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnTransfertPulve)
         Me.grp_ficheClient_ListePulve.Controls.Add(Me.btnAjoutPulve)
@@ -1231,21 +1229,18 @@ Public Class accueil
         Me.grp_ficheClient_ListePulve.TabStop = False
         Me.grp_ficheClient_ListePulve.Text = "Liste des pulvérisateurs"
         '
-        'btnAjoutPulveAdditionnel
+        'laAjoutPulveAdditionnel
         '
-        Me.btnAjoutPulveAdditionnel.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.btnAjoutPulveAdditionnel.BackgroundImage = CType(resources.GetObject("btnAjoutPulveAdditionnel.BackgroundImage"), System.Drawing.Image)
-        Me.btnAjoutPulveAdditionnel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnAjoutPulveAdditionnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAjoutPulveAdditionnel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAjoutPulveAdditionnel.ForeColor = System.Drawing.Color.White
-        Me.btnAjoutPulveAdditionnel.Location = New System.Drawing.Point(796, 24)
-        Me.btnAjoutPulveAdditionnel.Name = "btnAjoutPulveAdditionnel"
-        Me.btnAjoutPulveAdditionnel.Size = New System.Drawing.Size(179, 24)
-        Me.btnAjoutPulveAdditionnel.TabIndex = 33
-        Me.btnAjoutPulveAdditionnel.Text = "Ajouter un pulvé additionnel"
-        Me.btnAjoutPulveAdditionnel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnAjoutPulveAdditionnel.UseVisualStyleBackColor = False
+        Me.laAjoutPulveAdditionnel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.laAjoutPulveAdditionnel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.laAjoutPulveAdditionnel.ForeColor = System.Drawing.Color.White
+        Me.laAjoutPulveAdditionnel.Image = Global.Crodip_agent.Resources.btn_divers_add
+        Me.laAjoutPulveAdditionnel.Location = New System.Drawing.Point(796, 24)
+        Me.laAjoutPulveAdditionnel.Name = "laAjoutPulveAdditionnel"
+        Me.laAjoutPulveAdditionnel.Size = New System.Drawing.Size(179, 24)
+        Me.laAjoutPulveAdditionnel.TabIndex = 34
+        Me.laAjoutPulveAdditionnel.Text = "       Equipement additionnel"
+        Me.laAjoutPulveAdditionnel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'dgvPulveExploit
         '
@@ -1268,7 +1263,7 @@ Public Class accueil
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvPulveExploit.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvPulveExploit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPulveExploit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IconPulveCol, Me.NumeroNationalDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn1, Me.MarqueDataGridViewTextBoxColumn, Me.ModeleDataGridViewTextBoxColumn, Me.NombreBusesDataGridViewTextBoxColumn, Me.CapaciteDataGridViewTextBoxColumn, Me.AttelageDataGridViewTextBoxColumn, Me.AnneeAchatDataGridViewTextBoxColumn, Me.DateProchainControleDataGridViewTextBoxColumn, Me.IconPulveColumn, Me.PulvePrincipalNumNatDataGridViewTextBoxColumn, Me.FichePulve, Me.SuppressionCol})
+        Me.dgvPulveExploit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IconPulveCol, Me.NumeroNationalDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn1, Me.MarqueDataGridViewTextBoxColumn, Me.ModeleDataGridViewTextBoxColumn, Me.NombreBusesDataGridViewTextBoxColumn, Me.CapaciteDataGridViewTextBoxColumn, Me.AttelageDataGridViewTextBoxColumn, Me.AnneeAchatDataGridViewTextBoxColumn, Me.DateProchainControleDataGridViewTextBoxColumn, Me.IconPulveColumn, Me.PulvePrincipalNumNatDataGridViewTextBoxColumn, Me.FichePulve})
         Me.dgvPulveExploit.DataSource = Me.m_bsrcPulverisateurTMP
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
@@ -1290,121 +1285,6 @@ Public Class accueil
         Me.dgvPulveExploit.Size = New System.Drawing.Size(964, 207)
         Me.dgvPulveExploit.TabIndex = 32
         Me.dgvPulveExploit.VirtualMode = True
-        '
-        'IconPulveCol
-        '
-        Me.IconPulveCol.FillWeight = 3.0!
-        Me.IconPulveCol.HeaderText = "Etat"
-        Me.IconPulveCol.Name = "IconPulveCol"
-        Me.IconPulveCol.ReadOnly = True
-        '
-        'NumeroNationalDataGridViewTextBoxColumn
-        '
-        Me.NumeroNationalDataGridViewTextBoxColumn.DataPropertyName = "numeroNational"
-        Me.NumeroNationalDataGridViewTextBoxColumn.FillWeight = 10.0!
-        Me.NumeroNationalDataGridViewTextBoxColumn.HeaderText = "Identifiant pulvé"
-        Me.NumeroNationalDataGridViewTextBoxColumn.Name = "NumeroNationalDataGridViewTextBoxColumn"
-        Me.NumeroNationalDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TypeDataGridViewTextBoxColumn1
-        '
-        Me.TypeDataGridViewTextBoxColumn1.DataPropertyName = "type"
-        Me.TypeDataGridViewTextBoxColumn1.FillWeight = 16.0!
-        Me.TypeDataGridViewTextBoxColumn1.HeaderText = "Type"
-        Me.TypeDataGridViewTextBoxColumn1.Name = "TypeDataGridViewTextBoxColumn1"
-        Me.TypeDataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'MarqueDataGridViewTextBoxColumn
-        '
-        Me.MarqueDataGridViewTextBoxColumn.DataPropertyName = "marque"
-        Me.MarqueDataGridViewTextBoxColumn.FillWeight = 9.0!
-        Me.MarqueDataGridViewTextBoxColumn.HeaderText = "Marque"
-        Me.MarqueDataGridViewTextBoxColumn.Name = "MarqueDataGridViewTextBoxColumn"
-        Me.MarqueDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ModeleDataGridViewTextBoxColumn
-        '
-        Me.ModeleDataGridViewTextBoxColumn.DataPropertyName = "modele"
-        Me.ModeleDataGridViewTextBoxColumn.FillWeight = 12.0!
-        Me.ModeleDataGridViewTextBoxColumn.HeaderText = "Modèle"
-        Me.ModeleDataGridViewTextBoxColumn.Name = "ModeleDataGridViewTextBoxColumn"
-        Me.ModeleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'NombreBusesDataGridViewTextBoxColumn
-        '
-        Me.NombreBusesDataGridViewTextBoxColumn.DataPropertyName = "LargeurNombreRangs"
-        Me.NombreBusesDataGridViewTextBoxColumn.FillWeight = 5.0!
-        Me.NombreBusesDataGridViewTextBoxColumn.HeaderText = "Largeur"
-        Me.NombreBusesDataGridViewTextBoxColumn.Name = "NombreBusesDataGridViewTextBoxColumn"
-        Me.NombreBusesDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CapaciteDataGridViewTextBoxColumn
-        '
-        Me.CapaciteDataGridViewTextBoxColumn.DataPropertyName = "capacite"
-        Me.CapaciteDataGridViewTextBoxColumn.FillWeight = 7.0!
-        Me.CapaciteDataGridViewTextBoxColumn.HeaderText = "Capacité"
-        Me.CapaciteDataGridViewTextBoxColumn.Name = "CapaciteDataGridViewTextBoxColumn"
-        Me.CapaciteDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AttelageDataGridViewTextBoxColumn
-        '
-        Me.AttelageDataGridViewTextBoxColumn.DataPropertyName = "attelage"
-        Me.AttelageDataGridViewTextBoxColumn.FillWeight = 11.0!
-        Me.AttelageDataGridViewTextBoxColumn.HeaderText = "Attelage"
-        Me.AttelageDataGridViewTextBoxColumn.Name = "AttelageDataGridViewTextBoxColumn"
-        Me.AttelageDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AnneeAchatDataGridViewTextBoxColumn
-        '
-        Me.AnneeAchatDataGridViewTextBoxColumn.DataPropertyName = "anneeAchat"
-        Me.AnneeAchatDataGridViewTextBoxColumn.FillWeight = 6.0!
-        Me.AnneeAchatDataGridViewTextBoxColumn.HeaderText = "Année Construct."
-        Me.AnneeAchatDataGridViewTextBoxColumn.Name = "AnneeAchatDataGridViewTextBoxColumn"
-        Me.AnneeAchatDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DateProchainControleDataGridViewTextBoxColumn
-        '
-        Me.DateProchainControleDataGridViewTextBoxColumn.DataPropertyName = "dateProchainControleAsDate"
-        DataGridViewCellStyle3.Format = "d"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DateProchainControleDataGridViewTextBoxColumn.FillWeight = 9.0!
-        Me.DateProchainControleDataGridViewTextBoxColumn.HeaderText = "Prochain contrôle"
-        Me.DateProchainControleDataGridViewTextBoxColumn.Name = "DateProchainControleDataGridViewTextBoxColumn"
-        Me.DateProchainControleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'IconPulveColumn
-        '
-        Me.IconPulveColumn.DataPropertyName = "PulvePrincipalAdditionel"
-        Me.IconPulveColumn.FillWeight = 5.0!
-        Me.IconPulveColumn.HeaderText = "Statut"
-        Me.IconPulveColumn.Name = "IconPulveColumn"
-        Me.IconPulveColumn.ReadOnly = True
-        Me.IconPulveColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'PulvePrincipalNumNatDataGridViewTextBoxColumn
-        '
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.DataPropertyName = "pulvePrincipalNumNat"
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.FillWeight = 8.0!
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.HeaderText = "ID Principal"
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.Name = "PulvePrincipalNumNatDataGridViewTextBoxColumn"
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'FichePulve
-        '
-        Me.FichePulve.FillWeight = 3.0!
-        Me.FichePulve.HeaderText = "Voir"
-        Me.FichePulve.Image = Global.Crodip_agent.Resources.oeil16x16
-        Me.FichePulve.Name = "FichePulve"
-        Me.FichePulve.ReadOnly = True
-        '
-        'SuppressionCol
-        '
-        Me.SuppressionCol.FillWeight = 3.0!
-        Me.SuppressionCol.HeaderText = "Sup."
-        Me.SuppressionCol.Image = Global.Crodip_agent.Resources.delete
-        Me.SuppressionCol.Name = "SuppressionCol"
-        Me.SuppressionCol.ReadOnly = True
         '
         'm_bsrcPulverisateurTMP
         '
@@ -1428,6 +1308,7 @@ Public Class accueil
         '
         'btnAjoutPulve
         '
+        Me.btnAjoutPulve.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAjoutPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.btnAjoutPulve.BackgroundImage = CType(resources.GetObject("btnAjoutPulve.BackgroundImage"), System.Drawing.Image)
         Me.btnAjoutPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
@@ -3934,6 +3815,113 @@ Public Class accueil
         Me.rbDatesFacture.Text = "Date de facture : Entre le "
         Me.rbDatesFacture.UseVisualStyleBackColor = True
         '
+        'IconPulveCol
+        '
+        Me.IconPulveCol.FillWeight = 3.0!
+        Me.IconPulveCol.HeaderText = "Etat"
+        Me.IconPulveCol.Name = "IconPulveCol"
+        Me.IconPulveCol.ReadOnly = True
+        '
+        'NumeroNationalDataGridViewTextBoxColumn
+        '
+        Me.NumeroNationalDataGridViewTextBoxColumn.DataPropertyName = "numeroNational"
+        Me.NumeroNationalDataGridViewTextBoxColumn.FillWeight = 10.0!
+        Me.NumeroNationalDataGridViewTextBoxColumn.HeaderText = "Identifiant pulvé"
+        Me.NumeroNationalDataGridViewTextBoxColumn.Name = "NumeroNationalDataGridViewTextBoxColumn"
+        Me.NumeroNationalDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TypeDataGridViewTextBoxColumn1
+        '
+        Me.TypeDataGridViewTextBoxColumn1.DataPropertyName = "type"
+        Me.TypeDataGridViewTextBoxColumn1.FillWeight = 16.0!
+        Me.TypeDataGridViewTextBoxColumn1.HeaderText = "Type"
+        Me.TypeDataGridViewTextBoxColumn1.Name = "TypeDataGridViewTextBoxColumn1"
+        Me.TypeDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'MarqueDataGridViewTextBoxColumn
+        '
+        Me.MarqueDataGridViewTextBoxColumn.DataPropertyName = "marque"
+        Me.MarqueDataGridViewTextBoxColumn.FillWeight = 9.0!
+        Me.MarqueDataGridViewTextBoxColumn.HeaderText = "Marque"
+        Me.MarqueDataGridViewTextBoxColumn.Name = "MarqueDataGridViewTextBoxColumn"
+        Me.MarqueDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ModeleDataGridViewTextBoxColumn
+        '
+        Me.ModeleDataGridViewTextBoxColumn.DataPropertyName = "modele"
+        Me.ModeleDataGridViewTextBoxColumn.FillWeight = 12.0!
+        Me.ModeleDataGridViewTextBoxColumn.HeaderText = "Modèle"
+        Me.ModeleDataGridViewTextBoxColumn.Name = "ModeleDataGridViewTextBoxColumn"
+        Me.ModeleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NombreBusesDataGridViewTextBoxColumn
+        '
+        Me.NombreBusesDataGridViewTextBoxColumn.DataPropertyName = "LargeurNombreRangs"
+        Me.NombreBusesDataGridViewTextBoxColumn.FillWeight = 5.0!
+        Me.NombreBusesDataGridViewTextBoxColumn.HeaderText = "Largeur"
+        Me.NombreBusesDataGridViewTextBoxColumn.Name = "NombreBusesDataGridViewTextBoxColumn"
+        Me.NombreBusesDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CapaciteDataGridViewTextBoxColumn
+        '
+        Me.CapaciteDataGridViewTextBoxColumn.DataPropertyName = "capacite"
+        Me.CapaciteDataGridViewTextBoxColumn.FillWeight = 7.0!
+        Me.CapaciteDataGridViewTextBoxColumn.HeaderText = "Capacité"
+        Me.CapaciteDataGridViewTextBoxColumn.Name = "CapaciteDataGridViewTextBoxColumn"
+        Me.CapaciteDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AttelageDataGridViewTextBoxColumn
+        '
+        Me.AttelageDataGridViewTextBoxColumn.DataPropertyName = "attelage"
+        Me.AttelageDataGridViewTextBoxColumn.FillWeight = 11.0!
+        Me.AttelageDataGridViewTextBoxColumn.HeaderText = "Attelage"
+        Me.AttelageDataGridViewTextBoxColumn.Name = "AttelageDataGridViewTextBoxColumn"
+        Me.AttelageDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AnneeAchatDataGridViewTextBoxColumn
+        '
+        Me.AnneeAchatDataGridViewTextBoxColumn.DataPropertyName = "anneeAchat"
+        Me.AnneeAchatDataGridViewTextBoxColumn.FillWeight = 6.0!
+        Me.AnneeAchatDataGridViewTextBoxColumn.HeaderText = "Année Construct."
+        Me.AnneeAchatDataGridViewTextBoxColumn.Name = "AnneeAchatDataGridViewTextBoxColumn"
+        Me.AnneeAchatDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DateProchainControleDataGridViewTextBoxColumn
+        '
+        Me.DateProchainControleDataGridViewTextBoxColumn.DataPropertyName = "dateProchainControleAsDate"
+        DataGridViewCellStyle3.Format = "d"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DateProchainControleDataGridViewTextBoxColumn.FillWeight = 9.0!
+        Me.DateProchainControleDataGridViewTextBoxColumn.HeaderText = "Prochain contrôle"
+        Me.DateProchainControleDataGridViewTextBoxColumn.Name = "DateProchainControleDataGridViewTextBoxColumn"
+        Me.DateProchainControleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'IconPulveColumn
+        '
+        Me.IconPulveColumn.DataPropertyName = "PulvePrincipalAdditionel"
+        Me.IconPulveColumn.FillWeight = 5.0!
+        Me.IconPulveColumn.HeaderText = "Statut"
+        Me.IconPulveColumn.Name = "IconPulveColumn"
+        Me.IconPulveColumn.ReadOnly = True
+        Me.IconPulveColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'PulvePrincipalNumNatDataGridViewTextBoxColumn
+        '
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.DataPropertyName = "pulvePrincipalNumNat"
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.FillWeight = 8.0!
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.HeaderText = "ID Principal"
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.Name = "PulvePrincipalNumNatDataGridViewTextBoxColumn"
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'FichePulve
+        '
+        Me.FichePulve.FillWeight = 3.0!
+        Me.FichePulve.HeaderText = "Voir"
+        Me.FichePulve.Image = Global.Crodip_agent.Resources.oeil16x16
+        Me.FichePulve.Name = "FichePulve"
+        Me.FichePulve.ReadOnly = True
+        '
         'accueil
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -4496,7 +4484,7 @@ Public Class accueil
             btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
             btn_ficheClient_diagnostic_voir.Enabled = False
 
-            btnAjoutPulveAdditionnel.Visible = False
+            laAjoutPulveAdditionnel.Enabled = False
 
 
             'list_ficheClient_puverisateur.Items.Clear()
@@ -6537,9 +6525,9 @@ Public Class accueil
                     btn_ficheClient_diagnostic_voir.Enabled = Not agentCourant.isGestionnaire
                     'btnSupprPulve.Enabled = Not agentCourant.isGestionnaire
                     If opulve.isPulveAdditionnel Then
-                        btnAjoutPulveAdditionnel.Visible = False
+                        laAjoutPulveAdditionnel.Enabled = False
                     Else
-                        btnAjoutPulveAdditionnel.Visible = True
+                        laAjoutPulveAdditionnel.Enabled = True
                     End If
 
                 Else
@@ -6551,7 +6539,7 @@ Public Class accueil
                 btn_ficheClient_diagnostic_nouveau.Enabled = False
                 btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
                 btn_ficheClient_diagnostic_voir.Enabled = False
-                btnAjoutPulveAdditionnel.Visible = False
+                laAjoutPulveAdditionnel.Enabled = False
             End If
         Catch
 
@@ -6796,14 +6784,11 @@ Public Class accueil
         If e.ColumnIndex = FichePulve.Index Then
             VoirFichePulve()
         End If
-        If e.ColumnIndex = SuppressionCol.Index Then
-            supprimerUnPulverisateur()
-        End If
 
     End Sub
 
     Private Sub dgvPulveExploit_CellMouseEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPulveExploit.CellMouseEnter
-        If e.ColumnIndex = FichePulve.Index Or e.ColumnIndex = SuppressionCol.Index Then
+        If e.ColumnIndex = FichePulve.Index Then
             dgvPulveExploit.Cursor = Cursors.Hand
         Else
             dgvPulveExploit.Cursor = Cursors.Default
@@ -6816,7 +6801,7 @@ Public Class accueil
 
     End Sub
 
-    Private Sub btnAjoutPulveAdditionnel_Click(sender As Object, e As EventArgs) Handles btnAjoutPulveAdditionnel.Click
+    Private Sub btnAjoutPulveAdditionnel_Click(sender As Object, e As EventArgs) Handles laAjoutPulveAdditionnel.Click
         If dgvPulveExploit.SelectedRows.Count > 0 Then
             Dim index As Integer = dgvPulveExploit.SelectedRows(0).Index
             Dim opulve As Pulverisateur = m_BindingListOfPulve(index)

@@ -20,7 +20,7 @@
         'Id Non Indifo est active
         IDNonIndigo.Checked = True
         IDNonIndigo.Visible = False
-        chkAncienIdentifiant.Visible = False
+        ckAncienIdentifiant.Visible = False
         tbAncienIdentifiant.Visible = False
 
 
