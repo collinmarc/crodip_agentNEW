@@ -13,6 +13,8 @@ BUILD XXXXX
 	0001152: Selection du banc par defaut
 	0001371: Anulle et remplace : Laisser l'accès au PDFs
 	0001383: CHAMPS REPRESENTE PAR : EN FIN CONTROLE
+	0001411: Choix de la date de prochain controle lors de la création d'un pulvé
+
 
 BUILD 20220927120000
 	0001521: Ajout d'un inspecteur sur une base vide
