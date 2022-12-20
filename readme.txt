@@ -10,7 +10,8 @@ BUILD XXXXX
 	0001359: Fiche Pulve : Marque recherche sur le nom avec autocomplétion
 	0001088: Suppression de bancs de mesures
 	0001121: Mode d'acquisition : ajout d'un mode 'MANUEL'
-
+	0001152: Selection du banc par defaut
+	0001371: Anulle et remplace : Laisser l'accès au PDFs
 
 BUILD 20220927120000
 	0001521: Ajout d'un inspecteur sur une base vide

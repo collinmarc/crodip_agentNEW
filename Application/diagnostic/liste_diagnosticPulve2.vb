@@ -3304,7 +3304,7 @@ Public Class liste_diagnosticPulve2
             If m_oDiag IsNot Nothing Then
                 Select Case e.ColumnIndex
                     Case Col_Rapports.Index, col_SM.Index, col_contrat.Index, FactureColumn.Index, BLColumn.Index, ESColumn.Index, COPROColumn.Index
-                        If Not String.IsNullOrEmpty(DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).Tag) And Not m_oDiag.isSupprime Then
+                        If Not String.IsNullOrEmpty(DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).Tag) Then
                             DataGridView1.Cursor = Cursors.Hand
                         Else
                             DataGridView1.Cursor = Cursors.Default
