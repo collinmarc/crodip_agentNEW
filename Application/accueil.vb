@@ -6827,4 +6827,7 @@ Public Class accueil
         End If
     End Sub
 
+    Private Sub accueil_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        Me.initWindowsProperties()
+    End Sub
 End Class

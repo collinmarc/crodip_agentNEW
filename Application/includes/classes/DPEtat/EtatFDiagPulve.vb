@@ -21,7 +21,6 @@
         Dim oReturn As EtatFDiag = Me
         Select Case pAction.CodeAction
             Case Crodip_agent.Action.ACTION_NEXT
-                oDiag.setPulverisateur(oPulve)
                 oReturn = New EtatFDiagContexte(Me)
         End Select
         Return oReturn
