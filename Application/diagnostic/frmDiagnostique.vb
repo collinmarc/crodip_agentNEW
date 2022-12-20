@@ -4332,11 +4332,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If String.IsNullOrEmpty(obanc.ModuleAcquisition) Then
             obanc.ModuleAcquisition = "MD2"
         End If
+        If obanc.ModuleAcquisition = "MANUEL" Then
+            Exit Sub
+        End If
         oModuleAcquisition = CRODIPAcquisition.ModuleAcq.GetModule(obanc.ModuleAcquisition)
         If (oModuleAcquisition Is Nothing) Then
             MsgBox("Aucun module d'acquisition n'est disponible pour : " + obanc.ModuleAcquisition)
             Exit Sub
         End If
+        Me.Cursor = Cursors.WaitCursor
         Dim pModule As CRODIPAcquisition.ICRODIPAcquisition = oModuleAcquisition.Instance
 
         If Not pModule.getGestionDesNiveaux() Then
@@ -4350,6 +4354,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             If oDLG.ShowDialog() = DialogResult.OK Then
                 pModule.setFichier(oDLG.FileName)
             Else
+                Me.Cursor = Cursors.Default
                 Exit Sub
             End If
         End If
@@ -4442,6 +4447,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Else
             MsgBox("Le nombre de buses saisi et le nombre de buses acquises est différent. Veuillez vérifiez.")
         End If
+        Me.Cursor = Cursors.Default
+
     End Sub
 
 #End Region
@@ -4803,14 +4810,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
 
     Private Sub buses_listBancs_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buses_listBancs.SelectedIndexChanged
-        ' Si on selectionne un Banc de Mesure, on doit le flagguer comme etant utilisé
-        '        Dim tmpBanc As Banc
         If Not buses_listBancs.SelectedItem Is Nothing Then
-            'tmpBanc = BancManager.getBancById(buses_listBancs.SelectedItem.id())
             m_diagnostic.controleBancMesureId = buses_listBancs.SelectedItem.id
-            '            arrManoUsed(1) = tmpBanc
+            Dim oBanc As Banc = BancManager.getBancById(buses_listBancs.SelectedItem.id)
+            If oBanc.ModuleAcquisition = "MANUEL" Then
+                btn_diagnostic_acquisitionDonnees.Visible = False
+            Else
+                btn_diagnostic_acquisitionDonnees.Visible = True
+            End If
         Else
-            '           arrManoUsed(1) = Nothing
         End If
         checkIsOk(8)
     End Sub

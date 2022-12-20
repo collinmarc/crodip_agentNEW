@@ -422,7 +422,7 @@ Public Class BancManager
                                 End Sub)
 
         Else
-            arrResponse = BancManager.getBancByStructureId(agentCourant.idStructure, True)
+            arrResponse = BancManager.getBancByStructureId(agentCourant.idStructure, isShowAll)
         End If
         Return arrResponse
     End Function

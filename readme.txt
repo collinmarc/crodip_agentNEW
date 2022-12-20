@@ -9,6 +9,7 @@ BUILD XXXXX
 	0001522: Amelioration de l'annule et remplace
 	0001359: Fiche Pulve : Marque recherche sur le nom avec autocomplétion
 	0001088: Suppression de bancs de mesures
+	0001121: Mode d'acquisition : ajout d'un mode 'MANUEL'
 
 
 BUILD 20220927120000
