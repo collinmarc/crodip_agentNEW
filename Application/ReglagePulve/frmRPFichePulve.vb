@@ -28,7 +28,7 @@
         btn_fichePulve_valider.Visible = False
         btn_fichePulve_supprimer.Visible = False
         laProchainControle.Visible = False
-        tbDateProchControle.Visible = False
+        dtDateProchainControle.Visible = False
         pbEtat.Visible = False
 
         cbxIdentPulve.DropDownStyle = ComboBoxStyle.Simple

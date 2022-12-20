@@ -1021,69 +1021,71 @@ Public Class frmdiagnostic_recap
 
                     Statusbar.display("Génération du rapport d'inspection", True)
                     If createEtatRapportInspection(True) Then
-                        Statusbar.display("Génération du rapport de synthèse des mesures", True)
-                        If Not createEtatSyntheseDesMesures(True) Then
-                            CSDebug.dispError("Erreur en génération de l'état de synthèse des mesures")
+                        If m_DiagMode <> GlobalsCRODIP.DiagMode.CTRL_SIGNATURE Then
+                            Statusbar.display("Génération du rapport de synthèse des mesures", True)
+                            If Not createEtatSyntheseDesMesures(True) Then
+                                CSDebug.dispError("Erreur en génération de l'état de synthèse des mesures")
+                            End If
                         End If
                         If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or
                             GlobalsCRODIP.GLOB_ENV_MODEFORMATION Or
                             (m_diagnostic.isContrevisiteImmediate And m_diagnostic.isGratuit) Then
-                            'Pas de génération du contrat commercial
+                                'Pas de génération du contrat commercial
+                            Else
+                                Statusbar.display("Génération du Contrat Commercial", True)
+                                If Not createEtatContratCommercial(True) Then
+                                    CSDebug.dispError("Erreur en génération du Contrat Commercial")
+                                End If
+                            End If
+
+                            'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
+                            m_diagnostic.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
+                            Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
+                            CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "]")
+                            CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] PulverisateurID = " & m_diagnostic.pulverisateurId)
+                            CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] m_Pulverisateur.ID = " & m_Pulverisateur.id)
+                            CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] proprietaireId = " & m_diagnostic.proprietaireId)
+                            CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] m_Exploitation.ID = " & m_Exploit.id)
+                            Dim bSave As Boolean
+                            bSave = DiagnosticManager.save(m_diagnostic)
+                            If Not bSave Then
+                                CSDebug.dispFatal("Diagnostic-recap.btn_finalisationDiag_valider_Click ERR : ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE=> FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
+                                MsgBox("ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE => FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
+                                Application.Exit()
+                            End If
+
+                            'Si le Controle remplace un ancien Diag
+                            If Not String.IsNullOrEmpty(m_diagnostic.diagRemplacementId) Then
+                                Dim oDiagRemplace As Diagnostic
+                                oDiagRemplace = DiagnosticManager.getDiagnosticById(m_diagnostic.diagRemplacementId)
+                                Debug.Assert(oDiagRemplace.id <> "")
+                                If oDiagRemplace.id <> "" Then
+                                    oDiagRemplace.isSupprime = True
+                                    oDiagRemplace.diagRemplacementId = m_diagnostic.id 'Diag de remplacement
+                                    DiagnosticManager.save(oDiagRemplace)
+                                End If
+                            End If
+
+
+
+                            ' On met en place les boutons
+                            btn_finalisationDiag_valider.Text = "Poursuivre"
+                            btn_finalisationDiag_imprimerRapport.Enabled = True
+                            btn_finalisationDiag_modifierDiag.Enabled = False
+                            btn_finalisationDiag_imprimerSynthese.Enabled = True
+                            btn_ContratCommercial.Enabled = True
+
+                            'Désactivation de l'apperçu
+                            btnAppercu.Enabled = False
+                            rbEtatRI.Enabled = False
+                            rbEtatSM.Enabled = False
+                            rbEtatCC.Enabled = False
+                            CrystalReportViewer1.Enabled = False
+                            isValider = True
+                            Statusbar.display("", False)
+                            bReturn = True
                         Else
-                            Statusbar.display("Génération du Contrat Commercial", True)
-                            If Not createEtatContratCommercial(True) Then
-                                CSDebug.dispError("Erreur en génération du Contrat Commercial")
-                            End If
-                        End If
-
-                        'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
-                        m_diagnostic.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
-                        Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
-                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "]")
-                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] PulverisateurID = " & m_diagnostic.pulverisateurId)
-                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] m_Pulverisateur.ID = " & m_Pulverisateur.id)
-                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] proprietaireId = " & m_diagnostic.proprietaireId)
-                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] m_Exploitation.ID = " & m_Exploit.id)
-                        Dim bSave As Boolean
-                        bSave = DiagnosticManager.save(m_diagnostic)
-                        If Not bSave Then
-                            CSDebug.dispFatal("Diagnostic-recap.btn_finalisationDiag_valider_Click ERR : ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE=> FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
-                            MsgBox("ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE => FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
-                            Application.Exit()
-                        End If
-
-                        'Si le Controle remplace un ancien Diag
-                        If Not String.IsNullOrEmpty(m_diagnostic.diagRemplacementId) Then
-                            Dim oDiagRemplace As Diagnostic
-                            oDiagRemplace = DiagnosticManager.getDiagnosticById(m_diagnostic.diagRemplacementId)
-                            Debug.Assert(oDiagRemplace.id <> "")
-                            If oDiagRemplace.id <> "" Then
-                                oDiagRemplace.isSupprime = True
-                                oDiagRemplace.diagRemplacementId = m_diagnostic.id 'Diag de remplacement
-                                DiagnosticManager.save(oDiagRemplace)
-                            End If
-                        End If
-
-
-
-                        ' On met en place les boutons
-                        btn_finalisationDiag_valider.Text = "Poursuivre"
-                        btn_finalisationDiag_imprimerRapport.Enabled = True
-                        btn_finalisationDiag_modifierDiag.Enabled = False
-                        btn_finalisationDiag_imprimerSynthese.Enabled = True
-                        btn_ContratCommercial.Enabled = True
-
-                        'Désactivation de l'apperçu
-                        btnAppercu.Enabled = False
-                        rbEtatRI.Enabled = False
-                        rbEtatSM.Enabled = False
-                        rbEtatCC.Enabled = False
-                        CrystalReportViewer1.Enabled = False
-                        isValider = True
-                        Statusbar.display("", False)
-                        bReturn = True
-                    Else
-                        CSDebug.dispFatal("Erreur en génération de rapport, recommencez. En cas de récidive, prevenez le CRODIP")
+                            CSDebug.dispFatal("Erreur en génération de rapport, recommencez. En cas de récidive, prevenez le CRODIP")
                     End If
                 End If
             Catch ex As Exception
