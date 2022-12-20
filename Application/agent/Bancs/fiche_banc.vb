@@ -492,15 +492,11 @@ Public Class fiche_banc
 
     Private Sub btn_ficheMano_supprimer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheMano_supprimer.Click
         Try
-            If BancCourant.isUtilise Then
-                MsgBox("Vous ne pouvez pas supprimer ce banc car il a déjà été utilisé !")
-            Else
-                Dim oFRM As SuppressionMateriel
-                oFRM = New SuppressionMateriel(BancCourant)
-                If oFRM.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                    Me.DialogResult = Windows.Forms.DialogResult.OK
-                    Me.Close()
-                End If
+            Dim oFRM As SuppressionMateriel
+            oFRM = New SuppressionMateriel(BancCourant)
+            If oFRM.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Me.Close()
             End If
         Catch ex As Exception
             CSDebug.dispError("fiche_banc::btn_ficheMano_supprimer_Click : " & ex.Message.ToString)
