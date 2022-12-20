@@ -48,6 +48,8 @@ Public Class frmdiagnostic_recap
     Friend WithEvents rbEtatCC As RadioButton
     Friend WithEvents btn_ContratCommercial As Label
     Friend WithEvents btn_Annuler As Label
+    Friend WithEvents tbRepresentePar As TextBox
+    Friend WithEvents Label1 As Label
     Friend WithEvents btn_finalisationDiag_imprimerSynthese As System.Windows.Forms.Label
     'Private objInfos(15) As Object
 
@@ -152,6 +154,8 @@ Public Class frmdiagnostic_recap
         Me.btnSignAgent = New System.Windows.Forms.Label()
         Me.btn_ContratCommercial = New System.Windows.Forms.Label()
         Me.btn_Annuler = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.tbRepresentePar = New System.Windows.Forms.TextBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -377,9 +381,9 @@ Public Class frmdiagnostic_recap
         Me.grpMateriel.Controls.Add(Me.Label38)
         Me.grpMateriel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpMateriel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.grpMateriel.Location = New System.Drawing.Point(6, 156)
+        Me.grpMateriel.Location = New System.Drawing.Point(6, 186)
         Me.grpMateriel.Name = "grpMateriel"
-        Me.grpMateriel.Size = New System.Drawing.Size(343, 106)
+        Me.grpMateriel.Size = New System.Drawing.Size(343, 76)
         Me.grpMateriel.TabIndex = 4
         Me.grpMateriel.TabStop = False
         Me.grpMateriel.Text = "Matériel"
@@ -396,12 +400,12 @@ Public Class frmdiagnostic_recap
         '
         'btn_voirFiche_Pulve
         '
-        Me.btn_voirFiche_Pulve.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btn_voirFiche_Pulve.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_voirFiche_Pulve.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_voirFiche_Pulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_voirFiche_Pulve.ForeColor = System.Drawing.Color.White
         Me.btn_voirFiche_Pulve.Image = CType(resources.GetObject("btn_voirFiche_Pulve.Image"), System.Drawing.Image)
-        Me.btn_voirFiche_Pulve.Location = New System.Drawing.Point(207, 79)
+        Me.btn_voirFiche_Pulve.Location = New System.Drawing.Point(204, 13)
         Me.btn_voirFiche_Pulve.Name = "btn_voirFiche_Pulve"
         Me.btn_voirFiche_Pulve.Size = New System.Drawing.Size(128, 24)
         Me.btn_voirFiche_Pulve.TabIndex = 1
@@ -421,12 +425,14 @@ Public Class frmdiagnostic_recap
         '
         Me.grpProprio.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpProprio.Controls.Add(Me.tbRepresentePar)
+        Me.grpProprio.Controls.Add(Me.Label1)
         Me.grpProprio.Controls.Add(Me.btn_voirFicheExploitant)
         Me.grpProprio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpProprio.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.grpProprio.Location = New System.Drawing.Point(6, 100)
         Me.grpProprio.Name = "grpProprio"
-        Me.grpProprio.Size = New System.Drawing.Size(341, 50)
+        Me.grpProprio.Size = New System.Drawing.Size(341, 80)
         Me.grpProprio.TabIndex = 3
         Me.grpProprio.TabStop = False
         Me.grpProprio.Text = "Propriétaire du matériel"
@@ -600,6 +606,23 @@ Public Class frmdiagnostic_recap
         Me.btn_Annuler.Text = "    Annuler"
         Me.btn_Annuler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 38)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(102, 13)
+        Me.Label1.TabIndex = 61
+        Me.Label1.Text = "Représenté par :"
+        '
+        'tbRepresentePar
+        '
+        Me.tbRepresentePar.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsDiag, "proprietaireRepresentant", True))
+        Me.tbRepresentePar.Location = New System.Drawing.Point(9, 54)
+        Me.tbRepresentePar.Name = "tbRepresentePar"
+        Me.tbRepresentePar.Size = New System.Drawing.Size(325, 20)
+        Me.tbRepresentePar.TabIndex = 62
+        '
         'frmdiagnostic_recap
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -634,6 +657,7 @@ Public Class frmdiagnostic_recap
         Me.grpMateriel.ResumeLayout(False)
         Me.grpMateriel.PerformLayout()
         Me.grpProprio.ResumeLayout(False)
+        Me.grpProprio.PerformLayout()
         Me.grpOrganisme.ResumeLayout(False)
         Me.grpOrganisme.PerformLayout()
         CType(Me.conclusion_pictoEtat, System.ComponentModel.ISupportInitialize).EndInit()

@@ -12,6 +12,7 @@ BUILD XXXXX
 	0001121: Mode d'acquisition : ajout d'un mode 'MANUEL'
 	0001152: Selection du banc par defaut
 	0001371: Anulle et remplace : Laisser l'accès au PDFs
+	0001383: CHAMPS REPRESENTE PAR : EN FIN CONTROLE
 
 BUILD 20220927120000
 	0001521: Ajout d'un inspecteur sur une base vide
