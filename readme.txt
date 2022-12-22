@@ -1,6 +1,7 @@
 TRUNK
 MASTER
-BUILD XXXXX
+BUILD 20221222170000
+
 	0001463: Affichage des Libelle de défauts 5.1 et 5.2 sur la page diagnostique
 	0001443: Stockage du champ Mode d'utilisation
 	0001529: Ajout du montant TTC sur le Contrat commercial

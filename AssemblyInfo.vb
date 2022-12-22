@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("CRODIP")>
 <Assembly: AssemblyProduct("Logiciel Crodip Agent")>
 <Assembly: AssemblyCopyright("")>
-<Assembly: AssemblyTrademark("20220830120000")>
+<Assembly: AssemblyTrademark("20221222170000")>
 <Assembly: CLSCompliant(False)>
 
 'Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
@@ -33,5 +33,5 @@ Imports System.Runtime.InteropServices
 
 <Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodip")>
 <Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodip3")>
-<Assembly: AssemblyFileVersionAttribute("2022.10.10.1700")>
+<Assembly: AssemblyFileVersionAttribute("2022.12.22.1700")>
 <Assembly: ComVisible(False)>

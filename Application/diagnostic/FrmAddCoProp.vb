@@ -38,7 +38,7 @@ Public Class FrmAddCoProp
         Dim frm As New fiche_exploitant()
         Dim OExploit As New Exploitation()
         OExploit.raisonSociale = "Nouveau."
-        frm.setContexte(False, OExploit, m_oAgent)
+        frm.setContexte(False, OExploit, m_oAgent, Nothing)
         If frm.ShowDialog() = DialogResult.OK Then
             m_lstExploit.Add(OExploit)
             m_bsrcExploitant.Add(OExploit)

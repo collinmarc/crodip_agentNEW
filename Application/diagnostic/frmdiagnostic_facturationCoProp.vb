@@ -1761,7 +1761,7 @@ Public Class frmdiagnostic_facturationCoProp
         Dim frm As New fiche_exploitant()
         Dim oExploit As New Exploitation()
         oExploit.raisonSociale = "Nouveau."
-        frm.setContexte(False, oExploit, m_oAgent)
+        frm.setContexte(False, oExploit, m_oAgent, Nothing)
         If frm.ShowDialog() = DialogResult.OK Then
             If m_bModeCoProp Or m_olstExploit.Count() = 0 Then
                 m_olstExploit.Add(oExploit)

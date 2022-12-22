@@ -1244,7 +1244,7 @@ Public Class login
     Private Sub btnExploitant_Click(sender As Object, e As EventArgs) Handles btnExploitant.Click
         Dim dlg As New fiche_exploitant()
         agentCourant = AgentManager.getAgentById("1110")
-        dlg.setContexte(False, New Exploitation(), agentCourant)
+        dlg.setContexte(False, New Exploitation(), agentCourant, Nothing)
         dlg.ShowDialog(Me)
     End Sub
 

@@ -3,7 +3,7 @@
 
     Protected m_oDiag As RPDiagnostic
     Public Overloads Sub setContexte(pIsModediag As Boolean, pClient As Exploitation, pRPdiag As RPDiagnostic, pRPAgent As Agent)
-        MyBase.setContexte(pIsModediag, pClient, pRPAgent)
+        MyBase.setContexte(pIsModediag, pClient, pRPAgent, pRPdiag)
         m_bsExploitation.Clear()
         m_bsExploitation.Add(clientCourant)
         m_oDiag = pRPdiag

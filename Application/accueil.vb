@@ -5266,9 +5266,9 @@ Public Class accueil
         ' Ouverture fiche client
         clientCourant = New Exploitation()
         Dim formFiche_exploitant As New fiche_exploitant()
-        formFiche_exploitant.setContexte(False, clientCourant, agentCourant)
+        formFiche_exploitant.setContexte(False, clientCourant, agentCourant, Nothing)
         '        formFiche_exploitant.MdiParent = Me.MdiParent
-        formFiche_exploitant.ShowDialog()
+        formFiche_exploitant.ShowDialog(Me)
     End Sub
 
     ' Suppression client
@@ -5420,7 +5420,7 @@ Public Class accueil
     Private Sub btn_ficheClient_voirFiche_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheClient_voirFiche.Click
         ' Ouverture fiche client
         Dim formFiche_exploitant As New fiche_exploitant
-        formFiche_exploitant.setContexte(False, clientCourant, agentCourant)
+        formFiche_exploitant.setContexte(False, clientCourant, agentCourant, Nothing)
         formFiche_exploitant.ShowDialog()
     End Sub
 
@@ -5460,7 +5460,7 @@ Public Class accueil
         clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
         ' Ouverture fiche client
         Dim formFiche_exploitant As New fiche_exploitant
-        formFiche_exploitant.setContexte(False, clientCourant, agentCourant)
+        formFiche_exploitant.setContexte(False, clientCourant, agentCourant, Nothing)
         formFiche_exploitant.ShowDialog()
     End Sub
 

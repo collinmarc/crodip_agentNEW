@@ -1317,7 +1317,7 @@ Public Class frmdiagnostic_recap
         'Récupératino du numéri de SIREN
         'm_Exploit.numeroSiren = diagnosticRecap_proprietaire_numSiren.Text
         Dim formEdition_fiche_pulve As New fiche_exploitant()
-        formEdition_fiche_pulve.setContexte(True, m_Exploit, m_oAgent)
+        formEdition_fiche_pulve.setContexte(True, m_Exploit, m_oAgent, m_diagnostic)
         formEdition_fiche_pulve.DisplayNomEtPrenomduRepresentant(True)
         '        formEdition_fiche_pulve.SetFormRecapDiag(True)
         formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
@@ -1386,7 +1386,7 @@ Public Class frmdiagnostic_recap
 
     Private Sub btn_voirFicheExploitant_Click_1(sender As Object, e As EventArgs) Handles btn_voirFicheExploitant.Click
         Dim formEdition_fiche_pulve As New fiche_exploitant()
-        formEdition_fiche_pulve.setContexte(True, m_Exploit, m_oAgent)
+        formEdition_fiche_pulve.setContexte(True, m_Exploit, m_oAgent, m_diagnostic)
         formEdition_fiche_pulve.DisplayNomEtPrenomduRepresentant(True)
         '        formEdition_fiche_pulve.SetFormRecapDiag(True)
         formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
