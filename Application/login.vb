@@ -714,7 +714,7 @@ Public Class login
             _selectedAgent = AgentManager.getAgentByNumeroNational(login_profil.SelectedItem.Id)
             idAgent = _selectedAgent.id
             If _selectedAgent.numeroNational.ToString <> "" Then
-                If CSEnvironnement.checkWebService() = True Then
+                If CSEnvironnement.checkWebService() = True And Not GlobalsCRODIP.GLOB_ENV_DEBUG Then
                     ' On commence par redescendre le pass de l'agent courant
                     Dim tmpObject As New Agent
                     Try
@@ -1032,7 +1032,7 @@ Public Class login
 
         oAgent = AgentManager.getAgentById("1110")
 
-        Dim ofrm As New frmControleManometres2(oAgent)
+        Dim ofrm As New frmControleManometresNEW(oAgent)
         TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
     End Sub
 

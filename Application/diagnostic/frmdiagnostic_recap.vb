@@ -1300,9 +1300,9 @@ Public Class frmdiagnostic_recap
         m_Pulverisateur.emplacementIdentification = cbx_diagnosticRecap_materiel_EmplacementIdentification.Text
         ' Affichage de la fiche du pulvérisateur
 
-        Dim formEdition_fiche_pulve As New ajout_pulve2()
-        formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.VERIF, m_oAgent, m_Pulverisateur, m_Exploit, m_diagnostic)
-        formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
+        Dim frmPulve As New ajout_pulve2()
+        frmPulve.setContexte(ajout_pulve2.MODE.MODIF, m_oAgent, m_Pulverisateur, m_Exploit, m_diagnostic)
+        frmPulve.ShowDialog(Me.MdiParent)
         m_diagnostic.setPulverisateur(m_Pulverisateur)
         'AffichePulverisateur()
     End Sub
@@ -1385,11 +1385,11 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Private Sub btn_voirFicheExploitant_Click_1(sender As Object, e As EventArgs) Handles btn_voirFicheExploitant.Click
-        Dim formEdition_fiche_pulve As New fiche_exploitant()
-        formEdition_fiche_pulve.setContexte(True, m_Exploit, m_oAgent, m_diagnostic)
-        formEdition_fiche_pulve.DisplayNomEtPrenomduRepresentant(True)
+        Dim frmExploit As New fiche_exploitant()
+        frmExploit.setContexte(False, m_Exploit, m_oAgent, m_diagnostic)
+        frmExploit.DisplayNomEtPrenomduRepresentant(True)
         '        formEdition_fiche_pulve.SetFormRecapDiag(True)
-        formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
+        frmExploit.ShowDialog(Me.MdiParent)
         m_diagnostic.SetProprietaire(m_Exploit)
 
     End Sub

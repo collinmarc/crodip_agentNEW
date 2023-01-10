@@ -12,7 +12,7 @@
   <xs:element name="dsFvMano" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsFvMano" msprop:Generator_UserDSName="dsFvMano">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Verif" msprop:Generator_TableClassName="VerifDataTable" msprop:Generator_TableVarName="tableVerif" msprop:Generator_TablePropName="Verif" msprop:Generator_RowDeletingName="VerifRowDeleting" msprop:Generator_RowChangingName="VerifRowChanging" msprop:Generator_RowEvHandlerName="VerifRowChangeEventHandler" msprop:Generator_RowDeletedName="VerifRowDeleted" msprop:Generator_UserTableName="Verif" msprop:Generator_RowChangedName="VerifRowChanged" msprop:Generator_RowEvArgName="VerifRowChangeEvent" msprop:Generator_RowClassName="VerifRow">
+        <xs:element name="Verif" msprop:Generator_TableClassName="VerifDataTable" msprop:Generator_TableVarName="tableVerif" msprop:Generator_RowChangedName="VerifRowChanged" msprop:Generator_TablePropName="Verif" msprop:Generator_RowDeletingName="VerifRowDeleting" msprop:Generator_RowChangingName="VerifRowChanging" msprop:Generator_RowEvHandlerName="VerifRowChangeEventHandler" msprop:Generator_RowDeletedName="VerifRowDeleted" msprop:Generator_RowClassName="VerifRow" msprop:Generator_UserTableName="Verif" msprop:Generator_RowEvArgName="VerifRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="dateVerification" msprop:Generator_ColumnVarNameInTable="columndateVerification" msprop:Generator_ColumnPropNameInRow="dateVerification" msprop:Generator_ColumnPropNameInTable="dateVerificationColumn" msprop:Generator_UserColumnName="dateVerification" type="xs:string" minOccurs="0" />
@@ -35,7 +35,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Pression" msprop:Generator_TableClassName="PressionDataTable" msprop:Generator_TableVarName="tablePression" msprop:Generator_TablePropName="Pression" msprop:Generator_RowDeletingName="PressionRowDeleting" msprop:Generator_RowChangingName="PressionRowChanging" msprop:Generator_RowEvHandlerName="PressionRowChangeEventHandler" msprop:Generator_RowDeletedName="PressionRowDeleted" msprop:Generator_UserTableName="Pression" msprop:Generator_RowChangedName="PressionRowChanged" msprop:Generator_RowEvArgName="PressionRowChangeEvent" msprop:Generator_RowClassName="PressionRow">
+        <xs:element name="Pression" msprop:Generator_TableClassName="PressionDataTable" msprop:Generator_TableVarName="tablePression" msprop:Generator_RowChangedName="PressionRowChanged" msprop:Generator_TablePropName="Pression" msprop:Generator_RowDeletingName="PressionRowDeleting" msprop:Generator_RowChangingName="PressionRowChanging" msprop:Generator_RowEvHandlerName="PressionRowChangeEventHandler" msprop:Generator_RowDeletedName="PressionRowDeleted" msprop:Generator_RowClassName="PressionRow" msprop:Generator_UserTableName="Pression" msprop:Generator_RowEvArgName="PressionRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type" type="xs:string" minOccurs="0" />
@@ -47,6 +47,16 @@
               <xs:element name="Incertitude" msprop:Generator_ColumnVarNameInTable="columnIncertitude" msprop:Generator_ColumnPropNameInRow="Incertitude" msprop:Generator_ColumnPropNameInTable="IncertitudeColumn" msprop:Generator_UserColumnName="Incertitude" type="xs:string" minOccurs="0" />
               <xs:element name="EMT" msprop:Generator_ColumnVarNameInTable="columnEMT" msprop:Generator_ColumnPropNameInRow="EMT" msprop:Generator_ColumnPropNameInTable="EMTColumn" msprop:Generator_UserColumnName="EMT" type="xs:string" minOccurs="0" />
               <xs:element name="Conformité" msprop:Generator_ColumnVarNameInTable="columnConformité" msprop:Generator_ColumnPropNameInRow="Conformité" msprop:Generator_ColumnPropNameInTable="ConformitéColumn" msprop:Generator_UserColumnName="Conformité" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Diagramme" msprop:Generator_TableClassName="DiagrammeDataTable" msprop:Generator_TableVarName="tableDiagramme" msprop:Generator_TablePropName="Diagramme" msprop:Generator_RowDeletingName="DiagrammeRowDeleting" msprop:Generator_RowChangingName="DiagrammeRowChanging" msprop:Generator_RowEvHandlerName="DiagrammeRowChangeEventHandler" msprop:Generator_RowDeletedName="DiagrammeRowDeleted" msprop:Generator_UserTableName="Diagramme" msprop:Generator_RowChangedName="DiagrammeRowChanged" msprop:Generator_RowEvArgName="DiagrammeRowChangeEvent" msprop:Generator_RowClassName="DiagrammeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" msprop:Generator_UserColumnName="Numero" type="xs:int" minOccurs="0" />
+              <xs:element name="PressionCroissante" msprop:Generator_ColumnVarNameInTable="columnPressionCroissante" msprop:Generator_ColumnPropNameInRow="PressionCroissante" msprop:Generator_ColumnPropNameInTable="PressionCroissanteColumn" msprop:Generator_UserColumnName="PressionCroissante" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PressionDecroissante" msprop:Generator_ColumnVarNameInTable="columnPressionDecroissante" msprop:Generator_ColumnPropNameInRow="PressionDecroissante" msprop:Generator_ColumnPropNameInTable="PressionDecroissanteColumn" msprop:Generator_UserColumnName="PressionDecroissante" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PressionRepetition" msprop:Generator_ColumnVarNameInTable="columnPressionRepetition" msprop:Generator_ColumnPropNameInRow="PressionRepetition" msprop:Generator_ColumnPropNameInTable="PressionRepetitionColumn" msprop:Generator_UserColumnName="PressionRepetition" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

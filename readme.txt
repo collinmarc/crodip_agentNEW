@@ -16,6 +16,8 @@ BUILD 20221222170000
 	0001383: CHAMPS REPRESENTE PAR : EN FIN CONTROLE
 	0001411: Choix de la date de prochain controle lors de la création d'un pulvé
 	0001420: Signature après le contrôle - enregistrement synthèse de mesure
+	0001534: MAJ des puvés à partir des diagnostics
+	0001536: Retour version PP janvier 2023 (1) : Recap
 
 BUILD 20220927120000
 	0001521: Ajout d'un inspecteur sur une base vide

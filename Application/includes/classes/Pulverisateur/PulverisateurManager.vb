@@ -931,5 +931,120 @@ Public Class PulverisateurManager
             End If
         Next
     End Sub
+    ''' <summary>
+    ''' Met à jour la base Pulve à partir des diagnostic et renvoie le nombre de ligne Modifiée
+    ''' </summary>
+    ''' <returns></returns>
+    Public Shared Function MAJPulveDepuisdiagnostic() As Integer
+        Dim paramsQuery As String = ""
+        Dim bReturn As Integer = 0
+        Try
+
+            Dim bdd As New CSDb(True)
+            Dim bddCommande As DbCommand
+            bddCommande = bdd.getConnection().CreateCommand()
+            Dim sDate As String = CSDate.ToCRODIPString(Now)
+
+            paramsQuery = "UPDATE Pulverisateur 
+        set (dateModificationAgent,
+               marque ,  
+               modele , 
+               Type, 
+               capacite, 
+               Largeur, 
+               LargeurPlantation, 
+               IsVentilateur, 
+               IsDebrayage, 
+               AnneeAchat, 
+               nombreUtilisateurs, 
+               IsCuveRincage, 
+               CapaciteCuveRincage, 
+               IsRotobuse, 
+               IsRinceBidon, 
+               IsBidonLaveMain, 
+               isLanceLavage, 
+               IsCuveIncorporation, 
+               Attelage, 
+               buseMarque, 
+               buseCouleur, 
+               buseAge, 
+               nombreBuses, 
+               buseType, 
+               buseAngle, 
+               buseIsIso, 
+               manometreDiametre, 
+               manometreType, 
+               manometreFondEchelle, 
+               manometrePressionTravail, 
+               emplacementIdentification, 
+               Regulation, 
+               regulationOptions, 
+               ModeUtilisation, 
+               buseFonctionnement, 
+               Categorie, 
+               Pulverisation, 
+               isCoupureAutoTroncons, 
+               isReglageAutoHauteur, 
+               isRincagecircuit, 
+               Numchassis) 
+               = (SELECT '" & sDate & "',
+               pulverisateurMarque, 
+               pulverisateurModele, 
+               pulverisateurType, 
+               Diagnostic.pulverisateurCapacite, 
+               Diagnostic.pulverisateurLargeur, 
+               Diagnostic.pulverisateurLargeurPlantation, 
+               Diagnostic.pulverisateurIsVentilateur, 
+               Diagnostic.pulverisateurIsDebrayage, 
+               Diagnostic.pulverisateurAnneeAchat, 
+               Diagnostic.pulverisateurNbUtilisateurs, 
+               Diagnostic.pulverisateurIsCuveRincage, 
+               Diagnostic.pulverisateurCapaciteCuveRincage, 
+               Diagnostic.pulverisateurIsRotobuse, 
+               Diagnostic.pulverisateurIsRinceBidon, 
+               Diagnostic.pulverisateurIsBidonLaveMain, 
+               Diagnostic.pulverisateurIsLanceLavageExterieur, 
+               Diagnostic.pulverisateurIsCuveIncorporation, 
+               Diagnostic.pulverisateurAttelage, 
+               Diagnostic.buseMarque, 
+               Diagnostic.buseCouleur, 
+               Diagnostic.buseAge, 
+               Diagnostic.buseNbBuses, 
+               Diagnostic.buseType, 
+               Diagnostic.buseAngle, 
+               Diagnostic.buseIsISO, 
+               Diagnostic.manometreDiametre, 
+               Diagnostic.manometreType, 
+               Diagnostic.manometreFondEchelle, 
+               Diagnostic.manometrePressionTravail, 
+               Diagnostic.pulverisateurEmplacementIdentification, 
+               Diagnostic.pulverisateurRegulation, 
+               Diagnostic.pulverisateurRegulationOptions, 
+               Diagnostic.pulverisateurModeUtilisation, 
+               Diagnostic.buseFonctionnement, 
+               Diagnostic.pulverisateurCategorie, 
+               Diagnostic.pulverisateurPulverisation, 
+               Diagnostic.pulverisateurCoupureAutoTroncons, 
+               Diagnostic.pulverisateurReglageAutoHauteur, 
+               Diagnostic.pulverisateurRincagecircuit, 
+               Diagnostic.pulverisateurNumChassis 
+               From Diagnostic  
+               Where Diagnostic.pulverisateurNumNational = Pulverisateur.numeroNational Order By controleDateDebut desc LIMIT 1)  
+               Where categorie = '' OR Categorie is null "
+
+            ' On finalise la requete et en l'execute
+            bddCommande.CommandText = paramsQuery
+            bddCommande.ExecuteNonQuery()
+
+            bddCommande.CommandText = "SELECT Count(*) FROM Pulverisateur where dateModificationAgent = '" & sDate & "'"
+            bReturn = bddCommande.ExecuteScalar()
+
+            bdd.free()
+        Catch ex As Exception
+            CSDebug.dispError("PulverisateurManager.MAJPulveFromDiagnostic", ex)
+            bReturn = -1
+        End Try
+        Return bReturn
+    End Function
 
 End Class

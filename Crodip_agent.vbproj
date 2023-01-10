@@ -331,6 +331,9 @@
     <Compile Include="Application\agent\Bancs\HistoBanc.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\agent\Manometres\frmControleManometresNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\agent\Manometres\HistoMano.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -376,6 +379,7 @@
     <Compile Include="Application\includes\classes\Agent\Materiel\Alertes.vb" />
     <Compile Include="Application\includes\classes\Agent\Materiel\AgentPC.vb" />
     <Compile Include="Application\includes\classes\Agent\Materiel\AgentPCManager.vb" />
+    <Compile Include="Application\includes\classes\Agent\Materiel\PressionCtrl.vb" />
     <Compile Include="Application\includes\classes\Agent\Pool.vb" />
     <Compile Include="Application\includes\classes\Agent\PoolManager.vb" />
     <Compile Include="Application\includes\classes\Diagnostic\ContratFact\dsFacture.Designer.vb">
@@ -1138,6 +1142,7 @@
     <Compile Include="cr\EtatFeuillePeda.vb" />
     <Compile Include="cr\EtatEnquete.vb" />
     <Compile Include="cr\EtatDocumentCoPropriete.vb" />
+    <Compile Include="cr\EtatFVManoGraph.vb" />
     <Compile Include="cr\EtatFVMano.vb" />
     <Compile Include="cr\EtatFVBanc.vb" />
     <Compile Include="cr\EtatSyntheseMesures.vb" />
@@ -1184,6 +1189,13 @@
       <DependentUpon>crTest.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_diagVerifMano.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_diagVerifMano.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="moduleDocumentaire\_parametres\cr_Facture2.vb">
       <DependentUpon>cr_Facture2.rpt</DependentUpon>
@@ -1518,6 +1530,7 @@
     <None Include="My Project\DataSources\ContratCommercial.datasource" />
     <None Include="My Project\DataSources\Facture.datasource" />
     <None Include="My Project\DataSources\Pool.datasource" />
+    <None Include="My Project\DataSources\PressionCtrl.datasource" />
     <None Include="My Project\DataSources\Structuree.datasource" />
     <None Include="Resources\add_to_favorites_96px.png" />
     <None Include="Resources\icons8_membership_card.ico" />
@@ -2185,6 +2198,9 @@
     <EmbeddedResource Include="Application\agent\Bancs\HistoBanc.resx">
       <DependentUpon>HistoBanc.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Manometres\frmControleManometresNew.resx">
+      <DependentUpon>frmControleManometresNew.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\agent\Manometres\HistoMano.resx">
       <DependentUpon>HistoMano.vb</DependentUpon>
     </EmbeddedResource>
@@ -2622,6 +2638,11 @@
     <EmbeddedResource Include="MigrationBDD\FrmMigrationBDD.resx">
       <DependentUpon>FrmMigrationBDD.vb</DependentUpon>
     </EmbeddedResource>
+    <Content Include="moduleDocumentaire\_parametres\cr_diagVerifMano.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_diagVerifMano.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="My Project\Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
