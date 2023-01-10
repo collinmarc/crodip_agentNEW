@@ -18,6 +18,7 @@ BUILD 20221222170000
 	0001420: Signature après le contrôle - enregistrement synthèse de mesure
 	0001534: MAJ des puvés à partir des diagnostics
 	0001536: Retour version PP janvier 2023 (1) : Recap
+	0001522: Amelioration de l'annule et remplace : Annuler en page de recap
 
 BUILD 20220927120000
 	0001521: Ajout d'un inspecteur sur une base vide

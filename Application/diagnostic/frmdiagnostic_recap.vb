@@ -671,12 +671,14 @@ Public Class frmdiagnostic_recap
         Me.WindowState = FormWindowState.Maximized
         Me.ControlBox = False
         CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
-        If m_DiagMode <> GlobalsCRODIP.DiagMode.CTRL_SIGNATURE Then
-            'Propriété a mettre obligatoirement par programme
-            Me.laTitre.Text = "     Visualisation du contrôle"
-            Me.btn_Annuler.Visible = False
-        Else
+        Me.laTitre.Text = "     Visualisation du contrôle"
+        Me.btn_Annuler.Visible = False
+        If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_SIGNATURE Then
             Me.laTitre.Text = "     Signature du contrôle"
+            Me.btn_Annuler.Visible = True
+        End If
+        If m_diagnostic.diagRemplacementId <> "" Then
+            Me.laTitre.Text = "     Remplacement du contrôle"
             Me.btn_Annuler.Visible = True
         End If
         '###########################################################################
@@ -769,8 +771,11 @@ Public Class frmdiagnostic_recap
             btn_finalisationDiag_modifierDiag.Enabled = False
             btn_finalisationDiag_valider.Text = "Retour"
         End If
-        btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> GlobalsCRODIP.DiagMode.CTRL_VISU
 
+        btn_finalisationDiag_modifierDiag.Enabled = False
+        If m_diagnostic.bTrtPreliminaires And m_diagnostic.bTrtDefauts Then
+            btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> GlobalsCRODIP.DiagMode.CTRL_VISU
+        End If
         '##################
         'Generation de l'apperçu du rapport
         '###################

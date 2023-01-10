@@ -3118,6 +3118,7 @@ Public Class liste_diagnosticPulve2
                         m_oDiag.bTrtContrat = oFrmPahse.bTrtContrat
                         m_oDiag.bTrtPreliminaires = oFrmPahse.bTrtDefauts
                         m_oDiag.bTrtDefauts = oFrmPahse.bTrtDefauts
+                        m_oDiag.bTrtRecap = True
                         m_oDiag.bTrtFacture = False
                         m_oDiag.bTrtEnquete = False
                         m_oDiag.bTrtComplement = False

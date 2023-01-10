@@ -29,7 +29,8 @@
                 Else
                     oReturn = New EtatFDiagEnquete(Me)
                 End If
-
+            Case Crodip_agent.Action.ACTION_END
+                oReturn = Nothing
         End Select
         Return oReturn
     End Function
