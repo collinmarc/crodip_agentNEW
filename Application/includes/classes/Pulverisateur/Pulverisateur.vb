@@ -1749,6 +1749,9 @@ Public Class Pulverisateur
         Me.buseIsIso = False
         Me.buseCouleur = ""
         Me.buseAge = ""
+        Me.ancienIdentifiant = ""
+        Me.pulverisation = ""
+        Me.buseType = ""
 
         'N° Chasssis, Année, Type , niveau tronçons Mano Modifiat , Fitration Tronons et buses Modificables pulveridation Modificable
     End Sub
