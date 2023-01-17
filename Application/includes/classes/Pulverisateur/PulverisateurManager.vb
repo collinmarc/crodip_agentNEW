@@ -1024,9 +1024,9 @@ Public Class PulverisateurManager
                Diagnostic.buseFonctionnement, 
                Diagnostic.pulverisateurCategorie, 
                Diagnostic.pulverisateurPulverisation, 
-               Diagnostic.pulverisateurCoupureAutoTroncons, 
-               Diagnostic.pulverisateurReglageAutoHauteur, 
-               Diagnostic.pulverisateurRincagecircuit, 
+               CASE Diagnostic.pulverisateurCoupureAutoTroncons WHEN 'OUI'THEN 1 ELSE 0 END, 
+               CASE Diagnostic.pulverisateurReglageAutoHauteur WHEN 'OUI'THEN 1 ELSE 0 END, 
+               CASE Diagnostic.pulverisateurRincagecircuit WHEN 'OUI'THEN 1 ELSE 0 END, 
                Diagnostic.pulverisateurNumChassis 
                From Diagnostic  
                Where Diagnostic.pulverisateurNumNational = Pulverisateur.numeroNational Order By controleDateDebut desc LIMIT 1)  

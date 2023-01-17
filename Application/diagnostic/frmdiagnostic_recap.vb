@@ -140,6 +140,8 @@ Public Class frmdiagnostic_recap
         Me.btn_voirFiche_Pulve = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.grpProprio = New System.Windows.Forms.GroupBox()
+        Me.tbRepresentePar = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.btn_voirFicheExploitant = New System.Windows.Forms.Label()
         Me.grpOrganisme = New System.Windows.Forms.GroupBox()
         Me.diagnosticRecap_organisme_dateControle = New System.Windows.Forms.DateTimePicker()
@@ -154,8 +156,6 @@ Public Class frmdiagnostic_recap
         Me.btnSignAgent = New System.Windows.Forms.Label()
         Me.btn_ContratCommercial = New System.Windows.Forms.Label()
         Me.btn_Annuler = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.tbRepresentePar = New System.Windows.Forms.TextBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -437,6 +437,23 @@ Public Class frmdiagnostic_recap
         Me.grpProprio.TabStop = False
         Me.grpProprio.Text = "Propriétaire du matériel"
         '
+        'tbRepresentePar
+        '
+        Me.tbRepresentePar.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsDiag, "proprietaireRepresentant", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.tbRepresentePar.Location = New System.Drawing.Point(9, 54)
+        Me.tbRepresentePar.Name = "tbRepresentePar"
+        Me.tbRepresentePar.Size = New System.Drawing.Size(325, 20)
+        Me.tbRepresentePar.TabIndex = 62
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 38)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(102, 13)
+        Me.Label1.TabIndex = 61
+        Me.Label1.Text = "Représenté par :"
+        '
         'btn_voirFicheExploitant
         '
         Me.btn_voirFicheExploitant.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -605,23 +622,6 @@ Public Class frmdiagnostic_recap
         Me.btn_Annuler.TabIndex = 51
         Me.btn_Annuler.Text = "    Annuler"
         Me.btn_Annuler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 38)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(102, 13)
-        Me.Label1.TabIndex = 61
-        Me.Label1.Text = "Représenté par :"
-        '
-        'tbRepresentePar
-        '
-        Me.tbRepresentePar.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsDiag, "proprietaireRepresentant", True))
-        Me.tbRepresentePar.Location = New System.Drawing.Point(9, 54)
-        Me.tbRepresentePar.Name = "tbRepresentePar"
-        Me.tbRepresentePar.Size = New System.Drawing.Size(325, 20)
-        Me.tbRepresentePar.TabIndex = 62
         '
         'frmdiagnostic_recap
         '

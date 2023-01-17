@@ -715,6 +715,9 @@ Public Class diagnostic_ContratCommercial
         btnSigner.Visible = m_oAgent.isSignElecActive
         btnSigner.Enabled = False
 
+        btnImprimerBL.Enabled = False
+        btnImprimerContrat.Enabled = False
+
         Me.Cursor = Cursors.Default
         btnSuivant.Enabled = False
 
