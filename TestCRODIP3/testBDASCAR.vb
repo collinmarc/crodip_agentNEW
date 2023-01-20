@@ -98,7 +98,7 @@ Imports Crodip_agent
         agentCourant = oagent
 
         Dim oExploit As Exploitation
-        oExploit = ExploitationManager.getWSExploitationById("5-1144-100")
+        oExploit = ExploitationManager.getWSExploitationById(1144, "5-1144-100")
         Assert.AreEqual("5-1144-100", oExploit.id)
         ExploitationManager.save(oExploit, oagent)
 

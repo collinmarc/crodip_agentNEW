@@ -176,6 +176,7 @@
     <Compile Include="EtatFvBancTest.vb" />
     <Compile Include="EtatFvManoTest.vb" />
     <Compile Include="EtatManagerTest.vb" />
+    <Compile Include="EtatSyntheseMesuresTest.vb" />
     <Compile Include="EtatRapportInspectionTest.vb" />
     <Compile Include="EtatReglagePulveTest.vb" />
     <Compile Include="ExploitationTest.vb" />
@@ -218,6 +219,7 @@
     <Compile Include="RPParamTest.vb" />
     <Compile Include="StatCRODIPTest.vb" />
     <Compile Include="SynchronisationTest.vb" />
+    <Compile Include="testProduction.vb" />
     <Compile Include="testBDASCAR.vb" />
     <Compile Include="ToleranceBuseTest.vb" />
     <Compile Include="StructureTest.vb" />
@@ -308,10 +310,28 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="moduleDocumentaire\_parametres\Alertes.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="moduleDocumentaire\_parametres\ModulesAcquisision.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamDiag.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamdiagArbre.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamdiagCombine.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamdiagFixeSM.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamdiagRampe.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamdiagVigne.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TestFiles\csv_report_for 000509_N12.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

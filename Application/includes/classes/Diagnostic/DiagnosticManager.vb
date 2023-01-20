@@ -508,6 +508,8 @@ Public Class DiagnosticManager
                     End If
                     nColId = nColId + 1
                 End While
+                'Calcul du numero de niveau et numero de trançon à partir de la col
+                tmpDiagnosticTroncons833.CalcNiveauTroncons(pDiag.controleNbreTroncons)
                 pDiag.diagnosticTroncons833.Liste.Add(tmpDiagnosticTroncons833)
             End While
             DebugStep = "22"

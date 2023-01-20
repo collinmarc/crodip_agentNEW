@@ -5,7 +5,7 @@ Public Class DiagnosticTroncons833Manager
 #Region "Methodes Web Service"
 
     ' o
-    Public Shared Function getWSDiagnosticTroncons833ByDiagId(ByVal pDiagId As String) As DiagnosticTroncons833List
+    Public Shared Function getWSDiagnosticTroncons833ByDiagId(pAgentId As String, pDiagId As String) As DiagnosticTroncons833List
         Dim objDiagnosticTroncons833List As New DiagnosticTroncons833List
         Dim objDiagnosticTroncons833 As DiagnosticTroncons833
         Try
@@ -14,7 +14,7 @@ Public Class DiagnosticTroncons833Manager
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
             Dim objWSCrodip_response() As Object = Nothing
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticTroncons833(agentCourant.id, pDiagId, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticTroncons833(pAgentId, pDiagId, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet

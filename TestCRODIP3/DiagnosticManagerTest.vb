@@ -5614,14 +5614,14 @@ Public Class DiagnosticManagerTest
         DiagnosticItemManager.getWSDiagnosticItemsByDiagnosticId(agentCourant, oDiag.id)
         DiagnosticManager.save(oDiag)
         Dim oDiagBusesList As DiagnosticBusesList
-        oDiagBusesList = DiagnosticBusesManager.getWSDiagnosticBusesByDiagId(oDiag.id)
+        oDiagBusesList = DiagnosticBusesManager.getWSDiagnosticBusesByDiagId(agentCourant.id, oDiag.id)
         Dim oCSDB As New CSDb(True)
         For Each oDiagBuses As DiagnosticBuses In oDiagBusesList.Liste
             DiagnosticBusesManager.save(oDiagBuses, oCSDB)
         Next
         oCSDB.free()
         Dim oDiagBusesDetailList As DiagnosticBusesDetailList
-        oDiagBusesDetailList = DiagnosticBusesDetailManager.getWSDiagnosticBusesDetailByDiagId(oDiag.id)
+        oDiagBusesDetailList = DiagnosticBusesDetailManager.getWSDiagnosticBusesDetailByDiagId(agentCourant.id, oDiag.id)
         For Each oDiagBusesDetail As DiagnosticBusesDetail In oDiagBusesDetailList.Liste
             DiagnosticBusesDetailManager.save(oDiagBusesDetail)
         Next

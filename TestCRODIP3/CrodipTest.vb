@@ -154,7 +154,7 @@ Public Class CRODIPTest
         poPulve.ancienIdentifiant = "ANCID"
         poPulve.marque = "MARQUEPULVE"
         poPulve.modele = "MODELEPULVE"
-        poPulve.type = "TYPEPULVE"
+        poPulve.type = Pulverisateur.TYPEPULVE_CULTURESBASSES
         poPulve.capacite = 100
         poPulve.largeur = "3.5"
         poPulve.nombreRangs = "15"
@@ -294,24 +294,65 @@ Public Class CRODIPTest
         oDiagTroncons833.idPression = "1"
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1,6"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "1"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = "1"
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1,7"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "2"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
+        'Pression Tab1
+        oDiagTroncons833 = New DiagnosticTroncons833()
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "3"
+        oDiagTroncons833.pressionSortie = "1,8"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "3"
+        oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
+        'Pression Tab1
+        oDiagTroncons833 = New DiagnosticTroncons833()
+        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idColumn = "4"
+        oDiagTroncons833.pressionSortie = "1,9"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "4"
+        oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
+
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = "2"
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "2,6"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "1"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = "2"
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2,7"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "2"
+        oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
+        'Pression Tab2
+        oDiagTroncons833 = New DiagnosticTroncons833()
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "3"
+        oDiagTroncons833.pressionSortie = "2,8"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "3"
+        oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
+        'Pression Tab2
+        oDiagTroncons833 = New DiagnosticTroncons833()
+        oDiagTroncons833.idPression = "2"
+        oDiagTroncons833.idColumn = "4"
+        oDiagTroncons833.pressionSortie = "2,9"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "4"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
@@ -319,12 +360,32 @@ Public Class CRODIPTest
         oDiagTroncons833.idPression = "3"
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "3,6"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "1"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = "3"
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "3,7"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "2"
+        oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
+        'Pression Tab3
+        oDiagTroncons833 = New DiagnosticTroncons833()
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "3"
+        oDiagTroncons833.pressionSortie = "3,8"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "3"
+        oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
+        'Pression Tab3
+        oDiagTroncons833 = New DiagnosticTroncons833()
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "4"
+        oDiagTroncons833.pressionSortie = "3,9"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "4"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
@@ -332,12 +393,32 @@ Public Class CRODIPTest
         oDiagTroncons833.idPression = "4"
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "4,6"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "1"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = "4"
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "4,7"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "2"
+        oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
+        'Pression Tab4
+        oDiagTroncons833 = New DiagnosticTroncons833()
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "3"
+        oDiagTroncons833.pressionSortie = "4,8"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "3"
+        oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
+        'Pression Tab4
+        oDiagTroncons833 = New DiagnosticTroncons833()
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "4"
+        oDiagTroncons833.pressionSortie = "4,9"
+        oDiagTroncons833.nNiveau = "1"
+        oDiagTroncons833.nTroncon = "4"
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
 

@@ -130,6 +130,7 @@ Public Class RelevePression833
     ''' Retourne l'écart Moyen par rapport à la Pression Mano
     '''
     Public Function Result_EcartBars() As Decimal
+        Dim dReturn As Decimal
         If colNiveaux.Count >= 1 Then
             'Pour éviter le pbkl des arrondis on refait le calcul de la moyenne
             Dim dPression As Decimal = 0
@@ -144,10 +145,11 @@ Public Class RelevePression833
             If n <> 0 Then
                 dPression = dPression / n
             End If
-            Return Math.Round((PressionMano - dPression), 3)
+            dReturn = Math.Round((PressionMano - dPression), 3)
         Else
-            Return 0
+            dReturn = 0D
         End If
+        Return dReturn
     End Function
     '''
     ''' Retourne le % d'écart  = (PressionMano-Moyenne des pression / Moyennes des pression)

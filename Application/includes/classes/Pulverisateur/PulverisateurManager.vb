@@ -1029,7 +1029,7 @@ Public Class PulverisateurManager
                CASE Diagnostic.pulverisateurRincagecircuit WHEN 'OUI'THEN 1 ELSE 0 END, 
                Diagnostic.pulverisateurNumChassis 
                From Diagnostic  
-               Where Diagnostic.pulverisateurNumNational = Pulverisateur.numeroNational Order By controleDateDebut desc LIMIT 1)  
+               Where Diagnostic.pulverisateurId = Pulverisateur.Id Order By controleDateDebut desc LIMIT 1)  
                Where categorie = '' OR Categorie is null "
 
             ' On finalise la requete et en l'execute

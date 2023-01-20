@@ -561,7 +561,7 @@ Public Class test
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         Dim objClient As New Exploitation
         Try
-            objClient = ExploitationManager.getWSExploitationById("1-1-1")
+            objClient = ExploitationManager.getWSExploitationById(agentCourant.id, "1-1-1")
             MsgBox("Ok, profil chargé : " & objClient.raisonSociale)
         Catch ex As Exception
             MsgBox("Aucun profil trouvé pour l'identifiant : struc-1-1")

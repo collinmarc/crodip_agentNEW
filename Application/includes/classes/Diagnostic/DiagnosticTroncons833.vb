@@ -1,7 +1,9 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
-<Serializable()> _
+Imports System.Linq
+
+<Serializable()>
 Public Class DiagnosticTroncons833List
 
     Private _diagnosticTroncons833 As List(Of DiagnosticTroncons833)
@@ -13,6 +15,22 @@ Public Class DiagnosticTroncons833List
     Public ReadOnly Property Liste As List(Of DiagnosticTroncons833)
         Get
             Return _diagnosticTroncons833
+        End Get
+        'Set(ByVal Value As List(Of DiagnosticMano542))
+        '    _diagnosticTroncons833 = Value
+        'End Set
+    End Property
+    ''' <summary>
+    ''' Rend la liste des mesures pour une pression
+    ''' </summary>
+    ''' <param name="pPression"></param>
+    ''' <returns></returns>
+    <XmlIgnoreAttribute()>
+    Public ReadOnly Property ListeparPression(pPression As String) As List(Of DiagnosticTroncons833)
+        Get
+            Return _diagnosticTroncons833.Where(Function(M)
+                                                    Return M.idPression.Equals(pPression)
+                                                End Function).ToList()
         End Get
         'Set(ByVal Value As List(Of DiagnosticMano542))
         '    _diagnosticTroncons833 = Value
@@ -214,6 +232,20 @@ Public Class DiagnosticTroncons833
             _nTroncon = Value
         End Set
     End Property
+    ''' <summary>
+    ''' transformation du numéro de colonne en nibeau troncon
+    ''' </summary>
+    ''' <param name="pNbreTroncon"></param>
+    Public Sub CalcNiveauTroncons(pNbreTroncon As Integer)
+        If Me.idColumn > 0 Then
+            nNiveau = Fix(idColumn / pNbreTroncon) + 1
+            nTroncon = idColumn Mod pNbreTroncon
+            If nTroncon = 0 Then
+                nNiveau = nNiveau - 1
+                nTroncon = pNbreTroncon
+            End If
+        End If
+    End Sub
     Public Function Fill(ByVal pColName As String, ByVal pColValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
