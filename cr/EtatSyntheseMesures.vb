@@ -154,61 +154,44 @@ Public Class EtatSyntheseMesures
             For Each oMesure542 As DiagnosticMano542 In m_oDiag.diagnosticMano542List.diagnosticMano542
                 m_ods.Mano542Detail.AddMano542DetailRow(PressionPulve:=oMesure542.pressionPulved, pressionControle:=oMesure542.pressionControled, Ecart:=oMesure542.Ecart, Imprecision:=oMesure542.Erreur.ToString(), idDiag:=m_oDiag.id)
             Next
-            Dim p1 As Decimal = m_oDiag.diagnosticMano542List.Liste(0).pressionPulved
-            Dim p2 As Decimal = m_oDiag.diagnosticMano542List.Liste(1).pressionPulved
-            Dim p3 As Decimal = m_oDiag.diagnosticMano542List.Liste(2).pressionPulved
-            Dim p4 As Decimal = m_oDiag.diagnosticMano542List.Liste(3).pressionPulved
 
 
             'Controle des Pressions (833)
-            If m_oDiag.relevePression833_1 Is Nothing Then
+            '============================
+            'on utilise les même objets que dans frmDiagnostique
+            'on les recrée a cause de l'annule et remplace qui ne passe pas toujours par frmdiagnostic
+            Dim lstRelevePression As New List(Of RelevePression833)
+            Dim oReleve As RelevePression833
+            For p As Integer = 1 To 4
+                Dim pressionPulve As Decimal = m_oDiag.diagnosticMano542List.Liste(p - 1).pressionPulved
                 '=========================================================================
                 'Création des objets relevés de pressions à partir des données chargées 
                 '=========================================================================
-                m_oDiag.relevePression833_1 = New RelevePression833(m_oDiag.controleNbreNiveaux, m_oDiag.controleNbreTroncons, p1, paramdiag.ParamDiagCalc833)
-                m_oDiag.relevePression833_2 = New RelevePression833(m_oDiag.controleNbreNiveaux, m_oDiag.controleNbreTroncons, p2, paramdiag.ParamDiagCalc833)
-                m_oDiag.relevePression833_3 = New RelevePression833(m_oDiag.controleNbreNiveaux, m_oDiag.controleNbreTroncons, p3, paramdiag.ParamDiagCalc833)
-                m_oDiag.relevePression833_4 = New RelevePression833(m_oDiag.controleNbreNiveaux, m_oDiag.controleNbreTroncons, p4, paramdiag.ParamDiagCalc833)
-                'Pression 1
-                For Each oTroncon As DiagnosticTroncons833 In m_oDiag.diagnosticTroncons833.ListeparPression("1")
-                    m_oDiag.relevePression833_1.colNiveaux(oTroncon.nNiveau - 1).colTroncons(oTroncon.nTroncon - 1).SetPressionLue(oTroncon.pressionSortie)
+                oReleve = New RelevePression833(m_oDiag.controleNbreNiveaux, m_oDiag.controleNbreTroncons, pressionPulve, paramdiag.ParamDiagCalc833)
+                For Each oTroncon As DiagnosticTroncons833 In m_oDiag.diagnosticTroncons833.ListeparPression(p)
+                    oReleve.colNiveaux(oTroncon.nNiveau - 1).colTroncons(oTroncon.nTroncon - 1).SetPressionLue(oTroncon.pressionSortie)
                 Next
-                'Pression 2
-                For Each oTroncon As DiagnosticTroncons833 In m_oDiag.diagnosticTroncons833.ListeparPression("2")
-                    m_oDiag.relevePression833_2.colNiveaux(oTroncon.nNiveau - 1).colTroncons(oTroncon.nTroncon - 1).SetPressionLue(oTroncon.pressionSortie)
-                Next
-                'Pression 3
-                For Each oTroncon As DiagnosticTroncons833 In m_oDiag.diagnosticTroncons833.ListeparPression("3")
-                    m_oDiag.relevePression833_3.colNiveaux(oTroncon.nNiveau - 1).colTroncons(oTroncon.nTroncon - 1).SetPressionLue(oTroncon.pressionSortie)
-                Next
-                'Pression 4
-                For Each oTroncon As DiagnosticTroncons833 In m_oDiag.diagnosticTroncons833.ListeparPression("4")
-                    m_oDiag.relevePression833_4.colNiveaux(oTroncon.nNiveau - 1).colTroncons(oTroncon.nTroncon - 1).SetPressionLue(oTroncon.pressionSortie)
-                Next
-                m_oDiag.relevePression833_1.calcDefauts()
-                m_oDiag.relevePression833_2.calcDefauts()
-                m_oDiag.relevePression833_3.calcDefauts()
-                m_oDiag.relevePression833_4.calcDefauts()
-            End If
-
+                oReleve.calcDefauts()
+                lstRelevePression.Add(oReleve)
+            Next p
+            'Alimentation du dataset
             'Synthèse
             m_ods.Synthese833.AddSynthese833Row(idDiag:=m_oDiag.id, NbreNiveaux:=m_oDiag.controleNbreNiveaux, NbreTroncons:=m_oDiag.controleNbreTroncons)
-            'Pression
-            m_ods.synthese833Pression.Addsynthese833PressionRow(idDiag:=m_oDiag.id,
-                                                                nPression:=1,
-                                                                PressionMesure:=m_oDiag.relevePression833_1.PressionMano,
-                                                                EcartBars:=m_oDiag.relevePression833_1.Result_EcartBars(),
-                                                                MoyennePression:=m_oDiag.relevePression833_1.Result_Moyenne(),
-                                                                PressionParDefaut:=m_oDiag.relevePression833_1.PressionManoPourCalculDefaut
+            For p As Integer = 1 To 4
+                oReleve = lstRelevePression(p - 1)
+                'Pression
+                m_ods.synthese833Pression.Addsynthese833PressionRow(idDiag:=m_oDiag.id,
+                                                                nPression:=p,
+                                                                PressionMesure:=oReleve.PressionMano,
+                                                                EcartBars:=oReleve.Result_EcartBars(),
+                                                                MoyennePression:=oReleve.Result_Moyenne(),
+                                                                PressionParDefaut:=oReleve.PressionManoPourCalculDefaut
                                                                 )
-            m_ods.synthese833Pression.Addsynthese833PressionRow(idDiag:=m_oDiag.id, nPression:=2, PressionMesure:=m_oDiag.relevePression833_2.PressionMano, EcartBars:=m_oDiag.relevePression833_2.Result_EcartBars(), MoyennePression:=m_oDiag.relevePression833_2.Result_Moyenne(), PressionParDefaut:=m_oDiag.relevePression833_2.PressionManoPourCalculDefaut)
-            m_ods.synthese833Pression.Addsynthese833PressionRow(idDiag:=m_oDiag.id, nPression:=3, PressionMesure:=m_oDiag.relevePression833_3.PressionMano, EcartBars:=m_oDiag.relevePression833_3.Result_EcartBars(), MoyennePression:=m_oDiag.relevePression833_3.Result_Moyenne(), PressionParDefaut:=m_oDiag.relevePression833_3.PressionManoPourCalculDefaut)
-            m_ods.synthese833Pression.Addsynthese833PressionRow(idDiag:=m_oDiag.id, nPression:=4, PressionMesure:=m_oDiag.relevePression833_4.PressionMano, EcartBars:=m_oDiag.relevePression833_4.Result_EcartBars(), MoyennePression:=m_oDiag.relevePression833_4.Result_Moyenne(), PressionParDefaut:=m_oDiag.relevePression833_4.PressionManoPourCalculDefaut)
-            'Detail
-            For Each oNiveau As RelevePression833Niveau In m_oDiag.relevePression833_1.colNiveaux
-                For Each otroncon As RelevePression833Troncon In oNiveau.colTroncons
-                    m_ods.synthese833Detail.Addsynthese833DetailRow(idDiag:=m_oDiag.id,
-                                                                nPression:="1",
+                'Détail
+                For Each oNiveau As RelevePression833Niveau In oReleve.colNiveaux
+                    For Each otroncon As RelevePression833Troncon In oNiveau.colTroncons
+                        m_ods.synthese833Detail.Addsynthese833DetailRow(idDiag:=m_oDiag.id,
+                                                                nPression:=p,
                                                                 nDetail:=otroncon.NumCol,
                                                                 PressionLue:=otroncon.PressionLue,
                                                                 EcartBar:=otroncon.EcartPression,
@@ -219,125 +202,70 @@ Public Class EtatSyntheseMesures
                                                                 nNiveau:=oNiveau.Num,
                                                                 nTroncon:=otroncon.Num)
 
+                    Next
                 Next
-            Next
-            For Each oNiveau As RelevePression833Niveau In m_oDiag.relevePression833_2.colNiveaux
-                For Each otroncon As RelevePression833Troncon In oNiveau.colTroncons
-                    m_ods.synthese833Detail.Addsynthese833DetailRow(idDiag:=m_oDiag.id,
-                                                                nPression:="2",
-                                                                nDetail:=otroncon.NumCol,
-                                                                PressionLue:=otroncon.PressionLue,
-                                                                EcartBar:=otroncon.EcartPression,
-                                                                EcartPct:=otroncon.EcartPressionpct,
-                                                                MoyenneAutrePression:=otroncon.MoyenneAutresTroncons,
-                                                                HeterogeneiteBar:=otroncon.EcartMoyenneAutresTroncons,
-                                                                HeterogeneitePct:=otroncon.Heterogeneite,
-                                                                nNiveau:=oNiveau.Num,
-                                                                nTroncon:=otroncon.Num)
 
-                Next
             Next
-            For Each oNiveau As RelevePression833Niveau In m_oDiag.relevePression833_3.colNiveaux
-                For Each otroncon As RelevePression833Troncon In oNiveau.colTroncons
-                    m_ods.synthese833Detail.Addsynthese833DetailRow(idDiag:=m_oDiag.id,
-                                                                nPression:="3",
-                                                                nDetail:=otroncon.NumCol,
-                                                                PressionLue:=otroncon.PressionLue,
-                                                                EcartBar:=otroncon.EcartPression,
-                                                                EcartPct:=otroncon.EcartPressionpct,
-                                                                MoyenneAutrePression:=otroncon.MoyenneAutresTroncons,
-                                                                HeterogeneiteBar:=otroncon.EcartMoyenneAutresTroncons,
-                                                                HeterogeneitePct:=otroncon.Heterogeneite,
-                                                                nNiveau:=oNiveau.Num,
-                                                                nTroncon:=otroncon.Num)
-
-                Next
-            Next
-            For Each oNiveau As RelevePression833Niveau In m_oDiag.relevePression833_4.colNiveaux
-                For Each otroncon As RelevePression833Troncon In oNiveau.colTroncons
-                    m_ods.synthese833Detail.Addsynthese833DetailRow(idDiag:=m_oDiag.id,
-                                                                nPression:="4",
-                                                                nDetail:=otroncon.NumCol,
-                                                                PressionLue:=otroncon.PressionLue,
-                                                                EcartBar:=otroncon.EcartPression,
-                                                                EcartPct:=otroncon.EcartPressionpct,
-                                                                MoyenneAutrePression:=otroncon.MoyenneAutresTroncons,
-                                                                HeterogeneiteBar:=otroncon.EcartMoyenneAutresTroncons,
-                                                                HeterogeneitePct:=otroncon.Heterogeneite,
-                                                                nNiveau:=oNiveau.Num,
-                                                                nTroncon:=otroncon.Num)
-
-                Next
-            Next
-            'For Each oMesure833 As DiagnosticTroncons833 In m_oDiag.diagnosticTroncons833.diagnosticTroncons833
-            '    m_ods.synthese833Detail.Addsynthese833DetailRow(idDiag:=m_oDiag.id,
-            '                                                    nPression:=oMesure833.idPression,
-            '                                                    nDetail:=oMesure833.idColumn,
-            '                                                    PressionLue:=oMesure833.pressionSortie,
-            '                                                    EcartBar:=oMesure833.EcartBar,
-            '                                                    EcartPct:=oMesure833.Ecartpct,
-            '                                                    MoyenneAutrePression:=oMesure833.MoyenneAutrePression,
-            '                                                    HeterogeneiteBar:=oMesure833.HeterogeneiteBar,
-            '                                                    HeterogeneitePct:=oMesure833.HeterogeneitePct,
-            '                                                    nNiveau:=oMesure833.nNiveau,
-            '                                                    nTroncon:=oMesure833.nTroncon)
-            'Next
 
 
             'Capteur de vitesse 551
+            m_oDiag.diagnosticHelp551.ConvertFromDiagnosticItem(m_oDiag)
             If m_oDiag.diagnosticHelp551.HasValue() Then
                 m_ods.SyntheseCapteurVitesse.AddSyntheseCapteurVitesseRow(idDiag:=m_oDiag.id, ErreurMoyenne:=m_oDiag.diagnosticHelp551.ErreurMoyenne, type:=m_oDiag.diagnosticHelp551.iditem, _
                                                                             Distance1:=m_oDiag.diagnosticHelp551.Distance1, VitesseLue1:=m_oDiag.diagnosticHelp551.VitesseLue1, Temps1:=m_oDiag.diagnosticHelp551.Temps1, Ecart1:=m_oDiag.diagnosticHelp551.Ecart1, VitesseReelle1:=m_oDiag.diagnosticHelp551.VitesseReelle1, _
                                                                             Distance2:=m_oDiag.diagnosticHelp551.Distance2, VitesseLue2:=m_oDiag.diagnosticHelp551.VitesseLue2, Temps2:=m_oDiag.diagnosticHelp551.Temps2, Ecart2:=m_oDiag.diagnosticHelp551.Ecart2, VitesseReelle2:=m_oDiag.diagnosticHelp551.VitesseReelle2, Conclusion:=m_oDiag.diagnosticHelp551.Resultat)
             End If
             'Capteur de vitesse 5621
+            m_oDiag.diagnosticHelp5621.ConvertFromDiagnosticItem(m_oDiag)
             If m_oDiag.diagnosticHelp5621.HasValue() Then
-                m_ods.SyntheseCapteurVitesse.AddSyntheseCapteurVitesseRow(idDiag:=m_oDiag.id, ErreurMoyenne:=m_oDiag.diagnosticHelp5621.ErreurMoyenne, type:=m_oDiag.diagnosticHelp5621.iditem, _
-                                                                            Distance1:=m_oDiag.diagnosticHelp5621.Distance1, VitesseLue1:=m_oDiag.diagnosticHelp5621.VitesseLue1, Temps1:=m_oDiag.diagnosticHelp5621.Temps1, Ecart1:=m_oDiag.diagnosticHelp5621.Ecart1, VitesseReelle1:=m_oDiag.diagnosticHelp5621.VitesseReelle1, _
+                m_ods.SyntheseCapteurVitesse.AddSyntheseCapteurVitesseRow(idDiag:=m_oDiag.id, ErreurMoyenne:=m_oDiag.diagnosticHelp5621.ErreurMoyenne, type:=m_oDiag.diagnosticHelp5621.iditem,
+                                                                            Distance1:=m_oDiag.diagnosticHelp5621.Distance1, VitesseLue1:=m_oDiag.diagnosticHelp5621.VitesseLue1, Temps1:=m_oDiag.diagnosticHelp5621.Temps1, Ecart1:=m_oDiag.diagnosticHelp5621.Ecart1, VitesseReelle1:=m_oDiag.diagnosticHelp5621.VitesseReelle1,
                                                                             Distance2:=m_oDiag.diagnosticHelp5621.Distance2, VitesseLue2:=m_oDiag.diagnosticHelp5621.VitesseLue2, Temps2:=m_oDiag.diagnosticHelp5621.Temps2, Ecart2:=m_oDiag.diagnosticHelp5621.Ecart2, VitesseReelle2:=m_oDiag.diagnosticHelp5621.VitesseReelle2, Conclusion:=m_oDiag.diagnosticHelp5621.Resultat)
             End If
             'Controle du DébitMetre (552
+            m_oDiag.diagnosticHelp552.ConvertFromDiagnosticItem(m_oDiag)
             If m_oDiag.diagnosticHelp552.hasValue() Then
-                m_ods.SyntheseDebitmetre.AddSyntheseDebitmetreRow(idDiag:=m_oDiag.id, ErreurDebitMetre:=m_oDiag.diagnosticHelp552.ErreurDebitMetre, type:=m_oDiag.diagnosticHelp552.iditem, _
-                                                                    NbreBuses1:=m_oDiag.diagnosticHelp552.NbBuses_m1, _
-                                                                    NbreBuses2:=m_oDiag.diagnosticHelp552.NbBuses_m2, _
-                                                                    NbreBuses3:=m_oDiag.diagnosticHelp552.NbBuses_m3, _
-                                                                    PressionBar1:=m_oDiag.diagnosticHelp552.Pression_m1, _
-                                                                    PressionBar2:=m_oDiag.diagnosticHelp552.Pression_m2, _
-                                                                    PressionBar3:=m_oDiag.diagnosticHelp552.Pression_m3, _
-                                                                    DebitAfficheur1:=m_oDiag.diagnosticHelp552.DebitAfficheur_m1, _
-                                                                    DebitAfficheur2:=m_oDiag.diagnosticHelp552.DebitAfficheur_m2, _
-                                                                    DebitAfficheur3:=m_oDiag.diagnosticHelp552.DebitAfficheur_m3, _
-                                                                    EcartPct1:=m_oDiag.diagnosticHelp552.EcartPct_m1, _
-                                                                    EcartPct2:=m_oDiag.diagnosticHelp552.EcartPct_m2, _
-                                                                    EcartPct3:=m_oDiag.diagnosticHelp552.EcartPct_m3, _
+                m_ods.SyntheseDebitmetre.AddSyntheseDebitmetreRow(idDiag:=m_oDiag.id, ErreurDebitMetre:=m_oDiag.diagnosticHelp552.ErreurDebitMetre, type:=m_oDiag.diagnosticHelp552.iditem,
+                                                                    NbreBuses1:=m_oDiag.diagnosticHelp552.NbBuses_m1,
+                                                                    NbreBuses2:=m_oDiag.diagnosticHelp552.NbBuses_m2,
+                                                                    NbreBuses3:=m_oDiag.diagnosticHelp552.NbBuses_m3,
+                                                                    PressionBar1:=m_oDiag.diagnosticHelp552.Pression_m1,
+                                                                    PressionBar2:=m_oDiag.diagnosticHelp552.Pression_m2,
+                                                                    PressionBar3:=m_oDiag.diagnosticHelp552.Pression_m3,
+                                                                    DebitAfficheur1:=m_oDiag.diagnosticHelp552.DebitAfficheur_m1,
+                                                                    DebitAfficheur2:=m_oDiag.diagnosticHelp552.DebitAfficheur_m2,
+                                                                    DebitAfficheur3:=m_oDiag.diagnosticHelp552.DebitAfficheur_m3,
+                                                                    EcartPct1:=m_oDiag.diagnosticHelp552.EcartPct_m1,
+                                                                    EcartPct2:=m_oDiag.diagnosticHelp552.EcartPct_m2,
+                                                                    EcartPct3:=m_oDiag.diagnosticHelp552.EcartPct_m3,
                                                                     DebitEtalon1:=m_oDiag.diagnosticHelp552.DebitEtalon_m1,
                                                                     DebitEtalon2:=m_oDiag.diagnosticHelp552.DebitEtalon_m2,
                                                                     DebitEtalon3:=m_oDiag.diagnosticHelp552.DebitEtalon_m3,
-                                                                    conclusion:=m_oDiag.diagnosticHelp552.Resultat _
+                                                                    conclusion:=m_oDiag.diagnosticHelp552.Resultat
                                                                     )
                 'm_ods.SyntheseDebitmetreDetail.AddSyntheseDebitmetreDetailRow(idDiag:=m_odiag.id, nMesure:=1, NbreBuses:=diagnosticHelp552.NbBuses_m1, Pressionbar:=diagnosticHelp552.Pression_m1, DebitAfficheur:=diagnosticHelp552.DebitAfficheur_m1, debitEtalon:=diagnosticHelp552.DebitEtalon_m1, Ecartpct:=diagnosticHelp552.EcartPct_m1, type:=diagnosticHelp552.iditem)
                 'm_ods.SyntheseDebitmetreDetail.AddSyntheseDebitmetreDetailRow(idDiag:=m_odiag.id, nMesure:=2, NbreBuses:=diagnosticHelp552.NbBuses_m2, Pressionbar:=diagnosticHelp552.Pression_m2, DebitAfficheur:=diagnosticHelp552.DebitAfficheur_m2, debitEtalon:=diagnosticHelp552.DebitEtalon_m2, Ecartpct:=diagnosticHelp552.EcartPct_m2, type:=diagnosticHelp552.iditem)
                 'm_ods.SyntheseDebitmetreDetail.AddSyntheseDebitmetreDetailRow(idDiag:=m_odiag.id, nMesure:=3, NbreBuses:=diagnosticHelp552.NbBuses_m3, Pressionbar:=diagnosticHelp552.Pression_m3, DebitAfficheur:=diagnosticHelp552.DebitAfficheur_m3, debitEtalon:=diagnosticHelp552.DebitEtalon_m3, Ecartpct:=diagnosticHelp552.EcartPct_m3, type:=diagnosticHelp552.iditem)
             End If
+            m_oDiag.diagnosticHelp5622.ConvertFromDiagnosticItem(m_oDiag)
             If m_oDiag.diagnosticHelp5622.hasValue() Then
-                m_ods.SyntheseDebitmetre.AddSyntheseDebitmetreRow(idDiag:=m_oDiag.id, ErreurDebitMetre:=m_oDiag.diagnosticHelp5622.ErreurDebitMetre, type:=m_oDiag.diagnosticHelp5622.iditem, _
-                                                                    NbreBuses1:=m_oDiag.diagnosticHelp5622.NbBuses_m1, _
-                                                                    NbreBuses2:=m_oDiag.diagnosticHelp5622.NbBuses_m2, _
-                                                                    NbreBuses3:=m_oDiag.diagnosticHelp5622.NbBuses_m3, _
-                                                                    PressionBar1:=m_oDiag.diagnosticHelp5622.Pression_m1, _
-                                                                    PressionBar2:=m_oDiag.diagnosticHelp5622.Pression_m2, _
-                                                                    PressionBar3:=m_oDiag.diagnosticHelp5622.Pression_m3, _
-                                                                    DebitAfficheur1:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m1, _
-                                                                    DebitAfficheur2:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m2, _
-                                                                    DebitAfficheur3:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m3, _
-                                                                    EcartPct1:=m_oDiag.diagnosticHelp5622.EcartPct_m1, _
-                                                                    EcartPct2:=m_oDiag.diagnosticHelp5622.EcartPct_m2, _
-                                                                    EcartPct3:=m_oDiag.diagnosticHelp5622.EcartPct_m3, _
+                m_ods.SyntheseDebitmetre.AddSyntheseDebitmetreRow(idDiag:=m_oDiag.id, ErreurDebitMetre:=m_oDiag.diagnosticHelp5622.ErreurDebitMetre, type:=m_oDiag.diagnosticHelp5622.iditem,
+                                                                    NbreBuses1:=m_oDiag.diagnosticHelp5622.NbBuses_m1,
+                                                                    NbreBuses2:=m_oDiag.diagnosticHelp5622.NbBuses_m2,
+                                                                    NbreBuses3:=m_oDiag.diagnosticHelp5622.NbBuses_m3,
+                                                                    PressionBar1:=m_oDiag.diagnosticHelp5622.Pression_m1,
+                                                                    PressionBar2:=m_oDiag.diagnosticHelp5622.Pression_m2,
+                                                                    PressionBar3:=m_oDiag.diagnosticHelp5622.Pression_m3,
+                                                                    DebitAfficheur1:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m1,
+                                                                    DebitAfficheur2:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m2,
+                                                                    DebitAfficheur3:=m_oDiag.diagnosticHelp5622.DebitAfficheur_m3,
+                                                                    EcartPct1:=m_oDiag.diagnosticHelp5622.EcartPct_m1,
+                                                                    EcartPct2:=m_oDiag.diagnosticHelp5622.EcartPct_m2,
+                                                                    EcartPct3:=m_oDiag.diagnosticHelp5622.EcartPct_m3,
                                                                     DebitEtalon1:=m_oDiag.diagnosticHelp5622.DebitEtalon_m1,
                                                                     DebitEtalon2:=m_oDiag.diagnosticHelp5622.DebitEtalon_m2,
                                                                     DebitEtalon3:=m_oDiag.diagnosticHelp5622.DebitEtalon_m3,
-                                                                    conclusion:=m_oDiag.diagnosticHelp5622.Resultat _
+                                                                    conclusion:=m_oDiag.diagnosticHelp5622.Resultat
                                                                     )
                 'm_ods.SyntheseDebitmetreDetail.AddSyntheseDebitmetreDetailRow(idDiag:=m_odiag.id, nMesure:=1, NbreBuses:=diagnosticHelp5622.NbBuses_m1, Pressionbar:=diagnosticHelp5622.Pression_m1, DebitAfficheur:=diagnosticHelp5622.DebitAfficheur_m1, debitEtalon:=diagnosticHelp5622.DebitEtalon_m1, Ecartpct:=diagnosticHelp5622.EcartPct_m1, type:=diagnosticHelp5622.iditem)
                 'm_ods.SyntheseDebitmetreDetail.AddSyntheseDebitmetreDetailRow(idDiag:=m_odiag.id, nMesure:=2, NbreBuses:=diagnosticHelp5622.NbBuses_m2, Pressionbar:=diagnosticHelp5622.Pression_m2, DebitAfficheur:=diagnosticHelp5622.DebitAfficheur_m2, debitEtalon:=diagnosticHelp5622.DebitEtalon_m2, Ecartpct:=diagnosticHelp5622.EcartPct_m2, type:=diagnosticHelp5622.iditem)

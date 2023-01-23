@@ -157,31 +157,7 @@ Public Class DiagnosticHelp12123
             oDiagItem = DiagnosticItemManager.getDiagnosticItemById(id, idDiag)
             If oDiagItem.idItem = DIAGITEM_ID Then
                 Try
-                    bCalcule = False 'Au rechargement on désactive le calcul
-                    Dim tabValues As String()
-                    tabValues = oDiagItem.itemValue.Split("|")
-                    If tabValues.Length = 5 Then
-                        Me.Resultat = Trim(tabValues(0))
-
-                        Dim nbPompe As Integer
-                        nbPompe = Trim(tabValues(1))
-                        For nPompe As Integer = 1 To nbPompe
-                            Dim oPompe As DiagnosticHelp12123Pompe
-                            oPompe = New DiagnosticHelp12123Pompe(Me, nPompe)
-                            oPompe.Load(idDiag, nPompe)
-                            lstPompes.Add(oPompe)
-                        Next
-                        'Pompes traitement de semences
-                        nbPompe = Trim(tabValues(2))
-                        For nPompe As Integer = 1 To nbPompe
-                            Dim oPompeTrtSem As DiagnosticHelp12123PompeTrtSem
-                            oPompeTrtSem = New DiagnosticHelp12123PompeTrtSem(Me, nPompe)
-                            oPompeTrtSem.Load(idDiag, nPompe)
-                            lstPompesTrtSem.Add(oPompeTrtSem)
-                        Next
-                        fonctionnementBuses = Trim(tabValues(3))
-                    End If
-                    bCalcule = True
+                    ConvertFromDiagnosticItem(oDiagItem)
                 Catch ex As Exception
                     CSDebug.dispError("DiagnosticHelp12123.load ERR conversion (" & oDiagItem.itemValue & ") ERR " & ex.Message)
                 End Try
@@ -260,6 +236,54 @@ Public Class DiagnosticHelp12123
         oDiagItem.itemValue = oDiagItem.itemValue & Trim(fonctionnementBuses) & "|" '3
 
         Return oDiagItem
+    End Function
+    Public Function ConvertFromDiagnosticItem(pDiag As Diagnostic) As Boolean
+        Dim oDiagItem As DiagnosticItem
+        Dim bReturn As Boolean = False
+        oDiagItem = pDiag.diagnosticItemsLst.getItem(DIAGITEM_ID)
+        If oDiagItem IsNot Nothing Then
+            bReturn = ConvertFromDiagnosticItem(oDiagItem)
+        End If
+        Return bReturn
+    End Function
+    Private Function ConvertFromDiagnosticItem(pDiagItem As DiagnosticItem) As Boolean
+        Debug.Assert(pDiagItem IsNot Nothing)
+        Dim bReturn As Boolean
+        Try
+            bCalcule = False 'Au rechargement on désactive le calcul
+            Dim tabValues As String()
+            tabValues = pDiagItem.itemValue.Split("|")
+            If tabValues.Length = 5 Then
+                Me.Resultat = Trim(tabValues(0))
+
+                Dim nbPompe As Integer
+                nbPompe = Trim(tabValues(1))
+                For nPompe As Integer = 1 To nbPompe
+                    Dim oPompe As DiagnosticHelp12123Pompe
+                    oPompe = New DiagnosticHelp12123Pompe(Me, nPompe)
+                    oPompe.Load(idDiag, nPompe)
+                    lstPompes.Add(oPompe)
+                Next
+                'Pompes traitement de semences
+                nbPompe = Trim(tabValues(2))
+                For nPompe As Integer = 1 To nbPompe
+                    Dim oPompeTrtSem As DiagnosticHelp12123PompeTrtSem
+                    oPompeTrtSem = New DiagnosticHelp12123PompeTrtSem(Me, nPompe)
+                    oPompeTrtSem.Load(idDiag, nPompe)
+                    lstPompesTrtSem.Add(oPompeTrtSem)
+                Next
+                fonctionnementBuses = Trim(tabValues(3))
+            End If
+            bCalcule = True
+
+
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticHelp12123.convertFromDiagnosticItem", ex)
+            CSDebug.dispError("DiagnosticHelp12123.convertFromDiagnosticItem ERR conversion (" & pDiagItem.itemValue & ")")
+            bReturn = False
+        End Try
+        Return bReturn
     End Function
 
     Private Function ConvertAttToString(pValue? As Decimal) As String

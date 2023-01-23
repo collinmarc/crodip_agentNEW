@@ -1513,4 +1513,8 @@ Public Class frmdiagnostic_recap
     Private Sub btn_Annuler_Click(sender As Object, e As EventArgs) Handles btn_Annuler.Click
         TryCast(MdiParent, parentContener).Action(New ActionFDiagEND())
     End Sub
+
+    Private Sub frmdiagnostic_recap_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        AppercuDocument()
+    End Sub
 End Class

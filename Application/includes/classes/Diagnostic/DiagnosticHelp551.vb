@@ -211,32 +211,7 @@ Public Class DiagnosticHelp551
             Dim oDiagItem As DiagnosticItem
             oDiagItem = DiagnosticItemManager.getDiagnosticItemById(id, idDiag)
             If oDiagItem.idItem = m_idItem Then
-                Dim strValue As String()
-                strValue = oDiagItem.itemValue.Split("|")
-                Try
-                    Distance1 = CDec(strValue(0))
-                    Temps1 = CDec(strValue(1))
-                    VitesseLue1 = CDec(strValue(2))
-                    Distance2 = CDec(strValue(3))
-                    Temps2 = CDec(strValue(4))
-                    VitesseLue2 = CDec(strValue(5))
-                    'Pour compatibilité avec les versions précédents ou la vitesse réelle n'était pas sauvegardée
-                    If strValue.Length > 7 Then 'NB : le dernier element était vide
-                        VitesseReelle1 = CDec(strValue(6))
-                        VitesseReelle2 = CDec(strValue(7))
-                        Ecart1 = CDec(strValue(8))
-                        Ecart2 = CDec(strValue(9))
-                        Resultat1 = strValue(10)
-                        Resultat2 = strValue(11)
-                        Resultat = strValue(12)
-                        If Not String.IsNullOrEmpty(strValue(13)) Then
-                            ErreurMoyenneSigned = CDec(strValue(13))
-                        End If
-                    End If
-
-                Catch ex As Exception
-                    CSDebug.dispError("DiagnosticHelp551.load ERR conversion (" & oDiagItem.itemValue & ") ERR " & ex.Message)
-                End Try
+                ConvertFromDiagnosticItem(oDiagItem)
                 bReturn = True
             Else
                 bReturn = False
@@ -295,6 +270,50 @@ Public Class DiagnosticHelp551
         oDiagItem.idItem = m_idItem
         oDiagItem.itemValue = Distance1 & "|" & Temps1 & "|" & VitesseLue1 & "|" & Distance2 & "|" & Temps2 & "|" & VitesseLue2 & "|" & VitesseReelle1 & "|" & m_vitesseReelle2 & "|" & Ecart1 & "|" & Ecart2 & "|" & Resultat1 & "|" & Resultat2 & "|" & Resultat & "|" & ErreurMoyenneSigned
         Return oDiagItem
+    End Function
+    Public Function ConvertFromDiagnosticItem(pDiag As Diagnostic) As Boolean
+        Dim oDiagItem As DiagnosticItem
+        Dim bReturn As Boolean = False
+        oDiagItem = pDiag.diagnosticItemsLst.getItem(m_idItem)
+        If oDiagItem IsNot Nothing Then
+            bReturn = ConvertFromDiagnosticItem(oDiagItem)
+        End If
+        Return bReturn
+    End Function
+    Private Function ConvertFromDiagnosticItem(pDiagItem As DiagnosticItem) As Boolean
+        Debug.Assert(pDiagItem IsNot Nothing)
+        Dim bReturn As Boolean
+        Try
+            Dim strValue As String()
+            strValue = pDiagItem.itemValue.Split("|")
+            Distance1 = CDec(strValue(0))
+            Temps1 = CDec(strValue(1))
+            VitesseLue1 = CDec(strValue(2))
+            Distance2 = CDec(strValue(3))
+            Temps2 = CDec(strValue(4))
+            VitesseLue2 = CDec(strValue(5))
+            'Pour compatibilité avec les versions précédents ou la vitesse réelle n'était pas sauvegardée
+            If strValue.Length > 7 Then 'NB : le dernier element était vide
+                VitesseReelle1 = CDec(strValue(6))
+                VitesseReelle2 = CDec(strValue(7))
+                Ecart1 = CDec(strValue(8))
+                Ecart2 = CDec(strValue(9))
+                Resultat1 = strValue(10)
+                Resultat2 = strValue(11)
+                Resultat = strValue(12)
+                If Not String.IsNullOrEmpty(strValue(13)) Then
+                    ErreurMoyenneSigned = CDec(strValue(13))
+                End If
+            End If
+
+
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticHelp551.convertFromDiagnosticItem", ex)
+            CSDebug.dispError("DiagnosticHelp551.convertFromDiagnosticItem ERR conversion (" & pDiagItem.itemValue & ")")
+            bReturn = False
+        End Try
+        Return bReturn
     End Function
     Public Function Delete() As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(id), "Id must be set")

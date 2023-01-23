@@ -243,24 +243,7 @@ Public Class DiagnosticHelp552
             Dim oDiagItem As DiagnosticItem
             oDiagItem = DiagnosticItemManager.getDiagnosticItemById(id, idDiag)
             If oDiagItem.idItem = m_idItem Then
-                Dim strValue As String()
-                strValue = oDiagItem.itemValue.Split("|")
-                Try
-                    NbBuses_m1 = CDec(strValue(0))
-                    Pression_m1 = CDec(strValue(1))
-                    DebitEtalon_m1 = CDec(strValue(2))
-                    DebitAfficheur_m1 = CDec(strValue(3))
-                    NbBuses_m2 = CDec(strValue(4))
-                    Pression_m2 = CDec(strValue(5))
-                    DebitEtalon_m2 = CDec(strValue(6))
-                    DebitAfficheur_m2 = CDec(strValue(7))
-                    NbBuses_m3 = CDec(strValue(8))
-                    Pression_m3 = CDec(strValue(9))
-                    DebitEtalon_m3 = CDec(strValue(10))
-                    DebitAfficheur_m3 = CDec(strValue(11))
-                Catch ex As Exception
-                    CSDebug.dispError("DiagnosticHelp552.load ERR conversion (" & oDiagItem.itemValue & ") ERR " & ex.Message)
-                End Try
+                ConvertFromDiagnosticItem(oDiagItem)
             End If
             bReturn = True
 
@@ -320,6 +303,44 @@ Public Class DiagnosticHelp552
         oDiagItem.itemValue = NbBuses_m1 & "|" & Pression_m1 & "|" & DebitEtalon_m1 & "|" & DebitAfficheur_m1 & "|" & NbBuses_m2 & "|" & Pression_m2 & "|" & DebitEtalon_m2 & "|" & DebitAfficheur_m2 & "|" & NbBuses_m3 & "|" & Pression_m3 & "|" & DebitEtalon_m3 & "|" & DebitAfficheur_m3
         Return oDiagItem
     End Function
+    Public Function ConvertFromDiagnosticItem(pDiag As Diagnostic) As Boolean
+        Dim oDiagItem As DiagnosticItem
+        Dim bReturn As Boolean = False
+        oDiagItem = pDiag.diagnosticItemsLst.getItem(m_idItem)
+        If oDiagItem IsNot Nothing Then
+            bReturn = ConvertFromDiagnosticItem(oDiagItem)
+        End If
+        Return bReturn
+    End Function
+    Private Function ConvertFromDiagnosticItem(pDiagItem As DiagnosticItem) As Boolean
+        Debug.Assert(pDiagItem IsNot Nothing)
+        Dim bReturn As Boolean
+        Try
+            Dim strValue As String()
+            strValue = pDiagItem.itemValue.Split("|")
+            NbBuses_m1 = CDec(strValue(0))
+            Pression_m1 = CDec(strValue(1))
+            DebitEtalon_m1 = CDec(strValue(2))
+            DebitAfficheur_m1 = CDec(strValue(3))
+            NbBuses_m2 = CDec(strValue(4))
+            Pression_m2 = CDec(strValue(5))
+            DebitEtalon_m2 = CDec(strValue(6))
+            DebitAfficheur_m2 = CDec(strValue(7))
+            NbBuses_m3 = CDec(strValue(8))
+            Pression_m3 = CDec(strValue(9))
+            DebitEtalon_m3 = CDec(strValue(10))
+            DebitAfficheur_m3 = CDec(strValue(11))
+
+
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticHelp552.convertFromDiagnosticItem", ex)
+            CSDebug.dispError("DiagnosticHelp552.convertFromDiagnosticItem ERR conversion (" & pDiagItem.itemValue & ")")
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+
     Public Function Delete() As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(id), "Id must be set")
         Debug.Assert(Not String.IsNullOrEmpty(idDiag), "IdDiag must be set")
