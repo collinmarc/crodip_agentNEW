@@ -1040,4 +1040,17 @@ Public Class ControleBanc
         End If
         Return sReturn
     End Function 'BuildPDF
+    ''' <summary>
+    ''' Vérifie que pour chaque buse les 3 mesures soient saisies
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function isComplet() As Boolean
+        Dim bReturn As Boolean = True
+
+        For Each oMesure As ControleBancBuse In lstMesures
+            bReturn = bReturn And oMesure.isComplet
+        Next
+
+        Return bReturn
+    End Function
 End Class

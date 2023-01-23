@@ -179,6 +179,7 @@ Public Class GlobalsCRODIP
     '###########################################
     Public Const CONST_INFO_CTRLBANC_ERR_NOTEMP As String = "        Vous devez renseigner les températures de l'air et de l'eau."
     Public Const CONST_INFO_CTRLBANC_ERR_5BUSES As String = "        Vous devez sélectionner 5 buses minimum."
+    Public Const CONST_INFO_CTRLBANC_ERR_MESURES As String = "        Vous devez saisir les mesures pour toutes les buses."
     Public Const CONST_INFO_CTRLBANC_ERR_NOVERIFNUM As String = "        Vous devez renseigner un numéro de vérification."
     Public Const CONST_INFO_CTRLBANC_ERR_NOBANCNUM As String = "        Vous devez renseigner un numéro de banc à contrôler."
     Public Const CONST_INFO_CTRLBANC_MSG_CONTROLOK As String = "        Contrôle OK"

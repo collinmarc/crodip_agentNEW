@@ -1286,7 +1286,10 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnAnnuler.BackgroundImage = Global.Crodip_agent.Resources.btn_annuler
         Me.btnAnnuler.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnAnnuler.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control
         Me.btnAnnuler.FlatAppearance.BorderSize = 0
+        Me.btnAnnuler.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control
+        Me.btnAnnuler.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control
         Me.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAnnuler.ForeColor = System.Drawing.Color.White
         Me.btnAnnuler.Location = New System.Drawing.Point(12, 695)
@@ -1303,7 +1306,9 @@ Public Class frmdiagnostic_facturationCoProp
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnImprimer.BackgroundImage = Global.Crodip_agent.Resources.btn_divers_print
         Me.btnImprimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnImprimer.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control
         Me.btnImprimer.FlatAppearance.BorderSize = 0
+        Me.btnImprimer.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control
         Me.btnImprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnImprimer.ForeColor = System.Drawing.Color.White
         Me.btnImprimer.Location = New System.Drawing.Point(329, 695)
@@ -1319,7 +1324,10 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnPoursuivre.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnPoursuivre.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
         Me.btnPoursuivre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnPoursuivre.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control
         Me.btnPoursuivre.FlatAppearance.BorderSize = 0
+        Me.btnPoursuivre.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control
+        Me.btnPoursuivre.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control
         Me.btnPoursuivre.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnPoursuivre.ForeColor = System.Drawing.Color.White
         Me.btnPoursuivre.Location = New System.Drawing.Point(797, 696)

@@ -1926,7 +1926,11 @@ Public Class frmcontrole_bancs
                 Next
 
                 If nBuse >= 5 Then
-                    valider()
+                    If m_oControleBanc.isComplet() Then
+                        valider()
+                    Else
+                        MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_MESURES)
+                    End If
                 Else
                     MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_5BUSES)
 

@@ -225,4 +225,20 @@
         End If
 
     End Sub
+    ''' <summary>
+    ''' Vérifie que si le numéro est saisie alors les 3 mesures soient saisies
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function isComplet() As Boolean
+        Dim bReturn As Boolean = True
+        If NumNatBuse <> "" Then
+            If m1_3bar <> "" And m2_3bar <> "" And m3_3bar <> "" Then
+                bReturn = True
+            Else
+                bReturn = False
+            End If
+        End If
+
+        Return bReturn
+    End Function
 End Class
