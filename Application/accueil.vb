@@ -5474,7 +5474,7 @@ Public Class accueil
                 formEdition_fiche_pulve.ShowDialog()
                 'Rafraichissement de la liste
                 '                affichePulvedansListeExploitation(pulverisateurCourant)
-
+                m_BindingListOfPulve.ResetItem(oRowIndex)
                 ' Mise à jour de la barre de status
                 Statusbar.display("Pulvérisateur n°" & pulverisateurCourant.id)
             Catch ex As Exception
