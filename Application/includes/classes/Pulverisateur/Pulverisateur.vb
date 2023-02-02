@@ -140,7 +140,7 @@ Public Class Pulverisateur
             numeroNational = GlobalsCRODIP.GLOB_DIAG_NUMAGR
         End If
         _idStructure = -1
-        dateProchainControle = New Date(1970, 1, 10).ToShortDateString()
+        dateProchainControle = Nothing
     End Sub
     Public Property id() As String
         Get

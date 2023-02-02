@@ -409,6 +409,7 @@
     <Compile Include="Application\includes\classes\DPEtat\MoteurFrmDiag.vb" />
     <Compile Include="Application\includes\classes\FicheVie\FVAgentPC.vb" />
     <Compile Include="Application\includes\classes\Referentiel\LieuxControle.vb" />
+    <Compile Include="Application\includes\classes\Referentiel\referentielMetrologie.vb" />
     <Compile Include="Application\includes\classes\root.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
     <Compile Include="Application\includes\classes\Synchro\SynchronisationElmtPulverisateur.vb" />

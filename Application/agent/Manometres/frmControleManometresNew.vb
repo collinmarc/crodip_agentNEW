@@ -2,6 +2,8 @@ Imports System.Collections.Generic
 Imports System.Linq
 Imports System.Threading
 Imports CRODIPAcquisition
+Imports CRODIP_ControlLibrary
+
 ''' <summary>
 ''' Fenêtre de controle des manomètres
 ''' </summary>
@@ -478,7 +480,6 @@ Public Class frmControleManometresNew
         '
         Me.btn_controleManos_valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_controleManos_valider.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_controleManos_valider.Enabled = True
         Me.btn_controleManos_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_controleManos_valider.ForeColor = System.Drawing.Color.White
         Me.btn_controleManos_valider.Image = CType(resources.GetObject("btn_controleManos_valider.Image"), System.Drawing.Image)
@@ -818,7 +819,7 @@ Public Class frmControleManometresNew
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 203.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 204.0!))
         Me.tlpEntete.Controls.Add(Me.Label5, 4, 0)
         Me.tlpEntete.Controls.Add(Me.Label6, 5, 0)
         Me.tlpEntete.Controls.Add(Me.Label7, 6, 0)
@@ -875,7 +876,7 @@ Public Class frmControleManometresNew
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(425, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(258, 28)
+        Me.Label7.Size = New System.Drawing.Size(259, 28)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -887,7 +888,7 @@ Public Class frmControleManometresNew
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(486, 30)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(197, 29)
+        Me.Label11.Size = New System.Drawing.Size(198, 29)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2416,6 +2417,14 @@ Public Class frmControleManometresNew
         oPres.FondEchelle = "5"
         lstPressionCtrl.Add(oPres)
 
+        AffichePressions()
+
+    End Sub
+
+    Private Sub AffichePressions()
+        Dim oParamMetrologie As New lstParamMetrologie()
+        oParamMetrologie.readXML()
+
         'Trt des pression croissantes
         '-----------------------------------
         Me.tlpPressionCroissant.Controls.Clear()
@@ -2424,48 +2433,42 @@ Public Class frmControleManometresNew
         'Label Croissant
         'TODO créer le Label
         Me.tlpPressionCroissant.Controls.Add(Me.Label19, 0, 0)
-        'Trt des répétitions
-        Dim lst = lstPressionCtrl.Where(Function(op) As Boolean
-                                            Return op.Type = "CROISSANT"
-                                        End Function)
-        For Each oP As PressionCtrl In lst
-            AjouteLigne(tlpPressionCroissant, oP.Type)
+        Dim lstPressionM As List(Of ParamMetrologiePression)
+        lstPressionM = oParamMetrologie.lstParam(0).PressionMontantes
+        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
+            AjouteLigne(tlpPressionCroissant, "CROISSANT")
         Next
         Me.tlpPressionCroissant.RowStyles.Clear()
-        Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
-        Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
-        Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
-        Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
-        Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66917!))
-        Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
-
+        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
+            Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstPressionM.Count))
+        Next
         Me.tlpPressionCroissant.SetRowSpan(Me.Label19, tlpPressionCroissant.RowCount)
+
         'Suppression de la Col textBox
         tlpPressionCroissant.ColumnStyles().Item(3).SizeType = SizeType.Absolute
         tlpPressionCroissant.ColumnStyles().Item(3).Width = 0
+
+        'Label Croissant
+        'TODO créer le Label
+        Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
 
         'Trt des pression décoirssantes
         '-----------------------------------
         Me.tlpPressionDecroissante.Controls.Clear()
         Me.tlpPressionDecroissante.RowCount = 0
         Me.tlpPressionDecroissante.RowStyles.Clear()
-        'Label Croissant
-        'TODO créer le Label
+        'Label Repetition
         Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
-        lst = lstPressionCtrl.Where(Function(op) As Boolean
-                                        Return op.Type = "DECROISSANT"
-                                    End Function)
-        For Each oP As PressionCtrl In lst
-            AjouteLigne(tlpPressionDecroissante, oP.Type)
+
+        lstPressionM = oParamMetrologie.lstParam(0).PressionDescendantes
+        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
+            AjouteLigne(tlpPressionDecroissante, "DECROISSANT")
         Next
         Me.tlpPressionDecroissante.RowStyles.Clear()
-        Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-
-
-        Me.tlpPressionCroissant.SetRowSpan(Me.Label20, tlpPressionDecroissante.RowCount)
+        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
+            Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstPressionM.Count))
+        Next
+        Me.tlpPressionDecroissante.SetRowSpan(Me.Label20, tlpPressionDecroissante.RowCount)
         'Suppression de la Col textBox
         tlpPressionDecroissante.ColumnStyles().Item(3).SizeType = SizeType.Absolute
         tlpPressionDecroissante.ColumnStyles().Item(3).Width = 0
@@ -2480,30 +2483,25 @@ Public Class frmControleManometresNew
         'Label Repetition
         Me.tlpRepetition.Controls.Add(Me.Label26, 0, 0)
 
-        lst = lstPressionCtrl.Where(Function(op) As Boolean
-                                        Return op.Type = "REGUL"
-                                    End Function)
-        For Each oP As PressionCtrl In lst
-            AjouteLigne(tlpRepetition, oP.Type)
+        lstPressionM = oParamMetrologie.lstParam(0).Repetitions
+        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
+            AjouteLigne(tlpRepetition, "REPETITION")
         Next
         Me.tlpRepetition.RowStyles.Clear()
-        Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33!))
-        Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33!))
-        Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33!))
-
+        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
+            Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstPressionM.Count))
+        Next
         Me.tlpRepetition.SetRowSpan(Me.Label26, tlpRepetition.RowCount)
 
         'Suppression de la Col textBox
         tlpRepetition.ColumnStyles().Item(3).SizeType = SizeType.Absolute
         tlpRepetition.ColumnStyles().Item(3).Width = 0
-
-
     End Sub
 
     Private Sub AjouteLigne(pTableLayoutPanel As TableLayoutPanel, pType As String)
         Dim Prefixe As String = ""
         Select Case pType
-            Case "REGUL"
+            Case "REPETITION"
                 Prefixe = "down"
             Case "DECROISSANT"
                 Prefixe = "down"

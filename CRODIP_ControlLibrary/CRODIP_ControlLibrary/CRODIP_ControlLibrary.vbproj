@@ -192,6 +192,7 @@
     <Compile Include="ParamDiag\ParamDiagCalc542TypeEcart.vb" />
     <Compile Include="ParamDiag\ParamDiagCalc833.vb" />
     <Compile Include="ParamDiag\ParamDiagCalc922.vb" />
+    <Compile Include="ParamMetrologie.vb" />
     <Compile Include="TBNumeric.vb">
       <SubType>Component</SubType>
     </Compile>

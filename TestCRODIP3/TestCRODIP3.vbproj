@@ -207,6 +207,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="NiveauAlerteTest.vb" />
+    <Compile Include="ParamMetrologieTest.vb" />
     <Compile Include="ParamDiagTest.vb" />
     <Compile Include="PopulateComboBoxTest.vb" />
     <Compile Include="PrestationTest.vb" />
