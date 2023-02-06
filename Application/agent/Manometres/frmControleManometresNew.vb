@@ -819,7 +819,7 @@ Public Class frmControleManometresNew
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 204.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205.0!))
         Me.tlpEntete.Controls.Add(Me.Label5, 4, 0)
         Me.tlpEntete.Controls.Add(Me.Label6, 5, 0)
         Me.tlpEntete.Controls.Add(Me.Label7, 6, 0)
@@ -876,7 +876,7 @@ Public Class frmControleManometresNew
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(425, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(259, 28)
+        Me.Label7.Size = New System.Drawing.Size(260, 28)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -888,7 +888,7 @@ Public Class frmControleManometresNew
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(486, 30)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(198, 29)
+        Me.Label11.Size = New System.Drawing.Size(199, 29)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2502,7 +2502,7 @@ Public Class frmControleManometresNew
         Dim Prefixe As String = ""
         Select Case pType
             Case "REPETITION"
-                Prefixe = "down"
+                Prefixe = "repe"
             Case "DECROISSANT"
                 Prefixe = "down"
             Case "CROISSANT"
@@ -2526,7 +2526,7 @@ Public Class frmControleManometresNew
         Dim oNup As NumericUpDown
         oNup = New System.Windows.Forms.NumericUpDown()
         oNup.Dock = DockStyle.Fill
-        oNup.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, Prefixe & "_pt" & NumLigne + 1 & "_pres_manoCtrl", True))
+        oNup.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_manoCtrl(" & Prefixe & "," & NumLigne + 1 & ")", True))
         pTableLayoutPanel.Controls.Add(oNup, 2, NumLigne)
 
         Dim otb As TextBox
@@ -2534,27 +2534,27 @@ Public Class frmControleManometresNew
         otb.Dock = System.Windows.Forms.DockStyle.Fill
         otb.ReadOnly = True
         otb.TabStop = False
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, Prefixe & "_pt" & NumLigne + 1 & "_pres_manoCtrl", True))
+        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_manoCtrl(" & Prefixe & "," & NumLigne + 1 & ")", True))
         pTableLayoutPanel.Controls.Add(otb, 3, NumLigne)
 
         otb = New TextBox
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, Prefixe & "_pt" & NumLigne + 1 & "_pres_manoEtalon", True))
+        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_manoEtalon(" & Prefixe & "," & NumLigne + 1 & ")", True))
         otb.Dock = System.Windows.Forms.DockStyle.Fill
         pTableLayoutPanel.Controls.Add(otb, 4, NumLigne)
         otb = New TextBox
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, Prefixe & "_pt" & NumLigne + 1 & "_incertitude", True))
+        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_err_incertitude(" & Prefixe & "," & NumLigne + 1 & ")", True))
         otb.Dock = System.Windows.Forms.DockStyle.Fill
         pTableLayoutPanel.Controls.Add(otb, 5, NumLigne)
         otb = New TextBox
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, Prefixe & "_pt" & NumLigne + 1 & "_EMT", True))
+        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_EMT(" & Prefixe & "," & NumLigne + 1 & ")", True))
         otb.Dock = System.Windows.Forms.DockStyle.Fill
         pTableLayoutPanel.Controls.Add(otb, 6, NumLigne)
         otb = New TextBox
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, Prefixe & "_pt" & NumLigne + 1 & "_err_abs", True))
+        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_err_abs(" & Prefixe & "," & NumLigne + 1 & ")", True))
         otb.Dock = System.Windows.Forms.DockStyle.Fill
         pTableLayoutPanel.Controls.Add(otb, 7, NumLigne)
         otb = New TextBox
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, Prefixe & "_pt" & NumLigne + 1 & "_err_fondEchelle", True))
+        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_err_fondEchelle(" & Prefixe & "," & NumLigne + 1 & ")", True))
         otb.Dock = System.Windows.Forms.DockStyle.Fill
         pTableLayoutPanel.Controls.Add(otb, 8, NumLigne)
     End Sub

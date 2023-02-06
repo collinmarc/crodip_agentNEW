@@ -817,7 +817,7 @@ Public Class Agent
 
 
 
-    Public Function checkConnection() As Boolean
+    Public Function checkPC() As Boolean
         Dim oAgentPC As AgentPC
         Dim bReturn As Boolean
         Dim bCleARegenerer As Boolean = False
