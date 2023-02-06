@@ -4101,7 +4101,7 @@ Public Class accueil
         lbl_infosAgent_Prenom.Text = agentCourant.prenom
         lbl_infosAgent_dateDernCnx.Text = CSDate.ToCRODIPString(agentCourant.dateDerniereConnexion)
         Dim dateDernSynhcro As String = CSDate.ToCRODIPString(agentCourant.dateDerniereSynchro)
-        If dateDernSynhcro = "01/01/1970 00:00:00" Or dateDernSynhcro = "" Or dateDernSynhcro = "00/00/0000 00:00:00" Then
+        If CSDate.FromCrodipString(dateDernSynhcro) = CSDate.FromCrodipString("01/01/1970 00:00:00") Or dateDernSynhcro = "" Or dateDernSynhcro = "00/00/0000 00:00:00" Then
             lbl_infosAgent_dateDernSynchro.Text = "--/--/-- --:--:--"
         Else
             lbl_infosAgent_dateDernSynchro.Text = dateDernSynhcro

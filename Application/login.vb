@@ -743,6 +743,9 @@ Public Class login
                         tmpObject = AgentManager.getWSAgentById(_selectedAgent.numeroNational)
                         If tmpObject.id > 0 And tmpObject.isActif And Not tmpObject.isSupprime Then
                             _selectedAgent.duppliqueInfosAgent(tmpObject, False)
+                            If CSDate.FromCrodipString(_selectedAgent.dateDerniereSynchro).Year = 1970 Then
+                                _selectedAgent.dateDerniereSynchro = tmpObject.dateDerniereSynchro
+                            End If
                             AgentManager.save(_selectedAgent, True)
                             bAgentExistant = True
                         Else
