@@ -1421,61 +1421,61 @@ Public Class FrmDiagnostique
         Next
 
     End Sub
-    Public Sub loaderTroncon()
+    'Public Sub loaderTroncon()
 
-        For x As Integer = 2 To 3
-            Dim positionTop As Integer = 0
-            For i As Integer = 1 To 13
+    '    For x As Integer = 2 To 3
+    '        Dim positionTop As Integer = 0
+    '        For i As Integer = 1 To 13
 
-                If positionTop = 0 Then
-                    positionTop = 8
-                Else
-                    positionTop = positionTop + 24
-                End If
+    '            If positionTop = 0 Then
+    '                positionTop = 8
+    '            Else
+    '                positionTop = positionTop + 24
+    '            End If
 
-                '## Le label
-                Dim tmpLabel As New Label
-                tmpLabel.Name = "tronconPressionLue_id_" & x & "_" & i
-                tmpLabel.Text = i
-                Controls.Add(tmpLabel)
-                ' Position
-                tmpLabel.Parent = CSForm.getControlByName("manotroncon_pressionTroncon_" & x & "bar_panel_tonconId", globFormDiagnostic)
-                tmpLabel.Left = 16
-                tmpLabel.Top = positionTop
-                ' Taille
-                tmpLabel.Width = 40
-                ' Apparence
-                tmpLabel.ForeColor = System.Drawing.Color.FromArgb(CType(2, Byte), CType(129, Byte), CType(198, Byte))
-                tmpLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-                tmpLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft
+    '            '## Le label
+    '            Dim tmpLabel As New Label
+    '            tmpLabel.Name = "tronconPressionLue_id_" & x & "_" & i
+    '            tmpLabel.Text = i
+    '            Controls.Add(tmpLabel)
+    '            ' Position
+    '            tmpLabel.Parent = CSForm.getControlByName("manotroncon_pressionTroncon_" & x & "bar_panel_tonconId", globFormDiagnostic)
+    '            tmpLabel.Left = 16
+    '            tmpLabel.Top = positionTop
+    '            ' Taille
+    '            tmpLabel.Width = 40
+    '            ' Apparence
+    '            tmpLabel.ForeColor = System.Drawing.Color.FromArgb(CType(2, Byte), CType(129, Byte), CType(198, Byte))
+    '            tmpLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    '            tmpLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft
 
-                '## Pression de sortie
-                Dim tmpPressionLue As New CRODIP_ControlLibrary.TBNumeric
-                tmpPressionLue.Name = "tronconPressionLue_" & x & "_" & i
-                Controls.Add(tmpPressionLue)
-                ' Position
-                tmpPressionLue.Parent = CSForm.getControlByName("manotroncon_pressionTroncon_" & x & "bar_panel_pressionSortie", globFormDiagnostic)
-                tmpPressionLue.Left = 16
-                tmpPressionLue.Top = positionTop
-                ' Taille
-                tmpPressionLue.Width = 104
-                AddHandler tmpPressionLue.TextChanged, AddressOf calcEcartPressionSortie
+    '            '## Pression de sortie
+    '            Dim tmpPressionLue As New CRODIP_ControlLibrary.TBNumeric
+    '            tmpPressionLue.Name = "tronconPressionLue_" & x & "_" & i
+    '            Controls.Add(tmpPressionLue)
+    '            ' Position
+    '            tmpPressionLue.Parent = CSForm.getControlByName("manotroncon_pressionTroncon_" & x & "bar_panel_pressionSortie", globFormDiagnostic)
+    '            tmpPressionLue.Left = 16
+    '            tmpPressionLue.Top = positionTop
+    '            ' Taille
+    '            tmpPressionLue.Width = 104
+    '            AddHandler tmpPressionLue.TextChanged, AddressOf calcEcartPressionSortie
 
-                '## Ecart
-                Dim tmpEcart As New CRODIP_ControlLibrary.TBNumeric
-                tmpEcart.Name = "tronconEcart_" & x & "_" & i
-                Controls.Add(tmpEcart)
-                ' Position
-                tmpEcart.Parent = CSForm.getControlByName("manotroncon_pressionTroncon_" & x & "bar_panel_ecart", globFormDiagnostic)
-                tmpEcart.Left = 16
-                tmpEcart.Top = positionTop
-                ' Taille
-                tmpEcart.Width = 80
-                tmpEcart.ReadOnly = True
+    '            '## Ecart
+    '            Dim tmpEcart As New CRODIP_ControlLibrary.TBNumeric
+    '            tmpEcart.Name = "tronconEcart_" & x & "_" & i
+    '            Controls.Add(tmpEcart)
+    '            ' Position
+    '            tmpEcart.Parent = CSForm.getControlByName("manotroncon_pressionTroncon_" & x & "bar_panel_ecart", globFormDiagnostic)
+    '            tmpEcart.Left = 16
+    '            tmpEcart.Top = positionTop
+    '            ' Taille
+    '            tmpEcart.Width = 80
+    '            tmpEcart.ReadOnly = True
 
-            Next
-        Next
-    End Sub
+    '        Next
+    '    Next
+    'End Sub
 
 #End Region
 
@@ -4369,63 +4369,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     ' On transmet le tout au diag
                     Try
                         Dim x As Control
-                        x = CSForm.getControlByName("diagBuses_mesureDebit_" & oValue.Niveau.ToString & "_" & oValue.NumBuse & "_debit", globFormDiagnostic)
+                        x = CSForm.getControlByName("diagBuses_mesureDebit_" & oValue.Niveau.ToString & "_" & oValue.NumBuse & "_debit", Me)
                         If x IsNot Nothing Then
                             x.Text = oValue.Debit.ToString
                             mutCalcUsure1Buse(oValue.Niveau, oValue.NumBuse)
                             mutCalcIs1BuseUsee(oValue.Niveau, oValue.NumBuse)
                         End If
-                        'If oValue.DebitNominal <> -1 Then
-                        '    'Debit Nominal constructeur
-                        '    x = CSForm.getControlByName("TextBox_debitNominalCONSTructeur_" & oValue.Niveau, diagBuses_tab_categories)
-                        '    If x IsNot Nothing Then
-                        '        x.Text = oValue.DebitNominal
-                        '    End If
-                        '    'Debit Nominal pour Calcul
-                        '    x = CSForm.getControlByName("TextBox_debitNominal_" & oValue.Niveau, diagBuses_tab_categories)
-                        '    If x IsNot Nothing Then
-                        '        x.Text = oValue.DebitNominal
-                        '    End If
-                        'End If
-                        'If oValue.MarqueTypeFonctionement <> "" Then
-                        '    Try
-                        '        Dim tab As String() = oValue.MarqueTypeFonctionement.Split("-")
-                        '        Dim strMarque As String = tab(0).Trim
-                        '        Dim strModele As String = tab(1).Trim
-                        '        Dim strFonction As String = tab(2).Trim
-
-                        '        x = CSForm.getControlByName("ComboBox_marque_" & oValue.Niveau, diagBuses_tab_categories)
-                        '        If x IsNot Nothing Then
-                        '            x.Text = strMarque
-                        '        End If
-                        '        x = CSForm.getControlByName("ComboBox_modele_" & oValue.Niveau, diagBuses_tab_categories)
-                        '        If x IsNot Nothing Then
-                        '            x.Text = strModele
-                        '        End If
-
-                        '    Catch
-
-                        '    End Try
-                        'End If
-                        'If oValue.Calibre <> "" Then
-                        '    Try
-                        '        Dim tab As String() = oValue.MarqueTypeFonctionement.Split("-")
-                        '        Dim strCouleur As String = tab(0).Trim
-                        '        Dim strCalibre As String = tab(1).Trim
-
-                        '        x = CSForm.getControlByName("ComboBox_couleur_" & oValue.Niveau, diagBuses_tab_categories)
-                        '        If x IsNot Nothing Then
-                        '            x.Text = strCouleur
-                        '        End If
-                        '        x = CSForm.getControlByName("TextBox_calibre_" & oValue.Niveau, diagBuses_tab_categories)
-                        '        If x IsNot Nothing Then
-                        '            x.Text = strCalibre
-                        '        End If
-
-                        '    Catch
-
-                        '    End Try
-                        'End If
 
 
                     Catch ex As Exception
