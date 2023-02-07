@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+BUILD 20230207130000
+		0001545: Erreur D'acquisition
+
 BUILD 20221222170000
 
 	0001463: Affichage des Libelle de défauts 5.1 et 5.2 sur la page diagnostique
