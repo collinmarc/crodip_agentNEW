@@ -914,16 +914,20 @@ Public Class login
     End Sub
     Private Sub FillCbxAgent()
         Dim oAgentList As AgentList
-        oAgentList = AgentManager.getAgentList()
-        login_profil.Items.Clear()
-        For Each curAgent As Agent In oAgentList.items
-            If Not curAgent.isSupprime Then
-                ' On ajoute le profil à la liste déroulante
-                Dim libelleAccount As String = curAgent.nom & " " & curAgent.prenom
-                libelleAccount = libelleAccount & "(" & curAgent.NomStructure & ")"
-                Dim objComboItem As New objComboItem(curAgent.numeroNational, libelleAccount)
-                login_profil.Items.Add(objComboItem)
-            End If
+        Dim olstStruct As List(Of Structuree)
+        olstStruct = StructureManager.getList()
+        For Each oStruct As Structuree In olstStruct
+            oAgentList = AgentManager.getAgentList(oStruct.id)
+            login_profil.Items.Clear()
+            For Each curAgent As Agent In oAgentList.items
+                If Not curAgent.isSupprime Then
+                    ' On ajoute le profil à la liste déroulante
+                    Dim libelleAccount As String = curAgent.nom & " " & curAgent.prenom
+                    libelleAccount = libelleAccount & "(" & curAgent.NomStructure & ")"
+                    Dim objComboItem As New objComboItem(curAgent.numeroNational, libelleAccount)
+                    login_profil.Items.Add(objComboItem)
+                End If
+            Next
         Next
 
     End Sub

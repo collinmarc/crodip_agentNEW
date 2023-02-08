@@ -85,34 +85,41 @@ Public Class SynchronisationManager
         'Récupération des infos depuis le SRV
         ' déclarations
         Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
+        CSDebug.dispInfo("WS URL = " & objWSCrodip.Url)
         ' Appel au WS
         Dim isUpdateAvailable As Integer
         Dim isComplete As Integer
 
         Dim DateDernSynhcro As DateTime
-        DateDernSynhcro = AgentManager.GetDateDernSynchro()
+        CSDebug.dispInfo("Demande de la dernière date de synchro de  " & pAgent.idStructure)
+        DateDernSynhcro = AgentManager.GetDateDernSynchro(pAgent.idStructure)
+        CSDebug.dispInfo("Dernière date de synchro =   " & DateDernSynhcro.ToShortDateString())
         'If CSDate.FromCrodipString(pAgent.dateDerniereSynchro) < DateDernSynhcro Then
         '    DateDernSynhcro = CSDate.FromCrodipString(pAgent.dateDerniereSynchro)
         'End If
         logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
+        CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
         Try
 
             objWSCrodip.UpdatesAvailable(pAgent.numeroNational, CSDate.GetDateForWS(DateDernSynhcro), isUpdateAvailable, isComplete, objWSUpdates)
         Catch ex As Exception
             CSDebug.dispError("SynchronisationManager.getWSlstElementsASynchroniser ERR" & ex.Message)
         End Try
-        'l'obejt objWSupdates est en fait un tableau de XMLNode
+        ''l 'obejt objWSupdates est en fait un tableau de XMLNode
         'Dim oTabXml As List(Of XmlNode())
         'oTabXml = (From obj In objWSUpdates Select CType(obj, XmlNode())).ToList()
         'logger.Trace("<FROMWS>")
         'For Each otabNode As XmlNode() In oTabXml
-        '    logger.Trace("<xmlNode>")
-        '    logger.Trace(From oNode As XmlNode In otabNode Select oNode.OuterXml)
-        '    logger.Trace("</xmlNode>")
+        '    CSDebug.dispInfo("<xmlNode>")
+        '    For Each oNode As XmlNode In otabNode
+        '        CSDebug.dispInfo(oNode.OuterXml)
+        '    Next
+        '    CSDebug.dispInfo("</xmlNode>")
         'Next
         'logger.Trace("</FROMWS>")
         Dim oSynchro As SynchronisationElmt = Nothing
         'Parcours de la Liste des Objets à synchroniser
+        CSDebug.dispInfo("Parcours des " & objWSUpdates.Count & " objets rendus")
         For Each objWSUpdates_items As Object In objWSUpdates
             'création de l'objet de synhcronisation en fonction du type
             For Each objWSUpdates_item As System.Xml.XmlNode In objWSUpdates_items
@@ -126,7 +133,7 @@ Public Class SynchronisationManager
                     oSynchro.Fill(objWSUpdates_item.Name(), objWSUpdates_item.InnerText())
                 Next objWSUpdates_item
 
-                LogSynchroElmt(oSynchro, "WS.UpdateAvailable")
+                ' LogSynchroElmt(oSynchro, "WS.UpdateAvailable")
                 If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
                     'En mode simplifié on ne synchronise pas les Elements communs et Organisme du Module documentaire
                     If TypeOf oSynchro Is SynchronisationElmtDocument And oSynchro.Update Then
@@ -141,6 +148,7 @@ Public Class SynchronisationManager
             End If
         Next objWSUpdates_items
         logger.Trace("</SynchroElmt>")
+        CSDebug.dispInfo("Fin du Parcours des elements")
 
         Return oLst
     End Function

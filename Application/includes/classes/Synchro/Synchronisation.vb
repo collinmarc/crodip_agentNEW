@@ -980,7 +980,7 @@ Public Class Synchronisation
         lstElementsASynchronisertotal = getListeElementsASynchroniserDESC(m_Agent)
 
         Dim oList As AgentList
-        oList = AgentManager.getAgentList()
+        oList = AgentManager.getAgentList(m_Agent.idStructure)
 
         'On récupère les éléments à synchroniser de chaque Agent
         For Each oAgent As Agent In oList.items
@@ -1018,16 +1018,20 @@ Public Class Synchronisation
         Try
             m_listSynchro = ""
             Notice("Debut synchro descendante")
+            CSDebug.dispInfo("Debut synchro descendante")
             SynchronisationManager.LogSynchroStart("DESC")
             Dim oList As AgentList
-            oList = AgentManager.getAgentList()
+            oList = AgentManager.getAgentList(m_Agent.idStructure)
 
             'On récupère les éléments à synchroniser de chaque Agent
             For Each oAgent As Agent In oList.items
                 If Not oAgent.isGestionnaire And Not oAgent.isSupprime And oAgent.isActif Then
+                    CSDebug.dispInfo("getListasynchroniser(" & oAgent.id & ")")
+
                     lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
 
                     'et on les fusionne dans la liste Globale
+                    CSDebug.dispInfo("Fusion [" & lstElementsASynchroniserAgent.Count & "]")
                     For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
                         Dim n As Integer = (From o In lstElementsASynchroniserTotal
                                             Where o.Type = oelmt.Type And o.IdentifiantChaine = oelmt.IdentifiantChaine And o.IdentifiantEntier = oelmt.IdentifiantEntier
@@ -1040,6 +1044,7 @@ Public Class Synchronisation
                 End If
             Next
 
+            CSDebug.dispInfo("RunDescSynchro [" & lstElementsASynchroniserTotal.Count & "]")
             bReturn = runDescSynchro(lstElementsASynchroniserTotal)
         Catch Ex As Exception
             CSDebug.dispError("Synchronisation.runDescSynchro Err : " & Ex.Message)
@@ -1134,7 +1139,7 @@ Public Class Synchronisation
         Try
 
             Dim nbElement As Integer = (From elmt As SynchronisationElmt In m_ListeElementSynchroASC
-                                        Where elmt.type = pElement.type And elmt.identifiantChaine = pElement.identifiantChaine
+                                        Where elmt.Type = pElement.Type And elmt.IdentifiantChaine = pElement.IdentifiantChaine
                                         Select elmt).Count
 
             bReturn = (nbElement > 0)
@@ -1169,7 +1174,7 @@ Public Class Synchronisation
             dtSRV.AddSeconds(10)
             'Maj des agents
             Dim oList As AgentList
-            oList = AgentManager.getAgentList()
+            oList = AgentManager.getAgentList(m_Agent.idStructure)
             For Each oAgent As Agent In oList.items
                 If Not oAgent.isGestionnaire And Not oAgent.isSupprime And oAgent.isActif Then
                     oAgent.dateDerniereSynchro = CSDate.ToCRODIPString(dtSRV)

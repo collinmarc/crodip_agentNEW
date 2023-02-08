@@ -82,7 +82,7 @@ Public Class Agent
         _numeroNational = pNumeroNational
         _nom = pnom
         _idStructure = pidStructure
-        dateDerniereSynchro = CSDate.ToCRODIPString(AgentManager.GetDateDernSynchro())
+        dateDerniereSynchro = CSDate.ToCRODIPString(AgentManager.GetDateDernSynchro(pidStructure))
     End Sub
 
     Public Property id() As Integer

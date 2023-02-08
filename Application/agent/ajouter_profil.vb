@@ -257,9 +257,9 @@ Public Class ajouter_profil
                                     StructureManager.save(oStructure, True)
                                 End If
                                 'La date de ernière synhcro est la plus petite date de synchro des agents en base.
-                                objAgent.dateDerniereSynchro = AgentManager.GetDateDernSynchro()
-                                    'Update de cet agent avec l'agent recu pas WS
-                                    AgentManager.save(objAgent)
+                                objAgent.dateDerniereSynchro = AgentManager.GetDateDernSynchro(oStructure.id)
+                                'Update de cet agent avec l'agent recu pas WS
+                                AgentManager.save(objAgent)
                                     MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")
                                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
                                 Else

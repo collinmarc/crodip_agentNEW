@@ -126,7 +126,7 @@ Public Class AgentManager
     ''' </summary>
     ''' <returns> Une Liste d'agent List(Of Agent) </returns>
     ''' <remarks></remarks>
-    Public Shared Function getAgentList() As AgentList
+    Public Shared Function getAgentList(pIdStructure As String) As AgentList
         ' déclarations
         Dim tmpAgent As New Agent
         Dim oCsdb As CSDb = Nothing
@@ -446,10 +446,10 @@ Public Class AgentManager
                 paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
 
                 bddCommande.CommandText = "UPDATE Agent SET " & paramsQuery & " WHERE numeroNational='" & agent.numeroNational & "'"
-                    nResult = bddCommande.ExecuteNonQuery()
-                    Debug.Assert(nResult = 1, "AgentManager.save: Erreur en update 0 ou  plus d'une ligne concernée")
-                    bReturn = True
-                End If
+                nResult = bddCommande.ExecuteNonQuery()
+                Debug.Assert(nResult = 1, "AgentManager.save: Erreur en update 0 ou  plus d'une ligne concernée")
+                bReturn = True
+            End If
         Catch ex As Exception
             CSDebug.dispFatal("Err AgentManager - save : " & ex.Message.ToString)
             bReturn = False
@@ -527,8 +527,8 @@ Public Class AgentManager
     ''' Rend la Plus petite date de dernière synchro
     ''' </summary>
     ''' <returns></returns>
-    Friend Shared Function GetDateDernSynchro() As DateTime
-        Dim lst As AgentList = AgentManager.getAgentList()
+    Friend Shared Function GetDateDernSynchro(pIdStructure As String) As DateTime
+        Dim lst As AgentList = AgentManager.getAgentList(pIdStructure)
         Dim oReturn As DateTime = CSDate.FromCrodipString("1970-01-01")
         If lst.items.Count > 0 Then
             Try

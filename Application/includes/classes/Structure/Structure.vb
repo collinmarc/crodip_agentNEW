@@ -424,7 +424,7 @@ Public Class Structuree
             PoolManager.Save(oPool)
 
             Dim lst As List(Of Agent)
-            lst = AgentManager.getAgentList().items
+            lst = AgentManager.getAgentList(Me.id).items
             For Each oAgent As Agent In lst.Where(Function(A)
                                                       Return A.idStructure = Me.id
                                                   End Function)

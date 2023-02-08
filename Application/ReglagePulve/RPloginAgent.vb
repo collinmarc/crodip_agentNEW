@@ -466,16 +466,16 @@ Public Class RPloginAgent
         End If
     End Sub
     Private Sub FillCbxAgent()
-        Dim oAgentList As AgentList
-        oAgentList = AgentManager.getAgentList()
-        login_profil.Items.Clear()
-        For Each curAgent As Agent In oAgentList.items
-            ' On ajoute le profil à la liste déroulante
-            Dim libelleAccount As String = curAgent.nom & " " & curAgent.prenom
-            libelleAccount = libelleAccount & "(" & curAgent.NomStructure & ")"
-            Dim objComboItem As New objComboItem(curAgent.numeroNational, libelleAccount)
-            login_profil.Items.Add(objComboItem)
-        Next
+        'Dim oAgentList As AgentList
+        'oAgentList = AgentManager.getAgentList()
+        'login_profil.Items.Clear()
+        'For Each curAgent As Agent In oAgentList.items
+        '    ' On ajoute le profil à la liste déroulante
+        '    Dim libelleAccount As String = curAgent.nom & " " & curAgent.prenom
+        '    libelleAccount = libelleAccount & "(" & curAgent.NomStructure & ")"
+        '    Dim objComboItem As New objComboItem(curAgent.numeroNational, libelleAccount)
+        '    login_profil.Items.Add(objComboItem)
+        'Next
 
     End Sub
 

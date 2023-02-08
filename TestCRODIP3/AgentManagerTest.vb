@@ -182,7 +182,7 @@ Public Class AgentManagerTest
         oAgent.idStructure = oStructure.id
         AgentManager.save(oAgent)
 
-        Dim oList As AgentList = AgentManager.getAgentList()
+        Dim oList As AgentList = AgentManager.getAgentList(oStructure.id)
         For Each oAgent2 In oList.items
             If oAgent2.id = oAgent.id Then
                 Assert.AreEqual(oStructure.nom, oAgent2.NomStructure)
@@ -213,7 +213,7 @@ Public Class AgentManagerTest
         oAgent.idStructure = oStructure.id
         AgentManager.save(oAgent)
 
-        Dim oList As AgentList = AgentManager.getAgentList()
+        Dim oList As AgentList = AgentManager.getAgentList(oStructure.id)
         For Each oAgent2 In oList.items
             If oAgent2.id = oAgent.id Then
                 Assert.AreEqual(oStructure.nom, oAgent2.NomStructure)
@@ -237,7 +237,7 @@ Public Class AgentManagerTest
         oAgent.isActif = True
         AgentManager.save(oAgent)
 
-        Dim oList As AgentList = AgentManager.getAgentList()
+        Dim oList As AgentList = AgentManager.getAgentList(m_oStructure.id)
         Assert.AreEqual(1, oList.items.Count())
         Dim oAgent2 As Agent = oList.items(0)
         Assert.AreEqual(m_oStructure.nom, oAgent2.NomStructure)
@@ -252,7 +252,7 @@ Public Class AgentManagerTest
         oAgent.idStructure = m_oStructure.id
         AgentManager.save(oAgent)
 
-        oList = AgentManager.getAgentList()
+        oList = AgentManager.getAgentList(m_oStructure.id)
         Assert.AreEqual(2, oList.items.Count())
         oAgent = oList.items.Where(Function(a) a.id = 888)(0)
         'Sa date de dernière synhcro est la plus petite date de la base
@@ -267,7 +267,7 @@ Public Class AgentManagerTest
     Public Sub SupprimeDernierAgentTest()
 
         'Au début il y a un Agent dans la base
-        Assert.AreEqual(1, AgentManager.getAgentList().items.Count)
+        Assert.AreEqual(1, AgentManager.getAgentList(m_oStructure.id).items.Count)
 
         'Materiel
         createMateriel(m_oAgent)
@@ -327,7 +327,7 @@ Public Class AgentManagerTest
 
         'Suppression de l'Agent Créé
         AgentManager.delete(oAgent.id)
-        Assert.AreEqual(1, AgentManager.getAgentList().items.Count)
+        Assert.AreEqual(1, AgentManager.getAgentList(m_oStructure.id).items.Count)
 
         Dim oCSDB As New CSDb(True)
         Dim n As Integer
@@ -389,7 +389,7 @@ Public Class AgentManagerTest
 
         'Suppression de l'Agent initial
         AgentManager.delete(m_oAgent.id)
-        Assert.AreEqual(0, AgentManager.getAgentList().items.Count)
+        Assert.AreEqual(0, AgentManager.getAgentList(m_oStructure.id).items.Count)
 
         'Vérification du Vidage complet de la base
         n = CType(oCSDB.getValue("Select count(*) FROM  Agent"), Integer)

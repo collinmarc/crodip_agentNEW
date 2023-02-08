@@ -2123,19 +2123,23 @@ INSERT INTO facture (
         Dim lstAlertes As New List(Of String)
         Dim strNumAvant As String
         Dim strNumApres As String
-        Dim olst As List(Of Agent) = AgentManager.getAgentList().items
-        For Each oAgent As Agent In olst
-            CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
-            CSDb.resetConnection()
-            strNumAvant = DiagnosticManager.getNewId(oAgent)
+        Dim olstStructure As List(Of Structuree)
+        olstStructure = StructureManager.getList()
+        For Each oStruct As Structuree In olstStructure
+            Dim olst As List(Of Agent) = AgentManager.getAgentList(oStruct.id).items
+            For Each oAgent As Agent In olst
+                CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
+                CSDb.resetConnection()
+                strNumAvant = DiagnosticManager.getNewId(oAgent)
 
-            CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-            CSDb.resetConnection()
-            strNumApres = DiagnosticManager.getNewId(oAgent)
+                CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
+                CSDb.resetConnection()
+                strNumApres = DiagnosticManager.getNewId(oAgent)
 
-            If strNumAvant <> strNumApres Then
-                lstAlertes.Add("Erreur de numérotation pour l'agent [" & oAgent.numeroNational & "] : Avant = " & strNumAvant & " , Après = " & strNumApres & " , URGENT PREVENEZ LE CRODIP")
-            End If
+                If strNumAvant <> strNumApres Then
+                    lstAlertes.Add("Erreur de numérotation pour l'agent [" & oAgent.numeroNational & "] : Avant = " & strNumAvant & " , Après = " & strNumApres & " , URGENT PREVENEZ LE CRODIP")
+                End If
+            Next
         Next
 
         If My.Settings.BDDType = "ACCESS" Then
