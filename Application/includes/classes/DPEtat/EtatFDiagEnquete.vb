@@ -24,7 +24,7 @@
             Case Crodip_agent.Action.ACTION_NEXT
                 oReturn = New EtatFDiagInfosComplementaires(Me)
             Case Crodip_agent.Action.ACTION_CVI
-                oReturn = New EtatFDiagDepart(Me)
+                oReturn = New EtatFDiagDepart(DiagMode.CTRL_CV, oDiag, oPulve, oExploit, oAgent)
         End Select
         Return oReturn
     End Function

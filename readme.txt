@@ -2,6 +2,7 @@ TRUNK
 MASTER
 BUILD 20230207130000
 		0001545: Erreur D'acquisition
+		0001547: CV immédiate : les infos ne sont pas reprises
 
 BUILD 20221222170000
 

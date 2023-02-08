@@ -697,7 +697,7 @@ Public Class diagnostic_satisfaction
 
         'Création d'un nouveau diagnostic à partir du courant
         diagnosticCourant = m_Diagnostic.Clone()
-        diagnosticCourant.SetAsContreVisite(agentCourant)
+        diagnosticCourant.SetAsContreVisite(m_Agent)
         diagnosticCourant.isContrevisiteImmediate = True
         diagnosticCourant.RIFileName = ""
         diagnosticCourant.SMFileName = ""
