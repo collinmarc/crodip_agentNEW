@@ -3,7 +3,7 @@ Imports System.Xml.Serialization
 
 <Serializable()>
 Public Class lstParamMetrologie
-    Public Const FILE_NAME As String = "moduleDocumentaire/ParamMetrologie.xml"
+    Public Const FILE_NAME As String = "moduleDocumentaire/_parametres/ParamMetrologie.xml"
     Public Sub New()
         lstParam = New List(Of ParamMetrologie)()
     End Sub

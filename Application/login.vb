@@ -852,7 +852,12 @@ Public Class login
         lbl_environnement_debugLvl.Visible = GlobalsCRODIP.GLOB_ENV_DEBUG
         lbl_environnement_debugType.Text = "Type de sortie debug..................: " & GlobalsCRODIP.GLOB_ENV_DEBUGTYPE
         lbl_environnement_debugLvl.Text = "Niveau de sortie debug................: " & GlobalsCRODIP.GLOB_ENV_DEBUGLVL
-        lbl_WS.Text = WSCrodip.getWS().Url
+        Try
+            lbl_WS.Text = WSCrodip.getWS().Url
+
+        Catch ex As Exception
+
+        End Try
         lblMode.Visible = False
         pnlPrincipal.BackgroundImage = Crodip_agent.Resources.Login_bgcrodipIndigo
         If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then

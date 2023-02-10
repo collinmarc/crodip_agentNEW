@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lstParamMetrologie xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Metrologie FondEchelle="6">
+    <PressionMontantes>
+      <PressionCtrl Num="1" Valeur="1.6" />
+      <PressionCtrl Num="2" Valeur="1.7" />
+      <PressionCtrl Num="3" Valeur="1.8" />
+      <PressionCtrl Num="4" Valeur="1.9" />
+      <PressionCtrl Num="5" Valeur="2" />
+      <PressionCtrl Num="6" Valeur="2.1" />
+    </PressionMontantes>
+    <PressionDescendantes>
+      <PressionCtrl Num="1" Valeur="2" />
+      <PressionCtrl Num="2" Valeur="2.1" />
+      <PressionCtrl Num="3" Valeur="2.2" />
+      <PressionCtrl Num="4" Valeur="2.3" />
+      <PressionCtrl Num="5" Valeur="2.4" />
+    </PressionDescendantes>
+    <Repetitions>
+      <PressionCtrl Num="1" Valeur="3" />
+      <PressionCtrl Num="2" Valeur="3.1" />
+      <PressionCtrl Num="3" Valeur="3.2" />
+    </Repetitions>
+  </Metrologie>
+  <Metrologie FondEchelle="10">
+    <PressionMontantes>
+      <PressionCtrl Num="1" Valeur="10.6" />
+      <PressionCtrl Num="2" Valeur="10.7" />
+      <PressionCtrl Num="3" Valeur="10.8" />
+      <PressionCtrl Num="4" Valeur="10.9" />
+      <PressionCtrl Num="5" Valeur="20" />
+      <PressionCtrl Num="6" Valeur="20.1" />
+    </PressionMontantes>
+    <PressionDescendantes>
+      <PressionCtrl Num="1" Valeur="20" />
+      <PressionCtrl Num="2" Valeur="20.1" />
+      <PressionCtrl Num="3" Valeur="20.2" />
+      <PressionCtrl Num="4" Valeur="20.3" />
+      <PressionCtrl Num="5" Valeur="20.4" />
+    </PressionDescendantes>
+    <Repetitions>
+      <PressionCtrl Num="1" Valeur="30" />
+      <PressionCtrl Num="2" Valeur="30.1" />
+      <PressionCtrl Num="3" Valeur="30.2" />
+    </Repetitions>
+  </Metrologie>
+</lstParamMetrologie>

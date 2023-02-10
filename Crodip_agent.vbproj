@@ -331,6 +331,7 @@
     <Compile Include="Application\agent\Bancs\HistoBanc.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\agent\Manometres\BindingMap.vb" />
     <Compile Include="Application\agent\Manometres\frmControleManometresNew.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -1538,6 +1539,9 @@
     <None Include="Resources\Favorites.png" />
     <None Include="Resources\btn_search.jpg" />
     <None Include="Resources\btn_retours.jpg" />
+    <Content Include="moduleDocumentaire\_parametres\ParamMetrologie.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="wgssSTU.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

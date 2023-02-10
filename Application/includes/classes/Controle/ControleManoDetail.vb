@@ -8,10 +8,19 @@
     Private _err_abs As String
     Private _err_fondEchelle As String
     Private _conformite As String
+    Private _FondEchelle As String
 
     Public Sub New(ptype As String, pPoint As String)
-        _type = ptype
-        _point = pPoint
+        type = ptype
+        point = pPoint
+    End Sub
+    Public Sub New(ptype As String, pPoint As String, pPression As Decimal, pMano As ManometreControle)
+        type = ptype
+        point = pPoint
+        pres_manoEtalon = pPression
+        _FondEchelle = pMano.fondEchelle
+        calcEMT(pMano)
+
     End Sub
 
     Public Property type() As String
@@ -32,25 +41,33 @@
     End Property
     Public Property pres_manoCtrl() As String
         Get
-            Return ConcertToDecimal(_pres_manoCtrl, 1)
+            Return ConvertToDecimal(_pres_manoCtrl, 1)
         End Get
         Set(ByVal Value As String)
-            _pres_manoCtrl = Value
+            If Value <> _pres_manoCtrl Then
+                _pres_manoCtrl = Value
+                calcErrAbs()
+                calcErrFond()
+            End If
         End Set
     End Property
 
     Public Property pres_manoEtalon() As String
         Get
-            Return ConcertToDecimal(_pres_manoEtalon, 3)
+            Return ConvertToDecimal(_pres_manoEtalon, 3)
         End Get
         Set(ByVal Value As String)
-            _pres_manoEtalon = Value
+            If Value <> _pres_manoEtalon Then
+                _pres_manoEtalon = Value
+                calcErrAbs()
+                calcErrFond()
+            End If
         End Set
     End Property
 
     Public Property incertitude() As String
         Get
-            Return ConcertToDecimal(_incertitude, 2)
+            Return ConvertToDecimal(_incertitude, 2)
         End Get
         Set(ByVal Value As String)
             _incertitude = Value
@@ -59,25 +76,31 @@
 
     Public Property EMT() As String
         Get
-            Return ConcertToDecimal(_EMT, 1)
+            Return ConvertToDecimal(_EMT, 1)
         End Get
         Set(ByVal Value As String)
-            _EMT = Value
+            If Value <> EMT Then
+                _EMT = Value
+                calcConformite()
+            End If
         End Set
     End Property
 
     Public Property err_abs() As String
         Get
-            Return ConcertToDecimal(_err_abs, 2)
+            Return ConvertToDecimal(_err_abs, 2)
         End Get
         Set(ByVal Value As String)
-            _err_abs = Value
+            If Value <> err_abs Then
+                _err_abs = Value
+                calcConformite()
+            End If
         End Set
     End Property
 
     Public Property err_fondEchelle() As String
         Get
-            Return ConcertToDecimal(_err_fondEchelle, 1)
+            Return ConvertToDecimal(_err_fondEchelle, 1)
         End Get
         Set(ByVal Value As String)
             _err_fondEchelle = Value
@@ -93,27 +116,55 @@
         End Set
     End Property
 
-    Private Function calcEMT(pMano As ManometreControle) As Double
-        Dim dReturn As Double
+    Private Sub calcErrAbs()
+        Dim dErr As Double
+        If Not String.IsNullOrEmpty(Me.pres_manoCtrl) And Not String.IsNullOrEmpty(Me.pres_manoEtalon) Then
+            dErr = Math.Round(Math.Abs(GlobalsCRODIP.StringToDouble(Me.pres_manoCtrl) - GlobalsCRODIP.StringToDouble(Me.pres_manoEtalon)), 3)
+            err_abs = dErr.ToString("####0.000")
+        Else
+            err_abs = ""
+        End If
+    End Sub
+    Private Sub calcErrFond()
+        Dim dErr As Double
+        If Not String.IsNullOrEmpty(pres_manoCtrl) And Not String.IsNullOrEmpty(pres_manoEtalon) And Not String.IsNullOrEmpty(_FondEchelle) Then
+            dErr = Math.Round(Math.Abs(GlobalsCRODIP.StringToDouble(pres_manoCtrl) - GlobalsCRODIP.StringToDouble(pres_manoEtalon)) * 100 / GlobalsCRODIP.StringToDouble(_FondEchelle), 3)
+            err_fondEchelle = dErr.ToString("####0.000")
+        Else
+            err_fondEchelle = ""
+        End If
+    End Sub
+    Private Sub calcConformite()
+        If Not String.IsNullOrEmpty(err_abs) And Not String.IsNullOrEmpty(EMT) Then
+            If GlobalsCRODIP.StringToDouble(err_abs) > GlobalsCRODIP.StringToDouble(EMT) Then
+                conformite = "0" ' NOK
+            Else
+                conformite = "1" 'OK
+            End If
+        Else
+            conformite = ""
+        End If
+    End Sub
+    Private Sub calcEMT(pMano As ManometreControle)
         Select Case pMano.fondEchelle
             Case "6"
-                dReturn = 0.1
+                EMT = 0.1
             Case "10"
-                dReturn = 0.1
+                EMT = 0.1
             Case "20"
-                dReturn = 0.2
+                EMT = 0.2
             Case "25"
-                dReturn = 0.25
+                EMT = 0.25
             Case Else
-                dReturn = CDbl(Math.Round((GlobalsCRODIP.StringToDouble(pMano.classe) * GlobalsCRODIP.StringToDouble(pMano.fondEchelle) / 100), 2))
+                EMT = CDbl(Math.Round((GlobalsCRODIP.StringToDouble(pMano.classe) * GlobalsCRODIP.StringToDouble(pMano.fondEchelle) / 100), 2))
         End Select
 
-        Return dReturn
 
-    End Function
+    End Sub
 
 
-    Private Function ConcertToDecimal(pValue As String, nDec As Integer) As String
+
+    Private Function ConvertToDecimal(pValue As String, nDec As Integer) As String
         If String.IsNullOrEmpty(pValue) Then
             Return ""
         Else

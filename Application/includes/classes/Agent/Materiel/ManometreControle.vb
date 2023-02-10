@@ -404,50 +404,11 @@ Public Class ManometreControle
     Public Function isUpdated() As Boolean
         Return m_bIsUpdated
     End Function
-    'Public Shared Sub incNbControles(ByVal objManometreControle As ManometreControle)
-    '    Try
-    '        Dim dbLink As New CSDb(True)
-    '        dbLink.queryString = "UPDATE AgentManoControle SET nbControles=(nbControles+1), nbControlesTotal=(nbControlesTotal+1) WHERE numeroNational='" & objManometreControle.numeroNational & "'"
-    '        dbLink.getResults()
-    '        dbLink.free()
-    '    Catch ex As Exception
-    '        CSDebug.dispFatal("ManometreControleManager::incNbControles : " & ex.Message)
-    '    End Try
-    'End Sub
 
-
-
-    'Public Function creerFicheVie(ByVal pType As String, ByVal pAgent As Agent) As Boolean
-    '    Debug.Assert(pAgent IsNot Nothing)
-    '    Dim bReturn As Boolean
-
-    '    Try
-    '        Dim newFicheVieManoControle As New FVManometreControle(pAgent)
-    '        newFicheVieManoControle.idManometre = Me.idCrodip
-    '        newFicheVieManoControle.type = pType
-    '        newFicheVieManoControle.auteur = "AGENT"
-    '        newFicheVieManoControle.idAgentControleur = pAgent.id
-    '        newFicheVieManoControle.caracteristiques = _
-    '        Me.idCrodip & "|" & _
-    '        Me.marque & "|" & _
-    '        Me.classe & "|" & _
-    '        Me.type & "|" & _
-    '        Me.fondEchelle & "|" & _
-    '        Me.idStructure & "|" & _
-    '        Me.isSynchro & "|" & _
-    '        Me.dateDernierControle & "|" & _
-    '        Me.dateModificationAgent & "|" & _
-    '        Me.dateModificationCrodip
-    '        newFicheVieManoControle.dateModif = CSDate.ToCRODIPString(Date.Now).ToString
-    '        newFicheVieManoControle.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-    '        FVManometreControleManager.save(newFicheVieManoControle)
-    '        bReturn = True
-    '    Catch ex As Exception
-    '        CSDebug.dispError("ManometreControle.creerFicheVieActivation ERR : " & ex.Message)
-    '        bReturn = False
-    '    End Try
-    '    Return bReturn
-    'End Function 'CreerFiche
+    Public Function creerControle(pAgent As Agent) As ControleMano
+        Me.controle = New ControleMano(Me, pAgent)
+        Return controle
+    End Function
 
 
 End Class

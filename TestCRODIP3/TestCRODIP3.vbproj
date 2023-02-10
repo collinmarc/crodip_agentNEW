@@ -215,9 +215,6 @@
     <Compile Include="ReferentielBusesCSVTest.vb" />
     <Compile Include="ReferentielCommunesCSVTest.vb" />
     <Compile Include="RelevePression833Test.vb" />
-    <Compile Include="RpDiagnosticTest.vb" />
-    <Compile Include="RPInfosBusesTest.vb" />
-    <Compile Include="RPParamTest.vb" />
     <Compile Include="StatCRODIPTest.vb" />
     <Compile Include="SynchronisationTest.vb" />
     <Compile Include="testProduction.vb" />

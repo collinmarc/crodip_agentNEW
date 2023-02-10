@@ -771,7 +771,7 @@ Public Class frmControleManometresNew
         Me.SplitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.SplitContainer1.Panel2.Controls.Add(Me.tlpGlobal)
         Me.SplitContainer1.Size = New System.Drawing.Size(726, 562)
-        Me.SplitContainer1.SplitterDistance = 33
+        Me.SplitContainer1.SplitterDistance = 94
         Me.SplitContainer1.TabIndex = 32
         '
         'lbMano
@@ -782,7 +782,7 @@ Public Class frmControleManometresNew
         Me.lbMano.FormattingEnabled = True
         Me.lbMano.Location = New System.Drawing.Point(0, 0)
         Me.lbMano.Name = "lbMano"
-        Me.lbMano.Size = New System.Drawing.Size(33, 562)
+        Me.lbMano.Size = New System.Drawing.Size(94, 562)
         Me.lbMano.TabIndex = 0
         '
         'tlpGlobal
@@ -804,7 +804,7 @@ Public Class frmControleManometresNew
         Me.tlpGlobal.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.15!))
         Me.tlpGlobal.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.46!))
         Me.tlpGlobal.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.39!))
-        Me.tlpGlobal.Size = New System.Drawing.Size(684, 554)
+        Me.tlpGlobal.Size = New System.Drawing.Size(623, 554)
         Me.tlpGlobal.TabIndex = 17
         '
         'tlpEntete
@@ -819,7 +819,7 @@ Public Class frmControleManometresNew
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 209.0!))
         Me.tlpEntete.Controls.Add(Me.Label5, 4, 0)
         Me.tlpEntete.Controls.Add(Me.Label6, 5, 0)
         Me.tlpEntete.Controls.Add(Me.Label7, 6, 0)
@@ -837,7 +837,7 @@ Public Class frmControleManometresNew
         Me.tlpEntete.RowCount = 2
         Me.tlpEntete.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpEntete.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpEntete.Size = New System.Drawing.Size(678, 60)
+        Me.tlpEntete.Size = New System.Drawing.Size(617, 60)
         Me.tlpEntete.TabIndex = 1
         '
         'Label5
@@ -876,7 +876,7 @@ Public Class frmControleManometresNew
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(425, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(260, 28)
+        Me.Label7.Size = New System.Drawing.Size(264, 28)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -888,7 +888,7 @@ Public Class frmControleManometresNew
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(486, 30)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(199, 29)
+        Me.Label11.Size = New System.Drawing.Size(203, 29)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1038,7 +1038,7 @@ Public Class frmControleManometresNew
         Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
         Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66917!))
         Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
-        Me.tlpPressionCroissant.Size = New System.Drawing.Size(678, 221)
+        Me.tlpPressionCroissant.Size = New System.Drawing.Size(617, 221)
         Me.tlpPressionCroissant.TabIndex = 15
         '
         'tbFondPC6
@@ -1049,7 +1049,7 @@ Public Class frmControleManometresNew
         Me.tbFondPC6.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC6.Name = "tbFondPC6"
         Me.tbFondPC6.ReadOnly = True
-        Me.tbFondPC6.Size = New System.Drawing.Size(104, 20)
+        Me.tbFondPC6.Size = New System.Drawing.Size(43, 20)
         Me.tbFondPC6.TabIndex = 60
         Me.tbFondPC6.TabStop = False
         '
@@ -1072,7 +1072,7 @@ Public Class frmControleManometresNew
         Me.tbFondPC5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC5.Name = "tbFondPC5"
         Me.tbFondPC5.ReadOnly = True
-        Me.tbFondPC5.Size = New System.Drawing.Size(104, 20)
+        Me.tbFondPC5.Size = New System.Drawing.Size(43, 20)
         Me.tbFondPC5.TabIndex = 58
         Me.tbFondPC5.TabStop = False
         '
@@ -1095,7 +1095,7 @@ Public Class frmControleManometresNew
         Me.tbFondPC4.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC4.Name = "tbFondPC4"
         Me.tbFondPC4.ReadOnly = True
-        Me.tbFondPC4.Size = New System.Drawing.Size(104, 20)
+        Me.tbFondPC4.Size = New System.Drawing.Size(43, 20)
         Me.tbFondPC4.TabIndex = 56
         Me.tbFondPC4.TabStop = False
         '
@@ -1118,7 +1118,7 @@ Public Class frmControleManometresNew
         Me.tbFondPC3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC3.Name = "tbFondPC3"
         Me.tbFondPC3.ReadOnly = True
-        Me.tbFondPC3.Size = New System.Drawing.Size(104, 20)
+        Me.tbFondPC3.Size = New System.Drawing.Size(43, 20)
         Me.tbFondPC3.TabIndex = 54
         Me.tbFondPC3.TabStop = False
         '
@@ -1141,7 +1141,7 @@ Public Class frmControleManometresNew
         Me.tbFondPC2.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC2.Name = "tbFondPC2"
         Me.tbFondPC2.ReadOnly = True
-        Me.tbFondPC2.Size = New System.Drawing.Size(104, 20)
+        Me.tbFondPC2.Size = New System.Drawing.Size(43, 20)
         Me.tbFondPC2.TabIndex = 52
         Me.tbFondPC2.TabStop = False
         '
@@ -1164,7 +1164,7 @@ Public Class frmControleManometresNew
         Me.tbFondPC1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.tbFondPC1.Name = "tbFondPC1"
         Me.tbFondPC1.ReadOnly = True
-        Me.tbFondPC1.Size = New System.Drawing.Size(104, 20)
+        Me.tbFondPC1.Size = New System.Drawing.Size(43, 20)
         Me.tbFondPC1.TabIndex = 50
         Me.tbFondPC1.TabStop = False
         '
@@ -1190,7 +1190,6 @@ Public Class frmControleManometresNew
         '
         'tbUpMR1
         '
-        Me.tbUpMR1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "up_pt1_pres_manoEtalon", True))
         Me.tbUpMR1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbUpMR1.Location = New System.Drawing.Point(311, 4)
         Me.tbUpMR1.Name = "tbUpMR1"
@@ -1563,7 +1562,7 @@ Public Class frmControleManometresNew
         Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
         Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
         Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.tlpPressionDecroissante.Size = New System.Drawing.Size(678, 184)
+        Me.tlpPressionDecroissante.Size = New System.Drawing.Size(617, 184)
         Me.tlpPressionDecroissante.TabIndex = 16
         '
         'TextBox5
@@ -1574,7 +1573,7 @@ Public Class frmControleManometresNew
         Me.TextBox5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(104, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(43, 20)
         Me.TextBox5.TabIndex = 56
         Me.TextBox5.TabStop = False
         '
@@ -1597,7 +1596,7 @@ Public Class frmControleManometresNew
         Me.TextBox7.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(104, 20)
+        Me.TextBox7.Size = New System.Drawing.Size(43, 20)
         Me.TextBox7.TabIndex = 54
         Me.TextBox7.TabStop = False
         '
@@ -1620,7 +1619,7 @@ Public Class frmControleManometresNew
         Me.TextBox9.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(104, 20)
+        Me.TextBox9.Size = New System.Drawing.Size(43, 20)
         Me.TextBox9.TabIndex = 52
         Me.TextBox9.TabStop = False
         '
@@ -1643,7 +1642,7 @@ Public Class frmControleManometresNew
         Me.TextBox11.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.ReadOnly = True
-        Me.TextBox11.Size = New System.Drawing.Size(104, 20)
+        Me.TextBox11.Size = New System.Drawing.Size(43, 20)
         Me.TextBox11.TabIndex = 50
         Me.TextBox11.TabStop = False
         '
@@ -1922,7 +1921,7 @@ Public Class frmControleManometresNew
         Me.tlpRepetition.Name = "tlpRepetition"
         Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.tlpRepetition.Size = New System.Drawing.Size(678, 74)
+        Me.tlpRepetition.Size = New System.Drawing.Size(617, 74)
         Me.tlpRepetition.TabIndex = 17
         '
         'tbRepeCtrl2
@@ -1969,7 +1968,7 @@ Public Class frmControleManometresNew
         Me.TextBox39.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox39.Name = "TextBox39"
         Me.TextBox39.ReadOnly = True
-        Me.TextBox39.Size = New System.Drawing.Size(104, 20)
+        Me.TextBox39.Size = New System.Drawing.Size(43, 20)
         Me.TextBox39.TabIndex = 52
         Me.TextBox39.TabStop = False
         '
@@ -1992,7 +1991,7 @@ Public Class frmControleManometresNew
         Me.TextBox41.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
         Me.TextBox41.Name = "TextBox41"
         Me.TextBox41.ReadOnly = True
-        Me.TextBox41.Size = New System.Drawing.Size(104, 20)
+        Me.TextBox41.Size = New System.Drawing.Size(43, 20)
         Me.TextBox41.TabIndex = 50
         Me.TextBox41.TabStop = False
         '
@@ -2269,294 +2268,188 @@ Public Class frmControleManometresNew
         ' On récupère la liste des manos de la structure de l'agent
         Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(m_oAgent, True)
         For Each oManoC As ManometreControle In arrManoControle
-            oManoC.controle = New ControleMano(oManoC, m_oAgent)
+            oManoC.creerControle(m_oAgent)
             m_bsManoControle.Add(oManoC)
         Next
-        'm_bsManoControle.AddNew()
         m_bsManoControle.MoveLast()
 
-        Dim lstPressionCtrl As List(Of PressionCtrl)
-        lstPressionCtrl = New List(Of PressionCtrl)
-        Dim oPres As PressionCtrl
-        oPres = New PressionCtrl
-        oPres.Type = "CROISSANT"
-        oPres.Num = 1
-        oPres.Pression = 8
-        oPres.Incertitude = 0.11
-        oPres.EMT = 0.22
-        oPres.Err = 0.33
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        oPres = New PressionCtrl
-        oPres.Type = "CROISSANT"
-        oPres.Num = 2
-        oPres.Pression = 1
-        oPres.Incertitude = 0.12
-        oPres.EMT = 0.222
-        oPres.Err = 0.332
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        oPres = New PressionCtrl
-        oPres.Type = "CROISSANT"
-        oPres.Num = 3
-        oPres.Pression = 2
-        oPres.Incertitude = 0.13
-        oPres.EMT = 0.223
-        oPres.Err = 0.333
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        oPres = New PressionCtrl
-        oPres.Type = "CROISSANT"
-        oPres.Num = 4
-        oPres.Pression = 4
-        oPres.Incertitude = 0.13
-        oPres.EMT = 0.223
-        oPres.Err = 0.333
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        oPres = New PressionCtrl
-        oPres.Type = "CROISSANT"
-        oPres.Num = 5
-        oPres.Pression = 6
-        oPres.Incertitude = 0.13
-        oPres.EMT = 0.223
-        oPres.Err = 0.333
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        oPres = New PressionCtrl
-        oPres.Type = "CROISSANT"
-        oPres.Num = 6
-        oPres.Pression = 8
-        oPres.Incertitude = 0.13
-        oPres.EMT = 0.223
-        oPres.Err = 0.333
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-
-        oPres = New PressionCtrl
-        oPres.Type = "DECROISSANT"
-        oPres.Num = 1
-        oPres.Pression = 8
-        oPres.Incertitude = 0.11
-        oPres.EMT = 0.22
-        oPres.Err = 0.33
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        oPres = New PressionCtrl
-        oPres.Type = "DECROISSANT"
-        oPres.Num = 2
-        oPres.Pression = 7
-        oPres.Incertitude = 0.12
-        oPres.EMT = 0.222
-        oPres.Err = 0.332
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        oPres = New PressionCtrl
-        oPres.Type = "DECROISSANT"
-        oPres.Num = 3
-        oPres.Pression = 6
-        oPres.Incertitude = 0.13
-        oPres.EMT = 0.223
-        oPres.Err = 0.333
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        oPres = New PressionCtrl
-        oPres.Type = "DECROISSANT"
-        oPres.Num = 4
-        oPres.Pression = 4
-        oPres.Incertitude = 0.13
-        oPres.EMT = 0.223
-        oPres.Err = 0.333
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        oPres = New PressionCtrl
-        oPres.Type = "DECROISSANT"
-        oPres.Num = 5
-        oPres.Pression = 3
-        oPres.Incertitude = 0.13
-        oPres.EMT = 0.223
-        oPres.Err = 0.333
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        oPres = New PressionCtrl
-        oPres.Type = "REGUL"
-        oPres.Num = 1
-        oPres.Pression = 0.1
-        oPres.Incertitude = 0.11
-        oPres.EMT = 0.22
-        oPres.Err = 0.33
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-        oPres = New PressionCtrl
-        oPres.Type = "REGUL"
-        oPres.Num = 2
-        oPres.Pression = 0.12
-        oPres.Incertitude = 0.12
-        oPres.EMT = 0.222
-        oPres.Err = 0.332
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-        oPres = New PressionCtrl
-        oPres.Type = "REGUL"
-        oPres.Num = 3
-        oPres.Pression = 0.13
-        oPres.Incertitude = 0.13
-        oPres.EMT = 0.223
-        oPres.Err = 0.333
-        oPres.FondEchelle = "5"
-        lstPressionCtrl.Add(oPres)
-
-        AffichePressions()
-
     End Sub
+    ''' <summary>
+    ''' Affichage du détail du controle de Mano
+    ''' </summary>
+    ''' <param name="pControleMano">le controle à afficher</param>
+    ''' <param name="pAjusteur">Affichage de l'ajusteur ou pas</param>
+    Private Sub AfficheControleMano(pControleMano As ControleMano, pAjusteur As Boolean)
+        'Dim oParamMetrologie As New lstParamMetrologie()
+        'oParamMetrologie.readXML()
 
-    Private Sub AffichePressions()
-        Dim oParamMetrologie As New lstParamMetrologie()
-        oParamMetrologie.readXML()
-
+        Dim lstCtrlManoDetail As List(Of ControleManoDetail)
         'Trt des pression croissantes
         '-----------------------------------
+        lstCtrlManoDetail = pControleMano.lstControleManoDetail.Values.Where(Function(D)
+                                                                                 Return D.type = "UP"
+                                                                             End Function).ToList()
         Me.tlpPressionCroissant.Controls.Clear()
-        Me.tlpPressionCroissant.RowCount = 0
         Me.tlpPressionCroissant.RowStyles.Clear()
+        Me.tlpPressionCroissant.RowCount = lstCtrlManoDetail.Count
+        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
+            Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
+        Next
         'Label Croissant
         'TODO créer le Label
-        Me.tlpPressionCroissant.Controls.Add(Me.Label19, 0, 0)
-        Dim lstPressionM As List(Of ParamMetrologiePression)
-        lstPressionM = oParamMetrologie.lstParam(0).PressionMontantes
-        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
-            AjouteLigne(tlpPressionCroissant, "CROISSANT")
+        Label19.Text = "Pressions croissantes"
+        If lstCtrlManoDetail.Count > 0 Then
+            Me.tlpPressionCroissant.Controls.Add(Me.Label19, 0, 0)
+        End If
+
+
+        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
+            AfficheLgCtrlManoDetail(tlpPressionCroissant, oLigneDetail)
         Next
-        Me.tlpPressionCroissant.RowStyles.Clear()
-        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
-            Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstPressionM.Count))
-        Next
-        Me.tlpPressionCroissant.SetRowSpan(Me.Label19, tlpPressionCroissant.RowCount)
+        If tlpPressionCroissant.RowCount > 1 Then
+            Me.tlpPressionCroissant.SetRowSpan(Me.Label19, tlpPressionCroissant.RowCount)
+        End If
 
-        'Suppression de la Col textBox
-        tlpPressionCroissant.ColumnStyles().Item(3).SizeType = SizeType.Absolute
-        tlpPressionCroissant.ColumnStyles().Item(3).Width = 0
 
-        'Label Croissant
-        'TODO créer le Label
-        Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
 
-        'Trt des pression décoirssantes
+        'Trt des pression décroissantes
         '-----------------------------------
+        lstCtrlManoDetail = pControleMano.lstControleManoDetail.Values.Where(Function(D)
+                                                                                 Return D.type = "DOWN"
+                                                                             End Function).ToList()
+
         Me.tlpPressionDecroissante.Controls.Clear()
-        Me.tlpPressionDecroissante.RowCount = 0
         Me.tlpPressionDecroissante.RowStyles.Clear()
-        'Label Repetition
-        Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
-
-        lstPressionM = oParamMetrologie.lstParam(0).PressionDescendantes
-        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
-            AjouteLigne(tlpPressionDecroissante, "DECROISSANT")
+        Me.tlpPressionDecroissante.RowCount = lstCtrlManoDetail.Count
+        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
+            Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
         Next
-        Me.tlpPressionDecroissante.RowStyles.Clear()
-        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
-            Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstPressionM.Count))
+        'Label Décroissant
+        'TODO créer le Label
+        Label20.Text = "Pressions décroissantes"
+        If lstCtrlManoDetail.Count > 0 Then
+            Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
+        End If
+
+        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
+            AfficheLgCtrlManoDetail(tlpPressionDecroissante, oLigneDetail)
         Next
-        Me.tlpPressionDecroissante.SetRowSpan(Me.Label20, tlpPressionDecroissante.RowCount)
-        'Suppression de la Col textBox
-        tlpPressionDecroissante.ColumnStyles().Item(3).SizeType = SizeType.Absolute
-        tlpPressionDecroissante.ColumnStyles().Item(3).Width = 0
-
-
-
+        If tlpPressionDecroissante.RowCount > 1 Then
+            Me.tlpPressionDecroissante.SetRowSpan(Me.Label20, tlpPressionDecroissante.RowCount)
+        End If
         'Trt des répétitions
         '------------------------
+        lstCtrlManoDetail = pControleMano.lstControleManoDetail.Values.Where(Function(D)
+                                                                                 Return D.type = "REPE"
+                                                                             End Function).ToList()
+
         Me.tlpRepetition.Controls.Clear()
-        Me.tlpRepetition.RowCount = 0
         Me.tlpRepetition.RowStyles.Clear()
+        Me.tlpRepetition.RowCount = lstCtrlManoDetail.Count
+
+        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
+            Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
+        Next
         'Label Repetition
-        Me.tlpRepetition.Controls.Add(Me.Label26, 0, 0)
+        Label26.Text = "Répétitions"
+        If lstCtrlManoDetail.Count > 0 Then
+            Me.tlpRepetition.Controls.Add(Me.Label26, 0, 0)
+        End If
 
-        lstPressionM = oParamMetrologie.lstParam(0).Repetitions
-        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
-            AjouteLigne(tlpRepetition, "REPETITION")
+        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
+            AfficheLgCtrlManoDetail(tlpRepetition, oLigneDetail)
         Next
-        Me.tlpRepetition.RowStyles.Clear()
-        For Each oP As CRODIP_ControlLibrary.ParamMetrologiePression In lstPressionM
-            Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstPressionM.Count))
-        Next
-        Me.tlpRepetition.SetRowSpan(Me.Label26, tlpRepetition.RowCount)
+        If tlpRepetition.RowCount > 1 Then
+            Me.tlpRepetition.SetRowSpan(Me.Label26, tlpRepetition.RowCount)
+        End If
 
-        'Suppression de la Col textBox
-        tlpRepetition.ColumnStyles().Item(3).SizeType = SizeType.Absolute
-        tlpRepetition.ColumnStyles().Item(3).Width = 0
+        'Suppression de la Col Ajusteur ou TextBox
+        'Selection de la Colonne ajusteur ou pas
+        Dim nColAEffacer As Integer = 0
+        If pAjusteur Then
+            nColAEffacer = 4
+        Else
+            nColAEffacer = 3
+        End If
+        tlpPressionCroissant.ColumnStyles().Item(nColAEffacer).SizeType = SizeType.Absolute
+        tlpPressionCroissant.ColumnStyles().Item(nColAEffacer).Width = 0
+        tlpPressionDecroissante.ColumnStyles().Item(nColAEffacer).SizeType = SizeType.Absolute
+        tlpPressionDecroissante.ColumnStyles().Item(nColAEffacer).Width = 0
+        tlpRepetition.ColumnStyles().Item(nColAEffacer).SizeType = SizeType.Absolute
+        tlpRepetition.ColumnStyles().Item(nColAEffacer).Width = 0
+
+
     End Sub
 
-    Private Sub AjouteLigne(pTableLayoutPanel As TableLayoutPanel, pType As String)
-        Dim Prefixe As String = ""
-        Select Case pType
-            Case "REPETITION"
-                Prefixe = "repe"
-            Case "DECROISSANT"
-                Prefixe = "down"
-            Case "CROISSANT"
-                Prefixe = "up"
-        End Select
+    Private Sub AfficheLgCtrlManoDetail(pTableLayoutPanel As TableLayoutPanel, pLgCtrlManoDetail As ControleManoDetail)
+        Dim Prefixe As String = pLgCtrlManoDetail.type
 
         Dim NumLigne As Integer
-        pTableLayoutPanel.RowCount = pTableLayoutPanel.RowCount + 1
-        pTableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle())
 
-        NumLigne = pTableLayoutPanel.RowCount - 1 'les numereos de ligne sont 0 index 
+        NumLigne = pLgCtrlManoDetail.point
 
         Dim oLbl As Label = New Label()
         oLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         oLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        oLbl.Text = NumLigne + 1
+        oLbl.Text = NumLigne
         oLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         oLbl.Dock = DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(oLbl, 1, NumLigne)
+        pTableLayoutPanel.Controls.Add(oLbl, 1, NumLigne - 1)
+
+
+        Dim otb As TextBox
+        Dim b As Binding
+        'on utilise une classe intermédiare (BindindMap) pour pourvoir utiliser les propriété indexees
+        '=============================================================================================
+        otb = New TextBox
+        otb.Dock = System.Windows.Forms.DockStyle.Fill
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoCtrl", Prefixe & NumLigne), "MapValue")
+        otb.DataBindings.Add(b)
+        pTableLayoutPanel.Controls.Add(otb, 2, NumLigne - 1)
 
         Dim oNup As NumericUpDown
         oNup = New System.Windows.Forms.NumericUpDown()
         oNup.Dock = DockStyle.Fill
-        oNup.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_manoCtrl(" & Prefixe & "," & NumLigne + 1 & ")", True))
-        pTableLayoutPanel.Controls.Add(oNup, 2, NumLigne)
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoCtrl", Prefixe & NumLigne), "MapValue")
+        oNup.DataBindings.Add(b)
+        AddHandler oNup.Validated, AddressOf validerSaisiePressionEtalon
+        pTableLayoutPanel.Controls.Add(oNup, 3, NumLigne - 1)
 
-        Dim otb As TextBox
         otb = New TextBox()
         otb.Dock = System.Windows.Forms.DockStyle.Fill
         otb.ReadOnly = True
         otb.TabStop = False
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_manoCtrl(" & Prefixe & "," & NumLigne + 1 & ")", True))
-        pTableLayoutPanel.Controls.Add(otb, 3, NumLigne)
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoEtalon", Prefixe & NumLigne), "MapValue")
+        otb.DataBindings.Add(b)
+        AddHandler otb.Validated, AddressOf validerSaisiePressionEtalon
+        AddHandler otb.KeyPress, AddressOf checkKeyPress
+        pTableLayoutPanel.Controls.Add(otb, 4, NumLigne - 1)
+
+
 
         otb = New TextBox
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_manoEtalon(" & Prefixe & "," & NumLigne + 1 & ")", True))
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_incertitude", Prefixe & NumLigne), "MapValue")
+        otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 4, NumLigne)
+        pTableLayoutPanel.Controls.Add(otb, 5, NumLigne - 1)
         otb = New TextBox
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_err_incertitude(" & Prefixe & "," & NumLigne + 1 & ")", True))
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_EMT", Prefixe & NumLigne), "MapValue")
+        otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 5, NumLigne)
+        pTableLayoutPanel.Controls.Add(otb, 6, NumLigne - 1)
+
         otb = New TextBox
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_EMT(" & Prefixe & "," & NumLigne + 1 & ")", True))
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_err_abs", Prefixe & NumLigne), "MapValue")
+        otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 6, NumLigne)
+        pTableLayoutPanel.Controls.Add(otb, 7, NumLigne - 1)
+
         otb = New TextBox
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_err_abs(" & Prefixe & "," & NumLigne + 1 & ")", True))
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_err_fondEchelle", Prefixe & NumLigne), "MapValue")
+        otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 7, NumLigne)
-        otb = New TextBox
-        otb.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControle, "pt_err_fondEchelle(" & Prefixe & "," & NumLigne + 1 & ")", True))
-        otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 8, NumLigne)
+        pTableLayoutPanel.Controls.Add(otb, 8, NumLigne - 1)
+
     End Sub
 
 
@@ -2568,23 +2461,12 @@ Public Class frmControleManometresNew
         Dim isFiable As Boolean = False
 
         If isSaisieComplete() Then
-            If oControle.up_pt1_conformite = "1" And
-                oControle.up_pt2_conformite = "1" And
-                oControle.up_pt3_conformite = "1" And
-                oControle.up_pt4_conformite = "1" And
-                oControle.up_pt5_conformite = "1" And
-                oControle.up_pt6_conformite = "1" And
-                oControle.down_pt1_conformite = "1" And
-                oControle.down_pt2_conformite = "1" And
-                oControle.down_pt3_conformite = "1" And
-                oControle.down_pt4_conformite = "1" And
-                oControle.down_pt5_conformite = "1" And
-                oControle.down_pt6_conformite = "1" Then
-
-                isFiable = True
-            End If
-
+            isFiable = True
+            For Each oDetail As ControleManoDetail In oControle.lstControleManoDetail.Values
+                isFiable = isFiable And (oDetail.conformite = "1")
+            Next
         End If
+
 
 
         'MAJ de l'état du mano
@@ -2608,21 +2490,10 @@ Public Class frmControleManometresNew
         Dim oControle As ControleMano
         oControle = oMAno.controle
         If oControle IsNot Nothing Then
-            If oControle.up_pt1_conformite = "" Or
-                oControle.up_pt2_conformite = "" Or
-                oControle.up_pt3_conformite = "" Or
-                oControle.up_pt4_conformite = "" Or
-                oControle.up_pt5_conformite = "" Or
-                oControle.up_pt6_conformite = "" Or
-                 oControle.down_pt1_conformite = "" Or
-                oControle.down_pt2_conformite = "" Or
-                oControle.down_pt3_conformite = "" Or
-                oControle.down_pt4_conformite = "" Or
-                oControle.down_pt5_conformite = "" Or
-                oControle.down_pt6_conformite = "" Then
+            For Each oDetail As ControleManoDetail In oControle.lstControleManoDetail.Values
+                bisSaisieComplete = bisSaisieComplete And (oDetail.conformite <> "")
+            Next
 
-                bisSaisieComplete = False
-            End If
 
         End If
         Return bisSaisieComplete
@@ -2785,37 +2656,9 @@ Public Class frmControleManometresNew
         End If
     End Sub
 
-    Private Function calcErrAbs(pPressManoctrl As String, pPressManoEtalon As String) As String
-        Dim dErr As Double
-        If Not String.IsNullOrEmpty(pPressManoctrl) And Not String.IsNullOrEmpty(pPressManoEtalon) Then
-            dErr = Math.Round(Math.Abs(GlobalsCRODIP.StringToDouble(pPressManoctrl) - GlobalsCRODIP.StringToDouble(pPressManoEtalon)), 3)
-            Return dErr.ToString("####0.000")
-        Else
-            Return ""
-        End If
-    End Function
-    Private Function calcErrFond(pPressManoctrl As String, pPressManoEtalon As String, pFond As String) As String
-        Dim dErr As Double
-        If Not String.IsNullOrEmpty(pPressManoctrl) And Not String.IsNullOrEmpty(pPressManoEtalon) And Not String.IsNullOrEmpty(pFond) Then
-            dErr = Math.Round(Math.Abs(GlobalsCRODIP.StringToDouble(pPressManoctrl) - GlobalsCRODIP.StringToDouble(pPressManoEtalon)) * 100 / GlobalsCRODIP.StringToDouble(pFond), 3)
-            Return dErr.ToString("####0.000")
-        Else
-            Return ""
-        End If
-    End Function
-    Private Function calcConformite(pErrAbs As String, pEMT As String) As String
-        If Not String.IsNullOrEmpty(pErrAbs) And Not String.IsNullOrEmpty(pEMT) Then
-            If GlobalsCRODIP.StringToDouble(pErrAbs) > GlobalsCRODIP.StringToDouble(pEMT) Then
-                Return "0" ' NOK
-            Else
-                Return "1" 'OK
-            End If
-        Else
-            Return ""
-        End If
-    End Function
+
     ' Calcul au chagement de contenu
-    Private Sub saisiePressionManoReferenceup1(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub validerSaisiePressionEtalon(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim oManoC As ManometreControle
         Dim oManoE As ManometreEtalon
         Dim oControle As ControleMano
@@ -2828,9 +2671,6 @@ Public Class frmControleManometresNew
 
 
             ' Calcul err absolue
-            oControle.up_pt1_err_abs = calcErrAbs(oControle.up_pt1_pres_manoCtrl, oControle.up_pt1_pres_manoEtalon)
-            oControle.up_pt1_err_fondEchelle = calcErrFond(oControle.up_pt1_pres_manoCtrl, oControle.up_pt1_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.up_pt1_conformite = calcConformite(oControle.up_pt1_err_abs, oControle.up_pt1_EMT)
             If oControle.up_pt1_conformite = "1" Then
                 sender.ForeColor = System.Drawing.Color.Green
             Else
@@ -2846,338 +2686,6 @@ Public Class frmControleManometresNew
         End Try
     End Sub
     ' Calcul au chagement de contenu
-    Private Sub saisiePressionManoReferenceup2(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.up_pt2_err_abs = calcErrAbs(oControle.up_pt2_pres_manoCtrl, oControle.up_pt2_pres_manoEtalon)
-            oControle.up_pt2_err_fondEchelle = calcErrFond(oControle.up_pt2_pres_manoCtrl, oControle.up_pt2_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.up_pt2_conformite = calcConformite(oControle.up_pt2_err_abs, oControle.up_pt2_EMT)
-            If oControle.up_pt2_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferenceup1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
-    Private Sub saisiePressionManoReferenceup3(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.up_pt3_err_abs = calcErrAbs(oControle.up_pt3_pres_manoCtrl, oControle.up_pt3_pres_manoEtalon)
-            oControle.up_pt3_err_fondEchelle = calcErrFond(oControle.up_pt3_pres_manoCtrl, oControle.up_pt3_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.up_pt3_conformite = calcConformite(oControle.up_pt3_err_abs, oControle.up_pt3_EMT)
-            If oControle.up_pt3_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup3(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
-    Private Sub saisiePressionManoReferenceup4(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.up_pt4_err_abs = calcErrAbs(oControle.up_pt4_pres_manoCtrl, oControle.up_pt4_pres_manoEtalon)
-            oControle.up_pt4_err_fondEchelle = calcErrFond(oControle.up_pt4_pres_manoCtrl, oControle.up_pt4_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.up_pt4_conformite = calcConformite(oControle.up_pt4_err_abs, oControle.up_pt4_EMT)
-            If oControle.up_pt4_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup4(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
-    Private Sub saisiePressionManoReferenceup5(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.up_pt5_err_abs = calcErrAbs(oControle.up_pt5_pres_manoCtrl, oControle.up_pt5_pres_manoEtalon)
-            oControle.up_pt5_err_fondEchelle = calcErrFond(oControle.up_pt5_pres_manoCtrl, oControle.up_pt5_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.up_pt5_conformite = calcConformite(oControle.up_pt5_err_abs, oControle.up_pt5_EMT)
-            If oControle.up_pt5_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup5(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
-    Private Sub saisiePressionManoReferenceup6(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.up_pt6_err_abs = calcErrAbs(oControle.up_pt6_pres_manoCtrl, oControle.up_pt6_pres_manoEtalon)
-            oControle.up_pt6_err_fondEchelle = calcErrFond(oControle.up_pt6_pres_manoCtrl, oControle.up_pt6_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.up_pt6_conformite = calcConformite(oControle.up_pt6_err_abs, oControle.up_pt6_EMT)
-            If oControle.up_pt6_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferenceup6(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
-
-    ' Calcul au chagement de contenu
-    Private Sub saisiePressionManoReferencedown1(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.down_pt1_err_abs = calcErrAbs(oControle.down_pt1_pres_manoCtrl, oControle.down_pt1_pres_manoEtalon)
-            oControle.down_pt1_err_fondEchelle = calcErrFond(oControle.down_pt1_pres_manoCtrl, oControle.down_pt1_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.down_pt1_conformite = calcConformite(oControle.down_pt1_err_abs, oControle.down_pt1_EMT)
-            If oControle.down_pt1_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferencedown1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
-    ' Calcul au chagement de contenu
-    Private Sub saisiePressionManoReferencedown2(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.down_pt2_err_abs = calcErrAbs(oControle.down_pt2_pres_manoCtrl, oControle.down_pt2_pres_manoEtalon)
-            oControle.down_pt2_err_fondEchelle = calcErrFond(oControle.down_pt2_pres_manoCtrl, oControle.down_pt2_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.down_pt2_conformite = calcConformite(oControle.down_pt2_err_abs, oControle.down_pt2_EMT)
-            If oControle.down_pt2_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre2 :: saisiePressionManoReferencedown1(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
-    Private Sub saisiePressionManoReferencedown3(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.down_pt3_err_abs = calcErrAbs(oControle.down_pt3_pres_manoCtrl, oControle.down_pt3_pres_manoEtalon)
-            oControle.down_pt3_err_fondEchelle = calcErrFond(oControle.down_pt3_pres_manoCtrl, oControle.down_pt3_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.down_pt3_conformite = calcConformite(oControle.down_pt3_err_abs, oControle.down_pt3_EMT)
-            If oControle.down_pt3_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown3(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
-    Private Sub saisiePressionManoReferencedown4(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.down_pt4_err_abs = calcErrAbs(oControle.down_pt4_pres_manoCtrl, oControle.down_pt4_pres_manoEtalon)
-            oControle.down_pt4_err_fondEchelle = calcErrFond(oControle.down_pt4_pres_manoCtrl, oControle.down_pt4_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.down_pt4_conformite = calcConformite(oControle.down_pt4_err_abs, oControle.down_pt4_EMT)
-            If oControle.down_pt4_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown4(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
-    Private Sub saisiePressionManoReferencedown5(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.down_pt5_err_abs = calcErrAbs(oControle.down_pt5_pres_manoCtrl, oControle.down_pt5_pres_manoEtalon)
-            oControle.down_pt5_err_fondEchelle = calcErrFond(oControle.down_pt5_pres_manoCtrl, oControle.down_pt5_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.down_pt5_conformite = calcConformite(oControle.down_pt5_err_abs, oControle.down_pt5_EMT)
-            If oControle.down_pt5_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown5(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
-    Private Sub saisiePressionManoReferencedown6(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim oManoC As ManometreControle
-        Dim oManoE As ManometreEtalon
-        Dim oControle As ControleMano
-        Try
-            ' Init
-
-            oManoC = m_bsManoControle.Current
-            oManoE = m_bsManoEtalon.Current
-            oControle = m_bsControle.Current
-
-
-            ' Calcul err absolue
-            oControle.down_pt6_err_abs = calcErrAbs(oControle.down_pt6_pres_manoCtrl, oControle.down_pt6_pres_manoEtalon)
-            oControle.down_pt6_err_fondEchelle = calcErrFond(oControle.down_pt6_pres_manoCtrl, oControle.down_pt6_pres_manoEtalon, oManoC.fondEchelle)
-            oControle.down_pt6_conformite = calcConformite(oControle.down_pt6_err_abs, oControle.down_pt6_EMT)
-            If oControle.down_pt6_conformite = "1" Then
-                sender.ForeColor = System.Drawing.Color.Green
-            Else
-                sender.ForeColor = System.Drawing.Color.Red
-            End If
-
-
-            ValiderSaisie(oControle)
-            m_bsControle.ResetCurrentItem()
-            m_bsManoControle.ResetCurrentItem()
-        Catch ex As Exception
-            CSDebug.dispError("frmControleMAnometre :: saisiePressionManoReferencedown6(" & sender.Tag.ToString & ") : " & ex.Message.ToString)
-        End Try
-    End Sub
 
     Private Sub ValiderSaisie(pControle As ControleMano)
         If (isSaisieComplete()) Then
@@ -3201,25 +2709,7 @@ Public Class frmControleManometresNew
         lblResultat.Refresh()
 
     End Sub
-    Private Function calcEMT(pMano As ManometreControle) As Double
-        '''TODO : Mettre cette méthode dans la classe ManomètreControle
-        Dim dReturn As Double
-        Select Case pMano.fondEchelle
-            Case "6"
-                dReturn = 0.1
-            Case "10"
-                dReturn = 0.1
-            Case "20"
-                dReturn = 0.2
-            Case "25"
-                dReturn = 0.25
-            Case Else
-                dReturn = CDbl(Math.Round((GlobalsCRODIP.StringToDouble(pMano.classe) * GlobalsCRODIP.StringToDouble(pMano.fondEchelle) / 100), 2))
-        End Select
 
-        Return dReturn
-
-    End Function
     Private Sub checkKeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         CSForm.typeAllowed(e, "numerique")
         CSForm.forceDot(e, sender)
@@ -3356,22 +2846,6 @@ Public Class frmControleManometresNew
         _thread_doAcqiring.Start() ' Démarrage du thread.
         _thread_doAcqiring.Join() ' Démarrage du thread.
         m_bsControle.ResetCurrentItem()
-        refreshLines()
-    End Sub
-    Private Sub refreshLines()
-        saisiePressionManoReferenceup1(tbUpMR1, New EventArgs())
-        saisiePressionManoReferenceup2(tbUpMR2, New EventArgs())
-        saisiePressionManoReferenceup3(tbUpMR3, New EventArgs())
-        saisiePressionManoReferenceup4(tbUpMR4, New EventArgs())
-        saisiePressionManoReferenceup5(tbUpMR5, New EventArgs())
-        saisiePressionManoReferenceup6(tbUpMR6, New EventArgs())
-        'saisiePressionManoReferencedown1(tbDownMR1, New EventArgs())
-        'saisiePressionManoReferencedown2(tbDownMR2, New EventArgs())
-        saisiePressionManoReferencedown3(tbDownMR3, New EventArgs())
-        saisiePressionManoReferencedown4(tbDownMR4, New EventArgs())
-        saisiePressionManoReferencedown5(tbDownMR5, New EventArgs())
-        saisiePressionManoReferencedown6(tbDownMR6, New EventArgs())
-
     End Sub
 
 #End Region
@@ -3393,6 +2867,8 @@ Public Class frmControleManometresNew
         Dim oControle As ControleMano
 
         oControle = oMano.controle
+        m_bsControle.Clear()
+        m_bsControle.Add(oControle)
         'La Température, Date de vérification et le Mano de controle ne sont pas liés avec le controle
         ' car il doivent être mes même pour TOUS les controle
         oControle.tempAir = tbTemperature.Text
@@ -3402,68 +2878,9 @@ Public Class frmControleManometresNew
         oControle.idMano = oMano.numeroNational
         oControle.resultat = oMano.etat
         oControle.DateVerif = CSDate.ToCRODIPString(dtpDateControle.Value)
-        oControle.setIncertitude(oMano, m_bsManoEtalon.Current)
+        'oControle.setIncertitude(oMano, m_bsManoEtalon.Current)
         ' ValiderSaisie(oControle)
-        If oControle.up_pt1_conformite = "1" Then
-            tbUpMR1.ForeColor = System.Drawing.Color.Green
-        Else
-            tbUpMR1.ForeColor = System.Drawing.Color.Red
-        End If
-        If oControle.up_pt2_conformite = "1" Then
-            tbUpMR2.ForeColor = System.Drawing.Color.Green
-        Else
-            tbUpMR2.ForeColor = System.Drawing.Color.Red
-        End If
-        If oControle.up_pt3_conformite = "1" Then
-            tbUpMR3.ForeColor = System.Drawing.Color.Green
-        Else
-            tbUpMR3.ForeColor = System.Drawing.Color.Red
-        End If
-        If oControle.up_pt4_conformite = "1" Then
-            tbUpMR4.ForeColor = System.Drawing.Color.Green
-        Else
-            tbUpMR4.ForeColor = System.Drawing.Color.Red
-        End If
-        If oControle.up_pt5_conformite = "1" Then
-            tbUpMR5.ForeColor = System.Drawing.Color.Green
-        Else
-            tbUpMR5.ForeColor = System.Drawing.Color.Red
-        End If
-        If oControle.up_pt6_conformite = "1" Then
-            tbUpMR6.ForeColor = System.Drawing.Color.Green
-        Else
-            tbUpMR6.ForeColor = System.Drawing.Color.Red
-        End If
-        'If oControle.down_pt1_conformite = "1" Then
-        'tbDownMR1.ForeColor = System.Drawing.Color.Green
-        'Else
-        'tbDownMR1.ForeColor = System.Drawing.Color.Red
-        'End If
-        'If oControle.down_pt2_conformite = "1" Then
-        ' tbDownMR2.ForeColor = System.Drawing.Color.Green
-        'Else
-        'tbDownMR2.ForeColor = System.Drawing.Color.Red
-        'End If
-        If oControle.down_pt3_conformite = "1" Then
-            tbDownMR3.ForeColor = System.Drawing.Color.Green
-        Else
-            tbDownMR3.ForeColor = System.Drawing.Color.Red
-        End If
-        If oControle.down_pt4_conformite = "1" Then
-            tbDownMR4.ForeColor = System.Drawing.Color.Green
-        Else
-            tbDownMR4.ForeColor = System.Drawing.Color.Red
-        End If
-        If oControle.down_pt5_conformite = "1" Then
-            tbDownMR5.ForeColor = System.Drawing.Color.Green
-        Else
-            tbDownMR5.ForeColor = System.Drawing.Color.Red
-        End If
-        If oControle.down_pt6_conformite = "1" Then
-            tbDownMR6.ForeColor = System.Drawing.Color.Green
-        Else
-            tbDownMR6.ForeColor = System.Drawing.Color.Red
-        End If
+        AfficheControleMano(oControle, True)
 
         ValiderSaisie(oControle)
 

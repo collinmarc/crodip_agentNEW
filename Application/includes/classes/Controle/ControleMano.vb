@@ -1,8 +1,10 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
+Imports CRODIP_ControlLibrary
+Imports System.Linq
 
-<Serializable(), XmlInclude(GetType(ControleMano))> _
+<Serializable(), XmlInclude(GetType(ControleMano))>
 Public Class ControleMano
 
     Private _id As String
@@ -115,9 +117,40 @@ Public Class ControleMano
         Me.down_pt4_err_fondEchelle = ""
         Me.down_pt5_err_fondEchelle = ""
         Me.down_pt6_err_fondEchelle = ""
-
-
         AgentVerif = pAgent.nom & " " & pAgent.prenom
+
+
+        '===================
+        ' Lecture des paramétres de controles
+        '====================
+        Try
+
+            Dim lstParamMetrologie As New lstParamMetrologie()
+            lstParamMetrologie.readXML()
+
+            Dim oParamMetro As ParamMetrologie =
+                lstParamMetrologie.lstParam.Where(Function(P)
+                                                      Return P.FondEchelle.Equals(oMano.fondEchelle)
+                                                  End Function).FirstOrDefault()
+            If oParamMetro IsNot Nothing Then
+                'Création de la liste des Détail en fonction des paramètres
+                _lst = New Dictionary(Of String, ControleManoDetail)
+                For Each oParam As ParamMetrologiePression In oParamMetro.PressionMontantes
+                    _lst.Add("UP" & oParam.Num, New ControleManoDetail("UP", oParam.Num, oParam.Valeur, oMano))
+                Next
+                For Each oParam As ParamMetrologiePression In oParamMetro.PressionDescendantes
+                    _lst.Add("DOWN" & oParam.Num, New ControleManoDetail("DOWN", oParam.Num, oParam.Valeur, oMano))
+                Next
+                For Each oParam As ParamMetrologiePression In oParamMetro.Repetitions
+                    _lst.Add("REPE" & oParam.Num, New ControleManoDetail("REPE", oParam.Num, oParam.Valeur, oMano))
+                Next
+            End If
+
+        Catch ex As Exception
+            CSDebug.dispError("controleMano.New ERR", ex)
+            CSDebug.dispError("controleMano.New on garde les valeurs par défaut")
+        End Try
+
     End Sub
 
     Public Function setIncertitude(pManoC As ManometreControle, pManoE As ManometreEtalon) As Double
@@ -242,6 +275,87 @@ Public Class ControleMano
         End Get
         Set(value As Dictionary(Of String, ControleManoDetail))
 
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property lstControleManoDetail(pKey As String) As ControleManoDetail
+        Get
+            Return _lst(pKey)
+        End Get
+        Set(ByVal value As ControleManoDetail)
+            _lst(pKey) = value
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property lstControleManoDetail_pres_manoCtrl(pKey As String) As String
+        Get
+            Return _lst(pKey).pres_manoCtrl
+        End Get
+        Set(ByVal value As String)
+            _lst(pKey).pres_manoCtrl = value
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property lstControleManoDetail_pres_manoEtalon(pKey As String) As String
+        Get
+            Return _lst(pKey).pres_manoEtalon
+        End Get
+        Set(ByVal value As String)
+            _lst(pKey).pres_manoEtalon = value
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property lstControleManoDetail_Incertitude(pKey As String) As String
+        Get
+            Return _lst(pKey).incertitude
+        End Get
+        Set(ByVal value As String)
+            _lst(pKey).incertitude = value
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property lstControleManoDetail_EMT(pKey As String) As String
+        Get
+            Return _lst(pKey).EMT
+        End Get
+        Set(ByVal value As String)
+            _lst(pKey).EMT = value
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property lstControleManoDetail_err_abs(pKey As String) As String
+        Get
+            Return _lst(pKey).err_abs
+        End Get
+        Set(ByVal value As String)
+            _lst(pKey).err_abs = value
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property lstControleManoDetail_err_FondEchelle(pKey As String) As String
+        Get
+            Return _lst(pKey).err_fondEchelle
+        End Get
+        Set(ByVal value As String)
+            _lst(pKey).err_fondEchelle = value
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property lstControleManoDetail_point(pKey As String) As String
+        Get
+            Return _lst(pKey).point
+        End Get
+        Set(ByVal value As String)
+            _lst(pKey).point = value
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property lstControleManoDetail_type(pKey As String) As String
+        Get
+            Return _lst(pKey).type
+        End Get
+        Set(ByVal value As String)
+            _lst(pKey).type = value
         End Set
     End Property
     Public Property up_pt1_pres_manoCtrl() As String
@@ -1069,7 +1183,7 @@ Public Class ControleMano
     Public Function buildPDF() As String
 
         Dim oEtat As New EtatFVMano(Me)
-        If oEtat.GenereEtat() Then
+        If oEtat.genereEtat() Then
             '            oEtat.Open()
         End If
 
@@ -1077,6 +1191,7 @@ Public Class ControleMano
         Return oEtat.getFileName()
 
     End Function 'Build PDF
+
 
 
 End Class
