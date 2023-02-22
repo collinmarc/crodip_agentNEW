@@ -164,6 +164,8 @@ Public Class ControleMano
         Catch ex As Exception
             dReturn = 0
         End Try
+
+
         Me.up_pt1_incertitude = dReturn
         Me.up_pt2_incertitude = dReturn
         Me.up_pt3_incertitude = dReturn
@@ -178,6 +180,11 @@ Public Class ControleMano
         Me.down_pt5_incertitude = dReturn
         Me.down_pt6_incertitude = dReturn
 
+        If lstControleManoDetail.Count > 0 Then
+            For Each oDetail As ControleManoDetail In lstControleManoDetail.Values
+                oDetail.incertitude = dReturn
+            Next
+        End If
 
         Return dReturn
     End Function
@@ -238,21 +245,7 @@ Public Class ControleMano
 
     Public Property resultat() As String
         Get
-            Dim sReturn As String
-            Dim bComplet As Boolean = True
-            sReturn = "Votre manomètre est fiable : il répond à sa classe de précision."
-            For Each oDetail As ControleManoDetail In _lst.Values
-                If oDetail.conformite = "0" Then
-                    sReturn = "Votre manomètre n'est pas fiable : il ne répond pas à sa classe de précision. Faites le remettre en état ou changez le."
-                End If
-                If oDetail.conformite = "" Then
-                    bComplet = False
-                End If
-            Next
-            If Not bComplet Then
-                sReturn = ""
-            End If
-            Return sReturn
+            Return _resultat
         End Get
         Set(ByVal Value As String)
             _resultat = Value
@@ -305,7 +298,7 @@ Public Class ControleMano
         End Set
     End Property
     <XmlIgnore>
-    Public Property lstControleManoDetail_Incertitude(pKey As String) As String
+    Public Property lstControleManoDetail_incertitude(pKey As String) As String
         Get
             Return _lst(pKey).incertitude
         End Get
@@ -358,6 +351,16 @@ Public Class ControleMano
             _lst(pKey).type = value
         End Set
     End Property
+    <XmlIgnore>
+    Public Property lstControleManoDetail_conformite(pKey As String) As String
+        Get
+            Return _lst(pKey).conformite
+        End Get
+        Set(ByVal value As String)
+            _lst(pKey).conformite = value
+        End Set
+    End Property
+
     Public Property up_pt1_pres_manoCtrl() As String
         Get
             Return _lst("UP1").pres_manoCtrl
@@ -1056,61 +1059,126 @@ Public Class ControleMano
             Return _lst("DOWN6").pres_manoCtrl
         End Get
         Set(ByVal Value As String)
-            _lst("DOWN6").pres_manoCtrl = Value
+            Try
+
+                _lst("DOWN6").pres_manoCtrl = Value
+            Catch ex As Exception
+
+            End Try
         End Set
     End Property
 
     Public Property down_pt6_pres_manoEtalon() As String
         Get
-            Return _lst("DOWN6").pres_manoEtalon
+            Try
+
+                Return _lst("DOWN6").pres_manoEtalon
+            Catch ex As Exception
+                Return ""
+            End Try
         End Get
         Set(ByVal Value As String)
-            _lst("DOWN6").pres_manoEtalon = Value
+            Try
+                _lst("DOWN6").pres_manoEtalon = Value
+            Catch ex As Exception
+
+            End Try
+
         End Set
     End Property
 
     Public Property down_pt6_incertitude() As String
         Get
-            Return _lst("DOWN6").incertitude
+            Try
+                Return _lst("DOWN6").incertitude
+
+            Catch ex As Exception
+                Return ""
+            End Try
         End Get
         Set(ByVal Value As String)
-            _lst("DOWN6").incertitude = Value
+            Try
+                _lst("DOWN6").incertitude = Value
+
+            Catch ex As Exception
+
+            End Try
         End Set
     End Property
 
     Public Property down_pt6_EMT() As String
         Get
-            Return _lst("DOWN6").EMT
+            Try
+                Return _lst("DOWN6").EMT
+
+            Catch ex As Exception
+                Return ""
+            End Try
         End Get
         Set(ByVal Value As String)
-            _lst("DOWN6").EMT = Value
+            Try
+
+                _lst("DOWN6").EMT = Value
+            Catch ex As Exception
+
+            End Try
         End Set
     End Property
 
     Public Property down_pt6_err_abs() As String
         Get
-            Return _lst("DOWN6").err_abs
+            Try
+                Return _lst("DOWN6").err_abs
+
+            Catch ex As Exception
+                Return ""
+            End Try
         End Get
         Set(ByVal Value As String)
-            _lst("DOWN6").err_abs = Value
+            Try
+                _lst("DOWN6").err_abs = Value
+
+            Catch ex As Exception
+
+            End Try
         End Set
     End Property
 
     Public Property down_pt6_err_fondEchelle() As String
         Get
-            Return _lst("DOWN6").err_fondEchelle
+            Try
+                Return _lst("DOWN6").err_fondEchelle
+
+            Catch ex As Exception
+                Return ""
+            End Try
         End Get
         Set(ByVal Value As String)
-            _lst("DOWN6").err_fondEchelle = Value
+            Try
+                _lst("DOWN6").err_fondEchelle = Value
+
+            Catch ex As Exception
+
+            End Try
         End Set
     End Property
 
     Public Property down_pt6_conformite() As String
         Get
-            Return _lst("DOWN6").conformite
+            Try
+                Return _lst("DOWN6").conformite
+
+            Catch ex As Exception
+                Return ""
+            End Try
         End Get
         Set(ByVal Value As String)
-            _lst("DOWN6").conformite = Value
+            Try
+                _lst("DOWN6").conformite = Value
+
+            Catch ex As Exception
+
+            End Try
         End Set
     End Property
 

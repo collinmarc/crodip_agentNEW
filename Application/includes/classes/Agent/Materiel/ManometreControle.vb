@@ -66,7 +66,7 @@ Public Class ManometreControle
 
         End Set
     End Property
-    Private Function getPressionCtrl(pNum As Integer) As String
+    Public Function getPressionCtrl(pNum As Integer) As String
         Try
             Dim nFond As Integer = CInt(fondEchelle)
             Return Math.Round(nFond * (0.2 * (pNum - 1)), 1).ToString()

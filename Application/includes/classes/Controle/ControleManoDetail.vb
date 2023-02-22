@@ -13,14 +13,16 @@
     Public Sub New(ptype As String, pPoint As String)
         type = ptype
         point = pPoint
+        _conformite = ""
     End Sub
     Public Sub New(ptype As String, pPoint As String, pPression As Decimal, pMano As ManometreControle)
         type = ptype
         point = pPoint
-        pres_manoEtalon = pPression
+        pres_manoCtrl = pPression
+        pres_manoEtalon = ""
         _FondEchelle = pMano.fondEchelle
         calcEMT(pMano)
-
+        _conformite = ""
     End Sub
 
     Public Property type() As String

@@ -33,7 +33,7 @@ Public Class BindingMap
             End If
         End get
     set (Value as Object)
-            Dim pi As PropertyInfo = _mappedObject.GetType.GetProperty(_mappedProperty)
+            Dim     pi As PropertyInfo = _mappedObject.GetType.GetProperty(_mappedProperty)
             If pi IsNot Nothing Then
                 Dim mi As MethodInfo = pi.GetSetMethod()
                 mi.Invoke(_mappedObject, New Object() {_mappedIndexVal, Value})
