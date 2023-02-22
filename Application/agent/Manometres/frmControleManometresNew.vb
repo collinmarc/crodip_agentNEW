@@ -819,7 +819,7 @@ Public Class frmControleManometresNew
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 209.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 211.0!))
         Me.tlpEntete.Controls.Add(Me.Label5, 4, 0)
         Me.tlpEntete.Controls.Add(Me.Label6, 5, 0)
         Me.tlpEntete.Controls.Add(Me.Label7, 6, 0)
@@ -876,7 +876,7 @@ Public Class frmControleManometresNew
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(425, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(264, 28)
+        Me.Label7.Size = New System.Drawing.Size(266, 28)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -888,7 +888,7 @@ Public Class frmControleManometresNew
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(486, 30)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(203, 29)
+        Me.Label11.Size = New System.Drawing.Size(205, 29)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2289,27 +2289,39 @@ Public Class frmControleManometresNew
         lstCtrlManoDetail = pControleMano.lstControleManoDetail.Values.Where(Function(D)
                                                                                  Return D.type = "UP"
                                                                              End Function).ToList()
+        Me.tlpPressionCroissant.SuspendLayout()
         Me.tlpPressionCroissant.Controls.Clear()
-        Me.tlpPressionCroissant.RowStyles.Clear()
-        Me.tlpPressionCroissant.RowCount = lstCtrlManoDetail.Count
-        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
-            Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
-        Next
         'Label Croissant
-        'TODO créer le Label
-        Label19.Text = "Pressions croissantes"
+        Dim lblPressionCroissante As Label
+        lblPressionCroissante = New Label()
+        lblPressionCroissante.Dock = System.Windows.Forms.DockStyle.Fill
+        lblPressionCroissante.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        lblPressionCroissante.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        lblPressionCroissante.Location = New System.Drawing.Point(1, 1)
+        lblPressionCroissante.Margin = New System.Windows.Forms.Padding(0)
+        lblPressionCroissante.Size = New System.Drawing.Size(84, 219)
+        lblPressionCroissante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        lblPressionCroissante.Text = "Pressions croissantes"
         If lstCtrlManoDetail.Count > 0 Then
-            Me.tlpPressionCroissant.Controls.Add(Me.Label19, 0, 0)
+            Me.tlpPressionCroissant.Controls.Add(lblPressionCroissante, 0, 0)
         End If
 
 
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
             AfficheLgCtrlManoDetail(tlpPressionCroissant, oLigneDetail)
         Next
-        If tlpPressionCroissant.RowCount > 1 Then
-            Me.tlpPressionCroissant.SetRowSpan(Me.Label19, tlpPressionCroissant.RowCount)
+
+        Me.tlpPressionCroissant.RowStyles.Clear()
+        'Me.tlpPressionCroissant.RowCount = lstCtrlManoDetail.Count
+        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
+            Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
+        Next
+
+        If lstCtrlManoDetail.Count > 1 Then
+            Me.tlpPressionCroissant.SetRowSpan(lblPressionCroissante, lstCtrlManoDetail.Count)
         End If
 
+        Me.tlpPressionCroissant.ResumeLayout(True)
 
 
         'Trt des pression décroissantes
@@ -2318,50 +2330,70 @@ Public Class frmControleManometresNew
                                                                                  Return D.type = "DOWN"
                                                                              End Function).ToList()
 
+        Me.tlpPressionDecroissante.SuspendLayout()
         Me.tlpPressionDecroissante.Controls.Clear()
         Me.tlpPressionDecroissante.RowStyles.Clear()
-        Me.tlpPressionDecroissante.RowCount = lstCtrlManoDetail.Count
+        'Me.tlpPressionDecroissante.RowCount = lstCtrlManoDetail.Count
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
             Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
         Next
         'Label Décroissant
         'TODO créer le Label
-        Label20.Text = "Pressions décroissantes"
+        Dim lblPressionDeCroissante As Label
+        lblPressionDeCroissante = New Label()
+        lblPressionDeCroissante.Dock = System.Windows.Forms.DockStyle.Fill
+        lblPressionDeCroissante.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        lblPressionDeCroissante.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        lblPressionDeCroissante.Location = New System.Drawing.Point(1, 1)
+        lblPressionDeCroissante.Margin = New System.Windows.Forms.Padding(0)
+        lblPressionDeCroissante.Size = New System.Drawing.Size(84, 219)
+        lblPressionDeCroissante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        lblPressionDeCroissante.Text = "Pressions décroissantes"
         If lstCtrlManoDetail.Count > 0 Then
-            Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
+            Me.tlpPressionDecroissante.Controls.Add(lblPressionDeCroissante, 0, 0)
         End If
 
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
             AfficheLgCtrlManoDetail(tlpPressionDecroissante, oLigneDetail)
         Next
-        If tlpPressionDecroissante.RowCount > 1 Then
-            Me.tlpPressionDecroissante.SetRowSpan(Me.Label20, tlpPressionDecroissante.RowCount)
+        If lstCtrlManoDetail.Count > 1 Then
+            Me.tlpPressionDecroissante.SetRowSpan(lblPressionDeCroissante, lstCtrlManoDetail.Count)
         End If
+
+        Me.tlpPressionDecroissante.ResumeLayout()
+
         'Trt des répétitions
         '------------------------
         lstCtrlManoDetail = pControleMano.lstControleManoDetail.Values.Where(Function(D)
                                                                                  Return D.type = "REPE"
                                                                              End Function).ToList()
 
+        Me.tlpRepetition.SuspendLayout()
         Me.tlpRepetition.Controls.Clear()
         Me.tlpRepetition.RowStyles.Clear()
-        Me.tlpRepetition.RowCount = lstCtrlManoDetail.Count
+        'Me.tlpRepetition.RowCount = lstCtrlManoDetail.Count
 
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
             Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
         Next
         'Label Repetition
-        Label26.Text = "Répétitions"
+        Dim lblRepetition As Label
+        lblRepetition = New Label()
+        lblRepetition.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        lblRepetition.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        lblRepetition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        lblRepetition.Text = "Répétitions"
         If lstCtrlManoDetail.Count > 0 Then
-            Me.tlpRepetition.Controls.Add(Me.Label26, 0, 0)
+            Me.tlpRepetition.Controls.Add(lblRepetition, 0, 0)
         End If
 
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
             AfficheLgCtrlManoDetail(tlpRepetition, oLigneDetail)
         Next
-        If tlpRepetition.RowCount > 1 Then
-            Me.tlpRepetition.SetRowSpan(Me.Label26, tlpRepetition.RowCount)
+        If lstCtrlManoDetail.Count > 1 Then
+            Me.tlpRepetition.SetRowSpan(lblRepetition, lstCtrlManoDetail.Count)
         End If
+        Me.tlpRepetition.ResumeLayout()
 
         'Suppression de la Col Ajusteur ou TextBox
         'Selection de la Colonne ajusteur ou pas
@@ -2377,6 +2409,14 @@ Public Class frmControleManometresNew
         tlpPressionDecroissante.ColumnStyles().Item(nColAEffacer).Width = 0
         tlpRepetition.ColumnStyles().Item(nColAEffacer).SizeType = SizeType.Absolute
         tlpRepetition.ColumnStyles().Item(nColAEffacer).Width = 0
+        Me.SplitContainer1.SuspendLayout()
+        tlpGlobal.SuspendLayout()
+        Dim nLignestot As Integer = tlpPressionCroissant.RowStyles.Count + tlpPressionDecroissante.RowStyles.Count + tlpRepetition.RowStyles.Count
+        tlpGlobal.RowStyles(1) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpPressionCroissant.RowStyles.Count / nLignestot * 100)
+        tlpGlobal.RowStyles(2) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpPressionDecroissante.RowStyles.Count / nLignestot * 100)
+        tlpGlobal.RowStyles(3) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpRepetition.RowStyles.Count / nLignestot * 100)
+        tlpGlobal.ResumeLayout()
+        Me.SplitContainer1.ResumeLayout()
 
 
     End Sub
