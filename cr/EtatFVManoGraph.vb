@@ -1,4 +1,5 @@
-﻿Imports CrystalDecisions.CrystalReports.Engine
+﻿Imports System.Linq
+Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 
 Public Class EtatFVManoGrpah
@@ -21,7 +22,7 @@ Public Class EtatFVManoGrpah
             If (bReturn) Then
                 CSDebug.dispInfo("etatFVMano.GenereEtatLocal() :  GenerePDF")
                 Using objReport As New ReportDocument
-                    Using r1 As New cr_diagVerifMano()
+                    Using r1 As New cr_diagVerifMano
                         strReportName = r1.ResourceName
                         r1.Close()
                     End Using
@@ -58,37 +59,45 @@ Public Class EtatFVManoGrpah
     Private Function genereDS() As Boolean
         Dim bReturn As Boolean
         Try
-            Dim oManoRef As ManometreEtalon
-            oManoRef = ManometreEtalonManager.getManometreEtalonByNumeroNational(m_oControle.manoEtalon)
-            Dim oMano As ManometreControle
-            oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)
-            ' Recupere la structure
-            Dim objStructure As Structuree = StructureManager.getStructureById(m_oControle.idStructure)
-            Dim PressionCroissante As String = "Pression croissante"
-            Dim PressionDecroissante As String = "Pression décroissante"
+
+            Dim nPC As Integer = m_oControle.lstControleManoDetail.Values.Where(Function(D)
+                                                                                    Return D.type = "UP"
+                                                                                End Function).Count()
+            Dim nPD As Integer = m_oControle.lstControleManoDetail.Values.Where(Function(D)
+                                                                                    Return D.type = "DOWN"
+                                                                                End Function).Count()
+            Dim nPR As Integer = m_oControle.lstControleManoDetail.Values.Where(Function(D)
+                                                                                    Return D.type = "REPE"
+                                                                                End Function).Count()
+            Dim nMax As Integer = Math.Max(nPR, Math.Max(nPC, nPD))
+
             m_ods = New dsFvMano()
-            m_ods.Diagramme.AddDiagrammeRow(Numero:=1, PressionCroissante:=+0.5, PressionDecroissante:=0.1, PressionRepetition:=-0.15)
-            m_ods.Diagramme.AddDiagrammeRow(Numero:=2, PressionCroissante:=-0.5, PressionDecroissante:=0.2, PressionRepetition:=-0.25)
-            Dim oRow As dsFvMano.DiagrammeRow
-            oRow = m_ods.Diagramme.NewDiagrammeRow()
-            oRow.Numero = 3
-            oRow.PressionCroissante = +0.5
-            oRow.PressionDecroissante = 0.3
-            m_ods.Diagramme.AddDiagrammeRow(oRow)
-            oRow = m_ods.Diagramme.NewDiagrammeRow()
-            oRow.Numero = 4
-            oRow.PressionCroissante = -0.5
-            oRow.PressionDecroissante = 0.4
-            m_ods.Diagramme.AddDiagrammeRow(oRow)
-            oRow = m_ods.Diagramme.NewDiagrammeRow()
-            oRow.Numero = 5
-            oRow.PressionCroissante = -0.5
-            oRow.PressionDecroissante = 0.5
-            m_ods.Diagramme.AddDiagrammeRow(oRow)
-            oRow = m_ods.Diagramme.NewDiagrammeRow()
-            oRow.Numero = 6
-            oRow.PressionCroissante = 0.5
-            m_ods.Diagramme.AddDiagrammeRow(oRow)
+            For nIndex As Integer = 0 To nMax - 1
+                Dim oRow As dsFvMano.DiagrammeRow
+                oRow = m_ods.Diagramme.NewDiagrammeRow()
+                oRow.Numero = nIndex + 1
+                If nIndex < nPC Then
+                    oRow.PressionCroissante = m_oControle.lstControleManoDetail_pres_manoEtalon("UP" & nIndex + 1)
+                Else
+                    oRow.SetPressionCroissanteNull()
+                End If
+                If nIndex < nPD Then
+                    oRow.PressionDecroissante = m_oControle.lstControleManoDetail_pres_manoEtalon("DOWN" & nIndex + 1)
+                Else
+                    oRow.SetPressionDecroissanteNull()
+                End If
+                If nIndex < nPR Then
+                    oRow.PressionRepetition = m_oControle.lstControleManoDetail_pres_manoEtalon("REPE" & nIndex + 1)
+                Else
+                    oRow.SetPressionRepetitionNull()
+                End If
+                m_ods.Diagramme.AddDiagrammeRow(oRow)
+
+
+
+            Next
+
+
             bReturn = True
 
         Catch ex As Exception

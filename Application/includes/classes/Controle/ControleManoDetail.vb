@@ -63,6 +63,7 @@
                 _pres_manoEtalon = Value
                 calcErrAbs()
                 calcErrFond()
+                calcConformite()
             End If
         End Set
     End Property
@@ -83,7 +84,6 @@
         Set(ByVal Value As String)
             If Value <> EMT Then
                 _EMT = Value
-                calcConformite()
             End If
         End Set
     End Property
@@ -95,7 +95,6 @@
         Set(ByVal Value As String)
             If Value <> err_abs Then
                 _err_abs = Value
-                calcConformite()
             End If
         End Set
     End Property

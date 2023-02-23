@@ -1,4 +1,5 @@
-﻿Imports CrystalDecisions.CrystalReports.Engine
+﻿Imports System.Linq
+Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 
 Public Class EtatFVMano
@@ -65,12 +66,11 @@ Public Class EtatFVMano
             oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)
             ' Recupere la structure
             Dim objStructure As Structuree = StructureManager.getStructureById(m_oControle.idStructure)
-            Dim PressionCroissante As String = "Pression croissante"
-            Dim PressionDecroissante As String = "Pression décroissante"
+
             m_ods = New dsFvMano()
-            m_ods.Verif.AddVerifRow(dateVerification:=CDate(m_oControle.DateVerif).ToShortDateString(), _
-                                    agentVerif:=m_oControle.AgentVerif, _
-                                     proprietaire:=objStructure.nom, _
+            m_ods.Verif.AddVerifRow(dateVerification:=CDate(m_oControle.DateVerif).ToShortDateString(),
+                                    agentVerif:=m_oControle.AgentVerif,
+                                     proprietaire:=objStructure.nom,
                                      NumManoRef:=oManoRef.idCrodip,
                                      TypeManoRef:=oManoRef.type,
                                      MarqueManoRef:=oManoRef.marque,
@@ -86,123 +86,56 @@ Public Class EtatFVMano
                                     Temperature:=m_oControle.tempAir,
                                     Resultat:=m_oControle.resultat
                                     )
-            m_ods.Pression.AddPressionRow(Type:=PressionCroissante, _
-                                          PointEssai:="1", _
-                                          PressionMano:=m_oControle.up_pt1_pres_manoCtrl, _
-                                          PressionManoRef:=m_oControle.up_pt1_pres_manoEtalon, _
-                                          ErreurAbsolue:=m_oControle.up_pt1_err_abs, _
-                                          ErreurFond:=m_oControle.up_pt1_err_fondEchelle, _
-                                          Incertitude:=m_oControle.up_pt1_incertitude, _
-                                          EMT:=m_oControle.up_pt1_EMT, _
-                                          Conformité:=m_oControle.up_pt1_conformite)
+            For Each oDetail As ControleManoDetail In m_oControle.lstControleManoDetail.Values
+                m_ods.Pression.AddPressionRow(Type:=oDetail.type,
+                                          PointEssai:=oDetail.point,
+                                          PressionMano:=oDetail.pres_manoCtrl,
+                                          PressionManoRef:=oDetail.pres_manoEtalon,
+                                          ErreurAbsolue:=oDetail.err_abs,
+                                          ErreurFond:=oDetail.err_fondEchelle,
+                                          Incertitude:=oDetail.incertitude,
+                                          EMT:=oDetail.EMT,
+                                          Conformité:=oDetail.conformite)
+            Next
 
-            m_ods.Pression.AddPressionRow(Type:=PressionCroissante, _
-                                          PointEssai:="2", _
-                                          PressionMano:=m_oControle.up_pt2_pres_manoCtrl, _
-                                          PressionManoRef:=m_oControle.up_pt2_pres_manoEtalon, _
-                                          ErreurAbsolue:=m_oControle.up_pt2_err_abs, _
-                                          ErreurFond:=m_oControle.up_pt2_err_fondEchelle, _
-                                          Incertitude:=m_oControle.up_pt2_incertitude, _
-                                          EMT:=m_oControle.up_pt2_EMT, _
-                                          Conformité:=m_oControle.up_pt2_conformite)
-            m_ods.Pression.AddPressionRow(Type:=PressionCroissante, _
-                                          PointEssai:="3", _
-                                          PressionMano:=m_oControle.up_pt3_pres_manoCtrl, _
-                                          PressionManoRef:=m_oControle.up_pt3_pres_manoEtalon, _
-                                          ErreurAbsolue:=m_oControle.up_pt3_err_abs, _
-                                          ErreurFond:=m_oControle.up_pt3_err_fondEchelle, _
-                                          Incertitude:=m_oControle.up_pt3_incertitude, _
-                                          EMT:=m_oControle.up_pt3_EMT, _
-                                          Conformité:=m_oControle.up_pt3_conformite)
-            m_ods.Pression.AddPressionRow(Type:=PressionCroissante, _
-                                          PointEssai:="4", _
-                                          PressionMano:=m_oControle.up_pt4_pres_manoCtrl, _
-                                          PressionManoRef:=m_oControle.up_pt4_pres_manoEtalon, _
-                                          ErreurAbsolue:=m_oControle.up_pt4_err_abs, _
-                                          ErreurFond:=m_oControle.up_pt4_err_fondEchelle, _
-                                          Incertitude:=m_oControle.up_pt4_incertitude, _
-                                          EMT:=m_oControle.up_pt4_EMT, _
-                                          Conformité:=m_oControle.up_pt4_conformite)
-            m_ods.Pression.AddPressionRow(Type:=PressionCroissante, _
-                                          PointEssai:="5", _
-                                          PressionMano:=m_oControle.up_pt5_pres_manoCtrl, _
-                                          PressionManoRef:=m_oControle.up_pt5_pres_manoEtalon, _
-                                          ErreurAbsolue:=m_oControle.up_pt5_err_abs, _
-                                          ErreurFond:=m_oControle.up_pt5_err_fondEchelle, _
-                                          Incertitude:=m_oControle.up_pt5_incertitude, _
-                                          EMT:=m_oControle.up_pt5_EMT, _
-                                          Conformité:=m_oControle.up_pt5_conformite)
-            m_ods.Pression.AddPressionRow(Type:=PressionCroissante, _
-                                          PointEssai:="6", _
-                                          PressionMano:=m_oControle.up_pt6_pres_manoCtrl, _
-                                          PressionManoRef:=m_oControle.up_pt6_pres_manoEtalon, _
-                                          ErreurAbsolue:=m_oControle.up_pt6_err_abs, _
-                                          ErreurFond:=m_oControle.up_pt6_err_fondEchelle, _
-                                          Incertitude:=m_oControle.up_pt6_incertitude, _
-                                          EMT:=m_oControle.up_pt6_EMT, _
-                                          Conformité:=m_oControle.up_pt6_conformite)
 
-            m_ods.Pression.AddPressionRow(Type:=PressionDecroissante,
-                                          PointEssai:="6",
-                                          PressionMano:=m_oControle.down_pt6_pres_manoCtrl,
-                                          PressionManoRef:=m_oControle.down_pt6_pres_manoEtalon,
-                                          ErreurAbsolue:=m_oControle.down_pt6_err_abs,
-                                          ErreurFond:=m_oControle.down_pt6_err_fondEchelle,
-                                          Incertitude:=m_oControle.down_pt6_incertitude,
-                                          EMT:=m_oControle.down_pt6_EMT,
-                                          Conformité:=m_oControle.down_pt6_conformite)
-            m_ods.Pression.AddPressionRow(Type:=PressionDecroissante,
-                                          PointEssai:="5",
-                                          PressionMano:=m_oControle.down_pt5_pres_manoCtrl,
-                                          PressionManoRef:=m_oControle.down_pt5_pres_manoEtalon,
-                                          ErreurAbsolue:=m_oControle.down_pt5_err_abs,
-                                          ErreurFond:=m_oControle.down_pt5_err_fondEchelle,
-                                          Incertitude:=m_oControle.down_pt5_incertitude,
-                                          EMT:=m_oControle.down_pt5_EMT,
-                                          Conformité:=m_oControle.down_pt5_conformite)
-            m_ods.Pression.AddPressionRow(Type:=PressionDecroissante,
-                                          PointEssai:="4",
-                                          PressionMano:=m_oControle.down_pt4_pres_manoCtrl,
-                                          PressionManoRef:=m_oControle.down_pt4_pres_manoEtalon,
-                                          ErreurAbsolue:=m_oControle.down_pt4_err_abs,
-                                          ErreurFond:=m_oControle.down_pt4_err_fondEchelle,
-                                          Incertitude:=m_oControle.down_pt4_incertitude,
-                                          EMT:=m_oControle.down_pt4_EMT,
-                                          Conformité:=m_oControle.down_pt4_conformite)
-            m_ods.Pression.AddPressionRow(Type:=PressionDecroissante,
-                                          PointEssai:="3",
-                                          PressionMano:=m_oControle.down_pt3_pres_manoCtrl,
-                                          PressionManoRef:=m_oControle.down_pt3_pres_manoEtalon,
-                                          ErreurAbsolue:=m_oControle.down_pt3_err_abs,
-                                          ErreurFond:=m_oControle.down_pt3_err_fondEchelle,
-                                          Incertitude:=m_oControle.down_pt3_incertitude,
-                                          EMT:=m_oControle.down_pt3_EMT,
-                                          Conformité:=m_oControle.down_pt3_conformite)
-            m_ods.Pression.AddPressionRow(Type:=PressionDecroissante,
-                                          PointEssai:="2",
-                                          PressionMano:=m_oControle.down_pt2_pres_manoCtrl,
-                                          PressionManoRef:=m_oControle.down_pt2_pres_manoEtalon,
-                                          ErreurAbsolue:=m_oControle.down_pt2_err_abs,
-                                          ErreurFond:=m_oControle.down_pt2_err_fondEchelle,
-                                          Incertitude:=m_oControle.down_pt2_incertitude,
-                                          EMT:=m_oControle.down_pt2_EMT,
-                                          Conformité:=m_oControle.down_pt2_conformite)
-            m_ods.Pression.AddPressionRow(Type:=PressionDecroissante,
-                                          PointEssai:="1",
-                                          PressionMano:=m_oControle.down_pt1_pres_manoCtrl,
-                                          PressionManoRef:=m_oControle.down_pt1_pres_manoEtalon,
-                                          ErreurAbsolue:=m_oControle.down_pt1_err_abs,
-                                          ErreurFond:=m_oControle.down_pt1_err_fondEchelle,
-                                          Incertitude:=m_oControle.down_pt1_incertitude,
-                                          EMT:=m_oControle.down_pt1_EMT,
-                                          Conformité:=m_oControle.down_pt1_conformite)
 
-            'For Each oMesure As ControleBancBuse In m_oControle.lstMesures
-            '    If Not String.IsNullOrEmpty(oMesure.Couleur) Then
-            '        Dim sResult As String = IIf(oMesure.resultat_3bar, "1", "0")
-            '        m_ods.Buse.AddBuseRow(couleur:=oMesure.Couleur, Numero:=oMesure.numero, PressionEtalonage:=oMesure.pressionEtal, debit3bars:=oMesure.debitEtal, Mesure1:=oMesure.m1_3bar, Mesure2:=oMesure.m2_3bar, Mesure3:=oMesure.m3_3bar, Moyenne:=oMesure.moy_3bar, Ecart:=oMesure.ecart_3bar, Resultat:=sResult, pctEcart3bar:=oMesure.pctEcart_3bar, pctEcartTolerance:=oMesure.pctTolerance_3bar)
-            '    End If
-            'Next
+            Dim nPC As Integer = m_oControle.lstControleManoDetail.Values.Where(Function(D)
+                                                                                    Return D.type = "UP"
+                                                                                End Function).Count()
+            Dim nPD As Integer = m_oControle.lstControleManoDetail.Values.Where(Function(D)
+                                                                                    Return D.type = "DOWN"
+                                                                                End Function).Count()
+            Dim nPR As Integer = m_oControle.lstControleManoDetail.Values.Where(Function(D)
+                                                                                    Return D.type = "REPE"
+                                                                                End Function).Count()
+            Dim nMax As Integer = Math.Max(nPR, Math.Max(nPC, nPD))
+
+            For nIndex As Integer = 0 To nMax - 1
+                Dim oRow As dsFvMano.DiagrammeRow
+                oRow = m_ods.Diagramme.NewDiagrammeRow()
+                oRow.Numero = nIndex + 1
+                If nIndex < nPC Then
+                    oRow.PressionCroissante = m_oControle.lstControleManoDetail_pres_manoEtalon("UP" & nIndex + 1)
+                Else
+                    oRow.SetPressionCroissanteNull()
+                End If
+                If nIndex < nPD Then
+                    oRow.PressionDecroissante = m_oControle.lstControleManoDetail_pres_manoEtalon("DOWN" & nIndex + 1)
+                Else
+                    oRow.SetPressionDecroissanteNull()
+                End If
+                If nIndex < nPR Then
+                    oRow.PressionRepetition = m_oControle.lstControleManoDetail_pres_manoEtalon("REPE" & nIndex + 1)
+                Else
+                    oRow.SetPressionRepetitionNull()
+                End If
+                m_ods.Diagramme.AddDiagrammeRow(oRow)
+
+
+
+            Next
+
             bReturn = True
 
         Catch ex As Exception

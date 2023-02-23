@@ -2219,7 +2219,7 @@ Public Class frmControleManometresNew
     Private Sub controle_manometres_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
 
-        Dim lstBanc As List(Of Banc) = BancManager.getBancByAgent(m_oAgent)
+        'Dim lstBanc As List(Of Banc) = BancManager.getBancByAgent(m_oAgent)
 
 
 
@@ -2249,6 +2249,19 @@ Public Class frmControleManometresNew
         Next
         m_bsManoControle.MoveLast()
 
+        If GlobalsCRODIP.GLOB_ENV_DEBUG Then
+            tbTemperature.Text = "15"
+            m_bsManoEtalon.MoveFirst()
+            m_bsManoControle.MoveFirst()
+            m_bsManoControle.MoveNext()
+
+            Dim oCtrl As ControleMano
+            oCtrl = m_bsControle.Current
+            For Each oDetail As ControleManoDetail In oCtrl.lstControleManoDetail.Values
+                oDetail.pres_manoEtalon = oDetail.pres_manoCtrl
+            Next
+
+        End If
     End Sub
     ''' <summary>
     ''' Affichage du détail du controle de Mano
@@ -2399,8 +2412,9 @@ Public Class frmControleManometresNew
 
     Private Sub AfficheLgCtrlManoDetail(pTableLayoutPanel As TableLayoutPanel, pLgCtrlManoDetail As ControleManoDetail, pAjusteur As Boolean)
         Dim Prefixe As String = pLgCtrlManoDetail.type
-
         Dim NumLigne As Integer
+        Dim oControle As ControleMano
+        oControle = m_bsControle.Current
 
         NumLigne = pLgCtrlManoDetail.point
 
@@ -2448,6 +2462,13 @@ Public Class frmControleManometresNew
         AddHandler otb.Validated, AddressOf validerSaisiePressionEtalon
         AddHandler otb.KeyPress, AddressOf checkKeyPress
         pTableLayoutPanel.Controls.Add(otb, 3, NumLigne - 1)
+        If oControle.lstControleManoDetail_conformite(Prefixe & NumLigne) = "1" Then
+            otb.ForeColor = System.Drawing.Color.Green
+        End If
+        If oControle.lstControleManoDetail_conformite(Prefixe & NumLigne) = "0" Then
+            otb.ForeColor = System.Drawing.Color.Red
+        End If
+
 
 
 
@@ -2551,47 +2572,27 @@ Public Class frmControleManometresNew
             Dim curManoControle As ManometreControle
             Dim oCtrlMano As ControleMano
             For Each curManoControle In m_bsManoControle
-                oCtrlMano = curManoControle.controle
-                If oCtrlMano IsNot Nothing Then
-                    oCtrlMano.manoEtalon = oManoEtalon.numeroNational
-                    'On met a jour le manometreControle
-                    If curManoControle.isUpdated Then
-
+                'On met a jour le manometreControle
+                If curManoControle.isUpdated Then
+                    oCtrlMano = curManoControle.controle
+                    If oCtrlMano IsNot Nothing Then
+                        oCtrlMano.manoEtalon = oManoEtalon.numeroNational
                         curManoControle.dateDernierControle = oCtrlMano.DateVerif
                         curManoControle.dateModificationAgent = Date.Now
                         CSDebug.dispInfo("frmControleManager.EnregistrerLesControles : Enregistrer un Mano ")
                         ManometreControleManager.save(curManoControle)
 
-
                         ' On enregistre les mesures
 
                         '########################################################
                         ' On récupère les controles
-                        oCtrlMano.PressionControle = oCtrlMano.up_pt1_pres_manoCtrl & "|" &
-                                                        oCtrlMano.up_pt2_pres_manoCtrl & "|" &
-                                                        oCtrlMano.up_pt3_pres_manoCtrl & "|" &
-                                                        oCtrlMano.up_pt4_pres_manoCtrl & "|" &
-                                                        oCtrlMano.up_pt5_pres_manoCtrl & "|" &
-                                                        oCtrlMano.up_pt6_pres_manoCtrl & "|" &
-                                                        oCtrlMano.down_pt1_pres_manoCtrl & "|" &
-                                                        oCtrlMano.down_pt2_pres_manoCtrl & "|" &
-                                                        oCtrlMano.down_pt3_pres_manoCtrl & "|" &
-                                                        oCtrlMano.down_pt4_pres_manoCtrl & "|" &
-                                                        oCtrlMano.down_pt5_pres_manoCtrl & "|" &
-                                                        oCtrlMano.down_pt6_pres_manoCtrl
+                        oCtrlMano.PressionControle = ""
+                        oCtrlMano.ValeursMesurees = ""
+                        For Each oDetail As ControleManoDetail In oCtrlMano.lstControleManoDetail.Values
+                            oCtrlMano.PressionControle = oCtrlMano.PressionControle & oDetail.pres_manoCtrl & "|"
+                            oCtrlMano.ValeursMesurees = oCtrlMano.ValeursMesurees & oDetail.pres_manoEtalon & "|"
+                        Next
 
-                        oCtrlMano.ValeursMesurees = oCtrlMano.up_pt1_pres_manoEtalon & "|" &
-                                                        oCtrlMano.up_pt2_pres_manoEtalon & "|" &
-                                                        oCtrlMano.up_pt3_pres_manoEtalon & "|" &
-                                                        oCtrlMano.up_pt4_pres_manoEtalon & "|" &
-                                                        oCtrlMano.up_pt5_pres_manoEtalon & "|" &
-                                                        oCtrlMano.up_pt6_pres_manoEtalon & "|" &
-                                                        oCtrlMano.down_pt1_pres_manoEtalon & "|" &
-                                                        oCtrlMano.down_pt2_pres_manoEtalon & "|" &
-                                                        oCtrlMano.down_pt3_pres_manoEtalon & "|" &
-                                                        oCtrlMano.down_pt4_pres_manoEtalon & "|" &
-                                                        oCtrlMano.down_pt5_pres_manoEtalon & "|" &
-                                                        oCtrlMano.down_pt6_pres_manoEtalon
                         oCtrlMano.DateVerif = dtpDateControle.Value
                         curManoControle.dateDernierControle = dtpDateControle.Value
                         ' On construit notre nouvelle fiche de vie
@@ -2640,21 +2641,18 @@ Public Class frmControleManometresNew
 
     ' Bouton "Valider"
     Private Sub btn_controleManos_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_valider.Click
-        Dim oCtrl As New ControleMano()
-        Dim oEtat As New EtatFVManoGrpah(oCtrl)
-        oEtat.genereEtat(True)
-        oEtat.Open()
 
-        'If tbTemperature.Text <> "" And cbx_manometresEtalon.Text <> "" Then
-        '    If isSaisieComplete() Then
-        '        Me.Cursor = Cursors.WaitCursor
-        '        EnregistrerLesControles()
-        '        Me.Cursor = Cursors.Default
-        '        TryCast(MdiParent, parentContener).ReturnToAccueil()
-        '    End If
-        'Else
-        '    MsgBox("Veuillez remplir le champ température pour continuer", MsgBoxStyle.OkOnly, "Crodip .::. Attention !")
-        'End If
+
+        If tbTemperature.Text <> "" And cbx_manometresEtalon.Text <> "" Then
+            If isSaisieComplete() Then
+                Me.Cursor = Cursors.WaitCursor
+                EnregistrerLesControles()
+                Me.Cursor = Cursors.Default
+                TryCast(MdiParent, parentContener).ReturnToAccueil()
+            End If
+        Else
+            MsgBox("Veuillez remplir le champ température pour continuer", MsgBoxStyle.OkOnly, "Crodip .::. Attention !")
+        End If
     End Sub
 
     ' Bouton "Annuler"
@@ -2766,7 +2764,11 @@ Public Class frmControleManometresNew
             btn_controleManos_suivant.Enabled = False
             btn_controleManos_valider.Enabled = True
         End If
-
+        'Refresh the Item 
+        Dim old As String
+        old = lbMano.DisplayMember
+        lbMano.DisplayMember = ""
+        lbMano.DisplayMember = old
     End Sub
 
     Private Sub checkKeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
@@ -2935,7 +2937,7 @@ Public Class frmControleManometresNew
         oControle.manoEtalon = m_bsManoEtalon.Current.Numeronational
         oControle.idStructure = oMano.idStructure
         oControle.idMano = oMano.numeroNational
-        oControle.resultat = oMano.etat
+        '        oControle.resultat = oMano.etat
         oControle.DateVerif = CSDate.ToCRODIPString(dtpDateControle.Value)
         oControle.setIncertitude(oMano, m_bsManoEtalon.Current)
         ' ValiderSaisie(oControle)

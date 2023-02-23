@@ -47,7 +47,7 @@ Public Class ManometreControle
             End Try
         End Get
     End Property
-
+    <XmlIgnore>
     Public Overrides Property Libelle() As String
         Get
             Dim sLibelle As String = "   "
