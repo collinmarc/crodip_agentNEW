@@ -31,6 +31,8 @@ Public Class ManometreControleManagerTest
         objManometreControle.DateSuppression = "06/02/1964"
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
+        objManometreControle.bAjusteur = True
+        objManometreControle.resolutionLecture = 0.01
 
         Assert.AreEqual(objManometreControle.isSupprime, True)
         Assert.AreEqual(objManometreControle.AgentSuppression, m_oAgent.nom)
@@ -43,6 +45,8 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(objManometreControle.classe, "MaClasse")
         Assert.AreEqual(objManometreControle.type, "MonType")
         Assert.AreEqual(objManometreControle.fondEchelle, "MonFonEchelle")
+        Assert.AreEqual(objManometreControle.bAjusteur, True)
+        Assert.AreEqual(objManometreControle.resolutionLecture, "0,01")
 
 
         Assert.IsTrue(ManometreControleManager.save(objManometreControle))
@@ -61,6 +65,8 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(objManometreControle2.classe, "MaClasse")
         Assert.AreEqual(objManometreControle2.type, "MonType")
         Assert.AreEqual(objManometreControle2.fondEchelle, "MonFonEchelle")
+        Assert.AreEqual(objManometreControle2.bAjusteur, True)
+        Assert.AreEqual(objManometreControle2.resolutionLecture, "0,01")
 
         'Mise à jour du ManometreControle
         objManometreControle2.isSupprime = False
@@ -73,6 +79,8 @@ Public Class ManometreControleManagerTest
         objManometreControle2.classe = "MaClasse2"
         objManometreControle2.type = "MonType2"
         objManometreControle2.fondEchelle = "MonFonEchelle2"
+        objManometreControle2.bAjusteur = False
+        objManometreControle2.resolutionLecture = 0.02
 
         Assert.IsTrue(ManometreControleManager.save(objManometreControle2))
 
@@ -89,6 +97,8 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(objManometreControle.classe, "MaClasse2")
         Assert.AreEqual(objManometreControle.type, "MonType2")
         Assert.AreEqual(objManometreControle.fondEchelle, "MonFonEchelle2")
+        Assert.AreEqual(objManometreControle.bAjusteur, False)
+        Assert.AreEqual(objManometreControle.resolutionLecture, "0,02")
 
         'Suppression du ManometreControle en base de donnée
         ManometreControleManager.delete(objManometreControle.numeroNational)

@@ -160,6 +160,10 @@ Public Class ManometreControleManager
                 If Not objManometreControle.resolution Is Nothing Then
                     paramsQuery = paramsQuery & " , resolution='" & CSDb.secureString(objManometreControle.resolution) & "'"
                 End If
+                paramsQuery = paramsQuery & " , bAjusteur=" & objManometreControle.bAjusteur & ""
+                If Not objManometreControle.resolutionLecture Is Nothing Then
+                    paramsQuery = paramsQuery & " , resolutionLecture='" & CSDb.secureString(objManometreControle.resolutionLecture) & "'"
+                End If
                 paramsQuery = paramsQuery & " , isUtilise=" & objManometreControle.isUtilise & ""
                 paramsQuery = paramsQuery & " , isSupprime=" & objManometreControle.isSupprime & ""
                 paramsQuery = paramsQuery & " , nbControles=" & objManometreControle.nbControles & ""

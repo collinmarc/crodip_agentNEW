@@ -128,17 +128,11 @@
     <Setting Name="ModeSignature" Type="System.String" Scope="User">
       <Value Profile="(Default)">wacom</Value>
     </Setting>
-    <Setting Name="DBExtension" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">.mdb</Value>
-    </Setting>
     <Setting Name="checkNetwork" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DB" Type="System.String" Scope="Application">
       <Value Profile="(Default)">crodip_agent</Value>
-    </Setting>
-    <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">V2.8.00</Value>
     </Setting>
     <Setting Name="BDDType" Type="System.String" Scope="Application">
       <Value Profile="(Default)">SQLITE</Value>
@@ -152,14 +146,20 @@
     <Setting Name="SynchroEtatFVBancpwd" Type="System.String" Scope="Application">
       <Value Profile="(Default)">inutilisé</Value>
     </Setting>
-    <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20220830120000</Value>
-    </Setting>
     <Setting Name="aqw" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="GestionDesPools" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DBExtension" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.db3</Value>
+    </Setting>
+    <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">V3.0.01</Value>
+    </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20230207130000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

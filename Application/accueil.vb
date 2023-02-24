@@ -6107,7 +6107,7 @@ Public Class accueil
     '#########################################################
     'Manometres
     Private Sub btn_parametrage_verificationManometres_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_parametrage_verificationManometres.Click
-        Dim ofrm As New frmControleManometres2(agentCourant)
+        Dim ofrm As New frmControleManometresNew(agentCourant)
         TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
     End Sub
     'Bancs
@@ -6597,13 +6597,6 @@ Public Class accueil
     Private Sub PictureBox4_MouseClick(sender As Object, e As MouseEventArgs) Handles pctLogoSynchro.MouseClick
         MajDateDernSynhcroagent()
     End Sub
-
-    Private Sub Label5_Click_1(sender As Object, e As EventArgs)
-        Dim ofrm As New frmControleManometres2(agentCourant)
-        TryCast(Me.MdiParent, parentContener).DisplayForm(ofrm)
-
-    End Sub
-
     Private Sub client_search_query_KeyPress(sender As Object, e As KeyPressEventArgs) Handles client_search_query.KeyPress
         If e.KeyChar = Chr(13) Then
             searchExploitant()

@@ -110,7 +110,48 @@ Public Class UpdateInfo
 
         CSDebug.dispInfo("MajDatabase")
         Dim bReturn As Boolean
+        Dim doc As New System.Xml.XmlDocument
+        Dim oNode As Xml.XmlNode
+        Dim MySettings1 As String = "Crodip_agent.MySettings"
+        Dim MySettings2 As String = "Crodip_agent.My.MySettings"
+        Dim strXPathModelMy As String = "/configuration/applicationSettings/[MYSETTINGS]"
+        Dim strXPathModel As String = "/configuration/applicationSettings/[MYSETTINGS]/setting[@name='%value%']/value"
+        Dim strXPathModelUser As String = "/configuration/userSettings/[MYSETTINGS]/setting[@name='%value%']/value"
+        Dim strXpath As String
+        Dim dbName As String
+        Dim dbExtension As String
         Try
+            doc.Load(Environment.CurrentDirectory & "/Logiciel Crodip Agent.exe.config")
+
+            'Test du Nom de MySettings
+            strXpath = strXPathModelMy.Replace("[MYSETTINGS]", MySettings1)
+            oNode = doc.SelectSingleNode(strXpath)
+            If oNode Is Nothing Then
+                strXpath = strXPathModelMy.Replace("[MYSETTINGS]", MySettings2)
+                oNode = doc.SelectSingleNode(strXpath)
+                If oNode Is Nothing Then
+                    Return False
+                Else
+                    'On Utilise le modèle 2
+                    strXPathModel = strXPathModel.Replace("[MYSETTINGS]", MySettings2)
+                    strXPathModelUser = strXPathModelUser.Replace("[MYSETTINGS]", MySettings2)
+
+                End If
+            Else
+                'On Utilise le modèle 1
+                strXPathModel = strXPathModel.Replace("[MYSETTINGS]", MySettings1)
+                strXPathModelUser = strXPathModelUser.Replace("[MYSETTINGS]", MySettings1)
+            End If
+
+            strXpath = strXPathModel.Replace("%value%", "DB")
+            oNode = doc.SelectSingleNode(strXpath)
+            dbName = oNode.InnerText()
+
+            strXpath = strXPathModel.Replace("%value%", "DBExtension")
+            oNode = doc.SelectSingleNode(strXpath)
+            dbExtension = oNode.InnerText()
+
+
             Dim streamReader As New StreamReader(pSqlFileName)
             Dim ligne As String
 
@@ -126,7 +167,7 @@ Public Class UpdateInfo
                         Dim oCmd As SqliteCommand
                         _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
                         Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
-                        oBuider.DataSource = "bdd/crodip_agent.db3"
+                        oBuider.DataSource = "bdd/" & dbName & dbExtension
                         oBuider.Pooling = True
                         _dbConnection.ConnectionString = oBuider.ConnectionString
                         CSDebug.dispInfo("UpdateInfo.MajDatabase SQL : (" & _dbConnection.ConnectionString & ")" & ligne)

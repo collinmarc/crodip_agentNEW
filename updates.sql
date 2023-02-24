@@ -273,20 +273,20 @@
 
 --CREATE TABLE POOL (idCrodip TEXT PRIMARY KEY,libelle TEXT, idCRODIPPC             TEXT           REFERENCES AgentPC (idCrodip) ON DELETE SET NULL, ,nbPastillesVertes INTEGER DEFAULT (0),dateModificationAgent  DATETIME,dateModificationCrodip DATETIME,idStructure INTEGER REFERENCES Structure (id),idBanc TEXT REFERENCES BancMesure (id) ON DELETE SET NULL);
 
-ALTER TABLE Agent ADD COLUMN idCRODIPPOOL TEXT REFERENCES POOL (idCRODIP) ON DELETE SET NULL;
+--ALTER TABLE Agent ADD COLUMN idCRODIPPOOL TEXT REFERENCES POOL (idCRODIP) ON DELETE SET NULL;
 
 
-Alter Table DIAGNOSTIC Add COLUMN BLFileName  TEXT ;
-Alter Table DIAGNOSTIC Add COLUMN ESFileName  TEXT ;
-Alter Table DIAGNOSTIC Add COLUMN COPROFileName  TEXT ;
-Alter Table DIAGNOSTIC Add COLUMN FACTFileNames  TEXT ;
+--Alter Table DIAGNOSTIC Add COLUMN BLFileName  TEXT ;
+--Alter Table DIAGNOSTIC Add COLUMN ESFileName  TEXT ;
+--Alter Table DIAGNOSTIC Add COLUMN COPROFileName  TEXT ;
+--Alter Table DIAGNOSTIC Add COLUMN FACTFileNames  TEXT ;
 
 -- GESTION DES EQUIPEMENTS
-DROP TABLE IF EXISTS AgentPC;
-CREATE TABLE AgentPC (idCrodip TEXT PRIMARY KEY ,idStructure INTEGER  REFERENCES Structure (id) ON DELETE SET NULL,cleUtilisation TEXT,libelle                TEXT,etat                   BIT,numInterne             TEXT,AgentSuppression       TEXT,RaisonSuppression      TEXT,dateSuppression        DATETIME,isSupprime             BIT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+--DROP TABLE IF EXISTS AgentPC;
+--CREATE TABLE AgentPC (idCrodip TEXT PRIMARY KEY ,idStructure INTEGER  REFERENCES Structure (id) ON DELETE SET NULL,cleUtilisation TEXT,libelle                TEXT,etat                   BIT,numInterne             TEXT,AgentSuppression       TEXT,RaisonSuppression      TEXT,dateSuppression        DATETIME,isSupprime             BIT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
 
-DROP TABLE IF EXISTS POOL;
-CREATE TABLE POOL (idCrodip TEXT PRIMARY KEY,libelle TEXT, idCRODIPPC TEXT REFERENCES AgentPC (idCrodip) ON DELETE SET NULL, nbPastillesVertes INTEGER DEFAULT (0),dateModificationAgent  DATETIME,dateModificationCrodip DATETIME,idStructure INTEGER REFERENCES Structure (id) ON DELETE CASCADE, idBanc TEXT REFERENCES BancMesure (id) ON DELETE SET NULL);
+--DROP TABLE IF EXISTS POOL;
+--CREATE TABLE POOL (idCrodip TEXT PRIMARY KEY,libelle TEXT, idCRODIPPC TEXT REFERENCES AgentPC (idCrodip) ON DELETE SET NULL, nbPastillesVertes INTEGER DEFAULT (0),dateModificationAgent  DATETIME,dateModificationCrodip DATETIME,idStructure INTEGER REFERENCES Structure (id) ON DELETE CASCADE, idBanc TEXT REFERENCES BancMesure (id) ON DELETE SET NULL);
 
 -- A SUPPRIMER LORS DE LA MISE EN PROD (SUPPRESSION DE LA PREPROD 2206)
 --CREATE TABLE Agent2 (Id                     INT            PRIMARY KEY,numeroNational         NVARCHAR (50)  UNIQUE,motdepasse             NVARCHAR (255),nom                    VARCHAR (256),prenom                 VARCHAR (256),idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,telephoneportable      VARCHAR (256),email                  VARCHAR (256),dateCreation           DATETIME2,dateDerniereConnexion  DATETIME2,dateDerniereSynchro    DATETIME2,dateModificationAgent  DATETIME2,dateModificationCrodip DATETIME2,versionLogiciel        VARCHAR (256),commentaire            VARCHAR (256),cleActivation          VARCHAR (256),isActif                BIT            DEFAULT 0,droitsPulves           VARCHAR (2560),isGestionnaire         BIT            DEFAULT 0,signatureElect         BIT            DEFAULT 0,statut                 VARCHAR (50));
@@ -296,30 +296,33 @@ CREATE TABLE POOL (idCrodip TEXT PRIMARY KEY,libelle TEXT, idCRODIPPC TEXT REFER
 --ALTER TABLE Agent ADD COLUMN idCRODIPPOOL TEXT REFERENCES POOL (idCRODIP) ON DELETE SET NULL;
 --
 
+--DROP TABLE IF EXISTS PoolManoC;
+--CREATE TABLE PoolManoC (id INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,numeroNationalManoC    TEXT     REFERENCES AgentManoControle (numeroNational) ON DELETE CASCADE,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+--DROP TABLE IF EXISTS PoolManoE;
+--CREATE TABLE PoolManoE (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,numeroNationalManoE    TEXT     REFERENCES AgentManoEtalon (numeroNational) ON DELETE CASCADE,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+--DROP TABLE IF EXISTS PoolBUSE;
+--CREATE TABLE PoolBUSE (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE, numeroNationalBUSE     TEXT     ,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
 
-
-DROP TABLE IF EXISTS PoolManoC;
-CREATE TABLE PoolManoC (id INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,numeroNationalManoC    TEXT     REFERENCES AgentManoControle (numeroNational) ON DELETE CASCADE,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
-DROP TABLE IF EXISTS PoolManoE;
-CREATE TABLE PoolManoE (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,numeroNationalManoE    TEXT     REFERENCES AgentManoEtalon (numeroNational) ON DELETE CASCADE,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
-DROP TABLE IF EXISTS PoolBUSE;
-CREATE TABLE PoolBUSE (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE, numeroNationalBUSE     TEXT     ,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
-
-ALTER TABLE IdentifiantPulverisateur ADD COLUMN         idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE CASCADE;
+--ALTER TABLE IdentifiantPulverisateur ADD COLUMN         idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE CASCADE;
 
 -- Ajout des dépendances BANC-POOL
-CREATE TABLE PoolBanc (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCrodip) ON DELETE NO ACTION,numeroNationalBanc     TEXT     REFERENCES BancMesure (id) ON DELETE CASCADE,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+--CREATE TABLE PoolBanc (id                     INTEGER  PRIMARY KEY AUTOINCREMENT,idCRODIPPool           TEXT     REFERENCES POOL (idCrodip) ON DELETE NO ACTION,numeroNationalBanc     TEXT     REFERENCES BancMesure (id) ON DELETE CASCADE,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
 
 --Nettoyage de la base  (si upgrade)
-DROP TABLE IF EXISTS AGENT_ADEL;
-DELETE FROM POOLBanc;
-DELETE FROM POOLBUSE;
-DELETE FROM POOLManoE;
-DELETE FROM POOLManoC;
-DELETE FROM AgentPC;
-UPDATE IdentifiantPulverisateur SET idCRODIPPOOL = NULL;
-UPDATE Agent SET idCRODIPPOOL = NULL;
-DELETE FROM POOL;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.0.00','2022-09-27 12:00:00','Gestion des equipements');
+--DROP TABLE IF EXISTS AGENT_ADEL;
+--DELETE FROM POOLBanc;
+--DELETE FROM POOLBUSE;
+--DELETE FROM POOLManoE;
+--DELETE FROM POOLManoC;
+--DELETE FROM AgentPC;
+--UPDATE IdentifiantPulverisateur SET idCRODIPPOOL = NULL;
+--UPDATE Agent SET idCRODIPPOOL = NULL;
+--DELETE FROM POOL;
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.0.00','2022-09-27 12:00:00','Gestion des equipements');
+
+-- EVOLUTION METROLOGIE
+ALTER TABLE AgentManocontrole ADD COLUMN bAjusteur BIT ;
+ALTER TABLE AgentManocontrole ADD COLUMN resolutionLecture Text ;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.0.01','2023-03-01 12:00:00','Metrologie');
 
 

@@ -9,11 +9,14 @@
     Private _err_fondEchelle As String
     Private _conformite As String
     Private _FondEchelle As String
+    Private _Resolution As Decimal
+    Private _bAjusteur As Boolean
 
     Public Sub New(ptype As String, pPoint As String)
         type = ptype
         point = pPoint
         _conformite = ""
+        bAjusteur = False
     End Sub
     Public Sub New(ptype As String, pPoint As String, pPression As Decimal, pMano As ManometreControle)
         type = ptype
@@ -23,6 +26,14 @@
         _FondEchelle = pMano.fondEchelle
         calcEMT(pMano)
         _conformite = ""
+        bAjusteur = pMano.bAjusteur
+        If pMano.bAjusteur Then
+            If pMano.resolutionLecture = "" Then
+                resolution = pMano.resolution_d
+            Else
+                resolution = pMano.resolutionLecture_d
+            End If
+        End If
     End Sub
 
     Public Property type() As String
@@ -116,7 +127,22 @@
             _conformite = Value
         End Set
     End Property
-
+    Public Property resolution() As Decimal
+        Get
+            Return _resolution
+        End Get
+        Set(ByVal value As Decimal)
+            _resolution = value
+        End Set
+    End Property
+    Public Property bAjusteur() As Boolean
+        Get
+            Return _bAjusteur
+        End Get
+        Set(ByVal value As Boolean)
+            _bAjusteur = value
+        End Set
+    End Property
     Private Sub calcErrAbs()
         Dim dErr As Double
         If Not String.IsNullOrEmpty(Me.pres_manoCtrl) And Not String.IsNullOrEmpty(Me.pres_manoEtalon) Then

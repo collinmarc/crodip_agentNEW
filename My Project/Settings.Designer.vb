@@ -466,15 +466,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute(".mdb")>  _
-    Public ReadOnly Property DBExtension() As String
-        Get
-            Return CType(Me("DBExtension"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
     Public ReadOnly Property checkNetwork() As Boolean
         Get
@@ -488,15 +479,6 @@ Partial Friend NotInheritable Class MySettings
     Public ReadOnly Property DB() As String
         Get
             Return CType(Me("DB"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("V2.8.00")>  _
-    Public ReadOnly Property DBVersionExpected() As String
-        Get
-            Return CType(Me("DBVersionExpected"),String)
         End Get
     End Property
     
@@ -538,15 +520,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20220830120000")>  _
-    Public ReadOnly Property NumBuild() As String
-        Get
-            Return CType(Me("NumBuild"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public ReadOnly Property aqw() As String
         Get
@@ -560,6 +533,33 @@ Partial Friend NotInheritable Class MySettings
     Public ReadOnly Property GestionDesPools() As Boolean
         Get
             Return CType(Me("GestionDesPools"),Boolean)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute(".db3")>  _
+    Public ReadOnly Property DBExtension() As String
+        Get
+            Return CType(Me("DBExtension"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("V3.0.01")>  _
+    Public ReadOnly Property DBVersionExpected() As String
+        Get
+            Return CType(Me("DBVersionExpected"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20230207130000")>  _
+    Public ReadOnly Property NumBuild() As String
+        Get
+            Return CType(Me("NumBuild"),String)
         End Get
     End Property
 End Class

@@ -7,6 +7,7 @@ Public Class ManometreControle
     Inherits Manometre
 
     Private _resolution As String
+    Private _resolutionLecture As String
     'Private arrPressions_6bar() As String = {0, 1.2, 2.4, 3.6, 4.8, 6}
     'Private arrPressions_10bar() As String = {0, 2, 4, 6, 8, 10}
     'Private arrPressions_20bar() As String = {0, 4, 8, 12, 16, 20}
@@ -17,6 +18,7 @@ Public Class ManometreControle
     Private m_bIsUpdated As Boolean
     Sub New()
         m_bIsUpdated = False
+        bAjusteur = True
     End Sub
     Private _controle As ControleMano
     <XmlIgnore>
@@ -38,7 +40,8 @@ Public Class ManometreControle
             _resolution = Value
         End Set
     End Property
-    Public ReadOnly Property resolution_d() As Double
+    <XmlIgnore>
+    Public Property resolution_d() As Double
         Get
             Try
                 Return GlobalsCRODIP.StringToDouble(_resolution)
@@ -46,6 +49,37 @@ Public Class ManometreControle
                 Return CDbl(0)
             End Try
         End Get
+        Set
+        End Set
+    End Property
+    Public Property resolutionLecture() As String
+        Get
+            Return _resolutionLecture
+        End Get
+        Set(ByVal Value As String)
+            _resolutionLecture = Value
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property resolutionLecture_d() As Double
+        Get
+            Try
+                Return GlobalsCRODIP.StringToDouble(_resolutionLecture)
+            Catch ex As Exception
+                Return CDbl(0)
+            End Try
+        End Get
+        Set
+        End Set
+    End Property
+    Private _bAjusteur As Boolean
+    Public Property bAjusteur() As Boolean
+        Get
+            Return _bAjusteur
+        End Get
+        Set(ByVal value As Boolean)
+            _bAjusteur = value
+        End Set
     End Property
     <XmlIgnore>
     Public Overrides Property Libelle() As String
@@ -167,6 +201,8 @@ Public Class ManometreControle
                 Me.isSupprime = CType(pValue, Boolean) 'Public isSupprime As Boolean
             Case "isutilise".Trim().ToUpper()
                 Me.isUtilise = CType(pValue, Boolean)
+            Case "bajusteur".Trim().ToUpper()
+                Me.bAjusteur = CType(pValue, Boolean)
             Case "dateDernierControle".Trim.ToUpper()
                 Dim dateC As Date
                 Try
@@ -193,6 +229,8 @@ Public Class ManometreControle
                 End If
             Case "resolution".Trim.ToUpper()
                 Me.resolution = pValue.ToString()
+            Case "resolutionLecture".Trim.ToUpper()
+                Me.resolutionLecture = pValue.ToString()
             Case "agentsuppression".Trim().ToUpper()
                 Me.AgentSuppression = pValue.ToString()
             Case "raisonsuppression".Trim().ToUpper()

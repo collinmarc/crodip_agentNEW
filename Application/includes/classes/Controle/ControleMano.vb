@@ -44,79 +44,20 @@ Public Class ControleMano
     End Sub
     Sub New(oMano As ManometreControle, pAgent As Agent)
         Me.New()
-        Me.up_pt1_pres_manoCtrl = oMano.Pression1Ctrl
-        Me.up_pt2_pres_manoCtrl = oMano.Pression2Ctrl
-        Me.up_pt3_pres_manoCtrl = oMano.Pression3Ctrl
-        Me.up_pt4_pres_manoCtrl = oMano.Pression4Ctrl
-        Me.up_pt5_pres_manoCtrl = oMano.Pression5Ctrl
-        Me.up_pt6_pres_manoCtrl = oMano.Pression6Ctrl
+        'Affectation des valeurs par défauts
+        lstControleManoDetail_pres_manoCtrl("UP1") = oMano.Pression1Ctrl
+        lstControleManoDetail_pres_manoCtrl("UP2") = oMano.Pression2Ctrl
+        lstControleManoDetail_pres_manoCtrl("UP3") = oMano.Pression3Ctrl
+        lstControleManoDetail_pres_manoCtrl("UP4") = oMano.Pression4Ctrl
+        lstControleManoDetail_pres_manoCtrl("UP5") = oMano.Pression5Ctrl
+        lstControleManoDetail_pres_manoCtrl("UP6") = oMano.Pression6Ctrl
 
-        Me.down_pt1_pres_manoCtrl = oMano.Pression1Ctrl
-        Me.down_pt2_pres_manoCtrl = oMano.Pression2Ctrl
-        Me.down_pt3_pres_manoCtrl = oMano.Pression3Ctrl
-        Me.down_pt4_pres_manoCtrl = oMano.Pression4Ctrl
-        Me.down_pt5_pres_manoCtrl = oMano.Pression5Ctrl
-        Me.down_pt6_pres_manoCtrl = oMano.Pression6Ctrl
-
-        'l 'incertitude sera calculée lors de l'affectation du ManoEtalon
-        'Dim valueIncertitude As Double
-        'valueIncertitude = calcIncertitude(oMano.resolution_d, oManoEtalon.incertitudeEtalon_d)
-
-        'Me.up_pt1_incertitude = valueIncertitude
-        'Me.up_pt2_incertitude = valueIncertitude
-        'Me.up_pt3_incertitude = valueIncertitude
-        'Me.up_pt4_incertitude = valueIncertitude
-        'Me.up_pt5_incertitude = valueIncertitude
-        'Me.up_pt6_incertitude = valueIncertitude
-
-        'Me.down_pt1_incertitude = valueIncertitude
-        'Me.down_pt2_incertitude = valueIncertitude
-        'Me.down_pt3_incertitude = valueIncertitude
-        'Me.down_pt4_incertitude = valueIncertitude
-        'Me.down_pt5_incertitude = valueIncertitude
-        'Me.down_pt6_incertitude = valueIncertitude
-
-        Me.up_pt1_EMT = oMano.calcEMT()
-        Me.up_pt2_EMT = oMano.calcEMT()
-        Me.up_pt3_EMT = oMano.calcEMT()
-        Me.up_pt4_EMT = oMano.calcEMT()
-        Me.up_pt5_EMT = oMano.calcEMT()
-        Me.up_pt6_EMT = oMano.calcEMT()
-
-        Me.down_pt1_EMT = oMano.calcEMT()
-        Me.down_pt2_EMT = oMano.calcEMT()
-        Me.down_pt3_EMT = oMano.calcEMT()
-        Me.down_pt4_EMT = oMano.calcEMT()
-        Me.down_pt5_EMT = oMano.calcEMT()
-        Me.down_pt6_EMT = oMano.calcEMT()
-
-        Me.up_pt1_err_abs = ""
-        Me.up_pt2_err_abs = ""
-        Me.up_pt3_err_abs = ""
-        Me.up_pt4_err_abs = ""
-        Me.up_pt5_err_abs = ""
-        Me.up_pt6_err_abs = ""
-
-        Me.down_pt1_err_abs = ""
-        Me.down_pt2_err_abs = ""
-        Me.down_pt3_err_abs = ""
-        Me.down_pt4_err_abs = ""
-        Me.down_pt5_err_abs = ""
-        Me.down_pt6_err_abs = ""
-
-        Me.up_pt1_err_fondEchelle = ""
-        Me.up_pt2_err_fondEchelle = ""
-        Me.up_pt3_err_fondEchelle = ""
-        Me.up_pt4_err_fondEchelle = ""
-        Me.up_pt5_err_fondEchelle = ""
-        Me.up_pt6_err_fondEchelle = ""
-
-        Me.down_pt1_err_fondEchelle = ""
-        Me.down_pt2_err_fondEchelle = ""
-        Me.down_pt3_err_fondEchelle = ""
-        Me.down_pt4_err_fondEchelle = ""
-        Me.down_pt5_err_fondEchelle = ""
-        Me.down_pt6_err_fondEchelle = ""
+        lstControleManoDetail_pres_manoCtrl("DOWN1") = oMano.Pression1Ctrl
+        lstControleManoDetail_pres_manoCtrl("DOWN2") = oMano.Pression2Ctrl
+        lstControleManoDetail_pres_manoCtrl("DOWN3") = oMano.Pression3Ctrl
+        lstControleManoDetail_pres_manoCtrl("DOWN4") = oMano.Pression4Ctrl
+        lstControleManoDetail_pres_manoCtrl("DOWN5") = oMano.Pression5Ctrl
+        lstControleManoDetail_pres_manoCtrl("DOWN6") = oMano.Pression6Ctrl
         AgentVerif = pAgent.nom & " " & pAgent.prenom
 
 
@@ -150,6 +91,9 @@ Public Class ControleMano
             CSDebug.dispError("controleMano.New ERR", ex)
             CSDebug.dispError("controleMano.New on garde les valeurs par défaut")
         End Try
+        For Each oDetail As ControleManoDetail In lstControleManoDetail.Values
+            oDetail.EMT = oMano.calcEMT()
+        Next
 
     End Sub
 
@@ -165,26 +109,9 @@ Public Class ControleMano
             dReturn = 0
         End Try
 
-
-        Me.up_pt1_incertitude = dReturn
-        Me.up_pt2_incertitude = dReturn
-        Me.up_pt3_incertitude = dReturn
-        Me.up_pt4_incertitude = dReturn
-        Me.up_pt5_incertitude = dReturn
-        Me.up_pt6_incertitude = dReturn
-
-        Me.down_pt1_incertitude = dReturn
-        Me.down_pt2_incertitude = dReturn
-        Me.down_pt3_incertitude = dReturn
-        Me.down_pt4_incertitude = dReturn
-        Me.down_pt5_incertitude = dReturn
-        Me.down_pt6_incertitude = dReturn
-
-        If lstControleManoDetail.Count > 0 Then
-            For Each oDetail As ControleManoDetail In lstControleManoDetail.Values
-                oDetail.incertitude = dReturn
-            Next
-        End If
+        For Each oDetail As ControleManoDetail In lstControleManoDetail.Values
+            oDetail.incertitude = dReturn
+        Next
 
         Return dReturn
     End Function
@@ -361,826 +288,826 @@ Public Class ControleMano
         End Set
     End Property
 
-    Public Property up_pt1_pres_manoCtrl() As String
-        Get
-            Return _lst("UP1").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP1").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property up_pt1_pres_manoEtalon() As String
-        Get
-            Return _lst("UP1").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP1").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property up_pt1_incertitude() As String
-        Get
-            Return _lst("UP1").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP1").incertitude = Value
-        End Set
-    End Property
-
-    Public Property up_pt1_EMT() As String
-        Get
-            Return _lst("UP1").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP1").EMT = Value
-        End Set
-    End Property
-
-    Public Property up_pt1_err_abs() As String
-        Get
-            Return _lst("UP1").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP1").err_abs = Value
-        End Set
-    End Property
-
-    Public Property up_pt1_err_fondEchelle() As String
-        Get
-            Return _lst("UP1").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP1").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property up_pt1_conformite() As String
-        Get
-            Return _lst("UP1").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP1").conformite = Value
-        End Set
-    End Property
-
-    Public Property up_pt2_pres_manoCtrl() As String
-        Get
-            Return _lst("UP2").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP2").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property up_pt2_pres_manoEtalon() As String
-        Get
-            Return _lst("UP2").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP2").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property up_pt2_incertitude() As String
-        Get
-            Return _lst("UP2").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP2").incertitude = Value
-        End Set
-    End Property
-
-    Public Property up_pt2_EMT() As String
-        Get
-            Return _lst("UP2").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP2").EMT = Value
-        End Set
-    End Property
-
-    Public Property up_pt2_err_abs() As String
-        Get
-            Return _lst("UP2").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP2").err_abs = Value
-        End Set
-    End Property
-
-    Public Property up_pt2_err_fondEchelle() As String
-        Get
-            Return _lst("UP2").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP2").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property up_pt2_conformite() As String
-        Get
-            Return _lst("UP2").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP2").conformite = Value
-        End Set
-    End Property
-
-    Public Property up_pt3_pres_manoCtrl() As String
-        Get
-            Return _lst("UP3").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP3").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property up_pt3_pres_manoEtalon() As String
-        Get
-            Return _lst("UP3").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP3").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property up_pt3_incertitude() As String
-        Get
-            Return _lst("UP3").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP3").incertitude = Value
-        End Set
-    End Property
-
-    Public Property up_pt3_EMT() As String
-        Get
-            Return _lst("UP3").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP3").EMT = Value
-        End Set
-    End Property
-
-    Public Property up_pt3_err_abs() As String
-        Get
-            Return _lst("UP3").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP3").err_abs = Value
-        End Set
-    End Property
-
-    Public Property up_pt3_err_fondEchelle() As String
-        Get
-            Return _lst("UP3").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP3").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property up_pt3_conformite() As String
-        Get
-            Return _lst("UP3").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP3").conformite = Value
-        End Set
-    End Property
-
-    Public Property up_pt4_pres_manoCtrl() As String
-        Get
-            Return _lst("UP4").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP4").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property up_pt4_pres_manoEtalon() As String
-        Get
-            Return _lst("UP4").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP4").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property up_pt4_incertitude() As String
-        Get
-            Return _lst("UP4").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP4").incertitude = Value
-        End Set
-    End Property
-
-    Public Property up_pt4_EMT() As String
-        Get
-            Return _lst("UP4").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP4").EMT = Value
-        End Set
-    End Property
-
-    Public Property up_pt4_err_abs() As String
-        Get
-            Return _lst("UP4").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP4").err_abs = Value
-        End Set
-    End Property
-
-    Public Property up_pt4_err_fondEchelle() As String
-        Get
-            Return _lst("UP4").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP4").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property up_pt4_conformite() As String
-        Get
-            Return _lst("UP4").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP4").conformite = Value
-        End Set
-    End Property
-
-    Public Property up_pt5_pres_manoCtrl() As String
-        Get
-            Return _lst("UP5").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP5").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property up_pt5_pres_manoEtalon() As String
-        Get
-            Return _lst("UP5").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP5").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property up_pt5_incertitude() As String
-        Get
-            Return _lst("UP5").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP5").incertitude = Value
-        End Set
-    End Property
-
-    Public Property up_pt5_EMT() As String
-        Get
-            Return _lst("UP5").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP5").EMT = Value
-        End Set
-    End Property
-
-    Public Property up_pt5_err_abs() As String
-        Get
-            Return _lst("UP5").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP5").err_abs = Value
-        End Set
-    End Property
-
-    Public Property up_pt5_err_fondEchelle() As String
-        Get
-            Return _lst("UP5").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP5").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property up_pt5_conformite() As String
-        Get
-            Return _lst("UP5").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP5").conformite = Value
-        End Set
-    End Property
-
-    Public Property up_pt6_pres_manoCtrl() As String
-        Get
-            Return _lst("UP6").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP6").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property up_pt6_pres_manoEtalon() As String
-        Get
-            Return _lst("UP6").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP6").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property up_pt6_incertitude() As String
-        Get
-            Return _lst("UP6").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP6").incertitude = Value
-        End Set
-    End Property
-
-    Public Property up_pt6_EMT() As String
-        Get
-            Return _lst("UP6").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP6").EMT = Value
-        End Set
-    End Property
-
-    Public Property up_pt6_err_abs() As String
-        Get
-            Return _lst("UP6").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP6").err_abs = Value
-        End Set
-    End Property
-
-    Public Property up_pt6_err_fondEchelle() As String
-        Get
-            Return _lst("UP6").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP6").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property up_pt6_conformite() As String
-        Get
-            Return _lst("UP6").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("UP6").conformite = Value
-        End Set
-    End Property
-
-    Public Property down_pt1_pres_manoCtrl() As String
-        Get
-            Return _lst("DOWN1").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN1").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property down_pt1_pres_manoEtalon() As String
-        Get
-            Return _lst("DOWN1").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN1").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property down_pt1_incertitude() As String
-        Get
-            Return _lst("DOWN1").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN1").incertitude = Value
-        End Set
-    End Property
-
-    Public Property down_pt1_EMT() As String
-        Get
-            Return _lst("DOWN1").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN1").EMT = Value
-        End Set
-    End Property
-
-    Public Property down_pt1_err_abs() As String
-        Get
-            Return _lst("DOWN1").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN1").err_abs = Value
-        End Set
-    End Property
-
-    Public Property down_pt1_err_fondEchelle() As String
-        Get
-            Return _lst("DOWN1").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN1").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property down_pt1_conformite() As String
-        Get
-            Return _lst("DOWN1").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN1").conformite = Value
-        End Set
-    End Property
-
-    Public Property down_pt2_pres_manoCtrl() As String
-        Get
-            Return _lst("DOWN2").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN2").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property down_pt2_pres_manoEtalon() As String
-        Get
-            Return _lst("DOWN2").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN2").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property down_pt2_incertitude() As String
-        Get
-            Return _lst("DOWN2").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN2").incertitude = Value
-        End Set
-    End Property
-
-    Public Property down_pt2_EMT() As String
-        Get
-            Return _lst("DOWN2").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN2").EMT = Value
-        End Set
-    End Property
-
-    Public Property down_pt2_err_abs() As String
-        Get
-            Return _lst("DOWN2").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN2").err_abs = Value
-        End Set
-    End Property
-
-    Public Property down_pt2_err_fondEchelle() As String
-        Get
-            Return _lst("DOWN2").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN2").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property down_pt2_conformite() As String
-        Get
-            Return _lst("DOWN2").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN2").conformite = Value
-        End Set
-    End Property
-
-    Public Property down_pt3_pres_manoCtrl() As String
-        Get
-            Return _lst("DOWN3").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN3").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property down_pt3_pres_manoEtalon() As String
-        Get
-            Return _lst("DOWN3").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN3").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property down_pt3_incertitude() As String
-        Get
-            Return _lst("DOWN3").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN3").incertitude = Value
-        End Set
-    End Property
-
-    Public Property down_pt3_EMT() As String
-        Get
-            Return _lst("DOWN3").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN3").EMT = Value
-        End Set
-    End Property
-
-    Public Property down_pt3_err_abs() As String
-        Get
-            Return _lst("DOWN3").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN3").err_abs = Value
-        End Set
-    End Property
-
-    Public Property down_pt3_err_fondEchelle() As String
-        Get
-            Return _lst("DOWN3").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN3").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property down_pt3_conformite() As String
-        Get
-            Return _lst("DOWN3").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN3").conformite = Value
-        End Set
-    End Property
-
-    Public Property down_pt4_pres_manoCtrl() As String
-        Get
-            Return _lst("DOWN4").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN4").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property down_pt4_pres_manoEtalon() As String
-        Get
-            Return _lst("DOWN4").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN4").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property down_pt4_incertitude() As String
-        Get
-            Return _lst("DOWN4").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN4").incertitude = Value
-        End Set
-    End Property
-
-    Public Property down_pt4_EMT() As String
-        Get
-            Return _lst("DOWN4").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN4").EMT = Value
-        End Set
-    End Property
-
-    Public Property down_pt4_err_abs() As String
-        Get
-            Return _lst("DOWN4").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN4").err_abs = Value
-        End Set
-    End Property
-
-    Public Property down_pt4_err_fondEchelle() As String
-        Get
-            Return _lst("DOWN4").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN4").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property down_pt4_conformite() As String
-        Get
-            Return _lst("DOWN4").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN4").conformite = Value
-        End Set
-    End Property
-
-    Public Property down_pt5_pres_manoCtrl() As String
-        Get
-            Return _lst("DOWN5").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN5").pres_manoCtrl = Value
-        End Set
-    End Property
-
-    Public Property down_pt5_pres_manoEtalon() As String
-        Get
-            Return _lst("DOWN5").pres_manoEtalon
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN5").pres_manoEtalon = Value
-        End Set
-    End Property
-
-    Public Property down_pt5_incertitude() As String
-        Get
-            Return _lst("DOWN5").incertitude
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN5").incertitude = Value
-        End Set
-    End Property
-
-    Public Property down_pt5_EMT() As String
-        Get
-            Return _lst("DOWN5").EMT
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN5").EMT = Value
-        End Set
-    End Property
-
-    Public Property down_pt5_err_abs() As String
-        Get
-            Return _lst("DOWN5").err_abs
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN5").err_abs = Value
-        End Set
-    End Property
-
-    Public Property down_pt5_err_fondEchelle() As String
-        Get
-            Return _lst("DOWN5").err_fondEchelle
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN5").err_fondEchelle = Value
-        End Set
-    End Property
-
-    Public Property down_pt5_conformite() As String
-        Get
-            Return _lst("DOWN5").conformite
-        End Get
-        Set(ByVal Value As String)
-            _lst("DOWN5").conformite = Value
-        End Set
-    End Property
-
-    Public Property down_pt6_pres_manoCtrl() As String
-        Get
-            Return _lst("DOWN6").pres_manoCtrl
-        End Get
-        Set(ByVal Value As String)
-            Try
-
-                _lst("DOWN6").pres_manoCtrl = Value
-            Catch ex As Exception
-
-            End Try
-        End Set
-    End Property
-
-    Public Property down_pt6_pres_manoEtalon() As String
-        Get
-            Try
-
-                Return _lst("DOWN6").pres_manoEtalon
-            Catch ex As Exception
-                Return ""
-            End Try
-        End Get
-        Set(ByVal Value As String)
-            Try
-                _lst("DOWN6").pres_manoEtalon = Value
-            Catch ex As Exception
-
-            End Try
-
-        End Set
-    End Property
-
-    Public Property down_pt6_incertitude() As String
-        Get
-            Try
-                Return _lst("DOWN6").incertitude
-
-            Catch ex As Exception
-                Return ""
-            End Try
-        End Get
-        Set(ByVal Value As String)
-            Try
-                _lst("DOWN6").incertitude = Value
-
-            Catch ex As Exception
-
-            End Try
-        End Set
-    End Property
-
-    Public Property down_pt6_EMT() As String
-        Get
-            Try
-                Return _lst("DOWN6").EMT
-
-            Catch ex As Exception
-                Return ""
-            End Try
-        End Get
-        Set(ByVal Value As String)
-            Try
-
-                _lst("DOWN6").EMT = Value
-            Catch ex As Exception
-
-            End Try
-        End Set
-    End Property
-
-    Public Property down_pt6_err_abs() As String
-        Get
-            Try
-                Return _lst("DOWN6").err_abs
-
-            Catch ex As Exception
-                Return ""
-            End Try
-        End Get
-        Set(ByVal Value As String)
-            Try
-                _lst("DOWN6").err_abs = Value
-
-            Catch ex As Exception
-
-            End Try
-        End Set
-    End Property
-
-    Public Property down_pt6_err_fondEchelle() As String
-        Get
-            Try
-                Return _lst("DOWN6").err_fondEchelle
-
-            Catch ex As Exception
-                Return ""
-            End Try
-        End Get
-        Set(ByVal Value As String)
-            Try
-                _lst("DOWN6").err_fondEchelle = Value
-
-            Catch ex As Exception
-
-            End Try
-        End Set
-    End Property
-
-    Public Property down_pt6_conformite() As String
-        Get
-            Try
-                Return _lst("DOWN6").conformite
-
-            Catch ex As Exception
-                Return ""
-            End Try
-        End Get
-        Set(ByVal Value As String)
-            Try
-                _lst("DOWN6").conformite = Value
-
-            Catch ex As Exception
-
-            End Try
-        End Set
-    End Property
+    'Public Property up_pt1_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("UP1").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP1").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt1_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("UP1").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP1").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt1_incertitude() As String
+    '    Get
+    '        Return _lst("UP1").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP1").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt1_EMT() As String
+    '    Get
+    '        Return _lst("UP1").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP1").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt1_err_abs() As String
+    '    Get
+    '        Return _lst("UP1").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP1").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt1_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("UP1").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP1").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt1_conformite() As String
+    '    Get
+    '        Return _lst("UP1").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP1").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt2_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("UP2").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP2").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt2_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("UP2").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP2").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt2_incertitude() As String
+    '    Get
+    '        Return _lst("UP2").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP2").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt2_EMT() As String
+    '    Get
+    '        Return _lst("UP2").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP2").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt2_err_abs() As String
+    '    Get
+    '        Return _lst("UP2").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP2").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt2_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("UP2").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP2").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt2_conformite() As String
+    '    Get
+    '        Return _lst("UP2").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP2").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt3_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("UP3").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP3").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt3_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("UP3").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP3").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt3_incertitude() As String
+    '    Get
+    '        Return _lst("UP3").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP3").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt3_EMT() As String
+    '    Get
+    '        Return _lst("UP3").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP3").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt3_err_abs() As String
+    '    Get
+    '        Return _lst("UP3").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP3").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt3_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("UP3").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP3").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt3_conformite() As String
+    '    Get
+    '        Return _lst("UP3").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP3").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt4_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("UP4").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP4").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt4_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("UP4").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP4").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt4_incertitude() As String
+    '    Get
+    '        Return _lst("UP4").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP4").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt4_EMT() As String
+    '    Get
+    '        Return _lst("UP4").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP4").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt4_err_abs() As String
+    '    Get
+    '        Return _lst("UP4").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP4").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt4_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("UP4").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP4").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt4_conformite() As String
+    '    Get
+    '        Return _lst("UP4").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP4").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt5_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("UP5").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP5").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt5_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("UP5").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP5").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt5_incertitude() As String
+    '    Get
+    '        Return _lst("UP5").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP5").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt5_EMT() As String
+    '    Get
+    '        Return _lst("UP5").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP5").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt5_err_abs() As String
+    '    Get
+    '        Return _lst("UP5").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP5").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt5_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("UP5").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP5").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt5_conformite() As String
+    '    Get
+    '        Return _lst("UP5").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP5").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt6_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("UP6").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP6").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt6_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("UP6").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP6").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt6_incertitude() As String
+    '    Get
+    '        Return _lst("UP6").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP6").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt6_EMT() As String
+    '    Get
+    '        Return _lst("UP6").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP6").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt6_err_abs() As String
+    '    Get
+    '        Return _lst("UP6").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP6").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt6_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("UP6").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP6").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property up_pt6_conformite() As String
+    '    Get
+    '        Return _lst("UP6").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("UP6").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt1_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("DOWN1").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN1").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt1_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("DOWN1").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN1").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt1_incertitude() As String
+    '    Get
+    '        Return _lst("DOWN1").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN1").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt1_EMT() As String
+    '    Get
+    '        Return _lst("DOWN1").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN1").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt1_err_abs() As String
+    '    Get
+    '        Return _lst("DOWN1").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN1").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt1_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("DOWN1").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN1").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt1_conformite() As String
+    '    Get
+    '        Return _lst("DOWN1").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN1").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt2_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("DOWN2").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN2").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt2_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("DOWN2").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN2").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt2_incertitude() As String
+    '    Get
+    '        Return _lst("DOWN2").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN2").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt2_EMT() As String
+    '    Get
+    '        Return _lst("DOWN2").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN2").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt2_err_abs() As String
+    '    Get
+    '        Return _lst("DOWN2").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN2").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt2_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("DOWN2").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN2").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt2_conformite() As String
+    '    Get
+    '        Return _lst("DOWN2").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN2").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt3_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("DOWN3").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN3").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt3_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("DOWN3").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN3").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt3_incertitude() As String
+    '    Get
+    '        Return _lst("DOWN3").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN3").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt3_EMT() As String
+    '    Get
+    '        Return _lst("DOWN3").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN3").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt3_err_abs() As String
+    '    Get
+    '        Return _lst("DOWN3").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN3").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt3_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("DOWN3").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN3").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt3_conformite() As String
+    '    Get
+    '        Return _lst("DOWN3").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN3").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt4_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("DOWN4").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN4").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt4_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("DOWN4").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN4").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt4_incertitude() As String
+    '    Get
+    '        Return _lst("DOWN4").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN4").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt4_EMT() As String
+    '    Get
+    '        Return _lst("DOWN4").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN4").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt4_err_abs() As String
+    '    Get
+    '        Return _lst("DOWN4").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN4").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt4_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("DOWN4").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN4").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt4_conformite() As String
+    '    Get
+    '        Return _lst("DOWN4").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN4").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt5_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("DOWN5").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN5").pres_manoCtrl = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt5_pres_manoEtalon() As String
+    '    Get
+    '        Return _lst("DOWN5").pres_manoEtalon
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN5").pres_manoEtalon = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt5_incertitude() As String
+    '    Get
+    '        Return _lst("DOWN5").incertitude
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN5").incertitude = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt5_EMT() As String
+    '    Get
+    '        Return _lst("DOWN5").EMT
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN5").EMT = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt5_err_abs() As String
+    '    Get
+    '        Return _lst("DOWN5").err_abs
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN5").err_abs = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt5_err_fondEchelle() As String
+    '    Get
+    '        Return _lst("DOWN5").err_fondEchelle
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN5").err_fondEchelle = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt5_conformite() As String
+    '    Get
+    '        Return _lst("DOWN5").conformite
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _lst("DOWN5").conformite = Value
+    '    End Set
+    'End Property
+
+    'Public Property down_pt6_pres_manoCtrl() As String
+    '    Get
+    '        Return _lst("DOWN6").pres_manoCtrl
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        Try
+
+    '            _lst("DOWN6").pres_manoCtrl = Value
+    '        Catch ex As Exception
+
+    '        End Try
+    '    End Set
+    'End Property
+
+    'Public Property down_pt6_pres_manoEtalon() As String
+    '    Get
+    '        Try
+
+    '            Return _lst("DOWN6").pres_manoEtalon
+    '        Catch ex As Exception
+    '            Return ""
+    '        End Try
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        Try
+    '            _lst("DOWN6").pres_manoEtalon = Value
+    '        Catch ex As Exception
+
+    '        End Try
+
+    '    End Set
+    'End Property
+
+    'Public Property down_pt6_incertitude() As String
+    '    Get
+    '        Try
+    '            Return _lst("DOWN6").incertitude
+
+    '        Catch ex As Exception
+    '            Return ""
+    '        End Try
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        Try
+    '            _lst("DOWN6").incertitude = Value
+
+    '        Catch ex As Exception
+
+    '        End Try
+    '    End Set
+    'End Property
+
+    'Public Property down_pt6_EMT() As String
+    '    Get
+    '        Try
+    '            Return _lst("DOWN6").EMT
+
+    '        Catch ex As Exception
+    '            Return ""
+    '        End Try
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        Try
+
+    '            _lst("DOWN6").EMT = Value
+    '        Catch ex As Exception
+
+    '        End Try
+    '    End Set
+    'End Property
+
+    'Public Property down_pt6_err_abs() As String
+    '    Get
+    '        Try
+    '            Return _lst("DOWN6").err_abs
+
+    '        Catch ex As Exception
+    '            Return ""
+    '        End Try
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        Try
+    '            _lst("DOWN6").err_abs = Value
+
+    '        Catch ex As Exception
+
+    '        End Try
+    '    End Set
+    'End Property
+
+    'Public Property down_pt6_err_fondEchelle() As String
+    '    Get
+    '        Try
+    '            Return _lst("DOWN6").err_fondEchelle
+
+    '        Catch ex As Exception
+    '            Return ""
+    '        End Try
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        Try
+    '            _lst("DOWN6").err_fondEchelle = Value
+
+    '        Catch ex As Exception
+
+    '        End Try
+    '    End Set
+    'End Property
+
+    'Public Property down_pt6_conformite() As String
+    '    Get
+    '        Try
+    '            Return _lst("DOWN6").conformite
+
+    '        Catch ex As Exception
+    '            Return ""
+    '        End Try
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        Try
+    '            _lst("DOWN6").conformite = Value
+
+    '        Catch ex As Exception
+
+    '        End Try
+    '    End Set
+    'End Property
 
     Public Property dateModificationAgent() As String
         Get

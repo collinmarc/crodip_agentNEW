@@ -53,8 +53,8 @@ Public Class CSDb
                     _dbName = conf_bddPath
                 End If
             Else
-                _dbName = "crodip_agent"
-                DBextension = ".db3"
+                _dbName = My.Settings.DB
+                DBextension = My.Settings.DBExtension
             End If
 
             _bddConnectString = getConnectString(_dbName, _DBTYPE)
@@ -68,7 +68,7 @@ Public Class CSDb
                     Case EnumDBTYPE.SQLITE
                         _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
                         Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
-                        oBuider.DataSource = "bdd/crodip_agent.db3"
+                        oBuider.DataSource = "bdd/" & My.Settings.DB & My.Settings.DBExtension
                         oBuider.Pooling = True
                         _dbConnection.ConnectionString = oBuider.ConnectionString
                 End Select
