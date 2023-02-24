@@ -34,101 +34,17 @@ Public Class frmControleManometresNew
     Friend WithEvents Label1 As Label
     Friend WithEvents btn_controleManos_acquiring As PictureBox
     Friend WithEvents tlpRepetition As TableLayoutPanel
-    Friend WithEvents TextBox39 As TextBox
-    Friend WithEvents TextBox40 As TextBox
-    Friend WithEvents TextBox41 As TextBox
-    Friend WithEvents TextBox42 As TextBox
-    Friend WithEvents TextBox43 As TextBox
-    Friend WithEvents TextBox44 As TextBox
-    Friend WithEvents Label41 As Label
-    Friend WithEvents Label42 As Label
-    Friend WithEvents TextBox55 As TextBox
-    Friend WithEvents TextBox56 As TextBox
-    Friend WithEvents TextBox61 As TextBox
-    Friend WithEvents TextBox62 As TextBox
     Friend WithEvents tlpPressionDecroissante As TableLayoutPanel
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextBox6 As TextBox
-    Friend WithEvents TextBox7 As TextBox
-    Friend WithEvents TextBox8 As TextBox
-    Friend WithEvents TextBox9 As TextBox
-    Friend WithEvents TextBox10 As TextBox
-    Friend WithEvents TextBox11 As TextBox
-    Friend WithEvents TextBox12 As TextBox
-    Friend WithEvents tbDownMR5 As TextBox
-    Friend WithEvents tbDownMR6 As TextBox
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Label22 As Label
-    Friend WithEvents Label23 As Label
-    Friend WithEvents Label24 As Label
-    Friend WithEvents TextBox15 As TextBox
-    Friend WithEvents TextBox16 As TextBox
-    Friend WithEvents TextBox17 As TextBox
-    Friend WithEvents TextBox18 As TextBox
-    Friend WithEvents tbDownMR4 As TextBox
-    Friend WithEvents tbDownMR3 As TextBox
-    Friend WithEvents TextBox25 As TextBox
-    Friend WithEvents TextBox26 As TextBox
-    Friend WithEvents TextBox27 As TextBox
-    Friend WithEvents TextBox28 As TextBox
-    Friend WithEvents TextBox31 As TextBox
-    Friend WithEvents TextBox32 As TextBox
-    Friend WithEvents TextBox33 As TextBox
-    Friend WithEvents TextBox34 As TextBox
     Friend WithEvents tlpPressionCroissant As TableLayoutPanel
-    Friend WithEvents tbFondPC6 As TextBox
-    Friend WithEvents tbErrAbsPC6 As TextBox
-    Friend WithEvents tbFondPC5 As TextBox
-    Friend WithEvents tbErrAbsPC5 As TextBox
-    Friend WithEvents tbFondPC4 As TextBox
-    Friend WithEvents tbErrAbsPC4 As TextBox
-    Friend WithEvents tbFondPC3 As TextBox
-    Friend WithEvents tbErrAbsPC3 As TextBox
-    Friend WithEvents tbFondPC2 As TextBox
-    Friend WithEvents tbErrAbsPC2 As TextBox
-    Friend WithEvents tbFondPC1 As TextBox
-    Friend WithEvents tbErrAbsPC1 As TextBox
-    Friend WithEvents tbUpMR2 As TextBox
-    Friend WithEvents tbUpMR1 As TextBox
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label18 As Label
-    Friend WithEvents tbPCMC2 As TextBox
-    Friend WithEvents tbPCMC3 As TextBox
-    Friend WithEvents tbPCMC4 As TextBox
-    Friend WithEvents tbPCMC5 As TextBox
-    Friend WithEvents tbPCMC6 As TextBox
-    Friend WithEvents tbUpMR3 As TextBox
-    Friend WithEvents tbUpMR4 As TextBox
-    Friend WithEvents tbUpMR5 As TextBox
-    Friend WithEvents tbUpMR6 As TextBox
-    Friend WithEvents tbIncertPC1 As TextBox
-    Friend WithEvents tbIncertPC2 As TextBox
-    Friend WithEvents tbIncertPC3 As TextBox
-    Friend WithEvents tbIncertPC4 As TextBox
-    Friend WithEvents tbIncertPC5 As TextBox
-    Friend WithEvents tbIncertPC6 As TextBox
-    Friend WithEvents tbEMTPC1 As TextBox
-    Friend WithEvents tbEMTPC2 As TextBox
-    Friend WithEvents tbEMTPC3 As TextBox
-    Friend WithEvents tbEMTPC4 As TextBox
-    Friend WithEvents tbEMTPC5 As TextBox
-    Friend WithEvents tbEMTPC6 As TextBox
-    Friend WithEvents tbRepeCtrl2 As TextBox
-    Friend WithEvents tbRepeCtrl1 As TextBox
-    Friend WithEvents Label26 As Label
     Friend WithEvents Label46 As Label
     Friend WithEvents Label45 As Label
     Friend WithEvents Label44 As Label
     Friend WithEvents Label43 As Label
     Friend WithEvents Label40 As Label
     Friend WithEvents Label25 As Label
-    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label26 As Label
     Private IsOK As Boolean = False
 
 
@@ -251,95 +167,8 @@ Public Class frmControleManometresNew
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btn_controleManos_acquiring = New System.Windows.Forms.PictureBox()
         Me.tlpPressionCroissant = New System.Windows.Forms.TableLayoutPanel()
-        Me.tbFondPC6 = New System.Windows.Forms.TextBox()
-        Me.tbErrAbsPC6 = New System.Windows.Forms.TextBox()
-        Me.tbFondPC5 = New System.Windows.Forms.TextBox()
-        Me.tbErrAbsPC5 = New System.Windows.Forms.TextBox()
-        Me.tbFondPC4 = New System.Windows.Forms.TextBox()
-        Me.tbErrAbsPC4 = New System.Windows.Forms.TextBox()
-        Me.tbFondPC3 = New System.Windows.Forms.TextBox()
-        Me.tbErrAbsPC3 = New System.Windows.Forms.TextBox()
-        Me.tbFondPC2 = New System.Windows.Forms.TextBox()
-        Me.tbErrAbsPC2 = New System.Windows.Forms.TextBox()
-        Me.tbFondPC1 = New System.Windows.Forms.TextBox()
-        Me.tbErrAbsPC1 = New System.Windows.Forms.TextBox()
-        Me.tbUpMR2 = New System.Windows.Forms.TextBox()
-        Me.tbUpMR1 = New System.Windows.Forms.TextBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.tbPCMC2 = New System.Windows.Forms.TextBox()
-        Me.tbPCMC3 = New System.Windows.Forms.TextBox()
-        Me.tbPCMC4 = New System.Windows.Forms.TextBox()
-        Me.tbPCMC5 = New System.Windows.Forms.TextBox()
-        Me.tbPCMC6 = New System.Windows.Forms.TextBox()
-        Me.tbUpMR3 = New System.Windows.Forms.TextBox()
-        Me.tbUpMR4 = New System.Windows.Forms.TextBox()
-        Me.tbUpMR5 = New System.Windows.Forms.TextBox()
-        Me.tbUpMR6 = New System.Windows.Forms.TextBox()
-        Me.tbIncertPC1 = New System.Windows.Forms.TextBox()
-        Me.tbIncertPC2 = New System.Windows.Forms.TextBox()
-        Me.tbIncertPC3 = New System.Windows.Forms.TextBox()
-        Me.tbIncertPC4 = New System.Windows.Forms.TextBox()
-        Me.tbIncertPC5 = New System.Windows.Forms.TextBox()
-        Me.tbIncertPC6 = New System.Windows.Forms.TextBox()
-        Me.tbEMTPC1 = New System.Windows.Forms.TextBox()
-        Me.tbEMTPC2 = New System.Windows.Forms.TextBox()
-        Me.tbEMTPC3 = New System.Windows.Forms.TextBox()
-        Me.tbEMTPC4 = New System.Windows.Forms.TextBox()
-        Me.tbEMTPC5 = New System.Windows.Forms.TextBox()
-        Me.tbEMTPC6 = New System.Windows.Forms.TextBox()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.tlpPressionDecroissante = New System.Windows.Forms.TableLayoutPanel()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.TextBox11 = New System.Windows.Forms.TextBox()
-        Me.TextBox12 = New System.Windows.Forms.TextBox()
-        Me.tbDownMR5 = New System.Windows.Forms.TextBox()
-        Me.tbDownMR6 = New System.Windows.Forms.TextBox()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.TextBox15 = New System.Windows.Forms.TextBox()
-        Me.TextBox16 = New System.Windows.Forms.TextBox()
-        Me.TextBox17 = New System.Windows.Forms.TextBox()
-        Me.TextBox18 = New System.Windows.Forms.TextBox()
-        Me.tbDownMR4 = New System.Windows.Forms.TextBox()
-        Me.tbDownMR3 = New System.Windows.Forms.TextBox()
-        Me.TextBox25 = New System.Windows.Forms.TextBox()
-        Me.TextBox26 = New System.Windows.Forms.TextBox()
-        Me.TextBox27 = New System.Windows.Forms.TextBox()
-        Me.TextBox28 = New System.Windows.Forms.TextBox()
-        Me.TextBox31 = New System.Windows.Forms.TextBox()
-        Me.TextBox32 = New System.Windows.Forms.TextBox()
-        Me.TextBox33 = New System.Windows.Forms.TextBox()
-        Me.TextBox34 = New System.Windows.Forms.TextBox()
         Me.tlpRepetition = New System.Windows.Forms.TableLayoutPanel()
-        Me.tbRepeCtrl2 = New System.Windows.Forms.TextBox()
-        Me.tbRepeCtrl1 = New System.Windows.Forms.TextBox()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.TextBox39 = New System.Windows.Forms.TextBox()
-        Me.TextBox40 = New System.Windows.Forms.TextBox()
-        Me.TextBox41 = New System.Windows.Forms.TextBox()
-        Me.TextBox42 = New System.Windows.Forms.TextBox()
-        Me.TextBox43 = New System.Windows.Forms.TextBox()
-        Me.TextBox44 = New System.Windows.Forms.TextBox()
-        Me.Label41 = New System.Windows.Forms.Label()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.TextBox55 = New System.Windows.Forms.TextBox()
-        Me.TextBox56 = New System.Windows.Forms.TextBox()
-        Me.TextBox61 = New System.Windows.Forms.TextBox()
-        Me.TextBox62 = New System.Windows.Forms.TextBox()
         Me.Panel_loading = New System.Windows.Forms.Panel()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
@@ -348,6 +177,9 @@ Public Class frmControleManometresNew
         Me.tbTemperature = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
         CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsControle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -360,7 +192,6 @@ Public Class frmControleManometresNew
         Me.tlpEntete.SuspendLayout()
         CType(Me.btn_controleManos_acquiring, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpPressionCroissant.SuspendLayout()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpPressionDecroissante.SuspendLayout()
         Me.tlpRepetition.SuspendLayout()
         Me.Panel_loading.SuspendLayout()
@@ -1069,49 +900,7 @@ Public Class frmControleManometresNew
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpPressionCroissant.Controls.Add(Me.tbFondPC6, 7, 5)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbErrAbsPC6, 6, 5)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbFondPC5, 7, 4)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbErrAbsPC5, 6, 4)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbFondPC4, 7, 3)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbErrAbsPC4, 6, 3)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbFondPC3, 7, 2)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbErrAbsPC3, 6, 2)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbFondPC2, 7, 1)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbErrAbsPC2, 6, 1)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbFondPC1, 7, 0)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbErrAbsPC1, 6, 0)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbUpMR2, 3, 1)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbUpMR1, 3, 0)
         Me.tlpPressionCroissant.Controls.Add(Me.Label19, 0, 0)
-        Me.tlpPressionCroissant.Controls.Add(Me.Label12, 1, 0)
-        Me.tlpPressionCroissant.Controls.Add(Me.Label13, 1, 1)
-        Me.tlpPressionCroissant.Controls.Add(Me.Label14, 1, 2)
-        Me.tlpPressionCroissant.Controls.Add(Me.Label16, 1, 3)
-        Me.tlpPressionCroissant.Controls.Add(Me.Label17, 1, 4)
-        Me.tlpPressionCroissant.Controls.Add(Me.Label18, 1, 5)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbPCMC2, 2, 1)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbPCMC3, 2, 2)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbPCMC4, 2, 3)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbPCMC5, 2, 4)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbPCMC6, 2, 5)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbUpMR3, 3, 2)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbUpMR4, 3, 3)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbUpMR5, 3, 4)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbUpMR6, 3, 5)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbIncertPC1, 4, 0)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbIncertPC2, 4, 1)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbIncertPC3, 4, 2)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbIncertPC4, 4, 3)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbIncertPC5, 4, 4)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbIncertPC6, 4, 5)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbEMTPC1, 5, 0)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbEMTPC2, 5, 1)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbEMTPC3, 5, 2)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbEMTPC4, 5, 3)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbEMTPC5, 5, 4)
-        Me.tlpPressionCroissant.Controls.Add(Me.tbEMTPC6, 5, 5)
-        Me.tlpPressionCroissant.Controls.Add(Me.NumericUpDown1, 2, 0)
         Me.tlpPressionCroissant.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPressionCroissant.Location = New System.Drawing.Point(3, 66)
         Me.tlpPressionCroissant.Margin = New System.Windows.Forms.Padding(0)
@@ -1125,437 +914,6 @@ Public Class frmControleManometresNew
         Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66617!))
         Me.tlpPressionCroissant.Size = New System.Drawing.Size(617, 221)
         Me.tlpPressionCroissant.TabIndex = 15
-        '
-        'tbFondPC6
-        '
-        Me.tbFondPC6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC6.Location = New System.Drawing.Point(487, 184)
-        Me.tbFondPC6.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.tbFondPC6.Name = "tbFondPC6"
-        Me.tbFondPC6.ReadOnly = True
-        Me.tbFondPC6.Size = New System.Drawing.Size(124, 20)
-        Me.tbFondPC6.TabIndex = 60
-        Me.tbFondPC6.TabStop = False
-        '
-        'tbErrAbsPC6
-        '
-        Me.tbErrAbsPC6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC6.Location = New System.Drawing.Point(426, 184)
-        Me.tbErrAbsPC6.Name = "tbErrAbsPC6"
-        Me.tbErrAbsPC6.ReadOnly = True
-        Me.tbErrAbsPC6.Size = New System.Drawing.Size(54, 20)
-        Me.tbErrAbsPC6.TabIndex = 59
-        Me.tbErrAbsPC6.TabStop = False
-        '
-        'tbFondPC5
-        '
-        Me.tbFondPC5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC5.Location = New System.Drawing.Point(487, 148)
-        Me.tbFondPC5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.tbFondPC5.Name = "tbFondPC5"
-        Me.tbFondPC5.ReadOnly = True
-        Me.tbFondPC5.Size = New System.Drawing.Size(124, 20)
-        Me.tbFondPC5.TabIndex = 58
-        Me.tbFondPC5.TabStop = False
-        '
-        'tbErrAbsPC5
-        '
-        Me.tbErrAbsPC5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC5.Location = New System.Drawing.Point(426, 148)
-        Me.tbErrAbsPC5.Name = "tbErrAbsPC5"
-        Me.tbErrAbsPC5.ReadOnly = True
-        Me.tbErrAbsPC5.Size = New System.Drawing.Size(54, 20)
-        Me.tbErrAbsPC5.TabIndex = 57
-        Me.tbErrAbsPC5.TabStop = False
-        '
-        'tbFondPC4
-        '
-        Me.tbFondPC4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC4.Location = New System.Drawing.Point(487, 112)
-        Me.tbFondPC4.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.tbFondPC4.Name = "tbFondPC4"
-        Me.tbFondPC4.ReadOnly = True
-        Me.tbFondPC4.Size = New System.Drawing.Size(124, 20)
-        Me.tbFondPC4.TabIndex = 56
-        Me.tbFondPC4.TabStop = False
-        '
-        'tbErrAbsPC4
-        '
-        Me.tbErrAbsPC4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC4.Location = New System.Drawing.Point(426, 112)
-        Me.tbErrAbsPC4.Name = "tbErrAbsPC4"
-        Me.tbErrAbsPC4.ReadOnly = True
-        Me.tbErrAbsPC4.Size = New System.Drawing.Size(54, 20)
-        Me.tbErrAbsPC4.TabIndex = 55
-        Me.tbErrAbsPC4.TabStop = False
-        '
-        'tbFondPC3
-        '
-        Me.tbFondPC3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC3.Location = New System.Drawing.Point(487, 76)
-        Me.tbFondPC3.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.tbFondPC3.Name = "tbFondPC3"
-        Me.tbFondPC3.ReadOnly = True
-        Me.tbFondPC3.Size = New System.Drawing.Size(124, 20)
-        Me.tbFondPC3.TabIndex = 54
-        Me.tbFondPC3.TabStop = False
-        '
-        'tbErrAbsPC3
-        '
-        Me.tbErrAbsPC3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC3.Location = New System.Drawing.Point(426, 76)
-        Me.tbErrAbsPC3.Name = "tbErrAbsPC3"
-        Me.tbErrAbsPC3.ReadOnly = True
-        Me.tbErrAbsPC3.Size = New System.Drawing.Size(54, 20)
-        Me.tbErrAbsPC3.TabIndex = 53
-        Me.tbErrAbsPC3.TabStop = False
-        '
-        'tbFondPC2
-        '
-        Me.tbFondPC2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC2.Location = New System.Drawing.Point(487, 40)
-        Me.tbFondPC2.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.tbFondPC2.Name = "tbFondPC2"
-        Me.tbFondPC2.ReadOnly = True
-        Me.tbFondPC2.Size = New System.Drawing.Size(124, 20)
-        Me.tbFondPC2.TabIndex = 52
-        Me.tbFondPC2.TabStop = False
-        '
-        'tbErrAbsPC2
-        '
-        Me.tbErrAbsPC2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC2.Location = New System.Drawing.Point(426, 40)
-        Me.tbErrAbsPC2.Name = "tbErrAbsPC2"
-        Me.tbErrAbsPC2.ReadOnly = True
-        Me.tbErrAbsPC2.Size = New System.Drawing.Size(54, 20)
-        Me.tbErrAbsPC2.TabIndex = 51
-        Me.tbErrAbsPC2.TabStop = False
-        '
-        'tbFondPC1
-        '
-        Me.tbFondPC1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbFondPC1.Location = New System.Drawing.Point(487, 4)
-        Me.tbFondPC1.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.tbFondPC1.Name = "tbFondPC1"
-        Me.tbFondPC1.ReadOnly = True
-        Me.tbFondPC1.Size = New System.Drawing.Size(124, 20)
-        Me.tbFondPC1.TabIndex = 50
-        Me.tbFondPC1.TabStop = False
-        '
-        'tbErrAbsPC1
-        '
-        Me.tbErrAbsPC1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbErrAbsPC1.Location = New System.Drawing.Point(426, 4)
-        Me.tbErrAbsPC1.Name = "tbErrAbsPC1"
-        Me.tbErrAbsPC1.ReadOnly = True
-        Me.tbErrAbsPC1.Size = New System.Drawing.Size(54, 20)
-        Me.tbErrAbsPC1.TabIndex = 49
-        Me.tbErrAbsPC1.TabStop = False
-        '
-        'tbUpMR2
-        '
-        Me.tbUpMR2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbUpMR2.Location = New System.Drawing.Point(230, 40)
-        Me.tbUpMR2.Name = "tbUpMR2"
-        Me.tbUpMR2.Size = New System.Drawing.Size(69, 20)
-        Me.tbUpMR2.TabIndex = 32
-        '
-        'tbUpMR1
-        '
-        Me.tbUpMR1.Location = New System.Drawing.Point(230, 4)
-        Me.tbUpMR1.Name = "tbUpMR1"
-        Me.tbUpMR1.Size = New System.Drawing.Size(69, 20)
-        Me.tbUpMR1.TabIndex = 31
-        '
-        'Label19
-        '
-        Me.Label19.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label19.Location = New System.Drawing.Point(1, 1)
-        Me.Label19.Margin = New System.Windows.Forms.Padding(0)
-        Me.Label19.Name = "Label19"
-        Me.tlpPressionCroissant.SetRowSpan(Me.Label19, 6)
-        Me.Label19.Size = New System.Drawing.Size(84, 219)
-        Me.Label19.TabIndex = 24
-        Me.Label19.Text = "Pression croissante"
-        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label12
-        '
-        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label12.Location = New System.Drawing.Point(89, 1)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(53, 27)
-        Me.Label12.TabIndex = 0
-        Me.Label12.Text = "1"
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label13
-        '
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label13.Location = New System.Drawing.Point(89, 37)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(53, 27)
-        Me.Label13.TabIndex = 1
-        Me.Label13.Text = "2"
-        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label14
-        '
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label14.Location = New System.Drawing.Point(89, 73)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(53, 27)
-        Me.Label14.TabIndex = 2
-        Me.Label14.Text = "3"
-        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label16
-        '
-        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label16.Location = New System.Drawing.Point(89, 109)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(53, 27)
-        Me.Label16.TabIndex = 3
-        Me.Label16.Text = "4"
-        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label17
-        '
-        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label17.Location = New System.Drawing.Point(89, 145)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(53, 27)
-        Me.Label17.TabIndex = 4
-        Me.Label17.Text = "5"
-        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label18
-        '
-        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label18.Location = New System.Drawing.Point(89, 181)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(53, 24)
-        Me.Label18.TabIndex = 5
-        Me.Label18.Text = "6"
-        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'tbPCMC2
-        '
-        Me.tbPCMC2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMC2.Location = New System.Drawing.Point(149, 40)
-        Me.tbPCMC2.Name = "tbPCMC2"
-        Me.tbPCMC2.ReadOnly = True
-        Me.tbPCMC2.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC2.TabIndex = 1
-        Me.tbPCMC2.TabStop = False
-        '
-        'tbPCMC3
-        '
-        Me.tbPCMC3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMC3.Location = New System.Drawing.Point(149, 76)
-        Me.tbPCMC3.Name = "tbPCMC3"
-        Me.tbPCMC3.ReadOnly = True
-        Me.tbPCMC3.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC3.TabIndex = 2
-        Me.tbPCMC3.TabStop = False
-        '
-        'tbPCMC4
-        '
-        Me.tbPCMC4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMC4.Location = New System.Drawing.Point(149, 112)
-        Me.tbPCMC4.Name = "tbPCMC4"
-        Me.tbPCMC4.ReadOnly = True
-        Me.tbPCMC4.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC4.TabIndex = 3
-        Me.tbPCMC4.TabStop = False
-        '
-        'tbPCMC5
-        '
-        Me.tbPCMC5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMC5.Location = New System.Drawing.Point(149, 148)
-        Me.tbPCMC5.Name = "tbPCMC5"
-        Me.tbPCMC5.ReadOnly = True
-        Me.tbPCMC5.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC5.TabIndex = 4
-        Me.tbPCMC5.TabStop = False
-        '
-        'tbPCMC6
-        '
-        Me.tbPCMC6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbPCMC6.Location = New System.Drawing.Point(149, 184)
-        Me.tbPCMC6.Name = "tbPCMC6"
-        Me.tbPCMC6.ReadOnly = True
-        Me.tbPCMC6.Size = New System.Drawing.Size(74, 20)
-        Me.tbPCMC6.TabIndex = 5
-        Me.tbPCMC6.TabStop = False
-        '
-        'tbUpMR3
-        '
-        Me.tbUpMR3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbUpMR3.Location = New System.Drawing.Point(230, 76)
-        Me.tbUpMR3.Name = "tbUpMR3"
-        Me.tbUpMR3.Size = New System.Drawing.Size(69, 20)
-        Me.tbUpMR3.TabIndex = 33
-        '
-        'tbUpMR4
-        '
-        Me.tbUpMR4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbUpMR4.Location = New System.Drawing.Point(230, 112)
-        Me.tbUpMR4.Name = "tbUpMR4"
-        Me.tbUpMR4.Size = New System.Drawing.Size(69, 20)
-        Me.tbUpMR4.TabIndex = 34
-        '
-        'tbUpMR5
-        '
-        Me.tbUpMR5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbUpMR5.Location = New System.Drawing.Point(230, 148)
-        Me.tbUpMR5.Name = "tbUpMR5"
-        Me.tbUpMR5.Size = New System.Drawing.Size(69, 20)
-        Me.tbUpMR5.TabIndex = 35
-        '
-        'tbUpMR6
-        '
-        Me.tbUpMR6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbUpMR6.Location = New System.Drawing.Point(230, 184)
-        Me.tbUpMR6.Name = "tbUpMR6"
-        Me.tbUpMR6.Size = New System.Drawing.Size(69, 20)
-        Me.tbUpMR6.TabIndex = 36
-        '
-        'tbIncertPC1
-        '
-        Me.tbIncertPC1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC1.Location = New System.Drawing.Point(306, 4)
-        Me.tbIncertPC1.Name = "tbIncertPC1"
-        Me.tbIncertPC1.ReadOnly = True
-        Me.tbIncertPC1.Size = New System.Drawing.Size(70, 20)
-        Me.tbIncertPC1.TabIndex = 37
-        Me.tbIncertPC1.TabStop = False
-        '
-        'tbIncertPC2
-        '
-        Me.tbIncertPC2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC2.Location = New System.Drawing.Point(306, 40)
-        Me.tbIncertPC2.Name = "tbIncertPC2"
-        Me.tbIncertPC2.ReadOnly = True
-        Me.tbIncertPC2.Size = New System.Drawing.Size(70, 20)
-        Me.tbIncertPC2.TabIndex = 38
-        Me.tbIncertPC2.TabStop = False
-        '
-        'tbIncertPC3
-        '
-        Me.tbIncertPC3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC3.Location = New System.Drawing.Point(306, 76)
-        Me.tbIncertPC3.Name = "tbIncertPC3"
-        Me.tbIncertPC3.ReadOnly = True
-        Me.tbIncertPC3.Size = New System.Drawing.Size(70, 20)
-        Me.tbIncertPC3.TabIndex = 39
-        Me.tbIncertPC3.TabStop = False
-        '
-        'tbIncertPC4
-        '
-        Me.tbIncertPC4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC4.Location = New System.Drawing.Point(306, 112)
-        Me.tbIncertPC4.Name = "tbIncertPC4"
-        Me.tbIncertPC4.ReadOnly = True
-        Me.tbIncertPC4.Size = New System.Drawing.Size(70, 20)
-        Me.tbIncertPC4.TabIndex = 40
-        Me.tbIncertPC4.TabStop = False
-        '
-        'tbIncertPC5
-        '
-        Me.tbIncertPC5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC5.Location = New System.Drawing.Point(306, 148)
-        Me.tbIncertPC5.Name = "tbIncertPC5"
-        Me.tbIncertPC5.ReadOnly = True
-        Me.tbIncertPC5.Size = New System.Drawing.Size(70, 20)
-        Me.tbIncertPC5.TabIndex = 41
-        Me.tbIncertPC5.TabStop = False
-        '
-        'tbIncertPC6
-        '
-        Me.tbIncertPC6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbIncertPC6.Location = New System.Drawing.Point(306, 184)
-        Me.tbIncertPC6.Name = "tbIncertPC6"
-        Me.tbIncertPC6.ReadOnly = True
-        Me.tbIncertPC6.Size = New System.Drawing.Size(70, 20)
-        Me.tbIncertPC6.TabIndex = 42
-        Me.tbIncertPC6.TabStop = False
-        '
-        'tbEMTPC1
-        '
-        Me.tbEMTPC1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC1.Location = New System.Drawing.Point(383, 4)
-        Me.tbEMTPC1.Name = "tbEMTPC1"
-        Me.tbEMTPC1.ReadOnly = True
-        Me.tbEMTPC1.Size = New System.Drawing.Size(36, 20)
-        Me.tbEMTPC1.TabIndex = 43
-        Me.tbEMTPC1.TabStop = False
-        '
-        'tbEMTPC2
-        '
-        Me.tbEMTPC2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC2.Location = New System.Drawing.Point(383, 40)
-        Me.tbEMTPC2.Name = "tbEMTPC2"
-        Me.tbEMTPC2.ReadOnly = True
-        Me.tbEMTPC2.Size = New System.Drawing.Size(36, 20)
-        Me.tbEMTPC2.TabIndex = 44
-        Me.tbEMTPC2.TabStop = False
-        '
-        'tbEMTPC3
-        '
-        Me.tbEMTPC3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC3.Location = New System.Drawing.Point(383, 76)
-        Me.tbEMTPC3.Name = "tbEMTPC3"
-        Me.tbEMTPC3.ReadOnly = True
-        Me.tbEMTPC3.Size = New System.Drawing.Size(36, 20)
-        Me.tbEMTPC3.TabIndex = 45
-        Me.tbEMTPC3.TabStop = False
-        '
-        'tbEMTPC4
-        '
-        Me.tbEMTPC4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC4.Location = New System.Drawing.Point(383, 112)
-        Me.tbEMTPC4.Name = "tbEMTPC4"
-        Me.tbEMTPC4.ReadOnly = True
-        Me.tbEMTPC4.Size = New System.Drawing.Size(36, 20)
-        Me.tbEMTPC4.TabIndex = 46
-        Me.tbEMTPC4.TabStop = False
-        '
-        'tbEMTPC5
-        '
-        Me.tbEMTPC5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC5.Location = New System.Drawing.Point(383, 148)
-        Me.tbEMTPC5.Name = "tbEMTPC5"
-        Me.tbEMTPC5.ReadOnly = True
-        Me.tbEMTPC5.Size = New System.Drawing.Size(36, 20)
-        Me.tbEMTPC5.TabIndex = 47
-        Me.tbEMTPC5.TabStop = False
-        '
-        'tbEMTPC6
-        '
-        Me.tbEMTPC6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbEMTPC6.Location = New System.Drawing.Point(383, 184)
-        Me.tbEMTPC6.Name = "tbEMTPC6"
-        Me.tbEMTPC6.ReadOnly = True
-        Me.tbEMTPC6.Size = New System.Drawing.Size(36, 20)
-        Me.tbEMTPC6.TabIndex = 48
-        Me.tbEMTPC6.TabStop = False
-        '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.BackColor = System.Drawing.SystemColors.MenuBar
-        Me.NumericUpDown1.Location = New System.Drawing.Point(149, 4)
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(74, 20)
-        Me.NumericUpDown1.TabIndex = 61
         '
         'tlpPressionDecroissante
         '
@@ -1571,35 +929,7 @@ Public Class frmControleManometresNew
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox5, 7, 3)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox6, 6, 3)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox7, 7, 2)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox8, 6, 2)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox9, 7, 1)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox10, 6, 1)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox11, 7, 0)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox12, 6, 0)
-        Me.tlpPressionDecroissante.Controls.Add(Me.tbDownMR5, 3, 1)
-        Me.tlpPressionDecroissante.Controls.Add(Me.tbDownMR6, 3, 0)
         Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
-        Me.tlpPressionDecroissante.Controls.Add(Me.Label21, 1, 0)
-        Me.tlpPressionDecroissante.Controls.Add(Me.Label22, 1, 1)
-        Me.tlpPressionDecroissante.Controls.Add(Me.Label23, 1, 2)
-        Me.tlpPressionDecroissante.Controls.Add(Me.Label24, 1, 3)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox15, 2, 0)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox16, 2, 1)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox17, 2, 2)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox18, 2, 3)
-        Me.tlpPressionDecroissante.Controls.Add(Me.tbDownMR4, 3, 2)
-        Me.tlpPressionDecroissante.Controls.Add(Me.tbDownMR3, 3, 3)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox25, 4, 0)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox26, 4, 1)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox27, 4, 2)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox28, 4, 3)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox31, 5, 0)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox32, 5, 1)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox33, 5, 2)
-        Me.tlpPressionDecroissante.Controls.Add(Me.TextBox34, 5, 3)
         Me.tlpPressionDecroissante.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPressionDecroissante.Location = New System.Drawing.Point(3, 290)
         Me.tlpPressionDecroissante.Margin = New System.Windows.Forms.Padding(0)
@@ -1611,300 +941,6 @@ Public Class frmControleManometresNew
         Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.tlpPressionDecroissante.Size = New System.Drawing.Size(617, 184)
         Me.tlpPressionDecroissante.TabIndex = 16
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox5.Location = New System.Drawing.Point(487, 139)
-        Me.TextBox5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(124, 20)
-        Me.TextBox5.TabIndex = 56
-        Me.TextBox5.TabStop = False
-        '
-        'TextBox6
-        '
-        Me.TextBox6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox6.Location = New System.Drawing.Point(426, 139)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.ReadOnly = True
-        Me.TextBox6.Size = New System.Drawing.Size(54, 20)
-        Me.TextBox6.TabIndex = 55
-        Me.TextBox6.TabStop = False
-        '
-        'TextBox7
-        '
-        Me.TextBox7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox7.Location = New System.Drawing.Point(487, 94)
-        Me.TextBox7.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(124, 20)
-        Me.TextBox7.TabIndex = 54
-        Me.TextBox7.TabStop = False
-        '
-        'TextBox8
-        '
-        Me.TextBox8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox8.Location = New System.Drawing.Point(426, 94)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.ReadOnly = True
-        Me.TextBox8.Size = New System.Drawing.Size(54, 20)
-        Me.TextBox8.TabIndex = 53
-        Me.TextBox8.TabStop = False
-        '
-        'TextBox9
-        '
-        Me.TextBox9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox9.Location = New System.Drawing.Point(487, 49)
-        Me.TextBox9.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(124, 20)
-        Me.TextBox9.TabIndex = 52
-        Me.TextBox9.TabStop = False
-        '
-        'TextBox10
-        '
-        Me.TextBox10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox10.Location = New System.Drawing.Point(426, 49)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.ReadOnly = True
-        Me.TextBox10.Size = New System.Drawing.Size(54, 20)
-        Me.TextBox10.TabIndex = 51
-        Me.TextBox10.TabStop = False
-        '
-        'TextBox11
-        '
-        Me.TextBox11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox11.Location = New System.Drawing.Point(487, 4)
-        Me.TextBox11.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.ReadOnly = True
-        Me.TextBox11.Size = New System.Drawing.Size(124, 20)
-        Me.TextBox11.TabIndex = 50
-        Me.TextBox11.TabStop = False
-        '
-        'TextBox12
-        '
-        Me.TextBox12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox12.Location = New System.Drawing.Point(426, 4)
-        Me.TextBox12.Name = "TextBox12"
-        Me.TextBox12.ReadOnly = True
-        Me.TextBox12.Size = New System.Drawing.Size(54, 20)
-        Me.TextBox12.TabIndex = 49
-        Me.TextBox12.TabStop = False
-        '
-        'tbDownMR5
-        '
-        Me.tbDownMR5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbDownMR5.Location = New System.Drawing.Point(230, 49)
-        Me.tbDownMR5.Name = "tbDownMR5"
-        Me.tbDownMR5.Size = New System.Drawing.Size(69, 20)
-        Me.tbDownMR5.TabIndex = 32
-        '
-        'tbDownMR6
-        '
-        Me.tbDownMR6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbDownMR6.Location = New System.Drawing.Point(230, 4)
-        Me.tbDownMR6.Name = "tbDownMR6"
-        Me.tbDownMR6.Size = New System.Drawing.Size(69, 20)
-        Me.tbDownMR6.TabIndex = 31
-        '
-        'Label20
-        '
-        Me.Label20.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label20.Location = New System.Drawing.Point(1, 1)
-        Me.Label20.Margin = New System.Windows.Forms.Padding(0)
-        Me.Label20.Name = "Label20"
-        Me.tlpPressionDecroissante.SetRowSpan(Me.Label20, 4)
-        Me.Label20.Size = New System.Drawing.Size(84, 182)
-        Me.Label20.TabIndex = 24
-        Me.Label20.Text = "Pression décroissante"
-        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label21
-        '
-        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label21.Location = New System.Drawing.Point(89, 1)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(53, 27)
-        Me.Label21.TabIndex = 0
-        Me.Label21.Text = "6"
-        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label22
-        '
-        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label22.Location = New System.Drawing.Point(89, 46)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(53, 27)
-        Me.Label22.TabIndex = 1
-        Me.Label22.Text = "5"
-        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label23
-        '
-        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label23.Location = New System.Drawing.Point(89, 91)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(53, 27)
-        Me.Label23.TabIndex = 2
-        Me.Label23.Text = "4"
-        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label24
-        '
-        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label24.Location = New System.Drawing.Point(89, 136)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(53, 27)
-        Me.Label24.TabIndex = 3
-        Me.Label24.Text = "3"
-        Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'TextBox15
-        '
-        Me.TextBox15.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox15.Location = New System.Drawing.Point(149, 4)
-        Me.TextBox15.Name = "TextBox15"
-        Me.TextBox15.ReadOnly = True
-        Me.TextBox15.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox15.TabIndex = 0
-        Me.TextBox15.TabStop = False
-        '
-        'TextBox16
-        '
-        Me.TextBox16.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox16.Location = New System.Drawing.Point(149, 49)
-        Me.TextBox16.Name = "TextBox16"
-        Me.TextBox16.ReadOnly = True
-        Me.TextBox16.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox16.TabIndex = 1
-        Me.TextBox16.TabStop = False
-        '
-        'TextBox17
-        '
-        Me.TextBox17.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox17.Location = New System.Drawing.Point(149, 94)
-        Me.TextBox17.Name = "TextBox17"
-        Me.TextBox17.ReadOnly = True
-        Me.TextBox17.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox17.TabIndex = 2
-        Me.TextBox17.TabStop = False
-        '
-        'TextBox18
-        '
-        Me.TextBox18.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox18.Location = New System.Drawing.Point(149, 139)
-        Me.TextBox18.Name = "TextBox18"
-        Me.TextBox18.ReadOnly = True
-        Me.TextBox18.Size = New System.Drawing.Size(74, 20)
-        Me.TextBox18.TabIndex = 3
-        Me.TextBox18.TabStop = False
-        '
-        'tbDownMR4
-        '
-        Me.tbDownMR4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbDownMR4.Location = New System.Drawing.Point(230, 94)
-        Me.tbDownMR4.Name = "tbDownMR4"
-        Me.tbDownMR4.Size = New System.Drawing.Size(69, 20)
-        Me.tbDownMR4.TabIndex = 33
-        '
-        'tbDownMR3
-        '
-        Me.tbDownMR3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbDownMR3.Location = New System.Drawing.Point(230, 139)
-        Me.tbDownMR3.Name = "tbDownMR3"
-        Me.tbDownMR3.Size = New System.Drawing.Size(69, 20)
-        Me.tbDownMR3.TabIndex = 34
-        '
-        'TextBox25
-        '
-        Me.TextBox25.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox25.Location = New System.Drawing.Point(306, 4)
-        Me.TextBox25.Name = "TextBox25"
-        Me.TextBox25.ReadOnly = True
-        Me.TextBox25.Size = New System.Drawing.Size(70, 20)
-        Me.TextBox25.TabIndex = 37
-        Me.TextBox25.TabStop = False
-        '
-        'TextBox26
-        '
-        Me.TextBox26.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox26.Location = New System.Drawing.Point(306, 49)
-        Me.TextBox26.Name = "TextBox26"
-        Me.TextBox26.ReadOnly = True
-        Me.TextBox26.Size = New System.Drawing.Size(70, 20)
-        Me.TextBox26.TabIndex = 38
-        Me.TextBox26.TabStop = False
-        '
-        'TextBox27
-        '
-        Me.TextBox27.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox27.Location = New System.Drawing.Point(306, 94)
-        Me.TextBox27.Name = "TextBox27"
-        Me.TextBox27.ReadOnly = True
-        Me.TextBox27.Size = New System.Drawing.Size(70, 20)
-        Me.TextBox27.TabIndex = 39
-        Me.TextBox27.TabStop = False
-        '
-        'TextBox28
-        '
-        Me.TextBox28.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox28.Location = New System.Drawing.Point(306, 139)
-        Me.TextBox28.Name = "TextBox28"
-        Me.TextBox28.ReadOnly = True
-        Me.TextBox28.Size = New System.Drawing.Size(70, 20)
-        Me.TextBox28.TabIndex = 40
-        Me.TextBox28.TabStop = False
-        '
-        'TextBox31
-        '
-        Me.TextBox31.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox31.Location = New System.Drawing.Point(383, 4)
-        Me.TextBox31.Name = "TextBox31"
-        Me.TextBox31.ReadOnly = True
-        Me.TextBox31.Size = New System.Drawing.Size(36, 20)
-        Me.TextBox31.TabIndex = 43
-        Me.TextBox31.TabStop = False
-        '
-        'TextBox32
-        '
-        Me.TextBox32.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox32.Location = New System.Drawing.Point(383, 49)
-        Me.TextBox32.Name = "TextBox32"
-        Me.TextBox32.ReadOnly = True
-        Me.TextBox32.Size = New System.Drawing.Size(36, 20)
-        Me.TextBox32.TabIndex = 44
-        Me.TextBox32.TabStop = False
-        '
-        'TextBox33
-        '
-        Me.TextBox33.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox33.Location = New System.Drawing.Point(383, 94)
-        Me.TextBox33.Name = "TextBox33"
-        Me.TextBox33.ReadOnly = True
-        Me.TextBox33.Size = New System.Drawing.Size(36, 20)
-        Me.TextBox33.TabIndex = 45
-        Me.TextBox33.TabStop = False
-        '
-        'TextBox34
-        '
-        Me.TextBox34.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox34.Location = New System.Drawing.Point(383, 139)
-        Me.TextBox34.Name = "TextBox34"
-        Me.TextBox34.ReadOnly = True
-        Me.TextBox34.Size = New System.Drawing.Size(36, 20)
-        Me.TextBox34.TabIndex = 46
-        Me.TextBox34.TabStop = False
         '
         'tlpRepetition
         '
@@ -1921,21 +957,7 @@ Public Class frmControleManometresNew
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpRepetition.Controls.Add(Me.tbRepeCtrl2, 2, 1)
-        Me.tlpRepetition.Controls.Add(Me.tbRepeCtrl1, 2, 0)
         Me.tlpRepetition.Controls.Add(Me.Label26, 0, 0)
-        Me.tlpRepetition.Controls.Add(Me.TextBox39, 7, 1)
-        Me.tlpRepetition.Controls.Add(Me.TextBox40, 6, 1)
-        Me.tlpRepetition.Controls.Add(Me.TextBox41, 7, 0)
-        Me.tlpRepetition.Controls.Add(Me.TextBox42, 6, 0)
-        Me.tlpRepetition.Controls.Add(Me.TextBox43, 3, 1)
-        Me.tlpRepetition.Controls.Add(Me.TextBox44, 3, 0)
-        Me.tlpRepetition.Controls.Add(Me.Label41, 1, 0)
-        Me.tlpRepetition.Controls.Add(Me.Label42, 1, 1)
-        Me.tlpRepetition.Controls.Add(Me.TextBox55, 4, 0)
-        Me.tlpRepetition.Controls.Add(Me.TextBox56, 4, 1)
-        Me.tlpRepetition.Controls.Add(Me.TextBox61, 5, 0)
-        Me.tlpRepetition.Controls.Add(Me.TextBox62, 5, 1)
         Me.tlpRepetition.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpRepetition.Location = New System.Drawing.Point(3, 477)
         Me.tlpRepetition.Margin = New System.Windows.Forms.Padding(0)
@@ -1944,160 +966,6 @@ Public Class frmControleManometresNew
         Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpRepetition.Size = New System.Drawing.Size(617, 74)
         Me.tlpRepetition.TabIndex = 17
-        '
-        'tbRepeCtrl2
-        '
-        Me.tbRepeCtrl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbRepeCtrl2.Location = New System.Drawing.Point(149, 32)
-        Me.tbRepeCtrl2.Name = "tbRepeCtrl2"
-        Me.tbRepeCtrl2.ReadOnly = True
-        Me.tbRepeCtrl2.Size = New System.Drawing.Size(74, 20)
-        Me.tbRepeCtrl2.TabIndex = 57
-        Me.tbRepeCtrl2.TabStop = False
-        '
-        'tbRepeCtrl1
-        '
-        Me.tbRepeCtrl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbRepeCtrl1.Location = New System.Drawing.Point(149, 4)
-        Me.tbRepeCtrl1.Name = "tbRepeCtrl1"
-        Me.tbRepeCtrl1.ReadOnly = True
-        Me.tbRepeCtrl1.Size = New System.Drawing.Size(74, 20)
-        Me.tbRepeCtrl1.TabIndex = 56
-        Me.tbRepeCtrl1.TabStop = False
-        '
-        'Label26
-        '
-        Me.Label26.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label26.Location = New System.Drawing.Point(1, 1)
-        Me.Label26.Margin = New System.Windows.Forms.Padding(0)
-        Me.Label26.Name = "Label26"
-        Me.tlpRepetition.SetRowSpan(Me.Label26, 2)
-        Me.Label26.Size = New System.Drawing.Size(84, 72)
-        Me.Label26.TabIndex = 53
-        Me.Label26.Text = "Répétition"
-        Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'TextBox39
-        '
-        Me.TextBox39.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox39.Location = New System.Drawing.Point(487, 32)
-        Me.TextBox39.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.TextBox39.Name = "TextBox39"
-        Me.TextBox39.ReadOnly = True
-        Me.TextBox39.Size = New System.Drawing.Size(124, 20)
-        Me.TextBox39.TabIndex = 52
-        Me.TextBox39.TabStop = False
-        '
-        'TextBox40
-        '
-        Me.TextBox40.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox40.Location = New System.Drawing.Point(426, 32)
-        Me.TextBox40.Name = "TextBox40"
-        Me.TextBox40.ReadOnly = True
-        Me.TextBox40.Size = New System.Drawing.Size(54, 20)
-        Me.TextBox40.TabIndex = 51
-        Me.TextBox40.TabStop = False
-        '
-        'TextBox41
-        '
-        Me.TextBox41.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox41.Location = New System.Drawing.Point(487, 4)
-        Me.TextBox41.Margin = New System.Windows.Forms.Padding(3, 3, 5, 3)
-        Me.TextBox41.Name = "TextBox41"
-        Me.TextBox41.ReadOnly = True
-        Me.TextBox41.Size = New System.Drawing.Size(124, 20)
-        Me.TextBox41.TabIndex = 50
-        Me.TextBox41.TabStop = False
-        '
-        'TextBox42
-        '
-        Me.TextBox42.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox42.Location = New System.Drawing.Point(426, 4)
-        Me.TextBox42.Name = "TextBox42"
-        Me.TextBox42.ReadOnly = True
-        Me.TextBox42.Size = New System.Drawing.Size(54, 20)
-        Me.TextBox42.TabIndex = 49
-        Me.TextBox42.TabStop = False
-        '
-        'TextBox43
-        '
-        Me.TextBox43.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox43.Location = New System.Drawing.Point(230, 32)
-        Me.TextBox43.Name = "TextBox43"
-        Me.TextBox43.Size = New System.Drawing.Size(69, 20)
-        Me.TextBox43.TabIndex = 32
-        '
-        'TextBox44
-        '
-        Me.TextBox44.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox44.Location = New System.Drawing.Point(230, 4)
-        Me.TextBox44.Name = "TextBox44"
-        Me.TextBox44.Size = New System.Drawing.Size(69, 20)
-        Me.TextBox44.TabIndex = 31
-        '
-        'Label41
-        '
-        Me.Label41.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label41.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label41.Location = New System.Drawing.Point(89, 1)
-        Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(52, 27)
-        Me.Label41.TabIndex = 0
-        Me.Label41.Text = "6"
-        Me.Label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label42
-        '
-        Me.Label42.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label42.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label42.Location = New System.Drawing.Point(89, 29)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(52, 27)
-        Me.Label42.TabIndex = 1
-        Me.Label42.Text = "5"
-        Me.Label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'TextBox55
-        '
-        Me.TextBox55.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox55.Location = New System.Drawing.Point(306, 4)
-        Me.TextBox55.Name = "TextBox55"
-        Me.TextBox55.ReadOnly = True
-        Me.TextBox55.Size = New System.Drawing.Size(70, 20)
-        Me.TextBox55.TabIndex = 37
-        Me.TextBox55.TabStop = False
-        '
-        'TextBox56
-        '
-        Me.TextBox56.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox56.Location = New System.Drawing.Point(306, 32)
-        Me.TextBox56.Name = "TextBox56"
-        Me.TextBox56.ReadOnly = True
-        Me.TextBox56.Size = New System.Drawing.Size(70, 20)
-        Me.TextBox56.TabIndex = 38
-        Me.TextBox56.TabStop = False
-        '
-        'TextBox61
-        '
-        Me.TextBox61.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox61.Location = New System.Drawing.Point(383, 4)
-        Me.TextBox61.Name = "TextBox61"
-        Me.TextBox61.ReadOnly = True
-        Me.TextBox61.Size = New System.Drawing.Size(36, 20)
-        Me.TextBox61.TabIndex = 43
-        Me.TextBox61.TabStop = False
-        '
-        'TextBox62
-        '
-        Me.TextBox62.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox62.Location = New System.Drawing.Point(383, 32)
-        Me.TextBox62.Name = "TextBox62"
-        Me.TextBox62.ReadOnly = True
-        Me.TextBox62.Size = New System.Drawing.Size(36, 20)
-        Me.TextBox62.TabIndex = 44
-        Me.TextBox62.TabStop = False
         '
         'Panel_loading
         '
@@ -2187,6 +1055,48 @@ Public Class frmControleManometresNew
         Me.ImageList_onglets.TransparentColor = System.Drawing.Color.White
         Me.ImageList_onglets.Images.SetKeyName(0, "")
         '
+        'Label19
+        '
+        Me.Label19.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label19.Location = New System.Drawing.Point(1, 1)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label19.Name = "Label19"
+        Me.tlpPressionCroissant.SetRowSpan(Me.Label19, 6)
+        Me.Label19.Size = New System.Drawing.Size(84, 219)
+        Me.Label19.TabIndex = 24
+        Me.Label19.Text = "Pression croissante"
+        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label20
+        '
+        Me.Label20.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label20.Location = New System.Drawing.Point(1, 1)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label20.Name = "Label20"
+        Me.tlpPressionDecroissante.SetRowSpan(Me.Label20, 4)
+        Me.Label20.Size = New System.Drawing.Size(84, 182)
+        Me.Label20.TabIndex = 24
+        Me.Label20.Text = "Pression décroissante"
+        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label26
+        '
+        Me.Label26.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label26.Location = New System.Drawing.Point(1, 1)
+        Me.Label26.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label26.Name = "Label26"
+        Me.tlpRepetition.SetRowSpan(Me.Label26, 2)
+        Me.Label26.Size = New System.Drawing.Size(84, 72)
+        Me.Label26.TabIndex = 53
+        Me.Label26.Text = "Répétition"
+        Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'frmControleManometresNew
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -2210,12 +1120,8 @@ Public Class frmControleManometresNew
         Me.tlpEntete.ResumeLayout(False)
         CType(Me.btn_controleManos_acquiring, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpPressionCroissant.ResumeLayout(False)
-        Me.tlpPressionCroissant.PerformLayout()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpPressionDecroissante.ResumeLayout(False)
-        Me.tlpPressionDecroissante.PerformLayout()
         Me.tlpRepetition.ResumeLayout(False)
-        Me.tlpRepetition.PerformLayout()
         Me.Panel_loading.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -2287,8 +1193,24 @@ Public Class frmControleManometresNew
     ''' <param name="pControleMano">le controle à afficher</param>
     ''' <param name="pAjusteur">Affichage de l'ajusteur ou pas</param>
     Private Sub AfficheControleMano(pControleMano As ControleMano)
-        'Dim oParamMetrologie As New lstParamMetrologie()
-        'oParamMetrologie.readXML()
+
+        Me.tlpGlobal.Visible = False
+        Me.tlpGlobal.SuspendLayout()
+        'ajustement des TablePanels
+        Dim nUp As Integer = pControleMano.lstControleManoDetail.Values.Where(Function(D)
+                                                                                  Return D.type = "UP"
+                                                                              End Function).Count()
+        Dim nDown As Integer = pControleMano.lstControleManoDetail.Values.Where(Function(D)
+                                                                                    Return D.type = "DOWN"
+                                                                                End Function).Count()
+        Dim nRepe As Integer = pControleMano.lstControleManoDetail.Values.Where(Function(D)
+                                                                                    Return D.type = "REPE"
+                                                                                End Function).Count()
+        Dim nLignestot As Integer = nUp + nDown + nRepe
+        tlpGlobal.RowStyles(1) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, nUp / nLignestot * 100)
+        tlpGlobal.RowStyles(2) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, nDown / nLignestot * 100)
+        tlpGlobal.RowStyles(3) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, nRepe / nLignestot * 100)
+
 
         Dim lstCtrlManoDetail As List(Of ControleManoDetail)
         'Trt des pression croissantes
@@ -2296,7 +1218,6 @@ Public Class frmControleManometresNew
         lstCtrlManoDetail = pControleMano.lstControleManoDetail.Values.Where(Function(D)
                                                                                  Return D.type = "UP"
                                                                              End Function).ToList()
-        Me.tlpPressionCroissant.SuspendLayout()
         Me.tlpPressionCroissant.Controls.Clear()
         'Label Croissant
         Dim lblPressionCroissante As Label
@@ -2328,7 +1249,6 @@ Public Class frmControleManometresNew
             Me.tlpPressionCroissant.SetRowSpan(lblPressionCroissante, lstCtrlManoDetail.Count)
         End If
 
-        Me.tlpPressionCroissant.ResumeLayout(True)
 
 
         'Trt des pression décroissantes
@@ -2337,7 +1257,6 @@ Public Class frmControleManometresNew
                                                                                  Return D.type = "DOWN"
                                                                              End Function).ToList()
 
-        Me.tlpPressionDecroissante.SuspendLayout()
         Me.tlpPressionDecroissante.Controls.Clear()
         Me.tlpPressionDecroissante.RowStyles.Clear()
         'Me.tlpPressionDecroissante.RowCount = lstCtrlManoDetail.Count
@@ -2367,7 +1286,6 @@ Public Class frmControleManometresNew
             Me.tlpPressionDecroissante.SetRowSpan(lblPressionDeCroissante, lstCtrlManoDetail.Count)
         End If
 
-        Me.tlpPressionDecroissante.ResumeLayout()
 
         'Trt des répétitions
         '------------------------
@@ -2375,7 +1293,6 @@ Public Class frmControleManometresNew
                                                                                  Return D.type = "REPE"
                                                                              End Function).ToList()
 
-        Me.tlpRepetition.SuspendLayout()
         Me.tlpRepetition.Controls.Clear()
         Me.tlpRepetition.RowStyles.Clear()
         'Me.tlpRepetition.RowCount = lstCtrlManoDetail.Count
@@ -2400,31 +1317,15 @@ Public Class frmControleManometresNew
         If lstCtrlManoDetail.Count > 1 Then
             Me.tlpRepetition.SetRowSpan(lblRepetition, lstCtrlManoDetail.Count)
         End If
-        Me.tlpRepetition.ResumeLayout()
 
-        'Suppression de la Col Ajusteur ou TextBox
-        'Selection de la Colonne ajusteur ou pas
-        'Dim nColAEffacer As Integer = 0
-        'If pAjusteur Then
-        '    nColAEffacer = 4
-        'Else
-        '    nColAEffacer = 3
-        'End If
-        'tlpPressionCroissant.ColumnStyles().Item(nColAEffacer).SizeType = SizeType.Absolute
-        'tlpPressionCroissant.ColumnStyles().Item(nColAEffacer).Width = 0
-        'tlpPressionDecroissante.ColumnStyles().Item(nColAEffacer).SizeType = SizeType.Absolute
-        'tlpPressionDecroissante.ColumnStyles().Item(nColAEffacer).Width = 0
-        'tlpRepetition.ColumnStyles().Item(nColAEffacer).SizeType = SizeType.Absolute
-        'tlpRepetition.ColumnStyles().Item(nColAEffacer).Width = 0
-        Me.SplitContainer1.SuspendLayout()
-        tlpGlobal.SuspendLayout()
-        Dim nLignestot As Integer = tlpPressionCroissant.RowStyles.Count + tlpPressionDecroissante.RowStyles.Count + tlpRepetition.RowStyles.Count
-        tlpGlobal.RowStyles(1) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpPressionCroissant.RowStyles.Count / nLignestot * 100)
-        tlpGlobal.RowStyles(2) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpPressionDecroissante.RowStyles.Count / nLignestot * 100)
-        tlpGlobal.RowStyles(3) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpRepetition.RowStyles.Count / nLignestot * 100)
-        tlpGlobal.ResumeLayout()
-        Me.SplitContainer1.ResumeLayout()
+        'ajustement des TablePanels
+        'Dim nLignestot As Integer = tlpPressionCroissant.RowStyles.Count + tlpPressionDecroissante.RowStyles.Count + tlpRepetition.RowStyles.Count
+        'tlpGlobal.RowStyles(1) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpPressionCroissant.RowStyles.Count / nLignestot * 100)
+        'tlpGlobal.RowStyles(2) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpPressionDecroissante.RowStyles.Count / nLignestot * 100)
+        'tlpGlobal.RowStyles(3) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpRepetition.RowStyles.Count / nLignestot * 100)
 
+        Me.tlpGlobal.Visible = True
+        Me.tlpGlobal.ResumeLayout(True)
 
     End Sub
 
