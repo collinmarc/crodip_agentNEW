@@ -1302,8 +1302,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'btnImprimer
         '
-        Me.btnImprimer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnImprimer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnImprimer.BackgroundImage = Global.Crodip_agent.Resources.btn_divers_print
         Me.btnImprimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnImprimer.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control
@@ -2102,7 +2101,11 @@ Public Class frmdiagnostic_facturationCoProp
             If m_oDiag IsNot Nothing Then
                 DiagnosticManager.UpdateFileNames(m_oDiag)
             End If
-            TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
+            If MdiParent IsNot Nothing Then
+                TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
+            Else
+                Me.Close()
+            End If
         End If
 
     End Sub

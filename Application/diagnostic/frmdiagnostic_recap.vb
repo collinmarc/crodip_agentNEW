@@ -392,6 +392,7 @@ Public Class frmdiagnostic_recap
         '
         Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsDiag, "pulverisateurEmplacementIdentification", True))
         Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.FormattingEnabled = True
         Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.Location = New System.Drawing.Point(6, 40)
         Me.cbx_diagnosticRecap_materiel_EmplacementIdentification.Name = "cbx_diagnosticRecap_materiel_EmplacementIdentification"
@@ -670,6 +671,7 @@ Public Class frmdiagnostic_recap
     Private Sub diagnostic_recap_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.WindowState = FormWindowState.Maximized
         Me.ControlBox = False
+
         CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
         Me.laTitre.Text = "     Visualisation du contrôle"
         Me.btn_Annuler.Visible = False
@@ -681,22 +683,8 @@ Public Class frmdiagnostic_recap
             Me.laTitre.Text = "     Remplacement du contrôle"
             Me.btn_Annuler.Visible = True
         End If
-        '###########################################################################
-        '########               Chargement Organisme d'inspection           ########
-        '###########################################################################
-        Try
-            diagnosticRecap_organisme_dateControle.Text = CDate(m_diagnostic.controleDateDebut).ToShortDateString()
-            diagnosticRecap_organisme_heureDebut.Text = CDate(m_diagnostic.controleDateDebut).ToShortTimeString
-            If (m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV) And
-                m_diagnostic.diagRemplacementId = "" Then
-                'Remplacement de la date de fin si on n'est pas en remplacement
-                m_diagnostic.controleDateFin = CSDate.ToCRODIPString(Date.Now)
-            End If
-            diagnosticRecap_organisme_heureFin.Text = CDate(m_diagnostic.controleDateFin).ToShortTimeString
-        Catch ex As Exception
-            CSDebug.dispError("Contrôle Récap - Chargement Organisme d'inspection : " & ex.Message.ToString)
-        End Try
 
+        AfficheOrganisme()
         '###########################################################################
         '########             Chargement Propriétaire du materiel           ########
         '###########################################################################
@@ -710,60 +698,6 @@ Public Class frmdiagnostic_recap
         '###########################################################################
         AffichePulverisateur()
 
-        For Each tmpDiagnosticItem As DiagnosticItem In m_diagnostic.diagnosticItemsLst.items
-            If Not tmpDiagnosticItem Is Nothing Then
-                If Not tmpDiagnosticItem.itemCodeEtat Is Nothing Then
-                    ' Si on a un code état différent de OK, on l'affiche dans le bilan
-                    If tmpDiagnosticItem.itemCodeEtat <> DiagnosticItem.EtatDiagItemOK Then
-
-                        If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMINEUR Then
-                            'Mineur
-                            If conclusionDiagnostique = GlobalsCRODIP.enumConclusionDiag.OK Then
-                                conclusionDiagnostique = GlobalsCRODIP.enumConclusionDiag.OK_AVECMINEEUR
-                            End If
-                        End If
-                        If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR Then
-                            'Majeur
-                            conclusionDiagnostique = GlobalsCRODIP.enumConclusionDiag.NOK
-                        End If
-                        If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJPRELIM Then
-                            'Majeur Prelim
-                            conclusionDiagnostique = GlobalsCRODIP.enumConclusionDiag.NOK_PRELIM
-                        End If
-                    End If
-
-                End If
-            End If
-        Next
-
-
-        ' Conclusion sur l'etat du controle
-        Select Case conclusionDiagnostique
-            Case GlobalsCRODIP.enumConclusionDiag.OK
-                m_diagnostic.controleEtat = Diagnostic.controleEtatOK
-                conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(1)
-                label_pulveBonEtat.Text = "Pulvérisateur en bon état"
-            Case GlobalsCRODIP.enumConclusionDiag.OK_AVECMINEEUR
-                conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(1)
-                m_diagnostic.controleEtat = Diagnostic.controleEtatOK
-                label_pulveBonEtat.Text = "Pulvérisateur en bon état"
-            Case GlobalsCRODIP.enumConclusionDiag.NOK
-                conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
-                m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
-                label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
-            Case GlobalsCRODIP.enumConclusionDiag.NOK_PRELIM
-                conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
-                m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCC
-                label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
-            Case Else
-                conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
-                m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
-                label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
-
-        End Select
-        'Me.SelectNextControl(diagnosticRecap_organisme_lieuControle, True, True, True, True)
-        btn_finalisationDiag_modifierDiag.Focus()
-        btn_finalisationDiag_modifierDiag.Select()
         If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_VISU Then
             grpOrganisme.Enabled = False
             grpProprio.Enabled = False
@@ -771,21 +705,9 @@ Public Class frmdiagnostic_recap
             btn_finalisationDiag_modifierDiag.Enabled = False
             btn_finalisationDiag_valider.Text = "Retour"
         End If
-
-        btn_finalisationDiag_modifierDiag.Enabled = False
         If m_diagnostic.bTrtPreliminaires And m_diagnostic.bTrtDefauts Then
             btn_finalisationDiag_modifierDiag.Enabled = m_DiagMode <> GlobalsCRODIP.DiagMode.CTRL_VISU
         End If
-        '##################
-        'Generation de l'apperçu du rapport
-        '###################
-        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or m_diagnostic.CCFileName = "" Then
-            rbEtatCC.Visible = False
-            btn_ContratCommercial.Visible = False
-            btn_finalisationDiag_imprimerRapport.Top = btn_ContratCommercial.Top
-            btn_finalisationDiag_imprimerRapport.Left = btn_ContratCommercial.Left
-        End If
-        createEtatRapportInspection(False)
 
         '======================
         ' Boutons de Signatures
@@ -816,8 +738,111 @@ Public Class frmdiagnostic_recap
             End If
 
         End If
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or m_diagnostic.CCFileName = "" Then
+            rbEtatCC.Visible = False
+            btn_ContratCommercial.Visible = False
+            btn_finalisationDiag_imprimerRapport.Top = btn_ContratCommercial.Top
+            btn_finalisationDiag_imprimerRapport.Left = btn_ContratCommercial.Left
+        End If
 
+        RefreshDiag()
 
+    End Sub
+
+    Public Sub RefreshDiag()
+
+        AfficheConclusion()        'Me.SelectNextControl(diagnosticRecap_organisme_lieuControle, True, True, True, True)
+
+        btn_finalisationDiag_modifierDiag.Focus()
+        btn_finalisationDiag_modifierDiag.Select()
+
+        '##################
+        'Generation de l'apperçu du rapport
+        '###################
+
+        AppercuDocument()
+    End Sub
+
+    Private Sub AfficheConclusion()
+        conclusionDiagnostique = CalcEtatDiag()
+
+        ' Conclusion sur l'etat du controle
+        Select Case conclusionDiagnostique
+
+            Case GlobalsCRODIP.enumConclusionDiag.OK
+                conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(1)
+                label_pulveBonEtat.Text = "Pulvérisateur en bon état"
+            Case GlobalsCRODIP.enumConclusionDiag.OK_AVECMINEEUR
+                conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(1)
+                label_pulveBonEtat.Text = "Pulvérisateur en bon état"
+            Case GlobalsCRODIP.enumConclusionDiag.NOK
+                conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
+                label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
+            Case GlobalsCRODIP.enumConclusionDiag.NOK_PRELIM
+                conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
+                label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
+            Case Else
+                conclusion_pictoEtat.Image = ImageList_Etat.Images.Item(0)
+                m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
+                label_pulveBonEtat.Text = "Défaut(s) sur le pulvérisateur"
+
+        End Select
+    End Sub
+
+    ''' <summary>
+    ''' Calcul de l'état d'un diag
+    ''' </summary>
+    Private Function CalcEtatDiag() As GlobalsCRODIP.enumConclusionDiag
+        Dim nReturn As GlobalsCRODIP.enumConclusionDiag
+        'Par Defaut c'est OK
+        m_diagnostic.controleEtat = Diagnostic.controleEtatOK
+        nReturn = GlobalsCRODIP.enumConclusionDiag.OK
+
+        For Each tmpDiagnosticItem As DiagnosticItem In m_diagnostic.diagnosticItemsLst.items
+            If Not tmpDiagnosticItem Is Nothing Then
+                If Not tmpDiagnosticItem.itemCodeEtat Is Nothing Then
+                    If tmpDiagnosticItem.itemCodeEtat <> DiagnosticItem.EtatDiagItemOK Then
+
+                        If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMINEUR Then
+                            'Mineur
+                            If conclusionDiagnostique = GlobalsCRODIP.enumConclusionDiag.OK Then
+                                nReturn = GlobalsCRODIP.enumConclusionDiag.OK_AVECMINEEUR
+                            End If
+                        End If
+                        If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                            'Majeur
+                            m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
+                            nReturn = GlobalsCRODIP.enumConclusionDiag.NOK
+                        End If
+                        If tmpDiagnosticItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJPRELIM Then
+                            'Majeur Prelim
+                            m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCC
+                            nReturn = GlobalsCRODIP.enumConclusionDiag.NOK_PRELIM
+                        End If
+                    End If
+
+                End If
+            End If
+        Next
+        Return nReturn
+    End Function
+
+    Private Sub AfficheOrganisme()
+        '###########################################################################
+        '########               Chargement Organisme d'inspection           ########
+        '###########################################################################
+        Try
+            diagnosticRecap_organisme_dateControle.Text = CDate(m_diagnostic.controleDateDebut).ToShortDateString()
+            diagnosticRecap_organisme_heureDebut.Text = CDate(m_diagnostic.controleDateDebut).ToShortTimeString
+            If (m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV) And
+                m_diagnostic.diagRemplacementId = "" Then
+                'Remplacement de la date de fin si on n'est pas en remplacement
+                m_diagnostic.controleDateFin = CSDate.ToCRODIPString(Date.Now)
+            End If
+            diagnosticRecap_organisme_heureFin.Text = CDate(m_diagnostic.controleDateFin).ToShortTimeString
+        Catch ex As Exception
+            CSDebug.dispError("Contrôle Récap - Chargement Organisme d'inspection : " & ex.Message.ToString)
+        End Try
     End Sub
 
     Private Sub AffichePulverisateur()
@@ -1035,62 +1060,62 @@ Public Class frmdiagnostic_recap
                         If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or
                             GlobalsCRODIP.GLOB_ENV_MODEFORMATION Or
                             (m_diagnostic.isContrevisiteImmediate And m_diagnostic.isGratuit) Then
-                                'Pas de génération du contrat commercial
-                            Else
-                                Statusbar.display("Génération du Contrat Commercial", True)
-                                If Not createEtatContratCommercial(True) Then
-                                    CSDebug.dispError("Erreur en génération du Contrat Commercial")
-                                End If
-                            End If
-
-                            'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
-                            m_diagnostic.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
-                            Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
-                            CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "]")
-                            CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] PulverisateurID = " & m_diagnostic.pulverisateurId)
-                            CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] m_Pulverisateur.ID = " & m_Pulverisateur.id)
-                            CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] proprietaireId = " & m_diagnostic.proprietaireId)
-                            CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] m_Exploitation.ID = " & m_Exploit.id)
-                            Dim bSave As Boolean
-                            bSave = DiagnosticManager.save(m_diagnostic)
-                            If Not bSave Then
-                                CSDebug.dispFatal("Diagnostic-recap.btn_finalisationDiag_valider_Click ERR : ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE=> FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
-                                MsgBox("ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE => FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
-                                Application.Exit()
-                            End If
-
-                            'Si le Controle remplace un ancien Diag
-                            If Not String.IsNullOrEmpty(m_diagnostic.diagRemplacementId) Then
-                                Dim oDiagRemplace As Diagnostic
-                                oDiagRemplace = DiagnosticManager.getDiagnosticById(m_diagnostic.diagRemplacementId)
-                                Debug.Assert(oDiagRemplace.id <> "")
-                                If oDiagRemplace.id <> "" Then
-                                    oDiagRemplace.isSupprime = True
-                                    oDiagRemplace.diagRemplacementId = m_diagnostic.id 'Diag de remplacement
-                                    DiagnosticManager.save(oDiagRemplace)
-                                End If
-                            End If
-
-
-
-                            ' On met en place les boutons
-                            btn_finalisationDiag_valider.Text = "Poursuivre"
-                            btn_finalisationDiag_imprimerRapport.Enabled = True
-                            btn_finalisationDiag_modifierDiag.Enabled = False
-                            btn_finalisationDiag_imprimerSynthese.Enabled = True
-                            btn_ContratCommercial.Enabled = True
-
-                            'Désactivation de l'apperçu
-                            btnAppercu.Enabled = False
-                            rbEtatRI.Enabled = False
-                            rbEtatSM.Enabled = False
-                            rbEtatCC.Enabled = False
-                            CrystalReportViewer1.Enabled = False
-                            isValider = True
-                            Statusbar.display("", False)
-                            bReturn = True
+                            'Pas de génération du contrat commercial
                         Else
-                            CSDebug.dispFatal("Erreur en génération de rapport, recommencez. En cas de récidive, prevenez le CRODIP")
+                            Statusbar.display("Génération du Contrat Commercial", True)
+                            If Not createEtatContratCommercial(True) Then
+                                CSDebug.dispError("Erreur en génération du Contrat Commercial")
+                            End If
+                        End If
+
+                        'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
+                        m_diagnostic.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
+                        Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
+                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "]")
+                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] PulverisateurID = " & m_diagnostic.pulverisateurId)
+                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] m_Pulverisateur.ID = " & m_Pulverisateur.id)
+                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] proprietaireId = " & m_diagnostic.proprietaireId)
+                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] m_Exploitation.ID = " & m_Exploit.id)
+                        Dim bSave As Boolean
+                        bSave = DiagnosticManager.save(m_diagnostic)
+                        If Not bSave Then
+                            CSDebug.dispFatal("Diagnostic-recap.btn_finalisationDiag_valider_Click ERR : ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE=> FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
+                            MsgBox("ERREUR EN SAUVEGARDE DE DIAGNOSTIQUE => FERMERTURE DE l'APPLICATION, CONTACTER LE CRODIP")
+                            Application.Exit()
+                        End If
+
+                        'Si le Controle remplace un ancien Diag
+                        If Not String.IsNullOrEmpty(m_diagnostic.diagRemplacementId) Then
+                            Dim oDiagRemplace As Diagnostic
+                            oDiagRemplace = DiagnosticManager.getDiagnosticById(m_diagnostic.diagRemplacementId)
+                            Debug.Assert(oDiagRemplace.id <> "")
+                            If oDiagRemplace.id <> "" Then
+                                oDiagRemplace.isSupprime = True
+                                oDiagRemplace.diagRemplacementId = m_diagnostic.id 'Diag de remplacement
+                                DiagnosticManager.save(oDiagRemplace)
+                            End If
+                        End If
+
+
+
+                        ' On met en place les boutons
+                        btn_finalisationDiag_valider.Text = "Poursuivre"
+                        btn_finalisationDiag_imprimerRapport.Enabled = True
+                        btn_finalisationDiag_modifierDiag.Enabled = False
+                        btn_finalisationDiag_imprimerSynthese.Enabled = True
+                        btn_ContratCommercial.Enabled = True
+
+                        'Désactivation de l'apperçu
+                        btnAppercu.Enabled = False
+                        rbEtatRI.Enabled = False
+                        rbEtatSM.Enabled = False
+                        rbEtatCC.Enabled = False
+                        CrystalReportViewer1.Enabled = False
+                        isValider = True
+                        Statusbar.display("", False)
+                        bReturn = True
+                    Else
+                        CSDebug.dispFatal("Erreur en génération de rapport, recommencez. En cas de récidive, prevenez le CRODIP")
                     End If
                 End If
             Catch ex As Exception
@@ -1111,9 +1136,6 @@ Public Class frmdiagnostic_recap
             'Dates de Controles
             m_diagnostic.controleDateDebut = CDate(diagnosticRecap_organisme_dateControle.Text).ToShortDateString()
             m_diagnostic.controleDateFin = CDate(diagnosticRecap_organisme_dateControle.Text).ToShortDateString()
-            If m_diagnostic.controleEtat = "" Then
-                m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
-            End If
             Dim szH As String = diagnosticRecap_organisme_heureDebut.Text
             If Not String.IsNullOrEmpty(szH) Then
                 Dim dDiag, dH As Date
@@ -1127,6 +1149,9 @@ Public Class frmdiagnostic_recap
                 dH = CDate(szH)
                 dDiag = CDate(m_diagnostic.controleDateFin)
                 m_diagnostic.controleDateFin = dDiag.ToShortDateString() & " " & dH.ToShortTimeString()
+            End If
+            If m_diagnostic.controleEtat = "" Then
+                m_diagnostic.controleEtat = Diagnostic.controleEtatNOKCV
             End If
             'Emplacemement identification
             m_diagnostic.pulverisateurEmplacementIdentification = CSDb.secureString(cbx_diagnosticRecap_materiel_EmplacementIdentification.Text)
@@ -1515,6 +1540,6 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Private Sub frmdiagnostic_recap_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-        AppercuDocument()
+        RefreshDiag()
     End Sub
 End Class

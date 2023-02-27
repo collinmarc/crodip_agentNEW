@@ -1,5 +1,10 @@
 TRUNK
 MASTER
+BUILD 2023022224150000
+	0001441: Evolution Métrologie , Controle de manos
+	0001548: retour en modif sur un DIAG : Retour au prélimiaires
+	0001551: Erreur sur la bouton 'Poursuivre' sur la Facturation
+
 BUILD 20230207130000
 		0001545: Erreur D'acquisition
 		0001547: CV immédiate : les infos ne sont pas reprises
