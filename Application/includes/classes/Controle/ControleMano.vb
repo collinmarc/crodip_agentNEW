@@ -197,6 +197,38 @@ Public Class ControleMano
 
         End Set
     End Property
+    <XmlIgnore()>
+    Public Property lstControleManoDetailUp As List(Of ControleManoDetail)
+        Get
+            Return _lst.Values.Where(Function(D)
+                                         Return D.type.Equals("UP")
+                                     End Function).ToList()
+        End Get
+        Set(value As List(Of ControleManoDetail))
+
+        End Set
+    End Property
+    <XmlIgnore()>
+    Public Property lstControleManoDetailDown As List(Of ControleManoDetail)
+        Get
+            Return _lst.Values.Where(Function(D)
+                                         Return D.type.Equals("DOWN")
+                                     End Function).ToList()
+        End Get
+        Set(value As List(Of ControleManoDetail))
+
+        End Set
+    End Property
+    <XmlIgnore()>
+    Public Property lstControleManoDetailREPE As List(Of ControleManoDetail)
+        Get
+            Return _lst.Values.Where(Function(D)
+                                         Return D.type.Equals("REPE")
+                                     End Function).ToList()
+        End Get
+        Set(value As List(Of ControleManoDetail))
+        End Set
+    End Property
     <XmlIgnore>
     Public Property lstControleManoDetail(pKey As String) As ControleManoDetail
         Get

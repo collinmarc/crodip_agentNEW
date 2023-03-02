@@ -116,17 +116,17 @@ Public Class EtatFVMano
                 oRow = m_ods.Diagramme.NewDiagrammeRow()
                 oRow.Numero = nIndex + 1
                 If nIndex < nPC Then
-                    oRow.PressionCroissante = m_oControle.lstControleManoDetail_pres_manoEtalon("UP" & nIndex + 1)
+                    oRow.PressionCroissante = m_oControle.lstControleManoDetail_pres_manoEtalon("UP" & m_oControle.lstControleManoDetailUp(nIndex).point)
                 Else
                     oRow.SetPressionCroissanteNull()
                 End If
                 If nIndex < nPD Then
-                    oRow.PressionDecroissante = m_oControle.lstControleManoDetail_pres_manoEtalon("DOWN" & nIndex + 1)
+                    oRow.PressionDecroissante = m_oControle.lstControleManoDetail_pres_manoEtalon("DOWN" & m_oControle.lstControleManoDetailDown(nIndex).point)
                 Else
                     oRow.SetPressionDecroissanteNull()
                 End If
                 If nIndex < nPR Then
-                    oRow.PressionRepetition = m_oControle.lstControleManoDetail_pres_manoEtalon("REPE" & nIndex + 1)
+                    oRow.PressionRepetition = m_oControle.lstControleManoDetail_pres_manoEtalon("REPE" & m_oControle.lstControleManoDetailREPE(nIndex).point)
                 Else
                     oRow.SetPressionRepetitionNull()
                 End If

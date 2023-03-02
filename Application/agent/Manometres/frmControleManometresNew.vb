@@ -1234,9 +1234,11 @@ Public Class frmControleManometresNew
             Me.tlpPressionCroissant.Controls.Add(lblPressionCroissante, 0, 0)
         End If
 
-
+        Dim nLigne As Integer
+        nLigne = 1
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
-            AfficheLgCtrlManoDetail(tlpPressionCroissant, oLigneDetail)
+            AfficheLgCtrlManoDetail(tlpPressionCroissant, oLigneDetail, nLigne)
+            nLigne = nLigne + 1
         Next
 
         Me.tlpPressionCroissant.RowStyles.Clear()
@@ -1279,8 +1281,10 @@ Public Class frmControleManometresNew
             Me.tlpPressionDecroissante.Controls.Add(lblPressionDeCroissante, 0, 0)
         End If
 
+        nLigne = 1
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
-            AfficheLgCtrlManoDetail(tlpPressionDecroissante, oLigneDetail)
+            AfficheLgCtrlManoDetail(tlpPressionDecroissante, oLigneDetail, nLigne)
+            nLigne = nLigne + 1
         Next
         If lstCtrlManoDetail.Count > 1 Then
             Me.tlpPressionDecroissante.SetRowSpan(lblPressionDeCroissante, lstCtrlManoDetail.Count)
@@ -1311,8 +1315,10 @@ Public Class frmControleManometresNew
             Me.tlpRepetition.Controls.Add(lblRepetition, 0, 0)
         End If
 
+        nLigne = 1
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
-            AfficheLgCtrlManoDetail(tlpRepetition, oLigneDetail)
+            AfficheLgCtrlManoDetail(tlpRepetition, oLigneDetail, nLigne)
+            nLigne = nLigne + 1
         Next
         If lstCtrlManoDetail.Count > 1 Then
             Me.tlpRepetition.SetRowSpan(lblRepetition, lstCtrlManoDetail.Count)
@@ -1329,21 +1335,22 @@ Public Class frmControleManometresNew
 
     End Sub
 
-    Private Sub AfficheLgCtrlManoDetail(pTableLayoutPanel As TableLayoutPanel, pLgCtrlManoDetail As ControleManoDetail)
+    Private Sub AfficheLgCtrlManoDetail(pTableLayoutPanel As TableLayoutPanel,
+                                        pLgCtrlManoDetail As ControleManoDetail,
+                                        pNumLigne As Integer)
+
         Dim Prefixe As String = pLgCtrlManoDetail.type
-        Dim NumLigne As Integer
         Dim oControle As ControleMano
         oControle = m_bsControle.Current
 
-        NumLigne = pLgCtrlManoDetail.point
 
         Dim oLbl As Label = New Label()
         oLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         oLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        oLbl.Text = NumLigne
+        oLbl.Text = pLgCtrlManoDetail.point
         oLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         oLbl.Dock = DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(oLbl, 1, NumLigne - 1)
+        pTableLayoutPanel.Controls.Add(oLbl, 1, pNumLigne - 1)
 
 
         Dim otb As TextBox
@@ -1358,38 +1365,38 @@ Public Class frmControleManometresNew
             oNup.tb.Enabled = False
             oNup.upDown.Visible = True
             oNup.TabStop = False
-            oNup.Tag = Prefixe & NumLigne
+            oNup.Tag = Prefixe & pLgCtrlManoDetail.point
             oNup.Increment = pLgCtrlManoDetail.resolution
             oNup.DecimalPlaces = 3
             oNup.Dock = System.Windows.Forms.DockStyle.Fill
-            b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoCtrl", Prefixe & NumLigne), "MapValue")
+            b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoCtrl", Prefixe & pLgCtrlManoDetail.point), "MapValue")
             oNup.DataBindings.Add(b)
-            pTableLayoutPanel.Controls.Add(oNup, 2, NumLigne - 1)
+            pTableLayoutPanel.Controls.Add(oNup, 2, pNumLigne - 1)
         Else
             otb = New TextBox
-            otb.Tag = Prefixe & NumLigne
+            otb.Tag = Prefixe & pLgCtrlManoDetail.point
             otb.TabStop = False
             otb.Dock = System.Windows.Forms.DockStyle.Fill
-            b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoCtrl", Prefixe & NumLigne), "MapValue")
+            b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoCtrl", Prefixe & pLgCtrlManoDetail.point), "MapValue")
             otb.DataBindings.Add(b)
             otb.ReadOnly = True
-            pTableLayoutPanel.Controls.Add(otb, 2, NumLigne - 1)
+            pTableLayoutPanel.Controls.Add(otb, 2, pNumLigne - 1)
 
         End If
 
 
         otb = New TextBox()
-        otb.Tag = Prefixe & NumLigne
+        otb.Tag = Prefixe & pLgCtrlManoDetail.point
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoEtalon", Prefixe & NumLigne), "MapValue")
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoEtalon", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
         AddHandler otb.Validated, AddressOf validerSaisiePressionEtalon
         AddHandler otb.KeyPress, AddressOf checkKeyPress
-        pTableLayoutPanel.Controls.Add(otb, 3, NumLigne - 1)
-        If oControle.lstControleManoDetail_conformite(Prefixe & NumLigne) = "1" Then
+        pTableLayoutPanel.Controls.Add(otb, 3, pNumLigne - 1)
+        If oControle.lstControleManoDetail_conformite(Prefixe & pLgCtrlManoDetail.point) = "1" Then
             otb.ForeColor = System.Drawing.Color.Green
         End If
-        If oControle.lstControleManoDetail_conformite(Prefixe & NumLigne) = "0" Then
+        If oControle.lstControleManoDetail_conformite(Prefixe & pLgCtrlManoDetail.point) = "0" Then
             otb.ForeColor = System.Drawing.Color.Red
         End If
 
@@ -1397,40 +1404,40 @@ Public Class frmControleManometresNew
 
 
         otb = New TextBox
-        otb.Tag = Prefixe & NumLigne
+        otb.Tag = Prefixe & pLgCtrlManoDetail.point
         otb.TabStop = False
         otb.ReadOnly = True
-        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_incertitude", Prefixe & NumLigne), "MapValue")
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_incertitude", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 4, NumLigne - 1)
+        pTableLayoutPanel.Controls.Add(otb, 4, pNumLigne - 1)
 
         otb = New TextBox
-        otb.Tag = Prefixe & NumLigne
+        otb.Tag = Prefixe & pNumLigne
         otb.TabStop = False
         otb.ReadOnly = True
-        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_EMT", Prefixe & NumLigne), "MapValue")
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_EMT", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 5, NumLigne - 1)
+        pTableLayoutPanel.Controls.Add(otb, 5, pNumLigne - 1)
 
         otb = New TextBox
-        otb.Tag = Prefixe & NumLigne
+        otb.Tag = Prefixe & pLgCtrlManoDetail.point
         otb.TabStop = False
         otb.ReadOnly = True
-        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_err_abs", Prefixe & NumLigne), "MapValue")
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_err_abs", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 6, NumLigne - 1)
+        pTableLayoutPanel.Controls.Add(otb, 6, pNumLigne - 1)
 
         otb = New TextBox
-        otb.Tag = Prefixe & NumLigne
+        otb.Tag = Prefixe & pLgCtrlManoDetail.point
         otb.TabStop = False
         otb.ReadOnly = True
-        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_err_FondEchelle", Prefixe & NumLigne), "MapValue")
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_err_FondEchelle", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 7, NumLigne - 1)
+        pTableLayoutPanel.Controls.Add(otb, 7, pNumLigne - 1)
 
     End Sub
 

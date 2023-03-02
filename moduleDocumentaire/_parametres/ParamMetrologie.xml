@@ -10,16 +10,16 @@
       <PressionCtrl Num="6" Valeur="2.1" />
     </PressionMontantes>
     <PressionDescendantes>
-      <PressionCtrl Num="1" Valeur="2.4" />
-      <PressionCtrl Num="2" Valeur="2.3" />
+      <PressionCtrl Num="5" Valeur="2.4" />
+      <PressionCtrl Num="4" Valeur="2.3" />
       <PressionCtrl Num="3" Valeur="2.2" />
-      <PressionCtrl Num="4" Valeur="2.1" />
-      <PressionCtrl Num="5" Valeur="2.0" />
+      <PressionCtrl Num="2" Valeur="2.1" />
+      <PressionCtrl Num="1" Valeur="2.0" />
     </PressionDescendantes>
     <Repetitions>
-      <PressionCtrl Num="1" Valeur="3" />
-      <PressionCtrl Num="2" Valeur="3.1" />
-      <PressionCtrl Num="3" Valeur="3.2" />
+      <PressionCtrl Num="3" Valeur="3" />
+      <PressionCtrl Num="6" Valeur="3.1" />
+      <PressionCtrl Num="7" Valeur="3.2" />
     </Repetitions>
   </Metrologie>
   <Metrologie FondEchelle="10">
