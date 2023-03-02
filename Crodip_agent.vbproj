@@ -1539,6 +1539,8 @@
     <None Include="Resources\Favorites.png" />
     <None Include="Resources\btn_search.jpg" />
     <None Include="Resources\btn_retours.jpg" />
+    <None Include="img\btn\btn_annuler-250.jpg" />
+    <None Include="img\btn\btn_annuler-200.jpg" />
     <Content Include="moduleDocumentaire\_parametres\ParamMetrologie.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

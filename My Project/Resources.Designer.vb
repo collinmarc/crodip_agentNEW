@@ -116,6 +116,26 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property btn_annuler_200() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("btn_annuler-200", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
+    Friend Shared ReadOnly Property btn_annuler_250() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("btn_annuler-250", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property btn_delete() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("btn_delete", resourceCulture)

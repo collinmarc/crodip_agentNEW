@@ -1341,11 +1341,14 @@ Public Class FrmDiagnostique
                             tmpControl.Checked = True
                             Select Case tmpDiagnosticItem.cause
                                 Case "1"
-                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN
+                                    tmpControl.SetCause(CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN)
+                                    'tmpControl.CauseChanged()
                                 Case "2"
-                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX
+                                    tmpControl.SetCause(CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX)
+                                    'tmpControl.CauseChanged()
                                 Case "3"
-                                    tmpControl.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.TROIS
+                                    tmpControl.SetCause(CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.TROIS)
+                                    'tmpControl.CauseChanged()
                             End Select
 
                         End If
@@ -5165,8 +5168,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     End If
 
                 'Vérification de l'onglet
-                checkIsOk(pOngletId)
+                'checkIsOk(pOngletId)
             End If
+            checkIsOk(pOngletId)
         End If
     End Sub
 

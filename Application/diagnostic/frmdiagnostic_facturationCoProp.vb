@@ -157,9 +157,9 @@ Public Class frmdiagnostic_facturationCoProp
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmdiagnostic_facturationCoProp))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlFooter = New System.Windows.Forms.Panel()
@@ -1249,26 +1249,26 @@ Public Class frmdiagnostic_facturationCoProp
         'QuantiteColumn
         '
         Me.QuantiteColumn.DataPropertyName = "quantiteStr"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.QuantiteColumn.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.QuantiteColumn.DefaultCellStyle = DataGridViewCellStyle4
         Me.QuantiteColumn.HeaderText = "quantite"
         Me.QuantiteColumn.Name = "QuantiteColumn"
         '
         'PuColumn
         '
         Me.PuColumn.DataPropertyName = "pustr"
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.PuColumn.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Format = "C2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.PuColumn.DefaultCellStyle = DataGridViewCellStyle5
         Me.PuColumn.HeaderText = "pu"
         Me.PuColumn.Name = "PuColumn"
         '
         'TotalHTDataGridViewTextBoxColumn
         '
         Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "totalHT"
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Format = "C2"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
         Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "totalHT"
         Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
         Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
@@ -1284,7 +1284,7 @@ Public Class frmdiagnostic_facturationCoProp
         'btnAnnuler
         '
         Me.btnAnnuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAnnuler.BackgroundImage = Global.Crodip_agent.Resources.btn_annuler
+        Me.btnAnnuler.BackgroundImage = Global.Crodip_agent.Resources.btn_annuler_200
         Me.btnAnnuler.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnAnnuler.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control
         Me.btnAnnuler.FlatAppearance.BorderSize = 0
@@ -1294,9 +1294,9 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnAnnuler.ForeColor = System.Drawing.Color.White
         Me.btnAnnuler.Location = New System.Drawing.Point(12, 695)
         Me.btnAnnuler.Name = "btnAnnuler"
-        Me.btnAnnuler.Size = New System.Drawing.Size(127, 27)
+        Me.btnAnnuler.Size = New System.Drawing.Size(207, 27)
         Me.btnAnnuler.TabIndex = 80
-        Me.btnAnnuler.Text = "Annuler"
+        Me.btnAnnuler.Text = "Annuler les factures"
         Me.btnAnnuler.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnAnnuler.UseVisualStyleBackColor = True
         '
@@ -1307,6 +1307,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnImprimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnImprimer.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control
         Me.btnImprimer.FlatAppearance.BorderSize = 0
+        Me.btnImprimer.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control
         Me.btnImprimer.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control
         Me.btnImprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnImprimer.ForeColor = System.Drawing.Color.White
@@ -1331,7 +1332,7 @@ Public Class frmdiagnostic_facturationCoProp
         Me.btnPoursuivre.ForeColor = System.Drawing.Color.White
         Me.btnPoursuivre.Location = New System.Drawing.Point(797, 696)
         Me.btnPoursuivre.Name = "btnPoursuivre"
-        Me.btnPoursuivre.Size = New System.Drawing.Size(136, 27)
+        Me.btnPoursuivre.Size = New System.Drawing.Size(130, 27)
         Me.btnPoursuivre.TabIndex = 82
         Me.btnPoursuivre.Text = "Poursuivre"
         Me.btnPoursuivre.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -1564,6 +1565,9 @@ Public Class frmdiagnostic_facturationCoProp
             m_bsExploitant.MoveFirst()
             m_bsExploitant.ResumeBinding()
             SupprColumn.Visible = False
+            btnAnnuler.Text = "Annuler les factures"
+        Else
+            btnAnnuler.Text = "Quitter"
         End If
         If m_TypeInit = TypeInit.INIT_CONSULT_FACTURE Then
             m_bsFacture.Add(m_olstFacture(0))
@@ -1989,14 +1993,18 @@ Public Class frmdiagnostic_facturationCoProp
 
     Private Sub btnAnnuler_Click(sender As Object, e As EventArgs) Handles btnAnnuler.Click
         If m_TypeInit <> TypeInit.INIT_CONSULT_FACTURE Then
-            If MsgBox("Cette action entraine la non-facturation des prestations décrites dans le contrat commercial, Voulez-annuler annuler la facturation ?", MsgBoxStyle.YesNo, "Facturation") = MsgBoxResult.Yes Then
-                For Each oFact As Facture In m_bsFacture
-                    If Not String.IsNullOrEmpty(oFact.pathPDF) Then
-                        CSFile.delete(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oFact.pathPDF)
-                    End If
-                Next
-                Me.Close()
+            If m_bsFacture.Count > 0 Then
+                If MsgBox("Cette action entraine la non-facturation des prestations décrites dans le contrat commercial, Voulez-annuler annuler la facturation ?", MsgBoxStyle.YesNo, "Facturation") = MsgBoxResult.Yes Then
+                    For Each oFact As Facture In m_bsFacture
+                        If Not String.IsNullOrEmpty(oFact.pathPDF) Then
+                            CSFile.delete(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oFact.pathPDF)
+                        End If
+                    Next
+                End If
             End If
+        End If
+            If MdiParent IsNot Nothing Then
+            TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
         Else
             Me.Close()
         End If

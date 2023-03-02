@@ -281,6 +281,12 @@ Public Class CtrlDiag2
             RaiseEvent CheckedChanged(Me, New EventArgs())
         End Set
     End Property
+    Public Sub SetCause(ByVal value As CRODIP_NIVEAUCAUSE)
+        Cause = value
+        CtrlDiag2_RB1.value = value
+        CauseChanged()
+    End Sub
+
     ''' <summary>
     ''' Nombre de causes affichées (En ReadOnly)
     ''' </summary>
@@ -422,6 +428,10 @@ Public Class CtrlDiag2
     End Sub
 
     Private Sub CtrlDiag2_RB1_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CtrlDiag2_RB1.valuechanged
+        CauseChanged()        '        RaiseEvent CheckedChanged(Me, e) Déclenché dans l'acesseur de cause
+    End Sub
+
+    Public Sub CauseChanged()
         'Validation des (1) (2) (3) :
         '   (1)	Fait toujours passer le défaut en vert
         '   (2)	Garde la même couleur que le défaut d’origine ( avoir dans un second temps lorsque l’on pourra agir dessus avec le logiciel CRODIP)
@@ -434,9 +444,7 @@ Public Class CtrlDiag2
             Categorie = DefaultCategorie
         End If
         Me.Cause = CtrlDiag2_RB1.value
-        '        RaiseEvent CheckedChanged(Me, e) Déclenché dans l'acesseur de cause
     End Sub
-
 
     Private Sub PictureBox1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PictureBox1.Click
         If CheckBox1.Checked Then

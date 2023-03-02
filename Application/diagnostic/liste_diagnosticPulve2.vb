@@ -2917,6 +2917,9 @@ Public Class liste_diagnosticPulve2
                         oCellI.Value = New Bitmap(1, 1)
                         oCellI.Style.BackColor = System.Drawing.Color.Gray
                     End If
+                Else
+                    oCellI.Value = New Bitmap(1, 1)
+                    oCellI.Style.BackColor = System.Drawing.Color.Gray
                 End If
 
                 oCellI = DataGridView1.Rows(nRow).Cells(BLColumn.Index)
@@ -2947,7 +2950,7 @@ Public Class liste_diagnosticPulve2
 
                 oCellI = DataGridView1.Rows(nRow).Cells(COPROColumn.Index)
                 oCellI.Style.BackColor = System.Drawing.Color.White
-                oCellI.Tag = oDiag.BLFileName
+                oCellI.Tag = oDiag.COPROFileName
                 If String.IsNullOrEmpty(oDiag.COPROFileName) Then
                     oCellI.Value = New Bitmap(1, 1)
                     oCellI.Style.BackColor = System.Drawing.Color.Gray

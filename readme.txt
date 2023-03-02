@@ -4,7 +4,8 @@ BUILD 2023022224150000
 	0001441: Evolution Métrologie , Controle de manos
 	0001548: retour en modif sur un DIAG : Retour au prélimiaires
 	0001551: Erreur sur la bouton 'Poursuivre' sur la Facturation
-
+	0001554: Bouton 'Annuler sur facture' ne poursuit pas vers l'enquête
+	0001555: CV sur un Ctrl avec un (3) en 8333
 BUILD 20230207130000
 		0001545: Erreur D'acquisition
 		0001547: CV immédiate : les infos ne sont pas reprises
