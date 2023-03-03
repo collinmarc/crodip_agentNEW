@@ -90,7 +90,7 @@
 
     Public Property EMT() As String
         Get
-            Return ConvertToDecimal(_EMT, 1)
+            Return ConvertToDecimal(_EMT, 2)
         End Get
         Set(ByVal Value As String)
             If Value <> EMT Then
@@ -173,18 +173,20 @@
         End If
     End Sub
     Private Sub calcEMT(pMano As ManometreControle)
-        Select Case pMano.fondEchelle
-            Case "6"
-                EMT = 0.1
-            Case "10"
-                EMT = 0.1
-            Case "20"
-                EMT = 0.2
-            Case "25"
-                EMT = 0.25
-            Case Else
-                EMT = CDbl(Math.Round((GlobalsCRODIP.StringToDouble(pMano.classe) * GlobalsCRODIP.StringToDouble(pMano.fondEchelle) / 100), 2))
-        End Select
+        'Select Case pMano.fondEchelle
+        '    Case "6"
+        '        EMT = 0.1
+        '    Case "10"
+        '        EMT = 0.1
+        '    Case "20"
+        '        EMT = 0.2
+        '    Case "25"
+        '        EMT = 0.25
+        '    Case Else
+        '        EMT = CDbl(Math.Round((GlobalsCRODIP.StringToDouble(pMano.classe) * GlobalsCRODIP.StringToDouble(pMano.fondEchelle) / 100), 2))
+        'End Select
+
+        EMT = CDbl(Math.Round((GlobalsCRODIP.StringToDouble(pMano.classe) * GlobalsCRODIP.StringToDouble(pMano.fondEchelle) / 100), 2))
 
 
     End Sub

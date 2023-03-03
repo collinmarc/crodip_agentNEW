@@ -323,7 +323,7 @@
 -- EVOLUTION METROLOGIE
 ALTER TABLE AgentManocontrole ADD COLUMN bAjusteur BIT ;
 ALTER TABLE AgentManocontrole ADD COLUMN resolutionLecture Text ;
-Update AgentManocontrole SET bAJusteur = 0, resolutionLecture = resolution 
+Update AgentManocontrole SET bAJusteur = 0, resolutionLecture = resolution ;
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.0.01','2023-03-01 12:00:00','Metrologie');
 
 

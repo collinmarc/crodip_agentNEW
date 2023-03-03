@@ -7,7 +7,8 @@ BUILD 2023022224150000
 	0001554: Bouton 'Annuler sur facture' ne poursuit pas vers l'enquête
 	0001555: CV sur un Ctrl avec un (3) en 8333
 	0001556: [Metrologie] Affichage de points
-
+	0001557: [Metrologie] Revoir l'état
+	0001558: [Metrologie] EMT
 
 BUILD 20230207130000
 		0001545: Erreur D'acquisition
