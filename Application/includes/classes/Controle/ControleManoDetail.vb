@@ -67,7 +67,7 @@
 
     Public Property pres_manoEtalon() As String
         Get
-            Return ConvertToDecimal(_pres_manoEtalon, 3)
+            Return _pres_manoEtalon
         End Get
         Set(ByVal Value As String)
             If Value <> _pres_manoEtalon Then
