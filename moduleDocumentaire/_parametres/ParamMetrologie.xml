@@ -23,7 +23,7 @@
     </Repetitions>
   </Metrologie>
   <Metrologie FondEchelle="6" classe="1">
-    <EMT>0.125</EMT>
+    <EMT>0.12</EMT>
     <PressionMontantes>
       <PressionCtrl Num="1" Valeur="1" />
       <PressionCtrl Num="2" Valeur="1.6" />
