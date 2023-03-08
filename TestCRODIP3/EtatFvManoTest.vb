@@ -2,6 +2,7 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports Crodip_agent
 Imports System.IO
+Imports CRODIP_ControlLibrary
 
 <TestClass()> Public Class EtatFvManoTest
     Inherits CRODIPTest
@@ -141,8 +142,90 @@ Imports System.IO
 
 
         Dim oEtat As New EtatFVMano(oCtrl)
-        Assert.IsTrue(oEtat.GenereEtat())
+        Assert.IsTrue(oEtat.genereEtat())
         oEtat.Open()
+    End Sub
+
+
+    <TestMethod()> Public Sub createFromParamMetro()
+        Dim oCtrl As ControleMano
+        Dim oManoRef As ManometreEtalon
+        oManoRef = New ManometreEtalon
+        oManoRef.idStructure = m_oAgent.idStructure
+        oManoRef.idCrodip = "999"
+        oManoRef.numeroNational = "00447"
+        oManoRef.marque = "BD SENSOR"
+        oManoRef.classe = "0.1"
+        oManoRef.type = "Capteur / Transmetteeur de pression"
+        oManoRef.fondEchelle = "25"
+        oManoRef.incertitudeEtalon = "0.004"
+        ManometreEtalonManager.save(oManoRef)
+
+        Dim oManoCtrl As ManometreControle
+        oManoCtrl = New ManometreControle()
+        oManoCtrl.idStructure = m_oAgent.idStructure
+        oManoCtrl.idCrodip = "888"
+        oManoCtrl.numeroNational = "10003"
+        oManoCtrl.marque = "BAUMER-BOURDON"
+        oManoCtrl.classe = "1"
+        oManoCtrl.type = "Numérique"
+        oManoCtrl.fondEchelle = "10"
+        oManoCtrl.resolution = ""
+        ManometreControleManager.save(oManoCtrl)
+
+        Dim oManoCtrl2 As ManometreControle
+        oManoCtrl2 = New ManometreControle()
+        oManoCtrl2.idStructure = m_oAgent.idStructure
+        oManoCtrl2.idCrodip = "888"
+        oManoCtrl2.numeroNational = "10004"
+        oManoCtrl2.marque = "BAUMER-BOURDON"
+        oManoCtrl2.classe = "2"
+        oManoCtrl2.type = "Numérique"
+        oManoCtrl2.fondEchelle = "10"
+        oManoCtrl2.resolution = ""
+        ManometreControleManager.save(oManoCtrl2)
+
+        Dim olst As lstParamMetrologie
+        olst = New lstParamMetrologie()
+
+        Dim oParam As ParamMetrologie
+
+        oParam = New ParamMetrologie("10", "1")
+        oParam.EMT = "12"
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(1, 1.6D))
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(2, 1.7D))
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(3, 1.8D))
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(4, 1.9D))
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(5, 2D))
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(6, 2.1D))
+        olst.lstParam.Add(oParam)
+
+        'Param sans EMT
+        oParam = New ParamMetrologie("10", "2")
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(1, 1.6D))
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(2, 1.7D))
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(3, 1.8D))
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(4, 1.9D))
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(5, 2D))
+        oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(6, 2.1D))
+
+        olst.lstParam.Add(oParam)
+        Assert.IsTrue(olst.writeXml())
+
+
+        oCtrl = New ControleMano(oManoCtrl, m_oAgent)
+        Assert.AreEqual(6, oCtrl.lstControleManoDetailUp.Count)
+        For Each oDetail As ControleManoDetail In oCtrl.lstControleManoDetailUp
+            Assert.AreEqual("12,00", oDetail.EMT)
+        Next
+
+        oCtrl = New ControleMano(oManoCtrl2, m_oAgent)
+        Assert.AreEqual(6, oCtrl.lstControleManoDetailUp.Count)
+        For Each oDetail As ControleManoDetail In oCtrl.lstControleManoDetailUp
+            Assert.AreEqual("0,20", oDetail.EMT)
+        Next
+
+
     End Sub
 
 End Class

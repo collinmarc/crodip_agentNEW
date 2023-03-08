@@ -21,6 +21,7 @@ Public Class ControleMano
     Private _valeurMesurees As String
     Private _lst As Dictionary(Of String, ControleManoDetail)
     Private _FileName As String
+    Private _EMTLue As String
 
 
     Private _dateModificationAgent As String
@@ -69,10 +70,17 @@ Public Class ControleMano
             Dim lstParamMetrologie As New lstParamMetrologie()
             lstParamMetrologie.readXML()
 
-            Dim oParamMetro As ParamMetrologie =
-                lstParamMetrologie.lstParam.Where(Function(P)
-                                                      Return P.FondEchelle.Equals(oMano.fondEchelle)
-                                                  End Function).FirstOrDefault()
+            Dim oParamMetro As ParamMetrologie
+            'Recherche du paramètre avec le Fond et la classe
+            oParamMetro = lstParamMetrologie.lstParam.Where(Function(P)
+                                                                Return P.FondEchelle.Equals(oMano.fondEchelle) And P.Classe.Equals(oMano.classe)
+                                                            End Function).FirstOrDefault()
+            If oParamMetro Is Nothing Then
+                'Recherche du paramètre avec le fond
+                oParamMetro = lstParamMetrologie.lstParam.Where(Function(P)
+                                                                    Return P.FondEchelle.Equals(oMano.fondEchelle)
+                                                                End Function).FirstOrDefault()
+            End If
             If oParamMetro IsNot Nothing Then
                 'Création de la liste des Détail en fonction des paramètres
                 _lst = New Dictionary(Of String, ControleManoDetail)
@@ -86,14 +94,19 @@ Public Class ControleMano
                     _lst.Add("REPE" & oParam.Num, New ControleManoDetail("REPE", oParam.Num, oParam.Valeur, oMano))
                 Next
             End If
-
+            'Lecture de l'EMT paramétrée
+            _EMTLue = oParamMetro.EMT
         Catch ex As Exception
             CSDebug.dispError("controleMano.New ERR", ex)
             CSDebug.dispError("controleMano.New on garde les valeurs par défaut")
         End Try
-        For Each oDetail As ControleManoDetail In lstControleManoDetail.Values
-            oDetail.EMT = oMano.calcEMT()
-        Next
+
+        'Si l'EMT paramétrée est renseignée => Utilisation de l'EMT renseignée , sinon on garde la calcul
+        If Not String.IsNullOrEmpty(_EMTLue) Then
+            For Each oDetail As ControleManoDetail In lstControleManoDetail.Values
+                oDetail.EMT = _EMTLue
+            Next
+        End If
 
     End Sub
 

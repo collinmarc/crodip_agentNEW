@@ -26,7 +26,7 @@ Public Class ParamMetrologieTest
 
         Dim oParam As ParamMetrologie
 
-        oParam = New ParamMetrologie("1.6")
+        oParam = New ParamMetrologie("1.6", "1")
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(1, 1.6D))
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(2, 1.7D))
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(3, 1.8D))
@@ -45,7 +45,7 @@ Public Class ParamMetrologieTest
         oParam.Repetitions.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(3, 3.2D))
         olst.lstParam.Add(oParam)
 
-        oParam = New ParamMetrologie("10")
+        oParam = New ParamMetrologie("10", "1")
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(1, 10.6D))
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(2, 10.7D))
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(3, 10.8D))
@@ -77,6 +77,7 @@ Public Class ParamMetrologieTest
         Assert.AreEqual(2, olst.lstParam.Count)
         oParam = olst.lstParam(0)
         Assert.AreEqual("1.6", oParam.FondEchelle)
+        Assert.AreEqual("1", oParam.Classe)
         Assert.AreEqual(6, oParam.PressionMontantes.Count)
         Assert.AreEqual(5, oParam.PressionDescendantes.Count)
         Assert.AreEqual(3, oParam.Repetitions.Count)

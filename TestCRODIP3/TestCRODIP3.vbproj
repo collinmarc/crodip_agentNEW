@@ -331,6 +331,9 @@
     <Content Include="moduleDocumentaire\_parametres\ParamdiagVigne.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamMetrologie.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestFiles\csv_report_for 000509_N12.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

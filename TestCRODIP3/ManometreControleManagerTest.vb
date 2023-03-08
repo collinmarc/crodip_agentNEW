@@ -4,7 +4,7 @@ Imports Crodip_agent
 '''Classe de test pour FVManometreControleManagerTest, destinée à contenir tous
 '''les tests unitaires FVManometreControleManagerTest
 '''</summary>
-<TestClass()> _
+<TestClass()>
 Public Class ManometreControleManagerTest
     Inherits CRODIPTest
 
@@ -13,7 +13,7 @@ Public Class ManometreControleManagerTest
     '''<summary>
     '''Test pour save
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub ObjetTest()
         Dim objManometreControle As ManometreControle = Nothing
         Dim expected As Object = Nothing
@@ -153,6 +153,7 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(oManometreControle.dateDernierControleS, oManometreControle2.dateDernierControleS)
         'Assert.AreEqual(oManometreControle2.nbControles, 5)
         'Assert.AreEqual(oManometreControle2.nbControlesTotal, 15)
+        Assert.AreEqual(False, oManometreControle2.bAjusteur)
 
 
 
@@ -550,4 +551,5 @@ Public Class ManometreControleManagerTest
 
 
     End Sub
+
 End Class

@@ -10,6 +10,8 @@ BUILD 2023022224150000
 	0001557: [Metrologie] Revoir l'état FV ManoControle
 	0001558: [Metrologie] EMT
 	0001559: Combobox Marques dans la fiche pulvé
+	0001560: [Metrologie] Modification Config
+
 
 BUILD 20230207130000
 		0001545: Erreur D'acquisition

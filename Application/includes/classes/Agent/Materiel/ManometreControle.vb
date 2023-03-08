@@ -18,7 +18,7 @@ Public Class ManometreControle
     Private m_bIsUpdated As Boolean
     Sub New()
         m_bIsUpdated = False
-        bAjusteur = True
+        bAjusteur = False
     End Sub
     Private _controle As ControleMano
     <XmlIgnore>
@@ -158,24 +158,6 @@ Public Class ManometreControle
         End Get
     End Property
 
-    Public Function calcEMT() As Double
-        Dim dReturn As Double
-        Select Case fondEchelle
-            Case "6"
-                dReturn = 0.1
-            Case "10"
-                dReturn = 0.1
-            Case "20"
-                dReturn = 0.2
-            Case "25"
-                dReturn = 0.25
-            Case Else
-                dReturn = CDbl(Math.Round((GlobalsCRODIP.StringToDouble(classe) * GlobalsCRODIP.StringToDouble(fondEchelle) / 100), 2))
-        End Select
-
-        Return dReturn
-
-    End Function
 
     Public Overrides Function Fill(ByVal pColName As String, ByVal pValue As Object) As Boolean
         Select Case pColName.Trim().ToUpper()

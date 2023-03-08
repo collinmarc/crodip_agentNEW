@@ -62,12 +62,15 @@ End Class
 <Serializable()>
 Public Class ParamMetrologie
     Public Sub New()
+        EMT = ""
+        Classe = ""
         PressionMontantes = New List(Of ParamMetrologiePression)()
         PressionDescendantes = New List(Of ParamMetrologiePression)()
         Repetitions = New List(Of ParamMetrologiePression)()
     End Sub
-    Public Sub New(pFond As String)
+    Public Sub New(pFond As String, pClasse As String)
         FondEchelle = pFond
+        Classe = pClasse
         PressionMontantes = New List(Of ParamMetrologiePression)()
         PressionDescendantes = New List(Of ParamMetrologiePression)()
         Repetitions = New List(Of ParamMetrologiePression)()
@@ -80,6 +83,25 @@ Public Class ParamMetrologie
         End Get
         Set(ByVal value As String)
             _FondEchelle = value
+        End Set
+    End Property
+    Private _classe As String
+    <XmlAttribute("Classe")>
+    Public Property Classe() As String
+        Get
+            Return _classe
+        End Get
+        Set(ByVal value As String)
+            _classe = value
+        End Set
+    End Property
+    Private _EMT As String
+    Public Property EMT() As String
+        Get
+            Return _EMT
+        End Get
+        Set(ByVal value As String)
+            _EMT = value
         End Set
     End Property
     Private _PressionsMontantes As List(Of ParamMetrologiePression)

@@ -40,8 +40,8 @@
       <PressionCtrl Num="1" Valeur="1" />
     </PressionDescendantes>
   </Metrologie>
-   <Metrologie FondEchelle="10" classe ="1">
- <PressionMontantes>
+  <Metrologie FondEchelle="10" classe ="1">
+    <PressionMontantes>
       <PressionCtrl Num="1" Valeur="1" />
       <PressionCtrl Num="2" Valeur="1.6" />
       <PressionCtrl Num="3" Valeur="2" />
@@ -57,8 +57,8 @@
       <PressionCtrl Num="1" Valeur="1" />
     </PressionDescendantes>
   </Metrologie>
-   <Metrologie FondEchelle="16">
- <PressionMontantes>
+  <Metrologie FondEchelle="16">
+    <PressionMontantes>
       <PressionCtrl Num="1" Valeur="1" />
       <PressionCtrl Num="2" Valeur="1.6" />
       <PressionCtrl Num="3" Valeur="2" />
@@ -107,5 +107,5 @@
       <PressionCtrl Num="2" Valeur="5" />
       <PressionCtrl Num="1" Valeur="1" />
     </PressionDescendantes>
-  </Metrologie>  
+  </Metrologie>
 </lstParamMetrologie>
