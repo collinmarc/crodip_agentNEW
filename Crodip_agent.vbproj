@@ -338,7 +338,16 @@
     <Compile Include="Application\agent\Manometres\HistoMano.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\controle_preliminaire.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\diagnostic_ContratCommercial.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmDiagnostique.Designer.vb">
+      <DependentUpon>frmDiagnostique.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmDiagnostique.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\frmSelectPhaseDiag.Designer.vb">
@@ -519,7 +528,7 @@
     <Compile Include="Application\debug\test.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\controle_preliminaire.vb">
+    <Compile Include="Application\diagnostic\controle_preliminaireOLD.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\diagnostic_contexte.vb">
@@ -580,10 +589,10 @@
     <Compile Include="Application\diagnostic\frmdiagnostic_recap.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\frmDiagnostique.Designer.vb">
-      <DependentUpon>frmDiagnostique.vb</DependentUpon>
+    <Compile Include="Application\diagnostic\frmDiagnostiqueOLD.Designer.vb">
+      <DependentUpon>frmDiagnostiqueOLD.vb</DependentUpon>
     </Compile>
-    <Compile Include="Application\diagnostic\frmDiagnostique.vb">
+    <Compile Include="Application\diagnostic\frmDiagnostiqueOLD.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\frmSaisieNumFact.Designer.vb">
@@ -2211,8 +2220,14 @@
     <EmbeddedResource Include="Application\agent\Manometres\HistoMano.resx">
       <DependentUpon>HistoMano.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\controle_preliminaire.resx">
+      <DependentUpon>controle_preliminaire.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercial.resx">
       <DependentUpon>diagnostic_ContratCommercial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmDiagnostique.resx">
+      <DependentUpon>frmDiagnostique.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmSelectPhaseDiag.resx">
       <DependentUpon>frmSelectPhaseDiag.vb</DependentUpon>
@@ -2319,8 +2334,8 @@
     <EmbeddedResource Include="Application\debug\test.resx">
       <DependentUpon>test.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\controle_preliminaire.resx">
-      <DependentUpon>controle_preliminaire.vb</DependentUpon>
+    <EmbeddedResource Include="Application\diagnostic\controle_preliminaireOLD.resx">
+      <DependentUpon>controle_preliminaireOLD.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_contexte.resx">
       <DependentUpon>diagnostic_contexte.vb</DependentUpon>
@@ -2355,8 +2370,8 @@
     <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_recap.resx">
       <DependentUpon>frmdiagnostic_recap.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\frmDiagnostique.resx">
-      <DependentUpon>frmDiagnostique.vb</DependentUpon>
+    <EmbeddedResource Include="Application\diagnostic\frmDiagnostiqueOLD.resx">
+      <DependentUpon>frmDiagnostiqueOLD.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diag_debug.resx">
       <DependentUpon>diag_debug.vb</DependentUpon>

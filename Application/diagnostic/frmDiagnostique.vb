@@ -205,6 +205,38 @@ Public Class FrmDiagnostique
         lstOnglet.Add(lstGrpBox)
         lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
 
+        lstGrpBox.Add(RadioButton_diagnostic_2611)
+        lstGrpBox.Add(RadioButton_diagnostic_2610)
+        lstOnglet.Add(lstGrpBox)
+
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_2621)
+        lstGrpBox.Add(RadioButton_diagnostic_2622)
+        lstGrpBox.Add(RadioButton_diagnostic_2620)
+        lstOnglet.Add(lstGrpBox)
+
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_2711)
+        lstGrpBox.Add(RadioButton_diagnostic_2710)
+        lstOnglet.Add(lstGrpBox)
+
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_2721)
+        lstGrpBox.Add(RadioButton_diagnostic_2722)
+        lstGrpBox.Add(RadioButton_diagnostic_2720)
+        lstOnglet.Add(lstGrpBox)
+
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_2731)
+        lstGrpBox.Add(RadioButton_diagnostic_2732)
+        lstGrpBox.Add(RadioButton_diagnostic_2730)
+        lstOnglet.Add(lstGrpBox)
+
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_2741)
+        lstGrpBox.Add(RadioButton_diagnostic_2742)
+        lstGrpBox.Add(RadioButton_diagnostic_2740)
+        lstOnglet.Add(lstGrpBox)
 
         LstCtrl.Add(lstOnglet)
 
@@ -5165,7 +5197,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                                         End Sub)
 
                     End If
-                    End If
+                End If
 
                 'Vérification de l'onglet
                 'checkIsOk(pOngletId)
@@ -10732,4 +10764,31 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub FrmDiagnostique_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         Me.WindowState = FormWindowState.Maximized
     End Sub
+
+    Private Sub RadioButton_diagnostic_2611_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2611.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2610_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2610.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2621_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2621.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2622_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2622.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2620_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2620.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+
 End Class

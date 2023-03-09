@@ -26,10 +26,10 @@ Partial Class FrmDiagnostique
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmDiagnostique))
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -57,6 +57,11 @@ Partial Class FrmDiagnostique
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.tab_diagnostique = New System.Windows.Forms.TabControl()
         Me.tabPage_diagnostique_etatGeneral = New System.Windows.Forms.TabPage()
+        Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.GroupBox_diagnostic_261 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_diagnostic_2610 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_2611 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.Label_diagnostic_26 = New CRODIP_ControlLibrary.CtrlParamNiveau()
         Me.Panel129 = New System.Windows.Forms.Panel()
         Me.Label_diagnostic_2 = New CRODIP_ControlLibrary.CtrlParamNiveau()
         Me.Panel5 = New System.Windows.Forms.Panel()
@@ -833,6 +838,27 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_12312 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.Label_diagnostic_123 = New CRODIP_ControlLibrary.CtrlParamNiveau()
         Me.Label_diagnostic_12 = New CRODIP_ControlLibrary.CtrlParamNiveau()
+        Me.RadioButton_diagnostic_2621 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_2622 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_2620 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.GroupBox_diagnostic_262 = New System.Windows.Forms.GroupBox()
+        Me.Panel17 = New System.Windows.Forms.Panel()
+        Me.Label_diagnostic_27 = New CRODIP_ControlLibrary.CtrlParamNiveau()
+        Me.GroupBox_diagnostic_271 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_diagnostic_2710 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_2711 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.GroupBox_diagnostic_272 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_diagnostic_2720 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_2721 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_2722 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.GroupBox_diagnostic_273 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_diagnostic_2732 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_2730 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_2731 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.GroupBox_diagnostic_274 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_diagnostic_2742 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_2740 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_2741 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.ContextMenuStrip1.SuspendLayout
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit
         CType(Me.Pctb_calc, System.ComponentModel.ISupportInitialize).BeginInit
@@ -843,6 +869,8 @@ Partial Class FrmDiagnostique
         Me.Panel1.SuspendLayout
         Me.tab_diagnostique.SuspendLayout
         Me.tabPage_diagnostique_etatGeneral.SuspendLayout
+        Me.Panel13.SuspendLayout
+        Me.GroupBox_diagnostic_261.SuspendLayout
         Me.Panel129.SuspendLayout
         Me.Panel5.SuspendLayout
         Me.GroupBox_diagnostic_241.SuspendLayout
@@ -1060,6 +1088,12 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_1232.SuspendLayout
         CType(Me.ico_help12323, System.ComponentModel.ISupportInitialize).BeginInit
         Me.GroupBox_diagnostic_1231.SuspendLayout
+        Me.GroupBox_diagnostic_262.SuspendLayout
+        Me.Panel17.SuspendLayout
+        Me.GroupBox_diagnostic_271.SuspendLayout
+        Me.GroupBox_diagnostic_272.SuspendLayout
+        Me.GroupBox_diagnostic_273.SuspendLayout
+        Me.GroupBox_diagnostic_274.SuspendLayout
         Me.SuspendLayout
         '
         'ImageList_onglets
@@ -1337,6 +1371,8 @@ Partial Class FrmDiagnostique
         'tabPage_diagnostique_etatGeneral
         '
         Me.tabPage_diagnostique_etatGeneral.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.tabPage_diagnostique_etatGeneral.Controls.Add(Me.Panel17)
+        Me.tabPage_diagnostique_etatGeneral.Controls.Add(Me.Panel13)
         Me.tabPage_diagnostique_etatGeneral.Controls.Add(Me.Panel129)
         Me.tabPage_diagnostique_etatGeneral.Controls.Add(Me.Panel5)
         Me.tabPage_diagnostique_etatGeneral.Controls.Add(Me.Panel7)
@@ -1351,6 +1387,89 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_etatGeneral.Tag = "1"
         Me.tabPage_diagnostique_etatGeneral.Text = "Etat général"
         '
+        'Panel13
+        '
+        Me.Panel13.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel13.Controls.Add(Me.GroupBox_diagnostic_262)
+        Me.Panel13.Controls.Add(Me.GroupBox_diagnostic_261)
+        Me.Panel13.Controls.Add(Me.Label_diagnostic_26)
+        Me.Panel13.Location = New System.Drawing.Point(480, 352)
+        Me.Panel13.Name = "Panel13"
+        Me.Panel13.Size = New System.Drawing.Size(248, 194)
+        Me.Panel13.TabIndex = 23
+        '
+        'GroupBox_diagnostic_261
+        '
+        Me.GroupBox_diagnostic_261.Controls.Add(Me.RadioButton_diagnostic_2610)
+        Me.GroupBox_diagnostic_261.Controls.Add(Me.RadioButton_diagnostic_2611)
+        Me.GroupBox_diagnostic_261.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox_diagnostic_261.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox_diagnostic_261.Location = New System.Drawing.Point(9, 31)
+        Me.GroupBox_diagnostic_261.Name = "GroupBox_diagnostic_261"
+        Me.GroupBox_diagnostic_261.Size = New System.Drawing.Size(232, 66)
+        Me.GroupBox_diagnostic_261.TabIndex = 19
+        Me.GroupBox_diagnostic_261.TabStop = False
+        Me.GroupBox_diagnostic_261.Text = "2.6.1 - Etat des câbles"
+        '
+        'RadioButton_diagnostic_2610
+        '
+        Me.RadioButton_diagnostic_2610.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2610.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2610.cause1 = False
+        Me.RadioButton_diagnostic_2610.cause2 = False
+        Me.RadioButton_diagnostic_2610.cause3 = False
+        Me.RadioButton_diagnostic_2610.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2610.Checked = False
+        Me.RadioButton_diagnostic_2610.Code = Nothing
+        Me.RadioButton_diagnostic_2610.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2610.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2610.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2610.Libelle = "OK"
+        Me.RadioButton_diagnostic_2610.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2610.Location = New System.Drawing.Point(8, 42)
+        Me.RadioButton_diagnostic_2610.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2610.Name = "RadioButton_diagnostic_2610"
+        Me.RadioButton_diagnostic_2610.NombreCauses = 0
+        Me.RadioButton_diagnostic_2610.Size = New System.Drawing.Size(216, 16)
+        Me.RadioButton_diagnostic_2610.TabIndex = 6
+        '
+        'RadioButton_diagnostic_2611
+        '
+        Me.RadioButton_diagnostic_2611.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2611.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2611.cause1 = False
+        Me.RadioButton_diagnostic_2611.cause2 = False
+        Me.RadioButton_diagnostic_2611.cause3 = False
+        Me.RadioButton_diagnostic_2611.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2611.Checked = False
+        Me.RadioButton_diagnostic_2611.Code = Nothing
+        Me.RadioButton_diagnostic_2611.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2611.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2611.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2611.Libelle = "2.6.1.1 - Câbles électriques détériorés"
+        Me.RadioButton_diagnostic_2611.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2611.Location = New System.Drawing.Point(8, 24)
+        Me.RadioButton_diagnostic_2611.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2611.Name = "RadioButton_diagnostic_2611"
+        Me.RadioButton_diagnostic_2611.NombreCauses = 0
+        Me.RadioButton_diagnostic_2611.Size = New System.Drawing.Size(216, 16)
+        Me.RadioButton_diagnostic_2611.TabIndex = 4
+        '
+        'Label_diagnostic_26
+        '
+        Me.Label_diagnostic_26.bMultiLine = False
+        Me.Label_diagnostic_26.bValidBloc = False
+        Me.Label_diagnostic_26.Checked = False
+        Me.Label_diagnostic_26.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_diagnostic_26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label_diagnostic_26.Label = "2.6 Installation électrique"
+        Me.Label_diagnostic_26.Location = New System.Drawing.Point(4, 8)
+        Me.Label_diagnostic_26.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Label_diagnostic_26.Name = "Label_diagnostic_26"
+        Me.Label_diagnostic_26.Niveau = 2
+        Me.Label_diagnostic_26.Size = New System.Drawing.Size(247, 17)
+        Me.Label_diagnostic_26.TabIndex = 18
+        '
         'Panel129
         '
         Me.Panel129.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -1359,7 +1478,7 @@ Partial Class FrmDiagnostique
         Me.Panel129.Controls.Add(Me.Label_diagnostic_2)
         Me.Panel129.Location = New System.Drawing.Point(0, 113)
         Me.Panel129.Name = "Panel129"
-        Me.Panel129.Size = New System.Drawing.Size(1008, 37)
+        Me.Panel129.Size = New System.Drawing.Size(1008, 31)
         Me.Panel129.TabIndex = 22
         '
         'Label_diagnostic_2
@@ -1374,19 +1493,17 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Label_diagnostic_2.Name = "Label_diagnostic_2"
         Me.Label_diagnostic_2.Niveau = 1
-        Me.Label_diagnostic_2.Size = New System.Drawing.Size(188, 28)
+        Me.Label_diagnostic_2.Size = New System.Drawing.Size(188, 26)
         Me.Label_diagnostic_2.TabIndex = 20
         '
         'Panel5
         '
-        Me.Panel5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Panel5.Controls.Add(Me.GroupBox_diagnostic_241)
         Me.Panel5.Controls.Add(Me.Label_diagnostic_24)
-        Me.Panel5.Location = New System.Drawing.Point(241, 399)
+        Me.Panel5.Location = New System.Drawing.Point(-8, 393)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(248, 254)
+        Me.Panel5.Size = New System.Drawing.Size(247, 153)
         Me.Panel5.TabIndex = 9
         '
         'GroupBox_diagnostic_241
@@ -1398,9 +1515,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_241.Controls.Add(Me.RadioButton_diagnostic_2411)
         Me.GroupBox_diagnostic_241.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_241.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_241.Location = New System.Drawing.Point(8, 56)
+        Me.GroupBox_diagnostic_241.Location = New System.Drawing.Point(8, 47)
         Me.GroupBox_diagnostic_241.Name = "GroupBox_diagnostic_241"
-        Me.GroupBox_diagnostic_241.Size = New System.Drawing.Size(232, 120)
+        Me.GroupBox_diagnostic_241.Size = New System.Drawing.Size(232, 100)
         Me.GroupBox_diagnostic_241.TabIndex = 3
         Me.GroupBox_diagnostic_241.TabStop = False
         Me.GroupBox_diagnostic_241.Text = "2.4.1 - Transmission hydraulique"
@@ -1420,7 +1537,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2414.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2414.Libelle = "2.4.1.4 - Fuite de fluide hydraulique"
         Me.RadioButton_diagnostic_2414.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2414.Location = New System.Drawing.Point(8, 72)
+        Me.RadioButton_diagnostic_2414.Location = New System.Drawing.Point(8, 66)
         Me.RadioButton_diagnostic_2414.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2414.Name = "RadioButton_diagnostic_2414"
         Me.RadioButton_diagnostic_2414.NombreCauses = 0
@@ -1442,7 +1559,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2413.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2413.Libelle = "2.4.1.3 - Pliures excessives"
         Me.RadioButton_diagnostic_2413.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2413.Location = New System.Drawing.Point(8, 56)
+        Me.RadioButton_diagnostic_2413.Location = New System.Drawing.Point(8, 50)
         Me.RadioButton_diagnostic_2413.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2413.Name = "RadioButton_diagnostic_2413"
         Me.RadioButton_diagnostic_2413.NombreCauses = 0
@@ -1464,7 +1581,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2410.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2410.Libelle = "OK"
         Me.RadioButton_diagnostic_2410.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2410.Location = New System.Drawing.Point(8, 88)
+        Me.RadioButton_diagnostic_2410.Location = New System.Drawing.Point(8, 82)
         Me.RadioButton_diagnostic_2410.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2410.Name = "RadioButton_diagnostic_2410"
         Me.RadioButton_diagnostic_2410.NombreCauses = 0
@@ -1486,7 +1603,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2412.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2412.Libelle = "2.4.1.2 - Usure importante"
         Me.RadioButton_diagnostic_2412.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2412.Location = New System.Drawing.Point(8, 40)
+        Me.RadioButton_diagnostic_2412.Location = New System.Drawing.Point(8, 34)
         Me.RadioButton_diagnostic_2412.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2412.Name = "RadioButton_diagnostic_2412"
         Me.RadioButton_diagnostic_2412.NombreCauses = 0
@@ -1508,7 +1625,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2411.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2411.Libelle = "2.4.1.1 - Dispo. anti-décrochage déf."
         Me.RadioButton_diagnostic_2411.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2411.Location = New System.Drawing.Point(8, 24)
+        Me.RadioButton_diagnostic_2411.Location = New System.Drawing.Point(8, 18)
         Me.RadioButton_diagnostic_2411.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2411.Name = "RadioButton_diagnostic_2411"
         Me.RadioButton_diagnostic_2411.NombreCauses = 0
@@ -1518,7 +1635,7 @@ Partial Class FrmDiagnostique
         'Label_diagnostic_24
         '
         Me.Label_diagnostic_24.bMultiLine = True
-        Me.Label_diagnostic_24.bValidBloc = True
+        Me.Label_diagnostic_24.bValidBloc = False
         Me.Label_diagnostic_24.Checked = False
         Me.Label_diagnostic_24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label_diagnostic_24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
@@ -1532,16 +1649,15 @@ Partial Class FrmDiagnostique
         '
         'Panel7
         '
-        Me.Panel7.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Panel7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel7.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Panel7.Controls.Add(Me.GroupBox_diagnostic_231)
         Me.Panel7.Controls.Add(Me.GroupBox_diagnostic_232)
         Me.Panel7.Controls.Add(Me.Label_diagnostic_23)
-        Me.Panel7.Location = New System.Drawing.Point(729, 151)
+        Me.Panel7.Location = New System.Drawing.Point(730, 146)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(280, 502)
+        Me.Panel7.Size = New System.Drawing.Size(280, 400)
         Me.Panel7.TabIndex = 11
         '
         'GroupBox_diagnostic_231
@@ -1558,9 +1674,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_231.Controls.Add(Me.RadioButton_diagnostic_2318)
         Me.GroupBox_diagnostic_231.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_231.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_231.Location = New System.Drawing.Point(8, 40)
+        Me.GroupBox_diagnostic_231.Location = New System.Drawing.Point(7, 31)
         Me.GroupBox_diagnostic_231.Name = "GroupBox_diagnostic_231"
-        Me.GroupBox_diagnostic_231.Size = New System.Drawing.Size(264, 192)
+        Me.GroupBox_diagnostic_231.Size = New System.Drawing.Size(264, 187)
         Me.GroupBox_diagnostic_231.TabIndex = 3
         Me.GroupBox_diagnostic_231.TabStop = False
         Me.GroupBox_diagnostic_231.Text = "2.3.1 - Fuites mineures"
@@ -1798,9 +1914,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_232.Controls.Add(Me.RadioButton_diagnostic_2321)
         Me.GroupBox_diagnostic_232.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_232.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_232.Location = New System.Drawing.Point(7, 248)
+        Me.GroupBox_diagnostic_232.Location = New System.Drawing.Point(7, 224)
         Me.GroupBox_diagnostic_232.Name = "GroupBox_diagnostic_232"
-        Me.GroupBox_diagnostic_232.Size = New System.Drawing.Size(264, 176)
+        Me.GroupBox_diagnostic_232.Size = New System.Drawing.Size(264, 165)
         Me.GroupBox_diagnostic_232.TabIndex = 7
         Me.GroupBox_diagnostic_232.TabStop = False
         Me.GroupBox_diagnostic_232.Text = "2.3.2 - Fuites majeures"
@@ -1820,7 +1936,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2329.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2329.Libelle = "2.3.2.9 - Aux filtres"
         Me.RadioButton_diagnostic_2329.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2329.Location = New System.Drawing.Point(8, 136)
+        Me.RadioButton_diagnostic_2329.Location = New System.Drawing.Point(8, 130)
         Me.RadioButton_diagnostic_2329.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2329.Name = "RadioButton_diagnostic_2329"
         Me.RadioButton_diagnostic_2329.NombreCauses = 0
@@ -1842,7 +1958,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2327.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2327.Libelle = "2.3.2.7 - Au dispositif d’inc. des produits"
         Me.RadioButton_diagnostic_2327.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2327.Location = New System.Drawing.Point(8, 120)
+        Me.RadioButton_diagnostic_2327.Location = New System.Drawing.Point(8, 114)
         Me.RadioButton_diagnostic_2327.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2327.Name = "RadioButton_diagnostic_2327"
         Me.RadioButton_diagnostic_2327.NombreCauses = 0
@@ -1864,7 +1980,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2326.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2326.Libelle = "2.3.2.6 - Aux appareil. de mesure du pulvé"
         Me.RadioButton_diagnostic_2326.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2326.Location = New System.Drawing.Point(8, 104)
+        Me.RadioButton_diagnostic_2326.Location = New System.Drawing.Point(8, 98)
         Me.RadioButton_diagnostic_2326.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2326.Name = "RadioButton_diagnostic_2326"
         Me.RadioButton_diagnostic_2326.NombreCauses = 0
@@ -1886,7 +2002,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2325.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2325.Libelle = "2.3.2.5 - Aux buses de pulvérisation"
         Me.RadioButton_diagnostic_2325.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2325.Location = New System.Drawing.Point(8, 88)
+        Me.RadioButton_diagnostic_2325.Location = New System.Drawing.Point(8, 82)
         Me.RadioButton_diagnostic_2325.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2325.Name = "RadioButton_diagnostic_2325"
         Me.RadioButton_diagnostic_2325.NombreCauses = 0
@@ -1908,7 +2024,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2324.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2324.Libelle = "2.3.2.4 - Aux conduites véhiculant la bouillie"
         Me.RadioButton_diagnostic_2324.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2324.Location = New System.Drawing.Point(8, 72)
+        Me.RadioButton_diagnostic_2324.Location = New System.Drawing.Point(8, 66)
         Me.RadioButton_diagnostic_2324.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2324.Name = "RadioButton_diagnostic_2324"
         Me.RadioButton_diagnostic_2324.NombreCauses = 0
@@ -1930,7 +2046,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2323.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2323.Libelle = "2.3.2.3 - Aux circuits de com. et régulation"
         Me.RadioButton_diagnostic_2323.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2323.Location = New System.Drawing.Point(8, 56)
+        Me.RadioButton_diagnostic_2323.Location = New System.Drawing.Point(8, 50)
         Me.RadioButton_diagnostic_2323.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2323.Name = "RadioButton_diagnostic_2323"
         Me.RadioButton_diagnostic_2323.NombreCauses = 0
@@ -1952,7 +2068,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2322.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2322.Libelle = "2.3.2.2 - A la cuve de bouillie"
         Me.RadioButton_diagnostic_2322.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2322.Location = New System.Drawing.Point(8, 40)
+        Me.RadioButton_diagnostic_2322.Location = New System.Drawing.Point(8, 34)
         Me.RadioButton_diagnostic_2322.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2322.Name = "RadioButton_diagnostic_2322"
         Me.RadioButton_diagnostic_2322.NombreCauses = 0
@@ -1974,7 +2090,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2320.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2320.Libelle = "OK"
         Me.RadioButton_diagnostic_2320.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2320.Location = New System.Drawing.Point(8, 152)
+        Me.RadioButton_diagnostic_2320.Location = New System.Drawing.Point(8, 146)
         Me.RadioButton_diagnostic_2320.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2320.Name = "RadioButton_diagnostic_2320"
         Me.RadioButton_diagnostic_2320.NombreCauses = 0
@@ -1996,7 +2112,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2321.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2321.Libelle = "2.3.2.1 - A la pompe"
         Me.RadioButton_diagnostic_2321.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2321.Location = New System.Drawing.Point(8, 24)
+        Me.RadioButton_diagnostic_2321.Location = New System.Drawing.Point(8, 18)
         Me.RadioButton_diagnostic_2321.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2321.Name = "RadioButton_diagnostic_2321"
         Me.RadioButton_diagnostic_2321.NombreCauses = 0
@@ -2020,15 +2136,13 @@ Partial Class FrmDiagnostique
         '
         'Panel6
         '
-        Me.Panel6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Panel6.Controls.Add(Me.GroupBox_diagnostic_252)
         Me.Panel6.Controls.Add(Me.GroupBox_diagnostic_251)
         Me.Panel6.Controls.Add(Me.Label_diagnostic_25)
-        Me.Panel6.Location = New System.Drawing.Point(490, 399)
+        Me.Panel6.Location = New System.Drawing.Point(241, 352)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(238, 254)
+        Me.Panel6.Size = New System.Drawing.Size(238, 194)
         Me.Panel6.TabIndex = 10
         '
         'GroupBox_diagnostic_252
@@ -2038,9 +2152,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_252.Controls.Add(Me.RadioButton_diagnostic_2521)
         Me.GroupBox_diagnostic_252.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_252.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_252.Location = New System.Drawing.Point(8, 144)
+        Me.GroupBox_diagnostic_252.Location = New System.Drawing.Point(7, 112)
         Me.GroupBox_diagnostic_252.Name = "GroupBox_diagnostic_252"
-        Me.GroupBox_diagnostic_252.Size = New System.Drawing.Size(224, 88)
+        Me.GroupBox_diagnostic_252.Size = New System.Drawing.Size(224, 72)
         Me.GroupBox_diagnostic_252.TabIndex = 4
         Me.GroupBox_diagnostic_252.TabStop = False
         Me.GroupBox_diagnostic_252.Text = "2.5.2 - Usure"
@@ -2118,9 +2232,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_251.Controls.Add(Me.RadioButton_diagnostic_2511)
         Me.GroupBox_diagnostic_251.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_251.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_251.Location = New System.Drawing.Point(8, 56)
+        Me.GroupBox_diagnostic_251.Location = New System.Drawing.Point(9, 31)
         Me.GroupBox_diagnostic_251.Name = "GroupBox_diagnostic_251"
-        Me.GroupBox_diagnostic_251.Size = New System.Drawing.Size(224, 88)
+        Me.GroupBox_diagnostic_251.Size = New System.Drawing.Size(224, 75)
         Me.GroupBox_diagnostic_251.TabIndex = 3
         Me.GroupBox_diagnostic_251.TabStop = False
         Me.GroupBox_diagnostic_251.Text = "2.5.1 - Montage - Maintenance"
@@ -2199,7 +2313,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_25.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label_diagnostic_25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label_diagnostic_25.Label = "Pneumatiques"
-        Me.Label_diagnostic_25.Location = New System.Drawing.Point(16, 8)
+        Me.Label_diagnostic_25.Location = New System.Drawing.Point(4, 8)
         Me.Label_diagnostic_25.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Label_diagnostic_25.Name = "Label_diagnostic_25"
         Me.Label_diagnostic_25.Niveau = 2
@@ -2208,16 +2322,14 @@ Partial Class FrmDiagnostique
         '
         'Panel3
         '
-        Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.Panel3.Controls.Add(Me.Label_diagnostic_21)
         Me.Panel3.Controls.Add(Me.GroupBox_diagnostic_211)
         Me.Panel3.Controls.Add(Me.GroupBox_diagnostic_212)
         Me.Panel3.Controls.Add(Me.GroupBox_diagnostic_213)
-        Me.Panel3.Location = New System.Drawing.Point(-8, 151)
+        Me.Panel3.Location = New System.Drawing.Point(-8, 146)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(248, 502)
+        Me.Panel3.Size = New System.Drawing.Size(247, 245)
         Me.Panel3.TabIndex = 2
         '
         'Label_diagnostic_21
@@ -2242,9 +2354,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_211.Controls.Add(Me.RadioButton_diagnostic_2111)
         Me.GroupBox_diagnostic_211.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_211.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_211.Location = New System.Drawing.Point(8, 40)
+        Me.GroupBox_diagnostic_211.Location = New System.Drawing.Point(8, 26)
         Me.GroupBox_diagnostic_211.Name = "GroupBox_diagnostic_211"
-        Me.GroupBox_diagnostic_211.Size = New System.Drawing.Size(232, 88)
+        Me.GroupBox_diagnostic_211.Size = New System.Drawing.Size(232, 70)
         Me.GroupBox_diagnostic_211.TabIndex = 3
         Me.GroupBox_diagnostic_211.TabStop = False
         Me.GroupBox_diagnostic_211.Text = "2.1.1 - Déformations"
@@ -2264,7 +2376,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2110.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2110.Libelle = "OK"
         Me.RadioButton_diagnostic_2110.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2110.Location = New System.Drawing.Point(8, 56)
+        Me.RadioButton_diagnostic_2110.Location = New System.Drawing.Point(8, 51)
         Me.RadioButton_diagnostic_2110.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2110.Name = "RadioButton_diagnostic_2110"
         Me.RadioButton_diagnostic_2110.NombreCauses = 0
@@ -2286,7 +2398,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2112.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2112.Libelle = "2.1.1.2 - Déformation majeure"
         Me.RadioButton_diagnostic_2112.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2112.Location = New System.Drawing.Point(8, 40)
+        Me.RadioButton_diagnostic_2112.Location = New System.Drawing.Point(8, 35)
         Me.RadioButton_diagnostic_2112.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2112.Name = "RadioButton_diagnostic_2112"
         Me.RadioButton_diagnostic_2112.NombreCauses = 0
@@ -2308,7 +2420,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2111.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2111.Libelle = "A TESTER"
         Me.RadioButton_diagnostic_2111.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2111.Location = New System.Drawing.Point(8, 24)
+        Me.RadioButton_diagnostic_2111.Location = New System.Drawing.Point(8, 19)
         Me.RadioButton_diagnostic_2111.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2111.Name = "RadioButton_diagnostic_2111"
         Me.RadioButton_diagnostic_2111.NombreCauses = 0
@@ -2322,9 +2434,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_212.Controls.Add(Me.RadioButton_diagnostic_2121)
         Me.GroupBox_diagnostic_212.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_212.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_212.Location = New System.Drawing.Point(8, 136)
+        Me.GroupBox_diagnostic_212.Location = New System.Drawing.Point(8, 100)
         Me.GroupBox_diagnostic_212.Name = "GroupBox_diagnostic_212"
-        Me.GroupBox_diagnostic_212.Size = New System.Drawing.Size(232, 88)
+        Me.GroupBox_diagnostic_212.Size = New System.Drawing.Size(232, 68)
         Me.GroupBox_diagnostic_212.TabIndex = 7
         Me.GroupBox_diagnostic_212.TabStop = False
         Me.GroupBox_diagnostic_212.Text = "2.1.2 - Modifications"
@@ -2344,7 +2456,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2120.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2120.Libelle = "OK"
         Me.RadioButton_diagnostic_2120.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2120.Location = New System.Drawing.Point(8, 56)
+        Me.RadioButton_diagnostic_2120.Location = New System.Drawing.Point(8, 50)
         Me.RadioButton_diagnostic_2120.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2120.Name = "RadioButton_diagnostic_2120"
         Me.RadioButton_diagnostic_2120.NombreCauses = 0
@@ -2366,7 +2478,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2122.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2122.Libelle = "2.1.2.2 - Modification majeure"
         Me.RadioButton_diagnostic_2122.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2122.Location = New System.Drawing.Point(8, 40)
+        Me.RadioButton_diagnostic_2122.Location = New System.Drawing.Point(8, 34)
         Me.RadioButton_diagnostic_2122.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2122.Name = "RadioButton_diagnostic_2122"
         Me.RadioButton_diagnostic_2122.NombreCauses = 0
@@ -2388,7 +2500,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2121.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2121.Libelle = "2.1.2.1 - Modification mineure"
         Me.RadioButton_diagnostic_2121.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2121.Location = New System.Drawing.Point(8, 24)
+        Me.RadioButton_diagnostic_2121.Location = New System.Drawing.Point(8, 18)
         Me.RadioButton_diagnostic_2121.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2121.Name = "RadioButton_diagnostic_2121"
         Me.RadioButton_diagnostic_2121.NombreCauses = 0
@@ -2402,9 +2514,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_213.Controls.Add(Me.RadioButton_diagnostic_2131)
         Me.GroupBox_diagnostic_213.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_213.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_213.Location = New System.Drawing.Point(8, 232)
+        Me.GroupBox_diagnostic_213.Location = New System.Drawing.Point(8, 173)
         Me.GroupBox_diagnostic_213.Name = "GroupBox_diagnostic_213"
-        Me.GroupBox_diagnostic_213.Size = New System.Drawing.Size(232, 88)
+        Me.GroupBox_diagnostic_213.Size = New System.Drawing.Size(232, 68)
         Me.GroupBox_diagnostic_213.TabIndex = 8
         Me.GroupBox_diagnostic_213.TabStop = False
         Me.GroupBox_diagnostic_213.Text = "2.1.3 - Corrosion"
@@ -2424,7 +2536,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2130.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2130.Libelle = "OK"
         Me.RadioButton_diagnostic_2130.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2130.Location = New System.Drawing.Point(8, 56)
+        Me.RadioButton_diagnostic_2130.Location = New System.Drawing.Point(8, 49)
         Me.RadioButton_diagnostic_2130.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2130.Name = "RadioButton_diagnostic_2130"
         Me.RadioButton_diagnostic_2130.NombreCauses = 0
@@ -2446,7 +2558,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2132.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2132.Libelle = "2.1.3.2 - Corrosion majeure"
         Me.RadioButton_diagnostic_2132.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2132.Location = New System.Drawing.Point(8, 40)
+        Me.RadioButton_diagnostic_2132.Location = New System.Drawing.Point(8, 33)
         Me.RadioButton_diagnostic_2132.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2132.Name = "RadioButton_diagnostic_2132"
         Me.RadioButton_diagnostic_2132.NombreCauses = 0
@@ -2468,7 +2580,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_2131.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.RadioButton_diagnostic_2131.Libelle = "2.1.3.1 - Corrosion mineure"
         Me.RadioButton_diagnostic_2131.LibelleLong = Nothing
-        Me.RadioButton_diagnostic_2131.Location = New System.Drawing.Point(8, 24)
+        Me.RadioButton_diagnostic_2131.Location = New System.Drawing.Point(8, 17)
         Me.RadioButton_diagnostic_2131.Margin = New System.Windows.Forms.Padding(0)
         Me.RadioButton_diagnostic_2131.Name = "RadioButton_diagnostic_2131"
         Me.RadioButton_diagnostic_2131.NombreCauses = 0
@@ -2484,9 +2596,9 @@ Partial Class FrmDiagnostique
         Me.Panel4.Controls.Add(Me.GroupBox_diagnostic_222)
         Me.Panel4.Controls.Add(Me.GroupBox_diagnostic_221)
         Me.Panel4.Controls.Add(Me.Label_diagnostic_22)
-        Me.Panel4.Location = New System.Drawing.Point(241, 151)
+        Me.Panel4.Location = New System.Drawing.Point(241, 146)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(487, 247)
+        Me.Panel4.Size = New System.Drawing.Size(487, 204)
         Me.Panel4.TabIndex = 3
         '
         'GroupBox_diagnostic_225
@@ -2496,9 +2608,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_225.Controls.Add(Me.RadioButton_diagnostic_2251)
         Me.GroupBox_diagnostic_225.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_225.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_225.Location = New System.Drawing.Point(304, 144)
+        Me.GroupBox_diagnostic_225.Location = New System.Drawing.Point(304, 123)
         Me.GroupBox_diagnostic_225.Name = "GroupBox_diagnostic_225"
-        Me.GroupBox_diagnostic_225.Size = New System.Drawing.Size(176, 88)
+        Me.GroupBox_diagnostic_225.Size = New System.Drawing.Size(176, 75)
         Me.GroupBox_diagnostic_225.TabIndex = 12
         Me.GroupBox_diagnostic_225.TabStop = False
         Me.GroupBox_diagnostic_225.Text = "2.2.5 - Jeux aux articulations"
@@ -2576,9 +2688,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_224.Controls.Add(Me.RadioButton_diagnostic_2241)
         Me.GroupBox_diagnostic_224.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_224.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_224.Location = New System.Drawing.Point(172, 144)
+        Me.GroupBox_diagnostic_224.Location = New System.Drawing.Point(172, 123)
         Me.GroupBox_diagnostic_224.Name = "GroupBox_diagnostic_224"
-        Me.GroupBox_diagnostic_224.Size = New System.Drawing.Size(128, 88)
+        Me.GroupBox_diagnostic_224.Size = New System.Drawing.Size(128, 75)
         Me.GroupBox_diagnostic_224.TabIndex = 11
         Me.GroupBox_diagnostic_224.TabStop = False
         Me.GroupBox_diagnostic_224.Text = "2.2.4 - Corrosion"
@@ -2656,9 +2768,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_223.Controls.Add(Me.RadioButton_diagnostic_2231)
         Me.GroupBox_diagnostic_223.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_223.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_223.Location = New System.Drawing.Point(8, 144)
+        Me.GroupBox_diagnostic_223.Location = New System.Drawing.Point(8, 123)
         Me.GroupBox_diagnostic_223.Name = "GroupBox_diagnostic_223"
-        Me.GroupBox_diagnostic_223.Size = New System.Drawing.Size(160, 88)
+        Me.GroupBox_diagnostic_223.Size = New System.Drawing.Size(160, 75)
         Me.GroupBox_diagnostic_223.TabIndex = 10
         Me.GroupBox_diagnostic_223.TabStop = False
         Me.GroupBox_diagnostic_223.Text = "2.2.3 - Lésions soudures"
@@ -2736,9 +2848,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_222.Controls.Add(Me.RadioButton_diagnostic_2221)
         Me.GroupBox_diagnostic_222.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_222.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_222.Location = New System.Drawing.Point(248, 40)
+        Me.GroupBox_diagnostic_222.Location = New System.Drawing.Point(250, 30)
         Me.GroupBox_diagnostic_222.Name = "GroupBox_diagnostic_222"
-        Me.GroupBox_diagnostic_222.Size = New System.Drawing.Size(232, 96)
+        Me.GroupBox_diagnostic_222.Size = New System.Drawing.Size(232, 90)
         Me.GroupBox_diagnostic_222.TabIndex = 9
         Me.GroupBox_diagnostic_222.TabStop = False
         Me.GroupBox_diagnostic_222.Text = "2.2.2 - Lésions sur pièces métaliques"
@@ -2817,9 +2929,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_221.Controls.Add(Me.RadioButton_diagnostic_2211)
         Me.GroupBox_diagnostic_221.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox_diagnostic_221.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox_diagnostic_221.Location = New System.Drawing.Point(8, 40)
+        Me.GroupBox_diagnostic_221.Location = New System.Drawing.Point(8, 29)
         Me.GroupBox_diagnostic_221.Name = "GroupBox_diagnostic_221"
-        Me.GroupBox_diagnostic_221.Size = New System.Drawing.Size(232, 96)
+        Me.GroupBox_diagnostic_221.Size = New System.Drawing.Size(232, 90)
         Me.GroupBox_diagnostic_221.TabIndex = 5
         Me.GroupBox_diagnostic_221.TabStop = False
         Me.GroupBox_diagnostic_221.Text = "2.2.1 - Déformations"
@@ -7504,7 +7616,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_51.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label_diagnostic_51.Label = "Fermeture générale de la pulvérisation"
         Me.Label_diagnostic_51.Location = New System.Drawing.Point(8, 8)
-        Me.Label_diagnostic_51.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Label_diagnostic_51.Margin = New System.Windows.Forms.Padding(4)
         Me.Label_diagnostic_51.Name = "Label_diagnostic_51"
         Me.Label_diagnostic_51.Niveau = 2
         Me.Label_diagnostic_51.Size = New System.Drawing.Size(218, 41)
@@ -7932,7 +8044,7 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_52.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label_diagnostic_52.Label = "Fermeture partielle de la pulvérisation au niveau des sections"
         Me.Label_diagnostic_52.Location = New System.Drawing.Point(8, 8)
-        Me.Label_diagnostic_52.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Label_diagnostic_52.Margin = New System.Windows.Forms.Padding(4)
         Me.Label_diagnostic_52.Name = "Label_diagnostic_52"
         Me.Label_diagnostic_52.Niveau = 2
         Me.Label_diagnostic_52.Size = New System.Drawing.Size(387, 41)
@@ -10222,14 +10334,14 @@ Partial Class FrmDiagnostique
         Me.gdvPressions1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions1.ColumnHeadersVisible = False
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gdvPressions1.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gdvPressions1.DefaultCellStyle = DataGridViewCellStyle9
         Me.gdvPressions1.Location = New System.Drawing.Point(4, 38)
         Me.gdvPressions1.Name = "gdvPressions1"
         Me.gdvPressions1.RowHeadersVisible = False
@@ -10393,14 +10505,14 @@ Partial Class FrmDiagnostique
         Me.gdvPressions2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions2.ColumnHeadersVisible = False
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gdvPressions2.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gdvPressions2.DefaultCellStyle = DataGridViewCellStyle10
         Me.gdvPressions2.Location = New System.Drawing.Point(4, 37)
         Me.gdvPressions2.Name = "gdvPressions2"
         Me.gdvPressions2.RowHeadersVisible = False
@@ -10587,14 +10699,14 @@ Partial Class FrmDiagnostique
         Me.gdvPressions3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions3.ColumnHeadersVisible = False
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gdvPressions3.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gdvPressions3.DefaultCellStyle = DataGridViewCellStyle11
         Me.gdvPressions3.Location = New System.Drawing.Point(4, 37)
         Me.gdvPressions3.Name = "gdvPressions3"
         Me.gdvPressions3.RowHeadersVisible = False
@@ -10780,14 +10892,14 @@ Partial Class FrmDiagnostique
         Me.gdvPressions4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions4.ColumnHeadersVisible = False
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gdvPressions4.DefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gdvPressions4.DefaultCellStyle = DataGridViewCellStyle12
         Me.gdvPressions4.Location = New System.Drawing.Point(4, 37)
         Me.gdvPressions4.Name = "gdvPressions4"
         Me.gdvPressions4.RowHeadersVisible = False
@@ -14243,6 +14355,414 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_12.Size = New System.Drawing.Size(254, 24)
         Me.Label_diagnostic_12.TabIndex = 20
         '
+        'RadioButton_diagnostic_2621
+        '
+        Me.RadioButton_diagnostic_2621.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2621.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2621.cause1 = False
+        Me.RadioButton_diagnostic_2621.cause2 = False
+        Me.RadioButton_diagnostic_2621.cause3 = False
+        Me.RadioButton_diagnostic_2621.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2621.Checked = False
+        Me.RadioButton_diagnostic_2621.Code = Nothing
+        Me.RadioButton_diagnostic_2621.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2621.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2621.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2621.Libelle = "2.6.2.1 - Tableau électrique: Abs différentiel"
+        Me.RadioButton_diagnostic_2621.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2621.Location = New System.Drawing.Point(8, 24)
+        Me.RadioButton_diagnostic_2621.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2621.Name = "RadioButton_diagnostic_2621"
+        Me.RadioButton_diagnostic_2621.NombreCauses = 0
+        Me.RadioButton_diagnostic_2621.Size = New System.Drawing.Size(216, 16)
+        Me.RadioButton_diagnostic_2621.TabIndex = 4
+        '
+        'RadioButton_diagnostic_2622
+        '
+        Me.RadioButton_diagnostic_2622.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
+        Me.RadioButton_diagnostic_2622.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2622.cause1 = False
+        Me.RadioButton_diagnostic_2622.cause2 = False
+        Me.RadioButton_diagnostic_2622.cause3 = False
+        Me.RadioButton_diagnostic_2622.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2622.Checked = False
+        Me.RadioButton_diagnostic_2622.Code = Nothing
+        Me.RadioButton_diagnostic_2622.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MAJEUR
+        Me.RadioButton_diagnostic_2622.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2622.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2622.Libelle = "2.6.2.2 - Fusibles électriques: Non dédié"
+        Me.RadioButton_diagnostic_2622.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2622.Location = New System.Drawing.Point(8, 40)
+        Me.RadioButton_diagnostic_2622.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2622.Name = "RadioButton_diagnostic_2622"
+        Me.RadioButton_diagnostic_2622.NombreCauses = 0
+        Me.RadioButton_diagnostic_2622.Size = New System.Drawing.Size(216, 16)
+        Me.RadioButton_diagnostic_2622.TabIndex = 5
+        '
+        'RadioButton_diagnostic_2620
+        '
+        Me.RadioButton_diagnostic_2620.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2620.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2620.cause1 = False
+        Me.RadioButton_diagnostic_2620.cause2 = False
+        Me.RadioButton_diagnostic_2620.cause3 = False
+        Me.RadioButton_diagnostic_2620.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2620.Checked = False
+        Me.RadioButton_diagnostic_2620.Code = Nothing
+        Me.RadioButton_diagnostic_2620.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2620.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2620.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2620.Libelle = "OK"
+        Me.RadioButton_diagnostic_2620.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2620.Location = New System.Drawing.Point(8, 56)
+        Me.RadioButton_diagnostic_2620.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2620.Name = "RadioButton_diagnostic_2620"
+        Me.RadioButton_diagnostic_2620.NombreCauses = 0
+        Me.RadioButton_diagnostic_2620.Size = New System.Drawing.Size(216, 16)
+        Me.RadioButton_diagnostic_2620.TabIndex = 6
+        '
+        'GroupBox_diagnostic_262
+        '
+        Me.GroupBox_diagnostic_262.Controls.Add(Me.RadioButton_diagnostic_2620)
+        Me.GroupBox_diagnostic_262.Controls.Add(Me.RadioButton_diagnostic_2622)
+        Me.GroupBox_diagnostic_262.Controls.Add(Me.RadioButton_diagnostic_2621)
+        Me.GroupBox_diagnostic_262.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox_diagnostic_262.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox_diagnostic_262.Location = New System.Drawing.Point(8, 103)
+        Me.GroupBox_diagnostic_262.Name = "GroupBox_diagnostic_262"
+        Me.GroupBox_diagnostic_262.Size = New System.Drawing.Size(232, 80)
+        Me.GroupBox_diagnostic_262.TabIndex = 20
+        Me.GroupBox_diagnostic_262.TabStop = False
+        Me.GroupBox_diagnostic_262.Text = "2.6.2 - Présence de tableaux et fusibles"
+        '
+        'Panel17
+        '
+        Me.Panel17.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel17.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel17.Controls.Add(Me.GroupBox_diagnostic_274)
+        Me.Panel17.Controls.Add(Me.GroupBox_diagnostic_273)
+        Me.Panel17.Controls.Add(Me.GroupBox_diagnostic_272)
+        Me.Panel17.Controls.Add(Me.GroupBox_diagnostic_271)
+        Me.Panel17.Controls.Add(Me.Label_diagnostic_27)
+        Me.Panel17.Location = New System.Drawing.Point(-1, 548)
+        Me.Panel17.Name = "Panel17"
+        Me.Panel17.Size = New System.Drawing.Size(1006, 105)
+        Me.Panel17.TabIndex = 24
+        '
+        'Label_diagnostic_27
+        '
+        Me.Label_diagnostic_27.bMultiLine = False
+        Me.Label_diagnostic_27.bValidBloc = False
+        Me.Label_diagnostic_27.Checked = False
+        Me.Label_diagnostic_27.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_diagnostic_27.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.Label_diagnostic_27.Label = "2.7 Supports des composants du circuit de traitement de semence"
+        Me.Label_diagnostic_27.Location = New System.Drawing.Point(4, 8)
+        Me.Label_diagnostic_27.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Label_diagnostic_27.Name = "Label_diagnostic_27"
+        Me.Label_diagnostic_27.Niveau = 2
+        Me.Label_diagnostic_27.Size = New System.Drawing.Size(543, 17)
+        Me.Label_diagnostic_27.TabIndex = 18
+        '
+        'GroupBox_diagnostic_271
+        '
+        Me.GroupBox_diagnostic_271.Controls.Add(Me.RadioButton_diagnostic_2710)
+        Me.GroupBox_diagnostic_271.Controls.Add(Me.RadioButton_diagnostic_2711)
+        Me.GroupBox_diagnostic_271.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox_diagnostic_271.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox_diagnostic_271.Location = New System.Drawing.Point(9, 30)
+        Me.GroupBox_diagnostic_271.Name = "GroupBox_diagnostic_271"
+        Me.GroupBox_diagnostic_271.Size = New System.Drawing.Size(290, 70)
+        Me.GroupBox_diagnostic_271.TabIndex = 19
+        Me.GroupBox_diagnostic_271.TabStop = False
+        Me.GroupBox_diagnostic_271.Text = "2.7.1 - Stabilité des supports"
+        '
+        'RadioButton_diagnostic_2710
+        '
+        Me.RadioButton_diagnostic_2710.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2710.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2710.cause1 = False
+        Me.RadioButton_diagnostic_2710.cause2 = False
+        Me.RadioButton_diagnostic_2710.cause3 = False
+        Me.RadioButton_diagnostic_2710.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2710.Checked = False
+        Me.RadioButton_diagnostic_2710.Code = Nothing
+        Me.RadioButton_diagnostic_2710.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2710.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2710.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2710.Libelle = "OK"
+        Me.RadioButton_diagnostic_2710.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2710.Location = New System.Drawing.Point(8, 48)
+        Me.RadioButton_diagnostic_2710.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2710.Name = "RadioButton_diagnostic_2710"
+        Me.RadioButton_diagnostic_2710.NombreCauses = 0
+        Me.RadioButton_diagnostic_2710.Size = New System.Drawing.Size(279, 19)
+        Me.RadioButton_diagnostic_2710.TabIndex = 8
+        '
+        'RadioButton_diagnostic_2711
+        '
+        Me.RadioButton_diagnostic_2711.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2711.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2711.cause1 = False
+        Me.RadioButton_diagnostic_2711.cause2 = False
+        Me.RadioButton_diagnostic_2711.cause3 = False
+        Me.RadioButton_diagnostic_2711.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2711.Checked = False
+        Me.RadioButton_diagnostic_2711.Code = Nothing
+        Me.RadioButton_diagnostic_2711.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2711.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2711.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2711.Libelle = "2.7.1.1 - Stabilité des supports des composant du circuit non efficace"
+        Me.RadioButton_diagnostic_2711.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2711.Location = New System.Drawing.Point(8, 14)
+        Me.RadioButton_diagnostic_2711.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2711.Name = "RadioButton_diagnostic_2711"
+        Me.RadioButton_diagnostic_2711.NombreCauses = 0
+        Me.RadioButton_diagnostic_2711.Size = New System.Drawing.Size(279, 31)
+        Me.RadioButton_diagnostic_2711.TabIndex = 4
+        '
+        'GroupBox_diagnostic_272
+        '
+        Me.GroupBox_diagnostic_272.Controls.Add(Me.RadioButton_diagnostic_2722)
+        Me.GroupBox_diagnostic_272.Controls.Add(Me.RadioButton_diagnostic_2720)
+        Me.GroupBox_diagnostic_272.Controls.Add(Me.RadioButton_diagnostic_2721)
+        Me.GroupBox_diagnostic_272.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox_diagnostic_272.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox_diagnostic_272.Location = New System.Drawing.Point(305, 30)
+        Me.GroupBox_diagnostic_272.Name = "GroupBox_diagnostic_272"
+        Me.GroupBox_diagnostic_272.Size = New System.Drawing.Size(224, 70)
+        Me.GroupBox_diagnostic_272.TabIndex = 20
+        Me.GroupBox_diagnostic_272.TabStop = False
+        Me.GroupBox_diagnostic_272.Text = "2.7.2 - Déformations"
+        '
+        'RadioButton_diagnostic_2720
+        '
+        Me.RadioButton_diagnostic_2720.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2720.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2720.cause1 = False
+        Me.RadioButton_diagnostic_2720.cause2 = False
+        Me.RadioButton_diagnostic_2720.cause3 = False
+        Me.RadioButton_diagnostic_2720.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2720.Checked = False
+        Me.RadioButton_diagnostic_2720.Code = Nothing
+        Me.RadioButton_diagnostic_2720.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2720.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2720.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2720.Libelle = "OK"
+        Me.RadioButton_diagnostic_2720.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2720.Location = New System.Drawing.Point(8, 48)
+        Me.RadioButton_diagnostic_2720.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2720.Name = "RadioButton_diagnostic_2720"
+        Me.RadioButton_diagnostic_2720.NombreCauses = 0
+        Me.RadioButton_diagnostic_2720.Size = New System.Drawing.Size(208, 16)
+        Me.RadioButton_diagnostic_2720.TabIndex = 8
+        '
+        'RadioButton_diagnostic_2721
+        '
+        Me.RadioButton_diagnostic_2721.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2721.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2721.cause1 = False
+        Me.RadioButton_diagnostic_2721.cause2 = False
+        Me.RadioButton_diagnostic_2721.cause3 = False
+        Me.RadioButton_diagnostic_2721.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2721.Checked = False
+        Me.RadioButton_diagnostic_2721.Code = Nothing
+        Me.RadioButton_diagnostic_2721.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2721.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2721.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2721.Libelle = "2.7.2.1 -Déformation mineure"
+        Me.RadioButton_diagnostic_2721.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2721.Location = New System.Drawing.Point(8, 14)
+        Me.RadioButton_diagnostic_2721.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2721.Name = "RadioButton_diagnostic_2721"
+        Me.RadioButton_diagnostic_2721.NombreCauses = 0
+        Me.RadioButton_diagnostic_2721.Size = New System.Drawing.Size(208, 16)
+        Me.RadioButton_diagnostic_2721.TabIndex = 4
+        '
+        'RadioButton_diagnostic_2722
+        '
+        Me.RadioButton_diagnostic_2722.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2722.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2722.cause1 = False
+        Me.RadioButton_diagnostic_2722.cause2 = False
+        Me.RadioButton_diagnostic_2722.cause3 = False
+        Me.RadioButton_diagnostic_2722.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2722.Checked = False
+        Me.RadioButton_diagnostic_2722.Code = Nothing
+        Me.RadioButton_diagnostic_2722.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2722.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2722.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2722.Libelle = "2.7.2.2 - Déformation majeure"
+        Me.RadioButton_diagnostic_2722.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2722.Location = New System.Drawing.Point(8, 29)
+        Me.RadioButton_diagnostic_2722.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2722.Name = "RadioButton_diagnostic_2722"
+        Me.RadioButton_diagnostic_2722.NombreCauses = 0
+        Me.RadioButton_diagnostic_2722.Size = New System.Drawing.Size(208, 16)
+        Me.RadioButton_diagnostic_2722.TabIndex = 9
+        '
+        'GroupBox_diagnostic_273
+        '
+        Me.GroupBox_diagnostic_273.Controls.Add(Me.RadioButton_diagnostic_2732)
+        Me.GroupBox_diagnostic_273.Controls.Add(Me.RadioButton_diagnostic_2730)
+        Me.GroupBox_diagnostic_273.Controls.Add(Me.RadioButton_diagnostic_2731)
+        Me.GroupBox_diagnostic_273.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox_diagnostic_273.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox_diagnostic_273.Location = New System.Drawing.Point(541, 30)
+        Me.GroupBox_diagnostic_273.Name = "GroupBox_diagnostic_273"
+        Me.GroupBox_diagnostic_273.Size = New System.Drawing.Size(224, 70)
+        Me.GroupBox_diagnostic_273.TabIndex = 21
+        Me.GroupBox_diagnostic_273.TabStop = False
+        Me.GroupBox_diagnostic_273.Text = "2.7.3 - Modifications"
+        '
+        'RadioButton_diagnostic_2732
+        '
+        Me.RadioButton_diagnostic_2732.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2732.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2732.cause1 = False
+        Me.RadioButton_diagnostic_2732.cause2 = False
+        Me.RadioButton_diagnostic_2732.cause3 = False
+        Me.RadioButton_diagnostic_2732.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2732.Checked = False
+        Me.RadioButton_diagnostic_2732.Code = Nothing
+        Me.RadioButton_diagnostic_2732.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2732.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2732.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2732.Libelle = "2.7.3.2 - Modification majeure"
+        Me.RadioButton_diagnostic_2732.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2732.Location = New System.Drawing.Point(8, 29)
+        Me.RadioButton_diagnostic_2732.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2732.Name = "RadioButton_diagnostic_2732"
+        Me.RadioButton_diagnostic_2732.NombreCauses = 0
+        Me.RadioButton_diagnostic_2732.Size = New System.Drawing.Size(208, 16)
+        Me.RadioButton_diagnostic_2732.TabIndex = 9
+        '
+        'RadioButton_diagnostic_2730
+        '
+        Me.RadioButton_diagnostic_2730.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2730.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2730.cause1 = False
+        Me.RadioButton_diagnostic_2730.cause2 = False
+        Me.RadioButton_diagnostic_2730.cause3 = False
+        Me.RadioButton_diagnostic_2730.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2730.Checked = False
+        Me.RadioButton_diagnostic_2730.Code = Nothing
+        Me.RadioButton_diagnostic_2730.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2730.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2730.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2730.Libelle = "OK"
+        Me.RadioButton_diagnostic_2730.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2730.Location = New System.Drawing.Point(8, 48)
+        Me.RadioButton_diagnostic_2730.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2730.Name = "RadioButton_diagnostic_2730"
+        Me.RadioButton_diagnostic_2730.NombreCauses = 0
+        Me.RadioButton_diagnostic_2730.Size = New System.Drawing.Size(208, 16)
+        Me.RadioButton_diagnostic_2730.TabIndex = 8
+        '
+        'RadioButton_diagnostic_2731
+        '
+        Me.RadioButton_diagnostic_2731.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2731.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2731.cause1 = False
+        Me.RadioButton_diagnostic_2731.cause2 = False
+        Me.RadioButton_diagnostic_2731.cause3 = False
+        Me.RadioButton_diagnostic_2731.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2731.Checked = False
+        Me.RadioButton_diagnostic_2731.Code = Nothing
+        Me.RadioButton_diagnostic_2731.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2731.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2731.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2731.Libelle = "2.7.3.1 - Modification mineure"
+        Me.RadioButton_diagnostic_2731.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2731.Location = New System.Drawing.Point(8, 14)
+        Me.RadioButton_diagnostic_2731.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2731.Name = "RadioButton_diagnostic_2731"
+        Me.RadioButton_diagnostic_2731.NombreCauses = 0
+        Me.RadioButton_diagnostic_2731.Size = New System.Drawing.Size(208, 16)
+        Me.RadioButton_diagnostic_2731.TabIndex = 4
+        '
+        'GroupBox_diagnostic_274
+        '
+        Me.GroupBox_diagnostic_274.Controls.Add(Me.RadioButton_diagnostic_2742)
+        Me.GroupBox_diagnostic_274.Controls.Add(Me.RadioButton_diagnostic_2740)
+        Me.GroupBox_diagnostic_274.Controls.Add(Me.RadioButton_diagnostic_2741)
+        Me.GroupBox_diagnostic_274.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox_diagnostic_274.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox_diagnostic_274.Location = New System.Drawing.Point(775, 30)
+        Me.GroupBox_diagnostic_274.Name = "GroupBox_diagnostic_274"
+        Me.GroupBox_diagnostic_274.Size = New System.Drawing.Size(224, 70)
+        Me.GroupBox_diagnostic_274.TabIndex = 22
+        Me.GroupBox_diagnostic_274.TabStop = False
+        Me.GroupBox_diagnostic_274.Text = "2.7.4 - Corrosion"
+        '
+        'RadioButton_diagnostic_2742
+        '
+        Me.RadioButton_diagnostic_2742.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2742.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2742.cause1 = False
+        Me.RadioButton_diagnostic_2742.cause2 = False
+        Me.RadioButton_diagnostic_2742.cause3 = False
+        Me.RadioButton_diagnostic_2742.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2742.Checked = False
+        Me.RadioButton_diagnostic_2742.Code = Nothing
+        Me.RadioButton_diagnostic_2742.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2742.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2742.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2742.Libelle = "2.7.4.2 - Corrosion majeure"
+        Me.RadioButton_diagnostic_2742.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2742.Location = New System.Drawing.Point(8, 29)
+        Me.RadioButton_diagnostic_2742.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2742.Name = "RadioButton_diagnostic_2742"
+        Me.RadioButton_diagnostic_2742.NombreCauses = 0
+        Me.RadioButton_diagnostic_2742.Size = New System.Drawing.Size(208, 16)
+        Me.RadioButton_diagnostic_2742.TabIndex = 9
+        '
+        'RadioButton_diagnostic_2740
+        '
+        Me.RadioButton_diagnostic_2740.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2740.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2740.cause1 = False
+        Me.RadioButton_diagnostic_2740.cause2 = False
+        Me.RadioButton_diagnostic_2740.cause3 = False
+        Me.RadioButton_diagnostic_2740.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2740.Checked = False
+        Me.RadioButton_diagnostic_2740.Code = Nothing
+        Me.RadioButton_diagnostic_2740.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_2740.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2740.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2740.Libelle = "OK"
+        Me.RadioButton_diagnostic_2740.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2740.Location = New System.Drawing.Point(8, 48)
+        Me.RadioButton_diagnostic_2740.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2740.Name = "RadioButton_diagnostic_2740"
+        Me.RadioButton_diagnostic_2740.NombreCauses = 0
+        Me.RadioButton_diagnostic_2740.Size = New System.Drawing.Size(208, 16)
+        Me.RadioButton_diagnostic_2740.TabIndex = 8
+        '
+        'RadioButton_diagnostic_2741
+        '
+        Me.RadioButton_diagnostic_2741.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2741.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_2741.cause1 = False
+        Me.RadioButton_diagnostic_2741.cause2 = False
+        Me.RadioButton_diagnostic_2741.cause3 = False
+        Me.RadioButton_diagnostic_2741.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2741.Checked = False
+        Me.RadioButton_diagnostic_2741.Code = Nothing
+        Me.RadioButton_diagnostic_2741.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_MINEUR
+        Me.RadioButton_diagnostic_2741.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_2741.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_2741.Libelle = "2.7.4.1 - Corrosion mineure"
+        Me.RadioButton_diagnostic_2741.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_2741.Location = New System.Drawing.Point(8, 14)
+        Me.RadioButton_diagnostic_2741.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_2741.Name = "RadioButton_diagnostic_2741"
+        Me.RadioButton_diagnostic_2741.NombreCauses = 0
+        Me.RadioButton_diagnostic_2741.Size = New System.Drawing.Size(208, 16)
+        Me.RadioButton_diagnostic_2741.TabIndex = 4
+        '
         'FrmDiagnostique
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -14269,6 +14789,8 @@ Partial Class FrmDiagnostique
         Me.Panel1.ResumeLayout(False)
         Me.tab_diagnostique.ResumeLayout(False)
         Me.tabPage_diagnostique_etatGeneral.ResumeLayout(False)
+        Me.Panel13.ResumeLayout(False)
+        Me.GroupBox_diagnostic_261.ResumeLayout(False)
         Me.Panel129.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         Me.GroupBox_diagnostic_241.ResumeLayout(False)
@@ -14524,6 +15046,12 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_1232.ResumeLayout(False)
         CType(Me.ico_help12323, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox_diagnostic_1231.ResumeLayout(False)
+        Me.GroupBox_diagnostic_262.ResumeLayout(False)
+        Me.Panel17.ResumeLayout(False)
+        Me.GroupBox_diagnostic_271.ResumeLayout(False)
+        Me.GroupBox_diagnostic_272.ResumeLayout(False)
+        Me.GroupBox_diagnostic_273.ResumeLayout(False)
+        Me.GroupBox_diagnostic_274.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -15347,4 +15875,30 @@ Partial Class FrmDiagnostique
     End Sub
     Friend WithEvents ico_help12323 As System.Windows.Forms.PictureBox
     Friend WithEvents Label_diagnostic_124 As CRODIP_ControlLibrary.CtrlParamNiveau
+    Friend WithEvents Panel13 As Panel
+    Friend WithEvents GroupBox_diagnostic_261 As GroupBox
+    Friend WithEvents RadioButton_diagnostic_2610 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_2611 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents Label_diagnostic_26 As CRODIP_ControlLibrary.CtrlParamNiveau
+    Friend WithEvents Panel17 As Panel
+    Friend WithEvents GroupBox_diagnostic_274 As GroupBox
+    Friend WithEvents RadioButton_diagnostic_2742 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_2740 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_2741 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents GroupBox_diagnostic_273 As GroupBox
+    Friend WithEvents RadioButton_diagnostic_2732 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_2730 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_2731 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents GroupBox_diagnostic_272 As GroupBox
+    Friend WithEvents RadioButton_diagnostic_2722 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_2720 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_2721 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents GroupBox_diagnostic_271 As GroupBox
+    Friend WithEvents RadioButton_diagnostic_2710 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_2711 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents Label_diagnostic_27 As CRODIP_ControlLibrary.CtrlParamNiveau
+    Friend WithEvents GroupBox_diagnostic_262 As GroupBox
+    Friend WithEvents RadioButton_diagnostic_2620 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_2622 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_2621 As CRODIP_ControlLibrary.CtrlDiag2
 End Class

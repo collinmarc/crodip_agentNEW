@@ -19,6 +19,9 @@ Public Class controle_preliminaire
     Private m_Diagnostic As Diagnostic
     Private m_Pulverisateur As Pulverisateur
     Private m_Exploit As Exploitation
+    Friend WithEvents GroupBox_diagnostic_126 As GroupBox
+    Friend WithEvents RadioButton_diagnostic_1260 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents RadioButton_diagnostic_1261 As CRODIP_ControlLibrary.CtrlDiag2
     'Liste des controles par onglets
     Protected LstCtrl As New List(Of List(Of List(Of CRODIP_ControlLibrary.CtrlDiag2)))
 
@@ -182,6 +185,9 @@ Public Class controle_preliminaire
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.GroupBox_diagnostic_126 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_diagnostic_1260 = New CRODIP_ControlLibrary.CtrlDiag2()
+        Me.RadioButton_diagnostic_1261 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.GroupBox_diagnostic_123 = New System.Windows.Forms.GroupBox()
         Me.RadioButton_diagnostic_1230 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.RadioButton_diagnostic_1232 = New CRODIP_ControlLibrary.CtrlDiag2()
@@ -222,6 +228,7 @@ Public Class controle_preliminaire
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        Me.GroupBox_diagnostic_126.SuspendLayout()
         Me.GroupBox_diagnostic_123.SuspendLayout()
         Me.GroupBox_diagnostic_125.SuspendLayout()
         Me.GroupBox_diagnostic_122.SuspendLayout()
@@ -843,6 +850,7 @@ Public Class controle_preliminaire
         Me.Panel4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel4.Controls.Add(Me.GroupBox_diagnostic_126)
         Me.Panel4.Controls.Add(Me.GroupBox_diagnostic_123)
         Me.Panel4.Controls.Add(Me.GroupBox_diagnostic_125)
         Me.Panel4.Controls.Add(Me.GroupBox_diagnostic_122)
@@ -853,6 +861,69 @@ Public Class controle_preliminaire
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(710, 391)
         Me.Panel4.TabIndex = 3
+        '
+        'GroupBox_diagnostic_126
+        '
+        Me.GroupBox_diagnostic_126.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox_diagnostic_126.Controls.Add(Me.RadioButton_diagnostic_1260)
+        Me.GroupBox_diagnostic_126.Controls.Add(Me.RadioButton_diagnostic_1261)
+        Me.GroupBox_diagnostic_126.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox_diagnostic_126.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox_diagnostic_126.Location = New System.Drawing.Point(368, 310)
+        Me.GroupBox_diagnostic_126.Name = "GroupBox_diagnostic_126"
+        Me.GroupBox_diagnostic_126.Size = New System.Drawing.Size(330, 72)
+        Me.GroupBox_diagnostic_126.TabIndex = 13
+        Me.GroupBox_diagnostic_126.TabStop = False
+        Me.GroupBox_diagnostic_126.Text = "1.2.6 - Installation électrique de l'usine"
+        '
+        'RadioButton_diagnostic_1260
+        '
+        Me.RadioButton_diagnostic_1260.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RadioButton_diagnostic_1260.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_1260.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_1260.cause1 = False
+        Me.RadioButton_diagnostic_1260.cause2 = False
+        Me.RadioButton_diagnostic_1260.cause3 = False
+        Me.RadioButton_diagnostic_1260.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_1260.Checked = False
+        Me.RadioButton_diagnostic_1260.Code = Nothing
+        Me.RadioButton_diagnostic_1260.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_OK
+        Me.RadioButton_diagnostic_1260.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_1260.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_1260.Libelle = "OK"
+        Me.RadioButton_diagnostic_1260.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_1260.Location = New System.Drawing.Point(3, 40)
+        Me.RadioButton_diagnostic_1260.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_1260.Name = "RadioButton_diagnostic_1260"
+        Me.RadioButton_diagnostic_1260.NombreCauses = 0
+        Me.RadioButton_diagnostic_1260.Size = New System.Drawing.Size(321, 16)
+        Me.RadioButton_diagnostic_1260.TabIndex = 6
+        '
+        'RadioButton_diagnostic_1261
+        '
+        Me.RadioButton_diagnostic_1261.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RadioButton_diagnostic_1261.Categorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_NONE
+        Me.RadioButton_diagnostic_1261.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.NONE
+        Me.RadioButton_diagnostic_1261.cause1 = False
+        Me.RadioButton_diagnostic_1261.cause2 = False
+        Me.RadioButton_diagnostic_1261.cause3 = False
+        Me.RadioButton_diagnostic_1261.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_1261.Checked = False
+        Me.RadioButton_diagnostic_1261.Code = Nothing
+        Me.RadioButton_diagnostic_1261.DefaultCategorie = CRODIP_ControlLibrary.CRODIP_CATEGORIEDEFAUT.DEFAUT_NONE
+        Me.RadioButton_diagnostic_1261.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton_diagnostic_1261.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RadioButton_diagnostic_1261.Libelle = "1.2.6.1 - Installation électrique non vérifié"
+        Me.RadioButton_diagnostic_1261.LibelleLong = Nothing
+        Me.RadioButton_diagnostic_1261.Location = New System.Drawing.Point(3, 24)
+        Me.RadioButton_diagnostic_1261.Margin = New System.Windows.Forms.Padding(0)
+        Me.RadioButton_diagnostic_1261.Name = "RadioButton_diagnostic_1261"
+        Me.RadioButton_diagnostic_1261.NombreCauses = 0
+        Me.RadioButton_diagnostic_1261.Size = New System.Drawing.Size(321, 16)
+        Me.RadioButton_diagnostic_1261.TabIndex = 5
         '
         'GroupBox_diagnostic_123
         '
@@ -1500,6 +1571,7 @@ Public Class controle_preliminaire
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
+        Me.GroupBox_diagnostic_126.ResumeLayout(False)
         Me.GroupBox_diagnostic_123.ResumeLayout(False)
         Me.GroupBox_diagnostic_125.ResumeLayout(False)
         Me.GroupBox_diagnostic_122.ResumeLayout(False)
@@ -1600,6 +1672,13 @@ Public Class controle_preliminaire
         lstGrpBox.Add(RadioButton_diagnostic_1251)
         lstGrpBox.Add(RadioButton_diagnostic_1250)
         lstOnglet.Add(lstGrpBox)
+
+        'Installation Electrique
+        lstGrpBox = New List(Of CRODIP_ControlLibrary.CtrlDiag2)
+        lstGrpBox.Add(RadioButton_diagnostic_1261)
+        lstGrpBox.Add(RadioButton_diagnostic_1260)
+        lstOnglet.Add(lstGrpBox)
+
         LstCtrl.Add(lstOnglet)
 
     End Sub
@@ -1926,6 +2005,8 @@ Public Class controle_preliminaire
             bReturn = bReturn And (RadioButton_diagnostic_1241.Checked Or RadioButton_diagnostic_1242.Checked Or RadioButton_diagnostic_1243.Checked Or RadioButton_diagnostic_1244.Checked Or RadioButton_diagnostic_1245.Checked Or RadioButton_diagnostic_1246.Checked Or RadioButton_diagnostic_1247.Checked Or RadioButton_diagnostic_1240.Checked)
             '1.2.5
             bReturn = bReturn And (RadioButton_diagnostic_1251.Checked Or RadioButton_diagnostic_1250.Checked)
+            '1.2.6
+            bReturn = bReturn And (RadioButton_diagnostic_1261.Checked Or RadioButton_diagnostic_1260.Checked)
 
         Catch ex As Exception
             CSDebug.dispError("CheckIsAllFilled ERR" & ex.Message)
@@ -1954,6 +2035,8 @@ Public Class controle_preliminaire
             bReturn = bReturn Or (RadioButton_diagnostic_1241.Checked Or RadioButton_diagnostic_1242.Checked Or RadioButton_diagnostic_1243.Checked Or RadioButton_diagnostic_1244.Checked Or RadioButton_diagnostic_1245.Checked Or RadioButton_diagnostic_1246.Checked Or RadioButton_diagnostic_1247.Checked)
             '1.2.5
             bReturn = bReturn Or (RadioButton_diagnostic_1251.Checked)
+            '1.2.6
+            bReturn = bReturn Or (RadioButton_diagnostic_1261.Checked)
 
         Catch ex As Exception
             CSDebug.dispError("CheckIsAllFilled ERR" & ex.Message)
@@ -2148,6 +2231,7 @@ Public Class controle_preliminaire
         RadioButton_diagnostic_1230.Checked = True
         RadioButton_diagnostic_1240.Checked = True
         RadioButton_diagnostic_1250.Checked = True
+        RadioButton_diagnostic_1260.Checked = True
     End Sub
 
     Private Sub ToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem1.Click
@@ -2227,5 +2311,18 @@ Public Class controle_preliminaire
 
     Private Sub controle_preliminaire_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         Me.WindowState = FormWindowState.Maximized
+    End Sub
+
+    Private Sub controle_preliminaire_GiveFeedback(sender As Object, e As GiveFeedbackEventArgs) Handles Me.GiveFeedback
+
+    End Sub
+
+    Private Sub RadioButton_diagnostic_1261_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_1261.CheckedChanged
+        checkAnswer2(sender, 0)
+
+    End Sub
+
+    Private Sub RadioButton_diagnostic_1260_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_1260.CheckedChanged
+        checkAnswer2(sender, 0)
     End Sub
 End Class
