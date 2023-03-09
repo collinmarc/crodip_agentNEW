@@ -5637,7 +5637,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             For Each ogrp In LstCtrl(nOnglet - 1)
                 For Each octrl In ogrp
                     'Vérification de chaque controle isError Rend Vrai si le controle déclenche une CV
-                    bReturn = bReturn Or octrl.isError()
+                    If octrl.Enabled Then
+                        bReturn = bReturn Or octrl.isError()
+                    End If
                 Next
             Next
         Catch ex As Exception
@@ -10790,5 +10792,58 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         checkAnswer2(sender, 1)
     End Sub
 
+    Private Sub RadioButton_diagnostic_2711_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2711.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
 
+    Private Sub RadioButton_diagnostic_2710_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2710.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2721_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2721.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2722_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2722.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2720_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2720.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2731_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2731.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2732_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2732.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2730_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2730.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2741_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2741.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2742_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2742.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
+
+    Private Sub RadioButton_diagnostic_2740_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2740.CheckedChanged
+        isCodeSpecial = False
+        checkAnswer2(sender, 1)
+    End Sub
 End Class

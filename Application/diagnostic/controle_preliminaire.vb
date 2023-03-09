@@ -2006,7 +2006,9 @@ Public Class controle_preliminaire
             '1.2.5
             bReturn = bReturn And (RadioButton_diagnostic_1251.Checked Or RadioButton_diagnostic_1250.Checked)
             '1.2.6
-            bReturn = bReturn And (RadioButton_diagnostic_1261.Checked Or RadioButton_diagnostic_1260.Checked)
+            If RadioButton_diagnostic_1261.Enabled Then
+                bReturn = bReturn And (RadioButton_diagnostic_1261.Checked Or RadioButton_diagnostic_1260.Checked)
+            End If
 
         Catch ex As Exception
             CSDebug.dispError("CheckIsAllFilled ERR" & ex.Message)
@@ -2036,7 +2038,9 @@ Public Class controle_preliminaire
             '1.2.5
             bReturn = bReturn Or (RadioButton_diagnostic_1251.Checked)
             '1.2.6
-            bReturn = bReturn Or (RadioButton_diagnostic_1261.Checked)
+            If RadioButton_diagnostic_1261.Enabled Then
+                bReturn = bReturn Or (RadioButton_diagnostic_1261.Checked)
+            End If
 
         Catch ex As Exception
             CSDebug.dispError("CheckIsAllFilled ERR" & ex.Message)

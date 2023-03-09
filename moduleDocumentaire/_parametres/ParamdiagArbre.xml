@@ -53,7 +53,16 @@
       <Code>1.2.5</Code>
       <Libelle>débrayage du/des ventilateurs</Libelle>
     </ParamCtrlDiag>
-      <!-- Etat Général -->
+
+	<!--Ajout 09032023 -->
+	<ParamCtrlDiag>
+      <Code>1.2.6</Code>
+      <Libelle>Installation électrique de l'usine</Libelle>
+    </ParamCtrlDiag>
+	<!--Fin Ajout 09032023 -->
+
+
+	<!-- Etat Général -->
       <ParamCtrlDiag>
         <Code>2</Code>
         <Libelle>Etat Général</Libelle>
@@ -139,6 +148,41 @@
         <Code>2.3.2</Code>
         <Libelle>Fuites majeures</Libelle>
       </ParamCtrlDiag>
+	<!-- Ajout 09032023 -->
+		 <ParamCtrlDiag>
+      <Code>2.6</Code>
+      <Libelle>Installation électrique</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.6.1</Code>
+      <Libelle>Etat des câbles</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.6.2</Code>
+      <Libelle>Présence de tableaux et fusibles</Libelle>
+    </ParamCtrlDiag>
+   <ParamCtrlDiag>
+      <Code>2.7</Code>
+      <Libelle>Supports des composants du circuit de traitement de semence</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.1</Code>
+      <Libelle>Stabilité des supports</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.2</Code>
+      <Libelle>Déformations</Libelle>
+    </ParamCtrlDiag>
+	    <ParamCtrlDiag>
+      <Code>2.7.3</Code>
+      <Libelle>Modifications</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.4</Code>
+      <Libelle>Corrosion</Libelle>
+    </ParamCtrlDiag>
+	<!-- Fin Ajout 09032023 -->
+
       <!-- Pompe -->
       <ParamCtrlDiag>
         <Code>3</Code>
@@ -975,7 +1019,29 @@
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
 	  </ParamCtrlDiag>
+	<!-- Ajout 09032023 -->
+	<ParamCtrlDiag>
+      <Code>1.2.6.1</Code>
+      <Libelle>Installation électrique non vérifié</Libelle>
+      <LibelleLong>Le rapport de vérification obligatoire des installations électrique du bâtiment n'est pas à jour et remis à l'inspecteur</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
 
+    <ParamCtrlDiag>
+      <Code>1.2.6.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong></LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!-- fin Ajout -->
     <ParamCtrlDiag>
       <Code>2.1.1.1</Code>
       <Libelle>Déformation mineure</Libelle>
@@ -1526,6 +1592,191 @@
       <Cause2>false</Cause2>
       <Cause3>false</Cause3>
     </ParamCtrlDiag>
+	<!-- Ajout 09032023 -->
+		<ParamCtrlDiag>
+      <Code>2.6.1.1</Code>
+      <Libelle>Câbles électriques détériorés</Libelle>
+      <LibelleLong>Le câblage du circuit électrique présente des usures ou détériotations</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.6.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	<ParamCtrlDiag>
+      <Code>2.6.2.1</Code>
+      <Libelle>Tableau électrique: Abs différentiel</Libelle>
+      <LibelleLong>............</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.6.2.2</Code>
+      <Libelle>Fusibles électriques: Non dédié</Libelle>
+      <LibelleLong>..................</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.6.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	 <ParamCtrlDiag>
+      <Code>2.7.1.1</Code>
+      <Libelle>Stabilité des supports des composant du circuit non efficace</Libelle>
+      <LibelleLong>Les éléments et composant, supportant les différents éléments du circuit de pulvé, ne sont pas stables et ou vibre pendant le fonctionnement</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	 <ParamCtrlDiag>
+      <Code>2.7.2.1</Code>
+      <Libelle>Déformation mineure</Libelle>
+      <LibelleLong>le chassis ou élément(s) de structure du circuit de pulvérisation présente des traces de déformations, mais ne portent pas préjudice à la solidité , rigidité de l'ensemble</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.2.2</Code>
+      <Libelle>Déformation majeure</Libelle>
+      <LibelleLong>le chassis ou élément(s) de structure du circuit de pulvérisation présente des traces de déformations, portant préjudice à la solidité , rigidité de l'ensemble</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	 <ParamCtrlDiag>
+      <Code>2.7.3.1</Code>
+      <Libelle>Modification mineure</Libelle>
+      <LibelleLong>Les éléments de support du circuit de pulvérisation ont été modifiés sans porter préjudices à la solidité , rigidité de l'ensemble</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.3.2</Code>
+      <Libelle>Modification majeure</Libelle>
+      <LibelleLong>Les éléments de support du circuit de pulvérisation ont été modifiés et portent préjudices à la solidité , rigidité de l'ensemble</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	 <ParamCtrlDiag>
+      <Code>2.7.4.1</Code>
+      <Libelle>Corrosion mineure</Libelle>
+      <LibelleLong>le chassis ou élément(s) de structure du circuit de pulvérisation présente des traces de corrodion perforante, mais ne portent pas préjudice à la solidité , rigidité de l'ensemble</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.4.2</Code>
+      <Libelle>Corrosion majeure</Libelle>
+      <LibelleLong>le chassis ou élément(s) de structure du circuit de pulvérisation présente des traces de corrodion perforante, portant préjudice à la solidité , rigidité de l'ensemble</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.4.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	<!--Fin Ajout -->
+
     <ParamCtrlDiag>
       <Code>3.1.1.1</Code>
       <Libelle>Fuite mineure</Libelle>
