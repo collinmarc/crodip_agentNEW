@@ -669,8 +669,6 @@ Public Class frmdiagnostic_recap
 #End Region
 
     Private Sub diagnostic_recap_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.WindowState = FormWindowState.Maximized
-        Me.ControlBox = False
 
         CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
         Me.laTitre.Text = "     Visualisation du contrôle"
@@ -1540,6 +1538,8 @@ Public Class frmdiagnostic_recap
     End Sub
 
     Private Sub frmdiagnostic_recap_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        Me.WindowState = FormWindowState.Maximized
+        Me.ControlBox = False
         RefreshDiag()
     End Sub
 End Class

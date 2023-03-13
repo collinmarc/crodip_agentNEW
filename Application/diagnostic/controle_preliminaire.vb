@@ -1891,11 +1891,11 @@ Public Class controle_preliminaire
 
                     End If
                 End If
-
-                'Vérification de l'onglet
-                checkIsOk()
             End If
-        End If
+
+            'Vérification de l'onglet
+            checkIsOk()
+            End If
     End Sub
 
     'Private Sub checkAnswer2(ByVal sender As CRODIP_ControlLibrary.CtrlDiag2, ByVal pOngletId As Integer)
@@ -2315,6 +2315,8 @@ Public Class controle_preliminaire
 
     Private Sub controle_preliminaire_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         Me.WindowState = FormWindowState.Maximized
+        Me.ControlBox = False
+        Me.SetTopLevel(False)
     End Sub
 
     Private Sub controle_preliminaire_GiveFeedback(sender As Object, e As GiveFeedbackEventArgs) Handles Me.GiveFeedback

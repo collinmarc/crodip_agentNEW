@@ -73,7 +73,7 @@ Public Class ControleMano
             Dim oParamMetro As ParamMetrologie
             'Recherche du paramètre avec le Fond et la classe
             oParamMetro = lstParamMetrologie.lstParam.Where(Function(P)
-                                                                Return P.FondEchelle.Equals(oMano.fondEchelle) And P.Classe.Equals(oMano.classe)
+                                                                Return P.FondEchelle.Equals(oMano.fondEchelle) And P.Classe.Replace(",", ".").Equals(oMano.classe.Replace(",", "."))
                                                             End Function).FirstOrDefault()
             If oParamMetro Is Nothing Then
                 'Recherche du paramètre avec le fond

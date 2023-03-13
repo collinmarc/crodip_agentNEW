@@ -10765,6 +10765,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub FrmDiagnostique_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         Me.WindowState = FormWindowState.Maximized
+        Me.ControlBox = False
     End Sub
 
     Private Sub RadioButton_diagnostic_2611_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_diagnostic_2611.CheckedChanged
