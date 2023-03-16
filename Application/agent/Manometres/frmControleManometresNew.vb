@@ -23,7 +23,6 @@ Public Class frmControleManometresNew
     Friend WithEvents lbMano As ListBox
     Friend WithEvents tlpGlobal As TableLayoutPanel
     Friend WithEvents tlpEntete As TableLayoutPanel
-    Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label11 As Label
@@ -156,7 +155,6 @@ Public Class frmControleManometresNew
         Me.lbMano = New System.Windows.Forms.ListBox()
         Me.tlpGlobal = New System.Windows.Forms.TableLayoutPanel()
         Me.tlpEntete = New System.Windows.Forms.TableLayoutPanel()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -167,8 +165,11 @@ Public Class frmControleManometresNew
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btn_controleManos_acquiring = New System.Windows.Forms.PictureBox()
         Me.tlpPressionCroissant = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label19 = New System.Windows.Forms.Label()
         Me.tlpPressionDecroissante = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label20 = New System.Windows.Forms.Label()
         Me.tlpRepetition = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label26 = New System.Windows.Forms.Label()
         Me.Panel_loading = New System.Windows.Forms.Panel()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
@@ -177,9 +178,6 @@ Public Class frmControleManometresNew
         Me.tbTemperature = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label26 = New System.Windows.Forms.Label()
         CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsControle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -727,20 +725,18 @@ Public Class frmControleManometresNew
         '
         Me.tlpEntete.BackColor = System.Drawing.SystemColors.Control
         Me.tlpEntete.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
-        Me.tlpEntete.ColumnCount = 8
+        Me.tlpEntete.ColumnCount = 7
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpEntete.Controls.Add(Me.Label5, 4, 0)
-        Me.tlpEntete.Controls.Add(Me.Label6, 5, 0)
-        Me.tlpEntete.Controls.Add(Me.Label7, 6, 0)
-        Me.tlpEntete.Controls.Add(Me.Label11, 7, 1)
-        Me.tlpEntete.Controls.Add(Me.Label10, 6, 1)
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+        Me.tlpEntete.Controls.Add(Me.Label6, 4, 0)
+        Me.tlpEntete.Controls.Add(Me.Label7, 5, 0)
+        Me.tlpEntete.Controls.Add(Me.Label11, 6, 1)
+        Me.tlpEntete.Controls.Add(Me.Label10, 5, 1)
         Me.tlpEntete.Controls.Add(Me.Label4, 3, 1)
         Me.tlpEntete.Controls.Add(Me.Label3, 2, 1)
         Me.tlpEntete.Controls.Add(Me.Label2, 2, 0)
@@ -756,32 +752,18 @@ Public Class frmControleManometresNew
         Me.tlpEntete.Size = New System.Drawing.Size(617, 60)
         Me.tlpEntete.TabIndex = 1
         '
-        'Label5
-        '
-        Me.Label5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(302, 1)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(0)
-        Me.Label5.Name = "Label5"
-        Me.tlpEntete.SetRowSpan(Me.Label5, 2)
-        Me.Label5.Size = New System.Drawing.Size(76, 58)
-        Me.Label5.TabIndex = 13
-        Me.Label5.Text = "Incertitude"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'Label6
         '
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(379, 1)
+        Me.Label6.Location = New System.Drawing.Point(398, 1)
         Me.Label6.Margin = New System.Windows.Forms.Padding(0)
         Me.Label6.Name = "Label6"
         Me.tlpEntete.SetRowSpan(Me.Label6, 2)
-        Me.Label6.Size = New System.Drawing.Size(42, 58)
+        Me.Label6.Size = New System.Drawing.Size(76, 58)
         Me.Label6.TabIndex = 14
-        Me.Label6.Text = "EMT"
+        Me.Label6.Text = "EMT (bar)"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label7
@@ -790,9 +772,9 @@ Public Class frmControleManometresNew
         Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(425, 1)
+        Me.Label7.Location = New System.Drawing.Point(478, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(188, 28)
+        Me.Label7.Size = New System.Drawing.Size(135, 28)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -802,9 +784,9 @@ Public Class frmControleManometresNew
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(486, 30)
+        Me.Label11.Location = New System.Drawing.Point(539, 30)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(127, 29)
+        Me.Label11.Size = New System.Drawing.Size(74, 29)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -814,7 +796,7 @@ Public Class frmControleManometresNew
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(425, 30)
+        Me.Label10.Location = New System.Drawing.Point(478, 30)
         Me.Label10.Name = "Label10"
         Me.Label10.Padding = New System.Windows.Forms.Padding(1)
         Me.Label10.Size = New System.Drawing.Size(54, 29)
@@ -827,9 +809,9 @@ Public Class frmControleManometresNew
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(229, 30)
+        Me.Label4.Location = New System.Drawing.Point(300, 30)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(69, 29)
+        Me.Label4.Size = New System.Drawing.Size(94, 29)
         Me.Label4.TabIndex = 22
         Me.Label4.Text = "Manomètre Référence"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -839,9 +821,9 @@ Public Class frmControleManometresNew
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(148, 30)
+        Me.Label3.Location = New System.Drawing.Point(199, 30)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(74, 29)
+        Me.Label3.Size = New System.Drawing.Size(94, 29)
         Me.Label3.TabIndex = 23
         Me.Label3.Text = "Manomètre à contrôler"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -852,9 +834,9 @@ Public Class frmControleManometresNew
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(148, 1)
+        Me.Label2.Location = New System.Drawing.Point(199, 1)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(150, 28)
+        Me.Label2.Size = New System.Drawing.Size(195, 28)
         Me.Label2.TabIndex = 24
         Me.Label2.Text = "Pression (bar)"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -868,9 +850,9 @@ Public Class frmControleManometresNew
         Me.Label1.Margin = New System.Windows.Forms.Padding(0)
         Me.Label1.Name = "Label1"
         Me.tlpEntete.SetRowSpan(Me.Label1, 2)
-        Me.Label1.Size = New System.Drawing.Size(59, 58)
+        Me.Label1.Size = New System.Drawing.Size(110, 58)
         Me.Label1.TabIndex = 25
-        Me.Label1.Text = "Points d'essai"
+        Me.Label1.Text = "Pression d'étalonnage (bar)"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btn_controleManos_acquiring
@@ -890,16 +872,14 @@ Public Class frmControleManometresNew
         '
         Me.tlpPressionCroissant.BackColor = System.Drawing.SystemColors.Control
         Me.tlpPressionCroissant.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
-        Me.tlpPressionCroissant.ColumnCount = 8
+        Me.tlpPressionCroissant.ColumnCount = 7
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 84.0!))
-        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59.0!))
-        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
-        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
-        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
-        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
-        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
+        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.tlpPressionCroissant.Controls.Add(Me.Label19, 0, 0)
         Me.tlpPressionCroissant.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPressionCroissant.Location = New System.Drawing.Point(3, 66)
@@ -915,20 +895,32 @@ Public Class frmControleManometresNew
         Me.tlpPressionCroissant.Size = New System.Drawing.Size(617, 221)
         Me.tlpPressionCroissant.TabIndex = 15
         '
+        'Label19
+        '
+        Me.Label19.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label19.Location = New System.Drawing.Point(1, 1)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label19.Name = "Label19"
+        Me.tlpPressionCroissant.SetRowSpan(Me.Label19, 6)
+        Me.Label19.Size = New System.Drawing.Size(84, 219)
+        Me.Label19.TabIndex = 24
+        Me.Label19.Text = "Pression croissante"
+        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'tlpPressionDecroissante
         '
         Me.tlpPressionDecroissante.BackColor = System.Drawing.SystemColors.Control
         Me.tlpPressionDecroissante.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
-        Me.tlpPressionDecroissante.ColumnCount = 8
+        Me.tlpPressionDecroissante.ColumnCount = 7
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 84.0!))
-        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59.0!))
-        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
-        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
-        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
-        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
-        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
+        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
         Me.tlpPressionDecroissante.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPressionDecroissante.Location = New System.Drawing.Point(3, 290)
@@ -942,21 +934,33 @@ Public Class frmControleManometresNew
         Me.tlpPressionDecroissante.Size = New System.Drawing.Size(617, 184)
         Me.tlpPressionDecroissante.TabIndex = 16
         '
+        'Label20
+        '
+        Me.Label20.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label20.Location = New System.Drawing.Point(1, 1)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label20.Name = "Label20"
+        Me.tlpPressionDecroissante.SetRowSpan(Me.Label20, 4)
+        Me.Label20.Size = New System.Drawing.Size(84, 182)
+        Me.Label20.TabIndex = 24
+        Me.Label20.Text = "Pression décroissante"
+        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'tlpRepetition
         '
         Me.tlpRepetition.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.tlpRepetition.BackColor = System.Drawing.SystemColors.Control
         Me.tlpRepetition.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
-        Me.tlpRepetition.ColumnCount = 8
+        Me.tlpRepetition.ColumnCount = 7
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 84.0!))
-        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59.0!))
-        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
-        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
-        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
-        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
-        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
+        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.tlpRepetition.Controls.Add(Me.Label26, 0, 0)
         Me.tlpRepetition.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpRepetition.Location = New System.Drawing.Point(3, 477)
@@ -966,6 +970,20 @@ Public Class frmControleManometresNew
         Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpRepetition.Size = New System.Drawing.Size(617, 74)
         Me.tlpRepetition.TabIndex = 17
+        '
+        'Label26
+        '
+        Me.Label26.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label26.Location = New System.Drawing.Point(1, 1)
+        Me.Label26.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label26.Name = "Label26"
+        Me.tlpRepetition.SetRowSpan(Me.Label26, 2)
+        Me.Label26.Size = New System.Drawing.Size(84, 72)
+        Me.Label26.TabIndex = 53
+        Me.Label26.Text = "Répétition"
+        Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel_loading
         '
@@ -1054,48 +1072,6 @@ Public Class frmControleManometresNew
         Me.ImageList_onglets.ImageStream = CType(resources.GetObject("ImageList_onglets.ImageStream"), System.Windows.Forms.ImageListStreamer)
         Me.ImageList_onglets.TransparentColor = System.Drawing.Color.White
         Me.ImageList_onglets.Images.SetKeyName(0, "")
-        '
-        'Label19
-        '
-        Me.Label19.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label19.Location = New System.Drawing.Point(1, 1)
-        Me.Label19.Margin = New System.Windows.Forms.Padding(0)
-        Me.Label19.Name = "Label19"
-        Me.tlpPressionCroissant.SetRowSpan(Me.Label19, 6)
-        Me.Label19.Size = New System.Drawing.Size(84, 219)
-        Me.Label19.TabIndex = 24
-        Me.Label19.Text = "Pression croissante"
-        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label20
-        '
-        Me.Label20.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label20.Location = New System.Drawing.Point(1, 1)
-        Me.Label20.Margin = New System.Windows.Forms.Padding(0)
-        Me.Label20.Name = "Label20"
-        Me.tlpPressionDecroissante.SetRowSpan(Me.Label20, 4)
-        Me.Label20.Size = New System.Drawing.Size(84, 182)
-        Me.Label20.TabIndex = 24
-        Me.Label20.Text = "Pression décroissante"
-        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label26
-        '
-        Me.Label26.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label26.Location = New System.Drawing.Point(1, 1)
-        Me.Label26.Margin = New System.Windows.Forms.Padding(0)
-        Me.Label26.Name = "Label26"
-        Me.tlpRepetition.SetRowSpan(Me.Label26, 2)
-        Me.Label26.Size = New System.Drawing.Size(84, 72)
-        Me.Label26.TabIndex = 53
-        Me.Label26.Text = "Répétition"
-        Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmControleManometresNew
         '
@@ -1403,14 +1379,7 @@ Public Class frmControleManometresNew
 
 
 
-        otb = New TextBox
-        otb.Tag = Prefixe & pLgCtrlManoDetail.point
-        otb.TabStop = False
-        otb.ReadOnly = True
-        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_incertitude", Prefixe & pLgCtrlManoDetail.point), "MapValue")
-        otb.DataBindings.Add(b)
-        otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 4, pNumLigne - 1)
+
 
         otb = New TextBox
         otb.Tag = Prefixe & pNumLigne
@@ -1419,7 +1388,7 @@ Public Class frmControleManometresNew
         b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_EMT", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 5, pNumLigne - 1)
+        pTableLayoutPanel.Controls.Add(otb, 4, pNumLigne - 1)
 
         otb = New TextBox
         otb.Tag = Prefixe & pLgCtrlManoDetail.point
@@ -1428,7 +1397,7 @@ Public Class frmControleManometresNew
         b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_err_abs", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 6, pNumLigne - 1)
+        pTableLayoutPanel.Controls.Add(otb, 5, pNumLigne - 1)
 
         otb = New TextBox
         otb.Tag = Prefixe & pLgCtrlManoDetail.point
@@ -1437,7 +1406,7 @@ Public Class frmControleManometresNew
         b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_err_FondEchelle", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
         otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 7, pNumLigne - 1)
+        pTableLayoutPanel.Controls.Add(otb, 6, pNumLigne - 1)
 
     End Sub
 
@@ -1681,10 +1650,10 @@ Public Class frmControleManometresNew
         If (isSaisieComplete()) Then
             'Calcul du resutat du contole
             If checkMano(pControle) Then
-                lblResultat.Text = "Votre manomètre est fiable : il répond à sa classe de précision."
+                lblResultat.Text = "Votre manomètre est fiable : il est conforme à sa classe d'exactitude."
                 lblResultat.ForeColor = System.Drawing.Color.Green
             Else
-                lblResultat.Text = "Votre manomètre n'est pas fiable : il ne répond pas à sa classe de précision. Faites le remettre en état ou changez le."
+                lblResultat.Text = "Votre manomètre n'est pas fiable : il n'est pas conforme à sa classe d'exactitude. Faites le remettre en état ou changez le."
                 lblResultat.ForeColor = System.Drawing.Color.Red
             End If
 

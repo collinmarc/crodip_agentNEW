@@ -194,7 +194,7 @@ Public Class ControleMano
     <XmlIgnore()>
     Public ReadOnly Property resultatColor() As System.Drawing.Color
         Get
-            If resultat = "Votre manomètre est fiable : il répond à sa classe de précision." Then
+            If resultat = "Votre manomètre est fiable : il est conforme à sa classe d'exactitude." Then
                 Return System.Drawing.Color.Green
             Else
                 Return System.Drawing.Color.Green

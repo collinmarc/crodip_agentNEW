@@ -41,7 +41,7 @@ Imports CRODIP_ControlLibrary
         '       oCtrl.AgentVerif = "Rault Marc-Antoine"
         oCtrl.Proprietaire = "Crodip_agent"
         oCtrl.tempAir = "18"
-        oCtrl.resultat = "Votre manomètre n'est pas fiable : il ne répond pas à sa classe de précision. Faites le remettre en état ou changez le."
+        oCtrl.resultat = "Votre manomètre n'est pas fiable : il n'est pas conforme à sa classe d'exactitude. Faites le remettre en état ou changez le."
         oCtrl.lstControleManoDetail_pres_manoCtrl("UP1") = "0"
         oCtrl.lstControleManoDetail_pres_manoEtalon("UP1") = "0,000"
         oCtrl.lstControleManoDetail_err_abs("UP1") = "0,00"
