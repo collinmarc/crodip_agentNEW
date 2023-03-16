@@ -499,7 +499,7 @@ Public Class PrestationTarifManager
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
             Dim tmpResults As DbDataReader
-            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationTarif WHERE PrestationTarif.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationTarif.id")
+            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationTarif WHERE PrestationTarif.idStructure=" & agentCourant.idStructure & " ORDER BY PrestationTarif.id")
             '################################################################
             Dim i As Integer = 0
             While tmpResults.Read()

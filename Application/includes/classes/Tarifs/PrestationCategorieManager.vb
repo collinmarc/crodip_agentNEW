@@ -438,7 +438,8 @@ Public Class PrestationCategorieManager
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
             Dim tmpResults As DbDataReader
-            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationCategorie.id")
+            '            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationCategorie.id")
+            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & agentCourant.idStructure & " ORDER BY PrestationCategorie.id")
             '################################################################
             Dim i As Integer = 0
             While tmpResults.Read()

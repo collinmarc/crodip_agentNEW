@@ -13,6 +13,7 @@ BUILD 2023022224150000
 	0001560: [Metrologie] Modification Config
 	0001562: Nouveaux Defauts Fixes et semi-Mobiles
 	0001563: Tabulation sur fiche client
+	0001552: Synchronisation des tarifs
 
 BUILD 20230207130000
 		0001545: Erreur D'acquisition

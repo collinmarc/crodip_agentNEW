@@ -675,13 +675,13 @@ Public Class Synchronisation
     Private Sub runASCSynchroPresta()
         If (m_SynchroBoolean.m_bSynchAscPrestation) Then
 
+            Notice("Synchronisation des tarifs")
             ' Synchro des prestationsCategories
             Dim arrUpdatesPrestationCategorie() As PrestationCategorie = PrestationCategorieManager.getUpdates
             For Each tmpUpdatePrestationCategorie As PrestationCategorie In arrUpdatesPrestationCategorie
                 Try
                     Dim UpdatedObject As New Object
                     Dim response As Integer = PrestationCategorieManager.sendWSPrestationCategorie(tmpUpdatePrestationCategorie, m_Agent, UpdatedObject)
-                    Notice("PrestationCategorie n°" & tmpUpdatePrestationCategorie.id)
                     Select Case response
                         Case -1 ' ERROR
                             CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationCategorie) - Erreur Locale")
@@ -708,7 +708,6 @@ Public Class Synchronisation
             For Each tmpUpdatePrestationTarif As PrestationTarif In arrUpdatesPrestationTarif
                 Try
                     Dim UpdatedObject As New Object
-                    Notice("PrestationTarif n°" & tmpUpdatePrestationTarif.id)
                     Dim response As Integer = PrestationTarifManager.sendWSPrestationTarif(tmpUpdatePrestationTarif, m_Agent, UpdatedObject)
                     Select Case response
                         Case -1 ' ERROR
