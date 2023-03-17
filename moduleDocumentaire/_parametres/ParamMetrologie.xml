@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <lstParamMetrologie xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Metrologie FondEchelle="">
+  <Metrologie FondEchelle="" Classe="1">
+	<EMT>0.1</EMT>
     <PressionMontantes>
       <PressionCtrl Num="1" Valeur="1.6" />
       <PressionCtrl Num="2" Valeur="1.7" />
@@ -22,8 +23,7 @@
       <PressionCtrl Num="3" Valeur="3.2" />
     </Repetitions>
   </Metrologie>
-  <Metrologie FondEchelle="6" classe="1">
-    <EMT>0.12</EMT>
+  <Metrologie FondEchelle="6" Classe="0.6">
     <PressionMontantes>
       <PressionCtrl Num="1" Valeur="1" />
       <PressionCtrl Num="2" Valeur="1.6" />
@@ -40,7 +40,25 @@
       <PressionCtrl Num="1" Valeur="1" />
     </PressionDescendantes>
   </Metrologie>
-   <Metrologie FondEchelle="10" classe ="1">
+  <Metrologie FondEchelle="6" Classe="1">
+    <EMT>0.1</EMT>
+    <PressionMontantes>
+      <PressionCtrl Num="1" Valeur="1" />
+      <PressionCtrl Num="2" Valeur="1.6" />
+      <PressionCtrl Num="3" Valeur="2" />
+      <PressionCtrl Num="4" Valeur="3" />
+      <PressionCtrl Num="5" Valeur="4" />
+      <PressionCtrl Num="6" Valeur="5" />
+    </PressionMontantes>
+    <PressionDescendantes>
+      <PressionCtrl Num="5" Valeur="4" />
+      <PressionCtrl Num="4" Valeur="3" />
+      <PressionCtrl Num="3" Valeur="2" />
+      <PressionCtrl Num="2" Valeur="1.6" />
+      <PressionCtrl Num="1" Valeur="1" />
+    </PressionDescendantes>
+  </Metrologie>
+   <Metrologie FondEchelle="10" Classe ="1">
  <PressionMontantes>
       <PressionCtrl Num="1" Valeur="1" />
       <PressionCtrl Num="2" Valeur="1.6" />
@@ -57,7 +75,7 @@
       <PressionCtrl Num="1" Valeur="1" />
     </PressionDescendantes>
   </Metrologie>
-   <Metrologie FondEchelle="16">
+   <Metrologie FondEchelle="16" Classe ="0.6">
  <PressionMontantes>
       <PressionCtrl Num="1" Valeur="1" />
       <PressionCtrl Num="2" Valeur="1.6" />
@@ -74,7 +92,7 @@
       <PressionCtrl Num="1" Valeur="1" />
     </PressionDescendantes>
   </Metrologie>
-  <Metrologie FondEchelle="20">
+   <Metrologie FondEchelle="20" Classe ="0.6">
     <PressionMontantes>
       <PressionCtrl Num="1" Valeur="1" />
       <PressionCtrl Num="2" Valeur="5" />
@@ -91,7 +109,7 @@
       <PressionCtrl Num="1" Valeur="1" />
     </PressionDescendantes>
   </Metrologie>
-  <Metrologie FondEchelle="25">
+  <Metrologie FondEchelle="20" Classe ="1">
     <PressionMontantes>
       <PressionCtrl Num="1" Valeur="1" />
       <PressionCtrl Num="2" Valeur="5" />
@@ -107,5 +125,56 @@
       <PressionCtrl Num="2" Valeur="5" />
       <PressionCtrl Num="1" Valeur="1" />
     </PressionDescendantes>
-  </Metrologie>  
+  </Metrologie>
+  <Metrologie FondEchelle="25" Classe ="1">
+    <PressionMontantes>
+      <PressionCtrl Num="1" Valeur="1" />
+      <PressionCtrl Num="2" Valeur="5" />
+      <PressionCtrl Num="3" Valeur="10" />
+      <PressionCtrl Num="4" Valeur="15" />
+      <PressionCtrl Num="5" Valeur="18" />
+      <PressionCtrl Num="6" Valeur="20" />
+    </PressionMontantes>
+    <PressionDescendantes>
+      <PressionCtrl Num="5" Valeur="18" />
+      <PressionCtrl Num="4" Valeur="15" />
+      <PressionCtrl Num="3" Valeur="10" />
+      <PressionCtrl Num="2" Valeur="5" />
+      <PressionCtrl Num="1" Valeur="1" />
+    </PressionDescendantes>
+  </Metrologie> 
+  <Metrologie FondEchelle="25" Classe ="0.6">
+    <PressionMontantes>
+      <PressionCtrl Num="1" Valeur="1" />
+      <PressionCtrl Num="2" Valeur="3" />
+      <PressionCtrl Num="3" Valeur="5" />
+      <PressionCtrl Num="4" Valeur="10" />
+      <PressionCtrl Num="5" Valeur="16" />
+      <PressionCtrl Num="6" Valeur="20" />
+    </PressionMontantes>
+    <PressionDescendantes>
+      <PressionCtrl Num="5" Valeur="16" />
+      <PressionCtrl Num="4" Valeur="10" />
+      <PressionCtrl Num="3" Valeur="5" />
+      <PressionCtrl Num="2" Valeur="3" />
+      <PressionCtrl Num="1" Valeur="1" />
+    </PressionDescendantes>
+  </Metrologie>   
+  <Metrologie FondEchelle="25" Classe ="0.25">
+    <PressionMontantes>
+      <PressionCtrl Num="1" Valeur="1" />
+      <PressionCtrl Num="2" Valeur="3" />
+      <PressionCtrl Num="3" Valeur="5" />
+      <PressionCtrl Num="4" Valeur="10" />
+      <PressionCtrl Num="5" Valeur="16" />
+      <PressionCtrl Num="6" Valeur="20" />
+    </PressionMontantes>
+    <PressionDescendantes>
+      <PressionCtrl Num="5" Valeur="16" />
+      <PressionCtrl Num="4" Valeur="10" />
+      <PressionCtrl Num="3" Valeur="5" />
+      <PressionCtrl Num="2" Valeur="3" />
+      <PressionCtrl Num="1" Valeur="1" />
+    </PressionDescendantes>
+  </Metrologie>   
 </lstParamMetrologie>

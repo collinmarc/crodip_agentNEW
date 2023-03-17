@@ -480,9 +480,6 @@
     <Compile Include="Application\agent\frmGestIdentifiantsPulve.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\agent\Manometres\frmControleManometres2.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\agent\materiels_supprimes.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2285,9 +2282,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\agent\frmGestIdentifiantsPulve.resx">
       <DependentUpon>frmGestIdentifiantsPulve.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\agent\Manometres\frmControleManometres2.resx">
-      <DependentUpon>frmControleManometres2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\agent\materiels_supprimes.resx">
       <DependentUpon>materiels_supprimes.vb</DependentUpon>

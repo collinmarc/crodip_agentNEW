@@ -2000,6 +2000,8 @@ Public Class frmdiagnostic_facturationCoProp
                             CSFile.delete(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oFact.pathPDF)
                         End If
                     Next
+                Else
+                    Exit Sub
                 End If
             End If
         End If
