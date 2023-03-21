@@ -431,6 +431,7 @@
     <Compile Include="Application\includes\classes\Tools\importCRODIP.vb" />
     <Compile Include="Application\includes\fonctions\CSCommand.vb" />
     <Compile Include="Application\includes\fonctions\oleDBCommandExtensions.vb" />
+    <Compile Include="Application\includes\fonctions\SurroundingClass.vb" />
     <Compile Include="Application\parametrage\facturation2.vb">
       <SubType>Form</SubType>
     </Compile>

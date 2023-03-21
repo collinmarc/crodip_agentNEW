@@ -732,7 +732,7 @@ Public Class frmControleManometresNew
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83.0!))
         Me.tlpEntete.Controls.Add(Me.Label6, 4, 0)
         Me.tlpEntete.Controls.Add(Me.Label7, 5, 0)
         Me.tlpEntete.Controls.Add(Me.Label11, 6, 1)
@@ -757,7 +757,7 @@ Public Class frmControleManometresNew
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(397, 1)
+        Me.Label6.Location = New System.Drawing.Point(395, 1)
         Me.Label6.Margin = New System.Windows.Forms.Padding(0)
         Me.Label6.Name = "Label6"
         Me.tlpEntete.SetRowSpan(Me.Label6, 2)
@@ -772,9 +772,9 @@ Public Class frmControleManometresNew
         Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(477, 1)
+        Me.Label7.Location = New System.Drawing.Point(475, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(136, 28)
+        Me.Label7.Size = New System.Drawing.Size(138, 28)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -784,9 +784,9 @@ Public Class frmControleManometresNew
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(538, 30)
+        Me.Label11.Location = New System.Drawing.Point(536, 30)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(75, 29)
+        Me.Label11.Size = New System.Drawing.Size(77, 29)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -796,7 +796,7 @@ Public Class frmControleManometresNew
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(477, 30)
+        Me.Label10.Location = New System.Drawing.Point(475, 30)
         Me.Label10.Name = "Label10"
         Me.Label10.Padding = New System.Windows.Forms.Padding(1)
         Me.Label10.Size = New System.Drawing.Size(54, 29)
@@ -809,7 +809,7 @@ Public Class frmControleManometresNew
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(299, 30)
+        Me.Label4.Location = New System.Drawing.Point(297, 30)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(94, 29)
         Me.Label4.TabIndex = 22
@@ -821,7 +821,7 @@ Public Class frmControleManometresNew
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(198, 30)
+        Me.Label3.Location = New System.Drawing.Point(196, 30)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(94, 29)
         Me.Label3.TabIndex = 23
@@ -834,7 +834,7 @@ Public Class frmControleManometresNew
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(198, 1)
+        Me.Label2.Location = New System.Drawing.Point(196, 1)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(195, 28)
         Me.Label2.TabIndex = 24
@@ -850,7 +850,7 @@ Public Class frmControleManometresNew
         Me.Label1.Margin = New System.Windows.Forms.Padding(0)
         Me.Label1.Name = "Label1"
         Me.tlpEntete.SetRowSpan(Me.Label1, 2)
-        Me.Label1.Size = New System.Drawing.Size(109, 58)
+        Me.Label1.Size = New System.Drawing.Size(107, 58)
         Me.Label1.TabIndex = 25
         Me.Label1.Text = "Pression d'étalonnage (bar)"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -879,7 +879,7 @@ Public Class frmControleManometresNew
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81.0!))
+        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83.0!))
         Me.tlpPressionCroissant.Controls.Add(Me.Label19, 0, 0)
         Me.tlpPressionCroissant.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPressionCroissant.Location = New System.Drawing.Point(3, 66)
@@ -920,7 +920,7 @@ Public Class frmControleManometresNew
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81.0!))
+        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83.0!))
         Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
         Me.tlpPressionDecroissante.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPressionDecroissante.Location = New System.Drawing.Point(3, 290)
@@ -960,7 +960,7 @@ Public Class frmControleManometresNew
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81.0!))
+        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83.0!))
         Me.tlpRepetition.Controls.Add(Me.Label26, 0, 0)
         Me.tlpRepetition.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpRepetition.Location = New System.Drawing.Point(3, 477)
@@ -1169,6 +1169,8 @@ Public Class frmControleManometresNew
 
         End If
     End Sub
+
+    Dim m_bAfficheAjusteur As Boolean = False
     ''' <summary>
     ''' Affichage du détail du controle de Mano
     ''' </summary>
@@ -1176,8 +1178,7 @@ Public Class frmControleManometresNew
     ''' <param name="pAjusteur">Affichage de l'ajusteur ou pas</param>
     Private Sub AfficheControleMano(pControleMano As ControleMano)
 
-        Me.tlpGlobal.Visible = False
-        Me.tlpGlobal.SuspendLayout()
+
         'ajustement des TablePanels
         Dim nUp As Integer = pControleMano.lstControleManoDetail.Values.Where(Function(D)
                                                                                   Return D.type = "UP"
@@ -1189,10 +1190,25 @@ Public Class frmControleManometresNew
                                                                                     Return D.type = "REPE"
                                                                                 End Function).Count()
         Dim nLignestot As Integer = nUp + nDown + nRepe
-        tlpGlobal.RowStyles(1) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, nUp / nLignestot * 100)
-        tlpGlobal.RowStyles(2) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, nDown / nLignestot * 100)
-        tlpGlobal.RowStyles(3) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, nRepe / nLignestot * 100)
+        'Vérification si changement de paramétrage
+        Dim bMAJIHM As Boolean = True
+        If nUp = tlpPressionCroissant.RowStyles.Count And nDown = tlpPressionDecroissante.RowStyles.Count And nRepe = tlpRepetition.RowStyles.Count Then
+            bMAJIHM = False
+        End If
+        'on force le réaffichage  s'il y a un changement d'ajusteur
+        Dim oMano As ManometreControle = m_bsManoControle.Current
+        If oMano.bAjusteur <> m_bAfficheAjusteur Then
+            bMAJIHM = True
+        End If
+        m_bAfficheAjusteur = oMano.bAjusteur
 
+        If bMAJIHM Then
+            SurroundingClass.BeginControlUpdate(tlpGlobal)
+
+            tlpGlobal.RowStyles(1) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, nUp / nLignestot * 100)
+            tlpGlobal.RowStyles(2) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, nDown / nLignestot * 100)
+            tlpGlobal.RowStyles(3) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, nRepe / nLignestot * 100)
+        End If
 
         Dim lstCtrlManoDetail As List(Of ControleManoDetail)
         'Trt des pression croissantes
@@ -1200,37 +1216,40 @@ Public Class frmControleManometresNew
         lstCtrlManoDetail = pControleMano.lstControleManoDetail.Values.Where(Function(D)
                                                                                  Return D.type = "UP"
                                                                              End Function).ToList()
-        Me.tlpPressionCroissant.Controls.Clear()
-        'Label Croissant
+
         Dim lblPressionCroissante As Label
-        lblPressionCroissante = New Label()
-        lblPressionCroissante.Dock = System.Windows.Forms.DockStyle.Fill
-        lblPressionCroissante.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        lblPressionCroissante.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        lblPressionCroissante.Location = New System.Drawing.Point(1, 1)
-        lblPressionCroissante.Margin = New System.Windows.Forms.Padding(0)
-        lblPressionCroissante.Size = New System.Drawing.Size(84, 219)
-        lblPressionCroissante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        lblPressionCroissante.Text = "Pressions croissantes"
-        If lstCtrlManoDetail.Count > 0 Then
-            Me.tlpPressionCroissant.Controls.Add(lblPressionCroissante, 0, 0)
+        If bMAJIHM Then
+            Me.tlpPressionCroissant.Controls.Clear()
+            Me.tlpPressionCroissant.RowStyles.Clear()
+            'Me.tlpPressionCroissant.RowCount = lstCtrlManoDetail.Count
+            For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
+                Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
+            Next
+            'Label Croissant
+            lblPressionCroissante = New Label()
+            lblPressionCroissante.Dock = System.Windows.Forms.DockStyle.Fill
+            lblPressionCroissante.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            lblPressionCroissante.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+            lblPressionCroissante.Location = New System.Drawing.Point(1, 1)
+            lblPressionCroissante.Margin = New System.Windows.Forms.Padding(0)
+            lblPressionCroissante.Size = New System.Drawing.Size(84, 219)
+            lblPressionCroissante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            lblPressionCroissante.Text = "Pressions croissantes"
+            If lstCtrlManoDetail.Count > 0 Then
+                Me.tlpPressionCroissant.Controls.Add(lblPressionCroissante, 0, 0)
+            End If
         End If
 
         Dim nLigne As Integer
         nLigne = 1
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
-            AfficheLgCtrlManoDetail(tlpPressionCroissant, oLigneDetail, nLigne)
+            AfficheLgCtrlManoDetail(tlpPressionCroissant, oLigneDetail, nLigne, bMAJIHM)
             nLigne = nLigne + 1
         Next
-
-        Me.tlpPressionCroissant.RowStyles.Clear()
-        'Me.tlpPressionCroissant.RowCount = lstCtrlManoDetail.Count
-        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
-            Me.tlpPressionCroissant.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
-        Next
-
-        If lstCtrlManoDetail.Count > 1 Then
-            Me.tlpPressionCroissant.SetRowSpan(lblPressionCroissante, lstCtrlManoDetail.Count)
+        If bMAJIHM Then
+            If lstCtrlManoDetail.Count > 1 Then
+                Me.tlpPressionCroissant.SetRowSpan(lblPressionCroissante, lstCtrlManoDetail.Count)
+            End If
         End If
 
 
@@ -1241,35 +1260,38 @@ Public Class frmControleManometresNew
                                                                                  Return D.type = "DOWN"
                                                                              End Function).ToList()
 
-        Me.tlpPressionDecroissante.Controls.Clear()
-        Me.tlpPressionDecroissante.RowStyles.Clear()
-        'Me.tlpPressionDecroissante.RowCount = lstCtrlManoDetail.Count
-        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
-            Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
-        Next
-        'Label Décroissant
-        'TODO créer le Label
         Dim lblPressionDeCroissante As Label
-        lblPressionDeCroissante = New Label()
-        lblPressionDeCroissante.Dock = System.Windows.Forms.DockStyle.Fill
-        lblPressionDeCroissante.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        lblPressionDeCroissante.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        lblPressionDeCroissante.Location = New System.Drawing.Point(1, 1)
-        lblPressionDeCroissante.Margin = New System.Windows.Forms.Padding(0)
-        lblPressionDeCroissante.Size = New System.Drawing.Size(84, 219)
-        lblPressionDeCroissante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        lblPressionDeCroissante.Text = "Pressions décroissantes"
-        If lstCtrlManoDetail.Count > 0 Then
-            Me.tlpPressionDecroissante.Controls.Add(lblPressionDeCroissante, 0, 0)
+        If bMAJIHM Then
+            Me.tlpPressionDecroissante.Controls.Clear()
+            Me.tlpPressionDecroissante.RowStyles.Clear()
+            'Me.tlpPressionDecroissante.RowCount = lstCtrlManoDetail.Count
+            For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
+                Me.tlpPressionDecroissante.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
+            Next
+            'Label Décroissant
+            'TODO créer le Label
+            lblPressionDeCroissante = New Label()
+            lblPressionDeCroissante.Dock = System.Windows.Forms.DockStyle.Fill
+            lblPressionDeCroissante.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            lblPressionDeCroissante.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+            lblPressionDeCroissante.Location = New System.Drawing.Point(1, 1)
+            lblPressionDeCroissante.Margin = New System.Windows.Forms.Padding(0)
+            lblPressionDeCroissante.Size = New System.Drawing.Size(84, 219)
+            lblPressionDeCroissante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            lblPressionDeCroissante.Text = "Pressions décroissantes"
+            If lstCtrlManoDetail.Count > 0 Then
+                Me.tlpPressionDecroissante.Controls.Add(lblPressionDeCroissante, 0, 0)
+            End If
         End If
-
         nLigne = 1
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
-            AfficheLgCtrlManoDetail(tlpPressionDecroissante, oLigneDetail, nLigne)
+            AfficheLgCtrlManoDetail(tlpPressionDecroissante, oLigneDetail, nLigne, bMAJIHM)
             nLigne = nLigne + 1
         Next
-        If lstCtrlManoDetail.Count > 1 Then
-            Me.tlpPressionDecroissante.SetRowSpan(lblPressionDeCroissante, lstCtrlManoDetail.Count)
+        If bMAJIHM Then
+            If lstCtrlManoDetail.Count > 1 Then
+                Me.tlpPressionDecroissante.SetRowSpan(lblPressionDeCroissante, lstCtrlManoDetail.Count)
+            End If
         End If
 
 
@@ -1279,31 +1301,35 @@ Public Class frmControleManometresNew
                                                                                  Return D.type = "REPE"
                                                                              End Function).ToList()
 
-        Me.tlpRepetition.Controls.Clear()
-        Me.tlpRepetition.RowStyles.Clear()
-        'Me.tlpRepetition.RowCount = lstCtrlManoDetail.Count
-
-        For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
-            Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
-        Next
-        'Label Repetition
         Dim lblRepetition As Label
-        lblRepetition = New Label()
-        lblRepetition.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        lblRepetition.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        lblRepetition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        lblRepetition.Text = "Répétitions"
-        If lstCtrlManoDetail.Count > 0 Then
-            Me.tlpRepetition.Controls.Add(lblRepetition, 0, 0)
+        If bMAJIHM Then
+            Me.tlpRepetition.Controls.Clear()
+            Me.tlpRepetition.RowStyles.Clear()
+            'Me.tlpRepetition.RowCount = lstCtrlManoDetail.Count
+
+            For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
+                Me.tlpRepetition.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100 / lstCtrlManoDetail.Count))
+            Next
+            'Label Repetition
+            lblRepetition = New Label()
+            lblRepetition.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            lblRepetition.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+            lblRepetition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            lblRepetition.Text = "Répétitions"
+            If lstCtrlManoDetail.Count > 0 Then
+                Me.tlpRepetition.Controls.Add(lblRepetition, 0, 0)
+            End If
         End If
 
         nLigne = 1
         For Each oLigneDetail As ControleManoDetail In lstCtrlManoDetail
-            AfficheLgCtrlManoDetail(tlpRepetition, oLigneDetail, nLigne)
+            AfficheLgCtrlManoDetail(tlpRepetition, oLigneDetail, nLigne, bMAJIHM)
             nLigne = nLigne + 1
         Next
-        If lstCtrlManoDetail.Count > 1 Then
-            Me.tlpRepetition.SetRowSpan(lblRepetition, lstCtrlManoDetail.Count)
+        If bMAJIHM Then
+            If lstCtrlManoDetail.Count > 1 Then
+                Me.tlpRepetition.SetRowSpan(lblRepetition, lstCtrlManoDetail.Count)
+            End If
         End If
 
         'ajustement des TablePanels
@@ -1311,108 +1337,143 @@ Public Class frmControleManometresNew
         'tlpGlobal.RowStyles(1) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpPressionCroissant.RowStyles.Count / nLignestot * 100)
         'tlpGlobal.RowStyles(2) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpPressionDecroissante.RowStyles.Count / nLignestot * 100)
         'tlpGlobal.RowStyles(3) = New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, tlpRepetition.RowStyles.Count / nLignestot * 100)
+        If bMAJIHM Then
+            SurroundingClass.EndControlUpdate(tlpGlobal)
+        End If
 
-        Me.tlpGlobal.Visible = True
-        Me.tlpGlobal.ResumeLayout(True)
 
     End Sub
 
     Private Sub AfficheLgCtrlManoDetail(pTableLayoutPanel As TableLayoutPanel,
                                         pLgCtrlManoDetail As ControleManoDetail,
-                                        pNumLigne As Integer)
+                                        pNumLigne As Integer, pbMAJIHM As Boolean)
 
         Dim Prefixe As String = pLgCtrlManoDetail.type
         Dim oControle As ControleMano
         oControle = m_bsControle.Current
 
-
-        Dim oLbl As Label = New Label()
-        oLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        oLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Dim oLbl As Label
+        If pbMAJIHM Then
+            oLbl = New Label()
+            oLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            oLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+            oLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            oLbl.Dock = DockStyle.Fill
+            oLbl.Text = pLgCtrlManoDetail.point
+            pTableLayoutPanel.Controls.Add(oLbl, 1, pNumLigne - 1)
+        Else
+            oLbl = pTableLayoutPanel.GetControlFromPosition(1, pNumLigne - 1)
+        End If
         oLbl.Text = pLgCtrlManoDetail.point
-        oLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        oLbl.Dock = DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(oLbl, 1, pNumLigne - 1)
 
 
+        Dim oCtrl As Control
         Dim otb As TextBox
         Dim b As Binding
         Dim oNup As NumericUpDown2
 
         'on utilise une classe intermédiare (BindindMap) pour pourvoir utiliser les propriété indexees
         '=============================================================================================
-        '        If pLgCtrlManoDetail.bAjusteur Then
         If pLgCtrlManoDetail.bAjusteur Then
-            oNup = New NumericUpDown2()
-            oNup.tb.Enabled = False
-            oNup.upDown.Visible = True
-            oNup.TabStop = False
-            oNup.Tag = Prefixe & pLgCtrlManoDetail.point
-            oNup.Increment = pLgCtrlManoDetail.resolution
-            oNup.DecimalPlaces = 3
-            oNup.Dock = System.Windows.Forms.DockStyle.Fill
-            b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoCtrl", Prefixe & pLgCtrlManoDetail.point), "MapValue")
-            oNup.DataBindings.Add(b)
-            pTableLayoutPanel.Controls.Add(oNup, 2, pNumLigne - 1)
+            If pbMAJIHM Then
+                oNup = New NumericUpDown2()
+                oNup.tb.Enabled = False
+                oNup.upDown.Visible = True
+                oNup.TabStop = False
+                oNup.Tag = Prefixe & pLgCtrlManoDetail.point
+                oNup.Increment = pLgCtrlManoDetail.resolution
+                oNup.DecimalPlaces = 3
+                oNup.Dock = System.Windows.Forms.DockStyle.Fill
+                pTableLayoutPanel.Controls.Add(oNup, 2, pNumLigne - 1)
+                oCtrl = oNup
+            Else
+                oCtrl = pTableLayoutPanel.GetControlFromPosition(2, pNumLigne - 1)
+                oCtrl.DataBindings.Clear()
+            End If
         Else
-            otb = New TextBox
-            otb.Tag = Prefixe & pLgCtrlManoDetail.point
-            otb.TabStop = False
-            otb.Dock = System.Windows.Forms.DockStyle.Fill
-            b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoCtrl", Prefixe & pLgCtrlManoDetail.point), "MapValue")
-            otb.DataBindings.Add(b)
-            otb.ReadOnly = True
-            pTableLayoutPanel.Controls.Add(otb, 2, pNumLigne - 1)
+            If pbMAJIHM Then
+                otb = New TextBox
+                otb.Tag = Prefixe & pLgCtrlManoDetail.point
+                otb.TabStop = False
+                otb.Dock = System.Windows.Forms.DockStyle.Fill
+                otb.ReadOnly = True
+                pTableLayoutPanel.Controls.Add(otb, 2, pNumLigne - 1)
+                oCtrl = otb
+            Else
+                oCtrl = pTableLayoutPanel.GetControlFromPosition(2, pNumLigne - 1)
+                oCtrl.DataBindings.Clear()
+            End If
 
         End If
+        b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoCtrl", Prefixe & pLgCtrlManoDetail.point), "MapValue")
+        oCtrl.DataBindings.Add(b)
 
 
         otb = New TextBox()
-        otb.Tag = Prefixe & pLgCtrlManoDetail.point
-        otb.Dock = System.Windows.Forms.DockStyle.Fill
+        If pbMAJIHM Then
+            otb.Tag = Prefixe & pLgCtrlManoDetail.point
+            otb.Dock = System.Windows.Forms.DockStyle.Fill
+            pTableLayoutPanel.Controls.Add(otb, 3, pNumLigne - 1)
+            If oControle.lstControleManoDetail_conformite(Prefixe & pLgCtrlManoDetail.point) = "1" Then
+                otb.ForeColor = System.Drawing.Color.Green
+            End If
+            If oControle.lstControleManoDetail_conformite(Prefixe & pLgCtrlManoDetail.point) = "0" Then
+                otb.ForeColor = System.Drawing.Color.Red
+            End If
+        Else
+            otb = pTableLayoutPanel.GetControlFromPosition(3, pNumLigne - 1)
+            otb.DataBindings.Clear()
+        End If
         b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_pres_manoEtalon", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
         AddHandler otb.Validated, AddressOf validerSaisiePressionEtalon
         AddHandler otb.KeyPress, AddressOf checkKeyPress
-        pTableLayoutPanel.Controls.Add(otb, 3, pNumLigne - 1)
-        If oControle.lstControleManoDetail_conformite(Prefixe & pLgCtrlManoDetail.point) = "1" Then
-            otb.ForeColor = System.Drawing.Color.Green
+
+
+
+
+
+        If pbMAJIHM Then
+            otb = New TextBox
+            otb.Tag = Prefixe & pNumLigne
+            otb.TabStop = False
+            otb.ReadOnly = True
+            otb.Dock = System.Windows.Forms.DockStyle.Fill
+            pTableLayoutPanel.Controls.Add(otb, 4, pNumLigne - 1)
+        Else
+            otb = pTableLayoutPanel.GetControlFromPosition(4, pNumLigne - 1)
+            otb.DataBindings.Clear()
         End If
-        If oControle.lstControleManoDetail_conformite(Prefixe & pLgCtrlManoDetail.point) = "0" Then
-            otb.ForeColor = System.Drawing.Color.Red
-        End If
-
-
-
-
-
-
-        otb = New TextBox
-        otb.Tag = Prefixe & pNumLigne
-        otb.TabStop = False
-        otb.ReadOnly = True
         b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_EMT", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
-        otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 4, pNumLigne - 1)
 
-        otb = New TextBox
-        otb.Tag = Prefixe & pLgCtrlManoDetail.point
-        otb.TabStop = False
-        otb.ReadOnly = True
+        If pbMAJIHM Then
+            otb = New TextBox
+            otb.Tag = Prefixe & pLgCtrlManoDetail.point
+            otb.TabStop = False
+            otb.ReadOnly = True
+            otb.Dock = System.Windows.Forms.DockStyle.Fill
+            pTableLayoutPanel.Controls.Add(otb, 5, pNumLigne - 1)
+        Else
+            otb = pTableLayoutPanel.GetControlFromPosition(5, pNumLigne - 1)
+            otb.DataBindings.Clear()
+        End If
         b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_err_abs", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
-        otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 5, pNumLigne - 1)
 
-        otb = New TextBox
-        otb.Tag = Prefixe & pLgCtrlManoDetail.point
-        otb.TabStop = False
-        otb.ReadOnly = True
+        If pbMAJIHM Then
+            otb = New TextBox
+            otb.Tag = Prefixe & pLgCtrlManoDetail.point
+            otb.TabStop = False
+            otb.ReadOnly = True
+            otb.Dock = System.Windows.Forms.DockStyle.Fill
+            pTableLayoutPanel.Controls.Add(otb, 6, pNumLigne - 1)
+        Else
+            otb = pTableLayoutPanel.GetControlFromPosition(6, pNumLigne - 1)
+            otb.DataBindings.Clear()
+        End If
         b = New Binding("Text", New BindingMap(Me.m_bsControle.Current, "lstControleManoDetail_err_FondEchelle", Prefixe & pLgCtrlManoDetail.point), "MapValue")
         otb.DataBindings.Add(b)
-        otb.Dock = System.Windows.Forms.DockStyle.Fill
-        pTableLayoutPanel.Controls.Add(otb, 6, pNumLigne - 1)
 
     End Sub
 
