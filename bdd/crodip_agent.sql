@@ -1,21 +1,21 @@
 --
--- Fichier généré par SQLiteStudio v3.2.1 sur ven. févr. 18 15:34:39 2022
+-- Fichier généré par SQLiteStudio v3.2.1 sur mer. mars 29 10:06:53 2023
 --
 -- Encodage texte utilisé : System
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
--- Table : Agent
-DROP TABLE IF EXISTS Agent;
+-- Table : AGENT
+DROP TABLE IF EXISTS AGENT;
 
-CREATE TABLE Agent (
+CREATE TABLE AGENT (
     Id                     INT            PRIMARY KEY,
     numeroNational         NVARCHAR (50)  UNIQUE,
     motdepasse             NVARCHAR (255),
     nom                    VARCHAR (256),
     prenom                 VARCHAR (256),
-    idStructure            INT            REFERENCES Structure (id),
+    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
     telephoneportable      VARCHAR (256),
     email                  VARCHAR (256),
     dateCreation           DATETIME2,
@@ -30,7 +30,8 @@ CREATE TABLE Agent (
     droitsPulves           VARCHAR (2560),
     isGestionnaire         BIT            DEFAULT 0,
     signatureElect         BIT            DEFAULT 0,
-    statut                 VARCHAR (50) 
+    statut                 VARCHAR (50),
+    idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE SET NULL
 );
 
 
@@ -39,7 +40,7 @@ DROP TABLE IF EXISTS AgentBuseEtalon;
 
 CREATE TABLE AgentBuseEtalon (
     numeroNational         NVARCHAR (255) NOT NULL,
-    idCrodip               NVARCHAR (255) UNIQUE,
+    idCrodip               NVARCHAR (255),
     couleur                NVARCHAR (255),
     pressionEtalonnage     FLOAT,
     debitEtalonnage        FLOAT,
@@ -71,7 +72,7 @@ CREATE TABLE AgentManoControle (
     type                   NVARCHAR (255),
     fondEchelle            NVARCHAR (255),
     etat                   BIT,
-    idStructure            INT            REFERENCES Structure (id),
+    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
     isSynchro              BIT,
     dateDernierControle    DATETIME2 (0),
     dateModificationAgent  DATETIME2 (0),
@@ -85,7 +86,9 @@ CREATE TABLE AgentManoControle (
     raisonSuppression      NVARCHAR (255),
     dateSuppression        DATETIME2 (0),
     jamaisServi            BIT,
-    dateActivation         DATETIME2 (0) 
+    dateActivation         DATETIME2 (0),
+    bAjusteur              BIT,
+    resolutionLecture      TEXT
 );
 
 
@@ -100,7 +103,7 @@ CREATE TABLE AgentManoEtalon (
     classe                 NVARCHAR (255),
     type                   NVARCHAR (255),
     fondEchelle            NVARCHAR (255),
-    idStructure            INT            REFERENCES Structure (id),
+    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
     isSynchro              BIT            DEFAULT (0),
     dateDernierControle    DATETIME2 (0),
     dateModificationAgent  DATETIME2 (0),
@@ -119,6 +122,25 @@ CREATE TABLE AgentManoEtalon (
 );
 
 
+-- Table : AgentPC
+DROP TABLE IF EXISTS AgentPC;
+
+CREATE TABLE AgentPC (
+    idCrodip               TEXT     PRIMARY KEY,
+    idStructure            INTEGER  REFERENCES Structure (id) ON DELETE SET NULL,
+    cleUtilisation         TEXT,
+    libelle                TEXT,
+    etat                   BIT,
+    numInterne             TEXT,
+    AgentSuppression       TEXT,
+    RaisonSuppression      TEXT,
+    dateSuppression        DATETIME,
+    isSupprime             BIT,
+    dateModificationAgent  DATETIME,
+    dateModificationCrodip DATETIME
+);
+
+
 -- Table : BancMesure
 DROP TABLE IF EXISTS BancMesure;
 
@@ -128,7 +150,7 @@ CREATE TABLE BancMesure (
     marque                 NVARCHAR (255),
     modele                 NVARCHAR (255),
     dateAchat              DATETIME2 (0),
-    idStructure            INT            REFERENCES Structure (id),
+    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
     dateDernierControle    DATETIME2 (0),
     dateModificationAgent  DATETIME2 (0),
     dateModificationCrodip DATETIME2 (0),
@@ -212,7 +234,7 @@ DROP TABLE IF EXISTS ControleBancMesure;
 CREATE TABLE ControleBancMesure (
     id                     NVARCHAR (255) NOT NULL
                                           PRIMARY KEY,
-    idStructure            NVARCHAR (255) REFERENCES Structure (id),
+    idStructure            NVARCHAR (255) REFERENCES Structure (id) ON DELETE CASCADE,
     idBanc                 NVARCHAR (255),
     buse1                  NVARCHAR (255),
     buse2                  NVARCHAR (255),
@@ -319,7 +341,7 @@ DROP TABLE IF EXISTS ControleManoMesure;
 CREATE TABLE ControleManoMesure (
     id                       NVARCHAR (255) NOT NULL
                                             PRIMARY KEY,
-    idStructure              NVARCHAR (255) REFERENCES Structure (id),
+    idStructure              NVARCHAR (255) REFERENCES Structure (id) ON DELETE CASCADE,
     idMano                   NVARCHAR (255),
     manoEtalon               NVARCHAR (255),
     tempAir                  NVARCHAR (255),
@@ -425,11 +447,11 @@ CREATE TABLE Diagnostic (
     organismePresNom                       NVARCHAR (255),
     organismeInspNom                       NVARCHAR (255),
     organismeInspAgrement                  NVARCHAR (255),
-    inspecteurId                           INT            REFERENCES Agent (Id),
+    inspecteurId                           INT,
     inspecteurNom                          NVARCHAR (255),
     inspecteurPrenom                       NVARCHAR (255),
-    controleDateDebut                      DATETIME2 (0),
-    controleDateFin                        DATETIME2 (0),
+    controleDateDebut                      DATETIME2,
+    controleDateFin                        DATETIME2,
     controleCommune                        NVARCHAR (255),
     controleCodePostal                     NVARCHAR (255),
     controleLieu                           NVARCHAR (255),
@@ -445,7 +467,7 @@ CREATE TABLE Diagnostic (
     controleInfosConseils                  NVARCHAR (255),
     controleTarif                          NVARCHAR (255),
     controleIsPulveRepare                  BIT,
-    proprietaireId                         NVARCHAR (255) REFERENCES Exploitation (id),
+    proprietaireId                         NVARCHAR (255) REFERENCES Exploitation (id) ON DELETE CASCADE,
     proprietaireRaisonSociale              NVARCHAR (255),
     proprietairePrenom                     NVARCHAR (255),
     proprietaireNom                        NVARCHAR (255),
@@ -457,7 +479,7 @@ CREATE TABLE Diagnostic (
     proprietaireEmail                      NVARCHAR (255),
     proprietaireTelephonePortable          NVARCHAR (255),
     proprietaireTelephoneFixe              NVARCHAR (255),
-    pulverisateurId                        NVARCHAR (50)  REFERENCES Pulverisateur (id),
+    pulverisateurId                        NVARCHAR (50)  REFERENCES Pulverisateur (id) ON DELETE CASCADE,
     pulverisateurMarque                    NVARCHAR (255),
     pulverisateurModele                    NVARCHAR (255),
     pulverisateurType                      NVARCHAR (255),
@@ -556,7 +578,7 @@ CREATE TABLE Diagnostic (
     commentaire                            NVARCHAR (255),
     pulverisateurNumNational               NVARCHAR (255),
     pulverisateurNumchassis                NVARCHAR (255),
-    OrigineDiag                            NVARCHAR (255),
+    origineDiag                            NVARCHAR (255),
     isSignRIAgent                          BIT,
     isSignRIClient                         BIT,
     isSignCCAgent                          BIT,
@@ -573,9 +595,13 @@ CREATE TABLE Diagnostic (
     signCCClient                           BLOB,
     totalHT                                FLOAT,
     totalTTC                               FLOAT,
-    dateRemplacement                       DATETIME2 (0),
     isCVImmediate                          BIT,
-    isGratuit                              BIT
+    isGratuit                              BIT,
+    dateRemplacement                       DATETIME,
+    BLFileName                             TEXT,
+    ESFileName                             TEXT,
+    COPROFileName                          TEXT,
+    FACTFileNames                          TEXT
 );
 
 
@@ -586,7 +612,7 @@ CREATE TABLE DiagnosticBuses (
     id                     INTEGER        NOT NULL
                                           PRIMARY KEY AUTOINCREMENT,
     idDiagnostic           NVARCHAR (255) NOT NULL
-                                          REFERENCES Diagnostic (id),
+                                          REFERENCES Diagnostic (id) ON DELETE CASCADE,
     marque                 NVARCHAR (255),
     nombre                 NVARCHAR (255),
     genre                  NVARCHAR (255),
@@ -608,7 +634,7 @@ CREATE TABLE DiagnosticBusesDetail (
     id                     INTEGER        NOT NULL
                                           PRIMARY KEY AUTOINCREMENT,
     idDiagnostic           NVARCHAR (255) NOT NULL
-                                          REFERENCES Diagnostic (id),
+                                          REFERENCES Diagnostic (id) ON DELETE CASCADE,
     idBuse                 INT,
     idLot                  INT,
     debit                  NVARCHAR (255),
@@ -665,7 +691,7 @@ DROP TABLE IF EXISTS DiagnosticItem;
 CREATE TABLE DiagnosticItem (
     id                     INTEGER        PRIMARY KEY AUTOINCREMENT,
     idDiagnostic           NVARCHAR (50)  NOT NULL
-                                          REFERENCES Diagnostic (id),
+                                          REFERENCES Diagnostic (id) ON DELETE CASCADE,
     idItem                 NVARCHAR (10),
     itemValue              NVARCHAR (255),
     itemCodeEtat           NVARCHAR (255),
@@ -684,7 +710,7 @@ CREATE TABLE DiagnosticMano542 (
     id                     INTEGER        NOT NULL
                                           PRIMARY KEY AUTOINCREMENT,
     idDiagnostic           NVARCHAR (255) NOT NULL
-                                          REFERENCES Diagnostic (id),
+                                          REFERENCES Diagnostic (id) ON DELETE CASCADE,
     pressionPulve          NVARCHAR (255),
     pressionControle       NVARCHAR (255),
     dateModificationAgent  DATETIME2 (0),
@@ -699,7 +725,7 @@ CREATE TABLE DiagnosticTroncons833 (
     id                     INTEGER        NOT NULL
                                           PRIMARY KEY AUTOINCREMENT,
     idDiagnostic           NVARCHAR (255) NOT NULL
-                                          REFERENCES Diagnostic (id),
+                                          REFERENCES Diagnostic (id) ON DELETE CASCADE,
     idPression             NVARCHAR (255),
     idColumn               NVARCHAR (255),
     pressionSortie         NVARCHAR (255),
@@ -735,7 +761,7 @@ CREATE TABLE Exploitation (
     codeInsee              NVARCHAR (5),
     telephoneFixe          NVARCHAR (20),
     telephonePortable      NVARCHAR (20),
-    telephoneFax           NVARCHAR (20),
+    telephoneFax           NVARCHAR (255),
     eMail                  NVARCHAR (255),
     surfaceAgricoleUtile   NVARCHAR (255),
     isProdGrandeCulture    BIT,
@@ -745,7 +771,7 @@ CREATE TABLE Exploitation (
     isProdViticulture      BIT,
     isProdAutre            BIT,
     productionAutre        NVARCHAR (255),
-    idStructure            INT            REFERENCES Structure (id),
+    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
     isSupprime             BIT,
     dateModificationCrodip DATETIME2 (0),
     dateModificationAgent  DATETIME2 (0),
@@ -759,8 +785,8 @@ DROP TABLE IF EXISTS ExploitationTOPulverisateur;
 CREATE TABLE ExploitationTOPulverisateur (
     id                     NVARCHAR (100) NOT NULL
                                           PRIMARY KEY,
-    idPulverisateur        NVARCHAR (50)  REFERENCES Pulverisateur (id),
-    idExploitation         NVARCHAR (50)  REFERENCES Exploitation (id),
+    idPulverisateur        NVARCHAR (50)  REFERENCES Pulverisateur (id) ON DELETE CASCADE,
+    idExploitation         NVARCHAR (50)  REFERENCES Exploitation (id) ON DELETE CASCADE,
     dateModificationAgent  DATETIME2 (0),
     dateModificationCrodip DATETIME2 (0),
     isSupprimeCoProp       BIT
@@ -773,7 +799,7 @@ DROP TABLE IF EXISTS facture;
 CREATE TABLE facture (
     idfacture              NVARCHAR (255) NOT NULL
                                           PRIMARY KEY,
-    idstructure            NVARCHAR (50)  REFERENCES Structure (id),
+    idstructure            NVARCHAR (50)  REFERENCES Structure (id) ON DELETE CASCADE,
     datefacture            DATETIME2 (0),
     dateecheance           DATETIME2 (0),
     commentaire            NVARCHAR (255),
@@ -827,7 +853,7 @@ DROP TABLE IF EXISTS FichevieBancMesure;
 CREATE TABLE FichevieBancMesure (
     id                     NVARCHAR (255) NOT NULL
                                           PRIMARY KEY,
-    idBancMesure           NVARCHAR (255) REFERENCES BancMesure (id),
+    idBancMesure           NVARCHAR (255) REFERENCES BancMesure (id) ON DELETE CASCADE,
     type                   NVARCHAR (255),
     auteur                 NVARCHAR (255),
     idAgentControleur      INT,
@@ -900,13 +926,77 @@ DROP TABLE IF EXISTS IdentifiantPulverisateur;
 CREATE TABLE IdentifiantPulverisateur (
     id                     INT            NOT NULL
                                           PRIMARY KEY,
-    idStructure            INT            REFERENCES Structure (id),
+    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
     numeroNational         NVARCHAR (30)  NOT NULL,
     etat                   NVARCHAR (30),
     dateUtilisation        NVARCHAR (255),
     libelle                NVARCHAR (255),
     dateModificationAgent  NVARCHAR (255),
-    dateModificationCrodip NVARCHAR (255) 
+    dateModificationCrodip NVARCHAR (255),
+    idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE CASCADE
+);
+
+
+-- Table : POOL
+DROP TABLE IF EXISTS POOL;
+
+CREATE TABLE POOL (
+    idCrodip               TEXT     PRIMARY KEY,
+    libelle                TEXT,
+    idCRODIPPC             TEXT     REFERENCES AgentPC (idCrodip) ON DELETE SET NULL,
+    nbPastillesVertes      INTEGER  DEFAULT (0),
+    dateModificationAgent  DATETIME,
+    dateModificationCrodip DATETIME,
+    idStructure            INTEGER  REFERENCES Structure (id) ON DELETE CASCADE,
+    idBanc                 TEXT     REFERENCES BancMesure (id) ON DELETE SET NULL
+);
+
+
+-- Table : PoolBanc
+DROP TABLE IF EXISTS PoolBanc;
+
+CREATE TABLE PoolBanc (
+    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+    idCRODIPPool           TEXT     REFERENCES POOL (idCrodip) ON DELETE NO ACTION,
+    numeroNationalBanc     TEXT     REFERENCES BancMesure (id) ON DELETE CASCADE,
+    dateModificationAgent  DATETIME,
+    dateModificationCrodip DATETIME
+);
+
+
+-- Table : PoolBUSE
+DROP TABLE IF EXISTS PoolBUSE;
+
+CREATE TABLE PoolBUSE (
+    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+    idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,
+    numeroNationalBUSE     TEXT,
+    dateModificationAgent  DATETIME,
+    dateModificationCrodip DATETIME
+);
+
+
+-- Table : PoolManoC
+DROP TABLE IF EXISTS PoolManoC;
+
+CREATE TABLE PoolManoC (
+    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+    idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,
+    numeroNationalManoC    TEXT     REFERENCES AgentManoControle (numeroNational) ON DELETE CASCADE,
+    dateModificationAgent  DATETIME,
+    dateModificationCrodip DATETIME
+);
+
+
+-- Table : PoolManoE
+DROP TABLE IF EXISTS PoolManoE;
+
+CREATE TABLE PoolManoE (
+    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+    idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,
+    numeroNationalManoE    TEXT     REFERENCES AgentManoEtalon (numeroNational) ON DELETE CASCADE,
+    dateModificationAgent  DATETIME,
+    dateModificationCrodip DATETIME
 );
 
 
@@ -916,7 +1006,7 @@ DROP TABLE IF EXISTS PrestationCategorie;
 CREATE TABLE PrestationCategorie (
     id                     INT (1, 1)     NOT NULL
                                           PRIMARY KEY,
-    idStructure            INT            REFERENCES Structure (id),
+    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
     libelle                NVARCHAR (255),
     dateModificationAgent  DATETIME2 (0),
     dateModificationCrodip DATETIME2 (0) 
@@ -929,8 +1019,8 @@ DROP TABLE IF EXISTS PrestationTarif;
 CREATE TABLE PrestationTarif (
     id                     INT (1, 1)     NOT NULL
                                           PRIMARY KEY,
-    idCategorie            INT            REFERENCES PrestationCategorie (id),
-    idStructure            INT,
+    idCategorie            INT            REFERENCES PrestationCategorie (id) ON DELETE CASCADE,
+    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
     description            NVARCHAR (255),
     tarifHT                FLOAT,
     tarifTTC               FLOAT,
@@ -979,7 +1069,7 @@ CREATE TABLE Pulverisateur (
     manometreFondEchelle      NVARCHAR (255),
     manometreDiametre         NVARCHAR (255),
     manometrePressionTravail  NVARCHAR (255),
-    idStructure               INT            REFERENCES Structure (id),
+    idStructure               INT            REFERENCES Structure (id) ON DELETE CASCADE,
     isSynchro                 BIT,
     isSupprime                BIT,
     dateProchainControle      DATETIME2 (0),
@@ -1049,7 +1139,8 @@ CREATE TABLE Structure (
 DROP TABLE IF EXISTS Synchronisation;
 
 CREATE TABLE Synchronisation (
-    id                  [INT IDENTITY] (1, 1) NOT NULL,
+    id                  INTEGER        NOT NULL
+                                       PRIMARY KEY AUTOINCREMENT,
     idAgent             INT,
     sensSynchronisation NVARCHAR (255),
     dateSynchronisation DATETIME2 (0),
@@ -1064,6 +1155,46 @@ CREATE TABLE VERSION (
     VERSION_NUM  NVARCHAR (255),
     VERSION_DATE DATETIME2 (0),
     VERSION_COMM NVARCHAR (255) 
+);
+
+
+-- Index : 
+DROP INDEX IF EXISTS "";
+
+CREATE INDEX "" ON Pulverisateur (
+    dateProchainControle ASC
+);
+
+
+-- Index : DateDebut
+DROP INDEX IF EXISTS DateDebut;
+
+CREATE INDEX DateDebut ON Diagnostic (
+    controleDateDebut ASC
+);
+
+
+-- Index : DateDernCtrl
+DROP INDEX IF EXISTS DateDernCtrl;
+
+CREATE INDEX DateDernCtrl ON Exploitation (
+    dateDernierControle ASC
+);
+
+
+-- Index : dateFin
+DROP INDEX IF EXISTS dateFin;
+
+CREATE INDEX dateFin ON Diagnostic (
+    controleDateFin ASC
+);
+
+
+-- Index : NumNat
+DROP INDEX IF EXISTS NumNat;
+
+CREATE INDEX NumNat ON Pulverisateur (
+    numeroNational ASC
 );
 
 

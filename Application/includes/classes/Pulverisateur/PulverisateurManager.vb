@@ -597,52 +597,6 @@ Public Class PulverisateurManager
         'on retourne le client ou un objet vide en cas d'erreur
         Return arrItems
     End Function
-
-    ''' <summary>
-    ''' Récupération des informayion d'une exploitation pour un pulvérisateur
-    ''' </summary>
-    ''' <param name="client_id">Identifiant du client</param>
-    ''' <param name="pDroitsPulves">Droits de l'agent sur les types de pulvés (inutilisés en Version 4 Lot2)</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Public Shared Function getExploitationPulverisateurByPulve(ByVal pPulve As Pulverisateur) As Boolean
-        Debug.Assert(pPulve IsNot Nothing)
-        Debug.Assert(Not String.IsNullOrEmpty(pPulve.id))
-        ' déclarations
-        Dim bReturn As Boolean = False
-        Dim oCSDB As New CSDb(True)
-
-        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT Pulverisateur.id, Exploitation.* " _
-                                   & "FROM (ExploitationTOPulverisateur INNER JOIN Pulverisateur ON ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation ON ExploitationTOPulverisateur.idExploitation = Exploitation.id " _
-                                     & " WHERE pulverisateur.id = '" & pPulve.id & "'"
-
-        Try
-            ' On récupère les résultats
-            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
-            Dim i As Integer = 0
-            ' Puis on les parcours
-            While tmpListProfils.Read()
-                Dim tmpColId As Integer = 0
-                While tmpColId < tmpListProfils.FieldCount()
-                    If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        pPulve.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
-                    End If
-                    tmpColId = tmpColId + 1
-                End While
-            End While
-            bReturn = True
-        Catch ex As Exception ' On intercepte l'erreur
-            CSDebug.dispError("PulverisateurManager - getExploitationPulverisateurByPulve : " & ex.Message)
-            bReturn = False
-        End Try
-        ' Test pour fermeture de connection BDD
-        If Not oCSDB Is Nothing Then
-            ' On ferme la connexion
-            oCSDB.free()
-        End If
-        Return bReturn
-    End Function
     ''' <summary>
     ''' Chargement de la Liste des pulvérisateurs d'une structure
     ''' </summary>
@@ -666,10 +620,9 @@ Public Class PulverisateurManager
             'strQuery = strQuery & " pulverisateur.idStructure = " & pAgent.idStructure
             'strQuery = strQuery & " ORDER BY  Pulverisateur.dateProchainControle ASC"
 
-            strQuery = "SELECT p.id, p.numeroNational, p.type, p.marque, p.dateProchainControle, p.controleEtat, e.raisonSociale,e.prenomExploitant,e.nomExploitant,e.codePostal, e.commune"
-            '            strQuery = strQuery & " , (Select  Max(d.controledateFin) From Diagnostic d  where d.pulverisateurId = p.id) as DateCtrl"
+            strQuery = "SELECT p.*,  e.raisonSociale,e.prenomExploitant,e.nomExploitant,e.codePostal, e.commune"
             strQuery = strQuery & " From Pulverisateur p inner  join ExploitationTOPulverisateur e2p on e2p.idPulverisateur = p.id inner join Exploitation e on e2p.idExploitation = e.id "
-            strQuery = strQuery & " WHERE p.idStructure = " & pAgent.idStructure
+            strQuery = strQuery & " WHERE e2p.isSupprimecoProp=0 and p.idStructure = " & pAgent.idStructure
             strQuery = strQuery & " ORDER BY  P.dateProchainControle ASC"
 
             Dim oDataReader As DbDataReader = bdd.getResult2s(strQuery)
@@ -702,7 +655,7 @@ Public Class PulverisateurManager
             End While
             oDataReader.Close()
         Catch ex As Exception ' On intercepte l'erreur
-            CSDebug.dispError("PulverisateurManager - getListeOfPulverisateur  " & ex.Message)
+            CSDebug.dispError("PulverisateurManager.PulverisateurList ERR  ", ex)
         End Try
         bdd.free()
         'on retourne les pulvé
@@ -922,7 +875,7 @@ Public Class PulverisateurManager
                     CSDebug.dispError("Modification de l'état du pulvé : " & oPulve.id & "/" & oPulve.numeroNational & "Exploitant : " & oExploit.raisonSociale & " ancien etat = " & ancEtat & ", nouvel etat = " & oPulve.controleEtat & " date de dernier controle = " & odiag.controleDateDebut & ", DiagId = " & odiag.id)
                     PulverisateurManager.save(oPulve, oExploit.id, pAgent)
                 End If
-                If oPulve.dateProchainControle <> odiag.CalculDateProchainControle() Then
+                If Not CSDate.FromCrodipString(oPulve.dateProchainControle).ToShortDateString().Equals(CSDate.FromCrodipString(odiag.CalculDateProchainControle()).ToShortDateString()) Then
                     oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
                     CSDebug.dispError("Modification de la date du prochain CRL : " & oPulve.id & "/" & oPulve.numeroNational & "Exploitant : " & oExploit.raisonSociale & " date de dernier controle = " & odiag.controleDateDebut & ", DiagId = " & odiag.id & " ancienne date Prch ctrl= " & oPulve.dateProchainControle & " nouvelle date =" & odiag.CalculDateProchainControle())
                     oPulve.dateProchainControle = odiag.CalculDateProchainControle()

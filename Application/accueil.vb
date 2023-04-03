@@ -1402,17 +1402,18 @@ Public Class accueil
         'btnTransfertPulve
         '
         Me.btnTransfertPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.btnTransfertPulve.BackgroundImage = CType(resources.GetObject("btnTransfertPulve.BackgroundImage"), System.Drawing.Image)
+        Me.btnTransfertPulve.BackgroundImage = Global.Crodip_agent.Resources.btn_empty
         Me.btnTransfertPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnTransfertPulve.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.btnTransfertPulve.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.btnTransfertPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTransfertPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnTransfertPulve.ForeColor = System.Drawing.Color.White
+        Me.btnTransfertPulve.ForeColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.btnTransfertPulve.Location = New System.Drawing.Point(507, 24)
         Me.btnTransfertPulve.Name = "btnTransfertPulve"
         Me.btnTransfertPulve.Size = New System.Drawing.Size(112, 24)
         Me.btnTransfertPulve.TabIndex = 31
-        Me.btnTransfertPulve.Text = "Transfert pulve"
-        Me.btnTransfertPulve.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnTransfertPulve.Text = "Transfert"
         Me.btnTransfertPulve.UseVisualStyleBackColor = False
         '
         'btnAjoutPulve
@@ -1421,6 +1422,8 @@ Public Class accueil
         Me.btnAjoutPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.btnAjoutPulve.BackgroundImage = CType(resources.GetObject("btnAjoutPulve.BackgroundImage"), System.Drawing.Image)
         Me.btnAjoutPulve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnAjoutPulve.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.btnAjoutPulve.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.btnAjoutPulve.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAjoutPulve.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAjoutPulve.ForeColor = System.Drawing.Color.White
@@ -1459,7 +1462,7 @@ Public Class accueil
         'btn_ficheClient_diagnostic_voir
         '
         Me.btn_ficheClient_diagnostic_voir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_ficheClient_diagnostic_voir.ForeColor = System.Drawing.Color.White
+        Me.btn_ficheClient_diagnostic_voir.ForeColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.btn_ficheClient_diagnostic_voir.Image = CType(resources.GetObject("btn_ficheClient_diagnostic_voir.Image"), System.Drawing.Image)
         Me.btn_ficheClient_diagnostic_voir.Location = New System.Drawing.Point(372, 24)
         Me.btn_ficheClient_diagnostic_voir.Name = "btn_ficheClient_diagnostic_voir"
@@ -2167,6 +2170,8 @@ Public Class accueil
         '
         Me.btnMAJPulveFromDiag.BackgroundImage = CType(resources.GetObject("btnMAJPulveFromDiag.BackgroundImage"), System.Drawing.Image)
         Me.btnMAJPulveFromDiag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnMAJPulveFromDiag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.btnMAJPulveFromDiag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.btnMAJPulveFromDiag.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnMAJPulveFromDiag.Location = New System.Drawing.Point(474, 89)
         Me.btnMAJPulveFromDiag.Name = "btnMAJPulveFromDiag"
@@ -2224,6 +2229,8 @@ Public Class accueil
         '
         Me.btnMAJPulverisateurs.BackgroundImage = CType(resources.GetObject("btnMAJPulverisateurs.BackgroundImage"), System.Drawing.Image)
         Me.btnMAJPulverisateurs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnMAJPulverisateurs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.btnMAJPulverisateurs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.btnMAJPulverisateurs.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnMAJPulverisateurs.Location = New System.Drawing.Point(474, 56)
         Me.btnMAJPulverisateurs.Name = "btnMAJPulverisateurs"
@@ -4542,9 +4549,9 @@ Public Class accueil
             listPulverisateurs.Items.Clear()
             For Each tmpPulverisateur In arrPulverisateurs
                 Try
-                    Dim olvItem As ListViewItem = listPulverisateurs.Items.Add("")  ' num natio
+                    Dim olvItem As ListViewItem = New ListViewItem  ' num natio
                     affichePulvedansListePulve(olvItem, tmpPulverisateur)
-
+                    listPulverisateurs.Items.Add(olvItem)
                 Catch ex As Exception
                     CSDebug.dispError("Accueil.loadListPulve 1 Err: " & ex.Message.ToString)
                 End Try
@@ -4576,11 +4583,17 @@ Public Class accueil
         pLvItem.SubItems.Add(Trim(pPulverisateur.NomExploitant.ToString)) ' Nom
         pLvItem.SubItems.Add(Trim(pPulverisateur.codePostal.ToString)) ' Code postal
         pLvItem.SubItems.Add(Trim(pPulverisateur.Commune.ToString)) ' Commune
-        If pPulverisateur.dateProchainControle.ToString <> "" And pPulverisateur.dateProchainControle.ToString <> "00:00:00" And pPulverisateur.dateProchainControle.ToString <> "1899-12-30 00:00:00" Then
-            Dim tmpDateNextDiag As Date = CSDate.FromCrodipString(pPulverisateur.dateProchainControle)
-            pLvItem.SubItems.Add(tmpDateNextDiag.ToShortDateString) 'prochain contrôle
-        Else
+        If String.IsNullOrEmpty(pPulverisateur.dateProchainControle) Then
             pLvItem.SubItems.Add("") ' prochain contrôle
+        Else
+            If pPulverisateur.dateProchainControle.ToString <> "" And
+                pPulverisateur.dateProchainControle.ToString <> "00:00:00" And
+                pPulverisateur.dateProchainControle.ToString <> "1899-12-30 00:00:00" Then
+                Dim tmpDateNextDiag As Date = CSDate.FromCrodipString(pPulverisateur.dateProchainControle)
+                pLvItem.SubItems.Add(tmpDateNextDiag.ToShortDateString) 'prochain contrôle
+            Else
+                pLvItem.SubItems.Add("") ' prochain contrôle
+            End If
         End If
 
         ' Conclusion du dernier Diag sur le pulvé
@@ -4594,6 +4607,8 @@ Public Class accueil
             Case Pulverisateur.controleEtatOK 'Controle OK
                 pLvItem.SubItems.Add(Trim("Ok"))
                 pLvItem.BackColor = System.Drawing.Color.LightBlue
+            Case Else
+                pLvItem.SubItems.Add("")
         End Select
 
     End Sub
@@ -5940,22 +5955,24 @@ Public Class accueil
             olvItem = listPulverisateurs.SelectedItems().Item(0)
             ' On récupère le pulvé selectionné
             pulverisateurCourant = PulverisateurManager.getPulverisateurById(olvItem.Tag)
-
+            clientCourant = ExploitationManager.GetExploitationByPulverisateurId(pulverisateurCourant.id)
+            diagnosticCourant = Nothing
             ' Mise à jour de la barre de status
             Statusbar.display("Chargement du pulvérisateur n°" & olvItem.SubItems.Item(0).Text)
 
             ' Affichage de la fiche du pulvérisateur
             Dim formEdition_fiche_pulve As New ajout_pulve2()
-            formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.MODIF, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
+            formEdition_fiche_pulve.setContexte(ajout_pulve2.MODE.MODIF, agentCourant, pulverisateurCourant, clientCourant, Nothing)
             '            formEdition_fiche_pulve.MdiParent = Me.MdiParent
             formEdition_fiche_pulve.ShowDialog(Me.MdiParent)
             If formEdition_fiche_pulve.DialogResult = Windows.Forms.DialogResult.OK Then
-                PulverisateurManager.getExploitationPulverisateurByPulve(pulverisateurCourant)
-                affichePulvedansListePulve(olvItem, pulverisateurCourant)
+                Me.Cursor = Cursors.WaitCursor
+                SurroundingClass.BeginControlUpdate(listPulverisateurs)
+                loadListPulve()
+                SurroundingClass.EndControlUpdate(listPulverisateurs)
+                Me.Cursor = Cursors.Default
             End If
 
-            ' Mise à jour de la barre de status
-            Statusbar.display("Pulvérisateur n°" & listPulverisateurs.SelectedItems().Item(0).SubItems.Item(0).Text)
         End If
     End Sub
 
@@ -6882,4 +6899,6 @@ Public Class accueil
         MsgBox("Traitement terminé")
 
     End Sub
+
+
 End Class

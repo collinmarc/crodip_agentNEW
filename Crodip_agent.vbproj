@@ -1551,6 +1551,8 @@
     <Content Include="moduleDocumentaire\_parametres\ParamMetrologie.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\test.png" />
+    <None Include="Resources\Test2.png" />
     <Content Include="wgssSTU.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

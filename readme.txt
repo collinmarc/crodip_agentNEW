@@ -15,6 +15,8 @@ BUILD 2023022224150000
 	0001563: Tabulation sur fiche client
 	0001552: Synchronisation des tarifs
 	0001565: Fiche Vérif Mano V7
+	0001567: Pblm de mélange entre les propriétaires et le pulvés (ROUQUETTE)
+	0001568: MAJ des Etats et date de prochain control PULVE
 
 BUILD 20230207130000
 		0001545: Erreur D'acquisition
