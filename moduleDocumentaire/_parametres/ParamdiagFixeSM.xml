@@ -1617,7 +1617,7 @@
 	<ParamCtrlDiag>
       <Code>2.6.2.1</Code>
       <Libelle>Tableau électrique: Abs différentiel</Libelle>
-      <LibelleLong>............</LibelleLong>
+      <LibelleLong>Le tableau électrique ne comporte pas de différentiel</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -1628,7 +1628,7 @@
     <ParamCtrlDiag>
       <Code>2.6.2.2</Code>
       <Libelle>Fusibles électriques: Non dédié</Libelle>
-      <LibelleLong>..................</LibelleLong>
+      <LibelleLong>Le circuit électrique ne dispose pas de fusibles dédiés</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -1651,7 +1651,7 @@
 	 <ParamCtrlDiag>
       <Code>2.7.1.1</Code>
       <Libelle>Stabilité des supports des composant du circuit non efficace</Libelle>
-      <LibelleLong>Les éléments et composant, supportant les différents éléments du circuit de pulvé, ne sont pas stables et ou vibre pendant le fonctionnement</LibelleLong>
+      <LibelleLong>Les éléments et composant, supportant les différents éléments du circuit de pulvérisation, ne sont pas stables et ou vibrent pendant le fonctionnement</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -1674,8 +1674,8 @@
 	 <ParamCtrlDiag>
       <Code>2.7.2.1</Code>
       <Libelle>Déformation mineure</Libelle>
-      <LibelleLong>le chassis ou élément(s) de structure du circuit de pulvérisation présente des traces de déformations, mais ne portent pas préjudice à la solidité , rigidité de l'ensemble</LibelleLong>
-      <Actif>true</Actif>
+      <LibelleLong>le châssis ou élément(s) de structure du circuit de pulvérisation présente des traces de déformations, sans porter préjudice à la solidité, rigidité de l'ensemble</LibelleLong>
+	  <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
       <Cause1>false</Cause1>
@@ -1685,7 +1685,7 @@
     <ParamCtrlDiag>
       <Code>2.7.2.2</Code>
       <Libelle>Déformation majeure</Libelle>
-      <LibelleLong>le chassis ou élément(s) de structure du circuit de pulvérisation présente des traces de déformations, portant préjudice à la solidité , rigidité de l'ensemble</LibelleLong>
+      <LibelleLong>le châssis ou élément(s) de structure du circuit de pulvérisation présente des traces de déformations, portant préjudice à la solidité, rigidité de l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -1708,7 +1708,7 @@
 	 <ParamCtrlDiag>
       <Code>2.7.3.1</Code>
       <Libelle>Modification mineure</Libelle>
-      <LibelleLong>Les éléments de support du circuit de pulvérisation ont été modifiés sans porter préjudices à la solidité , rigidité de l'ensemble</LibelleLong>
+      <LibelleLong>Les éléments de support du circuit de pulvérisation ont été modifiés sans porter préjudices à la solidité, rigidité de l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -1719,7 +1719,7 @@
     <ParamCtrlDiag>
       <Code>2.7.3.2</Code>
       <Libelle>Modification majeure</Libelle>
-      <LibelleLong>Les éléments de support du circuit de pulvérisation ont été modifiés et portent préjudices à la solidité , rigidité de l'ensemble</LibelleLong>
+      <LibelleLong>Les éléments de support du circuit de pulvérisation ont été modifiés et portent préjudices à la solidité, rigidité de l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -1742,7 +1742,7 @@
 	 <ParamCtrlDiag>
       <Code>2.7.4.1</Code>
       <Libelle>Corrosion mineure</Libelle>
-      <LibelleLong>le chassis ou élément(s) de structure du circuit de pulvérisation présente des traces de corrodion perforante, mais ne portent pas préjudice à la solidité , rigidité de l'ensemble</LibelleLong>
+      <LibelleLong>le châssis ou élément(s) de structure du circuit de pulvérisation présente des traces de corrodion perforante, sans porter préjudice à la solidité, rigidité de l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>1</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>
@@ -1753,7 +1753,7 @@
     <ParamCtrlDiag>
       <Code>2.7.4.2</Code>
       <Libelle>Corrosion majeure</Libelle>
-      <LibelleLong>le chassis ou élément(s) de structure du circuit de pulvérisation présente des traces de corrodion perforante, portant préjudice à la solidité , rigidité de l'ensemble</LibelleLong>
+      <LibelleLong>le châssis ou élément(s) de structure du circuit de pulvérisation présente des traces de corrodion perforante, portant préjudice à la solidité, rigidité de l'ensemble</LibelleLong>
       <Actif>true</Actif>
       <DefaultCategorie>2</DefaultCategorie>
       <NiveauCauseMax>-1</NiveauCauseMax>

@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+BUILD XXXXXX
+0001573: Modification des modèles de rapport d'inspection et contrat commercial
+
 BUILD 2023022224150000
 	0001441: Evolution Métrologie , Controle de manos
 	0001548: retour en modif sur un DIAG : Retour au prélimiaires

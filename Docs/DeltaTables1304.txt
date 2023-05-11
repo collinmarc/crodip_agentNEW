@@ -1,0 +1,1895 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++
+++										DELTA CRODIP BACKOFFICE DATABASE (ADMIN)  //  CRODIP SQLLITE DATABASE 
+++
+++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+                                                       
+CREATE TABLE `Administrateur` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(64) NOT NULL DEFAULT '',
+  `email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+  
+  
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+																								- id
+																								- login
+																								- password
+																								- email
+																								
+																								*********************
+																								TABLE INUTILISEE 
+=====================================================================================================================================================================																																																	   
+CREATE TABLE `Agent` (																			CREATE TABLE AGENT (																														   
+  `id` int(11) NOT NULL AUTO_INCREMENT,															    Id                     INT            PRIMARY KEY,																																		   
+  `idDatapulve` varchar(255) DEFAULT NULL,                                                           numeroNational         NVARCHAR (50)  UNIQUE,                                           	                                                                                                 
+  `numeroNational` varchar(50) DEFAULT NULL COMMENT 'numero national donne par CRODIP',			     motdepasse             NVARCHAR (255),																																														   
+  `motDePasse` varchar(255) DEFAULT NULL,														     nom                    VARCHAR (256),																																			   
+  `nom` varchar(255) DEFAULT NULL,																     prenom                 VARCHAR (256),																																	   
+  `prenom` varchar(255) DEFAULT NULL,															     idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,																																		   
+  `idStructure` int(11) DEFAULT '0',															     telephoneportable      VARCHAR (256),																																		   
+  `telephonePortable` varchar(50) DEFAULT NULL,													     email                  VARCHAR (256),																																				   
+  `eMail` varchar(255) DEFAULT NULL,															     dateCreation           DATETIME2,																																		   
+  `statut` varchar(255) DEFAULT NULL,															     dateDerniereConnexion  DATETIME2,																																		   
+  `niveauQualification` varchar(100) DEFAULT NULL,												     dateDerniereSynchro    DATETIME2,																																					   
+  `dateCreation` datetime DEFAULT NULL,															     dateModificationAgent  DATETIME2,																																		   
+  `dateDerniereConnexion` datetime DEFAULT NULL,												     dateModificationCrodip DATETIME2,																																					   
+  `dateDerniereSynchro` datetime DEFAULT NULL,													     versionLogiciel        VARCHAR (256),																																				   
+  `dateModificationAgent` datetime DEFAULT NULL,												     commentaire            VARCHAR (256),																																					   
+  `dateModificationCrodip` datetime DEFAULT NULL,												     cleActivation          VARCHAR (256),																																					   
+  `versionLogiciel` varchar(255) DEFAULT NULL,													     isActif                BIT            DEFAULT 0,																																				   
+  `commentaire` varchar(255) DEFAULT NULL,														     droitsPulves           VARCHAR (2560),																																			   
+  `cleActivation` varchar(255) DEFAULT NULL,													     isGestionnaire         BIT            DEFAULT 0,																																				   
+  `isActif` tinyint(1) DEFAULT '0',																     signatureElect         BIT            DEFAULT 0,																																	   
+  `isSupprime` tinyint(3) unsigned DEFAULT '0',													     statut                 VARCHAR (50),																																				   
+  `motDePasse_WG` varchar(255) DEFAULT NULL,													 	idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE SET NULL																																				   
+  `idWGUtilisateur` int(11) DEFAULT '0',																																																	   
+  `DroitsPulves` text,																			);																														   
+  `isGestionnaire` tinyint(3) unsigned DEFAULT '0',																																																																							   
+  `SignatureElect` tinyint(1) DEFAULT '0',																									   
+  `isSignElecActive` tinyint(3) unsigned DEFAULT '0',																																																	   
+  `poolId` int(11) DEFAULT NULL,																																									   
+  PRIMARY KEY (`id`)																																											   
+) ENGINE=MyISAM AUTO_INCREMENT=1259 DEFAULT CHARSET=utf8;			
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+																			
+																								- idDatapulve									
+																								- niveauQualification							
+																								- isSupprime		
+																								- motDePasse_WG	
+																								- idWGUtilisateur	
+																								- isSignElecActive	
+																								- poolId = idCRODIPPOOL ?	
+																									
+																									******************************
+																									TRANSORMER POOLID EN IDCRODIPPOOL
+																										Reference  POOL.IDCRODIP
+=====================================================================================================================================================================
+CREATE TABLE `AgentBuseEtalon` (																CREATE TABLE AgentBuseEtalon (
+  `numeroNational` varchar(50) NOT NULL DEFAULT '                                                   numeroNational         NVARCHAR (255) NOT NULL,
+  `marque` varchar(255) DEFAULT NULL,                                                               idCrodip               NVARCHAR (255),
+  `type` varchar(255) DEFAULT NULL,                                                                 couleur                NVARCHAR (255),
+  `couleur` varchar(255) DEFAULT NULL,															    pressionEtalonnage     FLOAT,																						   
+  `pressionEtalonnage` double DEFAULT NULL,														    debitEtalonnage        FLOAT,																																			   
+  `debitEtalonnage` double DEFAULT NULL,														    idStructure            INT            REFERENCES Structure (id),																																			   
+  `idStructure` int(11) DEFAULT '0',															    isSynchro              BIT,																																		   
+  `isSynchro` tinyint(1) DEFAULT '0',															    dateAchat              DATETIME2 (0),																																		   
+  `dateAchat` datetime DEFAULT NULL,															    dateModificationAgent  DATETIME2 (0),																																		   
+  `dateModificationAgent` datetime DEFAULT NULL,												    dateModificationCrodip DATETIME2 (0),																																					   
+  `dateModificationCrodip` datetime DEFAULT NULL,												    etat                   BIT,																																					   
+  `etat` tinyint(1) DEFAULT '1',																    isSupprime             BIT,																																	   
+  `isSupprime` tinyint(1) DEFAULT '0',															    isUtilise              BIT,																																		   
+  `isUtilise` tinyint(1) DEFAULT '0',															    agentSuppression       NVARCHAR (255),																																		   
+  `idCrodip` varchar(255) DEFAULT NULL,															    raisonSuppression      NVARCHAR (255),																																		   
+  `AgentSuppression` text,																		    dateSuppression        DATETIME2 (0),																															   
+  `RaisonSuppression` text,																		    jamaisServi            BIT,																															   
+  `DateSuppression` datetime DEFAULT NULL,														    dateActivation         DATETIME2 (0) 																																			   
+  `JamaisServi` tinyint(4) DEFAULT '0',															);																																		   
+  `DateActivation` datetime DEFAULT NULL,																																																	   
+  PRIMARY KEY (`numeroNational`)																																																	   
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;			
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE																																														   
+																								- marque
+																								- type
+																								**************************
+																								A Ajouter dans Logiciel AGENT + Synchro
+=====================================================================================================================================================================
+CREATE TABLE `AgentManoControle` (																CREATE TABLE AgentManoControle (																
+  `numeroNational` varchar(255) NOT NULL DEFAULT '' COMMENT 'attribue par CRODIP',				    numeroNational         NVARCHAR (255) NOT NULL																				
+  `marque` varchar(255) DEFAULT NULL,															                                          PRIMARY KEY,									
+  `classe` varchar(255) DEFAULT NULL,															    idCrodip               NVARCHAR (255),									
+  `type` varchar(255) DEFAULT NULL,																    marque                 NVARCHAR (255),								
+  `fondEchelle` varchar(255) DEFAULT NULL,														    classe                 NVARCHAR (255),										
+  `etat` tinyint(1) DEFAULT '0',																    type                   NVARCHAR (255),								
+  `idStructure` int(11) DEFAULT '0',															    fondEchelle            NVARCHAR (255),									
+  `isSynchro` tinyint(1) DEFAULT '0',													            etat                   BIT,
+  `dateDernierControle` datetime DEFAULT NULL,													    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,					
+  `dateModificationAgent` datetime DEFAULT NULL,												    isSynchro              BIT,						
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                   dateDernierControle    DATETIME2 (0),
+  `isUtilise` tinyint(1) DEFAULT '0',                                                               dateModificationAgent  DATETIME2 (0),
+  `idCrodip` varchar(255) DEFAULT NULL,                                                             dateModificationCrodip DATETIME2 (0),
+  `isSupprime` tinyint(1) DEFAULT '0',                                                              isUtilise              BIT,
+  `resolution` varchar(255) DEFAULT NULL,														    isSupprime             BIT,				
+  `AgentSuppression` text,																		    nbControles            INT,																															   
+  `RaisonSuppression` text,																		    nbControlesTotal       INT,																															   
+  `DateSuppression` datetime DEFAULT NULL,														    resolution             NVARCHAR (255),																																			   
+  `JamaisServi` tinyint(4) DEFAULT '0',															    agentSuppression       NVARCHAR (255),																																		   
+  `DateActivation` datetime DEFAULT NULL,														    raisonSuppression      NVARCHAR (255),																																			   
+  PRIMARY KEY (`numeroNational`)																    dateSuppression        DATETIME2 (0),																																	   
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;															    jamaisServi            BIT,																																		   
+																								    dateActivation         DATETIME2 (0),																									   
+																								    bAjusteur              BIT,																									   
+																								    resolutionLecture      TEXT																									   
+																								);																									   
+		
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE	
+	
+-	bAjusteur
+- 	nbControles
+- 	nbControlesTotal
+- 	resolutionLecture
+**********************
+A Ajouter cote Serveur + synchro
+
+=====================================================================================================================================================================
+CREATE TABLE `AgentManoEtalon` (																CREATE TABLE AgentManoEtalon (	
+  `numeroNational` varchar(255) NOT NULL DEFAULT '' COMMENT 'attribue par CRODIP',                  numeroNational         NVARCHAR (255) NOT NULL
+  `marque` varchar(255) DEFAULT NULL,															                                          PRIMARY KEY,														
+  `classe` varchar(255) DEFAULT NULL,															    idCrodip               NVARCHAR (255) UNIQUE,																																		   
+  `type` varchar(255) DEFAULT NULL,																    marque                 NVARCHAR (255),																																	   
+  `fondEchelle` varchar(255) DEFAULT NULL,														    classe                 NVARCHAR (255),																																			   
+  `idStructure` int(11) DEFAULT '0',															    type                   NVARCHAR (255),																																		   
+  `isSynchro` tinyint(1) DEFAULT '0',															    fondEchelle            NVARCHAR (255),																																		   
+  `dateDernierControle` datetime DEFAULT NULL,													    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,																																				   
+  `etat` tinyint(1) DEFAULT '0',																    isSynchro              BIT            DEFAULT (0),																																	   
+  `dateModificationAgent` datetime DEFAULT NULL,												    dateDernierControle    DATETIME2 (0),																																					   
+  `dateModificationCrodip` datetime DEFAULT NULL,												    dateModificationAgent  DATETIME2 (0),																																					   
+  `isUtilise` tinyint(1) DEFAULT '0',															    dateModificationCrodip DATETIME2 (0),																																		   
+  `idCrodip` varchar(255) DEFAULT NULL,															    etat                   BIT,																																		   
+  `isSupprime` tinyint(1) DEFAULT '0',															    isUtilise              BIT            DEFAULT (0),																																		   
+  `AgentSuppression` text,                                                                          isSupprime             BIT            DEFAULT (0),
+  `RaisonSuppression` text,                                                                         nbControles            INT            DEFAULT (0),
+  `DateSuppression` datetime DEFAULT NULL,                                                          nbControlesTotal       INT,
+  `incertitudeEtalon` varchar(10) DEFAULT NULL,                                                     incertitudeEtalon      NVARCHAR (255),
+  `JamaisServi` tinyint(4) DEFAULT '0',                                                             agentSuppression       NVARCHAR (255),
+  `DateActivation` datetime DEFAULT NULL,                                                           raisonSuppression      NVARCHAR (255),
+  PRIMARY KEY (`numeroNational`)                                                                    dateSuppression        DATETIME2 (0),
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;                                                               jamaisServi            BIT,
+                                                                                                    dateActivation         DATETIME2 (0) 
+                                                                                                );
+																								
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+-	nbControles	
+- 	nbControlesTotal
+***********************
+A AJOUTER COTE SERVEUR + SYCNHRO
+						
+=====================================================================================================================================================================	
+																								CREATE TABLE AgentPC (
+																									idCrodip               TEXT     PRIMARY KEY,
+																									idStructure            INTEGER  REFERENCES Structure (id) ON DELETE SET NULL,
+																									cleUtilisation         TEXT,
+																									libelle                TEXT,
+																									etat                   BIT,
+																									numInterne             TEXT,
+																									AgentSuppression       TEXT,
+																									RaisonSuppression      TEXT,
+																									dateSuppression        DATETIME,
+																									isSupprime             BIT,
+																									dateModificationAgent  DATETIME,
+																									dateModificationCrodip DATETIME
+
+
+																								);	
+																								
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE		
+	
+-	IdCrodip              																							
+-	idStructure           																							
+-	cleUtilisation        																							
+-	libelle               																							
+-	etat                  																							
+-	numInterne            																							
+-	AgentSuppression      																							
+-	RaisonSuppression     																							
+-	dateSuppression       																							
+-	isSupprime            																							
+-	dateModificationAgent 																							
+-	dateModificationCrodip	
+
+*****************************
+Table à ajouter cote Serveur + synchro
+
+=====================================================================================================================================================================
+CREATE TABLE `AutoTest` (
+  `Id` int(11) NOT NULL,
+  `IdStructure` int(11) NOT NULL,
+  `NumAgent` varchar(25) NOT NULL,
+  `Type` varchar(25) DEFAULT NULL,
+  `IdMateriel` varchar(25) DEFAULT NULL,
+  `DateControle` datetime DEFAULT NULL,
+  `Etat` int(11) DEFAULT NULL,
+  `dateModificationAgent` datetime DEFAULT NULL,
+  `dateModificationCrodip` datetime DEFAULT NULL,
+  PRIMARY KEY (`Id`,`IdStructure`,`NumAgent`)
+
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE		
+
+																									- Id
+																									- IdStructure
+																									- NumAgent
+																									- Type
+																									- IdMateriel
+																									- DateControle
+																									- Etat
+																									- dateModificationAgent
+																									- dateModificationCrodip
+																									
+*********
+TABLE CONTROLE_REGULIER
+	
+=====================================================================================================================================================================	
+CREATE TABLE `BancMesure` (																		CREATE TABLE BancMesure (			
+  `id` varchar(255) NOT NULL DEFAULT '' COMMENT 'idStructure-idAgent-incrementVB',				    id                     NVARCHAR (255) NOT NULL																				
+  `marque` varchar(255) DEFAULT NULL,															                                          PRIMARY KEY,									
+  `modele` varchar(255) DEFAULT NULL,															    marque                 NVARCHAR (255),									
+  `dateAchat` datetime DEFAULT NULL,															    modele                 NVARCHAR (255),									
+  `etat` tinyint(1) DEFAULT '0',																    dateAchat              DATETIME2 (0),								
+  `idStructure` int(11) DEFAULT '0',															    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,									
+  `dateDernierControle` datetime DEFAULT NULL,													    dateDernierControle    DATETIME2 (0),											
+  `dateModificationAgent` datetime DEFAULT NULL,												    dateModificationAgent  DATETIME2 (0),												
+  `dateModificationCrodip` datetime DEFAULT NULL,												    dateModificationCrodip DATETIME2 (0),												
+  `isUtilise` tinyint(1) DEFAULT '0',															    etat                   BIT,									
+  `isSupprime` tinyint(1) DEFAULT '0',															    isUtilise              BIT            DEFAULT (0),									
+  `AgentSuppression` text,                                                                          isSupprime             BIT            DEFAULT (0),
+  `RaisonSuppression` text,                                                                         nbControles            INT            DEFAULT (0),
+  `DateSuppression` datetime DEFAULT NULL,                                                          nbControlesTotal       INT            DEFAULT (0),
+  `JamaisServi` tinyint(4) DEFAULT '0',                                                             agentSuppression       NVARCHAR (255),
+  `DateActivation` datetime DEFAULT NULL,                                                           raisonSuppression      NVARCHAR (255),
+  `ModuleAcquisition` varchar(50) DEFAULT NULL,                                                     dateSuppression        DATETIME2 (0),
+  PRIMARY KEY (`id`)                                                                                jamaisServi            BIT            DEFAULT (1),
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;                                                               dateActivation         DATETIME2 (0),
+                                                                                                    ModuleAcquisition      NVARCHAR (255) DEFAULT ""
+                                                                                                );
+	
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE		
+	
+-	nbControles	
+- 	nbControlesTotal	
+**************************
+A Ajouter coté serveur + synchro
+
+=====================================================================================================================================================================
+CREATE TABLE `Base` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) DEFAULT NULL,
+  `CP` varchar(5) DEFAULT NULL,
+  `commune` varchar(255) DEFAULT NULL,
+  `telephone` varchar(255) DEFAULT NULL,
+  `idStructure` int(11) DEFAULT '0',
+  `latLong` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+	
+	
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE		
+
+																									- id
+																									- nom
+																									- CP
+																									- commune
+																									- telephone
+																									- idStructure
+																									- latLong
+																									****************************
+																									Table inutilisée coté Agent
+								
+=====================================================================================================================================================================	
+																									CREATE TABLE CONTROLE_REGULIER (										
+                                                                                                    CTRG_ID                INTEGER       PRIMARY KEY AUTOINCREMENT
+                                                                                                                                         UNIQUE,
+                                                                                                    CTRG_DATE              DATE,
+                                                                                                    CTRG_STRUCTUREID       INTEGER,
+                                                                                                    CTRG_TYPE              VARCHAR (256),
+                                                                                                    CTRG_MATID             VARCHAR (256),
+                                                                                                    CTRG_NUMAGENT          VARCHAR (256),
+                                                                                                    dateModificationAgent  DATETIME,
+                                                                                                    dateModificationCrodip DATETIME,
+                                                                                                    CTRG_ETAT              VARCHAR (256) 
+                                                                                                );
+																								
+																								
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+-	CTRG_ID               																							                   
+-	CTRG_DATE             
+-	CTRG_STRUCTUREID      
+-	CTRG_TYPE             
+-	CTRG_MATID            
+-	CTRG_NUMAGENT         
+-	dateModificationAgent 
+-	dateModificationCrodip
+-	CTRG_ETAT   
+
+********************
+Voir table AutoTest
+          
+=====================================================================================================================================================================	
+																								CREATE TABLE ControleAgentBanc (					
+                                                                                                    id                    NVARCHAR (50)  NOT NULL
+                                                                                                                                         PRIMARY KEY,
+																				                    date                  DATETIME2 (0),
+																								    marqueDebitmetre      NVARCHAR (255),								
+																								    modeleDebitmetre      NVARCHAR (255),								
+																								    typeDebitmetre        NVARCHAR (255),								
+																								    idManometreEtalon     NVARCHAR (50),								
+																								    intervalleLectures    INT,										
+																								    temperatureExterieure INT,										
+																								    temperatureEau        INT,										
+																								    pressionManometre     INT,										
+																								    debitLue              INT,										
+																								    resultat              NVARCHAR (255),								
+																								    etat                  BIT,										
+																								    isSynchro             BIT										
+																								);		
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+-	id
+-	date
+-	marqueDebitmetre
+-	modeleDebitmetre
+-	typeDebitmetre
+-	idManometreEtalon
+-	intervalleLectures
+-	temperatureExterieure
+-	temperatureEau
+-	pressionManometre
+-	debitLue
+-	resultat
+-	etat
+-	isSynchro
+	       																																		
+																																			
+=====================================================================================================================================================================	
+																									CREATE TABLE ControleAgentMano (									
+																									    id                  NVARCHAR (50)  NOT NULL						
+																									                                       PRIMARY KEY,					
+																									    date                DATETIME2 (0),								
+																									    idManoEtalon        NVARCHAR (50),								
+																									    idManoControle      NVARCHAR (50),								
+																									    temperature         INT,										
+																									    pressionAppliquee   INT,										
+																									    pressionMontante    INT,										
+																									    pressionDescendante INT,										
+																									    erreurAbsolue       INT,										
+																									    erreurFondEchelle   INT,										
+																									    erreurMoyenne       INT,										
+																									    resultat            NVARCHAR (255),								
+																									    etat                BIT											
+																									);	
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+-	id                 																																					
+-	date               																																					
+-	idManoEtalon       																																					
+-	idManoControle     																																					
+-	temperature        																																					
+-	pressionAppliquee  																																					
+-	pressionMontante   																																					
+-	pressionDescendante																																					
+-	erreurAbsolue      																																					
+-	erreurFondEchelle  																																					
+-	erreurMoyenne      																																					
+-	resultat           																																					
+-	etat               		
+
+
+
+=====================================================================================================================================================================	
+CREATE TABLE `ControleBancMesure` (																	CREATE TABLE ControleBancMesure (
+  `id` varchar(255) NOT NULL,                                                                           id                     NVARCHAR (255) NOT NULL  PRIMARY KEY,
+  `idStructure` varchar(255) DEFAULT NULL,                                                              idStructure            NVARCHAR (255) REFERENCES Structure (id) ON DELETE CASCADE,			    
+  `idBanc` varchar(255) DEFAULT NULL,																    idBanc                 NVARCHAR (255),							
+  `buse1` varchar(255) DEFAULT '0',																	    buse1                  NVARCHAR (255),				
+  `buse2` varchar(255) DEFAULT '0',																	    buse2                  NVARCHAR (255),				
+  `buse3` varchar(255) DEFAULT '0',																	    buse3                  NVARCHAR (255),				
+  `buse4` varchar(255) DEFAULT '0',																	    buse4                  NVARCHAR (255),
+  `buse5` varchar(255) DEFAULT '0',                                                                     buse5                  NVARCHAR (255),
+  `buse6` varchar(255) DEFAULT '0',                                                                     buse6                  NVARCHAR (255),
+  `tempExt` varchar(255) DEFAULT '0',                                                                   tempExt                NVARCHAR (255),
+  `tempEau` varchar(255) DEFAULT '0',                                                                   tempEau                NVARCHAR (255),
+  `resultat` varchar(255) DEFAULT '0',                                                                  resultat               NVARCHAR (255),
+  `b1_pressionEtal` varchar(255) NOT NULL DEFAULT '0',                                                  b1_pressionEtal        NVARCHAR (255),
+  `b1_debitEtal` varchar(255) NOT NULL DEFAULT '0',                                                     b1_debitEtal           NVARCHAR (255),
+  `b1_2bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b1_2bar_m1             NVARCHAR (255),
+  `b1_2bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b1_2bar_m2             NVARCHAR (255),
+  `b1_2bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b1_2bar_m3             NVARCHAR (255),
+  `b1_2bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b1_2bar_moy            NVARCHAR (255),
+  `b1_2bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b1_2bar_ecart          NVARCHAR (255),
+  `b1_3bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b1_3bar_m1             NVARCHAR (255),
+  `b1_3bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b1_3bar_m2             NVARCHAR (255),
+  `b1_3bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b1_3bar_m3             NVARCHAR (255),
+  `b1_3bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b1_3bar_moy            NVARCHAR (255),
+  `b1_3bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b1_3bar_ecart          NVARCHAR (255),
+  `b2_pressionEtal` varchar(255) NOT NULL DEFAULT '0',                                                  b2_pressionEtal        NVARCHAR (255),
+  `b2_debitEtal` varchar(255) NOT NULL DEFAULT '0',                                                     b2_debitEtal           NVARCHAR (255),
+  `b2_2bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b2_2bar_m1             NVARCHAR (255),
+  `b2_2bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b2_2bar_m2             NVARCHAR (255),
+  `b2_2bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b2_2bar_m3             NVARCHAR (255),
+  `b2_2bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b2_2bar_moy            NVARCHAR (255),
+  `b2_2bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b2_2bar_ecart          NVARCHAR (255),
+  `b2_3bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b2_3bar_m1             NVARCHAR (255),
+  `b2_3bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b2_3bar_m2             NVARCHAR (255),
+  `b2_3bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b2_3bar_m3             NVARCHAR (255),
+  `b2_3bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b2_3bar_moy            NVARCHAR (255),
+  `b2_3bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b2_3bar_ecart          NVARCHAR (255),
+  `b3_pressionEtal` varchar(255) NOT NULL DEFAULT '0',                                                  b3_pressionEtal        NVARCHAR (255),
+  `b3_debitEtal` varchar(255) NOT NULL DEFAULT '0',                                                     b3_debitEtal           NVARCHAR (255),
+  `b3_2bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b3_2bar_m1             NVARCHAR (255),
+  `b3_2bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b3_2bar_m2             NVARCHAR (255),
+  `b3_2bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b3_2bar_m3             NVARCHAR (255),
+  `b3_2bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b3_2bar_moy            NVARCHAR (255),
+  `b3_2bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b3_2bar_ecart          NVARCHAR (255),
+  `b3_3bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b3_3bar_m1             NVARCHAR (255),
+  `b3_3bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b3_3bar_m2             NVARCHAR (255),
+  `b3_3bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b3_3bar_m3             NVARCHAR (255),
+  `b3_3bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b3_3bar_moy            NVARCHAR (255),
+  `b3_3bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b3_3bar_ecart          NVARCHAR (255),
+  `b4_pressionEtal` varchar(255) NOT NULL DEFAULT '0',                                                  b4_pressionEtal        NVARCHAR (255),
+  `b4_debitEtal` varchar(255) NOT NULL DEFAULT '0',                                                     b4_debitEtal           NVARCHAR (255),
+  `b4_2bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b4_2bar_m1             NVARCHAR (255),
+  `b4_2bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b4_2bar_m2             NVARCHAR (255),
+  `b4_2bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b4_2bar_m3             NVARCHAR (255),
+  `b4_2bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b4_2bar_moy            NVARCHAR (255),
+  `b4_2bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b4_2bar_ecart          NVARCHAR (255),
+  `b4_3bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b4_3bar_m1             NVARCHAR (255),
+  `b4_3bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b4_3bar_m2             NVARCHAR (255),
+  `b4_3bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b4_3bar_m3             NVARCHAR (255),
+  `b4_3bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b4_3bar_moy            NVARCHAR (255),
+  `b4_3bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b4_3bar_ecart          NVARCHAR (255),
+  `b5_pressionEtal` varchar(255) NOT NULL DEFAULT '0',                                                  b5_pressionEtal        NVARCHAR (255),
+  `b5_debitEtal` varchar(255) NOT NULL DEFAULT '0',                                                     b5_debitEtal           NVARCHAR (255),
+  `b5_2bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b5_2bar_m1             NVARCHAR (255),
+  `b5_2bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b5_2bar_m2             NVARCHAR (255),
+  `b5_2bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b5_2bar_m3             NVARCHAR (255),
+  `b5_2bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b5_2bar_moy            NVARCHAR (255),
+  `b5_2bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b5_2bar_ecart          NVARCHAR (255),
+  `b5_3bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b5_3bar_m1             NVARCHAR (255),
+  `b5_3bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b5_3bar_m2             NVARCHAR (255),
+  `b5_3bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b5_3bar_m3             NVARCHAR (255),
+  `b5_3bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b5_3bar_moy            NVARCHAR (255),
+  `b5_3bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b5_3bar_ecart          NVARCHAR (255),
+  `b6_pressionEtal` varchar(255) NOT NULL DEFAULT '0',                                                  b6_pressionEtal        NVARCHAR (255),
+  `b6_debitEtal` varchar(255) NOT NULL DEFAULT '0',                                                     b6_debitEtal           NVARCHAR (255),
+  `b6_2bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b6_2bar_m1             NVARCHAR (255),
+  `b6_2bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b6_2bar_m2             NVARCHAR (255),
+  `b6_2bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b6_2bar_m3             NVARCHAR (255),
+  `b6_2bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b6_2bar_moy            NVARCHAR (255),
+  `b6_2bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b6_2bar_ecart          NVARCHAR (255),
+  `b6_3bar_m1` varchar(255) NOT NULL DEFAULT '0',                                                       b6_3bar_m1             NVARCHAR (255),
+  `b6_3bar_m2` varchar(255) NOT NULL DEFAULT '0',                                                       b6_3bar_m2             NVARCHAR (255),
+  `b6_3bar_m3` varchar(255) NOT NULL DEFAULT '0',                                                       b6_3bar_m3             NVARCHAR (255),
+  `b6_3bar_moy` varchar(255) NOT NULL DEFAULT '0',                                                      b6_3bar_moy            NVARCHAR (255),
+  `b6_3bar_ecart` varchar(255) NOT NULL DEFAULT '0',                                                    b6_3bar_ecart          NVARCHAR (255),
+  `dateModificationAgent` datetime DEFAULT NULL,                                                        dateModificationAgent  DATETIME2 (0),
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       dateModificationCrodip DATETIME2 (0),
+  `b1_2bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 idFichevie             NVARCHAR (255),
+  `b2_2bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b1_2bar_conformite     NVARCHAR (255),
+  `b3_2bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b2_2bar_conformite     NVARCHAR (255),
+  `b4_2bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b3_2bar_conformite     NVARCHAR (255),
+  `b5_2bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b4_2bar_conformite     NVARCHAR (255),
+  `b6_2bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b5_2bar_conformite     NVARCHAR (255),
+  `b1_3bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b6_2bar_conformite     NVARCHAR (255),
+  `b2_3bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b1_3bar_conformite     NVARCHAR (255),
+  `b3_3bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b2_3bar_conformite     NVARCHAR (255),
+  `b4_3bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b3_3bar_conformite     NVARCHAR (255),
+  `b5_3bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b4_3bar_conformite     NVARCHAR (255),
+  `b6_3bar_conformite` varchar(5) NOT NULL DEFAULT '1',                                                 b5_3bar_conformite     NVARCHAR (255),
+  `idFichevie` varchar(255) DEFAULT NULL,                                                               b6_3bar_conformite     NVARCHAR (255) 
+  PRIMARY KEY (`id`)                                                                                );
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;  
+                        
+	
+MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE		
+	
+
+=====================================================================================================================================================================	
+CREATE TABLE `ControleManoMesure` (																	CREATE TABLE ControleManoMesure (					
+  `id` varchar(255) NOT NULL,                                                                           id                       NVARCHAR (255) NOT NULL   PRIMARY KEY,
+  `idStructure` varchar(255) DEFAULT NULL,                                                              idStructure              NVARCHAR (255) REFERENCES Structure (id) ON DELETE CASCADE,                                      
+  `idMano` varchar(255) DEFAULT NULL,                                                                   idMano                   NVARCHAR (255),
+  `manoEtalon` varchar(255) DEFAULT '0',                                                                manoEtalon               NVARCHAR (255),
+  `tempAir` varchar(255) DEFAULT '0',                                                                   tempAir                  NVARCHAR (255),
+  `resultat` varchar(255) DEFAULT '0',                                                                  resultat                 NVARCHAR (255),
+  `up_pt1_pres_manoCtrl` varchar(255) DEFAULT '0',                                                      up_pt1_pres_manoCtrl     NVARCHAR (255),
+  `up_pt1_pres_manoEtalon` varchar(255) DEFAULT '0',                                                    up_pt1_pres_manoEtalon   NVARCHAR (255),
+  `up_pt1_incertitude` varchar(255) DEFAULT '0',                                                        up_pt1_incertitude       NVARCHAR (255),
+  `up_pt1_EMT` varchar(255) DEFAULT '0',                                                                up_pt1_EMT               NVARCHAR (255),
+  `up_pt1_err_abs` varchar(255) DEFAULT '0',                                                            up_pt1_err_abs           NVARCHAR (255),
+  `up_pt1_err_fondEchelle` varchar(255) DEFAULT '0',                                                    up_pt1_err_fondEchelle   NVARCHAR (255),
+  `up_pt1_conformite` varchar(2) DEFAULT '0',                                                           up_pt2_pres_manoCtrl     NVARCHAR (255),
+  `up_pt2_pres_manoCtrl` varchar(255) DEFAULT '0',                                                      up_pt2_pres_manoEtalon   NVARCHAR (255),
+  `up_pt2_pres_manoEtalon` varchar(255) DEFAULT '0',                                                    up_pt2_incertitude       NVARCHAR (255),
+  `up_pt2_incertitude` varchar(255) DEFAULT '0',                                                        up_pt2_EMT               NVARCHAR (255),
+  `up_pt2_EMT` varchar(255) DEFAULT '0',                                                                up_pt2_err_abs           NVARCHAR (255),
+  `up_pt2_err_abs` varchar(255) DEFAULT '0',                                                            up_pt2_err_fondEchelle   NVARCHAR (255),
+  `up_pt2_err_fondEchelle` varchar(255) DEFAULT '0',                                                    up_pt3_pres_manoCtrl     NVARCHAR (255),
+  `up_pt2_conformite` varchar(2) DEFAULT '0',                                                           up_pt3_pres_manoEtalon   NVARCHAR (255),
+  `up_pt3_pres_manoCtrl` varchar(255) DEFAULT '0',                                                      up_pt3_incertitude       NVARCHAR (255),
+  `up_pt3_pres_manoEtalon` varchar(255) DEFAULT '0',                                                    up_pt3_EMT               NVARCHAR (255),
+  `up_pt3_incertitude` varchar(255) DEFAULT '0',                                                        up_pt3_err_abs           NVARCHAR (255),
+  `up_pt3_EMT` varchar(255) DEFAULT '0',                                                                up_pt3_err_fondEchelle   NVARCHAR (255),
+  `up_pt3_err_abs` varchar(255) DEFAULT '0',                                                            up_pt4_pres_manoCtrl     NVARCHAR (255),
+  `up_pt3_err_fondEchelle` varchar(255) DEFAULT '0',                                                    up_pt4_pres_manoEtalon   NVARCHAR (255),
+  `up_pt3_conformite` varchar(2) DEFAULT '0',                                                           up_pt4_incertitude       NVARCHAR (255),
+  `up_pt4_pres_manoCtrl` varchar(255) DEFAULT '0',                                                      up_pt4_EMT               NVARCHAR (255),
+  `up_pt4_pres_manoEtalon` varchar(255) DEFAULT '0',                                                    up_pt4_err_abs           NVARCHAR (255),
+  `up_pt4_incertitude` varchar(255) DEFAULT '0',                                                        up_pt4_err_fondEchelle   NVARCHAR (255),
+  `up_pt4_EMT` varchar(255) DEFAULT '0',                                                                up_pt5_pres_manoCtrl     NVARCHAR (255),
+  `up_pt4_err_abs` varchar(255) DEFAULT '0',                                                            up_pt5_pres_manoEtalon   NVARCHAR (255),
+  `up_pt4_err_fondEchelle` varchar(255) DEFAULT '0',                                                    up_pt5_incertitude       NVARCHAR (255),
+  `up_pt4_conformite` varchar(2) DEFAULT '0',                                                           up_pt5_EMT               NVARCHAR (255),
+  `up_pt5_pres_manoCtrl` varchar(255) DEFAULT '0',                                                      up_pt5_err_abs           NVARCHAR (255),
+  `up_pt5_pres_manoEtalon` varchar(255) DEFAULT '0',                                                    up_pt5_err_fondEchelle   NVARCHAR (255),
+  `up_pt5_incertitude` varchar(255) DEFAULT '0',                                                        up_pt6_pres_manoCtrl     NVARCHAR (255),
+  `up_pt5_EMT` varchar(255) DEFAULT '0',                                                                up_pt6_pres_manoEtalon   NVARCHAR (255),
+  `up_pt5_err_abs` varchar(255) DEFAULT '0',                                                            up_pt6_incertitude       NVARCHAR (255),
+  `up_pt5_err_fondEchelle` varchar(255) DEFAULT '0',                                                    up_pt6_EMT               NVARCHAR (255),
+  `up_pt5_conformite` varchar(2) DEFAULT '0',                                                           up_pt6_err_abs           NVARCHAR (255),
+  `up_pt6_pres_manoCtrl` varchar(255) DEFAULT '0',                                                      up_pt6_err_fondEchelle   NVARCHAR (255),
+  `up_pt6_pres_manoEtalon` varchar(255) DEFAULT '0',                                                    down_pt1_pres_manoCtrl   NVARCHAR (255),
+  `up_pt6_incertitude` varchar(255) DEFAULT '0',                                                        down_pt1_pres_manoEtalon NVARCHAR (255),
+  `up_pt6_EMT` varchar(255) DEFAULT '0',                                                                down_pt1_incertitude     NVARCHAR (255),
+  `up_pt6_err_abs` varchar(255) DEFAULT '0',                                                            down_pt1_EMT             NVARCHAR (255),
+  `up_pt6_err_fondEchelle` varchar(255) DEFAULT '0',                                                    down_pt1_err_abs         NVARCHAR (255),
+  `up_pt6_conformite` varchar(2) DEFAULT '0',                                                           down_pt1_err_fondEchelle NVARCHAR (255),
+  `down_pt1_pres_manoCtrl` varchar(255) DEFAULT '0',                                                    down_pt2_pres_manoCtrl   NVARCHAR (255),
+  `down_pt1_pres_manoEtalon` varchar(255) DEFAULT '0',                                                  down_pt2_pres_manoEtalon NVARCHAR (255),
+  `down_pt1_incertitude` varchar(255) DEFAULT '0',                                                      down_pt2_incertitude     NVARCHAR (255),
+  `down_pt1_EMT` varchar(255) DEFAULT '0',                                                              down_pt2_EMT             NVARCHAR (255),
+  `down_pt1_err_abs` varchar(255) DEFAULT '0',                                                          down_pt2_err_abs         NVARCHAR (255),
+  `down_pt1_err_fondEchelle` varchar(255) DEFAULT '0',                                                  down_pt2_err_fondEchelle NVARCHAR (255),
+  `down_pt1_conformite` varchar(2) DEFAULT '0',                                                         down_pt3_pres_manoCtrl   NVARCHAR (255),
+  `down_pt2_pres_manoCtrl` varchar(255) DEFAULT '0',                                                    down_pt3_pres_manoEtalon NVARCHAR (255),
+  `down_pt2_pres_manoEtalon` varchar(255) DEFAULT '0',                                                  down_pt3_incertitude     NVARCHAR (255),
+  `down_pt2_incertitude` varchar(255) DEFAULT '0',                                                      down_pt3_EMT             NVARCHAR (255),
+  `down_pt2_EMT` varchar(255) DEFAULT '0',                                                              down_pt3_err_abs         NVARCHAR (255),
+  `down_pt2_err_abs` varchar(255) DEFAULT '0',                                                          down_pt3_err_fondEchelle NVARCHAR (255),
+  `down_pt2_err_fondEchelle` varchar(255) DEFAULT '0',                                                  down_pt4_pres_manoCtrl   NVARCHAR (255),
+  `down_pt2_conformite` varchar(2) DEFAULT '0',                                                         down_pt4_pres_manoEtalon NVARCHAR (255),
+  `down_pt3_pres_manoCtrl` varchar(255) DEFAULT '0',                                                    down_pt4_incertitude     NVARCHAR (255),
+  `down_pt3_pres_manoEtalon` varchar(255) DEFAULT '0',                                                  down_pt4_EMT             NVARCHAR (255),
+  `down_pt3_incertitude` varchar(255) DEFAULT '0',                                                      down_pt4_err_abs         NVARCHAR (255),
+  `down_pt3_EMT` varchar(255) DEFAULT '0',                                                              down_pt4_err_fondEchelle NVARCHAR (255),
+  `down_pt3_err_abs` varchar(255) DEFAULT '0',                                                          down_pt5_pres_manoCtrl   NVARCHAR (255),
+  `down_pt3_err_fondEchelle` varchar(255) DEFAULT '0',                                                  down_pt5_pres_manoEtalon NVARCHAR (255),
+  `down_pt3_conformite` varchar(2) DEFAULT '0',                                                         down_pt5_incertitude     NVARCHAR (255),
+  `down_pt4_pres_manoCtrl` varchar(255) DEFAULT '0',                                                    down_pt5_EMT             NVARCHAR (255),
+  `down_pt4_pres_manoEtalon` varchar(255) DEFAULT '0',                                                  down_pt5_err_abs         NVARCHAR (255),
+  `down_pt4_incertitude` varchar(255) DEFAULT '0',                                                      down_pt5_err_fondEchelle NVARCHAR (255),
+  `down_pt4_EMT` varchar(255) DEFAULT '0',                                                              down_pt6_pres_manoCtrl   NVARCHAR (255),
+  `down_pt4_err_abs` varchar(255) DEFAULT '0',                                                          down_pt6_pres_manoEtalon NVARCHAR (255),
+  `down_pt4_err_fondEchelle` varchar(255) DEFAULT '0',                                                  down_pt6_incertitude     NVARCHAR (255),
+  `down_pt4_conformite` varchar(2) DEFAULT '0',                                                         down_pt6_EMT             NVARCHAR (255),
+  `down_pt5_pres_manoCtrl` varchar(255) DEFAULT '0',                                                    down_pt6_err_abs         NVARCHAR (255),
+  `down_pt5_pres_manoEtalon` varchar(255) DEFAULT '0',                                                  down_pt6_err_fondEchelle NVARCHAR (255),
+  `down_pt5_incertitude` varchar(255) DEFAULT '0',                                                      dateModificationAgent    DATETIME2 (0),
+  `down_pt5_EMT` varchar(255) DEFAULT '0',                                                              dateModificationCrodip   DATETIME2 (0),
+  `down_pt5_err_abs` varchar(255) DEFAULT '0',                                                          up_pt1_conformite        NVARCHAR (255),
+  `down_pt5_err_fondEchelle` varchar(255) DEFAULT '0',                                                  up_pt2_conformite        NVARCHAR (255),
+  `down_pt5_conformite` varchar(2) DEFAULT '0',                                                         up_pt3_conformite        NVARCHAR (255),
+  `down_pt6_pres_manoCtrl` varchar(255) DEFAULT '0',                                                    up_pt4_conformite        NVARCHAR (255),
+  `down_pt6_pres_manoEtalon` varchar(255) DEFAULT '0',                                                  up_pt5_conformite        NVARCHAR (255),
+  `down_pt6_incertitude` varchar(255) DEFAULT '0',                                                      up_pt6_conformite        NVARCHAR (255),
+  `down_pt6_EMT` varchar(255) DEFAULT '0',                                                              down_pt1_conformite      NVARCHAR (255),
+  `down_pt6_err_abs` varchar(255) DEFAULT '0',                                                          down_pt2_conformite      NVARCHAR (255),
+  `down_pt6_err_fondEchelle` varchar(255) DEFAULT '0',                                                  down_pt3_conformite      NVARCHAR (255),
+  `down_pt6_conformite` varchar(2) DEFAULT '0',                                                         down_pt4_conformite      NVARCHAR (255),
+  `dateModificationAgent` datetime DEFAULT NULL,                                                        down_pt5_conformite      NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       down_pt6_conformite      NVARCHAR (255),
+  `idFichevie` varchar(255) DEFAULT NULL,                                                               idFichevie               NVARCHAR (255) 
+  PRIMARY KEY (`id`)                                                                                    
+ 
+																									);
+																									
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+	
+=====================================================================================================================================================================																									  
+CREATE TABLE `Diagnostic` (																			CREATE TABLE Diagnostic (																	
+  `id` varchar(50) NOT NULL DEFAULT '' COMMENT 'idStructure-idAgent-incrementVB',					    id                                     NVARCHAR (50)  NOT NULL																				
+  `typeDiag` varchar(10) DEFAULT 'crodip',                                                                                                                    PRIMARY KEY,
+  `typeDiagnostic` varchar(50) DEFAULT 'pulverisateur',                                                 organismePresId                        INT,
+  `inspecteurId` int(11) DEFAULT '0',                                                                   organismePresNumero                    NVARCHAR (255),
+  `inspecteurNom` varchar(255) DEFAULT NULL,                                                            organismePresNom                       NVARCHAR (255),
+  `inspecteurPrenom` varchar(255) DEFAULT NULL,                                                         organismeInspNom                       NVARCHAR (255),
+  `controleTarif` varchar(15) DEFAULT NULL,                                                             organismeInspAgrement                  NVARCHAR (255),
+  `controleDateDebut` datetime DEFAULT '0000-00-00 00:00:00',                                           inspecteurId                           INT,
+  `controleDateFin` datetime DEFAULT '0000-00-00 00:00:00',                                             inspecteurNom                          NVARCHAR (255),
+  `controleLieu` varchar(255) DEFAULT NULL,                                                             inspecteurPrenom                       NVARCHAR (255),
+  `controleTerritoire` varchar(255) DEFAULT NULL,                                                       controleDateDebut                      DATETIME2,
+  `controleCommune` varchar(255) DEFAULT NULL,                                                          controleDateFin                        DATETIME2,
+  `controleCodePostal` varchar(11) DEFAULT NULL,                                                        controleCommune                        NVARCHAR (255),
+  `controleSite` varchar(255) DEFAULT NULL,                                                             controleCodePostal                     NVARCHAR (255),
+  `controleNomSite` varchar(255) DEFAULT NULL,                                                          controleLieu                           NVARCHAR (255),
+  `controleIsComplet` tinyint(1) DEFAULT '0',                                                           controleTerritoire                     NVARCHAR (255),
+  `controlePremierControle` tinyint(1) DEFAULT '0',                                                     controleSite                           NVARCHAR (255),
+  `controleEtat` int(11) DEFAULT NULL,                                                                  controleNomSite                        NVARCHAR (255),
+  `controleDateDernierControle` datetime DEFAULT '0000-00-00 00:00:00',                                 controleIsComplet                      BIT,
+  `controleIsSiteSecurise` tinyint(1) DEFAULT '0',                                                      controleIsPremierControle              BIT,
+  `controleIsRecupResidus` tinyint(1) DEFAULT '0',                                                      controleDateDernierControle            DATETIME2 (0),
+  `controleInfosConseils` text,                                                                         controleIsSiteSecurise                 BIT,
+  `controleIsPulveRepare` tinyint(1) DEFAULT '0',                                                       controleIsRecupResidus                 BIT,
+  `organismePresId` int(11) DEFAULT '0',                                                                controleEtat                           NVARCHAR (255),
+  `organismePresNumero` varchar(50) DEFAULT NULL,                                                       controleInfosConseils                  NVARCHAR (255),
+  `organismePresNom` varchar(255) DEFAULT NULL,                                                         controleTarif                          NVARCHAR (255),
+  `organismeInspNom` varchar(255) DEFAULT NULL,                                                         controleIsPulveRepare                  BIT,
+  `organismeInspAgrement` varchar(255) DEFAULT NULL,                                                    proprietaireId                         NVARCHAR (255) REFERENCES Exploitation (id) ON DELETE CASCADE,
+  `proprietaireId` varchar(255) DEFAULT NULL,                                                           proprietaireRaisonSociale              NVARCHAR (255),
+  `proprietaireNom` varchar(255) DEFAULT NULL,                                                          proprietairePrenom                     NVARCHAR (255),
+  `proprietairePrenom` varchar(255) DEFAULT NULL,                                                       proprietaireNom                        NVARCHAR (255),
+  `proprietaireNumeroSiren` varchar(255) DEFAULT NULL,                                                  proprietaireCodeApe                    NVARCHAR (255),
+  `proprietaireRaisonSociale` varchar(255) DEFAULT NULL,                                                proprietaireNumeroSiren                NVARCHAR (255),
+  `proprietaireCodeApe` varchar(255) DEFAULT NULL,                                                      proprietaireCommune                    NVARCHAR (255),
+  `proprietaireAdresse` varchar(255) DEFAULT NULL,                                                      proprietaireCodePostal                 NVARCHAR (255),
+  `proprietaireCommune` varchar(255) DEFAULT NULL,                                                      proprietaireAdresse                    NVARCHAR (255),
+  `proprietaireCodePostal` varchar(11) DEFAULT NULL,                                                    proprietaireEmail                      NVARCHAR (255),
+  `proprietaireEmail` varchar(255) DEFAULT NULL,                                                        proprietaireTelephonePortable          NVARCHAR (255),
+  `proprietaireTelephoneFixe` varchar(255) DEFAULT NULL,                                                proprietaireTelephoneFixe              NVARCHAR (255),
+  `proprietaireTelephonePortable` varchar(255) DEFAULT NULL,                                            pulverisateurId                        NVARCHAR (50)  REFERENCES Pulverisateur (id) ON DELETE CASCADE,
+  `pulverisateurId` varchar(50) DEFAULT NULL,                                                           pulverisateurMarque                    NVARCHAR (255),
+  `pulverisateurType` varchar(255) DEFAULT NULL,                                                        pulverisateurModele                    NVARCHAR (255),
+  `pulverisateurMarque` varchar(255) DEFAULT NULL,                                                      pulverisateurType                      NVARCHAR (255),
+  `pulverisateurModele` varchar(255) DEFAULT NULL,                                                      pulverisateurCapacite                  NVARCHAR (255),
+  `pulverisateurCapacite` varchar(255) DEFAULT NULL,                                                    pulverisateurLargeur                   NVARCHAR (255),
+  `pulverisateurLargeurPlantation` varchar(10) DEFAULT NULL,                                            pulverisateurNbRangs                   NVARCHAR (255),
+  `pulverisateurLargeur` varchar(10) DEFAULT NULL,                                                      pulverisateurLargeurPlantation         NVARCHAR (255),
+  `pulverisateurNbRangs` varchar(10) DEFAULT NULL,                                                      pulverisateurIsVentilateur             BIT,
+  `pulverisateurIsVentilateur` tinyint(1) DEFAULT '0',                                                  pulverisateurIsDebrayage               BIT,
+  `pulverisateurIsDebrayage` tinyint(1) DEFAULT '0',                                                    pulverisateurAnneeAchat                NVARCHAR (255),
+  `pulverisateurAnneeAchat` int(11) DEFAULT NULL,                                                       pulverisateurSurface                   NVARCHAR (255),
+  `pulverisateurSurface` varchar(255) DEFAULT NULL,                                                     pulverisateurNbUtilisateurs            NVARCHAR (255),
+  `pulverisateurNbUtilisateurs` varchar(255) DEFAULT NULL,                                              pulverisateurIsCuveRincage             BIT,
+  `pulverisateurIsCuveRincage` tinyint(1) DEFAULT '0',                                                  pulverisateurCapaciteCuveRincage       NVARCHAR (255),
+  `pulverisateurCapaciteCuveRincage` varchar(255) DEFAULT NULL,                                         pulverisateurIsRotobuse                BIT,
+  `pulverisateurIsCuveIncorporation` tinyint(1) DEFAULT '0',                                            pulverisateurIsRinceBidon              BIT,
+  `pulverisateurIsRinceBidon` tinyint(1) DEFAULT '0',                                                   pulverisateurIsBidonLaveMain           BIT,
+  `pulverisateurIsBidonLaveMain` tinyint(1) DEFAULT '0',                                                pulverisateurIsLanceLavageExterieur    BIT,
+  `pulverisateurIsLanceLavageExterieur` tinyint(1) DEFAULT '0',                                         pulverisateurIsCuveIncorporation       BIT,
+  `pulverisateurIsRotobuse` tinyint(1) DEFAULT '0',                                                     pulverisateurAttelage                  NVARCHAR (255),
+  `pulverisateurCategorieIsRampe` tinyint(1) DEFAULT '0',                                               pulverisateurAutresAccessoires         NVARCHAR (255),
+  `pulverisateurCategorieIsAxial` tinyint(1) DEFAULT '0',                                               buseMarque                             NVARCHAR (255),
+  `pulverisateurCategorieIsJetDirige` tinyint(1) DEFAULT '0',                                           buseCouleur                            NVARCHAR (255),
+  `pulverisateurCategorieIsCanon` tinyint(1) DEFAULT '0',                                               buseGenre                              NVARCHAR (255),
+  `pulverisateurCategorieIsVoute` tinyint(1) DEFAULT '0',                                               buseCalibre                            NVARCHAR (255),
+  `pulverisateurCategorieIsFaceParFace` tinyint(1) DEFAULT '0',                                         buseDebit                              NVARCHAR (255),
+  `pulverisateurAttelage` varchar(255) DEFAULT NULL,                                                    buseDebit2bars                         NVARCHAR (255),
+  `pulverisateurRegulationIsPressionConstante` tinyint(1) DEFAULT '0',                                  buseDebit3bars                         NVARCHAR (255),
+  `pulverisateurRegulationIsDpm` tinyint(1) DEFAULT '0',                                                buseAge                                NVARCHAR (255),
+  `pulverisateurRegulationIsDpa` tinyint(1) DEFAULT '0',                                                buseNbBuses                            NVARCHAR (255),
+  `pulverisateurRegulationIsDpae` tinyint(1) DEFAULT '0',                                               buseType                               NVARCHAR (255),
+  `pulverisateurRegulationIsPression` tinyint(1) DEFAULT '0',                                           buseAngle                              NVARCHAR (255),
+  `pulverisateurRegulationIsDebit` tinyint(1) DEFAULT '0',                                              buseIsISO                              BIT,
+  `pulverisateurIsJetProjete` tinyint(1) DEFAULT '0',                                                   manometreMarque                        NVARCHAR (255),
+  `pulverisateurIsJetPorte` tinyint(1) DEFAULT '0',                                                     manometreDiametre                      NVARCHAR (255),
+  `pulverisateurIsPneumatique` tinyint(1) DEFAULT '0',                                                  manometreType                          NVARCHAR (255),
+  `pulverisateurAutresAccessoires` varchar(255) DEFAULT NULL,                                           manometreFondEchelle                   NVARCHAR (255),
+  `buseMarque` varchar(255) DEFAULT NULL,                                                               manometrePressionTravail               NVARCHAR (255),
+  `buseCouleur` varchar(255) DEFAULT NULL,                                                              exploitationTypeCultureIsGrandeCulture BIT,
+  `buseGenre` varchar(255) DEFAULT NULL,                                                                exploitationTypeCultureIsLegume        BIT,
+  `buseCalibre` varchar(50) DEFAULT NULL,                                                               exploitationTypeCultureIsElevage       BIT,
+  `buseDebit` varchar(50) DEFAULT NULL,                                                                 exploitationTypeCultureIsArboriculture BIT,
+  `buseDebit2bars` varchar(50) DEFAULT NULL,                                                            exploitationTypeCultureIsViticulture   BIT,
+  `buseDebit3bars` varchar(50) DEFAULT NULL,                                                            exploitationTypeCultureIsAutres        BIT,
+  `buseAge` varchar(255) DEFAULT NULL,                                                                  exploitationSau                        NVARCHAR (255),
+  `buseNbBuses` varchar(50) DEFAULT NULL,                                                               dateModificationAgent                  DATETIME2 (0),
+  `buseType` varchar(255) DEFAULT NULL,                                                                 dateModificationCrodip                 DATETIME2 (0),
+  `buseAngle` varchar(50) DEFAULT NULL,                                                                 dateSynchro                            DATETIME2 (0),
+  `buseFonctionnementIsStandard` tinyint(1) DEFAULT '0',                                                isSynchro                              BIT,
+  `buseFonctionnementIsPastilleChambre` tinyint(1) DEFAULT '0',                                         isATGIP                                BIT            DEFAULT (0),
+  `buseFonctionnementIsInjectionAirLibre` tinyint(1) DEFAULT '0',                                       isTGIP                                 BIT            DEFAULT (0),
+  `buseFonctionnementIsInjectionAirForce` tinyint(1) DEFAULT '0',                                       isFacture                              BIT            DEFAULT (0),
+  `buseIsISO` tinyint(1) DEFAULT '0',                                                                   syntheseErreurMoyenneMano              NVARCHAR (255),
+  `manometreMarque` varchar(255) DEFAULT NULL,                                                          syntheseErreurMaxiMano                 NVARCHAR (255),
+  `manometreDiametre` varchar(255) DEFAULT NULL,                                                        syntheseErreurDebitmetre               NVARCHAR (255),
+  `manometreType` varchar(200) DEFAULT '0',                                                             syntheseErreurMoyenneCinemometre       NVARCHAR (255),
+  `manometreFondEchelle` varchar(255) DEFAULT NULL,                                                     syntheseUsureMoyenneBuses              NVARCHAR (255),
+  `manometrePressionTravail` varchar(255) DEFAULT NULL,                                                 syntheseNbBusesUsees                   NVARCHAR (255),
+  `exploitationTypeCultureIsGrandeCulture` tinyint(1) DEFAULT '0',                                      synthesePerteChargeMoyenne             NVARCHAR (255),
+  `exploitationTypeCultureIsLegume` tinyint(1) DEFAULT '0',                                             synthesePerteChargeMaxi                NVARCHAR (255),
+  `exploitationTypeCultureIsElevage` tinyint(1) DEFAULT '0',                                            controleIsPreControleProfessionel      BIT,
+  `exploitationTypeCultureIsArboriculture` tinyint(1) DEFAULT '0',                                      controleIsAutoControle                 BIT,
+  `exploitationTypeCultureIsViticulture` tinyint(1) DEFAULT '0',                                        ProprietaireRepresentant               NVARCHAR (255),
+  `exploitationTypeCultureIsAutres` varchar(255) DEFAULT NULL,                                          organismeOriginePresId                 INT,
+  `exploitationSau` varchar(255) DEFAULT NULL,                                                          organismeOriginePresNumero             NVARCHAR (255),
+  `dateSynchro` datetime DEFAULT NULL,                                                                  organismeOriginePresNom                NVARCHAR (255),
+  `isSynchro` tinyint(1) DEFAULT '0',                                                                   organismeOrigineInspNom                NVARCHAR (255),
+  `dateModificationAgent` datetime DEFAULT '0000-00-00 00:00:00',                                       organismeOrigineInspAgrement           NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT '0000-00-00 00:00:00',                                      inspecteurOrigineId                    INT,
+  `isATGIP` tinyint(1) DEFAULT '0',                                                                     inspecteurOrigineNom                   NVARCHAR (255),
+  `isTGIP` tinyint(1) DEFAULT '0',                                                                      inspecteurOriginePrenom                NVARCHAR (255),
+  `isFacture` tinyint(1) DEFAULT '0',                                                                   pulverisateurEmplacementIdentification NVARCHAR (255),
+  `syntheseErreurMoyenneMano` varchar(10) DEFAULT NULL,                                                 controleBancMesureId                   NVARCHAR (255),
+  `syntheseErreurMaxiMano` varchar(10) DEFAULT NULL,                                                    controleUseCalibrateur                 BIT,
+  `syntheseErreurDebitmetre` varchar(10) DEFAULT NULL,                                                  controleNbreNiveaux                    NVARCHAR (255),
+  `syntheseErreurMoyenneCinemometre` varchar(10) DEFAULT NULL,                                          controleNbreTroncons                   NVARCHAR (255),
+  `syntheseUsureMoyenneBuses` varchar(10) DEFAULT NULL,                                                 controleManoControleNumNational        NVARCHAR (255),
+  `syntheseNbBusesUsees` varchar(10) DEFAULT NULL,                                                      controleInitialId                      NVARCHAR (20),
+  `synthesePerteChargeMoyenne` varchar(10) DEFAULT NULL,                                                pulverisateurAncienId                  NVARCHAR (50),
+  `synthesePerteChargeMaxi` varchar(10) DEFAULT NULL,                                                   buseModele                             NVARCHAR (255),
+  `controleIsPreControleProfessionel` tinyint(3) unsigned DEFAULT NULL,                                 RIFileName                             NVARCHAR (255),
+  `controleIsAutoControle` tinyint(3) unsigned DEFAULT NULL,                                            SMFileName                             NVARCHAR (255),
+  `proprietaireRepresentant` varchar(255) DEFAULT NULL,                                                 pulverisateurRegulation                NVARCHAR (255),
+  `organismeOriginePresId` int(10) unsigned DEFAULT NULL,                                               pulverisateurRegulationOptions         NVARCHAR (255),
+  `organismeOriginePresNumero` varchar(255) DEFAULT NULL,                                               pulverisateurModeUtilisation           NVARCHAR (50),
+  `organismeOriginePresNom` varchar(255) DEFAULT NULL,                                                  pulverisateurNbreExploitants           NVARCHAR (10),
+  `organismeOrigineInspNom` varchar(255) DEFAULT NULL,                                                  buseFonctionnement                     NVARCHAR (255),
+  `organismeOrigineInspAgrement` varchar(255) DEFAULT NULL,                                             pulverisateurCategorie                 NVARCHAR (255),
+  `inspecteurOrigineId` int(10) unsigned DEFAULT NULL,                                                  pulverisateurPulverisation             NVARCHAR (255),
+  `inspecteurOrigineNom` varchar(255) DEFAULT NULL,                                                     CCFileName                             NVARCHAR (255),
+  `inspecteurOriginePrenom` varchar(255) DEFAULT NULL,                                                  pulverisateurCoupureAutoTroncons       NVARCHAR (10),
+  `pulverisateurEmplacementIdentification` text,                                                        pulverisateurReglageAutoHauteur        NVARCHAR (10),
+  `controleBancMesureId` varchar(255) DEFAULT NULL,                                                     pulverisateurRincagecircuit            NVARCHAR (10),
+  `controleUseCalibrateur` tinyint(1) unsigned DEFAULT '0',                                             typeDiagnostic                         NVARCHAR (20),
+  `controleNbreNiveaux` varchar(255) DEFAULT NULL,                                                      codeInsee                              NVARCHAR (20),
+  `controleNbreTroncons` varchar(255) DEFAULT NULL,                                                     commentaire                            NVARCHAR (255),
+  `controleManoControleNumNational` varchar(255) DEFAULT NULL,                                          pulverisateurNumNational               NVARCHAR (255),
+  `ancienIdentifiant` varchar(255) DEFAULT NULL,                                                        pulverisateurNumchassis                NVARCHAR (255),
+  `numeroNationalInspecteur` varchar(255) DEFAULT NULL,                                                 origineDiag                            NVARCHAR (255),
+  `codeInsee` varchar(10) DEFAULT NULL,                                                                 isSignRIAgent                          BIT,
+  `listeDefauts` text,                                                                                  isSignRIClient                         BIT,
+  `ccl` varchar(50) DEFAULT NULL,                                                                       isSignCCAgent                          BIT,
+  `controleInitialId` varchar(20) DEFAULT NULL,                                                         isSignCCClient                         BIT,
+  `pulverisateurAncienId` varchar(60) DEFAULT NULL,                                                     dateSignRIAgent                        DATETIME2 (0),
+  `pulverisateurModeUtilisation` varchar(255) DEFAULT NULL,                                             dateSignRIClient                       DATETIME2 (0),
+  `buseModele` varchar(255) DEFAULT NULL,                                                               dateSignCCAgent                        DATETIME2 (0),
+  `RIFileName` varchar(255) DEFAULT NULL,                                                               dateSignCCClient                       DATETIME2 (0),
+  `SMFileName` varchar(255) DEFAULT NULL,                                                               isSupprime                             BIT,
+  `pulverisateurRegulation` varchar(255) DEFAULT NULL,                                                  diagRemplacementId                     NVARCHAR (30),
+  `pulverisateurRegulationOptions` varchar(255) DEFAULT NULL,                                           signRIAgent                            BLOB,
+  `pulverisateurNbreExploitants` varchar(10) DEFAULT NULL,                                              signRIClient                           BLOB,
+  `buseFonctionnement` varchar(60) DEFAULT NULL,                                                        signCCAgent                            BLOB,
+  `pulverisateurCategorie` varchar(60) DEFAULT NULL,                                                    signCCClient                           BLOB,
+  `pulverisateurPulverisation` varchar(60) DEFAULT NULL,                                                totalHT                                FLOAT,
+  `CCFileName` varchar(255) DEFAULT NULL,                                                               totalTTC                               FLOAT,
+  `pulverisateurCoupureAutoTroncons` varchar(255) DEFAULT NULL,                                         isCVImmediate                          BIT,
+  `pulverisateurReglageAutoHauteur` varchar(255) DEFAULT NULL,                                          isGratuit                              BIT,
+  `pulverisateurRincagecircuit` varchar(255) DEFAULT NULL,                                              dateRemplacement                       DATETIME,
+  `exportGip` text,                                                                                     BLFileName                             TEXT,
+  `pulverisateurRattacheId` varchar(50) DEFAULT NULL,                                                   ESFileName                             TEXT,
+  `isSupprime` tinyint(1) DEFAULT '0',                                                                  COPROFileName                          TEXT,
+  `commentaire` varchar(255) DEFAULT NULL,                                                              FACTFileNames                          TEXT
+  `accreditation` tinyint(1) DEFAULT '0',                                                           );
+  `pulverisateurNumNational` varchar(20) DEFAULT NULL,
+  `pulverisateurNumchassis` varchar(20) DEFAULT NULL,
+  `origineDiag` varchar(20) DEFAULT 'CRODIP',
+  `isSignRIAgent` tinyint(3) unsigned DEFAULT '0',
+  `isSignRIClient` tinyint(3) unsigned DEFAULT '0',
+  `isSignCCAgent` tinyint(3) unsigned DEFAULT '0',
+  `isSignCCClient` tinyint(3) unsigned DEFAULT '0',
+  `dateSignRIAgent` date DEFAULT NULL,
+  `dateSignRIClient` date DEFAULT NULL,
+  `dateSignCCAgent` date DEFAULT NULL,
+  `dateSignCCClient` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `proprietaireId` (`proprietaireId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;		
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+-	diagRemplacementId																			- typeDiag
+-	signRIAgent																					- controlePremierControle = controleIsPremierControle 
+-	signRIClient																				- pulverisateurCategorieIsRampe
+-	signCCAgent																					- pulverisateurCategorieIsAxial
+-	signCCClient																				- pulverisateurCategorieIsJetDirige
+-	totalHT																						- pulverisateurCategorieIsCanon
+-	totalTTC																					- pulverisateurCategorieIsVoute
+-	isCVImmediate																				- pulverisateurCategorieIsFaceParFace
+-	isGratuit																					- pulverisateurRegulationIsPressionConstante
+-	dateRemplacement																			- pulverisateurRegulationIsDpm
+-	BLFileName																					- pulverisateurRegulationIsDpa
+-	ESFileName																					- pulverisateurRegulationIsDpae
+-	COPROFileName																				- pulverisateurRegulationIsPression
+-	FACTFileNames																				- pulverisateurRegulationIsDebit
+																								- pulverisateurIsJetProjete
+																								- pulverisateurIsJetPorte
+																								- pulverisateurIsPneumatique
+																								- pulverisateurAutresAccessoires
+																								- buseFonctionnementIsStandard
+																								- buseFonctionnementIsPastilleChambre
+																								- buseFonctionnementIsInjectionAirLibre
+																								- buseFonctionnementIsInjectionAirForce
+																								- listeDefauts
+																								- ccl
+																								- exportGip
+																								- pulverisateurRattacheId
+																								- accreditation
+																								
+																																											
+	
+*****************************
+CHAMPS A CREER SUR LE SERVEUR + SYNCHRO
+
+=====================================================================================================================================================================																						  
+CREATE TABLE `DiagnosticBuses` (																	CREATE TABLE DiagnosticBuses (
+  `id` int(11) NOT NULL AUTO_INCREMENT,                                                                 id                     INTEGER        NOT NULL
+  `idDiagnostic` varchar(50) NOT NULL,                                                                                                        PRIMARY KEY AUTOINCREMENT,
+  `marque` varchar(255) DEFAULT NULL,                                                                   idDiagnostic           NVARCHAR (255) NOT NULL
+  `nombre` int(11) DEFAULT NULL,                                                                                                              REFERENCES Diagnostic (id) ON DELETE CASCADE,
+  `genre` varchar(45) DEFAULT NULL,                                                                     marque                 NVARCHAR (255),
+  `calibre` varchar(45) DEFAULT NULL,                                                                   nombre                 NVARCHAR (255),
+  `couleur` varchar(45) DEFAULT NULL,                                                                   genre                  NVARCHAR (255),
+  `ecartTolere` varchar(50) DEFAULT NULL,                                                               calibre                NVARCHAR (255),
+  `debitMoyen` varchar(45) DEFAULT NULL,                                                                couleur                NVARCHAR (255),
+  `debitNominal` varchar(50) DEFAULT NULL,                                                              debitMoyen             NVARCHAR (255),
+  `dateModificationAgent` datetime DEFAULT NULL,                                                        debitNominal           NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       dateModificationAgent  DATETIME2 (0),
+  `idLot` varchar(255) DEFAULT NULL,                                                                    dateModificationCrodip DATETIME2 (0),
+  PRIMARY KEY (`id`,`idDiagnostic`),                                                                    idLot                  NVARCHAR (255),
+  KEY `idDiagnostic` (`idDiagnostic`)                                                                   ecartTolere            NVARCHAR (255) 
+) ENGINE=MyISAM AUTO_INCREMENT=154725 DEFAULT CHARSET=utf8;                                         );
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+
+
+=====================================================================================================================================================================	
+CREATE TABLE `DiagnosticBusesDetail` (																CREATE TABLE DiagnosticBusesDetail (
+  `id` int(11) NOT NULL,                                                                                id                     INTEGER        NOT NULL
+  `idDiagnostic` varchar(255) NOT NULL,                                                                                                       PRIMARY KEY AUTOINCREMENT,
+  `idBuse` int(11) DEFAULT NULL,                                                                        idDiagnostic           NVARCHAR (255) NOT NULL
+  `idLot` int(11) DEFAULT NULL,                                                                                                               REFERENCES Diagnostic (id) ON DELETE CASCADE,
+  `debit` varchar(255) DEFAULT NULL,                                                                    idBuse                 INT,
+  `ecart` varchar(255) DEFAULT NULL,                                                                    idLot                  INT,
+  `dateModificationAgent` datetime DEFAULT NULL,                                                        debit                  NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       ecart                  NVARCHAR (255),
+  PRIMARY KEY (`id`,`idDiagnostic`)                                                                     dateModificationAgent  DATETIME2 (0),
+                                                                                                        dateModificationCrodip DATETIME2 (0) 
+                                                                                                    );
+																									
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+	
+=====================================================================================================================================================================		
+																									CREATE TABLE DiagnosticFacture (
+                                                                                                        id                       NVARCHAR (255) NOT NULL
+                                                                                                                                                PRIMARY KEY,
+                                                                                                        factureReference         NVARCHAR (255),
+                                                                                                        factureDate              NVARCHAR (255),
+                                                                                                        factureTotal             NVARCHAR (255),
+                                                                                                        emetteurOrganisme        NVARCHAR (255),
+                                                                                                        emetteurOrganismeAdresse NVARCHAR (255),
+                                                                                                        emetteurOrganismeCpVille NVARCHAR (255),
+                                                                                                        emetteurOrganismeTelFax  NVARCHAR (255),
+                                                                                                        emetteurOrganismeSiren   NVARCHAR (255),
+                                                                                                        emetteurOrganismeTva     NVARCHAR (255),
+                                                                                                        emetteurOrganismeRcs     NVARCHAR (255),
+                                                                                                        recepteurRaisonSociale   NVARCHAR (255),
+                                                                                                        recepteurProprio         NVARCHAR (255),
+                                                                                                        recepteurCpVille         NVARCHAR (255),
+                                                                                                        dateModificationAgent    NVARCHAR (255),
+                                                                                                        dateModificationCrodip   NVARCHAR (255) 
+                                                                                                    );
+																								
+																								
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+																							
+	- 	id
+	-	factureReference																						
+	-	factureDate
+	-	factureTotal
+	-	emetteurOrganisme
+	-	emetteurOrganismeAdresse
+	-	emetteurOrganismeAdresse
+	-	emetteurOrganismeCpVille
+	-	emetteurOrganismeTelFax
+	-	emetteurOrganismeSiren
+	-	emetteurOrganismeTva
+	-	emetteurOrganismeRcs
+	- 	recepteurRaisonSociale
+	-	recepteurProprio
+	- 	recepteurCpVille
+	-	dateModificationAgent
+	-	dateModificationCrodip
+	
+	***********************
+	Table inutilisée
+	
+	
+=====================================================================================================================================================================	
+																									CREATE TABLE DiagnosticFactureItem (
+	                                                                                                    id                     INT (1, 1)     NOT NULL
+																								                                              PRIMARY KEY,
+																								        idFacture              NVARCHAR (255) REFERENCES DiagnosticFacture (id),
+                                                                                                        libelle                NVARCHAR (255),
+                                                                                                        prixUnitaire           NVARCHAR (255),
+                                                                                                        qte                    NVARCHAR (255),
+                                                                                                        tva                    NVARCHAR (255),
+                                                                                                        prixTotal              NVARCHAR (255),
+                                                                                                        dateModificationAgent  NVARCHAR (255),
+                                                                                                        dateModificationCrodip NVARCHAR (255) 
+                                                                                                    );
+
+
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+	-	id
+	-	idFacture
+	-	libelle
+	-	prixUnitaire
+	-	qte
+	- 	tva
+	-	prixTotal
+	-	dateModificationAgent
+	-	dateModificationCrodip
+
+***************
+Table inutilisée
+																								
+=====================================================================================================================================================================																										
+CREATE TABLE `DiagnosticItem` (																		CREATE TABLE DiagnosticItem (																
+  `id` varchar(50) NOT NULL DEFAULT '',	                                                                id                     INTEGER        PRIMARY KEY AUTOINCREMENT,
+  `idDiagnostic` varchar(50) NOT NULL DEFAULT '',													    idDiagnostic           NVARCHAR (50)  NOT NULL									
+  `idItem` varchar(10) NOT NULL DEFAULT '',                                                                                                   REFERENCES Diagnostic (id) ON DELETE CASCADE,
+  `itemValue` varchar(255) DEFAULT '0',                                                                 idItem                 NVARCHAR (10),
+  `itemCodeEtat` varchar(255) DEFAULT NULL,                                                             itemValue              NVARCHAR (255),
+  `isItemCode1` tinyint(1) DEFAULT '0',                                                                 itemCodeEtat           NVARCHAR (255),
+  `isItemCode2` tinyint(1) DEFAULT '0',                                                                 isItemCode1            BIT,
+  `dateModificationAgent` datetime DEFAULT NULL,                                                        isItemCode2            BIT,
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       dateModificationAgent  DATETIME2 (0),
+  `cause` varchar(255) DEFAULT NULL,                                                                    dateModificationCrodip DATETIME2 (0),
+  PRIMARY KEY (`id`,`idDiagnostic`),                                                                    cause                  NVARCHAR (10) 
+  KEY `idDiagnostic` (`idDiagnostic`,`idItem`),                                                     );
+  KEY `idDiagnostic_2` (`idDiagnostic`)
+  
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+																								
+																								
+																																																													
+=====================================================================================================================================================================																										
+CREATE TABLE `DiagnosticMano542` (  																CREATE TABLE DiagnosticMano542 (                                       
+  `id` int(11) NOT NULL AUTO_INCREMENT,                                                                 id                     INTEGER        NOT NULL
+  `idDiagnostic` varchar(150) NOT NULL,                                                                                                       PRIMARY KEY AUTOINCREMENT,
+  `pressionPulve` varchar(150) DEFAULT NULL,                                                            idDiagnostic           NVARCHAR (255) NOT NULL
+  `pressionControle` varchar(150) DEFAULT NULL,                                                                                               REFERENCES Diagnostic (id) ON DELETE CASCADE,
+  `dateModificationAgent` datetime DEFAULT NULL,                                                        pressionPulve          NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       pressionControle       NVARCHAR (255),
+  PRIMARY KEY (`id`,`idDiagnostic`)                                                                     dateModificationAgent  DATETIME2 (0),
+) ENGINE=MyISAM AUTO_INCREMENT=287885 DEFAULT CHARSET=utf8;                                             dateModificationCrodip DATETIME2 (0) 
+                                                                                                    );
+	                                                                                                                                                                                             
+	                                                                                                
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+
+
+=====================================================================================================================================================================																										
+CREATE TABLE `DiagnosticTroncons833` (																CREATE TABLE DiagnosticTroncons833 (
+  `id` int(11) NOT NULL AUTO_INCREMENT,                                                                 id                     INTEGER        NOT NULL
+  `idDiagnostic` varchar(150) NOT NULL,                                                                                                       PRIMARY KEY AUTOINCREMENT,
+  `idPression` varchar(150) DEFAULT NULL,                                                               idDiagnostic           NVARCHAR (255) NOT NULL
+  `idColumn` varchar(150) DEFAULT NULL,                                                                                                       REFERENCES Diagnostic (id) ON DELETE CASCADE,
+  `pressionSortie` varchar(150) DEFAULT NULL,                                                           idPression             NVARCHAR (255),
+  `dateModificationAgent` datetime DEFAULT NULL,                                                        idColumn               NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       pressionSortie         NVARCHAR (255),
+  PRIMARY KEY (`id`,`idDiagnostic`)                                                                     dateModificationAgent  DATETIME2 (0),
+                                                                                                        dateModificationCrodip DATETIME2 (0) 
+                                                                                                    );
+	
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+		
+
+
+=====================================================================================================================================================================																										
+																									CREATE TABLE Etat_DebitBuses (												
+                                                                                                        numBuse          NVARCHAR (255) NOT NULL,
+                                                                                                        ecartPourcentage FLOAT
+                                                                                                    );
+																									
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+																									
+	-	numBuse																								
+    -	ecartPourcentage
+
+**************
+Table inutilisée
+=====================================================================================================================================================================																										
+CREATE TABLE `Exploitation` (																		CREATE TABLE Exploitation (
+  `id` varchar(255) NOT NULL DEFAULT '' COMMENT 'idStructure-idAgent-incrementVB',                      id                     NVARCHAR (50)  NOT NULL
+  `idStructure` int(11) DEFAULT '0',                                                                                                          PRIMARY KEY,
+  `numeroSiren` varchar(255) DEFAULT NULL,                                                              numeroSiren            NVARCHAR (255),
+  `codeApe` varchar(5) DEFAULT NULL,                                                                    codeApe                NVARCHAR (5),
+  `raisonSociale` varchar(255) DEFAULT NULL,                                                            raisonSociale          NVARCHAR (255),
+  `nombreExploitant` smallint(6) DEFAULT '1',                                                           nombreExploitant       SMALLINT,
+  `nomExploitant` varchar(255) DEFAULT NULL,                                                            nomExploitant          NVARCHAR (255),
+  `prenomExploitant` varchar(255) DEFAULT NULL,                                                         prenomExploitant       NVARCHAR (255),
+  `adresse` varchar(255) DEFAULT NULL,                                                                  adresse                NVARCHAR (255),
+  `codePostal` varchar(5) DEFAULT NULL,                                                                 codePostal             NVARCHAR (5),
+  `commune` varchar(255) DEFAULT NULL,                                                                  commune                NVARCHAR (255),
+  `telephoneFixe` varchar(20) DEFAULT NULL,                                                             codeInsee              NVARCHAR (5),
+  `telephonePortable` varchar(20) DEFAULT NULL,                                                         telephoneFixe          NVARCHAR (20),
+  `telephoneFax` varchar(20) DEFAULT NULL,                                                              telephonePortable      NVARCHAR (20),
+  `eMail` varchar(255) DEFAULT NULL,                                                                    telephoneFax           NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT '0000-00-00 00:00:00',                                      eMail                  NVARCHAR (255),
+  `dateModificationAgent` datetime DEFAULT '0000-00-00 00:00:00',                                       surfaceAgricoleUtile   NVARCHAR (255),
+  `dateDernierControle` datetime DEFAULT '0000-00-00 00:00:00',                                         isProdGrandeCulture    BIT,
+  `isProdGrandeCulture` tinyint(1) DEFAULT '0',                                                         isProdElevage          BIT,
+  `isProdElevage` tinyint(1) DEFAULT '0',                                                               isProdArboriculture    BIT,
+  `isProdArboriculture` tinyint(1) DEFAULT '0',                                                         isProdLegume           BIT,
+  `isProdLegume` tinyint(1) DEFAULT '0',                                                                isProdViticulture      BIT,
+  `isProdViticulture` tinyint(1) DEFAULT '0',                                                           isProdAutre            BIT,
+  `isProdAutre` tinyint(1) DEFAULT '0',                                                                 productionAutre        NVARCHAR (255),
+  `productionAutre` varchar(255) DEFAULT NULL,                                                          idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
+  `sau` varchar(255) DEFAULT NULL,                                                                      isSupprime             BIT,
+  `isSupprime` tinyint(1) DEFAULT '0',                                                                  dateModificationCrodip DATETIME2 (0),
+  PRIMARY KEY (`id`)                                                                                    dateModificationAgent  DATETIME2 (0),
+                                                                                                        dateDernierControle    DATETIME2 (0) 
+ 
+                                                                                                   );
+																								   
+																								   
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+	-	codeInsee																						- sau
+	-	surfaceAgricoleUtile		
+	
+	******************
+	surfaceAgricoleUtile = sau
+
+
+
+=====================================================================================================================================================================																										
+CREATE TABLE `ExploitationTOPulverisateur` (														CREATE TABLE ExploitationTOPulverisateur (
+  `id` varchar(50) NOT NULL DEFAULT '',																    id                     NVARCHAR (100) NOT NULL						   
+  `idPulverisateur` varchar(50) NOT NULL DEFAULT '',                                                                                          PRIMARY KEY,
+  `idExploitation` varchar(50) NOT NULL DEFAULT '',                                                     idPulverisateur        NVARCHAR (50)  REFERENCES Pulverisateur (id) ON DELETE CASCADE,
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       idExploitation         NVARCHAR (50)  REFERENCES Exploitation (id) ON DELETE CASCADE,
+  `dateModificationAgent` datetime DEFAULT NULL,                                                        dateModificationAgent  DATETIME2 (0),
+  PRIMARY KEY (`id`),                                                                                   dateModificationCrodip DATETIME2 (0),
+                                                                                                        isSupprimeCoProp       BIT
+ 
+                                                                                                   );
+																								   
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+		
+	-	isSupprimeCoProp
+
+	*******************
+	Champs à creer coté serveur + synchro
+
+
+=====================================================================================================================================================================																										
+																									CREATE TABLE facture (
+                                                                                                        idfacture              NVARCHAR (255) NOT NULL
+                                                                                                                                              PRIMARY KEY,
+                                                                                                        idstructure            NVARCHAR (50)  REFERENCES Structure (id) ON DELETE CASCADE,
+                                                                                                        datefacture            DATETIME2 (0),
+                                                                                                        dateecheance           DATETIME2 (0),
+                                                                                                        commentaire            NVARCHAR (255),
+                                                                                                        modereglement          NVARCHAR (255),
+                                                                                                        isreglee               BIT            NOT NULL
+                                                                                                                                              DEFAULT (0),
+                                                                                                        refreglement           NVARCHAR (255),
+                                                                                                        totalht                FLOAT,
+                                                                                                        txtva                  FLOAT,
+                                                                                                        totalttc               FLOAT,
+                                                                                                        totaltva               FLOAT,
+                                                                                                        iddiag                 NVARCHAR (50),
+                                                                                                        idexploit              NVARCHAR (50),
+                                                                                                        rsclient               NVARCHAR (255),
+                                                                                                        nomclient              NVARCHAR (255),
+                                                                                                        prenomclient           NVARCHAR (255),
+                                                                                                        adresseclient          NVARCHAR (255),
+                                                                                                        cpclient               NVARCHAR (255),
+                                                                                                        communeclient          NVARCHAR (255),
+                                                                                                        telfixeclient          NVARCHAR (255),
+                                                                                                        telportclient          NVARCHAR (255),
+                                                                                                        emailclient            NVARCHAR (255),
+                                                                                                        dateModificationAgent  DATETIME2 (0),
+                                                                                                        dateModificationCRODIP DATETIME2 (0),
+                                                                                                        pathPDF                NVARCHAR (255) 
+                                                                                                    );
+
+
+
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+	-	idfacture
+	-	datefacture
+	-	dateecheance
+	-	commentaire
+	-	modereglement
+	-	isreglee
+	-	refreglement
+	-	totalht
+	-	txtva
+	-	totalttc
+	-	totaltva
+	- 	iddiag
+	-	idexploit
+	-	rsclient
+	-	nomclient
+	-	prenomclient
+	-	adresseclient
+	-	cpclient
+	-	communeclient
+	-	telfixeclient
+	-	telportclient
+	-	emailclient
+	-	dateModificationAgent
+	-	dateModificationCRODIP
+	-	pathPDF
+
+*************
+Table à Créer sur le Serveur ? + synchro
+=====================================================================================================================================================================
+																									CREATE TABLE factureitem (
+                                                                                                        idfacture              NVARCHAR (255) NOT NULL,
+                                                                                                        nfactureitem           INT            NOT NULL,
+                                                                                                        categorie              NVARCHAR (255),
+                                                                                                        prestation             NVARCHAR (255),
+                                                                                                        quantite               FLOAT,
+                                                                                                        pu                     FLOAT,
+                                                                                                        totalhtitem            FLOAT,
+                                                                                                        totaltvaitem           FLOAT,
+                                                                                                        totalttcitem           FLOAT,
+                                                                                                        txtvaitem              FLOAT,
+                                                                                                        dateModificationAgent  DATETIME2 (0),
+                                                                                                        dateModificationCRODIP DATETIME2 (0) 
+                                                                                                    );
+
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+
+-	idfacture
+-	nfactureitem
+-	categorie
+-	prestation	
+-	quantite
+-	pu
+-	totalhtitem
+-	totaltvaitem
+-	totalttcitem
+-	txtvaitem
+-	dateModificationAgent
+-	dateModificationCRODIP
+
+*************
+Table à Créer sur le Serveur ? + synchro
+
+
+=====================================================================================================================================================================																										
+CREATE TABLE `FichevieBancMesure` (																	CREATE TABLE FichevieBancMesure (
+  `id` varchar(255) NOT NULL DEFAULT '' COMMENT 'idStructure-idAgent-incrementVB',                      id                     NVARCHAR (255) NOT NULL
+  `idBancMesure` varchar(255) DEFAULT NULL,															                                          PRIMARY KEY,								   
+  `type` varchar(255) DEFAULT NULL,                                                                     idBancMesure           NVARCHAR (255) REFERENCES BancMesure (id) ON DELETE CASCADE,
+  `auteur` varchar(255) DEFAULT NULL,                                                                   type                   NVARCHAR (255),
+  `idAgentControleur` int(11) DEFAULT '0',                                                              auteur                 NVARCHAR (255),
+  `caracteristiques` varchar(255) DEFAULT NULL,                                                         idAgentControleur      INT,
+  `dateModif` datetime DEFAULT '0000-00-00 00:00:00',                                                   caracteristiques       NVARCHAR (255),
+  `blocage` tinyint(1) DEFAULT '0',                                                                     dateModif              DATETIME2 (0),
+  `pressionControle` varchar(255) DEFAULT NULL,                                                         blocage                BIT,
+  `valeursMesurees` varchar(255) DEFAULT NULL,                                                          pressionControle       NVARCHAR (255),
+  `idManometreControle` varchar(255) DEFAULT NULL,                                                      valeursMesurees        NVARCHAR (255),
+  `idBuseEtalon` varchar(255) DEFAULT NULL,                                                             idManometreControle    NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT '0000-00-00 00:00:00',                                      idBuseEtalon           NVARCHAR (255),
+  `dateModificationAgent` datetime DEFAULT '0000-00-00 00:00:00',                                       dateModificationAgent  DATETIME2 (0),
+  `FVFileName` varchar(255) DEFAULT NULL,                                                               dateModificationCrodip DATETIME2 (0),
+  PRIMARY KEY (`id`)                                                                                    FVFileName             NVARCHAR (255) 
+                                                                                                    );
+  
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+		
+  
+=====================================================================================================================================================================																										
+CREATE TABLE `FichevieManometreControle` (  														CREATE TABLE FichevieManometreControle (
+  `id` varchar(255) NOT NULL DEFAULT '' COMMENT 'idStructure-idAgent-incrementVB',                      id                     NVARCHAR (255) NOT NULL
+  `idManometre` varchar(255) DEFAULT NULL,                                                                                                    PRIMARY KEY,
+  `type` varchar(255) DEFAULT NULL,                                                                     idManometre            NVARCHAR (255),
+  `auteur` varchar(255) DEFAULT NULL,                                                                   type                   NVARCHAR (255),
+  `idAgentControleur` int(11) DEFAULT '0',                                                              auteur                 NVARCHAR (255),
+  `caracteristiques` varchar(255) DEFAULT NULL,                                                         idAgentControleur      INT,
+  `dateModif` datetime DEFAULT '0000-00-00 00:00:00',                                                   caracteristiques       NVARCHAR (255),
+  `blocage` tinyint(1) DEFAULT '0',                                                                     dateModif              DATETIME2 (0),
+  `idReetalonnage` varchar(255) DEFAULT NULL,                                                           blocage                BIT,
+  `nomLaboratoire` varchar(255) DEFAULT NULL,                                                           idReetalonnage         NVARCHAR (255),
+  `dateReetalonnage` datetime DEFAULT '0000-00-00 00:00:00',                                            nomLaboratoire         NVARCHAR (255),
+  `pressionControle` varchar(255) DEFAULT NULL,                                                         dateReetalonnage       DATETIME2 (0),
+  `valeursMesurees` varchar(255) DEFAULT NULL,                                                          pressionControle       NVARCHAR (255),
+  `idManometreControleur` varchar(255) DEFAULT NULL,                                                    valeursMesurees        NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT '0000-00-00 00:00:00',                                      idManometreControleur  NVARCHAR (255),
+  `dateModificationAgent` datetime DEFAULT '0000-00-00 00:00:00',                                       dateModificationCrodip DATETIME2 (0),
+  `FVFileName` varchar(255) DEFAULT NULL,                                                               dateModificationAgent  DATETIME2 (0),
+  PRIMARY KEY (`id`)                                                                                    FVFileName             NVARCHAR (255) 
+                                                                                                    );
+  
+  
+ 	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+		
+
+=====================================================================================================================================================================		
+CREATE TABLE `FichevieManometreEtalon` (															CREATE TABLE FichevieManometreEtalon (
+  `id` varchar(255) NOT NULL DEFAULT '' COMMENT 'idStructure-idAgent-incrementVB',                      id                     NVARCHAR (255) NOT NULL    
+  `idManometre` varchar(255) DEFAULT NULL,                                                                                                    PRIMARY KEY,                                          
+  `type` varchar(255) DEFAULT NULL,                                                                     idManometre            NVARCHAR (255),    
+  `auteur` varchar(255) DEFAULT NULL,                                                                   type                   NVARCHAR (255),    
+  `idAgentControleur` int(11) DEFAULT '0',                                                              auteur                 NVARCHAR (255),    
+  `caracteristiques` varchar(255) DEFAULT NULL,                                                         idAgentControleur      INT,    
+  `dateModif` datetime DEFAULT '0000-00-00 00:00:00',												    caracteristiques       NVARCHAR (255),    												
+  `blocage` tinyint(1) DEFAULT '0',                                                                     dateModif              DATETIME2 (0),    
+  `idReetalonnage` varchar(255) DEFAULT NULL,                                                           blocage                BIT,    
+  `nomLaboratoire` varchar(255) DEFAULT NULL,                                                           idReetalonnage         NVARCHAR (255),    
+  `dateReetalonnage` datetime DEFAULT '0000-00-00 00:00:00',                                            nomLaboratoire         NVARCHAR (255),    
+  `pressionControle` varchar(255) DEFAULT NULL,                                                         dateReetalonnage       DATETIME2 (0),    
+  `valeursMesurees` varchar(255) DEFAULT NULL,                                                          pressionControle       NVARCHAR (255),   
+  `idManometreControleur` varchar(255) DEFAULT NULL,                                                    valeursMesurees        NVARCHAR (255),    
+  `dateModificationCrodip` datetime DEFAULT '0000-00-00 00:00:00',                                      idManometreControleur  NVARCHAR (255),    
+  `dateModificationAgent` datetime DEFAULT '0000-00-00 00:00:00',                                       dateModificationCrodip DATETIME2 (0),    
+  `FVFileName` varchar(255) DEFAULT NULL,                                                               dateModificationAgent  DATETIME2 (0),    
+  PRIMARY KEY (`id`)                                                                                    FVFileName             NVARCHAR (255)     
+                                                                                                    ););
+																									
+ 	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+		
+		
+=====================================================================================================================================================================			
+CREATE TABLE `IdentifiantPulverisateur` (															CREATE TABLE IdentifiantPulverisateur (										
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,													    id                     INT            NOT NULL												
+  `idStructure` int(10) unsigned DEFAULT NULL,                                                                                                PRIMARY KEY,
+  `numeroNational` varchar(30) NOT NULL,                                                                idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
+  `etat` enum('INUTILISE','UTILISE','INUTILISABLE') DEFAULT NULL,                                       numeroNational         NVARCHAR (30)  NOT NULL,
+  `dateUtilisation` date DEFAULT NULL,                                                                  etat                   NVARCHAR (30),
+  `libelle` varchar(255) DEFAULT NULL,                                                                  dateUtilisation        NVARCHAR (255),
+  `dateModificationAgent` datetime DEFAULT NULL,                                                        libelle                NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       dateModificationAgent  NVARCHAR (255),
+  PRIMARY KEY (`id`),                                                                                   dateModificationCrodip NVARCHAR (255),
+                                                                                                        idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE CASCADE
+                                                                                                    );
+  
+  
+  
+  	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+ 
+-	idCRODIPPOOL  
+  
+  Champs à crer sur le Serveur + Synhcro
+=====================================================================================================================================================================			
+CREATE TABLE `Logs` (  
+  `id` int(11) NOT NULL AUTO_INCREMENT,  
+  `type` varchar(255) DEFAULT NULL,  
+  `idInspecteur` varchar(255) DEFAULT NULL,  
+  `date` datetime DEFAULT NULL,  
+  `message` text,  
+  `version` varchar(30) DEFAULT NULL,  
+  PRIMARY KEY (`id`)  
+  
+  
+ 	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+		
+																									- id
+																									- type
+																									- idInspecteur
+																									- date
+																									- message
+																									- version
+  
+  
+  
+ =====================================================================================================================================================================			
+CREATE TABLE `Params` (  
+  `id` int(11) NOT NULL AUTO_INCREMENT,  
+  `label` varchar(255) NOT NULL,  
+  `value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  
+  
+  
+    MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+ 
+																									- id
+																									- label
+																									- value
+																									
+
+ =====================================================================================================================================================================			
+																									CREATE TABLE POOL (
+                                                                                                        idCrodip               TEXT     PRIMARY KEY,
+                                                                                                        libelle                TEXT,
+                                                                                                        idCRODIPPC             TEXT     REFERENCES AgentPC (idCrodip) ON DELETE SET NULL,
+                                                                                                        nbPastillesVertes      INTEGER  DEFAULT (0),
+                                                                                                        dateModificationAgent  DATETIME,
+                                                                                                        dateModificationCrodip DATETIME,
+                                                                                                        idStructure            INTEGER  REFERENCES Structure (id) ON DELETE CASCADE,
+                                                                                                        idBanc                 TEXT     REFERENCES BancMesure (id) ON DELETE SET NULL
+                                                                                                    );
+
+ 	
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+
+-	idCrodip
+-	libelle
+-	idCRODIPPC
+-	nbPastillesVertes
+-	dateModificationAgent
+-	dateModificationCrodip
+-	idStructure
+-	idBanc
+**************
+Table à créer sur le SERVEUR + SYCNHRO
+
+ =====================================================================================================================================================================
+																									CREATE TABLE PoolBanc (
+                                                                                                        id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+                                                                                                        idCRODIPPool           TEXT     REFERENCES POOL (idCrodip) ON DELETE NO ACTION,
+                                                                                                        numeroNationalBanc     TEXT     REFERENCES BancMesure (id) ON DELETE CASCADE,
+                                                                                                        dateModificationAgent  DATETIME,
+                                                                                                        dateModificationCrodip DATETIME
+                                                                                                    );
+
+ 	
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+-	id
+-	idCRODIPPool
+-	numeroNationalBanc
+-	dateModificationAgent
+-	dateModificationCrodip
+
+**************
+Table à créer sur le SERVEUR + SYCNHRO
+
+ =====================================================================================================================================================================			
+																									CREATE TABLE PoolBUSE (
+                                                                                                        id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+                                                                                                        idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,
+                                                                                                        numeroNationalBUSE     TEXT,
+                                                                                                        dateModificationAgent  DATETIME,
+                                                                                                        dateModificationCrodip DATETIME
+                                                                                                    );
+
+	
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+-	id
+-	idCRODIPPool
+-	numeroNationalBUSE
+-	dateModificationAgent
+-	dateModificationCrodip
+
+**************
+Table à créer sur le SERVEUR + SYCNHRO
+
+ =====================================================================================================================================================================			
+																									CREATE TABLE PoolManoC (
+                                                                                                        id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+                                                                                                        idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,
+                                                                                                        numeroNationalManoC    TEXT     REFERENCES AgentManoControle (numeroNational) ON DELETE CASCADE,
+                                                                                                        dateModificationAgent  DATETIME,
+                                                                                                        dateModificationCrodip DATETIME
+                                                                                                    );
+
+
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+-	id
+-	idCRODIPPool
+-	numeroNationalManoC
+-	dateModificationAgent
+-	dateModificationCrodip
+
+**************
+Table à créer sur le SERVEUR + SYCNHRO
+
+ =====================================================================================================================================================================
+																									CREATE TABLE PoolManoE (
+                                                                                                        id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
+                                                                                                        idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,
+                                                                                                        numeroNationalManoE    TEXT     REFERENCES AgentManoEtalon (numeroNational) ON DELETE CASCADE,
+                                                                                                        dateModificationAgent  DATETIME,
+                                                                                                        dateModificationCrodip DATETIME
+                                                                                                    );
+
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+-	id
+-	idCRODIPPool
+-	numeroNationalManoE
+-	dateModificationAgent
+-	dateModificationCrodip
+
+  **************
+Table à créer sur le SERVEUR + SYCNHRO
+
+ =====================================================================================================================================================================			
+CREATE TABLE `PrestationCategorie` (  																CREATE TABLE PrestationCategorie (
+  `id` int(11) NOT NULL,                                                                                id                     INT (1, 1)     NOT NULL
+  `idStructure` int(11) NOT NULL,                                                                                                             PRIMARY KEY,
+  `libelle` varchar(255) DEFAULT NULL,                                                                  idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
+  `dateModificationAgent` datetime DEFAULT NULL,                                                        libelle                NVARCHAR (255),
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       dateModificationAgent  DATETIME2 (0),
+  PRIMARY KEY (`id`,`idStructure`)                                                                      dateModificationCrodip DATETIME2 (0) 
+                                                                                                    );
+  
+  
+  
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+  
+ 
+  
+ =====================================================================================================================================================================			
+CREATE TABLE `PrestationTarif` (																	CREATE TABLE PrestationTarif (
+  `id` int(11) NOT NULL,                                                                                id                     INT (1, 1)     NOT NULL
+  `idCategorie` int(11) NOT NULL,                                                                                                             PRIMARY KEY,
+  `idStructure` int(11) NOT NULL,                                                                       idCategorie            INT            REFERENCES PrestationCategorie (id) ON DELETE CASCADE,
+  `description` varchar(255) DEFAULT NULL,                                                              idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
+  `tarifHT` varchar(100) DEFAULT NULL,                                                                  description            NVARCHAR (255),
+  `tarifTTC` varchar(100) DEFAULT NULL,                                                                 tarifHT                FLOAT,
+  `tva` varchar(100) DEFAULT NULL,                                                                      tarifTTC               FLOAT,
+  `dateModificationAgent` datetime DEFAULT NULL,		                                                tva                    FLOAT,
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       dateModificationAgent  DATETIME2 (0),
+  PRIMARY KEY (`id`,`idCategorie`,`idStructure`)                                                        dateModificationCrodip DATETIME2 (0) 
+                                                                                                    );
+
+
+
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+		
+=====================================================================================================================================================================
+CREATE TABLE `Pulverisateur` (																		CREATE TABLE Pulverisateur (
+  `id` varchar(50) NOT NULL DEFAULT '' COMMENT 'idStructure-idAgent-incrementVB',                       id                        NVARCHAR (50)  NOT NULL
+  `numeroNational` varchar(255) DEFAULT NULL,                                                                                                    PRIMARY KEY,
+  `type` varchar(255) DEFAULT NULL,                                                                     numeroNational            NVARCHAR (255),
+  `marque` varchar(255) DEFAULT NULL,                                                                   type                      NVARCHAR (255),
+  `modele` varchar(255) DEFAULT NULL,                                                                   marque                    NVARCHAR (255),
+  `nombreBuses` int(11) DEFAULT NULL,                                                                   modele                    NVARCHAR (255),
+  `capacite` int(11) DEFAULT NULL,                                                                      anneeAchat                NVARCHAR (4),
+  `largeur` int(11) DEFAULT NULL,	                                                                    attelage                  NVARCHAR (255),
+  `nombreRangs` int(11) DEFAULT NULL,                                                                   capacite                  INT,
+  `largeurPlantation` varchar(50) DEFAULT NULL,                                                         largeur                   NVARCHAR (255),
+  `surfaceParAn` varchar(50) DEFAULT NULL,                                                              nombrerangs               NVARCHAR (255),
+  `nombreUtilisateurs` varchar(50) DEFAULT NULL,                                                        largeurPlantation         NVARCHAR (255),
+  `isVentilateur` tinyint(1) DEFAULT '0',                                                               surfaceParAn              NVARCHAR (255),
+  `isDebrayage` tinyint(1) DEFAULT '0',                                                                 nombreUtilisateurs        NVARCHAR (255),
+  `isCuveRincage` tinyint(1) DEFAULT '0',                                                               isVentilateur             BIT,
+  `capaciteCuveRincage` varchar(50) DEFAULT NULL,                                                       isDebrayage               BIT,
+  `isRotobuse` tinyint(1) DEFAULT '0',                                                                  isCuveRincage             BIT,
+  `isCuveIncorporation` tinyint(1) DEFAULT '0',                                                         capaciteCuveRincage       NVARCHAR (255),
+  `isRinceBidon` tinyint(1) DEFAULT '0',                                                                isRotobuse                BIT,
+  `isBidonLaveMain` tinyint(1) DEFAULT '0',                                                             isCuveIncorporation       BIT,
+  `isLanceLavage` tinyint(1) DEFAULT '0',                                                               isRinceBidon              BIT,
+  `isPressionConstante` tinyint(1) DEFAULT '0',                                                         isBidonLaveMain           BIT,
+  `isDPM` tinyint(1) DEFAULT '0',                                                                       isLanceLavage             BIT,
+  `isDPA` tinyint(1) DEFAULT '0',                                                                       nombreBuses               INT,
+  `isDPAE` tinyint(1) DEFAULT '0',                                                                      buseIsIso                 BIT,
+  `isDPAEPression` tinyint(1) DEFAULT '0',                                                              buseMarque                NVARCHAR (255),
+  `isDPAEDebit` tinyint(1) DEFAULT '0',                                                                 buseType                  NVARCHAR (255),
+  `isJetPorte` tinyint(1) DEFAULT '0',                                                                  buseFonctionnement        NVARCHAR (255),
+  `isJetProjete` tinyint(1) DEFAULT '0',                                                                buseAge                   INT,
+  `isPneumatique` tinyint(1) DEFAULT '0',                                                               buseAngle                 NVARCHAR (255),
+  `isEclairageRampe` tinyint(3) unsigned DEFAULT '0',                                                   manometreMarque           NVARCHAR (255),
+  `isBarreGuidage` tinyint(3) unsigned DEFAULT '0',                                                     manometreType             NVARCHAR (255),
+  `isCoupureAutoTroncons` tinyint(3) unsigned DEFAULT '0',                                              manometreFondEchelle      NVARCHAR (255),
+  `isRincageAutoAssiste` tinyint(3) unsigned DEFAULT '0',                                               manometreDiametre         NVARCHAR (255),
+  `anneeAchat` int(4) DEFAULT NULL,                                                                     manometrePressionTravail  NVARCHAR (255),
+  `categorieIsRampe` tinyint(1) DEFAULT '0',                                                            idStructure               INT            REFERENCES Structure (id) ON DELETE CASCADE,
+  `categorieIsAxial` tinyint(1) DEFAULT '0',                                                            isSynchro                 BIT,
+  `categorieIsJetDirige` tinyint(1) DEFAULT '0',                                                        isSupprime                BIT,
+  `categorieIsCanon` tinyint(1) DEFAULT '0',                                                            dateProchainControle      DATETIME2 (0),
+  `categorieIsVoute` tinyint(1) DEFAULT '0',                                                            dateModificationAgent     DATETIME2 (0),
+  `categorieIsFaceParFace` tinyint(1) DEFAULT '0',                                                      dateModificationCrodip    DATETIME2 (0),
+  `attelage` varchar(255) DEFAULT NULL,                                                                 emplacementIdentification NVARCHAR (255),
+  `idStructure` int(11) DEFAULT '0',                                                                    ancienIdentifiant         NVARCHAR (255),
+  `buseIsIso` tinyint(1) DEFAULT '0',                                                                   isEclairageRampe          BIT,
+  `buseMarque` varchar(255) DEFAULT NULL,                                                               isBarreGuidage            BIT,
+  `buseType` varchar(255) DEFAULT NULL,                                                                 isCoupureAutoTroncons     BIT,
+  `buseFonctionnement` varchar(255) DEFAULT NULL,                                                       isRincageAutoAssiste      BIT,
+  `buseAge` int(11) DEFAULT NULL,                                                                       buseModele                NVARCHAR (255),
+  `buseAngle` varchar(255) DEFAULT NULL,                                                                buseNbniveaux             INT,
+  `manometreMarque` varchar(255) DEFAULT NULL,                                                          manometreNbniveaux        INT,
+  `manometreType` varchar(255) DEFAULT NULL,                                                            manometreNbtroncons       INT,
+  `manometreFondEchelle` varchar(255) DEFAULT NULL,                                                     buseCouleur               NVARCHAR (255),
+  `manometreDiametre` varchar(255) DEFAULT NULL,                                                        regulation                NVARCHAR (255),
+  `manometrePressionTravail` varchar(50) DEFAULT NULL,                                                  regulationOptions         NVARCHAR (255),
+  `isSynchro` tinyint(1) DEFAULT '0',                                                                   modeUtilisation           NVARCHAR (50),
+  `dateModificationCrodip` datetime DEFAULT '0000-00-00 00:00:00',                                      nombreExploitants         NVARCHAR (10),
+  `dateModificationAgent` datetime DEFAULT '0000-00-00 00:00:00',                                       controleEtat              NVARCHAR (255),
+  `dateProchainControle` datetime DEFAULT '0000-00-00 00:00:00',                                        categorie                 NVARCHAR (255),
+  `isSupprime` tinyint(1) DEFAULT '0',                                                                  pulverisation             NVARCHAR (255),
+  `emplacementIdentification` text,                                                                     isAspirationExt           BIT,
+  `ancienIdentifiant` varchar(255) DEFAULT NULL,                                                        isDispoAntiRetour         BIT,
+  `modeUtilisation` varchar(255) DEFAULT NULL,                                                          isReglageAutoHauteur      BIT,
+  `buseModele` varchar(255) DEFAULT NULL,                                                               isFiltrationAspiration    BIT,
+  `buseNbniveaux` int(10) unsigned DEFAULT NULL,                                                        isFiltrationRefoulement   BIT,
+  `manometreNbniveaux` int(10) unsigned DEFAULT NULL,                                                   isFiltrationTroncons      BIT,
+  `manometreNbtroncons` int(10) unsigned DEFAULT NULL,                                                  isFiltrationBuses         BIT,
+  `buseCouleur` varchar(255) DEFAULT NULL,                                                              isPulveAdditionnel        BIT,
+  `regulation` varchar(255) DEFAULT NULL,                                                               pulvePrincipalNumNat      NVARCHAR (50),
+  `regulationOptions` varchar(255) DEFAULT NULL,                                                        isRincagecircuit          BIT,
+  `nombreExploitants` varchar(10) DEFAULT NULL,                                                         isPompesDoseuses          BIT,
+  `controleEtat` varchar(15) DEFAULT NULL,                                                              nbPompesDoseuses          INT,
+  `categorie` varchar(60) DEFAULT NULL,                                                                 Numchassis                NVARCHAR (255) 
+  `pulverisation` varchar(60) DEFAULT NULL,                                                         );
+  `isAspirationExt` tinyint(3) unsigned DEFAULT '0' COMMENT 'Nouveaux accesoires sur la fiche Pulvé',
+  `isDispoAntiRetour` tinyint(3) unsigned DEFAULT '0',
+  `isReglageAutoHauteur` tinyint(3) unsigned DEFAULT '0',
+  `isFiltrationAspiration` tinyint(3) unsigned DEFAULT '0',
+  `isFiltrationRefoulement` tinyint(3) unsigned DEFAULT '0',
+  `isFiltrationTroncons` tinyint(3) unsigned DEFAULT '0',
+  `isFiltrationBuses` tinyint(3) unsigned DEFAULT '0',
+  `isPulveAdditionnel` tinyint(3) unsigned DEFAULT '0' COMMENT 'Notion Equipement Principal (0) ou rattaché (1)',
+  `pulvePrincipalNumNat` varchar(50) DEFAULT NULL COMMENT ' Numéro national du pulvé de rattachement',
+  `isRincagecircuit` tinyint(3) unsigned DEFAULT '0',
+  `numeroChassis` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  
+  
+  
+  		MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+	
+-	isPompesDoseuses																				- isPressionConstante
+-	nbPompesDoseuses																				- isDPM	
+-	Numchassis																						- isDPA
+																									- isDPAE
+																									- isDPAEPression	
+																									- isDPAEDebit
+																									- isJetPorte
+																									- isJetProjete
+																									- isPneumatique
+																									- categorieIsRampe
+																									- categorieIsAxial
+																									- categorieIsJetDirige
+																									- categorieIsCanon
+																									- categorieIsVoute
+																									- categorieIsFaceParFace
+																									- numeroChassis
+																									
+																									
+**************
+Table à créer sur le SERVEUR + SYCNHRO
+
+=====================================================================================================================================================================																									
+CREATE TABLE `RecapFinancier` (																																									
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `organismeId` int(11) DEFAULT '0',
+  `organismeNom` varchar(255) DEFAULT NULL,
+  `dateRecap` datetime DEFAULT NULL,
+  `periode` varchar(45) DEFAULT NULL,
+  `montant` decimal(10,2) DEFAULT '0.00',
+  `isPaye` tinyint(1) DEFAULT '0',
+  `fichier` varchar(200) DEFAULT NULL,
+  `fichier_csv` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+  
+  
+   	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+
+																									- id
+																									- organismeId
+																									- organismeNom
+																									- dateRecap
+																									- periode
+																									- montant
+																									- isPaye
+																									- fichier
+																									- fichier_csv
+
+****************
+Table inutilisée sur l'Agent
+=====================================================================================================================================================================
+CREATE TABLE `ReferentielBuse` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `marque` varchar(100) DEFAULT NULL,
+  `genre` varchar(100) DEFAULT NULL,
+  `calibre` varchar(45) DEFAULT NULL,
+  `couleur` varchar(45) DEFAULT NULL,
+  `debit2bars` varchar(10) DEFAULT NULL,
+  `debit3bars` varchar(10) DEFAULT NULL,
+  `dateDerniereMAJ` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+  
+  
+    MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+																									- id
+																									- marque
+																									- genre
+																									- calibre
+																									- couleur
+																									- debit2bars
+																									- debit3bars
+																									- dateDerniereMAJ
+  
+  
+  ****************
+Table inutilisée sur l'Agent
+
+ =====================================================================================================================================================================
+ CREATE TABLE `ReferentielManometre` (
+   `id` int(11) NOT NULL AUTO_INCREMENT, 
+   `marque` varchar(45) DEFAULT NULL,
+   `dateDerniereMAJ` datetime DEFAULT NULL,
+   PRIMARY KEY (`id`)
+   
+   
+    MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+   
+																									- id
+																									- marque
+																									- dateDerniereMAJ
+   
+   
+ ****************
+Table inutilisée sur l'Agent
+   
+ =====================================================================================================================================================================
+ CREATE TABLE `ReferentielPulverisateur` (  													
+   `id` int(11) NOT NULL AUTO_INCREMENT,  
+   `marque` varchar(45) DEFAULT NULL,  
+   `dateDerniereMAJ` datetime DEFAULT NULL,  
+   PRIMARY KEY (`id`)
+   
+   
+    MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+   
+																									- id
+																									- marque
+																									- dateDerniereMAJ
+   
+   
+****************
+Table inutilisée sur l'Agent
+
+ =====================================================================================================================================================================
+CREATE TABLE `ReferentielTerritoire` (  
+  `id` int(11) NOT NULL AUTO_INCREMENT,   
+  `territoire` varchar(200) DEFAULT NULL,   
+  `dateDerniereMAJ` datetime DEFAULT NULL,   
+  PRIMARY KEY (`id`) 
+
+
+    MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+																									- id
+																									- territoire
+																									- dateDerniereMAJ
+
+****************
+Table inutilisée sur l'Agent
+
+ =====================================================================================================================================================================
+CREATE TABLE `Structure` ( 																			CREATE TABLE Structure (
+  `id` int(11) NOT NULL AUTO_INCREMENT,                                                                 id                     INTEGER        NOT NULL
+  `idCrodip` varchar(255) DEFAULT NULL,                                                                                                       PRIMARY KEY,
+  `nom` varchar(255) DEFAULT NULL,                                                                      idCrodip               NVARCHAR (255) UNIQUE,
+  `type` varchar(255) DEFAULT NULL,                                                                     nom                    NVARCHAR (255),
+  `nomResponsable` varchar(255) DEFAULT NULL,                                                           type                   NVARCHAR (255),
+  `nomContact` varchar(255) DEFAULT NULL,                                                               nomResponsable         NVARCHAR (255),
+  `prenomContact` varchar(255) DEFAULT NULL,                                                            nomContact             NVARCHAR (255),
+  `adresse` varchar(255) DEFAULT NULL,                                                                  prenomContact          NVARCHAR (255),
+  `codePostal` varchar(5) DEFAULT NULL,                                                                 adresse                NVARCHAR (255),
+  `commune` varchar(255) DEFAULT NULL,                                                                  codePostal             NVARCHAR (5),
+  `codeInsee` varchar(5) DEFAULT NULL,                                                                  commune                NVARCHAR (255),
+  `telephoneFixe` varchar(20) DEFAULT NULL,                                                             codeInsee              NVARCHAR (5),
+  `telephonePortable` varchar(20) DEFAULT NULL,                                                         telephoneFixe          NVARCHAR (20),
+  `telephoneFax` varchar(20) DEFAULT NULL,                                                              telephonePortable      NVARCHAR (20),
+  `eMail` varchar(255) DEFAULT NULL,                                                                    telephoneFax           NVARCHAR (20),
+  `commentaire` varchar(255) DEFAULT NULL,                                                              eMail                  NVARCHAR (255),
+  `fichier` varchar(255) DEFAULT NULL,                                                                  commentaire            NVARCHAR (255),
+  `latLong` varchar(255) DEFAULT NULL,                                                                  dateModificationAgent  DATETIME2 (0),
+  `dateModificationCrodip` datetime DEFAULT NULL,                                                       dateModificationCrodip DATETIME2 (0) 
+  `dateModificationAgent` datetime DEFAULT NULL,                                                    );
+  `displayMode` int(2) DEFAULT '1',
+  `wgUrl` varchar(255) DEFAULT NULL,
+  `site` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `depts` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+  
+  
+    MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+
+																									- fichier
+																									- latLong
+																									- displayMode
+																									- wgUrl
+																									- site
+																									- photo
+																									- logo
+																									- depts
+															
+
+ =====================================================================================================================================================================
+CREATE TABLE `Synchronisation` (  																	CREATE TABLE Synchronisation (
+  `id` int(11) NOT NULL AUTO_INCREMENT,                                                                 id                  INTEGER        NOT NULL
+  `idAgent` varchar(45) DEFAULT NULL,                                                                                                      PRIMARY KEY AUTOINCREMENT,
+  `sensSynchronisation` varchar(45) DEFAULT NULL,                                                       idAgent             INT,
+  `dateSynchronisation` datetime DEFAULT NULL,                                                          sensSynchronisation NVARCHAR (255),
+  `logSynchronisation` longtext,                                                                        dateSynchronisation DATETIME2 (0),
+  PRIMARY KEY (`id`)                                                                                    logSynchronisation  TEXT
+                                                                                                    );
+	
+
+
+
+
+   	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+
+
+
+ =====================================================================================================================================================================	
+CREATE TABLE `Utilisateur` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `login` varchar(100) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL, 
+  `profil` enum('admin','utilisateur','structure','agent') DEFAULT 'utilisateur',
+  `date_modif` datetime DEFAULT NULL,
+  `is_actif` tinyint(3) unsigned DEFAULT '1',
+  `structure_id` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  
+  
+    MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+  
+																									- id
+																									- login
+																									- password
+																									- profil
+																									- date_modif
+																									- is_actif
+																									- structure_id
+
+	****************
+Table inutilisée sur l'Agent
+	
+ =====================================================================================================================================================================	
+																									CREATE TABLE VERSION (
+																									    VERSION_NUM  NVARCHAR (255),
+																									    VERSION_DATE DATETIME2 (0),
+																									    VERSION_COMM NVARCHAR (255) 
+																									);
+																									
+																									
+    MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+																									
+-	VERSION_NUM
+-	VERSION_DATE
+-	VERSION_COMM
+		
+  ****************
+Table inutilisée sur le serveur
+
+ =====================================================================================================================================================================	
+CREATE TABLE `wg_connexion` (
+  `c_id` int(11) NOT NULL,
+  `c_login` varchar(255) NOT NULL,
+  `c_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`c_id`,`c_date`)  
+  
+  
+    MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+																									- c_id
+																									- c_login
+																									- c_date
+
+ =****************
+Table inutilisée sur l'Agent
+====================================================================================================================================================================	
+CREATE TABLE `wg_droit_groupe` (
+  `dg_id` int(11) NOT NULL AUTO_INCREMENT,
+  `dg_gu_id` int(11) NOT NULL DEFAULT '0',  
+  `dg_action` varchar(255) NOT NULL,
+  `dg_liste_droit` text NOT NULL,
+  PRIMARY KEY (`dg_id`)
+  
+  
+    MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+																									- dg_id
+																									- dg_gu_id
+																									- dg_action
+																									- dg_liste_droit
+
+
+ ****************
+Table inutilisée sur l'Agent
+=====================================================================================================================================================================	
+CREATE TABLE `wg_groupe_requete_synchro` (
+  `gr_id` int(11) NOT NULL AUTO_INCREMENT,
+  `gr_gu_id` int(11) NOT NULL DEFAULT '0',
+  `gr_titre` varchar(255) NOT NULL,
+  `gr_url` text NOT NULL,
+  `gr_login` varchar(255) NOT NULL,
+  `gr_password` varchar(255) NOT NULL,
+  `gr_cle` varchar(255) NOT NULL,
+  PRIMARY KEY (`gr_id`)
+  
+  
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+  
+																									- gr_id
+																									- gr_gu_id
+																									- gr_titre
+																									- gr_url
+																									- gr_login
+																									- gr_password
+																									- gr_cle
+   
+  
+ ****************
+Table inutilisée sur l'Agent
+=====================================================================================================================================================================	
+CREATE TABLE `wg_groupe_utilisateur` ( 
+   `gu_id` int(11) NOT NULL AUTO_INCREMENT, 
+   `gu_parentId` int(11) NOT NULL DEFAULT '0',
+   `gu_nom` varchar(255) NOT NULL,
+   `gu_resume` text NOT NULL,
+   `gu_profil` tinyint(3) unsigned NOT NULL DEFAULT '0',
+   PRIMARY KEY (`gu_id`)
+   
+   
+	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+   
+																									- gu_id
+																									- gu_parentId
+																									- gu_nom
+																									- gu_resume
+																									- gu_profil
+   
+     
+****************
+Table inutilisée sur l'Agent
+ =====================================================================================================================================================================	
+CREATE TABLE `wg_utilisateur` (
+  `u_id` int(11) NOT NULL AUTO_INCREMENT,
+  `u_gu_id` int(11) NOT NULL DEFAULT '0',
+  `u_nom` varchar(255) NOT NULL,
+  `u_prenom` varchar(255) NOT NULL,   
+  `u_login` varchar(255) NOT NULL,
+  `u_password` varchar(255) NOT NULL,
+  `u_courriel` varchar(255) NOT NULL,
+  `u_isCrypt` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `u_resume` text NOT NULL,
+  `u_ordre` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`u_id`),
+  
+  
+  	MYSQL << +++++++++++++++++++++++++++++ COMPARAISON +++++++++++++++++++++++++++++++++++++++>> SQL LITE
+
+																									- u_id
+																									- u_gu_id
+																									- u_nom
+																									- u_prenom
+																									- u_login
+																									- u_password
+																									- u_courriel
+																									- u_isCrypt
+																									- u_resume
+																									- u_ordre
+																									
+
+ =====================================================================================================================================================================	
