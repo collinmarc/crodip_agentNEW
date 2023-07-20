@@ -166,6 +166,47 @@ Public Class ManometreControle
             _typeTraca = value
         End Set
     End Property
+    Public Property IsTypeTracaH() As Boolean
+        Get
+            Return typeTraca = "H"
+        End Get
+        Set(ByVal value As Boolean)
+            If value Then
+                typeTraca = "H"
+            End If
+        End Set
+    End Property
+    Public Property IsTypeTracaB() As Boolean
+        Get
+            Return typeTraca = "B"
+        End Get
+        Set(ByVal value As Boolean)
+            If value Then
+                typeTraca = "B"
+            End If
+        End Set
+    End Property
+    Public Property IsTypeRaccordRA() As Boolean
+        Get
+            Return (typeRaccord.Equals("RA"))
+        End Get
+        Set(ByVal value As Boolean)
+            If value Then
+                typeRaccord = "RA"
+            End If
+        End Set
+    End Property
+    Public Property IsTypeRaccordRV() As Boolean
+        Get
+            Return typeRaccord.Equals("RV")
+        End Get
+        Set(ByVal value As Boolean)
+            If value Then
+                typeRaccord = "RV"
+            End If
+        End Set
+    End Property
+
     Private _numTraca As Integer
     Public Property numTraca() As Integer
         Get
@@ -183,6 +224,16 @@ Public Class ManometreControle
         Set(ByVal value As String)
             _typeRaccord = value
         End Set
+    End Property
+    Private newPropertyValue As String
+    Public ReadOnly Property Traca() As String
+        Get
+            If String.IsNullOrEmpty(typeTraca) Then
+                Return ""
+            Else
+                Return typeTraca & numTraca
+            End If
+        End Get
     End Property
 
 

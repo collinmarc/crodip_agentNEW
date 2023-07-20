@@ -58,6 +58,8 @@ Public Class gestion_manometres
     Friend WithEvents FondEchelleDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents dateDernierControleColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents EtatMECol As DataGridViewImageColumn
+    Friend WithEvents ckTousManoC As CheckBox
+    Friend WithEvents ckTousManoE As CheckBox
     Friend WithEvents ShowCol As DataGridViewImageColumn
     Friend WithEvents idCrodip As DataGridViewTextBoxColumn
     Friend WithEvents MarqueDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
@@ -67,33 +69,24 @@ Public Class gestion_manometres
     Friend WithEvents DateDernierControleColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents EtatColumn As DataGridViewImageColumn
     Friend WithEvents col_Histo As DataGridViewImageColumn
-    Friend WithEvents ckTousManoC As CheckBox
-    Friend WithEvents ckTousManoE As CheckBox
+    Friend WithEvents Traca As DataGridViewTextBoxColumn
+    Friend WithEvents typeRaccord As DataGridViewTextBoxColumn
     Friend WithEvents m_bsMAnoEtalon As BindingSource
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gestion_manometres))
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gestion_manometres))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tpManoControle = New System.Windows.Forms.TabPage()
         Me.ckTousManoC = New System.Windows.Forms.CheckBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ShowCol = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.idCrodip = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MarqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FondEchelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ClasseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateDernierControleColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EtatColumn = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.col_Histo = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsManoControle = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label13 = New System.Windows.Forms.Label()
         Me.tpManoEtalon = New System.Windows.Forms.TabPage()
@@ -115,6 +108,17 @@ Public Class gestion_manometres
         Me.imagesPictos = New System.Windows.Forms.ImageList(Me.components)
         Me.btn_gestionManometresEtalon_valider = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ShowCol = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.idCrodip = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MarqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FondEchelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ClasseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateDernierControleColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EtatColumn = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.col_Histo = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Traca = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.typeRaccord = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl1.SuspendLayout()
         Me.tpManoControle.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +130,9 @@ Public Class gestion_manometres
         '
         'TabControl1
         '
+        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.tpManoControle)
         Me.TabControl1.Controls.Add(Me.tpManoEtalon)
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
@@ -179,7 +186,7 @@ Public Class gestion_manometres
         DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShowCol, Me.idCrodip, Me.MarqueDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn, Me.FondEchelleDataGridViewTextBoxColumn, Me.ClasseDataGridViewTextBoxColumn, Me.DateDernierControleColumn1, Me.EtatColumn, Me.col_Histo})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShowCol, Me.idCrodip, Me.MarqueDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn, Me.FondEchelleDataGridViewTextBoxColumn, Me.ClasseDataGridViewTextBoxColumn, Me.DateDernierControleColumn1, Me.EtatColumn, Me.col_Histo, Me.Traca, Me.typeRaccord})
         Me.DataGridView1.DataSource = Me.m_bsManoControle
         DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window
@@ -203,82 +210,6 @@ Public Class gestion_manometres
         Me.DataGridView1.Size = New System.Drawing.Size(984, 558)
         Me.DataGridView1.TabIndex = 39
         Me.DataGridView1.VirtualMode = True
-        '
-        'ShowCol
-        '
-        Me.ShowCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.ShowCol.Frozen = True
-        Me.ShowCol.HeaderText = ""
-        Me.ShowCol.Image = Global.Crodip_agent.Resources.oeil16x16
-        Me.ShowCol.Name = "ShowCol"
-        Me.ShowCol.ReadOnly = True
-        Me.ShowCol.ToolTipText = "Voir la fiche manomètre"
-        Me.ShowCol.Width = 30
-        '
-        'idCrodip
-        '
-        Me.idCrodip.DataPropertyName = "idCrodip"
-        Me.idCrodip.HeaderText = "Identifiant Manomètre"
-        Me.idCrodip.Name = "idCrodip"
-        Me.idCrodip.ReadOnly = True
-        '
-        'MarqueDataGridViewTextBoxColumn
-        '
-        Me.MarqueDataGridViewTextBoxColumn.DataPropertyName = "marque"
-        Me.MarqueDataGridViewTextBoxColumn.HeaderText = "Marque"
-        Me.MarqueDataGridViewTextBoxColumn.Name = "MarqueDataGridViewTextBoxColumn"
-        Me.MarqueDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TypeDataGridViewTextBoxColumn
-        '
-        Me.TypeDataGridViewTextBoxColumn.DataPropertyName = "type"
-        Me.TypeDataGridViewTextBoxColumn.HeaderText = "Type"
-        Me.TypeDataGridViewTextBoxColumn.Name = "TypeDataGridViewTextBoxColumn"
-        Me.TypeDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'FondEchelleDataGridViewTextBoxColumn
-        '
-        Me.FondEchelleDataGridViewTextBoxColumn.DataPropertyName = "fondEchelle"
-        Me.FondEchelleDataGridViewTextBoxColumn.HeaderText = "Fond d'échelle"
-        Me.FondEchelleDataGridViewTextBoxColumn.Name = "FondEchelleDataGridViewTextBoxColumn"
-        Me.FondEchelleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ClasseDataGridViewTextBoxColumn
-        '
-        Me.ClasseDataGridViewTextBoxColumn.DataPropertyName = "classe"
-        Me.ClasseDataGridViewTextBoxColumn.HeaderText = "Classe"
-        Me.ClasseDataGridViewTextBoxColumn.Name = "ClasseDataGridViewTextBoxColumn"
-        Me.ClasseDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DateDernierControleColumn1
-        '
-        DataGridViewCellStyle10.Format = "dd/MM/yyyy"
-        DataGridViewCellStyle10.NullValue = Nothing
-        Me.DateDernierControleColumn1.DefaultCellStyle = DataGridViewCellStyle10
-        Me.DateDernierControleColumn1.HeaderText = "Date dernier controle"
-        Me.DateDernierControleColumn1.Name = "DateDernierControleColumn1"
-        Me.DateDernierControleColumn1.ReadOnly = True
-        '
-        'EtatColumn
-        '
-        Me.EtatColumn.HeaderText = "Etat"
-        Me.EtatColumn.Name = "EtatColumn"
-        Me.EtatColumn.ReadOnly = True
-        Me.EtatColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'col_Histo
-        '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle11.NullValue = CType(resources.GetObject("DataGridViewCellStyle11.NullValue"), Object)
-        Me.col_Histo.DefaultCellStyle = DataGridViewCellStyle11
-        Me.col_Histo.HeaderText = "Historique"
-        Me.col_Histo.Image = Global.Crodip_agent.Resources.PDF
-        Me.col_Histo.Name = "col_Histo"
-        Me.col_Histo.ReadOnly = True
-        Me.col_Histo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         '
         'm_bsManoControle
         '
@@ -480,6 +411,96 @@ Public Class gestion_manometres
         Me.btn_gestionManometresEtalon_valider.TabIndex = 40
         Me.btn_gestionManometresEtalon_valider.Text = "    Valider / Quitter"
         Me.btn_gestionManometresEtalon_valider.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'ShowCol
+        '
+        Me.ShowCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.ShowCol.Frozen = True
+        Me.ShowCol.HeaderText = ""
+        Me.ShowCol.Image = Global.Crodip_agent.Resources.oeil16x16
+        Me.ShowCol.Name = "ShowCol"
+        Me.ShowCol.ReadOnly = True
+        Me.ShowCol.ToolTipText = "Voir la fiche manomètre"
+        Me.ShowCol.Width = 30
+        '
+        'idCrodip
+        '
+        Me.idCrodip.DataPropertyName = "idCrodip"
+        Me.idCrodip.HeaderText = "Identifiant Manomètre"
+        Me.idCrodip.Name = "idCrodip"
+        Me.idCrodip.ReadOnly = True
+        '
+        'MarqueDataGridViewTextBoxColumn
+        '
+        Me.MarqueDataGridViewTextBoxColumn.DataPropertyName = "marque"
+        Me.MarqueDataGridViewTextBoxColumn.HeaderText = "Marque"
+        Me.MarqueDataGridViewTextBoxColumn.Name = "MarqueDataGridViewTextBoxColumn"
+        Me.MarqueDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TypeDataGridViewTextBoxColumn
+        '
+        Me.TypeDataGridViewTextBoxColumn.DataPropertyName = "type"
+        Me.TypeDataGridViewTextBoxColumn.HeaderText = "Type"
+        Me.TypeDataGridViewTextBoxColumn.Name = "TypeDataGridViewTextBoxColumn"
+        Me.TypeDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'FondEchelleDataGridViewTextBoxColumn
+        '
+        Me.FondEchelleDataGridViewTextBoxColumn.DataPropertyName = "fondEchelle"
+        Me.FondEchelleDataGridViewTextBoxColumn.HeaderText = "Fond d'échelle"
+        Me.FondEchelleDataGridViewTextBoxColumn.Name = "FondEchelleDataGridViewTextBoxColumn"
+        Me.FondEchelleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ClasseDataGridViewTextBoxColumn
+        '
+        Me.ClasseDataGridViewTextBoxColumn.DataPropertyName = "classe"
+        Me.ClasseDataGridViewTextBoxColumn.HeaderText = "Classe"
+        Me.ClasseDataGridViewTextBoxColumn.Name = "ClasseDataGridViewTextBoxColumn"
+        Me.ClasseDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DateDernierControleColumn1
+        '
+        DataGridViewCellStyle10.Format = "dd/MM/yyyy"
+        DataGridViewCellStyle10.NullValue = Nothing
+        Me.DateDernierControleColumn1.DefaultCellStyle = DataGridViewCellStyle10
+        Me.DateDernierControleColumn1.HeaderText = "Date dernier controle"
+        Me.DateDernierControleColumn1.Name = "DateDernierControleColumn1"
+        Me.DateDernierControleColumn1.ReadOnly = True
+        '
+        'EtatColumn
+        '
+        Me.EtatColumn.HeaderText = "Etat"
+        Me.EtatColumn.Name = "EtatColumn"
+        Me.EtatColumn.ReadOnly = True
+        Me.EtatColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'col_Histo
+        '
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.NullValue = CType(resources.GetObject("DataGridViewCellStyle11.NullValue"), Object)
+        Me.col_Histo.DefaultCellStyle = DataGridViewCellStyle11
+        Me.col_Histo.HeaderText = "Historique"
+        Me.col_Histo.Image = Global.Crodip_agent.Resources.PDF
+        Me.col_Histo.Name = "col_Histo"
+        Me.col_Histo.ReadOnly = True
+        Me.col_Histo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'Traca
+        '
+        Me.Traca.DataPropertyName = "Traca"
+        Me.Traca.HeaderText = "Tracabilité"
+        Me.Traca.Name = "Traca"
+        Me.Traca.ReadOnly = True
+        '
+        'typeRaccord
+        '
+        Me.typeRaccord.DataPropertyName = "typeRaccord"
+        Me.typeRaccord.HeaderText = "Raccord"
+        Me.typeRaccord.Name = "typeRaccord"
+        Me.typeRaccord.ReadOnly = True
         '
         'gestion_manometres
         '
