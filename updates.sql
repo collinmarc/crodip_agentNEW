@@ -321,9 +321,14 @@
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.0.00','2022-09-27 12:00:00','Gestion des equipements');
 
 -- EVOLUTION METROLOGIE
-ALTER TABLE AgentManocontrole ADD COLUMN bAjusteur BIT ;
-ALTER TABLE AgentManocontrole ADD COLUMN resolutionLecture Text ;
-Update AgentManocontrole SET bAJusteur = 0, resolutionLecture = resolution ;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.0.01','2023-03-01 12:00:00','Metrologie');
+--ALTER TABLE AgentManocontrole ADD COLUMN bAjusteur BIT ;
+--ALTER TABLE AgentManocontrole ADD COLUMN resolutionLecture Text ;
+--Update AgentManocontrole SET bAJusteur = 0, resolutionLecture = resolution ;
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.0.01','2023-03-01 12:00:00','Metrologie');
 
+-- Tracabilité Mano
+ALTER TABLE AgentManocontrole ADD COLUMN typeTraca Text ;
+ALTER TABLE AgentManocontrole ADD COLUMN numTraca int ;
+ALTER TABLE AgentManocontrole ADD COLUMN typeRaccord text ;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.1.00','2023-07-23 12:00:00','Tracabilité Mano');
 

@@ -362,6 +362,8 @@ Public Class CSDb
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM BancMesure"
             bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolBanc"
+            bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Controle_Regulier"
             bddCommande.ExecuteNonQuery()
 

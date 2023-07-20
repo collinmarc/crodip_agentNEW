@@ -510,14 +510,17 @@ Partial Friend NotInheritable Class MySettings
     End Property
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-    Public ReadOnly Property GestionDesPools() As Boolean
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>
+    Public Property GestionDesPools() As Boolean
         Get
-            Return CType(Me("GestionDesPools"),Boolean)
+            Return CType(Me("GestionDesPools"), Boolean)
         End Get
+        Set(ByVal value As Boolean)
+            Me("GestionDesPools") = value
+        End Set
     End Property
-    
+
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute(".db3")>  _

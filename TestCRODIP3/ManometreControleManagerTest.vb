@@ -33,6 +33,9 @@ Public Class ManometreControleManagerTest
         objManometreControle.nbControlesTotal = 15
         objManometreControle.bAjusteur = True
         objManometreControle.resolutionLecture = 0.01
+        objManometreControle.typeTraca = "B"
+        objManometreControle.numTraca = 6
+        objManometreControle.typeRaccord = "RA"
 
         Assert.AreEqual(objManometreControle.isSupprime, True)
         Assert.AreEqual(objManometreControle.AgentSuppression, m_oAgent.nom)
@@ -47,6 +50,9 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(objManometreControle.fondEchelle, "MonFonEchelle")
         Assert.AreEqual(objManometreControle.bAjusteur, True)
         Assert.AreEqual(objManometreControle.resolutionLecture, "0,01")
+        Assert.AreEqual(objManometreControle.typeTraca, "B")
+        Assert.AreEqual(objManometreControle.numTraca, 6)
+        Assert.AreEqual(objManometreControle.typeRaccord, "RA")
 
 
         Assert.IsTrue(ManometreControleManager.save(objManometreControle))
@@ -67,6 +73,9 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(objManometreControle2.fondEchelle, "MonFonEchelle")
         Assert.AreEqual(objManometreControle2.bAjusteur, True)
         Assert.AreEqual(objManometreControle2.resolutionLecture, "0,01")
+        Assert.AreEqual(objManometreControle.typeTraca, "B")
+        Assert.AreEqual(objManometreControle.numTraca, 6)
+        Assert.AreEqual(objManometreControle.typeRaccord, "RA")
 
         'Mise à jour du ManometreControle
         objManometreControle2.isSupprime = False
@@ -81,6 +90,9 @@ Public Class ManometreControleManagerTest
         objManometreControle2.fondEchelle = "MonFonEchelle2"
         objManometreControle2.bAjusteur = False
         objManometreControle2.resolutionLecture = 0.02
+        objManometreControle2.typeTraca = "H"
+        objManometreControle2.numTraca = 1
+        objManometreControle2.typeRaccord = "RV"
 
         Assert.IsTrue(ManometreControleManager.save(objManometreControle2))
 
@@ -99,6 +111,9 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(objManometreControle.fondEchelle, "MonFonEchelle2")
         Assert.AreEqual(objManometreControle.bAjusteur, False)
         Assert.AreEqual(objManometreControle.resolutionLecture, "0,02")
+        Assert.AreEqual(objManometreControle.typeTraca, "H")
+        Assert.AreEqual(objManometreControle.numTraca, 1)
+        Assert.AreEqual(objManometreControle.typeRaccord, "RV")
 
         'Suppression du ManometreControle en base de donnée
         ManometreControleManager.delete(objManometreControle.numeroNational)
@@ -133,6 +148,11 @@ Public Class ManometreControleManagerTest
         oManometreControle.dateSuppression = CSDate.ToCRODIPString(CDate("06/02/1964"))
         oManometreControle.nbControles = 5
         oManometreControle.nbControlesTotal = 15
+        oManometreControle.bAjusteur = True
+        oManometreControle.resolutionLecture = 0.01
+        oManometreControle.typeTraca = "B"
+        oManometreControle.numTraca = 6
+        oManometreControle.typeRaccord = "RA"
         Assert.IsTrue(ManometreControleManager.save(oManometreControle))
 
         Dim response As Integer = ManometreControleManager.sendWSManometreControle(m_oAgent, oManometreControle, UpdatedObject)
@@ -151,10 +171,13 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(oManometreControle.fondEchelle, oManometreControle2.fondEchelle)
         Assert.AreEqual(oManometreControle.resolution, oManometreControle2.resolution)
         Assert.AreEqual(oManometreControle.dateDernierControleS, oManometreControle2.dateDernierControleS)
-        'Assert.AreEqual(oManometreControle2.nbControles, 5)
-        'Assert.AreEqual(oManometreControle2.nbControlesTotal, 15)
-        Assert.AreEqual(False, oManometreControle2.bAjusteur)
-
+        Assert.AreEqual(oManometreControle2.nbControles, 5)
+        Assert.AreEqual(oManometreControle2.nbControlesTotal, 15)
+        Assert.AreEqual(oManometreControle2.bAjusteur, True)
+        Assert.AreEqual(oManometreControle.resolutionLecture, 0.01)
+        Assert.AreEqual(oManometreControle.typeTraca, "B")
+        Assert.AreEqual(oManometreControle.numTraca, 6)
+        Assert.AreEqual(oManometreControle.typeRaccord, "RA")
 
 
         bReturn = ManometreControleManager.delete(idManometreControle)
@@ -496,6 +519,7 @@ Public Class ManometreControleManagerTest
     Public Sub GetByPoolTest()
         Dim oManoC As ManometreControle
         Dim idMano As String
+        Crodip_agent.My.Settings.GestionDesPools = True
 
         'Creation d'un Pool
         Dim oPool = New Pool()

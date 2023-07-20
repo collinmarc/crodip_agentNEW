@@ -182,6 +182,9 @@ Public Class ManometreControleManager
                 If objManometreControle.DateActivation <> Nothing Then
                     paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objManometreControle.DateActivation) & "'"
                 End If
+                paramsQuery = paramsQuery & " , typeTraca='" & objManometreControle.typeTraca & "'"
+                paramsQuery = paramsQuery & " , numTraca=" & objManometreControle.numTraca & ""
+                paramsQuery = paramsQuery & " , typeRaccord='" & objManometreControle.typeRaccord & "'"
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE AgentManoControle SET " & paramsQuery & " WHERE numeroNational='" & objManometreControle.numeroNational & "'"
@@ -318,14 +321,14 @@ Public Class ManometreControleManager
 
 #End Region
 
-    Private Shared Sub createManometreControle(ByVal manometrecontrole_id As String)
+    Private Shared Sub createManometreControle(ByVal pNumeroNational As String)
         Dim oCSDB As New CSDb(True)
         Try
             Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO AgentManoControle (numeroNational) VALUES ('" & manometrecontrole_id & "')"
+            bddCommande.CommandText = "INSERT INTO AgentManoControle (numeroNational) VALUES ('" & pNumeroNational & "')"
             bddCommande.ExecuteNonQuery()
 
         Catch ex As Exception

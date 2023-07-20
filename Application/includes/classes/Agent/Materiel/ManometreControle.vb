@@ -157,6 +157,33 @@ Public Class ManometreControle
             Return getPressionCtrl(6)
         End Get
     End Property
+    Private _typeTraca As String
+    Public Property typeTraca() As String
+        Get
+            Return _typeTraca
+        End Get
+        Set(ByVal value As String)
+            _typeTraca = value
+        End Set
+    End Property
+    Private _numTraca As Integer
+    Public Property numTraca() As Integer
+        Get
+            Return _numTraca
+        End Get
+        Set(ByVal value As Integer)
+            _numTraca = value
+        End Set
+    End Property
+    Private _typeRaccord As String
+    Public Property typeRaccord() As String
+        Get
+            Return _typeRaccord
+        End Get
+        Set(ByVal value As String)
+            _typeRaccord = value
+        End Set
+    End Property
 
 
     Public Overrides Function Fill(ByVal pColName As String, ByVal pValue As Object) As Boolean
@@ -229,6 +256,12 @@ Public Class ManometreControle
                 Me.JamaisServi = pValue
             Case "dateActivation".Trim().ToUpper()
                 Me.DateActivation = pValue
+            Case "typeTraca".Trim().ToUpper()
+                Me.typeTraca = pValue
+            Case "numTraca".Trim().ToUpper()
+                Me.numTraca = pValue
+            Case "typeRaccord".Trim().ToUpper()
+                Me.typeRaccord = pValue
         End Select
 
     End Function
