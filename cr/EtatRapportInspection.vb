@@ -466,11 +466,11 @@ Public Class EtatRapportInspection
                                 dOrdre = CDec(oParam.Code.Replace(".", ","))
                             End If
                         Else
-                            'Pas de .
-                            dOrdre = CDec(oParam.Code)
-                            If m_ods.Defauts.Rows.Count > 0 Then
-                                m_ods.Defauts.AddDefautsRow("", "", dOrdre, 0)
-                            End If
+                            'Pas de . on ajoutait une ligne blanche ...
+                            'dOrdre = CDec(oParam.Code)
+                            'If m_ods.Defauts.Rows.Count > 0 Then
+                            'm_ods.Defauts.AddDefautsRow("", "", dOrdre, 0)
+                            'End If
                         End If
                         Dim nNiveau As Integer
                         nNiveau = 0
@@ -484,8 +484,8 @@ Public Class EtatRapportInspection
                 Next
                 'le 194 correspond au dernier elément de la Première page
                 Dim orow As DataRow = m_ods.Defauts.Select("", "Ordre")(194)
-                'BUG CRYSTAL REPORT
-                'On ajoute des défauts fictifs coorespondant à la taille de l'entete de page
+                ''BUG CRYSTAL REPORT
+                ''On ajoute des défauts fictifs coorespondant à la taille de l'entete de page
                 Dim dRupture As Decimal = orow.Field(Of Decimal)("Ordre")
                 dRupture = dRupture + 0.00001
                 m_ods.Defauts.AddDefautsRow("", "test", dRupture, 3)
