@@ -232,10 +232,14 @@ Public Class importCRODIP
             Dim nNum As Integer
             Dim olstExploit As New List(Of Exploitation)
             Using reader As StreamReader = New StreamReader(pfileName, System.Text.Encoding.GetEncoding(1252))
-                Using csv As CsvReader = New CsvReader(reader, Globalization.CultureInfo.CurrentCulture)
-                    csv.Configuration.HeaderValidated = Nothing
-                    csv.Configuration.MissingFieldFound = Nothing
-                    csv.Configuration.PrepareHeaderForMatch = Function(h As String, n As Integer) h.ToLower()
+                Dim csvConf As New CsvHelper.Configuration.CsvConfiguration(Application.CurrentCulture)
+                csvConf.HeaderValidated = Nothing
+                csvConf.MissingFieldFound = Nothing
+                csvConf.PrepareHeaderForMatch = Function(args) args.Header.ToLower()
+                'csvConf.PrepareHeaderForMatch = Function(h As String, n As Integer) h.ToLower()
+
+
+                Using csv As CsvReader = New CsvReader(reader, csvConf)
                     Dim lst As IEnumerable(Of importCRODIP)
                     lst = csv.GetRecords(Of importCRODIP).Where(Function(i) i.raisonSociale <> "" Or i.nomExploitant <> "").ToList()
 

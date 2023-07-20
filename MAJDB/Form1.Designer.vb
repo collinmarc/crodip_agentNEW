@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMAJDB
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,14 +20,13 @@ Partial Class frmMAJDB
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée à l'aide du Concepteur Windows Form.  
     'Ne la modifiez pas à l'aide de l'éditeur de code.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tbSQL = New System.Windows.Forms.TextBox()
         Me.btnExec = New System.Windows.Forms.Button()
         Me.dgvResult = New System.Windows.Forms.DataGridView()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.btnCompact = New System.Windows.Forms.Button()
         CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -83,21 +82,11 @@ Partial Class frmMAJDB
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "Résultat"
         '
-        'btnCompact
-        '
-        Me.btnCompact.Location = New System.Drawing.Point(492, 228)
-        Me.btnCompact.Name = "btnCompact"
-        Me.btnCompact.Size = New System.Drawing.Size(75, 23)
-        Me.btnCompact.TabIndex = 5
-        Me.btnCompact.Text = "COMPACT"
-        Me.btnCompact.UseVisualStyleBackColor = True
-        '
         'frmMAJDB
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(703, 450)
-        Me.Controls.Add(Me.btnCompact)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.dgvResult)
         Me.Controls.Add(Me.btnExec)
@@ -116,5 +105,4 @@ Partial Class frmMAJDB
     Friend WithEvents btnExec As Button
     Friend WithEvents dgvResult As DataGridView
     Friend WithEvents Label2 As Label
-    Friend WithEvents btnCompact As Button
 End Class

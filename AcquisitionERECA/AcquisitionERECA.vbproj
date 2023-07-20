@@ -21,6 +21,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>AcquisitionERECA.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -138,8 +139,8 @@
   <PropertyGroup>
     <PostBuildEvent>copy /Y $(TargetPath) $(SolutionDir)TestCrodip\$(OutDir)
 copy /Y $(SolutionDir)$(ProjectName)\$(OutDir)$(TargetName).dll.config $(SolutionDir)\TestCrodip\$(OutDir)
-copy /Y $(TargetPath) $(SolutionDir)bin\x86\$(ConfigurationName)
-copy /Y $(SolutionDir)$(ProjectName)\$(OutDir)$(TargetName).dll.config $(SolutionDir)bin\x86\$(ConfigurationName)
+copy /Y $(TargetPath) $(SolutionDir)bin\$(ConfigurationName)
+copy /Y $(SolutionDir)$(ProjectName)\$(OutDir)$(TargetName).dll.config $(SolutionDir)bin\$(ConfigurationName)
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

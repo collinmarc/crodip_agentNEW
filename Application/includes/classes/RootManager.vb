@@ -37,6 +37,7 @@ Public Class getListResponse(Of T)
     End Sub
 End Class
 Public Class RootManager
+    Protected Shared _restOptions As RestClientOptions
     Protected Shared _user As auth
     Protected Shared _client As RestClient
     Protected Shared BaseUrl As String = "https://api-pp.crodip.fr"
@@ -112,8 +113,9 @@ Public Class RootManager
         Dim bReturn As Boolean
         Try
             If Not _bConnecte Then
-                _user = New auth(puser, pPassword)
-                _client = New RestClient(BaseUrl)
+                _restOptions = New RestClientOptions(BaseUrl)
+                _restOptions.Authenticator = New HttpBasicAuthenticator(puser, pPassword)
+                _client = New RestClient(_restOptions)
                 Dim request As RestRequest = New RestRequest("loginUser", DataFormat.Json)
                 request.AddJsonBody(_user)
                 Dim oT As Task(Of RestResponse(Of LoginUserResponse))
@@ -150,7 +152,7 @@ Public Class RootManager
 
             If RESTConnect(pAgent) Then
                 request = New RestRequest("pAPIREST", DataFormat.Json)
-                _client.Authenticator = New JwtAuthenticator(_token)
+                '                _client.Authenticator = New JwtAuthenticator(_token)
                 request.AddJsonBody(pPool)
 
                 Dim oT As Task(Of RestResponse(Of setResponse)) = executePost(Of setResponse)(_client, request)
@@ -171,7 +173,7 @@ Public Class RootManager
 
             If RESTConnect(pAgent) Then
                 request = New RestRequest(pAPIRest, DataFormat.Json)
-                _client.Authenticator = New JwtAuthenticator(_token)
+                '_client.Authenticator = New JwtAuthenticator(_token)
 
                 Dim oT2 As Task(Of RestResponse(Of getListResponse(Of T))) = executeGet(Of getListResponse(Of T))(_client, request)
                 oT2.Wait()
@@ -193,7 +195,7 @@ Public Class RootManager
             If RESTConnect(pAgent) Then
                 request = New RestRequest(pAPIRest & "/" & pid, DataFormat.Json)
                 request.Timeout = 10
-                _client.Authenticator = New JwtAuthenticator(_token)
+                '_client.Authenticator = New JwtAuthenticator(_token)
 
                 Dim oT2 As Task(Of RestResponse(Of T)) = executeGet(Of T)(_client, request)
                 oT2.Wait()

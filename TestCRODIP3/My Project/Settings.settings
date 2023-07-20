@@ -11,5 +11,8 @@
     <Setting Name="TypeStockPDF" Type="System.String" Scope="Application">
       <Value Profile="(Default)">DIR</Value>
     </Setting>
+    <Setting Name="DB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TEST</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -334,10 +334,10 @@ Public Class FactureExportCSV
                                      olst = FactureExportCSV.getlstExportfromFacture(oFact)
                                      lstElmt.AddRange(olst)
                                  End Sub)
+            Dim csvConf As New CsvHelper.Configuration.CsvConfiguration(Application.CurrentCulture)
+            csvConf.Delimiter = ";"
             Using sw As New IO.StreamWriter(pFile)
-                Using csw As New CsvWriter(sw, CultureInfo.InvariantCulture)
-                    csw.Configuration.Delimiter = ";"
-                    csw.Configuration.CultureInfo = Application.CurrentCulture
+                Using csw As New CsvWriter(sw, csvConf)
                     csw.WriteRecords(Of FactureExportCSV)(lstElmt)
                 End Using
             End Using

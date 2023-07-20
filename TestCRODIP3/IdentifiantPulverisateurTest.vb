@@ -127,50 +127,50 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.AreEqual(oIdent.dateUtilisation, oIdent2.dateUtilisation)
 
     End Sub
-    <XmlInclude(GetType(IdentifiantPulverisateur))>
-    <TestMethod()> Public Sub TESTSOAP()
-        Dim oIdent2 As IdentifiantPulverisateur
-        Dim nId As Long
+    '<XmlInclude(GetType(IdentifiantPulverisateur))>
+    '<TestMethod()> Public Sub TESTSOAP()
+    '    Dim oIdent2 As IdentifiantPulverisateur
+    '    Dim nId As Long
 
-        nId = 144
-        ''Récupération des Idnentifiant Pulves
-        'Dim oSynchro As New Synchronisation(m_oAgent)
-        'Dim oLst As New List(Of SynchronisationElmt)()
-        'oLst = oSynchro.getListeElementsASynchroniserDESC(m_oAgent)
-        'For Each oelmt As SynchronisationElmt In oLst
-        '    If TypeOf oelmt Is SynchronisationElmtIdentifiantPulverisateur Then
-        '        oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oelmt.IdentifiantEntier)
-        '        IdentifiantPulverisateurManager.Save(oIdent)
-        '        'on mémorise le dernier Indetifiant
-        '        nId = oIdent.id
-        '    End If
-        'Next
+    '    nId = 144
+    '    ''Récupération des Idnentifiant Pulves
+    '    'Dim oSynchro As New Synchronisation(m_oAgent)
+    '    'Dim oLst As New List(Of SynchronisationElmt)()
+    '    'oLst = oSynchro.getListeElementsASynchroniserDESC(m_oAgent)
+    '    'For Each oelmt As SynchronisationElmt In oLst
+    '    '    If TypeOf oelmt Is SynchronisationElmtIdentifiantPulverisateur Then
+    '    '        oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oelmt.IdentifiantEntier)
+    '    '        IdentifiantPulverisateurManager.Save(oIdent)
+    '    '        'on mémorise le dernier Indetifiant
+    '    '        nId = oIdent.id
+    '    '    End If
+    '    'Next
 
-        'Rechargement du dernier Identifiant
-        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId.ToString())
-        oIdent2.libelle = "TEST"
-        oIdent2.SetEtatINUTILISABLE()
+    '    'Rechargement du dernier Identifiant
+    '    oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId.ToString())
+    '    oIdent2.libelle = "TEST"
+    '    oIdent2.SetEtatINUTILISABLE()
 
-        Dim bReturn As Boolean
-        Dim objStreamWriter As StreamWriter = Nothing
+    '    Dim bReturn As Boolean
+    '    Dim objStreamWriter As StreamWriter = Nothing
 
-        Dim ns As New XmlSerializerNamespaces()
-        ns.Add("", "")
+    '    Dim ns As New XmlSerializerNamespaces()
+    '    ns.Add("", "")
 
-            objStreamWriter = New StreamWriter("./IP.xml")
-        Dim x As New XmlSerializer(oIdent2.GetType)
-        x.Serialize(objStreamWriter, oIdent2, ns)
-        bReturn = True
+    '        objStreamWriter = New StreamWriter("./IP.xml")
+    '    Dim x As New XmlSerializer(oIdent2.GetType)
+    '    x.Serialize(objStreamWriter, oIdent2, ns)
+    '    bReturn = True
 
-        Dim obj As Object
-        obj = New Object() {m_oAgent.id.ToString(), oIdent2}
-        Dim x2 As New XmlSerializer(obj.GetType, New Type() {oIdent2.GetType()})
-        x2.Serialize(objStreamWriter, obj, ns)
-        objStreamWriter.Close()
-        bReturn = True
+    '    Dim obj As Object
+    '    obj = New Object() {m_oAgent.id.ToString(), oIdent2}
+    '    Dim x2 As New XmlSerializer(obj.GetType, New Type() {oIdent2.GetType()})
+    '    x2.Serialize(objStreamWriter, obj, ns)
+    '    objStreamWriter.Close()
+    '    bReturn = True
 
 
-    End Sub
+    'End Sub
     <TestMethod>
     Public Sub TestWSProd()
 

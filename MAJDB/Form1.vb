@@ -33,18 +33,5 @@ Public Class frmMAJDB
 
     End Sub
 
-    Private Sub btnCompact_Click(sender As Object, e As EventArgs) Handles btnCompact.Click
-        Dim ocsDB As CSDb
-        Try
-            Me.Cursor = Cursors.WaitCursor
-            ocsDB = New CSDb()
-            ocsDB.CompacteDataBase()
-            Me.Cursor = Cursors.Default
 
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-
-        End Try
-
-    End Sub
 End Class

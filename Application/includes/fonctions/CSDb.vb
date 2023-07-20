@@ -435,25 +435,25 @@ Public Class CSDb
     End Function
 
     Public Function CompacteDataBase() As Boolean
-        Dim bReturn As Boolean
-        Try
-            Dim jro As JRO.JetEngine
-            jro = New JRO.JetEngine()
-            Dim bdd2 As String = getConnectString(_dbName & "2", EnumDBTYPE.MSACCESS)
-            If System.IO.File.Exists("./bdd/" & _dbName & "2" & DBextension) Then
-                System.IO.File.Delete("./bdd/" & _dbName & "2" & DBextension)
-            End If
-            jro.CompactDatabase(_bddConnectString, bdd2)
-            If System.IO.File.Exists("./bdd/" & _dbName & DBextension) Then
-                System.IO.File.Delete("./bdd/" & _dbName & DBextension)
-            End If
-            System.IO.File.Move("./bdd/" & _dbName & "2" & DBextension, "./bdd/" & _dbName & DBextension)
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispWarn("CSDB.CompateDatabase ERR" & ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
+        '    Dim bReturn As Boolean
+        '    Try
+        '        Dim jro As JRO.JetEngine
+        '        jro = New JRO.JetEngine()
+        '        Dim bdd2 As String = getConnectString(_dbName & "2", EnumDBTYPE.MSACCESS)
+        '        If System.IO.File.Exists("./bdd/" & _dbName & "2" & DBextension) Then
+        '            System.IO.File.Delete("./bdd/" & _dbName & "2" & DBextension)
+        '        End If
+        '        jro.CompactDatabase(_bddConnectString, bdd2)
+        '        If System.IO.File.Exists("./bdd/" & _dbName & DBextension) Then
+        '            System.IO.File.Delete("./bdd/" & _dbName & DBextension)
+        '        End If
+        '        System.IO.File.Move("./bdd/" & _dbName & "2" & DBextension, "./bdd/" & _dbName & DBextension)
+        '        bReturn = True
+        '    Catch ex As Exception
+        '        CSDebug.dispWarn("CSDB.CompateDatabase ERR" & ex.Message)
+        '        bReturn = False
+        '    End Try
+        '    Return bReturn
     End Function
 
     Public Function isOpen() As Boolean

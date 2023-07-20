@@ -73,16 +73,7 @@ Public Class CSDbTest
         oCSDb.free()
 
     End Sub
-    '''<summary>
-    '''Test pour D'init de l'objet + properties
-    '''</summary>
-    <TestMethod(), Ignore()> _
-    Public Sub TST_CompacteDataBase()
-        Dim oCSDb As CSDb
-        oCSDb = New CSDb()
-        Assert.IsTrue(oCSDb.CompacteDataBase())
 
-    End Sub
 
     <TestMethod()>
     Public Sub TST_SQLITE()
