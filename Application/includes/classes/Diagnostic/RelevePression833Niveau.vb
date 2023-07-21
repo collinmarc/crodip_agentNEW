@@ -130,6 +130,19 @@ Public Class RelevePression833Niveau
         End Try
         Return bReturn
     End Function
+    Public Function SetManoCId(ByVal pTroncon As Integer, ByVal pManocId As String) As Boolean
+        Dim bReturn As Boolean
+        Try
+            m_colTroncons(pTroncon - 1).SetMAnocId(pManocId)
+
+            bReturn = calcDefauts()
+        Catch ex As Exception
+            bReturn = False
+        End Try
+        Return bReturn
+
+    End Function
+
     Public Function calcDefauts() As Boolean
         Dim bReturn As Boolean
         Dim oTroncon As RelevePression833Troncon

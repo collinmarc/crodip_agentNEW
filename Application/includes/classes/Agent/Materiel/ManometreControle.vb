@@ -5,6 +5,7 @@ Imports System.Xml.Serialization
 <Serializable(), XmlInclude(GetType(ManometreControle))>
 Public Class ManometreControle
     Inherits Manometre
+    Implements IComparable
 
     Private _resolution As String
     Private _resolutionLecture As String
@@ -168,7 +169,12 @@ Public Class ManometreControle
     End Property
     Public Property IsTypeTracaH() As Boolean
         Get
-            Return typeTraca = "H"
+            If Not String.IsNullOrEmpty(typeTraca) Then
+                Return (typeTraca.Equals("H"))
+            Else
+                Return False
+
+            End If
         End Get
         Set(ByVal value As Boolean)
             If value Then
@@ -178,7 +184,12 @@ Public Class ManometreControle
     End Property
     Public Property IsTypeTracaB() As Boolean
         Get
-            Return typeTraca = "B"
+            If Not String.IsNullOrEmpty(typeTraca) Then
+                Return (typeTraca.Equals("B"))
+            Else
+                Return False
+
+            End If
         End Get
         Set(ByVal value As Boolean)
             If value Then
@@ -188,7 +199,12 @@ Public Class ManometreControle
     End Property
     Public Property IsTypeRaccordRA() As Boolean
         Get
-            Return (typeRaccord.Equals("RA"))
+            If Not String.IsNullOrEmpty(typeRaccord) Then
+                Return (typeRaccord.Equals("RA"))
+            Else
+                Return False
+
+            End If
         End Get
         Set(ByVal value As Boolean)
             If value Then
@@ -198,7 +214,12 @@ Public Class ManometreControle
     End Property
     Public Property IsTypeRaccordRV() As Boolean
         Get
-            Return typeRaccord.Equals("RV")
+            If Not String.IsNullOrEmpty(typeRaccord) Then
+                Return (typeRaccord.Equals("RV"))
+            Else
+                Return False
+
+            End If
         End Get
         Set(ByVal value As Boolean)
             If value Then
@@ -514,5 +535,11 @@ Public Class ManometreControle
         Return controle
     End Function
 
-
+    Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+        If obj Is Nothing Then
+            Return 1
+        Else
+            Return Me.Traca.CompareTo(obj.Traca)
+        End If
+    End Function
 End Class

@@ -32,17 +32,18 @@ Public Class FrmDiagnostique
     Protected Const ROW_NIVEAUX As Integer = 0
     Protected Const ROW_TRONCONS As Integer = 1
     Protected Const ROW_PRESSION As Integer = 2
-    Protected Const ROW_ECART_BAR As Integer = 3
-    Protected Const ROW_ECART_PCT As Integer = 4
-    Protected Const ROW_MOYENNE_PRESSION_LUE_TOUS As Integer = 5
-    Protected Const ROW_MOYENNE_ECART_TOUS As Integer = 6
-    Protected Const ROW_ECARTMOYEN_PCT As Integer = 7
-    Protected Const ROW_SEPARATOR As Integer = 8
-    Protected Const ROW_MOYENNE_ECART_AUTRE As Integer = 9
-    Protected Const ROW_HETERO_BAR As Integer = 10
-    Protected Const ROW_HETERO_PCT As Integer = 11
-    Protected Const ROW_NPRESSION As Integer = 12
-    Protected Const ROW_NB As Integer = 13
+    Protected Const ROW_MANOMETRE As Integer = 3
+    Protected Const ROW_ECART_BAR As Integer = 4
+    Protected Const ROW_ECART_PCT As Integer = 5
+    Protected Const ROW_MOYENNE_PRESSION_LUE_TOUS As Integer = 6
+    Protected Const ROW_MOYENNE_ECART_TOUS As Integer = 7
+    Protected Const ROW_ECARTMOYEN_PCT As Integer = 8
+    Protected Const ROW_SEPARATOR As Integer = 9
+    Protected Const ROW_MOYENNE_ECART_AUTRE As Integer = 10
+    Protected Const ROW_HETERO_BAR As Integer = 11
+    Protected Const ROW_HETERO_PCT As Integer = 12
+    Protected Const ROW_NPRESSION As Integer = 13
+    Protected Const ROW_NB As Integer = 14
     Protected m_tbPressionManoCurrent As CRODIP_ControlLibrary.TBNumeric
     Protected m_lblDefautEcart As Label
     Protected m_lblDefautHeterogeneite As Label
@@ -68,6 +69,8 @@ Public Class FrmDiagnostique
     Protected m_Pulverisateur As Pulverisateur
     Protected m_Exploit As Exploitation
     Private Const NB_BUSES_MAX As Integer = 200
+    Private m_olstManoC As List(Of ManometreControle)
+
 
 
     Public Sub New()
@@ -1308,6 +1311,8 @@ Public Class FrmDiagnostique
                         m_dgvPressionCurrent.CurrentCell = m_dgvPressionCurrent(CInt(tmpDiagnosticTroncons833.idColumn), ROW_PRESSION)
                         If tmpDiagnosticTroncons833.pressionSortie <> 0 Then
                             m_dgvPressionCurrent(CInt(tmpDiagnosticTroncons833.idColumn), ROW_PRESSION).Value = tmpDiagnosticTroncons833.pressionSortie
+                            'Affichage de la traca du troncon
+                            'Affichage de la liste des Mano
                             validatePressionTronc(nPression)
                         End If
                     End If
@@ -2295,7 +2300,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
                             troncons833.idColumn = nCol
                             troncons833.pressionSortie = oTroncon.PressionLue
-                            'Transfert des elements calculé dans le diagnostic pour GlobalsCRODIP.CONSTruire le rapport de synthèse
+                            'Transfert des elements calculé dans le diagnostic pour CONSTruire le rapport de synthèse
                             troncons833.EcartBar = oTroncon.EcartPression
                             troncons833.Ecartpct = oTroncon.EcartPressionpct
                             troncons833.MoyenneAutrePression = oTroncon.MoyenneAutresTroncons
@@ -7822,6 +7827,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     'Reaffectation de la pression lue pour réinitialisé tous les calculs
                     If IsNumeric(m_dgvPressionCurrent(ncol, ROW_PRESSION).Value) Then
                         m_RelevePression833_Current.SetPressionLue(nNiveau, nTroncon, m_dgvPressionCurrent(ncol, ROW_PRESSION).Value)
+                        Dim oC As DataGridViewComboBoxCell = m_dgvPressionCurrent(ncol, ROW_PRESSION)
+                        Dim oManoc As ManometreControle = ManometreControleManager.getManometreControleByTraca(oC.Value)
+                        m_RelevePression833_Current.SetManoCId(nNiveau, nTroncon, oManoc.numeroNational)
                         'Affichage des résultats dans le datagridView courant
                         AfficheResultatNiveau(nNiveau)
                     End If
@@ -8117,14 +8125,60 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             manopulvePressionPulve_2.ReadOnly = True
             manopulvePressionPulve_3.ReadOnly = True
             manopulvePressionPulve_4.ReadOnly = True
+
             AffichageEnteteOnglet()
             createRelevePression()
             RAZManopulvePressionLues()
             SetPressionControle542ToPressionManoPulve833(manopulveIsUseCalibrateur.Checked)
             SelectTableauMesurePourDefaut()
+            'Affichage des References de mano
+            '--------------------------------
+            '1) RAZ des valeurs
+            For i As Integer = 1 To gdvPressions1.ColumnCount - 1
+                gdvPressions1(i, ROW_MANOMETRE).Value = Nothing
+            Next i
+            For i As Integer = 1 To gdvPressions2.ColumnCount - 1
+                gdvPressions2(i, ROW_MANOMETRE).Value = Nothing
+            Next i
+            For i As Integer = 1 To gdvPressions3.ColumnCount - 1
+                gdvPressions3(i, ROW_MANOMETRE).Value = Nothing
+            Next i
+            For i As Integer = 1 To gdvPressions4.ColumnCount - 1
+                gdvPressions4(i, ROW_MANOMETRE).Value = Nothing
+            Next i
+            '2) MAJ de la liste
+            m_bsrcManoCPression.Clear()
+            For Each oManoc As ManometreControle In m_olstManoC
+                If oManoc.IsTypeTracaB Then
+                    m_bsrcManoCPression.Add(oManoc)
+                End If
+            Next
+            '3) Affectation de valeurs : Boucle sur la Liste des Manos Filtrés
+            AffectionDesValeursManoPression(gdvPressions1)
+            AffectionDesValeursManoPression(gdvPressions2)
+            AffectionDesValeursManoPression(gdvPressions3)
+            AffectionDesValeursManoPression(gdvPressions4)
+
+
         Catch ex As Exception
             CSDebug.dispError("diagnostique::setPressionsFaibles ERR : " & ex.Message)
         End Try
+
+    End Sub
+    Private Sub AffectionDesValeursManoPression(pDataGridView As DataGridView)
+        Dim nItem As Integer
+        nItem = 0
+        Dim oCell As DataGridViewComboBoxCell
+        For i As Integer = 1 To pDataGridView.ColumnCount - 1
+            'nItem = 0
+            oCell = pDataGridView(i, ROW_MANOMETRE)
+            oCell.Value = m_bsrcManoCPression(nItem).Traca
+            nItem = nItem + 1
+            If nItem > m_bsrcManoCPression.Count - 1 Then
+                nItem = 0
+            End If
+
+        Next i
 
     End Sub
     Private Sub setPressionsFortes()
@@ -8142,6 +8196,32 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             RAZManopulvePressionLues()
             SetPressionControle542ToPressionManoPulve833(manopulveIsUseCalibrateur.Checked)
             SelectTableauMesurePourDefaut()
+
+            'Affichage des References de mano
+            For i As Integer = 1 To gdvPressions1.ColumnCount - 1
+                gdvPressions1(i, ROW_MANOMETRE).Value = Nothing
+            Next i
+            For i As Integer = 1 To gdvPressions2.ColumnCount - 1
+                gdvPressions2(i, ROW_MANOMETRE).Value = Nothing
+            Next i
+            For i As Integer = 1 To gdvPressions3.ColumnCount - 1
+                gdvPressions3(i, ROW_MANOMETRE).Value = Nothing
+            Next i
+            For i As Integer = 1 To gdvPressions4.ColumnCount - 1
+                gdvPressions4(i, ROW_MANOMETRE).Value = Nothing
+            Next i
+            m_bsrcManoCPression.Clear()
+            For Each oManoc As ManometreControle In m_olstManoC
+                If oManoc.IsTypeTracaH Then
+                    m_bsrcManoCPression.Add(oManoc)
+                End If
+            Next
+            '3) Affectation de valeurs : Boucle sur la Liste des Manos Filtrés
+            AffectionDesValeursManoPression(gdvPressions1)
+            AffectionDesValeursManoPression(gdvPressions2)
+            AffectionDesValeursManoPression(gdvPressions3)
+            AffectionDesValeursManoPression(gdvPressions4)
+
         Catch ex As Exception
             CSDebug.dispError("diagnostique::setPressionsFortes ERR : " & ex.Message)
         End Try
@@ -8544,6 +8624,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub CreerNiveauxTroncons833()
         'CSDebug.dispInfo("CreerNiveauxTroncons833")
         Try
+
             designdgv(nup_niveaux.Value, nupTroncons.Value, 1)
             designdgv(nup_niveaux.Value, nupTroncons.Value, 2)
             designdgv(nup_niveaux.Value, nupTroncons.Value, 3)
@@ -8552,12 +8633,17 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             createRelevePression()
             init542()
             init833()
+            If manopulveIsFaiblePression.Checked Then
+                setPressionsFaibles()
+            End If
+            If manopulveIsFortePression.Checked Then
+                setPressionsFortes()
+            End If
             'Initialisation des valeurs mémorisées
             If Not m_bDuringLoad Then
                 Affiche542()
                 Affiche833()
             End If
-
             'Vérification de la saisie de l'onglet 7
             checkIsOk(7)
 
@@ -8714,6 +8800,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             pdgvPression(0, ROW_NIVEAUX).Value = "Niveaux"
             pdgvPression(0, ROW_TRONCONS).Value = "Tronçons"
             pdgvPression(0, ROW_PRESSION).Value = "Pression Lue"
+            pdgvPression(0, ROW_MANOMETRE).Value = "Manomètre"
             pdgvPression(0, ROW_ECART_BAR).Value = "Ecart (bars)"
             pdgvPression(0, ROW_ECART_PCT).Value = "Ecart (%)"
             pdgvPression(0, ROW_HETERO_PCT).Value = "Hétérogénéité %"
@@ -8725,6 +8812,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             pdgvPression(0, ROW_NIVEAUX).Style = oHeaderStyle
             pdgvPression(0, ROW_TRONCONS).Style = oHeaderStyle
             pdgvPression(0, ROW_PRESSION).Style = oHeaderStyle
+            pdgvPression(0, ROW_MANOMETRE).Style = oHeaderStyle
             pdgvPression(0, ROW_ECART_BAR).Style = oHeaderStyle
             pdgvPression(0, ROW_ECART_PCT).Style = oHeaderStyle
             pdgvPression(0, ROW_HETERO_BAR).Style = oHeaderStyle
@@ -8757,6 +8845,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             pdgvPression.Rows(ROW_MOYENNE_PRESSION_LUE_TOUS).DefaultCellStyle.BackColor = Color.LightGray
             pdgvPression.Rows(ROW_MOYENNE_ECART_TOUS).DefaultCellStyle.BackColor = Color.LightGray
             pdgvPression.Rows(ROW_SEPARATOR).DefaultCellStyle.BackColor = Color.Black
+
             Dim nCol As Integer
             nCol = 1
             For i As Integer = 1 To pNbNiveaux
@@ -8766,6 +8855,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     pdgvPression(nCol, ROW_NPRESSION).Value = pNPression
                     pdgvPression(nCol, ROW_NIVEAUX).Style = oHeaderStyle
                     pdgvPression(nCol, ROW_TRONCONS).Style = oHeaderStyle
+                    pdgvPression(nCol, ROW_MANOMETRE).Value = Nothing
+                    Dim c As DataGridViewComboBoxCell = New DataGridViewComboBoxCell()
+                    c.DataSource = m_bsrcManoCPression
+                    c.DisplayMember = "Traca"
+                    pdgvPression(nCol, ROW_MANOMETRE) = c
                     nCol = nCol + 1
                 Next j
             Next i
@@ -10420,6 +10514,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     pctLogo.Image = Crodip_agent.Resources.logo_crodipIndigo
                 End If
             End If
+
+            'Chargement des manomètres
+            m_olstManoC = ManometreControleManager.getManoControleByAgent(agentCourant)
+            m_olstManoC.Sort()
 
             If m_diagnostic IsNot Nothing Then
                 m_bDuringLoad = True

@@ -122,6 +122,16 @@ Public Class RelevePression833Troncon
         End Try
         Return bReturn
     End Function
+    Public Function SetMAnocId(ByVal pManocId As Decimal) As Boolean
+        Dim bReturn As Boolean
+        Try
+            ManometreId = pManocId
+            bReturn = True
+        Catch ex As Exception
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
 
     ''' <summary>
     ''' Calcul pour savoir s'il y a un defaut dans le niveau
@@ -166,4 +176,35 @@ Public Class RelevePression833Troncon
 
         Return oRV
     End Function
+    Private _ManometreId As String
+    Public Property ManometreId() As String
+        Get
+            Return _ManometreId
+        End Get
+        Set(ByVal value As String)
+            _ManometreId = value
+        End Set
+    End Property
+    Public ReadOnly Property ManometreTraca() As String
+        Get
+            Dim oMano As ManometreControle
+            oMano = ManometreControleManager.getManometreControleByNumeroNational(_ManometreId)
+            If oMano.numeroNational.Equals(_ManometreId) Then
+                Return oMano.Traca
+            Else
+                Return ""
+            End If
+        End Get
+    End Property
+    Public ReadOnly Property ManometreTypeRaccord() As String
+        Get
+            Dim oMano As ManometreControle
+            oMano = ManometreControleManager.getManometreControleByNumeroNational(_ManometreId)
+            If oMano.numeroNational.Equals(_ManometreId) Then
+                Return oMano.typeRaccord
+            Else
+                Return ""
+            End If
+        End Get
+    End Property
 End Class

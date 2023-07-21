@@ -235,16 +235,20 @@ Public Class ManometreControleManager
             CSDebug.dispFatal("ManometreControleManager::resetNbControles : " & ex.Message)
         End Try
     End Sub
-
-    Public Shared Function getManometreControleByNumeroNational(ByVal pNumeroNational As String) As ManometreControle
+    ''' <summary>
+    ''' Lecture du mano de controle avec son 'NumeroNational' (Son Id unique)
+    ''' </summary>
+    ''' <param name="pManoId">ID Mano (pas l'idCrodip)</param>
+    ''' <returns></returns>
+    Public Shared Function getManometreControleByNumeroNational(ByVal pManoId As String) As ManometreControle
         ' déclarations
         Dim tmpManometreControle As New ManometreControle
         Dim oCSDB As New CSDb(True)
-        If pNumeroNational <> "" Then
+        If pManoId <> "" Then
 
             Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE numeroNational='" & pNumeroNational & "'"
+            bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE numeroNational='" & pManoId & "'"
             Try
                 ' On récupère les résultats
                 Using tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -261,6 +265,58 @@ Public Class ManometreControleManager
                         End While
                     End While
                     tmpListProfils.Close()
+                End Using
+            Catch ex As Exception ' On intercepte l'erreur
+                CSDebug.dispFatal("ManometreControleManager Error: " & ex.Message)
+            End Try
+
+            ' Test pour fermeture de connection BDD
+            If Not oCSDB Is Nothing Then
+                ' On ferme la connexion
+                oCSDB.free()
+            End If
+
+        End If
+        'on retourne le manometrecontrole ou un objet vide en cas d'erreur
+        Return tmpManometreControle
+    End Function
+    ''' <summary>
+    ''' Lecture du mano de controle avec sa tracabilité
+    ''' </summary>
+    ''' <param name="pTraca">codeTraca ([BH]1-20)</param>
+    ''' <returns></returns>
+    Public Shared Function getManometreControleByTraca(ByVal pTraca As String, Optional pShowAll As Boolean = False) As ManometreControle
+        Debug.Assert(pTraca.Length > 1, "Traca doit être de type [BH]{1-20}")
+        ' déclarations
+        Dim tmpManometreControle As New ManometreControle
+        Dim oCSDB As New CSDb(True)
+        If pTraca <> "" Then
+            Dim typetraca As String = Left(pTraca, 1)
+            Dim numtraca As String = Mid(pTraca, 1)
+
+            Dim bddCommande As DbCommand
+            bddCommande = oCSDB.getConnection().CreateCommand()
+            bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE typeTraca='" & typetraca & "' and numTraca='" & numtraca & "'"
+            If Not pShowAll Then
+                'Si on ne les veut pas tous, on ne prend que les Actifs (Par defaut)
+                bddCommande.CommandText = bddCommande.CommandText & " and etat=" & True & ""
+            End If
+            Try
+                ' On récupère les résultats
+                Using oDR As DbDataReader = bddCommande.ExecuteReader
+                    ' Puis on les parcours
+                    While oDR.Read()
+                        ' On rempli notre tableau
+                        Dim tmpColId As Integer = 0
+                        While tmpColId < oDR.FieldCount()
+                            If Not oDR.IsDBNull(tmpColId) Then
+                                tmpManometreControle.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+                            End If
+                            tmpColId = tmpColId + 1
+
+                        End While
+                    End While
+                    oDR.Close()
                 End Using
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("ManometreControleManager Error: " & ex.Message)

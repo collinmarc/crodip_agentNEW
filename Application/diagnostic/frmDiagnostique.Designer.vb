@@ -859,6 +859,7 @@ Partial Class FrmDiagnostique
         Me.RadioButton_diagnostic_12312 = New CRODIP_ControlLibrary.CtrlDiag2()
         Me.Label_diagnostic_123 = New CRODIP_ControlLibrary.CtrlParamNiveau()
         Me.Label_diagnostic_12 = New CRODIP_ControlLibrary.CtrlParamNiveau()
+        Me.m_bsrcManoCPression = New System.Windows.Forms.BindingSource(Me.components)
         Me.ContextMenuStrip1.SuspendLayout
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit
         CType(Me.Pctb_calc, System.ComponentModel.ISupportInitialize).BeginInit
@@ -1094,6 +1095,7 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_1232.SuspendLayout
         CType(Me.ico_help12323, System.ComponentModel.ISupportInitialize).BeginInit
         Me.GroupBox_diagnostic_1231.SuspendLayout
+        CType(Me.m_bsrcManoCPression, System.ComponentModel.ISupportInitialize).BeginInit
         Me.SuspendLayout
         '
         'ImageList_onglets
@@ -14763,6 +14765,11 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_12.Size = New System.Drawing.Size(254, 24)
         Me.Label_diagnostic_12.TabIndex = 20
         '
+        'm_bsrcManoCPression
+        '
+        Me.m_bsrcManoCPression.DataSource = GetType(Crodip_agent.ManometreControle)
+        Me.m_bsrcManoCPression.Sort = "Traca"
+        '
         'FrmDiagnostique
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -15052,6 +15059,7 @@ Partial Class FrmDiagnostique
         Me.GroupBox_diagnostic_1232.ResumeLayout(False)
         CType(Me.ico_help12323, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox_diagnostic_1231.ResumeLayout(False)
+        CType(Me.m_bsrcManoCPression, System.ComponentModel.ISupportInitialize).EndInit
         Me.ResumeLayout(False)
 
     End Sub
@@ -15901,4 +15909,5 @@ Partial Class FrmDiagnostique
     Friend WithEvents RadioButton_diagnostic_2620 As CRODIP_ControlLibrary.CtrlDiag2
     Friend WithEvents RadioButton_diagnostic_2622 As CRODIP_ControlLibrary.CtrlDiag2
     Friend WithEvents RadioButton_diagnostic_2621 As CRODIP_ControlLibrary.CtrlDiag2
+    Friend WithEvents m_bsrcManoCPression As BindingSource
 End Class
