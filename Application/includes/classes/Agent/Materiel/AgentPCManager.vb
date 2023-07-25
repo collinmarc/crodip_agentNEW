@@ -77,7 +77,7 @@ Public Class AgentPCManager
     End Function
 
     Public Shared Function getAgentPCByIdCRODIP(ByVal pid As String) As AgentPC
-        Debug.Assert(pid <> 0, "ID doit être initialisé")
+        'Debug.Assert(pid <> 0, "ID doit être initialisé")
         Dim oReturn As AgentPC = Nothing
         Try
 

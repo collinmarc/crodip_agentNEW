@@ -538,6 +538,15 @@ Public Class AgentManager
             End Try
 
         End If
+        If Year(oReturn) = 1970 Then
+            'En cas de cas erronnée (1970), on prend la plus grande date de dernière modif CRODIP des Pulvérisateurs
+            Dim oCSDB As New CSDb(True)
+            Try
+                oReturn = oCSDB.getValue("SELECT Max (dateModificationCrodip) from pulverisateur")
+            Catch
+                oReturn = CSDate.FromCrodipString("1970-01-01")
+            End Try
+        End If
         Return oReturn
     End Function
 
