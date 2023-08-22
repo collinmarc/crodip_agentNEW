@@ -119,7 +119,7 @@ Public Class mainForm
         '
         'progressBar_download
         '
-        Me.progressBar_download.Location = New System.Drawing.Point(104, 92)
+        Me.progressBar_download.Location = New System.Drawing.Point(104, 118)
         Me.progressBar_download.Maximum = 10
         Me.progressBar_download.Name = "progressBar_download"
         Me.progressBar_download.Size = New System.Drawing.Size(400, 23)
@@ -131,7 +131,7 @@ Public Class mainForm
         Me.lbl_progressBar_download.ForeColor = System.Drawing.Color.White
         Me.lbl_progressBar_download.Location = New System.Drawing.Point(104, 76)
         Me.lbl_progressBar_download.Name = "lbl_progressBar_download"
-        Me.lbl_progressBar_download.Size = New System.Drawing.Size(400, 16)
+        Me.lbl_progressBar_download.Size = New System.Drawing.Size(400, 42)
         Me.lbl_progressBar_download.TabIndex = 3
         Me.lbl_progressBar_download.Text = "Cliquer sur OK pour démarer la mise à jour"
         '
@@ -146,7 +146,7 @@ Public Class mainForm
         '
         'progressBar_files
         '
-        Me.progressBar_files.Location = New System.Drawing.Point(104, 146)
+        Me.progressBar_files.Location = New System.Drawing.Point(104, 172)
         Me.progressBar_files.Name = "progressBar_files"
         Me.progressBar_files.Size = New System.Drawing.Size(400, 23)
         Me.progressBar_files.TabIndex = 2
@@ -165,7 +165,7 @@ Public Class mainForm
         'btn_OK
         '
         Me.btn_OK.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_OK.Location = New System.Drawing.Point(346, 175)
+        Me.btn_OK.Location = New System.Drawing.Point(346, 203)
         Me.btn_OK.Name = "btn_OK"
         Me.btn_OK.Size = New System.Drawing.Size(74, 26)
         Me.btn_OK.TabIndex = 35
@@ -176,7 +176,7 @@ Public Class mainForm
         '
         Me.btn_Fermer.BackColor = System.Drawing.SystemColors.Control
         Me.btn_Fermer.Enabled = False
-        Me.btn_Fermer.Location = New System.Drawing.Point(432, 175)
+        Me.btn_Fermer.Location = New System.Drawing.Point(432, 203)
         Me.btn_Fermer.Name = "btn_Fermer"
         Me.btn_Fermer.Size = New System.Drawing.Size(72, 25)
         Me.btn_Fermer.TabIndex = 36
@@ -198,7 +198,7 @@ Public Class mainForm
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(512, 210)
+        Me.ClientSize = New System.Drawing.Size(512, 240)
         Me.ControlBox = False
         Me.Controls.Add(Me.Lbl_Version)
         Me.Controls.Add(Me.btn_Fermer)
@@ -349,6 +349,14 @@ Public Class mainForm
                 If Me.returnCode = 2 Then
                     returnVal = True
                     Me.infosUpdate = New UpdateInfo(wsResponse)
+                    'If Me._wsdl.url.Contains("crodip.net") And Me.infosUpdate.baseUrl.Contains("crodip.fr") Then
+                    '    'Changement de serveur
+                    '    Me.infosUpdate.baseUrl = Me.infosUpdate.baseUrl.Replace("updates.crodip.fr", "admin-pp.crodip.net")
+                    '    For i As Integer = 0 To Me.infosUpdate.files.Length - 1
+                    '        Me.infosUpdate.files(i) = Me.infosUpdate.files(i).Replace("updates.crodip.fr", "admin-pp.crodip.net")
+                    '    Next
+                    'End If
+
                     Me.Lbl_Version.Text = "Version Cible : " & Me.infosUpdate.version
                     Me.Refresh()
 

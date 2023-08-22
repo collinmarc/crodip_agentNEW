@@ -26,38 +26,10 @@ Public Class DiagnosticTroncons833Manager
                         Dim objWSCrodip_responseItem As System.Xml.XmlElement
                         ' on boucle chaque colone de l'item
                         For Each objWSCrodip_responseItem In objWSCrodip_responseItems
-                            Select Case objWSCrodip_responseItem.Name()
-                                Case "id"
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticTroncons833.id = CType(objWSCrodip_responseItem.InnerText(), Integer)
-                                    End If
-                                Case "idDiagnostic"
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticTroncons833.idDiagnostic = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "idPression"
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticTroncons833.idPression = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "idColumn"
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticTroncons833.idColumn = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "pressionSortie"
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticTroncons833.pressionSortie = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "dateModificationAgent"
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticTroncons833.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "dateModificationCrodip"
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticTroncons833.dateModificationCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                            End Select
+                            If objWSCrodip_responseItem.InnerText() <> "" Then
+                                objDiagnosticTroncons833.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
+                            End If
                         Next
-
                         objDiagnosticTroncons833List.Liste.Add(objDiagnosticTroncons833)
                     Next
                 Case 1 ' NOK
@@ -76,42 +48,23 @@ Public Class DiagnosticTroncons833Manager
         Dim tmpArr(1)() As DiagnosticTroncons833
         tmpArr(0) = objDiagnosticTroncons833.Liste.ToArray()
         Dim updatedObject() As Object = Nothing
+        Dim nreturn As Integer
 
         Try
             ' Appel au WS
             Dim objWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS()
-            Return objWSCrodip.SendDiagnosticTroncons833(pAgent.id, tmpArr, updatedObject)
+            'For Each odiag833 As DiagnosticTroncons833 In objDiagnosticTroncons833.Liste
+            'on transmet la liste des diag 833
+            nreturn = objWSCrodip.SendDiagnosticTroncons833(pAgent.id, tmpArr, updatedObject)
+
+            'Next
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticTroncons833Manager.sendWSDiagnosticTroncons833 ERR" & ex.Message & ":" & ex.Message)
-            Return -1
+            nreturn = -1
         End Try
+        Return nreturn
     End Function
 
-    ' o
-    Public Shared Function xml2object(ByVal arrXml As Object) As DiagnosticTroncons833
-        Dim objDiagnosticTroncons833 As New DiagnosticTroncons833
-
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            Select Case tmpSerializeItem.LocalName()
-                Case "id"
-                    objDiagnosticTroncons833.id = CType(tmpSerializeItem.InnerText, Integer)
-                Case "idDiagnostic"
-                    objDiagnosticTroncons833.idDiagnostic = CType(tmpSerializeItem.InnerText, String)
-                Case "idPression"
-                    objDiagnosticTroncons833.idPression = CType(tmpSerializeItem.InnerText, String)
-                Case "idColumn"
-                    objDiagnosticTroncons833.idColumn = CType(tmpSerializeItem.InnerText, String)
-                Case "pressionSortie"
-                    objDiagnosticTroncons833.pressionSortie = CType(tmpSerializeItem.InnerText, String)
-                Case "dateModificationAgent"
-                    objDiagnosticTroncons833.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-                Case "dateModificationCrodip"
-                    objDiagnosticTroncons833.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-            End Select
-        Next
-
-        Return objDiagnosticTroncons833
-    End Function
 
 #End Region
 
@@ -169,14 +122,19 @@ Public Class DiagnosticTroncons833Manager
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationCrodip`"
                     paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationCrodip) & "'"
                 End If
+                If Not String.IsNullOrEmpty(objDiagnosticTroncons833.ManocId) Then
+                    paramsQueryColomuns = paramsQueryColomuns & " , manoCId"
+                    paramsQuery = paramsQuery & " , '" & objDiagnosticTroncons833.ManocId & "'"
+                End If
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "INSERT INTO `DiagnosticTroncons833` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
                 bddCommande.ExecuteNonQuery()
                 If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
                     bddCommande.CommandText = "SELECT last_insert_rowid() from DiagnosticTroncons833"
+                Else
+                    bddCommande.CommandText = "SELECT MAX(id) from DiagnosticTroncons833"
                 End If
-                bddCommande.CommandText = "SELECT MAX(id) from DiagnosticTroncons833"
 
                 Dim id As Integer = CInt(bddCommande.ExecuteScalar())
                 objDiagnosticTroncons833.id = id
@@ -189,6 +147,7 @@ Public Class DiagnosticTroncons833Manager
                 paramQuery = paramQuery & ",idDiagnostic = '" & objDiagnosticTroncons833.idDiagnostic & "'"
                 paramQuery = paramQuery & ",idPression = '" & objDiagnosticTroncons833.idPression & "'"
                 paramQuery = paramQuery & ",idColumn = '" & objDiagnosticTroncons833.idColumn & "'"
+                paramQuery = paramQuery & ",manoCId = " & objDiagnosticTroncons833.ManocId & ""
                 paramQuery = paramQuery & ",pressionSortie = '" & objDiagnosticTroncons833.pressionSortie & "'"
                 paramQuery = paramQuery & ",dateModificationAgent = '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationAgent) & "'"
                 If Not String.IsNullOrEmpty(objDiagnosticTroncons833.dateModificationCrodip) Then
@@ -312,22 +271,9 @@ Public Class DiagnosticTroncons833Manager
                 Dim tmpDiagnosticTroncons833 As New DiagnosticTroncons833
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
-                    Select Case tmpListProfils.GetName(tmpColId)
-                        Case "id"
-                            tmpDiagnosticTroncons833.id = tmpListProfils.Item(tmpColId)
-                        Case "idDiagnostic"
-                            tmpDiagnosticTroncons833.idDiagnostic = tmpListProfils.Item(tmpColId).ToString()
-                        Case "idPression"
-                            tmpDiagnosticTroncons833.idPression = tmpListProfils.Item(tmpColId).ToString()
-                        Case "idColumn"
-                            tmpDiagnosticTroncons833.idColumn = tmpListProfils.Item(tmpColId).ToString()
-                        Case "pressionSortie"
-                            tmpDiagnosticTroncons833.pressionSortie = tmpListProfils.Item(tmpColId).ToString()
-                        Case "dateModificationAgent"
-                            tmpDiagnosticTroncons833.dateModificationAgent = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                        Case "dateModificationCrodip"
-                            tmpDiagnosticTroncons833.dateModificationCrodip = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                    End Select
+                    If Not tmpListProfils.IsDBNull(tmpColId) Then
+                        tmpDiagnosticTroncons833.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
+                    End If
                     tmpColId = tmpColId + 1
                 End While
                 arrItems(i) = tmpDiagnosticTroncons833

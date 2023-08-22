@@ -11,6 +11,7 @@ Public Class RelevePression833Troncon
     Private m_Heterogeneite As Decimal
     Private m_MoyenneAutresTroncons As Decimal
     Private m_EcartMoyenneAutresTroncons As Decimal
+
     'Private m_MoyenneTousTroncons As Decimal
     'Private m_EcartMoyenneTousTroncons As Decimal
     'Private m_EcartMoyenneTousTroncons_pct As Decimal

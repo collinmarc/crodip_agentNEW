@@ -65,6 +65,7 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.idPression = "1"
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.7"
+        oDiagTroncons833.ManocId = 123
 
         DiagnosticTroncons833Manager.save(oDiagTroncons833, oCSDB)
         iD = oDiagTroncons833.id
@@ -75,17 +76,20 @@ Public Class DiagnosticTroncons833Test
         Assert.AreEqual(oDiagTroncons833.idPression, "1")
         Assert.AreEqual(oDiagTroncons833.idColumn, "1")
         Assert.AreEqual(oDiagTroncons833.pressionSortie, "1.7")
+        Assert.AreEqual(oDiagTroncons833.ManocId, 123)
 
         'Maj de l'objet
         oDiagTroncons833.idPression = "2"
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
+        oDiagTroncons833.ManocId = 456
         DiagnosticTroncons833Manager.save(oDiagTroncons833, oCSDB)
         oDiagTroncons833 = DiagnosticTroncons833Manager.getDiagnosticTroncons833ById(oDiagTroncons833.id.ToString, oDiagTroncons833.idDiagnostic)
 
         Assert.AreEqual(oDiagTroncons833.idPression, "2")
         Assert.AreEqual(oDiagTroncons833.idColumn, "2")
         Assert.AreEqual(oDiagTroncons833.pressionSortie, "2.7")
+        Assert.AreEqual(oDiagTroncons833.ManocId, 456)
 
         DiagnosticTroncons833Manager.delete(oDiagTroncons833.id.ToString, oDiagTroncons833.idDiagnostic)
 
@@ -94,7 +98,7 @@ Public Class DiagnosticTroncons833Test
     '''<summary>
     '''Test de charegement déchargement depuis le Diag
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_LOAD_SAVE_DIAG()
         Dim odiag As Diagnostic
 
@@ -108,6 +112,7 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.idPression = "1"
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.7"
+        oDiagTroncons833.ManocId = 123
         odiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         oDiagTroncons833 = New DiagnosticTroncons833
@@ -115,6 +120,7 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.idPression = "2"
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
+        oDiagTroncons833.ManocId = 456
         odiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         DiagnosticManager.save(odiag)
@@ -130,17 +136,20 @@ Public Class DiagnosticTroncons833Test
         Assert.AreEqual(oDiagTroncons833.idPression, "1")
         Assert.AreEqual(oDiagTroncons833.idColumn, "1")
         Assert.AreEqual(oDiagTroncons833.pressionSortie, "1.7")
+        Assert.AreEqual(oDiagTroncons833.ManocId, 123)
 
         oDiagTroncons833 = odiag.diagnosticTroncons833.Liste(1)
         Assert.AreEqual(oDiagTroncons833.idDiagnostic, odiag.id)
         Assert.AreEqual(oDiagTroncons833.idPression, "2")
         Assert.AreEqual(oDiagTroncons833.idColumn, "2")
         Assert.AreEqual(oDiagTroncons833.pressionSortie, "2.7")
+        Assert.AreEqual(oDiagTroncons833.ManocId, 456)
 
         'Maj de la Pression 2
         oDiagTroncons833.idPression = "3"
         oDiagTroncons833.idColumn = "3"
         oDiagTroncons833.pressionSortie = "3.7"
+        oDiagTroncons833.ManocId = 789
 
         DiagnosticTroncons833Manager.save(oDiagTroncons833, oCSDB)
 
@@ -152,6 +161,7 @@ Public Class DiagnosticTroncons833Test
         Assert.AreEqual(oDiagTroncons833.idPression, "3")
         Assert.AreEqual(oDiagTroncons833.idColumn, "3")
         Assert.AreEqual(oDiagTroncons833.pressionSortie, "3.7")
+        Assert.AreEqual(oDiagTroncons833.ManocId, 789)
 
         DiagnosticTroncons833Manager.deleteByDiagnosticID(oDiagTroncons833.idDiagnostic)
 

@@ -2591,6 +2591,8 @@ Public Class DiagnosticManagerTest
         idDiag = DiagnosticManager.getNewId(m_oAgent)
         oDiag.id = idDiag
         oDiag.setOrganisme(m_oAgent)
+        oDiag.controleNbreNiveaux = 1
+        oDiag.controleNbreTroncons = 8
 
 
         Dim oDiagTroncons833 As DiagnosticTroncons833
@@ -2599,62 +2601,81 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.idPression = "1"
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.6"
+        oDiagTroncons833.ManocId = 123
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = "1"
+        oDiagTroncons833.idPression = "2"
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1.7"
+        oDiagTroncons833.ManocId = 456
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = "2"
-        oDiagTroncons833.idColumn = "1"
+        oDiagTroncons833.idPression = "3"
+        oDiagTroncons833.idColumn = "3"
         oDiagTroncons833.pressionSortie = "2.6"
+        oDiagTroncons833.ManocId = 789
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = "2"
-        oDiagTroncons833.idColumn = "2"
+        oDiagTroncons833.idPression = "4"
+        oDiagTroncons833.idColumn = "4"
         oDiagTroncons833.pressionSortie = "2.7"
+        oDiagTroncons833.ManocId = 741
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = "3"
-        oDiagTroncons833.idColumn = "1"
+        oDiagTroncons833.idPression = "5"
+        oDiagTroncons833.idColumn = "5"
         oDiagTroncons833.pressionSortie = "3.6"
+        oDiagTroncons833.ManocId = 852
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = "3"
-        oDiagTroncons833.idColumn = "2"
+        oDiagTroncons833.idPression = "6"
+        oDiagTroncons833.idColumn = "6"
         oDiagTroncons833.pressionSortie = "3.7"
+        oDiagTroncons833.ManocId = 963
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = "4"
-        oDiagTroncons833.idColumn = "1"
+        oDiagTroncons833.idPression = "7"
+        oDiagTroncons833.idColumn = "7"
         oDiagTroncons833.pressionSortie = "4.6"
+        oDiagTroncons833.ManocId = 753
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
-        oDiagTroncons833.idPression = "4"
-        oDiagTroncons833.idColumn = "2"
+        oDiagTroncons833.idPression = "8"
+        oDiagTroncons833.idColumn = "8"
         oDiagTroncons833.pressionSortie = "4.7"
+        oDiagTroncons833.ManocId = 159
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
-
-
 
         DiagnosticManager.save(oDiag)
 
-        oDiag = DiagnosticManager.getDiagnosticById(idDiag)
-        Assert.AreEqual(idDiag, oDiag.id)
-
+        'Synchronisation Montantr du Diagnoistic
         Dim oSynchro As New Synchronisation(m_oAgent)
-
         Assert.IsTrue(oSynchro.runascSynchroDiag(m_oAgent, oDiag))
+
+        'Synchronisation descendante
+        Dim oElmt As New SynchronisationElmtDiag(oDiag.id)
+        Dim olst As New List(Of SynchronisationElmt)
+        olst.Add(oElmt)
+        oSynchro.runDescSynchro(olst)
+        oDiag = DiagnosticManager.getDiagnosticById(oDiag.id)
+
+        'Vérification valeurs des tronçons 833
+        Assert.AreEqual(8, oDiag.diagnosticTroncons833.Liste.Count)
+        oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(0)
+        Assert.AreEqual(123, oDiagTroncons833.ManocId, "Le numero de Mano de controle n'est pas récupéré par la synhcro")
+        oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(1)
+        Assert.AreEqual(456, oDiagTroncons833.ManocId, "Le numero de Mano de controle n'est pas récupéré par la synhcro")
+        oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(2)
+        Assert.AreEqual(789, oDiagTroncons833.ManocId, "Le numero de Mano de controle n'est pas récupéré par la synhcro")
 
         DiagnosticManager.delete(oDiag.id)
 

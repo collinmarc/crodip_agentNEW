@@ -1,6 +1,7 @@
 TRUNK
 MASTER
 BUILD XXXXXX
+0001583: Date de dernière synchro Agent reste à 1970
 0001573: Modification des modèles de rapport d'inspection et contrat commercial
 0001574: Liste des défauts en Fixe et semi mobiles
 0001581: Upgrade CrystalReport

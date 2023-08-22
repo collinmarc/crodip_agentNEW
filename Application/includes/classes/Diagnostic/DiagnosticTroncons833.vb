@@ -59,6 +59,7 @@ Public Class DiagnosticTroncons833
     Private _pressionSortie As String
     Private _dateModificationAgent As String
     Private _dateModificationCrodip As String
+    Private _ManoCId As String
 
     'Attributs non sauvegardés (uniquement utilisé pour contruire le rapport de synthèse
     Private _EcartBar As Decimal
@@ -232,12 +233,20 @@ Public Class DiagnosticTroncons833
             _nTroncon = Value
         End Set
     End Property
+    Public Property ManocId() As Integer
+        Get
+            Return _ManoCId
+        End Get
+        Set(ByVal Value As Integer)
+            _ManoCId = Value
+        End Set
+    End Property
     ''' <summary>
     ''' transformation du numéro de colonne en nibeau troncon
     ''' </summary>
     ''' <param name="pNbreTroncon"></param>
     Public Sub CalcNiveauTroncons(pNbreTroncon As Integer)
-        If Me.idColumn > 0 Then
+        If Me.idColumn > 0 And pNbreTroncon > 0 Then
             nNiveau = Fix(idColumn / pNbreTroncon) + 1
             nTroncon = idColumn Mod pNbreTroncon
             If nTroncon = 0 Then
@@ -265,7 +274,8 @@ Public Class DiagnosticTroncons833
                     Me.dateModificationAgent = CSDate.ToCRODIPString(pColValue.ToString())
                 Case "dateModificationCrodip".Trim().ToUpper()
                     Me.dateModificationCrodip = CSDate.ToCRODIPString(pColValue.ToString())
-
+                Case "ManocId".Trim().ToUpper()
+                    Me.ManocId = pColValue.ToString()
             End Select
             bReturn = True
         Catch ex As Exception

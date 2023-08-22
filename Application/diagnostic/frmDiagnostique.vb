@@ -2308,6 +2308,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                             troncons833.HeterogeneitePct = oTroncon.Heterogeneite
                             troncons833.nNiveau = oNiveau.Num
                             troncons833.nTroncon = oTroncon.Num
+                            troncons833.ManocId = oTroncon.ManometreId
 
 
                             m_diagnostic.diagnosticTroncons833.Liste.Add(troncons833)
