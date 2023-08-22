@@ -68,10 +68,10 @@ Public Class RelevePression833
         End Try
         Return bReturn
     End Function
-    Public Function SetManoCId(ByVal pNiveau As Integer, ByVal pTroncon As Integer, ByVal pManocId As String) As Boolean
+    Public Function SetNumTraca(ByVal pNiveau As Integer, ByVal pTroncon As Integer, ByVal pTraca As String) As Boolean
         Dim bReturn As Boolean
         Try
-            m_colNiveaux(pNiveau - 1).SetManoCId(pTroncon, pManocId)
+            m_colNiveaux(pNiveau - 1).SetNumTraca(pTroncon, pTraca)
             bReturn = True
         Catch ex As Exception
             bReturn = False

@@ -1,4 +1,4 @@
-﻿<Serializable()> _
+﻿<Serializable()>
 Public Class RelevePression833Troncon
     Implements ICloneable
 
@@ -123,10 +123,10 @@ Public Class RelevePression833Troncon
         End Try
         Return bReturn
     End Function
-    Public Function SetMAnocId(ByVal pManocId As Decimal) As Boolean
+    Public Function SetNumTraca(ByVal pTraca As String) As Boolean
         Dim bReturn As Boolean
         Try
-            ManometreId = pManocId
+            NumTraca = pTraca
             bReturn = True
         Catch ex As Exception
             bReturn = False
@@ -173,39 +173,18 @@ Public Class RelevePression833Troncon
         oRV.Heterogeneite = Me.Heterogeneite
         oRV.MoyenneAutresTroncons = Me.MoyenneAutresTroncons
         oRV.EcartMoyenneAutresTroncons = Me.EcartMoyenneAutresTroncons
+        oRV.NumTraca = Me.NumTraca
 
 
         Return oRV
     End Function
-    Private _ManometreId As String
-    Public Property ManometreId() As String
+    Private _NumTraca As String
+    Public Property NumTraca() As String
         Get
-            Return _ManometreId
+            Return _NumTraca
         End Get
         Set(ByVal value As String)
-            _ManometreId = value
+            _NumTraca = value
         End Set
-    End Property
-    Public ReadOnly Property ManometreTraca() As String
-        Get
-            Dim oMano As ManometreControle
-            oMano = ManometreControleManager.getManometreControleByNumeroNational(_ManometreId)
-            If oMano.numeroNational.Equals(_ManometreId) Then
-                Return oMano.Traca
-            Else
-                Return ""
-            End If
-        End Get
-    End Property
-    Public ReadOnly Property ManometreTypeRaccord() As String
-        Get
-            Dim oMano As ManometreControle
-            oMano = ManometreControleManager.getManometreControleByNumeroNational(_ManometreId)
-            If oMano.numeroNational.Equals(_ManometreId) Then
-                Return oMano.typeRaccord
-            Else
-                Return ""
-            End If
-        End Get
     End Property
 End Class

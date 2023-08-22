@@ -330,6 +330,6 @@
 ALTER TABLE AgentManocontrole ADD COLUMN typeTraca Text ;
 ALTER TABLE AgentManocontrole ADD COLUMN numTraca int ;
 ALTER TABLE AgentManocontrole ADD COLUMN typeRaccord text ;
-ALTER TABLE DiagnosticTroncons833 Add COLUMN ManocId Text;
+ALTER TABLE DiagnosticTroncons833 Add COLUMN manocId Text;
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.1.00','2023-07-23 12:00:00','Tracabilité Mano');
 

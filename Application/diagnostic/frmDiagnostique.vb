@@ -1312,6 +1312,9 @@ Public Class FrmDiagnostique
                         If tmpDiagnosticTroncons833.pressionSortie <> 0 Then
                             m_dgvPressionCurrent(CInt(tmpDiagnosticTroncons833.idColumn), ROW_PRESSION).Value = tmpDiagnosticTroncons833.pressionSortie
                             'Affichage de la traca du troncon
+                            Dim oMano As ManometreControle
+                            oMano = ManometreControleManager.getManometreControleByNumeroNational(tmpDiagnosticTroncons833.ManocId)
+                            m_dgvPressionCurrent(CInt(tmpDiagnosticTroncons833.idColumn), ROW_MANOMETRE).Value = oMano.Traca
                             'Affichage de la liste des Mano
                             validatePressionTronc(nPression)
                         End If
@@ -2290,28 +2293,32 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     For Each oNiveau As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
                         For Each oTroncon As RelevePression833Troncon In oNiveau.colTroncons
                             nCol = ((oNiveau.Num - 1) * oNiveau.colTroncons.Count()) + oTroncon.Num
-                            Dim troncons833 As DiagnosticTroncons833 = New DiagnosticTroncons833
-                            troncons833.idDiagnostic = m_diagnostic.id
-                            troncons833.idPression = nPression
+                            Dim oDiagtroncons833 As DiagnosticTroncons833 = New DiagnosticTroncons833
+                            oDiagtroncons833.idDiagnostic = m_diagnostic.id
+                            oDiagtroncons833.idPression = nPression
                             'Pour compatibilité avec les anciennes versions
                             'If typeControle <> Pulverisateur.CATEGORIEPULVE_RAMPE Then
                             '    troncons833.idPression = nPression + 4
                             'End If
 
-                            troncons833.idColumn = nCol
-                            troncons833.pressionSortie = oTroncon.PressionLue
+                            oDiagtroncons833.idColumn = nCol
+                            oDiagtroncons833.pressionSortie = oTroncon.PressionLue
                             'Transfert des elements calculé dans le diagnostic pour CONSTruire le rapport de synthèse
-                            troncons833.EcartBar = oTroncon.EcartPression
-                            troncons833.Ecartpct = oTroncon.EcartPressionpct
-                            troncons833.MoyenneAutrePression = oTroncon.MoyenneAutresTroncons
-                            troncons833.HeterogeneiteBar = oTroncon.EcartMoyenneAutresTroncons
-                            troncons833.HeterogeneitePct = oTroncon.Heterogeneite
-                            troncons833.nNiveau = oNiveau.Num
-                            troncons833.nTroncon = oTroncon.Num
-                            troncons833.ManocId = oTroncon.ManometreId
+                            oDiagtroncons833.EcartBar = oTroncon.EcartPression
+                            oDiagtroncons833.Ecartpct = oTroncon.EcartPressionpct
+                            oDiagtroncons833.MoyenneAutrePression = oTroncon.MoyenneAutresTroncons
+                            oDiagtroncons833.HeterogeneiteBar = oTroncon.EcartMoyenneAutresTroncons
+                            oDiagtroncons833.HeterogeneitePct = oTroncon.Heterogeneite
+                            oDiagtroncons833.nNiveau = oNiveau.Num
+                            oDiagtroncons833.nTroncon = oTroncon.Num
+                            'Récupération du numéro national du mano de controle
+                            Dim oManoC As ManometreControle
+                            oManoC = ManometreControleManager.getManometreControleByTraca(m_diagnostic.organismePresId, oTroncon.NumTraca)
+                            If oManoC IsNot Nothing Then
+                                oDiagtroncons833.ManocId = oManoC.numeroNational
+                            End If
 
-
-                            m_diagnostic.diagnosticTroncons833.Liste.Add(troncons833)
+                            m_diagnostic.diagnosticTroncons833.Liste.Add(oDiagtroncons833)
 
                         Next oTroncon
 
@@ -7829,8 +7836,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     If IsNumeric(m_dgvPressionCurrent(ncol, ROW_PRESSION).Value) Then
                         m_RelevePression833_Current.SetPressionLue(nNiveau, nTroncon, m_dgvPressionCurrent(ncol, ROW_PRESSION).Value)
                         Dim oC As DataGridViewComboBoxCell = m_dgvPressionCurrent(ncol, ROW_PRESSION)
-                        Dim oManoc As ManometreControle = ManometreControleManager.getManometreControleByTraca(oC.Value)
-                        m_RelevePression833_Current.SetManoCId(nNiveau, nTroncon, oManoc.numeroNational)
+                        'Dim oManoc As ManometreControle = ManometreControleManager.getManometreControleByTraca(m_diagnostic.organismePresId, oC.Value)
+                        'm_RelevePression833_Current.SetManoCId(nNiveau, nTroncon, oManoc.numeroNational)
                         'Affichage des résultats dans le datagridView courant
                         AfficheResultatNiveau(nNiveau)
                     End If
@@ -8155,10 +8162,14 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 End If
             Next
             '3) Affectation de valeurs : Boucle sur la Liste des Manos Filtrés
-            AffectionDesValeursManoPression(gdvPressions1)
-            AffectionDesValeursManoPression(gdvPressions2)
-            AffectionDesValeursManoPression(gdvPressions3)
-            AffectionDesValeursManoPression(gdvPressions4)
+            SetCurrentPressionControls(1)
+            AffectionDesValeursManoTraca()
+            SetCurrentPressionControls(2)
+            AffectionDesValeursManoTraca()
+            SetCurrentPressionControls(3)
+            AffectionDesValeursManoTraca()
+            SetCurrentPressionControls(4)
+            AffectionDesValeursManoTraca()
 
 
         Catch ex As Exception
@@ -8166,13 +8177,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End Try
 
     End Sub
-    Private Sub AffectionDesValeursManoPression(pDataGridView As DataGridView)
+    Private Sub AffectionDesValeursManoTraca()
         Dim nItem As Integer
         nItem = 0
         Dim oCell As DataGridViewComboBoxCell
-        For i As Integer = 1 To pDataGridView.ColumnCount - 1
+
+        For i As Integer = 1 To m_dgvPressionCurrent.ColumnCount - 1
             'nItem = 0
-            oCell = pDataGridView(i, ROW_MANOMETRE)
+            oCell = m_dgvPressionCurrent(i, ROW_MANOMETRE)
+            m_dgvPressionCurrent.CurrentCell = oCell
             oCell.Value = m_bsrcManoCPression(nItem).Traca
             nItem = nItem + 1
             If nItem > m_bsrcManoCPression.Count - 1 Then
@@ -8218,10 +8231,14 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 End If
             Next
             '3) Affectation de valeurs : Boucle sur la Liste des Manos Filtrés
-            AffectionDesValeursManoPression(gdvPressions1)
-            AffectionDesValeursManoPression(gdvPressions2)
-            AffectionDesValeursManoPression(gdvPressions3)
-            AffectionDesValeursManoPression(gdvPressions4)
+            SetCurrentPressionControls(1)
+            AffectionDesValeursManoTraca()
+            SetCurrentPressionControls(1)
+            AffectionDesValeursManoTraca()
+            SetCurrentPressionControls(3)
+            AffectionDesValeursManoTraca()
+            SetCurrentPressionControls(4)
+            AffectionDesValeursManoTraca()
 
         Catch ex As Exception
             CSDebug.dispError("diagnostique::setPressionsFortes ERR : " & ex.Message)
@@ -8945,7 +8962,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         'CSDebug.dispInfo("gdvPressions1_CellValueChanged")
         Try
 
-            If e.RowIndex = ROW_PRESSION And e.ColumnIndex > 0 Then
+            If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
                 dgv_CellValueChanged()
             End If
         Catch ex As Exception
@@ -8978,7 +8995,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         'CSDebug.dispInfo("gdvPressions2_CellValueChanged")
         Try
 
-            If e.RowIndex = ROW_PRESSION And e.ColumnIndex > 0 Then
+            If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
                 dgv_CellValueChanged()
             End If
         Catch ex As Exception
@@ -9009,7 +9026,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         'CSDebug.dispInfo("gdvPressions3_CellValueChanged")
         Try
 
-            If e.RowIndex = ROW_PRESSION And e.ColumnIndex > 0 Then
+            If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
                 dgv_CellValueChanged()
             End If
         Catch ex As Exception
@@ -9040,7 +9057,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub gdvPressions4_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gdvPressions4.CellValueChanged
         'CSDebug.dispInfo("gdvPressions4_CellValueChanged")
-        If e.RowIndex = ROW_PRESSION And e.ColumnIndex > 0 Then
+        If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
             dgv_CellValueChanged()
         End If
 
@@ -9109,6 +9126,16 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
     Private Sub dgv_CellValueChanged()
+        If m_dgvPressionCurrent IsNot Nothing And m_dgvPressionCurrent.CurrentCell.Value IsNot Nothing Then
+            Dim nRow As Integer = m_dgvPressionCurrent.CurrentCell.RowIndex
+            If nRow = ROW_PRESSION Then
+                dgv_CellValueChangedPression()
+            Else
+                dgv_CellValueChangedManometre()
+            End If
+        End If
+    End Sub
+    Private Sub dgv_CellValueChangedPression()
         'CSDebug.dispInfo("dgv_CellValueChanged")
         Try
 
@@ -9119,60 +9146,80 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim nPression As Integer
             Dim strValue As String
             SetCurrentPressionControls()
-            If m_dgvPressionCurrent IsNot Nothing And m_dgvPressionCurrent.CurrentCell.Value IsNot Nothing Then
-                strValue = m_dgvPressionCurrent.CurrentCell.Value.ToString()
+            strValue = m_dgvPressionCurrent.CurrentCell.Value.ToString()
 
-                strValue = strValue.ToString().Replace("?", ",")
-                strValue = strValue.ToString().Replace(";", ".")
-                m_dgvPressionCurrent.CurrentCell.Value = strValue.Replace(".", ",")
-                ncol = m_dgvPressionCurrent.CurrentCell.ColumnIndex
-                nNiveau = m_dgvPressionCurrent(ncol, ROW_NIVEAUX).Value
-                nTroncon = m_dgvPressionCurrent(ncol, ROW_TRONCONS).Value
-                nPression = m_dgvPressionCurrent(ncol, ROW_NPRESSION).Value
-                oNiveau = m_RelevePression833_Current.GetNiveau(nNiveau)
-                If Not IsNumeric(m_dgvPressionCurrent.CurrentCell.Value) Then
-                    m_dgvPressionCurrent.CurrentCell.ErrorText = "Valeur Numérique"
-                    m_dgvPressionCurrent.CurrentCell.Value = ""
-                    oNiveau.SetPressionLue(nTroncon, -1)
-                Else
-                    m_dgvPressionCurrent.CurrentCell.ErrorText = ""
-                    oNiveau.SetPressionLue(nTroncon, m_dgvPressionCurrent.CurrentCell.Value)
-                End If
-                'Vérification du défaut 'Ecart de pression' pour le Niveau
-                If m_RelevePression833_Current.GetNiveau(nNiveau).isDefaultEcart(m_Paramdiag.ParamDiagCalc833) Then
-                    'Ce troncon est en défaut
-                    m_dgvPressionCurrent(ncol, ROW_ECARTMOYEN_PCT).Style.ForeColor = System.Drawing.Color.Red
-                Else
-                    m_dgvPressionCurrent(ncol, ROW_ECARTMOYEN_PCT).Style.ForeColor = System.Drawing.Color.Black
-                End If
-
-                AfficheResultatNiveau(nNiveau)
-
-                'Affichage des defauts de la pression courante
-                AfficheDefautHeterogeneite()
-                AfficheDefautEcart()
-                If pnl542.Enabled Then
-                    If Not manopulveIsUseCalibrateur.Checked Then
-                        If Not String.IsNullOrEmpty(m_tbMoyenneCurrent.Text) Then
-                            'Si on n'utilise pas le calibrateur, on remonte la moyenne des pressions lues dans le tableau 5.4.2
-                            ' TO DO : On pourrait remplacer ce selecteur pas l'utilisation d'une pression courante
-                            Select Case nPression
-                                Case 1
-                                    manopulvePressionControle_1.Text = m_RelevePression833_P1.Result_Moyenne
-                                Case 2
-                                    manopulvePressionControle_2.Text = m_RelevePression833_P2.Result_Moyenne
-                                Case 3
-                                    manopulvePressionControle_3.Text = m_RelevePression833_P3.Result_Moyenne
-                                Case 4
-                                    manopulvePressionControle_4.Text = m_RelevePression833_P4.Result_Moyenne
-                            End Select
-                        End If
-                    End If
-                    calcDefaut542()
-                End If
-                'Vérification de la saisie de l'onglet 7
-                checkIsOk(7)
+            strValue = strValue.ToString().Replace("?", ",")
+            strValue = strValue.ToString().Replace(";", ".")
+            m_dgvPressionCurrent.CurrentCell.Value = strValue.Replace(".", ",")
+            ncol = m_dgvPressionCurrent.CurrentCell.ColumnIndex
+            nNiveau = m_dgvPressionCurrent(ncol, ROW_NIVEAUX).Value
+            nTroncon = m_dgvPressionCurrent(ncol, ROW_TRONCONS).Value
+            nPression = m_dgvPressionCurrent(ncol, ROW_NPRESSION).Value
+            oNiveau = m_RelevePression833_Current.GetNiveau(nNiveau)
+            If Not IsNumeric(m_dgvPressionCurrent.CurrentCell.Value) Then
+                m_dgvPressionCurrent.CurrentCell.ErrorText = "Valeur Numérique"
+                m_dgvPressionCurrent.CurrentCell.Value = ""
+                oNiveau.SetPressionLue(nTroncon, -1)
+            Else
+                m_dgvPressionCurrent.CurrentCell.ErrorText = ""
+                oNiveau.SetPressionLue(nTroncon, m_dgvPressionCurrent.CurrentCell.Value)
             End If
+            'Vérification du défaut 'Ecart de pression' pour le Niveau
+            If m_RelevePression833_Current.GetNiveau(nNiveau).isDefaultEcart(m_Paramdiag.ParamDiagCalc833) Then
+                'Ce troncon est en défaut
+                m_dgvPressionCurrent(ncol, ROW_ECARTMOYEN_PCT).Style.ForeColor = System.Drawing.Color.Red
+            Else
+                m_dgvPressionCurrent(ncol, ROW_ECARTMOYEN_PCT).Style.ForeColor = System.Drawing.Color.Black
+            End If
+
+            AfficheResultatNiveau(nNiveau)
+
+            'Affichage des defauts de la pression courante
+            AfficheDefautHeterogeneite()
+            AfficheDefautEcart()
+            If pnl542.Enabled Then
+                If Not manopulveIsUseCalibrateur.Checked Then
+                    If Not String.IsNullOrEmpty(m_tbMoyenneCurrent.Text) Then
+                        'Si on n'utilise pas le calibrateur, on remonte la moyenne des pressions lues dans le tableau 5.4.2
+                        ' TO DO : On pourrait remplacer ce selecteur pas l'utilisation d'une pression courante
+                        Select Case nPression
+                            Case 1
+                                manopulvePressionControle_1.Text = m_RelevePression833_P1.Result_Moyenne
+                            Case 2
+                                manopulvePressionControle_2.Text = m_RelevePression833_P2.Result_Moyenne
+                            Case 3
+                                manopulvePressionControle_3.Text = m_RelevePression833_P3.Result_Moyenne
+                            Case 4
+                                manopulvePressionControle_4.Text = m_RelevePression833_P4.Result_Moyenne
+                        End Select
+                    End If
+                End If
+                calcDefaut542()
+            End If
+            'Vérification de la saisie de l'onglet 7
+            checkIsOk(7)
+        Catch ex As Exception
+            CSDebug.dispError("diagnostique::dgv_CellValueChanged ERR : " & ex.Message)
+        End Try
+
+    End Sub
+    Private Sub dgv_CellValueChangedManometre()
+        'CSDebug.dispInfo("dgv_CellValueChanged")
+        Try
+
+            Dim ncol As Integer
+            Dim nNiveau As Integer
+            Dim nTroncon As Integer
+            Dim oNiveau As RelevePression833Niveau
+            Dim strValue As String
+            strValue = m_dgvPressionCurrent.CurrentCell.Value.ToString()
+
+            ncol = m_dgvPressionCurrent.CurrentCell.ColumnIndex
+            nNiveau = m_dgvPressionCurrent(ncol, ROW_NIVEAUX).Value
+            nTroncon = m_dgvPressionCurrent(ncol, ROW_TRONCONS).Value
+            oNiveau = m_RelevePression833_Current.GetNiveau(nNiveau)
+
+            oNiveau.SetNumTraca(nTroncon, strValue)
         Catch ex As Exception
             CSDebug.dispError("diagnostique::dgv_CellValueChanged ERR : " & ex.Message)
         End Try

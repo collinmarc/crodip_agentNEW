@@ -147,7 +147,7 @@ Public Class DiagnosticTroncons833Manager
                 paramQuery = paramQuery & ",idDiagnostic = '" & objDiagnosticTroncons833.idDiagnostic & "'"
                 paramQuery = paramQuery & ",idPression = '" & objDiagnosticTroncons833.idPression & "'"
                 paramQuery = paramQuery & ",idColumn = '" & objDiagnosticTroncons833.idColumn & "'"
-                paramQuery = paramQuery & ",manoCId = " & objDiagnosticTroncons833.ManocId & ""
+                paramQuery = paramQuery & ",manoCId = '" & objDiagnosticTroncons833.ManocId & "'"
                 paramQuery = paramQuery & ",pressionSortie = '" & objDiagnosticTroncons833.pressionSortie & "'"
                 paramQuery = paramQuery & ",dateModificationAgent = '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationAgent) & "'"
                 If Not String.IsNullOrEmpty(objDiagnosticTroncons833.dateModificationCrodip) Then

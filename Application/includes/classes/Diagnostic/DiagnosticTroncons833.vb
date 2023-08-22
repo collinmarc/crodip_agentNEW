@@ -233,11 +233,11 @@ Public Class DiagnosticTroncons833
             _nTroncon = Value
         End Set
     End Property
-    Public Property ManocId() As Integer
+    Public Property ManocId() As String
         Get
             Return _ManoCId
         End Get
-        Set(ByVal Value As Integer)
+        Set(ByVal Value As String)
             _ManoCId = Value
         End Set
     End Property

@@ -285,18 +285,19 @@ Public Class ManometreControleManager
     ''' </summary>
     ''' <param name="pTraca">codeTraca ([BH]1-20)</param>
     ''' <returns></returns>
-    Public Shared Function getManometreControleByTraca(ByVal pTraca As String, Optional pShowAll As Boolean = False) As ManometreControle
+    Public Shared Function getManometreControleByTraca(pIdStructure As Integer, ByVal pTraca As String, Optional pShowAll As Boolean = False) As ManometreControle
+        Debug.Assert(Not String.IsNullOrEmpty(pTraca), "Traca doit être de type [BH]{1-20}")
         Debug.Assert(pTraca.Length > 1, "Traca doit être de type [BH]{1-20}")
         ' déclarations
         Dim tmpManometreControle As New ManometreControle
         Dim oCSDB As New CSDb(True)
         If pTraca <> "" Then
             Dim typetraca As String = Left(pTraca, 1)
-            Dim numtraca As String = Mid(pTraca, 1)
+            Dim numtraca As String = Mid(pTraca, 2)
 
             Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE typeTraca='" & typetraca & "' and numTraca='" & numtraca & "'"
+            bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE idStructure = " & pIdStructure & " and typeTraca='" & typetraca & "' and numTraca='" & numtraca & "'"
             If Not pShowAll Then
                 'Si on ne les veut pas tous, on ne prend que les Actifs (Par defaut)
                 bddCommande.CommandText = bddCommande.CommandText & " and etat=" & True & ""
