@@ -130,15 +130,20 @@ Public Class RelevePression833Niveau
         End Try
         Return bReturn
     End Function
-    Public Function SetNumTraca(ByVal pTroncon As Integer, ByVal ptraca As String) As Boolean
+    Public Function SetTraca(ByVal pTroncon As Integer, ByVal ptraca As String) As Boolean
         Dim bReturn As Boolean
         Try
-            m_colTroncons(pTroncon - 1).SetNumTraca(ptraca)
+            m_colTroncons(pTroncon - 1).SetTraca(ptraca)
         Catch ex As Exception
             bReturn = False
         End Try
         Return bReturn
 
+    End Function
+    Public Function getNumCol(pnumTroncon As Integer) As Integer
+        Dim nCol As Integer
+        nCol = ((Me.Num - 1) * colTroncons.Count()) + pnumTroncon
+        Return nCol
     End Function
 
     Public Function calcDefauts() As Boolean

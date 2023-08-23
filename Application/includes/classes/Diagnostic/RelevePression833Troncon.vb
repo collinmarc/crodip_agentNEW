@@ -123,10 +123,10 @@ Public Class RelevePression833Troncon
         End Try
         Return bReturn
     End Function
-    Public Function SetNumTraca(ByVal pTraca As String) As Boolean
+    Public Function SetTraca(ByVal pTraca As String) As Boolean
         Dim bReturn As Boolean
         Try
-            NumTraca = pTraca
+            Traca = pTraca
             bReturn = True
         Catch ex As Exception
             bReturn = False
@@ -173,18 +173,18 @@ Public Class RelevePression833Troncon
         oRV.Heterogeneite = Me.Heterogeneite
         oRV.MoyenneAutresTroncons = Me.MoyenneAutresTroncons
         oRV.EcartMoyenneAutresTroncons = Me.EcartMoyenneAutresTroncons
-        oRV.NumTraca = Me.NumTraca
+        oRV.Traca = Me.Traca
 
 
         Return oRV
     End Function
-    Private _NumTraca As String
-    Public Property NumTraca() As String
+    Private _Traca As String
+    Public Property Traca() As String
         Get
-            Return _NumTraca
+            Return _Traca
         End Get
         Set(ByVal value As String)
-            _NumTraca = value
+            _Traca = value
         End Set
     End Property
 End Class
