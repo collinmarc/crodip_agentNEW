@@ -2764,6 +2764,12 @@ Partial Public Class ds_Etat_SM
         
         Private columnnTroncon As Global.System.Data.DataColumn
         
+        Private columnTraca As Global.System.Data.DataColumn
+        
+        Private columnManoCIdCrodip As Global.System.Data.DataColumn
+        
+        Private columnManoCTypeRaccord As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -2888,6 +2894,30 @@ Partial Public Class ds_Etat_SM
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TracaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTraca
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property ManoCIdCrodipColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnManoCIdCrodip
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property ManoCTypeRaccordColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnManoCTypeRaccord
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2924,9 +2954,9 @@ Partial Public Class ds_Etat_SM
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function Addsynthese833DetailRow(ByVal idDiag As String, ByVal nPression As Integer, ByVal nDetail As Integer, ByVal PressionLue As Decimal, ByVal EcartBar As Decimal, ByVal EcartPct As Decimal, ByVal MoyenneAutrePression As Decimal, ByVal HeterogeneiteBar As Decimal, ByVal HeterogeneitePct As Decimal, ByVal nNiveau As Integer, ByVal nTroncon As Integer) As synthese833DetailRow
+        Public Overloads Function Addsynthese833DetailRow(ByVal idDiag As String, ByVal nPression As Integer, ByVal nDetail As Integer, ByVal PressionLue As Decimal, ByVal EcartBar As Decimal, ByVal EcartPct As Decimal, ByVal MoyenneAutrePression As Decimal, ByVal HeterogeneiteBar As Decimal, ByVal HeterogeneitePct As Decimal, ByVal nNiveau As Integer, ByVal nTroncon As Integer, ByVal Traca As String, ByVal ManoCIdCrodip As String, ByVal ManoCTypeRaccord As String) As synthese833DetailRow
             Dim rowsynthese833DetailRow As synthese833DetailRow = CType(Me.NewRow,synthese833DetailRow)
-            Dim columnValuesArray() As Object = New Object() {idDiag, nPression, nDetail, PressionLue, EcartBar, EcartPct, MoyenneAutrePression, HeterogeneiteBar, HeterogeneitePct, nNiveau, nTroncon}
+            Dim columnValuesArray() As Object = New Object() {idDiag, nPression, nDetail, PressionLue, EcartBar, EcartPct, MoyenneAutrePression, HeterogeneiteBar, HeterogeneitePct, nNiveau, nTroncon, Traca, ManoCIdCrodip, ManoCTypeRaccord}
             rowsynthese833DetailRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowsynthese833DetailRow)
             Return rowsynthese833DetailRow
@@ -2960,6 +2990,9 @@ Partial Public Class ds_Etat_SM
             Me.columnHeterogeneitePct = MyBase.Columns("HeterogeneitePct")
             Me.columnnNiveau = MyBase.Columns("nNiveau")
             Me.columnnTroncon = MyBase.Columns("nTroncon")
+            Me.columnTraca = MyBase.Columns("Traca")
+            Me.columnManoCIdCrodip = MyBase.Columns("ManoCIdCrodip")
+            Me.columnManoCTypeRaccord = MyBase.Columns("ManoCTypeRaccord")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2987,6 +3020,12 @@ Partial Public Class ds_Etat_SM
             MyBase.Columns.Add(Me.columnnNiveau)
             Me.columnnTroncon = New Global.System.Data.DataColumn("nTroncon", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnnTroncon)
+            Me.columnTraca = New Global.System.Data.DataColumn("Traca", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTraca)
+            Me.columnManoCIdCrodip = New Global.System.Data.DataColumn("ManoCIdCrodip", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnManoCIdCrodip)
+            Me.columnManoCTypeRaccord = New Global.System.Data.DataColumn("ManoCTypeRaccord", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnManoCTypeRaccord)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7281,6 +7320,53 @@ Partial Public Class ds_Etat_SM
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Traca() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablesynthese833Detail.TracaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'Traca' dans la table 'synthese833Detail' est DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablesynthese833Detail.TracaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ManoCIdCrodip() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablesynthese833Detail.ManoCIdCrodipColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'ManoCIdCrodip' dans la table 'synthese833Detail' est D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablesynthese833Detail.ManoCIdCrodipColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ManoCTypeRaccord() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablesynthese833Detail.ManoCTypeRaccordColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'ManoCTypeRaccord' dans la table 'synthese833Detail' es"& _ 
+                            "t DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablesynthese833Detail.ManoCTypeRaccordColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsidDiagNull() As Boolean
             Return Me.IsNull(Me.tablesynthese833Detail.idDiagColumn)
         End Function
@@ -7409,6 +7495,42 @@ Partial Public Class ds_Etat_SM
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetnTronconNull()
             Me(Me.tablesynthese833Detail.nTronconColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTracaNull() As Boolean
+            Return Me.IsNull(Me.tablesynthese833Detail.TracaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTracaNull()
+            Me(Me.tablesynthese833Detail.TracaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsManoCIdCrodipNull() As Boolean
+            Return Me.IsNull(Me.tablesynthese833Detail.ManoCIdCrodipColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetManoCIdCrodipNull()
+            Me(Me.tablesynthese833Detail.ManoCIdCrodipColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsManoCTypeRaccordNull() As Boolean
+            Return Me.IsNull(Me.tablesynthese833Detail.ManoCTypeRaccordColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetManoCTypeRaccordNull()
+            Me(Me.tablesynthese833Detail.ManoCTypeRaccordColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

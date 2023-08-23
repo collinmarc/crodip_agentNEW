@@ -170,6 +170,13 @@ Public Class EtatSyntheseMesures
                 oReleve = New RelevePression833(m_oDiag.controleNbreNiveaux, m_oDiag.controleNbreTroncons, pressionPulve, paramdiag.ParamDiagCalc833)
                 For Each oTroncon As DiagnosticTroncons833 In m_oDiag.diagnosticTroncons833.ListeparPression(p)
                     oReleve.colNiveaux(oTroncon.nNiveau - 1).colTroncons(oTroncon.nTroncon - 1).SetPressionLue(oTroncon.pressionSortie)
+
+                    Dim oManoc As ManometreControle = ManometreControleManager.getManometreControleByNumeroNational(oTroncon.ManocId)
+                    If oManoc IsNot Nothing Then
+                        oReleve.colNiveaux(oTroncon.nNiveau - 1).colTroncons(oTroncon.nTroncon - 1).Traca = oManoc.Traca
+                    End If
+
+
                 Next
                 oReleve.calcDefauts()
                 lstRelevePression.Add(oReleve)
@@ -190,6 +197,8 @@ Public Class EtatSyntheseMesures
                 'Détail
                 For Each oNiveau As RelevePression833Niveau In oReleve.colNiveaux
                     For Each otroncon As RelevePression833Troncon In oNiveau.colTroncons
+                        Dim oManoc As ManometreControle
+                        oManoc = ManometreControleManager.getManometreControleByTraca(m_oDiag.organismePresId, otroncon.Traca)
                         m_ods.synthese833Detail.Addsynthese833DetailRow(idDiag:=m_oDiag.id,
                                                                 nPression:=p,
                                                                 nDetail:=otroncon.NumCol,
@@ -200,7 +209,10 @@ Public Class EtatSyntheseMesures
                                                                 HeterogeneiteBar:=otroncon.EcartMoyenneAutresTroncons,
                                                                 HeterogeneitePct:=otroncon.Heterogeneite,
                                                                 nNiveau:=oNiveau.Num,
-                                                                nTroncon:=otroncon.Num)
+                                                                nTroncon:=otroncon.Num,
+                                                                Traca:=otroncon.Traca,
+                                                                ManoCIdCrodip:=oManoc.idCrodip,
+                                                                ManoCTypeRaccord:=oManoc.typeRaccord)
 
                     Next
                 Next
