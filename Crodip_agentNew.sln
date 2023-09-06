@@ -37,6 +37,10 @@ EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupAgent", "R:\crodip_agentNEW\SetupAgent\SetupAgent.vdproj", "{49258497-1A03-42AF-A50E-EDDFC444EA96}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestCRODIP3", "R:\crodip_agentNEW\TestCRODIP3\TestCRODIP3.vbproj", "{17D2745C-F3C7-4ACA-B579-60E4BE471002}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A050122C-6BDE-45E1-9B9C-ED48BCCC7A66} = {A050122C-6BDE-45E1-9B9C-ED48BCCC7A66}
+		{2EBF5163-6939-4EA3-AB6E-783518B739E9} = {2EBF5163-6939-4EA3-AB6E-783518B739E9}
+	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DemoButtonVB", "DemoButtonVB\DemoButtonVB.vbproj", "{8F79257D-E466-4125-A90A-826463AB566A}"
 EndProject
@@ -95,7 +99,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{3CD1ECE4-5DF3-46FD-A6A0-17163645B1F0}.Debug|PHP 5.5.ActiveCfg = Debug|Any CPU
@@ -154,7 +157,7 @@ Global
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.dv2|Mixed Platforms.ActiveCfg = DebugReglagePulve|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.dv2|PHP 5.5.ActiveCfg = DebugReglagePulve|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.dv2|x86.ActiveCfg = DebugReglagePulve|x86
-		{65815FF1-9AC8-4D74-A001-3069EA510506}.Release|Any CPU.ActiveCfg = Release|x86
+		{65815FF1-9AC8-4D74-A001-3069EA510506}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.Release|PHP 5.5.ActiveCfg = Release|x86
 		{65815FF1-9AC8-4D74-A001-3069EA510506}.Release|x86.ActiveCfg = Release|x86
@@ -198,8 +201,8 @@ Global
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.dv2|PHP 5.5.ActiveCfg = DebugReglagePulve|Any CPU
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.dv2|x86.ActiveCfg = DebugReglagePulve|x86
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.dv2|x86.Build.0 = DebugReglagePulve|x86
-		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Release|Any CPU.ActiveCfg = Release|x86
-		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Release|Any CPU.Build.0 = Release|x86
+		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Release|Mixed Platforms.Build.0 = Release|x86
 		{2E21234E-DAEF-48B6-AFF5-A3655C9420E4}.Release|PHP 5.5.ActiveCfg = Release|Any CPU
@@ -247,8 +250,8 @@ Global
 		{DD7C56AA-4A81-4966-94BC-6B9B62054235}.dv2|PHP 5.5.ActiveCfg = DebugReglagePulve|Any CPU
 		{DD7C56AA-4A81-4966-94BC-6B9B62054235}.dv2|x86.ActiveCfg = DebugReglagePulve|x86
 		{DD7C56AA-4A81-4966-94BC-6B9B62054235}.dv2|x86.Build.0 = DebugReglagePulve|x86
-		{DD7C56AA-4A81-4966-94BC-6B9B62054235}.Release|Any CPU.ActiveCfg = Release|x86
-		{DD7C56AA-4A81-4966-94BC-6B9B62054235}.Release|Any CPU.Build.0 = Release|x86
+		{DD7C56AA-4A81-4966-94BC-6B9B62054235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD7C56AA-4A81-4966-94BC-6B9B62054235}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD7C56AA-4A81-4966-94BC-6B9B62054235}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{DD7C56AA-4A81-4966-94BC-6B9B62054235}.Release|Mixed Platforms.Build.0 = Release|x86
 		{DD7C56AA-4A81-4966-94BC-6B9B62054235}.Release|PHP 5.5.ActiveCfg = Release|Any CPU
@@ -482,7 +485,6 @@ Global
 		{61B6F1F1-01A4-4450-8B8C-0DBC76214DD3}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
 		{61B6F1F1-01A4-4450-8B8C-0DBC76214DD3}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
 		{67DCF3F7-9846-42DE-99C5-BA631E5E3BC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67DCF3F7-9846-42DE-99C5-BA631E5E3BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67DCF3F7-9846-42DE-99C5-BA631E5E3BC0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{67DCF3F7-9846-42DE-99C5-BA631E5E3BC0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{67DCF3F7-9846-42DE-99C5-BA631E5E3BC0}.Debug|PHP 5.5.ActiveCfg = Debug|Any CPU
@@ -645,7 +647,6 @@ Global
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.ReleaseReglagePulve|x86.ActiveCfg = Release
 		{49258497-1A03-42AF-A50E-EDDFC444EA96}.ReleaseReglagePulve|x86.Build.0 = Release
 		{17D2745C-F3C7-4ACA-B579-60E4BE471002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17D2745C-F3C7-4ACA-B579-60E4BE471002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17D2745C-F3C7-4ACA-B579-60E4BE471002}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{17D2745C-F3C7-4ACA-B579-60E4BE471002}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{17D2745C-F3C7-4ACA-B579-60E4BE471002}.Debug|PHP 5.5.ActiveCfg = Debug|Any CPU
@@ -757,7 +758,6 @@ Global
 		{8F79257D-E466-4125-A90A-826463AB566A}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
 		{8F79257D-E466-4125-A90A-826463AB566A}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
 		{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}.Debug|PHP 5.5.ActiveCfg = Debug|Any CPU
@@ -813,7 +813,6 @@ Global
 		{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
 		{5B2ACFA3-C4CD-4804-A2A9-F1893E9B1BCA}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
 		{D0E1861C-B709-4499-9790-13D17FF1B5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0E1861C-B709-4499-9790-13D17FF1B5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0E1861C-B709-4499-9790-13D17FF1B5AB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{D0E1861C-B709-4499-9790-13D17FF1B5AB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{D0E1861C-B709-4499-9790-13D17FF1B5AB}.Debug|PHP 5.5.ActiveCfg = Debug|Any CPU
@@ -1093,7 +1092,6 @@ Global
 		{6FDFB90B-21F6-432D-B501-641A60070293}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
 		{6FDFB90B-21F6-432D-B501-641A60070293}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
 		{51A2C4CB-B764-4286-9967-A258058A6F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51A2C4CB-B764-4286-9967-A258058A6F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51A2C4CB-B764-4286-9967-A258058A6F26}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{51A2C4CB-B764-4286-9967-A258058A6F26}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{51A2C4CB-B764-4286-9967-A258058A6F26}.Debug|PHP 5.5.ActiveCfg = Debug|Any CPU
@@ -1260,7 +1258,6 @@ Global
 		{5128C607-6C3D-46E6-AAB6-847B5E9EC2EC}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
 		{5128C607-6C3D-46E6-AAB6-847B5E9EC2EC}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
 		{AA5F2318-D936-4C2D-9C4E-42D13756B35F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA5F2318-D936-4C2D-9C4E-42D13756B35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA5F2318-D936-4C2D-9C4E-42D13756B35F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{AA5F2318-D936-4C2D-9C4E-42D13756B35F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{AA5F2318-D936-4C2D-9C4E-42D13756B35F}.Debug|PHP 5.5.ActiveCfg = Debug|Any CPU
@@ -1315,7 +1312,6 @@ Global
 		{AA5F2318-D936-4C2D-9C4E-42D13756B35F}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
 		{AA5F2318-D936-4C2D-9C4E-42D13756B35F}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
 		{035DB878-4818-4184-B05F-6416270D5E1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{035DB878-4818-4184-B05F-6416270D5E1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{035DB878-4818-4184-B05F-6416270D5E1D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{035DB878-4818-4184-B05F-6416270D5E1D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{035DB878-4818-4184-B05F-6416270D5E1D}.Debug|PHP 5.5.ActiveCfg = Debug|Any CPU
