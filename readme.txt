@@ -1,12 +1,14 @@
 TRUNK
 MASTER
+BUILD  XXXXXXXXXX
+0001585: MAJ de la date de dernière synchro
+
 BUILD 20230904090000
 0001583: Date de dernière synchro Agent reste à 1970
 0001573: Modification des modèles de rapport d'inspection et contrat commercial
 0001574: Liste des défauts en Fixe et semi mobiles
 0001581: Upgrade CrystalReport (64 bits)  et des  dépendances
 0001582: tracabilité des manomètres dans les controles Pulvés
-
 BUILD 2023022224150000
 	0001441: Evolution Métrologie , Controle de manos
 	0001548: retour en modif sur un DIAG : Retour au prélimiaires

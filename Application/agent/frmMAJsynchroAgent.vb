@@ -53,10 +53,12 @@ Public Class frmMAJsynchroAgent
     End Sub
 
     Private Sub btnMAJ_Click(sender As Object, e As EventArgs) Handles btnMAJ.Click
-        If MessageBox.Show(Me, "Etes-vous sur de vouloir mettre à jour la date de dernière synhcro pour cet agent ?", "Mise à jour de la date de synhcronisation", vbYesNo) = DialogResult.Yes Then
+        If MessageBox.Show(Me, "Etes-vous sur de vouloir mettre à jour la date de dernière synhcro pour cet agent ?", "Mise à jour de la date de synchronisation", vbYesNo) = DialogResult.Yes Then
             Dim strDate As String = CSDate.ToCRODIPString(dtpDateSynchro.Value)
             objWSCrodip.SetDateSynchroAgent(m_Agent.id, strDate)
 
+            m_Agent.dateDerniereSynchro = strDate
+            AgentManager.save(m_Agent)
         End If
     End Sub
 End Class
