@@ -1,0 +1,27 @@
+﻿Installation de la tablette WACOM dans le projet
+
+Telecharger le WACOM device Kit (STU Component) :
+https://developer.wacom.com/en-gb/developer-dashboard/downloads
+login contact@marcollin.com / first.
+Executer le fichier télécharger (Désinstaller lancien ?)
+
+Recupérer le wgssStu.dll et Interop.wgssStu.dll dans le répertoire d'install de Wacom
+=> copier dans le Rep de CRODIP
+
+Le projet CrodipAgent pointe sur interop.wgssStu.DLL
+
+ON UTILISE UNE CONFIG SIDEBYSIDE => Pas d'install sur le poste client
+Maintenir le app.Manifest à jour  (Propeiété du projet / Paramètres Windows)
+<dependency>
+      <dependentAssembly>
+        <assemblyIdentity type="win32" name="wgssSTU" version="2.4.0.0"/>
+      </dependentAssembly>
+  </dependency>
+
+Dans la Version 
+On diffuse le wgssSTU.DLL
+
+SI ERR au Demarage 'Erreur Cote à Cote'
+=> Erreur sur le numéro de version dans le .manifest => Regarder dans l'observateur D'evenement
+
+

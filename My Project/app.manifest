@@ -33,17 +33,10 @@
   </compatibility>
   
   <!-- Activer les thèmes pour les contrôles et boîtes de dialogue communes de Windows (Windows XP et version ultérieure) -->
-  <!-- <dependency>
-    <dependentAssembly>
-      <assemblyIdentity
-          type="win32"
-          name="Microsoft.Windows.Common-Controls"
-          version="6.0.0.0"
-          processorArchitecture="*"
-          publicKeyToken="6595b64144ccf1df"
-          language="*"
-        />
-    </dependentAssembly>
-  </dependency>-->
+  <dependency>
+      <dependentAssembly>
+        <assemblyIdentity type="win32" name="wgssSTU" version="2.4.0.0"/>
+      </dependentAssembly>
+  </dependency>
 
 </asmv1:assembly>
