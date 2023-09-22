@@ -2,6 +2,7 @@ TRUNK
 MASTER
 BUILD  XXXXXXXXXX
 0001585: MAJ de la date de dernière synchro
+MAJ WACOM
 
 BUILD 20230904090000
 0001583: Date de dernière synchro Agent reste à 1970
