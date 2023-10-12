@@ -1301,7 +1301,7 @@ Public Class frmControleManometresNew
                                                                                  Return D.type = "REPE"
                                                                              End Function).ToList()
 
-        Dim lblRepetition As Label
+        Dim lblRepetition As Label = Nothing
         If bMAJIHM Then
             Me.tlpRepetition.Controls.Clear()
             Me.tlpRepetition.RowStyles.Clear()

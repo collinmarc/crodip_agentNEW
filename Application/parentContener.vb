@@ -22,7 +22,7 @@ Public Class parentContener
 
     Private Sub parentContener_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Cursor = Cursors.WaitCursor
-
+        CSDebug.dispInfo("ParentContainer.load")
         loadSplash()
         GlobalsCRODIP.Init()
 
@@ -31,11 +31,16 @@ Public Class parentContener
         If Not GlobalsCRODIP.GLOB_ENV_DEBUG Then
             mnuFenetre.Visible = False
         End If
+        Try
 
-        StructureManager.getList().ForEach(Sub(S)
+            StructureManager.getList().ForEach(Sub(S)
 
-                                               S.CreatePool()
-                                           End Sub)
+                                                   S.CreatePool()
+                                               End Sub)
+        Catch ex As Exception
+            CSDebug.dispError(ex.Message, ex)
+            Application.Exit()
+        End Try
 
 
         If TestCrystalReport() Then

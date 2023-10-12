@@ -85,7 +85,7 @@ Public Class SynchronisationTest
         response = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_oAgent, oExploitToPulve, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2, "Synhcro Ascendante NOK=>" & response)
 
-        Dim oExploitToPulve2 As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getWSExploitationTOPulverisateurById(oExploitToPulve.id)
+        Dim oExploitToPulve2 As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getWSExploitationTOPulverisateurById(m_oAgent.id, oExploitToPulve.id)
 
         Assert.IsTrue(ExploitationTOPulverisateurManager.save(oExploitToPulve2, m_oAgent, True))
 
@@ -470,7 +470,7 @@ Public Class SynchronisationTest
 
         m_oAgent = AgentManager.getAgentById(m_oAgent.id)
 
-        Assert.AreEqual(DateTime.Now, m_oAgent.dateDerniereSynchro)
+        Assert.AreEqual(DateTime.Now.ToShortDateString(), m_oAgent.dateDerniereSynchro)
 
     End Sub
     <TestMethod()> Public Sub TestGetHTTPEtat()

@@ -448,7 +448,7 @@ Public Class ImportCRODIPTest
         nId = lstImport(0).lstPulveImport(0).id
         oPulve = PulverisateurManager.getPulverisateurById(nId)
         Assert.AreEqual("E001001", oPulve.numeroNational)
-        Assert.AreEqual("11111", oPulve.numChassis)
+        Assert.AreEqual("11111", oPulve.numeroChassis)
         Assert.AreEqual("02/05/2020", oPulve.dateProchainControleAsDate.Value.ToShortDateString())
 
         nId = lstImport(1).lstDiagImport(0).id
@@ -472,7 +472,7 @@ Public Class ImportCRODIPTest
         nId = lstImport(1).lstPulveImport(0).id
         oPulve = PulverisateurManager.getPulverisateurById(nId)
         Assert.AreEqual("E001002", oPulve.numeroNational)
-        Assert.AreEqual("22222", oPulve.numChassis)
+        Assert.AreEqual("22222", oPulve.numeroChassis)
         Assert.AreEqual("2024-01-02 00:00:00", oPulve.dateProchainControle)
 
 
@@ -564,7 +564,7 @@ Public Class ImportCRODIPTest
         nId = lstImport(0).lstPulveImport(0).id
         oPulve = PulverisateurManager.getPulverisateurById(nId)
         Assert.AreEqual("E001001", oPulve.numeroNational)
-        Assert.AreEqual("11111", oPulve.numChassis)
+        Assert.AreEqual("11111", oPulve.numeroChassis)
         Assert.AreEqual("01/05/2020", oPulve.dateProchainControleAsDate.Value.ToShortDateString())
 
         nId = lstImport(1).lstDiagImport(0).id
@@ -588,7 +588,7 @@ Public Class ImportCRODIPTest
         nId = lstImport(1).lstPulveImport(0).id
         oPulve = PulverisateurManager.getPulverisateurById(nId)
         Assert.AreEqual("E001002", oPulve.numeroNational)
-        Assert.AreEqual("22222", oPulve.numChassis)
+        Assert.AreEqual("22222", oPulve.numeroChassis)
         Assert.AreEqual("2025-01-01 00:00:00", oPulve.dateProchainControle)
 
 

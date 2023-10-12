@@ -71,7 +71,7 @@
     <WarningLevel>1</WarningLevel>
     <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
     <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -1653,9 +1653,6 @@
     <None Include="Resources\Test2.png" />
     <Content Include="ReleaseNotes.css" />
     <Content Include="wgssSTU.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wgssSTU.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Application\ReglagePulve\ds_Etat_ReglagePulve.xsd">

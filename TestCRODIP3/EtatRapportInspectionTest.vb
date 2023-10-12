@@ -793,6 +793,7 @@ Imports System.IO
         DiagnosticManager.save(oDiag)
 
         Dim response As Object
+        response = Nothing
         DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, response)
         ''Synchronisation des etats
         Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))

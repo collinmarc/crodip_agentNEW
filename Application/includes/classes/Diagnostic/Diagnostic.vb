@@ -2275,7 +2275,7 @@ Public Class Diagnostic
             _ParamDiag = Value
         End Set
     End Property
-    <XmlIgnoreAttribute()>
+    <XmlElement("totalHT")>
     Public Property TotalHT As Decimal
         Get
             If oContratCommercial IsNot Nothing Then
@@ -2291,7 +2291,7 @@ Public Class Diagnostic
             End If
         End Set
     End Property
-    <XmlIgnoreAttribute()>
+    <XmlElement("totalTVA")>
     Public Property TotalTVA As Decimal
         Get
             If oContratCommercial IsNot Nothing Then
@@ -2308,7 +2308,7 @@ Public Class Diagnostic
         End Set
     End Property
     'le Total TTC du diag est transmis via le champ controleTarif
-    <XmlIgnoreAttribute()>
+    <XmlElement("totalTTC")>
     Public Property TotalTTC As Decimal
         Get
             If oContratCommercial IsNot Nothing Then
@@ -2388,7 +2388,7 @@ Public Class Diagnostic
             _pulverisateurRincagecircuit = value
         End Set
     End Property
-
+    <XmlElement("isCVImmediate")>
     Public Property isContrevisiteImmediate() As Boolean
         Get
             Return _isContreVisiteImmediate
@@ -2956,7 +2956,7 @@ Public Class Diagnostic
                     Me.TotalHT = pcolValue
                 Case "totalTTC".ToUpper().Trim()
                     Me.TotalTTC = pcolValue
-                Case "isCVImmediate".ToUpper().Trim()
+                Case "isCVImmediate".ToUpper().Trim(), "isContrevisiteImmediate".ToUpper().Trim()
                     Me.isContrevisiteImmediate = pcolValue
                 Case "isGratuit".ToUpper().Trim()
                     Me.isGratuit = pcolValue
@@ -3055,7 +3055,7 @@ Public Class Diagnostic
         Try
             Me.pulverisateurId = poPulve.id
             Me.pulverisateurNumNational = poPulve.numeroNational
-            Me.pulverisateurNumChassis = poPulve.numChassis
+            Me.pulverisateurNumChassis = poPulve.numeroChassis
             If String.IsNullOrEmpty(poPulve.ancienIdentifiant) Then
                 pulverisateurAncienId = ""
             Else

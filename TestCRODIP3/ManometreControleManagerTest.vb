@@ -174,7 +174,7 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(oManometreControle2.nbControles, 5)
         Assert.AreEqual(oManometreControle2.nbControlesTotal, 15)
         Assert.AreEqual(oManometreControle2.bAjusteur, True)
-        Assert.AreEqual(oManometreControle.resolutionLecture, 0.01)
+        Assert.AreEqual(CSng(oManometreControle.resolutionLecture), 0.01)
         Assert.AreEqual(oManometreControle.typeTraca, "B")
         Assert.AreEqual(oManometreControle.numTraca, 6)
         Assert.AreEqual(oManometreControle.typeRaccord, "RA")

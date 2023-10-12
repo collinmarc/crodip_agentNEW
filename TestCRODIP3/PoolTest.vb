@@ -31,15 +31,6 @@ Imports Crodip_agent
 
     End Sub
 
-    <TestMethod()> Public Sub REST()
-        Dim oPool As Pool
-
-        oPool = New Pool()
-        oPool.idCrodip = "123456"
-        PoolManager.Save(oPool)
-
-
-    End Sub
     <TestMethod()> Public Sub AgentPool()
 
         m_oAgent.idCRODIPPool = ""

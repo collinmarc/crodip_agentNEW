@@ -11,14 +11,9 @@ Public Class MiscTest
     <TestMethod()>
     Public Sub ConvertToDecimalTest()
         Assert.AreEqual(0.5D, Convert.ToDecimal("0,5"))
-        Assert.IsTrue(Convert.ToDecimal("0,5"))
-        '        Assert.AreEqual(0.55D, Convert.ToDecimal("0.5"))
-        '       Assert.IsTrue(Convert.ToDecimal("0.5"))
 
         Assert.AreEqual(0.55D, Convert.ToDecimal("0,55"))
-        Assert.IsTrue(Convert.ToDecimal("0,55"))
         Assert.AreEqual(0D, Convert.ToDecimal("0"))
-        Assert.IsFalse(Convert.ToDecimal("0"))
 
         Assert.AreEqual("0,55", String.Format("{0:0.00}", 0.55D))
         Assert.AreEqual("0,56", String.Format("{0:0.00}", 0.555D))

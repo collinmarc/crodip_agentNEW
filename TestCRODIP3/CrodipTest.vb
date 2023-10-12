@@ -132,8 +132,8 @@ Public Class CRODIPTest
         pClient.adresse = "ADRESSE"
         pClient.codePostal = "CP"
         pClient.commune = "COMMUNE"
-        pClient.telephoneFixe = "TelFixe"
-        pClient.telephonePortable = "TelPortable"
+        pClient.telephoneFixe = "0202020202"
+        pClient.telephonePortable = "0606060606"
         pClient.eMail = "Email"
         pClient.isProdGrandeCulture = True
         pClient.isProdElevage = False

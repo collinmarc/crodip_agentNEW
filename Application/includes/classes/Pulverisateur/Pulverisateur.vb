@@ -929,7 +929,7 @@ Public Class Pulverisateur
         End Set
     End Property
 
-    Public Property numChassis() As String
+    Public Property numeroChassis() As String
         Get
             Return _numChassis
         End Get
@@ -1125,8 +1125,8 @@ Public Class Pulverisateur
                     Me.isPompesDoseuses = pColValue
                 Case "nbPompesDoseuses".ToUpper().Trim()
                     Me.nbPompesDoseuses = pColValue
-                Case "numChassis".ToUpper().Trim()
-                    Me.numChassis = pColValue
+                Case "numeroChassis".ToUpper().Trim()
+                    Me.numeroChassis = pColValue
             End Select
             bReturn = True
         Catch ex As Exception
@@ -1733,7 +1733,7 @@ Public Class Pulverisateur
         Me.numeroNational = pPulvePrinc.numeroNational.Substring(0, 4)
         Me.marque = ""
         Me.modele = ""
-        Me.numChassis = ""
+        Me.numeroChassis = ""
         Me.anneeAchat = ""
         Me.emplacementIdentification = ""
         Me.type = ""
