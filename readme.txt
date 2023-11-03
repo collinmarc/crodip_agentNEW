@@ -1,8 +1,10 @@
 TRUNK
 MASTER
-BUILD  XXXXXXXXXX
+BUILD  20231102170000
 0001585: MAJ de la date de dernière synchro
 MAJ WACOM
+0001590: Prise en compte de la tracabilité manomètre vide
+0001591: Impression de la fiche péda après une CV Immédiate
 
 BUILD 20230904090000
 0001583: Date de dernière synchro Agent reste à 1970
