@@ -1,20 +1,9 @@
-Imports System
-Imports System.Collections
-Imports System.ComponentModel
-Imports System.Data
-Imports System.Drawing
-Imports System.Text
-Imports System.Windows.Forms
-'Imports iTextSharp
-'Imports iTextSharp.text
-'Imports iTextSharp.text.pdf
-'Imports iTextSharp.text.xml
-Imports System.IO
-
 Public Class diagnostic_infosInspecteur
     Inherits frmCRODIP
 
     'Private objInfos(15) As Object
+    Private m_diagnostic As Diagnostic
+    Private m_Agent As Agent
 
 #Region " Code généré par le Concepteur Windows Form "
 
@@ -293,8 +282,8 @@ Public Class diagnostic_infosInspecteur
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(472, 32)
         Me.Label3.TabIndex = 16
-        Me.Label3.Text = "* Comme précisé dans le contrat commercial, le règlement du contrôle s’effectue a" & _
-    "u comptant et sur place. Toutes les opérations de réparation ou maintenance sont" & _
+        Me.Label3.Text = "* Comme précisé dans le contrat commercial, le règlement du contrôle s’effectue a" &
+    "u comptant et sur place. Toutes les opérations de réparation ou maintenance sont" &
     " facturées à part."
         '
         'btn_finalisationDiag_imprimer
@@ -846,14 +835,14 @@ Public Class diagnostic_infosInspecteur
         ' On génère le PDF
         Try
 
-            Dim oFeuillePeda As New FeuillePeda(diagnosticCourant)
+            Dim oFeuillePeda As New FeuillePeda(m_diagnostic)
             oFeuillePeda.Conseils = tbConseils.Text
             For Each Items As String In tbInfos.Items
                 oFeuillePeda.Infos = oFeuillePeda.Infos & Items.ToString() & vbCrLf
             Next
 
             Dim oEtat As New EtatFeuillePeda(oFeuillePeda)
-            oEtat.GenereEtat()
+            oEtat.genereEtat()
             oEtat.Open()
         Catch ex As Exception
             CSDebug.dispError("diagnostic_infosInspecteur::createFichePedago(Ouverture feuille pédagogique) : " & ex.Message)
@@ -864,7 +853,7 @@ Public Class diagnostic_infosInspecteur
 
     Private Sub CloseDiagnostic()
         ' On vide les infos de session
-        diagnosticCourant = Nothing
+        m_diagnostic = Nothing
         pulverisateurCourant = Nothing
         'Fermeture de fenpetres Filles de diag
         Dim ofrm As Form
@@ -886,8 +875,8 @@ Public Class diagnostic_infosInspecteur
         ' On charge les buses usées
         Try
             tbInfos.Items.Clear()
-            diagnosticRecap_infosInspecteur_nomOrganisme.Text = diagnosticCourant.organismePresNom
-            diagnosticRecap_infosInspecteur_numOrganisme.Text = diagnosticCourant.organismePresNumero
+            diagnosticRecap_infosInspecteur_nomOrganisme.Text = m_diagnostic.organismePresNom
+            diagnosticRecap_infosInspecteur_numOrganisme.Text = m_diagnostic.organismePresNumero
             If Not arrBusesUsed Is Nothing Then
                 For i As Integer = 0 To arrBusesUsed.Length - 1
                     If arrBusesUsed(i) <> "" Then
@@ -902,11 +891,19 @@ Public Class diagnostic_infosInspecteur
 
     Private Sub btnOpenTool_volHa_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpenTool_volHa.Click
 
-        CSReglagePulve.Execute(diagnosticCourant.id, agentCourant.id)
+        CSReglagePulve.Execute(m_diagnostic.id, m_Agent.id)
 
     End Sub
 
     Private Sub btn_finalisationDiag_quitter_Click(sender As System.Object, e As System.EventArgs) Handles btn_finalisationDiag_quitter.Click
         TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
     End Sub
+
+    Public Sub Setcontext(pDiag As Diagnostic, pAgent As Agent)
+        m_diagnostic = pDiag
+        m_Agent = pAgent
+
+
+    End Sub
+
 End Class

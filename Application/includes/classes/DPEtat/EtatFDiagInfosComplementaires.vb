@@ -10,11 +10,14 @@
         frmDiag = GetFrmFromParent(Of diagnostic_infosInspecteur)(pEtatFDiag)
 
 
+
     End Sub
     Public Overrides Function createFrmDiag() As Form
         Dim oReturn As Form
 
         oReturn = New diagnostic_infosInspecteur()
+        Dim oAgent As Agent = AgentManager.getAgentById(oDiag.inspecteurId)
+        CType(oReturn, diagnostic_infosInspecteur).Setcontext(oDiag, oAgent)
         Return oReturn
     End Function
 

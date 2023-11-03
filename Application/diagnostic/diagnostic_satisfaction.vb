@@ -1,7 +1,3 @@
-Imports System.Threading
-Imports System.IO
-Imports System.Collections.Generic
-
 Public Class diagnostic_satisfaction
     Inherits frmCRODIP
 
@@ -675,7 +671,7 @@ Public Class diagnostic_satisfaction
 
     Private Sub genereEnquete()
         Dim oEtat As New EtatEnquete(m_Diagnostic)
-        If oEtat.GenereEtat() Then
+        If oEtat.genereEtat() Then
             oEtat.Open()
         End If
         DiagnosticManager.UpdateFileNames(m_Diagnostic)
