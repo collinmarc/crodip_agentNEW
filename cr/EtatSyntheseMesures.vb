@@ -197,8 +197,10 @@ Public Class EtatSyntheseMesures
                 'Détail
                 For Each oNiveau As RelevePression833Niveau In oReleve.colNiveaux
                     For Each otroncon As RelevePression833Troncon In oNiveau.colTroncons
-                        Dim oManoc As ManometreControle
-                        oManoc = ManometreControleManager.getManometreControleByTraca(m_oDiag.organismePresId, otroncon.Traca)
+                        Dim oManoc As New ManometreControle()
+                        If Not String.IsNullOrEmpty(otroncon.Traca) Then
+                            oManoc = ManometreControleManager.getManometreControleByTraca(m_oDiag.organismePresId, otroncon.Traca)
+                        End If
                         m_ods.synthese833Detail.Addsynthese833DetailRow(idDiag:=m_oDiag.id,
                                                                 nPression:=p,
                                                                 nDetail:=otroncon.NumCol,

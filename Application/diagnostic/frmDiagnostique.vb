@@ -2299,10 +2299,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                             oDiagtroncons833.nNiveau = oNiveau.Num
                             oDiagtroncons833.nTroncon = oTroncon.Num
                             'Récupération du numéro national du mano de controle
-                            Dim oManoC As ManometreControle
-                            oManoC = ManometreControleManager.getManometreControleByTraca(m_diagnostic.organismePresId, oTroncon.Traca)
-                            If oManoC IsNot Nothing Then
-                                oDiagtroncons833.ManocId = oManoC.numeroNational
+                            If Not String.IsNullOrEmpty(oTroncon.Traca) Then
+                                Dim oManoC As ManometreControle
+                                oManoC = ManometreControleManager.getManometreControleByTraca(m_diagnostic.organismePresId, oTroncon.Traca)
+                                If oManoC IsNot Nothing Then
+                                    oDiagtroncons833.ManocId = oManoC.numeroNational
+                                End If
                             End If
 
                             m_diagnostic.diagnosticTroncons833.Liste.Add(oDiagtroncons833)
