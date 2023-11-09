@@ -20,7 +20,7 @@ Imports Crodip_agent
 
         oDiag = DiagnosticManager.getWSDiagnosticById(1186, "079-167-03485-51")
         oExploit = ExploitationManager.getWSExploitationById("1186", oDiag.proprietaireId)
-        oPulve = PulverisateurManager.getWSPulverisateurById(oAgent, oDiag.pulverisateurId)
+        oPulve = PulverisateurManager.getWSPulverisateurById(oAgent.id, oDiag.pulverisateurId)
 
         ExploitationManager.save(oExploit, oAgent)
         PulverisateurManager.save(oPulve, oExploit.id, oAgent)

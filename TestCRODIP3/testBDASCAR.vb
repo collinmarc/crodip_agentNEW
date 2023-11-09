@@ -104,7 +104,7 @@ Imports Crodip_agent
 
         Dim oPulve As Pulverisateur
 
-        oPulve = PulverisateurManager.getWSPulverisateurById(oagent, "5-1144-241")
+        oPulve = PulverisateurManager.getWSPulverisateurById(oagent.id, "5-1144-241")
         Assert.AreEqual("5-1144-241", oPulve.id)
         PulverisateurManager.save(oPulve, oExploit.id, oagent)
 

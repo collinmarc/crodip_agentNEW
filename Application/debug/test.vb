@@ -955,7 +955,7 @@ Public Class test
     Private Sub btnWSPulve_load_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnWSPulve_load.Click
         Dim objPulverisateur As New Pulverisateur
         Try
-            objPulverisateur = PulverisateurManager.getWSPulverisateurById(agentCourant, "1-1-1")
+            objPulverisateur = PulverisateurManager.getWSPulverisateurById(agentCourant.id, "1-1-1")
             If objPulverisateur.id <> "" Then
                 MsgBox("Ok, pulvé chargé :" & objPulverisateur.marque)
             Else

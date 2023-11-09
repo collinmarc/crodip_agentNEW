@@ -5,7 +5,7 @@ Public Class PulverisateurManager
 
 #Region "Methodes acces Web Service"
 
-    Public Shared Function getWSPulverisateurById(pAgent As Agent, ByVal pulverisateur_id As String) As Pulverisateur
+    Public Shared Function getWSPulverisateurById(pAgentId As String, ByVal pulverisateur_id As String) As Pulverisateur
         Dim objPulverisateur As New Pulverisateur
         Try
 
@@ -14,7 +14,7 @@ Public Class PulverisateurManager
             objWSCrodip.Timeout = 10000
             Dim objWSCrodip_response As New Object
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetPulverisateur(pAgent.id, pulverisateur_id, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetPulverisateur(pAgentId, pulverisateur_id, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet

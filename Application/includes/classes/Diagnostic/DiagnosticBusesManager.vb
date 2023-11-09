@@ -6,7 +6,7 @@ Public Class DiagnosticBusesManager
 
     Public Shared Function getWSDiagnosticBusesByDiagId(pAgentId As String, ByVal diag_id As String) As DiagnosticBusesList
         Dim objDiagnosticBusesList As New DiagnosticBusesList
-        Dim objDiagnosticBuses As New DiagnosticBuses
+        Dim oDiagBuses As New DiagnosticBuses
         Try
 
             ' déclarations
@@ -20,60 +20,60 @@ Public Class DiagnosticBusesManager
                     Dim objWSCrodip_responseItem1 As System.Xml.XmlNode()
                     Dim objWSCrodip_responseItem As System.Xml.XmlNode
                     For Each objWSCrodip_responseItem1 In objWSCrodip_response
-                        objDiagnosticBuses = New DiagnosticBuses()
+                        oDiagBuses = New DiagnosticBuses()
                         For Each objWSCrodip_responseItem In objWSCrodip_responseItem1
                             Select Case objWSCrodip_responseItem.Name()
                                 Case "id"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.id = CType(objWSCrodip_responseItem.InnerText(), Integer)
+                                        oDiagBuses.id = CType(objWSCrodip_responseItem.InnerText(), Integer)
                                     End If
                                 Case "idDiagnostic"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.idDiagnostic = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.idDiagnostic = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                                 Case "idLot"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.idLot = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.idLot = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                                 Case "marque"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.marque = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.marque = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                                 Case "nombre"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.nombre = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.nombre = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                                 Case "genre"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.genre = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.genre = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                                 Case "calibre"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.calibre = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.calibre = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                                 Case "ecartTolere"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.ecartTolere = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.ecartTolere = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                                 Case "couleur"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.couleur = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.couleur = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                                 Case "debitMoyen"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.debitMoyen = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.debitMoyen = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                                 Case "debitNominal"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.debitNominal = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.debitNominal = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                                 Case "dateModificationAgent"
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        objDiagnosticBuses.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
+                                        oDiagBuses.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                             End Select
                         Next
-                        objDiagnosticBusesList.Liste.Add(objDiagnosticBuses)
+                        objDiagnosticBusesList.Liste.Add(oDiagBuses)
                     Next
                 Case 1 ' NOK
                     'CSDebug.dispError("Erreur - DiagnosticBusesManager - Code 1 : Non-Trouvée [" & diagnosticbuses_id & "]")
@@ -83,6 +83,22 @@ Public Class DiagnosticBusesManager
         Catch ex As Exception
             CSDebug.dispError("DiagnosticBusesManager.getWSDiagnosticBusesById ERR : " & ex.Message)
         End Try
+
+        ''Charegement des détails de buses (Tous les détails d'un diag)
+        'Dim oListD As DiagnosticBusesDetailList
+        'oListD = DiagnosticBusesDetailManager.getWSDiagnosticBusesDetailByDiagId(pAgentId, diag_id)
+        ''Répartition des detail dans les buses
+        'For Each oDiagBuses In objDiagnosticBusesList.Liste
+        '    For Each oBuseDetail As DiagnosticBusesDetail In oListD.Liste
+        '        If oBuseDetail.idLot = oDiagBuses.idLot Then
+        '            'Si c'est le même lot attribution du detail à la buse
+        '            oDiagBuses.diagnosticBusesDetailList.Liste.Add(oBuseDetail)
+        '        End If
+        '    Next
+        'Next
+
+
+
         Return objDiagnosticBusesList
 
     End Function
@@ -308,11 +324,13 @@ Public Class DiagnosticBusesManager
                     Dim i As Integer = 1
                     For Each oBDetail As DiagnosticBusesDetail In objDiagnosticBuses.diagnosticBusesDetailList.Liste
                         If Not oBDetail Is Nothing Then
+                            bddCommande.CommandText = SQL
+                            bddCommande.Prepare()
+                            bddCommande.Parameters.Clear()
                             oBDetail.idDiagnostic = objDiagnosticBuses.idDiagnostic
                             oBDetail.idLot = objDiagnosticBuses.idLot
                             oBDetail.dateModificationAgent = DateTime.Now
 
-                            bddCommande.Parameters.Clear()
                             Dim oParam As DbParameter
                             oParam = bddCommande.CreateParameter()
                             With oParam
@@ -378,7 +396,12 @@ Public Class DiagnosticBusesManager
                             Catch ex As Exception
                                 CSDebug.dispFatal("DiagBusesManager.save Details : " & ex.Message.ToString)
                             End Try
-                            'Pas besoin de recharger l'ID , il ne sert à rien
+                            If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                bddCommande.CommandText = "SELECT last_insert_rowid() "
+                            Else
+                                bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBusesDetail"
+                            End If
+                            oBDetail.id = bddCommande.ExecuteScalar()
                         End If
                         i = i + 1
                     Next

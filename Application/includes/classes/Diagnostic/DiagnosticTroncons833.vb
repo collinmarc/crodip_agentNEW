@@ -233,6 +233,7 @@ Public Class DiagnosticTroncons833
             _nTroncon = Value
         End Set
     End Property
+    <XmlElement("manocId")>
     Public Property ManocId() As String
         Get
             Return _ManoCId
@@ -275,7 +276,7 @@ Public Class DiagnosticTroncons833
                     Me.dateModificationAgent = CSDate.ToCRODIPString(pColValue.ToString())
                 Case "dateModificationCrodip".Trim().ToUpper()
                     Me.dateModificationCrodip = CSDate.ToCRODIPString(pColValue.ToString())
-                Case "ManocId".Trim().ToUpper()
+                Case "manocId".Trim().ToUpper()
                     Me.ManocId = pColValue.ToString()
             End Select
             bReturn = True

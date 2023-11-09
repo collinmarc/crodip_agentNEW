@@ -134,7 +134,39 @@ Public Class AgentManagerTest
         Assert.AreEqual(True, agentLu.isSignElecActive)
 
     End Sub
+    <TestMethod()>
+    Public Sub SynchroAgentTest()
+        Dim agent As Agent = Nothing
+        Dim agentLu As Agent = Nothing
+        Dim updatedObject As Object = Nothing
+        Dim updatedObjectExpected As Object = Nothing
+        Dim expected As Object = Nothing
+        Dim actual As Object
 
+        WSCrodip.Init("https://admin.crodip.net/server")
+        agent = New Agent()
+        agent.idStructure = 2
+        agent.numeroNational = "TST"
+        agent.id = 1247
+        agent.nom = "TEST FONCTIONNELS MARC"
+        agent.dateModificationAgent = CSDate.GetDateForWS(Now())
+        agent.dateModificationCrodip = "2012-09-04 12:00:00"
+        agent.isActif = True
+        agent.motDePasse = "mdp"
+        agent.statut = "STATUT"
+        agent.telephonePortable = "0680667189"
+        agent.versionLogiciel = "VERSION"
+        agent.DroitsPulves = "Rampes|Voute"
+        agent.isGestionnaire = True
+        agent.isSignElecActive = True
+        agent.idCRODIPPool = "POOM03"
+
+        actual = AgentManager.sendWSAgent(agent, updatedObject)
+
+        agentLu = AgentManager.getWSAgentById(agent.numeroNational)
+        Assert.AreEqual(agentLu.idCRODIPPool, "TEST")
+
+    End Sub
 
     '''<summary>
     '''Test pour sendWSAgent
