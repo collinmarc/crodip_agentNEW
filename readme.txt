@@ -5,6 +5,7 @@ BUILD  20231102170000
 MAJ WACOM
 0001590: Prise en compte de la tracabilité manomètre vide
 0001591: Impression de la fiche péda après une CV Immédiate
+0001592: Affichage des alertes en fonction du fond d'échelle des manomètres
 
 BUILD 20230904090000
 0001583: Date de dernière synchro Agent reste à 1970

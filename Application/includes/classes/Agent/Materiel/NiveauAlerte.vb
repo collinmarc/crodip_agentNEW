@@ -10,6 +10,7 @@ Public Class NiveauAlerte
         <XmlEnum("ManometreControle")> ManometreControle = 1
         <XmlEnum("Buse")> Buse = 2
         <XmlEnum("Pulverisateur")> Pulverisateur = 3
+        <XmlEnum("ManometreEtalon")> ManometreEtalon = 4
     End Enum
     Private _Materiel As Enum_typeMateriel
     <XmlAttribute("Materiel")>

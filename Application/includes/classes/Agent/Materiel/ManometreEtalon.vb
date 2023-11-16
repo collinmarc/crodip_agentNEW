@@ -157,16 +157,16 @@ Public Class ManometreEtalon
             newFicheVieManoEtalon.type = pType
             newFicheVieManoEtalon.auteur = "AGENT"
             newFicheVieManoEtalon.idAgentControleur = pAgent.id
-            newFicheVieManoEtalon.caracteristiques = _
-            Me.idCrodip & "|" & _
-            Me.marque & "|" & _
-            Me.classe & "|" & _
-            Me.type & "|" & _
-            Me.fondEchelle & "|" & _
-            Me.idStructure & "|" & _
-            Me.isSynchro & "|" & _
-            Me.dateDernierControleS & "|" & _
-            Me.dateModificationAgent & "|" & _
+            newFicheVieManoEtalon.caracteristiques =
+            Me.idCrodip & "|" &
+            Me.marque & "|" &
+            Me.classe & "|" &
+            Me.type & "|" &
+            Me.fondEchelle & "|" &
+            Me.idStructure & "|" &
+            Me.isSynchro & "|" &
+            Me.dateDernierControleS & "|" &
+            Me.dateModificationAgent & "|" &
             Me.dateModificationCrodip
             newFicheVieManoEtalon.dateModif = CSDate.ToCRODIPString(Date.Now)
             newFicheVieManoEtalon.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
@@ -178,4 +178,36 @@ Public Class ManometreEtalon
         End Try
         Return bReturn
     End Function 'CreerFicheVie
+    Public Overloads Function getAlerte() As GlobalsCRODIP.ALERTE
+        Dim bReturn As GlobalsCRODIP.ALERTE
+        bReturn = GlobalsCRODIP.ALERTE.NONE
+
+        Dim oNiveau As NiveauAlerte
+        If Not String.IsNullOrEmpty(dateDernierControleS) Then
+            oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.ManometreEtalon)
+
+            bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
+
+            If bReturn = GlobalsCRODIP.ALERTE.NONE And etat = False Then
+                bReturn = GlobalsCRODIP.ALERTE.CONTROLE
+            End If
+        End If
+        Return bReturn
+    End Function
+    '''
+    ''' Calcul du nombre de jours restant avant L'alerteRouge
+    Public Function getNbJoursAvantAlerteRouge() As Integer
+        Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
+        Dim DL As Date
+        Dim n As Integer
+        Dim oNiveau As NiveauAlerte
+        oNiveau = Materiel.getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.ManometreEtalon)
+        Dim nbJRouge As Integer = oNiveau.Rouge
+        DL = DateAdd(DateInterval.DayOfYear, -nbJRouge, Now) ''Date limit pour passer En alerte Rouge
+
+
+        n = DateDiff(DateInterval.DayOfYear, DL, tmpDateLCManoControle)
+
+        Return n
+    End Function
 End Class

@@ -4636,136 +4636,130 @@ Public Class accueil
     '    End Try
 
     'End Function
-
     Private Sub loadAccueilAlertsManoEtalon(ByRef positionTopAlertes As Integer)
-        Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
-
-        Dim nbAlertes_ManometreEtalon_20jr As Integer = 0
-        Dim nbAlertes_ManometreEtalon_1mois As Integer = 0
-        Dim nbAlertes_ManometreEtalon_1mois7jr As Integer = 0
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOETALON_LOAD, True)
-        Dim arrManoEtalon As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByAgent(agentCourant, True)
-        For Each tmpManoEtalon As ManometreEtalon In arrManoEtalon
-            Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(tmpManoEtalon.dateDernierControleS)
-            Dim tmpCompareManoControleAlerte20jr As Integer = tmpDateLCManoControle.CompareTo(DateAdd(DateInterval.DayOfYear, -20, Now))
-            Dim tmpCompareManoControleAlerte1mois As Integer = tmpDateLCManoControle.CompareTo(DateAdd(DateInterval.Month, -1, Now))
-            Dim tmpCompareManoControleAlerte1mois7jr As Integer = tmpDateLCManoControle.CompareTo(DateAdd(DateInterval.DayOfYear, -7, DateAdd(DateInterval.Month, -1, Now)))
-            If tmpCompareManoControleAlerte1mois7jr < 1 Then ' 1mois7jrs
-                nbAlertes_ManometreEtalon_1mois7jr = nbAlertes_ManometreEtalon_1mois7jr + 1
-                ' On ajoute le blocage a la fiche de vie
-                If tmpManoEtalon.etat = True Then
-                    Try
-                        Dim newFicheVieManoEtalon As New FVManometreEtalon(agentCourant)
-                        newFicheVieManoEtalon.idManometre = tmpManoEtalon.idCrodip
-                        newFicheVieManoEtalon.type = "DESACTIVATION"
-                        newFicheVieManoEtalon.auteur = "AGENT"
-                        newFicheVieManoEtalon.idAgentControleur = agentCourant.id
-                        newFicheVieManoEtalon.caracteristiques =
-                        tmpManoEtalon.idCrodip & "|" &
-                        tmpManoEtalon.marque & "|" &
-                        tmpManoEtalon.classe & "|" &
-                        tmpManoEtalon.type & "|" &
-                        tmpManoEtalon.fondEchelle & "|" &
-                        tmpManoEtalon.idStructure & "|" &
-                        tmpManoEtalon.isSynchro & "|" &
-                        tmpManoEtalon.dateDernierControleS & "|" &
-                        tmpManoEtalon.dateModificationAgent & "|" &
-                        tmpManoEtalon.dateModificationCrodip
-                        newFicheVieManoEtalon.dateModif = CSDate.ToCRODIPString(Date.Now).ToString
-                        newFicheVieManoEtalon.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-                        FVManometreEtalonManager.save(newFicheVieManoEtalon)
-                        ' On bloque le mano
-                        tmpManoEtalon.etat = False
-                        ManometreEtalonManager.save(tmpManoEtalon)
-                    Catch ex As Exception
-                        CSDebug.dispError("Accueil::loadAccueilAlerts : " & ex.Message)
-                    End Try
+        'Chargement de tous les manos
+        Dim lstMano As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByAgent(agentCourant, True) _
+                                                                    .Where(Function(M)
+                                                                               Try
+                                                                                   Return M.fondEchelle >= 6 And M.fondEchelle <= 10
+                                                                               Catch ex As Exception
+                                                                                   Return False
+                                                                               End Try
+                                                                           End Function).ToList()
+        loadAccueilAlertsManoEtalon(lstMano, "[6-10] bar", positionTopAlertes)
+
+        lstMano = ManometreEtalonManager.getManometreEtalonByAgent(agentCourant, True).Where(Function(M)
+                                                                                                 Try
+                                                                                                     Return M.fondEchelle >= 20 And M.fondEchelle <= 25
+                                                                                                 Catch ex As Exception
+                                                                                                     Return False
+                                                                                                 End Try
+                                                                                             End Function).ToList()
+        loadAccueilAlertsManoEtalon(lstMano, "[20-25] bar", positionTopAlertes)
+
+        lstMano = ManometreEtalonManager.getManometreEtalonByAgent(agentCourant, True).Where(Function(M)
+                                                                                                 Try
+                                                                                                     Return Not ((M.fondEchelle >= 6 And M.fondEchelle <= 10) Or (M.fondEchelle >= 20 And M.fondEchelle <= 25))
+                                                                                                 Catch ex As Exception
+                                                                                                     Return True
+                                                                                                 End Try
+                                                                                             End Function).ToList()
+        loadAccueilAlertsManoEtalon(lstMano, "diverses", positionTopAlertes)
+
+
+    End Sub
+
+    Private Sub loadAccueilAlertsManoEtalon(pLstMano As List(Of ManometreEtalon), pClasse As String, ByRef positionTopAlertes As Integer)
+
+        ' Vérification des alertes sur les manomètre de contrôle
+        Dim nbAlertes_Manometre_Orange As Integer = 0
+        Dim nbAlertes_Manometre_Rouge As Integer = 0
+        Dim nbAlertes_Manometre_Noire As Integer = 0
+        Dim nbAlertes_Controle As Integer = 0
+
+
+
+        'Chargement de tous les manos
+        Dim njours As Integer
+        Dim nbManoOrange(3000) As Integer 'Nombre de manomètres devant être controler njours avant la Date Limite
+        'Parcours de manos
+        Dim AlerteMano As GlobalsCRODIP.ALERTE
+        For Each tmpManoControle As ManometreEtalon In pLstMano
+            AlerteMano = tmpManoControle.getAlerte()
+
+            If AlerteMano = GlobalsCRODIP.ALERTE.CONTROLE Then ' Defaillant
+                nbAlertes_Controle = nbAlertes_Controle + 1
+            End If
+
+            If AlerteMano = GlobalsCRODIP.ALERTE.NOIRE Then ' 1mois7jrs
+                nbAlertes_Manometre_Noire = nbAlertes_Manometre_Noire + 1
+                If tmpManoControle.etat = True Then
+                    If My.Settings.DesacMat Then
+                        '                        tmpManoControle.Desactiver(agentCourant)
+                    End If
                 End If
-            ElseIf tmpCompareManoControleAlerte1mois < 1 Then ' 1mois
-                nbAlertes_ManometreEtalon_1mois = nbAlertes_ManometreEtalon_1mois + 1
-            ElseIf tmpCompareManoControleAlerte20jr < 1 Then ' 20jrs
-                nbAlertes_ManometreEtalon_20jr = nbAlertes_ManometreEtalon_20jr + 1
+            End If
+
+            If AlerteMano = GlobalsCRODIP.ALERTE.ROUGE Then ' 1mois
+                nbAlertes_Manometre_Rouge = nbAlertes_Manometre_Rouge + 1
+            End If
+            If AlerteMano = GlobalsCRODIP.ALERTE.ORANGE Then '15 jours
+                nbAlertes_Manometre_Orange = nbAlertes_Manometre_Orange + 1
+                njours = tmpManoControle.getNbJoursAvantAlerteRouge()
+                If njours < nbManoOrange.Length Then
+                    nbManoOrange(Math.Abs(njours)) = nbManoOrange(Math.Abs(njours)) + 1
+                End If
             End If
         Next
 
-        If nbAlertes_ManometreEtalon_20jr > 0 Then
-            Dim tmpAlerte As New Label
-            tmpAlerte.Name = "alerteManoEtalon_20jr"
-            If nbAlertes_ManometreEtalon_20jr > 1 Then
-                tmpAlerte.Text = "       Attention, vous avez " & nbAlertes_ManometreEtalon_20jr & " manomètres étalons devant être vérifiés dans 10 jours !"
-            Else
-                tmpAlerte.Text = "       Attention, vous avez " & nbAlertes_ManometreEtalon_20jr & " manomètre étalon devant être vérifié dans 10 jours !"
-            End If
-            Controls.Add(tmpAlerte)
-            ' Position
-            tmpAlerte.Parent = accueil_panelAlertes
-            tmpAlerte.Left = 16
-            tmpAlerte.Top = positionTopAlertes
-            tmpAlerte.TextAlign = ContentAlignment.TopLeft
-            ' Taille
-            tmpAlerte.Width = 960
-            tmpAlerte.Height = 16
-            ' Couleur
-            tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte))
-            tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
-            tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-            ' Apparence texte
-            Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpAlerte.Font = tmpFontLabelCategorie
-            positionTopAlertes = positionTopAlertes + 24
-        End If
-        If nbAlertes_ManometreEtalon_1mois > 0 Then
-            Dim tmpAlerte As New Label
-            tmpAlerte.Name = "alerteManoEtalon_1mois"
-            If nbAlertes_ManometreEtalon_1mois > 1 Then
-                tmpAlerte.Text = "       Attention, vous venez de dépasser la date autorisé pour " & nbAlertes_ManometreEtalon_1mois & " manomètres étalons. Veuillez effectuer vos contrôles immédiatement !"
-            Else
-                tmpAlerte.Text = "       Attention, vous venez de dépasser la date autorisé pour " & nbAlertes_ManometreEtalon_1mois & " manomètre étalon. Veuillez effectuer votre contrôle immédiatement !"
-            End If
-            Controls.Add(tmpAlerte)
-            ' Position
-            tmpAlerte.Parent = accueil_panelAlertes
-            tmpAlerte.Left = 16
-            tmpAlerte.Top = positionTopAlertes
-            tmpAlerte.TextAlign = ContentAlignment.TopLeft
-            ' Taille
-            tmpAlerte.Width = 960
-            tmpAlerte.Height = 16
-            ' Couleur
-            tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(242, Byte), CType(84, Byte), CType(23, Byte))
-            tmpAlerte.Image = CType(resources.GetObject("Label8.Image"), System.Drawing.Image)
-            tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-            ' Apparence texte
-            Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            tmpAlerte.Font = tmpFontLabelCategorie
-            positionTopAlertes = positionTopAlertes + 24
-        End If
-        If nbAlertes_ManometreEtalon_1mois7jr > 0 Then
-            Dim tmpAlerte As New Label
-            tmpAlerte.Name = "alerteManoEtalon_1mois7jr"
-            If nbAlertes_ManometreEtalon_1mois7jr > 1 Then
-                tmpAlerte.Text = "       Vous avez trop attendu pour vérifier " & nbAlertes_ManometreEtalon_1mois7jr & " manomètres étalons. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics et vous vous exposez à des sanctions de sa part."
-            Else
-                tmpAlerte.Text = "       Vous avez trop attendu pour vérifier " & nbAlertes_ManometreEtalon_1mois7jr & " manomètre étalon. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics et vous vous exposez à des sanctions de sa part."
-            End If
-            Controls.Add(tmpAlerte)
-            ' Position
-            tmpAlerte.Parent = accueil_panelAlertes
-            tmpAlerte.Left = 16
-            tmpAlerte.Top = positionTopAlertes
-            tmpAlerte.TextAlign = ContentAlignment.TopLeft
-            ' Taille
-            tmpAlerte.Width = 960
-            tmpAlerte.Height = 32
-            ' Couleur
-            tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(203, Byte), CType(19, Byte), CType(31, Byte))
-            tmpAlerte.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
-            tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-            ' Apparence texte
-            tmpAlerte.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            positionTopAlertes = positionTopAlertes + 40
+        'Affichage des alertes 
+        Dim sName As String
+        Dim sTexte As String
+        If nbAlertes_Manometre_Orange > 0 Then
+            For n As Integer = nbManoOrange.Length To 1 Step -1
+                sName = "alerteManoEtalon_" & n & "jr"
+                If nbManoOrange(n - 1) > 0 Then
+                    'Si on a des Manos à controler avant n jours
+                    If nbManoOrange(n - 1) > 1 Then
+                        sTexte = "Attention, vous avez " & nbManoOrange(n - 1) & " manomètres étalons de classe " & pClasse & " devant être vérifiés dans " & (n - 1) & " jours !"
+                    Else
+                        sTexte = "Attention, vous avez 1 manomètre Etalon de classe " & pClasse & "devant être vérifié dans " & n - 1 & " jours !"
+                    End If
+                    AjouteUneAlerte(GlobalsCRODIP.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
+                End If
+            Next n
         End If
 
+        If nbAlertes_Manometre_Rouge > 0 Then
+            sName = "alerteManoEtalon_1mois"
+            If nbAlertes_Manometre_Rouge > 1 Then
+                sTexte = "Attention, vous venez de dépasser la date autorisée pour " & nbAlertes_Manometre_Rouge & " manomètres Etalons de classe " & pClasse & ". Veuillez effectuer vos contrôles immédiatement !"
+            Else
+                sTexte = "Attention, vous venez de dépasser la date autorisée pour 1 manomètre Etalon de classe " & pClasse & ". Veuillez effectuer votre contrôle immédiatement !"
+            End If
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
+        End If
+
+        If nbAlertes_Manometre_Noire > 0 Then
+            sName = "alerteManoEtalon_1mois7jr"
+            If nbAlertes_Manometre_Noire > 1 Then
+                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_Manometre_Noire & " manomètres étalons de classe " & pClasse & ". A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
+            Else
+                sTexte = "Vous avez trop attendu pour vérifier 1 manomètre étalon de classe " & pClasse & ". A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
+            End If
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
+        End If
+
+        If nbAlertes_Controle > 0 Then
+            sName = "alerteManoEtalon_defaillant"
+            If nbAlertes_Controle > 1 Then
+                sTexte = "Vous avez " & nbAlertes_Controle & " manomètres étalons de classe " & pClasse & " défectueux. Contactez le CRODIP."
+            Else
+                sTexte = "Vous avez 1 manomètre étalon défectueux. Contactez le CRODIP."
+            End If
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.CONTROLE, sName, sTexte, positionTopAlertes)
+        End If
     End Sub
     Private Sub loadAccueilAlertsNumeroration(ByRef positionTopAlertes As Integer)
 
@@ -4794,8 +4788,41 @@ Public Class accueil
 
     End Sub
 
-
     Private Sub loadAccueilAlertsManoControle(ByRef positionTopAlertes As Integer)
+        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
+        'Chargement de tous les manos
+        Dim lstMano As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(agentCourant, True) _
+                                                                    .Where(Function(M)
+                                                                               Try
+                                                                                   Return M.IsTypeTracaB
+                                                                               Catch ex As Exception
+                                                                                   Return False
+                                                                               End Try
+                                                                           End Function).ToList()
+        loadAccueilAlertsManoControle(lstMano, "[6-10] bar", positionTopAlertes)
+
+        lstMano = ManometreControleManager.getManoControleByAgent(agentCourant, True).Where(Function(M)
+                                                                                                Try
+                                                                                                    Return M.IsTypeTracaH
+                                                                                                Catch ex As Exception
+                                                                                                    Return False
+                                                                                                End Try
+                                                                                            End Function).ToList()
+        loadAccueilAlertsManoControle(lstMano, "[20-25] bar", positionTopAlertes)
+
+        lstMano = ManometreControleManager.getManoControleByAgent(agentCourant, True).Where(Function(M)
+                                                                                                Try
+                                                                                                    Return Not (M.IsTypeTracaB Or M.IsTypeTracaH)
+                                                                                                Catch ex As Exception
+                                                                                                    Return True
+                                                                                                End Try
+                                                                                            End Function).ToList()
+        loadAccueilAlertsManoControle(lstMano, "", positionTopAlertes)
+
+
+    End Sub
+
+    Private Sub loadAccueilAlertsManoControle(pLstMano As List(Of ManometreControle), pClasse As String, ByRef positionTopAlertes As Integer)
 
         ' Vérification des alertes sur les manomètre de contrôle
         Dim nbAlertes_ManometreControle_Orange As Integer = 0
@@ -4804,15 +4831,14 @@ Public Class accueil
         Dim nbAlertes_Controle As Integer = 0
 
 
-        Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
 
         'Chargement de tous les manos
-        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(agentCourant, True)
+        'Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(agentCourant, True)
         Dim njours As Integer
         Dim nbManoOrange(3000) As Integer 'Nombre de manomètres devant être controler njours avant la Date Limite
         'Parcours de manos
         Dim AlerteMano As GlobalsCRODIP.ALERTE
-        For Each tmpManoControle As ManometreControle In arrManoControle
+        For Each tmpManoControle As ManometreControle In pLstMano
             AlerteMano = tmpManoControle.getAlerte()
 
             If AlerteMano = GlobalsCRODIP.ALERTE.CONTROLE Then ' Defaillant
@@ -4849,9 +4875,9 @@ Public Class accueil
                 If nbManoOrange(n - 1) > 0 Then
                     'Si on a des Manos à controler avant n jours
                     If nbManoOrange(n - 1) > 1 Then
-                        sTexte = "Attention, vous avez " & nbManoOrange(n - 1) & " manomètres de contrôle devant être vérifiés dans " & (n - 1) & " jours !"
+                        sTexte = "Attention, vous avez " & nbManoOrange(n - 1) & " manomètres de contrôle " & pClasse & " devant être vérifiés dans " & (n - 1) & " jours !"
                     Else
-                        sTexte = "Attention, vous avez 1 manomètre de contrôle devant être vérifié dans " & n - 1 & " jours !"
+                        sTexte = "Attention, vous avez 1 manomètre de contrôle " & pClasse & " devant être vérifié dans " & n - 1 & " jours !"
                     End If
                     AjouteUneAlerte(GlobalsCRODIP.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
                 End If
@@ -4861,9 +4887,9 @@ Public Class accueil
         If nbAlertes_ManometreControle_Rouge > 0 Then
             sName = "alerteManoControle_1mois"
             If nbAlertes_ManometreControle_Rouge > 1 Then
-                sTexte = "Attention, vous venez de dépasser la date autorisée pour " & nbAlertes_ManometreControle_Rouge & " manomètres de contrôle. Veuillez effectuer vos contrôles immédiatement !"
+                sTexte = "Attention, vous venez de dépasser la date autorisée pour " & nbAlertes_ManometreControle_Rouge & " manomètres de contrôle " & pClasse & ". Veuillez effectuer vos contrôles immédiatement !"
             Else
-                sTexte = "Attention, vous venez de dépasser la date autorisée pour 1 manomètre de contrôle. Veuillez effectuer votre contrôle immédiatement !"
+                sTexte = "Attention, vous venez de dépasser la date autorisée pour 1 manomètre de contrôle " & pClasse & ". Veuillez effectuer votre contrôle immédiatement !"
             End If
             AjouteUneAlerte(GlobalsCRODIP.ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
         End If
@@ -4871,9 +4897,9 @@ Public Class accueil
         If nbAlertes_ManometreControle_Noire > 0 Then
             sName = "alerteManoControle_1mois7jr"
             If nbAlertes_ManometreControle_Noire > 1 Then
-                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_ManometreControle_Noire & " manomètres de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
+                sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_ManometreControle_Noire & " manomètres de contrôle " & pClasse & ". A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             Else
-                sTexte = "Vous avez trop attendu pour vérifier 1 manomètre de contrôle. A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
+                sTexte = "Vous avez trop attendu pour vérifier 1 manomètre de contrôle " & pClasse & ". A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
             End If
             AjouteUneAlerte(GlobalsCRODIP.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
         End If
@@ -4881,9 +4907,9 @@ Public Class accueil
         If nbAlertes_Controle > 0 Then
             sName = "alerteManoControle_defaillant"
             If nbAlertes_Controle > 1 Then
-                sTexte = "Vous avez " & nbAlertes_Controle & " manomètres de contrôle défectueux. Contactez le CRODIP."
+                sTexte = "Vous avez " & nbAlertes_Controle & " manomètres de contrôle " & pClasse & " défectueux. Contactez le CRODIP."
             Else
-                sTexte = "Vous avez 1 manomètre de contrôle défectueux. Contactez le CRODIP."
+                sTexte = "Vous avez 1 manomètre de contrôle " & pClasse & " défectueux. Contactez le CRODIP."
             End If
             AjouteUneAlerte(GlobalsCRODIP.ALERTE.CONTROLE, sName, sTexte, positionTopAlertes)
         End If
@@ -4951,7 +4977,7 @@ Public Class accueil
     Private Sub AjouteUneAlerte(ByVal TypeAlerte As GlobalsCRODIP.ALERTE, ByVal pName As String, ByVal ptext As String, ByRef positionTopAlertes As Integer)
         Dim tmpAlerte As New Label
         Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(accueil))
-        tmpAlerte.Name = pName
+        '        tmpAlerte.Name = pName
         tmpAlerte.Text = "       " & ptext
         accueil_panelAlertes.Controls.Add(tmpAlerte)
         Controls.Add(tmpAlerte)
@@ -5161,12 +5187,6 @@ Public Class accueil
             Dim positionTopAlertes As Integer = 8
             accueil_panelAlertes.Controls.Clear()
 
-            ' Vérification des alertes sur les manomètre étalon
-            'Dim isVerifManoEtalon As Boolean = False
-            'If isVerifManoEtalon Then
-            '    loadAccueilAlertsManoEtalon(positionTopAlertes)
-            'End If
-
             If File.Exists("./TransfertBDD") Then
                 loadAccueilAlertsNumeroration(positionTopAlertes)
             End If
@@ -5175,6 +5195,7 @@ Public Class accueil
                 File.Delete("./MAJPULVEDEPUISDIAG")
             End If
             loadAccueilAlertsManoControle(positionTopAlertes)
+            'loadAccueilAlertsManoEtalon(positionTopAlertes)
             loadAccueilAlertsBuseEtalon(positionTopAlertes)
             LoadAccueilAlertsBancsMesures(positionTopAlertes)
             If Not GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
