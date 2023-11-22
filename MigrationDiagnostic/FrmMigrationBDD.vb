@@ -88,9 +88,10 @@
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
+            Me.ProgressBarN1.Value = Me.ProgressBarN1.Maximum
             Me.ProgressBarN2.Value = Me.ProgressBarN2.Maximum
             lblProgressN2.Text = "Transfert Terminé"
-            Me.Button1.Text = "Poursuivre"
+            Me.Button1.Text = "Quitter"
             Me.Cursor = Cursors.Default
             bFini = True
         Catch ex As Exception

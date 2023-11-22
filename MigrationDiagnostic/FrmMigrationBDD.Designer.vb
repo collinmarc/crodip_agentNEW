@@ -37,7 +37,7 @@ Partial Class FrmMigrationBDD
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(189, 23)
         Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Migration des données"
+        Me.Button1.Text = "Migration des contrôles"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'ProgressBarN2
@@ -97,7 +97,7 @@ Partial Class FrmMigrationBDD
         Me.Controls.Add(Me.ProgressBarN2)
         Me.Controls.Add(Me.Button1)
         Me.Name = "FrmMigrationBDD"
-        Me.Text = "Migration de la base de données"
+        Me.Text = "Migration des controles manquants"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

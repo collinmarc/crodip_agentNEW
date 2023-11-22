@@ -20,54 +20,11 @@
 
         Crodip_agent.CSDebug.dispInfo("BDDTransfert Start")
         If Not BackgroundWorker1.CancellationPending Then
-            Crodip_agent.CSDebug.dispInfo("RAZ")
-            BackgroundWorker1.ReportProgress(101, "RAZ Base destination")
-            Crodip_agent.CSDb._DBTYPE = Crodip_agent.CSDb.EnumDBTYPE.SQLITE
-            Dim oCSDB As New Crodip_agent.CSDb(True)
-            oCSDB.RAZ_BASE_DONNEES()
-            oCSDB.free()
-        End If
-        If Not BackgroundWorker1.CancellationPending Then
-            Crodip_agent.CSDebug.dispInfo("Structure-Agent")
-            BackgroundWorker1.ReportProgress(110, "Structure-Agent")
-            oBDD.TransfertStructureAgent()
-        End If
-        If Not BackgroundWorker1.CancellationPending Then
-            Crodip_agent.CSDebug.dispInfo("ExploitPulve")
-            BackgroundWorker1.ReportProgress(120, "ExploitationPulverisateur")
-            oBDD.TransfertExploitationPulve()
-        End If
-        If Not BackgroundWorker1.CancellationPending Then
-            Crodip_agent.CSDebug.dispInfo("Equipement")
-            BackgroundWorker1.ReportProgress(130, "Equipement agent")
-            oBDD.TransfertAgentEquipement()
-        End If
-        If Not BackgroundWorker1.CancellationPending Then
             Crodip_agent.CSDebug.dispInfo("Diagnostic")
             BackgroundWorker1.ReportProgress(170, "Diagnostic")
             oBDD.TransfertDiagnosticALL()
         End If
 
-        If Not BackgroundWorker1.CancellationPending Then
-            Crodip_agent.CSDebug.dispInfo("Controle Equipement")
-            BackgroundWorker1.ReportProgress(140, "Controle Equipement agent")
-            oBDD.TransfertAgentEquipementControle()
-        End If
-        If Not BackgroundWorker1.CancellationPending Then
-            Crodip_agent.CSDebug.dispInfo("Fiche de vie")
-            BackgroundWorker1.ReportProgress(150, "FicheVie")
-            oBDD.transfertFicheVie()
-        End If
-        If Not BackgroundWorker1.CancellationPending Then
-            Crodip_agent.CSDebug.dispInfo("Prestation")
-            BackgroundWorker1.ReportProgress(160, "Prestation")
-            oBDD.TransfertPrestation()
-        End If
-        If Not BackgroundWorker1.CancellationPending Then
-            Crodip_agent.CSDebug.dispInfo("Factures")
-            BackgroundWorker1.ReportProgress(180, "Factures")
-            oBDD.TransfertFactures()
-        End If
         Crodip_agent.CSDebug.dispInfo("BDDTransfert End")
     End Sub
 

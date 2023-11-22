@@ -5,7 +5,9 @@ Imports Microsoft.Data.Sqlite
 Imports System.Data.Common
 Imports System.Collections.Generic
 
-Public Class BDDTransfertDIAG
+
+
+Public Class BDDTransfertDiag
     Private _bgw As System.ComponentModel.BackgroundWorker
     Private dbNameACCESS As String
     Public Property bgw() As System.ComponentModel.BackgroundWorker
@@ -199,7 +201,7 @@ INSERT INTO Agent (
 
         TransfertTable("Exploitation", strSQL)
 
-        strSQL = "
+        strSQL = " 
 INSERT INTO Pulverisateur (
                               id,
                               numeroNational,
@@ -348,7 +350,7 @@ INSERT INTO Pulverisateur (
                           );
 "
         TransfertTable("Pulverisateur", strSQL)
-        strSQL = "
+        strSQL = " 
 INSERT INTO ExploitationTOPulverisateur (
                                             id,
                                             idPulverisateur,
@@ -538,182 +540,27 @@ INSERT INTO AgentManoEtalon (
         ocmdACCESS.CommandText = "SELECT Count(*) FROM " & pTable
         nMax = ocmdACCESS.ExecuteScalar()
 
-        ocmdACCESS.CommandText = "SELECT * FROM " & pTable
-
-
-        ocmdSQL.CommandText = pINSERTSQL.ToUpper()
-
-        ocmdSQL.Prepare()
-        Dim oDR As DbDataReader
-        oDR = ocmdACCESS.ExecuteReader()
-        Dim n As Integer = 0
-        While oDR.Read()
-            n = n + 1
-            If bgw.CancellationPending Then
-                Exit Sub
-            End If
-            bgw.ReportProgress(n * 100 / nMax, pTable & oDR.GetValue(0))
-            ocmdSQL.Parameters.Clear()
-            For i As Integer = 0 To oDR.FieldCount() - 1
-                If oDR.GetName(i) <> pExcept Then
-                    Dim Nom As String
-                    Nom = oDR.GetName(i)
-                    ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
-                End If
-            Next
-            Try
-
-                ocmdSQL.ExecuteNonQuery()
-            Catch ex As Exception
-                CSDebug.dispError(pTable & " [" & oDR.GetValue(0) & "] ERR :", ex)
-            End Try
-
-        End While
-        oDR.Close()
-
-        oCSDBACCESS.Close()
-        oCSDBSQL.Close()
-
-
-    End Sub
-    Public Sub TransfertTableDiag(pTable As String, pINSERTSQL As String)
-
-        CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
-        Dim oCSDB As New CSDb(False)
-        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
-        oCSDBACCESS.Open()
-
-        CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
-        oCSDBSQL.DefaultTimeout = 0
-        oCSDBSQL.Open()
-
-        Dim nMax As Integer = 100
-        Dim ocmdACCESS As DbCommand
-        Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
         Try
-
-            ocmdACCESS = oCSDBACCESS.CreateCommand
-            ocmdSQL = oCSDBSQL.CreateCommand
-            ocmdACCESS.CommandText = "SELECT Count(*) FROM " & pTable
-            nMax = ocmdACCESS.ExecuteScalar()
 
             ocmdACCESS.CommandText = "SELECT * FROM " & pTable
             ocmdACCESS.CommandTimeout = 0
 
-            Dim oDRACCESS As DbDataReader
-            oDRACCESS = ocmdACCESS.ExecuteReader()
+            ocmdSQL.CommandText = pINSERTSQL.ToUpper()
+            ocmdSQL.CommandTimeout = 0
+
+            ocmdSQL.Prepare()
+            Dim oDR As DbDataReader
+            oDR = ocmdACCESS.ExecuteReader()
             Dim n As Integer = 0
-            While oDRACCESS.Read()
+            While oDR.Read()
                 n = n + 1
                 If bgw.CancellationPending Then
                     Exit Sub
                 End If
-                bgw.ReportProgress(n * 100 / nMax, pTable & oDRACCESS.GetValue(0))
-                'Vérification de l'existence
-                Dim idDiag As String
-                idDiag = oDRACCESS.GetString(oDRACCESS.GetOrdinal("id"))
-
-                ocmdSQL.CommandText = "SELECT count(*) FROM diagnostic where id = '" & idDiag & "'"
-                Dim nElmt As Integer
-                nElmt = ocmdSQL.ExecuteScalar()
-
-                If nElmt = 0 Then
-                    ocmdSQL.CommandText = pINSERTSQL
-                    ocmdSQL.Prepare()
-                    ocmdSQL.Parameters.Clear()
-                    For i As Integer = 0 To oDRACCESS.FieldCount() - 1
-                        'If oDRACCESS.GetName(i) <> pExcept Then
-                        Dim Nom As String
-                            Nom = oDRACCESS.GetName(i)
-                            ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDRACCESS.GetValue(i))
-                        'End If
-                    Next
-                    Try
-
-                        ocmdSQL.ExecuteNonQuery()
-                    Catch ex As Exception
-                        CSDebug.dispError(pTable & " [" & oDRACCESS.GetValue(0) & "] ERR :", ex)
-                    End Try
-                End If
-            End While
-            oDRACCESS.Close()
-
-        Catch ex As Exception
-            CSDebug.dispError("CheckDiag ERR [" & pTable & "] ERR :", ex)
-
-        End Try
-
-
-        oCSDBACCESS.Close()
-        oCSDBSQL.Close()
-
-
-    End Sub
-
-    Private Shared Function DeleteDiag(ocmdSQL As SqliteCommand, idDiag As String) As SqliteCommand
-        'Suppression du Diagnostic
-        ocmdSQL.CommandText = "DELETE FROM DIAGNOSTIC WHERE id = '" & idDiag & "'"
-        ocmdSQL.ExecuteNonQuery()
-        ocmdSQL.CommandText = "DELETE FROM DIAGNOSTICBUSES WHERE idDiagnostic = '" & idDiag & "'"
-        ocmdSQL.ExecuteNonQuery()
-        ocmdSQL.CommandText = "DELETE FROM DIAGNOSTICBUSESDETAIL WHERE idDiagnostic = '" & idDiag & "'"
-        ocmdSQL.ExecuteNonQuery()
-        ocmdSQL.CommandText = "DELETE FROM DIAGNOSTICMano542 WHERE idDiagnostic = '" & idDiag & "'"
-        ocmdSQL.ExecuteNonQuery()
-        ocmdSQL.CommandText = "DELETE FROM DIAGNOSTICMano833 WHERE idDiagnostic = '" & idDiag & "'"
-        ocmdSQL.ExecuteNonQuery()
-        ocmdSQL.CommandText = "DELETE FROM DIAGNOSTICItem WHERE idDiagnostic = '" & idDiag & "'"
-        ocmdSQL.ExecuteNonQuery()
-        Return ocmdSQL
-    End Function
-
-    Public Sub UpdateTable(pTable As String, pINSERTSQL As String, pColID As String, pbColIdString As Boolean, Optional pExcept As String = "")
-
-        CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
-        Dim oCSDB As New CSDb(False)
-        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
-        oCSDBACCESS.Open()
-        CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
-        oCSDBSQL.Open()
-        Dim nMax As Integer = 100
-        Dim ocmdACCESS As DbCommand
-        Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
-
-        ocmdACCESS = oCSDBACCESS.CreateCommand
-        ocmdSQL = oCSDBSQL.CreateCommand
-        ocmdACCESS.CommandText = "SELECT Count(*) FROM " & pTable
-        nMax = ocmdACCESS.ExecuteScalar()
-
-        ocmdACCESS.CommandText = "SELECT * FROM " & pTable
-
-
-        Dim oDR As DbDataReader
-        oDR = ocmdACCESS.ExecuteReader()
-        Dim n As Integer = 0
-        While oDR.Read()
-            n = n + 1
-            If bgw.CancellationPending Then
-                Exit Sub
-            End If
-            bgw.ReportProgress(n * 100 / nMax, pTable & oDR.GetValue(0))
-            'Vérification de l'existence
-            If pbColIdString Then
-                ocmdSQL.CommandText = "SELECT count(*) FROM " & pTable & " where " & pColID & " = '" & oDR.GetString(oDR.GetOrdinal(pColID)) & "'"
-            Else
-
-                ocmdSQL.CommandText = "SELECT count(*)* FROM " & pTable & " where " & pColID & " = " & oDR.GetValue(oDR.GetOrdinal(pColID)) & ""
-            End If
-            Dim nElmt As Integer
-            nElmt = ocmdSQL.ExecuteScalar()
-            If nElmt + 0 Then
-
-                ocmdSQL.CommandText = pINSERTSQL.ToUpper()
-                ocmdSQL.Prepare()
+                bgw.ReportProgress(n * 100 / nMax, pTable & ":" & oDR.GetValue(0))
                 ocmdSQL.Parameters.Clear()
                 For i As Integer = 0 To oDR.FieldCount() - 1
-                    If oDR.GetName(i) <> pExcept Then
+                    If oDR.GetName(i).ToUpper() <> pExcept.ToUpper() Then
                         Dim Nom As String
                         Nom = oDR.GetName(i)
                         ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
@@ -725,12 +572,76 @@ INSERT INTO AgentManoEtalon (
                 Catch ex As Exception
                     CSDebug.dispError(pTable & " [" & oDR.GetValue(0) & "] ERR :", ex)
                 End Try
-            End If
-        End While
-        oDR.Close()
+
+            End While
+            oDR.Close()
+        Catch ex As Exception
+            CSDebug.dispError(pTable & " ERR :", ex)
+        End Try
 
         oCSDBACCESS.Close()
         oCSDBSQL.Close()
+
+
+    End Sub
+    Public Sub TransfertTable2(pTable As String, pINSERTSQL As String, Optional pExcept As String = "")
+        Try
+
+            CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
+            Dim oCSDB As New CSDb(False)
+            Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+            oCSDBACCESS.Open()
+            CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
+            Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+            oCSDBSQL.Open()
+            Dim nMax As Integer = 100
+            Dim ocmdACCESS As DbCommand
+            Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
+
+            ocmdACCESS = oCSDBACCESS.CreateCommand
+            ocmdSQL = oCSDBSQL.CreateCommand
+            ocmdACCESS.CommandText = "SELECT Count(*) FROM " & pTable
+            nMax = ocmdACCESS.ExecuteScalar()
+
+
+            ocmdACCESS.CommandText = "SELECT * FROM " & pTable
+            ocmdACCESS.CommandTimeout = 0
+
+            ocmdSQL.CommandText = pINSERTSQL.ToUpper()
+            ocmdSQL.CommandTimeout = 0
+
+            ocmdSQL.Prepare()
+            Dim oDR As DbDataReader
+            oDR = ocmdACCESS.ExecuteReader()
+            Dim n As Integer = 0
+            While oDR.Read()
+                n = n + 1
+                If bgw.CancellationPending Then
+                    Exit Sub
+                End If
+                bgw.ReportProgress(n * 100 / nMax, pTable & ":" & oDR.GetValue(0))
+                ocmdSQL.Parameters.Clear()
+                For i As Integer = 0 To oDR.FieldCount() - 1
+                    If Not oDR.GetName(i).ToUpper().StartsWith("SIGN") Then
+                        Dim Nom As String
+                        Nom = oDR.GetName(i)
+                        ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
+                    End If
+                Next
+                Try
+
+                    ocmdSQL.ExecuteNonQuery()
+                Catch ex As Exception
+                    CSDebug.dispError(pTable & " [" & oDR.GetValue(0) & "] ERR :", ex)
+                End Try
+            End While
+            oDR.Close()
+            oCSDBACCESS.Close()
+            oCSDBSQL.Close()
+        Catch ex As Exception
+            CSDebug.dispError(pTable & " ERR :", ex)
+        End Try
+
 
 
     End Sub
@@ -1743,10 +1654,6 @@ INSERT INTO Diagnostic (
                            dateSignCCClient,
                            isSupprime,
                            diagRemplacementId,
-                           signRIAgent,
-                           signRIClient,
-                           signCCAgent,
-                           signCCClient,
                            totalHT,
                            totalTTC,
                            dateRemplacement,
@@ -1902,10 +1809,6 @@ INSERT INTO Diagnostic (
                            @dateSignCCClient,
                            @isSupprime,
                            @diagRemplacementId,
-                           @signRIAgent,
-                           @signRIClient,
-                           @signCCAgent,
-                           @signCCClient,
                            @totalHT,
                            @totalTTC,
                            @dateRemplacement,
@@ -1913,7 +1816,69 @@ INSERT INTO Diagnostic (
                            @isGratuit
                        )"
 
-        TransfertTableDiag("Diagnostic", strSQL)
+        TransfertTable2("Diagnostic", strSQL)
+        UPDATEDATEMODIFAGENTDIAGNOSTIC()
+    End Sub
+
+    Private Sub UPDATEDATEMODIFAGENTDIAGNOSTIC()
+        CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
+        Dim oCSDB As New CSDb(False)
+        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+        oCSDBACCESS.Open()
+        CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
+        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+        oCSDBSQL.Open()
+        Dim nMax As Integer = 100
+        Dim ocmdACCESS As DbCommand
+        Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
+
+        ocmdACCESS = oCSDBACCESS.CreateCommand
+        ocmdSQL = oCSDBSQL.CreateCommand
+        ocmdACCESS.CommandText = "SELECT Count(*) FROM Diagnostic"
+        nMax = ocmdACCESS.ExecuteScalar()
+
+        Try
+
+            ocmdACCESS.CommandText = "SELECT id FROM Diagnostic WHERE ID in (SELECT ID FROM IDS)"
+            ocmdACCESS.CommandTimeout = 0
+
+            ocmdSQL.CommandText = "UPDATE DIAGNOSTIC SET DateModificationAgent = '" & Format(Now(), "yyyy-MM-dd HH:mm:ss") & "' WHERE id = @ID"
+
+            ocmdSQL.CommandTimeout = 0
+
+            ocmdSQL.Prepare()
+            Dim oDR As DbDataReader
+            oDR = ocmdACCESS.ExecuteReader()
+            Dim n As Integer = 0
+            While oDR.Read()
+                n = n + 1
+                If bgw.CancellationPending Then
+                    Exit Sub
+                End If
+                bgw.ReportProgress(n * 100 / nMax, "DIAGNOSTIC" & oDR.GetValue(0))
+                ocmdSQL.Parameters.Clear()
+                For i As Integer = 0 To oDR.FieldCount() - 1
+                    If Not oDR.GetName(i).ToUpper().StartsWith("SIGN") Then
+                        Dim Nom As String
+                        Nom = oDR.GetName(i)
+                        ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
+                    End If
+                Next
+                Try
+
+                    ocmdSQL.ExecuteNonQuery()
+                Catch ex As Exception
+                    CSDebug.dispError("DIAGNOSTIC" & " [dateModificationAgent] ERR :", ex)
+                End Try
+            End While
+            oDR.Close()
+        Catch ex As Exception
+            CSDebug.dispError(" DIAGNOSTIC UPDATE ERR :", ex)
+        End Try
+
+        oCSDBACCESS.Close()
+        oCSDBSQL.Close()
+
     End Sub
     Public Sub TransfertDiagnosticItem()
 
@@ -1950,43 +1915,41 @@ INSERT INTO Diagnostic (
         Dim ocmdACCESS As DbCommand
         Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
 
+        ocmdACCESS = oCSDBACCESS.CreateCommand
+        ocmdSQL = oCSDBSQL.CreateCommand
 
-        Try
+        ocmdACCESS = oCSDBACCESS.CreateCommand
+        ocmdSQL = oCSDBSQL.CreateCommand
+        ocmdACCESS.CommandText = "SELECT Count(*) FROM DiagnosticItem Where ItemCodeEtat <> 'B'"
+        nMax = ocmdACCESS.ExecuteScalar()
 
-            ocmdACCESS = oCSDBACCESS.CreateCommand
-            ocmdSQL = oCSDBSQL.CreateCommand
-            ocmdACCESS.CommandText = "SELECT Count(*) FROM DiagnosticItem Where ItemCodeEtat <> 'B'"
-            nMax = ocmdACCESS.ExecuteScalar()
+        ocmdACCESS.CommandText = "SELECT * FROM DiagnosticItem  Where ItemCodeEtat <> 'B'"
 
-            ocmdACCESS.CommandText = "SELECT * FROM DiagnosticItem  Where ItemCodeEtat <> 'B'"
-            ocmdSQL.CommandText = strSQL
 
-            ocmdSQL.Prepare()
-            Dim oDR As DbDataReader
-            oDR = ocmdACCESS.ExecuteReader()
-            Dim n As Integer = 0
-            While oDR.Read()
-                n = n + 1
-                bgw.ReportProgress(n * 100 / nMax, "DiagnosticItem " & oDR.GetValue(0))
-                ocmdSQL.Parameters.Clear()
-                For i As Integer = 0 To oDR.FieldCount() - 1
-                    If oDR.GetName(i) <> "Id" Then
-                        ocmdSQL.Parameters.AddWithValue("@" & oDR.GetName(i), oDR.GetValue(i))
-                    End If
-                Next
-                Try
+        ocmdSQL.CommandText = strSQL
 
-                    ocmdSQL.ExecuteNonQuery()
-                Catch ex As Exception
-                    CSDebug.dispError("DiagnosticItem " & oDR.GetValue(0) & "] ERR :", ex)
-                End Try
+        ocmdSQL.Prepare()
+        Dim oDR As DbDataReader
+        oDR = ocmdACCESS.ExecuteReader()
+        Dim n As Integer = 0
+        While oDR.Read()
+            n = n + 1
+            bgw.ReportProgress(n * 100 / nMax, "DiagnosticItem " & oDR.GetValue(0))
+            ocmdSQL.Parameters.Clear()
+            For i As Integer = 0 To oDR.FieldCount() - 1
+                If oDR.GetName(i) <> "Id" Then
+                    ocmdSQL.Parameters.AddWithValue("@" & oDR.GetName(i), oDR.GetValue(i))
+                End If
+            Next
+            Try
 
-            End While
-            oDR.Close()
+                ocmdSQL.ExecuteNonQuery()
+            Catch ex As Exception
+                CSDebug.dispError("DiagnosticItem " & oDR.GetValue(0) & "] ERR :", ex)
+            End Try
 
-        Catch ex As Exception
-
-        End Try
+        End While
+        oDR.Close()
 
         oCSDBACCESS.Close()
         oCSDBSQL.Close()
@@ -2213,4 +2176,9 @@ INSERT INTO facture (
 "
         TransfertTable("facture", strSQL)
     End Sub
+    ''' <summary>
+    ''' compare la numérotation des Diag avant et après migration
+    ''' et revoie une liste de Messages d'alertes
+    ''' </summary>
+    ''' <returns></returns>
 End Class
