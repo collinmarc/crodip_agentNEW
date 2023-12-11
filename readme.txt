@@ -1,5 +1,7 @@
 TRUNK
 MASTER
+BUID 20231211170000
+	0001361: Saisie des Pressions Manos (833)
 BUILD  20231102170000
 0001585: MAJ de la date de dernière synchro
 MAJ WACOM

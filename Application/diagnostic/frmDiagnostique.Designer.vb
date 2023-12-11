@@ -553,13 +553,13 @@ Partial Class FrmDiagnostique
         Me.Label221 = New System.Windows.Forms.Label()
         Me.tab_833 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.Label22 = New System.Windows.Forms.Label()
         Me.tbMoyEcartbar1 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Label75 = New System.Windows.Forms.Label()
         Me.Label72 = New System.Windows.Forms.Label()
+        Me.tbMoyenne1 = New CRODIP_ControlLibrary.TBNumeric()
         Me.tbMoyEcartPct1 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label55 = New System.Windows.Forms.Label()
-        Me.Label75 = New System.Windows.Forms.Label()
-        Me.tbMoyenne1 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.pressionTronc_DefautEcart1 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -568,14 +568,14 @@ Partial Class FrmDiagnostique
         Me.gdvPressions1 = New System.Windows.Forms.DataGridView()
         Me.pressionTronc_heterogeniteAlimentation1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.Label21 = New System.Windows.Forms.Label()
         Me.tbMoyEcartbar2 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.tbMoyEcartPct2 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.Label118 = New System.Windows.Forms.Label()
         Me.Label104 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.tbMoyEcartPct2 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label118 = New System.Windows.Forms.Label()
         Me.pressionTronc_DefautEcart2 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.gdvPressions2 = New System.Windows.Forms.DataGridView()
@@ -583,13 +583,13 @@ Partial Class FrmDiagnostique
         Me.tbMoyenne2 = New CRODIP_ControlLibrary.TBNumeric()
         Me.pressionTronc_10_pressionManoPulve = New CRODIP_ControlLibrary.TBNumeric()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.Label20 = New System.Windows.Forms.Label()
         Me.tbMoyEcartbar3 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Label109 = New System.Windows.Forms.Label()
         Me.Label105 = New System.Windows.Forms.Label()
+        Me.Label71 = New System.Windows.Forms.Label()
         Me.tbMoyEcartPct3 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label107 = New System.Windows.Forms.Label()
-        Me.Label109 = New System.Windows.Forms.Label()
-        Me.Label71 = New System.Windows.Forms.Label()
         Me.Label73 = New System.Windows.Forms.Label()
         Me.pressionTronc_DefautEcart3 = New System.Windows.Forms.Label()
         Me.Label88 = New System.Windows.Forms.Label()
@@ -598,13 +598,13 @@ Partial Class FrmDiagnostique
         Me.tbMoyenne3 = New CRODIP_ControlLibrary.TBNumeric()
         Me.pressionTronc_15_pressionManoPulve = New CRODIP_ControlLibrary.TBNumeric()
         Me.TabPage9 = New System.Windows.Forms.TabPage()
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.Label19 = New System.Windows.Forms.Label()
         Me.tbMoyEcartbar4 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Label113 = New System.Windows.Forms.Label()
         Me.Label108 = New System.Windows.Forms.Label()
+        Me.Label90 = New System.Windows.Forms.Label()
         Me.tbMoyEcartPct4 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label110 = New System.Windows.Forms.Label()
-        Me.Label113 = New System.Windows.Forms.Label()
-        Me.Label90 = New System.Windows.Forms.Label()
         Me.Label103 = New System.Windows.Forms.Label()
         Me.pressionTronc_DefautEcart4 = New System.Windows.Forms.Label()
         Me.Label106 = New System.Windows.Forms.Label()
@@ -1012,16 +1012,12 @@ Partial Class FrmDiagnostique
         CType(Me.nup_niveaux, System.ComponentModel.ISupportInitialize).BeginInit
         Me.tab_833.SuspendLayout
         Me.TabPage1.SuspendLayout
-        Me.GroupBox6.SuspendLayout
         CType(Me.gdvPressions1, System.ComponentModel.ISupportInitialize).BeginInit
         Me.TabPage2.SuspendLayout
-        Me.GroupBox7.SuspendLayout
         CType(Me.gdvPressions2, System.ComponentModel.ISupportInitialize).BeginInit
         Me.TabPage8.SuspendLayout
-        Me.GroupBox8.SuspendLayout
         CType(Me.gdvPressions3, System.ComponentModel.ISupportInitialize).BeginInit
         Me.TabPage9.SuspendLayout
-        Me.GroupBox9.SuspendLayout
         CType(Me.gdvPressions4, System.ComponentModel.ISupportInitialize).BeginInit
         Me.pnl542.SuspendLayout
         Me.GroupBox3.SuspendLayout
@@ -1348,7 +1344,7 @@ Partial Class FrmDiagnostique
         Me.Panel1.Controls.Add(Me.tab_diagnostique)
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1016, 680)
+        Me.Panel1.Size = New System.Drawing.Size(1016, 707)
         Me.Panel1.TabIndex = 1
         '
         'tab_diagnostique
@@ -1367,7 +1363,7 @@ Partial Class FrmDiagnostique
         Me.tab_diagnostique.Location = New System.Drawing.Point(0, 0)
         Me.tab_diagnostique.Name = "tab_diagnostique"
         Me.tab_diagnostique.SelectedIndex = 0
-        Me.tab_diagnostique.Size = New System.Drawing.Size(1016, 680)
+        Me.tab_diagnostique.Size = New System.Drawing.Size(1016, 707)
         Me.tab_diagnostique.TabIndex = 0
         '
         'tabPage_diagnostique_etatGeneral
@@ -1384,7 +1380,7 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_etatGeneral.ImageIndex = 3
         Me.tabPage_diagnostique_etatGeneral.Location = New System.Drawing.Point(4, 23)
         Me.tabPage_diagnostique_etatGeneral.Name = "tabPage_diagnostique_etatGeneral"
-        Me.tabPage_diagnostique_etatGeneral.Size = New System.Drawing.Size(1008, 653)
+        Me.tabPage_diagnostique_etatGeneral.Size = New System.Drawing.Size(1008, 680)
         Me.tabPage_diagnostique_etatGeneral.TabIndex = 0
         Me.tabPage_diagnostique_etatGeneral.Tag = "1"
         Me.tabPage_diagnostique_etatGeneral.Text = "Etat général"
@@ -1402,7 +1398,7 @@ Partial Class FrmDiagnostique
         Me.Panel17.Controls.Add(Me.Label_diagnostic_27)
         Me.Panel17.Location = New System.Drawing.Point(-1, 548)
         Me.Panel17.Name = "Panel17"
-        Me.Panel17.Size = New System.Drawing.Size(1006, 105)
+        Me.Panel17.Size = New System.Drawing.Size(1006, 132)
         Me.Panel17.TabIndex = 24
         '
         'GroupBox_diagnostic_274
@@ -3456,7 +3452,7 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_pompeCuve.ImageIndex = 3
         Me.tabPage_diagnostique_pompeCuve.Location = New System.Drawing.Point(4, 23)
         Me.tabPage_diagnostique_pompeCuve.Name = "tabPage_diagnostique_pompeCuve"
-        Me.tabPage_diagnostique_pompeCuve.Size = New System.Drawing.Size(1008, 653)
+        Me.tabPage_diagnostique_pompeCuve.Size = New System.Drawing.Size(1008, 680)
         Me.tabPage_diagnostique_pompeCuve.TabIndex = 1
         Me.tabPage_diagnostique_pompeCuve.Tag = "2"
         Me.tabPage_diagnostique_pompeCuve.Text = "Pompe/Cuve"
@@ -3479,7 +3475,7 @@ Partial Class FrmDiagnostique
         Me.Panel15.Controls.Add(Me.Label_diagnostic_3)
         Me.Panel15.Location = New System.Drawing.Point(0, 114)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(1005, 539)
+        Me.Panel15.Size = New System.Drawing.Size(1005, 566)
         Me.Panel15.TabIndex = 4
         '
         'Panel18
@@ -3505,7 +3501,7 @@ Partial Class FrmDiagnostique
         Me.pnl_46.Controls.Add(Me.GroupBox_diagnostic_461)
         Me.pnl_46.Location = New System.Drawing.Point(499, 317)
         Me.pnl_46.Name = "pnl_46"
-        Me.pnl_46.Size = New System.Drawing.Size(501, 219)
+        Me.pnl_46.Size = New System.Drawing.Size(501, 246)
         Me.pnl_46.TabIndex = 6
         '
         'GroupBox_diagnostic_464
@@ -3902,7 +3898,7 @@ Partial Class FrmDiagnostique
         Me.pnl_45.Controls.Add(Me.GroupBox_diagnostic_451)
         Me.pnl_45.Location = New System.Drawing.Point(250, 317)
         Me.pnl_45.Name = "pnl_45"
-        Me.pnl_45.Size = New System.Drawing.Size(247, 219)
+        Me.pnl_45.Size = New System.Drawing.Size(247, 246)
         Me.pnl_45.TabIndex = 5
         '
         'GroupBox_diagnostic_452
@@ -4127,7 +4123,7 @@ Partial Class FrmDiagnostique
         Me.pnl_44.Controls.Add(Me.GroupBox_diagnostic_442)
         Me.pnl_44.Location = New System.Drawing.Point(8, 317)
         Me.pnl_44.Name = "pnl_44"
-        Me.pnl_44.Size = New System.Drawing.Size(243, 219)
+        Me.pnl_44.Size = New System.Drawing.Size(243, 246)
         Me.pnl_44.TabIndex = 4
         '
         'Label_diagnostic_44
@@ -5322,7 +5318,7 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_flexiblesFiltres.ImageIndex = 3
         Me.tabPage_diagnostique_flexiblesFiltres.Location = New System.Drawing.Point(4, 23)
         Me.tabPage_diagnostique_flexiblesFiltres.Name = "tabPage_diagnostique_flexiblesFiltres"
-        Me.tabPage_diagnostique_flexiblesFiltres.Size = New System.Drawing.Size(1008, 653)
+        Me.tabPage_diagnostique_flexiblesFiltres.Size = New System.Drawing.Size(1008, 680)
         Me.tabPage_diagnostique_flexiblesFiltres.TabIndex = 3
         Me.tabPage_diagnostique_flexiblesFiltres.Tag = "3"
         Me.tabPage_diagnostique_flexiblesFiltres.Text = "Flexibles/Canalisations/Filtres"
@@ -5337,7 +5333,7 @@ Partial Class FrmDiagnostique
         Me.Panel33.Controls.Add(Me.Label_diagnostic_61)
         Me.Panel33.Location = New System.Drawing.Point(0, 114)
         Me.Panel33.Name = "Panel33"
-        Me.Panel33.Size = New System.Drawing.Size(367, 539)
+        Me.Panel33.Size = New System.Drawing.Size(367, 566)
         Me.Panel33.TabIndex = 15
         '
         'Label_diagnostic_6
@@ -5483,7 +5479,7 @@ Partial Class FrmDiagnostique
         Me.Panel27.Controls.Add(Me.Label_diagnostic_7)
         Me.Panel27.Location = New System.Drawing.Point(368, 114)
         Me.Panel27.Name = "Panel27"
-        Me.Panel27.Size = New System.Drawing.Size(639, 539)
+        Me.Panel27.Size = New System.Drawing.Size(639, 566)
         Me.Panel27.TabIndex = 14
         '
         'Panel28
@@ -6194,7 +6190,7 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_jetsSoufflerie.ImageIndex = 3
         Me.tabPage_diagnostique_jetsSoufflerie.Location = New System.Drawing.Point(4, 23)
         Me.tabPage_diagnostique_jetsSoufflerie.Name = "tabPage_diagnostique_jetsSoufflerie"
-        Me.tabPage_diagnostique_jetsSoufflerie.Size = New System.Drawing.Size(1008, 653)
+        Me.tabPage_diagnostique_jetsSoufflerie.Size = New System.Drawing.Size(1008, 680)
         Me.tabPage_diagnostique_jetsSoufflerie.TabIndex = 5
         Me.tabPage_diagnostique_jetsSoufflerie.Tag = "4"
         Me.tabPage_diagnostique_jetsSoufflerie.Text = "Jets/Soufflerie"
@@ -6209,7 +6205,7 @@ Partial Class FrmDiagnostique
         Me.Panel42.Controls.Add(Me.Label_diagnostic_10)
         Me.Panel42.Location = New System.Drawing.Point(505, 114)
         Me.Panel42.Name = "Panel42"
-        Me.Panel42.Size = New System.Drawing.Size(502, 539)
+        Me.Panel42.Size = New System.Drawing.Size(502, 566)
         Me.Panel42.TabIndex = 15
         '
         'Panel43
@@ -6779,7 +6775,7 @@ Partial Class FrmDiagnostique
         Me.Panel37.Controls.Add(Me.Label_diagnostic_9)
         Me.Panel37.Location = New System.Drawing.Point(0, 114)
         Me.Panel37.Name = "Panel37"
-        Me.Panel37.Size = New System.Drawing.Size(504, 539)
+        Me.Panel37.Size = New System.Drawing.Size(504, 566)
         Me.Panel37.TabIndex = 14
         '
         'Panel39
@@ -7285,7 +7281,7 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_mesureCommandesRegulation.ImageIndex = 3
         Me.tabPage_diagnostique_mesureCommandesRegulation.Location = New System.Drawing.Point(4, 23)
         Me.tabPage_diagnostique_mesureCommandesRegulation.Name = "tabPage_diagnostique_mesureCommandesRegulation"
-        Me.tabPage_diagnostique_mesureCommandesRegulation.Size = New System.Drawing.Size(1008, 653)
+        Me.tabPage_diagnostique_mesureCommandesRegulation.Size = New System.Drawing.Size(1008, 680)
         Me.tabPage_diagnostique_mesureCommandesRegulation.TabIndex = 2
         Me.tabPage_diagnostique_mesureCommandesRegulation.Tag = "5"
         Me.tabPage_diagnostique_mesureCommandesRegulation.Text = "Mesure/Commandes/Régulation"
@@ -7329,7 +7325,7 @@ Partial Class FrmDiagnostique
         Me.Panel26.Controls.Add(Me.Label_diagnostic_57)
         Me.Panel26.Location = New System.Drawing.Point(702, 320)
         Me.Panel26.Name = "Panel26"
-        Me.Panel26.Size = New System.Drawing.Size(306, 333)
+        Me.Panel26.Size = New System.Drawing.Size(306, 360)
         Me.Panel26.TabIndex = 10
         '
         'GroupBox_diagnostic_571
@@ -7678,7 +7674,7 @@ Partial Class FrmDiagnostique
         Me.Panel24.Controls.Add(Me.Label_diagnostic_54)
         Me.Panel24.Location = New System.Drawing.Point(0, 320)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(376, 333)
+        Me.Panel24.Size = New System.Drawing.Size(376, 360)
         Me.Panel24.TabIndex = 8
         '
         'GroupBox_diagnostic_542
@@ -8470,7 +8466,7 @@ Partial Class FrmDiagnostique
         Me.Panel25.Controls.Add(Me.Label_diagnostic_55)
         Me.Panel25.Location = New System.Drawing.Point(377, 320)
         Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(325, 333)
+        Me.Panel25.Size = New System.Drawing.Size(325, 360)
         Me.Panel25.TabIndex = 9
         '
         'GroupBox_diagnostic_552
@@ -8694,7 +8690,7 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_rampes.ImageIndex = 3
         Me.tabPage_diagnostique_rampes.Location = New System.Drawing.Point(4, 23)
         Me.tabPage_diagnostique_rampes.Name = "tabPage_diagnostique_rampes"
-        Me.tabPage_diagnostique_rampes.Size = New System.Drawing.Size(1008, 653)
+        Me.tabPage_diagnostique_rampes.Size = New System.Drawing.Size(1008, 680)
         Me.tabPage_diagnostique_rampes.TabIndex = 4
         Me.tabPage_diagnostique_rampes.Tag = "6"
         Me.tabPage_diagnostique_rampes.Text = "Rampes"
@@ -8740,7 +8736,7 @@ Partial Class FrmDiagnostique
         Me.Panel36.Controls.Add(Me.Label_diagnostic_83)
         Me.Panel36.Location = New System.Drawing.Point(665, 143)
         Me.Panel36.Name = "Panel36"
-        Me.Panel36.Size = New System.Drawing.Size(343, 510)
+        Me.Panel36.Size = New System.Drawing.Size(343, 537)
         Me.Panel36.TabIndex = 11
         '
         'popup_help_831
@@ -9403,7 +9399,7 @@ Partial Class FrmDiagnostique
         Me.Panel34.Controls.Add(Me.Label_diagnostic_81)
         Me.Panel34.Location = New System.Drawing.Point(0, 143)
         Me.Panel34.Name = "Panel34"
-        Me.Panel34.Size = New System.Drawing.Size(664, 510)
+        Me.Panel34.Size = New System.Drawing.Size(664, 537)
         Me.Panel34.TabIndex = 9
         '
         'GroupBox_diagnostic_817
@@ -10384,7 +10380,7 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_manoTroncon.ImageIndex = 3
         Me.tabPage_diagnostique_manoTroncon.Location = New System.Drawing.Point(4, 23)
         Me.tabPage_diagnostique_manoTroncon.Name = "tabPage_diagnostique_manoTroncon"
-        Me.tabPage_diagnostique_manoTroncon.Size = New System.Drawing.Size(1008, 653)
+        Me.tabPage_diagnostique_manoTroncon.Size = New System.Drawing.Size(1008, 680)
         Me.tabPage_diagnostique_manoTroncon.TabIndex = 6
         Me.tabPage_diagnostique_manoTroncon.Tag = "7"
         Me.tabPage_diagnostique_manoTroncon.Text = "Mano/Tronçon"
@@ -10410,9 +10406,9 @@ Partial Class FrmDiagnostique
         Me.pnl_833.Controls.Add(Me.Lbl_diagnostic_833)
         Me.pnl_833.Controls.Add(Me.Label221)
         Me.pnl_833.Controls.Add(Me.tab_833)
-        Me.pnl_833.Location = New System.Drawing.Point(0, 345)
+        Me.pnl_833.Location = New System.Drawing.Point(0, 328)
         Me.pnl_833.Name = "pnl_833"
-        Me.pnl_833.Size = New System.Drawing.Size(1004, 308)
+        Me.pnl_833.Size = New System.Drawing.Size(1004, 361)
         Me.pnl_833.TabIndex = 0
         '
         'rbPression4
@@ -10574,14 +10570,18 @@ Partial Class FrmDiagnostique
         Me.tab_833.Location = New System.Drawing.Point(8, 50)
         Me.tab_833.Name = "tab_833"
         Me.tab_833.SelectedIndex = 0
-        Me.tab_833.Size = New System.Drawing.Size(984, 247)
+        Me.tab_833.Size = New System.Drawing.Size(984, 300)
         Me.tab_833.TabIndex = 2
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.GroupBox6)
+        Me.TabPage1.Controls.Add(Me.Label22)
+        Me.TabPage1.Controls.Add(Me.tbMoyEcartbar1)
         Me.TabPage1.Controls.Add(Me.Label75)
+        Me.TabPage1.Controls.Add(Me.Label72)
         Me.TabPage1.Controls.Add(Me.tbMoyenne1)
+        Me.TabPage1.Controls.Add(Me.tbMoyEcartPct1)
+        Me.TabPage1.Controls.Add(Me.Label55)
         Me.TabPage1.Controls.Add(Me.Label2)
         Me.TabPage1.Controls.Add(Me.pressionTronc_DefautEcart1)
         Me.TabPage1.Controls.Add(Me.Label1)
@@ -10591,70 +10591,32 @@ Partial Class FrmDiagnostique
         Me.TabPage1.Controls.Add(Me.pressionTronc_heterogeniteAlimentation1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Size = New System.Drawing.Size(976, 220)
+        Me.TabPage1.Size = New System.Drawing.Size(976, 273)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "5 bar"
         '
-        'GroupBox6
+        'Label22
         '
-        Me.GroupBox6.Controls.Add(Me.tbMoyEcartbar1)
-        Me.GroupBox6.Controls.Add(Me.Label72)
-        Me.GroupBox6.Controls.Add(Me.tbMoyEcartPct1)
-        Me.GroupBox6.Controls.Add(Me.Label55)
-        Me.GroupBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox6.Location = New System.Drawing.Point(339, 0)
-        Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(223, 35)
-        Me.GroupBox6.TabIndex = 40
-        Me.GroupBox6.TabStop = False
-        Me.GroupBox6.Text = "Ecart"
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label22.Location = New System.Drawing.Point(344, 10)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(45, 13)
+        Me.Label22.TabIndex = 40
+        Me.Label22.Text = "Ecart :"
+        Me.Label22.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'tbMoyEcartbar1
         '
         Me.tbMoyEcartbar1.Enabled = False
         Me.tbMoyEcartbar1.ForceBindingOnTextChanged = False
-        Me.tbMoyEcartbar1.Location = New System.Drawing.Point(47, 8)
+        Me.tbMoyEcartbar1.Location = New System.Drawing.Point(395, 6)
         Me.tbMoyEcartbar1.Name = "tbMoyEcartbar1"
         Me.tbMoyEcartbar1.Size = New System.Drawing.Size(49, 20)
         Me.tbMoyEcartbar1.TabIndex = 32
         Me.tbMoyEcartbar1.TabStop = False
         Me.tbMoyEcartbar1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label72
-        '
-        Me.Label72.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label72.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label72.Location = New System.Drawing.Point(102, 12)
-        Me.Label72.Name = "Label72"
-        Me.Label72.Size = New System.Drawing.Size(31, 14)
-        Me.Label72.TabIndex = 37
-        Me.Label72.Text = "bars"
-        Me.Label72.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'tbMoyEcartPct1
-        '
-        Me.tbMoyEcartPct1.BackColor = System.Drawing.SystemColors.Window
-        Me.tbMoyEcartPct1.ForceBindingOnTextChanged = False
-        Me.tbMoyEcartPct1.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.tbMoyEcartPct1.Location = New System.Drawing.Point(139, 8)
-        Me.tbMoyEcartPct1.Name = "tbMoyEcartPct1"
-        Me.tbMoyEcartPct1.ReadOnly = True
-        Me.tbMoyEcartPct1.Size = New System.Drawing.Size(49, 20)
-        Me.tbMoyEcartPct1.TabIndex = 35
-        Me.tbMoyEcartPct1.TabStop = False
-        Me.tbMoyEcartPct1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label55
-        '
-        Me.Label55.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label55.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label55.Location = New System.Drawing.Point(194, 10)
-        Me.Label55.Name = "Label55"
-        Me.Label55.Size = New System.Drawing.Size(11, 16)
-        Me.Label55.TabIndex = 36
-        Me.Label55.Text = "%"
-        Me.Label55.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'Label75
         '
@@ -10668,6 +10630,17 @@ Partial Class FrmDiagnostique
         Me.Label75.Text = "Moyenne :"
         Me.Label75.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'Label72
+        '
+        Me.Label72.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label72.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label72.Location = New System.Drawing.Point(450, 11)
+        Me.Label72.Name = "Label72"
+        Me.Label72.Size = New System.Drawing.Size(31, 14)
+        Me.Label72.TabIndex = 37
+        Me.Label72.Text = "bars"
+        Me.Label72.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
         'tbMoyenne1
         '
         Me.tbMoyenne1.Enabled = False
@@ -10677,6 +10650,30 @@ Partial Class FrmDiagnostique
         Me.tbMoyenne1.Size = New System.Drawing.Size(59, 20)
         Me.tbMoyenne1.TabIndex = 38
         Me.tbMoyenne1.TabStop = False
+        '
+        'tbMoyEcartPct1
+        '
+        Me.tbMoyEcartPct1.BackColor = System.Drawing.SystemColors.Window
+        Me.tbMoyEcartPct1.ForceBindingOnTextChanged = False
+        Me.tbMoyEcartPct1.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.tbMoyEcartPct1.Location = New System.Drawing.Point(487, 6)
+        Me.tbMoyEcartPct1.Name = "tbMoyEcartPct1"
+        Me.tbMoyEcartPct1.ReadOnly = True
+        Me.tbMoyEcartPct1.Size = New System.Drawing.Size(49, 20)
+        Me.tbMoyEcartPct1.TabIndex = 35
+        Me.tbMoyEcartPct1.TabStop = False
+        Me.tbMoyEcartPct1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label55
+        '
+        Me.Label55.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label55.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label55.Location = New System.Drawing.Point(542, 9)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(11, 16)
+        Me.Label55.TabIndex = 36
+        Me.Label55.Text = "%"
+        Me.Label55.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'Label2
         '
@@ -10738,9 +10735,6 @@ Partial Class FrmDiagnostique
         Me.gdvPressions1.AllowUserToAddRows = False
         Me.gdvPressions1.AllowUserToDeleteRows = False
         Me.gdvPressions1.AllowUserToResizeRows = False
-        Me.gdvPressions1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gdvPressions1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions1.ColumnHeadersVisible = False
@@ -10752,10 +10746,12 @@ Partial Class FrmDiagnostique
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gdvPressions1.DefaultCellStyle = DataGridViewCellStyle1
-        Me.gdvPressions1.Location = New System.Drawing.Point(4, 38)
+        Me.gdvPressions1.Location = New System.Drawing.Point(4, 29)
+        Me.gdvPressions1.MultiSelect = False
         Me.gdvPressions1.Name = "gdvPressions1"
         Me.gdvPressions1.RowHeadersVisible = False
-        Me.gdvPressions1.Size = New System.Drawing.Size(967, 182)
+        Me.gdvPressions1.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.gdvPressions1.Size = New System.Drawing.Size(976, 241)
         Me.gdvPressions1.TabIndex = 0
         '
         'pressionTronc_heterogeniteAlimentation1
@@ -10771,10 +10767,14 @@ Partial Class FrmDiagnostique
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.GroupBox7)
+        Me.TabPage2.Controls.Add(Me.Label21)
+        Me.TabPage2.Controls.Add(Me.tbMoyEcartbar2)
         Me.TabPage2.Controls.Add(Me.Label104)
+        Me.TabPage2.Controls.Add(Me.Label8)
         Me.TabPage2.Controls.Add(Me.Label7)
+        Me.TabPage2.Controls.Add(Me.tbMoyEcartPct2)
         Me.TabPage2.Controls.Add(Me.Label9)
+        Me.TabPage2.Controls.Add(Me.Label118)
         Me.TabPage2.Controls.Add(Me.pressionTronc_DefautEcart2)
         Me.TabPage2.Controls.Add(Me.Label11)
         Me.TabPage2.Controls.Add(Me.gdvPressions2)
@@ -10783,70 +10783,32 @@ Partial Class FrmDiagnostique
         Me.TabPage2.Controls.Add(Me.pressionTronc_10_pressionManoPulve)
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(976, 220)
+        Me.TabPage2.Size = New System.Drawing.Size(976, 273)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "10 bar"
         '
-        'GroupBox7
+        'Label21
         '
-        Me.GroupBox7.Controls.Add(Me.tbMoyEcartbar2)
-        Me.GroupBox7.Controls.Add(Me.Label8)
-        Me.GroupBox7.Controls.Add(Me.tbMoyEcartPct2)
-        Me.GroupBox7.Controls.Add(Me.Label118)
-        Me.GroupBox7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox7.Location = New System.Drawing.Point(339, 0)
-        Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(223, 35)
-        Me.GroupBox7.TabIndex = 47
-        Me.GroupBox7.TabStop = False
-        Me.GroupBox7.Text = "Ecart"
+        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label21.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label21.Location = New System.Drawing.Point(346, 8)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(46, 16)
+        Me.Label21.TabIndex = 47
+        Me.Label21.Text = "Ecart :"
+        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'tbMoyEcartbar2
         '
         Me.tbMoyEcartbar2.Enabled = False
         Me.tbMoyEcartbar2.ForceBindingOnTextChanged = False
-        Me.tbMoyEcartbar2.Location = New System.Drawing.Point(47, 8)
+        Me.tbMoyEcartbar2.Location = New System.Drawing.Point(398, 6)
         Me.tbMoyEcartbar2.Name = "tbMoyEcartbar2"
         Me.tbMoyEcartbar2.Size = New System.Drawing.Size(49, 20)
         Me.tbMoyEcartbar2.TabIndex = 32
         Me.tbMoyEcartbar2.TabStop = False
         Me.tbMoyEcartbar2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label8
-        '
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(102, 12)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(31, 14)
-        Me.Label8.TabIndex = 37
-        Me.Label8.Text = "bars"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'tbMoyEcartPct2
-        '
-        Me.tbMoyEcartPct2.BackColor = System.Drawing.SystemColors.Window
-        Me.tbMoyEcartPct2.ForceBindingOnTextChanged = False
-        Me.tbMoyEcartPct2.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.tbMoyEcartPct2.Location = New System.Drawing.Point(139, 8)
-        Me.tbMoyEcartPct2.Name = "tbMoyEcartPct2"
-        Me.tbMoyEcartPct2.ReadOnly = True
-        Me.tbMoyEcartPct2.Size = New System.Drawing.Size(49, 20)
-        Me.tbMoyEcartPct2.TabIndex = 35
-        Me.tbMoyEcartPct2.TabStop = False
-        Me.tbMoyEcartPct2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label118
-        '
-        Me.Label118.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label118.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label118.Location = New System.Drawing.Point(194, 10)
-        Me.Label118.Name = "Label118"
-        Me.Label118.Size = New System.Drawing.Size(11, 16)
-        Me.Label118.TabIndex = 36
-        Me.Label118.Text = "%"
-        Me.Label118.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'Label104
         '
@@ -10860,6 +10822,17 @@ Partial Class FrmDiagnostique
         Me.Label104.Text = "Moyenne :"
         Me.Label104.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'Label8
+        '
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label8.Location = New System.Drawing.Point(453, 9)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(31, 14)
+        Me.Label8.TabIndex = 37
+        Me.Label8.Text = "bars"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
         'Label7
         '
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -10871,6 +10844,19 @@ Partial Class FrmDiagnostique
         Me.Label7.Text = "Ecart de pression  :"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'tbMoyEcartPct2
+        '
+        Me.tbMoyEcartPct2.BackColor = System.Drawing.SystemColors.Window
+        Me.tbMoyEcartPct2.ForceBindingOnTextChanged = False
+        Me.tbMoyEcartPct2.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.tbMoyEcartPct2.Location = New System.Drawing.Point(490, 6)
+        Me.tbMoyEcartPct2.Name = "tbMoyEcartPct2"
+        Me.tbMoyEcartPct2.ReadOnly = True
+        Me.tbMoyEcartPct2.Size = New System.Drawing.Size(49, 20)
+        Me.tbMoyEcartPct2.TabIndex = 35
+        Me.tbMoyEcartPct2.TabStop = False
+        Me.tbMoyEcartPct2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'Label9
         '
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -10881,6 +10867,17 @@ Partial Class FrmDiagnostique
         Me.Label9.TabIndex = 38
         Me.Label9.Text = "Hétérogénité  :"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label118
+        '
+        Me.Label118.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label118.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label118.Location = New System.Drawing.Point(545, 7)
+        Me.Label118.Name = "Label118"
+        Me.Label118.Size = New System.Drawing.Size(11, 16)
+        Me.Label118.TabIndex = 36
+        Me.Label118.Text = "%"
+        Me.Label118.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'pressionTronc_DefautEcart2
         '
@@ -10909,9 +10906,6 @@ Partial Class FrmDiagnostique
         Me.gdvPressions2.AllowUserToAddRows = False
         Me.gdvPressions2.AllowUserToDeleteRows = False
         Me.gdvPressions2.AllowUserToResizeRows = False
-        Me.gdvPressions2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gdvPressions2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions2.ColumnHeadersVisible = False
@@ -10923,10 +10917,11 @@ Partial Class FrmDiagnostique
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gdvPressions2.DefaultCellStyle = DataGridViewCellStyle2
-        Me.gdvPressions2.Location = New System.Drawing.Point(4, 37)
+        Me.gdvPressions2.Location = New System.Drawing.Point(4, 29)
         Me.gdvPressions2.Name = "gdvPressions2"
         Me.gdvPressions2.RowHeadersVisible = False
-        Me.gdvPressions2.Size = New System.Drawing.Size(967, 168)
+        Me.gdvPressions2.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.gdvPressions2.Size = New System.Drawing.Size(976, 241)
         Me.gdvPressions2.TabIndex = 0
         '
         'pressionTronc_heterogeniteAlimentation2
@@ -10964,9 +10959,13 @@ Partial Class FrmDiagnostique
         'TabPage8
         '
         Me.TabPage8.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage8.Controls.Add(Me.GroupBox8)
+        Me.TabPage8.Controls.Add(Me.Label20)
+        Me.TabPage8.Controls.Add(Me.tbMoyEcartbar3)
         Me.TabPage8.Controls.Add(Me.Label109)
+        Me.TabPage8.Controls.Add(Me.Label105)
         Me.TabPage8.Controls.Add(Me.Label71)
+        Me.TabPage8.Controls.Add(Me.tbMoyEcartPct3)
+        Me.TabPage8.Controls.Add(Me.Label107)
         Me.TabPage8.Controls.Add(Me.Label73)
         Me.TabPage8.Controls.Add(Me.pressionTronc_DefautEcart3)
         Me.TabPage8.Controls.Add(Me.Label88)
@@ -10977,70 +10976,31 @@ Partial Class FrmDiagnostique
         Me.TabPage8.Location = New System.Drawing.Point(4, 23)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(976, 220)
+        Me.TabPage8.Size = New System.Drawing.Size(976, 273)
         Me.TabPage8.TabIndex = 4
         Me.TabPage8.Text = "15 bar"
         '
-        'GroupBox8
+        'Label20
         '
-        Me.GroupBox8.Controls.Add(Me.tbMoyEcartbar3)
-        Me.GroupBox8.Controls.Add(Me.Label105)
-        Me.GroupBox8.Controls.Add(Me.tbMoyEcartPct3)
-        Me.GroupBox8.Controls.Add(Me.Label107)
-        Me.GroupBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox8.Location = New System.Drawing.Point(339, 0)
-        Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(223, 35)
-        Me.GroupBox8.TabIndex = 47
-        Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "Ecart"
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label20.Location = New System.Drawing.Point(346, 10)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(45, 14)
+        Me.Label20.TabIndex = 47
+        Me.Label20.Text = "Ecart : "
+        Me.Label20.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'tbMoyEcartbar3
         '
         Me.tbMoyEcartbar3.Enabled = False
         Me.tbMoyEcartbar3.ForceBindingOnTextChanged = False
-        Me.tbMoyEcartbar3.Location = New System.Drawing.Point(47, 8)
+        Me.tbMoyEcartbar3.Location = New System.Drawing.Point(397, 6)
         Me.tbMoyEcartbar3.Name = "tbMoyEcartbar3"
         Me.tbMoyEcartbar3.Size = New System.Drawing.Size(49, 20)
         Me.tbMoyEcartbar3.TabIndex = 32
         Me.tbMoyEcartbar3.TabStop = False
         Me.tbMoyEcartbar3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label105
-        '
-        Me.Label105.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label105.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label105.Location = New System.Drawing.Point(102, 12)
-        Me.Label105.Name = "Label105"
-        Me.Label105.Size = New System.Drawing.Size(31, 14)
-        Me.Label105.TabIndex = 37
-        Me.Label105.Text = "bars"
-        Me.Label105.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'tbMoyEcartPct3
-        '
-        Me.tbMoyEcartPct3.BackColor = System.Drawing.SystemColors.Window
-        Me.tbMoyEcartPct3.ForceBindingOnTextChanged = False
-        Me.tbMoyEcartPct3.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.tbMoyEcartPct3.Location = New System.Drawing.Point(139, 8)
-        Me.tbMoyEcartPct3.Name = "tbMoyEcartPct3"
-        Me.tbMoyEcartPct3.ReadOnly = True
-        Me.tbMoyEcartPct3.Size = New System.Drawing.Size(49, 20)
-        Me.tbMoyEcartPct3.TabIndex = 35
-        Me.tbMoyEcartPct3.TabStop = False
-        Me.tbMoyEcartPct3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label107
-        '
-        Me.Label107.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label107.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label107.Location = New System.Drawing.Point(194, 10)
-        Me.Label107.Name = "Label107"
-        Me.Label107.Size = New System.Drawing.Size(11, 16)
-        Me.Label107.TabIndex = 36
-        Me.Label107.Text = "%"
-        Me.Label107.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'Label109
         '
@@ -11054,6 +11014,17 @@ Partial Class FrmDiagnostique
         Me.Label109.Text = "Moyenne :"
         Me.Label109.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'Label105
+        '
+        Me.Label105.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label105.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label105.Location = New System.Drawing.Point(452, 10)
+        Me.Label105.Name = "Label105"
+        Me.Label105.Size = New System.Drawing.Size(31, 14)
+        Me.Label105.TabIndex = 37
+        Me.Label105.Text = "bars"
+        Me.Label105.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
         'Label71
         '
         Me.Label71.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -11064,6 +11035,30 @@ Partial Class FrmDiagnostique
         Me.Label71.TabIndex = 39
         Me.Label71.Text = "Ecart de pression  :"
         Me.Label71.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'tbMoyEcartPct3
+        '
+        Me.tbMoyEcartPct3.BackColor = System.Drawing.SystemColors.Window
+        Me.tbMoyEcartPct3.ForceBindingOnTextChanged = False
+        Me.tbMoyEcartPct3.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.tbMoyEcartPct3.Location = New System.Drawing.Point(489, 6)
+        Me.tbMoyEcartPct3.Name = "tbMoyEcartPct3"
+        Me.tbMoyEcartPct3.ReadOnly = True
+        Me.tbMoyEcartPct3.Size = New System.Drawing.Size(49, 20)
+        Me.tbMoyEcartPct3.TabIndex = 35
+        Me.tbMoyEcartPct3.TabStop = False
+        Me.tbMoyEcartPct3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label107
+        '
+        Me.Label107.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label107.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label107.Location = New System.Drawing.Point(544, 8)
+        Me.Label107.Name = "Label107"
+        Me.Label107.Size = New System.Drawing.Size(11, 16)
+        Me.Label107.TabIndex = 36
+        Me.Label107.Text = "%"
+        Me.Label107.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'Label73
         '
@@ -11103,9 +11098,6 @@ Partial Class FrmDiagnostique
         Me.gdvPressions3.AllowUserToAddRows = False
         Me.gdvPressions3.AllowUserToDeleteRows = False
         Me.gdvPressions3.AllowUserToResizeRows = False
-        Me.gdvPressions3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gdvPressions3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions3.ColumnHeadersVisible = False
@@ -11117,10 +11109,11 @@ Partial Class FrmDiagnostique
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gdvPressions3.DefaultCellStyle = DataGridViewCellStyle3
-        Me.gdvPressions3.Location = New System.Drawing.Point(4, 37)
+        Me.gdvPressions3.Location = New System.Drawing.Point(4, 29)
         Me.gdvPressions3.Name = "gdvPressions3"
         Me.gdvPressions3.RowHeadersVisible = False
-        Me.gdvPressions3.Size = New System.Drawing.Size(967, 168)
+        Me.gdvPressions3.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.gdvPressions3.Size = New System.Drawing.Size(976, 241)
         Me.gdvPressions3.TabIndex = 0
         '
         'pressionTronc_heterogeniteAlimentation3
@@ -11158,9 +11151,13 @@ Partial Class FrmDiagnostique
         'TabPage9
         '
         Me.TabPage9.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage9.Controls.Add(Me.GroupBox9)
+        Me.TabPage9.Controls.Add(Me.Label19)
+        Me.TabPage9.Controls.Add(Me.tbMoyEcartbar4)
         Me.TabPage9.Controls.Add(Me.Label113)
+        Me.TabPage9.Controls.Add(Me.Label108)
         Me.TabPage9.Controls.Add(Me.Label90)
+        Me.TabPage9.Controls.Add(Me.tbMoyEcartPct4)
+        Me.TabPage9.Controls.Add(Me.Label110)
         Me.TabPage9.Controls.Add(Me.Label103)
         Me.TabPage9.Controls.Add(Me.pressionTronc_DefautEcart4)
         Me.TabPage9.Controls.Add(Me.Label106)
@@ -11170,70 +11167,31 @@ Partial Class FrmDiagnostique
         Me.TabPage9.Controls.Add(Me.pressionTronc_20_pressionManoPulve)
         Me.TabPage9.Location = New System.Drawing.Point(4, 23)
         Me.TabPage9.Name = "TabPage9"
-        Me.TabPage9.Size = New System.Drawing.Size(976, 220)
+        Me.TabPage9.Size = New System.Drawing.Size(976, 273)
         Me.TabPage9.TabIndex = 5
         Me.TabPage9.Text = "20 bar"
         '
-        'GroupBox9
+        'Label19
         '
-        Me.GroupBox9.Controls.Add(Me.tbMoyEcartbar4)
-        Me.GroupBox9.Controls.Add(Me.Label108)
-        Me.GroupBox9.Controls.Add(Me.tbMoyEcartPct4)
-        Me.GroupBox9.Controls.Add(Me.Label110)
-        Me.GroupBox9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox9.Location = New System.Drawing.Point(339, 0)
-        Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(223, 35)
-        Me.GroupBox9.TabIndex = 48
-        Me.GroupBox9.TabStop = False
-        Me.GroupBox9.Text = "Ecart"
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label19.Location = New System.Drawing.Point(339, 7)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(48, 19)
+        Me.Label19.TabIndex = 47
+        Me.Label19.Text = "Ecart :"
+        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'tbMoyEcartbar4
         '
         Me.tbMoyEcartbar4.Enabled = False
         Me.tbMoyEcartbar4.ForceBindingOnTextChanged = False
-        Me.tbMoyEcartbar4.Location = New System.Drawing.Point(47, 8)
+        Me.tbMoyEcartbar4.Location = New System.Drawing.Point(395, 7)
         Me.tbMoyEcartbar4.Name = "tbMoyEcartbar4"
         Me.tbMoyEcartbar4.Size = New System.Drawing.Size(49, 20)
         Me.tbMoyEcartbar4.TabIndex = 32
         Me.tbMoyEcartbar4.TabStop = False
         Me.tbMoyEcartbar4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label108
-        '
-        Me.Label108.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label108.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label108.Location = New System.Drawing.Point(102, 12)
-        Me.Label108.Name = "Label108"
-        Me.Label108.Size = New System.Drawing.Size(31, 14)
-        Me.Label108.TabIndex = 37
-        Me.Label108.Text = "bars"
-        Me.Label108.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'tbMoyEcartPct4
-        '
-        Me.tbMoyEcartPct4.BackColor = System.Drawing.SystemColors.Window
-        Me.tbMoyEcartPct4.ForceBindingOnTextChanged = False
-        Me.tbMoyEcartPct4.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.tbMoyEcartPct4.Location = New System.Drawing.Point(139, 8)
-        Me.tbMoyEcartPct4.Name = "tbMoyEcartPct4"
-        Me.tbMoyEcartPct4.ReadOnly = True
-        Me.tbMoyEcartPct4.Size = New System.Drawing.Size(49, 20)
-        Me.tbMoyEcartPct4.TabIndex = 35
-        Me.tbMoyEcartPct4.TabStop = False
-        Me.tbMoyEcartPct4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label110
-        '
-        Me.Label110.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label110.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label110.Location = New System.Drawing.Point(194, 10)
-        Me.Label110.Name = "Label110"
-        Me.Label110.Size = New System.Drawing.Size(11, 16)
-        Me.Label110.TabIndex = 36
-        Me.Label110.Text = "%"
-        Me.Label110.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'Label113
         '
@@ -11247,6 +11205,17 @@ Partial Class FrmDiagnostique
         Me.Label113.Text = "Moyenne :"
         Me.Label113.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'Label108
+        '
+        Me.Label108.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label108.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label108.Location = New System.Drawing.Point(450, 11)
+        Me.Label108.Name = "Label108"
+        Me.Label108.Size = New System.Drawing.Size(31, 14)
+        Me.Label108.TabIndex = 37
+        Me.Label108.Text = "bars"
+        Me.Label108.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
         'Label90
         '
         Me.Label90.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -11257,6 +11226,30 @@ Partial Class FrmDiagnostique
         Me.Label90.TabIndex = 39
         Me.Label90.Text = "Ecart de pression  :"
         Me.Label90.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'tbMoyEcartPct4
+        '
+        Me.tbMoyEcartPct4.BackColor = System.Drawing.SystemColors.Window
+        Me.tbMoyEcartPct4.ForceBindingOnTextChanged = False
+        Me.tbMoyEcartPct4.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.tbMoyEcartPct4.Location = New System.Drawing.Point(487, 7)
+        Me.tbMoyEcartPct4.Name = "tbMoyEcartPct4"
+        Me.tbMoyEcartPct4.ReadOnly = True
+        Me.tbMoyEcartPct4.Size = New System.Drawing.Size(49, 20)
+        Me.tbMoyEcartPct4.TabIndex = 35
+        Me.tbMoyEcartPct4.TabStop = False
+        Me.tbMoyEcartPct4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label110
+        '
+        Me.Label110.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label110.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label110.Location = New System.Drawing.Point(542, 9)
+        Me.Label110.Name = "Label110"
+        Me.Label110.Size = New System.Drawing.Size(11, 16)
+        Me.Label110.TabIndex = 36
+        Me.Label110.Text = "%"
+        Me.Label110.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'Label103
         '
@@ -11296,9 +11289,6 @@ Partial Class FrmDiagnostique
         Me.gdvPressions4.AllowUserToAddRows = False
         Me.gdvPressions4.AllowUserToDeleteRows = False
         Me.gdvPressions4.AllowUserToResizeRows = False
-        Me.gdvPressions4.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gdvPressions4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gdvPressions4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gdvPressions4.ColumnHeadersVisible = False
@@ -11310,10 +11300,12 @@ Partial Class FrmDiagnostique
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gdvPressions4.DefaultCellStyle = DataGridViewCellStyle4
-        Me.gdvPressions4.Location = New System.Drawing.Point(4, 37)
+        Me.gdvPressions4.Location = New System.Drawing.Point(4, 29)
         Me.gdvPressions4.Name = "gdvPressions4"
         Me.gdvPressions4.RowHeadersVisible = False
-        Me.gdvPressions4.Size = New System.Drawing.Size(967, 168)
+        Me.gdvPressions4.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.gdvPressions4.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.gdvPressions4.Size = New System.Drawing.Size(976, 241)
         Me.gdvPressions4.TabIndex = 0
         '
         'pressionTronc_heterogeniteAlimentation4
@@ -11365,7 +11357,7 @@ Partial Class FrmDiagnostique
         Me.pnl542.Controls.Add(Me.manopulveIsSaisieManuelle)
         Me.pnl542.Location = New System.Drawing.Point(0, 114)
         Me.pnl542.Name = "pnl542"
-        Me.pnl542.Size = New System.Drawing.Size(1004, 230)
+        Me.pnl542.Size = New System.Drawing.Size(1004, 213)
         Me.pnl542.TabIndex = 1
         '
         'btnRecalculer
@@ -11375,7 +11367,7 @@ Partial Class FrmDiagnostique
         Me.btnRecalculer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnRecalculer.ForeColor = System.Drawing.Color.White
         Me.btnRecalculer.Image = CType(resources.GetObject("btnRecalculer.Image"), System.Drawing.Image)
-        Me.btnRecalculer.Location = New System.Drawing.Point(773, 203)
+        Me.btnRecalculer.Location = New System.Drawing.Point(770, 175)
         Me.btnRecalculer.Name = "btnRecalculer"
         Me.btnRecalculer.Size = New System.Drawing.Size(128, 24)
         Me.btnRecalculer.TabIndex = 33
@@ -11387,7 +11379,7 @@ Partial Class FrmDiagnostique
         Me.manopulveIsUseCalibrateur.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.manopulveIsUseCalibrateur.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.manopulveIsUseCalibrateur.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.manopulveIsUseCalibrateur.Location = New System.Drawing.Point(520, 16)
+        Me.manopulveIsUseCalibrateur.Location = New System.Drawing.Point(519, 8)
         Me.manopulveIsUseCalibrateur.Name = "manopulveIsUseCalibrateur"
         Me.manopulveIsUseCalibrateur.Size = New System.Drawing.Size(184, 17)
         Me.manopulveIsUseCalibrateur.TabIndex = 0
@@ -11397,7 +11389,7 @@ Partial Class FrmDiagnostique
         '
         Me.manopulveIsFaiblePression.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.manopulveIsFaiblePression.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.manopulveIsFaiblePression.Location = New System.Drawing.Point(40, 48)
+        Me.manopulveIsFaiblePression.Location = New System.Drawing.Point(43, 31)
         Me.manopulveIsFaiblePression.Name = "manopulveIsFaiblePression"
         Me.manopulveIsFaiblePression.Size = New System.Drawing.Size(120, 16)
         Me.manopulveIsFaiblePression.TabIndex = 2
@@ -11414,9 +11406,9 @@ Partial Class FrmDiagnostique
         Me.GroupBox3.Controls.Add(Me.Label226)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox3.Location = New System.Drawing.Point(664, 72)
+        Me.GroupBox3.Location = New System.Drawing.Point(664, 58)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(304, 128)
+        Me.GroupBox3.Size = New System.Drawing.Size(304, 107)
         Me.GroupBox3.TabIndex = 30
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Résultats"
@@ -11488,7 +11480,7 @@ Partial Class FrmDiagnostique
         Me.Lbl_diagnostic_542.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Lbl_diagnostic_542.Image = CType(resources.GetObject("Lbl_diagnostic_542.Image"), System.Drawing.Image)
         Me.Lbl_diagnostic_542.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Lbl_diagnostic_542.Location = New System.Drawing.Point(8, 8)
+        Me.Lbl_diagnostic_542.Location = New System.Drawing.Point(8, 0)
         Me.Lbl_diagnostic_542.Name = "Lbl_diagnostic_542"
         Me.Lbl_diagnostic_542.Size = New System.Drawing.Size(472, 25)
         Me.Lbl_diagnostic_542.TabIndex = 4
@@ -11505,7 +11497,7 @@ Partial Class FrmDiagnostique
         Me.Panel48.Controls.Add(Me.manopulvePression_panel_manoAgent)
         Me.Panel48.Controls.Add(Me.Panel46)
         Me.Panel48.Controls.Add(Me.Panel292)
-        Me.Panel48.Location = New System.Drawing.Point(32, 72)
+        Me.Panel48.Location = New System.Drawing.Point(40, 58)
         Me.Panel48.Name = "Panel48"
         Me.Panel48.Size = New System.Drawing.Size(582, 152)
         Me.Panel48.TabIndex = 10
@@ -11832,7 +11824,7 @@ Partial Class FrmDiagnostique
         Me.Label65.Enabled = False
         Me.Label65.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label65.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label65.Location = New System.Drawing.Point(520, 40)
+        Me.Label65.Location = New System.Drawing.Point(520, 31)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(152, 16)
         Me.Label65.TabIndex = 6
@@ -11844,7 +11836,7 @@ Partial Class FrmDiagnostique
         Me.manoTroncon_listManoControle.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.manoTroncon_listManoControle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.manoTroncon_listManoControle.Enabled = False
-        Me.manoTroncon_listManoControle.Location = New System.Drawing.Point(680, 40)
+        Me.manoTroncon_listManoControle.Location = New System.Drawing.Point(680, 31)
         Me.manoTroncon_listManoControle.Name = "manoTroncon_listManoControle"
         Me.manoTroncon_listManoControle.Size = New System.Drawing.Size(288, 21)
         Me.manoTroncon_listManoControle.TabIndex = 1
@@ -11853,7 +11845,7 @@ Partial Class FrmDiagnostique
         '
         Me.manopulveIsFortePression.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.manopulveIsFortePression.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.manopulveIsFortePression.Location = New System.Drawing.Point(193, 50)
+        Me.manopulveIsFortePression.Location = New System.Drawing.Point(196, 31)
         Me.manopulveIsFortePression.Name = "manopulveIsFortePression"
         Me.manopulveIsFortePression.Size = New System.Drawing.Size(122, 16)
         Me.manopulveIsFortePression.TabIndex = 3
@@ -11864,7 +11856,7 @@ Partial Class FrmDiagnostique
         Me.manopulveIsSaisieManuelle.Checked = True
         Me.manopulveIsSaisieManuelle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.manopulveIsSaisieManuelle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.manopulveIsSaisieManuelle.Location = New System.Drawing.Point(321, 50)
+        Me.manopulveIsSaisieManuelle.Location = New System.Drawing.Point(324, 31)
         Me.manopulveIsSaisieManuelle.Name = "manopulveIsSaisieManuelle"
         Me.manopulveIsSaisieManuelle.Size = New System.Drawing.Size(184, 16)
         Me.manopulveIsSaisieManuelle.TabIndex = 4
@@ -11881,7 +11873,7 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_buses.ImageIndex = 3
         Me.tabPage_diagnostique_buses.Location = New System.Drawing.Point(4, 23)
         Me.tabPage_diagnostique_buses.Name = "tabPage_diagnostique_buses"
-        Me.tabPage_diagnostique_buses.Size = New System.Drawing.Size(1008, 653)
+        Me.tabPage_diagnostique_buses.Size = New System.Drawing.Size(1008, 680)
         Me.tabPage_diagnostique_buses.TabIndex = 7
         Me.tabPage_diagnostique_buses.Tag = "8"
         Me.tabPage_diagnostique_buses.Text = "Buses"
@@ -11897,7 +11889,7 @@ Partial Class FrmDiagnostique
         Me.Panel922.Controls.Add(Me.Lbl_diagnostic_922)
         Me.Panel922.Location = New System.Drawing.Point(0, 162)
         Me.Panel922.Name = "Panel922"
-        Me.Panel922.Size = New System.Drawing.Size(1008, 491)
+        Me.Panel922.Size = New System.Drawing.Size(1008, 518)
         Me.Panel922.TabIndex = 18
         '
         'Panel11
@@ -11924,7 +11916,7 @@ Partial Class FrmDiagnostique
         Me.Panel11.Controls.Add(Me.diagBuses_resultat)
         Me.Panel11.Location = New System.Drawing.Point(0, 56)
         Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(1008, 435)
+        Me.Panel11.Size = New System.Drawing.Size(1008, 462)
         Me.Panel11.TabIndex = 28
         '
         'tbDebitMoyen3bars
@@ -11932,7 +11924,7 @@ Partial Class FrmDiagnostique
         Me.tbDebitMoyen3bars.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbDebitMoyen3bars.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbDebitMoyen3bars.ForceBindingOnTextChanged = False
-        Me.tbDebitMoyen3bars.Location = New System.Drawing.Point(166, 412)
+        Me.tbDebitMoyen3bars.Location = New System.Drawing.Point(166, 439)
         Me.tbDebitMoyen3bars.Name = "tbDebitMoyen3bars"
         Me.tbDebitMoyen3bars.ReadOnly = True
         Me.tbDebitMoyen3bars.Size = New System.Drawing.Size(56, 20)
@@ -11943,7 +11935,7 @@ Partial Class FrmDiagnostique
         Me.LaDebitMoyen3bars.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LaDebitMoyen3bars.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LaDebitMoyen3bars.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.LaDebitMoyen3bars.Location = New System.Drawing.Point(20, 413)
+        Me.LaDebitMoyen3bars.Location = New System.Drawing.Point(20, 440)
         Me.LaDebitMoyen3bars.Name = "LaDebitMoyen3bars"
         Me.LaDebitMoyen3bars.Size = New System.Drawing.Size(144, 16)
         Me.LaDebitMoyen3bars.TabIndex = 36
@@ -12009,7 +12001,7 @@ Partial Class FrmDiagnostique
         Me.diagBuses_tab_categories.Location = New System.Drawing.Point(8, 40)
         Me.diagBuses_tab_categories.Name = "diagBuses_tab_categories"
         Me.diagBuses_tab_categories.SelectedIndex = 0
-        Me.diagBuses_tab_categories.Size = New System.Drawing.Size(992, 349)
+        Me.diagBuses_tab_categories.Size = New System.Drawing.Size(992, 376)
         Me.diagBuses_tab_categories.TabIndex = 2
         '
         'TabPage3
@@ -12044,7 +12036,7 @@ Partial Class FrmDiagnostique
         Me.TabPage3.Controls.Add(Me.cbxModele_Couleur)
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(984, 322)
+        Me.TabPage3.Size = New System.Drawing.Size(984, 349)
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "Niveau 1"
         '
@@ -12053,7 +12045,7 @@ Partial Class FrmDiagnostique
         Me.tbModele_DebitMaxi.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbModele_DebitMaxi.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbModele_DebitMaxi.ForceBindingOnTextChanged = False
-        Me.tbModele_DebitMaxi.Location = New System.Drawing.Point(456, 266)
+        Me.tbModele_DebitMaxi.Location = New System.Drawing.Point(456, 293)
         Me.tbModele_DebitMaxi.Name = "tbModele_DebitMaxi"
         Me.tbModele_DebitMaxi.ReadOnly = True
         Me.tbModele_DebitMaxi.Size = New System.Drawing.Size(56, 20)
@@ -12064,7 +12056,7 @@ Partial Class FrmDiagnostique
         Me.lblModele_DebitMaxi.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblModele_DebitMaxi.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblModele_DebitMaxi.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblModele_DebitMaxi.Location = New System.Drawing.Point(365, 267)
+        Me.lblModele_DebitMaxi.Location = New System.Drawing.Point(365, 294)
         Me.lblModele_DebitMaxi.Name = "lblModele_DebitMaxi"
         Me.lblModele_DebitMaxi.Size = New System.Drawing.Size(80, 16)
         Me.lblModele_DebitMaxi.TabIndex = 33
@@ -12076,7 +12068,7 @@ Partial Class FrmDiagnostique
         Me.tbModele_DebitMini.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbModele_DebitMini.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbModele_DebitMini.ForceBindingOnTextChanged = False
-        Me.tbModele_DebitMini.Location = New System.Drawing.Point(280, 266)
+        Me.tbModele_DebitMini.Location = New System.Drawing.Point(280, 293)
         Me.tbModele_DebitMini.Name = "tbModele_DebitMini"
         Me.tbModele_DebitMini.ReadOnly = True
         Me.tbModele_DebitMini.Size = New System.Drawing.Size(56, 20)
@@ -12087,7 +12079,7 @@ Partial Class FrmDiagnostique
         Me.lblModele_DebitMini.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblModele_DebitMini.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblModele_DebitMini.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblModele_DebitMini.Location = New System.Drawing.Point(174, 267)
+        Me.lblModele_DebitMini.Location = New System.Drawing.Point(174, 294)
         Me.lblModele_DebitMini.Name = "lblModele_DebitMini"
         Me.lblModele_DebitMini.Size = New System.Drawing.Size(80, 16)
         Me.lblModele_DebitMini.TabIndex = 31
@@ -12874,7 +12866,7 @@ Partial Class FrmDiagnostique
         Me.tbModele_UsureMoyenne.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbModele_UsureMoyenne.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbModele_UsureMoyenne.ForceBindingOnTextChanged = False
-        Me.tbModele_UsureMoyenne.Location = New System.Drawing.Point(912, 266)
+        Me.tbModele_UsureMoyenne.Location = New System.Drawing.Point(912, 293)
         Me.tbModele_UsureMoyenne.Name = "tbModele_UsureMoyenne"
         Me.tbModele_UsureMoyenne.ReadOnly = True
         Me.tbModele_UsureMoyenne.Size = New System.Drawing.Size(56, 20)
@@ -12885,7 +12877,7 @@ Partial Class FrmDiagnostique
         Me.lblModele_UsureMoyenne.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblModele_UsureMoyenne.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblModele_UsureMoyenne.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblModele_UsureMoyenne.Location = New System.Drawing.Point(737, 267)
+        Me.lblModele_UsureMoyenne.Location = New System.Drawing.Point(737, 294)
         Me.lblModele_UsureMoyenne.Name = "lblModele_UsureMoyenne"
         Me.lblModele_UsureMoyenne.Size = New System.Drawing.Size(167, 16)
         Me.lblModele_UsureMoyenne.TabIndex = 17
@@ -12897,7 +12889,7 @@ Partial Class FrmDiagnostique
         Me.tbModele_DebitMoyen.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbModele_DebitMoyen.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbModele_DebitMoyen.ForceBindingOnTextChanged = False
-        Me.tbModele_DebitMoyen.Location = New System.Drawing.Point(104, 266)
+        Me.tbModele_DebitMoyen.Location = New System.Drawing.Point(104, 293)
         Me.tbModele_DebitMoyen.Name = "tbModele_DebitMoyen"
         Me.tbModele_DebitMoyen.ReadOnly = True
         Me.tbModele_DebitMoyen.Size = New System.Drawing.Size(56, 20)
@@ -12908,7 +12900,7 @@ Partial Class FrmDiagnostique
         Me.lblModele_DebitMoyen.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblModele_DebitMoyen.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblModele_DebitMoyen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblModele_DebitMoyen.Location = New System.Drawing.Point(18, 267)
+        Me.lblModele_DebitMoyen.Location = New System.Drawing.Point(18, 294)
         Me.lblModele_DebitMoyen.Name = "lblModele_DebitMoyen"
         Me.lblModele_DebitMoyen.Size = New System.Drawing.Size(80, 16)
         Me.lblModele_DebitMoyen.TabIndex = 17
@@ -12920,7 +12912,7 @@ Partial Class FrmDiagnostique
         Me.tbModele_NbBusesUsees.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbModele_NbBusesUsees.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbModele_NbBusesUsees.ForceBindingOnTextChanged = False
-        Me.tbModele_NbBusesUsees.Location = New System.Drawing.Point(680, 266)
+        Me.tbModele_NbBusesUsees.Location = New System.Drawing.Point(680, 293)
         Me.tbModele_NbBusesUsees.Name = "tbModele_NbBusesUsees"
         Me.tbModele_NbBusesUsees.ReadOnly = True
         Me.tbModele_NbBusesUsees.Size = New System.Drawing.Size(56, 20)
@@ -12931,7 +12923,7 @@ Partial Class FrmDiagnostique
         Me.lblModele_NbBusesUsees.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblModele_NbBusesUsees.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblModele_NbBusesUsees.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblModele_NbBusesUsees.Location = New System.Drawing.Point(544, 267)
+        Me.lblModele_NbBusesUsees.Location = New System.Drawing.Point(544, 294)
         Me.lblModele_NbBusesUsees.Name = "lblModele_NbBusesUsees"
         Me.lblModele_NbBusesUsees.Size = New System.Drawing.Size(128, 16)
         Me.lblModele_NbBusesUsees.TabIndex = 17
@@ -13021,7 +13013,7 @@ Partial Class FrmDiagnostique
         Me.Label52.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label52.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label52.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label52.Location = New System.Drawing.Point(638, 395)
+        Me.Label52.Location = New System.Drawing.Point(638, 422)
         Me.Label52.Name = "Label52"
         Me.Label52.Size = New System.Drawing.Size(186, 16)
         Me.Label52.TabIndex = 17
@@ -13033,7 +13025,7 @@ Partial Class FrmDiagnostique
         Me.diagBuses_nbBusesUsees.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.diagBuses_nbBusesUsees.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.diagBuses_nbBusesUsees.ForceBindingOnTextChanged = False
-        Me.diagBuses_nbBusesUsees.Location = New System.Drawing.Point(344, 390)
+        Me.diagBuses_nbBusesUsees.Location = New System.Drawing.Point(344, 417)
         Me.diagBuses_nbBusesUsees.Name = "diagBuses_nbBusesUsees"
         Me.diagBuses_nbBusesUsees.ReadOnly = True
         Me.diagBuses_nbBusesUsees.Size = New System.Drawing.Size(56, 20)
@@ -13044,7 +13036,7 @@ Partial Class FrmDiagnostique
         Me.Label213.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label213.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label213.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label213.Location = New System.Drawing.Point(240, 395)
+        Me.Label213.Location = New System.Drawing.Point(240, 422)
         Me.Label213.Name = "Label213"
         Me.Label213.Size = New System.Drawing.Size(96, 16)
         Me.Label213.TabIndex = 17
@@ -13056,7 +13048,7 @@ Partial Class FrmDiagnostique
         Me.diagBuses_usureMoyBuses.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.diagBuses_usureMoyBuses.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.diagBuses_usureMoyBuses.ForceBindingOnTextChanged = False
-        Me.diagBuses_usureMoyBuses.Location = New System.Drawing.Point(576, 390)
+        Me.diagBuses_usureMoyBuses.Location = New System.Drawing.Point(576, 417)
         Me.diagBuses_usureMoyBuses.Name = "diagBuses_usureMoyBuses"
         Me.diagBuses_usureMoyBuses.ReadOnly = True
         Me.diagBuses_usureMoyBuses.Size = New System.Drawing.Size(56, 20)
@@ -13067,7 +13059,7 @@ Partial Class FrmDiagnostique
         Me.Label214.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label214.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label214.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label214.Location = New System.Drawing.Point(406, 395)
+        Me.Label214.Location = New System.Drawing.Point(406, 422)
         Me.Label214.Name = "Label214"
         Me.Label214.Size = New System.Drawing.Size(162, 16)
         Me.Label214.TabIndex = 17
@@ -13079,7 +13071,7 @@ Partial Class FrmDiagnostique
         Me.LaDebitMoyenBuses.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LaDebitMoyenBuses.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LaDebitMoyenBuses.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.LaDebitMoyenBuses.Location = New System.Drawing.Point(20, 395)
+        Me.LaDebitMoyenBuses.Location = New System.Drawing.Point(20, 422)
         Me.LaDebitMoyenBuses.Name = "LaDebitMoyenBuses"
         Me.LaDebitMoyenBuses.Size = New System.Drawing.Size(144, 16)
         Me.LaDebitMoyenBuses.TabIndex = 17
@@ -13091,7 +13083,7 @@ Partial Class FrmDiagnostique
         Me.diagBuses_debitMoyen.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.diagBuses_debitMoyen.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.diagBuses_debitMoyen.ForceBindingOnTextChanged = False
-        Me.diagBuses_debitMoyen.Location = New System.Drawing.Point(166, 390)
+        Me.diagBuses_debitMoyen.Location = New System.Drawing.Point(166, 417)
         Me.diagBuses_debitMoyen.Name = "diagBuses_debitMoyen"
         Me.diagBuses_debitMoyen.ReadOnly = True
         Me.diagBuses_debitMoyen.Size = New System.Drawing.Size(56, 20)
@@ -13102,7 +13094,7 @@ Partial Class FrmDiagnostique
         Me.diagBuses_resultat.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.diagBuses_resultat.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.diagBuses_resultat.ForeColor = System.Drawing.Color.Red
-        Me.diagBuses_resultat.Location = New System.Drawing.Point(832, 395)
+        Me.diagBuses_resultat.Location = New System.Drawing.Point(832, 422)
         Me.diagBuses_resultat.Name = "diagBuses_resultat"
         Me.diagBuses_resultat.Size = New System.Drawing.Size(168, 16)
         Me.diagBuses_resultat.TabIndex = 27
@@ -13187,7 +13179,7 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_accessoires.Location = New System.Drawing.Point(4, 23)
         Me.tabPage_diagnostique_accessoires.Name = "tabPage_diagnostique_accessoires"
         Me.tabPage_diagnostique_accessoires.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabPage_diagnostique_accessoires.Size = New System.Drawing.Size(1008, 653)
+        Me.tabPage_diagnostique_accessoires.Size = New System.Drawing.Size(1008, 680)
         Me.tabPage_diagnostique_accessoires.TabIndex = 8
         Me.tabPage_diagnostique_accessoires.Text = "Accessoires"
         '
@@ -13205,7 +13197,7 @@ Partial Class FrmDiagnostique
         Me.Panel8.Controls.Add(Me.Label_diagnostic_12)
         Me.Panel8.Location = New System.Drawing.Point(0, 115)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(1008, 539)
+        Me.Panel8.Size = New System.Drawing.Size(1008, 566)
         Me.Panel8.TabIndex = 22
         '
         'Panel9
@@ -14774,7 +14766,7 @@ Partial Class FrmDiagnostique
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.CancelButton = Me.btn_annuler
-        Me.ClientSize = New System.Drawing.Size(1008, 679)
+        Me.ClientSize = New System.Drawing.Size(1008, 706)
         Me.ControlBox = False
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
@@ -14942,23 +14934,15 @@ Partial Class FrmDiagnostique
         Me.tab_833.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout
-        Me.GroupBox6.ResumeLayout(False)
-        Me.GroupBox6.PerformLayout
         CType(Me.gdvPressions1, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout
-        Me.GroupBox7.ResumeLayout(False)
-        Me.GroupBox7.PerformLayout
         CType(Me.gdvPressions2, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage8.ResumeLayout(False)
         Me.TabPage8.PerformLayout
-        Me.GroupBox8.ResumeLayout(False)
-        Me.GroupBox8.PerformLayout
         CType(Me.gdvPressions3, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage9.ResumeLayout(False)
         Me.TabPage9.PerformLayout
-        Me.GroupBox9.ResumeLayout(False)
-        Me.GroupBox9.PerformLayout
         CType(Me.gdvPressions4, System.ComponentModel.ISupportInitialize).EndInit
         Me.pnl542.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
@@ -15186,18 +15170,14 @@ Partial Class FrmDiagnostique
     Friend WithEvents pressionTronc_heterogeniteAlimentation4 As System.Windows.Forms.Label
     Friend WithEvents diag_pulve_Type As System.Windows.Forms.Label
     Friend WithEvents Label117 As System.Windows.Forms.Label
-    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
     Friend WithEvents tbMoyEcartbar2 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents tbMoyEcartPct2 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents Label118 As System.Windows.Forms.Label
-    Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
     Friend WithEvents tbMoyEcartbar3 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents Label105 As System.Windows.Forms.Label
     Friend WithEvents tbMoyEcartPct3 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents Label107 As System.Windows.Forms.Label
-    Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
     Friend WithEvents tbMoyEcartbar4 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents Label108 As System.Windows.Forms.Label
     Friend WithEvents tbMoyEcartPct4 As CRODIP_ControlLibrary.TBNumeric
@@ -15910,4 +15890,8 @@ Partial Class FrmDiagnostique
     Friend WithEvents RadioButton_diagnostic_2622 As CRODIP_ControlLibrary.CtrlDiag2
     Friend WithEvents RadioButton_diagnostic_2621 As CRODIP_ControlLibrary.CtrlDiag2
     Friend WithEvents m_bsrcManoCPression As BindingSource
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label19 As Label
 End Class

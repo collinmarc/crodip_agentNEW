@@ -1294,7 +1294,8 @@ Public Class FrmDiagnostique
             Dim nTroncon As Integer = 0
             For nPression = 1 To 4
                 SetCurrentPressionControls(nPression)
-                tab_833.SelectTab(nPression - 1)
+                '07/12/2023 : Pouquoi changer de tab ?
+                'tab_833.SelectTab(nPression - 1)
                 For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
                     For Each oTr As RelevePression833Troncon In oNiv.colTroncons
                         If oTr.PressionLue <> 0 Then
@@ -7824,7 +7825,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     'Reaffectation de la pression lue pour réinitialisé tous les calculs
                     If IsNumeric(m_dgvPressionCurrent(ncol, ROW_PRESSION).Value) Then
                         m_RelevePression833_Current.SetPressionLue(nNiveau, nTroncon, m_dgvPressionCurrent(ncol, ROW_PRESSION).Value)
-                        Dim oC As DataGridViewComboBoxCell = m_dgvPressionCurrent(ncol, ROW_PRESSION)
+                        'Dim oC As DataGridViewComboBoxCell = m_dgvPressionCurrent(ncol, ROW_PRESSION)
                         'Dim oManoc As ManometreControle = ManometreControleManager.getManometreControleByTraca(m_diagnostic.organismePresId, oC.Value)
                         'm_RelevePression833_Current.SetManoCId(nNiveau, nTroncon, oManoc.numeroNational)
                         'Affichage des résultats dans le datagridView courant
@@ -7886,18 +7887,21 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
             Dim bDefaut As Boolean
             bDefaut = False
-            If rbPression1.Checked And m_RelevePression833_P1.Result_isDefautEcart Then
+            If m_RelevePression833_Current.Result_isDefautEcart Then
                 bDefaut = True
             End If
-            If rbPression2.Checked And m_RelevePression833_P2.Result_isDefautEcart Then
-                bDefaut = True
-            End If
-            If rbPression3.Checked And m_RelevePression833_P3.Result_isDefautEcart Then
-                bDefaut = True
-            End If
-            If rbPression4.Checked And m_RelevePression833_P4.Result_isDefautEcart Then
-                bDefaut = True
-            End If
+            'If rbPression1.Checked And m_RelevePression833_P1.Result_isDefautEcart Then
+            '    bDefaut = True
+            'End If
+            'If rbPression2.Checked And m_RelevePression833_P2.Result_isDefautEcart Then
+            '    bDefaut = True
+            'End If
+            'If rbPression3.Checked And m_RelevePression833_P3.Result_isDefautEcart Then
+            '    bDefaut = True
+            'End If
+            'If rbPression4.Checked And m_RelevePression833_P4.Result_isDefautEcart Then
+            '    bDefaut = True
+            'End If
             If bDefaut Then
                 lblp833DefautEcart.Text = "DEFAUT"
                 lblp833DefautEcart.ForeColor = System.Drawing.Color.Red
@@ -8193,7 +8197,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Création des relevés de pressions
             createRelevePression()
             RAZManopulvePressionLues()
+            '#07/12/2023 on pourrait supprimer le RAZ
             SetPressionControle542ToPressionManoPulve833(manopulveIsUseCalibrateur.Checked)
+            '#07/12/2023 Et Recalculer les erreurs de Mano de controle 542
+            'validatemanopulvePressionControle(1)
+            'validatemanopulvePressionControle(2)
+            'validatemanopulvePressionControle(3)
+            'validatemanopulvePressionControle(4)
             SelectTableauMesurePourDefaut()
 
 
@@ -8327,6 +8337,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     End If
                 End If
             End If
+            '            setRelevePressionparDeFaut(1, True)
             tab_833.SelectedTab.ImageIndex = 0 'Affectation de la puce de l'onglet sélectionné (Bug la première fois il ne s'affiche automatiquement par le rb_chekedChange)
 
         Catch ex As Exception
@@ -8346,7 +8357,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub manopulveIsSaisieManuelle_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles manopulveIsSaisieManuelle.CheckedChanged
         'CSDebug.dispInfo("manopulveIsSaisieManuelle_CheckedChanged_1")
-        If manopulveIsSaisieManuelle.Checked Then
+        If manopulveIsSaisieManuelle.Checked And Not m_bDuringLoad Then
             setPressionsManuelles()
         End If
 
@@ -9093,20 +9104,25 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
     Private Sub dgv_CellEnter()
-        Dim iCol As Integer
-        Dim irow As Integer
         Try
             If m_dgvPressionCurrent IsNot Nothing Then
                 If m_dgvPressionCurrent.CurrentCell IsNot Nothing Then
-                    iCol = m_dgvPressionCurrent.CurrentCell.ColumnIndex
-                    irow = m_dgvPressionCurrent.CurrentCell.RowIndex
                     'Si la cellule sur laquelle on entre est 'ReadOnly' on relance un Tab
-                    If (m_dgvPressionCurrent.Rows(irow).Cells(iCol).ReadOnly = True) Then
-                        'If iCol = (m_dgvPressionCurrent.ColumnCount - 1) Then
-                        'm_dgvPressionCurrent.CurrentCell = m_dgvPressionCurrent(1, ROW_PRESSION)
-                        'Else
-                        'SendKeys.Send("{Tab}")
-                        'End If
+                    If m_dgvPressionCurrent.CurrentCell.ReadOnly Then
+                        m_dgvPressionCurrent.CurrentCell.Selected = False
+                        If m_dgvPressionCurrent.CurrentRow.Index > ROW_MANOMETRE Then
+                            'BUG : Je n'arrive pas à sélectionner la 1ere cellule du Tableau
+                            'Répositionnement sur le 1er controle de la page
+                            manopulveIsFaiblePression.Focus()
+                            'm_dgvPressionCurrent.SelectNextControl(m_dgvPressionCurrent, True, True, True, True)
+                            'Try
+                            '    m_dgvPressionCurrent.CurrentCell = m_dgvPressionCurrent.Rows(ROW_PRESSION).Cells(1)
+                            'Catch ex As Exception
+
+                            'End Try
+                        Else
+                            SendKeys.Send("{Tab}")
+                        End If
                     End If
                 End If
             End If
@@ -9118,11 +9134,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
     Private Sub dgv_CellValueChanged()
         If m_dgvPressionCurrent IsNot Nothing And m_dgvPressionCurrent.CurrentCell.Value IsNot Nothing Then
-            Dim nRow As Integer = m_dgvPressionCurrent.CurrentCell.RowIndex
-            If nRow = ROW_PRESSION Then
-                dgv_CellValueChangedPression()
-            Else
-                dgv_CellValueChangedManometre()
+            If Not m_bDuringLoad Then
+                Dim nRow As Integer = m_dgvPressionCurrent.CurrentCell.RowIndex
+                If nRow = ROW_PRESSION Then
+                    dgv_CellValueChangedPression()
+                Else
+                    dgv_CellValueChangedManometre()
+                End If
             End If
         End If
     End Sub
@@ -9234,29 +9252,31 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         setRelevePressionparDeFaut(3, rbPression3.Checked)
     End Sub
     Private Sub setRelevePressionparDeFaut(ByVal nPression As Integer, ByVal bValue As Boolean)
-        Dim oReleve As RelevePression833 = Nothing
-        Select Case nPression
-            Case 1
-                oReleve = m_RelevePression833_P1
-            Case 2
-                oReleve = m_RelevePression833_P2
-            Case 3
-                oReleve = m_RelevePression833_P3
-            Case 4
-                oReleve = m_RelevePression833_P4
-        End Select
-        If oReleve IsNot Nothing Then
-            oReleve.PressionManoPourCalculDefaut = bValue
-            'Affichage de l'onglet de la pression par défaut
-            If bValue Then
-                tab_833.SelectedTab = tab_833.TabPages(nPression - 1)
-                tab833_changeTab() ' on ne sait pas pourquoi, mais l'evt Selectindex ne se déclence automatiquement
+        If bValue Then
+            Dim oReleve As RelevePression833 = Nothing
+            Select Case nPression
+                Case 1
+                    oReleve = m_RelevePression833_P1
+                Case 2
+                    oReleve = m_RelevePression833_P2
+                Case 3
+                    oReleve = m_RelevePression833_P3
+                Case 4
+                    oReleve = m_RelevePression833_P4
+            End Select
+            If oReleve IsNot Nothing Then
+                oReleve.PressionManoPourCalculDefaut = bValue
+                'Affichage de l'onglet de la pression par défaut
+                '                If bValue Then
+                '#07/12/2023 : le 
+                'tab_833.SelectedTab = tab_833.TabPages(nPression - 1)
+                'tab833_changeTab() ' on ne sait pas pourquoi, mais l'evt Selectindex ne se déclence automatiquement
                 AfficheDefautEcartGeneral()
                 AfficheDefautHeterogeneiteGeneral()
+                '               End If
             End If
+            checkIsOk(7)
         End If
-        checkIsOk(7)
-
     End Sub
     Private Sub rbPression4_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbPression4.CheckedChanged
         'CSDebug.dispInfo("rbPression4_CheckedChanged")
@@ -10984,4 +11004,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         isCodeSpecial = False
         checkAnswer2(sender, 1)
     End Sub
+
+    Private Sub tbMoyEcartPct4_TextChanged(sender As Object, e As EventArgs) Handles tbMoyEcartPct4.TextChanged
+
+    End Sub
+
 End Class
