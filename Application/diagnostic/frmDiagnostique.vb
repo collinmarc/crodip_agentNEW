@@ -9718,16 +9718,19 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim nPression As Decimal
             Dim nNiveau As Integer
             Dim nTroncon As Integer
-
-            nPression = CDec(m_tbPressionManoCurrent.Text)
-            For nCol As Integer = 1 To m_dgvPressionCurrent.Columns.Count - 1
-                nNiveau = m_dgvPressionCurrent(nCol, ROW_NIVEAUX).Value
-                nTroncon = m_dgvPressionCurrent(nCol, ROW_TRONCONS).Value
-
-                m_RelevePression833_Current.SetPressionLue(nNiveau, nTroncon, nPression)
-                m_dgvPressionCurrent(nCol, ROW_PRESSION).Value = nPression
-                AfficheResultat833(nCol)
+            For nPression = 1 To 4
+                tab_833.SelectedIndex = nPression - 1
+                SetCurrentPressionControls()
+                For nCol As Integer = 1 To m_dgvPressionCurrent.Columns.Count - 1
+                    Dim Pression As Decimal = CDec(m_tbPressionManoCurrent.Text)
+                    nNiveau = m_dgvPressionCurrent(nCol, ROW_NIVEAUX).Value
+                    nTroncon = m_dgvPressionCurrent(nCol, ROW_TRONCONS).Value
+                    m_RelevePression833_Current.SetPressionLue(nNiveau, nTroncon, Pression)
+                    m_dgvPressionCurrent(nCol, ROW_PRESSION).Value = Pression
+                    AfficheResultat833(nCol)
+                Next
             Next
+            tab_833.SelectedIndex = 0
             checkIsOk(7)
 
             '===========================
@@ -11005,8 +11008,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         checkAnswer2(sender, 1)
     End Sub
 
-    Private Sub tbMoyEcartPct4_TextChanged(sender As Object, e As EventArgs) Handles tbMoyEcartPct4.TextChanged
+    Private Sub ContextMenuStrip1_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
 
     End Sub
-
 End Class

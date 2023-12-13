@@ -1421,6 +1421,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_synthese833.vb">
+      <DependentUpon>cr_synthese833.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseBuses15.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1495,13 +1502,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>cr_synthese542.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="moduleDocumentaire\_parametres\cr_synthese833.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cr_synthese833.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -2658,11 +2658,6 @@
       <LastGenOutput>cr_synthese542.vb</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="moduleDocumentaire\_parametres\cr_synthese833.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>cr_synthese833.vb</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseCapteur.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_ReglagePulveSyntheseCapteur.vb</LastGenOutput>
@@ -2771,6 +2766,11 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cr_diagVerifMano.vb</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_synthese833.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_synthese833.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="My Project\Resources.resx">
       <SubType>Designer</SubType>

@@ -1104,7 +1104,7 @@ Partial Class FrmDiagnostique
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
         '
         'ToolStripMenuItem1
         '
@@ -1112,7 +1112,7 @@ Partial Class FrmDiagnostique
         Me.ToolStripMenuItem1.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
         Me.ToolStripMenuItem1.ShowShortcutKeys = False
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(60, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         '
         'listImg_flags
         '
