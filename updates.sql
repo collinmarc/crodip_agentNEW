@@ -327,9 +327,16 @@
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.0.01','2023-03-01 12:00:00','Metrologie');
 
 -- Tracabilité Mano
-ALTER TABLE AgentManocontrole ADD COLUMN typeTraca Text ;
-ALTER TABLE AgentManocontrole ADD COLUMN numTraca int ;
-ALTER TABLE AgentManocontrole ADD COLUMN typeRaccord text ;
-ALTER TABLE DiagnosticTroncons833 Add COLUMN manocId Text;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.1.00','2023-07-23 12:00:00','Tracabilité Mano');
+--ALTER TABLE AgentManocontrole ADD COLUMN typeTraca Text ;
+--ALTER TABLE AgentManocontrole ADD COLUMN numTraca int ;
+--ALTER TABLE AgentManocontrole ADD COLUMN typeRaccord text ;
+--ALTER TABLE DiagnosticTroncons833 Add COLUMN manocId Text;
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.1.00','2023-07-23 12:00:00','Tracabilité Mano');
+
+ALTER TABLE Pulverisateur Add COLUMN immatCertificat  Text;
+ALTER TABLE Pulverisateur Add COLUMN immatPlaque Text;
+ALTER TABLE Pulverisateur ADD COLUMN numerochassis Text;
+UPDATE Pulverisateur SET numerochassis = numchassis;
+ALTER TABLE Pulverisateur DROP COLUMN numchassis;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.1.01','2024-01-16 12:00:00','Immatriculation Pulve');
 

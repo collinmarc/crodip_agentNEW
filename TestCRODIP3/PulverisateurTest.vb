@@ -7,7 +7,7 @@ Imports Crodip_agent
 
 
 '''<summary>
-'''Classe de test pour DiagnosticHelp551Test, 
+'''Classe de test pour Pulverisateur, 
 '''</summary>
 <TestClass()> _
 Public Class Pulverisateurtest
@@ -156,5 +156,150 @@ Public Class Pulverisateurtest
 
 
     End Sub
+    <TestMethod()>
+    Public Sub TST_GET_SEND_WS_Pulverisateur()
+        Dim oExploitation As Exploitation
+        Dim oPUlve As Pulverisateur
+        Dim oPUlve2 As Pulverisateur
+        Dim strId As String
+
+        oExploitation = createExploitation()
+        Dim oResponse As Object = Nothing
+        ExploitationManager.sendWSExploitation(m_oAgent, oExploitation, oResponse)
+
+        oPUlve = createPulve(oExploitation)
+        strId = oPUlve.id
+        oPUlve.numeroChassis = "132456"
+        oPUlve.isPulveAdditionnel = True
+        oPUlve.pulvePrincipalNumNat = "123"
+        oPUlve.isPompesDoseuses = False
+        oPUlve.nbPompesDoseuses = 0
+        oPUlve.isCoupureAutoTroncons = False
+        oPUlve.isRincagecircuit = False
+        oPUlve.isReglageAutoHauteur = False
+        oPUlve.immatCertificat = "123AQW123"
+        oPUlve.immatPlaque = "456ZSX456"
+        PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
+        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPUlve)
+
+        oPUlve2 = PulverisateurManager.getWSPulverisateurById(m_oAgent.id, strId)
+        Assert.AreEqual(strId, oPUlve2.id)
+        Assert.IsTrue(oPUlve2.isPulveAdditionnel)
+        Assert.AreEqual("123", oPUlve2.pulvePrincipalNumNat)
+        Assert.AreEqual("132456", oPUlve2.numeroChassis)
+        Assert.AreEqual(False, oPUlve2.isPompesDoseuses)
+        Assert.AreEqual(0, oPUlve2.nbPompesDoseuses)
+        Assert.IsFalse(oPUlve2.isCoupureAutoTroncons)
+        Assert.IsFalse(oPUlve2.isRincagecircuit)
+        Assert.IsFalse(oPUlve2.isReglageAutoHauteur)
+        Assert.AreEqual("123AQW123", oPUlve2.immatCertificat)
+        Assert.AreEqual("456ZSX456", oPUlve2.immatPlaque)
+
+
+        pause(1000)
+        oPUlve2.numeroChassis = "132456"
+        oPUlve2.isPulveAdditionnel = True
+        oPUlve2.pulvePrincipalNumNat = "123"
+        oPUlve2.isPompesDoseuses = True
+        oPUlve2.nbPompesDoseuses = 12
+        oPUlve2.isCoupureAutoTroncons = True
+        oPUlve2.isRincagecircuit = True
+        oPUlve2.isReglageAutoHauteur = True
+        oPUlve2.immatCertificat = "321AQW321"
+        oPUlve2.immatPlaque = "654ZSX654"
+
+        PulverisateurManager.save(oPUlve2, oExploitation.id, m_oAgent)
+        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPUlve2)
+
+        oPUlve = PulverisateurManager.getWSPulverisateurById(m_oAgent.id, strId)
+        Assert.AreEqual(strId, oPUlve.id)
+        Assert.IsTrue(oPUlve.isPulveAdditionnel)
+        Assert.AreEqual("123", oPUlve.pulvePrincipalNumNat)
+        Assert.AreEqual("132456", oPUlve.numeroChassis)
+        Assert.AreEqual(True, oPUlve.isPompesDoseuses)
+        Assert.AreEqual(12, oPUlve.nbPompesDoseuses)
+        Assert.IsTrue(oPUlve.isCoupureAutoTroncons)
+        Assert.IsTrue(oPUlve.isRincagecircuit)
+        Assert.IsTrue(oPUlve.isReglageAutoHauteur)
+        Assert.AreEqual("321AQW321", oPUlve.immatCertificat)
+        Assert.AreEqual("654ZSX654", oPUlve.immatPlaque)
+
+
+        PulverisateurManager.deletePulverisateurID(strId)
+
+
+    End Sub
+    <TestMethod()>
+    Public Sub TST_CRUD_Pulverisateur()
+        Dim oExploitation As Exploitation
+        Dim oPUlve As Pulverisateur
+        Dim oPUlve2 As Pulverisateur
+        Dim strId As String
+
+        oExploitation = createExploitation()
+        Dim oResponse As Object = Nothing
+        ExploitationManager.sendWSExploitation(m_oAgent, oExploitation, oResponse)
+
+        oPUlve = createPulve(oExploitation)
+        strId = oPUlve.id
+        oPUlve.numeroChassis = "132456"
+        oPUlve.isPulveAdditionnel = True
+        oPUlve.pulvePrincipalNumNat = "123"
+        oPUlve.isPompesDoseuses = False
+        oPUlve.nbPompesDoseuses = 0
+        oPUlve.isCoupureAutoTroncons = False
+        oPUlve.isRincagecircuit = False
+        oPUlve.isReglageAutoHauteur = False
+        oPUlve.immatCertificat = "123AQW123"
+        oPUlve.immatPlaque = "456ZSX456"
+        Assert.IsTrue(PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent))
+
+        oPUlve2 = PulverisateurManager.getPulverisateurById(strId)
+        Assert.AreEqual(strId, oPUlve2.id)
+        Assert.IsTrue(oPUlve2.isPulveAdditionnel)
+        Assert.AreEqual("123", oPUlve2.pulvePrincipalNumNat)
+        Assert.AreEqual("132456", oPUlve2.numeroChassis)
+        Assert.AreEqual(False, oPUlve2.isPompesDoseuses)
+        Assert.AreEqual(0, oPUlve2.nbPompesDoseuses)
+        Assert.IsFalse(oPUlve2.isCoupureAutoTroncons)
+        Assert.IsFalse(oPUlve2.isRincagecircuit)
+        Assert.IsFalse(oPUlve2.isReglageAutoHauteur)
+        Assert.AreEqual("123AQW123", oPUlve2.immatCertificat)
+        Assert.AreEqual("456ZSX456", oPUlve2.immatPlaque)
+
+
+        pause(1000)
+        oPUlve2.numeroChassis = "132456"
+        oPUlve2.isPulveAdditionnel = True
+        oPUlve2.pulvePrincipalNumNat = "123"
+        oPUlve2.isPompesDoseuses = True
+        oPUlve2.nbPompesDoseuses = 12
+        oPUlve2.isCoupureAutoTroncons = True
+        oPUlve2.isRincagecircuit = True
+        oPUlve2.isReglageAutoHauteur = True
+        oPUlve2.immatCertificat = "321AQW321"
+        oPUlve2.immatPlaque = "654ZSX654"
+
+        PulverisateurManager.save(oPUlve2, oExploitation.id, m_oAgent)
+
+        oPUlve = PulverisateurManager.getPulverisateurById(strId)
+        Assert.AreEqual(strId, oPUlve.id)
+        Assert.IsTrue(oPUlve.isPulveAdditionnel)
+        Assert.AreEqual("123", oPUlve.pulvePrincipalNumNat)
+        Assert.AreEqual("132456", oPUlve.numeroChassis)
+        Assert.AreEqual(True, oPUlve.isPompesDoseuses)
+        Assert.AreEqual(12, oPUlve.nbPompesDoseuses)
+        Assert.IsTrue(oPUlve.isCoupureAutoTroncons)
+        Assert.IsTrue(oPUlve.isRincagecircuit)
+        Assert.IsTrue(oPUlve.isReglageAutoHauteur)
+        Assert.AreEqual("321AQW321", oPUlve.immatCertificat)
+        Assert.AreEqual("654ZSX654", oPUlve.immatPlaque)
+
+
+        PulverisateurManager.deletePulverisateurID(strId)
+
+
+    End Sub
+
 
 End Class

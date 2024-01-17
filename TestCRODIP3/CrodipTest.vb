@@ -15,8 +15,13 @@ Public Class CRODIPTest
     'Private m_IdAgent As Integer = 1053
     'Private m_idStructure As Integer = 99
 
-    Private m_IdAgent As Integer = 1119
-    Private m_idStructure As Integer = 498
+    'Private m_IdAgent As Integer = 1119
+    'Private m_idStructure As Integer = 498
+
+    'Admin-test.crodip.net
+    Private m_IdAgent As Integer = 72
+    Private m_idStructure As Integer = 22
+
 
     Private testContextInstance As TestContext
     Protected m_oAgent As Agent

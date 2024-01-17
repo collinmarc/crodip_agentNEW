@@ -937,6 +937,24 @@ Public Class Pulverisateur
             _numChassis = value
         End Set
     End Property
+    Private _immatCertificat As String
+    Public Property immatCertificat() As String
+        Get
+            Return _immatCertificat
+        End Get
+        Set(ByVal value As String)
+            _immatCertificat = value
+        End Set
+    End Property
+    Private _immatPlaque As String
+    Public Property immatPlaque() As String
+        Get
+            Return _immatPlaque
+        End Get
+        Set(ByVal value As String)
+            _immatPlaque = value
+        End Set
+    End Property
 
     Public Function setLargeurNbreRangs(pstr As String) As Boolean
         Dim bReturn As Boolean
@@ -1127,6 +1145,10 @@ Public Class Pulverisateur
                     Me.nbPompesDoseuses = pColValue
                 Case "numeroChassis".ToUpper().Trim()
                     Me.numeroChassis = pColValue
+                Case "immatCertificat".ToUpper().Trim()
+                    Me.immatCertificat = pColValue
+                Case "immatPlaque".ToUpper().Trim()
+                    Me.immatPlaque = pColValue
             End Select
             bReturn = True
         Catch ex As Exception
