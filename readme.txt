@@ -1,7 +1,10 @@
 TRUNK
 MASTER
-BUILD 20240117170000
+BUILD 20240118170000
 	0001601: Fiche Pulvé : Immatriculations + serie Obligatoire
+	0001600: SELECTION DES MANO SUR ONGLET MANO TRONCON
+	0001584: conservation N° châssis / série
+	0001602: Réinitialisation d'une base vide
 
 BUID 20231211170000
 	0001361: Saisie des Pressions Manos (833)

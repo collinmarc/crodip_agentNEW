@@ -1299,10 +1299,15 @@ Public Class FrmDiagnostique
                 For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
                     For Each oTr As RelevePression833Troncon In oNiv.colTroncons
                         If oTr.PressionLue <> 0 Then
+                            m_dgvPressionCurrent.currentCell = m_dgvPressionCurrent(oTr.NumCol, ROW_PRESSION)
                             m_dgvPressionCurrent(oTr.NumCol, ROW_PRESSION).Value = oTr.PressionLue
                         End If
                         If Not String.IsNullOrEmpty(oTr.Traca) Then
+                            m_dgvPressionCurrent.currentCell = m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE)
                             m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE).Value = oTr.Traca
+                        Else
+                            m_dgvPressionCurrent.currentCell = m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE)
+                            m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE).Value = ""
                         End If
                     Next
                 Next
@@ -1772,17 +1777,17 @@ Public Class FrmDiagnostique
                 manopulvePressionPulve_3.Text = "15" And
                 manopulvePressionPulve_4.Text = "20" Then
 
-                manopulveIsFortePression.Checked = True
+                rb542IsFortePression.Checked = True
 
             ElseIf (manopulvePressionPulve_1.Text = "1,6" Or manopulvePressionPulve_1.Text = "1.6") And
                    manopulvePressionPulve_2.Text = "2" And
                    manopulvePressionPulve_3.Text = "3" And
                    manopulvePressionPulve_4.Text = "4" Then
 
-                manopulveIsFaiblePression.Checked = True
+                rb542IsFaiblePression.Checked = True
 
             Else
-                manopulveIsSaisieManuelle.Checked = True
+                rb542IsSaisieManuelleFaible.Checked = True
             End If
 
         Catch ex As Exception
@@ -4817,12 +4822,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
         tab_833.Visible = True
         If m_Paramdiag.ParamDiagCalc833.Pression1 = 1.6D Then
-            manopulveIsFaiblePression.Checked = True
+            rb542IsFaiblePression.Checked = True
             nup_niveaux.Value = 1
             nupTroncons.Value = 4
         End If
         If m_Paramdiag.ParamDiagCalc833.Pression1 = 5D Then
-            manopulveIsFortePression.Checked = True
+            rb542IsFortePression.Checked = True
             nup_niveaux.Value = 1
             nupTroncons.Value = 2
         End If
@@ -7887,37 +7892,39 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
             Dim bDefaut As Boolean
             bDefaut = False
-            If m_RelevePression833_Current.Result_isDefautEcart Then
-                bDefaut = True
-            End If
-            'If rbPression1.Checked And m_RelevePression833_P1.Result_isDefautEcart Then
-            '    bDefaut = True
-            'End If
-            'If rbPression2.Checked And m_RelevePression833_P2.Result_isDefautEcart Then
-            '    bDefaut = True
-            'End If
-            'If rbPression3.Checked And m_RelevePression833_P3.Result_isDefautEcart Then
-            '    bDefaut = True
-            'End If
-            'If rbPression4.Checked And m_RelevePression833_P4.Result_isDefautEcart Then
-            '    bDefaut = True
-            'End If
-            If bDefaut Then
-                lblp833DefautEcart.Text = "DEFAUT"
-                lblp833DefautEcart.ForeColor = System.Drawing.Color.Red
-                If Not m_bDuringLoad Then
-                    'Pas de déclenchement pendant l'affichage d'un diag
-                    RadioButton_diagnostic_8333.Checked = True
-                    RadioButton_diagnostic_8330.Checked = False
+            If m_RelevePression833_Current IsNot Nothing Then
+                If m_RelevePression833_Current.Result_isDefautEcart Then
+                    bDefaut = True
                 End If
-            Else
-                lblp833DefautEcart.Text = "OK"
-                lblp833DefautEcart.ForeColor = System.Drawing.Color.Green
-                RadioButton_diagnostic_8333.Checked = False
-                If lblP833DefautHeterogeneite.Text = "OK" Then
+                'If rbPression1.Checked And m_RelevePression833_P1.Result_isDefautEcart Then
+                '    bDefaut = True
+                'End If
+                'If rbPression2.Checked And m_RelevePression833_P2.Result_isDefautEcart Then
+                '    bDefaut = True
+                'End If
+                'If rbPression3.Checked And m_RelevePression833_P3.Result_isDefautEcart Then
+                '    bDefaut = True
+                'End If
+                'If rbPression4.Checked And m_RelevePression833_P4.Result_isDefautEcart Then
+                '    bDefaut = True
+                'End If
+                If bDefaut Then
+                    lblp833DefautEcart.Text = "DEFAUT"
+                    lblp833DefautEcart.ForeColor = System.Drawing.Color.Red
                     If Not m_bDuringLoad Then
                         'Pas de déclenchement pendant l'affichage d'un diag
-                        RadioButton_diagnostic_8330.Checked = True
+                        RadioButton_diagnostic_8333.Checked = True
+                        RadioButton_diagnostic_8330.Checked = False
+                    End If
+                Else
+                    lblp833DefautEcart.Text = "OK"
+                    lblp833DefautEcart.ForeColor = System.Drawing.Color.Green
+                    RadioButton_diagnostic_8333.Checked = False
+                    If lblP833DefautHeterogeneite.Text = "OK" Then
+                        If Not m_bDuringLoad Then
+                            'Pas de déclenchement pendant l'affichage d'un diag
+                            RadioButton_diagnostic_8330.Checked = True
+                        End If
                     End If
                 End If
             End If
@@ -8097,13 +8104,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Function
 
 
-    Private Sub manopulveIsFaiblePression_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles manopulveIsFaiblePression.CheckedChanged
+    Private Sub manopulveIsFaiblePression_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rb542IsFaiblePression.CheckedChanged
         'CSDebug.dispInfo("manopulveIsFaiblePression_CheckedChanged_1")
         Try
 
-            If manopulveIsFaiblePression.Checked Then
+            If rb542IsFaiblePression.Checked Then
                 If Not m_bDuringLoad Then
-                    setPressionsFaibles()
+                    setPressionsFaibles(False)
                 End If
             End If
         Catch ex As Exception
@@ -8117,76 +8124,29 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         manopulvePressionControle_4.Text = ""
 
     End Sub
-    Private Sub setPressionsFaibles()
-        Try
 
-            manopulvePressionPulve_1.Text = 1.6D
-            manopulvePressionPulve_2.Text = 2
-            manopulvePressionPulve_3.Text = 3
-            manopulvePressionPulve_4.Text = 4
-            manopulvePressionPulve_1.ReadOnly = True
-            manopulvePressionPulve_2.ReadOnly = True
-            manopulvePressionPulve_3.ReadOnly = True
-            manopulvePressionPulve_4.ReadOnly = True
-
-            AffichageEnteteOnglet()
-            'Charegement des reférences de mano
-            For i As Integer = 1 To gdvPressions1.ColumnCount - 1
-                gdvPressions1(i, ROW_MANOMETRE).Value = Nothing
-            Next i
-            For i As Integer = 1 To gdvPressions2.ColumnCount - 1
-                gdvPressions2(i, ROW_MANOMETRE).Value = Nothing
-            Next i
-            For i As Integer = 1 To gdvPressions3.ColumnCount - 1
-                gdvPressions3(i, ROW_MANOMETRE).Value = Nothing
-            Next i
-            For i As Integer = 1 To gdvPressions4.ColumnCount - 1
-                gdvPressions4(i, ROW_MANOMETRE).Value = Nothing
-            Next i
-            m_bsrcManoCPression.Clear()
-            For Each oManoc As ManometreControle In m_olstManoC
-                If oManoc.IsTypeTracaB Then
-                    m_bsrcManoCPression.Add(oManoc)
-                End If
-            Next
-
-            createRelevePression()
-            RAZManopulvePressionLues()
-            SetPressionControle542ToPressionManoPulve833(manopulveIsUseCalibrateur.Checked)
-            SelectTableauMesurePourDefaut()
-
-
-        Catch ex As Exception
-            CSDebug.dispError("diagnostique::setPressionsFaibles ERR : " & ex.Message)
-        End Try
-
-    End Sub
-
-    Private Sub setPressionsFortes()
+    Private Sub setPressionsFortes(pbSaisieManuelle As Boolean)
         Try
             manopulvePressionPulve_1.Text = 5
             manopulvePressionPulve_2.Text = 10
             manopulvePressionPulve_3.Text = 15
             manopulvePressionPulve_4.Text = 20
-            manopulvePressionPulve_1.ReadOnly = True
-            manopulvePressionPulve_2.ReadOnly = True
-            manopulvePressionPulve_3.ReadOnly = True
-            manopulvePressionPulve_4.ReadOnly = True
-            AffichageEnteteOnglet()
+            manopulvePressionPulve_1.ReadOnly = Not pbSaisieManuelle
+            manopulvePressionPulve_2.ReadOnly = Not pbSaisieManuelle
+            manopulvePressionPulve_3.ReadOnly = Not pbSaisieManuelle
+            manopulvePressionPulve_4.ReadOnly = Not pbSaisieManuelle
+            'RAZ des traca manos avant rechargement de la liste
+            m_bDuringLoad = True 'pour ne pas traiter le changement
+            For nPression As Integer = 1 To 4
+                SetCurrentPressionControls(nPression)
+                For Each oCol As DataGridViewColumn In m_dgvPressionCurrent.Columns
+                    If oCol.Index > 0 Then
+                        m_dgvPressionCurrent(oCol.Index, ROW_MANOMETRE).Value = ""
+                    End If
+                Next
+            Next
+            m_bDuringLoad = False
 
-            'Charegement des reférences de mano
-            For i As Integer = 1 To gdvPressions1.ColumnCount - 1
-                gdvPressions1(i, ROW_MANOMETRE).Value = Nothing
-            Next i
-            For i As Integer = 1 To gdvPressions2.ColumnCount - 1
-                gdvPressions2(i, ROW_MANOMETRE).Value = Nothing
-            Next i
-            For i As Integer = 1 To gdvPressions3.ColumnCount - 1
-                gdvPressions3(i, ROW_MANOMETRE).Value = Nothing
-            Next i
-            For i As Integer = 1 To gdvPressions4.ColumnCount - 1
-                gdvPressions4(i, ROW_MANOMETRE).Value = Nothing
-            Next i
             m_bsrcManoCPression.Clear()
             For Each oManoc As ManometreControle In m_olstManoC
                 If oManoc.IsTypeTracaH Then
@@ -8194,18 +8154,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 End If
             Next
 
-            'Création des relevés de pressions
-            createRelevePression()
-            RAZManopulvePressionLues()
-            '#07/12/2023 on pourrait supprimer le RAZ
-            SetPressionControle542ToPressionManoPulve833(manopulveIsUseCalibrateur.Checked)
-            '#07/12/2023 Et Recalculer les erreurs de Mano de controle 542
-            'validatemanopulvePressionControle(1)
-            'validatemanopulvePressionControle(2)
-            'validatemanopulvePressionControle(3)
-            'validatemanopulvePressionControle(4)
-            SelectTableauMesurePourDefaut()
-
+            SetPressions()
 
         Catch ex As Exception
             CSDebug.dispError("diagnostique::setPressionsFortes ERR : " & ex.Message)
@@ -8345,35 +8294,97 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End Try
     End Sub
 
-    Private Sub manopulveIsFortePression_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles manopulveIsFortePression.CheckedChanged
+    Private Sub manopulveIsFortePression_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rb542IsFortePression.CheckedChanged
         'CSDebug.dispInfo("manopulveIsFortePression_CheckedChanged_1")
-        If manopulveIsFortePression.Checked Then
+        If rb542IsFortePression.Checked Then
             If Not m_bDuringLoad Then
-                setPressionsFortes()
+                setPressionsFortes(False)
             End If
         End If
 
     End Sub
 
-    Private Sub manopulveIsSaisieManuelle_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles manopulveIsSaisieManuelle.CheckedChanged
+    Private Sub rb542IsSaisieManuelleFaible_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rb542IsSaisieManuelleFaible.CheckedChanged
         'CSDebug.dispInfo("manopulveIsSaisieManuelle_CheckedChanged_1")
-        If manopulveIsSaisieManuelle.Checked And Not m_bDuringLoad Then
-            setPressionsManuelles()
+        If rb542IsSaisieManuelleFaible.Checked And Not m_bDuringLoad Then
+            setPressionsFaibles(True)
         End If
 
     End Sub
-    Private Sub setPressionsManuelles()
+    Private Sub rb542IsSaisieManuelleForte_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rb542IsSaisieManuelleForte.CheckedChanged
+        'CSDebug.dispInfo("manopulveIsSaisieManuelle_CheckedChanged_1")
+        If rb542IsSaisieManuelleForte.Checked And Not m_bDuringLoad Then
+            setPressionsFortes(True)
+        End If
+
+    End Sub
+    Private Sub setPressionsFaibles(pbSaisieManuelle As Boolean)
+        Try
+            manopulvePressionPulve_1.Text = 1.6D
+            manopulvePressionPulve_2.Text = 2
+            manopulvePressionPulve_3.Text = 3
+            manopulvePressionPulve_4.Text = 4
+            manopulvePressionPulve_1.ReadOnly = Not pbSaisieManuelle
+            manopulvePressionPulve_2.ReadOnly = Not pbSaisieManuelle
+            manopulvePressionPulve_3.ReadOnly = Not pbSaisieManuelle
+            manopulvePressionPulve_4.ReadOnly = Not pbSaisieManuelle
+            'RAZ des traca manos avant rechargement de la liste
+            m_bDuringLoad = True 'pour ne pas traiter le changement
+            For nPression As Integer = 1 To 4
+                SetCurrentPressionControls(nPression)
+                For Each oCol As DataGridViewColumn In m_dgvPressionCurrent.Columns
+                    If oCol.Index > 1 Then
+                        m_dgvPressionCurrent(oCol.Index, ROW_MANOMETRE).Value = ""
+                    End If
+                Next
+            Next
+            m_bDuringLoad = False
+
+            'Chargement des bons manos
+            m_bsrcManoCPression.Clear()
+            For Each oManoc As ManometreControle In m_olstManoC
+                If oManoc.IsTypeTracaB Then
+                    m_bsrcManoCPression.Add(oManoc)
+                End If
+            Next
+            SetPressions()
+        Catch ex As Exception
+            CSDebug.dispError("diagnostique::setPressionsFaibles ERR : " & ex.Message)
+        End Try
+    End Sub
+    ''' <summary>
+    ''' Appellé par SetPressionsFaibles et SetPressionFortes
+    ''' </summary>
+    Private Sub SetPressions()
         Try
 
-            manopulvePressionPulve_1.ReadOnly = False
-            manopulvePressionPulve_2.ReadOnly = False
-            manopulvePressionPulve_3.ReadOnly = False
-            manopulvePressionPulve_4.ReadOnly = False
-            'RAZManopulvePressionLues()
+            AffichageEnteteOnglet()
+            createRelevePression()
+            RAZManopulvePressionLues()
+            'Affecation de numéro de traca dans l'ordre
+            If m_bsrcManoCPression.Count > 0 Then
+                Dim nItem As Integer = 0
+                For nPression As Integer = 1 To 4
+                    SetCurrentPressionControls(nPression)
+                    For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
+                        For Each oTr As RelevePression833Troncon In oNiv.colTroncons
+                            oTr.Traca = m_bsrcManoCPression(nItem).traca
+                            nItem = nItem + 1
+                            If nItem > m_bsrcManoCPression.Count - 1 Then
+                                nItem = 0
+                            End If
+                        Next
+                    Next
+                    nItem = 0
+                Next
+            End If
+            Affiche8332()
             SetPressionControle542ToPressionManoPulve833(manopulveIsUseCalibrateur.Checked)
+            SelectTableauMesurePourDefaut()
         Catch ex As Exception
-            CSDebug.dispError("diagnostique::setPressionsManuelles ERR : " & ex.Message)
+            CSDebug.dispError("diagnostique::setPressions ERR : ", ex)
         End Try
+
     End Sub
 
     Private Sub manopulvePressionPulve_1_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles manopulvePressionPulve_1.Validated
@@ -8619,19 +8630,42 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             designdgv(nup_niveaux.Value, nupTroncons.Value, 4)
             init542()
             init833()
-            If manopulveIsFaiblePression.Checked Then
-                setPressionsFaibles()
+            If rb542IsFaiblePression.Checked Then
+                setPressionsFaibles(pbSaisieManuelle:=False)
             Else
-                If manopulveIsFortePression.Checked Then
-                    setPressionsFortes()
+                If rb542IsFortePression.Checked Then
+                    setPressionsFortes(pbSaisieManuelle:=False)
                 Else
-                    createRelevePression()
+                    If rb542IsSaisieManuelleFaible.Checked Then
+                        setPressionsFaibles(pbSaisieManuelle:=True)
+                    Else
+                        setPressionsFortes(pbSaisieManuelle:=True)
+                    End If
+
                 End If
 
             End If
             'Affichage des valeurs 
             '            If Not m_bDuringLoad Then
             Affiche542()
+            'Affecation de numéro de traca dans l'ordre
+            If m_bsrcManoCPression.Count > 0 Then
+                Dim nItem As Integer = 0
+                For nPression As Integer = 1 To 4
+                    SetCurrentPressionControls(nPression)
+                    For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
+                        For Each oTr As RelevePression833Troncon In oNiv.colTroncons
+                            oTr.Traca = m_bsrcManoCPression(nItem).traca
+                            nItem = nItem + 1
+                            If nItem > m_bsrcManoCPression.Count - 1 Then
+                                nItem = 0
+                            End If
+                        Next
+                    Next
+                    nItem = 0
+                Next
+            End If
+
             Affiche8332()
             '           End If
             'Vérification de la saisie de l'onglet 7
@@ -8720,6 +8754,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 validerDiagnostiqueTab542()
                 validerDiagnostiqueTab833()
                 CreerNiveauxTroncons833()
+
                 tab_833.SelectedIndex = tabindex
                 tab_833.Show()
                 '            End If
@@ -8785,7 +8820,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             oStyleSeparator.BackColor = Color.Black
             oStyleSeparator.Font = New Font(pdgvPression.Font, FontStyle.Bold)
             oStyleSeparator.Alignment = DataGridViewContentAlignment.MiddleCenter
-            pdgvPression.Rows.Add(ROW_NB)
+            pdgvPression.Rows.Add(ROW_NB + 1)
             pdgvPression.Columns(0).ReadOnly = True
             pdgvPression(0, ROW_NIVEAUX).Value = "Niveaux"
             pdgvPression(0, ROW_TRONCONS).Value = "Tronçons"
@@ -8855,16 +8890,17 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Next i
             Try
 
-                pdgvPression.CurrentCell = pdgvPression(1, 2)
-                pdgvPression.FirstDisplayedCell = pdgvPression(1, 2)
+                'pdgvPression.CurrentCell = pdgvPression(1, 2)
+                'pdgvPression.FirstDisplayedCell = pdgvPression(1, 2)
             Catch
             End Try
             'Suppressionde la Ligne Niveau si un seul niveau
             If pNbNiveaux = 1 Then
                 pdgvPression.Rows(ROW_NIVEAUX).Visible = False
-                pdgvPression.Height = 165
-            Else
                 pdgvPression.Height = 185
+            Else
+                pdgvPression.Rows(ROW_NIVEAUX).Visible = True
+                pdgvPression.Height = 205 '185
             End If
             If nbColTotal >= 30 Then
                 pdgvPression.Height = pdgvPression.Height + SystemInformation.HorizontalScrollBarHeight
@@ -8884,7 +8920,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub createRelevePression()
         Try
-            Dim nItem As Integer
 
             Dim pressionMano As Decimal
             pressionMano = CDec(m_Paramdiag.ParamDiagCalc833.Pression1)
@@ -8906,29 +8941,37 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 For nPression As Integer = 1 To 4
                     SetCurrentPressionControls(nPression)
                     For Each oDiagTroncon833 As DiagnosticTroncons833 In m_diagnostic.diagnosticTroncons833.ListeparPression(nPression)
-                        m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).SetPressionLue(oDiagTroncon833.pressionSortie)
-                        Dim oMano As ManometreControle = m_bsrcManoCPression.List.OfType(Of ManometreControle).Where(Function(M)
-                                                                                                                         Return M.numeroNational = oDiagTroncon833.ManocId
-                                                                                                                     End Function).FirstOrDefault()
-                        If oMano IsNot Nothing Then
-                            m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).Traca = oMano.Traca
+                        If oDiagTroncon833.nNiveau <= m_RelevePression833_Current.colNiveaux.Count() Then
+                            If oDiagTroncon833.nTroncon <= m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons.Count() Then
+
+                                m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).SetPressionLue(oDiagTroncon833.pressionSortie)
+                                Dim oMano As ManometreControle = m_bsrcManoCPression.List.OfType(Of ManometreControle).Where(Function(M)
+                                                                                                                                 Return M.numeroNational = oDiagTroncon833.ManocId
+                                                                                                                             End Function).FirstOrDefault()
+                                If oMano IsNot Nothing Then
+                                    m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).Traca = oMano.Traca
+                                End If
+                            End If
                         End If
                     Next
                 Next
             Else
-                'Affecation de numéro de traca dans l'ordre
-                For nPression As Integer = 1 To 4
-                    SetCurrentPressionControls(nPression)
-                    For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
-                        For Each oTr As RelevePression833Troncon In oNiv.colTroncons
-                            oTr.Traca = m_bsrcManoCPression(nItem).traca
-                            nItem = nItem + 1
-                            If nItem > m_bsrcManoCPression.Count - 1 Then
-                                nItem = 0
-                            End If
-                        Next
-                    Next
-                Next
+                ''Affecation de numéro de traca dans l'ordre
+                'If m_bsrcManoCPression.Count > 0 Then
+                '    For nPression As Integer = 1 To 4
+                '        SetCurrentPressionControls(nPression)
+                '        For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
+                '            For Each oTr As RelevePression833Troncon In oNiv.colTroncons
+                '                oTr.Traca = m_bsrcManoCPression(nItem).traca
+                '                nItem = nItem + 1
+                '                If nItem > m_bsrcManoCPression.Count - 1 Then
+                '                    nItem = 0
+                '                End If
+                '            Next
+                '        Next
+                '        nItem = 0
+                '    Next
+                'End If
             End If
             SelectTableauMesurePourDefaut()
             SetCurrentPressionControls()
@@ -8963,7 +9006,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub gdvPressions1_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gdvPressions1.CellValueChanged
         'CSDebug.dispInfo("gdvPressions1_CellValueChanged")
         Try
-
             If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
                 dgv_CellValueChanged()
             End If
@@ -9113,7 +9155,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                         If m_dgvPressionCurrent.CurrentRow.Index > ROW_MANOMETRE Then
                             'BUG : Je n'arrive pas à sélectionner la 1ere cellule du Tableau
                             'Répositionnement sur le 1er controle de la page
-                            manopulveIsFaiblePression.Focus()
+                            rb542IsFaiblePression.Focus()
                             'm_dgvPressionCurrent.SelectNextControl(m_dgvPressionCurrent, True, True, True, True)
                             'Try
                             '    m_dgvPressionCurrent.CurrentCell = m_dgvPressionCurrent.Rows(ROW_PRESSION).Cells(1)
@@ -9133,10 +9175,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
     Private Sub dgv_CellValueChanged()
-        If m_dgvPressionCurrent IsNot Nothing And m_dgvPressionCurrent.CurrentCell.Value IsNot Nothing Then
+        If m_dgvPressionCurrent IsNot Nothing And m_dgvPressionCurrent.CurrentCell IsNot Nothing Then
+
             If Not m_bDuringLoad Then
-                Dim nRow As Integer = m_dgvPressionCurrent.CurrentCell.RowIndex
-                If nRow = ROW_PRESSION Then
+                If m_dgvPressionCurrent.CurrentCell.RowIndex = ROW_PRESSION Then
                     dgv_CellValueChangedPression()
                 Else
                     dgv_CellValueChangedManometre()
@@ -9155,7 +9197,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim nPression As Integer
             Dim strValue As String
             SetCurrentPressionControls()
-            strValue = m_dgvPressionCurrent.CurrentCell.Value.ToString()
+            If m_dgvPressionCurrent.CurrentCell.Value Is Nothing Then
+                strValue = ""
+            Else
+                strValue = m_dgvPressionCurrent.CurrentCell.Value.ToString()
+            End If
 
             strValue = strValue.ToString().Replace("?", ",")
             strValue = strValue.ToString().Replace(";", ".")
@@ -9208,7 +9254,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Vérification de la saisie de l'onglet 7
             checkIsOk(7)
         Catch ex As Exception
-            CSDebug.dispError("diagnostique::dgv_CellValueChanged ERR : " & ex.Message)
+            CSDebug.dispError("diagnostique::dgv_CellValueChangedPression ERR : " & ex.Message)
         End Try
 
     End Sub
@@ -9230,7 +9276,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
             oNiveau.SetTraca(nTroncon, strValue)
         Catch ex As Exception
-            CSDebug.dispError("diagnostique::dgv_CellValueChanged ERR : " & ex.Message)
+            CSDebug.dispError("diagnostique::dgv_CellValueChangedMano ERR : " & ex.Message)
         End Try
 
     End Sub

@@ -632,12 +632,6 @@
     <Compile Include="Application\diagnostic\frmdiagnostic_recap.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\diagnostic\frmDiagnostiqueOLD.Designer.vb">
-      <DependentUpon>frmDiagnostiqueOLD.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\diagnostic\frmDiagnostiqueOLD.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\diagnostic\frmSaisieNumFact.Designer.vb">
       <DependentUpon>frmSaisieNumFact.vb</DependentUpon>
     </Compile>
@@ -2413,9 +2407,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_recap.resx">
       <DependentUpon>frmdiagnostic_recap.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\frmDiagnostiqueOLD.resx">
-      <DependentUpon>frmDiagnostiqueOLD.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diag_debug.resx">
       <DependentUpon>diag_debug.vb</DependentUpon>

@@ -524,17 +524,18 @@ Public Class AgentManager
 
 #End Region
     ''' <summary>
-    ''' Rend la Plus petite date de dernière synchro
+    ''' Rend la Plus petite date de dernière synchro (1971 si la base est vide)
+    ''' on prend 1971 car 1970 est synomime d'erreur et est utilisé dans le doLogin 
     ''' </summary>
     ''' <returns></returns>
     Friend Shared Function GetDateDernSynchro(pIdStructure As String) As DateTime
         Dim lst As AgentList = AgentManager.getAgentList(pIdStructure)
-        Dim oReturn As DateTime = CSDate.FromCrodipString("1970-01-01")
+        Dim oReturn As DateTime = CSDate.FromCrodipString("1971-01-01")
         If lst.items.Count > 0 Then
             Try
                 oReturn = lst.items.Where(Function(ag) ag.isActif And Not ag.isSupprime And Not ag.isGestionnaire).Min(Function(a) CDate(a.dateDerniereSynchro))
             Catch
-                oReturn = CSDate.FromCrodipString("1970-01-01")
+                oReturn = CSDate.FromCrodipString("1971-01-01")
             End Try
 
         End If
@@ -544,7 +545,7 @@ Public Class AgentManager
             Try
                 oReturn = oCSDB.getValue("SELECT Max (dateModificationCrodip) from pulverisateur WHERE idStructure = " & pIdStructure)
             Catch
-                oReturn = CSDate.FromCrodipString("1970-01-01")
+                oReturn = CSDate.FromCrodipString("1971-01-01")
             End Try
         End If
         Return oReturn
